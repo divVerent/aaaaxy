@@ -5,4 +5,4 @@ generate:
 	statik -m -f -src assets/ -dest internal/assets/
 
 aaaaaa: generate
-	go build github.com/divVerent/cmd/aaaaaa
+	go build github.com/divVerent/aaaaaa/cmd/aaaaaa
