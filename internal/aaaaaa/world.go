@@ -55,7 +55,13 @@ func (w *World) Update() error {
 func (w *World) Draw(screen *ebiten.Image) {
 	// Draw trace polygon to buffer.
 	// Expand and blur buffer.
-	// Draw all tiles currently marked for drawing to screen.
+	// Draw all tiles.
+	// Draw all entities.
+	// NOTE: if an entity is on a tile seen twice, render only once.
+	// INTENTIONAL GLITCH (avoids rendering player twice and player-player collision). Entities live in tile coordinates, not world coordinates. "Looking away" can despawn these entities and respawn at their new location.
+	// Makes wrap-around rooms somewhat less obvious.
+	// Only way to fix seems to be making everything live in "universal covering" coordinates with orientation? Seems not worth it.
+	// TODO: Decide if to keep this.
 	// Multiply screen with buffer.
 	// Invert buffer.
 	// Multiply with previous screen, scroll pos delta applied.
