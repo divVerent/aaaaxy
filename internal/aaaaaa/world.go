@@ -41,20 +41,21 @@ func (w *World) Update() error {
 	// Let all entities move/act. Fetch player position.
 	// Update ScrollPos based on player position and scroll target.
 	// Unmark all tiles and entities (just bump mark index).
-	// Trace from player location to all directions.
+	// Trace from player location to all directions (SweepStep pixels at screen edge).
 	// Remember trace polygon.
-	// Mark all tiles hit (incl. the tiles that stopped us).
-	// Mark all entities hit.
+	// Mark all tiles hit (excl. the tiles that stopped us).
+	// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
+	// Mark all entities on marked tiles hit.
 	// Delete all unmarked entities.
-	// Spawn all entities on existing tiles if not already spawned.
-	// Mark all tiles on entities.
+	// Spawn all entities on marked tiles if not already spawned.
+	// Mark all tiles on entities (this is NOT recursive, but entities may require the tiles they are on to be loaded so they can move).
 	// Delete all unmarked tiles.
 	return nil
 }
 
 func (w *World) Draw(screen *ebiten.Image) {
 	// Draw trace polygon to buffer.
-	// Expand and blur buffer.
+	// Expand and blur buffer (ExpandSize, BlurSize).
 	// Draw all tiles.
 	// Draw all entities.
 	// NOTE: if an entity is on a tile seen twice, render only once.

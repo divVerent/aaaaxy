@@ -4,12 +4,6 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-const (
-	GameWidth  = 640
-	GameHeight = 360
-	GameTPS    = 60
-)
-
 func InitEbiten() {
 	ebiten.SetCursorMode(ebiten.CursorModeHidden)
 	ebiten.SetFullscreen(true)
