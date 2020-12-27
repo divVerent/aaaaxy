@@ -10,6 +10,9 @@ const (
 
 	// TileSize is the size of each tile graphics.
 	TileSize = 16
+	// SubPixels is the number of subpixels ("physics pixels") per tile pixel.
+	// Note that only physics entities (like player) actually track their subpixels; subpixels do not actually exist elsewhere.
+	SubPixels = 16
 	// SweepStep is the distance between visibility traces in pixels. Lower means worse performance.
 	SweepStep = 4
 	// NumSweepTraces is the number of sweep operations we need.

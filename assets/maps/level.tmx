@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="3" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="3">
  <tileset firstgid="1" source="../tiles/tiles.tsx"/>
  <layer id="1" name="Tile Layer 1" width="100" height="100">
   <data encoding="csv">
@@ -23,4 +23,7 @@
 </chunk>
   </data>
  </layer>
+ <objectgroup id="3" name="Object Layer 1">
+  <object id="2" type="warpzone" x="16" y="16" width="48" height="16"/>
+ </objectgroup>
 </map>

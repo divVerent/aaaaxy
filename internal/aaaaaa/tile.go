@@ -10,7 +10,7 @@ type Tile struct {
 	Solid bool
 
 	// Info needed for loading more tiles.
-	levelPos levelPos
+	levelPos Pos
 
 	// Info needed for rendering.
 	orientation Orientation
