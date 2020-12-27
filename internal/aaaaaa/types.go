@@ -102,6 +102,11 @@ func Right() Orientation {
 	return Orientation{Right: South(), Down: West()}
 }
 
+// Left yields an orientation that turns left.
+func TurnAround() Orientation {
+	return Orientation{Right: West(), Down: North()}
+}
+
 // ParseOrientation parses an orientation from a string. It is given by the right and down directions in that order.
 func ParseOrientation(s string) (Orientation, error) {
 	switch s {

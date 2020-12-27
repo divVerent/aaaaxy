@@ -109,6 +109,8 @@ func LoadLevel(r io.Reader) (*level, error) {
 			}
 			if o.Type == "warpzone" {
 				// Warpzones must be paired by name.
+				// Consider encoding their orientation by a tile name? Check what Tiled supports best.
+				// Or maybe require a warp tile below the warpzone and lookup there?
 				warpzones[o.Name] = append(warpzones[o.Name], rawWarpzone{
 					startTile:   startTile,
 					endTile:     endTile,
@@ -140,7 +142,8 @@ func LoadLevel(r io.Reader) (*level, error) {
 		for a := 0; a < 2; a++ {
 			from := warppair[a]
 			to := warppair[1-a]
-			transform := to.orientation.Concat(from.orientation.Inverse())
+			// Warp orientation: right = direction to walk the warp, down = orientation (for mirroring).
+			transform := to.orientation.Concat(from.orientation.Inverse()).Concat(TurnAround())
 			fromCenter2 := from.startTile.Add(from.endTile.Delta(Pos{}))
 			toCenter2 := to.startTile.Add(to.endTile.Delta(Pos{}))
 			for fromy := from.startTile.Y; fromy <= from.endTile.Y; fromy++ {
@@ -148,7 +151,7 @@ func LoadLevel(r io.Reader) (*level, error) {
 					fromPos := Pos{X: fromx, Y: fromy}
 					fromPos2 := fromPos.Add(fromPos.Delta(Pos{}))
 					toPos2 := toCenter2.Add(transform.Apply(fromPos2.Delta(fromCenter2)))
-					toPos := toPos2.Scale(1, 2)
+					toPos := toPos2.Scale(1, 2).Add(to.orientation.Apply(East()))
 					level.tiles[fromPos].warpzone = &warpzone{
 						toTile:    toPos,
 						transform: transform,
