@@ -4,30 +4,20 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-// tilePos represents a tile position.
-type tilePos struct {
-	c, r int
-}
-
-// tileDelta represents a move between two tiles.
-type tileDelta struct {
-	dc, dr int
-}
-
 // World represents the current game state including its entities.
 type World struct {
 	// tiles are all tiles currently loaded.
-	tiles map[tilePos]Tile
+	Tiles map[Pos]Tile
 	// entities are all entities currently loaded.
-	entities map[EntityID]*Entity
+	Entities map[EntityID]*Entity
 	// scrollPos is the current screen scrolling position.
-	scrollPos Pos
+	ScrollPos Pos
 	// scrollTarget is where we want to scroll to.
-	scrollTarget Pos
+	ScrollTarget Pos
 	// scrollSpeed is the speed of scrolling to ScrollTarget, or 0 if not aiming for a target.
-	scrollSpeed int
+	ScrollSpeed int
 	// level is the current tilemap (universal covering with warpzones).
-	level *level
+	Level *Level
 }
 
 func NewWorld() *World {
@@ -72,9 +62,9 @@ func (w *World) Draw(screen *ebiten.Image) {
 
 // LoadTile loads the next tile into the current world based on a currently
 // known tile and its neighbor. Respects and applies warps.
-func (w *World) loadTile(p tilePos, d tileDelta) tilePos {
+func (w *World) LoadTile(p Pos, d Delta) Pos {
 	// TODO implement
-	return tilePos{}
+	return Pos{}
 }
 
 type TraceOptions struct {
@@ -93,11 +83,11 @@ type TraceResult struct {
 	Vector Delta
 	// Path is the set of tiles touched, not including what stopped the trace.
 	// For a line trace, any two neighboring tiles here are adjacent.
-	path []tilePos
+	Path []Pos
 	// Entities is the set of entities touched, not including what stopped the trace.
 	Entities []Entity
 	// hitSolidTilePos is the position of the tile that stopped the trace, if any.
-	hitSolidTilePos *tilePos
+	HitSolidTilePos *Pos
 	// HitSolidTile is the tile that stopped the trace, if any.
 	HitSolidTile *Tile
 	// HitSolidEntity is the entity that stopped the trace, if any.

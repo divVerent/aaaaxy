@@ -8,43 +8,43 @@ import (
 )
 
 // level is a parsed form of a loaded level.
-type level struct {
-	tiles map[Pos]*levelTile
+type Level struct {
+	Tiles map[Pos]*LevelTile
 }
 
 // levelTile is a single tile in the level.
-type levelTile struct {
-	tile       Tile
-	spawnables []*spawnable
-	warpzone   *warpzone
+type LevelTile struct {
+	Tile       Tile
+	Spawnables []*Spawnable
+	Warpzone   *Warpzone
 }
 
 // warpzone represents a warp tile. Whenever anything enters this tile, it gets
 // moved to "to" and the direction transformed by "transform". For the game to
 // work, every warpzone must be paired with an exact opposite elsewhere. This
 // is ensured at load time.
-type warpzone struct {
-	toTile    Pos
-	transform Orientation
+type Warpzone struct {
+	ToTile    Pos
+	Transform Orientation
 }
 
-type rawWarpzone struct {
-	startTile, endTile Pos
-	orientation        Orientation
+type RawWarpzone struct {
+	StartTile, EndTile Pos
+	Orientation        Orientation
 }
 
-type spawnable struct {
+type Spawnable struct {
 	// Entity ID. Used to decide what needs spawning. Unique within a level.
-	id EntityID
+	ID EntityID
 	// Entity type. Used to spawn it on demand.
-	entityType  string
-	levelPos    Pos
-	posInTile   Delta
-	size        Delta
-	orientation Orientation
+	EntityType  string
+	LevelPos    Pos
+	PosInTile   Delta
+	Size        Delta
+	Orientation Orientation
 }
 
-func LoadLevel(r io.Reader) (*level, error) {
+func LoadLevel(r io.Reader) (*Level, error) {
 	t, err := tmx.Decode(r)
 	if err != nil {
 		return nil, fmt.Errorf("invalid map: %v", err)
@@ -68,7 +68,7 @@ func LoadLevel(r io.Reader) (*level, error) {
 	if err != nil {
 		return nil, fmt.Errorf("invalid map layer: %v", err)
 	}
-	level := level{}
+	Level := Level{}
 	for i, td := range tds {
 		pos := Pos{Y: i / t.Layers[0].Width, X: i % t.Layers[0].Width}
 		orientation := Identity()
@@ -85,16 +85,16 @@ func LoadLevel(r io.Reader) (*level, error) {
 		if err != nil {
 			return nil, fmt.Errorf("invalid map: could not parse solid: %v", err)
 		}
-		level.tiles[pos] = &levelTile{
-			tile: Tile{
+		Level.Tiles[pos] = &LevelTile{
+			Tile: Tile{
 				Solid:       solid,
-				levelPos:    pos,
-				image:       nil, // CachePic(td.Tile.Image),
-				orientation: orientation,
+				LevelPos:    pos,
+				Image:       nil, // CachePic(td.Tile.Image),
+				Orientation: orientation,
 			},
 		}
 	}
-	warpzones := map[string][]rawWarpzone{}
+	warpzones := map[string][]RawWarpzone{}
 	for _, og := range t.ObjectGroups {
 		for _, o := range og.Objects {
 			startTile := Pos{X: int(o.X) / TileSize, Y: int(o.Y) / TileSize}
@@ -111,26 +111,25 @@ func LoadLevel(r io.Reader) (*level, error) {
 				// Warpzones must be paired by name.
 				// Consider encoding their orientation by a tile name? Check what Tiled supports best.
 				// Or maybe require a warp tile below the warpzone and lookup there?
-				warpzones[o.Name] = append(warpzones[o.Name], rawWarpzone{
-					startTile:   startTile,
-					endTile:     endTile,
-					orientation: orientation,
+				warpzones[o.Name] = append(warpzones[o.Name], RawWarpzone{
+					StartTile:   startTile,
+					EndTile:     endTile,
+					Orientation: orientation,
 				})
 			}
 			delta := Delta{DX: int(o.X) % TileSize, DY: int(o.Y) % TileSize}
-			// TODO: support orientations.
-			ent := spawnable{
-				id:          EntityID(o.ObjectID),
-				entityType:  o.Type,
-				levelPos:    startTile,
-				posInTile:   delta,
-				size:        Delta{DX: int(o.Width), DY: int(o.Height)},
-				orientation: orientation,
+			ent := Spawnable{
+				ID:          EntityID(o.ObjectID),
+				EntityType:  o.Type,
+				LevelPos:    startTile,
+				PosInTile:   delta,
+				Size:        Delta{DX: int(o.Width), DY: int(o.Height)},
+				Orientation: orientation,
 			}
 			for y := startTile.Y; y <= endTile.Y; y++ {
 				for x := startTile.X; x <= endTile.X; x++ {
 					pos := Pos{X: x, Y: y}
-					level.tiles[pos].spawnables = append(level.tiles[pos].spawnables, &ent)
+					Level.Tiles[pos].Spawnables = append(Level.Tiles[pos].Spawnables, &ent)
 				}
 			}
 		}
@@ -143,22 +142,22 @@ func LoadLevel(r io.Reader) (*level, error) {
 			from := warppair[a]
 			to := warppair[1-a]
 			// Warp orientation: right = direction to walk the warp, down = orientation (for mirroring).
-			transform := to.orientation.Concat(from.orientation.Inverse()).Concat(TurnAround())
-			fromCenter2 := from.startTile.Add(from.endTile.Delta(Pos{}))
-			toCenter2 := to.startTile.Add(to.endTile.Delta(Pos{}))
-			for fromy := from.startTile.Y; fromy <= from.endTile.Y; fromy++ {
-				for fromx := from.startTile.X; fromx <= from.endTile.X; fromx++ {
+			transform := to.Orientation.Concat(from.Orientation.Inverse()).Concat(TurnAround())
+			fromCenter2 := from.StartTile.Add(from.EndTile.Delta(Pos{}))
+			toCenter2 := to.StartTile.Add(to.EndTile.Delta(Pos{}))
+			for fromy := from.StartTile.Y; fromy <= from.EndTile.Y; fromy++ {
+				for fromx := from.StartTile.X; fromx <= from.EndTile.X; fromx++ {
 					fromPos := Pos{X: fromx, Y: fromy}
 					fromPos2 := fromPos.Add(fromPos.Delta(Pos{}))
 					toPos2 := toCenter2.Add(transform.Apply(fromPos2.Delta(fromCenter2)))
-					toPos := toPos2.Scale(1, 2).Add(to.orientation.Apply(East()))
-					level.tiles[fromPos].warpzone = &warpzone{
-						toTile:    toPos,
-						transform: transform,
+					toPos := toPos2.Scale(1, 2).Add(to.Orientation.Apply(East()))
+					Level.Tiles[fromPos].Warpzone = &Warpzone{
+						ToTile:    toPos,
+						Transform: transform,
 					}
 				}
 			}
 		}
 	}
-	return &level, nil
+	return &Level, nil
 }

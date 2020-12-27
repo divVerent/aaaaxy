@@ -10,9 +10,10 @@ type Tile struct {
 	Solid bool
 
 	// Info needed for loading more tiles.
-	levelPos Pos
+	LevelPos  Pos
+	Transform Orientation
 
 	// Info needed for rendering.
-	orientation Orientation
-	image       *ebiten.Image
+	Orientation Orientation
+	Image       *ebiten.Image
 }
