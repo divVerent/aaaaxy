@@ -13,5 +13,5 @@ type Delta struct {
 // Orientation represents a transformation matrix.
 type Orientation struct {
 	Right Delta
-	Up    Delta
+	Down  Delta
 }
