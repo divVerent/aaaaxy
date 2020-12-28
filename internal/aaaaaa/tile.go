@@ -12,9 +12,9 @@ type Tile struct {
 	Spawnables []*Spawnable // NOTE: not adjusted for transform!
 
 	// Info needed for loading more tiles.
-	LevelPos  m.Pos
-	Transform m.Orientation
-	SpawnMark uint
+	LevelPos       m.Pos
+	Transform      m.Orientation
+	VisibilityMark uint
 
 	// Info needed for rendering.
 	Orientation m.Orientation

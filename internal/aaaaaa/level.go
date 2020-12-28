@@ -2,6 +2,7 @@ package aaaaaa
 
 import (
 	"fmt"
+	"log"
 
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/vfs"
@@ -42,7 +43,7 @@ type Spawnable struct {
 }
 
 func LoadLevel(filename string) (*Level, error) {
-	r, err := vfs.Load("level", filename)
+	r, err := vfs.Load("maps", filename+".tmx")
 	if err != nil {
 		return nil, fmt.Errorf("could not open map: %v", err)
 	}
@@ -70,8 +71,13 @@ func LoadLevel(filename string) (*Level, error) {
 	if err != nil {
 		return nil, fmt.Errorf("invalid map layer: %v", err)
 	}
-	Level := Level{}
+	level := Level{
+		Tiles: map[m.Pos]*LevelTile{},
+	}
 	for i, td := range tds {
+		if td.Nil {
+			continue
+		}
 		pos := m.Pos{X: i % t.Layers[0].Width, Y: i / t.Layers[0].Width}
 		orientation := m.Identity()
 		if td.HorizontallyFlipped {
@@ -87,7 +93,7 @@ func LoadLevel(filename string) (*Level, error) {
 		if err != nil {
 			return nil, fmt.Errorf("invalid map: could not parse solid: %v", err)
 		}
-		Level.Tiles[pos] = &LevelTile{
+		level.Tiles[pos] = &LevelTile{
 			Tile: Tile{
 				Solid:       solid,
 				LevelPos:    pos,
@@ -133,6 +139,7 @@ func LoadLevel(filename string) (*Level, error) {
 					EndTile:     endTile,
 					Orientation: orientation,
 				})
+				continue
 			}
 			delta := m.Delta{DX: int(o.X) % TileSize, DY: int(o.Y) % TileSize}
 			ent := Spawnable{
@@ -146,11 +153,15 @@ func LoadLevel(filename string) (*Level, error) {
 			for y := startTile.Y; y <= endTile.Y; y++ {
 				for x := startTile.X; x <= endTile.X; x++ {
 					pos := m.Pos{X: x, Y: y}
-					Level.Tiles[pos].Tile.Spawnables = append(Level.Tiles[pos].Tile.Spawnables, &ent)
+					levelTile := level.Tiles[pos]
+					if levelTile == nil {
+						log.Panicf("invalid entity location: outside map bounds: %v in %v", pos, ent)
+					}
+					levelTile.Tile.Spawnables = append(levelTile.Tile.Spawnables, &ent)
 				}
 			}
 			if objType == "player" {
-				Level.Player = &ent
+				level.Player = &ent
 			}
 		}
 	}
@@ -175,7 +186,11 @@ func LoadLevel(filename string) (*Level, error) {
 					fromPos2 := fromPos.Add(fromPos.Delta(m.Pos{}))
 					toPos2 := toCenter2.Add(transform.Apply(fromPos2.Delta(fromCenter2)))
 					toPos := toPos2.Scale(1, 2).Add(to.Orientation.Apply(m.East()))
-					Level.Tiles[fromPos].Warpzone = &Warpzone{
+					levelTile := level.Tiles[fromPos]
+					if levelTile == nil {
+						log.Panicf("invalid warpzone location: outside map bounds: %v in %v", fromPos, warppair)
+					}
+					levelTile.Warpzone = &Warpzone{
 						ToTile:    toPos,
 						Transform: transform,
 					}
@@ -183,5 +198,5 @@ func LoadLevel(filename string) (*Level, error) {
 			}
 		}
 	}
-	return &Level, nil
+	return &level, nil
 }

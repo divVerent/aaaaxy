@@ -1,6 +1,7 @@
 package vfs
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -26,6 +27,10 @@ func init() {
 
 // Load loads a file from the VFS based on the given file purpose and "name".
 func Load(purpose string, name string) (io.ReadCloser, error) {
-	vfsPath := path.Join(purpose, path.Base(name))
-	return myfs.Open(vfsPath)
+	vfsPath := path.Join("/", purpose, path.Base(name))
+	r, err := myfs.Open(vfsPath)
+	if err != nil {
+		return nil, fmt.Errorf("could not open %v: %v", vfsPath, err)
+	}
+	return r, nil
 }

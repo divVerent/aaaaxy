@@ -24,13 +24,13 @@ type World struct {
 	ScrollSpeed int
 	// level is the current tilemap (universal covering with warpzones).
 	Level *Level
-	// SpawnMark is the current mark value to detect visible tiles/objects.
-	SpawnMark uint
+	// VisibilityMark is the current mark value to detect visible tiles/objects.
+	VisibilityMark uint
 }
 
 func NewWorld() *World {
 	// Load map.
-	level, err := LoadLevel("map")
+	level, err := LoadLevel("level")
 	if err != nil {
 		log.Panicf("Could not load level: %v", err)
 	}
@@ -55,12 +55,12 @@ func NewWorld() *World {
 	return &w
 }
 
-func (w *World) traceLineAndMark(p m.Pos, d m.Delta) TraceResult {
-	result := w.TraceLine(p, d, TraceOptions{
+func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
+	result := w.TraceLine(from, to, TraceOptions{
 		LoadTiles: true,
 	})
 	for _, tilePos := range result.Path {
-		w.Tiles[tilePos].SpawnMark = w.SpawnMark
+		w.Tiles[tilePos].VisibilityMark = w.VisibilityMark
 	}
 	return result
 }
@@ -73,32 +73,37 @@ func (w *World) Update() error {
 	w.ScrollPos = player.Pos
 
 	// Unmark all tiles and entities (just bump mark index).
-	w.SpawnMark++
+	w.VisibilityMark++
 
 	// Trace from player location to all directions (SweepStep pixels at screen edge).
 	// Mark all tiles hit (excl. the tiles that stopped us).
 	// TODO Remember trace polygon.
-	screen0 := w.ScrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2}).Delta(player.Pos)
+	screen0 := w.ScrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
-	for x := screen0.DX; x < screen1.DX+SweepStep; x += SweepStep {
-		w.traceLineAndMark(player.Pos, m.Delta{DX: x, DY: screen0.DY})
-		w.traceLineAndMark(player.Pos, m.Delta{DX: x, DY: screen1.DY})
+	for x := screen0.X; x < screen1.X+SweepStep; x += SweepStep {
+		w.traceLineAndMark(player.Pos, m.Pos{X: x, Y: screen0.Y})
+		w.traceLineAndMark(player.Pos, m.Pos{X: x, Y: screen1.Y})
 	}
-	for y := screen0.DY; y < screen1.DY+SweepStep; y += SweepStep {
-		w.traceLineAndMark(player.Pos, m.Delta{DX: screen0.DX, DY: y})
-		w.traceLineAndMark(player.Pos, m.Delta{DX: screen1.DX, DY: y})
+	for y := screen0.Y; y < screen1.Y+SweepStep; y += SweepStep {
+		w.traceLineAndMark(player.Pos, m.Pos{X: screen0.X, Y: y})
+		w.traceLineAndMark(player.Pos, m.Pos{X: screen1.X, Y: y})
 	}
 
 	// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
 	markedTiles := []m.Pos{}
 	for tilePos, tile := range w.Tiles {
-		if tile.SpawnMark == w.SpawnMark {
+		if tile.VisibilityMark == w.VisibilityMark {
 			markedTiles = append(markedTiles, tilePos)
 		}
 	}
 	expand := m.Delta{DX: ExpandTiles, DY: ExpandTiles}
 	for _, pos := range markedTiles {
 		w.LoadTilesForTileBox(pos.Sub(expand), pos.Add(expand), pos)
+		for y := pos.Y - ExpandTiles; y <= pos.Y+ExpandTiles; y++ {
+			for x := pos.X - ExpandTiles; x <= pos.X+ExpandTiles; x++ {
+				w.Tiles[m.Pos{X: x, Y: y}].VisibilityMark = w.VisibilityMark
+			}
+		}
 	}
 
 	// TODO Mark all entities on marked tiles hit.
@@ -109,7 +114,7 @@ func (w *World) Update() error {
 
 	// Delete all unmarked tiles.
 	for pos, tile := range w.Tiles {
-		if tile.SpawnMark != w.SpawnMark {
+		if tile.VisibilityMark != w.VisibilityMark {
 			delete(w.Tiles, pos)
 		}
 	}
@@ -155,9 +160,8 @@ func (w *World) Draw(screen *ebiten.Image) {
 // known tile and its neighbor. Respects and applies warps.
 func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newPos := p.Add(d)
-	if tile, found := w.Tiles[newPos]; found {
+	if _, found := w.Tiles[newPos]; found {
 		// Already loaded.
-		tile.SpawnMark = w.SpawnMark
 		return newPos
 	}
 	neighborTile := w.Tiles[p]
@@ -171,7 +175,6 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newTile := newLevelTile.Tile
 	newTile.Transform = t.Concat(newTile.Transform)
 	newTile.Orientation = t.Concat(newTile.Orientation)
-	newTile.SpawnMark = w.SpawnMark
 	w.Tiles[newPos] = &newTile
 	return newPos
 }
@@ -210,15 +213,16 @@ type TraceOptions struct {
 	NoEntities bool
 	// If LoadTiles is set, not yet known tiles will be loaded in by the trace operation.
 	// Otherwise hitting a not-yet-loaded tile will end the trace.
+	// Only valid on line traces.
 	LoadTiles bool
 }
 
 // TraceResult returns the status of a trace operation.
 type TraceResult struct {
-	// Delta is the distance actually travelled until the trace stopped.
-	Vector m.Delta
+	// EndPos is the pixel the trace ended on (the last nonsolid pixel).
+	EndPos m.Pos
 	// Path is the set of tiles touched, not including what stopped the trace.
-	// For a line trace, any two neighboring tiles here are adjacent.
+	// Only set by line traces.
 	Path []m.Pos
 	// Entities is the set of entities touched, not including what stopped the trace.
 	Entities []Entity
@@ -227,18 +231,129 @@ type TraceResult struct {
 	// HitSolidTile is the tile that stopped the trace, if any.
 	HitSolidTile *Tile
 	// HitSolidEntity is the entity that stopped the trace, if any.
-	HitSolidEntity Entity
+	HitSolidEntity *Entity
 	// HitFogOfWar is set if the trace ended by hitting an unloaded tile.
 	HitFogOfWar bool
 }
 
 // TraceLine moves from x,y by dx,dy in pixel coordinates.
-func (w *World) TraceLine(p m.Pos, d m.Delta, o TraceOptions) TraceResult {
-	return w.TraceBox(p, m.Delta{}, d, o)
+func (w *World) TraceLine(from, to m.Pos, o TraceOptions) TraceResult {
+	return w.TraceBox(from, m.Delta{DX: 1, DY: 1}, to, o)
+}
+
+// tileStop locates the coordinate of the next tile _entry_ position in the given direction.
+func tileStop(from, size, to int) int {
+	if to >= from {
+		// Tile pos p so that:
+		//   p > from.
+		//   (p + size) mod TileSize = 0.
+		return from + TileSize - ((from + size) % TileSize)
+	} else {
+		// Tile pos p so that:
+		//   p < from
+		//   (p + 1) mod TileSize = 0.
+		return from - 1 - (from % TileSize)
+	}
 }
 
 // TraceBox moves from x,y size sx,sy by dx,dy in pixel coordinates.
-func (w *World) TraceBox(p m.Pos, s, d m.Delta, o TraceOptions) TraceResult {
-	// TODO: Implement
-	return TraceResult{}
+func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) TraceResult {
+	isLine := size == m.Delta{1, 1}
+	result := TraceResult{
+		EndPos:          to,
+		Path:            nil,
+		Entities:        nil,
+		HitSolidTilePos: nil,
+		HitSolidTile:    nil,
+		HitSolidEntity:  nil,
+		HitFogOfWar:     false,
+	}
+	if !o.NoTiles {
+		prevTile := from.Scale(1, TileSize)
+		// Sweep from from towards to, hitting tile boundaries as needed.
+		pos := from
+	TRACELOOP:
+		for {
+			// Where is the next stop?
+			// TODO can cache the stop we didn't advance.
+			xstopx := tileStop(pos.X, size.DX, to.X)
+			xstop := m.Pos{xstopx, pos.Y}
+			if to.X != pos.X {
+				xstop.Y = pos.Y + (to.Y-pos.Y)*(xstop.X-pos.X)/(to.X-pos.X)
+			}
+			ystopy := tileStop(pos.Y, size.DY, to.Y)
+			ystop := m.Pos{pos.X, ystopy}
+			if to.Y != pos.Y {
+				ystop.X = pos.X + (to.X-pos.X)*(ystop.Y-pos.Y)/(to.Y-pos.Y)
+			}
+			var stop m.Pos
+			// Which stop comes first?
+			if xstop.Delta(pos).Norm1() < ystop.Delta(pos).Norm1() {
+				stop = xstop
+			} else {
+				stop = ystop
+			}
+			// Have we exceeded the goal?
+			if stop.Delta(pos).Norm1() > to.Delta(pos).Norm1() {
+				break
+			}
+			// Identify the "front" tile of the trace. This is the tile most likely to stop us.
+			front, back := stop, stop
+			move := m.Delta{}
+			if to.X > pos.X {
+				front.X += size.DX - 1
+				move.DX = 1
+			} else if to.X < pos.X {
+				back.X += size.DX - 1
+				move.DX = -1
+			}
+			front = front.Scale(1, TileSize)
+			if to.Y > pos.Y {
+				front.Y += size.DY - 1
+				move.DY = 1
+			} else if to.Y < pos.Y {
+				back.Y += size.DY - 1
+				move.DY = -1
+			}
+			back = back.Scale(1, TileSize)
+			// Loading: walk from previous front to new front.
+			if o.LoadTiles && isLine {
+				w.LoadTile(prevTile, front.Delta(prevTile))
+				prevTile = front
+			}
+			// Collision: hit the entire front.
+			stopend := stop.Add(m.Delta{DX: size.DX - 1, DY: size.DY - 1})
+			for y := stop.Y; y <= stopend.Y; y++ {
+				for x := stop.X; x <= stopend.X; x++ {
+					if x != front.X && y != front.Y {
+						continue
+					}
+					tilePos := m.Pos{X: x, Y: y}
+					tile := w.Tiles[tilePos]
+					if tile == nil {
+						result.HitFogOfWar = true
+						result.EndPos = stop.Sub(move)
+						break TRACELOOP
+					}
+					if tile.Solid {
+						result.HitSolidTilePos = &tilePos
+						result.HitSolidTile = tile
+						result.EndPos = stop.Sub(move)
+						break TRACELOOP
+					}
+					if isLine {
+						result.Path = append(result.Path, tilePos)
+					}
+				}
+			}
+		}
+	}
+	if !o.NoEntities {
+		for _, ent := range w.Entities {
+			ent = ent
+			// Clip trace to ent.
+			// If we hit an entity, we must also cut down the Path.
+		}
+	}
+	return result
 }
