@@ -1,48 +1,8 @@
-package aaaaaa
+package math
 
 import (
 	"fmt"
 )
-
-// Pos represents a pixel position, where X points right and Y points down.
-type Pos struct {
-	X, Y int
-}
-
-// Add applies a delta to a position.
-func (p Pos) Add(d Delta) Pos {
-	return Pos{p.X + d.DX, p.Y + d.DY}
-}
-
-func (p Pos) Delta(p2 Pos) Delta {
-	return Delta{p.X - p2.X, p.Y - p2.Y}
-}
-
-func (p Pos) Scale(n int, m int) Pos {
-	return Pos{p.X * n / m, p.Y * n / m}
-}
-
-// Delta represents a move between two pixel positions.
-type Delta struct {
-	DX, DY int
-}
-
-func (d Delta) Scale(n int, m int) Delta {
-	return Delta{d.DX * n / m, d.DY * n / m}
-}
-
-func North() Delta {
-	return Delta{DX: 0, DY: -1}
-}
-func East() Delta {
-	return Delta{DX: 1, DY: 0}
-}
-func South() Delta {
-	return Delta{DX: 0, DY: 1}
-}
-func West() Delta {
-	return Delta{DX: -1, DY: 0}
-}
 
 // Orientation represents a transformation matrix, written as a right and a down vector.
 type Orientation struct {

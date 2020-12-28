@@ -1,6 +1,7 @@
 package aaaaaa
 
 import (
+	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -11,10 +12,10 @@ type Tile struct {
 	Spawnables []*Spawnable // NOTE: not adjusted for transform!
 
 	// Info needed for loading more tiles.
-	LevelPos  Pos
-	Transform Orientation
+	LevelPos  m.Pos
+	Transform m.Orientation
 
 	// Info needed for rendering.
-	Orientation Orientation
+	Orientation m.Orientation
 	Image       *ebiten.Image
 }

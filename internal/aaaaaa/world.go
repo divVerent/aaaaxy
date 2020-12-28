@@ -3,19 +3,21 @@ package aaaaaa
 import (
 	"log"
 
+	m "github.com/divVerent/aaaaaa/internal/math"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 // World represents the current game state including its entities.
 type World struct {
 	// tiles are all tiles currently loaded.
-	Tiles map[Pos]*Tile
+	Tiles map[m.Pos]*Tile
 	// entities are all entities currently loaded.
 	Entities map[EntityID]*Entity
 	// scrollPos is the current screen scrolling position.
-	ScrollPos Pos
+	ScrollPos m.Pos
 	// scrollTarget is where we want to scroll to.
-	ScrollTarget Pos
+	ScrollTarget m.Pos
 	// scrollSpeed is the speed of scrolling to ScrollTarget, or 0 if not aiming for a target.
 	ScrollSpeed int
 	// level is the current tilemap (universal covering with warpzones).
@@ -64,7 +66,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 
 // LoadTile loads the next tile into the current world based on a currently
 // known tile and its neighbor. Respects and applies warps.
-func (w *World) LoadTile(p Pos, d Delta) Pos {
+func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newPos := p.Add(d)
 	if _, found := w.Tiles[newPos]; found {
 		// Already loaded.
@@ -98,14 +100,14 @@ type TraceOptions struct {
 // TraceResult returns the status of a trace operation.
 type TraceResult struct {
 	// Delta is the distance actually travelled until the trace stopped.
-	Vector Delta
+	Vector m.Delta
 	// Path is the set of tiles touched, not including what stopped the trace.
 	// For a line trace, any two neighboring tiles here are adjacent.
-	Path []Pos
+	Path []m.Pos
 	// Entities is the set of entities touched, not including what stopped the trace.
 	Entities []Entity
 	// hitSolidTilePos is the position of the tile that stopped the trace, if any.
-	HitSolidTilePos *Pos
+	HitSolidTilePos *m.Pos
 	// HitSolidTile is the tile that stopped the trace, if any.
 	HitSolidTile *Tile
 	// HitSolidEntity is the entity that stopped the trace, if any.
@@ -115,13 +117,12 @@ type TraceResult struct {
 }
 
 // TraceLine moves from x,y by dx,dy in pixel coordinates.
-func (w *World) TraceLine(p Pos, d Delta, o TraceOptions) TraceResult {
-	// TODO: Optimize?
-	return w.TraceBox(p, Delta{}, d, o)
+func (w *World) TraceLine(p m.Pos, d m.Delta, o TraceOptions) TraceResult {
+	return w.TraceBox(p, m.Delta{}, d, o)
 }
 
 // TraceBox moves from x,y size sx,sy by dx,dy in pixel coordinates.
-func (w *World) TraceBox(p Pos, s, d Delta, o TraceOptions) TraceResult {
+func (w *World) TraceBox(p m.Pos, s, d m.Delta, o TraceOptions) TraceResult {
 	// TODO: Implement
 	return TraceResult{}
 }

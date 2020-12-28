@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"io"
 
+	m "github.com/divVerent/aaaaaa/internal/math"
+
 	"github.com/fardog/tmx"
 )
 
 // Level is a parsed form of a loaded level.
 type Level struct {
-	Tiles map[Pos]*LevelTile
+	Tiles map[m.Pos]*LevelTile
 }
 
 // LevelTile is a single tile in the level.
@@ -23,8 +25,8 @@ type LevelTile struct {
 // work, every warpzone must be paired with an exact opposite elsewhere. This
 // is ensured at load time.
 type Warpzone struct {
-	ToTile    Pos
-	Transform Orientation
+	ToTile    m.Pos
+	Transform m.Orientation
 }
 
 type Spawnable struct {
@@ -32,10 +34,10 @@ type Spawnable struct {
 	ID EntityID
 	// Entity type. Used to spawn it on demand.
 	EntityType  string
-	LevelPos    Pos
-	PosInTile   Delta
-	Size        Delta
-	Orientation Orientation
+	LevelPos    m.Pos
+	PosInTile   m.Delta
+	Size        m.Delta
+	Orientation m.Orientation
 }
 
 func LoadLevel(r io.Reader) (*Level, error) {
@@ -64,16 +66,16 @@ func LoadLevel(r io.Reader) (*Level, error) {
 	}
 	Level := Level{}
 	for i, td := range tds {
-		pos := Pos{Y: i / t.Layers[0].Width, X: i % t.Layers[0].Width}
-		orientation := Identity()
+		pos := m.Pos{X: i % t.Layers[0].Width, Y: i / t.Layers[0].Width}
+		orientation := m.Identity()
 		if td.HorizontallyFlipped {
-			orientation = FlipX().Concat(orientation)
+			orientation = m.FlipX().Concat(orientation)
 		}
 		if td.VerticallyFlipped {
-			orientation = FlipY().Concat(orientation)
+			orientation = m.FlipY().Concat(orientation)
 		}
 		if td.DiagonallyFlipped {
-			orientation = FlipD().Concat(orientation)
+			orientation = m.FlipD().Concat(orientation)
 		}
 		solid, err := td.Tile.Properties.Bool("solid")
 		if err != nil {
@@ -89,8 +91,8 @@ func LoadLevel(r io.Reader) (*Level, error) {
 		}
 	}
 	type RawWarpzone struct {
-		StartTile, EndTile Pos
-		Orientation        Orientation
+		StartTile, EndTile m.Pos
+		Orientation        m.Orientation
 	}
 	warpzones := map[string][]RawWarpzone{}
 	for _, og := range t.ObjectGroups {
@@ -107,12 +109,13 @@ func LoadLevel(r io.Reader) (*Level, error) {
 					objType = objTypeProp.Value
 				}
 			}
-			startTile := Pos{X: int(o.X) / TileSize, Y: int(o.Y) / TileSize}
-			endTile := Pos{X: int(o.X+o.Width-1) / TileSize, Y: int(o.Y+o.Height-1) / TileSize}
-			orientation := Identity()
+			// TODO actually support object orientation.
+			startTile := m.Pos{X: int(o.X), Y: int(o.Y)}.Scale(1, TileSize)
+			endTile := m.Pos{X: int(o.X + o.Width - 1), Y: int(o.Y + o.Height - 1)}.Scale(1, TileSize)
+			orientation := m.Identity()
 			orientationProp := objProps.WithName("orientation")
 			if orientationProp != nil {
-				orientation, err = ParseOrientation(orientationProp.Value)
+				orientation, err = m.ParseOrientation(orientationProp.Value)
 				if err != nil {
 					return nil, fmt.Errorf("invalid orientation: %v", err)
 				}
@@ -125,18 +128,18 @@ func LoadLevel(r io.Reader) (*Level, error) {
 					Orientation: orientation,
 				})
 			}
-			delta := Delta{DX: int(o.X) % TileSize, DY: int(o.Y) % TileSize}
+			delta := m.Delta{DX: int(o.X) % TileSize, DY: int(o.Y) % TileSize}
 			ent := Spawnable{
 				ID:          EntityID(o.ObjectID),
 				EntityType:  objType,
 				LevelPos:    startTile,
 				PosInTile:   delta,
-				Size:        Delta{DX: int(o.Width), DY: int(o.Height)},
+				Size:        m.Delta{DX: int(o.Width), DY: int(o.Height)},
 				Orientation: orientation,
 			}
 			for y := startTile.Y; y <= endTile.Y; y++ {
 				for x := startTile.X; x <= endTile.X; x++ {
-					pos := Pos{X: x, Y: y}
+					pos := m.Pos{X: x, Y: y}
 					Level.Tiles[pos].Tile.Spawnables = append(Level.Tiles[pos].Tile.Spawnables, &ent)
 				}
 			}
@@ -154,15 +157,15 @@ func LoadLevel(r io.Reader) (*Level, error) {
 			// T = to * flipx * from^-1
 			// T' = from * flipx * to^-1
 			// T T' = id
-			transform := to.Orientation.Concat(FlipX()).Concat(from.Orientation.Inverse())
-			fromCenter2 := from.StartTile.Add(from.EndTile.Delta(Pos{}))
-			toCenter2 := to.StartTile.Add(to.EndTile.Delta(Pos{}))
+			transform := to.Orientation.Concat(m.FlipX()).Concat(from.Orientation.Inverse())
+			fromCenter2 := from.StartTile.Add(from.EndTile.Delta(m.Pos{}))
+			toCenter2 := to.StartTile.Add(to.EndTile.Delta(m.Pos{}))
 			for fromy := from.StartTile.Y; fromy <= from.EndTile.Y; fromy++ {
 				for fromx := from.StartTile.X; fromx <= from.EndTile.X; fromx++ {
-					fromPos := Pos{X: fromx, Y: fromy}
-					fromPos2 := fromPos.Add(fromPos.Delta(Pos{}))
+					fromPos := m.Pos{X: fromx, Y: fromy}
+					fromPos2 := fromPos.Add(fromPos.Delta(m.Pos{}))
 					toPos2 := toCenter2.Add(transform.Apply(fromPos2.Delta(fromCenter2)))
-					toPos := toPos2.Scale(1, 2).Add(to.Orientation.Apply(East()))
+					toPos := toPos2.Scale(1, 2).Add(to.Orientation.Apply(m.East()))
 					Level.Tiles[fromPos].Warpzone = &Warpzone{
 						ToTile:    toPos,
 						Transform: transform,

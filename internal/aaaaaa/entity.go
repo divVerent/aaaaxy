@@ -1,10 +1,14 @@
 package aaaaaa
 
+import (
+	m "github.com/divVerent/aaaaaa/internal/math"
+)
+
 // An Entity is an object that exists in the game.
 type Entity struct {
 	ID      EntityID
-	Pos     Pos
-	Size    Delta
+	Pos     m.Pos
+	Size    m.Delta
 	IsSolid bool
 
 	Impl EntityImpl
