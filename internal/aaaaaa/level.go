@@ -97,17 +97,29 @@ func LoadLevel(r io.Reader) (*Level, error) {
 	warpzones := map[string][]RawWarpzone{}
 	for _, og := range t.ObjectGroups {
 		for _, o := range og.Objects {
+			objProps := o.Properties
+			if o.GlobalID != 0 {
+				tile := t.TileSets[0].TileWithID(o.GlobalID.TileID(&t.TileSets[0]))
+				objProps = append(append(tmx.Properties{}, objProps...), tile.Properties...)
+			}
+			objType := o.Type
+			if objType == "" {
+				objTypeProp := objProps.WithName("type")
+				if objTypeProp != nil {
+					objType = objTypeProp.Value
+				}
+			}
 			startTile := Pos{X: int(o.X) / TileSize, Y: int(o.Y) / TileSize}
 			endTile := Pos{X: int(o.X+o.Width-1) / TileSize, Y: int(o.Y+o.Height-1) / TileSize}
 			orientation := Identity()
-			orientationProp := o.Properties.WithName("orientation")
+			orientationProp := objProps.WithName("orientation")
 			if orientationProp != nil {
 				orientation, err = ParseOrientation(orientationProp.Value)
 				if err != nil {
 					return nil, fmt.Errorf("invalid orientation: %v", err)
 				}
 			}
-			if o.Type == "warpzone" {
+			if objType == "warpzone" {
 				// Warpzones must be paired by name.
 				// Consider encoding their orientation by a tile name? Check what Tiled supports best.
 				// Or maybe require a warp tile below the warpzone and lookup there?
@@ -120,7 +132,7 @@ func LoadLevel(r io.Reader) (*Level, error) {
 			delta := Delta{DX: int(o.X) % TileSize, DY: int(o.Y) % TileSize}
 			ent := Spawnable{
 				ID:          EntityID(o.ObjectID),
-				EntityType:  o.Type,
+				EntityType:  objType,
 				LevelPos:    startTile,
 				PosInTile:   delta,
 				Size:        Delta{DX: int(o.Width), DY: int(o.Height)},
@@ -142,7 +154,11 @@ func LoadLevel(r io.Reader) (*Level, error) {
 			from := warppair[a]
 			to := warppair[1-a]
 			// Warp orientation: right = direction to walk the warp, down = orientation (for mirroring).
-			transform := to.Orientation.Concat(from.Orientation.Inverse()).Concat(TurnAround())
+			// Transform is identity transform iff the warps are reverse in right and identical in down.
+			// T = to * flipx * from^-1
+			// T' = from * flipx * to^-1
+			// T T' = id
+			transform := to.Orientation.Concat(FlipX()).Concat(from.Orientation.Inverse())
 			fromCenter2 := from.StartTile.Add(from.EndTile.Delta(Pos{}))
 			toCenter2 := to.StartTile.Add(to.EndTile.Delta(Pos{}))
 			for fromy := from.StartTile.Y; fromy <= from.EndTile.Y; fromy++ {

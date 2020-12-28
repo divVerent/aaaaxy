@@ -1,19 +1,201 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="3">
- <tileset firstgid="1" source="../tiles/tiles.tsx"/>
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="11">
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="25" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" type="bool" value="false"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/empty.png"/>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall00.png"/>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall01.png"/>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall02.png"/>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall03.png"/>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall04.png"/>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall05.png"/>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall06.png"/>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall07.png"/>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall08.png"/>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall09.png"/>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall10.png"/>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall11.png"/>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall12.png"/>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall13.png"/>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall14.png"/>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/wall15.png"/>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="type" value="warpzone"/>
+    <property name="orientation" value="EN"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/warpzone_en.png"/>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="type" value="warpzone"/>
+    <property name="orientation" value="ES"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/warpzone_es.png"/>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="type" value="warpzone"/>
+    <property name="orientation" value="NE"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/warpzone_ne.png"/>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="type" value="warpzone"/>
+    <property name="orientation" value="NW"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/warpzone_nw.png"/>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="type" value="warpzone"/>
+    <property name="orientation" value="SE"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/warpzone_se.png"/>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="type" value="warpzone"/>
+    <property name="orientation" value="SW"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/warpzone_sw.png"/>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="type" value="warpzone"/>
+    <property name="orientation" value="WN"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/warpzone_wn.png"/>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="type" value="warpzone"/>
+    <property name="orientation" value="WS"/>
+   </properties>
+   <image width="16" height="16" source="../tiles/warpzone_ws.png"/>
+  </tile>
+  <wangsets>
+   <wangset name="Wall/Solid" tile="-1">
+    <wangedgecolor name="" color="#ff0000" tile="-1" probability="1"/>
+    <wangedgecolor name="" color="#00ff00" tile="-1" probability="1"/>
+    <wangtile tileid="0" wangid="0x2020202"/>
+    <wangtile tileid="2" wangid="0x2020201"/>
+    <wangtile tileid="3" wangid="0x1020202"/>
+    <wangtile tileid="4" wangid="0x1020201"/>
+    <wangtile tileid="5" wangid="0x2020102"/>
+    <wangtile tileid="6" wangid="0x2020101"/>
+    <wangtile tileid="7" wangid="0x1020102"/>
+    <wangtile tileid="8" wangid="0x1020101"/>
+    <wangtile tileid="9" wangid="0x2010202"/>
+    <wangtile tileid="10" wangid="0x2010201"/>
+    <wangtile tileid="11" wangid="0x1010202"/>
+    <wangtile tileid="12" wangid="0x1010201"/>
+    <wangtile tileid="13" wangid="0x2010102"/>
+    <wangtile tileid="14" wangid="0x2010101"/>
+    <wangtile tileid="15" wangid="0x1010102"/>
+    <wangtile tileid="16" wangid="0x1010101"/>
+   </wangset>
+  </wangsets>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="100" height="100">
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
-1,14,16,16,12,1,0,0,0,0,0,0,0,0,0,0,
-14,17,9,9,17,12,0,0,0,0,0,0,0,0,0,0,
-15,13,1,1,15,13,0,0,0,0,0,0,0,0,0,0,
-15,13,1,1,15,13,0,0,0,0,0,0,0,0,0,0,
-7,17,16,16,17,5,0,0,0,0,0,0,0,0,0,0,
-1,7,9,9,5,1,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,0,
+2,1,1,1,1,1,1,1,1,1,1,1,1,2,2,0,
+2,1,1,1,1,1,1,1,1,1,1,1,1,2,2,0,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,
+2,1,1,1,1,1,1,1,1,1,1,1,1,2,2,0,
+2,1,1,1,1,1,1,1,1,1,1,1,1,2,2,0,
+2,1,1,1,1,1,1,1,1,1,1,1,1,2,2,0,
+2,2,2,1,1,2,2,2,2,1,1,2,2,2,2,0,
+2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -24,6 +206,10 @@
   </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
-  <object id="2" type="warpzone" x="16" y="16" width="48" height="16"/>
+  <object id="3" name="warp1" gid="19" x="224" y="80" width="16" height="32"/>
+  <object id="6" name="warp1" gid="22" x="48" y="144" width="32" height="16"/>
+  <object id="7" name="warp2" gid="22" x="144" y="160" width="32" height="16"/>
+  <object id="8" name="warp2" gid="21" x="144" y="16" width="32" height="16"/>
+  <object id="9" type="player" x="32" y="96" width="16" height="32"/>
  </objectgroup>
 </map>
