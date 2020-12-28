@@ -35,7 +35,9 @@ func NewWorld() *World {
 		log.Panicf("Could not load level: %v", err)
 	}
 	w := World{
-		Level: level,
+		Tiles:    map[m.Pos]*Tile{},
+		Entities: map[EntityID]*Entity{},
+		Level:    level,
 	}
 
 	// Create player entity.
@@ -49,6 +51,7 @@ func NewWorld() *World {
 
 	// Load in the tiles the player is standing on.
 	tile := w.Level.Tiles[w.Level.Player.LevelPos].Tile
+	tile.Transform = m.Identity()
 	w.Tiles[w.Level.Player.LevelPos] = &tile
 	w.LoadTilesForBox(w.Entities[w.PlayerID].Pos, w.Entities[w.PlayerID].Size, w.Level.Player.LevelPos)
 
@@ -56,10 +59,12 @@ func NewWorld() *World {
 }
 
 func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
+	log.Printf("vistrace %v -> %v", from, to)
 	result := w.TraceLine(from, to, TraceOptions{
 		LoadTiles: true,
 	})
 	for _, tilePos := range result.Path {
+		log.Printf("mark %v", tilePos)
 		w.Tiles[tilePos].VisibilityMark = w.VisibilityMark
 	}
 	return result
@@ -71,9 +76,11 @@ func (w *World) Update() error {
 	// Update ScrollPos based on player position and scroll target.
 	player := w.Entities[w.PlayerID]
 	w.ScrollPos = player.Pos
+	log.Printf("player at %v", player.Pos)
 
 	// Unmark all tiles and entities (just bump mark index).
 	w.VisibilityMark++
+	log.Printf("Updating visibility")
 
 	// Trace from player location to all directions (SweepStep pixels at screen edge).
 	// Mark all tiles hit (excl. the tiles that stopped us).
@@ -129,6 +136,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 	// TODO Expand and blur buffer (ExpandSize, BlurSize).
 
 	// Draw all tiles.
+	log.Printf("Draw tiles")
 	for pos, tile := range w.Tiles {
 		screenPos := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Add(pos.Scale(TileSize, 1).Delta(w.ScrollPos))
 		opts := ebiten.DrawImageOptions{
@@ -140,6 +148,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 		opts.GeoM.SetElement(1, 0, float64(tile.Orientation.Down.DX))
 		opts.GeoM.SetElement(1, 1, float64(tile.Orientation.Down.DY))
 		opts.GeoM.Translate(float64(screenPos.X), float64(screenPos.Y))
+		log.Printf("Draw tile: %v %v %v", pos, tile.Orientation, opts.GeoM)
 		screen.DrawImage(tile.Image, &opts)
 	}
 
@@ -165,6 +174,9 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 		return newPos
 	}
 	neighborTile := w.Tiles[p]
+	if neighborTile == nil {
+		log.Panicf("Trying to load with nonexisting neighbor tile at %v", p)
+	}
 	t := neighborTile.Transform
 	newLevelPos := neighborTile.LevelPos.Add(t.Apply(d))
 	newLevelTile, found := w.Level.Tiles[newLevelPos]
@@ -172,8 +184,16 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 		log.Panicf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)",
 			newLevelPos, p, neighborTile.LevelPos, d, t.Apply(d))
 	}
+	if newLevelTile.Warpzone != nil {
+		t = t.Concat(newLevelTile.Warpzone.Transform)
+		tile := w.Level.Tiles[newLevelTile.Warpzone.ToTile]
+		if tile == nil {
+			log.Panicf("nil new tile after warping to %v", newLevelTile.Warpzone)
+		}
+		newLevelTile = tile
+	}
 	newTile := newLevelTile.Tile
-	newTile.Transform = t.Concat(newTile.Transform)
+	newTile.Transform = t
 	newTile.Orientation = t.Concat(newTile.Orientation)
 	w.Tiles[newPos] = &newTile
 	return newPos
@@ -247,12 +267,12 @@ func tileStop(from, size, to int) int {
 		// Tile pos p so that:
 		//   p > from.
 		//   (p + size) mod TileSize = 0.
-		return from + TileSize - ((from + size) % TileSize)
+		return from + TileSize - m.Mod(from+size, TileSize)
 	} else {
 		// Tile pos p so that:
 		//   p < from
 		//   (p + 1) mod TileSize = 0.
-		return from - 1 - (from % TileSize)
+		return from - 1 - m.Mod(from, TileSize)
 	}
 }
 
@@ -293,6 +313,7 @@ func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) Tra
 			} else {
 				stop = ystop
 			}
+			//log.Printf("trace: %v -> %v @ %v -> stop %v", pos, to, prevTile, stop)
 			// Have we exceeded the goal?
 			if stop.Delta(pos).Norm1() > to.Delta(pos).Norm1() {
 				break
@@ -317,14 +338,18 @@ func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) Tra
 			}
 			back = back.Scale(1, TileSize)
 			// Loading: walk from previous front to new front.
+			log.Printf("stop %v -> front %v back %v prev %v delta %v", stop, front, back, prevTile, front.Delta(prevTile))
 			if o.LoadTiles && isLine {
-				w.LoadTile(prevTile, front.Delta(prevTile))
-				prevTile = front
+				loaded := w.LoadTile(prevTile, front.Delta(prevTile))
+				log.Printf("loaded %v", loaded)
 			}
+			prevTile = front
 			// Collision: hit the entire front.
 			stopend := stop.Add(m.Delta{DX: size.DX - 1, DY: size.DY - 1})
-			for y := stop.Y; y <= stopend.Y; y++ {
-				for x := stop.X; x <= stopend.X; x++ {
+			stopTile := stop.Scale(1, TileSize)
+			stopendTile := stopend.Scale(1, TileSize)
+			for y := stopTile.Y; y <= stopendTile.Y; y++ {
+				for x := stopTile.X; x <= stopendTile.X; x++ {
 					if x != front.X && y != front.Y {
 						continue
 					}
@@ -346,6 +371,7 @@ func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) Tra
 					}
 				}
 			}
+			pos = stop
 		}
 	}
 	if !o.NoEntities {

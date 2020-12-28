@@ -8,6 +8,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/vfs"
 
 	"github.com/fardog/tmx"
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 // Level is a parsed form of a loaded level.
@@ -74,6 +75,7 @@ func LoadLevel(filename string) (*Level, error) {
 	level := Level{
 		Tiles: map[m.Pos]*LevelTile{},
 	}
+	imgCache := map[string]*ebiten.Image{}
 	for i, td := range tds {
 		if td.Nil {
 			continue
@@ -93,11 +95,19 @@ func LoadLevel(filename string) (*Level, error) {
 		if err != nil {
 			return nil, fmt.Errorf("invalid map: could not parse solid: %v", err)
 		}
+		img := imgCache[td.Tile.Image.Source]
+		if img == nil {
+			img, err := LoadImage("tiles", td.Tile.Image.Source)
+			if err != nil {
+				return nil, fmt.Errorf("invalid image: %v", err)
+			}
+			imgCache[td.Tile.Image.Source] = img
+		}
 		level.Tiles[pos] = &LevelTile{
 			Tile: Tile{
 				Solid:       solid,
 				LevelPos:    pos,
-				Image:       nil, // CachePic(td.Tile.Image),
+				Image:       img,
 				Orientation: orientation,
 			},
 		}
@@ -122,8 +132,8 @@ func LoadLevel(filename string) (*Level, error) {
 				}
 			}
 			// TODO actually support object orientation.
-			startTile := m.Pos{X: int(o.X), Y: int(o.Y)}.Scale(1, TileSize)
-			endTile := m.Pos{X: int(o.X + o.Width - 1), Y: int(o.Y + o.Height - 1)}.Scale(1, TileSize)
+			startTile := m.Pos{X: int(o.X), Y: int(o.Y - o.Height)}.Scale(1, TileSize)
+			endTile := m.Pos{X: int(o.X + o.Width - 1), Y: int(o.Y - 1)}.Scale(1, TileSize)
 			orientation := m.Identity()
 			orientationProp := objProps.WithName("orientation")
 			if orientationProp != nil {
@@ -189,6 +199,10 @@ func LoadLevel(filename string) (*Level, error) {
 					levelTile := level.Tiles[fromPos]
 					if levelTile == nil {
 						log.Panicf("invalid warpzone location: outside map bounds: %v in %v", fromPos, warppair)
+					}
+					toTile := level.Tiles[toPos]
+					if toTile == nil {
+						log.Panicf("invalid warpzone destination location: outside map bounds: %v in %v", toPos, warppair)
 					}
 					levelTile.Warpzone = &Warpzone{
 						ToTile:    toPos,
