@@ -97,7 +97,8 @@ func LoadLevel(filename string) (*Level, error) {
 		}
 		img := imgCache[td.Tile.Image.Source]
 		if img == nil {
-			img, err := LoadImage("tiles", td.Tile.Image.Source)
+			var err error
+			img, err = LoadImage("tiles", td.Tile.Image.Source)
 			if err != nil {
 				return nil, fmt.Errorf("invalid image: %v", err)
 			}
@@ -195,7 +196,8 @@ func LoadLevel(filename string) (*Level, error) {
 					fromPos := m.Pos{X: fromx, Y: fromy}
 					fromPos2 := fromPos.Add(fromPos.Delta(m.Pos{}))
 					toPos2 := toCenter2.Add(transform.Apply(fromPos2.Delta(fromCenter2)))
-					toPos := toPos2.Scale(1, 2).Add(to.Orientation.Apply(m.East()))
+					toPos := toPos2.Scale(1, 2).Add(to.Orientation.Apply(m.West()))
+					log.Printf("warpzone %q: %v -> %v", warpname, fromPos, toPos)
 					levelTile := level.Tiles[fromPos]
 					if levelTile == nil {
 						log.Panicf("invalid warpzone location: outside map bounds: %v in %v", fromPos, warppair)
