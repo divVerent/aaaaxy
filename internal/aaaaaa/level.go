@@ -2,16 +2,17 @@ package aaaaaa
 
 import (
 	"fmt"
-	"io"
 
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/vfs"
 
 	"github.com/fardog/tmx"
 )
 
 // Level is a parsed form of a loaded level.
 type Level struct {
-	Tiles map[m.Pos]*LevelTile
+	Tiles  map[m.Pos]*LevelTile
+	Player *Spawnable
 }
 
 // LevelTile is a single tile in the level.
@@ -40,7 +41,12 @@ type Spawnable struct {
 	Orientation m.Orientation
 }
 
-func LoadLevel(r io.Reader) (*Level, error) {
+func LoadLevel(filename string) (*Level, error) {
+	r, err := vfs.Load("level", filename)
+	if err != nil {
+		return nil, fmt.Errorf("could not open map: %v", err)
+	}
+	defer r.Close()
 	t, err := tmx.Decode(r)
 	if err != nil {
 		return nil, fmt.Errorf("invalid map: %v", err)
@@ -142,6 +148,9 @@ func LoadLevel(r io.Reader) (*Level, error) {
 					pos := m.Pos{X: x, Y: y}
 					Level.Tiles[pos].Tile.Spawnables = append(Level.Tiles[pos].Tile.Spawnables, &ent)
 				}
+			}
+			if objType == "player" {
+				Level.Player = &ent
 			}
 		}
 	}

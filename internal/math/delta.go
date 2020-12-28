@@ -5,8 +5,12 @@ type Delta struct {
 	DX, DY int
 }
 
+func (d Delta) Add(d2 Delta) Delta {
+	return Delta{DX: d.DX + d2.DX, DY: d.DY + d2.DY}
+}
+
 func (d Delta) Scale(n int, m int) Delta {
-	return Delta{d.DX * n / m, d.DY * n / m}
+	return Delta{DX: d.DX * n / m, DY: d.DY * n / m}
 }
 
 func North() Delta {

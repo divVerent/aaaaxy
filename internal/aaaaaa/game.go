@@ -4,17 +4,21 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-type Game struct{}
+type Game struct {
+	World *World
+}
 
 var _ ebiten.Game = &Game{}
 
 func (g *Game) Update() error {
-	// Update game.
-	return nil
+	if g.World == nil {
+		g.World = NewWorld()
+	}
+	return g.World.Update()
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	// Draw world.
+	g.World.Draw(screen)
 	// Draw HUD.
 	// Draw menu.
 }

@@ -10,6 +10,10 @@ func (p Pos) Add(d Delta) Pos {
 	return Pos{p.X + d.DX, p.Y + d.DY}
 }
 
+func (p Pos) Sub(d Delta) Pos {
+	return Pos{p.X - d.DX, p.Y - d.DY}
+}
+
 func (p Pos) Delta(p2 Pos) Delta {
 	return Delta{p.X - p2.X, p.Y - p2.Y}
 }

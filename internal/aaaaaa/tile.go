@@ -14,6 +14,7 @@ type Tile struct {
 	// Info needed for loading more tiles.
 	LevelPos  m.Pos
 	Transform m.Orientation
+	SpawnMark uint
 
 	// Info needed for rendering.
 	Orientation m.Orientation
