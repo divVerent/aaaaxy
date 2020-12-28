@@ -106,57 +106,57 @@
   </tile>
   <tile id="17">
    <properties>
-    <property name="type" value="warpzone"/>
     <property name="orientation" value="EN"/>
+    <property name="type" value="warpzone"/>
    </properties>
    <image width="16" height="16" source="../tiles/warpzone_en.png"/>
   </tile>
   <tile id="18">
    <properties>
-    <property name="type" value="warpzone"/>
     <property name="orientation" value="ES"/>
+    <property name="type" value="warpzone"/>
    </properties>
    <image width="16" height="16" source="../tiles/warpzone_es.png"/>
   </tile>
   <tile id="19">
    <properties>
-    <property name="type" value="warpzone"/>
     <property name="orientation" value="NE"/>
+    <property name="type" value="warpzone"/>
    </properties>
    <image width="16" height="16" source="../tiles/warpzone_ne.png"/>
   </tile>
   <tile id="20">
    <properties>
-    <property name="type" value="warpzone"/>
     <property name="orientation" value="NW"/>
+    <property name="type" value="warpzone"/>
    </properties>
    <image width="16" height="16" source="../tiles/warpzone_nw.png"/>
   </tile>
   <tile id="21">
    <properties>
-    <property name="type" value="warpzone"/>
     <property name="orientation" value="SE"/>
+    <property name="type" value="warpzone"/>
    </properties>
    <image width="16" height="16" source="../tiles/warpzone_se.png"/>
   </tile>
   <tile id="22">
    <properties>
-    <property name="type" value="warpzone"/>
     <property name="orientation" value="SW"/>
+    <property name="type" value="warpzone"/>
    </properties>
    <image width="16" height="16" source="../tiles/warpzone_sw.png"/>
   </tile>
   <tile id="23">
    <properties>
-    <property name="type" value="warpzone"/>
     <property name="orientation" value="WN"/>
+    <property name="type" value="warpzone"/>
    </properties>
    <image width="16" height="16" source="../tiles/warpzone_wn.png"/>
   </tile>
   <tile id="24">
    <properties>
-    <property name="type" value="warpzone"/>
     <property name="orientation" value="WS"/>
+    <property name="type" value="warpzone"/>
    </properties>
    <image width="16" height="16" source="../tiles/warpzone_ws.png"/>
   </tile>
