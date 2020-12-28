@@ -1,13 +1,15 @@
 package aaaaaa
 
 import (
+	"log"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 // World represents the current game state including its entities.
 type World struct {
 	// tiles are all tiles currently loaded.
-	Tiles map[Pos]Tile
+	Tiles map[Pos]*Tile
 	// entities are all entities currently loaded.
 	Entities map[EntityID]*Entity
 	// scrollPos is the current screen scrolling position.
@@ -63,8 +65,24 @@ func (w *World) Draw(screen *ebiten.Image) {
 // LoadTile loads the next tile into the current world based on a currently
 // known tile and its neighbor. Respects and applies warps.
 func (w *World) LoadTile(p Pos, d Delta) Pos {
-	// TODO implement
-	return Pos{}
+	newPos := p.Add(d)
+	if _, found := w.Tiles[newPos]; found {
+		// Already loaded.
+		return newPos
+	}
+	neighborTile := w.Tiles[p]
+	t := neighborTile.Transform
+	newLevelPos := neighborTile.LevelPos.Add(t.Apply(d))
+	newLevelTile, found := w.Level.Tiles[newLevelPos]
+	if !found {
+		log.Panicf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)",
+			newLevelPos, p, neighborTile.LevelPos, d, t.Apply(d))
+	}
+	newTile := newLevelTile.Tile
+	newTile.Transform = t.Concat(newTile.Transform)
+	newTile.Orientation = t.Concat(newTile.Orientation)
+	w.Tiles[newPos] = &newTile
+	return newPos
 }
 
 type TraceOptions struct {

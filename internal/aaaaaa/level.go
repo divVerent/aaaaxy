@@ -7,30 +7,24 @@ import (
 	"github.com/fardog/tmx"
 )
 
-// level is a parsed form of a loaded level.
+// Level is a parsed form of a loaded level.
 type Level struct {
 	Tiles map[Pos]*LevelTile
 }
 
-// levelTile is a single tile in the level.
+// LevelTile is a single tile in the level.
 type LevelTile struct {
-	Tile       Tile
-	Spawnables []*Spawnable
-	Warpzone   *Warpzone
+	Tile     Tile
+	Warpzone *Warpzone
 }
 
-// warpzone represents a warp tile. Whenever anything enters this tile, it gets
+// Warpzone represents a warp tile. Whenever anything enters this tile, it gets
 // moved to "to" and the direction transformed by "transform". For the game to
 // work, every warpzone must be paired with an exact opposite elsewhere. This
 // is ensured at load time.
 type Warpzone struct {
 	ToTile    Pos
 	Transform Orientation
-}
-
-type RawWarpzone struct {
-	StartTile, EndTile Pos
-	Orientation        Orientation
 }
 
 type Spawnable struct {
@@ -94,6 +88,10 @@ func LoadLevel(r io.Reader) (*Level, error) {
 			},
 		}
 	}
+	type RawWarpzone struct {
+		StartTile, EndTile Pos
+		Orientation        Orientation
+	}
 	warpzones := map[string][]RawWarpzone{}
 	for _, og := range t.ObjectGroups {
 		for _, o := range og.Objects {
@@ -121,8 +119,6 @@ func LoadLevel(r io.Reader) (*Level, error) {
 			}
 			if objType == "warpzone" {
 				// Warpzones must be paired by name.
-				// Consider encoding their orientation by a tile name? Check what Tiled supports best.
-				// Or maybe require a warp tile below the warpzone and lookup there?
 				warpzones[o.Name] = append(warpzones[o.Name], RawWarpzone{
 					StartTile:   startTile,
 					EndTile:     endTile,
@@ -141,7 +137,7 @@ func LoadLevel(r io.Reader) (*Level, error) {
 			for y := startTile.Y; y <= endTile.Y; y++ {
 				for x := startTile.X; x <= endTile.X; x++ {
 					pos := Pos{X: x, Y: y}
-					Level.Tiles[pos].Spawnables = append(Level.Tiles[pos].Spawnables, &ent)
+					Level.Tiles[pos].Tile.Spawnables = append(Level.Tiles[pos].Tile.Spawnables, &ent)
 				}
 			}
 		}

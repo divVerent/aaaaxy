@@ -7,7 +7,8 @@ import (
 // A Tile is a single game tile.
 type Tile struct {
 	// Info needed for gameplay.
-	Solid bool
+	Solid      bool
+	Spawnables []*Spawnable // NOTE: not adjusted for transform!
 
 	// Info needed for loading more tiles.
 	LevelPos  Pos
