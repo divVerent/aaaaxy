@@ -110,7 +110,8 @@ func (w *World) Update() error {
 	if ebiten.IsKeyPressed(ebiten.KeyRight) {
 		newPos.X += 1
 	}
-	result := w.TraceBox(player.Pos, player.Size, newPos, TraceOptions{})
+	// TODO actually should be a TraceBox.
+	result := w.TraceLine(player.Pos, newPos, TraceOptions{})
 	player.Pos = result.EndPos
 
 	// Update ScrollPos based on player position and scroll target.
