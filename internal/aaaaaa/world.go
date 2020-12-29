@@ -124,24 +124,22 @@ func (w *World) Update() error {
 		w.traceLineAndMark(player.Pos, m.Pos{X: screen1.X, Y: y})
 	}
 
-	/*
-		// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
-		markedTiles := []m.Pos{}
-		for tilePos, tile := range w.Tiles {
-			if tile.VisibilityMark == w.VisibilityMark {
-				markedTiles = append(markedTiles, tilePos)
+	// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
+	markedTiles := []m.Pos{}
+	for tilePos, tile := range w.Tiles {
+		if tile.VisibilityMark == w.VisibilityMark {
+			markedTiles = append(markedTiles, tilePos)
+		}
+	}
+	expand := m.Delta{DX: ExpandTiles, DY: ExpandTiles}
+	for _, pos := range markedTiles {
+		w.LoadTilesForTileBox(pos.Sub(expand), pos.Add(expand), pos)
+		for y := pos.Y - ExpandTiles; y <= pos.Y+ExpandTiles; y++ {
+			for x := pos.X - ExpandTiles; x <= pos.X+ExpandTiles; x++ {
+				w.Tiles[m.Pos{X: x, Y: y}].VisibilityMark = w.VisibilityMark
 			}
 		}
-		expand := m.Delta{DX: ExpandTiles, DY: ExpandTiles}
-		for _, pos := range markedTiles {
-			w.LoadTilesForTileBox(pos.Sub(expand), pos.Add(expand), pos)
-			for y := pos.Y - ExpandTiles; y <= pos.Y+ExpandTiles; y++ {
-				for x := pos.X - ExpandTiles; x <= pos.X+ExpandTiles; x++ {
-					w.Tiles[m.Pos{X: x, Y: y}].VisibilityMark = w.VisibilityMark
-				}
-			}
-		}
-	*/
+	}
 
 	// TODO Mark all entities on marked tiles hit.
 	// TODO Delete all unmarked entities.
@@ -218,7 +216,7 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	}
 	if newLevelTile.Warpzone != nil {
 		log.Printf("warping by %v", newLevelTile.Warpzone)
-		t = t.Concat(newLevelTile.Warpzone.Transform)
+		t = newLevelTile.Warpzone.Transform.Concat(t)
 		tile := w.Level.Tiles[newLevelTile.Warpzone.ToTile]
 		if tile == nil {
 			log.Panicf("nil new tile after warping to %v", newLevelTile.Warpzone)
