@@ -1,11 +1,17 @@
 package aaaaaa
 
 import (
+	"fmt"
+	"image/color"
 	"log"
 
-	m "github.com/divVerent/aaaaaa/internal/math"
-
+	"github.com/golang/freetype/truetype"
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/text"
+	"golang.org/x/image/font"
+	"golang.org/x/image/font/gofont/gomono"
+
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // World represents the current game state including its entities.
@@ -26,9 +32,17 @@ type World struct {
 	Level *Level
 	// VisibilityMark is the current mark value to detect visible tiles/objects.
 	VisibilityMark uint
+	// DebugFont is the font to use for debug messages.
+	DebugFont font.Face
 }
 
 func NewWorld() *World {
+	// Load font.
+	debugFont, err := truetype.Parse(gomono.TTF)
+	if err != nil {
+		log.Panicf("Could not load font: %v", err)
+	}
+
 	// Load map.
 	level, err := LoadLevel("level")
 	if err != nil {
@@ -38,6 +52,10 @@ func NewWorld() *World {
 		Tiles:    map[m.Pos]*Tile{},
 		Entities: map[EntityID]*Entity{},
 		Level:    level,
+		DebugFont: truetype.NewFace(debugFont, &truetype.Options{
+			Size:    5,
+			Hinting: font.HintingFull,
+		}),
 	}
 
 	// Create player entity.
@@ -70,9 +88,21 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 
 func (w *World) Update() error {
 	// TODO Let all entities move/act. Fetch player position.
+	player := w.Entities[w.PlayerID]
+	if ebiten.IsKeyPressed(ebiten.KeyUp) {
+		player.Pos.Y -= 1
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyLeft) {
+		player.Pos.X -= 1
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyDown) {
+		player.Pos.Y += 1
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyRight) {
+		player.Pos.X += 1
+	}
 
 	// Update ScrollPos based on player position and scroll target.
-	player := w.Entities[w.PlayerID]
 	w.ScrollPos = player.Pos
 	log.Printf("player at %v", player.Pos)
 
@@ -94,22 +124,24 @@ func (w *World) Update() error {
 		w.traceLineAndMark(player.Pos, m.Pos{X: screen1.X, Y: y})
 	}
 
-	// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
-	markedTiles := []m.Pos{}
-	for tilePos, tile := range w.Tiles {
-		if tile.VisibilityMark == w.VisibilityMark {
-			markedTiles = append(markedTiles, tilePos)
-		}
-	}
-	expand := m.Delta{DX: ExpandTiles, DY: ExpandTiles}
-	for _, pos := range markedTiles {
-		w.LoadTilesForTileBox(pos.Sub(expand), pos.Add(expand), pos)
-		for y := pos.Y - ExpandTiles; y <= pos.Y+ExpandTiles; y++ {
-			for x := pos.X - ExpandTiles; x <= pos.X+ExpandTiles; x++ {
-				w.Tiles[m.Pos{X: x, Y: y}].VisibilityMark = w.VisibilityMark
+	/*
+		// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
+		markedTiles := []m.Pos{}
+		for tilePos, tile := range w.Tiles {
+			if tile.VisibilityMark == w.VisibilityMark {
+				markedTiles = append(markedTiles, tilePos)
 			}
 		}
-	}
+		expand := m.Delta{DX: ExpandTiles, DY: ExpandTiles}
+		for _, pos := range markedTiles {
+			w.LoadTilesForTileBox(pos.Sub(expand), pos.Add(expand), pos)
+			for y := pos.Y - ExpandTiles; y <= pos.Y+ExpandTiles; y++ {
+				for x := pos.X - ExpandTiles; x <= pos.X+ExpandTiles; x++ {
+					w.Tiles[m.Pos{X: x, Y: y}].VisibilityMark = w.VisibilityMark
+				}
+			}
+		}
+	*/
 
 	// TODO Mark all entities on marked tiles hit.
 	// TODO Delete all unmarked entities.
@@ -140,12 +172,16 @@ func (w *World) Draw(screen *ebiten.Image) {
 			CompositeMode: ebiten.CompositeModeCopy,
 			Filter:        ebiten.FilterNearest,
 		}
-		opts.GeoM.SetElement(0, 0, float64(tile.Orientation.Right.DX))
-		opts.GeoM.SetElement(0, 1, float64(tile.Orientation.Right.DY))
-		opts.GeoM.SetElement(1, 0, float64(tile.Orientation.Down.DX))
-		opts.GeoM.SetElement(1, 1, float64(tile.Orientation.Down.DY))
+		/*
+			opts.GeoM.SetElement(0, 0, float64(tile.Orientation.Right.DX))
+			opts.GeoM.SetElement(0, 1, float64(tile.Orientation.Right.DY))
+			opts.GeoM.SetElement(1, 0, float64(tile.Orientation.Down.DX))
+			opts.GeoM.SetElement(1, 1, float64(tile.Orientation.Down.DY))
+		*/
 		opts.GeoM.Translate(float64(screenPos.X), float64(screenPos.Y))
 		screen.DrawImage(tile.Image, &opts)
+
+		text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), w.DebugFont, screenPos.X, screenPos.Y+TileSize-1, color.Gray{128})
 	}
 
 	// TODO Draw all entities.
