@@ -67,10 +67,11 @@ func NewWorld() *World {
 		log.Panicf("Could not load player sprite: %v", err)
 	}
 	w.Entities[w.PlayerID] = &Entity{
-		ID:    w.Level.Player.ID,
-		Pos:   w.Level.Player.LevelPos.Scale(TileSize, 1).Add(w.Level.Player.PosInTile),
-		Size:  w.Level.Player.Size,
-		Image: sprite,
+		ID:          w.Level.Player.ID,
+		Pos:         w.Level.Player.LevelPos.Scale(TileSize, 1).Add(w.Level.Player.PosInTile),
+		Size:        w.Level.Player.Size,
+		Orientation: m.Identity(),
+		Image:       sprite,
 	}
 
 	// Load in the tiles the player is standing on.
@@ -185,6 +186,25 @@ func (w *World) Update() error {
 	return nil
 }
 
+func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientation) {
+	// Set the rotation.
+	geoM.SetElement(0, 0, float64(orientation.Right.DX))
+	geoM.SetElement(1, 0, float64(orientation.Right.DY))
+	geoM.SetElement(0, 1, float64(orientation.Down.DX))
+	geoM.SetElement(1, 1, float64(orientation.Down.DY))
+	// Set the translation.
+	// Note that in ebiten, the coordinate is the original origin, while we think in screenspace origin.
+	a := orientation.Apply(m.Delta{})
+	d := orientation.Apply(size)
+	if a.DX > d.DX {
+		a.DX = d.DX
+	}
+	if a.DY > d.DY {
+		a.DY = d.DY
+	}
+	geoM.Translate(float64(pos.X-a.DX), float64(pos.Y-a.DY))
+}
+
 func (w *World) Draw(screen *ebiten.Image) {
 	screen.Clear()
 
@@ -194,21 +214,16 @@ func (w *World) Draw(screen *ebiten.Image) {
 	// Draw all tiles.
 	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.ScrollPos)
 	for pos, tile := range w.Tiles {
+		if tile.Image == nil {
+			continue
+		}
 		screenPos := pos.Scale(TileSize, 1).Add(scrollDelta)
 		opts := ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Filter:        ebiten.FilterNearest,
 		}
-		/*
-			opts.GeoM.SetElement(0, 0, float64(tile.Orientation.Right.DX))
-			opts.GeoM.SetElement(0, 1, float64(tile.Orientation.Right.DY))
-			opts.GeoM.SetElement(1, 0, float64(tile.Orientation.Down.DX))
-			opts.GeoM.SetElement(1, 1, float64(tile.Orientation.Down.DY))
-		*/
-		opts.GeoM.Translate(float64(screenPos.X), float64(screenPos.Y))
-		if tile.Image != nil {
-			screen.DrawImage(tile.Image, &opts)
-		}
+		setGeoM(&opts.GeoM, screenPos, m.Delta{DX: TileSize, DY: TileSize}, tile.Orientation)
+		screen.DrawImage(tile.Image, &opts)
 	}
 	for pos, tile := range w.Tiles {
 		screenPos := pos.Scale(TileSize, 1).Add(scrollDelta)
@@ -246,13 +261,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 			CompositeMode: ebiten.CompositeModeSourceAtop,
 			Filter:        ebiten.FilterNearest,
 		}
-		/*
-			opts.GeoM.SetElement(0, 0, float64(tile.Orientation.Right.DX))
-			opts.GeoM.SetElement(0, 1, float64(tile.Orientation.Right.DY))
-			opts.GeoM.SetElement(1, 0, float64(tile.Orientation.Down.DX))
-			opts.GeoM.SetElement(1, 1, float64(tile.Orientation.Down.DY))
-		*/
-		opts.GeoM.Translate(float64(screenPos.X), float64(screenPos.Y))
+		setGeoM(&opts.GeoM, screenPos, ent.Size, ent.Orientation)
 		screen.DrawImage(ent.Image, &opts)
 	}
 
