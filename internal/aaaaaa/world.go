@@ -7,6 +7,7 @@ import (
 
 	"github.com/golang/freetype/truetype"
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/hajimehoshi/ebiten/v2/text"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/gomono"
@@ -61,10 +62,15 @@ func NewWorld() *World {
 	// Create player entity.
 	w.PlayerID = w.Level.Player.ID
 	// TODO actually spawn the player properly.
+	sprite, err := LoadImage("sprites", "player.png")
+	if err != nil {
+		log.Panicf("Could not load player sprite: %v", err)
+	}
 	w.Entities[w.PlayerID] = &Entity{
-		ID:   w.Level.Player.ID,
-		Pos:  w.Level.Player.LevelPos.Scale(TileSize, 1).Add(w.Level.Player.PosInTile),
-		Size: w.Level.Player.Size,
+		ID:    w.Level.Player.ID,
+		Pos:   w.Level.Player.LevelPos.Scale(TileSize, 1).Add(w.Level.Player.PosInTile),
+		Size:  w.Level.Player.Size,
+		Image: sprite,
 	}
 
 	// Load in the tiles the player is standing on.
@@ -72,12 +78,14 @@ func NewWorld() *World {
 	tile.Transform = m.Identity()
 	w.Tiles[w.Level.Player.LevelPos] = &tile
 	w.LoadTilesForBox(w.Entities[w.PlayerID].Pos, w.Entities[w.PlayerID].Size, w.Level.Player.LevelPos)
+	w.VisibilityMark++
 
 	return &w
 }
 
 func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 	result := w.TraceLine(from, to, TraceOptions{
+		Mode:      HitOpaque,
 		LoadTiles: true,
 	})
 	for _, tilePos := range result.Path {
@@ -89,25 +97,38 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 func (w *World) Update() error {
 	// TODO Let all entities move/act. Fetch player position.
 	player := w.Entities[w.PlayerID]
+	newPos := player.Pos
 	if ebiten.IsKeyPressed(ebiten.KeyUp) {
-		player.Pos.Y -= 1
+		newPos.Y -= 1
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyLeft) {
-		player.Pos.X -= 1
+		newPos.X -= 1
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyDown) {
-		player.Pos.Y += 1
+		newPos.Y += 1
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyRight) {
-		player.Pos.X += 1
+		newPos.X += 1
 	}
+	result := w.TraceBox(player.Pos, player.Size, newPos, TraceOptions{})
+	player.Pos = result.EndPos
 
 	// Update ScrollPos based on player position and scroll target.
 	w.ScrollPos = player.Pos
 	log.Printf("player at %v", player.Pos)
 
+	// Delete all tiles merely marked for expanding.
+	// TODO can we preserve but recheck them instead?
+	expansionMark := w.VisibilityMark
+	for pos, tile := range w.Tiles {
+		if tile.VisibilityMark == expansionMark {
+			delete(w.Tiles, pos)
+		}
+	}
+
 	// Unmark all tiles and entities (just bump mark index).
 	w.VisibilityMark++
+	visibilityMark := w.VisibilityMark
 	log.Printf("Updating visibility")
 
 	// Trace from player location to all directions (SweepStep pixels at screen edge).
@@ -125,18 +146,36 @@ func (w *World) Update() error {
 	}
 
 	// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
+	// For multiple expansion, need to do this in steps so initially we only base expansion on visible tiles.
 	markedTiles := []m.Pos{}
 	for tilePos, tile := range w.Tiles {
-		if tile.VisibilityMark == w.VisibilityMark {
+		if tile.VisibilityMark == visibilityMark {
 			markedTiles = append(markedTiles, tilePos)
 		}
 	}
-	expand := m.Delta{DX: ExpandTiles, DY: ExpandTiles}
-	for _, pos := range markedTiles {
-		w.LoadTilesForTileBox(pos.Sub(expand), pos.Add(expand), pos)
-		for y := pos.Y - ExpandTiles; y <= pos.Y+ExpandTiles; y++ {
-			for x := pos.X - ExpandTiles; x <= pos.X+ExpandTiles; x++ {
-				w.Tiles[m.Pos{X: x, Y: y}].VisibilityMark = w.VisibilityMark
+	w.VisibilityMark++
+	expansionMark = w.VisibilityMark
+	for i := 1; i <= ExpandTiles; i++ {
+		for _, pos := range markedTiles {
+			for d := -1; d <= +1; d += 2 {
+				for j := -i + 1; j <= i-1; j++ {
+					from := m.Pos{X: pos.X + j, Y: pos.Y + d*(i-1)}
+					to := m.Pos{X: pos.X + j, Y: pos.Y + d*i}
+					w.LoadTile(from, to.Delta(from))
+					if w.Tiles[to].VisibilityMark != visibilityMark {
+						w.Tiles[to].VisibilityMark = expansionMark
+					}
+				}
+			}
+			for d := -1; d <= +1; d += 2 {
+				for j := -i; j <= i; j++ {
+					from := m.Pos{X: pos.X + d*(i-1), Y: pos.Y + j}
+					to := m.Pos{X: pos.X + d*i, Y: pos.Y + j}
+					w.LoadTile(from, to.Delta(from))
+					if w.Tiles[to].VisibilityMark != visibilityMark {
+						w.Tiles[to].VisibilityMark = expansionMark
+					}
+				}
 			}
 		}
 	}
@@ -149,7 +188,7 @@ func (w *World) Update() error {
 
 	// Delete all unmarked tiles.
 	for pos, tile := range w.Tiles {
-		if tile.VisibilityMark != w.VisibilityMark {
+		if tile.VisibilityMark != expansionMark && tile.VisibilityMark != visibilityMark {
 			delete(w.Tiles, pos)
 		}
 	}
@@ -164,8 +203,9 @@ func (w *World) Draw(screen *ebiten.Image) {
 	// TODO Expand and blur buffer (ExpandSize, BlurSize).
 
 	// Draw all tiles.
+	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.ScrollPos)
 	for pos, tile := range w.Tiles {
-		screenPos := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Add(pos.Scale(TileSize, 1).Delta(w.ScrollPos))
+		screenPos := pos.Scale(TileSize, 1).Add(scrollDelta)
 		opts := ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Filter:        ebiten.FilterNearest,
@@ -177,12 +217,56 @@ func (w *World) Draw(screen *ebiten.Image) {
 			opts.GeoM.SetElement(1, 1, float64(tile.Orientation.Down.DY))
 		*/
 		opts.GeoM.Translate(float64(screenPos.X), float64(screenPos.Y))
-		screen.DrawImage(tile.Image, &opts)
-
-		text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), w.DebugFont, screenPos.X, screenPos.Y+TileSize-1, color.Gray{128})
+		if tile.Image != nil {
+			screen.DrawImage(tile.Image, &opts)
+		}
+	}
+	for pos, tile := range w.Tiles {
+		screenPos := pos.Scale(TileSize, 1).Add(scrollDelta)
+		neighborScreenPos := tile.LoadedFromNeighbor.Scale(TileSize, 1).Add(scrollDelta)
+		startx := float64(neighborScreenPos.X) + TileSize/2
+		starty := float64(neighborScreenPos.Y) + TileSize/2
+		endx := float64(screenPos.X) + TileSize/2
+		endy := float64(screenPos.Y) + TileSize/2
+		arrowpx := (startx + endx*2) / 3
+		arrowpy := (starty + endy*2) / 3
+		arrowdx := (endx - startx) / 6
+		arrowdy := (endy - starty) / 6
+		// Right only (1 0): left side goes by (-1, -1), right side by (-1, 1)
+		// Down right (1 1): left side goes by (0, -2), right side by (-2, 0)
+		// Down only (0 1): left side goes by (1, -1), right side by (-1, -1)
+		// ax + by
+		arrowlx := arrowpx - arrowdx + arrowdy
+		arrowly := arrowpy - arrowdx - arrowdy
+		arrowrx := arrowpx - arrowdx - arrowdy
+		arrowry := arrowpy + arrowdx - arrowdy
+		c := color.Gray{128}
+		if tile.VisibilityMark == w.VisibilityMark {
+			c = color.Gray{192}
+		}
+		ebitenutil.DrawLine(screen, startx, starty, endx, endy, c)
+		ebitenutil.DrawLine(screen, arrowlx, arrowly, arrowpx, arrowpy, c)
+		ebitenutil.DrawLine(screen, arrowrx, arrowry, arrowpx, arrowpy, c)
+		text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), w.DebugFont, screenPos.X, screenPos.Y+TileSize-1, c)
 	}
 
 	// TODO Draw all entities.
+	for _, ent := range w.Entities {
+		screenPos := ent.Pos.Add(scrollDelta)
+		opts := ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeSourceAtop,
+			Filter:        ebiten.FilterNearest,
+		}
+		/*
+			opts.GeoM.SetElement(0, 0, float64(tile.Orientation.Right.DX))
+			opts.GeoM.SetElement(0, 1, float64(tile.Orientation.Right.DY))
+			opts.GeoM.SetElement(1, 0, float64(tile.Orientation.Down.DX))
+			opts.GeoM.SetElement(1, 1, float64(tile.Orientation.Down.DY))
+		*/
+		opts.GeoM.Translate(float64(screenPos.X), float64(screenPos.Y))
+		screen.DrawImage(ent.Image, &opts)
+	}
+
 	// NOTE: if an entity is on a tile seen twice, render only once.
 	// INTENTIONAL GLITCH (avoids rendering player twice and player-player collision). Entities live in tile coordinates, not world coordinates. "Looking away" can despawn these entities and respawn at their new location.
 	// Makes wrap-around rooms somewhat less obvious.
@@ -211,8 +295,15 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newLevelPos := neighborTile.LevelPos.Add(t.Apply(d))
 	newLevelTile, found := w.Level.Tiles[newLevelPos]
 	if !found {
-		log.Panicf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)",
+		log.Printf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)",
 			newLevelPos, p, neighborTile.LevelPos, d, t.Apply(d))
+		newTile := Tile{
+			LevelPos:           newLevelPos,
+			Transform:          t,
+			LoadedFromNeighbor: p,
+		}
+		w.Tiles[newPos] = &newTile
+		return newPos
 	}
 	if newLevelTile.Warpzone != nil {
 		log.Printf("warping by %v", newLevelTile.Warpzone)
@@ -226,9 +317,7 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newTile := newLevelTile.Tile
 	newTile.Transform = t
 	newTile.Orientation = t.Concat(newTile.Orientation)
-	if newTile.Image == nil {
-		log.Panicf("nil tile image at %v: %v", newLevelPos, newLevelTile)
-	}
+	newTile.LoadedFromNeighbor = p
 	w.Tiles[newPos] = &newTile
 	return newPos
 }
@@ -260,39 +349,9 @@ func (w *World) LoadTilesForTileBox(tp0, tp1, tp m.Pos) {
 	}
 }
 
-type TraceOptions struct {
-	// If NoTiles is set, we ignore hits against tiles.
-	NoTiles bool
-	// If NoEntities is set, we ignore hits against entities.
-	NoEntities bool
-	// If LoadTiles is set, not yet known tiles will be loaded in by the trace operation.
-	// Otherwise hitting a not-yet-loaded tile will end the trace.
-	// Only valid on line traces.
-	LoadTiles bool
-}
-
-// TraceResult returns the status of a trace operation.
-type TraceResult struct {
-	// EndPos is the pixel the trace ended on (the last nonsolid pixel).
-	EndPos m.Pos
-	// Path is the set of tiles touched, not including what stopped the trace.
-	// Only set by line traces.
-	Path []m.Pos
-	// Entities is the set of entities touched, not including what stopped the trace.
-	Entities []Entity
-	// hitSolidTilePos is the position of the tile that stopped the trace, if any.
-	HitSolidTilePos *m.Pos
-	// HitSolidTile is the tile that stopped the trace, if any.
-	HitSolidTile *Tile
-	// HitSolidEntity is the entity that stopped the trace, if any.
-	HitSolidEntity *Entity
-	// HitFogOfWar is set if the trace ended by hitting an unloaded tile.
-	HitFogOfWar bool
-}
-
 // TraceLine moves from x,y by dx,dy in pixel coordinates.
 func (w *World) TraceLine(from, to m.Pos, o TraceOptions) TraceResult {
-	return w.TraceBox(from, m.Delta{DX: 1, DY: 1}, to, o)
+	return TraceLine(w, from, to, o)
 }
 
 // tileStop locates the coordinate of the next tile _entry_ position in the given direction.
@@ -314,13 +373,13 @@ func tileStop(from, size, to int) int {
 func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) TraceResult {
 	isLine := size == m.Delta{1, 1}
 	result := TraceResult{
-		EndPos:          to,
-		Path:            nil,
-		Entities:        nil,
-		HitSolidTilePos: nil,
-		HitSolidTile:    nil,
-		HitSolidEntity:  nil,
-		HitFogOfWar:     false,
+		EndPos:      to,
+		Path:        nil,
+		Entities:    nil,
+		HitTilePos:  nil,
+		HitTile:     nil,
+		HitEntity:   nil,
+		HitFogOfWar: false,
 	}
 	if !o.NoTiles {
 		prevTile := from.Scale(1, TileSize)
@@ -370,6 +429,7 @@ func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) Tra
 				move.DY = -1
 			}
 			back = back.Scale(1, TileSize)
+			// TODO: we can't actually walk diagonally through a corner. We must hit an arbitrary tile on the sides if we do.
 			// Loading: walk from previous front to new front.
 			if o.LoadTiles && isLine {
 				w.LoadTile(prevTile, front.Delta(prevTile))
@@ -391,9 +451,9 @@ func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) Tra
 						result.EndPos = stop.Sub(move)
 						break TRACELOOP
 					}
-					if tile.Solid {
-						result.HitSolidTilePos = &tilePos
-						result.HitSolidTile = tile
+					if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
+						result.HitTilePos = &tilePos
+						result.HitTile = tile
 						result.EndPos = stop.Sub(move)
 						break TRACELOOP
 					}

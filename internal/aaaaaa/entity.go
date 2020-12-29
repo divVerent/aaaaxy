@@ -1,16 +1,27 @@
 package aaaaaa
 
 import (
+	"github.com/hajimehoshi/ebiten/v2"
+
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // An Entity is an object that exists in the game.
 type Entity struct {
-	ID      EntityID
-	Pos     m.Pos
-	Size    m.Delta
-	IsSolid bool
+	ID             EntityID
+	VisibilityMark uint
 
+	// Info needed for gameplay.
+	Solid  bool
+	Opaque bool
+	Pos    m.Pos
+	Size   m.Delta
+
+	// Info needed for rendering.
+	Orientation m.Orientation
+	Image       *ebiten.Image
+
+	// Entity's own state.
 	Impl EntityImpl
 }
 

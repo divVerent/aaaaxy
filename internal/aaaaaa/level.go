@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"log"
 
-	m "github.com/divVerent/aaaaaa/internal/math"
-	"github.com/divVerent/aaaaaa/internal/vfs"
-
 	"github.com/fardog/tmx"
 	"github.com/hajimehoshi/ebiten/v2"
+
+	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
 // Level is a parsed form of a loaded level.
@@ -92,6 +92,7 @@ func LoadLevel(filename string) (*Level, error) {
 			orientation = m.FlipD().Concat(orientation)
 		}
 		solid, err := td.Tile.Properties.Bool("solid")
+		opaque, err := td.Tile.Properties.Bool("opaque")
 		if err != nil {
 			return nil, fmt.Errorf("invalid map: could not parse solid: %v", err)
 		}
@@ -107,6 +108,7 @@ func LoadLevel(filename string) (*Level, error) {
 		level.Tiles[pos] = &LevelTile{
 			Tile: Tile{
 				Solid:       solid,
+				Opaque:      opaque,
 				LevelPos:    pos,
 				Image:       img,
 				Orientation: orientation,

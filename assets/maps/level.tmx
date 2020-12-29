@@ -5,102 +5,119 @@
   <tile id="0">
    <properties>
     <property name="solid" type="bool" value="false"/>
+    <property name="opaque" type="bool" value="false"/>
    </properties>
    <image width="16" height="16" source="../tiles/empty.png"/>
   </tile>
   <tile id="1">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall00.png"/>
   </tile>
   <tile id="2">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall01.png"/>
   </tile>
   <tile id="3">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall02.png"/>
   </tile>
   <tile id="4">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall03.png"/>
   </tile>
   <tile id="5">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall04.png"/>
   </tile>
   <tile id="6">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall05.png"/>
   </tile>
   <tile id="7">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall06.png"/>
   </tile>
   <tile id="8">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall07.png"/>
   </tile>
   <tile id="9">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall08.png"/>
   </tile>
   <tile id="10">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall09.png"/>
   </tile>
   <tile id="11">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall10.png"/>
   </tile>
   <tile id="12">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall11.png"/>
   </tile>
   <tile id="13">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall12.png"/>
   </tile>
   <tile id="14">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall13.png"/>
   </tile>
   <tile id="15">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall14.png"/>
   </tile>
   <tile id="16">
    <properties>
     <property name="solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="true"/>
    </properties>
    <image width="16" height="16" source="../tiles/wall15.png"/>
   </tile>

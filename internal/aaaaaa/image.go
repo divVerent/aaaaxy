@@ -5,9 +5,9 @@ import (
 	"image"
 	_ "image/png"
 
-	"github.com/divVerent/aaaaaa/internal/vfs"
-
 	"github.com/hajimehoshi/ebiten/v2"
+
+	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
 func LoadImage(purpose, name string) (*ebiten.Image, error) {
