@@ -1,5 +1,9 @@
 package aaaaaa
 
+import (
+	m "github.com/divVerent/aaaaaa/internal/math"
+)
+
 const (
 	// GameWidth is the width of the displayed game area.
 	GameWidth = 640
@@ -29,4 +33,24 @@ const (
 	PlayerWidth = TileSize - 2
 	// PlayerHeight is the height of the player.
 	PlayerHeight = 2*TileSize - 2
+)
+
+//ExpandStep is a single expansion step.
+type ExpandStep struct {
+	from, to m.Delta
+}
+
+var (
+	// ExpandSteps is the list of steps to walk from each marked tile to expand.
+	ExpandSteps = []ExpandStep{
+		// First expansion tile.
+		{m.Delta{}, m.Delta{1, 0}},
+		{m.Delta{}, m.Delta{0, -1}},
+		{m.Delta{}, m.Delta{-1, 0}},
+		{m.Delta{}, m.Delta{0, 1}},
+		{m.Delta{}, m.Delta{1, -1}},
+		{m.Delta{}, m.Delta{-1, -1}},
+		{m.Delta{}, m.Delta{-1, 1}},
+		{m.Delta{}, m.Delta{1, 1}},
+	}
 )

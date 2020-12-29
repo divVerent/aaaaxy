@@ -156,27 +156,15 @@ func (w *World) Update() error {
 	}
 	w.VisibilityMark++
 	expansionMark = w.VisibilityMark
-	for i := 1; i <= ExpandTiles; i++ {
+	numExpandSteps := (2*ExpandTiles+1)*(2*ExpandTiles+1) - 1
+	for i := 0; i < numExpandSteps; i++ {
+		step := &ExpandSteps[i]
 		for _, pos := range markedTiles {
-			for d := -1; d <= +1; d += 2 {
-				for j := -i + 1; j <= i-1; j++ {
-					from := m.Pos{X: pos.X + j, Y: pos.Y + d*(i-1)}
-					to := m.Pos{X: pos.X + j, Y: pos.Y + d*i}
-					w.LoadTile(from, to.Delta(from))
-					if w.Tiles[to].VisibilityMark != visibilityMark {
-						w.Tiles[to].VisibilityMark = expansionMark
-					}
-				}
-			}
-			for d := -1; d <= +1; d += 2 {
-				for j := -i; j <= i; j++ {
-					from := m.Pos{X: pos.X + d*(i-1), Y: pos.Y + j}
-					to := m.Pos{X: pos.X + d*i, Y: pos.Y + j}
-					w.LoadTile(from, to.Delta(from))
-					if w.Tiles[to].VisibilityMark != visibilityMark {
-						w.Tiles[to].VisibilityMark = expansionMark
-					}
-				}
+			from := pos.Add(step.from)
+			to := pos.Add(step.to)
+			w.LoadTile(from, to.Delta(from))
+			if w.Tiles[to].VisibilityMark != visibilityMark {
+				w.Tiles[to].VisibilityMark = expansionMark
 			}
 		}
 	}
