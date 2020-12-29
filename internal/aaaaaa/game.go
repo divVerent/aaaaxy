@@ -1,6 +1,9 @@
 package aaaaaa
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -17,8 +20,15 @@ func (g *Game) Update() error {
 	return g.World.Update()
 }
 
+var frameIndex = 0
+
 func (g *Game) Draw(screen *ebiten.Image) {
 	g.World.Draw(screen)
+
+	if os.Getenv("CAPTUREVIDEO") != "" {
+		SaveImage(screen, fmt.Sprintf("frame_%08d.png", frameIndex))
+		frameIndex++
+	}
 	// Draw HUD.
 	// Draw menu.
 }
