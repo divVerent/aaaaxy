@@ -16,10 +16,12 @@ import (
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
-var debugShowNeighbors = flag.Bool("debug_show_neighbors", false, "show the neighbors tiles got loaded from")
-var debugShowCoords = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
-var debugShowOrientations = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
-var debugShowTransforms = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
+var (
+	debugShowNeighbors    = flag.Bool("debug_show_neighbors", false, "show the neighbors tiles got loaded from")
+	debugShowCoords       = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
+	debugShowOrientations = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
+	debugShowTransforms   = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
+)
 
 // World represents the current game state including its entities.
 type World struct {
