@@ -1,6 +1,7 @@
 package aaaaaa
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
@@ -14,6 +15,9 @@ type Game struct {
 var _ ebiten.Game = &Game{}
 
 func (g *Game) Update() error {
+	if ebiten.IsKeyPressed(ebiten.KeyEscape) {
+		return errors.New("esc")
+	}
 	if g.World == nil {
 		g.World = NewWorld()
 	}
