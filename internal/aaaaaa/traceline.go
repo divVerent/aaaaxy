@@ -123,7 +123,7 @@ func TraceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		havePrevTile := false
 		doneErr := errors.New("done")
 		walkLine(from, to, func(pixel m.Pos) error {
-			tilePos := pixel.Scale(1, TileSize)
+			tilePos := pixel.Div(TileSize)
 			if tilePos == prevTilePos {
 				result.EndPos = pixel
 				return nil

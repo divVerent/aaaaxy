@@ -18,6 +18,10 @@ func (p Pos) Delta(p2 Pos) Delta {
 	return Delta{p.X - p2.X, p.Y - p2.Y}
 }
 
-func (p Pos) Scale(n int, m int) Pos {
-	return Pos{p.X * n / m, p.Y * n / m}
+func (d Pos) Mul(n int) Pos {
+	return Pos{X: d.X * n, Y: d.Y * n}
+}
+
+func (d Pos) Div(m int) Pos {
+	return Pos{X: Div(d.X, m), Y: Div(d.Y, m)}
 }

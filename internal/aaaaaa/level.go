@@ -135,8 +135,8 @@ func LoadLevel(filename string) (*Level, error) {
 				}
 			}
 			// TODO actually support object orientation.
-			startTile := m.Pos{X: int(o.X), Y: int(o.Y - o.Height)}.Scale(1, TileSize)
-			endTile := m.Pos{X: int(o.X + o.Width - 1), Y: int(o.Y - 1)}.Scale(1, TileSize)
+			startTile := m.Pos{X: int(o.X), Y: int(o.Y - o.Height)}.Div(TileSize)
+			endTile := m.Pos{X: int(o.X + o.Width - 1), Y: int(o.Y - 1)}.Div(TileSize)
 			orientation := m.Identity()
 			orientationProp := objProps.WithName("orientation")
 			if orientationProp != nil {
@@ -198,8 +198,8 @@ func LoadLevel(filename string) (*Level, error) {
 					fromPos := m.Pos{X: fromx, Y: fromy}
 					fromPos2 := fromPos.Add(fromPos.Delta(m.Pos{}))
 					toPos2 := toCenter2.Add(transform.Apply(fromPos2.Delta(fromCenter2)))
-					toPos := toPos2.Scale(1, 2).Add(to.Orientation.Apply(m.West()))
-					log.Printf("warpzone %q: %v -> %v", warpname, fromPos, toPos)
+					toPos := toPos2.Div(2).Add(to.Orientation.Apply(m.West()))
+					log.Printf("warpzone %q: %v -> %v, %v", warpname, fromPos, toPos, transform)
 					levelTile := level.Tiles[fromPos]
 					if levelTile == nil {
 						log.Panicf("invalid warpzone location: outside map bounds: %v in %v", fromPos, warppair)

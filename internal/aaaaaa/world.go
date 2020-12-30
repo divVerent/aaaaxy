@@ -74,7 +74,7 @@ func NewWorld() *World {
 	}
 	w.Entities[w.PlayerID] = &Entity{
 		ID:          w.Level.Player.ID,
-		Pos:         w.Level.Player.LevelPos.Scale(TileSize, 1).Add(w.Level.Player.PosInTile),
+		Pos:         w.Level.Player.LevelPos.Mul(TileSize).Add(w.Level.Player.PosInTile),
 		Size:        w.Level.Player.Size,
 		Orientation: m.Identity(),
 		Image:       sprite,
@@ -123,7 +123,6 @@ func (w *World) Update() error {
 
 	// Update ScrollPos based on player position and scroll target.
 	w.ScrollPos = player.Pos
-	log.Printf("player at %v", player.Pos)
 
 	// Delete all tiles merely marked for expanding.
 	// TODO can we preserve but recheck them instead?
@@ -137,7 +136,6 @@ func (w *World) Update() error {
 	// Unmark all tiles and entities (just bump mark index).
 	w.VisibilityMark++
 	visibilityMark := w.VisibilityMark
-	log.Printf("Updating visibility")
 
 	// Trace from player location to all directions (SweepStep pixels at screen edge).
 	// Mark all tiles hit (excl. the tiles that stopped us).
@@ -223,7 +221,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 		if tile.Image == nil {
 			continue
 		}
-		screenPos := pos.Scale(TileSize, 1).Add(scrollDelta)
+		screenPos := pos.Mul(TileSize).Add(scrollDelta)
 		opts := ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Filter:        ebiten.FilterNearest,
@@ -232,9 +230,9 @@ func (w *World) Draw(screen *ebiten.Image) {
 		screen.DrawImage(tile.Image, &opts)
 	}
 	for pos, tile := range w.Tiles {
-		screenPos := pos.Scale(TileSize, 1).Add(scrollDelta)
+		screenPos := pos.Mul(TileSize).Add(scrollDelta)
 		if *debugShowNeighbors {
-			neighborScreenPos := tile.LoadedFromNeighbor.Scale(TileSize, 1).Add(scrollDelta)
+			neighborScreenPos := tile.LoadedFromNeighbor.Mul(TileSize).Add(scrollDelta)
 			startx := float64(neighborScreenPos.X) + TileSize/2
 			starty := float64(neighborScreenPos.Y) + TileSize/2
 			endx := float64(screenPos.X) + TileSize/2
@@ -331,7 +329,6 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 		return newPos
 	}
 	if newLevelTile.Warpzone != nil {
-		log.Printf("warping by %v", newLevelTile.Warpzone)
 		t = newLevelTile.Warpzone.Transform.Concat(t)
 		tile := w.Level.Tiles[newLevelTile.Warpzone.ToTile]
 		if tile == nil {
@@ -341,7 +338,10 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	}
 	newTile := newLevelTile.Tile
 	newTile.Transform = t
-	newTile.Orientation = t.Concat(newTile.Orientation)
+	// Orientation is inverse of the transform, as the transform is for loading
+	// new tiles ("which tilemap direction is looking right on the screen") and
+	// the orientation is for rendering ("how to rotate the sprite").
+	newTile.Orientation = t.Inverse().Concat(newTile.Orientation)
 	newTile.LoadedFromNeighbor = p
 	w.Tiles[newPos] = &newTile
 	return newPos
@@ -350,8 +350,8 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 // LoadTilesForBox loads all tiles in the given box (p, d), assuming tile tp is already loaded.
 func (w *World) LoadTilesForBox(p m.Pos, d m.Delta, tp m.Pos) {
 	// Convert box to tile positions.
-	tp0 := p.Scale(1, TileSize)
-	tp1 := p.Add(d).Add(m.Delta{DX: -1, DY: -1}).Scale(1, TileSize)
+	tp0 := p.Div(TileSize)
+	tp1 := p.Add(d).Add(m.Delta{DX: -1, DY: -1}).Div(TileSize)
 	w.LoadTilesForTileBox(tp0, tp1, tp)
 }
 
@@ -407,7 +407,7 @@ func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) Tra
 		HitFogOfWar: false,
 	}
 	if !o.NoTiles {
-		prevTile := from.Scale(1, TileSize)
+		prevTile := from.Div(TileSize)
 		// Sweep from from towards to, hitting tile boundaries as needed.
 		pos := from
 	TRACELOOP:
@@ -445,7 +445,7 @@ func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) Tra
 				back.X += size.DX - 1
 				move.DX = -1
 			}
-			front = front.Scale(1, TileSize)
+			front = front.Div(TileSize)
 			if to.Y > pos.Y {
 				front.Y += size.DY - 1
 				move.DY = 1
@@ -453,7 +453,7 @@ func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) Tra
 				back.Y += size.DY - 1
 				move.DY = -1
 			}
-			back = back.Scale(1, TileSize)
+			back = back.Div(TileSize)
 			// TODO: we can't actually walk diagonally through a corner. We must hit an arbitrary tile on the sides if we do.
 			// Loading: walk from previous front to new front.
 			if o.LoadTiles && isLine {
@@ -462,8 +462,8 @@ func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) Tra
 			prevTile = front
 			// Collision: hit the entire front.
 			stopend := stop.Add(m.Delta{DX: size.DX - 1, DY: size.DY - 1})
-			stopTile := stop.Scale(1, TileSize)
-			stopendTile := stopend.Scale(1, TileSize)
+			stopTile := stop.Div(TileSize)
+			stopendTile := stopend.Div(TileSize)
 			for y := stopTile.Y; y <= stopendTile.Y; y++ {
 				for x := stopTile.X; x <= stopendTile.X; x++ {
 					if x != front.X && y != front.Y {
