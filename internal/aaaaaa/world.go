@@ -1,6 +1,7 @@
 package aaaaaa
 
 import (
+	"flag"
 	"fmt"
 	"image/color"
 	"log"
@@ -14,6 +15,11 @@ import (
 
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
+
+var debugShowNeighbors = flag.Bool("debug_show_neighbors", false, "show the neighbors tiles got loaded from")
+var debugShowCoords = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
+var debugShowOrientations = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
+var debugShowTransforms = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
 
 // World represents the current game state including its entities.
 type World struct {
@@ -227,31 +233,52 @@ func (w *World) Draw(screen *ebiten.Image) {
 	}
 	for pos, tile := range w.Tiles {
 		screenPos := pos.Scale(TileSize, 1).Add(scrollDelta)
-		neighborScreenPos := tile.LoadedFromNeighbor.Scale(TileSize, 1).Add(scrollDelta)
-		startx := float64(neighborScreenPos.X) + TileSize/2
-		starty := float64(neighborScreenPos.Y) + TileSize/2
-		endx := float64(screenPos.X) + TileSize/2
-		endy := float64(screenPos.Y) + TileSize/2
-		arrowpx := (startx + endx*2) / 3
-		arrowpy := (starty + endy*2) / 3
-		arrowdx := (endx - startx) / 6
-		arrowdy := (endy - starty) / 6
-		// Right only (1 0): left side goes by (-1, -1), right side by (-1, 1)
-		// Down right (1 1): left side goes by (0, -2), right side by (-2, 0)
-		// Down only (0 1): left side goes by (1, -1), right side by (-1, -1)
-		// ax + by
-		arrowlx := arrowpx - arrowdx + arrowdy
-		arrowly := arrowpy - arrowdx - arrowdy
-		arrowrx := arrowpx - arrowdx - arrowdy
-		arrowry := arrowpy + arrowdx - arrowdy
-		c := color.Gray{128}
-		if tile.VisibilityMark == w.VisibilityMark {
-			c = color.Gray{192}
+		if *debugShowNeighbors {
+			neighborScreenPos := tile.LoadedFromNeighbor.Scale(TileSize, 1).Add(scrollDelta)
+			startx := float64(neighborScreenPos.X) + TileSize/2
+			starty := float64(neighborScreenPos.Y) + TileSize/2
+			endx := float64(screenPos.X) + TileSize/2
+			endy := float64(screenPos.Y) + TileSize/2
+			arrowpx := (startx + endx*2) / 3
+			arrowpy := (starty + endy*2) / 3
+			arrowdx := (endx - startx) / 6
+			arrowdy := (endy - starty) / 6
+			// Right only (1 0): left side goes by (-1, -1), right side by (-1, 1)
+			// Down right (1 1): left side goes by (0, -2), right side by (-2, 0)
+			// Down only (0 1): left side goes by (1, -1), right side by (-1, -1)
+			// ax + by
+			arrowlx := arrowpx - arrowdx + arrowdy
+			arrowly := arrowpy - arrowdx - arrowdy
+			arrowrx := arrowpx - arrowdx - arrowdy
+			arrowry := arrowpy + arrowdx - arrowdy
+			c := color.Gray{64}
+			if tile.VisibilityMark == w.VisibilityMark {
+				c = color.Gray{192}
+			}
+			ebitenutil.DrawLine(screen, startx, starty, endx, endy, c)
+			ebitenutil.DrawLine(screen, arrowlx, arrowly, arrowpx, arrowpy, c)
+			ebitenutil.DrawLine(screen, arrowrx, arrowry, arrowpx, arrowpy, c)
 		}
-		ebitenutil.DrawLine(screen, startx, starty, endx, endy, c)
-		ebitenutil.DrawLine(screen, arrowlx, arrowly, arrowpx, arrowpy, c)
-		ebitenutil.DrawLine(screen, arrowrx, arrowry, arrowpx, arrowpy, c)
-		text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), w.DebugFont, screenPos.X, screenPos.Y+TileSize-1, c)
+		if *debugShowCoords {
+			c := color.Gray{128}
+			text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), w.DebugFont, screenPos.X, screenPos.Y+TileSize-1, c)
+		}
+		if *debugShowOrientations {
+			midx := float64(screenPos.X) + TileSize/2
+			midy := float64(screenPos.Y) + TileSize/2
+			dx := tile.Orientation.Apply(m.Delta{DX: 4, DY: 0})
+			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), color.NRGBA{R: 255, G: 0, B: 0, A: 255})
+			dy := tile.Orientation.Apply(m.Delta{DX: 0, DY: 4})
+			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), color.NRGBA{R: 0, G: 255, B: 0, A: 255})
+		}
+		if *debugShowTransforms {
+			midx := float64(screenPos.X) + TileSize/2
+			midy := float64(screenPos.Y) + TileSize/2
+			dx := tile.Transform.Apply(m.Delta{DX: 4, DY: 0})
+			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), color.NRGBA{R: 255, G: 0, B: 0, A: 255})
+			dy := tile.Transform.Apply(m.Delta{DX: 0, DY: 4})
+			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), color.NRGBA{R: 0, G: 255, B: 0, A: 255})
+		}
 	}
 
 	// TODO Draw all entities.
