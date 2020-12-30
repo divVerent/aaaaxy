@@ -28,6 +28,7 @@ var frameIndex = 0
 
 func (g *Game) Draw(screen *ebiten.Image) {
 	g.World.Draw(screen)
+	g.World.Draw(screen)
 
 	if os.Getenv("CAPTUREVIDEO") != "" {
 		SaveImage(screen, fmt.Sprintf("frame_%08d.png", frameIndex))

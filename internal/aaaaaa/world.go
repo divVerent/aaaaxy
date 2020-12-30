@@ -47,6 +47,26 @@ type World struct {
 	VisiblePolygonCenter m.Pos
 	// VisiblePolygon is the currently visible polygon.
 	VisiblePolygon []m.Pos
+	// NeedPrevImageMasked is set whenever the last call was Update.
+	NeedPrevImageMasked bool
+
+	// Images retained across frames.
+
+	// WhiteImage is a single white pixel.
+	WhiteImage *ebiten.Image
+	// PrevImage is the previous screen content.
+	PrevImage *ebiten.Image
+	// PrevImageMasked is the previous screen content after masking.
+	PrevImageMasked *ebiten.Image
+	// PrevScrollPos is previous frame's scroll pos.
+	PrevScrollPos m.Pos
+
+	// Temp storage within frames.
+
+	// BlurImage is an offscreen image used for blurring.
+	BlurImage *ebiten.Image
+	// VisibilityMaskImage is an offscreen image used for masking the visible area.
+	VisibilityMaskImage *ebiten.Image
 }
 
 func NewWorld() *World {
@@ -69,7 +89,15 @@ func NewWorld() *World {
 			Size:    5,
 			Hinting: font.HintingFull,
 		}),
+		WhiteImage:          ebiten.NewImage(1, 1),
+		BlurImage:           ebiten.NewImage(GameWidth, GameHeight),
+		PrevImage:           ebiten.NewImage(GameWidth, GameHeight),
+		PrevImageMasked:     ebiten.NewImage(GameWidth, GameHeight),
+		VisibilityMaskImage: ebiten.NewImage(GameWidth, GameHeight),
 	}
+	w.WhiteImage.Fill(color.Gray{255})
+	w.PrevImage.Clear()
+	w.PrevImageMasked.Clear()
 
 	// Create player entity.
 	w.PlayerID = w.Level.Player.ID
@@ -203,6 +231,8 @@ func (w *World) Update() error {
 		}
 	}
 
+	w.NeedPrevImageMasked = true
+
 	return nil
 }
 
@@ -231,20 +261,16 @@ func (w *World) Draw(screen *ebiten.Image) {
 	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.ScrollPos)
 
 	// Draw trace polygon to buffer.
-	white := ebiten.NewImage(1, 1)
-	white.ReplacePixels([]byte{255, 255, 255, 255})
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
-	visOverlay := ebiten.NewImage(GameWidth, GameHeight)
-	visOverlay.Clear()
-	DrawPolygonAround(visOverlay, w.VisiblePolygonCenter, w.VisiblePolygon, white, geoM, &ebiten.DrawTrianglesOptions{
+	w.VisibilityMaskImage.Clear()
+	DrawPolygonAround(w.VisibilityMaskImage, w.VisiblePolygonCenter, w.VisiblePolygon, w.WhiteImage, geoM, &ebiten.DrawTrianglesOptions{
 		Address: ebiten.AddressRepeat,
 	})
 
 	// TODO Expand and blur buffer (ExpandSize, BlurSize).
-	tempImage := ebiten.NewImage(GameWidth, GameHeight)
-	ExpandImage(visOverlay, tempImage, ExpandSize, 1.0)
-	ExpandImage(visOverlay, tempImage, BlurSize, 0.5)
+	ExpandImage(w.VisibilityMaskImage, w.BlurImage, ExpandSize, 1.0)
+	ExpandImage(w.VisibilityMaskImage, w.BlurImage, BlurSize, 0.5)
 
 	// Draw all tiles.
 	for pos, tile := range w.Tiles {
@@ -327,15 +353,51 @@ func (w *World) Draw(screen *ebiten.Image) {
 	// TODO: Decide if to keep this.
 
 	// Multiply screen with buffer.
-	screen.DrawImage(visOverlay, &ebiten.DrawImageOptions{
+	screen.DrawImage(w.VisibilityMaskImage, &ebiten.DrawImageOptions{
 		CompositeMode: ebiten.CompositeModeMultiply,
 		Filter:        ebiten.FilterNearest,
 	})
 
-	// Invert buffer.
-	// Multiply with previous screen, scroll pos delta applied.
-	// Blur and darken buffer.
-	// Add buffer to screen.
+	delta := w.ScrollPos.Delta(w.PrevScrollPos)
+	if w.NeedPrevImageMasked {
+		// Make a scrolled copy of the last frame.
+		w.PrevImageMasked.Clear()
+		opts := ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Filter:        ebiten.FilterNearest,
+		}
+		opts.GeoM.Translate(float64(-delta.DX), float64(-delta.DY))
+		w.PrevImageMasked.DrawImage(w.PrevImage, &opts)
+
+		// Blur and darken last image.
+		ExpandImage(w.PrevImageMasked, w.BlurImage, FrameBlurSize, 0.5)
+
+		// Mask out the parts we've already drawn.
+		opts = ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeMultiply,
+			Filter:        ebiten.FilterNearest,
+		}
+		opts.ColorM.Scale(-FrameDarkenAlpha, -FrameDarkenAlpha, -FrameDarkenAlpha, 0)
+		opts.ColorM.Translate(FrameDarkenAlpha, FrameDarkenAlpha, FrameDarkenAlpha, 1)
+		w.PrevImageMasked.DrawImage(w.VisibilityMaskImage, &opts)
+	}
+
+	// Add it to what we see.
+	screen.DrawImage(w.PrevImageMasked, &ebiten.DrawImageOptions{
+		CompositeMode: ebiten.CompositeModeLighter,
+		Filter:        ebiten.FilterNearest,
+	})
+
+	if w.NeedPrevImageMasked {
+		// Remember last image. Only do this once per update.
+		w.PrevImage.DrawImage(screen, &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Filter:        ebiten.FilterNearest,
+		})
+		w.PrevScrollPos = w.ScrollPos
+	}
+
+	w.NeedPrevImageMasked = false
 }
 
 // LoadTile loads the next tile into the current world based on a currently

@@ -40,6 +40,11 @@ const (
 
 	// MinEntitySize is the smallest allowed entity size.
 	MinEntitySize = 8
+
+	// FrameBlurSize is how much the previous frame is to be blurred.
+	FrameBlurSize = 2
+	// FrameDarkenAlpha is how much the previous frame is to be darkened.
+	FrameDarkenAlpha = 0.98
 )
 
 //ExpandStep is a single expansion step.
