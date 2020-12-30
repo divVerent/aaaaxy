@@ -24,6 +24,8 @@ type TraceOptions struct {
 	NoTiles bool
 	// If NoEntities is set, we ignore hits against entities.
 	NoEntities bool
+	// ForEnt is the entity that shall be ignored when tracing.
+	ForEnt *Entity
 	// If LoadTiles is set, not yet known tiles will be loaded in by the trace operation.
 	// Otherwise hitting a not-yet-loaded tile will end the trace.
 	// Only valid on line traces.
@@ -37,8 +39,6 @@ type TraceResult struct {
 	// Path is the set of tiles touched, not including what stopped the trace.
 	// Only set by line traces.
 	Path []m.Pos
-	// Entities is the set of entities touched, not including what stopped the trace.
-	Entities []Entity
 	// hitTilePos is the position of the tile that stopped the trace, if any.
 	HitTilePos *m.Pos
 	// HitTile is the tile that stopped the trace, if any.
@@ -110,7 +110,6 @@ func TraceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 	result := TraceResult{
 		EndPos:      to,
 		Path:        nil,
-		Entities:    nil,
 		HitTilePos:  nil,
 		HitTile:     nil,
 		HitEntity:   nil,

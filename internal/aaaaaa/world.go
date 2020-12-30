@@ -77,7 +77,7 @@ func NewWorld() *World {
 	w.Entities[w.PlayerID] = &Entity{
 		ID:          w.Level.Player.ID,
 		Pos:         w.Level.Player.LevelPos.Mul(TileSize).Add(w.Level.Player.PosInTile),
-		Size:        w.Level.Player.Size,
+		Size:        m.Delta{PlayerWidth, PlayerHeight},
 		Orientation: m.Identity(),
 		Image:       sprite,
 	}
@@ -119,8 +119,7 @@ func (w *World) Update() error {
 	if ebiten.IsKeyPressed(ebiten.KeyRight) {
 		newPos.X += 1
 	}
-	// TODO actually should be a TraceBox.
-	result := w.TraceLine(player.Pos, newPos, TraceOptions{})
+	result := w.TraceBox(player.Pos, player.Size, newPos, TraceOptions{})
 	player.Pos = result.EndPos
 
 	// Update ScrollPos based on player position and scroll target.
@@ -381,123 +380,7 @@ func (w *World) TraceLine(from, to m.Pos, o TraceOptions) TraceResult {
 	return TraceLine(w, from, to, o)
 }
 
-// tileStop locates the coordinate of the next tile _entry_ position in the given direction.
-func tileStop(from, size, to int) int {
-	if to >= from {
-		// Tile pos p so that:
-		//   p > from.
-		//   (p + size) mod TileSize = 0.
-		return from + TileSize - m.Mod(from+size, TileSize)
-	} else {
-		// Tile pos p so that:
-		//   p < from
-		//   (p + 1) mod TileSize = 0.
-		return from - 1 - m.Mod(from, TileSize)
-	}
-}
-
 // TraceBox moves from x,y size sx,sy by dx,dy in pixel coordinates.
 func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) TraceResult {
-	isLine := size == m.Delta{1, 1}
-	result := TraceResult{
-		EndPos:      to,
-		Path:        nil,
-		Entities:    nil,
-		HitTilePos:  nil,
-		HitTile:     nil,
-		HitEntity:   nil,
-		HitFogOfWar: false,
-	}
-	if !o.NoTiles {
-		prevTile := from.Div(TileSize)
-		// Sweep from from towards to, hitting tile boundaries as needed.
-		pos := from
-	TRACELOOP:
-		for {
-			// Where is the next stop?
-			// TODO can cache the stop we didn't advance.
-			xstopx := tileStop(pos.X, size.DX, to.X)
-			xstop := m.Pos{xstopx, pos.Y}
-			if to.X != pos.X {
-				xstop.Y = pos.Y + (to.Y-pos.Y)*(xstop.X-pos.X)/(to.X-pos.X)
-			}
-			ystopy := tileStop(pos.Y, size.DY, to.Y)
-			ystop := m.Pos{pos.X, ystopy}
-			if to.Y != pos.Y {
-				ystop.X = pos.X + (to.X-pos.X)*(ystop.Y-pos.Y)/(to.Y-pos.Y)
-			}
-			var stop m.Pos
-			// Which stop comes first?
-			if xstop.Delta(pos).Norm1() < ystop.Delta(pos).Norm1() {
-				stop = xstop
-			} else {
-				stop = ystop
-			}
-			// Have we exceeded the goal?
-			if stop.Delta(pos).Norm1() > to.Delta(pos).Norm1() {
-				break
-			}
-			// Identify the "front" tile of the trace. This is the tile most likely to stop us.
-			front, back := stop, stop
-			move := m.Delta{}
-			if to.X > pos.X {
-				front.X += size.DX - 1
-				move.DX = 1
-			} else if to.X < pos.X {
-				back.X += size.DX - 1
-				move.DX = -1
-			}
-			front = front.Div(TileSize)
-			if to.Y > pos.Y {
-				front.Y += size.DY - 1
-				move.DY = 1
-			} else if to.Y < pos.Y {
-				back.Y += size.DY - 1
-				move.DY = -1
-			}
-			back = back.Div(TileSize)
-			// TODO: we can't actually walk diagonally through a corner. We must hit an arbitrary tile on the sides if we do.
-			// Loading: walk from previous front to new front.
-			if o.LoadTiles && isLine {
-				w.LoadTile(prevTile, front.Delta(prevTile))
-			}
-			prevTile = front
-			// Collision: hit the entire front.
-			stopend := stop.Add(m.Delta{DX: size.DX - 1, DY: size.DY - 1})
-			stopTile := stop.Div(TileSize)
-			stopendTile := stopend.Div(TileSize)
-			for y := stopTile.Y; y <= stopendTile.Y; y++ {
-				for x := stopTile.X; x <= stopendTile.X; x++ {
-					if x != front.X && y != front.Y {
-						continue
-					}
-					tilePos := m.Pos{X: x, Y: y}
-					tile := w.Tiles[tilePos]
-					if tile == nil {
-						result.HitFogOfWar = true
-						result.EndPos = stop.Sub(move)
-						break TRACELOOP
-					}
-					if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
-						result.HitTilePos = &tilePos
-						result.HitTile = tile
-						result.EndPos = stop.Sub(move)
-						break TRACELOOP
-					}
-					if isLine {
-						result.Path = append(result.Path, tilePos)
-					}
-				}
-			}
-			pos = stop
-		}
-	}
-	if !o.NoEntities {
-		for _, ent := range w.Entities {
-			ent = ent
-			// Clip trace to ent.
-			// If we hit an entity, we must also cut down the Path.
-		}
-	}
-	return result
+	return TraceBox(w, from, size, to, o)
 }

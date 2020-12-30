@@ -33,6 +33,9 @@ const (
 	PlayerWidth = TileSize - 2
 	// PlayerHeight is the height of the player.
 	PlayerHeight = 2*TileSize - 2
+
+	// MinEntitySize is the smallest allowed entity size.
+	MinEntitySize = 8
 )
 
 //ExpandStep is a single expansion step.

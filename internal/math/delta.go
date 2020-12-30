@@ -28,6 +28,10 @@ func (d Delta) Add(d2 Delta) Delta {
 	return Delta{DX: d.DX + d2.DX, DY: d.DY + d2.DY}
 }
 
+func (d Delta) Sub(d2 Delta) Delta {
+	return Delta{DX: d.DX - d2.DX, DY: d.DY - d2.DY}
+}
+
 func (d Delta) Mul(n int) Delta {
 	return Delta{DX: d.DX * n, DY: d.DY * n}
 }
