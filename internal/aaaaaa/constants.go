@@ -22,9 +22,9 @@ const (
 	// NumSweepTraces is the number of sweep operations we need.
 	NumSweepTraces = 2 * (GameWidth + GameHeight) / SweepStep
 	// ExpandSize is the amount of pixels to expand the visible area by.
-	ExpandSize = 8
+	ExpandSize = 6
 	// BlurSize is the amount of pixels to blur the visible area by.
-	BlurSize = 4
+	BlurSize = 6
 	// ExpandTiles is the number of tiles beyond tiles hit by a trace that may need to be displayed.
 	// As map design may need to take this into account, try to keep it at 1.
 	ExpandTiles = (ExpandSize + BlurSize + SweepStep + TileSize - 1) / TileSize
@@ -33,6 +33,10 @@ const (
 	PlayerWidth = TileSize - 2
 	// PlayerHeight is the height of the player.
 	PlayerHeight = 2*TileSize - 2
+	// PlayerEyeDX is the X coordinate of the player's eye.
+	PlayerEyeDX = TileSize/2 - 1
+	// PlayerEyeDY is the Y coordinate of the player's eye.
+	PlayerEyeDY = TileSize/2 - 1
 
 	// MinEntitySize is the smallest allowed entity size.
 	MinEntitySize = 8

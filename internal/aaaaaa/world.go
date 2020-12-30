@@ -43,6 +43,10 @@ type World struct {
 	VisibilityMark uint
 	// DebugFont is the font to use for debug messages.
 	DebugFont font.Face
+	// VisiblePolygonCenter is the current eye position.
+	VisiblePolygonCenter m.Pos
+	// VisiblePolygon is the currently visible polygon.
+	VisiblePolygon []m.Pos
 }
 
 func NewWorld() *World {
@@ -143,13 +147,24 @@ func (w *World) Update() error {
 	// TODO Remember trace polygon.
 	screen0 := w.ScrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
-	for x := screen0.X; x < screen1.X+SweepStep; x += SweepStep {
-		w.traceLineAndMark(player.Pos, m.Pos{X: x, Y: screen0.Y})
-		w.traceLineAndMark(player.Pos, m.Pos{X: x, Y: screen1.Y})
+	eye := player.Pos.Add(m.Delta{DX: PlayerEyeDX, DY: PlayerEyeDY})
+	w.VisiblePolygonCenter = eye
+	w.VisiblePolygon = w.VisiblePolygon[0:0]
+	for x := screen0.X; x < screen1.X; x += SweepStep {
+		trace := w.traceLineAndMark(eye, m.Pos{X: x, Y: screen0.Y})
+		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
 	}
-	for y := screen0.Y; y < screen1.Y+SweepStep; y += SweepStep {
-		w.traceLineAndMark(player.Pos, m.Pos{X: screen0.X, Y: y})
-		w.traceLineAndMark(player.Pos, m.Pos{X: screen1.X, Y: y})
+	for y := screen0.Y; y < screen1.Y; y += SweepStep {
+		trace := w.traceLineAndMark(eye, m.Pos{X: screen1.X, Y: y})
+		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
+	}
+	for x := screen1.X; x > screen0.X; x -= SweepStep {
+		trace := w.traceLineAndMark(eye, m.Pos{X: x, Y: screen1.Y})
+		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
+	}
+	for y := screen1.Y; y > screen0.Y; y -= SweepStep {
+		trace := w.traceLineAndMark(eye, m.Pos{X: screen0.X, Y: y})
+		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
 	}
 
 	// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
@@ -213,11 +228,25 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientati
 func (w *World) Draw(screen *ebiten.Image) {
 	screen.Clear()
 
-	// TODO Draw trace polygon to buffer.
+	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.ScrollPos)
+
+	// Draw trace polygon to buffer.
+	white := ebiten.NewImage(1, 1)
+	white.ReplacePixels([]byte{255, 255, 255, 255})
+	geoM := ebiten.GeoM{}
+	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
+	visOverlay := ebiten.NewImage(GameWidth, GameHeight)
+	visOverlay.Clear()
+	DrawPolygonAround(visOverlay, w.VisiblePolygonCenter, w.VisiblePolygon, white, geoM, &ebiten.DrawTrianglesOptions{
+		Address: ebiten.AddressRepeat,
+	})
+
 	// TODO Expand and blur buffer (ExpandSize, BlurSize).
+	tempImage := ebiten.NewImage(GameWidth, GameHeight)
+	ExpandImage(visOverlay, tempImage, ExpandSize, 1.0)
+	ExpandImage(visOverlay, tempImage, BlurSize, 0.5)
 
 	// Draw all tiles.
-	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.ScrollPos)
 	for pos, tile := range w.Tiles {
 		if tile.Image == nil {
 			continue
@@ -296,7 +325,13 @@ func (w *World) Draw(screen *ebiten.Image) {
 	// Makes wrap-around rooms somewhat less obvious.
 	// Only way to fix seems to be making everything live in "universal covering" coordinates with orientation? Seems not worth it.
 	// TODO: Decide if to keep this.
+
 	// Multiply screen with buffer.
+	screen.DrawImage(visOverlay, &ebiten.DrawImageOptions{
+		CompositeMode: ebiten.CompositeModeMultiply,
+		Filter:        ebiten.FilterNearest,
+	})
+
 	// Invert buffer.
 	// Multiply with previous screen, scroll pos delta applied.
 	// Blur and darken buffer.
