@@ -2,10 +2,14 @@ package aaaaaa
 
 import (
 	"errors"
+	"flag"
 	"fmt"
-	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
+)
+
+var (
+	captureVideo = flag.String("capture_video", "", "filename prefix to capture game frames to")
 )
 
 type Game struct {
@@ -30,10 +34,12 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	g.World.Draw(screen)
 	g.World.Draw(screen)
 
-	if os.Getenv("CAPTUREVIDEO") != "" {
-		SaveImage(screen, fmt.Sprintf("frame_%08d.png", frameIndex))
+	if *captureVideo != "" {
+		ebiten.SetMaxTPS(ebiten.UncappedTPS)
+		SaveImage(screen, fmt.Sprintf("%s_%08d.png", *captureVideo, frameIndex))
 		frameIndex++
 	}
+
 	// Draw HUD.
 	// Draw menu.
 }
