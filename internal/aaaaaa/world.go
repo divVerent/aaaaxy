@@ -21,6 +21,8 @@ var (
 	debugShowCoords       = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
 	debugShowOrientations = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
 	debugShowTransforms   = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
+	drawBlurs             = flag.Bool("draw_blurs", true, "perform blur effects")
+	drawOutside           = flag.Bool("draw_outside", true, "draw outside of the visible area")
 )
 
 // World represents the current game state including its entities.
@@ -270,7 +272,9 @@ func (w *World) Draw(screen *ebiten.Image) {
 
 	// TODO Expand and blur buffer (ExpandSize, BlurSize).
 	ExpandImage(w.VisibilityMaskImage, w.BlurImage, ExpandSize, 1.0)
-	ExpandImage(w.VisibilityMaskImage, w.BlurImage, BlurSize, 0.5)
+	if *drawBlurs {
+		ExpandImage(w.VisibilityMaskImage, w.BlurImage, BlurSize, 0.5)
+	}
 
 	// Draw all tiles.
 	for pos, tile := range w.Tiles {
@@ -358,43 +362,47 @@ func (w *World) Draw(screen *ebiten.Image) {
 		Filter:        ebiten.FilterNearest,
 	})
 
-	delta := w.ScrollPos.Delta(w.PrevScrollPos)
-	if w.NeedPrevImageMasked {
-		// Make a scrolled copy of the last frame.
-		w.PrevImageMasked.Clear()
-		opts := ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
-			Filter:        ebiten.FilterNearest,
+	if *drawOutside {
+		delta := w.ScrollPos.Delta(w.PrevScrollPos)
+		if w.NeedPrevImageMasked {
+			// Make a scrolled copy of the last frame.
+			w.PrevImageMasked.Clear()
+			opts := ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
+				Filter:        ebiten.FilterNearest,
+			}
+			opts.GeoM.Translate(float64(-delta.DX), float64(-delta.DY))
+			w.PrevImageMasked.DrawImage(w.PrevImage, &opts)
+
+			// Blur and darken last image.
+			if *drawBlurs {
+				ExpandImage(w.PrevImageMasked, w.BlurImage, FrameBlurSize, 0.5)
+			}
+
+			// Mask out the parts we've already drawn.
+			opts = ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeMultiply,
+				Filter:        ebiten.FilterNearest,
+			}
+			opts.ColorM.Scale(-FrameDarkenAlpha, -FrameDarkenAlpha, -FrameDarkenAlpha, 0)
+			opts.ColorM.Translate(FrameDarkenAlpha, FrameDarkenAlpha, FrameDarkenAlpha, 1)
+			w.PrevImageMasked.DrawImage(w.VisibilityMaskImage, &opts)
 		}
-		opts.GeoM.Translate(float64(-delta.DX), float64(-delta.DY))
-		w.PrevImageMasked.DrawImage(w.PrevImage, &opts)
 
-		// Blur and darken last image.
-		ExpandImage(w.PrevImageMasked, w.BlurImage, FrameBlurSize, 0.5)
-
-		// Mask out the parts we've already drawn.
-		opts = ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeMultiply,
-			Filter:        ebiten.FilterNearest,
-		}
-		opts.ColorM.Scale(-FrameDarkenAlpha, -FrameDarkenAlpha, -FrameDarkenAlpha, 0)
-		opts.ColorM.Translate(FrameDarkenAlpha, FrameDarkenAlpha, FrameDarkenAlpha, 1)
-		w.PrevImageMasked.DrawImage(w.VisibilityMaskImage, &opts)
-	}
-
-	// Add it to what we see.
-	screen.DrawImage(w.PrevImageMasked, &ebiten.DrawImageOptions{
-		CompositeMode: ebiten.CompositeModeLighter,
-		Filter:        ebiten.FilterNearest,
-	})
-
-	if w.NeedPrevImageMasked {
-		// Remember last image. Only do this once per update.
-		w.PrevImage.DrawImage(screen, &ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
+		// Add it to what we see.
+		screen.DrawImage(w.PrevImageMasked, &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeLighter,
 			Filter:        ebiten.FilterNearest,
 		})
-		w.PrevScrollPos = w.ScrollPos
+
+		if w.NeedPrevImageMasked {
+			// Remember last image. Only do this once per update.
+			w.PrevImage.DrawImage(screen, &ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
+				Filter:        ebiten.FilterNearest,
+			})
+			w.PrevScrollPos = w.ScrollPos
+		}
 	}
 
 	w.NeedPrevImageMasked = false

@@ -55,14 +55,18 @@ func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {
 	delta := to.Delta(from)
 	absDelta := delta
 	xDir := 1
+	xMod := TileSize - 1
 	if absDelta.DX < 0 {
 		absDelta.DX = -absDelta.DX
 		xDir = -1
+		xMod = 0
 	}
 	yDir := 1
+	yMod := TileSize - 1
 	if absDelta.DY < 0 {
 		absDelta.DY = -absDelta.DY
 		yDir = -1
+		yMod = 0
 	}
 	scanX := true
 	numSteps := absDelta.DX
@@ -94,9 +98,13 @@ func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {
 			} else {
 				pixel = m.Pos{X: from.X + xDir*j, Y: from.Y + yDir*i}
 			}
-			err := check(pixel)
-			if err != nil {
-				return err
+			// Only call the callback if we hit the end of a tile, or the end of the trace.
+			// Should speed up tracing SUBSTANTIALLY by saving lots of callback invocations.
+			if m.Mod(pixel.X, TileSize) == xMod || m.Mod(pixel.Y, TileSize) == yMod || pixel == to {
+				err := check(pixel)
+				if err != nil {
+					return err
+				}
 			}
 		}
 	}
