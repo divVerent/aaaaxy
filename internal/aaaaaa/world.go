@@ -23,7 +23,7 @@ var (
 	debugShowTransforms   = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
 	drawBlurs             = flag.Bool("draw_blurs", true, "perform blur effects")
 	drawOutside           = flag.Bool("draw_outside", true, "draw outside of the visible area")
-	expandUsingVertices   = flag.Bool("expand_using_vertices", false, "expand using polygon math (not correct yet)")
+	expandUsingVertices   = flag.Bool("expand_using_vertices", false, "expand using polygon math (just approximate, simplifies rendering)")
 )
 
 // World represents the current game state including its entities.
@@ -141,24 +141,17 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 func expandPolygon(center m.Pos, polygon []m.Pos, shift int) {
 	orig := append([]m.Pos{}, polygon...)
 	for i, v1 := range orig {
-		// v0 := orig[m.Mod(i-1, len(orig))]
-		// v2 := orig[m.Mod(i+1, len(orig))]
-		// New vertex is intersection of shift(v0..v1, expand) and shift(v1..v2, expand)
-		// convert to representation:
-		//   v0..v1 -> A0x + B0y = C0
-		//     via A0 = v0y - v1y, B0 = -(v0x - v1x), C0 = v1x v0y - v0x v1y
-		//   v1..v2 -> A1x + B1y = C1
-		// How to shift?
-		//   C0' = C0 + hypot(A0, B0) * shift
-		//   C1' = C1 + hypot(A1, B1) * shift
-		// Finally solve for intersection.
-		// OR, much simpler...
+		// Rather approximate polygon expanding: just push each vertex shift away from the center.
+		// Unlike correct polygon expansion perpendicular to sides,
+		// this way ensures that we never include more than distance shift from the polugon.
+		// However this is just approximate and causes artifacts when close to a wall.
 		d := v1.Delta(center)
 		l := d.Length()
-		if l > 0 {
-			f := float64(shift) / l
-			polygon[i] = v1.Add(d.MulFloat(f))
+		if l <= 0 {
+			continue
 		}
+		f := float64(shift) / l
+		polygon[i] = v1.Add(d.MulFloat(f))
 	}
 }
 
