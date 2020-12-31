@@ -99,8 +99,8 @@ func NewWorld() *World {
 		VisibilityMaskImage: ebiten.NewImage(GameWidth, GameHeight),
 	}
 	w.WhiteImage.Fill(color.Gray{255})
-	w.PrevImage.Clear()
-	w.PrevImageMasked.Clear()
+	w.PrevImage.Fill(color.Gray{0})
+	w.PrevImageMasked.Fill(color.Gray{0})
 
 	// Create player entity.
 	w.PlayerID = w.Level.Player.ID
@@ -286,14 +286,14 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientati
 }
 
 func (w *World) Draw(screen *ebiten.Image) {
-	screen.Clear()
+	screen.Fill(color.Gray{0})
 
 	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.ScrollPos)
 
 	// Draw trace polygon to buffer.
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
-	w.VisibilityMaskImage.Clear()
+	w.VisibilityMaskImage.Fill(color.Gray{0})
 	DrawPolygonAround(w.VisibilityMaskImage, w.VisiblePolygonCenter, w.VisiblePolygon, w.WhiteImage, geoM, &ebiten.DrawTrianglesOptions{
 		Address: ebiten.AddressRepeat,
 	})
@@ -406,7 +406,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 		delta := w.ScrollPos.Delta(w.PrevScrollPos)
 		if w.NeedPrevImageMasked {
 			// Make a scrolled copy of the last frame.
-			w.PrevImageMasked.Clear()
+			w.PrevImageMasked.Fill(color.Gray{0})
 			opts := ebiten.DrawImageOptions{
 				CompositeMode: ebiten.CompositeModeCopy,
 				Filter:        ebiten.FilterNearest,

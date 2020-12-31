@@ -1,6 +1,8 @@
 package aaaaaa
 
 import (
+	"image/color"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -12,14 +14,14 @@ func ExpandImage(img, tmp *ebiten.Image, size int, weight float64) {
 	opts.ColorM.Scale(weight, weight, weight, 1)
 	for size > 1 {
 		size /= 2
-		tmp.Clear()
+		tmp.Fill(color.Gray{0})
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(-float64(size), 0)
 		tmp.DrawImage(img, &opts)
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(float64(size), 0)
 		tmp.DrawImage(img, &opts)
-		img.Clear()
+		img.Fill(color.Gray{0})
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(0, -float64(size))
 		img.DrawImage(tmp, &opts)
