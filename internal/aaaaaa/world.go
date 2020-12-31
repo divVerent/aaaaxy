@@ -23,6 +23,7 @@ var (
 	debugShowTransforms   = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
 	drawBlurs             = flag.Bool("draw_blurs", true, "perform blur effects")
 	drawOutside           = flag.Bool("draw_outside", true, "draw outside of the visible area")
+	expandUsingVertices   = flag.Bool("expand_using_vertices", false, "expand using polygon math (not correct yet)")
 )
 
 // World represents the current game state including its entities.
@@ -137,6 +138,30 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 	return result
 }
 
+func expandPolygon(center m.Pos, polygon []m.Pos, shift int) {
+	orig := append([]m.Pos{}, polygon...)
+	for i, v1 := range orig {
+		// v0 := orig[m.Mod(i-1, len(orig))]
+		// v2 := orig[m.Mod(i+1, len(orig))]
+		// New vertex is intersection of shift(v0..v1, expand) and shift(v1..v2, expand)
+		// convert to representation:
+		//   v0..v1 -> A0x + B0y = C0
+		//     via A0 = v0y - v1y, B0 = -(v0x - v1x), C0 = v1x v0y - v0x v1y
+		//   v1..v2 -> A1x + B1y = C1
+		// How to shift?
+		//   C0' = C0 + hypot(A0, B0) * shift
+		//   C1' = C1 + hypot(A1, B1) * shift
+		// Finally solve for intersection.
+		// OR, much simpler...
+		d := v1.Delta(center)
+		l := d.Length()
+		if l > 0 {
+			f := float64(shift) / l
+			polygon[i] = v1.Add(d.MulFloat(f))
+		}
+	}
+}
+
 func (w *World) Update() error {
 	// TODO Let all entities move/act. Fetch player position.
 	player := w.Entities[w.PlayerID]
@@ -195,6 +220,9 @@ func (w *World) Update() error {
 	for y := screen1.Y; y > screen0.Y; y -= SweepStep {
 		trace := w.traceLineAndMark(eye, m.Pos{X: screen0.X, Y: y})
 		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
+	}
+	if *expandUsingVertices {
+		expandPolygon(w.VisiblePolygonCenter, w.VisiblePolygon, ExpandSize)
 	}
 
 	// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
@@ -271,7 +299,9 @@ func (w *World) Draw(screen *ebiten.Image) {
 	})
 
 	// TODO Expand and blur buffer (ExpandSize, BlurSize).
-	ExpandImage(w.VisibilityMaskImage, w.BlurImage, ExpandSize, 1.0)
+	if !*expandUsingVertices {
+		ExpandImage(w.VisibilityMaskImage, w.BlurImage, ExpandSize, 1.0)
+	}
 	if *drawBlurs {
 		ExpandImage(w.VisibilityMaskImage, w.BlurImage, BlurSize, 0.5)
 	}
