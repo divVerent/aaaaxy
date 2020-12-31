@@ -6,10 +6,12 @@ import (
 	"fmt"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 var (
 	captureVideo = flag.String("capture_video", "", "filename prefix to capture game frames to")
+	showFps      = flag.Bool("show_fps", false, "show fps counter")
 )
 
 type Game struct {
@@ -42,6 +44,10 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 	// Draw HUD.
 	// Draw menu.
+
+	if *showFps {
+		ebitenutil.DebugPrintAt(screen, fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()), 0, GameHeight-16)
+	}
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
