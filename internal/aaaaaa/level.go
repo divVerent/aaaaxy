@@ -3,6 +3,7 @@ package aaaaaa
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/fardog/tmx"
 	"github.com/hajimehoshi/ebiten/v2"
@@ -76,6 +77,18 @@ func LoadLevel(filename string) (*Level, error) {
 		Tiles: map[m.Pos]*LevelTile{},
 	}
 	imgCache := map[string]*ebiten.Image{}
+	cachePic := func(path string) (*ebiten.Image, error) {
+		img := imgCache[path]
+		if img == nil {
+			var err error
+			img, err = LoadImage("tiles", path)
+			if err != nil {
+				return nil, err
+			}
+			imgCache[path] = img
+		}
+		return img, nil
+	}
 	for i, td := range tds {
 		if td.Nil {
 			continue
@@ -92,26 +105,38 @@ func LoadLevel(filename string) (*Level, error) {
 			orientation = m.FlipD().Concat(orientation)
 		}
 		solid, err := td.Tile.Properties.Bool("solid")
-		opaque, err := td.Tile.Properties.Bool("opaque")
 		if err != nil {
 			return nil, fmt.Errorf("invalid map: could not parse solid: %v", err)
 		}
-		img := imgCache[td.Tile.Image.Source]
-		if img == nil {
-			var err error
-			img, err = LoadImage("tiles", td.Tile.Image.Source)
-			if err != nil {
-				return nil, fmt.Errorf("invalid image: %v", err)
+		opaque, err := td.Tile.Properties.Bool("opaque")
+		if err != nil {
+			return nil, fmt.Errorf("invalid map: could not parse opaque: %v", err)
+		}
+		img, err := cachePic(td.Tile.Image.Source)
+		if err != nil {
+			return nil, fmt.Errorf("invalid image: %v", err)
+		}
+		imgByOrientation := map[m.Orientation]*ebiten.Image{}
+		for _, prop := range td.Tile.Properties {
+			if oStr := strings.TrimPrefix(prop.Name, "img."); oStr != prop.Name {
+				o, err := m.ParseOrientation(oStr)
+				if err != nil {
+					return nil, fmt.Errorf("invalid map: could not parse orientation tile: %v", err)
+				}
+				imgByOrientation[o], err = cachePic(prop.Value)
+				if err != nil {
+					return nil, fmt.Errorf("invalid image: %v", err)
+				}
 			}
-			imgCache[td.Tile.Image.Source] = img
 		}
 		level.Tiles[pos] = &LevelTile{
 			Tile: Tile{
-				Solid:       solid,
-				Opaque:      opaque,
-				LevelPos:    pos,
-				Image:       img,
-				Orientation: orientation,
+				Solid:              solid,
+				Opaque:             opaque,
+				LevelPos:           pos,
+				Image:              img,
+				ImageByOrientation: imgByOrientation,
+				Orientation:        orientation,
 			},
 		}
 	}

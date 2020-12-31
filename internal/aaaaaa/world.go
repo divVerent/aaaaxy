@@ -316,8 +316,18 @@ func (w *World) Draw(screen *ebiten.Image) {
 			CompositeMode: ebiten.CompositeModeCopy,
 			Filter:        ebiten.FilterNearest,
 		}
-		setGeoM(&opts.GeoM, screenPos, m.Delta{DX: TileSize, DY: TileSize}, tile.Orientation)
-		screen.DrawImage(tile.Image, &opts)
+		renderOrientation, renderImage := tile.Orientation, tile.Image
+		if len(tile.ImageByOrientation) > 0 {
+			// Locate pre-rotated tiles for better effect.
+			o := tile.Transform.Concat(tile.Orientation)
+			i := o.Inverse().Concat(tile.Orientation)
+			img := tile.ImageByOrientation[i]
+			if img != nil {
+				renderOrientation, renderImage = o, img
+			}
+		}
+		setGeoM(&opts.GeoM, screenPos, m.Delta{DX: TileSize, DY: TileSize}, renderOrientation)
+		screen.DrawImage(renderImage, &opts)
 	}
 	for pos, tile := range w.Tiles {
 		screenPos := pos.Mul(TileSize).Add(scrollDelta)
