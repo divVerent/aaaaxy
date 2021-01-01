@@ -26,6 +26,22 @@ func (o Orientation) Apply(d Delta) Delta {
 	}
 }
 
+// ApplyToRect rotates a rectangle by the given orientation, mapping the pivot to itself.
+func (o Orientation) ApplyToRect(pivot Pos, r Rect) Rect {
+	return Rect{
+		Origin: pivot.Add(o.Apply(r.Origin.Delta(pivot))),
+		Size:   o.Apply(r.Size),
+	}.Normalized()
+}
+
+// ApplyToRect2 rotates a rectangle by the given orientation, mapping the pivot (given in double coordinates to support half-pixel pivots!) to itself.
+func (o Orientation) ApplyToRect2(pivot2 Pos, r Rect) Rect {
+	return Rect{
+		Origin: pivot2.Add(o.Apply(r.Origin.Mul(2).Delta(pivot2))).Div(2),
+		Size:   o.Apply(r.Size),
+	}.Normalized()
+}
+
 // Inverse returns an orientation so that o.Concat(o.Invert()) == Identity().
 func (o Orientation) Inverse() Orientation {
 	// There is probably a more efficient way, but all our orientations are identity when applied four times.

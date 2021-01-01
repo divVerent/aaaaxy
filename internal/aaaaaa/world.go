@@ -111,9 +111,11 @@ func NewWorld() *World {
 		log.Panicf("Could not load player sprite: %v", err)
 	}
 	w.Entities[w.PlayerID] = &Entity{
-		ID:          w.Level.Player.ID,
-		Pos:         w.Level.Player.LevelPos.Mul(TileSize).Add(w.Level.Player.PosInTile),
-		Size:        m.Delta{PlayerWidth, PlayerHeight},
+		ID: w.Level.Player.ID,
+		Rect: m.Rect{
+			Origin: w.Level.Player.LevelPos.Mul(TileSize).Add(w.Level.Player.PosInTile),
+			Size:   m.Delta{PlayerWidth, PlayerHeight},
+		},
 		Orientation: m.Identity(),
 		Image:       sprite,
 	}
@@ -122,7 +124,7 @@ func NewWorld() *World {
 	tile := w.Level.Tiles[w.Level.Player.LevelPos].Tile
 	tile.Transform = m.Identity()
 	w.Tiles[w.Level.Player.LevelPos] = &tile
-	w.LoadTilesForBox(w.Entities[w.PlayerID].Pos, w.Entities[w.PlayerID].Size, w.Level.Player.LevelPos)
+	w.LoadTilesForRect(w.Entities[w.PlayerID].Rect, w.Level.Player.LevelPos)
 	w.VisibilityMark++
 
 	return &w
@@ -159,7 +161,7 @@ func expandPolygon(center m.Pos, polygon []m.Pos, shift int) {
 func (w *World) Update() error {
 	// TODO Let all entities move/act. Fetch player position.
 	player := w.Entities[w.PlayerID]
-	newPos := player.Pos
+	newPos := player.Rect.Origin
 	if ebiten.IsKeyPressed(ebiten.KeyUp) {
 		newPos.Y -= 1
 	}
@@ -172,11 +174,11 @@ func (w *World) Update() error {
 	if ebiten.IsKeyPressed(ebiten.KeyRight) {
 		newPos.X += 1
 	}
-	result := w.TraceBox(player.Pos, player.Size, newPos, TraceOptions{})
-	player.Pos = result.EndPos
+	result := w.TraceBox(player.Rect.Origin, player.Rect.Size, newPos, TraceOptions{})
+	player.Rect.Origin = result.EndPos
 
 	// Update ScrollPos based on player position and scroll target.
-	w.ScrollPos = player.Pos
+	w.ScrollPos = player.Rect.Origin
 
 	// Delete all tiles merely marked for expanding.
 	// TODO can we preserve but recheck them instead?
@@ -196,7 +198,7 @@ func (w *World) Update() error {
 	// TODO Remember trace polygon.
 	screen0 := w.ScrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
-	eye := player.Pos.Add(m.Delta{DX: PlayerEyeDX, DY: PlayerEyeDY})
+	eye := player.Rect.Origin.Add(m.Delta{DX: PlayerEyeDX, DY: PlayerEyeDY})
 	w.VisiblePolygonCenter = eye
 	w.VisiblePolygon = w.VisiblePolygon[0:0]
 	for x := screen0.X; x < screen1.X; x += SweepStep {
@@ -268,7 +270,7 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientati
 	geoM.SetElement(1, 1, float64(orientation.Down.DY))
 	// Set the translation.
 	// Note that in ebiten, the coordinate is the original origin, while we think in screenspace origin.
-	a := orientation.Apply(m.Delta{})
+	a := m.Delta{} // Actually orientation.Apply(m.Delta{})
 	d := orientation.Apply(size)
 	if a.DX > d.DX {
 		a.DX = d.DX
@@ -377,12 +379,12 @@ func (w *World) Draw(screen *ebiten.Image) {
 
 	// TODO Draw all entities.
 	for _, ent := range w.Entities {
-		screenPos := ent.Pos.Add(scrollDelta)
+		screenPos := ent.Rect.Origin.Add(scrollDelta)
 		opts := ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeSourceAtop,
 			Filter:        ebiten.FilterNearest,
 		}
-		setGeoM(&opts.GeoM, screenPos, ent.Size, ent.Orientation)
+		setGeoM(&opts.GeoM, screenPos, ent.Rect.Size, ent.Orientation)
 		screen.DrawImage(ent.Image, &opts)
 	}
 
@@ -392,7 +394,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 	// Only way to fix seems to be making everything live in "universal covering" coordinates with orientation? Seems not worth it.
 	// TODO: Decide if to keep this.
 
-	// Multiply screen with buffer.
+	// Mum.Delta{} // Actually ltiply screen with buffer.
 	if *drawVisibilityMask {
 		screen.DrawImage(w.VisibilityMaskImage, &ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeMultiply,
@@ -491,11 +493,11 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	return newPos
 }
 
-// LoadTilesForBox loads all tiles in the given box (p, d), assuming tile tp is already loaded.
-func (w *World) LoadTilesForBox(p m.Pos, d m.Delta, tp m.Pos) {
+// LoadTilesForRect loads all tiles in the given box (p, d), assuming tile tp is already loaded.
+func (w *World) LoadTilesForRect(r m.Rect, tp m.Pos) {
 	// Convert box to tile positions.
-	tp0 := p.Div(TileSize)
-	tp1 := p.Add(d).Add(m.Delta{DX: -1, DY: -1}).Div(TileSize)
+	tp0 := r.Origin.Div(TileSize)
+	tp1 := r.OppositeCorner().Div(TileSize)
 	w.LoadTilesForTileBox(tp0, tp1, tp)
 }
 

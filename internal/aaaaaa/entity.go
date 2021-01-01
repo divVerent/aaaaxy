@@ -39,8 +39,7 @@ type Entity struct {
 	// Info needed for gameplay.
 	Solid  bool
 	Opaque bool
-	Pos    m.Pos
-	Size   m.Delta
+	Rect   m.Rect
 
 	// Info needed for rendering.
 	Orientation m.Orientation
@@ -94,8 +93,8 @@ func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
 		Impl: eImpl,
 	}
 	// TODO Actually honor t.Transform.Inverse() and PosInTile.
-	e.Pos = tilePos.Mul(TileSize)
-	e.Size = s.Size
+	e.Rect.Origin = tilePos.Mul(TileSize)
+	e.Rect.Size = s.Size
 	e.Orientation = m.Identity()
 	err := eImpl.Spawn(w, s, e)
 	if err != nil {
