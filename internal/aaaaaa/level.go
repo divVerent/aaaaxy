@@ -152,12 +152,16 @@ func LoadLevel(filename string) (*Level, error) {
 			entRect := m.Rect{
 				Origin: m.Pos{
 					X: int(o.X),
-					Y: int(o.Y - o.Height),
+					Y: int(o.Y),
 				},
 				Size: m.Delta{
 					DX: int(o.Width),
 					DY: int(o.Height),
 				},
+			}
+			if o.GlobalID != 0 {
+				// Tile entities are given by their bottom left coordinate in tiled.
+				entRect.Origin.Y -= entRect.Size.DY
 			}
 			startTile := entRect.Origin.Div(TileSize)
 			endTile := entRect.OppositeCorner().Div(TileSize)
@@ -230,7 +234,6 @@ func LoadLevel(filename string) (*Level, error) {
 					fromPos2 := fromPos.Add(fromPos.Delta(m.Pos{}))
 					toPos2 := toCenter2.Add(transform.Apply(fromPos2.Delta(fromCenter2)))
 					toPos := toPos2.Div(2).Add(to.Orientation.Apply(m.West()))
-					log.Printf("warpzone %q: %v -> %v, %v", warpname, fromPos, toPos, transform)
 					levelTile := level.Tiles[fromPos]
 					if levelTile == nil {
 						log.Panicf("invalid warpzone location: outside map bounds: %v in %v", fromPos, warppair)
