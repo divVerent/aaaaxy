@@ -33,17 +33,6 @@ type Warpzone struct {
 	Transform m.Orientation
 }
 
-type Spawnable struct {
-	// Entity ID. Used to decide what needs spawning. Unique within a level.
-	ID EntityID
-	// Entity type. Used to spawn it on demand.
-	EntityType  string
-	LevelPos    m.Pos
-	PosInTile   m.Delta
-	Size        m.Delta
-	Orientation m.Orientation
-}
-
 func LoadLevel(filename string) (*Level, error) {
 	r, err := vfs.Load("maps", filename+".tmx")
 	if err != nil {
@@ -180,6 +169,10 @@ func LoadLevel(filename string) (*Level, error) {
 				continue
 			}
 			delta := m.Delta{DX: int(o.X) % TileSize, DY: int(o.Y) % TileSize}
+			properties := map[string]string{}
+			for _, prop := range objProps {
+				properties[prop.Name] = prop.Value
+			}
 			ent := Spawnable{
 				ID:          EntityID(o.ObjectID),
 				EntityType:  objType,
@@ -187,6 +180,7 @@ func LoadLevel(filename string) (*Level, error) {
 				PosInTile:   delta,
 				Size:        m.Delta{DX: int(o.Width), DY: int(o.Height)},
 				Orientation: orientation,
+				Properties:  properties,
 			}
 			for y := startTile.Y; y <= endTile.Y; y++ {
 				for x := startTile.X; x <= endTile.X; x++ {

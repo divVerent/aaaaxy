@@ -1,10 +1,35 @@
 package aaaaaa
 
 import (
+	"fmt"
+	"log"
+	"reflect"
+
 	"github.com/hajimehoshi/ebiten/v2"
 
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
+
+// A Spawnable is a blueprint to create an Entity.
+type Spawnable struct {
+	ID EntityID
+
+	// Type.
+	EntityType string
+
+	// Location.
+	LevelPos    m.Pos
+	PosInTile   m.Delta
+	Size        m.Delta
+	Orientation m.Orientation
+
+	// Other properties.
+	Properties map[string]string
+
+	// Persistent entity state, if any, shall be kept in this map.
+	// Ensures that entity state can be fully serialized/deserialized.
+	PersistentState map[string]string
+}
 
 // An Entity is an object that exists in the game.
 type Entity struct {
@@ -29,9 +54,53 @@ type Entity struct {
 type EntityID int
 
 type EntityImpl interface {
+	// Spawn initializes the entity based on a Spawnable.
+	// Will usually remember a reference to the World and Entity.
+	// ID, Pos, Size and Orientation of the entity will be preset but may be changed.
+	Spawn(w *World, s *Spawnable, e *Entity) error
+
+	// Despawn notifies the entity that it will be deleted.
+	Despawn()
+
 	// Update asks the entity to update its state.
 	Update()
 
 	// Touch notifies the entity that it was hit by another entity moving.
 	Touch(other *Entity)
+}
+
+// entityTypes is a helper map to know how to spawn an entity.
+var entityTypes = map[string]EntityImpl{}
+
+// RegisterEntityType adds an entity type to the spawn system.
+// To be called from init() functions of entity implementations.
+func RegisterEntityType(t EntityImpl) {
+	typeName := reflect.TypeOf(t).Name()
+	if entityTypes[typeName] != nil {
+		log.Panicf("Duplicate entity type %q", typeName)
+	}
+	entityTypes[typeName] = t
+	log.Printf("Registered entity type %q", typeName)
+}
+
+// Spawn turns a Spawnable into an Entity.
+func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
+	eImpl := entityTypes[s.EntityType]
+	if eImpl == nil {
+		return nil, fmt.Errorf("unknown entity type %q", s.EntityType)
+	}
+	e := &Entity{
+		ID:   s.ID,
+		Impl: eImpl,
+	}
+	// TODO Actually honor t.Transform.Inverse() and PosInTile.
+	e.Pos = tilePos.Mul(TileSize)
+	e.Size = s.Size
+	e.Orientation = m.Identity()
+	err := eImpl.Spawn(w, s, e)
+	if err != nil {
+		return nil, err
+	}
+	// TODO w.LinkEntity(tilePos, e) - shall load in all tiles of e.
+	return e, nil
 }
