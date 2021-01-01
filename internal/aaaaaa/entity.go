@@ -19,8 +19,7 @@ type Spawnable struct {
 
 	// Location.
 	LevelPos    m.Pos
-	PosInTile   m.Delta
-	Size        m.Delta
+	RectInTile  m.Rect
 	Orientation m.Orientation
 
 	// Other properties.
@@ -92,10 +91,11 @@ func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
 		ID:   s.ID,
 		Impl: eImpl,
 	}
-	// TODO Actually honor t.Transform.Inverse() and PosInTile.
-	e.Rect.Origin = tilePos.Mul(TileSize)
-	e.Rect.Size = s.Size
-	e.Orientation = m.Identity()
+	tInv := t.Transform.Inverse()
+	pivot2InTile := m.Pos{X: TileSize - 1, Y: TileSize - 1}
+	e.Rect = tInv.ApplyToRect2(pivot2InTile, s.RectInTile)
+	e.Rect.Origin = tilePos.Mul(TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
+	e.Orientation = tInv.Concat(s.Orientation)
 	err := eImpl.Spawn(w, s, e)
 	if err != nil {
 		return nil, err

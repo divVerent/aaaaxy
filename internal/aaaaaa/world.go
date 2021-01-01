@@ -113,7 +113,7 @@ func NewWorld() *World {
 	w.Entities[w.PlayerID] = &Entity{
 		ID: w.Level.Player.ID,
 		Rect: m.Rect{
-			Origin: w.Level.Player.LevelPos.Mul(TileSize).Add(w.Level.Player.PosInTile),
+			Origin: w.Level.Player.LevelPos.Mul(TileSize).Add(w.Level.Player.RectInTile.Origin.Delta(m.Pos{})),
 			Size:   m.Delta{PlayerWidth, PlayerHeight},
 		},
 		Orientation: m.Identity(),

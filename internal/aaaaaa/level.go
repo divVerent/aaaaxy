@@ -149,8 +149,18 @@ func LoadLevel(filename string) (*Level, error) {
 				}
 			}
 			// TODO actually support object orientation.
-			startTile := m.Pos{X: int(o.X), Y: int(o.Y - o.Height)}.Div(TileSize)
-			endTile := m.Pos{X: int(o.X + o.Width - 1), Y: int(o.Y - 1)}.Div(TileSize)
+			entRect := m.Rect{
+				Origin: m.Pos{
+					X: int(o.X),
+					Y: int(o.Y - o.Height),
+				},
+				Size: m.Delta{
+					DX: int(o.Width),
+					DY: int(o.Height),
+				},
+			}
+			startTile := entRect.Origin.Div(TileSize)
+			endTile := entRect.OppositeCorner().Div(TileSize)
 			orientation := m.Identity()
 			orientationProp := objProps.WithName("orientation")
 			if orientationProp != nil {
@@ -168,17 +178,19 @@ func LoadLevel(filename string) (*Level, error) {
 				})
 				continue
 			}
-			delta := m.Delta{DX: int(o.X) % TileSize, DY: int(o.Y) % TileSize}
 			properties := map[string]string{}
 			for _, prop := range objProps {
 				properties[prop.Name] = prop.Value
 			}
 			ent := Spawnable{
-				ID:          EntityID(o.ObjectID),
-				EntityType:  objType,
-				LevelPos:    startTile,
-				PosInTile:   delta,
-				Size:        m.Delta{DX: int(o.Width), DY: int(o.Height)},
+				ID:         EntityID(o.ObjectID),
+				EntityType: objType,
+				LevelPos:   startTile,
+				RectInTile: m.Rect{
+					Origin: entRect.Origin.Sub(
+						startTile.Mul(TileSize).Delta(m.Pos{})),
+					Size: entRect.Size,
+				},
 				Orientation: orientation,
 				Properties:  properties,
 			}

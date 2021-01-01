@@ -29,5 +29,5 @@ func (r Rect) Normalized() Rect {
 
 // OppositeCorner returns the coordinate of the opposite corner of the rectangle. Only correct on normalized rectangles.
 func (r Rect) OppositeCorner() Pos {
-	return r.Origin.Add(r.Size).Sub(Delta{DX: -1, DY: -1})
+	return r.Origin.Add(r.Size).Sub(Delta{DX: 1, DY: 1})
 }
