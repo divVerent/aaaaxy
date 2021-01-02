@@ -7,6 +7,8 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
+
+	"github.com/divVerent/aaaaaa/internal/engine"
 )
 
 var (
@@ -15,7 +17,7 @@ var (
 )
 
 type Game struct {
-	World *World
+	World *engine.World
 }
 
 var _ ebiten.Game = &Game{}
@@ -25,7 +27,7 @@ func (g *Game) Update() error {
 		return errors.New("esc")
 	}
 	if g.World == nil {
-		g.World = NewWorld()
+		g.World = engine.NewWorld()
 	}
 	return g.World.Update()
 }
@@ -33,7 +35,6 @@ func (g *Game) Update() error {
 var frameIndex = 0
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	g.World.Draw(screen)
 	g.World.Draw(screen)
 
 	if *captureVideo != "" {
@@ -46,10 +47,10 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	// Draw menu.
 
 	if *showFps {
-		ebitenutil.DebugPrintAt(screen, fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()), 0, GameHeight-16)
+		ebitenutil.DebugPrintAt(screen, fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()), 0, engine.GameHeight-16)
 	}
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return GameWidth, GameHeight
+	return engine.GameWidth, engine.GameHeight
 }
