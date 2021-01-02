@@ -103,27 +103,20 @@ func NewWorld() *World {
 	w.PrevImage.Fill(color.Gray{0})
 	w.PrevImageMasked.Fill(color.Gray{0})
 
-	// Create player entity.
-	w.PlayerID = w.Level.Player.ID
-	// TODO actually spawn the player properly.
-	sprite, err := LoadImage("sprites", "player.png")
-	if err != nil {
-		log.Panicf("Could not load player sprite: %v", err)
-	}
-	w.Entities[w.PlayerID] = &Entity{
-		ID: w.Level.Player.ID,
-		Rect: m.Rect{
-			Origin: w.Level.Player.LevelPos.Mul(TileSize).Add(w.Level.Player.RectInTile.Origin.Delta(m.Pos{})),
-			Size:   m.Delta{PlayerWidth, PlayerHeight},
-		},
-		Orientation: m.Identity(),
-		Image:       sprite,
-	}
-
-	// Load in the tiles the player is standing on.
+	// Load tile the player starts on.
 	tile := w.Level.Tiles[w.Level.Player.LevelPos].Tile
 	tile.Transform = m.Identity()
 	w.Tiles[w.Level.Player.LevelPos] = &tile
+
+	// Create player entity.
+	w.PlayerID = w.Level.Player.ID
+	playerEnt, err := w.Level.Player.Spawn(&w, w.Level.Player.LevelPos, &tile)
+	if err != nil {
+		log.Panicf("could not spawn player: %v", err)
+	}
+	w.Entities[w.PlayerID] = playerEnt
+
+	// Load the other tiles that the player touches.
 	w.LoadTilesForRect(w.Entities[w.PlayerID].Rect, w.Level.Player.LevelPos)
 	w.VisibilityMark++
 
@@ -159,25 +152,15 @@ func expandPolygon(center m.Pos, polygon []m.Pos, shift int) {
 }
 
 func (w *World) Update() error {
-	// TODO Let all entities move/act. Fetch player position.
-	player := w.Entities[w.PlayerID]
-	newPos := player.Rect.Origin
-	if ebiten.IsKeyPressed(ebiten.KeyUp) {
-		newPos.Y -= 1
+	// Let all entities move/act. Fetch player position.
+	for _, ent := range w.Entities {
+		ent.Impl.Update()
 	}
-	if ebiten.IsKeyPressed(ebiten.KeyLeft) {
-		newPos.X -= 1
-	}
-	if ebiten.IsKeyPressed(ebiten.KeyDown) {
-		newPos.Y += 1
-	}
-	if ebiten.IsKeyPressed(ebiten.KeyRight) {
-		newPos.X += 1
-	}
-	result := w.TraceBox(player.Rect.Origin, player.Rect.Size, newPos, TraceOptions{})
-	player.Rect.Origin = result.EndPos
 
-	// Update ScrollPos based on player position and scroll target.
+	// Player entity has special treatment.
+	player := w.Entities[w.PlayerID]
+
+	// TODO Update ScrollPos based on player position and scroll target.
 	w.ScrollPos = player.Rect.Origin
 
 	// Delete all tiles merely marked for expanding.
@@ -526,6 +509,6 @@ func (w *World) TraceLine(from, to m.Pos, o TraceOptions) TraceResult {
 }
 
 // TraceBox moves from x,y size sx,sy by dx,dy in pixel coordinates.
-func (w *World) TraceBox(from m.Pos, size m.Delta, to m.Pos, o TraceOptions) TraceResult {
-	return TraceBox(w, from, size, to, o)
+func (w *World) TraceBox(from m.Rect, to m.Pos, o TraceOptions) TraceResult {
+	return TraceBox(w, from, to, o)
 }

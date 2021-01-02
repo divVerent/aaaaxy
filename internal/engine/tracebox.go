@@ -16,27 +16,28 @@ func appendLineToTraces(traces map[m.Delta]struct{}, start, end m.Delta) {
 }
 
 // TraceBox moves a size-sized box from from to to and yields info about where it hits solid etc.
-func TraceBox(w *World, from m.Pos, size m.Delta, to m.Pos, o TraceOptions) TraceResult {
+func TraceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 	// TODO make a real implementation.
 	traces := map[m.Delta]struct{}{}
-	delta := to.Delta(from)
+	delta := to.Delta(from.Origin)
+	// TODO refactor using OppositeCorner?
 	if delta.DX < 0 {
-		appendLineToTraces(traces, m.Delta{DX: 0, DY: 0}, m.Delta{DX: 0, DY: size.DY - 1})
+		appendLineToTraces(traces, m.Delta{DX: 0, DY: 0}, m.Delta{DX: 0, DY: from.Size.DY - 1})
 	} else {
-		appendLineToTraces(traces, m.Delta{DX: size.DX - 1, DY: 0}, m.Delta{DX: size.DX - 1, DY: size.DY - 1})
+		appendLineToTraces(traces, m.Delta{DX: from.Size.DX - 1, DY: 0}, m.Delta{DX: from.Size.DX - 1, DY: from.Size.DY - 1})
 	}
 	if delta.DY < 0 {
-		appendLineToTraces(traces, m.Delta{DX: 0, DY: 0}, m.Delta{DX: size.DX - 1, DY: 0})
+		appendLineToTraces(traces, m.Delta{DX: 0, DY: 0}, m.Delta{DX: from.Size.DX - 1, DY: 0})
 	} else {
-		appendLineToTraces(traces, m.Delta{DX: 0, DY: size.DY - 1}, m.Delta{DX: size.DX - 1, DY: size.DY - 1})
+		appendLineToTraces(traces, m.Delta{DX: 0, DY: from.Size.DY - 1}, m.Delta{DX: from.Size.DX - 1, DY: from.Size.DY - 1})
 	}
 	var result TraceResult
 	var shortest int
 	haveTrace := false
 	for delta := range traces {
-		trace := TraceLine(w, from.Add(delta), to.Add(delta), o)
+		trace := TraceLine(w, from.Origin.Add(delta), to.Add(delta), o)
 		adjustedEnd := trace.EndPos.Sub(delta)
-		length := adjustedEnd.Delta(from).Norm1()
+		length := adjustedEnd.Delta(from.Origin).Norm1()
 		if !haveTrace || length < shortest {
 			shortest = length
 			haveTrace = true

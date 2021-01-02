@@ -65,19 +65,6 @@ func LoadLevel(filename string) (*Level, error) {
 	level := Level{
 		Tiles: map[m.Pos]*LevelTile{},
 	}
-	imgCache := map[string]*ebiten.Image{}
-	cachePic := func(path string) (*ebiten.Image, error) {
-		img := imgCache[path]
-		if img == nil {
-			var err error
-			img, err = LoadImage("tiles", path)
-			if err != nil {
-				return nil, err
-			}
-			imgCache[path] = img
-		}
-		return img, nil
-	}
 	for i, td := range tds {
 		if td.Nil {
 			continue
@@ -101,7 +88,7 @@ func LoadLevel(filename string) (*Level, error) {
 		if err != nil {
 			return nil, fmt.Errorf("invalid map: could not parse opaque: %v", err)
 		}
-		img, err := cachePic(td.Tile.Image.Source)
+		img, err := LoadImage("tiles", td.Tile.Image.Source)
 		if err != nil {
 			return nil, fmt.Errorf("invalid image: %v", err)
 		}
@@ -112,7 +99,7 @@ func LoadLevel(filename string) (*Level, error) {
 				if err != nil {
 					return nil, fmt.Errorf("invalid map: could not parse orientation tile: %v", err)
 				}
-				imgByOrientation[o], err = cachePic(prop.Value)
+				imgByOrientation[o], err = LoadImage("tiles", prop.Value)
 				if err != nil {
 					return nil, fmt.Errorf("invalid image: %v", err)
 				}
@@ -173,7 +160,7 @@ func LoadLevel(filename string) (*Level, error) {
 					return nil, fmt.Errorf("invalid orientation: %v", err)
 				}
 			}
-			if objType == "warpzone" {
+			if objType == "WarpZone" {
 				// Warpzones must be paired by name.
 				warpzones[o.Name] = append(warpzones[o.Name], RawWarpzone{
 					StartTile:   startTile,
@@ -208,7 +195,7 @@ func LoadLevel(filename string) (*Level, error) {
 					levelTile.Tile.Spawnables = append(levelTile.Tile.Spawnables, &ent)
 				}
 			}
-			if objType == "player" {
+			if objType == "Player" {
 				level.Player = &ent
 			}
 		}

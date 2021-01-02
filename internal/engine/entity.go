@@ -73,7 +73,7 @@ var entityTypes = map[string]EntityImpl{}
 // RegisterEntityType adds an entity type to the spawn system.
 // To be called from init() functions of entity implementations.
 func RegisterEntityType(t EntityImpl) {
-	typeName := reflect.TypeOf(t).Name()
+	typeName := reflect.TypeOf(t).Elem().Name()
 	if entityTypes[typeName] != nil {
 		log.Panicf("Duplicate entity type %q", typeName)
 	}

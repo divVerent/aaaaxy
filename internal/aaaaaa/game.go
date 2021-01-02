@@ -9,6 +9,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
 )
 
 var (
