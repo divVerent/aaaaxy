@@ -14,6 +14,7 @@ type Player struct {
 	Entity *engine.Entity
 
 	OnGround bool
+	Jumping  bool
 	Velocity m.Delta
 	SubPixel m.Delta
 }
@@ -22,15 +23,31 @@ type Player struct {
 // So 30 px ~ 180 cm.
 // Gravity is 9.81 m/s^2 = 163.5 px/s^2.
 const (
-	SubPixelScale  = 65536
-	MaxGroundSpeed = 80 * SubPixelScale / engine.GameTPS
-	GroundAccel    = 160 * SubPixelScale / engine.GameTPS / engine.GameTPS
-	GroundFriction = 80 * SubPixelScale / engine.GameTPS / engine.GameTPS
-	MaxAirSpeed    = 40 * SubPixelScale / engine.GameTPS
-	AirAccel       = 80 * SubPixelScale / engine.GameTPS / engine.GameTPS
-	JumpVelocity   = 100 * SubPixelScale / engine.GameTPS
-	JumpAccel      = 50 * SubPixelScale / engine.GameTPS / engine.GameTPS
-	Gravity        = 160 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	SubPixelScale = 65536
+
+	// Nice run/jump speed.
+	MaxGroundSpeed = 160 * SubPixelScale / engine.GameTPS
+	GroundAccel    = 960 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	GroundFriction = 640 * SubPixelScale / engine.GameTPS / engine.GameTPS
+
+	// Air control is lower than ground control.
+	MaxAirSpeed = 80 * SubPixelScale / engine.GameTPS
+	AirAccel    = 160 * SubPixelScale / engine.GameTPS / engine.GameTPS
+
+	// We want 4.5 tiles high jumps, i.e. 72px high jumps (plus something).
+	// Jump shall take 1 second.
+	// Yields:
+	// v0^2 / (2 * g) = 72
+	// 2 v0 / g = 1
+	// ->
+	// v0 = 288
+	// g = 576
+	// Note: assuming 1px=6cm, this is actually 17.3m/s and 3.5x earth gravity.
+	JumpVelocity = 288 * SubPixelScale / engine.GameTPS
+	Gravity      = 576 * SubPixelScale / engine.GameTPS / engine.GameTPS
+
+	// Extra downwards acceleration when releasing jump key early.
+	JumpExtraGravity = 2 * Gravity
 
 	KeyLeft  = ebiten.KeyLeft
 	KeyRight = ebiten.KeyRight
@@ -55,51 +72,48 @@ func (p *Player) Despawn() {
 	log.Panicf("the player should never despawn")
 }
 
+func accelerate(vel *int, accel, max, dir int) {
+	newVel := *vel + dir*accel
+	if newVel*dir > max {
+		newVel = max * dir
+	}
+	if newVel*dir > *vel*dir {
+		*vel = newVel
+	}
+}
+
+func friction(vel *int, friction int) {
+	accelerate(vel, friction, 0, +1)
+	accelerate(vel, friction, 0, -1)
+}
+
 func (p *Player) Update() {
-	if p.OnGround {
-		if ebiten.IsKeyPressed(KeyLeft) {
-			p.Velocity.DX -= GroundAccel
-			if p.Velocity.DX < -MaxGroundSpeed {
-				p.Velocity.DX = -MaxGroundSpeed
-			}
-		}
-		if ebiten.IsKeyPressed(KeyRight) {
-			p.Velocity.DX += GroundAccel
-			if p.Velocity.DX > MaxGroundSpeed {
-				p.Velocity.DX = MaxGroundSpeed
-			}
-		}
-		if ebiten.IsKeyPressed(KeyJump) {
+	if ebiten.IsKeyPressed(KeyJump) {
+		if !p.Jumping && p.OnGround {
 			p.Velocity.DY -= JumpVelocity
 			p.OnGround = false
+			p.Jumping = true
 		}
-		if p.Velocity.DX > 0 {
-			p.Velocity.DX -= GroundFriction
-			if p.Velocity.DX < 0 {
-				p.Velocity.DX = 0
-			}
+	} else {
+		p.Jumping = false
+	}
+	if p.OnGround {
+		friction(&p.Velocity.DX, GroundFriction)
+		if ebiten.IsKeyPressed(KeyLeft) {
+			accelerate(&p.Velocity.DX, GroundAccel, MaxGroundSpeed, -1)
 		}
-		if p.Velocity.DX < 0 {
-			p.Velocity.DX += GroundFriction
-			if p.Velocity.DX > 0 {
-				p.Velocity.DX = 0
-			}
+		if ebiten.IsKeyPressed(KeyRight) {
+			accelerate(&p.Velocity.DX, GroundAccel, MaxGroundSpeed, +1)
 		}
 	} else {
 		if ebiten.IsKeyPressed(KeyLeft) {
-			p.Velocity.DX -= AirAccel
-			if p.Velocity.DX < -MaxAirSpeed {
-				p.Velocity.DX = -MaxAirSpeed
-			}
+			accelerate(&p.Velocity.DX, AirAccel, MaxAirSpeed, -1)
 		}
 		if ebiten.IsKeyPressed(KeyRight) {
-			p.Velocity.DX += AirAccel
-			if p.Velocity.DX > MaxAirSpeed {
-				p.Velocity.DX = MaxAirSpeed
-			}
+			accelerate(&p.Velocity.DX, AirAccel, MaxAirSpeed, +1)
 		}
-		if ebiten.IsKeyPressed(KeyJump) {
-			p.Velocity.DY -= JumpAccel
+		if p.Velocity.DY < 0 && !p.Jumping {
+			p.Velocity.DY += JumpExtraGravity
 		}
 	}
 	p.Velocity.DY += Gravity
@@ -140,24 +154,15 @@ func (p *Player) Update() {
 				p.SubPixel.DY = 0
 			}
 			p.Velocity.DY = 0
+			p.OnGround = true
 		}
 		p.Entity.Rect.Origin = trace.EndPos
-	}
-	if p.OnGround {
+	} else if p.OnGround {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
 			ForEnt: p.Entity,
 		})
 		if trace.EndPos != p.Entity.Rect.Origin {
-			log.Printf("left ground unexpectedly")
 			p.OnGround = false
-		}
-	} else if p.SubPixel.DY == SubPixelScale-1 && p.Velocity.DY >= 0 {
-		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
-			ForEnt: p.Entity,
-		})
-		if trace.EndPos == p.Entity.Rect.Origin {
-			log.Printf("hit ground unexpectedly")
-			p.OnGround = true
 		}
 	}
 }
