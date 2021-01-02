@@ -46,8 +46,8 @@ const (
 	JumpVelocity = 288 * SubPixelScale / engine.GameTPS
 	Gravity      = 576 * SubPixelScale / engine.GameTPS / engine.GameTPS
 
-	// Extra downwards acceleration when releasing jump key early.
-	JumpExtraGravity = 2 * Gravity
+	// We want at least 19px high jumps so we can be sure a jump moves at least 2 tiles up.
+	JumpExtraGravity = 72*Gravity/19 - Gravity
 
 	KeyLeft  = ebiten.KeyLeft
 	KeyRight = ebiten.KeyRight
