@@ -80,26 +80,24 @@ func LoadLevel(filename string) (*Level, error) {
 		if td.DiagonallyFlipped {
 			orientation = m.FlipD().Concat(orientation)
 		}
-		solid, err := td.Tile.Properties.Bool("solid")
-		if err != nil {
-			return nil, fmt.Errorf("invalid map: could not parse solid: %v", err)
+		properties := map[string]string{}
+		for _, prop := range td.Tile.Properties {
+			properties[prop.Name] = prop.Value
 		}
-		opaque, err := td.Tile.Properties.Bool("opaque")
-		if err != nil {
-			return nil, fmt.Errorf("invalid map: could not parse opaque: %v", err)
-		}
+		solid := properties["solid"] != "false"
+		opaque := properties["opaque"] != "false"
 		img, err := LoadImage("tiles", td.Tile.Image.Source)
 		if err != nil {
 			return nil, fmt.Errorf("invalid image: %v", err)
 		}
 		imgByOrientation := map[m.Orientation]*ebiten.Image{}
-		for _, prop := range td.Tile.Properties {
-			if oStr := strings.TrimPrefix(prop.Name, "img."); oStr != prop.Name {
+		for propName, propValue := range properties {
+			if oStr := strings.TrimPrefix(propName, "img."); oStr != propName {
 				o, err := m.ParseOrientation(oStr)
 				if err != nil {
 					return nil, fmt.Errorf("invalid map: could not parse orientation tile: %v", err)
 				}
-				imgByOrientation[o], err = LoadImage("tiles", prop.Value)
+				imgByOrientation[o], err = LoadImage("tiles", propValue)
 				if err != nil {
 					return nil, fmt.Errorf("invalid image: %v", err)
 				}
@@ -123,17 +121,20 @@ func LoadLevel(filename string) (*Level, error) {
 	warpzones := map[string][]RawWarpzone{}
 	for _, og := range t.ObjectGroups {
 		for _, o := range og.Objects {
-			objProps := o.Properties
+			properties := map[string]string{}
+			for _, prop := range o.Properties {
+				properties[prop.Name] = prop.Value
+			}
 			if o.GlobalID != 0 {
 				tile := t.TileSets[0].TileWithID(o.GlobalID.TileID(&t.TileSets[0]))
-				objProps = append(append(tmx.Properties{}, objProps...), tile.Properties...)
+				properties["image"] = tile.Image.Source
+				for _, prop := range tile.Properties {
+					properties[prop.Name] = prop.Value
+				}
 			}
 			objType := o.Type
 			if objType == "" {
-				objTypeProp := objProps.WithName("type")
-				if objTypeProp != nil {
-					objType = objTypeProp.Value
-				}
+				objType = properties["type"]
 			}
 			// TODO actually support object orientation.
 			entRect := m.Rect{
@@ -153,9 +154,8 @@ func LoadLevel(filename string) (*Level, error) {
 			startTile := entRect.Origin.Div(TileSize)
 			endTile := entRect.OppositeCorner().Div(TileSize)
 			orientation := m.Identity()
-			orientationProp := objProps.WithName("orientation")
-			if orientationProp != nil {
-				orientation, err = m.ParseOrientation(orientationProp.Value)
+			if orientationProp := properties["orientation"]; orientationProp != "" {
+				orientation, err = m.ParseOrientation(orientationProp)
 				if err != nil {
 					return nil, fmt.Errorf("invalid orientation: %v", err)
 				}
@@ -168,10 +168,6 @@ func LoadLevel(filename string) (*Level, error) {
 					Orientation: orientation,
 				})
 				continue
-			}
-			properties := map[string]string{}
-			for _, prop := range objProps {
-				properties[prop.Name] = prop.Value
 			}
 			ent := Spawnable{
 				ID:         EntityID(o.ObjectID),
