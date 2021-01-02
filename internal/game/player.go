@@ -23,11 +23,13 @@ type Player struct {
 // Gravity is 9.81 m/s^2 = 163.5 px/s^2.
 const (
 	SubPixelScale  = 65536
-	MaxGroundSpeed = 40 * SubPixelScale / engine.GameTPS
-	GroundAccel    = 80 * SubPixelScale / engine.GameTPS / engine.GameTPS
-	MaxAirSpeed    = 20 * SubPixelScale / engine.GameTPS
-	AirAccel       = 40 * SubPixelScale / engine.GameTPS / engine.GameTPS
-	JumpVelocity   = 200 * SubPixelScale / engine.GameTPS
+	MaxGroundSpeed = 80 * SubPixelScale / engine.GameTPS
+	GroundAccel    = 160 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	GroundFriction = 80 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	MaxAirSpeed    = 40 * SubPixelScale / engine.GameTPS
+	AirAccel       = 80 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	JumpVelocity   = 100 * SubPixelScale / engine.GameTPS
+	JumpAccel      = 50 * SubPixelScale / engine.GameTPS / engine.GameTPS
 	Gravity        = 160 * SubPixelScale / engine.GameTPS / engine.GameTPS
 
 	KeyLeft  = ebiten.KeyLeft
@@ -54,7 +56,6 @@ func (p *Player) Despawn() {
 }
 
 func (p *Player) Update() {
-	log.Printf("initial velocity %v", p.Velocity)
 	if p.OnGround {
 		if ebiten.IsKeyPressed(KeyLeft) {
 			p.Velocity.DX -= GroundAccel
@@ -69,8 +70,20 @@ func (p *Player) Update() {
 			}
 		}
 		if ebiten.IsKeyPressed(KeyJump) {
-			p.Velocity.DY += -JumpVelocity
+			p.Velocity.DY -= JumpVelocity
 			p.OnGround = false
+		}
+		if p.Velocity.DX > 0 {
+			p.Velocity.DX -= GroundFriction
+			if p.Velocity.DX < 0 {
+				p.Velocity.DX = 0
+			}
+		}
+		if p.Velocity.DX < 0 {
+			p.Velocity.DX += GroundFriction
+			if p.Velocity.DX > 0 {
+				p.Velocity.DX = 0
+			}
 		}
 	} else {
 		if ebiten.IsKeyPressed(KeyLeft) {
@@ -85,9 +98,11 @@ func (p *Player) Update() {
 				p.Velocity.DX = MaxAirSpeed
 			}
 		}
+		if ebiten.IsKeyPressed(KeyJump) {
+			p.Velocity.DY -= JumpAccel
+		}
 	}
 	p.Velocity.DY += Gravity
-	log.Printf("final velocity %v", p.Velocity)
 	p.SubPixel = p.SubPixel.Add(p.Velocity)
 	move := p.SubPixel.Div(SubPixelScale)
 	if move.DX != 0 {
