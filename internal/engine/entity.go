@@ -92,7 +92,7 @@ func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
 		Impl: eImpl,
 	}
 	tInv := t.Transform.Inverse()
-	pivot2InTile := m.Pos{X: TileSize - 1, Y: TileSize - 1}
+	pivot2InTile := m.Pos{X: TileSize, Y: TileSize}
 	e.Rect = tInv.ApplyToRect2(pivot2InTile, s.RectInTile)
 	e.Rect.Origin = tilePos.Mul(TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
 	e.Orientation = tInv.Concat(s.Orientation)

@@ -26,15 +26,9 @@ func (o Orientation) Apply(d Delta) Delta {
 	}
 }
 
-// ApplyToRect rotates a rectangle by the given orientation, mapping the pivot to itself.
-func (o Orientation) ApplyToRect(pivot Pos, r Rect) Rect {
-	return Rect{
-		Origin: pivot.Add(o.Apply(r.Origin.Delta(pivot))),
-		Size:   o.Apply(r.Size),
-	}.Normalized()
-}
-
-// ApplyToRect2 rotates a rectangle by the given orientation, mapping the pivot (given in double coordinates to support half-pixel pivots!) to itself.
+// ApplyToRect2 rotates a rectangle by the given orientation, mapping the pivot to itself.
+// The pivot is given in doubled coordinates to support half-pixel pivots.
+// Note: odd numbers are pixel centers, even numbers are pixel corners!
 func (o Orientation) ApplyToRect2(pivot2 Pos, r Rect) Rect {
 	return Rect{
 		Origin: pivot2.Add(o.Apply(r.Origin.Mul(2).Delta(pivot2))).Div(2),
