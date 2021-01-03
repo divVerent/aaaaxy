@@ -164,8 +164,25 @@ func (w *World) Update() error {
 	// Update scroll position.
 	targetScrollPos := playerImpl.LookPos()
 	// Slowly move towards focus point.
-	// TODO Even converge to center when ScrollPerFrame too low. Somehow?
-	targetScrollPos = w.ScrollPos.Add(targetScrollPos.Delta(w.ScrollPos).MulFloat(ScrollPerFrame))
+	targetDelta := targetScrollPos.Delta(w.ScrollPos)
+	scrollDelta := targetDelta.MulFloat(ScrollPerFrame)
+	if scrollDelta.DX == 0 {
+		if targetDelta.DX > 0 {
+			scrollDelta.DX = +1
+		}
+		if targetDelta.DX < 0 {
+			scrollDelta.DX = -1
+		}
+	}
+	if scrollDelta.DY == 0 {
+		if targetDelta.DY > 0 {
+			scrollDelta.DY = +1
+		}
+		if targetDelta.DY < 0 {
+			scrollDelta.DY = -1
+		}
+	}
+	targetScrollPos = w.ScrollPos.Add(scrollDelta)
 	// Ensure player is onscreen.
 	if targetScrollPos.X < player.Rect.OppositeCorner().X-GameWidth/2+ScrollMinDistance {
 		targetScrollPos.X = player.Rect.OppositeCorner().X - GameWidth/2 + ScrollMinDistance
