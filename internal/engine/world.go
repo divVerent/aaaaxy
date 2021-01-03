@@ -299,30 +299,7 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientati
 	geoM.Translate(float64(pos.X-a.DX), float64(pos.Y-a.DY))
 }
 
-func (w *World) Draw(screen *ebiten.Image) {
-	screen.Fill(color.Gray{0})
-
-	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.ScrollPos)
-
-	if *drawVisibilityMask {
-		// Draw trace polygon to buffer.
-		geoM := ebiten.GeoM{}
-		geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
-		w.VisibilityMaskImage.Fill(color.Gray{0})
-		DrawPolygonAround(w.VisibilityMaskImage, w.VisiblePolygonCenter, w.VisiblePolygon, w.WhiteImage, geoM, &ebiten.DrawTrianglesOptions{
-			Address: ebiten.AddressRepeat,
-		})
-
-		// TODO Expand and blur buffer (ExpandSize, BlurSize).
-		if !*expandUsingVertices {
-			ExpandImage(w.VisibilityMaskImage, w.BlurImage, ExpandSize, 1.0)
-		}
-		if *drawBlurs {
-			ExpandImage(w.VisibilityMaskImage, w.BlurImage, BlurSize, 0.5)
-		}
-	}
-
-	// Draw all tiles.
+func (w *World) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 	for pos, tile := range w.Tiles {
 		if tile.Image == nil {
 			continue
@@ -345,6 +322,21 @@ func (w *World) Draw(screen *ebiten.Image) {
 		setGeoM(&opts.GeoM, screenPos, m.Delta{DX: TileSize, DY: TileSize}, renderOrientation)
 		screen.DrawImage(renderImage, &opts)
 	}
+}
+
+func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
+	for _, ent := range w.Entities {
+		screenPos := ent.Rect.Origin.Add(scrollDelta)
+		opts := ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeSourceAtop,
+			Filter:        ebiten.FilterNearest,
+		}
+		setGeoM(&opts.GeoM, screenPos, ent.Rect.Size, ent.Orientation)
+		screen.DrawImage(ent.Image, &opts)
+	}
+}
+
+func (w *World) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 	for pos, tile := range w.Tiles {
 		screenPos := pos.Mul(TileSize).Add(scrollDelta)
 		if *debugShowNeighbors {
@@ -394,76 +386,86 @@ func (w *World) Draw(screen *ebiten.Image) {
 			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), color.NRGBA{R: 0, G: 255, B: 0, A: 255})
 		}
 	}
+}
 
-	// TODO Draw all entities.
-	for _, ent := range w.Entities {
-		screenPos := ent.Rect.Origin.Add(scrollDelta)
-		opts := ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeSourceAtop,
-			Filter:        ebiten.FilterNearest,
-		}
-		setGeoM(&opts.GeoM, screenPos, ent.Rect.Size, ent.Orientation)
-		screen.DrawImage(ent.Image, &opts)
+func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
+	// Draw trace polygon to buffer.
+	geoM := ebiten.GeoM{}
+	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
+	w.VisibilityMaskImage.Fill(color.Gray{0})
+	DrawPolygonAround(w.VisibilityMaskImage, w.VisiblePolygonCenter, w.VisiblePolygon, w.WhiteImage, geoM, &ebiten.DrawTrianglesOptions{
+		Address: ebiten.AddressRepeat,
+	})
+
+	if !*expandUsingVertices {
+		ExpandImage(w.VisibilityMaskImage, w.BlurImage, ExpandSize, 1.0)
+	}
+	if *drawBlurs {
+		ExpandImage(w.VisibilityMaskImage, w.BlurImage, BlurSize, 0.5)
 	}
 
-	// NOTE: if an entity is on a tile seen twice, render only once.
-	// INTENTIONAL GLITCH (avoids rendering player twice and player-player collision). Entities live in tile coordinates, not world coordinates. "Looking away" can despawn these entities and respawn at their new location.
-	// Makes wrap-around rooms somewhat less obvious.
-	// Only way to fix seems to be making everything live in "universal covering" coordinates with orientation? Seems not worth it.
-	// TODO: Decide if to keep this.
+	screen.DrawImage(w.VisibilityMaskImage, &ebiten.DrawImageOptions{
+		CompositeMode: ebiten.CompositeModeMultiply,
+		Filter:        ebiten.FilterNearest,
+	})
 
-	// Mum.Delta{} // Actually ltiply screen with buffer.
-	if *drawVisibilityMask {
-		screen.DrawImage(w.VisibilityMaskImage, &ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeMultiply,
+	if *drawOutside {
+		delta := w.ScrollPos.Delta(w.PrevScrollPos)
+		if w.NeedPrevImageMasked {
+			// Make a scrolled copy of the last frame.
+			w.PrevImageMasked.Fill(color.Gray{0})
+			opts := ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
+				Filter:        ebiten.FilterNearest,
+			}
+			opts.GeoM.Translate(float64(-delta.DX), float64(-delta.DY))
+			w.PrevImageMasked.DrawImage(w.PrevImage, &opts)
+
+			// Blur and darken last image.
+			if *drawBlurs {
+				ExpandImage(w.PrevImageMasked, w.BlurImage, FrameBlurSize, 0.5)
+			}
+
+			// Mask out the parts we've already drawn.
+			opts = ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeMultiply,
+				Filter:        ebiten.FilterNearest,
+			}
+			opts.ColorM.Scale(-FrameDarkenAlpha, -FrameDarkenAlpha, -FrameDarkenAlpha, 0)
+			opts.ColorM.Translate(FrameDarkenAlpha, FrameDarkenAlpha, FrameDarkenAlpha, 1)
+			w.PrevImageMasked.DrawImage(w.VisibilityMaskImage, &opts)
+		}
+
+		// Add it to what we see.
+		screen.DrawImage(w.PrevImageMasked, &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeLighter,
 			Filter:        ebiten.FilterNearest,
 		})
 
-		if *drawOutside {
-			delta := w.ScrollPos.Delta(w.PrevScrollPos)
-			if w.NeedPrevImageMasked {
-				// Make a scrolled copy of the last frame.
-				w.PrevImageMasked.Fill(color.Gray{0})
-				opts := ebiten.DrawImageOptions{
-					CompositeMode: ebiten.CompositeModeCopy,
-					Filter:        ebiten.FilterNearest,
-				}
-				opts.GeoM.Translate(float64(-delta.DX), float64(-delta.DY))
-				w.PrevImageMasked.DrawImage(w.PrevImage, &opts)
-
-				// Blur and darken last image.
-				if *drawBlurs {
-					ExpandImage(w.PrevImageMasked, w.BlurImage, FrameBlurSize, 0.5)
-				}
-
-				// Mask out the parts we've already drawn.
-				opts = ebiten.DrawImageOptions{
-					CompositeMode: ebiten.CompositeModeMultiply,
-					Filter:        ebiten.FilterNearest,
-				}
-				opts.ColorM.Scale(-FrameDarkenAlpha, -FrameDarkenAlpha, -FrameDarkenAlpha, 0)
-				opts.ColorM.Translate(FrameDarkenAlpha, FrameDarkenAlpha, FrameDarkenAlpha, 1)
-				w.PrevImageMasked.DrawImage(w.VisibilityMaskImage, &opts)
-			}
-
-			// Add it to what we see.
-			screen.DrawImage(w.PrevImageMasked, &ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeLighter,
+		if w.NeedPrevImageMasked {
+			// Remember last image. Only do this once per update.
+			w.PrevImage.DrawImage(screen, &ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
 				Filter:        ebiten.FilterNearest,
 			})
-
-			if w.NeedPrevImageMasked {
-				// Remember last image. Only do this once per update.
-				w.PrevImage.DrawImage(screen, &ebiten.DrawImageOptions{
-					CompositeMode: ebiten.CompositeModeCopy,
-					Filter:        ebiten.FilterNearest,
-				})
-				w.PrevScrollPos = w.ScrollPos
-			}
+			w.PrevScrollPos = w.ScrollPos
+			w.NeedPrevImageMasked = false
 		}
 	}
+}
 
-	w.NeedPrevImageMasked = false
+func (w *World) Draw(screen *ebiten.Image) {
+	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.ScrollPos)
+
+	screen.Fill(color.Gray{0})
+	w.drawTiles(screen, scrollDelta)
+	w.drawEntities(screen, scrollDelta)
+	if *drawVisibilityMask {
+		w.drawVisibilityMask(screen, scrollDelta)
+	}
+
+	// Debug stuff comes last.
+	w.drawDebug(screen, scrollDelta)
 }
 
 // LoadTile loads the next tile into the current world based on a currently
