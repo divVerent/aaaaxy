@@ -15,6 +15,8 @@ type Player struct {
 
 	OnGround bool
 	Jumping  bool
+	LookUp   bool
+	LookDown bool
 	Velocity m.Delta
 	SubPixel m.Delta
 }
@@ -23,6 +25,15 @@ type Player struct {
 // So 30 px ~ 180 cm.
 // Gravity is 9.81 m/s^2 = 163.5 px/s^2.
 const (
+	// PlayerWidth is the width of the player.
+	PlayerWidth = engine.TileSize - 2
+	// PlayerHeight is the height of the player.
+	PlayerHeight = 2*engine.TileSize - 2
+	// PlayerEyeDX is the X coordinate of the player's eye.
+	PlayerEyeDX = engine.TileSize/2 - 1
+	// PlayerEyeDY is the Y coordinate of the player's eye.
+	PlayerEyeDY = engine.TileSize/2 - 1
+
 	SubPixelScale = 65536
 
 	// Nice run/jump speed.
@@ -64,7 +75,7 @@ func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 	if err != nil {
 		return err
 	}
-	p.Entity.Rect.Size = m.Delta{DX: engine.PlayerWidth, DY: engine.PlayerHeight}
+	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
 	return nil
 }
 
@@ -88,6 +99,8 @@ func friction(vel *int, friction int) {
 }
 
 func (p *Player) Update() {
+	p.LookUp = ebiten.IsKeyPressed(KeyUp)
+	p.LookDown = ebiten.IsKeyPressed(KeyDown)
 	if ebiten.IsKeyPressed(KeyJump) {
 		if !p.Jumping && p.OnGround {
 			p.Velocity.DY -= JumpVelocity
@@ -169,6 +182,23 @@ func (p *Player) Update() {
 
 func (p *Player) Touch(other *engine.Entity) {
 	// Nothing happens; we rather handle this on other's Touch event.
+}
+
+// EyePos returns the position the player eye is at.
+func (p *Player) EyePos() m.Pos {
+	return p.Entity.Rect.Origin.Add(m.Delta{DX: PlayerEyeDX, DY: PlayerEyeDY})
+}
+
+// LookPos returns the position the player is focusing at.
+func (p *Player) LookPos() m.Pos {
+	focus := p.EyePos()
+	if p.LookUp {
+		focus.Y -= engine.GameHeight / 4
+	}
+	if p.LookDown {
+		focus.Y += engine.GameHeight / 4
+	}
+	return focus
 }
 
 func init() {

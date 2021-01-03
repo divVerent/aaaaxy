@@ -159,9 +159,27 @@ func (w *World) Update() error {
 
 	// Player entity has special treatment.
 	player := w.Entities[w.PlayerID]
+	playerImpl := player.Impl.(PlayerEntityImpl)
 
-	// TODO Update ScrollPos based on player position and scroll target.
-	w.ScrollPos = player.Rect.Origin
+	// Update scroll position.
+	targetScrollPos := playerImpl.LookPos()
+	// Slowly move towards focus point.
+	// TODO Even converge to center when ScrollPerFrame too low. Somehow?
+	targetScrollPos = w.ScrollPos.Add(targetScrollPos.Delta(w.ScrollPos).MulFloat(ScrollPerFrame))
+	// Ensure player is onscreen.
+	if targetScrollPos.X < player.Rect.OppositeCorner().X-GameWidth/2+ScrollMinDistance {
+		targetScrollPos.X = player.Rect.OppositeCorner().X - GameWidth/2 + ScrollMinDistance
+	}
+	if targetScrollPos.X > player.Rect.Origin.X+GameWidth/2-ScrollMinDistance {
+		targetScrollPos.X = player.Rect.Origin.X + GameWidth/2 - ScrollMinDistance
+	}
+	if targetScrollPos.Y < player.Rect.OppositeCorner().Y-GameHeight/2+ScrollMinDistance {
+		targetScrollPos.Y = player.Rect.OppositeCorner().Y - GameHeight/2 + ScrollMinDistance
+	}
+	if targetScrollPos.Y > player.Rect.Origin.Y+GameHeight/2-ScrollMinDistance {
+		targetScrollPos.Y = player.Rect.Origin.Y + GameHeight/2 - ScrollMinDistance
+	}
+	w.ScrollPos = targetScrollPos
 
 	// Delete all tiles merely marked for expanding.
 	// TODO can we preserve but recheck them instead?
@@ -181,7 +199,7 @@ func (w *World) Update() error {
 	// TODO Remember trace polygon.
 	screen0 := w.ScrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
-	eye := player.Rect.Origin.Add(m.Delta{DX: PlayerEyeDX, DY: PlayerEyeDY})
+	eye := playerImpl.EyePos()
 	w.VisiblePolygonCenter = eye
 	w.VisiblePolygon = w.VisiblePolygon[0:0]
 	for x := screen0.X; x < screen1.X; x += SweepStep {

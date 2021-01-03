@@ -103,3 +103,14 @@ func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
 	// TODO w.LinkEntity(tilePos, e) - shall load in all tiles of e.
 	return e, nil
 }
+
+// PlayerEntityImpl defines some additional methods player entities must have.
+type PlayerEntityImpl interface {
+	EntityImpl
+
+	// EyePos is the location of the eye in world coordinates.
+	EyePos() m.Pos
+
+	// LookPos is the desired screen center position.
+	LookPos() m.Pos
+}

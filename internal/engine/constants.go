@@ -29,15 +29,6 @@ const (
 	// As map design may need to take this into account, try to keep it at 1.
 	ExpandTiles = (ExpandSize + BlurSize + SweepStep + TileSize - 1) / TileSize
 
-	// PlayerWidth is the width of the player.
-	PlayerWidth = TileSize - 2
-	// PlayerHeight is the height of the player.
-	PlayerHeight = 2*TileSize - 2
-	// PlayerEyeDX is the X coordinate of the player's eye.
-	PlayerEyeDX = TileSize/2 - 1
-	// PlayerEyeDY is the Y coordinate of the player's eye.
-	PlayerEyeDY = TileSize/2 - 1
-
 	// MinEntitySize is the smallest allowed entity size.
 	MinEntitySize = 8
 
@@ -45,6 +36,11 @@ const (
 	FrameBlurSize = 2
 	// FrameDarkenAlpha is how much the previous frame is to be darkened.
 	FrameDarkenAlpha = 0.98
+
+	// How much to scroll towards focus point each frame.
+	ScrollPerFrame = 0.05
+	// Minimum distance from screen edge when scrolling.
+	ScrollMinDistance = 2 * TileSize
 )
 
 //ExpandStep is a single expansion step.
