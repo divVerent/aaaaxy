@@ -111,8 +111,8 @@ func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {
 	return nil
 }
 
-// TraceLine moves from from to to and yields info about where this hit solid etc.
-func TraceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
+// traceLine moves from from to to and yields info about where this hit solid etc.
+func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 	// TODO write an optimized implementation. We do the naive one first.
 
 	result := TraceResult{

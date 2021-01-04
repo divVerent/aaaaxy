@@ -14,33 +14,30 @@ const (
 
 	// TileSize is the size of each tile graphics.
 	TileSize = 16
-	// SubPixels is the number of subpixels ("physics pixels") per tile pixel.
-	// Note that only physics entities (like player) actually track their subpixels; subpixels do not actually exist elsewhere.
-	SubPixels = 16
-	// SweepStep is the distance between visibility traces in pixels. Lower means worse performance.
-	SweepStep = 4
-	// NumSweepTraces is the number of sweep operations we need.
-	NumSweepTraces = 2 * (GameWidth + GameHeight) / SweepStep
-	// ExpandSize is the amount of pixels to expand the visible area by.
-	ExpandSize = 6
-	// BlurSize is the amount of pixels to blur the visible area by.
-	BlurSize = 6
-	// ExpandTiles is the number of tiles beyond tiles hit by a trace that may need to be displayed.
+	// sweepStep is the distance between visibility traces in pixels. Lower means worse performance.
+	sweepStep = 4
+	// numSweepTraces is the number of sweep operations we need.
+	numSweepTraces = 2 * (GameWidth + GameHeight) / sweepStep
+	// expandSize is the amount of pixels to expand the visible area by.
+	expandSize = 6
+	// blurSize is the amount of pixels to blur the visible area by.
+	blurSize = 6
+	// expandTiles is the number of tiles beyond tiles hit by a trace that may need to be displayed.
 	// As map design may need to take this into account, try to keep it at 1.
-	ExpandTiles = (ExpandSize + BlurSize + SweepStep + TileSize - 1) / TileSize
+	expandTiles = (expandSize + blurSize + sweepStep + TileSize - 1) / TileSize
 
 	// MinEntitySize is the smallest allowed entity size.
 	MinEntitySize = 8
 
-	// FrameBlurSize is how much the previous frame is to be blurred.
-	FrameBlurSize = 2
-	// FrameDarkenAlpha is how much the previous frame is to be darkened.
-	FrameDarkenAlpha = 0.98
+	// frameBlurSize is how much the previous frame is to be blurred.
+	frameBlurSize = 2
+	// frameDarkenAlpha is how much the previous frame is to be darkened.
+	frameDarkenAlpha = 0.98
 
 	// How much to scroll towards focus point each frame.
-	ScrollPerFrame = 0.05
+	scrollPerFrame = 0.05
 	// Minimum distance from screen edge when scrolling.
-	ScrollMinDistance = 2 * TileSize
+	scrollMinDistance = 2 * TileSize
 )
 
 //ExpandStep is a single expansion step.

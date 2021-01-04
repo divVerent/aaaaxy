@@ -15,8 +15,8 @@ func appendLineToTraces(traces map[m.Delta]struct{}, start, end m.Delta) {
 	traces[end] = struct{}{}
 }
 
-// TraceBox moves a size-sized box from from to to and yields info about where it hits solid etc.
-func TraceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
+// traceBox moves a size-sized box from from to to and yields info about where it hits solid etc.
+func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 	// TODO make a real implementation.
 	traces := map[m.Delta]struct{}{}
 	delta := to.Delta(from.Origin)
@@ -35,7 +35,7 @@ func TraceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 	var shortest int
 	haveTrace := false
 	for delta := range traces {
-		trace := TraceLine(w, from.Origin.Add(delta), to.Add(delta), o)
+		trace := traceLine(w, from.Origin.Add(delta), to.Add(delta), o)
 		adjustedEnd := trace.EndPos.Sub(delta)
 		length := adjustedEnd.Delta(from.Origin).Norm1()
 		if !haveTrace || length < shortest {

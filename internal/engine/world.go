@@ -165,7 +165,7 @@ func (w *World) Update() error {
 	targetScrollPos := playerImpl.LookPos()
 	// Slowly move towards focus point.
 	targetDelta := targetScrollPos.Delta(w.ScrollPos)
-	scrollDelta := targetDelta.MulFloat(ScrollPerFrame)
+	scrollDelta := targetDelta.MulFloat(scrollPerFrame)
 	if scrollDelta.DX == 0 {
 		if targetDelta.DX > 0 {
 			scrollDelta.DX = +1
@@ -184,17 +184,17 @@ func (w *World) Update() error {
 	}
 	targetScrollPos = w.ScrollPos.Add(scrollDelta)
 	// Ensure player is onscreen.
-	if targetScrollPos.X < player.Rect.OppositeCorner().X-GameWidth/2+ScrollMinDistance {
-		targetScrollPos.X = player.Rect.OppositeCorner().X - GameWidth/2 + ScrollMinDistance
+	if targetScrollPos.X < player.Rect.OppositeCorner().X-GameWidth/2+scrollMinDistance {
+		targetScrollPos.X = player.Rect.OppositeCorner().X - GameWidth/2 + scrollMinDistance
 	}
-	if targetScrollPos.X > player.Rect.Origin.X+GameWidth/2-ScrollMinDistance {
-		targetScrollPos.X = player.Rect.Origin.X + GameWidth/2 - ScrollMinDistance
+	if targetScrollPos.X > player.Rect.Origin.X+GameWidth/2-scrollMinDistance {
+		targetScrollPos.X = player.Rect.Origin.X + GameWidth/2 - scrollMinDistance
 	}
-	if targetScrollPos.Y < player.Rect.OppositeCorner().Y-GameHeight/2+ScrollMinDistance {
-		targetScrollPos.Y = player.Rect.OppositeCorner().Y - GameHeight/2 + ScrollMinDistance
+	if targetScrollPos.Y < player.Rect.OppositeCorner().Y-GameHeight/2+scrollMinDistance {
+		targetScrollPos.Y = player.Rect.OppositeCorner().Y - GameHeight/2 + scrollMinDistance
 	}
-	if targetScrollPos.Y > player.Rect.Origin.Y+GameHeight/2-ScrollMinDistance {
-		targetScrollPos.Y = player.Rect.Origin.Y + GameHeight/2 - ScrollMinDistance
+	if targetScrollPos.Y > player.Rect.Origin.Y+GameHeight/2-scrollMinDistance {
+		targetScrollPos.Y = player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
 	}
 	w.ScrollPos = targetScrollPos
 
@@ -211,7 +211,7 @@ func (w *World) Update() error {
 	w.VisibilityMark++
 	visibilityMark := w.VisibilityMark
 
-	// Trace from player location to all directions (SweepStep pixels at screen edge).
+	// Trace from player location to all directions (sweepStep pixels at screen edge).
 	// Mark all tiles hit (excl. the tiles that stopped us).
 	// TODO Remember trace polygon.
 	screen0 := w.ScrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
@@ -219,27 +219,27 @@ func (w *World) Update() error {
 	eye := playerImpl.EyePos()
 	w.VisiblePolygonCenter = eye
 	w.VisiblePolygon = w.VisiblePolygon[0:0]
-	for x := screen0.X; x < screen1.X; x += SweepStep {
+	for x := screen0.X; x < screen1.X; x += sweepStep {
 		trace := w.traceLineAndMark(eye, m.Pos{X: x, Y: screen0.Y})
 		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
 	}
-	for y := screen0.Y; y < screen1.Y; y += SweepStep {
+	for y := screen0.Y; y < screen1.Y; y += sweepStep {
 		trace := w.traceLineAndMark(eye, m.Pos{X: screen1.X, Y: y})
 		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
 	}
-	for x := screen1.X; x > screen0.X; x -= SweepStep {
+	for x := screen1.X; x > screen0.X; x -= sweepStep {
 		trace := w.traceLineAndMark(eye, m.Pos{X: x, Y: screen1.Y})
 		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
 	}
-	for y := screen1.Y; y > screen0.Y; y -= SweepStep {
+	for y := screen1.Y; y > screen0.Y; y -= sweepStep {
 		trace := w.traceLineAndMark(eye, m.Pos{X: screen0.X, Y: y})
 		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
 	}
 	if *expandUsingVertices {
-		expandPolygon(w.VisiblePolygonCenter, w.VisiblePolygon, ExpandSize)
+		expandPolygon(w.VisiblePolygonCenter, w.VisiblePolygon, expandSize)
 	}
 
-	// Also mark all neighbors of hit tiles hit (up to ExpandTiles).
+	// Also mark all neighbors of hit tiles hit (up to expandTiles).
 	// For multiple expansion, need to do this in steps so initially we only base expansion on visible tiles.
 	markedTiles := []m.Pos{}
 	for tilePos, tile := range w.Tiles {
@@ -249,7 +249,7 @@ func (w *World) Update() error {
 	}
 	w.VisibilityMark++
 	expansionMark = w.VisibilityMark
-	numExpandSteps := (2*ExpandTiles+1)*(2*ExpandTiles+1) - 1
+	numExpandSteps := (2*expandTiles+1)*(2*expandTiles+1) - 1
 	for i := 0; i < numExpandSteps; i++ {
 		step := &ExpandSteps[i]
 		for _, pos := range markedTiles {
@@ -393,15 +393,15 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
 	w.VisibilityMaskImage.Fill(color.Gray{0})
-	DrawPolygonAround(w.VisibilityMaskImage, w.VisiblePolygonCenter, w.VisiblePolygon, w.WhiteImage, geoM, &ebiten.DrawTrianglesOptions{
+	drawPolygonAround(w.VisibilityMaskImage, w.VisiblePolygonCenter, w.VisiblePolygon, w.WhiteImage, geoM, &ebiten.DrawTrianglesOptions{
 		Address: ebiten.AddressRepeat,
 	})
 
 	if !*expandUsingVertices {
-		ExpandImage(w.VisibilityMaskImage, w.BlurImage, ExpandSize, 1.0)
+		expandImage(w.VisibilityMaskImage, w.BlurImage, expandSize, 1.0)
 	}
 	if *drawBlurs {
-		ExpandImage(w.VisibilityMaskImage, w.BlurImage, BlurSize, 0.5)
+		expandImage(w.VisibilityMaskImage, w.BlurImage, blurSize, 0.5)
 	}
 
 	screen.DrawImage(w.VisibilityMaskImage, &ebiten.DrawImageOptions{
@@ -423,7 +423,7 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 
 			// Blur and darken last image.
 			if *drawBlurs {
-				ExpandImage(w.PrevImageMasked, w.BlurImage, FrameBlurSize, 0.5)
+				expandImage(w.PrevImageMasked, w.BlurImage, frameBlurSize, 0.5)
 			}
 
 			// Mask out the parts we've already drawn.
@@ -431,8 +431,8 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 				CompositeMode: ebiten.CompositeModeMultiply,
 				Filter:        ebiten.FilterNearest,
 			}
-			opts.ColorM.Scale(-FrameDarkenAlpha, -FrameDarkenAlpha, -FrameDarkenAlpha, 0)
-			opts.ColorM.Translate(FrameDarkenAlpha, FrameDarkenAlpha, FrameDarkenAlpha, 1)
+			opts.ColorM.Scale(-frameDarkenAlpha, -frameDarkenAlpha, -frameDarkenAlpha, 0)
+			opts.ColorM.Translate(frameDarkenAlpha, frameDarkenAlpha, frameDarkenAlpha, 1)
 			w.PrevImageMasked.DrawImage(w.VisibilityMaskImage, &opts)
 		}
 
@@ -542,10 +542,10 @@ func (w *World) LoadTilesForTileBox(tp0, tp1, tp m.Pos) {
 
 // TraceLine moves from x,y by dx,dy in pixel coordinates.
 func (w *World) TraceLine(from, to m.Pos, o TraceOptions) TraceResult {
-	return TraceLine(w, from, to, o)
+	return traceLine(w, from, to, o)
 }
 
 // TraceBox moves from x,y size sx,sy by dx,dy in pixel coordinates.
 func (w *World) TraceBox(from m.Rect, to m.Pos, o TraceOptions) TraceResult {
-	return TraceBox(w, from, to, o)
+	return traceBox(w, from, to, o)
 }

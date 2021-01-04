@@ -20,7 +20,7 @@ func makeVertex(geoM *ebiten.GeoM, p m.Pos) ebiten.Vertex {
 	}
 }
 
-func DrawPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, src *ebiten.Image, geoM ebiten.GeoM, options *ebiten.DrawTrianglesOptions) {
+func drawPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, src *ebiten.Image, geoM ebiten.GeoM, options *ebiten.DrawTrianglesOptions) {
 	eVerts := make([]ebiten.Vertex, len(vertices)+1)
 	eIndices := make([]uint16, 3*len(vertices))
 	eVerts[0] = makeVertex(&geoM, center)

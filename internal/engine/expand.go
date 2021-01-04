@@ -6,7 +6,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-func ExpandImage(img, tmp *ebiten.Image, size int, weight float64) {
+func expandImage(img, tmp *ebiten.Image, size int, weight float64) {
 	opts := ebiten.DrawImageOptions{
 		CompositeMode: ebiten.CompositeModeLighter,
 		Filter:        ebiten.FilterNearest,
