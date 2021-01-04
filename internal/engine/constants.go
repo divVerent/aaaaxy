@@ -40,14 +40,14 @@ const (
 	scrollMinDistance = 2 * TileSize
 )
 
-//ExpandStep is a single expansion step.
-type ExpandStep struct {
+//expandStep is a single expansion step.
+type expandStep struct {
 	from, to m.Delta
 }
 
 var (
-	// ExpandSteps is the list of steps to walk from each marked tile to expand.
-	ExpandSteps = []ExpandStep{
+	// expandSteps is the list of steps to walk from each marked tile to expand.
+	expandSteps = []expandStep{
 		// First expansion tile.
 		{m.Delta{}, m.Delta{1, 0}},
 		{m.Delta{}, m.Delta{0, -1}},

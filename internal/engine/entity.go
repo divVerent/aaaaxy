@@ -33,7 +33,7 @@ type Spawnable struct {
 // An Entity is an object that exists in the game.
 type Entity struct {
 	ID             EntityID
-	VisibilityMark uint
+	visibilityMark uint
 
 	// Info needed for gameplay.
 	Solid  bool

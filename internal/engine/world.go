@@ -35,42 +35,42 @@ type World struct {
 	Entities map[EntityID]*Entity
 	// Player is the ID of the player entity.
 	PlayerID EntityID
-	// scrollPos is the current screen scrolling position.
-	ScrollPos m.Pos
-	// scrollTarget is where we want to scroll to.
-	ScrollTarget m.Pos
-	// scrollSpeed is the speed of scrolling to ScrollTarget, or 0 if not aiming for a target.
-	ScrollSpeed int
-	// level is the current tilemap (universal covering with warpzones).
+	// level is the current tilemap (universal covering with warpZones).
 	Level *Level
-	// VisibilityMark is the current mark value to detect visible tiles/objects.
-	VisibilityMark uint
-	// DebugFont is the font to use for debug messages.
-	DebugFont font.Face
-	// VisiblePolygonCenter is the current eye position.
-	VisiblePolygonCenter m.Pos
-	// VisiblePolygon is the currently visible polygon.
-	VisiblePolygon []m.Pos
-	// NeedPrevImageMasked is set whenever the last call was Update.
-	NeedPrevImageMasked bool
+
+	// Properties that can in theory be regenerated from the above and thus do not
+	// need serialization support.
+
+	// scrollPos is the current screen scrolling position.
+	scrollPos m.Pos
+	// visibilityMark is the current mark value to detect visible tiles/objects.
+	visibilityMark uint
+	// debugFont is the font to use for debug messages.
+	debugFont font.Face
+	// visiblePolygonCenter is the current eye position.
+	visiblePolygonCenter m.Pos
+	// visiblePolygon is the currently visible polygon.
+	visiblePolygon []m.Pos
+	// needPrevImageMasked is set whenever the last call was Update.
+	needPrevImageMasked bool
 
 	// Images retained across frames.
 
-	// WhiteImage is a single white pixel.
-	WhiteImage *ebiten.Image
-	// PrevImage is the previous screen content.
-	PrevImage *ebiten.Image
-	// PrevImageMasked is the previous screen content after masking.
-	PrevImageMasked *ebiten.Image
-	// PrevScrollPos is previous frame's scroll pos.
-	PrevScrollPos m.Pos
+	// whiteImage is a single white pixel.
+	whiteImage *ebiten.Image
+	// prevImage is the previous screen content.
+	prevImage *ebiten.Image
+	// prevImageMasked is the previous screen content after masking.
+	prevImageMasked *ebiten.Image
+	// prevScrollPos is previous frame's scroll pos.
+	prevScrollPos m.Pos
 
 	// Temp storage within frames.
 
-	// BlurImage is an offscreen image used for blurring.
-	BlurImage *ebiten.Image
-	// VisibilityMaskImage is an offscreen image used for masking the visible area.
-	VisibilityMaskImage *ebiten.Image
+	// blurImage is an offscreen image used for blurring.
+	blurImage *ebiten.Image
+	// visibilityMaskImage is an offscreen image used for masking the visible area.
+	visibilityMaskImage *ebiten.Image
 }
 
 func NewWorld() *World {
@@ -89,19 +89,19 @@ func NewWorld() *World {
 		Tiles:    map[m.Pos]*Tile{},
 		Entities: map[EntityID]*Entity{},
 		Level:    level,
-		DebugFont: truetype.NewFace(debugFont, &truetype.Options{
+		debugFont: truetype.NewFace(debugFont, &truetype.Options{
 			Size:    5,
 			Hinting: font.HintingFull,
 		}),
-		WhiteImage:          ebiten.NewImage(1, 1),
-		BlurImage:           ebiten.NewImage(GameWidth, GameHeight),
-		PrevImage:           ebiten.NewImage(GameWidth, GameHeight),
-		PrevImageMasked:     ebiten.NewImage(GameWidth, GameHeight),
-		VisibilityMaskImage: ebiten.NewImage(GameWidth, GameHeight),
+		whiteImage:          ebiten.NewImage(1, 1),
+		blurImage:           ebiten.NewImage(GameWidth, GameHeight),
+		prevImage:           ebiten.NewImage(GameWidth, GameHeight),
+		prevImageMasked:     ebiten.NewImage(GameWidth, GameHeight),
+		visibilityMaskImage: ebiten.NewImage(GameWidth, GameHeight),
 	}
-	w.WhiteImage.Fill(color.Gray{255})
-	w.PrevImage.Fill(color.Gray{0})
-	w.PrevImageMasked.Fill(color.Gray{0})
+	w.whiteImage.Fill(color.Gray{255})
+	w.prevImage.Fill(color.Gray{0})
+	w.prevImageMasked.Fill(color.Gray{0})
 
 	// Load tile the player starts on.
 	tile := w.Level.Tiles[w.Level.Player.LevelPos].Tile
@@ -118,7 +118,7 @@ func NewWorld() *World {
 
 	// Load the other tiles that the player touches.
 	w.LoadTilesForRect(w.Entities[w.PlayerID].Rect, w.Level.Player.LevelPos)
-	w.VisibilityMark++
+	w.visibilityMark++
 
 	return &w
 }
@@ -129,7 +129,7 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 		LoadTiles: true,
 	})
 	for _, tilePos := range result.Path {
-		w.Tiles[tilePos].VisibilityMark = w.VisibilityMark
+		w.Tiles[tilePos].visibilityMark = w.visibilityMark
 	}
 	return result
 }
@@ -162,9 +162,9 @@ func (w *World) Update() error {
 	playerImpl := player.Impl.(PlayerEntityImpl)
 
 	// Update scroll position.
-	targetScrollPos := playerImpl.LookPos()
+	targetscrollPos := playerImpl.LookPos()
 	// Slowly move towards focus point.
-	targetDelta := targetScrollPos.Delta(w.ScrollPos)
+	targetDelta := targetscrollPos.Delta(w.scrollPos)
 	scrollDelta := targetDelta.MulFloat(scrollPerFrame)
 	if scrollDelta.DX == 0 {
 		if targetDelta.DX > 0 {
@@ -182,82 +182,82 @@ func (w *World) Update() error {
 			scrollDelta.DY = -1
 		}
 	}
-	targetScrollPos = w.ScrollPos.Add(scrollDelta)
+	targetscrollPos = w.scrollPos.Add(scrollDelta)
 	// Ensure player is onscreen.
-	if targetScrollPos.X < player.Rect.OppositeCorner().X-GameWidth/2+scrollMinDistance {
-		targetScrollPos.X = player.Rect.OppositeCorner().X - GameWidth/2 + scrollMinDistance
+	if targetscrollPos.X < player.Rect.OppositeCorner().X-GameWidth/2+scrollMinDistance {
+		targetscrollPos.X = player.Rect.OppositeCorner().X - GameWidth/2 + scrollMinDistance
 	}
-	if targetScrollPos.X > player.Rect.Origin.X+GameWidth/2-scrollMinDistance {
-		targetScrollPos.X = player.Rect.Origin.X + GameWidth/2 - scrollMinDistance
+	if targetscrollPos.X > player.Rect.Origin.X+GameWidth/2-scrollMinDistance {
+		targetscrollPos.X = player.Rect.Origin.X + GameWidth/2 - scrollMinDistance
 	}
-	if targetScrollPos.Y < player.Rect.OppositeCorner().Y-GameHeight/2+scrollMinDistance {
-		targetScrollPos.Y = player.Rect.OppositeCorner().Y - GameHeight/2 + scrollMinDistance
+	if targetscrollPos.Y < player.Rect.OppositeCorner().Y-GameHeight/2+scrollMinDistance {
+		targetscrollPos.Y = player.Rect.OppositeCorner().Y - GameHeight/2 + scrollMinDistance
 	}
-	if targetScrollPos.Y > player.Rect.Origin.Y+GameHeight/2-scrollMinDistance {
-		targetScrollPos.Y = player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
+	if targetscrollPos.Y > player.Rect.Origin.Y+GameHeight/2-scrollMinDistance {
+		targetscrollPos.Y = player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
 	}
-	w.ScrollPos = targetScrollPos
+	w.scrollPos = targetscrollPos
 
 	// Delete all tiles merely marked for expanding.
 	// TODO can we preserve but recheck them instead?
-	expansionMark := w.VisibilityMark
+	expansionMark := w.visibilityMark
 	for pos, tile := range w.Tiles {
-		if tile.VisibilityMark == expansionMark {
+		if tile.visibilityMark == expansionMark {
 			delete(w.Tiles, pos)
 		}
 	}
 
 	// Unmark all tiles and entities (just bump mark index).
-	w.VisibilityMark++
-	visibilityMark := w.VisibilityMark
+	w.visibilityMark++
+	visibilityMark := w.visibilityMark
 
 	// Trace from player location to all directions (sweepStep pixels at screen edge).
 	// Mark all tiles hit (excl. the tiles that stopped us).
 	// TODO Remember trace polygon.
-	screen0 := w.ScrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
+	screen0 := w.scrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
 	eye := playerImpl.EyePos()
-	w.VisiblePolygonCenter = eye
-	w.VisiblePolygon = w.VisiblePolygon[0:0]
+	w.visiblePolygonCenter = eye
+	w.visiblePolygon = w.visiblePolygon[0:0]
 	for x := screen0.X; x < screen1.X; x += sweepStep {
 		trace := w.traceLineAndMark(eye, m.Pos{X: x, Y: screen0.Y})
-		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
+		w.visiblePolygon = append(w.visiblePolygon, trace.EndPos)
 	}
 	for y := screen0.Y; y < screen1.Y; y += sweepStep {
 		trace := w.traceLineAndMark(eye, m.Pos{X: screen1.X, Y: y})
-		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
+		w.visiblePolygon = append(w.visiblePolygon, trace.EndPos)
 	}
 	for x := screen1.X; x > screen0.X; x -= sweepStep {
 		trace := w.traceLineAndMark(eye, m.Pos{X: x, Y: screen1.Y})
-		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
+		w.visiblePolygon = append(w.visiblePolygon, trace.EndPos)
 	}
 	for y := screen1.Y; y > screen0.Y; y -= sweepStep {
 		trace := w.traceLineAndMark(eye, m.Pos{X: screen0.X, Y: y})
-		w.VisiblePolygon = append(w.VisiblePolygon, trace.EndPos)
+		w.visiblePolygon = append(w.visiblePolygon, trace.EndPos)
 	}
 	if *expandUsingVertices {
-		expandPolygon(w.VisiblePolygonCenter, w.VisiblePolygon, expandSize)
+		expandPolygon(w.visiblePolygonCenter, w.visiblePolygon, expandSize)
 	}
 
 	// Also mark all neighbors of hit tiles hit (up to expandTiles).
 	// For multiple expansion, need to do this in steps so initially we only base expansion on visible tiles.
 	markedTiles := []m.Pos{}
 	for tilePos, tile := range w.Tiles {
-		if tile.VisibilityMark == visibilityMark {
+		if tile.visibilityMark == visibilityMark {
 			markedTiles = append(markedTiles, tilePos)
 		}
 	}
-	w.VisibilityMark++
-	expansionMark = w.VisibilityMark
-	numExpandSteps := (2*expandTiles+1)*(2*expandTiles+1) - 1
-	for i := 0; i < numExpandSteps; i++ {
-		step := &ExpandSteps[i]
+	w.visibilityMark++
+	expansionMark = w.visibilityMark
+	numexpandSteps := (2*expandTiles+1)*(2*expandTiles+1) - 1
+	for i := 0; i < numexpandSteps; i++ {
+		step := &expandSteps[i]
 		for _, pos := range markedTiles {
 			from := pos.Add(step.from)
 			to := pos.Add(step.to)
 			w.LoadTile(from, to.Delta(from))
-			if w.Tiles[to].VisibilityMark != visibilityMark {
-				w.Tiles[to].VisibilityMark = expansionMark
+			if w.Tiles[to].visibilityMark != visibilityMark {
+				w.Tiles[to].visibilityMark = expansionMark
 			}
 		}
 	}
@@ -270,12 +270,12 @@ func (w *World) Update() error {
 
 	// Delete all unmarked tiles.
 	for pos, tile := range w.Tiles {
-		if tile.VisibilityMark != expansionMark && tile.VisibilityMark != visibilityMark {
+		if tile.visibilityMark != expansionMark && tile.visibilityMark != visibilityMark {
 			delete(w.Tiles, pos)
 		}
 	}
 
-	w.NeedPrevImageMasked = true
+	w.needPrevImageMasked = true
 
 	return nil
 }
@@ -358,7 +358,7 @@ func (w *World) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			arrowrx := arrowpx - arrowdx - arrowdy
 			arrowry := arrowpy + arrowdx - arrowdy
 			c := color.Gray{64}
-			if tile.VisibilityMark == w.VisibilityMark {
+			if tile.visibilityMark == w.visibilityMark {
 				c = color.Gray{192}
 			}
 			ebitenutil.DrawLine(screen, startx, starty, endx, endy, c)
@@ -367,7 +367,7 @@ func (w *World) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		if *debugShowCoords {
 			c := color.Gray{128}
-			text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), w.DebugFont, screenPos.X, screenPos.Y+TileSize-1, c)
+			text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), w.debugFont, screenPos.X, screenPos.Y+TileSize-1, c)
 		}
 		if *debugShowOrientations {
 			midx := float64(screenPos.X) + TileSize/2
@@ -392,38 +392,38 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 	// Draw trace polygon to buffer.
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
-	w.VisibilityMaskImage.Fill(color.Gray{0})
-	drawPolygonAround(w.VisibilityMaskImage, w.VisiblePolygonCenter, w.VisiblePolygon, w.WhiteImage, geoM, &ebiten.DrawTrianglesOptions{
+	w.visibilityMaskImage.Fill(color.Gray{0})
+	drawPolygonAround(w.visibilityMaskImage, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, geoM, &ebiten.DrawTrianglesOptions{
 		Address: ebiten.AddressRepeat,
 	})
 
 	if !*expandUsingVertices {
-		expandImage(w.VisibilityMaskImage, w.BlurImage, expandSize, 1.0)
+		expandImage(w.visibilityMaskImage, w.blurImage, expandSize, 1.0)
 	}
 	if *drawBlurs {
-		expandImage(w.VisibilityMaskImage, w.BlurImage, blurSize, 0.5)
+		expandImage(w.visibilityMaskImage, w.blurImage, blurSize, 0.5)
 	}
 
-	screen.DrawImage(w.VisibilityMaskImage, &ebiten.DrawImageOptions{
+	screen.DrawImage(w.visibilityMaskImage, &ebiten.DrawImageOptions{
 		CompositeMode: ebiten.CompositeModeMultiply,
 		Filter:        ebiten.FilterNearest,
 	})
 
 	if *drawOutside {
-		delta := w.ScrollPos.Delta(w.PrevScrollPos)
-		if w.NeedPrevImageMasked {
+		delta := w.scrollPos.Delta(w.prevScrollPos)
+		if w.needPrevImageMasked {
 			// Make a scrolled copy of the last frame.
-			w.PrevImageMasked.Fill(color.Gray{0})
+			w.prevImageMasked.Fill(color.Gray{0})
 			opts := ebiten.DrawImageOptions{
 				CompositeMode: ebiten.CompositeModeCopy,
 				Filter:        ebiten.FilterNearest,
 			}
 			opts.GeoM.Translate(float64(-delta.DX), float64(-delta.DY))
-			w.PrevImageMasked.DrawImage(w.PrevImage, &opts)
+			w.prevImageMasked.DrawImage(w.prevImage, &opts)
 
 			// Blur and darken last image.
 			if *drawBlurs {
-				expandImage(w.PrevImageMasked, w.BlurImage, frameBlurSize, 0.5)
+				expandImage(w.prevImageMasked, w.blurImage, frameBlurSize, 0.5)
 			}
 
 			// Mask out the parts we've already drawn.
@@ -433,29 +433,29 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 			}
 			opts.ColorM.Scale(-frameDarkenAlpha, -frameDarkenAlpha, -frameDarkenAlpha, 0)
 			opts.ColorM.Translate(frameDarkenAlpha, frameDarkenAlpha, frameDarkenAlpha, 1)
-			w.PrevImageMasked.DrawImage(w.VisibilityMaskImage, &opts)
+			w.prevImageMasked.DrawImage(w.visibilityMaskImage, &opts)
 		}
 
 		// Add it to what we see.
-		screen.DrawImage(w.PrevImageMasked, &ebiten.DrawImageOptions{
+		screen.DrawImage(w.prevImageMasked, &ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeLighter,
 			Filter:        ebiten.FilterNearest,
 		})
 
-		if w.NeedPrevImageMasked {
+		if w.needPrevImageMasked {
 			// Remember last image. Only do this once per update.
-			w.PrevImage.DrawImage(screen, &ebiten.DrawImageOptions{
+			w.prevImage.DrawImage(screen, &ebiten.DrawImageOptions{
 				CompositeMode: ebiten.CompositeModeCopy,
 				Filter:        ebiten.FilterNearest,
 			})
-			w.PrevScrollPos = w.ScrollPos
-			w.NeedPrevImageMasked = false
+			w.prevScrollPos = w.scrollPos
+			w.needPrevImageMasked = false
 		}
 	}
 }
 
 func (w *World) Draw(screen *ebiten.Image) {
-	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.ScrollPos)
+	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.scrollPos)
 
 	screen.Fill(color.Gray{0})
 	w.drawTiles(screen, scrollDelta)
@@ -494,11 +494,11 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 		w.Tiles[newPos] = &newTile
 		return newPos
 	}
-	if newLevelTile.Warpzone != nil {
-		t = newLevelTile.Warpzone.Transform.Concat(t)
-		tile := w.Level.Tiles[newLevelTile.Warpzone.ToTile]
+	if newLevelTile.WarpZone != nil {
+		t = newLevelTile.WarpZone.Transform.Concat(t)
+		tile := w.Level.Tiles[newLevelTile.WarpZone.ToTile]
 		if tile == nil {
-			log.Panicf("nil new tile after warping to %v", newLevelTile.Warpzone)
+			log.Panicf("nil new tile after warping to %v", newLevelTile.WarpZone)
 		}
 		newLevelTile = tile
 	}

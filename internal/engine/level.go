@@ -21,14 +21,14 @@ type Level struct {
 // LevelTile is a single tile in the level.
 type LevelTile struct {
 	Tile     Tile
-	Warpzone *Warpzone
+	WarpZone *WarpZone
 }
 
-// Warpzone represents a warp tile. Whenever anything enters this tile, it gets
+// WarpZone represents a warp tile. Whenever anything enters this tile, it gets
 // moved to "to" and the direction transformed by "transform". For the game to
-// work, every warpzone must be paired with an exact opposite elsewhere. This
+// work, every warpZone must be paired with an exact opposite elsewhere. This
 // is ensured at load time.
-type Warpzone struct {
+type WarpZone struct {
 	ToTile    m.Pos
 	Transform m.Orientation
 }
@@ -114,11 +114,11 @@ func LoadLevel(filename string) (*Level, error) {
 			},
 		}
 	}
-	type RawWarpzone struct {
+	type RawWarpZone struct {
 		StartTile, EndTile m.Pos
 		Orientation        m.Orientation
 	}
-	warpzones := map[string][]RawWarpzone{}
+	warpZones := map[string][]RawWarpZone{}
 	for _, og := range t.ObjectGroups {
 		for _, o := range og.Objects {
 			properties := map[string]string{}
@@ -161,8 +161,8 @@ func LoadLevel(filename string) (*Level, error) {
 				}
 			}
 			if objType == "WarpZone" {
-				// Warpzones must be paired by name.
-				warpzones[o.Name] = append(warpzones[o.Name], RawWarpzone{
+				// WarpZones must be paired by name.
+				warpZones[o.Name] = append(warpZones[o.Name], RawWarpZone{
 					StartTile:   startTile,
 					EndTile:     endTile,
 					Orientation: orientation,
@@ -196,9 +196,9 @@ func LoadLevel(filename string) (*Level, error) {
 			}
 		}
 	}
-	for warpname, warppair := range warpzones {
+	for warpname, warppair := range warpZones {
 		if len(warppair) != 2 {
-			return nil, fmt.Errorf("unpaired warpzone %q: got %d, want 2", warpname, len(warppair))
+			return nil, fmt.Errorf("unpaired warpZone %q: got %d, want 2", warpname, len(warppair))
 		}
 		for a := 0; a < 2; a++ {
 			from := warppair[a]
@@ -219,13 +219,13 @@ func LoadLevel(filename string) (*Level, error) {
 					toPos := toPos2.Div(2).Add(to.Orientation.Apply(m.West()))
 					levelTile := level.Tiles[fromPos]
 					if levelTile == nil {
-						log.Panicf("invalid warpzone location: outside map bounds: %v in %v", fromPos, warppair)
+						log.Panicf("invalid warpZone location: outside map bounds: %v in %v", fromPos, warppair)
 					}
 					toTile := level.Tiles[toPos]
 					if toTile == nil {
-						log.Panicf("invalid warpzone destination location: outside map bounds: %v in %v", toPos, warppair)
+						log.Panicf("invalid warpZone destination location: outside map bounds: %v in %v", toPos, warppair)
 					}
-					levelTile.Warpzone = &Warpzone{
+					levelTile.WarpZone = &WarpZone{
 						ToTile:    toPos,
 						Transform: transform,
 					}
