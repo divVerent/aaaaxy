@@ -40,7 +40,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 	if *captureVideo != "" {
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)
-		SaveImage(screen, fmt.Sprintf("%s_%08d.png", *captureVideo, frameIndex))
+		saveImage(screen, fmt.Sprintf("%s_%08d.png", *captureVideo, frameIndex))
 		frameIndex++
 	}
 
