@@ -55,18 +55,14 @@ func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {
 	delta := to.Delta(from)
 	absDelta := delta
 	xDir := 1
-	xMod := TileSize - 1
 	if absDelta.DX < 0 {
 		absDelta.DX = -absDelta.DX
 		xDir = -1
-		xMod = 0
 	}
 	yDir := 1
-	yMod := TileSize - 1
 	if absDelta.DY < 0 {
 		absDelta.DY = -absDelta.DY
 		yDir = -1
-		yMod = 0
 	}
 	scanX := true
 	numSteps := absDelta.DX
@@ -80,6 +76,7 @@ func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {
 		return check(from)
 	}
 	twiceSteps := 2 * numSteps
+	prevPixel, prevTile := from, from.Div(TileSize)
 	for i := 0; i <= numSteps; i++ {
 		i0 := 2*i - 1
 		if i0 < 0 {
@@ -100,15 +97,18 @@ func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {
 			}
 			// Only call the callback if we hit the end of a tile, or the end of the trace.
 			// Should speed up tracing SUBSTANTIALLY by saving lots of callback invocations.
-			if m.Mod(pixel.X, TileSize) == xMod || m.Mod(pixel.Y, TileSize) == yMod || pixel == to {
-				err := check(pixel)
+			tile := pixel.Div(TileSize)
+			if tile != prevTile {
+				err := check(prevPixel)
 				if err != nil {
 					return err
 				}
+				prevTile = tile
 			}
+			prevPixel = pixel
 		}
 	}
-	return nil
+	return check(to)
 }
 
 // traceLine moves from from to to and yields info about where this hit solid etc.
