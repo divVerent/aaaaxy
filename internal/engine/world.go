@@ -266,11 +266,57 @@ func (w *World) updateVisibility(eye m.Pos) {
 		}
 	}
 
-	// TODO Mark all entities on marked tiles hit.
-	// TODO Delete all unmarked entities.
-	// TODO Spawn all entities on marked tiles if not already spawned.
-	// TODO Mark all tiles on entities (this is NOT recursive, but entities may require the tiles they are on to be loaded so they can move).
-	// (Somewhat tricky as entities may stand on warps; we have to walk from a known tile).
+	timing.Section("spawn_search")
+	for pos, tile := range w.Tiles {
+		if tile.visibilityMark != expansionMark && tile.visibilityMark != visibilityMark {
+			continue
+		}
+		for _, spawnable := range tile.Spawnables {
+			if w.Entities[spawnable.ID] == nil {
+				timing.Section("spawn")
+				ent, err := spawnable.Spawn(w, pos, tile)
+				if err != nil {
+					log.Panicf("could not spawn entity %v: %v", spawnable, err)
+				}
+				w.Entities[spawnable.ID] = ent
+				timing.Section("spawn_search")
+			}
+		}
+	}
+
+	timing.Section("despawn_search")
+	for id, ent := range w.Entities {
+		tp0, tp1 := tilesBox(ent.Rect)
+		var pos *m.Pos
+	DESPAWN_SEARCH:
+		for y := tp0.Y; y <= tp1.Y; y++ {
+			for x := tp0.X; x <= tp1.X; x++ {
+				tp := m.Pos{X: x, Y: y}
+				if w.Tiles[tp].visibilityMark == expansionMark || w.Tiles[tp].visibilityMark == visibilityMark {
+					pos = &tp
+					break DESPAWN_SEARCH
+				}
+			}
+		}
+		if pos != nil {
+			timing.Section("load_entity_tiles")
+			w.LoadTilesForTileBox(tp0, tp1, *pos)
+			for y := tp0.Y; y <= tp1.Y; y++ {
+				for x := tp0.X; x <= tp1.X; x++ {
+					tp := m.Pos{X: x, Y: y}
+					if w.Tiles[tp].visibilityMark != visibilityMark {
+						w.Tiles[tp].visibilityMark = expansionMark
+					}
+				}
+			}
+			timing.Section("despawn_search")
+		} else {
+			timing.Section("despawn")
+			ent.Impl.Despawn()
+			delete(w.Entities, id)
+			timing.Section("despawn_search")
+		}
+	}
 
 	// Delete all unmarked tiles.
 	timing.Section("cleanup_unmarked")
@@ -536,11 +582,16 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	return newPos
 }
 
-// LoadTilesForRect loads all tiles in the given box (p, d), assuming tile tp is already loaded.
-func (w *World) LoadTilesForRect(r m.Rect, tp m.Pos) {
-	// Convert box to tile positions.
+// tilesBox returns corner coordinates for all tiles in a given box.
+func tilesBox(r m.Rect) (m.Pos, m.Pos) {
 	tp0 := r.Origin.Div(TileSize)
 	tp1 := r.OppositeCorner().Div(TileSize)
+	return tp0, tp1
+}
+
+// LoadTilesForRect loads all tiles in the given box (p, d), assuming tile tp is already loaded.
+func (w *World) LoadTilesForRect(r m.Rect, tp m.Pos) {
+	tp0, tp1 := tilesBox(r)
 	w.LoadTilesForTileBox(tp0, tp1, tp)
 }
 
