@@ -14,6 +14,7 @@ import (
 	"golang.org/x/image/font/gofont/gomono"
 
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
 var (
@@ -161,7 +162,7 @@ func (w *World) updateEntities() {
 // updateScrollPos updates the current scroll position.
 func (w *World) updateScrollPos(player *Entity, target m.Pos) {
 	// Slowly move towards focus point.
-	targetDelta := targetscrollPos.Delta(w.scrollPos)
+	targetDelta := target.Delta(w.scrollPos)
 	scrollDelta := targetDelta.MulFloat(scrollPerFrame)
 	if scrollDelta.DX == 0 {
 		if targetDelta.DX > 0 {
@@ -179,30 +180,33 @@ func (w *World) updateScrollPos(player *Entity, target m.Pos) {
 			scrollDelta.DY = -1
 		}
 	}
-	targetscrollPos = w.scrollPos.Add(scrollDelta)
+	target = w.scrollPos.Add(scrollDelta)
 	// Ensure player is onscreen.
-	if targetscrollPos.X < player.Rect.OppositeCorner().X-GameWidth/2+scrollMinDistance {
-		targetscrollPos.X = player.Rect.OppositeCorner().X - GameWidth/2 + scrollMinDistance
+	if target.X < player.Rect.OppositeCorner().X-GameWidth/2+scrollMinDistance {
+		target.X = player.Rect.OppositeCorner().X - GameWidth/2 + scrollMinDistance
 	}
-	if targetscrollPos.X > player.Rect.Origin.X+GameWidth/2-scrollMinDistance {
-		targetscrollPos.X = player.Rect.Origin.X + GameWidth/2 - scrollMinDistance
+	if target.X > player.Rect.Origin.X+GameWidth/2-scrollMinDistance {
+		target.X = player.Rect.Origin.X + GameWidth/2 - scrollMinDistance
 	}
-	if targetscrollPos.Y < player.Rect.OppositeCorner().Y-GameHeight/2+scrollMinDistance {
-		targetscrollPos.Y = player.Rect.OppositeCorner().Y - GameHeight/2 + scrollMinDistance
+	if target.Y < player.Rect.OppositeCorner().Y-GameHeight/2+scrollMinDistance {
+		target.Y = player.Rect.OppositeCorner().Y - GameHeight/2 + scrollMinDistance
 	}
-	if targetscrollPos.Y > player.Rect.Origin.Y+GameHeight/2-scrollMinDistance {
-		targetscrollPos.Y = player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
+	if target.Y > player.Rect.Origin.Y+GameHeight/2-scrollMinDistance {
+		target.Y = player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
 	}
-	w.scrollPos = targetscrollPos
+	w.scrollPos = target
 }
 
 // updateVisibility loads all visible tiles and discards all tiles not visible right now.
 func (w *World) updateVisibility(eye m.Pos) {
+	defer timing.Group()()
+
 	// Delete all tiles merely marked for expanding.
 	// TODO can we preserve but recheck them instead?
-	expansionMark := w.visibilityMark
+	timing.Section("cleanup_expanded")
+	prevVisibilityMark := w.visibilityMark - 1
 	for pos, tile := range w.Tiles {
-		if tile.visibilityMark == expansionMark {
+		if tile.visibilityMark != prevVisibilityMark {
 			delete(w.Tiles, pos)
 		}
 	}
@@ -213,9 +217,9 @@ func (w *World) updateVisibility(eye m.Pos) {
 
 	// Trace from player location to all directions (sweepStep pixels at screen edge).
 	// Mark all tiles hit (excl. the tiles that stopped us).
+	timing.Section("trace")
 	screen0 := w.scrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
-	eye := playerImpl.EyePos()
 	w.visiblePolygonCenter = eye
 	w.visiblePolygon = w.visiblePolygon[0:0]
 	for x := screen0.X; x < screen1.X; x += sweepStep {
@@ -240,6 +244,7 @@ func (w *World) updateVisibility(eye m.Pos) {
 
 	// Also mark all neighbors of hit tiles hit (up to expandTiles).
 	// For multiple expansion, need to do this in steps so initially we only base expansion on visible tiles.
+	timing.Section("expand")
 	markedTiles := []m.Pos{}
 	for tilePos, tile := range w.Tiles {
 		if tile.visibilityMark == visibilityMark {
@@ -247,9 +252,9 @@ func (w *World) updateVisibility(eye m.Pos) {
 		}
 	}
 	w.visibilityMark++
-	expansionMark = w.visibilityMark
-	numexpandSteps := (2*expandTiles+1)*(2*expandTiles+1) - 1
-	for i := 0; i < numexpandSteps; i++ {
+	expansionMark := w.visibilityMark
+	numExpandSteps := (2*expandTiles+1)*(2*expandTiles+1) - 1
+	for i := 0; i < numExpandSteps; i++ {
 		step := &expandSteps[i]
 		for _, pos := range markedTiles {
 			from := pos.Add(step.from)
@@ -268,6 +273,7 @@ func (w *World) updateVisibility(eye m.Pos) {
 	// (Somewhat tricky as entities may stand on warps; we have to walk from a known tile).
 
 	// Delete all unmarked tiles.
+	timing.Section("cleanup_unmarked")
 	for pos, tile := range w.Tiles {
 		if tile.visibilityMark != expansionMark && tile.visibilityMark != visibilityMark {
 			delete(w.Tiles, pos)
@@ -276,7 +282,10 @@ func (w *World) updateVisibility(eye m.Pos) {
 }
 
 func (w *World) Update() error {
+	defer timing.Group()()
+
 	// Let everything move.
+	timing.Section("entities")
 	w.updateEntities()
 
 	// Fetch the player entity.
@@ -287,6 +296,7 @@ func (w *World) Update() error {
 	w.updateScrollPos(player, playerImpl.LookPos())
 
 	// Update visibility and spawn/despawn entities.
+	timing.Section("visibility")
 	w.updateVisibility(playerImpl.EyePos())
 
 	w.needPrevImageMasked = true

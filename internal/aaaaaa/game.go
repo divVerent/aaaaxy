@@ -10,6 +10,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
+	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
 var (
@@ -24,30 +25,49 @@ type Game struct {
 var _ ebiten.Game = &Game{}
 
 func (g *Game) Update() error {
+	timing.ReportRegularly()
+
+	defer timing.Group()()
+	timing.Section("update")
+	defer timing.Group()()
+
+	timing.Section("once")
 	if ebiten.IsKeyPressed(ebiten.KeyEscape) {
 		return errors.New("esc")
 	}
 	if g.World == nil {
 		g.World = engine.NewWorld()
 	}
+
+	timing.Section("world")
 	return g.World.Update()
 }
 
 var frameIndex = 0
 
 func (g *Game) Draw(screen *ebiten.Image) {
+	defer timing.Group()()
+	timing.Section("draw")
+	defer timing.Group()()
+
+	timing.Section("world")
 	g.World.Draw(screen)
 
 	if *captureVideo != "" {
+		timing.Section("capture")
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)
 		saveImage(screen, fmt.Sprintf("%s_%08d.png", *captureVideo, frameIndex))
 		frameIndex++
 	}
 
-	// Draw HUD.
-	// Draw menu.
+	timing.Section("hud")
+	// TODO Draw HUD.
+
+	timing.Section("menu")
+	// TODO Draw menu.
 
 	if *showFps {
+		timing.Section("fps")
 		ebitenutil.DebugPrintAt(screen, fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()), 0, engine.GameHeight-16)
 	}
 }
