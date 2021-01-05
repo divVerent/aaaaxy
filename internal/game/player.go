@@ -59,6 +59,7 @@ const (
 	// Note: assuming 1px=6cm, this is actually 17.3m/s and 3.5x earth gravity.
 	JumpVelocity = 288 * SubPixelScale / engine.GameTPS
 	Gravity      = 576 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	MaxSpeed     = 2 * engine.TileSize * SubPixelScale
 
 	// We want at least 19px high jumps so we can be sure a jump moves at least 2 tiles up.
 	JumpExtraGravity = 72*Gravity/19 - Gravity
@@ -133,6 +134,9 @@ func (p *Player) Update() {
 		}
 	}
 	p.Velocity.DY += Gravity
+	if p.Velocity.DY > MaxSpeed {
+		p.Velocity.DY = MaxSpeed
+	}
 	p.SubPixel = p.SubPixel.Add(p.Velocity)
 	move := p.SubPixel.Div(SubPixelScale)
 	if move.DX != 0 {
