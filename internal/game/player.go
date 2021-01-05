@@ -34,6 +34,9 @@ const (
 	// PlayerEyeDY is the Y coordinate of the player's eye.
 	PlayerEyeDY = engine.TileSize/2 - 1
 
+	// LookTiles is how many tiles the player can look up/down.
+	LookDistance = engine.TileSize * 4
+
 	SubPixelScale = 65536
 
 	// Nice run/jump speed.
@@ -193,10 +196,10 @@ func (p *Player) EyePos() m.Pos {
 func (p *Player) LookPos() m.Pos {
 	focus := p.EyePos()
 	if p.LookUp {
-		focus.Y -= engine.GameHeight / 4
+		focus.Y -= LookDistance
 	}
 	if p.LookDown {
-		focus.Y += engine.GameHeight / 4
+		focus.Y += LookDistance
 	}
 	return focus
 }
