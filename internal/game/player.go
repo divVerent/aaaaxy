@@ -135,7 +135,7 @@ func (p *Player) Update() {
 	if move.DX != 0 {
 		dest := p.Entity.Rect.Origin.Add(m.Delta{DX: move.DX})
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
-			ForEnt: p.Entity,
+			IgnoreEnt: p.Entity,
 		})
 		if trace.EndPos == dest {
 			// Nothing hit.
@@ -154,7 +154,7 @@ func (p *Player) Update() {
 	if move.DY != 0 {
 		dest := p.Entity.Rect.Origin.Add(m.Delta{DY: move.DY})
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
-			ForEnt: p.Entity,
+			IgnoreEnt: p.Entity,
 		})
 		if trace.EndPos == dest {
 			// Nothing hit.
@@ -172,7 +172,7 @@ func (p *Player) Update() {
 		p.Entity.Rect.Origin = trace.EndPos
 	} else if p.OnGround {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
-			ForEnt: p.Entity,
+			IgnoreEnt: p.Entity,
 		})
 		if trace.EndPos != p.Entity.Rect.Origin {
 			p.OnGround = false

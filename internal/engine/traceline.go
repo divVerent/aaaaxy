@@ -24,8 +24,8 @@ type TraceOptions struct {
 	NoTiles bool
 	// If NoEntities is set, we ignore hits against entities.
 	NoEntities bool
-	// ForEnt is the entity that shall be ignored when tracing.
-	ForEnt *Entity
+	// IgnoreEnt is the entity that shall be ignored when tracing.
+	IgnoreEnt *Entity
 	// If LoadTiles is set, not yet known tiles will be loaded in by the trace operation.
 	// Otherwise hitting a not-yet-loaded tile will end the trace.
 	// Only valid on line traces.
@@ -49,52 +49,107 @@ type TraceResult struct {
 	HitFogOfWar bool
 }
 
+type normalizedLine struct {
+	Origin   m.Pos
+	NumSteps int
+	Height   int
+	XDir     int
+	YDir     int
+	ScanX    bool
+}
+
+func normalizeLine(from, to m.Pos) normalizedLine {
+	delta := to.Delta(from)
+	absDelta := delta
+	l := normalizedLine{
+		Origin: from,
+	}
+	l.XDir = 1
+	if absDelta.DX < 0 {
+		absDelta.DX = -absDelta.DX
+		l.XDir = -1
+	}
+	l.YDir = 1
+	if absDelta.DY < 0 {
+		absDelta.DY = -absDelta.DY
+		l.YDir = -1
+	}
+	l.ScanX = true
+	l.NumSteps = absDelta.DX
+	l.Height = absDelta.DY
+	if l.NumSteps < l.Height {
+		l.NumSteps, l.Height = l.Height, l.NumSteps
+		l.ScanX = false
+	}
+	return l
+}
+
+func (l *normalizedLine) fromPos(p m.Pos) (int, int) {
+	if l.ScanX {
+		return (p.X - l.Origin.X) * l.XDir, (p.Y - l.Origin.Y) * l.YDir
+	} else {
+		return (p.Y - l.Origin.Y) * l.YDir, (p.X - l.Origin.X) * l.XDir
+	}
+}
+
+func (l *normalizedLine) fromRect(r m.Rect) (int, int, int, int) {
+	i0, j0 := l.fromPos(r.Origin)
+	i1, j1 := l.fromPos(r.OppositeCorner())
+	if i0 > i1 {
+		i0, i1 = i1, i0
+	}
+	if j0 > j1 {
+		j0, j1 = j1, j0
+	}
+	return i0, j0, i1, j1
+}
+
+func (l *normalizedLine) toPos(i, j int) m.Pos {
+	if l.ScanX {
+		return m.Pos{X: l.Origin.X + l.XDir*i, Y: l.Origin.Y + l.YDir*j}
+	} else {
+		return m.Pos{X: l.Origin.X + l.XDir*j, Y: l.Origin.Y + l.YDir*i}
+	}
+}
+
+// traceEntity returns whether the line from from to to hits the entity, as well as the last coordinate not hitting yet.
+func traceEntity(from, to m.Pos, ent *Entity) (bool, m.Pos) {
+	l := normalizeLine(from, to)
+	if l.NumSteps == 0 {
+		// Start point is end point. Nothing to do.
+		return false, m.Pos{}
+	}
+	i0, j0, i1, j1 := l.fromRect(ent.Rect)
+	if hit, i, j := traceLineBox(l.NumSteps, l.Height, i0, j0, i1, j1); hit {
+		return true, l.toPos(i, j)
+	}
+	// Not hit.
+	return false, m.Pos{}
+}
+
 // walkLine walks on pixels from from to to, calling the check() function on every pixel hit.
 // Any two adjacent positions hit are exactly 1 pixel apart (no diagonal steps).
 func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {
-	delta := to.Delta(from)
-	absDelta := delta
-	xDir := 1
-	if absDelta.DX < 0 {
-		absDelta.DX = -absDelta.DX
-		xDir = -1
-	}
-	yDir := 1
-	if absDelta.DY < 0 {
-		absDelta.DY = -absDelta.DY
-		yDir = -1
-	}
-	scanX := true
-	numSteps := absDelta.DX
-	height := absDelta.DY
-	if numSteps < height {
-		numSteps, height = height, numSteps
-		scanX = false
-	}
-	if numSteps == 0 {
+	l := normalizeLine(from, to)
+	if l.NumSteps == 0 {
 		// Start point is end point. Nothing to do.
 		return check(from)
 	}
-	twiceSteps := 2 * numSteps
+	twiceSteps := 2 * l.NumSteps
 	prevPixel, prevTile := from, from.Div(TileSize)
-	for i := 0; i <= numSteps; i++ {
+	for i := 0; i <= l.NumSteps; i++ {
 		i0 := 2*i - 1
 		if i0 < 0 {
 			i0 = 0
 		}
 		i1 := 2*i + 1
-		if i1 > 2*numSteps {
-			i1 = 2 * numSteps
+		if i1 > 2*l.NumSteps {
+			i1 = 2 * l.NumSteps
 		}
-		j0 := (height*i0 + numSteps) / twiceSteps
-		j1 := (height*i1 + numSteps) / twiceSteps
+		j0 := (l.Height*i0 + l.NumSteps) / twiceSteps
+		j1 := (l.Height*i1 + l.NumSteps) / twiceSteps
 		for j := j0; j <= j1; j++ {
-			var pixel m.Pos
-			if scanX {
-				pixel = m.Pos{X: from.X + xDir*i, Y: from.Y + yDir*j}
-			} else {
-				pixel = m.Pos{X: from.X + xDir*j, Y: from.Y + yDir*i}
-			}
+			pixel := l.toPos(i, j)
 			// Only call the callback if we hit the end of a tile, or the end of the trace.
 			// Should speed up tracing SUBSTANTIALLY by saving lots of callback invocations.
 			tile := pixel.Div(TileSize)
@@ -158,12 +213,112 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 
 	if !o.NoEntities {
 		// Clip the trace to first entity hit.
-		for i, pos := range result.Path {
-			i = i
-			pos = pos
-			// if pos is on an entity, clip here
+		var closestEnt *Entity
+		var closestEndPos m.Pos
+		var closestDistance int
+		for _, ent := range w.Entities {
+			if ent == o.IgnoreEnt {
+				continue
+			}
+			if o.Mode == HitSolid && !ent.Solid || o.Mode == HitOpaque && !ent.Opaque {
+				continue
+			}
+			if hit, endPos := traceEntity(from, to, ent); hit {
+				distance := endPos.Delta(from).Norm1()
+				if closestEnt == nil || distance < closestDistance {
+					closestEnt, closestEndPos, closestDistance = ent, endPos, distance
+				}
+			}
+		}
+		if closestEnt != nil {
+			result.EndPos = closestEndPos
+			endTile := closestEndPos.Div(TileSize)
+			for i, pos := range result.Path {
+				if pos == endTile {
+					result.Path = result.Path[:(i + 1)]
+				}
+			}
+			result.HitTilePos = nil
+			result.HitTile = nil
+			result.HitEntity = closestEnt
+			result.HitFogOfWar = false
 		}
 	}
 
 	return result
+}
+
+// traceLineBox checks if from..to intersects with box, and if so, returns the pixel right before the intersection.
+// i, j must be positive and i > j. The box is described by i0, j0, i1, j1 such that i0 <= i1 and j0 <= j1.
+func traceLineBox(i, j, i0, j0, i1, j1 int) (bool, int, int) {
+	// Is the box even hittable?
+	if j < j0 || j1 < 0 {
+		return false, 0, 0
+	}
+	if i < i0 || i1 < 0 {
+		return false, 0, 0
+	}
+	if i0 <= 0 && j0 <= 0 {
+		// We already overlap. Consider this a non-hit so we can get out of solid.
+		return false, 0, 0
+	}
+
+	// Formula is: y(x) = x * j / i.
+	// Pixels hit by x are thus: round(y(x-0.5)), round(y(x+0.5)).
+	// Do we hit at i0?
+	// Note that we can only ever hit two pixels at once because i > j >= 0.
+	i200 := 2*i0 - 1
+	if i200 < 0 {
+		i200 = 0
+	}
+	i201 := 2*i0 + 1
+	if i201 > 2*i {
+		i201 = 2 * i
+	}
+	j00 := (j*i200 + i) / (2 * i)
+	j01 := (j*i201 + i) / (2 * i)
+	// Better to make this a range?
+	if j00 >= j0 && j00 <= j1 {
+		// Return the last pixel before hit.
+		return true, i0 - 1, j00
+	}
+	if j01 >= j0 && j01 <= j1 {
+		// Return the last pixel before.
+		return true, i0, j01 - 1
+	}
+
+	if j == 0 {
+		// i movement only.
+		// But we already checked all we need.
+		return false, 0, 0
+	}
+
+	// Do we hit at j0?
+	// We need the first x so that round(y(x+0.5)) = j0 and the last x so that round(y(x-0.5)) = j0.
+	// If that range intersects with [i0, i1] AND our valid range for i, we have a hit.
+	j200 := 2*j0 - 1
+	if j200 < 0 {
+		j200 = 0
+	}
+	j201 := 2*j0 + 1
+	if j201 > 2*j {
+		j201 = 2 * j
+	}
+	i00 := (i*j200 + j - 1) / (2 * j) // Fulfills "translating to j01 yields j0" and is min.
+	i01 := (i*j201 + j - 1) / (2 * j) // Fulfills "translating to j00 yields j0" and is max.
+
+	// Compare ranges.
+	if i00 >= i0 && i00 <= i1 {
+		return true, i00, j0 - 1
+	}
+	iHit := i0
+	if iHit < i00+1 {
+		iHit = i00 + 1
+	}
+	if iHit <= i01 && iHit <= i1 {
+		return true, iHit - 1, j0
+	}
+
+	// No hit.
+	return false, 0, 0
 }
