@@ -58,6 +58,21 @@ func LoadLevel(filename string) (*Level, error) {
 	if len(t.ImageLayers) != 0 {
 		return nil, fmt.Errorf("unsupported map: got %d image layers, want 0", len(t.ImageLayers))
 	}
+	for i, ts := range t.TileSets {
+		if ts.Source != "" {
+			r, err := vfs.Load("tiles", ts.Source)
+			if err != nil {
+				return nil, fmt.Errorf("could not open tileset: %v", err)
+			}
+			defer r.Close()
+			decoded, err := tmx.DecodeTileset(r)
+			if err != nil {
+				return nil, fmt.Errorf("could not decode tileset: %v", err)
+			}
+			decoded.FirstGlobalID = ts.FirstGlobalID
+			t.TileSets[i] = *decoded
+		}
+	}
 	tds, err := t.Layers[0].TileDefs(t.TileSets)
 	if err != nil {
 		return nil, fmt.Errorf("invalid map layer: %v", err)
@@ -97,6 +112,9 @@ func LoadLevel(filename string) (*Level, error) {
 				if err != nil {
 					return nil, fmt.Errorf("invalid map: could not parse orientation tile: %v", err)
 				}
+				if o == m.Identity() && propValue != td.Tile.Image.Source {
+					return nil, fmt.Errorf("invalid tileset: unrotated image isn't same as img: got %q, want %q", propValue, td.Tile.Image.Source)
+				}
 				imgByOrientation[o], err = LoadImage("tiles", propValue)
 				if err != nil {
 					return nil, fmt.Errorf("invalid image: %v", err)
@@ -126,6 +144,7 @@ func LoadLevel(filename string) (*Level, error) {
 				properties[prop.Name] = prop.Value
 			}
 			if o.GlobalID != 0 {
+				log.Printf("id map %v -> %v", o.GlobalID, o.GlobalID.TileID(&t.TileSets[0]))
 				tile := t.TileSets[0].TileWithID(o.GlobalID.TileID(&t.TileSets[0]))
 				properties["image"] = tile.Image.Source
 				for _, prop := range tile.Properties {
@@ -146,10 +165,6 @@ func LoadLevel(filename string) (*Level, error) {
 					DX: int(o.Width),
 					DY: int(o.Height),
 				},
-			}
-			if o.GlobalID != 0 {
-				// Tile entities are given by their bottom left coordinate in tiled.
-				entRect.Origin.Y -= entRect.Size.DY
 			}
 			startTile := entRect.Origin.Div(TileSize)
 			endTile := entRect.OppositeCorner().Div(TileSize)

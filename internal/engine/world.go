@@ -292,7 +292,11 @@ func (w *World) updateVisibility(eye m.Pos) {
 		for y := tp0.Y; y <= tp1.Y; y++ {
 			for x := tp0.X; x <= tp1.X; x++ {
 				tp := m.Pos{X: x, Y: y}
-				if w.Tiles[tp].visibilityMark == expansionMark || w.Tiles[tp].visibilityMark == visibilityMark {
+				tile := w.Tiles[tp]
+				if tile == nil {
+					continue
+				}
+				if tile.visibilityMark == expansionMark || tile.visibilityMark == visibilityMark {
 					pos = &tp
 					break DESPAWN_SEARCH
 				}
