@@ -151,18 +151,15 @@ func expandPolygon(center m.Pos, polygon []m.Pos, shift int) {
 	}
 }
 
-func (w *World) Update() error {
-	// Let all entities move/act. Fetch player position.
+// updateEntities lets all entities move/act.
+func (w *World) updateEntities() {
 	for _, ent := range w.Entities {
 		ent.Impl.Update()
 	}
+}
 
-	// Player entity has special treatment.
-	player := w.Entities[w.PlayerID]
-	playerImpl := player.Impl.(PlayerEntityImpl)
-
-	// Update scroll position.
-	targetscrollPos := playerImpl.LookPos()
+// updateScrollPos updates the current scroll position.
+func (w *World) updateScrollPos(player *Entity, target m.Pos) {
 	// Slowly move towards focus point.
 	targetDelta := targetscrollPos.Delta(w.scrollPos)
 	scrollDelta := targetDelta.MulFloat(scrollPerFrame)
@@ -197,7 +194,10 @@ func (w *World) Update() error {
 		targetscrollPos.Y = player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
 	}
 	w.scrollPos = targetscrollPos
+}
 
+// updateVisibility loads all visible tiles and discards all tiles not visible right now.
+func (w *World) updateVisibility(eye m.Pos) {
 	// Delete all tiles merely marked for expanding.
 	// TODO can we preserve but recheck them instead?
 	expansionMark := w.visibilityMark
@@ -213,7 +213,6 @@ func (w *World) Update() error {
 
 	// Trace from player location to all directions (sweepStep pixels at screen edge).
 	// Mark all tiles hit (excl. the tiles that stopped us).
-	// TODO Remember trace polygon.
 	screen0 := w.scrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
 	eye := playerImpl.EyePos()
@@ -274,9 +273,23 @@ func (w *World) Update() error {
 			delete(w.Tiles, pos)
 		}
 	}
+}
+
+func (w *World) Update() error {
+	// Let everything move.
+	w.updateEntities()
+
+	// Fetch the player entity.
+	player := w.Entities[w.PlayerID]
+	playerImpl := player.Impl.(PlayerEntityImpl)
+
+	// Scroll towards the focus point.
+	w.updateScrollPos(player, playerImpl.LookPos())
+
+	// Update visibility and spawn/despawn entities.
+	w.updateVisibility(playerImpl.EyePos())
 
 	w.needPrevImageMasked = true
-
 	return nil
 }
 
