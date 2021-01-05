@@ -215,7 +215,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		// Clip the trace to first entity hit.
 		var closestEnt *Entity
 		var closestEndPos m.Pos
-		var closestDistance int
+		closestDistance := result.EndPos.Delta(from).Norm1()
 		for _, ent := range w.Entities {
 			if ent == o.IgnoreEnt {
 				continue
@@ -225,7 +225,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 			}
 			if hit, endPos := traceEntity(from, to, ent); hit {
 				distance := endPos.Delta(from).Norm1()
-				if closestEnt == nil || distance < closestDistance {
+				if distance < closestDistance {
 					closestEnt, closestEndPos, closestDistance = ent, endPos, distance
 				}
 			}
