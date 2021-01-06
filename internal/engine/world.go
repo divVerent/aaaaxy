@@ -394,21 +394,27 @@ func (w *World) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 }
 
 func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
+	zEnts := map[int][]*Entity{}
 	for _, ent := range w.Entities {
-		screenPos := ent.Rect.Origin.Add(scrollDelta)
-		opts := ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeSourceAtop,
-			Filter:        ebiten.FilterNearest,
+		zEnts[ent.ZIndex] = append(zEnts[ent.ZIndex], ent)
+	}
+	for z := MinZIndex; z <= MaxZIndex; z++ {
+		for _, ent := range zEnts[z] {
+			screenPos := ent.Rect.Origin.Add(scrollDelta)
+			opts := ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeSourceAtop,
+				Filter:        ebiten.FilterNearest,
+			}
+			xScale, yScale := 1.0, 1.0
+			if ent.ResizeImage {
+				w, h := ent.Image.Size()
+				xScale = float64(ent.Rect.Size.DX) / float64(w)
+				yScale = float64(ent.Rect.Size.DY) / float64(h)
+			}
+			setGeoM(&opts.GeoM, screenPos, ent.Rect.Size, ent.Orientation, xScale, yScale)
+			opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
+			screen.DrawImage(ent.Image, &opts)
 		}
-		xScale, yScale := 1.0, 1.0
-		if ent.ResizeImage {
-			w, h := ent.Image.Size()
-			xScale = float64(ent.Rect.Size.DX) / float64(w)
-			yScale = float64(ent.Rect.Size.DY) / float64(h)
-		}
-		setGeoM(&opts.GeoM, screenPos, ent.Rect.Size, ent.Orientation, xScale, yScale)
-		opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
-		screen.DrawImage(ent.Image, &opts)
 	}
 }
 

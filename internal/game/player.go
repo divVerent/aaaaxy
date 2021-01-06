@@ -80,6 +80,7 @@ func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 		return err
 	}
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
+	p.Entity.ZIndex = engine.MaxZIndex
 	return nil
 }
 

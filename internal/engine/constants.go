@@ -38,6 +38,11 @@ const (
 	scrollPerFrame = 0.05
 	// Minimum distance from screen edge when scrolling.
 	scrollMinDistance = 2 * TileSize
+
+	// MinZIndex is the minimal Z index of an entity.
+	MinZIndex = 0
+	// MaxZIndex is the maximum Z index of an entity.
+	MaxZIndex = 15
 )
 
 //expandStep is a single expansion step.

@@ -45,6 +45,7 @@ type Entity struct {
 	Image       *ebiten.Image
 	ResizeImage bool
 	Alpha       float64
+	ZIndex      int
 
 	// Entity's own state.
 	Impl EntityImpl
