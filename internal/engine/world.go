@@ -33,9 +33,9 @@ type World struct {
 	// tiles are all tiles currently loaded.
 	Tiles map[m.Pos]*Tile
 	// entities are all entities currently loaded.
-	Entities map[EntityID]*Entity
-	// Player is the ID of the player entity.
-	PlayerID EntityID
+	Entities map[EntityIncarnation]*Entity
+	// PlayerIncarnation is the incarnation ID of the player entity.
+	PlayerIncarnation EntityIncarnation
 	// level is the current tilemap (universal covering with warpZones).
 	Level *Level
 
@@ -88,7 +88,7 @@ func NewWorld() *World {
 	}
 	w := World{
 		Tiles:    map[m.Pos]*Tile{},
-		Entities: map[EntityID]*Entity{},
+		Entities: map[EntityIncarnation]*Entity{},
 		Level:    level,
 		debugFont: truetype.NewFace(debugFont, &truetype.Options{
 			Size:    5,
@@ -110,15 +110,13 @@ func NewWorld() *World {
 	w.Tiles[w.Level.Player.LevelPos] = &tile
 
 	// Create player entity.
-	w.PlayerID = w.Level.Player.ID
-	playerEnt, err := w.Level.Player.Spawn(&w, w.Level.Player.LevelPos, &tile)
+	w.PlayerIncarnation, err = w.Level.Player.Spawn(&w, w.Level.Player.LevelPos, &tile)
 	if err != nil {
 		log.Panicf("could not spawn player: %v", err)
 	}
-	w.Entities[w.PlayerID] = playerEnt
 
 	// Load the other tiles that the player touches.
-	w.LoadTilesForRect(w.Entities[w.PlayerID].Rect, w.Level.Player.LevelPos)
+	w.LoadTilesForRect(w.Entities[w.PlayerIncarnation].Rect, w.Level.Player.LevelPos)
 	w.visibilityMark++
 
 	return &w
@@ -272,15 +270,12 @@ func (w *World) updateVisibility(eye m.Pos) {
 			continue
 		}
 		for _, spawnable := range tile.Spawnables {
-			if w.Entities[spawnable.ID] == nil {
-				timing.Section("spawn")
-				ent, err := spawnable.Spawn(w, pos, tile)
-				if err != nil {
-					log.Panicf("could not spawn entity %v: %v", spawnable, err)
-				}
-				w.Entities[spawnable.ID] = ent
-				timing.Section("spawn_search")
+			timing.Section("spawn")
+			_, err := spawnable.Spawn(w, pos, tile)
+			if err != nil {
+				log.Panicf("could not spawn entity %v: %v", spawnable, err)
 			}
+			timing.Section("spawn_search")
 		}
 	}
 
@@ -339,7 +334,7 @@ func (w *World) Update() error {
 	w.updateEntities()
 
 	// Fetch the player entity.
-	player := w.Entities[w.PlayerID]
+	player := w.Entities[w.PlayerIncarnation]
 	playerImpl := player.Impl.(PlayerEntityImpl)
 
 	// Scroll towards the focus point.

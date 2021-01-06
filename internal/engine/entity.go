@@ -32,7 +32,7 @@ type Spawnable struct {
 
 // An Entity is an object that exists in the game.
 type Entity struct {
-	ID             EntityID
+	Incarnation    EntityIncarnation
 	visibilityMark uint
 
 	// Info needed for gameplay.
@@ -48,8 +48,15 @@ type Entity struct {
 	Impl EntityImpl
 }
 
-// EntityID represents an unique ID of an entity.
-type EntityID int
+type (
+	// EntityID represents an unique ID of an entity.
+	EntityID int
+	// EntityIncarnation represents a specific incarnation of an entity. Entities spawn more than once if their tile is seen more than once.
+	EntityIncarnation struct {
+		ID      EntityID
+		TilePos m.Pos
+	}
+)
 
 type EntityImpl interface {
 	// Spawn initializes the entity based on a Spawnable.
@@ -82,26 +89,34 @@ func RegisterEntityType(t EntityImpl) {
 }
 
 // Spawn turns a Spawnable into an Entity.
-func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
+func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (EntityIncarnation, error) {
+	tInv := t.Transform.Inverse()
+	originTilePos := tilePos.Add(tInv.Apply(s.LevelPos.Delta(t.LevelPos)))
+	incarnation := EntityIncarnation{
+		ID:      s.ID,
+		TilePos: originTilePos,
+	}
+	if w.Entities[incarnation] != nil {
+		return incarnation, nil
+	}
 	eImpl := entityTypes[s.EntityType]
 	if eImpl == nil {
-		return nil, fmt.Errorf("unknown entity type %q", s.EntityType)
+		return EntityIncarnation{}, fmt.Errorf("unknown entity type %q", s.EntityType)
 	}
 	e := &Entity{
-		ID:   s.ID,
-		Impl: eImpl,
+		Incarnation: incarnation,
+		Impl:        eImpl,
 	}
-	tInv := t.Transform.Inverse()
 	pivot2InTile := m.Pos{X: TileSize, Y: TileSize}
 	e.Rect = tInv.ApplyToRect2(pivot2InTile, s.RectInTile)
-	e.Rect.Origin = tilePos.Mul(TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
+	e.Rect.Origin = originTilePos.Mul(TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
 	e.Orientation = tInv.Concat(s.Orientation)
 	err := eImpl.Spawn(w, s, e)
 	if err != nil {
-		return nil, err
+		return EntityIncarnation{}, err
 	}
-	// TODO w.LinkEntity(tilePos, e) - shall load in all tiles of e.
-	return e, nil
+	w.Entities[incarnation] = e
+	return incarnation, nil
 }
 
 // PlayerEntityImpl defines some additional methods player entities must have.

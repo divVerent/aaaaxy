@@ -144,7 +144,6 @@ func LoadLevel(filename string) (*Level, error) {
 				properties[prop.Name] = prop.Value
 			}
 			if o.GlobalID != 0 {
-				log.Printf("id map %v -> %v", o.GlobalID, o.GlobalID.TileID(&t.TileSets[0]))
 				tile := t.TileSets[0].TileWithID(o.GlobalID.TileID(&t.TileSets[0]))
 				properties["image"] = tile.Image.Source
 				for _, prop := range tile.Properties {
@@ -196,6 +195,11 @@ func LoadLevel(filename string) (*Level, error) {
 				Orientation: orientation,
 				Properties:  properties,
 			}
+			if objType == "Player" {
+				level.Player = &ent
+				// Do not link to tiles.
+				continue
+			}
 			for y := startTile.Y; y <= endTile.Y; y++ {
 				for x := startTile.X; x <= endTile.X; x++ {
 					pos := m.Pos{X: x, Y: y}
@@ -205,9 +209,6 @@ func LoadLevel(filename string) (*Level, error) {
 					}
 					levelTile.Tile.Spawnables = append(levelTile.Tile.Spawnables, &ent)
 				}
-			}
-			if objType == "Player" {
-				level.Player = &ent
 			}
 		}
 	}

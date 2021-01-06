@@ -3,6 +3,14 @@
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
+   <property name="img.EN" value="notile.png"/>
+   <property name="img.ES" value="notile.png"/>
+   <property name="img.NE" value="notile.png"/>
+   <property name="img.NW" value="notile.png"/>
+   <property name="img.SE" value="notile.png"/>
+   <property name="img.SW" value="notile.png"/>
+   <property name="img.WN" value="notile.png"/>
+   <property name="img.WS" value="notile.png"/>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
@@ -770,27 +778,59 @@
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
  </tile>
  <tile id="56">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="bg_8.png"/>
  </tile>
  <tile id="57">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="bg_9.png"/>
  </tile>
  <tile id="58">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="bg_a.png"/>
  </tile>
  <tile id="59">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="bg_b.png"/>
  </tile>
  <tile id="60">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="bg_c.png"/>
  </tile>
  <tile id="61">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="bg_d.png"/>
  </tile>
  <tile id="62">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="bg_e.png"/>
  </tile>
  <tile id="63">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="bg_f.png"/>
  </tile>
  <tile id="64">
