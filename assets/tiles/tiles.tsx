@@ -6,7 +6,7 @@
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
-  <image width="16" height="16" source="empty.png"/>
+  <image width="16" height="16" source="notile.png"/>
  </tile>
  <tile id="1" type="WarpZone">
   <properties>
