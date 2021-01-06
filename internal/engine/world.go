@@ -18,14 +18,16 @@ import (
 )
 
 var (
-	debugShowNeighbors    = flag.Bool("debug_show_neighbors", false, "show the neighbors tiles got loaded from")
-	debugShowCoords       = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
-	debugShowOrientations = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
-	debugShowTransforms   = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
-	drawBlurs             = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
-	drawOutside           = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
-	drawVisibilityMask    = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
-	expandUsingVertices   = flag.Bool("expand_using_vertices", false, "expand using polygon math (just approximate, simplifies rendering)")
+	debugShowNeighbors      = flag.Bool("debug_show_neighbors", false, "show the neighbors tiles got loaded from")
+	debugShowCoords         = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
+	debugShowOrientations   = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
+	debugShowTransforms     = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
+	debugShowBboxes         = flag.Bool("debug_show_bboxes", false, "show the bounding boxes of all entities")
+	debugInitialOrientation = flag.String("debug_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
+	drawBlurs               = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
+	drawOutside             = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
+	drawVisibilityMask      = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
+	expandUsingVertices     = flag.Bool("expand_using_vertices", false, "expand using polygon math (just approximate, simplifies rendering)")
 )
 
 // World represents the current game state including its entities.
@@ -106,7 +108,10 @@ func NewWorld() *World {
 
 	// Load tile the player starts on.
 	tile := w.Level.Tiles[w.Level.Player.LevelPos].Tile
-	tile.Transform = m.Identity()
+	tile.Transform, err = m.ParseOrientation(*debugInitialOrientation)
+	if err != nil {
+		log.Panicf("Could not parse initial orientation: %v", err)
+	}
 	w.Tiles[w.Level.Player.LevelPos] = &tile
 
 	// Create player entity.
@@ -357,7 +362,13 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientati
 	// Set the translation.
 	// Note that in ebiten, the coordinate is the original origin, while we think in screenspace origin.
 	a := m.Delta{} // Actually orientation.Apply(m.Delta{})
-	d := orientation.Apply(size)
+	d := size
+	// Note: size is the actual entity bbox; however we need the size of the source image.
+	// So we transpose the size if the orientation contains an XY flip.
+	if orientation.Apply(m.Delta{DX: 1, DY: 0}).DX == 0 {
+		d.DX, d.DY = d.DY, d.DX
+	}
+	d = orientation.Apply(d)
 	if a.DX > d.DX {
 		a.DX = d.DX
 	}
@@ -468,6 +479,18 @@ func (w *World) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), color.NRGBA{R: 255, G: 0, B: 0, A: 255})
 			dy := tile.Transform.Apply(m.Delta{DX: 0, DY: 4})
 			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), color.NRGBA{R: 0, G: 255, B: 0, A: 255})
+		}
+	}
+	for _, ent := range w.Entities {
+		if *debugShowBboxes {
+			boxColor := color.NRGBA{R: 128, G: 128, B: 128, A: 128}
+			if ent.Solid {
+				boxColor.R = 255
+			}
+			if ent.Opaque {
+				boxColor.B = 255
+			}
+			ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY), float64(ent.Rect.Size.DX), float64(ent.Rect.Size.DY), boxColor)
 		}
 	}
 }
