@@ -35,26 +35,22 @@ func (r Rect) OppositeCorner() Pos {
 func intervalDistance(a0, a1, b0, b1 int) int {
 	// If intervals are separated, compute separation amount.
 	if b0 > a1 {
-		return b0 - a1 // 0 when touching.
+		return a1 - b0 // -1 when touching.
 	}
 	if a0 > b1 {
-		return a0 - b1 // 0 when touching.
+		return a0 - b1 // 1 when touching.
 	}
 	// Otherwise, we have b0 <= a1 && a0 <= b1. They overlap.
 	return 0
 }
 
-// Distance2 returns the square of the distance from a given other rect.
-// Special return values are:
-// - 0 when overlapping.
-// - 1 when touching on a side.
-// - 2 when touching on a corner.
-func (r Rect) Distance2(other Rect) int {
+// Diff returns the vector between the closest points of two rectangles.
+func (r Rect) Delta(other Rect) Delta {
 	c00 := r.Origin
 	c01 := r.OppositeCorner()
 	c10 := other.Origin
 	c11 := other.OppositeCorner()
 	xDist := intervalDistance(c00.X, c01.X, c10.X, c11.X)
 	yDist := intervalDistance(c00.Y, c01.Y, c10.Y, c11.Y)
-	return xDist*xDist + yDist*yDist
+	return Delta{DX: xDist, DY: yDist}
 }

@@ -2,6 +2,7 @@ package game
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // AppearBlock is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -14,8 +15,9 @@ type AppearBlock struct {
 
 const (
 	AppearFrames         = 16
-	AppearDistance       = engine.TileSize / 4
-	AppearSolidThreshold = 8
+	AppearXDistance      = 2 * engine.TileSize
+	AppearYDistance      = engine.TileSize / 4
+	AppearSolidThreshold = 12
 )
 
 func (a *AppearBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
@@ -35,12 +37,9 @@ func (a *AppearBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Enti
 
 func (a *AppearBlock) Despawn() {}
 
-func (a *AppearBlock) isNear(other *engine.Entity) bool {
-	return a.Entity.Rect.Distance2(other.Rect) <= AppearDistance*AppearDistance
-}
-
 func (a *AppearBlock) Update() {
-	if a.isNear(a.World.Player) {
+	delta := a.Entity.Rect.Delta(a.World.Player.Rect)
+	if delta.DX <= AppearXDistance && delta.DX >= -AppearXDistance && delta.DY <= AppearYDistance && delta.DY >= -AppearYDistance {
 		if a.AnimFrame < AppearFrames {
 			a.AnimFrame++
 		}
@@ -50,7 +49,8 @@ func (a *AppearBlock) Update() {
 		}
 	}
 	a.Entity.Alpha = float64(a.AnimFrame) / AppearFrames
-	a.Entity.Solid = a.AnimFrame >= AppearSolidThreshold
+	// Make nonsolid if inside (to unstick player).
+	a.Entity.Solid = a.AnimFrame >= AppearSolidThreshold && delta != m.Delta{}
 }
 
 func (a *AppearBlock) Touch(other *engine.Entity) {}
