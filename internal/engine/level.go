@@ -199,8 +199,9 @@ func LoadLevel(filename string) (*Level, error) {
 						startTile.Mul(TileSize).Delta(m.Pos{})),
 					Size: entRect.Size,
 				},
-				Orientation: orientation,
-				Properties:  properties,
+				Orientation:     orientation,
+				Properties:      properties,
+				PersistentState: map[string]string{},
 			}
 			if objType == "Player" {
 				level.Player = &ent

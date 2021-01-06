@@ -145,6 +145,7 @@ func (p *Player) Update() {
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
 			IgnoreEnt: p.Entity,
 		})
+		p.handleTouch(trace)
 		if trace.EndPos == dest {
 			// Nothing hit.
 			p.SubPixel.DX -= move.DX * SubPixelScale
@@ -164,6 +165,7 @@ func (p *Player) Update() {
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
 			IgnoreEnt: p.Entity,
 		})
+		p.handleTouch(trace)
 		if trace.EndPos == dest {
 			// Nothing hit.
 			p.SubPixel.DY -= move.DY * SubPixelScale
@@ -182,9 +184,16 @@ func (p *Player) Update() {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
 			IgnoreEnt: p.Entity,
 		})
+		p.handleTouch(trace)
 		if trace.EndPos != p.Entity.Rect.Origin {
 			p.OnGround = false
 		}
+	}
+}
+
+func (p *Player) handleTouch(trace engine.TraceResult) {
+	if trace.HitEntity != nil {
+		trace.HitEntity.Impl.Touch(p.Entity)
 	}
 }
 

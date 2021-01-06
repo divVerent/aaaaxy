@@ -63,6 +63,7 @@ type (
 
 type EntityImpl interface {
 	// Spawn initializes the entity based on a Spawnable.
+	// Receiver will be a zero struct of the entity type.
 	// Will usually remember a reference to the World and Entity.
 	// ID, Pos, Size and Orientation of the entity will be preset but may be changed.
 	Spawn(w *World, s *Spawnable, e *Entity) error
@@ -92,20 +93,23 @@ func RegisterEntityType(t EntityImpl) {
 }
 
 // Spawn turns a Spawnable into an Entity.
-func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (EntityIncarnation, error) {
+func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
 	tInv := t.Transform.Inverse()
 	originTilePos := tilePos.Add(tInv.Apply(s.LevelPos.Delta(t.LevelPos)))
 	incarnation := EntityIncarnation{
 		ID:      s.ID,
 		TilePos: originTilePos,
 	}
-	if w.Entities[incarnation] != nil {
-		return incarnation, nil
+	if e := w.Entities[incarnation]; e != nil {
+		return e, nil
 	}
-	eImpl := entityTypes[s.EntityType]
-	if eImpl == nil {
-		return EntityIncarnation{}, fmt.Errorf("unknown entity type %q", s.EntityType)
+	eTmpl := entityTypes[s.EntityType]
+	if eTmpl == nil {
+		return nil, fmt.Errorf("unknown entity type %q", s.EntityType)
 	}
+	eImplVal := reflect.New(reflect.TypeOf(eTmpl).Elem())
+	eImplVal.Elem().Set(reflect.ValueOf(eTmpl).Elem())
+	eImpl := eImplVal.Interface().(EntityImpl)
 	e := &Entity{
 		Incarnation: incarnation,
 		Impl:        eImpl,
@@ -117,10 +121,10 @@ func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (EntityIncarnation, 
 	e.Alpha = 1.0
 	err := eImpl.Spawn(w, s, e)
 	if err != nil {
-		return EntityIncarnation{}, err
+		return nil, err
 	}
 	w.Entities[incarnation] = e
-	return incarnation, nil
+	return e, nil
 }
 
 // PlayerEntityImpl defines some additional methods player entities must have.

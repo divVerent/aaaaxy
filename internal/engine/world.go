@@ -35,7 +35,7 @@ type World struct {
 	// entities are all entities currently loaded.
 	Entities map[EntityIncarnation]*Entity
 	// PlayerIncarnation is the incarnation ID of the player entity.
-	PlayerIncarnation EntityIncarnation
+	Player *Entity
 	// level is the current tilemap (universal covering with warpZones).
 	Level *Level
 
@@ -110,15 +110,15 @@ func NewWorld() *World {
 	w.Tiles[w.Level.Player.LevelPos] = &tile
 
 	// Create player entity.
-	w.PlayerIncarnation, err = w.Level.Player.Spawn(&w, w.Level.Player.LevelPos, &tile)
+	w.Player, err = w.Level.Player.Spawn(&w, w.Level.Player.LevelPos, &tile)
 	if err != nil {
 		log.Panicf("could not spawn player: %v", err)
 	}
 
 	// Load the other tiles that the player touches.
-	w.LoadTilesForRect(w.Entities[w.PlayerIncarnation].Rect, w.Level.Player.LevelPos)
+	w.LoadTilesForRect(w.Player.Rect, w.Level.Player.LevelPos)
 	w.visibilityMark++
-	w.scrollPos = w.Entities[w.PlayerIncarnation].Impl.(PlayerEntityImpl).LookPos()
+	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
 
 	return &w
 }
@@ -159,7 +159,7 @@ func (w *World) updateEntities() {
 }
 
 // updateScrollPos updates the current scroll position.
-func (w *World) updateScrollPos(player *Entity, target m.Pos) {
+func (w *World) updateScrollPos(target m.Pos) {
 	// Slowly move towards focus point.
 	targetDelta := target.Delta(w.scrollPos)
 	scrollDelta := targetDelta.MulFloat(scrollPerFrame)
@@ -181,17 +181,17 @@ func (w *World) updateScrollPos(player *Entity, target m.Pos) {
 	}
 	target = w.scrollPos.Add(scrollDelta)
 	// Ensure player is onscreen.
-	if target.X < player.Rect.OppositeCorner().X-GameWidth/2+scrollMinDistance {
-		target.X = player.Rect.OppositeCorner().X - GameWidth/2 + scrollMinDistance
+	if target.X < w.Player.Rect.OppositeCorner().X-GameWidth/2+scrollMinDistance {
+		target.X = w.Player.Rect.OppositeCorner().X - GameWidth/2 + scrollMinDistance
 	}
-	if target.X > player.Rect.Origin.X+GameWidth/2-scrollMinDistance {
-		target.X = player.Rect.Origin.X + GameWidth/2 - scrollMinDistance
+	if target.X > w.Player.Rect.Origin.X+GameWidth/2-scrollMinDistance {
+		target.X = w.Player.Rect.Origin.X + GameWidth/2 - scrollMinDistance
 	}
-	if target.Y < player.Rect.OppositeCorner().Y-GameHeight/2+scrollMinDistance {
-		target.Y = player.Rect.OppositeCorner().Y - GameHeight/2 + scrollMinDistance
+	if target.Y < w.Player.Rect.OppositeCorner().Y-GameHeight/2+scrollMinDistance {
+		target.Y = w.Player.Rect.OppositeCorner().Y - GameHeight/2 + scrollMinDistance
 	}
-	if target.Y > player.Rect.Origin.Y+GameHeight/2-scrollMinDistance {
-		target.Y = player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
+	if target.Y > w.Player.Rect.Origin.Y+GameHeight/2-scrollMinDistance {
+		target.Y = w.Player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
 	}
 	w.scrollPos = target
 }
@@ -335,11 +335,10 @@ func (w *World) Update() error {
 	w.updateEntities()
 
 	// Fetch the player entity.
-	player := w.Entities[w.PlayerIncarnation]
-	playerImpl := player.Impl.(PlayerEntityImpl)
+	playerImpl := w.Player.Impl.(PlayerEntityImpl)
 
 	// Scroll towards the focus point.
-	w.updateScrollPos(player, playerImpl.LookPos())
+	w.updateScrollPos(playerImpl.LookPos())
 
 	// Update visibility and spawn/despawn entities.
 	timing.Section("visibility")
@@ -400,6 +399,9 @@ func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 	}
 	for z := MinZIndex; z <= MaxZIndex; z++ {
 		for _, ent := range zEnts[z] {
+			if ent.Image == nil {
+				continue
+			}
 			screenPos := ent.Rect.Origin.Add(scrollDelta)
 			opts := ebiten.DrawImageOptions{
 				CompositeMode: ebiten.CompositeModeSourceAtop,
