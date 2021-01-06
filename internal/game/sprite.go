@@ -29,6 +29,12 @@ func (p *Sprite) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 			return fmt.Errorf("could not decode alpha %q: %v", s.Properties["alpha"], err)
 		}
 	}
+	if s.Properties["z_index"] != "" {
+		e.ZIndex, err = strconv.Atoi(s.Properties["z_index"])
+		if err != nil {
+			return fmt.Errorf("could not decode z index %q: %v", s.Properties["z_index"], err)
+		}
+	}
 	return nil
 }
 

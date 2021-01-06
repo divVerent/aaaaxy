@@ -2,7 +2,6 @@ package game
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // AppearBlock is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -39,7 +38,7 @@ func (a *AppearBlock) Despawn() {}
 
 func (a *AppearBlock) Update() {
 	delta := a.Entity.Rect.Delta(a.World.Player.Rect)
-	if delta.DX <= AppearXDistance && delta.DX >= -AppearXDistance && delta.DY <= AppearYDistance && delta.DY >= -AppearYDistance {
+	if delta.DY > 0 && delta.DX <= AppearXDistance && delta.DX >= -AppearXDistance && delta.DY <= AppearYDistance && delta.DY >= -AppearYDistance {
 		if a.AnimFrame < AppearFrames {
 			a.AnimFrame++
 		}
@@ -50,7 +49,7 @@ func (a *AppearBlock) Update() {
 	}
 	a.Entity.Alpha = float64(a.AnimFrame) / AppearFrames
 	// Make nonsolid if inside (to unstick player).
-	a.Entity.Solid = a.AnimFrame >= AppearSolidThreshold && delta != m.Delta{}
+	a.Entity.Solid = a.AnimFrame >= AppearSolidThreshold && delta.DY > 0
 }
 
 func (a *AppearBlock) Touch(other *engine.Entity) {}
