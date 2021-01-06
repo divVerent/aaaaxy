@@ -399,7 +399,7 @@ func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 	}
 	for z := MinZIndex; z <= MaxZIndex; z++ {
 		for _, ent := range zEnts[z] {
-			if ent.Image == nil {
+			if ent.Image == nil || ent.Alpha == 0 {
 				continue
 			}
 			screenPos := ent.Rect.Origin.Add(scrollDelta)
