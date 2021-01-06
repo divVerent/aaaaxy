@@ -118,6 +118,7 @@ func NewWorld() *World {
 	// Load the other tiles that the player touches.
 	w.LoadTilesForRect(w.Entities[w.PlayerIncarnation].Rect, w.Level.Player.LevelPos)
 	w.visibilityMark++
+	w.scrollPos = w.Entities[w.PlayerIncarnation].Impl.(PlayerEntityImpl).LookPos()
 
 	return &w
 }
@@ -348,12 +349,12 @@ func (w *World) Update() error {
 	return nil
 }
 
-func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientation) {
-	// Set the rotation.
-	geoM.SetElement(0, 0, float64(orientation.Right.DX))
-	geoM.SetElement(1, 0, float64(orientation.Right.DY))
-	geoM.SetElement(0, 1, float64(orientation.Down.DX))
-	geoM.SetElement(1, 1, float64(orientation.Down.DY))
+func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientation, xScale, yScale float64) {
+	// Set the rotation and scale.
+	geoM.SetElement(0, 0, float64(orientation.Right.DX)*xScale)
+	geoM.SetElement(1, 0, float64(orientation.Right.DY)*yScale)
+	geoM.SetElement(0, 1, float64(orientation.Down.DX)*xScale)
+	geoM.SetElement(1, 1, float64(orientation.Down.DY)*yScale)
 	// Set the translation.
 	// Note that in ebiten, the coordinate is the original origin, while we think in screenspace origin.
 	a := m.Delta{} // Actually orientation.Apply(m.Delta{})
@@ -387,7 +388,7 @@ func (w *World) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 				renderOrientation, renderImage = o, img
 			}
 		}
-		setGeoM(&opts.GeoM, screenPos, m.Delta{DX: TileSize, DY: TileSize}, renderOrientation)
+		setGeoM(&opts.GeoM, screenPos, m.Delta{DX: TileSize, DY: TileSize}, renderOrientation, 1.0, 1.0)
 		screen.DrawImage(renderImage, &opts)
 	}
 }
@@ -399,7 +400,14 @@ func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 			CompositeMode: ebiten.CompositeModeSourceAtop,
 			Filter:        ebiten.FilterNearest,
 		}
-		setGeoM(&opts.GeoM, screenPos, ent.Rect.Size, ent.Orientation)
+		xScale, yScale := 1.0, 1.0
+		if ent.ResizeImage {
+			w, h := ent.Image.Size()
+			xScale = float64(ent.Rect.Size.DX) / float64(w)
+			yScale = float64(ent.Rect.Size.DY) / float64(h)
+		}
+		setGeoM(&opts.GeoM, screenPos, ent.Rect.Size, ent.Orientation, xScale, yScale)
+		opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
 		screen.DrawImage(ent.Image, &opts)
 	}
 }

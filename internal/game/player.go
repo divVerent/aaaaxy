@@ -45,7 +45,7 @@ const (
 	GroundFriction = 640 * SubPixelScale / engine.GameTPS / engine.GameTPS
 
 	// Air control is lower than ground control.
-	MaxAirSpeed = 80 * SubPixelScale / engine.GameTPS
+	MaxAirSpeed = 120 * SubPixelScale / engine.GameTPS
 	AirAccel    = 160 * SubPixelScale / engine.GameTPS / engine.GameTPS
 
 	// We want 4.5 tiles high jumps, i.e. 72px high jumps (plus something).

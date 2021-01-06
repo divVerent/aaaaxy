@@ -43,6 +43,8 @@ type Entity struct {
 	// Info needed for rendering.
 	Orientation m.Orientation
 	Image       *ebiten.Image
+	ResizeImage bool
+	Alpha       float64
 
 	// Entity's own state.
 	Impl EntityImpl
@@ -111,6 +113,7 @@ func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (EntityIncarnation, 
 	e.Rect = tInv.ApplyToRect2(pivot2InTile, s.RectInTile)
 	e.Rect.Origin = originTilePos.Mul(TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
 	e.Orientation = tInv.Concat(s.Orientation)
+	e.Alpha = 1.0
 	err := eImpl.Spawn(w, s, e)
 	if err != nil {
 		return EntityIncarnation{}, err

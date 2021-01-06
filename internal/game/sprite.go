@@ -1,6 +1,9 @@
 package game
 
 import (
+	"fmt"
+	"strconv"
+
 	"github.com/divVerent/aaaaaa/internal/engine"
 )
 
@@ -9,12 +12,23 @@ type Sprite struct{}
 
 func (p *Sprite) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
 	var err error
-	e.Image, err = engine.LoadImage("sprites", s.Properties["image"])
+	directory := s.Properties["image_dir"]
+	if directory == "" {
+		directory = "sprites"
+	}
+	e.Image, err = engine.LoadImage(directory, s.Properties["image"])
 	if err != nil {
 		return err
 	}
+	e.ResizeImage = true
 	e.Solid = s.Properties["solid"] != "false"
 	e.Opaque = s.Properties["opaque"] != "false"
+	if s.Properties["alpha"] != "" {
+		e.Alpha, err = strconv.ParseFloat(s.Properties["alpha"], 64)
+		if err != nil {
+			return fmt.Errorf("could not decode alpha %q: %v", s.Properties["alpha"], err)
+		}
+	}
 	return nil
 }
 

@@ -143,8 +143,9 @@ func LoadLevel(filename string) (*Level, error) {
 			for _, prop := range o.Properties {
 				properties[prop.Name] = prop.Value
 			}
+			var tile *tmx.Tile
 			if o.GlobalID != 0 {
-				tile := t.TileSets[0].TileWithID(o.GlobalID.TileID(&t.TileSets[0]))
+				tile = t.TileSets[0].TileWithID(o.GlobalID.TileID(&t.TileSets[0]))
 				properties["image"] = tile.Image.Source
 				for _, prop := range tile.Properties {
 					properties[prop.Name] = prop.Value
@@ -153,6 +154,12 @@ func LoadLevel(filename string) (*Level, error) {
 			objType := o.Type
 			if objType == "" {
 				objType = properties["type"]
+			}
+			if objType == "" && tile != nil {
+				// This entity renders a tile.
+				objType = "Sprite"
+				properties["image_dir"] = "tiles"
+				properties["image"] = tile.Image.Source
 			}
 			// TODO actually support object orientation.
 			entRect := m.Rect{
