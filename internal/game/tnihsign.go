@@ -13,9 +13,9 @@ import (
 
 // TnihSign just displays a text and remembers that it was hit.
 type TnihSign struct {
-	World     *engine.World
-	Spawnable *engine.Spawnable
-	Entity    *engine.Entity
+	World           *engine.World
+	Entity          *engine.Entity
+	PersistentState map[string]string
 
 	Text      string
 	SeenImage *ebiten.Image
@@ -25,8 +25,8 @@ type TnihSign struct {
 
 func (t *TnihSign) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
 	t.World = w
-	t.Spawnable = s
 	t.Entity = e
+	t.PersistentState = s.PersistentState
 	var err error
 	t.SeenImage, err = engine.LoadImage("sprites", "tnihsign_seen.png")
 	if err != nil {
@@ -52,8 +52,8 @@ func (t *TnihSign) Update() {
 		if t.Centerprint.Active() {
 			t.Centerprint.SetFadeOut(false)
 		} else {
-			t.Centerprint = centerprint.New(t.Text, t.Spawnable.PersistentState["seen"] != "true", color.NRGBA{R: 255, G: 255, B: 85, A: 255})
-			t.Spawnable.PersistentState["seen"] = "true"
+			t.Centerprint = centerprint.New(t.Text, t.PersistentState["seen"] != "true", color.NRGBA{R: 255, G: 255, B: 85, A: 255})
+			t.PersistentState["seen"] = "true"
 		}
 	} else {
 		if t.Centerprint.Active() {

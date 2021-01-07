@@ -10,8 +10,9 @@ import (
 )
 
 type Player struct {
-	World  *engine.World
-	Entity *engine.Entity
+	World           *engine.World
+	Entity          *engine.Entity
+	PersistentState map[string]string
 
 	OnGround bool
 	Jumping  bool
@@ -74,6 +75,7 @@ const (
 func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
 	p.World = w
 	p.Entity = e
+	p.PersistentState = s.PersistentState
 	var err error
 	p.Entity.Image, err = engine.LoadImage("sprites", "player.png")
 	if err != nil {

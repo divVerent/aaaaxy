@@ -140,6 +140,9 @@ func LoadLevel(filename string) (*Level, error) {
 	for _, og := range t.ObjectGroups {
 		for _, o := range og.Objects {
 			properties := map[string]string{}
+			if o.Name != "" {
+				properties["name"] = o.Name
+			}
 			for _, prop := range o.Properties {
 				properties[prop.Name] = prop.Value
 			}
@@ -183,7 +186,7 @@ func LoadLevel(filename string) (*Level, error) {
 			}
 			if objType == "WarpZone" {
 				// WarpZones must be paired by name.
-				warpZones[o.Name] = append(warpZones[o.Name], RawWarpZone{
+				warpZones[properties["name"]] = append(warpZones[properties["name"]], RawWarpZone{
 					StartTile:   startTile,
 					EndTile:     endTile,
 					Orientation: orientation,

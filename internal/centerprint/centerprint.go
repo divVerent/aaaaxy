@@ -93,7 +93,7 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 	alphaM.Scale(1.0, 1.0, 1.0, a)
 	fg := alphaM.Apply(cp.color)
 	bg := color.NRGBA{R: 0, G: 0, B: 0, A: uint8(a * 255)}
-	x := screenWidth - (cp.bounds.Max.X-cp.bounds.Min.X)/2 - cp.bounds.Min.X
+	x := (screenWidth-(cp.bounds.Max.X-cp.bounds.Min.X))/2 - cp.bounds.Min.X
 	y := cp.scrollPos - cp.bounds.Max.Y
 	for dx := -1; dx <= +1; dx++ {
 		for dy := -1; dy <= +1; dy++ {

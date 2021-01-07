@@ -9,9 +9,9 @@ import (
 
 // QuestionBlock is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
 type QuestionBlock struct {
-	World     *engine.World
-	Spawnable *engine.Spawnable
-	Entity    *engine.Entity
+	World           *engine.World
+	Entity          *engine.Entity
+	PersistentState map[string]string
 
 	Kaizo        bool
 	Used         bool
@@ -26,15 +26,15 @@ const (
 
 func (q *QuestionBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
 	q.World = w
-	q.Spawnable = s
 	q.Entity = e
+	q.PersistentState = s.PersistentState
 
 	var err error
 	e.Solid = true
 	e.Orientation = m.Identity() // Always show upright.
 	e.Rect.Size.DY += 1          // Make it easier to hit.
 	q.Kaizo = s.Properties["kaizo"] == "true"
-	q.Used = s.PersistentState["used"] == "true"
+	q.Used = q.PersistentState["used"] == "true"
 	q.UsedImage, err = engine.LoadImage("sprites", "exclamationblock.png")
 	if err != nil {
 		return err
@@ -90,7 +90,7 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 		return
 	}
 	q.Used = true
-	q.Spawnable.PersistentState["used"] = "true"
+	q.PersistentState["used"] = "true"
 	q.Entity.Image = q.UsedImage
 	q.UsedImage = nil
 	q.Entity.Solid = true
