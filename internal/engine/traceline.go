@@ -127,6 +127,19 @@ func traceEntity(from, to m.Pos, ent *Entity) (bool, m.Pos) {
 	return false, m.Pos{}
 }
 
+func (l *normalizedLine) nextTile(i int) int {
+	// Locate the next end-of-tile position.
+	// We are at end of tile if either (potentially swapped x/y):
+	// - l.Origin.X + l.XDir*i == l.XDir>0 ? TileSize-1 : 0
+	//   - Can precompute and then always advance by exactly TileSize.
+	// - l.Origin.Y + l.YDir*j0 == l.YDir>0 ? TileSize-1 : 0 AND j1 != j0
+	//   - where j0 = (l.Height*(2*i-1) + l.NumSteps) / twiceSteps
+	//   - where j1 = (l.Height*(2*i+1) + l.NumSteps) / twiceSteps
+	//   - Can we rule out "shooting ahead" one pixel another way? Sure.
+	//   - Can we precompute?
+	return 0 // TODO.
+}
+
 // walkLine walks on pixels from from to to, calling the check() function on every pixel hit.
 // Any two adjacent positions hit are exactly 1 pixel apart (no diagonal steps).
 func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {

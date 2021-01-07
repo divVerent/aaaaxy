@@ -10,39 +10,39 @@ import (
 // Sprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
 type Sprite struct{}
 
-func (p *Sprite) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
 	var err error
-	directory := s.Properties["image_dir"]
+	directory := sp.Properties["image_dir"]
 	if directory == "" {
 		directory = "sprites"
 	}
-	e.Image, err = engine.LoadImage(directory, s.Properties["image"])
+	e.Image, err = engine.LoadImage(directory, sp.Properties["image"])
 	if err != nil {
 		return err
 	}
 	e.ResizeImage = true
-	e.Solid = s.Properties["solid"] != "false"
-	e.Opaque = s.Properties["opaque"] != "false"
-	if s.Properties["alpha"] != "" {
-		e.Alpha, err = strconv.ParseFloat(s.Properties["alpha"], 64)
+	e.Solid = sp.Properties["solid"] != "false"
+	e.Opaque = sp.Properties["opaque"] != "false"
+	if sp.Properties["alpha"] != "" {
+		e.Alpha, err = strconv.ParseFloat(sp.Properties["alpha"], 64)
 		if err != nil {
-			return fmt.Errorf("could not decode alpha %q: %v", s.Properties["alpha"], err)
+			return fmt.Errorf("could not decode alpha %q: %v", sp.Properties["alpha"], err)
 		}
 	}
-	if s.Properties["z_index"] != "" {
-		e.ZIndex, err = strconv.Atoi(s.Properties["z_index"])
+	if sp.Properties["z_index"] != "" {
+		e.ZIndex, err = strconv.Atoi(sp.Properties["z_index"])
 		if err != nil {
-			return fmt.Errorf("could not decode z index %q: %v", s.Properties["z_index"], err)
+			return fmt.Errorf("could not decode z index %q: %v", sp.Properties["z_index"], err)
 		}
 	}
 	return nil
 }
 
-func (p *Sprite) Despawn() {}
+func (s *Sprite) Despawn() {}
 
-func (p *Sprite) Update() {}
+func (s *Sprite) Update() {}
 
-func (p *Sprite) Touch(other *engine.Entity) {}
+func (s *Sprite) Touch(other *engine.Entity) {}
 
 func init() {
 	engine.RegisterEntityType(&Sprite{})
