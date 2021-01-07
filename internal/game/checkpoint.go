@@ -46,12 +46,12 @@ func (c *Checkpoint) Update() {
 		return
 	}
 	player := c.World.Player.Impl.(*Player)
-	if player.PersistentState["checkpoint_last"] == c.Name {
+	if player.PersistentState["last_checkpoint"] == c.Name {
 		return
 	}
 	player.PersistentState[c.PlayerProperty] = "true"
 	player.PersistentState["last_checkpoint"] = c.Name
-	centerprint.New(c.Text, true, color.NRGBA{R: 85, G: 85, B: 255, A: 255})
+	centerprint.New(c.Text, true, color.NRGBA{R: 85, G: 85, B: 255, A: 255}).SetFadeOut(true)
 }
 
 func (c *Checkpoint) Touch(other *engine.Entity) {}

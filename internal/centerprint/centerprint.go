@@ -54,6 +54,12 @@ func New(txt string, force bool, color color.Color) *Centerprint {
 		alphaFrame: 1,
 		active:     true,
 	}
+	if len(centerprints) != 0 {
+		height := cp.bounds.Max.Y - cp.bounds.Min.Y
+		if centerprints[0].scrollPos < height {
+			cp.scrollPos = centerprints[0].scrollPos - height
+		}
+	}
 	centerprints = append(centerprints, cp)
 	return cp
 }
@@ -63,8 +69,13 @@ func (cp *Centerprint) SetFadeOut(fadeOut bool) {
 }
 
 func (cp *Centerprint) update() bool {
+	if cp.scrollPos < (screenHeight-(cp.bounds.Min.Y-cp.bounds.Max.Y))/4 {
+		cp.scrollPos++
+	} else {
+		cp.force = false
+	}
 	if cp.force || !cp.fadeOut {
-		if cp.alphaFrame < alphaFrames {
+		if cp.scrollPos > 0 && cp.alphaFrame < alphaFrames {
 			cp.alphaFrame++
 		}
 	} else {
@@ -75,11 +86,6 @@ func (cp *Centerprint) update() bool {
 	if cp.alphaFrame == 0 {
 		cp.active = false
 		return false
-	}
-	if cp.scrollPos < (screenHeight-(cp.bounds.Min.Y-cp.bounds.Max.Y))/4 {
-		cp.scrollPos++
-	} else {
-		cp.force = false
 	}
 	return true
 }

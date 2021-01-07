@@ -45,7 +45,11 @@ func (t *TnihSign) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity)
 	return nil
 }
 
-func (t *TnihSign) Despawn() {}
+func (t *TnihSign) Despawn() {
+	if t.Centerprint.Active() {
+		t.Centerprint.SetFadeOut(true)
+	}
+}
 
 func (t *TnihSign) Update() {
 	if (t.World.Player.Rect.Delta(t.Entity.Rect) == m.Delta{}) {
