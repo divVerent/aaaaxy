@@ -13,6 +13,7 @@ import (
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/gomono"
 
+	"github.com/divVerent/aaaaaa/internal/centerprint"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
@@ -349,6 +350,9 @@ func (w *World) Update() error {
 	timing.Section("visibility")
 	w.updateVisibility(playerImpl.EyePos())
 
+	// Update centerprints.
+	centerprint.Update()
+
 	w.needPrevImageMasked = true
 	return nil
 }
@@ -583,6 +587,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 		w.drawVisibilityMask(screen, scrollDelta)
 	}
 	w.drawOverlays(screen, scrollDelta)
+	centerprint.Draw(screen)
 
 	// Debug stuff comes last.
 	w.drawDebug(screen, scrollDelta)
