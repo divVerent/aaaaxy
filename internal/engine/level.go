@@ -14,8 +14,9 @@ import (
 
 // Level is a parsed form of a loaded level.
 type Level struct {
-	Tiles  map[m.Pos]*LevelTile
-	Player *Spawnable
+	Tiles       map[m.Pos]*LevelTile
+	Player      *Spawnable
+	Checkpoints map[string]*Spawnable
 }
 
 // LevelTile is a single tile in the level.
@@ -210,6 +211,10 @@ func LoadLevel(filename string) (*Level, error) {
 				level.Player = &ent
 				// Do not link to tiles.
 				continue
+			}
+			if objType == "Checkpoint" {
+				level.Checkpoints[properties["name"]] = &ent
+				// These do get linked.
 			}
 			for y := startTile.Y; y <= endTile.Y; y++ {
 				for x := startTile.X; x <= endTile.X; x++ {
