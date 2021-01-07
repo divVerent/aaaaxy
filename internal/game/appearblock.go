@@ -1,7 +1,10 @@
 package game
 
 import (
+	"github.com/hajimehoshi/ebiten/v2"
+
 	"github.com/divVerent/aaaaaa/internal/engine"
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // AppearBlock is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -53,6 +56,8 @@ func (a *AppearBlock) Update() {
 }
 
 func (a *AppearBlock) Touch(other *engine.Entity) {}
+
+func (a *AppearBlock) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&AppearBlock{})

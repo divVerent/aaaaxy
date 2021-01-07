@@ -201,6 +201,8 @@ func (p *Player) Touch(other *engine.Entity) {
 	// Nothing happens; we rather handle this on other's Touch event.
 }
 
+func (p *Player) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
+
 // EyePos returns the position the player eye is at.
 func (p *Player) EyePos() m.Pos {
 	return p.Entity.Rect.Origin.Add(m.Delta{DX: PlayerEyeDX, DY: PlayerEyeDY})

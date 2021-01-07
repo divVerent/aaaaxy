@@ -98,6 +98,8 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 	// TODO animate up and down?
 }
 
+func (q *QuestionBlock) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
+
 func init() {
 	engine.RegisterEntityType(&QuestionBlock{})
 }

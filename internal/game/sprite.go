@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/hajimehoshi/ebiten/v2"
+
 	"github.com/divVerent/aaaaaa/internal/engine"
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // Sprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -43,6 +46,8 @@ func (s *Sprite) Despawn() {}
 func (s *Sprite) Update() {}
 
 func (s *Sprite) Touch(other *engine.Entity) {}
+
+func (s *Sprite) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&Sprite{})

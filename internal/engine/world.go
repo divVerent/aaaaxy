@@ -561,6 +561,18 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 	}
 }
 
+func (w *World) drawOverlays(screen *ebiten.Image, scrollDelta m.Delta) {
+	zEnts := map[int][]*Entity{}
+	for _, ent := range w.Entities {
+		zEnts[ent.ZIndex] = append(zEnts[ent.ZIndex], ent)
+	}
+	for z := MinZIndex; z <= MaxZIndex; z++ {
+		for _, ent := range zEnts[z] {
+			ent.Impl.DrawOverlay(screen, scrollDelta)
+		}
+	}
+}
+
 func (w *World) Draw(screen *ebiten.Image) {
 	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(w.scrollPos)
 
@@ -570,6 +582,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 	if *drawVisibilityMask {
 		w.drawVisibilityMask(screen, scrollDelta)
 	}
+	w.drawOverlays(screen, scrollDelta)
 
 	// Debug stuff comes last.
 	w.drawDebug(screen, scrollDelta)

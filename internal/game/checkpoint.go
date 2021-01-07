@@ -1,7 +1,10 @@
 package game
 
 import (
+	"github.com/hajimehoshi/ebiten/v2"
+
 	"github.com/divVerent/aaaaaa/internal/engine"
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // Checkpoint remembers that it was hit and allows spawning from there again. Also displays a text.
@@ -10,20 +13,22 @@ type Checkpoint struct {
 	Spawnable *engine.Spawnable
 }
 
-func (t *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
-	t.Spawnable = s
-	t.World = w
+func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+	c.Spawnable = s
+	c.World = w
 	// Property: "name".
 	return nil
 }
 
-func (t *Checkpoint) Despawn() {}
+func (c *Checkpoint) Despawn() {}
 
-func (t *Checkpoint) Update() {}
+func (c *Checkpoint) Update() {}
 
-func (t *Checkpoint) Touch(other *engine.Entity) {
+func (c *Checkpoint) Touch(other *engine.Entity) {
 	// TODO.
 }
+
+func (c *Checkpoint) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&Checkpoint{})

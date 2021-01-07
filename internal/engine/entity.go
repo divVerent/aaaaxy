@@ -76,6 +76,9 @@ type EntityImpl interface {
 
 	// Touch notifies the entity that it was hit by another entity moving.
 	Touch(other *Entity)
+
+	// Draw the entity's overlay. Useful for entities that are more than just a sprite.
+	DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta)
 }
 
 // entityTypes is a helper map to know how to spawn an entity.
