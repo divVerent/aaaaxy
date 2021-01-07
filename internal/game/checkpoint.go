@@ -39,7 +39,7 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 func (c *Checkpoint) Despawn() {}
 
 func (c *Checkpoint) Update() {
-	if c.World.Player.Orientation != c.RequiredOrientation {
+	if c.Entity.Orientation != c.RequiredOrientation {
 		return
 	}
 	if (c.World.Player.Rect.Delta(c.Entity.Rect) != m.Delta{}) {

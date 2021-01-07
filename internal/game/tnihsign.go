@@ -58,6 +58,7 @@ func (t *TnihSign) Update() {
 		} else {
 			t.Centerprint = centerprint.New(t.Text, t.PersistentState["seen"] != "true", color.NRGBA{R: 255, G: 255, B: 85, A: 255})
 			t.PersistentState["seen"] = "true"
+			t.Entity.Image = t.SeenImage
 		}
 	} else {
 		if t.Centerprint.Active() {

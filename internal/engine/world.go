@@ -25,6 +25,7 @@ var (
 	debugShowTransforms     = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
 	debugShowBboxes         = flag.Bool("debug_show_bboxes", false, "show the bounding boxes of all entities")
 	debugInitialOrientation = flag.String("debug_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
+	debugInitialCheckpoint  = flag.String("debug_initial_checkpoint", "", "initial checkpoint")
 	drawBlurs               = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 	drawOutside             = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
 	drawVisibilityMask      = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
@@ -109,10 +110,7 @@ func NewWorld() *World {
 
 	// Load tile the player starts on.
 	tile := w.Level.Tiles[w.Level.Player.LevelPos].Tile
-	tile.Transform, err = m.ParseOrientation(*debugInitialOrientation)
-	if err != nil {
-		log.Panicf("Could not parse initial orientation: %v", err)
-	}
+	tile.Transform = m.Identity()
 	w.Tiles[w.Level.Player.LevelPos] = &tile
 
 	// Create player entity.
@@ -121,12 +119,77 @@ func NewWorld() *World {
 		log.Panicf("could not spawn player: %v", err)
 	}
 
-	// Load the other tiles that the player touches.
-	w.LoadTilesForRect(w.Player.Rect, w.Level.Player.LevelPos)
-	w.visibilityMark++
-	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
+	// Respawn the player at the desired start location (includes other startup).
+	w.RespawnPlayer(*debugInitialCheckpoint)
 
 	return &w
+}
+
+// SpawnPlayer spawns the player in a newly initialized world.
+// As a side effect, it unloads all tiles.
+// Spawning at checkpoint "" means the initial player location.
+func (w *World) RespawnPlayer(checkpointName string) {
+	cpSp := w.Level.Checkpoints[checkpointName]
+	if cpSp == nil {
+		log.Panicf("could not spawn player: checkpoint %q not found", checkpointName)
+	}
+
+	cpOrientation := m.Identity()
+	cpOrientationStr := cpSp.Properties["required_orientation"]
+	if cpOrientationStr != "" {
+		var err error
+		cpOrientation, err = m.ParseOrientation(cpOrientationStr)
+		if err != nil {
+			log.Panicf("could not parse checkpoint orientation: %v", err)
+		}
+	}
+
+	w.visibilityMark++
+
+	// First spawn the tile on the checkpoint.
+	tile := w.Level.Tiles[cpSp.LevelPos].Tile
+	var err error
+	tile.Transform, err = m.ParseOrientation(*debugInitialOrientation)
+	if err != nil {
+		log.Panicf("could not parse initial orientation: %v", err)
+	}
+	tile.Transform = cpOrientation.Inverse().Concat(tile.Transform)
+
+	// Build a new world around the CP tile and the player.
+	w.visibilityMark = 0
+	tile.visibilityMark = w.visibilityMark
+	w.Entities = map[EntityIncarnation]*Entity{
+		w.Player.Incarnation: w.Player,
+	}
+	w.Tiles = map[m.Pos]*Tile{
+		cpSp.LevelPos: &tile,
+	}
+
+	// Spawn the CP.
+	cp, err := cpSp.Spawn(w, cpSp.LevelPos, &tile)
+	if err != nil {
+		log.Panicf("could not spawn checkpoint: %v", err)
+	}
+
+	// Move the player to the center of the checkpoint.
+	w.Player.Rect.Origin = cp.Rect.Origin.Add(cp.Rect.Size.Div(2)).Sub(w.Player.Rect.Size.Div(2))
+
+	// Load all the stuff that the CP and player need.
+	w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
+	w.LoadTilesForRect(cp.Rect, cpSp.LevelPos)
+
+	// Move the player down as far as possible.
+	trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(m.Delta{DX: 0, DY: 1024}), TraceOptions{
+		NoEntities: true,
+		LoadTiles:  true,
+	})
+	w.Player.Rect.Origin = trace.EndPos
+
+	w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
+	w.visibilityMark++
+
+	// Scroll the player in view right away.
+	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
 }
 
 func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {

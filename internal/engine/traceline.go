@@ -2,6 +2,7 @@ package engine
 
 import (
 	"errors"
+	"log"
 
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
@@ -199,7 +200,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		doneErr := errors.New("done")
 		walkLine(from, to, func(pixel m.Pos) error {
 			tilePos := pixel.Div(TileSize)
-			if tilePos == prevTilePos {
+			if tilePos == prevTilePos && havePrevTile {
 				result.EndPos = pixel
 				return nil
 			}
@@ -208,6 +209,9 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 			}
 			tile := w.Tiles[tilePos]
 			if tile == nil {
+				if !havePrevTile {
+					log.Panicf("traced from nonexistent tile %v (loaded: %v)", tilePos, w.Tiles)
+				}
 				result.HitFogOfWar = true
 				return doneErr
 			}
