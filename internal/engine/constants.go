@@ -54,13 +54,13 @@ var (
 	// expandSteps is the list of steps to walk from each marked tile to expand.
 	expandSteps = []expandStep{
 		// First expansion tile.
-		{m.Delta{}, m.Delta{1, 0}},
-		{m.Delta{}, m.Delta{0, -1}},
-		{m.Delta{}, m.Delta{-1, 0}},
-		{m.Delta{}, m.Delta{0, 1}},
-		{m.Delta{}, m.Delta{1, -1}},
-		{m.Delta{}, m.Delta{-1, -1}},
-		{m.Delta{}, m.Delta{-1, 1}},
-		{m.Delta{}, m.Delta{1, 1}},
+		{m.Delta{}, m.Delta{DX: 1, DY: 0}},
+		{m.Delta{}, m.Delta{DX: 0, DY: -1}},
+		{m.Delta{}, m.Delta{DX: -1, DY: 0}},
+		{m.Delta{}, m.Delta{DX: 0, DY: 1}},
+		{m.Delta{}, m.Delta{DX: 1, DY: -1}},
+		{m.Delta{}, m.Delta{DX: -1, DY: -1}},
+		{m.Delta{}, m.Delta{DX: -1, DY: 1}},
+		{m.Delta{}, m.Delta{DX: 1, DY: 1}},
 	}
 )

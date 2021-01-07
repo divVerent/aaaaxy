@@ -97,6 +97,6 @@ func ParseOrientation(s string) (Orientation, error) {
 	case "WS":
 		return Orientation{Right: West(), Down: South()}, nil
 	default:
-		return Orientation{}, fmt.Errorf("unsupported orientation %q; want <right><down> direction like ES")
+		return Orientation{}, fmt.Errorf("unsupported orientation %q; want <right><down> direction like ES", s)
 	}
 }
