@@ -79,7 +79,8 @@ func LoadLevel(filename string) (*Level, error) {
 		return nil, fmt.Errorf("invalid map layer: %v", err)
 	}
 	level := Level{
-		Tiles: map[m.Pos]*LevelTile{},
+		Tiles:       map[m.Pos]*LevelTile{},
+		Checkpoints: map[string]*Spawnable{},
 	}
 	for i, td := range tds {
 		if td.Nil {
@@ -209,6 +210,7 @@ func LoadLevel(filename string) (*Level, error) {
 			}
 			if objType == "Player" {
 				level.Player = &ent
+				level.Checkpoints[""] = &ent
 				// Do not link to tiles.
 				continue
 			}
