@@ -138,6 +138,7 @@ func (l *normalizedLine) nextTile(i int) int {
 	//   - where j1 = (l.Height*(2*i+1) + l.NumSteps) / twiceSteps
 	//   - Can we rule out "shooting ahead" one pixel another way? Sure.
 	//   - Can we precompute?
+	//   - Maybe find next Y value, then map back to X like in traceLineBox.
 	return 0 // TODO.
 }
 
