@@ -210,7 +210,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 			tile := w.Tiles[tilePos]
 			if tile == nil {
 				if !havePrevTile {
-					log.Panicf("traced from nonexistent tile %v (loaded: %v)", tilePos, w.Tiles)
+					log.Panicf("Traced from nonexistent tile %v (loaded: %v)", tilePos, w.Tiles)
 				}
 				result.HitFogOfWar = true
 				return doneErr

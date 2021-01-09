@@ -87,7 +87,7 @@ func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 }
 
 func (p *Player) Despawn() {
-	log.Panicf("the player should never despawn")
+	log.Panicf("The player should never despawn")
 }
 
 func accelerate(vel *int, accel, max, dir int) {

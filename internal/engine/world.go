@@ -116,7 +116,7 @@ func NewWorld() *World {
 	// Create player entity.
 	w.Player, err = w.Level.Player.Spawn(&w, w.Level.Player.LevelPos, &tile)
 	if err != nil {
-		log.Panicf("could not spawn player: %v", err)
+		log.Panicf("Could not spawn player: %v", err)
 	}
 
 	// Respawn the player at the desired start location (includes other startup).
@@ -131,7 +131,7 @@ func NewWorld() *World {
 func (w *World) RespawnPlayer(checkpointName string) {
 	cpSp := w.Level.Checkpoints[checkpointName]
 	if cpSp == nil {
-		log.Panicf("could not spawn player: checkpoint %q not found", checkpointName)
+		log.Panicf("Could not spawn player: checkpoint %q not found", checkpointName)
 	}
 
 	cpOrientation := m.Identity()
@@ -140,7 +140,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 		var err error
 		cpOrientation, err = m.ParseOrientation(cpOrientationStr)
 		if err != nil {
-			log.Panicf("could not parse checkpoint orientation: %v", err)
+			log.Panicf("Could not parse checkpoint orientation: %v", err)
 		}
 	}
 
@@ -151,7 +151,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	var err error
 	tile.Transform, err = m.ParseOrientation(*debugInitialOrientation)
 	if err != nil {
-		log.Panicf("could not parse initial orientation: %v", err)
+		log.Panicf("Could not parse initial orientation: %v", err)
 	}
 	tile.Transform = cpOrientation.Inverse().Concat(tile.Transform)
 
@@ -168,7 +168,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	// Spawn the CP.
 	cp, err := cpSp.Spawn(w, cpSp.LevelPos, &tile)
 	if err != nil {
-		log.Panicf("could not spawn checkpoint: %v", err)
+		log.Panicf("Could not spawn checkpoint: %v", err)
 	}
 
 	// Move the player to the center of the checkpoint.
@@ -343,7 +343,7 @@ func (w *World) updateVisibility(eye m.Pos) {
 			timing.Section("spawn")
 			_, err := spawnable.Spawn(w, pos, tile)
 			if err != nil {
-				log.Panicf("could not spawn entity %v: %v", spawnable, err)
+				log.Panicf("Could not spawn entity %v: %v", spawnable, err)
 			}
 			timing.Section("spawn_search")
 		}
@@ -686,7 +686,7 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 		t = newLevelTile.WarpZone.Transform.Concat(t)
 		tile := w.Level.Tiles[newLevelTile.WarpZone.ToTile]
 		if tile == nil {
-			log.Panicf("nil new tile after warping to %v", newLevelTile.WarpZone)
+			log.Panicf("Nil new tile after warping to %v", newLevelTile.WarpZone)
 		}
 		newLevelTile = tile
 	}
