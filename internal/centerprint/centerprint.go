@@ -10,6 +10,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/text"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/goitalic"
+	"golang.org/x/image/font/gofont/gomonobold"
 )
 
 const (
@@ -21,6 +22,7 @@ type Centerprint struct {
 	bounds image.Rectangle
 	color  color.Color
 	force  bool
+	face   font.Face
 
 	alphaFrame int
 	scrollPos  int
@@ -30,29 +32,69 @@ type Centerprint struct {
 
 var (
 	screenWidth, screenHeight int
-	face                      font.Face
+	normalFace, bigFace       font.Face
 	centerprints              []*Centerprint
 )
 
 func init() {
-	centerprintFont, err := truetype.Parse(goitalic.TTF)
+	normalFont, err := truetype.Parse(goitalic.TTF)
 	if err != nil {
-		log.Panicf("could not load goitalic font: %v", err)
+		log.Panicf("Could not load goitalic font: %v", err)
 	}
-	face = truetype.NewFace(centerprintFont, &truetype.Options{
+	normalFace = truetype.NewFace(normalFont, &truetype.Options{
 		Size:    16,
+		Hinting: font.HintingFull,
+	})
+	bigFont, err := truetype.Parse(gomonobold.TTF)
+	if err != nil {
+		log.Panicf("Could not load gomonobold font: %v", err)
+	}
+	bigFace = truetype.NewFace(bigFont, &truetype.Options{
+		Size:    24,
 		Hinting: font.HintingFull,
 	})
 }
 
-func New(txt string, force bool, color color.Color) *Centerprint {
+type Importance int
+
+const (
+	Important Importance = iota
+	NotImportant
+)
+
+type InitialPosition int
+
+const (
+	Top = iota
+	Middle
+)
+
+type Font int
+
+const (
+	NormalFont = iota
+	BigFont
+)
+
+func New(txt string, imp Importance, pos InitialPosition, font Font, color color.Color) *Centerprint {
 	cp := &Centerprint{
 		text:       txt,
-		bounds:     text.BoundString(face, txt),
 		color:      color,
-		force:      force,
+		force:      imp == Important,
 		alphaFrame: 1,
 		active:     true,
+	}
+	switch font {
+	case NormalFont:
+		cp.face = normalFace
+	case BigFont:
+		cp.face = bigFace
+	default:
+		log.Panicf("Unknown centerprint font: %v", font)
+	}
+	cp.bounds = text.BoundString(cp.face, txt)
+	if pos == Middle {
+		cp.scrollPos = cp.targetPos()
 	}
 	if len(centerprints) != 0 {
 		height := cp.bounds.Max.Y - cp.bounds.Min.Y
@@ -68,10 +110,14 @@ func (cp *Centerprint) SetFadeOut(fadeOut bool) {
 	cp.fadeOut = fadeOut
 }
 
+func (cp *Centerprint) targetPos() int {
+	return (screenHeight - (cp.bounds.Min.Y - cp.bounds.Max.Y)) / 4
+}
+
 func (cp *Centerprint) update() bool {
-	if cp.scrollPos < (screenHeight-(cp.bounds.Min.Y-cp.bounds.Max.Y))/4 {
+	if cp.scrollPos < cp.targetPos() {
 		cp.scrollPos++
-	} else {
+	} else if cp.alphaFrame >= alphaFrames {
 		cp.force = false
 	}
 	if cp.force || !cp.fadeOut {
@@ -106,10 +152,10 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 			if dx == 0 && dy == 0 {
 				continue
 			}
-			text.Draw(screen, cp.text, face, x+dx, y+dy, bg)
+			text.Draw(screen, cp.text, cp.face, x+dx, y+dy, bg)
 		}
 	}
-	text.Draw(screen, cp.text, face, x, y, fg)
+	text.Draw(screen, cp.text, cp.face, x, y, fg)
 }
 
 func (cp *Centerprint) Active() bool {

@@ -56,7 +56,11 @@ func (t *TnihSign) Update() {
 		if t.Centerprint.Active() {
 			t.Centerprint.SetFadeOut(false)
 		} else {
-			t.Centerprint = centerprint.New(t.Text, t.PersistentState["seen"] != "true", color.NRGBA{R: 255, G: 255, B: 85, A: 255})
+			importance := centerprint.Important
+			if t.PersistentState["seen"] == "true" {
+				importance = centerprint.NotImportant
+			}
+			t.Centerprint = centerprint.New(t.Text, importance, centerprint.Top, centerprint.NormalFont, color.NRGBA{R: 255, G: 255, B: 85, A: 255})
 			t.PersistentState["seen"] = "true"
 			t.Entity.Image = t.SeenImage
 		}
