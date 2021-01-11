@@ -215,20 +215,20 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Po
 			nextI += TileSize
 		} else { // nextJI == nextI
 			// We cross both boundaries.
-			// By our line drawing algorithm, we always walk j first.
-			if nextJ > l.Height {
+			// By our line drawing algorithm, we always walk i first.
+			if nextI > l.NumSteps {
 				return nil
 			}
-			nextTile := tile.Add(jDelta)
+			nextTile := tile.Add(iDelta)
 			if err := check(tile, nextTile, l.toPos(nextI-1, nextJ-1)); err != nil {
 				return err
 			}
 			tile = nextTile
-			if nextI > l.NumSteps {
+			if nextJ > l.Height {
 				return nil
 			}
-			nextTile = tile.Add(iDelta)
-			if err := check(tile, nextTile, l.toPos(nextI-1, nextJ)); err != nil {
+			nextTile = tile.Add(jDelta)
+			if err := check(tile, nextTile, l.toPos(nextI, nextJ-1)); err != nil {
 				return err
 			}
 			tile = nextTile
