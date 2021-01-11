@@ -2,6 +2,7 @@ package engine
 
 import (
 	"errors"
+	"flag"
 	"log"
 
 	m "github.com/divVerent/aaaaaa/internal/math"
@@ -57,18 +58,6 @@ type normalizedLine struct {
 	XDir     int
 	YDir     int
 	ScanX    bool
-
-	// Data used for tile scanning.
-	// iMod is the value of i % TileSize where new tiles begin.
-	iMod int
-	// jMod is the value of j % TileSize where new tiles begin.
-	jMod int
-	// scanI is the current i value.
-	scanI int
-	// scanJ is the current j value.
-	scanJ int
-	// needMoveJ is set if at the current scanI position, the next move is upwards.
-	needMoveJ bool
 }
 
 func normalizeLine(from, to m.Pos) normalizedLine {
@@ -125,6 +114,124 @@ func (l *normalizedLine) toPos(i, j int) m.Pos {
 	}
 }
 
+// walkTiles yields all tile intersections on the line from start to end of the line.
+func (l *normalizedLine) walkTiles(check func(prevPixel, prevTile, nextTile m.Pos) error) error {
+	// Algorithm idea:
+	// - INIT: calculate iMod, jMod, scanI, scanJ.
+	// - SEARCH:
+	//   - Find nextI > scanI so that i % TileSize == iMod.
+	//     - Actually can compute once, then just add TileSize.
+	//   - Find nextJ > scanJ so that j % TileSize == jMod.
+	//     - Actually can just conditionally add TileSize whenever we hit new tile.
+	//   - Compute nextJI from nextJ like i00 below.
+	//   - If nextI < nextJI:
+	//     - Set nextJ = f(nextI) like j00.
+	//     - Yield (nextI-1, nextJ) as endpos in current tile.
+	//     - Set scanI, scanJ = nextI, nextJ.
+	//   - If nextI == nextJI:
+	//     - Set nextJ = f(nextI) like j00. Actually == nextJ.
+	//     - Yield (nextI-1, nextJ) as endpos in current tile.
+	//     - Yield (nextI, nextJ) as endpos in next tile.
+	//     - Set scanI, scanJ = nextI, nextJ
+	//   - If nextI > nextJI:
+	//     - Yield (nextJI, nextJ-1) as endpos in current tile.
+	//     - Set scanI, scanJ = nextJI, nextJ.
+	// nextI, nextJ are the next i or j values that cross a tile border.
+	tile := l.Origin.Div(TileSize)
+	var nextI, nextJ int
+	var iDelta, jDelta m.Delta
+	if l.ScanX {
+		if l.XDir > 0 {
+			nextI = 1 + m.Mod(-l.Origin.X-1, TileSize)
+		} else {
+			nextI = 1 + m.Mod(l.Origin.X, TileSize)
+		}
+		if l.YDir > 0 {
+			nextJ = 1 + m.Mod(-l.Origin.Y-1, TileSize)
+		} else {
+			nextJ = 1 + m.Mod(l.Origin.Y, TileSize)
+		}
+		iDelta = m.Delta{DX: l.XDir, DY: 0}
+		jDelta = m.Delta{DX: 0, DY: l.YDir}
+	} else {
+		if l.YDir > 0 {
+			nextI = 1 + m.Mod(-l.Origin.Y-1, TileSize)
+		} else {
+			nextI = 1 + m.Mod(l.Origin.Y, TileSize)
+		}
+		if l.XDir > 0 {
+			nextJ = 1 + m.Mod(-l.Origin.X-1, TileSize)
+		} else {
+			nextJ = 1 + m.Mod(l.Origin.X, TileSize)
+		}
+		iDelta = m.Delta{DX: 0, DY: l.YDir}
+		jDelta = m.Delta{DX: l.XDir, DY: 0}
+	}
+	if l.Height == 0 {
+		// Special handling for x-only traces.
+		for {
+			if nextI > l.NumSteps {
+				return nil
+			}
+			nextTile := tile.Add(iDelta)
+			if err := check(tile, nextTile, l.toPos(nextI-1, 0)); err != nil {
+				return err
+			}
+			tile = nextTile
+			nextI += TileSize
+		}
+		return nil
+	}
+	for {
+		// Compute the i for nextJ. It is the SMALLEST i of the potential group.
+		nextJI := (l.NumSteps*(2*nextJ-1) + l.Height - 1) / (2 * l.Height) // Same as i00 below.
+		if nextJI < nextI {
+			if nextJ > l.Height {
+				return nil
+			}
+			nextTile := tile.Add(jDelta)
+			if err := check(tile, nextTile, l.toPos(nextJI, nextJ-1)); err != nil {
+				return err
+			}
+			tile = nextTile
+			nextJ += TileSize
+		} else if nextJI > nextI {
+			if nextI > l.NumSteps {
+				return nil
+			}
+			nextTile := tile.Add(iDelta)
+			// Compute the j for nextI. It is the SMALLEST j of the potential group.
+			nextIJ := (l.Height*(2*nextI-1) + l.NumSteps) / (2 * l.NumSteps) // Same as j00 below.
+			if err := check(tile, nextTile, l.toPos(nextI-1, nextIJ)); err != nil {
+				return err
+			}
+			tile = nextTile
+			nextI += TileSize
+		} else { // nextJI == nextI
+			// We cross both boundaries.
+			// By our line drawing algorithm, we always walk j first.
+			if nextJ > l.Height {
+				return nil
+			}
+			nextTile := tile.Add(jDelta)
+			if err := check(tile, nextTile, l.toPos(nextI-1, nextJ-1)); err != nil {
+				return err
+			}
+			tile = nextTile
+			if nextI > l.NumSteps {
+				return nil
+			}
+			nextTile = tile.Add(iDelta)
+			if err := check(tile, nextTile, l.toPos(nextI-1, nextJ)); err != nil {
+				return err
+			}
+			tile = nextTile
+			nextI += TileSize
+			nextJ += TileSize
+		}
+	}
+}
+
 // traceEntity returns whether the line from from to to hits the entity, as well as the last coordinate not hitting yet.
 func traceEntity(from, to m.Pos, ent *Entity) (bool, m.Pos) {
 	l := normalizeLine(from, to)
@@ -140,41 +247,9 @@ func traceEntity(from, to m.Pos, ent *Entity) (bool, m.Pos) {
 	return false, m.Pos{}
 }
 
-func (l *normalizedLine) nextTile(i int) int {
-	// Locate the next end-of-tile position.
-	// We are at end of tile if either (potentially swapped x/y):
-	// - l.Origin.X + l.XDir*i == l.XDir>0 ? TileSize-1 : 0
-	//   - Can precompute and then always advance by exactly TileSize.
-	// - l.Origin.Y + l.YDir*j0 == l.YDir>0 ? TileSize-1 : 0 AND j1 != j0
-	//   - where j0 = (l.Height*(2*i-1) + l.NumSteps) / twiceSteps
-	//   - where j1 = (l.Height*(2*i+1) + l.NumSteps) / twiceSteps
-	//   - Can we rule out "shooting ahead" one pixel another way? Sure.
-	//   - Can we precompute?
-	//   - Maybe find next Y value, then map back to X like in traceLineBox.
-	return 0 // TODO.
-
-	// Algorithm idea:
-	// - INIT: calculate iMod, jMod, scanI, scanJ.
-	// - SEARCH:
-	//   - Find nextI > scanI so that i % TileSize == iMod.
-	//     - Actually can compute once, then just add TileSize.
-	//   - Find nextJ > scanJ so that j % TileSize == jMod.
-	//     - Actually can just conditionally add TileSize whenever we hit new tile.
-	//   - Compute nextJI from nextJ like i01 below.
-	//   - If nextI < nextJI:
-	//     - Set nextJ = f(nextI) like j00.
-	//     - Yield (nextI-1, nextJ) as endpos in current tile.
-	//     - Set scanI, scanJ = nextI, nextJ.
-	//   - If nextI == nextJI:
-	//     - Set nextJ = f(nextI) like j00.
-	//     - Yield (nextI-1, nextJ) as endpos in current tile.
-	//     - Yield (nextI, nextJ) as endpos in next tile.
-	//     - Set scanI, scanJ = nextI, nextJ
-	//   - If nextI > nextJI:
-	//     - Yield (nextJI, nextJ-1) as endpos in current tile.
-	//     - Set scanI, scanJ = nextJI, nextJ.
-	// - Maybe simpler at first as a function spawning a goroutine and returning a channel?
-}
+var (
+	debugOldWalkLine = flag.Bool("debug_old_walk_line", false, "Use the old walkLine algorithm.")
+)
 
 // walkLine walks on pixels from from to to, calling the check() function on every pixel hit.
 // Any two adjacent positions hit are exactly 1 pixel apart (no diagonal steps).
@@ -184,35 +259,45 @@ func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {
 		// Start point is end point. Nothing to do.
 		return check(from)
 	}
-	twiceSteps := 2 * l.NumSteps
-	prevPixel, prevTile := from, from.Div(TileSize)
-	for i := 0; i <= l.NumSteps; i++ {
-		i0 := 2*i - 1
-		if i0 < 0 {
-			i0 = 0
-		}
-		i1 := 2*i + 1
-		if i1 > 2*l.NumSteps {
-			i1 = 2 * l.NumSteps
-		}
-		j0 := (l.Height*i0 + l.NumSteps) / twiceSteps
-		j1 := (l.Height*i1 + l.NumSteps) / twiceSteps
-		for j := j0; j <= j1; j++ {
-			pixel := l.toPos(i, j)
-			// Only call the callback if we hit the end of a tile, or the end of the trace.
-			// Should speed up tracing SUBSTANTIALLY by saving lots of callback invocations.
-			tile := pixel.Div(TileSize)
-			if tile != prevTile {
-				err := check(prevPixel)
-				if err != nil {
-					return err
-				}
-				prevTile = tile
+	if *debugOldWalkLine {
+		twiceSteps := 2 * l.NumSteps
+		prevPixel, prevTile := from, from.Div(TileSize)
+		for i := 0; i <= l.NumSteps; i++ {
+			i0 := 2*i - 1
+			if i0 < 0 {
+				i0 = 0
 			}
-			prevPixel = pixel
+			i1 := 2*i + 1
+			if i1 > 2*l.NumSteps {
+				i1 = 2 * l.NumSteps
+			}
+			j0 := (l.Height*i0 + l.NumSteps) / twiceSteps
+			j1 := (l.Height*i1 + l.NumSteps) / twiceSteps
+			for j := j0; j <= j1; j++ {
+				pixel := l.toPos(i, j)
+				// Only call the callback if we hit the end of a tile, or the end of the trace.
+				// Should speed up tracing SUBSTANTIALLY by saving lots of callback invocations.
+				tile := pixel.Div(TileSize)
+				if tile != prevTile {
+					err := check(prevPixel)
+					if err != nil {
+						return err
+					}
+					prevTile = tile
+				}
+				prevPixel = pixel
+			}
 		}
+		return check(to)
+	} else {
+		err := l.walkTiles(func(prevTile, currentTile, prevPixel m.Pos) error {
+			return check(prevPixel)
+		})
+		if err != nil {
+			return err
+		}
+		return check(to)
 	}
-	return check(to)
 }
 
 // traceLine moves from from to to and yields info about where this hit solid etc.
