@@ -607,10 +607,10 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 	})
 
 	if !*expandUsingVertices {
-		blurImage(w.visibilityMaskImage, w.blurImage, expandSize, true)
+		blurImage(w.visibilityMaskImage, w.blurImage, expandSize, true, 1.0)
 	}
 	if *drawBlurs {
-		blurImage(w.visibilityMaskImage, w.blurImage, blurSize, false)
+		blurImage(w.visibilityMaskImage, w.blurImage, blurSize, false, 1.0)
 	}
 
 	screen.DrawImage(w.visibilityMaskImage, &ebiten.DrawImageOptions{
@@ -631,8 +631,10 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 			w.prevImageMasked.DrawImage(w.prevImage, &opts)
 
 			// Blur and darken last image.
+			darkenAlpha := frameDarkenAlpha
 			if *drawBlurs {
-				blurImage(w.prevImageMasked, w.blurImage, frameBlurSize, false)
+				blurImage(w.prevImageMasked, w.blurImage, frameBlurSize, false, darkenAlpha)
+				darkenAlpha = 1.0
 			}
 
 			// Mask out the parts we've already drawn.
@@ -640,8 +642,8 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 				CompositeMode: ebiten.CompositeModeMultiply,
 				Filter:        ebiten.FilterNearest,
 			}
-			opts.ColorM.Scale(-frameDarkenAlpha, -frameDarkenAlpha, -frameDarkenAlpha, 0)
-			opts.ColorM.Translate(frameDarkenAlpha, frameDarkenAlpha, frameDarkenAlpha, 1)
+			opts.ColorM.Scale(-darkenAlpha, -darkenAlpha, -darkenAlpha, 0)
+			opts.ColorM.Translate(darkenAlpha, darkenAlpha, darkenAlpha, 1)
 			w.prevImageMasked.DrawImage(w.visibilityMaskImage, &opts)
 		}
 

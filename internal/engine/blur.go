@@ -16,7 +16,7 @@ var (
 	debugUseShaders = flag.Bool("debug_use_shaders", true, "enable use of custom shaders")
 )
 
-func expandImage(img, tmp *ebiten.Image, size int, weight float64) {
+func blurImageFixedFunction(img, tmp *ebiten.Image, size int, weight, scale float64) {
 	opts := ebiten.DrawImageOptions{
 		CompositeMode: ebiten.CompositeModeLighter,
 		Filter:        ebiten.FilterNearest,
@@ -33,6 +33,9 @@ func expandImage(img, tmp *ebiten.Image, size int, weight float64) {
 		opts.GeoM.Translate(float64(size), 0)
 		tmp.DrawImage(img, &opts)
 		img.Fill(color.Gray{0})
+		if size <= 1 {
+			opts.ColorM.Scale(scale, scale, scale, 1)
+		}
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(0, -float64(size))
 		img.DrawImage(tmp, &opts)
@@ -63,13 +66,13 @@ var (
 	blurShader *ebiten.Shader
 )
 
-func blurImage(img, tmp *ebiten.Image, size int, expand bool) {
+func blurImage(img, tmp *ebiten.Image, size int, expand bool, scale float64) {
 	if !*debugUseShaders {
 		weight := 1.0
 		if !expand {
 			weight = 0.5
 		}
-		expandImage(img, tmp, size, weight)
+		blurImageFixedFunction(img, tmp, size, weight, scale)
 		return
 	}
 	if blurShader == nil {
@@ -80,16 +83,15 @@ func blurImage(img, tmp *ebiten.Image, size int, expand bool) {
 		}
 	}
 	w, h := img.Size()
-	scale := float32(1.0)
 	if !expand {
-		scale = 1 / (2*float32(size) + 1)
+		scale /= (2*float64(size) + 1)
 	}
 	tmp.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{
 			"Size":  float32(size),
 			"Step":  []float32{0.5 / float32(w), 0},
-			"Scale": scale,
+			"Scale": float32(scale),
 		},
 		Images: [4]*ebiten.Image{
 			img,
@@ -103,7 +105,7 @@ func blurImage(img, tmp *ebiten.Image, size int, expand bool) {
 		Uniforms: map[string]interface{}{
 			"Size":  float32(size),
 			"Step":  []float32{0, 0.5 / float32(h)},
-			"Scale": scale,
+			"Scale": float32(scale),
 		},
 		Images: [4]*ebiten.Image{
 			tmp,
