@@ -2,7 +2,6 @@ package engine
 
 import (
 	"errors"
-	"flag"
 	"log"
 
 	m "github.com/divVerent/aaaaaa/internal/math"
@@ -51,6 +50,14 @@ type TraceResult struct {
 	HitFogOfWar bool
 }
 
+// A normalizedLine represents a line to trace on.
+// NOTE: Pixel (i, j) is on line IF:
+// - Assuming:
+//   - i0 := MAX(0, 2*i-1)
+//   - i1: MIN(2*i+1, NumSteps)
+//   - j0 := (Height*i0+NumSteps)/(2*NumSteps)
+//   - j1 := (Height*i1+NumSteps)/(2*NumSteps)
+// - Then: j in {j0, j1}.
 type normalizedLine struct {
 	Origin   m.Pos
 	NumSteps int
@@ -115,7 +122,7 @@ func (l *normalizedLine) toPos(i, j int) m.Pos {
 }
 
 // walkTiles yields all tile intersections on the line from start to end of the line.
-func (l *normalizedLine) walkTiles(check func(prevPixel, prevTile, nextTile m.Pos) error) error {
+func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Pos) error) error {
 	// Algorithm idea:
 	// - INIT: calculate iMod, jMod, scanI, scanJ.
 	// - SEARCH:
@@ -247,57 +254,22 @@ func traceEntity(from, to m.Pos, ent *Entity) (bool, m.Pos) {
 	return false, m.Pos{}
 }
 
-var (
-	debugOldWalkLine = flag.Bool("debug_old_walk_line", false, "Use the old walkLine algorithm.")
-)
-
 // walkLine walks on pixels from from to to, calling the check() function on every pixel hit.
 // Any two adjacent positions hit are exactly 1 pixel apart (no diagonal steps).
-func walkLine(from, to m.Pos, check func(pixel m.Pos) error) error {
+func walkLine(from, to m.Pos, check func(prevTile, nextTile, prevPixel m.Pos) error) error {
 	l := normalizeLine(from, to)
 	if l.NumSteps == 0 {
 		// Start point is end point. Nothing to do.
-		return check(from)
+		return check(from.Div(TileSize), from.Div(TileSize), from)
 	}
-	if *debugOldWalkLine {
-		twiceSteps := 2 * l.NumSteps
-		prevPixel, prevTile := from, from.Div(TileSize)
-		for i := 0; i <= l.NumSteps; i++ {
-			i0 := 2*i - 1
-			if i0 < 0 {
-				i0 = 0
-			}
-			i1 := 2*i + 1
-			if i1 > 2*l.NumSteps {
-				i1 = 2 * l.NumSteps
-			}
-			j0 := (l.Height*i0 + l.NumSteps) / twiceSteps
-			j1 := (l.Height*i1 + l.NumSteps) / twiceSteps
-			for j := j0; j <= j1; j++ {
-				pixel := l.toPos(i, j)
-				// Only call the callback if we hit the end of a tile, or the end of the trace.
-				// Should speed up tracing SUBSTANTIALLY by saving lots of callback invocations.
-				tile := pixel.Div(TileSize)
-				if tile != prevTile {
-					err := check(prevPixel)
-					if err != nil {
-						return err
-					}
-					prevTile = tile
-				}
-				prevPixel = pixel
-			}
-		}
-		return check(to)
-	} else {
-		err := l.walkTiles(func(prevTile, currentTile, prevPixel m.Pos) error {
-			return check(prevPixel)
-		})
-		if err != nil {
-			return err
-		}
-		return check(to)
+	// TODO remove the last "to" call.
+	err := l.walkTiles(func(prevTile, nextTile, prevPixel m.Pos) error {
+		return check(prevTile, nextTile, prevPixel)
+	})
+	if err != nil {
+		return err
 	}
+	return check(to.Div(TileSize), to.Div(TileSize), to)
 }
 
 // traceLine moves from from to to and yields info about where this hit solid etc.
@@ -318,32 +290,31 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		var prevTilePos m.Pos
 		havePrevTile := false
 		doneErr := errors.New("done")
-		walkLine(from, to, func(pixel m.Pos) error {
-			tilePos := pixel.Div(TileSize)
-			if tilePos == prevTilePos && havePrevTile {
-				result.EndPos = pixel
+		walkLine(from, to, func(prevTile, nextTile, prevPixel m.Pos) error {
+			if prevTile == prevTilePos && havePrevTile {
+				result.EndPos = prevPixel
 				return nil
 			}
 			if o.LoadTiles && havePrevTile {
-				w.LoadTile(prevTilePos, tilePos.Delta(prevTilePos))
+				w.LoadTile(prevTilePos, prevTile.Delta(prevTilePos))
 			}
-			tile := w.Tiles[tilePos]
+			tile := w.Tiles[prevTile]
 			if tile == nil {
 				if !havePrevTile {
-					log.Panicf("Traced from nonexistent tile %v (loaded: %v)", tilePos, w.Tiles)
+					log.Panicf("Traced from nonexistent tile %v (loaded: %v)", prevTile, w.Tiles)
 				}
 				result.HitFogOfWar = true
 				return doneErr
 			}
 			if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
-				result.HitTilePos = &tilePos
+				result.HitTilePos = &prevTile
 				result.HitTile = tile
 				return doneErr
 			}
-			result.Path = append(result.Path, tilePos)
+			result.Path = append(result.Path, prevTile)
 			havePrevTile = true
-			prevTilePos = tilePos
-			result.EndPos = pixel
+			prevTilePos = prevTile
+			result.EndPos = prevPixel
 			return nil
 		})
 	}
