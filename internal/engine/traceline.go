@@ -57,6 +57,18 @@ type normalizedLine struct {
 	XDir     int
 	YDir     int
 	ScanX    bool
+
+	// Data used for tile scanning.
+	// iMod is the value of i % TileSize where new tiles begin.
+	iMod int
+	// jMod is the value of j % TileSize where new tiles begin.
+	jMod int
+	// scanI is the current i value.
+	scanI int
+	// scanJ is the current j value.
+	scanJ int
+	// needMoveJ is set if at the current scanI position, the next move is upwards.
+	needMoveJ bool
 }
 
 func normalizeLine(from, to m.Pos) normalizedLine {
@@ -140,6 +152,28 @@ func (l *normalizedLine) nextTile(i int) int {
 	//   - Can we precompute?
 	//   - Maybe find next Y value, then map back to X like in traceLineBox.
 	return 0 // TODO.
+
+	// Algorithm idea:
+	// - INIT: calculate iMod, jMod, scanI, scanJ.
+	// - SEARCH:
+	//   - Find nextI > scanI so that i % TileSize == iMod.
+	//     - Actually can compute once, then just add TileSize.
+	//   - Find nextJ > scanJ so that j % TileSize == jMod.
+	//     - Actually can just conditionally add TileSize whenever we hit new tile.
+	//   - Compute nextJI from nextJ like i01 below.
+	//   - If nextI < nextJI:
+	//     - Set nextJ = f(nextI) like j00.
+	//     - Yield (nextI-1, nextJ) as endpos in current tile.
+	//     - Set scanI, scanJ = nextI, nextJ.
+	//   - If nextI == nextJI:
+	//     - Set nextJ = f(nextI) like j00.
+	//     - Yield (nextI-1, nextJ) as endpos in current tile.
+	//     - Yield (nextI, nextJ) as endpos in next tile.
+	//     - Set scanI, scanJ = nextI, nextJ
+	//   - If nextI > nextJI:
+	//     - Yield (nextJI, nextJ-1) as endpos in current tile.
+	//     - Set scanI, scanJ = nextJI, nextJ.
+	// - Maybe simpler at first as a function spawning a goroutine and returning a channel?
 }
 
 // walkLine walks on pixels from from to to, calling the check() function on every pixel hit.
