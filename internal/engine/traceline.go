@@ -2,7 +2,6 @@ package engine
 
 import (
 	"errors"
-	"log"
 
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
@@ -262,14 +261,7 @@ func walkLine(from, to m.Pos, check func(prevTile, nextTile, prevPixel m.Pos) er
 		// Start point is end point. Nothing to do.
 		return check(from.Div(TileSize), from.Div(TileSize), from)
 	}
-	// TODO remove the last "to" call.
-	err := l.walkTiles(func(prevTile, nextTile, prevPixel m.Pos) error {
-		return check(prevTile, nextTile, prevPixel)
-	})
-	if err != nil {
-		return err
-	}
-	return check(to.Div(TileSize), to.Div(TileSize), to)
+	return l.walkTiles(check)
 }
 
 // traceLine moves from from to to and yields info about where this hit solid etc.
@@ -287,36 +279,29 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 
 	if !o.NoTiles {
 		result.EndPos = from
-		var prevTilePos m.Pos
-		havePrevTile := false
+		result.Path = append(result.Path, from.Div(TileSize))
 		doneErr := errors.New("done")
-		walkLine(from, to, func(prevTile, nextTile, prevPixel m.Pos) error {
-			if prevTile == prevTilePos && havePrevTile {
-				result.EndPos = prevPixel
-				return nil
+		err := walkLine(from, to, func(prevTile, nextTile, prevPixel m.Pos) error {
+			result.EndPos = prevPixel
+			if o.LoadTiles {
+				w.LoadTile(prevTile, nextTile.Delta(prevTile))
 			}
-			if o.LoadTiles && havePrevTile {
-				w.LoadTile(prevTilePos, prevTile.Delta(prevTilePos))
-			}
-			tile := w.Tiles[prevTile]
+			tile := w.Tiles[nextTile]
 			if tile == nil {
-				if !havePrevTile {
-					log.Panicf("Traced from nonexistent tile %v (loaded: %v)", prevTile, w.Tiles)
-				}
 				result.HitFogOfWar = true
 				return doneErr
 			}
 			if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
-				result.HitTilePos = &prevTile
+				result.HitTilePos = &nextTile
 				result.HitTile = tile
 				return doneErr
 			}
-			result.Path = append(result.Path, prevTile)
-			havePrevTile = true
-			prevTilePos = prevTile
-			result.EndPos = prevPixel
+			result.Path = append(result.Path, nextTile)
 			return nil
 		})
+		if err != doneErr {
+			result.EndPos = to
+		}
 	}
 
 	if !o.NoEntities {
