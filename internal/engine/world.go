@@ -572,10 +572,10 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 	})
 
 	if !*expandUsingVertices {
-		expandImage(w.visibilityMaskImage, w.blurImage, expandSize, 1.0)
+		blurImage(w.visibilityMaskImage, w.blurImage, expandSize, true)
 	}
 	if *drawBlurs {
-		expandImage(w.visibilityMaskImage, w.blurImage, blurSize, 0.5)
+		blurImage(w.visibilityMaskImage, w.blurImage, blurSize, false)
 	}
 
 	screen.DrawImage(w.visibilityMaskImage, &ebiten.DrawImageOptions{
@@ -597,7 +597,7 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 
 			// Blur and darken last image.
 			if *drawBlurs {
-				expandImage(w.prevImageMasked, w.blurImage, frameBlurSize, 0.5)
+				blurImage(w.prevImageMasked, w.blurImage, frameBlurSize, false)
 			}
 
 			// Mask out the parts we've already drawn.
