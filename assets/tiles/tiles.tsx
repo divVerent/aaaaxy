@@ -82,7 +82,7 @@
    <property name="img.SW" value="wall_.png"/>
    <property name="img.WN" value="wall_.png"/>
    <property name="img.WS" value="wall_.png"/>
-   <property name="opaque" type="bool" value="true"/>
+   <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="true"/>
   </properties>
   <image width="16" height="16" source="wall_.png"/>

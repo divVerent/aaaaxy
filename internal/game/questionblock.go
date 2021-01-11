@@ -31,6 +31,7 @@ func (q *QuestionBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.En
 
 	var err error
 	e.Solid = true
+	e.Opaque = false             // These shadows are annoying.
 	e.Orientation = m.Identity() // Always show upright.
 	e.Rect.Size.DY += 1          // Make it easier to hit.
 	q.Kaizo = s.Properties["kaizo"] == "true"
@@ -41,7 +42,6 @@ func (q *QuestionBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.En
 	}
 	if q.Used {
 		e.Image = q.UsedImage
-		e.Opaque = true
 		q.UseAnimFrame = 2 * UseFramesPerPixel * UsePixels
 	} else {
 		if !q.Kaizo {
@@ -49,7 +49,6 @@ func (q *QuestionBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.En
 			if err != nil {
 				return err
 			}
-			e.Opaque = true
 		}
 	}
 	return nil
@@ -94,7 +93,6 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 	q.Entity.Image = q.UsedImage
 	q.UsedImage = nil
 	q.Entity.Solid = true
-	q.Entity.Opaque = true
 	// TODO animate up and down?
 }
 
