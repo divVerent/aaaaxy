@@ -461,7 +461,8 @@ func (w *World) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		screenPos := pos.Mul(TileSize).Add(scrollDelta)
 		opts := ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
+			// Note: could be CompositeModeCopy, but that can't be merged with entities pass.
+			CompositeMode: ebiten.CompositeModeSourceOver,
 			Filter:        ebiten.FilterNearest,
 		}
 		renderOrientation, renderImage := tile.Orientation, tile.Image
@@ -491,7 +492,7 @@ func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 			}
 			screenPos := ent.Rect.Origin.Add(scrollDelta)
 			opts := ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeSourceAtop,
+				CompositeMode: ebiten.CompositeModeSourceOver,
 				Filter:        ebiten.FilterNearest,
 			}
 			xScale, yScale := 1.0, 1.0
