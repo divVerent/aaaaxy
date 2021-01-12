@@ -30,7 +30,7 @@ const (
 	MinEntitySize = 8
 
 	// frameBlurSize is how much the previous frame is to be blurred.
-	frameBlurSize = 2
+	frameBlurSize = 1
 	// frameDarkenAlpha is how much the previous frame is to be darkened.
 	frameDarkenAlpha = 0.98
 
