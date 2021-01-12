@@ -1,9 +1,15 @@
 package aaaaaa
 
 import (
+	"flag"
+
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+)
+
+var (
+	vsync = flag.Bool("vsync", true, "enable waiting for vertical synchronization")
 )
 
 func InitEbiten() {
@@ -14,7 +20,7 @@ func InitEbiten() {
 	ebiten.SetRunnableOnUnfocused(false)
 	ebiten.SetScreenClearedEveryFrame(false)
 	ebiten.SetScreenTransparent(false)
-	ebiten.SetVsyncEnabled(true)
+	ebiten.SetVsyncEnabled(*vsync)
 	ebiten.SetWindowDecorated(true)
 	ebiten.SetWindowFloating(false)
 	ebiten.SetWindowPosition(0, 0)
