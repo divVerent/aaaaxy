@@ -123,7 +123,7 @@ func NewWorld() *World {
 	}
 
 	// Respawn the player at the desired start location (includes other startup).
-	w.RespawnPlayer(*debugInitialCheckpoint)
+	w.RespawnPlayer("")
 
 	return &w
 }
@@ -132,6 +132,9 @@ func NewWorld() *World {
 // As a side effect, it unloads all tiles.
 // Spawning at checkpoint "" means the initial player location.
 func (w *World) RespawnPlayer(checkpointName string) {
+	if *debugInitialCheckpoint != "" {
+		checkpointName = *debugInitialCheckpoint
+	}
 	cpSp := w.Level.Checkpoints[checkpointName]
 	if cpSp == nil {
 		log.Panicf("Could not spawn player: checkpoint %q not found", checkpointName)

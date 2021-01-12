@@ -10,6 +10,10 @@ import (
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
+// PersistentState is how entities retain values across loading/unloading and in
+// save games.
+type PersistentState map[string]string
+
 // A Spawnable is a blueprint to create an Entity.
 type Spawnable struct {
 	ID EntityID
@@ -26,7 +30,6 @@ type Spawnable struct {
 	Properties map[string]string
 
 	// Persistent entity state, if any, shall be kept in this map.
-	// Ensures that entity state can be fully serialized/deserialized.
 	PersistentState map[string]string
 }
 

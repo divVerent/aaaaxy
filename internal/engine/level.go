@@ -34,6 +34,69 @@ type WarpZone struct {
 	Transform m.Orientation
 }
 
+// SaveGame is the data structure we save game state with.
+// It contains all needed (in addition to loading the level) to reset to the last visited checkpoint.
+type SaveGame struct {
+	Data      map[EntityID]PersistentState
+	DataHash  uint64
+	LevelHash uint64
+}
+
+func (l *Level) Hash() uint64 {
+	// TODO actually hash.
+	return 42
+}
+
+func (save *SaveGame) Hash() uint64 {
+	// TODO actually hash.
+	return 42
+}
+
+func (l *Level) SaveGame() SaveGame {
+	save := SaveGame{
+		Data:      map[EntityID]PersistentState{},
+		LevelHash: l.Hash(),
+	}
+	saveOne := func(s *Spawnable) {
+		if len(s.PersistentState) > 0 {
+			save.Data[s.ID] = s.PersistentState
+		}
+	}
+	for _, tile := range l.Tiles {
+		for _, s := range tile.Tile.Spawnables {
+			saveOne(s)
+		}
+	}
+	saveOne(l.Player)
+	save.DataHash = save.Hash()
+	return save
+}
+
+func (l *Level) LoadGame(save SaveGame) error {
+	if save.DataHash != save.Hash() {
+		return fmt.Errorf("someone tampered with the save game")
+	}
+	if save.LevelHash != l.Hash() {
+		return fmt.Errorf("save game does not match level: got %v, want %v", save.LevelHash, l.Hash())
+	}
+	loadOne := func(s *Spawnable) {
+		// Do not reallocate the map! Works better with already loaded entities.
+		for key := range s.PersistentState {
+			delete(s.PersistentState, key)
+		}
+		for key, value := range save.Data[s.ID] {
+			s.PersistentState[key] = value
+		}
+	}
+	for _, tile := range l.Tiles {
+		for _, s := range tile.Tile.Spawnables {
+			loadOne(s)
+		}
+	}
+	loadOne(l.Player)
+	return nil
+}
+
 func LoadLevel(filename string) (*Level, error) {
 	r, err := vfs.Load("maps", filename+".tmx")
 	if err != nil {
@@ -206,7 +269,7 @@ func LoadLevel(filename string) (*Level, error) {
 				},
 				Orientation:     orientation,
 				Properties:      properties,
-				PersistentState: map[string]string{},
+				PersistentState: PersistentState{},
 			}
 			if objType == "Player" {
 				level.Player = &ent

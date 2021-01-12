@@ -1,9 +1,12 @@
 package aaaaaa
 
 import (
+	"encoding/json"
 	"errors"
 	"flag"
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -17,6 +20,8 @@ var (
 	captureVideo    = flag.String("capture_video", "", "filename prefix to capture game frames to")
 	externalCapture = flag.Bool("external_capture", false, "assume an external capture application like apitrace is running; makes game run in lock step with rendering")
 	showFps         = flag.Bool("show_fps", false, "show fps counter")
+	loadGame        = flag.String("load_game", "", "filename to load game state from")
+	saveGame        = flag.String("save_game", "", "filename to save game state to")
 )
 
 type Game struct {
@@ -34,10 +39,41 @@ func (g *Game) Update() error {
 
 	timing.Section("once")
 	if ebiten.IsKeyPressed(ebiten.KeyEscape) {
+		if *saveGame != "" {
+			file, err := os.Create(*saveGame)
+			if err != nil {
+				log.Panicf("could not open savegame: %v", err)
+			}
+			defer file.Close()
+			encoder := json.NewEncoder(file)
+			encoder.SetIndent("", "\t")
+			err = encoder.Encode(g.World.Level.SaveGame())
+			if err != nil {
+				log.Panicf("could not save game: %v", err)
+			}
+		}
 		return errors.New("esc")
 	}
 	if g.World == nil {
 		g.World = engine.NewWorld()
+		if *loadGame != "" {
+			file, err := os.Open(*loadGame)
+			if err != nil {
+				log.Panicf("could not open savegame: %v", err)
+			}
+			defer file.Close()
+			decoder := json.NewDecoder(file)
+			save := engine.SaveGame{}
+			err = decoder.Decode(&save)
+			if err != nil {
+				log.Panicf("could not decode savegame: %v", err)
+			}
+			err = g.World.Level.LoadGame(save)
+			if err != nil {
+				log.Panicf("could not load savegame: %v", err)
+			}
+			g.World.RespawnPlayer(g.World.Level.Player.PersistentState["last_checkpoint"])
+		}
 	}
 
 	timing.Section("world")
