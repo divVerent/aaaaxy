@@ -30,6 +30,8 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 	if err != nil {
 		return fmt.Errorf("could not parse required orientation: %v", err)
 	}
+	// Field contains orientation OF THE PLAYER to make it easier in the map editor. So we need to invert.
+	c.RequiredOrientation = c.RequiredOrientation.Inverse()
 	c.Name = s.Properties["name"]
 	c.PlayerProperty = "checkpoint_seen." + c.Name
 	c.Text = s.Properties["text"]
