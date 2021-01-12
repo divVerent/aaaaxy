@@ -14,8 +14,9 @@ import (
 )
 
 var (
-	captureVideo = flag.String("capture_video", "", "filename prefix to capture game frames to")
-	showFps      = flag.Bool("show_fps", false, "show fps counter")
+	captureVideo    = flag.String("capture_video", "", "filename prefix to capture game frames to")
+	externalCapture = flag.Bool("external_capture", false, "assume an external capture application like apitrace is running; makes game run in lock step with rendering")
+	showFps         = flag.Bool("show_fps", false, "show fps counter")
 )
 
 type Game struct {
@@ -53,9 +54,12 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	timing.Section("world")
 	g.World.Draw(screen)
 
+	if *captureVideo != "" || *externalCapture {
+		ebiten.SetMaxTPS(ebiten.UncappedTPS)
+	}
+
 	if *captureVideo != "" {
 		timing.Section("capture")
-		ebiten.SetMaxTPS(ebiten.UncappedTPS)
 		saveImage(screen, fmt.Sprintf("%s_%08d.png", *captureVideo, frameIndex))
 		frameIndex++
 	}
