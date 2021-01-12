@@ -608,6 +608,12 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 	// Draw trace polygon to buffer.
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
+
+	// Optimization note:
+	// - This isn't optimal. Visibility mask maybe shouldn't even exist?
+	// - If screen were a separate image, we could instead copy image to screen masked by polygon.
+	// - Would remove one render call.
+	// - Wouldn't allow blur though...?
 	w.visibilityMaskImage.Fill(color.Gray{0})
 	drawPolygonAround(w.visibilityMaskImage, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, geoM, &ebiten.DrawTrianglesOptions{
 		Address: ebiten.AddressRepeat,
@@ -628,6 +634,10 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 	if *drawOutside {
 		delta := w.scrollPos.Delta(w.prevScrollPos)
 		if w.needPrevImageMasked {
+			// Optimization note:
+			// - This isn't optimal.
+			// - Scrolled copy + blur could be a single pass.
+
 			// Make a scrolled copy of the last frame.
 			w.prevImageMasked.Fill(color.Gray{0})
 			opts := ebiten.DrawImageOptions{
@@ -662,6 +672,8 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 
 		if w.needPrevImageMasked {
 			// Remember last image. Only do this once per update.
+			// Optimization note: we may be able to skip this
+			// if we alternate two images.
 			w.prevImage.DrawImage(screen, &ebiten.DrawImageOptions{
 				CompositeMode: ebiten.CompositeModeCopy,
 				Filter:        ebiten.FilterNearest,
