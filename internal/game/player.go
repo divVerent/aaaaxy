@@ -27,13 +27,17 @@ type Player struct {
 // Gravity is 9.81 m/s^2 = 163.5 px/s^2.
 const (
 	// PlayerWidth is the width of the player.
-	PlayerWidth = engine.TileSize - 2
+	PlayerWidth = engine.TileSize - 4
 	// PlayerHeight is the height of the player.
 	PlayerHeight = 2*engine.TileSize - 2
 	// PlayerEyeDX is the X coordinate of the player's eye.
 	PlayerEyeDX = engine.TileSize/2 - 1
 	// PlayerEyeDY is the Y coordinate of the player's eye.
 	PlayerEyeDY = engine.TileSize/2 - 1
+	// PlayerOffsetDX is the player's render offset.
+	PlayerOffsetDX = -1
+	// PlayerOffsetDY is the player's render offset.
+	PlayerOffsetDY = 0
 
 	// LookTiles is how many tiles the player can look up/down.
 	LookDistance = engine.TileSize * 4
@@ -82,6 +86,7 @@ func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 		return err
 	}
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
+	p.Entity.RenderOffset = m.Delta{DX: PlayerOffsetDX, DY: PlayerOffsetDY}
 	p.Entity.ZIndex = engine.MaxZIndex
 	return nil
 }
