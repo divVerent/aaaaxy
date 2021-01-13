@@ -8,3 +8,4 @@ Changes from original:
 - Sortened top triangle by one pixel row.
 - Lengthened to 30 pixels.
 - Split into separate files for the game.
+- Made eyes more friendly.
