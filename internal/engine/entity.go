@@ -44,11 +44,12 @@ type Entity struct {
 	Rect   m.Rect
 
 	// Info needed for rendering.
-	Orientation m.Orientation
-	Image       *ebiten.Image
-	ResizeImage bool
-	Alpha       float64
-	ZIndex      int
+	Orientation  m.Orientation
+	Image        *ebiten.Image
+	RenderOffset m.Delta
+	ResizeImage  bool // Conceptually incompatible with RenderOffset.
+	Alpha        float64
+	ZIndex       int
 
 	// Entity's own state.
 	Impl EntityImpl

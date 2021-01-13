@@ -439,7 +439,7 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientati
 	// Note that in ebiten, the coordinate is the original origin, while we think in screenspace origin.
 	a := m.Delta{} // Actually orientation.Apply(m.Delta{})
 	d := size
-	// Note: size is the actual entity bbox; however we need the size of the source image.
+	// Note: size is the actual entity bbox; however we need the size in source coordinates.
 	// So we transpose the size if the orientation contains an XY flip.
 	if orientation.Apply(m.Delta{DX: 1, DY: 0}).DX == 0 {
 		d.DX, d.DY = d.DY, d.DX
@@ -490,18 +490,20 @@ func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 			if ent.Image == nil || ent.Alpha == 0 {
 				continue
 			}
-			screenPos := ent.Rect.Origin.Add(scrollDelta)
+			screenPos := ent.Rect.Origin.Add(scrollDelta).Add(ent.RenderOffset)
 			opts := ebiten.DrawImageOptions{
 				CompositeMode: ebiten.CompositeModeSourceOver,
 				Filter:        ebiten.FilterNearest,
 			}
 			xScale, yScale := 1.0, 1.0
+			w, h := ent.Image.Size()
+			renderSize := m.Delta{DX: w, DY: h}
 			if ent.ResizeImage {
-				w, h := ent.Image.Size()
 				xScale = float64(ent.Rect.Size.DX) / float64(w)
 				yScale = float64(ent.Rect.Size.DY) / float64(h)
+				renderSize = ent.Rect.Size
 			}
-			setGeoM(&opts.GeoM, screenPos, ent.Rect.Size, ent.Orientation, xScale, yScale)
+			setGeoM(&opts.GeoM, screenPos, renderSize, ent.Orientation, xScale, yScale)
 			opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
 			screen.DrawImage(ent.Image, &opts)
 		}
