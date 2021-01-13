@@ -143,4 +143,7 @@ type PlayerEntityImpl interface {
 
 	// LookPos is the desired screen center position.
 	LookPos() m.Pos
+
+	// Respawned() notifies the entity that the world respawned it.
+	Respawned()
 }

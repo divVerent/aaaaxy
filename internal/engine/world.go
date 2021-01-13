@@ -199,6 +199,9 @@ func (w *World) RespawnPlayer(checkpointName string) {
 
 	// Scroll the player in view right away.
 	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
+
+	// Notify the player, reset animation state.
+	w.Player.Impl.(PlayerEntityImpl).Respawned()
 }
 
 func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {

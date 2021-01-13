@@ -5,6 +5,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
@@ -20,6 +21,8 @@ type Player struct {
 	LookDown bool
 	Velocity m.Delta
 	SubPixel m.Delta
+
+	Anim animation.State
 }
 
 // Player height is 30 px.
@@ -69,6 +72,9 @@ const (
 	// We want at least 19px high jumps so we can be sure a jump moves at least 2 tiles up.
 	JumpExtraGravity = 72*Gravity/19 - Gravity
 
+	// Animation tuning.
+	AnimGroundSpeed = 20 * SubPixelScale / engine.GameTPS
+
 	KeyLeft  = ebiten.KeyLeft
 	KeyRight = ebiten.KeyRight
 	KeyUp    = ebiten.KeyUp
@@ -80,14 +86,35 @@ func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 	p.World = w
 	p.Entity = e
 	p.PersistentState = s.PersistentState
-	var err error
-	p.Entity.Image, err = engine.LoadImage("sprites", "player.png")
-	if err != nil {
-		return err
-	}
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
 	p.Entity.RenderOffset = m.Delta{DX: PlayerOffsetDX, DY: PlayerOffsetDY}
 	p.Entity.ZIndex = engine.MaxZIndex
+
+	p.Anim.Init("player", map[string]*animation.Group{
+		"idle": {
+			Frames:        2,
+			FrameInterval: 174,
+			NextInterval:  180,
+			NextAnim:      "idle",
+		},
+		"walk": {
+			Frames:        6,
+			FrameInterval: 4,
+			NextInterval:  4 * 6,
+			NextAnim:      "walk",
+		},
+		"jump": {
+			Frames:       1,
+			NextInterval: 12,
+			NextAnim:     "jump",
+		},
+		"land": {
+			Frames:       1,
+			NextInterval: 12,
+			NextAnim:     "idle",
+			WaitFinish:   true,
+		}}, "idle")
+
 	return nil
 }
 
@@ -113,6 +140,8 @@ func friction(vel *int, friction int) {
 func (p *Player) Update() {
 	p.LookUp = ebiten.IsKeyPressed(KeyUp)
 	p.LookDown = ebiten.IsKeyPressed(KeyDown)
+	moveLeft := ebiten.IsKeyPressed(KeyLeft)
+	moveRight := ebiten.IsKeyPressed(KeyRight)
 	if ebiten.IsKeyPressed(KeyJump) {
 		if !p.Jumping && p.OnGround {
 			p.Velocity.DY -= JumpVelocity
@@ -124,17 +153,17 @@ func (p *Player) Update() {
 	}
 	if p.OnGround {
 		friction(&p.Velocity.DX, GroundFriction)
-		if ebiten.IsKeyPressed(KeyLeft) {
+		if moveLeft {
 			accelerate(&p.Velocity.DX, GroundAccel, MaxGroundSpeed, -1)
 		}
-		if ebiten.IsKeyPressed(KeyRight) {
+		if moveRight {
 			accelerate(&p.Velocity.DX, GroundAccel, MaxGroundSpeed, +1)
 		}
 	} else {
-		if ebiten.IsKeyPressed(KeyLeft) {
+		if moveLeft {
 			accelerate(&p.Velocity.DX, AirAccel, MaxAirSpeed, -1)
 		}
-		if ebiten.IsKeyPressed(KeyRight) {
+		if moveRight {
 			accelerate(&p.Velocity.DX, AirAccel, MaxAirSpeed, +1)
 		}
 		if p.Velocity.DY < 0 && !p.Jumping {
@@ -184,7 +213,13 @@ func (p *Player) Update() {
 				p.SubPixel.DY = 0
 			}
 			p.Velocity.DY = 0
-			p.OnGround = true
+			// If moving down, set OnGround flag.
+			if move.DY > 0 {
+				if !p.OnGround {
+					p.Anim.SetGroup("land")
+				}
+				p.OnGround = true
+			}
 		}
 		p.Entity.Rect.Origin = trace.EndPos
 	} else if p.OnGround {
@@ -196,6 +231,23 @@ func (p *Player) Update() {
 			p.OnGround = false
 		}
 	}
+
+	if moveLeft && !moveRight {
+		p.Entity.Orientation = m.Identity()
+	}
+	if moveRight && !moveLeft {
+		p.Entity.Orientation = m.FlipX()
+	}
+	if p.OnGround {
+		if p.Velocity.DX > -AnimGroundSpeed && p.Velocity.DX < AnimGroundSpeed {
+			p.Anim.SetGroup("idle")
+		} else {
+			p.Anim.SetGroup("walk")
+		}
+	} else {
+		p.Anim.SetGroup("jump")
+	}
+	p.Anim.Update(p.Entity)
 }
 
 func (p *Player) handleTouch(trace engine.TraceResult) {
@@ -225,6 +277,14 @@ func (p *Player) LookPos() m.Pos {
 		focus.Y += LookDistance
 	}
 	return focus
+}
+
+// Respawned informs the player that the world moved/respawned it.
+func (p *Player) Respawned() {
+	p.OnGround = true                // Do not get landing anim right away.
+	p.Anim.ForceGroup("idle")        // Reset animation.
+	p.Entity.Image = nil             // Hide player until next Update.
+	p.Entity.Orientation = m.FlipX() // Default to looking right.
 }
 
 func init() {
