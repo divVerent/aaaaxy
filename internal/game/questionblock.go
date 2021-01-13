@@ -33,7 +33,6 @@ func (q *QuestionBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.En
 	e.Solid = true
 	e.Opaque = false             // These shadows are annoying.
 	e.Orientation = m.Identity() // Always show upright.
-	e.Rect.Size.DY += 1          // Make it easier to hit.
 	q.Kaizo = s.Properties["kaizo"] == "true"
 	q.Used = q.PersistentState["used"] == "true"
 	q.UsedImage, err = engine.LoadImage("sprites", "exclamationblock.png")

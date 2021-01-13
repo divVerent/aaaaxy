@@ -318,7 +318,8 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 			}
 			if hit, endPos := traceEntity(from, to, ent); hit {
 				distance := endPos.Delta(from).Norm1()
-				if distance < closestDistance {
+				// Using <= so that entities win against tiles.
+				if distance <= closestDistance {
 					closestEnt, closestEndPos, closestDistance = ent, endPos, distance
 				}
 			}
