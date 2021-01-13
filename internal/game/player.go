@@ -93,7 +93,7 @@ func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 	p.Anim.Init("player", map[string]*animation.Group{
 		"idle": {
 			Frames:        2,
-			FrameInterval: 174,
+			FrameInterval: 172,
 			NextInterval:  180,
 			NextAnim:      "idle",
 		},
@@ -105,12 +105,12 @@ func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 		},
 		"jump": {
 			Frames:       1,
-			NextInterval: 12,
+			NextInterval: 8,
 			NextAnim:     "jump",
 		},
 		"land": {
 			Frames:       1,
-			NextInterval: 12,
+			NextInterval: 8,
 			NextAnim:     "idle",
 			WaitFinish:   true,
 		}}, "idle")
@@ -213,11 +213,14 @@ func (p *Player) Update() {
 				p.SubPixel.DY = 0
 			}
 			p.Velocity.DY = 0
+			if !p.OnGround {
+				// Note: we set the "land" anim even when hitting a ceiling.
+				// It thus doubles as bump-head animation.
+				// May want to revisit and distinguish by DY>0 later.
+				p.Anim.SetGroup("land")
+			}
 			// If moving down, set OnGround flag.
 			if move.DY > 0 {
-				if !p.OnGround {
-					p.Anim.SetGroup("land")
-				}
 				p.OnGround = true
 			}
 		}
