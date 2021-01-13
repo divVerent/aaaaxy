@@ -34,6 +34,8 @@ func (a *AppearBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Enti
 	e.Opaque = false
 	e.Solid = false
 	e.Alpha = 0.0
+	e.ZIndex = 1 // Above normal sprites.
+
 	return nil
 }
 
