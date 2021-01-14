@@ -536,14 +536,14 @@
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="17" gid="59" x="4543" y="4063" width="34" height="34">
+  <object id="17" gid="59" x="4544" y="4064" width="32" height="32">
    <properties>
     <property name="alpha" value="0.5"/>
     <property name="opaque" type="bool" value="false"/>
     <property name="solid" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="18" gid="59" x="4783" y="4047" width="34" height="50">
+  <object id="18" gid="59" x="4784" y="4048" width="32" height="48">
    <properties>
     <property name="alpha" value="0.5"/>
     <property name="opaque" type="bool" value="false"/>
