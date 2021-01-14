@@ -41,17 +41,22 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 func (c *Checkpoint) Despawn() {}
 
 func (c *Checkpoint) Update() {
+	// The "down" direction must match. That way we allow x-flipping and still matching the CP.
+	flippedStr := "Identity"
 	if c.Entity.Orientation != c.RequiredOrientation {
-		return
+		if c.Entity.Orientation != m.FlipX().Concat(c.RequiredOrientation) {
+			return
+		}
+		flippedStr = "FlipX"
 	}
 	if (c.World.Player.Rect.Delta(c.Entity.Rect) != m.Delta{}) {
 		return
 	}
 	player := c.World.Player.Impl.(*Player)
-	if player.PersistentState["last_checkpoint"] == c.Name {
+	if player.PersistentState["last_checkpoint"] == c.Name && player.PersistentState[c.PlayerProperty] == flippedStr {
 		return
 	}
-	player.PersistentState[c.PlayerProperty] = "true"
+	player.PersistentState[c.PlayerProperty] = flippedStr
 	player.PersistentState["last_checkpoint"] = c.Name
 	centerprint.New(c.Text, centerprint.Important, centerprint.Middle, centerprint.BigFont, color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
 }

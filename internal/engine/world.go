@@ -123,7 +123,7 @@ func NewWorld() *World {
 	}
 
 	// Respawn the player at the desired start location (includes other startup).
-	w.RespawnPlayer("")
+	w.RespawnPlayer("", false)
 
 	return &w
 }
@@ -131,7 +131,7 @@ func NewWorld() *World {
 // SpawnPlayer spawns the player in a newly initialized world.
 // As a side effect, it unloads all tiles.
 // Spawning at checkpoint "" means the initial player location.
-func (w *World) RespawnPlayer(checkpointName string) {
+func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 	if *debugInitialCheckpoint != "" {
 		checkpointName = *debugInitialCheckpoint
 	}
@@ -150,6 +150,9 @@ func (w *World) RespawnPlayer(checkpointName string) {
 		}
 		// Convert from "as seen in level editor" to real orientation.
 		cpOrientation = cpOrientation.Inverse()
+	}
+	if flipped {
+		cpOrientation = m.FlipX().Concat(cpOrientation)
 	}
 
 	w.visibilityMark++

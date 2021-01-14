@@ -72,7 +72,9 @@ func (g *Game) Update() error {
 			if err != nil {
 				log.Panicf("could not load savegame: %v", err)
 			}
-			g.World.RespawnPlayer(g.World.Level.Player.PersistentState["last_checkpoint"])
+			cpName := g.World.Level.Player.PersistentState["last_checkpoint"]
+			cpFlipped := g.World.Level.Player.PersistentState["checkpoint_seen."+cpName] == "FlipX"
+			g.World.RespawnPlayer(cpName, cpFlipped)
 		}
 	}
 
