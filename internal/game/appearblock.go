@@ -4,6 +4,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -27,7 +28,7 @@ func (a *AppearBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Enti
 	a.Entity = e
 
 	var err error
-	e.Image, err = engine.LoadImage("sprites", "appearblock.png")
+	e.Image, err = image.Load("sprites", "appearblock.png")
 	if err != nil {
 		return err
 	}

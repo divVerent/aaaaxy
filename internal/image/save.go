@@ -1,4 +1,4 @@
-package aaaaaa
+package image
 
 import (
 	"image/png"
@@ -11,7 +11,7 @@ var pngEncoder = png.Encoder{
 	CompressionLevel: png.BestSpeed,
 }
 
-func saveImage(img *ebiten.Image, name string) error {
+func Save(img *ebiten.Image, name string) error {
 	file, err := os.Create(name)
 	if err != nil {
 		return err

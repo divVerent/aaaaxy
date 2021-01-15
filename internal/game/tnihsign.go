@@ -8,6 +8,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -28,14 +29,14 @@ func (t *TnihSign) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity)
 	t.Entity = e
 	t.PersistentState = s.PersistentState
 	var err error
-	t.SeenImage, err = engine.LoadImage("sprites", "tnihsign_seen.png")
+	t.SeenImage, err = image.Load("sprites", "tnihsign_seen.png")
 	if err != nil {
 		return fmt.Errorf("could not load sign seen sprite: %v", err)
 	}
 	if s.PersistentState["seen"] == "true" {
 		t.Entity.Image = t.SeenImage
 	} else {
-		t.Entity.Image, err = engine.LoadImage("sprites", "tnihsign.png")
+		t.Entity.Image, err = image.Load("sprites", "tnihsign.png")
 		if err != nil {
 			return fmt.Errorf("could not load sign sprite: %v", err)
 		}

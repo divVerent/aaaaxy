@@ -8,6 +8,7 @@ import (
 	"github.com/fardog/tmx"
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
@@ -166,7 +167,7 @@ func LoadLevel(filename string) (*Level, error) {
 		}
 		solid := properties["solid"] != "false"
 		opaque := properties["opaque"] != "false"
-		img, err := LoadImage("tiles", td.Tile.Image.Source)
+		img, err := image.Load("tiles", td.Tile.Image.Source)
 		if err != nil {
 			return nil, fmt.Errorf("invalid image: %v", err)
 		}
@@ -180,7 +181,7 @@ func LoadLevel(filename string) (*Level, error) {
 				if o == m.Identity() && propValue != td.Tile.Image.Source {
 					return nil, fmt.Errorf("invalid tileset: unrotated image isn't same as img: got %q, want %q", propValue, td.Tile.Image.Source)
 				}
-				imgByOrientation[o], err = LoadImage("tiles", propValue)
+				imgByOrientation[o], err = image.Load("tiles", propValue)
 				if err != nil {
 					return nil, fmt.Errorf("invalid image: %v", err)
 				}

@@ -4,6 +4,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -35,7 +36,7 @@ func (q *QuestionBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.En
 	e.Orientation = m.Identity() // Always show upright.
 	q.Kaizo = s.Properties["kaizo"] == "true"
 	q.Used = q.PersistentState["used"] == "true"
-	q.UsedImage, err = engine.LoadImage("sprites", "exclamationblock.png")
+	q.UsedImage, err = image.Load("sprites", "exclamationblock.png")
 	if err != nil {
 		return err
 	}
@@ -44,7 +45,7 @@ func (q *QuestionBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.En
 		q.UseAnimFrame = 2 * UseFramesPerPixel * UsePixels
 	} else {
 		if !q.Kaizo {
-			e.Image, err = engine.LoadImage("sprites", "questionblock.png")
+			e.Image, err = image.Load("sprites", "questionblock.png")
 			if err != nil {
 				return err
 			}

@@ -13,6 +13,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
+	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
@@ -98,7 +99,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 	if *captureVideo != "" {
 		timing.Section("capture")
-		saveImage(screen, fmt.Sprintf("%s_%08d.png", *captureVideo, frameIndex))
+		image.Save(screen, fmt.Sprintf("%s_%08d.png", *captureVideo, frameIndex))
 		frameIndex++
 	}
 

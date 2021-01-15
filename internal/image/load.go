@@ -1,4 +1,4 @@
-package engine
+package image
 
 import (
 	"fmt"
@@ -15,11 +15,11 @@ type imagePath = struct {
 	Name    string
 }
 
-var loadedImages = map[imagePath]*ebiten.Image{}
+var cache = map[imagePath]*ebiten.Image{}
 
-func LoadImage(purpose, name string) (*ebiten.Image, error) {
+func Load(purpose, name string) (*ebiten.Image, error) {
 	ip := imagePath{purpose, name}
-	if img, found := loadedImages[ip]; found {
+	if img, found := cache[ip]; found {
 		return img, nil
 	}
 	data, err := vfs.Load(purpose, name)
@@ -32,6 +32,6 @@ func LoadImage(purpose, name string) (*ebiten.Image, error) {
 		return nil, fmt.Errorf("could not decode: %v", err)
 	}
 	eImg := ebiten.NewImageFromImage(img)
-	loadedImages[ip] = eImg
+	cache[ip] = eImg
 	return eImg, nil
 }

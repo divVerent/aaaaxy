@@ -7,6 +7,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/image"
 )
 
 type Group struct {
@@ -47,7 +48,7 @@ func (s *State) Init(spritePrefix string, groups map[string]*Group, initialGroup
 				spriteName = fmt.Sprintf("%s_%s.png", spritePrefix, name)
 			}
 			var err error
-			group.Images[i], err = engine.LoadImage("sprites", spriteName)
+			group.Images[i], err = image.Load("sprites", spriteName)
 			if err != nil {
 				log.Panicf("Could not load image %v for group %q: %v", spriteName, name, err)
 			}

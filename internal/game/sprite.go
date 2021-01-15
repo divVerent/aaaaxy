@@ -7,6 +7,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -19,7 +20,7 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 	if directory == "" {
 		directory = "sprites"
 	}
-	e.Image, err = engine.LoadImage(directory, sp.Properties["image"])
+	e.Image, err = image.Load(directory, sp.Properties["image"])
 	if err != nil {
 		return err
 	}
