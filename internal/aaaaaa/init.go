@@ -4,6 +4,7 @@ import (
 	"flag"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/audio"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 )
@@ -27,4 +28,5 @@ func InitEbiten() {
 	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowSize(engine.GameWidth, engine.GameHeight)
 	ebiten.SetWindowTitle("AAAAAA")
+	audio.NewContext(48000)
 }

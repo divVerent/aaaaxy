@@ -42,13 +42,20 @@ func init() {
 	}
 }
 
+// ReadSeekCloser is a typical file interface.
+type ReadSeekCloser interface {
+	io.Reader
+	io.Seeker
+	io.Closer
+}
+
 // Load loads a file from the VFS based on the given file purpose and "name".
-func Load(purpose string, name string) (io.ReadCloser, error) {
+func Load(purpose string, name string) (ReadSeekCloser, error) {
 	vfsPath := path.Join("/", purpose, path.Base(name))
 	if localAssetDirs != nil {
 		var err error
 		for _, dir := range localAssetDirs {
-			var r io.ReadCloser
+			var r ReadSeekCloser
 			r, err = os.Open(path.Join(dir, vfsPath))
 			if err != nil {
 				continue
