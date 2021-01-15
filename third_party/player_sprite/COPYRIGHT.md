@@ -3,9 +3,9 @@ Copyright information:
 * Author: GrafxKid
 * License: CC0: https://creativecommons.org/publicdomain/zero/1.0/
 
-Changes from original (licensed under same terms as the entire project):
+Changes from original (licensed under same terms as the entire game):
 * Converted to EGA color palette.
-* Sortened top triangle by one pixel row.
+* Shortened top triangle by one pixel row.
 * Lengthened to 30 pixels.
 * Split into separate files for the game.
 * Made eyes more friendly.
