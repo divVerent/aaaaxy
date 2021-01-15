@@ -16,11 +16,13 @@ package aaaaaa
 
 import (
 	"flag"
+	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
 var (
@@ -43,4 +45,10 @@ func InitEbiten() {
 	ebiten.SetWindowSize(engine.GameWidth, engine.GameHeight)
 	ebiten.SetWindowTitle("AAAAAA")
 	audio.NewContext(48000)
+	// TODO when adding a menu, actually show these credits.
+	credits, err := vfs.ReadDir("credits")
+	if err != nil {
+		log.Panicf("Could not list credits: %v", err)
+	}
+	log.Printf("Credits files: %v", credits)
 }

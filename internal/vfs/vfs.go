@@ -23,6 +23,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"sort"
 
 	"github.com/rakyll/statik/fs"
 
@@ -67,6 +68,7 @@ type ReadSeekCloser interface {
 func Load(purpose string, name string) (ReadSeekCloser, error) {
 	vfsPath := path.Join("/", purpose, path.Base(name))
 	if localAssetDirs != nil {
+		// Note: this must be consistent with statik-vfs.sh.
 		var err error
 		for _, dir := range localAssetDirs {
 			var r ReadSeekCloser
@@ -83,4 +85,39 @@ func Load(purpose string, name string) (ReadSeekCloser, error) {
 		return nil, fmt.Errorf("could not open statik:%v: %v", vfsPath, err)
 	}
 	return r, nil
+}
+
+// Lists all files in a directory. Returns their VFS paths!
+func ReadDir(name string) ([]string, error) {
+	vfsPath := path.Join("/", name)
+	var results []string
+	if localAssetDirs != nil {
+		for _, dir := range localAssetDirs {
+			content, err := ioutil.ReadDir(path.Join(dir, vfsPath))
+			if err != nil {
+				if !os.IsNotExist(err) {
+					return nil, fmt.Errorf("could not scan local:%v:%v: %v", vfsPath, dir, err)
+				}
+				continue
+			}
+			for _, info := range content {
+				results = append(results, filepath.Join(vfsPath, info.Name()))
+			}
+		}
+		sort.Strings(results)
+		return results, nil
+	}
+	dir, err := myfs.Open(vfsPath)
+	if err != nil {
+		return nil, fmt.Errorf("could not scan statik:%v: %v", err)
+	}
+	content, err := dir.Readdir(-1)
+	if err != nil {
+		return nil, fmt.Errorf("could not scan statik:%v: %v", err)
+	}
+	for _, info := range content {
+		results = append(results, filepath.Join(vfsPath, info.Name()))
+	}
+	sort.Strings(results)
+	return results, nil
 }
