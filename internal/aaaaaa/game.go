@@ -14,6 +14,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
 	"github.com/divVerent/aaaaaa/internal/image"
+	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
@@ -78,6 +79,9 @@ func (g *Game) Update() error {
 			g.World.RespawnPlayer(cpName, cpFlipped)
 		}
 	}
+
+	timing.Section("music")
+	music.Update()
 
 	timing.Section("world")
 	return g.World.Update()

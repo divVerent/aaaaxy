@@ -706,6 +706,7 @@
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Leap of Faith"/>
     <property name="type" value="Checkpoint"/>
+    <property name="music" value="retro_chiptune_1.ogg"/>
    </properties>
   </object>
   <object id="58" name="WarpInfiniteStairs" gid="2" x="4496" y="4128" width="16" height="48"/>
