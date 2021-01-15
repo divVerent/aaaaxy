@@ -2,7 +2,7 @@
 NO_VFS = false
 
 # System properties.
-EXE = $(go env GOEXE)
+EXE = $(shell go env GOEXE)
 
 # Internal variables.
 PACKAGE = github.com/divVerent/aaaaaa/cmd/aaaaaa
@@ -11,7 +11,7 @@ DEBUG = aaaaaa-debug$(EXE)
 DEBUG_GOFLAGS =
 RELEASE = aaaaaa$(EXE)
 RELEASE_GOFLAGS = -ldflags="-s -w" -gcflags="-B -dwarf=false"
-UPXFLAGS = --brute
+UPXFLAGS = -9
 
 .PHONY: default
 default: debug
