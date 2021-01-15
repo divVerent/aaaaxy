@@ -23,19 +23,18 @@ else
 			mkdir -p "$tmpdir/${file%/*}"
 			logged ln -snf "$root/$sourcedir/$file" "$tmpdir/$file"
 		done
-	done
-	cd "$root"
-	for license in third_party/*/LICENSE; do
-		directory=${license%/*}
-		directory=${directory#third_party/}
-		logged cd "$root/third_party/$directory"
-		[ -d assets ] || continue
+		directory=${sourcedir%/*}
+		directory=${directory##*/}
 		{
 			echo "Applying to the following files:"
-			logged find assets -type f -print
+			logged find . -type f -print
 			echo
-			logged cat LICENSE
-		} > "$tmpdir/$directory.LICENSE"
+			if [ -f ../COPYRIGHT.md ]; then
+				logged cat ../COPYRIGHT.md
+				echo
+			fi
+			logged cat ../LICENSE
+		} | logged dd status=none of="$tmpdir/$directory.COPYRIGHT"
 	done
 fi
 logged statik -m -f -src "$tmpdir/" -dest "$root/$destdir"
