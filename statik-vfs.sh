@@ -23,6 +23,9 @@ else
 			mkdir -p "$tmpdir/${file%/*}"
 			logged ln -snf "$root/$sourcedir/$file" "$tmpdir/$file"
 		done
+		# Also copy over our license and copyright files to make
+		# the copyright situation really clear to anyone extracting the
+		# VFS data.
 		directory=${sourcedir%/*}
 		directory=${directory##*/}
 		{
