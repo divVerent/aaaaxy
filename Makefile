@@ -1,13 +1,40 @@
+# User configrable.
 NO_VFS = false
 
-all: aaaaaa-debug
+# System properties.
+EXE = $(go env GOEXE)
 
-generate:
-	NO_VFS=$(NO_VFS) ./statik-vfs.sh internal/assets/
+# Internal variables.
+PACKAGE = github.com/divVerent/aaaaaa/cmd/aaaaaa
+ASSETS_SUBPACKAGE = internal/assets
+DEBUG = aaaaaa-debug$(EXE)
+DEBUG_FLAGS =
+RELEASE = aaaaaa$(EXE)
+RELEASE_FLAGS = -ldflags="-s -w" -gcflags="-B -dwarf=false"
 
-aaaaaa-debug: generate
-	go build -o aaaaaa-debug github.com/divVerent/aaaaaa/cmd/aaaaaa
+.PHONY: default
+default: debug
 
-aaaaaa: generate
-	go build -o aaaaaa -ldflags='-s -w' github.com/divVerent/aaaaaa/cmd/aaaaaa
-	upx --best --brute ./aaaaaa
+.PHONY: all
+all: debug release
+
+.PHONY: debug
+debug: $(DEBUG)
+
+.PHONY: release
+release: $(RELEASE)
+
+.PHONY: clean
+clean:
+	$(RM) -r $(DEBUG) $(RELEASE) $(ASSETS_SUBPACKAGE)
+
+.PHONY: $(ASSETS_SUBPACKAGE)
+$(ASSETS_SUBPACKAGE):
+	NO_VFS=$(NO_VFS) ./statik-vfs.sh internal/assets:
+
+$(DEBUG): generate
+	go build -o $(DEBUG) $(DEBUG_FLAGS) $(PACKAGE)
+
+$(RELEASE): generate
+	go build -o $(RELEASE) $(RELEASE_FLAGS) $(PACKAGE)
+	upx --best --ultra-brute $(RELEASE)
