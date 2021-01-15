@@ -1,6 +1,7 @@
 package game
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -8,6 +9,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/sound"
 )
 
 type Player struct {
@@ -22,7 +24,8 @@ type Player struct {
 	Velocity m.Delta
 	SubPixel m.Delta
 
-	Anim animation.State
+	Anim      animation.State
+	JumpSound *sound.Sound
 }
 
 // Player height is 30 px.
@@ -121,6 +124,12 @@ func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 			WaitFinish:   true,
 		}}, "idle")
 
+	var err error
+	p.JumpSound, err = sound.Load("jump.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load jump sound: %v", err)
+	}
+
 	return nil
 }
 
@@ -153,6 +162,7 @@ func (p *Player) Update() {
 			p.Velocity.DY -= JumpVelocity
 			p.OnGround = false
 			p.Jumping = true
+			p.JumpSound.Play()
 		}
 	} else {
 		p.Jumping = false

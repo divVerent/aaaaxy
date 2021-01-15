@@ -45,5 +45,5 @@ func Load(name string) (*Sound, error) {
 
 // Play plays the given sound effect.
 func (s *Sound) Play() {
-	audio.NewPlayerFromBytes(audio.CurrentContext(), s.sound)
+	audio.NewPlayerFromBytes(audio.CurrentContext(), s.sound).Play()
 }
