@@ -11,8 +11,8 @@ import (
 
 const (
 	xFadeFrameOut = 120
-	xFadeFrameIn  = 0
-	xFadeFrameEnd = 120
+	xFadeFrameIn  = 60
+	xFadeFrameEnd = 180
 )
 
 type track struct {
@@ -84,6 +84,10 @@ func Update() {
 	if !fadeTo.valid && next.valid {
 		fadeTo, next = next, fadeTo
 		xFadeFrame = 0
+		// Skip right to fade-in if we are currently playing silence.
+		if current.player == nil {
+			xFadeFrame = xFadeFrameIn
+		}
 	}
 	// Nothing to fade?
 	if !fadeTo.valid {
@@ -102,7 +106,7 @@ func Update() {
 			current.setVolume(float64(xFadeFrameOut-xFadeFrame) / float64(xFadeFrameOut))
 		}
 	}
-	if fadeTo.valid && xFadeFrame >= xFadeFrameIn {
+	if fadeTo.valid && xFadeFrame > xFadeFrameIn {
 		fadeTo.setVolume(float64(xFadeFrame-xFadeFrameIn) / float64(xFadeFrameEnd-xFadeFrameIn))
 		if xFadeFrame == xFadeFrameIn+1 {
 			fadeTo.play()
