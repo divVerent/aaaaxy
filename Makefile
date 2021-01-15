@@ -6,11 +6,12 @@ EXE = $(go env GOEXE)
 
 # Internal variables.
 PACKAGE = github.com/divVerent/aaaaaa/cmd/aaaaaa
-ASSETS_SUBPACKAGE = internal/assets
+ASSETS = internal/assets
 DEBUG = aaaaaa-debug$(EXE)
-DEBUG_FLAGS =
+DEBUG_GOFLAGS =
 RELEASE = aaaaaa$(EXE)
-RELEASE_FLAGS = -ldflags="-s -w" -gcflags="-B -dwarf=false"
+RELEASE_GOFLAGS = -ldflags="-s -w" -gcflags="-B -dwarf=false"
+UPXFLAGS = --brute
 
 .PHONY: default
 default: debug
@@ -26,15 +27,15 @@ release: $(RELEASE)
 
 .PHONY: clean
 clean:
-	$(RM) -r $(DEBUG) $(RELEASE) $(ASSETS_SUBPACKAGE)
+	$(RM) -r $(DEBUG) $(RELEASE) $(ASSETS)
 
-.PHONY: $(ASSETS_SUBPACKAGE)
-$(ASSETS_SUBPACKAGE):
-	NO_VFS=$(NO_VFS) ./statik-vfs.sh internal/assets:
+.PHONY: $(ASSETS)
+$(ASSETS):
+	NO_VFS=$(NO_VFS) ./statik-vfs.sh $(ASSETS)
 
-$(DEBUG): generate
-	go build -o $(DEBUG) $(DEBUG_FLAGS) $(PACKAGE)
+$(DEBUG): $(ASSETS)
+	go build -o $(DEBUG) $(DEBUG_GOFLAGS) $(PACKAGE)
 
-$(RELEASE): generate
-	go build -o $(RELEASE) $(RELEASE_FLAGS) $(PACKAGE)
-	upx --best --ultra-brute $(RELEASE)
+$(RELEASE): $(ASSETS)
+	go build -o $(RELEASE) $(RELEASE_GOFLAGS) $(PACKAGE)
+	upx $(UPXFLAGS) $(RELEASE)
