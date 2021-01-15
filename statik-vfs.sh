@@ -28,13 +28,14 @@ else
 		{
 			echo "Applying to the following files:"
 			logged find . -type f -print
-			echo
 			if [ -f ../COPYRIGHT.md ]; then
-				logged cat ../COPYRIGHT.md
 				echo
+				logged cat ../COPYRIGHT.md
 			fi
-			logged cat ../LICENSE
+			echo
+			echo "License file: $directory.LICENSE"
 		} | logged dd status=none of="$tmpdir/$directory.COPYRIGHT"
+		logged ln -snf "$root/$sourcedir/../LICENSE" "$tmpdir/$directory.LICENSE"
 	done
 fi
 logged statik -m -f -src "$tmpdir/" -dest "$root/$destdir"
