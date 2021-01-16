@@ -154,19 +154,17 @@ func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 		log.Panicf("Could not spawn player: checkpoint %q not found", checkpointName)
 	}
 
-	cpOrientation := m.Identity()
-	cpOrientationStr := cpSp.Properties["required_orientation"]
-	if cpOrientationStr != "" {
+	cpTransform := m.Identity()
+	cpTransformStr := cpSp.Properties["required_orientation"]
+	if cpTransformStr != "" {
 		var err error
-		cpOrientation, err = m.ParseOrientation(cpOrientationStr)
+		cpTransform, err = m.ParseOrientation(cpTransformStr)
 		if err != nil {
 			log.Panicf("Could not parse checkpoint orientation: %v", err)
 		}
-		// Convert from "as seen in level editor" to real orientation.
-		cpOrientation = cpOrientation.Inverse()
 	}
 	if flipped {
-		cpOrientation = m.FlipX().Concat(cpOrientation)
+		cpTransform = cpTransform.Concat(m.FlipX())
 	}
 
 	w.visibilityMark++
@@ -178,7 +176,7 @@ func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 	if err != nil {
 		log.Panicf("Could not parse initial orientation: %v", err)
 	}
-	tile.Transform = cpOrientation.Inverse().Concat(tile.Transform)
+	tile.Transform = cpTransform.Concat(tile.Transform)
 	tile.Orientation = tile.Transform.Inverse().Concat(tile.Orientation)
 
 	// Build a new world around the CP tile and the player.

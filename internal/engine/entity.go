@@ -53,9 +53,10 @@ type Entity struct {
 	visibilityMark uint
 
 	// Info needed for gameplay.
-	Solid  bool
-	Opaque bool
-	Rect   m.Rect
+	Solid     bool
+	Opaque    bool
+	Rect      m.Rect
+	Transform m.Orientation // Possibly needed for initialization.
 
 	// Info needed for rendering.
 	Orientation  m.Orientation
@@ -134,6 +135,7 @@ func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
 	e := &Entity{
 		Incarnation: incarnation,
 		Impl:        eImpl,
+		Transform:   t.Transform,
 	}
 	pivot2InTile := m.Pos{X: TileSize, Y: TileSize}
 	e.Rect = tInv.ApplyToRect2(pivot2InTile, s.RectInTile)

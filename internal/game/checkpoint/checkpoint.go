@@ -45,21 +45,21 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 	c.World = w
 	c.Entity = e
 
-	requiredOrientation, err := m.ParseOrientation(s.Properties["required_orientation"])
+	// Field contains orientation OF THE PLAYER to make it easier in the map editor.
+	// So it is actually a transform as far as this code is concerned.
+	requiredTransform, err := m.ParseOrientation(s.Properties["required_orientation"])
 	if err != nil {
 		return fmt.Errorf("could not parse required orientation: %v", err)
 	}
-	// Field contains orientation OF THE PLAYER to make it easier in the map editor. So we need to invert.
-	requiredOrientation = requiredOrientation.Inverse()
 
 	c.Name = s.Properties["name"]
 	c.Text = s.Properties["text"]
 	c.Music = s.Properties["music"]
 
 	c.PlayerProperty = "checkpoint_seen." + c.Name
-	if c.Entity.Orientation == requiredOrientation {
+	if c.Entity.Transform == requiredTransform {
 		c.PlayerPropertyFlipped = "Identity"
-	} else if c.Entity.Orientation == m.FlipX().Concat(requiredOrientation) {
+	} else if c.Entity.Transform == requiredTransform.Concat(m.FlipX()) {
 		c.PlayerPropertyFlipped = "FlipX"
 	} else {
 		c.Inactive = true
