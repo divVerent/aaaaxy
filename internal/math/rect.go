@@ -46,6 +46,16 @@ func (r Rect) OppositeCorner() Pos {
 	return r.Origin.Add(r.Size).Sub(Delta{DX: 1, DY: 1})
 }
 
+// Center returns the coordinate in the middle of the rectangle.
+func (r Rect) Center() Pos {
+	return r.Origin.Add(r.Size.Div(2))
+}
+
+// Foot returns the coordinate in the bottom middle of the rectangle.
+func (r Rect) Foot() Pos {
+	return r.Origin.Add(Delta{DX: r.Size.DX / 2, DY: r.Size.DY - 1})
+}
+
 func intervalDistance(a0, a1, b0, b1 int) int {
 	// If intervals are separated, compute separation amount.
 	if b0 > a1 {
