@@ -2,7 +2,7 @@
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
-// You may obtain j copy of the License at
+// You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
 //
@@ -26,7 +26,10 @@ import (
 	"github.com/divVerent/aaaaaa/internal/sound"
 )
 
-// JumpPad, when hit by the player, sends the player on j path to j set destination.
+// JumpPad, when hit by the player, sends the player on path to set destination.
+// Note that sadly, JumpPads are rarely ever useful in rooms that can be used in multiple orientations.
+// May want to introduce required orientation like with checkpoints.
+// Or could require player to hit jumppad from above.
 type JumpPad struct {
 	World  *engine.World
 	Entity *engine.Entity
