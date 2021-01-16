@@ -45,9 +45,9 @@ func (j *JumpPad) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) 
 	e.Solid = true
 
 	var destination m.Delta
-	_, err := fmt.Sscanf(s.Properties["destination"], "%d %d", &destination.DX, &destination.DY)
+	_, err := fmt.Sscanf(s.Properties["delta"], "%d %d", &destination.DX, &destination.DY)
 	if err != nil {
-		return fmt.Errorf("failed to parse destination: %v", err)
+		return fmt.Errorf("failed to parse delta: %v", err)
 	}
 	// Destination is actually measured from center of trigger; need to transform to worldspace.
 	j.Destination = e.Rect.Center().Add(e.Transform.Inverse().Apply(destination))
@@ -99,12 +99,11 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 	// Finally:
 	// - vDY * t + 1/2 * playerGravity * t^2 = deltaDY * SubpixelScale
 	// - vDX * t = deltaDX
-	// -b/2a +/- sqrt((b^2-4ac)/(4a^2))
 	a := 0.5 * player.Gravity
 	b := float64(vDY)
 	c := -float64(delta.DY) * player.SubPixelScale
 	u := -b / (2 * a)
-	v := math.Sqrt((b*b - 4*a*c)) / (2 * a)
+	v := math.Sqrt(b*b-4*a*c) / (2 * a)
 	if apexOutside && !targetHigher {
 		v = -v
 	}
@@ -131,6 +130,7 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	delta := dest.Delta(source)
 	p.Velocity = calculateJump(delta, j.Height)
 	p.OnGround = false
+	j.JumpSound.Play()
 }
 
 func (j *JumpPad) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}

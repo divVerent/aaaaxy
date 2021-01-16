@@ -33,6 +33,7 @@ type Player struct {
 
 	OnGround bool
 	Jumping  bool
+	Jumped   bool
 	LookUp   bool
 	LookDown bool
 	Velocity m.Delta
@@ -176,6 +177,7 @@ func (p *Player) Update() {
 			p.Velocity.DY -= JumpVelocity
 			p.OnGround = false
 			p.Jumping = true
+			p.Jumped = true
 			p.JumpSound.Play()
 		}
 	} else {
@@ -196,7 +198,7 @@ func (p *Player) Update() {
 		if moveRight {
 			accelerate(&p.Velocity.DX, AirAccel, MaxAirSpeed, +1)
 		}
-		if p.Velocity.DY < 0 && !p.Jumping {
+		if p.Velocity.DY < 0 && p.Jumped && !p.Jumping {
 			p.Velocity.DY += JumpExtraGravity
 		}
 	}
@@ -211,7 +213,6 @@ func (p *Player) Update() {
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
 			IgnoreEnt: p.Entity,
 		})
-		p.handleTouch(trace)
 		if trace.EndPos == dest {
 			// Nothing hit.
 			p.SubPixel.DX -= move.DX * SubPixelScale
@@ -225,13 +226,13 @@ func (p *Player) Update() {
 			p.Velocity.DX = 0
 		}
 		p.Entity.Rect.Origin = trace.EndPos
+		p.handleTouch(trace)
 	}
 	if move.DY != 0 {
 		dest := p.Entity.Rect.Origin.Add(m.Delta{DY: move.DY})
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
 			IgnoreEnt: p.Entity,
 		})
-		p.handleTouch(trace)
 		if trace.EndPos == dest {
 			// Nothing hit.
 			p.SubPixel.DY -= move.DY * SubPixelScale
@@ -249,19 +250,21 @@ func (p *Player) Update() {
 					p.Anim.SetGroup("land")
 				}
 				p.OnGround = true
+				p.Jumped = false
 			} else {
 				p.Anim.SetGroup("hithead")
 			}
 		}
 		p.Entity.Rect.Origin = trace.EndPos
+		p.handleTouch(trace)
 	} else if p.OnGround {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
 			IgnoreEnt: p.Entity,
 		})
-		p.handleTouch(trace)
 		if trace.EndPos != p.Entity.Rect.Origin {
 			p.OnGround = false
 		}
+		p.handleTouch(trace)
 	}
 
 	if moveLeft && !moveRight {
