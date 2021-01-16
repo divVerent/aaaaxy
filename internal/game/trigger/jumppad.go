@@ -121,16 +121,32 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	if !ok {
 		return
 	}
-	// Require player to leave before jumping the player again.
-	prevTouchedFrame := j.TouchedFrame
-	j.TouchedFrame = 2
-	if prevTouchedFrame > 0 {
+	// Can not touch from below (not gonna work anyway).
+	if other.Rect.Origin.Y > j.Entity.Rect.OppositeCorner().Y {
 		return
 	}
 	// Compute parameters for jump.
 	source := other.Rect.Foot()
 	dest := j.Destination
 	delta := dest.Delta(source)
+	// Can't jump from the "opposite side" of the jumppad (not gonna work either).
+	if delta.DX >= 0 {
+		if other.Rect.OppositeCorner().X < j.Entity.Rect.Origin.X {
+			return
+		}
+	}
+	if delta.DX <= 0 {
+		if other.Rect.Origin.X > j.Entity.Rect.OppositeCorner().X {
+			return
+		}
+	}
+	// Require player to leave before jumping the player again.
+	prevTouchedFrame := j.TouchedFrame
+	j.TouchedFrame = 2
+	if prevTouchedFrame > 0 {
+		return
+	}
+	// Perform the jump.
 	p.Velocity = calculateJump(delta, j.Height)
 	p.OnGround = false
 	j.JumpSound.Play()
