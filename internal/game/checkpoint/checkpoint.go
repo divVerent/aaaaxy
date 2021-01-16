@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package game
+package checkpoint
 
 import (
 	"fmt"
@@ -22,6 +22,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/player"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
 )
@@ -79,7 +80,7 @@ func (c *Checkpoint) Update() {
 	}
 	// Checkpoint always sets "mood".
 	music.Switch(c.Music)
-	player := c.World.Player.Impl.(*Player)
+	player := c.World.Player.Impl.(*player.Player)
 	if player.PersistentState["last_checkpoint"] == c.Name && player.PersistentState[c.PlayerProperty] == c.PlayerPropertyFlipped {
 		return
 	}
