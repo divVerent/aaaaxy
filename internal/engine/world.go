@@ -51,14 +51,16 @@ var (
 
 // World represents the current game state including its entities.
 type World struct {
-	// tiles are all tiles currently loaded.
+	// Tiles are all tiles currently loaded.
 	Tiles map[m.Pos]*Tile
-	// entities are all entities currently loaded.
+	// Entities are all entities currently loaded.
 	Entities map[EntityIncarnation]*Entity
 	// PlayerIncarnation is the incarnation ID of the player entity.
 	Player *Entity
-	// level is the current tilemap (universal covering with warpZones).
+	// Level is the current tilemap (universal covering with warpZones).
 	Level *Level
+	// Frame since last spawn. Used to let the world slowly "fade in".
+	FramesSinceSpawn int
 
 	// Properties that can in theory be regenerated from the above and thus do not
 	// need serialization support.
@@ -215,6 +217,9 @@ func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 	// Scroll the player in view right away.
 	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
 
+	// Show the fade in.
+	w.FramesSinceSpawn = 0
+
 	// Notify the player, reset animation state.
 	w.Player.Impl.(PlayerEntityImpl).Respawned()
 }
@@ -293,7 +298,7 @@ func (w *World) updateScrollPos(target m.Pos) {
 }
 
 // updateVisibility loads all visible tiles and discards all tiles not visible right now.
-func (w *World) updateVisibility(eye m.Pos) {
+func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	defer timing.Group()()
 
 	// Delete all tiles merely marked for expanding.
@@ -317,21 +322,29 @@ func (w *World) updateVisibility(eye m.Pos) {
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
 	w.visiblePolygonCenter = eye
 	w.visiblePolygon = w.visiblePolygon[0:0]
-	for x := screen0.X; x < screen1.X; x += sweepStep {
-		trace := w.traceLineAndMark(eye, m.Pos{X: x, Y: screen0.Y})
+	addTrace := func(rawTarget m.Pos) {
+		delta := rawTarget.Delta(w.scrollPos)
+		// Diamond shape (cooler?). Could otherwise easily use Length2 here.
+		targetDist := delta.Norm1()
+		if targetDist > maxDist {
+			f := float64(maxDist) / float64(targetDist)
+			delta = delta.MulFloat(f)
+		}
+		target := w.scrollPos.Add(delta)
+		trace := w.traceLineAndMark(eye, target)
 		w.visiblePolygon = append(w.visiblePolygon, trace.EndPos)
+	}
+	for x := screen0.X; x < screen1.X; x += sweepStep {
+		addTrace(m.Pos{X: x, Y: screen0.Y})
 	}
 	for y := screen0.Y; y < screen1.Y; y += sweepStep {
-		trace := w.traceLineAndMark(eye, m.Pos{X: screen1.X, Y: y})
-		w.visiblePolygon = append(w.visiblePolygon, trace.EndPos)
+		addTrace(m.Pos{X: screen1.X, Y: y})
 	}
 	for x := screen1.X; x > screen0.X; x -= sweepStep {
-		trace := w.traceLineAndMark(eye, m.Pos{X: x, Y: screen1.Y})
-		w.visiblePolygon = append(w.visiblePolygon, trace.EndPos)
+		addTrace(m.Pos{X: x, Y: screen1.Y})
 	}
 	for y := screen1.Y; y > screen0.Y; y -= sweepStep {
-		trace := w.traceLineAndMark(eye, m.Pos{X: screen0.X, Y: y})
-		w.visiblePolygon = append(w.visiblePolygon, trace.EndPos)
+		addTrace(m.Pos{X: screen0.X, Y: y})
 	}
 	if *expandUsingVertices {
 		expandPolygon(w.visiblePolygonCenter, w.visiblePolygon, expandSize)
@@ -425,6 +438,7 @@ func (w *World) updateVisibility(eye m.Pos) {
 
 func (w *World) Update() error {
 	defer timing.Group()()
+	w.FramesSinceSpawn++
 
 	// Let everything move.
 	timing.Section("entities")
@@ -438,7 +452,7 @@ func (w *World) Update() error {
 
 	// Update visibility and spawn/despawn entities.
 	timing.Section("visibility")
-	w.updateVisibility(playerImpl.EyePos())
+	w.updateVisibility(playerImpl.EyePos(), w.FramesSinceSpawn*pixelsPerSpawnFrame)
 
 	// Update centerprints.
 	centerprint.Update()

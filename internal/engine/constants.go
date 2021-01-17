@@ -57,6 +57,9 @@ const (
 	MinZIndex = 0
 	// MaxZIndex is the maximum Z index of an entity.
 	MaxZIndex = 15
+
+	// Fully "fade in" in one second.
+	pixelsPerSpawnFrame = (GameWidth / 2) / 60
 )
 
 //expandStep is a single expansion step.
