@@ -125,15 +125,24 @@ func LoadLevel(filename string) (*Level, error) {
 	if t.Orientation != "orthogonal" {
 		return nil, fmt.Errorf("unsupported map: got orientation %q, want orthogonal", t.Orientation)
 	}
+	// t.RenderOrder doesn't matter.
+	// t.Width, t.Height used later.
 	if t.TileWidth != TileSize || t.TileHeight != TileSize {
 		return nil, fmt.Errorf("unsupported map: got tile size %dx%d, want %dx%d", t.TileWidth, t.TileHeight, TileSize, TileSize)
 	}
+	// t.HexSideLength doesn't matter.
+	// t.StaggerAxis doesn't matter.
+	// t.StaggerIndex doesn't matter.
+	// t.BackgroundColor doesn't matter.
+	// t.NextObjectID doesn't matter.
 	if len(t.TileSets) != 1 {
 		return nil, fmt.Errorf("unsupported map: got %d embedded tilesets, want 1", len(t.TileSets))
 	}
+	// t.Properties doesn't matter.
 	if len(t.Layers) != 1 {
 		return nil, fmt.Errorf("unsupported map: got %d layers, want 1", len(t.Layers))
 	}
+	// t.ObjectGroups used later.
 	if len(t.ImageLayers) != 0 {
 		return nil, fmt.Errorf("unsupported map: got %d image layers, want 0", len(t.ImageLayers))
 	}
@@ -152,7 +161,34 @@ func LoadLevel(filename string) (*Level, error) {
 			t.TileSets[i] = *decoded
 		}
 	}
-	tds, err := t.Layers[0].TileDefs(t.TileSets)
+	for _, ts := range t.TileSets {
+		if ts.TileWidth != TileSize || ts.TileHeight != TileSize {
+			return nil, fmt.Errorf("unsupported tileset: got tile size %dx%d, want %dx%d", ts.TileWidth, ts.TileHeight, TileSize, TileSize)
+		}
+		// ts.Spacing, ts.Margin, ts.TileCount, ts.Columns doesn't matter (we only support multi image tilesets).
+		// TODO would be nice if we could compare ObjectAlignment here. We only support "topleft".
+		// ts.Properties doesn't matter.
+		if (ts.TileOffset != tmx.TileOffset{}) {
+			return nil, fmt.Errorf("unsupported tileset: got a tile offset")
+		}
+		if ts.Image.Source != "" {
+			return nil, fmt.Errorf("unsupported tileset: got single image, want image collection")
+		}
+		// ts.TerrainTypes doesn't matter (editor only).
+		// ts.Tiles used later.
+	}
+	layer := &t.Layers[0]
+	if layer.X != 0 || layer.Y != 0 {
+		return nil, fmt.Errorf("unsupported map: layer has been shifted")
+	}
+	// layer.Width, layer.Height used later.
+	// layer.Opacity, layer.Visible not used (we allow it though as it may help in the editor).
+	if layer.OffsetX != 0 || layer.OffsetY != 0 {
+		return nil, fmt.Errorf("unsupported map: layer has an offset")
+	}
+	// layer.Properties not used.
+	// layer.RawData not used.
+	tds, err := layer.TileDefs(t.TileSets)
 	if err != nil {
 		return nil, fmt.Errorf("invalid map layer: %v", err)
 	}
@@ -164,7 +200,17 @@ func LoadLevel(filename string) (*Level, error) {
 		if td.Nil {
 			continue
 		}
-		pos := m.Pos{X: i % t.Layers[0].Width, Y: i / t.Layers[0].Width}
+		// td.Tile.Probability not used (editor only).
+		// td.Tile.Properties used later.
+		// td.Tile.Image used later.
+		if len(td.Tile.Animation) != 0 {
+			return nil, fmt.Errorf("unsupported tileset: got an animation")
+		}
+		if len(td.Tile.ObjectGroup.Objects) != 0 {
+			return nil, fmt.Errorf("unsupported tileset: got objects in a tile")
+		}
+		// td.Tile.RawTerrainType not used (editor only).
+		pos := m.Pos{X: i % layer.Width, Y: i / layer.Width}
 		orientation := m.Identity()
 		if td.HorizontallyFlipped {
 			orientation = m.FlipX().Concat(orientation)
@@ -218,33 +264,56 @@ func LoadLevel(filename string) (*Level, error) {
 	}
 	warpZones := map[string][]RawWarpZone{}
 	for _, og := range t.ObjectGroups {
+		// og.Name, og.Color not used (editor only).
+		if og.X != 0 || og.Y != 0 {
+			return nil, fmt.Errorf("unsupported map: object group has been shifted")
+		}
+		// og.Width, og.Height not used.
+		// og.Opacity, og.Visible not used (we allow it though as it may help in the editor).
+		if og.OffsetX != 0 || og.OffsetY != 0 {
+			return nil, fmt.Errorf("unsupported map: object group has an offset")
+		}
+		// og.DrawOrder not used (we use our own z index).
+		// og.Properties not used.
 		for _, o := range og.Objects {
+			// o.ObjectID used later.
 			properties := map[string]string{}
 			if o.Name != "" {
 				properties["name"] = o.Name
 			}
-			for _, prop := range o.Properties {
-				properties[prop.Name] = prop.Value
+			// o.X, o.Y, o.Width, o.Height used later.
+			if o.Rotation != 0 {
+				return nil, fmt.Errorf("unsupported map: object %v has a rotation (maybe implement this?)", o.ObjectID)
 			}
 			var tile *tmx.Tile
 			if o.GlobalID != 0 {
 				tile = t.TileSets[0].TileWithID(o.GlobalID.TileID(&t.TileSets[0]))
+				properties["type"] = "Sprite"
+				properties["image_dir"] = "tiles"
 				properties["image"] = tile.Image.Source
 				for _, prop := range tile.Properties {
 					properties[prop.Name] = prop.Value
 				}
 			}
-			objType := o.Type
-			if objType == "" {
-				objType = properties["type"]
+			// o.Visible not used (we allow it though as it may help in the editor).
+			if o.Polygons != nil {
+				return nil, fmt.Errorf("unsupported map: object %v has polygons", o.ObjectID)
 			}
-			if objType == "" && tile != nil {
-				// This entity renders a tile.
-				objType = "Sprite"
-				properties["image_dir"] = "tiles"
-				properties["image"] = tile.Image.Source
+			if o.Polylines != nil {
+				return nil, fmt.Errorf("unsupported map: object %v has polylines", o.ObjectID)
 			}
-			// TODO actually support object orientation.
+			if o.Image.Source != "" {
+				properties["type"] = "Sprite"
+				properties["image_dir"] = "sprites"
+				properties["image"] = o.Image.Source
+			}
+			if o.Type != "" {
+				properties["type"] = o.Type
+			}
+			for _, prop := range o.Properties {
+				properties[prop.Name] = prop.Value
+			}
+			// o.RawExtra not used.
 			entRect := m.Rect{
 				Origin: m.Pos{
 					X: int(o.X),
@@ -264,7 +333,7 @@ func LoadLevel(filename string) (*Level, error) {
 					return nil, fmt.Errorf("invalid orientation: %v", err)
 				}
 			}
-			if objType == "WarpZone" {
+			if properties["type"] == "WarpZone" {
 				// WarpZones must be paired by name.
 				warpZones[properties["name"]] = append(warpZones[properties["name"]], RawWarpZone{
 					StartTile:   startTile,
@@ -275,7 +344,7 @@ func LoadLevel(filename string) (*Level, error) {
 			}
 			ent := Spawnable{
 				ID:         EntityID(o.ObjectID),
-				EntityType: objType,
+				EntityType: properties["type"],
 				LevelPos:   startTile,
 				RectInTile: m.Rect{
 					Origin: entRect.Origin.Sub(
@@ -286,13 +355,13 @@ func LoadLevel(filename string) (*Level, error) {
 				Properties:      properties,
 				PersistentState: PersistentState{},
 			}
-			if objType == "Player" {
+			if properties["type"] == "Player" {
 				level.Player = &ent
 				level.Checkpoints[""] = &ent
 				// Do not link to tiles.
 				continue
 			}
-			if objType == "Checkpoint" {
+			if properties["type"] == "Checkpoint" {
 				level.Checkpoints[properties["name"]] = &ent
 				// These do get linked.
 			}
