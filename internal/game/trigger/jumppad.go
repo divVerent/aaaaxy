@@ -47,13 +47,18 @@ func (j *JumpPad) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) 
 	e.Opaque = false
 	e.Solid = true
 
-	var destination m.Delta
-	_, err := fmt.Sscanf(s.Properties["delta"], "%d %d", &destination.DX, &destination.DY)
+	var delta m.Delta
+	_, err := fmt.Sscanf(s.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
 	if err != nil {
 		return fmt.Errorf("failed to parse delta: %v", err)
 	}
+	var relDelta m.Delta
+	_, err = fmt.Sscanf(s.Properties["rel_delta"], "%d %d", &relDelta.DX, &relDelta.DY)
+	if err != nil && s.Properties["rel_delta"] != "" {
+		return fmt.Errorf("failed to parse absolute delta: %v", err)
+	}
 	// Destination is actually measured from center of trigger; need to transform to worldspace.
-	j.Destination = e.Rect.Center().Add(e.Transform.Inverse().Apply(destination))
+	j.Destination = e.Rect.Center().Add(e.Transform.Inverse().Apply(delta)).Add(relDelta)
 	_, err = fmt.Sscanf(s.Properties["height"], "%d", &j.Height)
 	if err != nil {
 		return fmt.Errorf("failed to parse height: %v", err)
