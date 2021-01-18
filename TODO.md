@@ -33,11 +33,12 @@ Graph:
   * Hilbert's Hotel
     * Shepard Tone (player has to play melody on an infinite piano by jumping on the right keys)
       * Turtles all the way down (have to enter mouth of tutle, ends up in front of another turtle, but is actually a copied room).
-        * More infinity stuff?
-          * -> Part 4: Infinity understood. Player can now push away balloons from distance.
-            * Various sections to train ability. Sokoban!
-            * Part that starts requiring another ability connects to previous area to provide it.
-              * Entrance to part 4+2 - requiring both abilities. Offers way to gain ability 2 first.
-              * A "dev room" that requires all three abilities.
+        * Don't Look Up (if you do, you fall down ad infinitum, must escape)
+          * More infinity stuff?
+            * -> Part 4: Infinity understood. Player can now push away balloons from distance.
+              * Various sections to train ability. Sokoban!
+              * Part that starts requiring another ability connects to previous area to provide it.
+                * Entrance to part 4+2 - requiring both abilities. Offers way to gain ability 2 first.
+                * A "dev room" that requires all three abilities.
   * The End
     * -> Part 5: Series of puzzles that require all three abilities.
