@@ -47,18 +47,20 @@ type Player struct {
 // So 30 px ~ 180 cm.
 // Gravity is 9.81 m/s^2 = 163.5 px/s^2.
 const (
-	// PlayerWidth is the width of the player.
-	PlayerWidth = engine.TileSize - 4
-	// PlayerHeight is the height of the player.
-	PlayerHeight = 2*engine.TileSize - 2
+	// PlayerWidth is the hitbox width of the player.
+	// Actual width is 14 (one extra pixel to left and right).
+	PlayerWidth = 12
+	// PlayerHeight is the hitbox height of the player.
+	// Actual height is 30 (three extra pixels at the top).
+	PlayerHeight = 27
 	// PlayerEyeDX is the X coordinate of the player's eye.
-	PlayerEyeDX = engine.TileSize/2 - 1
+	PlayerEyeDX = 6
 	// PlayerEyeDY is the Y coordinate of the player's eye.
-	PlayerEyeDY = engine.TileSize/2 - 1
+	PlayerEyeDY = 4
 	// PlayerOffsetDX is the player's render offset.
 	PlayerOffsetDX = -1
 	// PlayerOffsetDY is the player's render offset.
-	PlayerOffsetDY = 0
+	PlayerOffsetDY = -3
 
 	// LookTiles is how many tiles the player can look up/down.
 	LookDistance = engine.TileSize * 4
@@ -184,13 +186,14 @@ func (p *Player) Update() {
 		p.Jumping = false
 	}
 	if p.OnGround {
-		friction(&p.Velocity.DX, GroundFriction)
+		maxSpeed := MaxGroundSpeed + GroundFriction
 		if moveLeft {
-			accelerate(&p.Velocity.DX, GroundAccel, MaxGroundSpeed, -1)
+			accelerate(&p.Velocity.DX, GroundAccel, maxSpeed, -1)
 		}
 		if moveRight {
-			accelerate(&p.Velocity.DX, GroundAccel, MaxGroundSpeed, +1)
+			accelerate(&p.Velocity.DX, GroundAccel, maxSpeed, +1)
 		}
+		friction(&p.Velocity.DX, GroundFriction)
 	} else {
 		if moveLeft {
 			accelerate(&p.Velocity.DX, AirAccel, MaxAirSpeed, -1)
