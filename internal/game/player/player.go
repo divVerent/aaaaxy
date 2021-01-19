@@ -32,13 +32,13 @@ type Player struct {
 	Entity          *engine.Entity
 	PersistentState map[string]string
 
-	OnGround bool
-	Jumping  bool
-	Jumped   bool
-	LookUp   bool
-	LookDown bool
-	Velocity m.Delta
-	SubPixel m.Delta
+	OnGround  bool
+	Jumping   bool
+	JumpingUp bool
+	LookUp    bool
+	LookDown  bool
+	Velocity  m.Delta
+	SubPixel  m.Delta
 
 	Anim      animation.State
 	JumpSound *sound.Sound
@@ -173,7 +173,7 @@ func friction(vel *int, friction int) {
 
 func (p *Player) Update() {
 	if inpututil.IsKeyJustPressed(KeyRespawn) {
-		log.Print("respawn")
+		// TODO remove this debug hack, menu will do this instead. Maybe also a "death" routine.
 		cpName := p.PersistentState["last_checkpoint"]
 		cpFlipped := p.PersistentState["checkpoint_seen."+cpName] == "FlipX"
 		p.World.RespawnPlayer(cpName, cpFlipped)
@@ -188,7 +188,7 @@ func (p *Player) Update() {
 			p.Velocity.DY -= JumpVelocity
 			p.OnGround = false
 			p.Jumping = true
-			p.Jumped = true
+			p.JumpingUp = true
 			p.JumpSound.Play()
 		}
 	} else {
@@ -210,7 +210,7 @@ func (p *Player) Update() {
 		if moveRight {
 			accelerate(&p.Velocity.DX, AirAccel, MaxAirSpeed, +1)
 		}
-		if p.Velocity.DY < 0 && p.Jumped && !p.Jumping {
+		if p.Velocity.DY < 0 && p.JumpingUp && !p.Jumping {
 			p.Velocity.DY += JumpExtraGravity
 		}
 	}
@@ -262,7 +262,7 @@ func (p *Player) Update() {
 					p.Anim.SetGroup("land")
 				}
 				p.OnGround = true
-				p.Jumped = false
+				p.JumpingUp = false
 			} else {
 				p.Anim.SetGroup("hithead")
 			}
@@ -329,8 +329,8 @@ func (p *Player) LookPos() m.Pos {
 // Respawned informs the player that the world moved/respawned it.
 func (p *Player) Respawned() {
 	p.OnGround = true                // Do not get landing anim right away.
-	p.Jumping = false                // We're on ground.
-	p.Jumped = false                 // Reset jump key.
+	p.Jumping = true                 // Jump key must be hit again.
+	p.JumpingUp = false              // Do not assume we're in the first half of a jump (fastfall).
 	p.Velocity = m.Delta{}           // Stop moving.
 	p.SubPixel = m.Delta{}           // Stop moving.
 	p.Anim.ForceGroup("idle")        // Reset animation.
