@@ -95,6 +95,8 @@ type World struct {
 	blurImage *ebiten.Image
 	// visibilityMaskImage is an offscreen image used for masking the visible area.
 	visibilityMaskImage *ebiten.Image
+	// respawned is set if the player got respawned this frame.
+	respawned bool
 }
 
 func NewWorld() *World {
@@ -222,6 +224,9 @@ func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 
 	// Notify the player, reset animation state.
 	w.Player.Impl.(PlayerEntityImpl).Respawned()
+
+	// Skip updating.
+	w.respawned = true
 }
 
 func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
@@ -252,10 +257,16 @@ func expandPolygon(center m.Pos, polygon []m.Pos, shift int) {
 	}
 }
 
-// updateEntities lets all entities move/act.
 func (w *World) updateEntities() {
+	w.respawned = false
 	for _, ent := range w.Entities {
 		ent.Impl.Update()
+		if w.respawned {
+			// Once respawned, stop further processing to avoid
+			// entities to interact with the respawned player.
+			log.Print("respawned")
+			return
+		}
 	}
 }
 
