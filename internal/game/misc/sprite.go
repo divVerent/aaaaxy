@@ -53,6 +53,22 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 			return fmt.Errorf("could not decode z index %q: %v", sp.Properties["z_index"], err)
 		}
 	}
+	if sp.Properties["no_transform"] == "true" {
+		// Undo transform of orientation by tile.
+		e.Orientation = sp.Orientation
+	}
+	if e.Transform.Determinant() < 0 {
+		// e.Orientation: in-editor transform. Applied first.
+		// Normally the formula is e.Transform.Inverse().Concat(e.Orientation).
+		// Add an FlipX() between the two to "undo" any sense difference in the editor.
+		// This flips the view on the _level editor_ X axis.
+		switch sp.Properties["no_flip"] {
+		case "x":
+			e.Orientation = e.Transform.Inverse().Concat(m.FlipX()).Concat(e.Orientation)
+		case "y":
+			e.Orientation = e.Transform.Inverse().Concat(m.FlipY()).Concat(e.Orientation)
+		}
+	}
 	return nil
 }
 

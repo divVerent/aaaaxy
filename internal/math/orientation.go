@@ -144,3 +144,7 @@ func (o Orientation) String() string {
 	}
 	return result
 }
+
+func (o Orientation) Determinant() int {
+	return o.Right.DX*o.Down.DY - o.Right.DY*o.Down.DX
+}
