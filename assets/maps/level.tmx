@@ -518,11 +518,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1" opacity="0.5">
-  <object id="7" type="Player" x="4097" y="4066" width="14" height="30">
-   <properties>
-    <property name="type" value="Player"/>
-   </properties>
-  </object>
+  <object id="7" type="Player" x="4097" y="4066" width="14" height="30"/>
   <object id="9" name="LRWarp" gid="2" x="176" y="96" width="16" height="32"/>
   <object id="10" name="LRWarp" gid="8" x="0" y="96" width="16" height="32"/>
   <object id="11" name="UDWarp" gid="4" x="64" y="0" width="48" height="16"/>
@@ -551,93 +547,28 @@
    </properties>
   </object>
   <object id="20" gid="1" x="4128" y="3920" width="192" height="112"/>
-  <object id="21" type="QuestionBlock" x="4432" y="4032" width="16" height="16">
-   <properties>
-    <property name="type" value="QuestionBlock"/>
-   </properties>
-  </object>
-  <object id="22" type="QuestionBlock" x="4464" y="4032" width="16" height="16">
-   <properties>
-    <property name="type" value="QuestionBlock"/>
-   </properties>
-  </object>
-  <object id="23" type="QuestionBlock" x="4448" y="3968" width="16" height="16">
-   <properties>
-    <property name="type" value="QuestionBlock"/>
-   </properties>
-  </object>
+  <object id="21" type="QuestionBlock" x="4432" y="4032" width="16" height="16"/>
+  <object id="22" type="QuestionBlock" x="4464" y="4032" width="16" height="16"/>
+  <object id="23" type="QuestionBlock" x="4448" y="3968" width="16" height="16"/>
   <object id="24" type="QuestionBlock" x="4576" y="4000" width="16" height="16">
    <properties>
     <property name="kaizo" type="bool" value="true"/>
-    <property name="type" value="QuestionBlock"/>
    </properties>
   </object>
   <object id="26" name="Warp1-1Win" gid="2" x="4864" y="3904" width="16" height="32"/>
-  <object id="27" type="AppearBlock" x="4576" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="28" type="AppearBlock" x="4592" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="29" type="AppearBlock" x="4608" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="30" type="AppearBlock" x="4624" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="31" type="AppearBlock" x="4640" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="32" type="AppearBlock" x="4656" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="33" type="AppearBlock" x="4672" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="34" type="AppearBlock" x="4688" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="35" type="AppearBlock" x="4704" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="36" type="AppearBlock" x="4720" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="37" type="AppearBlock" x="4736" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="38" type="AppearBlock" x="4752" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
-  <object id="39" type="AppearBlock" x="4768" y="4064" width="16" height="16">
-   <properties>
-    <property name="type" value="AppearBlock"/>
-   </properties>
-  </object>
+  <object id="27" type="AppearBlock" x="4576" y="4064" width="16" height="16"/>
+  <object id="28" type="AppearBlock" x="4592" y="4064" width="16" height="16"/>
+  <object id="29" type="AppearBlock" x="4608" y="4064" width="16" height="16"/>
+  <object id="30" type="AppearBlock" x="4624" y="4064" width="16" height="16"/>
+  <object id="31" type="AppearBlock" x="4640" y="4064" width="16" height="16"/>
+  <object id="32" type="AppearBlock" x="4656" y="4064" width="16" height="16"/>
+  <object id="33" type="AppearBlock" x="4672" y="4064" width="16" height="16"/>
+  <object id="34" type="AppearBlock" x="4688" y="4064" width="16" height="16"/>
+  <object id="35" type="AppearBlock" x="4704" y="4064" width="16" height="16"/>
+  <object id="36" type="AppearBlock" x="4720" y="4064" width="16" height="16"/>
+  <object id="37" type="AppearBlock" x="4736" y="4064" width="16" height="16"/>
+  <object id="38" type="AppearBlock" x="4752" y="4064" width="16" height="16"/>
+  <object id="39" type="AppearBlock" x="4768" y="4064" width="16" height="16"/>
   <object id="40" name="Warp1-1Back" gid="4" x="4208" y="3856" width="32" height="16"/>
   <object id="41" name="Warp1-1Back" gid="6" x="4576" y="4304" width="32" height="16"/>
   <object id="42" type="Sprite" x="4752" y="3904" width="32" height="32">
@@ -646,7 +577,6 @@
     <property name="opaque" type="bool" value="false"/>
     <property name="orientation" value="SW"/>
     <property name="solid" type="bool" value="false"/>
-    <property name="type" value="Sprite"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -656,7 +586,6 @@
     <property name="opaque" type="bool" value="false"/>
     <property name="orientation" value="WN"/>
     <property name="solid" type="bool" value="false"/>
-    <property name="type" value="Sprite"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -667,38 +596,32 @@
     <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
     <property name="solid" type="bool" value="false"/>
-    <property name="type" value="Sprite"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="48" type="TnihSign" x="4816" y="4048" width="32" height="32">
    <properties>
     <property name="text" value="A short walk can go a long way."/>
-    <property name="type" value="TnihSign"/>
    </properties>
   </object>
   <object id="49" type="TnihSign" x="4608" y="4256" width="32" height="32">
    <properties>
     <property name="text" value="Failure was never an option."/>
-    <property name="type" value="TnihSign"/>
    </properties>
   </object>
   <object id="50" type="TnihSign" x="4704" y="3760" width="32" height="32">
    <properties>
     <property name="text" value="Exploring new opportunities will often pay off."/>
-    <property name="type" value="TnihSign"/>
    </properties>
   </object>
   <object id="51" type="TnihSign" x="4928" y="3872" width="32" height="32">
    <properties>
     <property name="text" value="Sometimes the angle of looking at things is all that matters."/>
-    <property name="type" value="TnihSign"/>
    </properties>
   </object>
   <object id="52" type="TnihSign" x="3872" y="4176" width="32" height="32">
    <properties>
     <property name="text" value="There can be too much of a good thing."/>
-    <property name="type" value="TnihSign"/>
    </properties>
   </object>
   <object id="53" name="leap_of_faith" type="Checkpoint" x="4544" y="3888" width="32" height="176">
@@ -706,7 +629,6 @@
     <property name="music" value="retro_chiptune_1.ogg"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Leap of Faith"/>
-    <property name="type" value="Checkpoint"/>
    </properties>
   </object>
   <object id="58" name="WarpInfiniteStairs" gid="2" x="4496" y="4128" width="16" height="48"/>
@@ -714,19 +636,16 @@
   <object id="61" type="TnihSign" x="4352" y="4240" width="32" height="32">
    <properties>
     <property name="text" value="There are no wrong ways, just wrong goals."/>
-    <property name="type" value="TnihSign"/>
    </properties>
   </object>
   <object id="62" type="TnihSign" x="4032" y="4240" width="32" height="32">
    <properties>
     <property name="text" value="Where there's a down, there must also be an up."/>
-    <property name="type" value="TnihSign"/>
    </properties>
   </object>
   <object id="63" type="TnihSign" x="4192" y="4176" width="32" height="32">
    <properties>
     <property name="text" value="Persistence is the key to success."/>
-    <property name="type" value="TnihSign"/>
    </properties>
   </object>
   <object id="64" name="WarpInfiniteStairsMirror" gid="6" x="4352" y="4336" width="32" height="16"/>
@@ -735,7 +654,6 @@
    <properties>
     <property name="required_orientation" value="SW"/>
     <property name="text" value="Stop and Stair"/>
-    <property name="type" value="Checkpoint"/>
    </properties>
   </object>
   <object id="67" name="Warp1-1Win" gid="7" x="4816" y="4272" width="32" height="16"/>
