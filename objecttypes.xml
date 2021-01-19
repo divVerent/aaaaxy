@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="Checkpoint" color="#008000">
+  <property name="music" type="file" default=""/>
+  <property name="required_orientation" type="string"/>
+  <property name="text" type="string"/>
+ </objecttype>
+ <objecttype name="JumpPad" color="#ff00ff">
+  <property name="delta" type="string"/>
+  <property name="height" type="string"/>
+  <property name="rel_delta" type="string"/>
+ </objecttype>
+ <objecttype name="QuestionBlock" color="#000000">
+  <property name="kaizo" type="bool" default="false"/>
+ </objecttype>
+ <objecttype name="Sprite" color="#ffffff">
+  <property name="alpha" type="string"/>
+  <property name="image" type="string"/>
+  <property name="image_dir" type="string"/>
+  <property name="no_flip" type="string"/>
+  <property name="no_transform" type="bool" default="false"/>
+  <property name="opaque" type="bool" default="false"/>
+  <property name="solid" type="bool" default="false"/>
+  <property name="z_index" type="int" default="0"/>
+ </objecttype>
+ <objecttype name="TnihSign" color="#ffff00">
+  <property name="text" type="string"/>
+ </objecttype>
+ <objecttype name="WarpZone" color="#ff0000"/>
+</objecttypes>
