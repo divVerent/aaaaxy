@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"image/color"
 	"log"
+	"math"
 	"strconv"
 	"strings"
 
@@ -336,9 +337,9 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	addTrace := func(rawTarget m.Pos) {
 		delta := rawTarget.Delta(w.scrollPos)
 		// Diamond shape (cooler?). Could otherwise easily use Length2 here.
-		targetDist := delta.Norm1()
-		if targetDist > maxDist {
-			f := float64(maxDist) / float64(targetDist)
+		targetDist := delta.Length2()
+		if targetDist > maxDist*maxDist {
+			f := float64(maxDist) / math.Sqrt(float64(targetDist))
 			delta = delta.MulFloat(f)
 		}
 		target := w.scrollPos.Add(delta)
