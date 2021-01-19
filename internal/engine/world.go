@@ -311,14 +311,19 @@ func (w *World) updateScrollPos(target m.Pos) {
 
 // updateVisibility loads all visible tiles and discards all tiles not visible right now.
 func (w *World) updateVisibility(eye m.Pos, maxDist int) {
+	if maxDist < 1 {
+		// Require at least 1 pixel trace distance, or else our polygon can't be correctly expanded.
+		maxDist = 1
+	}
 	defer timing.Group()()
 
 	// Delete all tiles merely marked for expanding.
 	// TODO can we preserve but recheck them instead?
 	timing.Section("cleanup_expanded")
 	prevVisibilityMark := w.visibilityMark - 1
+	eyePos := eye.Div(TileSize)
 	for pos, tile := range w.Tiles {
-		if tile.visibilityMark != prevVisibilityMark {
+		if tile.visibilityMark != prevVisibilityMark && pos != eyePos {
 			delete(w.Tiles, pos)
 		}
 	}
