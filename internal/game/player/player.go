@@ -19,6 +19,7 @@ import (
 	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
@@ -95,11 +96,12 @@ const (
 	// Animation tuning.
 	AnimGroundSpeed = 20 * SubPixelScale / engine.GameTPS
 
-	KeyLeft  = ebiten.KeyLeft
-	KeyRight = ebiten.KeyRight
-	KeyUp    = ebiten.KeyUp
-	KeyDown  = ebiten.KeyDown
-	KeyJump  = ebiten.KeySpace
+	KeyLeft    = ebiten.KeyLeft
+	KeyRight   = ebiten.KeyRight
+	KeyUp      = ebiten.KeyUp
+	KeyDown    = ebiten.KeyDown
+	KeyJump    = ebiten.KeySpace
+	KeyRespawn = ebiten.KeyR
 )
 
 func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
@@ -170,6 +172,13 @@ func friction(vel *int, friction int) {
 }
 
 func (p *Player) Update() {
+	if inpututil.IsKeyJustPressed(KeyRespawn) {
+		log.Print("respawn")
+		cpName := p.PersistentState["last_checkpoint"]
+		cpFlipped := p.PersistentState["checkpoint_seen."+cpName] == "FlipX"
+		p.World.RespawnPlayer(cpName, cpFlipped)
+		return
+	}
 	p.LookUp = ebiten.IsKeyPressed(KeyUp)
 	p.LookDown = ebiten.IsKeyPressed(KeyDown)
 	moveLeft := ebiten.IsKeyPressed(KeyLeft)
@@ -320,6 +329,10 @@ func (p *Player) LookPos() m.Pos {
 // Respawned informs the player that the world moved/respawned it.
 func (p *Player) Respawned() {
 	p.OnGround = true                // Do not get landing anim right away.
+	p.Jumping = false                // We're on ground.
+	p.Jumped = false                 // Reset jump key.
+	p.Velocity = m.Delta{}           // Stop moving.
+	p.SubPixel = m.Delta{}           // Stop moving.
 	p.Anim.ForceGroup("idle")        // Reset animation.
 	p.Entity.Image = nil             // Hide player until next Update.
 	p.Entity.Orientation = m.FlipX() // Default to looking right.
