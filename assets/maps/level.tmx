@@ -696,6 +696,7 @@
   </object>
   <object id="92" type="TnihSign" x="4640" y="4544" width="32" height="32">
    <properties>
+    <property name="greetings_to" value="Dieter F. Uchtdorf"/>
     <property name="text" value="&quot;In spite of one-time overwhelming consensus, the earth isn't flat.&quot;"/>
    </properties>
   </object>
