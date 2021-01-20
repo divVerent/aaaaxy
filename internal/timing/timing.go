@@ -15,7 +15,10 @@
 package timing
 
 import (
+	"fmt"
 	"log"
+	"sort"
+	"strings"
 	"time"
 )
 
@@ -28,20 +31,37 @@ type node struct {
 	started time.Time
 }
 
+type entry struct {
+	duration time.Duration
+	count    int
+}
+
+func (e *entry) String() string {
+	c := e.count
+	if c < 1 {
+		c = 1
+	}
+	return fmt.Sprintf("%v (%d*%v)",
+		e.duration,
+		e.count,
+		e.duration/time.Duration(c))
+}
+
 var (
-	accumulator = map[string]time.Duration{}
+	accumulator = map[string]*entry{}
 	stack       []node
 	nextReport  time.Time
 )
 
 func reset() {
-	accumulator, stack = map[string]time.Duration{}, []node{
+	accumulator, stack = map[string]*entry{}, []node{
 		{name: "", started: time.Time{}},
 	}
 }
 
 func Group() func() {
-	stack = append(stack, node{name: stack[len(stack)-1].name, started: time.Now()})
+	sameName := stack[len(stack)-1].name
+	stack = append(stack, node{name: sameName, started: time.Now()})
 	return endGroup
 }
 
@@ -58,22 +78,44 @@ func Section(section string) {
 		newName += "/" + section
 	}
 	stack[len(stack)-1] = node{name: newName, started: now}
+	accountCount()
+}
+
+func current() (*node, *entry) {
+	n := &stack[len(stack)-1]
+	section := n.name
+	var e *entry
+	e, found := accumulator[section]
+	if !found {
+		e = &entry{}
+		accumulator[section] = e
+	}
+	return n, e
+}
+
+func accountCount() {
+	_, e := current()
+	e.count++
 }
 
 func accountTime(now time.Time) {
-	accumulator[stack[len(stack)-1].name] += now.Sub(stack[len(stack)-1].started)
+	n, e := current()
+	e.duration += now.Sub(n.started)
 }
 
 func ReportRegularly() {
 	now := time.Now()
 	if now.After(nextReport) {
 		if !nextReport.IsZero() {
-			for section, duration := range accumulator {
-				if duration < minReportDuration {
-					delete(accumulator, section)
+			report := make([]string, 0, len(accumulator))
+			for section, entry := range accumulator {
+				if entry.duration < minReportDuration {
+					continue
 				}
+				report = append(report, fmt.Sprintf("  %-48s %v", section, entry))
 			}
-			log.Printf("Timing report: %v", accumulator)
+			sort.Strings(report)
+			log.Printf("Timing report:\n%v", strings.Join(report, "\n"))
 		}
 		reset()
 		nextReport = now.Add(time.Second)
