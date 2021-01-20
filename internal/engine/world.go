@@ -187,6 +187,12 @@ func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 	// Build a new world around the CP tile and the player.
 	w.visibilityMark = 0
 	tile.visibilityMark = w.visibilityMark
+	for _, ent := range w.Entities {
+		if ent == w.Player {
+			continue
+		}
+		ent.Impl.Despawn()
+	}
 	w.Entities = map[EntityIncarnation]*Entity{
 		w.Player.Incarnation: w.Player,
 	}
