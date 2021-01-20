@@ -26,12 +26,13 @@ import (
 )
 
 var (
-	vsync = flag.Bool("vsync", true, "enable waiting for vertical synchronization")
+	vsync      = flag.Bool("vsync", true, "enable waiting for vertical synchronization")
+	fullscreen = flag.Bool("fullscreen", true, "enable fullscreen mode")
 )
 
 func InitEbiten() {
 	ebiten.SetCursorMode(ebiten.CursorModeHidden)
-	ebiten.SetFullscreen(true)
+	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetInitFocused(true)
 	ebiten.SetMaxTPS(engine.GameTPS)
 	ebiten.SetRunnableOnUnfocused(false)
