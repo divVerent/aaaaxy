@@ -19,7 +19,6 @@ import (
 	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/inpututil"
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
@@ -32,13 +31,14 @@ type Player struct {
 	Entity          *engine.Entity
 	PersistentState map[string]string
 
-	OnGround  bool
-	Jumping   bool
-	JumpingUp bool
-	LookUp    bool
-	LookDown  bool
-	Velocity  m.Delta
-	SubPixel  m.Delta
+	OnGround   bool
+	Jumping    bool
+	JumpingUp  bool
+	LookUp     bool
+	LookDown   bool
+	Velocity   m.Delta
+	SubPixel   m.Delta
+	Respawning bool
 
 	Anim      animation.State
 	JumpSound *sound.Sound
@@ -172,12 +172,16 @@ func friction(vel *int, friction int) {
 }
 
 func (p *Player) Update() {
-	if inpututil.IsKeyJustPressed(KeyRespawn) {
-		// TODO remove this debug hack, menu will do this instead. Maybe also a "death" routine.
-		cpName := p.PersistentState["last_checkpoint"]
-		cpFlipped := p.PersistentState["checkpoint_seen."+cpName] == "FlipX"
-		p.World.RespawnPlayer(cpName, cpFlipped)
-		return
+	if ebiten.IsKeyPressed(KeyRespawn) {
+		if !p.Respawning {
+			// TODO remove this debug hack, menu will do this instead. Maybe also a "death" routine.
+			cpName := p.PersistentState["last_checkpoint"]
+			cpFlipped := p.PersistentState["checkpoint_seen."+cpName] == "FlipX"
+			p.World.RespawnPlayer(cpName, cpFlipped)
+			return
+		}
+	} else {
+		p.Respawning = false
 	}
 	p.LookUp = ebiten.IsKeyPressed(KeyUp)
 	p.LookDown = ebiten.IsKeyPressed(KeyDown)
@@ -333,6 +337,7 @@ func (p *Player) Respawned() {
 	p.JumpingUp = false              // Do not assume we're in the first half of a jump (fastfall).
 	p.Velocity = m.Delta{}           // Stop moving.
 	p.SubPixel = m.Delta{}           // Stop moving.
+	p.Respawning = true              // Block the respawn key until released.
 	p.Anim.ForceGroup("idle")        // Reset animation.
 	p.Entity.Image = nil             // Hide player until next Update.
 	p.Entity.Orientation = m.FlipX() // Default to looking right.
