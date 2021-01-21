@@ -15,12 +15,17 @@
 package music
 
 import (
+	"flag"
 	"log"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
 	"github.com/divVerent/aaaaaa/internal/vfs"
+)
+
+var (
+	musicVolume = flag.Float64("music_volume", 0.5, "music volume (0..1)")
 )
 
 const (
@@ -68,7 +73,7 @@ func (t *track) play() {
 
 func (t *track) setVolume(vol float64) {
 	if t.player != nil {
-		t.player.SetVolume(vol)
+		t.player.SetVolume(vol * *musicVolume)
 	}
 }
 
