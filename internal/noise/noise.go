@@ -17,13 +17,13 @@ package noise
 import (
 	"bytes"
 	"flag"
+	"io/ioutil"
 	"log"
-	"math"
-	"math/rand"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
+	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
-	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
 var (
@@ -32,10 +32,6 @@ var (
 
 const (
 	shrinkagePerFrame = 0.05
-	noiseSize         = 65536
-	lowpass           = 256
-	stereoOffset      = 8
-	volumeFactor      = 0.5
 )
 
 var (
@@ -44,39 +40,21 @@ var (
 )
 
 func Init() {
-	lowpassedData := make([]int16, noiseSize)
-	randData := make([]int, noiseSize)
-	for i := 0; i < noiseSize; i++ {
-		randData[i] = rand.Intn(65536) - 32768
+	data, err := vfs.Load("sounds", "stereonoise.ogg")
+	if err != nil {
+		log.Panicf("Could not load stereonoise: %v")
 	}
-	volumeAdj := volumeFactor / math.Sqrt(lowpass)
-	for i := 0; i < noiseSize; i++ {
-		sum := 0
-		for j := 0; j < lowpass; j++ {
-			sum += randData[m.Mod(i+j, noiseSize)]
-		}
-		lowpassed := int(math.Floor(float64(sum)*volumeAdj + 0.5))
-		if lowpassed < -32768 {
-			lowpassed = -32768
-		}
-		if lowpassed > 32767 {
-			lowpassed = 32767
-		}
-		lowpassedData[i] = int16(lowpassed)
+	defer data.Close()
+	stream, err := vorbis.Decode(audio.CurrentContext(), data)
+	if err != nil {
+		log.Panicf("Could not start decoding stereonosie: %v", err)
 	}
-	leData := make([]byte, 4*noiseSize)
-	for i := 0; i < noiseSize; i++ {
-		left := lowpassedData[i]
-		right := lowpassedData[m.Mod(i+stereoOffset, noiseSize)]
-		leData[4*i] = byte(left & 0xFF)
-		leData[4*i+1] = byte(left >> 8)
-		leData[4*i+2] = byte(right & 0xFF)
-		leData[4*i+3] = byte(right >> 8)
+	decoded, err := ioutil.ReadAll(stream)
+	if err != nil {
+		log.Panicf("Could not decode stereonoise: %v", err)
 	}
-	randBuf := bytes.NewReader(leData)
-	randLoop := audio.NewInfiniteLoop(randBuf, int64(len(leData)))
-	var err error
-	noise, err = audio.NewPlayer(audio.CurrentContext(), randLoop)
+	loop := audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded)))
+	noise, err = audio.NewPlayer(audio.CurrentContext(), loop)
 	if err != nil {
 		log.Panicf("could not start playing noise: %v", err)
 	}
