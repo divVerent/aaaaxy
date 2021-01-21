@@ -17,12 +17,14 @@ package player
 import (
 	"fmt"
 	"log"
+	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/sound"
 )
 
@@ -91,6 +93,9 @@ const (
 	JumpVelocity = 288 * SubPixelScale / engine.GameTPS
 	Gravity      = 576 * SubPixelScale / engine.GameTPS / engine.GameTPS
 	MaxSpeed     = 2 * engine.TileSize * SubPixelScale
+
+	NoiseMinSpeed = 384 * SubPixelScale / engine.GameTPS
+	NoiseMaxSpeed = MaxSpeed
 
 	// We want at least 19px high jumps so we can be sure a jump moves at least 2 tiles up.
 	JumpExtraGravity = 72*Gravity/19 - Gravity
@@ -311,6 +316,11 @@ func (p *Player) Update() {
 		p.Anim.SetGroup("jump")
 	}
 	p.Anim.Update(p.Entity)
+	speed := math.Sqrt(float64(p.Velocity.Length2()))
+	if speed >= NoiseMinSpeed {
+		amount := (speed - NoiseMinSpeed) / (NoiseMaxSpeed - NoiseMinSpeed)
+		noise.Set(amount)
+	}
 }
 
 func (p *Player) handleTouch(trace engine.TraceResult) {

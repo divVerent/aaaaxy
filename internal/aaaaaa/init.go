@@ -22,6 +22,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
@@ -46,6 +47,7 @@ func InitEbiten() {
 	ebiten.SetWindowSize(engine.GameWidth, engine.GameHeight)
 	ebiten.SetWindowTitle("AAAAAA")
 	audio.NewContext(48000)
+	noise.Init()
 	// TODO when adding a menu, actually show these credits.
 	credits, err := vfs.ReadDir("credits")
 	if err != nil {

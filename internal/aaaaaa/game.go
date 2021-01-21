@@ -29,6 +29,7 @@ import (
 	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/music"
+	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
@@ -96,6 +97,9 @@ func (g *Game) Update() error {
 
 	timing.Section("music")
 	music.Update()
+
+	timing.Section("noise")
+	noise.Update()
 
 	timing.Section("world")
 	return g.World.Update()
