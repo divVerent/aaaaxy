@@ -15,11 +15,14 @@
 package trigger
 
 import (
+	"fmt"
+
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/sound"
 )
 
 // QuestionBlock is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -32,6 +35,8 @@ type QuestionBlock struct {
 	Used         bool
 	UsedImage    *ebiten.Image
 	UseAnimFrame int
+
+	Sound *sound.Sound
 }
 
 const (
@@ -64,6 +69,10 @@ func (q *QuestionBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.En
 				return err
 			}
 		}
+	}
+	q.Sound, err = sound.Load("questionblock.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load questionblock sound: %v", err)
 	}
 	return nil
 }
@@ -107,7 +116,7 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 	q.Entity.Image = q.UsedImage
 	q.UsedImage = nil
 	q.Entity.Solid = true
-	// TODO animate up and down?
+	q.Sound.Play()
 }
 
 func (q *QuestionBlock) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}

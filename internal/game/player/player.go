@@ -40,8 +40,10 @@ type Player struct {
 	SubPixel   m.Delta
 	Respawning bool
 
-	Anim      animation.State
-	JumpSound *sound.Sound
+	Anim         animation.State
+	JumpSound    *sound.Sound
+	LandSound    *sound.Sound
+	HitHeadSound *sound.Sound
 }
 
 // Player height is 30 px.
@@ -147,6 +149,14 @@ func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) e
 	p.JumpSound, err = sound.Load("jump.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load jump sound: %v", err)
+	}
+	p.LandSound, err = sound.Load("land.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load land sound: %v", err)
+	}
+	p.HitHeadSound, err = sound.Load("hithead.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load hithead sound: %v", err)
 	}
 
 	return nil
@@ -264,11 +274,13 @@ func (p *Player) Update() {
 			if move.DY > 0 {
 				if !p.OnGround {
 					p.Anim.SetGroup("land")
+					p.LandSound.Play()
 				}
 				p.OnGround = true
 				p.JumpingUp = false
 			} else {
 				p.Anim.SetGroup("hithead")
+				p.HitHeadSound.Play()
 			}
 		}
 		p.Entity.Rect.Origin = trace.EndPos

@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/game/player"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
+	"github.com/divVerent/aaaaaa/internal/sound"
 )
 
 // Checkpoint remembers that it was hit and allows spawning from there again. Also displays a text.
@@ -39,6 +40,8 @@ type Checkpoint struct {
 	PlayerProperty        string
 	PlayerPropertyFlipped string
 	Inactive              bool
+
+	Sound *sound.Sound
 }
 
 func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
@@ -65,6 +68,11 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 		c.Inactive = true
 	}
 
+	c.Sound, err = sound.Load("checkpoint.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load checkpoint sound: %v", err)
+	}
+
 	return nil
 }
 
@@ -87,6 +95,7 @@ func (c *Checkpoint) Update() {
 	player.PersistentState[c.PlayerProperty] = c.PlayerPropertyFlipped
 	player.PersistentState["last_checkpoint"] = c.Name
 	centerprint.New(c.Text, centerprint.Important, centerprint.Middle, centerprint.BigFont, color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
+	c.Sound.Play()
 }
 
 func (c *Checkpoint) Touch(other *engine.Entity) {}

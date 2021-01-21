@@ -24,6 +24,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/sound"
 )
 
 // TnihSign just displays a text and remembers that it was hit.
@@ -34,6 +35,7 @@ type TnihSign struct {
 
 	Text      string
 	SeenImage *ebiten.Image
+	Sound     *sound.Sound
 
 	Centerprint *centerprint.Centerprint
 }
@@ -57,6 +59,10 @@ func (t *TnihSign) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity)
 	}
 	t.Entity.Orientation = m.Identity()
 	t.Text = s.Properties["text"]
+	t.Sound, err = sound.Load("tnihsign.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load tnihsign sound: %v", err)
+	}
 	return nil
 }
 
@@ -74,6 +80,8 @@ func (t *TnihSign) Update() {
 			importance := centerprint.Important
 			if t.PersistentState["seen"] == "true" {
 				importance = centerprint.NotImportant
+			} else {
+				t.Sound.Play()
 			}
 			t.Centerprint = centerprint.New(t.Text, importance, centerprint.Top, centerprint.NormalFont, color.NRGBA{R: 255, G: 255, B: 85, A: 255})
 			t.PersistentState["seen"] = "true"
