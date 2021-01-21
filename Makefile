@@ -9,6 +9,7 @@ PACKAGE = github.com/divVerent/aaaaaa/cmd/aaaaaa
 ASSETS = internal/assets
 DEBUG = aaaaaa-debug$(EXE)
 DEBUG_GOFLAGS =
+ZIPFILE = aaaaaa.zip
 RELEASE = aaaaaa$(EXE)
 RELEASE_GOFLAGS = -ldflags="-s -w" -gcflags="-B -dwarf=false"
 UPXFLAGS = -9
@@ -24,6 +25,13 @@ debug: $(DEBUG)
 
 .PHONY: release
 release: $(RELEASE)
+
+.PHONY: allrelease
+allrelease:
+	$(RM) $(ZIPFILE)
+	GOOS=linux GOARCH=amd64 $(MAKE) release
+	GOOS=windows GOARCH=386 $(MAKE) release
+	zip -9r $(ZIPFILE) aaaaaa.exe aaaaaa
 
 .PHONY: clean
 clean:
