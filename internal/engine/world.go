@@ -217,6 +217,8 @@ func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 	trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(m.Delta{DX: 0, DY: 1024}), TraceOptions{
 		NoEntities: true,
 		LoadTiles:  true,
+		IgnoreEnt:  w.Player,
+		ForEnt:     w.Player,
 	})
 	w.Player.Rect.Origin = trace.EndPos
 
@@ -240,6 +242,8 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 	result := w.TraceLine(from, to, TraceOptions{
 		Mode:      HitOpaque,
 		LoadTiles: true,
+		IgnoreEnt: w.Player,
+		ForEnt:    w.Player,
 	})
 	for _, tilePos := range result.Path {
 		w.Tiles[tilePos].visibilityMark = w.visibilityMark

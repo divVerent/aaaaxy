@@ -46,7 +46,6 @@ func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 		appendLineToTraces(traces, m.Delta{DX: 0, DY: from.Size.DY - 1}, m.Delta{DX: from.Size.DX - 1, DY: from.Size.DY - 1})
 	}
 	var result TraceResult
-	var best int
 	haveTrace := false
 	for delta := range traces {
 		trace := traceLine(w, from.Origin.Add(delta), to.Add(delta), o)
@@ -56,14 +55,14 @@ func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 			// Get shortest trace, BUT prefer those that hit entities.
 			score++
 		}
-		if !haveTrace || score < best {
-			best = score
+		if !haveTrace || trace.Score.Less(result.Score) {
 			haveTrace = true
 			result.EndPos = adjustedEnd
 			result.HitTilePos = trace.HitTilePos
 			result.HitTile = trace.HitTile
 			result.HitEntity = trace.HitEntity
 			result.HitFogOfWar = trace.HitFogOfWar
+			result.Score = trace.Score
 		}
 	}
 	return result

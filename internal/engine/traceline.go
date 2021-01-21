@@ -41,6 +41,8 @@ type TraceOptions struct {
 	NoEntities bool
 	// IgnoreEnt is the entity that shall be ignored when tracing.
 	IgnoreEnt *Entity
+	// ForEnt is the entity on whose behalf the trace is done.
+	ForEnt *Entity
 	// If LoadTiles is set, not yet known tiles will be loaded in by the trace operation.
 	// Otherwise hitting a not-yet-loaded tile will end the trace.
 	// Only valid on line traces.
@@ -62,6 +64,29 @@ type TraceResult struct {
 	HitEntity *Entity
 	// HitFogOfWar is set if the trace ended by hitting an unloaded tile.
 	HitFogOfWar bool
+	// Score is a number used to decide which of multiple traces to keep.
+	// Typically related to the trace distance and which entity was hit if any.
+	Score TraceScore
+}
+
+// TraceScore is a scoring value of a trace.
+type TraceScore struct {
+	// TraceDistance is the length of the trace.
+	TraceDistance int
+	// EntityDistance is the distance between entity centers of the traces.
+	// This is used as a tie breaker.
+	EntityDistance int
+}
+
+// Less returns whether this score is smaller than the other.
+func (s TraceScore) Less(o TraceScore) bool {
+	if s.TraceDistance < o.TraceDistance {
+		return true
+	}
+	if s.TraceDistance > o.TraceDistance {
+		return false
+	}
+	return s.EntityDistance < o.EntityDistance
 }
 
 // A normalizedLine represents a line to trace on.
@@ -317,14 +342,14 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		if err != doneErr {
 			result.EndPos = to
 		}
+		result.Score = TraceScore{
+			TraceDistance:  result.EndPos.Delta(from).Norm1(),
+			EntityDistance: math.MaxInt32, // Not an entity.
+		}
 	}
 
 	if !o.NoEntities {
 		// Clip the trace to first entity hit.
-		var closestEnt *Entity
-		var closestEndPos m.Pos
-		closestDistance := result.EndPos.Delta(from).Norm1()
-		closestEntDistance := math.MaxInt32 // Initializing closestEntDistance high makes entities win against tiles.
 		for _, ent := range w.Entities {
 			if ent == o.IgnoreEnt {
 				continue
@@ -333,16 +358,21 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 				continue
 			}
 			if hit, endPos := traceEntity(from, to, ent); hit {
-				distance := endPos.Delta(from).Norm1()
-				entDistance := ent.Rect.Center().Delta(from).Norm1()
-				if distance < closestDistance || (distance == closestDistance && entDistance < closestEntDistance) {
-					closestEnt, closestEndPos, closestDistance, closestEntDistance = ent, endPos, distance, entDistance
+				score := TraceScore{
+					TraceDistance: endPos.Delta(from).Norm1(),
+				}
+				if o.ForEnt != nil {
+					score.EntityDistance = ent.Rect.Center().Delta(o.ForEnt.Rect.Center()).Norm1()
+				}
+				if score.Less(result.Score) {
+					result.EndPos = endPos
+					result.HitEntity = ent
+					result.Score = score
 				}
 			}
 		}
-		if closestEnt != nil {
-			result.EndPos = closestEndPos
-			endTile := closestEndPos.Div(TileSize)
+		if result.HitEntity != nil {
+			endTile := result.EndPos.Div(TileSize)
 			for i, pos := range result.Path {
 				if pos == endTile {
 					result.Path = result.Path[:(i + 1)]
@@ -350,7 +380,6 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 			}
 			result.HitTilePos = nil
 			result.HitTile = nil
-			result.HitEntity = closestEnt
 			result.HitFogOfWar = false
 		}
 	}
