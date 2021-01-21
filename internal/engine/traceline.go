@@ -16,6 +16,7 @@ package engine
 
 import (
 	"errors"
+	"math"
 
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
@@ -323,6 +324,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		var closestEnt *Entity
 		var closestEndPos m.Pos
 		closestDistance := result.EndPos.Delta(from).Norm1()
+		closestEntDistance := math.MaxInt32 // Initializing closestEntDistance high makes entities win against tiles.
 		for _, ent := range w.Entities {
 			if ent == o.IgnoreEnt {
 				continue
@@ -332,9 +334,9 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 			}
 			if hit, endPos := traceEntity(from, to, ent); hit {
 				distance := endPos.Delta(from).Norm1()
-				// Using <= so that entities win against tiles.
-				if distance <= closestDistance {
-					closestEnt, closestEndPos, closestDistance = ent, endPos, distance
+				entDistance := ent.Rect.Center().Delta(from).Norm1()
+				if distance < closestDistance || (distance == closestDistance && entDistance < closestEntDistance) {
+					closestEnt, closestEndPos, closestDistance, closestEntDistance = ent, endPos, distance, entDistance
 				}
 			}
 		}
