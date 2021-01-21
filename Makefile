@@ -46,4 +46,3 @@ $(DEBUG): $(ASSETS)
 
 $(RELEASE): $(ASSETS)
 	go build -o $(RELEASE) $(RELEASE_GOFLAGS) $(PACKAGE)
-	upx $(UPXFLAGS) $(RELEASE)
