@@ -536,29 +536,40 @@ func (w *World) Update() error {
 	return nil
 }
 
-func setGeoM(geoM *ebiten.GeoM, pos m.Pos, size m.Delta, orientation m.Orientation, xScale, yScale float64) {
-	// Set the rotation and scale.
-	geoM.SetElement(0, 0, float64(orientation.Right.DX)*xScale)
-	geoM.SetElement(1, 0, float64(orientation.Right.DY)*yScale)
-	geoM.SetElement(0, 1, float64(orientation.Down.DX)*xScale)
-	geoM.SetElement(1, 1, float64(orientation.Down.DY)*yScale)
-	// Set the translation.
-	// Note that in ebiten, the coordinate is the original origin, while we think in screenspace origin.
-	a := m.Delta{} // Actually orientation.Apply(m.Delta{})
-	d := size
-	// Note: size is the actual entity bbox; however we need the size in source coordinates.
-	// So we transpose the size if the orientation contains an XY flip.
-	if orientation.Apply(m.Delta{DX: 1, DY: 0}).DX == 0 {
-		d.DX, d.DY = d.DY, d.DX
+func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta, orientation m.Orientation) {
+	// Note: the logic here is rather inefficient but easy to verify.
+	// If this turns out to be performance relevant, let's optimize.
+
+	// Step 1: compute the raw corners at source and destination.
+	rectI := m.Rect{Origin: m.Pos{}, Size: imgSize}
+	var rectR m.Rect
+	if resize {
+		rectR = m.Rect{Origin: pos, Size: entSize}
+	} else {
+		flippedSize := imgSize
+		if orientation.Right.DX == 0 {
+			flippedSize.DX, flippedSize.DY = flippedSize.DY, flippedSize.DX
+		}
+		rectR = m.Rect{Origin: pos, Size: flippedSize}
 	}
-	d = orientation.Apply(d)
-	if a.DX > d.DX {
-		a.DX = d.DX
-	}
-	if a.DY > d.DY {
-		a.DY = d.DY
-	}
-	geoM.Translate(float64(pos.X-a.DX), float64(pos.Y-a.DY))
+
+	// Step 2: actually match up image corners with destination.
+	rectIR := orientation.ApplyToRect2(m.Pos{}, rectI)
+	rectIRS := orientation.ApplyToRect2(m.Pos{}, m.Rect{Origin: m.Pos{}, Size: rectR.Size})
+
+	// Step 3: rotate the image first.
+	geoM.SetElement(0, 0, float64(orientation.Right.DX))
+	geoM.SetElement(1, 0, float64(orientation.Right.DY))
+	geoM.SetElement(0, 1, float64(orientation.Down.DX))
+	geoM.SetElement(1, 1, float64(orientation.Down.DY))
+
+	// Step 4: scale the image to the intended size.
+	geoM.Scale(float64(rectR.Size.DX)/float64(rectIR.Size.DX),
+		float64(rectR.Size.DY)/float64(rectIR.Size.DY))
+
+	// Step 5: translate the image to the intended position.
+	geoM.Translate(float64(rectR.Origin.X-rectIRS.Origin.X),
+		float64(rectR.Origin.Y-rectIRS.Origin.Y))
 }
 
 func (w *World) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
@@ -582,7 +593,7 @@ func (w *World) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 				renderOrientation, renderImage = o, img
 			}
 		}
-		setGeoM(&opts.GeoM, screenPos, m.Delta{DX: TileSize, DY: TileSize}, renderOrientation, 1.0, 1.0)
+		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: TileSize, DY: TileSize}, m.Delta{DX: TileSize, DY: TileSize}, renderOrientation)
 		screen.DrawImage(renderImage, &opts)
 	}
 }
@@ -602,15 +613,9 @@ func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 				CompositeMode: ebiten.CompositeModeSourceOver,
 				Filter:        ebiten.FilterNearest,
 			}
-			xScale, yScale := 1.0, 1.0
 			w, h := ent.Image.Size()
-			renderSize := m.Delta{DX: w, DY: h}
-			if ent.ResizeImage {
-				xScale = float64(ent.Rect.Size.DX) / float64(w)
-				yScale = float64(ent.Rect.Size.DY) / float64(h)
-				renderSize = ent.Rect.Size
-			}
-			setGeoM(&opts.GeoM, screenPos, renderSize, ent.Orientation, xScale, yScale)
+			imageSize := m.Delta{DX: w, DY: h}
+			setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation)
 			opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
 			screen.DrawImage(ent.Image, &opts)
 		}
