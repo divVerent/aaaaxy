@@ -42,7 +42,7 @@ var (
 func Init() {
 	data, err := vfs.Load("sounds", "stereonoise.ogg")
 	if err != nil {
-		log.Panicf("Could not load stereonoise: %v")
+		log.Panicf("Could not load stereonoise: %v", err)
 	}
 	defer data.Close()
 	stream, err := vorbis.Decode(audio.CurrentContext(), data)

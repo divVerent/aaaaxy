@@ -109,11 +109,11 @@ func ReadDir(name string) ([]string, error) {
 	}
 	dir, err := myfs.Open(vfsPath)
 	if err != nil {
-		return nil, fmt.Errorf("could not scan statik:%v: %v", err)
+		return nil, fmt.Errorf("could not scan statik:%v: %v", vfsPath, err)
 	}
 	content, err := dir.Readdir(-1)
 	if err != nil {
-		return nil, fmt.Errorf("could not scan statik:%v: %v", err)
+		return nil, fmt.Errorf("could not scan statik:%v: %v", vfsPath, err)
 	}
 	for _, info := range content {
 		results = append(results, filepath.Join(vfsPath, info.Name()))
