@@ -226,7 +226,6 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Po
 			tile = nextTile
 			nextI += TileSize
 		}
-		return nil
 	}
 	for {
 		// Compute the i for nextJ. It is the SMALLEST i of the potential group.

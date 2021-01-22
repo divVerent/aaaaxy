@@ -30,6 +30,10 @@ release: $(RELEASE)
 clean:
 	$(RM) -r $(DEBUG) $(RELEASE) $(ASSETS)
 
+.PHONY: vet
+vet:
+	go vet `find ./cmd ./internal -name \*.go -print | sed -e 's,/[^/]*$$,,' | sort -u`
+
 .PHONY: $(ASSETS)
 $(ASSETS):
 	NO_VFS=$(NO_VFS) ./statik-vfs.sh $(ASSETS)

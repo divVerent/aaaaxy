@@ -52,16 +52,16 @@ func (t *track) open(name string) {
 	var err error
 	t.handle, err = vfs.Load("music", name)
 	if err != nil {
-		log.Panicf("Could not load music %q: %v", name)
+		log.Panicf("Could not load music %q: %v", name, err)
 	}
 	t.data, err = vorbis.Decode(audio.CurrentContext(), t.handle)
 	if err != nil {
-		log.Panicf("Could not start decoding music %q: %v", name)
+		log.Panicf("Could not start decoding music %q: %v", name, err)
 	}
 	loop := audio.NewInfiniteLoop(t.data, t.data.Length())
 	t.player, err = audio.NewPlayer(audio.CurrentContext(), loop)
 	if err != nil {
-		log.Panicf("Could not start playing music %q: %v", name)
+		log.Panicf("Could not start playing music %q: %v", name, err)
 	}
 }
 

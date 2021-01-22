@@ -51,7 +51,7 @@ func (s *State) Init(spritePrefix string, groups map[string]*Group, initialGroup
 	for name, group := range groups {
 		group.NextGroup = groups[group.NextAnim]
 		if group.NextGroup == nil {
-			log.Panicf("Animation group %q references nonexisting frame group %q", group, group.NextGroup)
+			log.Panicf("Animation group %q references nonexisting frame group %q", name, group.NextAnim)
 		}
 		group.Images = make([]*ebiten.Image, group.Frames)
 		for i := range group.Images {
