@@ -15,11 +15,13 @@
 package engine
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"image/color"
 	"log"
 	"math"
+	"os"
 	"strconv"
 	"strings"
 
@@ -33,6 +35,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/timing"
+	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
 var (
@@ -153,6 +156,41 @@ func (w *World) Init() error {
 	w.RespawnPlayer("", false)
 
 	return nil
+}
+
+// Load loads the current savegame.
+// If this fails, the world may be in an undefined state; call w.Init() or w.Load() to resume.
+func (w *World) Load() error {
+	state, err := vfs.ReadState(vfs.SavedGames, "save.json")
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil // Not loading anything due to there being no state to load is OK.
+		}
+		return err
+	}
+	save := SaveGame{}
+	err = json.Unmarshal(state, &save)
+	if err != nil {
+		return err
+	}
+	err = w.Level.LoadGame(save)
+	if err != nil {
+		return err
+	}
+	cpName := w.Level.Player.PersistentState["last_checkpoint"]
+	cpFlipped := w.Level.Player.PersistentState["checkpoint_seen."+cpName] == "FlipX"
+	w.RespawnPlayer(cpName, cpFlipped)
+	return nil
+}
+
+// Save saves the current savegame.
+func (w *World) Save() error {
+	save := w.Level.SaveGame()
+	state, err := json.MarshalIndent(save, "", "\t")
+	if err != nil {
+		return err
+	}
+	return vfs.WriteState(vfs.SavedGames, "save.json", state)
 }
 
 // SpawnPlayer spawns the player in a newly initialized world.

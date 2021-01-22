@@ -17,6 +17,7 @@ package checkpoint
 import (
 	"fmt"
 	"image/color"
+	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -94,6 +95,11 @@ func (c *Checkpoint) Update() {
 	}
 	player.PersistentState[c.PlayerProperty] = c.PlayerPropertyFlipped
 	player.PersistentState["last_checkpoint"] = c.Name
+	err := c.World.Save()
+	if err != nil {
+		log.Printf("Could not save game: %v", err)
+		return
+	}
 	centerprint.New(c.Text, centerprint.Important, centerprint.Middle, centerprint.BigFont, color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
 	c.Sound.Play()
 }

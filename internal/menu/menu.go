@@ -15,12 +15,10 @@
 package menu
 
 import (
-	"encoding/json"
 	"errors"
 	"flag"
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -31,7 +29,8 @@ import (
 )
 
 var (
-	showFps = flag.Bool("show_fps", false, "show fps counter")
+	resetSave = flag.Bool("reset_save", false, "reset the savegame on startup")
+	showFps   = flag.Bool("show_fps", false, "show fps counter")
 )
 
 type Menu struct{}
@@ -42,38 +41,17 @@ func (m *Menu) Update(world *engine.World) error {
 	timing.Section("once")
 	if !world.Initialized() {
 		world.Init()
-		file, err := os.Open("save")
-		if !os.IsNotExist(err) {
+		if !*resetSave {
+			err := world.Load()
 			if err != nil {
-				log.Panicf("could not open savegame: %v", err)
+				return err
 			}
-			defer file.Close()
-			decoder := json.NewDecoder(file)
-			save := engine.SaveGame{}
-			err = decoder.Decode(&save)
-			if err != nil {
-				log.Panicf("could not decode savegame: %v", err)
-			}
-			err = world.Level.LoadGame(save)
-			if err != nil {
-				log.Panicf("could not load savegame: %v", err)
-			}
-			cpName := world.Level.Player.PersistentState["last_checkpoint"]
-			cpFlipped := world.Level.Player.PersistentState["checkpoint_seen."+cpName] == "FlipX"
-			world.RespawnPlayer(cpName, cpFlipped)
 		}
 	}
 
 	timing.Section("global_hotkeys")
 	if ebiten.IsKeyPressed(ebiten.KeyEscape) {
-		file, err := os.Create("save")
-		if err != nil {
-			log.Panicf("could not open savegame: %v", err)
-		}
-		defer file.Close()
-		encoder := json.NewEncoder(file)
-		encoder.SetIndent("", "\t")
-		err = encoder.Encode(world.Level.SaveGame())
+		err := world.Save()
 		if err != nil {
 			log.Panicf("could not save game: %v", err)
 		}
