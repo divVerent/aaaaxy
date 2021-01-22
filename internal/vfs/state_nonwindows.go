@@ -26,9 +26,9 @@ import (
 func pathForRead(kind StateKind, name string) (string, error) {
 	switch kind {
 	case Config:
-		return xdg.SearchConfigFile(filepath.Join(gameNameLower, name))
+		return xdg.SearchConfigFile(filepath.Join(gameName, name))
 	case SavedGames:
-		return xdg.SearchDataFile(filepath.Join(gameNameLower, name))
+		return xdg.SearchDataFile(filepath.Join(gameName, name))
 	default:
 		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
 	}
@@ -37,9 +37,9 @@ func pathForRead(kind StateKind, name string) (string, error) {
 func pathForWrite(kind StateKind, name string) (string, error) {
 	switch kind {
 	case Config:
-		return xdg.ConfigFile(filepath.Join(gameNameLower, name))
+		return xdg.ConfigFile(filepath.Join(gameName, name))
 	case SavedGames:
-		return xdg.DataFile(filepath.Join(gameNameLower, name))
+		return xdg.DataFile(filepath.Join(gameName, name))
 	default:
 		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
 	}

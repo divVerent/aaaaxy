@@ -14,14 +14,41 @@
 
 package vfs
 
+import (
+	"io/ioutil"
+	"os"
+	"path/filepath"
+)
+
 type StateKind int
 
 const (
-	gameName      = "AAAAAA"
-	gameNameLower = "aaaaaa"
+	gameName = "AAAAAA"
 )
 
 const (
 	Config StateKind = iota
 	SavedGames
 )
+
+// ReadState loads the given state file and returns its contents.
+func ReadState(kind StateKind, name string) ([]byte, error) {
+	path, err := pathForRead(kind, name)
+	if err != nil {
+		return nil, err
+	}
+	return ioutil.ReadFile(path)
+}
+
+// WriteState writes the given state file.
+func WriteState(kind StateKind, name string, data []byte) error {
+	path, err := pathForWrite(kind, name)
+	if err != nil {
+		return err
+	}
+	err = os.MkdirAll(filepath.Dir(path), 0777)
+	if err != nil {
+		return err
+	}
+	return ioutil.WriteFile(path, data, 0666)
+}
