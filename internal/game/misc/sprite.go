@@ -39,8 +39,8 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 		return err
 	}
 	e.ResizeImage = true
-	e.Solid = sp.Properties["solid"] != "false"
-	e.Opaque = sp.Properties["opaque"] != "false"
+	e.Solid = sp.Properties["solid"] == "true"
+	e.Opaque = sp.Properties["opaque"] == "true"
 	if sp.Properties["alpha"] != "" {
 		e.Alpha, err = strconv.ParseFloat(sp.Properties["alpha"], 64)
 		if err != nil {

@@ -549,7 +549,12 @@
     <property name="solid" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="20" gid="1" x="4128" y="3920" width="192" height="112"/>
+  <object id="20" type="Sprite" x="4128" y="3920" width="192" height="112">
+   <properties>
+    <property name="image" value="logo.png"/>
+    <property name="no_flip" value="x"/>
+   </properties>
+  </object>
   <object id="21" type="QuestionBlock" x="4432" y="4032" width="16" height="16"/>
   <object id="22" type="QuestionBlock" x="4464" y="4032" width="16" height="16"/>
   <object id="23" type="QuestionBlock" x="4448" y="3968" width="16" height="16"/>
