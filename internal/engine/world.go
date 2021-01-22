@@ -100,8 +100,15 @@ type World struct {
 	respawned bool
 }
 
-func NewWorld() *World {
-	// Load font.
+// Initialized returns whether Init() has been called on this World before.
+func (w *World) Initialized() bool {
+	return w.Tiles != nil
+}
+
+// Init brings a world into a working state.
+// Can be called more than once to reset _everything_.
+func (w *World) Init() error {
+	// Load font early on.
 	debugFont, err := truetype.Parse(gomono.TTF)
 	if err != nil {
 		log.Panicf("Could not load font: %v", err)
@@ -112,7 +119,8 @@ func NewWorld() *World {
 	if err != nil {
 		log.Panicf("Could not load level: %v", err)
 	}
-	w := World{
+
+	*w = World{
 		Tiles:    map[m.Pos]*Tile{},
 		Entities: map[EntityIncarnation]*Entity{},
 		Level:    level,
@@ -136,7 +144,7 @@ func NewWorld() *World {
 	w.Tiles[w.Level.Player.LevelPos] = &tile
 
 	// Create player entity.
-	w.Player, err = w.Level.Player.Spawn(&w, w.Level.Player.LevelPos, &tile)
+	w.Player, err = w.Level.Player.Spawn(w, w.Level.Player.LevelPos, &tile)
 	if err != nil {
 		log.Panicf("Could not spawn player: %v", err)
 	}
@@ -144,7 +152,7 @@ func NewWorld() *World {
 	// Respawn the player at the desired start location (includes other startup).
 	w.RespawnPlayer("", false)
 
-	return &w
+	return nil
 }
 
 // SpawnPlayer spawns the player in a newly initialized world.
