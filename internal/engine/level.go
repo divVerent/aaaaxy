@@ -1,6 +1,6 @@
 // Copyright 2021 Google LLC
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
+// Licensed under the Apache License, SaveGameVersion 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
@@ -21,6 +21,7 @@ import (
 
 	"github.com/fardog/tmx"
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/mitchellh/hashstructure/v2"
 
 	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
@@ -29,9 +30,10 @@ import (
 
 // Level is a parsed form of a loaded level.
 type Level struct {
-	Tiles       map[m.Pos]*LevelTile
-	Player      *Spawnable
-	Checkpoints map[string]*Spawnable
+	Tiles           map[m.Pos]*LevelTile
+	Player          *Spawnable
+	Checkpoints     map[string]*Spawnable
+	SaveGameVersion int
 }
 
 // LevelTile is a single tile in the level.
@@ -49,32 +51,36 @@ type WarpZone struct {
 	Transform m.Orientation
 }
 
+// SaveGameData is a not-yet-hashed SaveGame.
+type SaveGameData struct {
+	State        map[EntityID]PersistentState
+	LevelVersion int
+	LevelHash    uint64
+}
+
 // SaveGame is the data structure we save game state with.
 // It contains all needed (in addition to loading the level) to reset to the last visited checkpoint.
 type SaveGame struct {
-	Data      map[EntityID]PersistentState
-	DataHash  uint64
-	LevelHash uint64
+	SaveGameData
+	Hash uint64
 }
 
-func (l *Level) Hash() uint64 {
-	// TODO actually hash.
-	return 42
-}
-
-func (save *SaveGame) Hash() uint64 {
-	// TODO actually hash.
-	return 42
-}
-
-func (l *Level) SaveGame() SaveGame {
+// SaveGame returns the current state as a SaveGame.
+func (l *Level) SaveGame() (SaveGame, error) {
+	levelHash, err := hashstructure.Hash(l, hashstructure.FormatV2, nil)
+	if err != nil {
+		return SaveGame{}, err
+	}
 	save := SaveGame{
-		Data:      map[EntityID]PersistentState{},
-		LevelHash: l.Hash(),
+		SaveGameData: SaveGameData{
+			State:        map[EntityID]PersistentState{},
+			LevelVersion: l.SaveGameVersion,
+			LevelHash:    levelHash,
+		},
 	}
 	saveOne := func(s *Spawnable) {
 		if len(s.PersistentState) > 0 {
-			save.Data[s.ID] = s.PersistentState
+			save.State[s.ID] = s.PersistentState
 		}
 	}
 	for _, tile := range l.Tiles {
@@ -83,23 +89,39 @@ func (l *Level) SaveGame() SaveGame {
 		}
 	}
 	saveOne(l.Player)
-	save.DataHash = save.Hash()
-	return save
+	save.Hash, err = hashstructure.Hash(save.SaveGameData, hashstructure.FormatV2, nil)
+	if err != nil {
+		return SaveGame{}, err
+	}
+	return save, nil
 }
 
+// LoadGame loads the given SaveGame into the map.
+// Note that when this returns an error, the SaveGame might have been partially loaded.
 func (l *Level) LoadGame(save SaveGame) error {
-	if save.DataHash != save.Hash() {
+	saveHash, err := hashstructure.Hash(save.SaveGameData, hashstructure.FormatV2, nil)
+	if err != nil {
+		return err
+	}
+	if saveHash != save.Hash {
 		return fmt.Errorf("someone tampered with the save game")
 	}
-	if save.LevelHash != l.Hash() {
-		return fmt.Errorf("save game does not match level: got %v, want %v", save.LevelHash, l.Hash())
+	if save.LevelVersion != l.SaveGameVersion {
+		return fmt.Errorf("save game does not match level version: got %v, want %v", save.LevelVersion, l.SaveGameVersion)
+	}
+	levelHash, err := hashstructure.Hash(l, hashstructure.FormatV2, nil)
+	if err != nil {
+		return err
+	}
+	if save.LevelHash != levelHash {
+		log.Printf("Save game does not match level hash: got %v, want %v; trying to load anyway", save.LevelHash, levelHash)
 	}
 	loadOne := func(s *Spawnable) {
 		// Do not reallocate the map! Works better with already loaded entities.
 		for key := range s.PersistentState {
 			delete(s.PersistentState, key)
 		}
-		for key, value := range save.Data[s.ID] {
+		for key, value := range save.State[s.ID] {
 			s.PersistentState[key] = value
 		}
 	}
@@ -138,7 +160,7 @@ func LoadLevel(filename string) (*Level, error) {
 	if len(t.TileSets) != 1 {
 		return nil, fmt.Errorf("unsupported map: got %d embedded tilesets, want 1", len(t.TileSets))
 	}
-	// t.Properties doesn't matter.
+	// t.Properties used later.
 	if len(t.Layers) != 1 {
 		return nil, fmt.Errorf("unsupported map: got %d layers, want 1", len(t.Layers))
 	}
@@ -192,9 +214,14 @@ func LoadLevel(filename string) (*Level, error) {
 	if err != nil {
 		return nil, fmt.Errorf("invalid map layer: %v", err)
 	}
+	saveGameVersion, err := t.Properties.Int("save_game_version")
+	if err != nil {
+		return nil, fmt.Errorf("unsupported map: could not read save_game_version: %v", err)
+	}
 	level := Level{
-		Tiles:       map[m.Pos]*LevelTile{},
-		Checkpoints: map[string]*Spawnable{},
+		Tiles:           map[m.Pos]*LevelTile{},
+		Checkpoints:     map[string]*Spawnable{},
+		SaveGameVersion: int(saveGameVersion),
 	}
 	for i, td := range tds {
 		if td.Nil {

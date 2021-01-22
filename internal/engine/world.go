@@ -185,7 +185,10 @@ func (w *World) Load() error {
 
 // Save saves the current savegame.
 func (w *World) Save() error {
-	save := w.Level.SaveGame()
+	save, err := w.Level.SaveGame()
+	if err != nil {
+		return err
+	}
 	state, err := json.MarshalIndent(save, "", "\t")
 	if err != nil {
 		return err

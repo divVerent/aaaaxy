@@ -44,7 +44,7 @@ type Spawnable struct {
 	Properties map[string]string
 
 	// Persistent entity state, if any, shall be kept in this map.
-	PersistentState map[string]string
+	PersistentState map[string]string `hash:"-"`
 }
 
 // An Entity is an object that exists in the game.
