@@ -34,6 +34,7 @@ type Level struct {
 	Player          *Spawnable
 	Checkpoints     map[string]*Spawnable
 	SaveGameVersion int
+	Hash            uint64
 }
 
 // LevelTile is a single tile in the level.
@@ -67,15 +68,11 @@ type SaveGame struct {
 
 // SaveGame returns the current state as a SaveGame.
 func (l *Level) SaveGame() (SaveGame, error) {
-	levelHash, err := hashstructure.Hash(l, hashstructure.FormatV2, nil)
-	if err != nil {
-		return SaveGame{}, err
-	}
 	save := SaveGame{
 		SaveGameData: SaveGameData{
 			State:        map[EntityID]PersistentState{},
 			LevelVersion: l.SaveGameVersion,
-			LevelHash:    levelHash,
+			LevelHash:    l.Hash,
 		},
 	}
 	saveOne := func(s *Spawnable) {
@@ -89,6 +86,7 @@ func (l *Level) SaveGame() (SaveGame, error) {
 		}
 	}
 	saveOne(l.Player)
+	var err error
 	save.Hash, err = hashstructure.Hash(save.SaveGameData, hashstructure.FormatV2, nil)
 	if err != nil {
 		return SaveGame{}, err
@@ -109,12 +107,8 @@ func (l *Level) LoadGame(save SaveGame) error {
 	if save.LevelVersion != l.SaveGameVersion {
 		return fmt.Errorf("save game does not match level version: got %v, want %v", save.LevelVersion, l.SaveGameVersion)
 	}
-	levelHash, err := hashstructure.Hash(l, hashstructure.FormatV2, nil)
-	if err != nil {
-		return err
-	}
-	if save.LevelHash != levelHash {
-		log.Printf("Save game does not match level hash: got %v, want %v; trying to load anyway", save.LevelHash, levelHash)
+	if save.LevelHash != l.Hash {
+		log.Printf("Save game does not match level hash: got %v, want %v; trying to load anyway", save.LevelHash, l.Hash)
 	}
 	loadOne := func(s *Spawnable) {
 		// Do not reallocate the map! Works better with already loaded entities.
@@ -440,6 +434,10 @@ func LoadLevel(filename string) (*Level, error) {
 				}
 			}
 		}
+	}
+	level.Hash, err = hashstructure.Hash(&level, hashstructure.FormatV2, nil)
+	if err != nil {
+		return nil, fmt.Errorf("could not hash level: %v", err)
 	}
 	return &level, nil
 }
