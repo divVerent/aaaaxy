@@ -752,16 +752,37 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 		if w.needPrevImageMasked {
 			// Optimization note:
 			// - This isn't optimal.
-			// - Scrolled copy + blur could be a single pass.
+			// - If we could precompute the blur during prev frame,
+			//   we could save another render pass by doing a shader based render.
 
 			// Make a scrolled copy of the last frame.
-			w.prevImageMasked.Fill(color.Gray{0})
-			opts := ebiten.DrawImageOptions{
+			// We're using DrawTriangles so we can use AddressClampToZero and thus don't need to clear the destination image.
+			w.prevImageMasked.DrawTriangles([]ebiten.Vertex{
+				{
+					DstX: 0, DstY: 0,
+					SrcX: float32(delta.DX), SrcY: float32(delta.DY),
+					ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
+				},
+				{
+					DstX: GameWidth, DstY: 0,
+					SrcX: GameWidth + float32(delta.DX), SrcY: float32(delta.DY),
+					ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
+				},
+				{
+					DstX: 0, DstY: GameHeight,
+					SrcX: float32(delta.DX), SrcY: GameHeight + float32(delta.DY),
+					ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
+				},
+				{
+					DstX: GameWidth, DstY: GameHeight,
+					SrcX: GameWidth + float32(delta.DX), SrcY: GameHeight + float32(delta.DY),
+					ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
+				},
+			}, []uint16{0, 1, 2, 1, 2, 3}, w.prevImage, &ebiten.DrawTrianglesOptions{
 				CompositeMode: ebiten.CompositeModeCopy,
 				Filter:        ebiten.FilterNearest,
-			}
-			opts.GeoM.Translate(float64(-delta.DX), float64(-delta.DY))
-			w.prevImageMasked.DrawImage(w.prevImage, &opts)
+				Address:       ebiten.AddressClampToZero,
+			})
 
 			// Blur and darken last image.
 			darkenAlpha := frameDarkenAlpha
@@ -771,7 +792,7 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 			}
 
 			// Mask out the parts we've already drawn.
-			opts = ebiten.DrawImageOptions{
+			opts := ebiten.DrawImageOptions{
 				CompositeMode: ebiten.CompositeModeMultiply,
 				Filter:        ebiten.FilterNearest,
 			}
