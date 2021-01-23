@@ -21,7 +21,7 @@ import (
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/goitalic"
 	"golang.org/x/image/font/gofont/gomono"
-	"golang.org/x/image/font/gofont/gomonobold"
+	"golang.org/x/image/font/gofont/gosmallcaps"
 )
 
 // Face is an alias to font.Face so users do not need to import the font package.
@@ -43,9 +43,9 @@ func init() {
 	if err != nil {
 		log.Panicf("Could not load gomono font: %v", err)
 	}
-	monobold, err := truetype.Parse(gomonobold.TTF)
+	smallcaps, err := truetype.Parse(gosmallcaps.TTF)
 	if err != nil {
-		log.Panicf("Could not load gomonobold font: %v", err)
+		log.Panicf("Could not load gosmallcaps font: %v", err)
 	}
 
 	Centerprint = truetype.NewFace(italic, &truetype.Options{
@@ -54,7 +54,7 @@ func init() {
 		SubPixelsX: 1,
 		SubPixelsY: 1,
 	})
-	CenterprintBig = truetype.NewFace(monobold, &truetype.Options{
+	CenterprintBig = truetype.NewFace(smallcaps, &truetype.Options{
 		Size:       24,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
