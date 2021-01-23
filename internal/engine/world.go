@@ -25,14 +25,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/golang/freetype/truetype"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/hajimehoshi/ebiten/v2/text"
-	"golang.org/x/image/font"
-	"golang.org/x/image/font/gofont/gomono"
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
+	"github.com/divVerent/aaaaaa/internal/font"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/timing"
 	"github.com/divVerent/aaaaaa/internal/vfs"
@@ -73,8 +71,6 @@ type World struct {
 	scrollPos m.Pos
 	// visibilityMark is the current mark value to detect visible tiles/objects.
 	visibilityMark uint
-	// debugFont is the font to use for debug messages.
-	debugFont font.Face
 	// visiblePolygonCenter is the current eye position.
 	visiblePolygonCenter m.Pos
 	// visiblePolygon is the currently visible polygon.
@@ -111,12 +107,6 @@ func (w *World) Initialized() bool {
 // Init brings a world into a working state.
 // Can be called more than once to reset _everything_.
 func (w *World) Init() error {
-	// Load font early on.
-	debugFont, err := truetype.Parse(gomono.TTF)
-	if err != nil {
-		log.Panicf("Could not load font: %v", err)
-	}
-
 	// Load map.
 	level, err := LoadLevel("level")
 	if err != nil {
@@ -124,13 +114,9 @@ func (w *World) Init() error {
 	}
 
 	*w = World{
-		Tiles:    map[m.Pos]*Tile{},
-		Entities: map[EntityIncarnation]*Entity{},
-		Level:    level,
-		debugFont: truetype.NewFace(debugFont, &truetype.Options{
-			Size:    5,
-			Hinting: font.HintingFull,
-		}),
+		Tiles:               map[m.Pos]*Tile{},
+		Entities:            map[EntityIncarnation]*Entity{},
+		Level:               level,
 		whiteImage:          ebiten.NewImage(1, 1),
 		blurImage:           ebiten.NewImage(GameWidth, GameHeight),
 		prevImage:           ebiten.NewImage(GameWidth, GameHeight),
@@ -653,7 +639,7 @@ func (w *World) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		if *debugShowCoords {
 			c := color.Gray{128}
-			text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), w.debugFont, screenPos.X, screenPos.Y+TileSize-1, c)
+			text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), font.DebugSmall, screenPos.X, screenPos.Y+TileSize-1, c)
 		}
 		if *debugShowOrientations {
 			midx := float64(screenPos.X) + TileSize/2

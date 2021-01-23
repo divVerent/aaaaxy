@@ -17,14 +17,11 @@ package centerprint
 import (
 	"image"
 	"image/color"
-	"log"
 
-	"github.com/golang/freetype/truetype"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/text"
-	"golang.org/x/image/font"
-	"golang.org/x/image/font/gofont/goitalic"
-	"golang.org/x/image/font/gofont/gomonobold"
+
+	"github.com/divVerent/aaaaaa/internal/font"
 )
 
 const (
@@ -46,28 +43,8 @@ type Centerprint struct {
 
 var (
 	screenWidth, screenHeight int
-	normalFace, bigFace       font.Face
 	centerprints              []*Centerprint
 )
-
-func init() {
-	normalFont, err := truetype.Parse(goitalic.TTF)
-	if err != nil {
-		log.Panicf("Could not load goitalic font: %v", err)
-	}
-	normalFace = truetype.NewFace(normalFont, &truetype.Options{
-		Size:    16,
-		Hinting: font.HintingFull,
-	})
-	bigFont, err := truetype.Parse(gomonobold.TTF)
-	if err != nil {
-		log.Panicf("Could not load gomonobold font: %v", err)
-	}
-	bigFace = truetype.NewFace(bigFont, &truetype.Options{
-		Size:    24,
-		Hinting: font.HintingFull,
-	})
-}
 
 type Importance int
 
@@ -83,28 +60,19 @@ const (
 	Middle
 )
 
-type Font int
-
-const (
-	NormalFont = iota
-	BigFont
+var (
+	NormalFont = font.Centerprint
+	BigFont    = font.CenterprintBig
 )
 
-func New(txt string, imp Importance, pos InitialPosition, font Font, color color.Color) *Centerprint {
+func New(txt string, imp Importance, pos InitialPosition, face font.Face, color color.Color) *Centerprint {
 	cp := &Centerprint{
 		text:       txt,
 		color:      color,
 		force:      imp == Important,
+		face:       face,
 		alphaFrame: 1,
 		active:     true,
-	}
-	switch font {
-	case NormalFont:
-		cp.face = normalFace
-	case BigFont:
-		cp.face = bigFace
-	default:
-		log.Panicf("Unknown centerprint font: %v", font)
 	}
 	cp.bounds = text.BoundString(cp.face, txt)
 	if pos == Middle {
@@ -161,6 +129,7 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 	bg := color.NRGBA{R: 0, G: 0, B: 0, A: uint8(a * 255)}
 	x := (screenWidth-(cp.bounds.Max.X-cp.bounds.Min.X))/2 - cp.bounds.Min.X
 	y := cp.scrollPos - cp.bounds.Max.Y
+	// TODO a better way to outline?
 	for dx := -1; dx <= +1; dx++ {
 		for dy := -1; dy <= +1; dy++ {
 			if dx == 0 && dy == 0 {
