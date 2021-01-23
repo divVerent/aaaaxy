@@ -723,21 +723,23 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
 
-	// Optimization note:
-	// - This isn't optimal. Visibility mask maybe shouldn't even exist?
-	// - If screen were a separate image, we could instead copy image to screen masked by polygon.
-	// - Would remove one render call.
-	// - Wouldn't allow blur though...?
-	w.visibilityMaskImage.Fill(color.Gray{0})
-	drawPolygonAround(w.visibilityMaskImage, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, geoM, &ebiten.DrawTrianglesOptions{
-		Address: ebiten.AddressRepeat,
-	})
+	if w.needPrevImageMasked {
+		// Optimization note:
+		// - This isn't optimal. Visibility mask maybe shouldn't even exist?
+		// - If screen were a separate image, we could instead copy image to screen masked by polygon.
+		// - Would remove one render call.
+		// - Wouldn't allow blur though...?
+		w.visibilityMaskImage.Fill(color.Gray{0})
+		drawPolygonAround(w.visibilityMaskImage, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, geoM, &ebiten.DrawTrianglesOptions{
+			Address: ebiten.AddressRepeat,
+		})
 
-	if !*expandUsingVertices {
-		blurImage(w.visibilityMaskImage, w.blurImage, expandSize, true, 1.0)
-	}
-	if *drawBlurs {
-		blurImage(w.visibilityMaskImage, w.blurImage, blurSize, false, 1.0)
+		if !*expandUsingVertices {
+			blurImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, expandSize, true, 1.0)
+		}
+		if *drawBlurs {
+			blurImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, blurSize, false, 1.0)
+		}
 	}
 
 	screen.DrawImage(w.visibilityMaskImage, &ebiten.DrawImageOptions{
@@ -764,7 +766,7 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 			// Blur and darken last image.
 			darkenAlpha := frameDarkenAlpha
 			if *drawBlurs {
-				blurImage(w.prevImageMasked, w.blurImage, frameBlurSize, false, darkenAlpha)
+				blurImage(w.prevImageMasked, w.blurImage, w.prevImageMasked, frameBlurSize, false, darkenAlpha)
 				darkenAlpha = 1.0
 			}
 
@@ -793,9 +795,10 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 				Filter:        ebiten.FilterNearest,
 			})
 			w.prevScrollPos = w.scrollPos
-			w.needPrevImageMasked = false
 		}
 	}
+
+	w.needPrevImageMasked = false
 }
 
 func (w *World) drawOverlays(screen *ebiten.Image, scrollDelta m.Delta) {
