@@ -33,14 +33,15 @@ type Player struct {
 	Entity          *engine.Entity
 	PersistentState map[string]string
 
-	OnGround   bool
-	Jumping    bool
-	JumpingUp  bool
-	LookUp     bool
-	LookDown   bool
-	Velocity   m.Delta
-	SubPixel   m.Delta
-	Respawning bool
+	OnGround      bool
+	LastGroundPos m.Pos
+	Jumping       bool
+	JumpingUp     bool
+	LookUp        bool
+	LookDown      bool
+	Velocity      m.Delta
+	SubPixel      m.Delta
+	Respawning    bool
 
 	Anim         animation.State
 	JumpSound    *sound.Sound
@@ -310,6 +311,7 @@ func (p *Player) Update() {
 		p.Entity.Orientation = m.FlipX()
 	}
 	if p.OnGround {
+		p.LastGroundPos = p.Entity.Rect.Origin
 		if p.Velocity.DX > -AnimGroundSpeed && p.Velocity.DX < AnimGroundSpeed {
 			p.Anim.SetGroup("idle")
 		} else {
@@ -340,12 +342,18 @@ func (p *Player) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 // EyePos returns the position the player eye is at.
 func (p *Player) EyePos() m.Pos {
-	return p.Entity.Rect.Origin.Add(m.Delta{DX: PlayerEyeDX, DY: PlayerEyeDY})
+	return m.Pos{
+		p.Entity.Rect.Origin.X + PlayerEyeDX,
+		p.Entity.Rect.Origin.Y + PlayerEyeDY,
+	}
 }
 
 // LookPos returns the position the player is focusing at.
 func (p *Player) LookPos() m.Pos {
-	focus := p.EyePos()
+	focus := m.Pos{
+		p.Entity.Rect.Origin.X + PlayerEyeDX,
+		p.LastGroundPos.Y + PlayerEyeDY,
+	}
 	if p.LookUp {
 		focus.Y -= LookDistance
 	}
@@ -358,6 +366,7 @@ func (p *Player) LookPos() m.Pos {
 // Respawned informs the player that the world moved/respawned it.
 func (p *Player) Respawned() {
 	p.OnGround = true                // Do not get landing anim right away.
+	p.LastGroundPos = p.EyePos()     // Center the camera.
 	p.Jumping = true                 // Jump key must be hit again.
 	p.JumpingUp = false              // Do not assume we're in the first half of a jump (fastfall).
 	p.Velocity = m.Delta{}           // Stop moving.

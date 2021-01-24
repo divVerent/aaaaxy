@@ -260,14 +260,14 @@ func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 	w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
 	w.visibilityMark++
 
-	// Scroll the player in view right away.
-	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
+	// Notify the player, reset animation state.
+	w.Player.Impl.(PlayerEntityImpl).Respawned()
 
 	// Show the fade in.
 	w.FramesSinceSpawn = 0
 
-	// Notify the player, reset animation state.
-	w.Player.Impl.(PlayerEntityImpl).Respawned()
+	// Scroll the player in view right away.
+	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
 
 	// Skip updating.
 	w.respawned = true
