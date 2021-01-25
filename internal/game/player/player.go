@@ -97,6 +97,7 @@ const (
 
 	NoiseMinSpeed = 384 * SubPixelScale / engine.GameTPS
 	NoiseMaxSpeed = MaxSpeed
+	NoisePower    = 2.0
 
 	// We want at least 19px high jumps so we can be sure a jump moves at least 2 tiles up.
 	JumpExtraGravity = 72*Gravity/19 - Gravity
@@ -323,7 +324,7 @@ func (p *Player) Update() {
 	p.Anim.Update(p.Entity)
 	speed := math.Sqrt(float64(p.Velocity.Length2()))
 	if speed >= NoiseMinSpeed {
-		amount := (speed - NoiseMinSpeed) / (NoiseMaxSpeed - NoiseMinSpeed)
+		amount := math.Pow((speed-NoiseMinSpeed)/(NoiseMaxSpeed-NoiseMinSpeed), NoisePower)
 		noise.Set(amount)
 	}
 }
