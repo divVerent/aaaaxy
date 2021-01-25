@@ -1735,10 +1735,10 @@
  </tile>
  <wangsets>
   <wangset name="Block/Open" tile="-1">
-   <wangedgecolor name="Block" color="#00007f" tile="-1" probability="1"/>
-   <wangedgecolor name="Open" color="#aaff7f" tile="-1" probability="1"/>
-   <wangcornercolor name="Block" color="#00007f" tile="-1" probability="1"/>
-   <wangcornercolor name="Open" color="#aaff7f" tile="-1" probability="1"/>
+   <wangedgecolor name="Block" color="#000080" tile="-1" probability="1"/>
+   <wangedgecolor name="Open" color="#ffff80" tile="-1" probability="1"/>
+   <wangcornercolor name="Block" color="#000080" tile="-1" probability="1"/>
+   <wangcornercolor name="Open" color="#ffff80" tile="-1" probability="1"/>
    <wangtile tileid="9" wangid="0x22222222"/>
    <wangtile tileid="10" wangid="0x21222222"/>
    <wangtile tileid="11" wangid="0x22212222"/>
@@ -1786,6 +1786,26 @@
    <wangtile tileid="53" wangid="0x11211111"/>
    <wangtile tileid="54" wangid="0x21111111"/>
    <wangtile tileid="55" wangid="0x11111111"/>
+  </wangset>
+  <wangset name="Block/Open 1row" tile="-1">
+   <wangedgecolor name="" color="#000080" tile="-1" probability="1"/>
+   <wangedgecolor name="" color="#ffff80" tile="-1" probability="1"/>
+   <wangtile tileid="9" wangid="0x2020202"/>
+   <wangtile tileid="10" wangid="0x1020202"/>
+   <wangtile tileid="11" wangid="0x2010202"/>
+   <wangtile tileid="12" wangid="0x1010202"/>
+   <wangtile tileid="14" wangid="0x2020102"/>
+   <wangtile tileid="15" wangid="0x1020102"/>
+   <wangtile tileid="16" wangid="0x2010102"/>
+   <wangtile tileid="18" wangid="0x1010102"/>
+   <wangtile tileid="22" wangid="0x2020201"/>
+   <wangtile tileid="23" wangid="0x1020201"/>
+   <wangtile tileid="25" wangid="0x2010201"/>
+   <wangtile tileid="26" wangid="0x1010201"/>
+   <wangtile tileid="30" wangid="0x2020101"/>
+   <wangtile tileid="32" wangid="0x1020101"/>
+   <wangtile tileid="36" wangid="0x2010101"/>
+   <wangtile tileid="40" wangid="0x1010101"/>
   </wangset>
  </wangsets>
 </tileset>
