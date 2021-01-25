@@ -12,17 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package misc
+package trigger
 
 import (
-	"fmt"
-	"strconv"
-
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -41,10 +37,6 @@ func (o *OneWay) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 	o.World = w
 	o.Entity = e
 
-	e.Image, err = image.Load(directory, "oneway.png")
-	if err != nil {
-		return err
-	}
 	e.ResizeImage = true
 	e.Opaque = false
 
@@ -66,10 +58,10 @@ func (o *OneWay) Despawn() {}
 
 func (o *OneWay) Update() {
 	// I am solid if plP0..plP1 is entirely > myP0..myP1.
-	myP0 := o.Entity.Rect.Origin.Dot(o.AllowedDirection)
-	myP1 := o.Entity.Rect.OppositeCorner().Dot(o.AllowedDirection)
-	plP0 := o.World.Player.Rect.Origin.Dot(o.AllowedDirection)
-	plP1 := o.World.Player.OppositeCorner().Origin.Dot(o.AllowedDirection)
+	myP0 := o.Entity.Rect.Origin.Delta(m.Pos{}).Dot(o.AllowedDirection)
+	myP1 := o.Entity.Rect.OppositeCorner().Delta(m.Pos{}).Dot(o.AllowedDirection)
+	plP0 := o.World.Player.Rect.Origin.Delta(m.Pos{}).Dot(o.AllowedDirection)
+	plP1 := o.World.Player.Rect.OppositeCorner().Delta(m.Pos{}).Dot(o.AllowedDirection)
 	o.Entity.Solid = plP0 > myP0 && plP1 > myP0 && plP0 > myP1 && plP1 > myP1
 
 	// Animate.

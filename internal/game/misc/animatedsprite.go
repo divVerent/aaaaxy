@@ -16,6 +16,7 @@ package misc
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 const (
@@ -27,6 +28,7 @@ const (
 // Can be toggled from outside.
 type AnimatedSprite struct {
 	Sprite
+	World  *engine.World
 	Entity *engine.Entity
 
 	Alpha  float64
@@ -43,6 +45,7 @@ func (s *AnimatedSprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.
 		return nil
 	}
 
+	s.World = w
 	s.Entity = e
 
 	// Collect the sprite info.
@@ -98,7 +101,7 @@ func (s *AnimatedSprite) Update() {
 	}
 
 	// Make nonsolid if inside (to unstick player if needed).
-	if s.Entity.Solid && (s.Entity.Rect.Delta(a.World.Player.Rect) == m.Delta{}) {
+	if s.Entity.Solid && (s.Entity.Rect.Delta(s.World.Player.Rect) == m.Delta{}) {
 		s.Entity.Solid = false
 	}
 }
