@@ -21,6 +21,9 @@
   <property name="height" type="string"/>
   <property name="rel_delta" type="string"/>
  </objecttype>
+ <objecttype name="OneWay" color="#0000ff">
+  <property name="orientation" type="string"/>
+ </objecttype>
  <objecttype name="QuestionBlock" color="#000000">
   <property name="kaizo" type="bool" default="false"/>
  </objecttype>
@@ -42,7 +45,7 @@
   <property name="target" type="string"/>
   <property name="text" type="string"/>
  </objecttype>
- <objecttype name="WarpZone" color="#ff0000"
+ <objecttype name="WarpZone" color="#ff0000">
   <property name="initial_state" type="bool" default="true"/>
  </objecttype>
 </objecttypes>

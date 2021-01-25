@@ -78,3 +78,6 @@ func South() Delta {
 func West() Delta {
 	return Delta{DX: -1, DY: 0}
 }
+func (d Delta) Dot(d2 Delta) int {
+	return d.DX*d2.DX + d.DY*d2.DY
+}
