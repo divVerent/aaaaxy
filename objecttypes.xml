@@ -24,7 +24,7 @@
  <objecttype name="QuestionBlock" color="#000000">
   <property name="kaizo" type="bool" default="false"/>
  </objecttype>
- <objecttype name="SetState" color="#ff0000"
+ <objecttype name="SetState" color="#ff0000">
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
