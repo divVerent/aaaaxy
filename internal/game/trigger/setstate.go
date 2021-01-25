@@ -15,6 +15,8 @@
 package trigger
 
 import (
+	"log"
+
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
@@ -22,8 +24,8 @@ import (
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
-// SetWarpZoneState just displays a text and remembers that it was hit.
-type SetWarpZoneState struct {
+// SetState overrides the boolean state of a warpzone or entity.
+type SetState struct {
 	mixins.NonSolidTouchable
 	World *engine.World
 
@@ -31,24 +33,45 @@ type SetWarpZoneState struct {
 	State  bool
 }
 
-func (s *SetWarpZoneState) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
+func (s *SetState) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
 	s.NonSolidTouchable.Init(w, e)
 	s.World = w
 	s.Target = sp.Properties["target"]
 	s.State = sp.Properties["state"] == "true"
+	if sp.Properties["initial_state"] != "" {
+		s.apply(sp.Properties["initial_state"] == "true")
+	}
 	return nil
 }
 
-func (s *SetWarpZoneState) Despawn() {}
+func (s *SetState) Despawn() {}
 
-func (s *SetWarpZoneState) Touch(other *engine.Entity) {
-	if other == s.World.Player {
-		s.World.SetWarpZoneState(s.Target, s.State)
+type stateSetter interface {
+	SetState(state bool)
+}
+
+func (s *SetState) apply(state bool) {
+	s.World.SetWarpZoneState(s.Target, state)
+	for _, ent := range s.World.Entities {
+		if ent.Name != s.Target {
+			continue
+		}
+		setter, ok := ent.Impl.(stateSetter)
+		if !ok {
+			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", s.Target)
+		}
+		setter.SetState(state)
 	}
 }
 
-func (s *SetWarpZoneState) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
+func (s *SetState) Touch(other *engine.Entity) {
+	if other == s.World.Player {
+		s.apply(s.State)
+	}
+}
+
+func (s *SetState) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
-	engine.RegisterEntityType(&SetWarpZoneState{})
+	engine.RegisterEntityType(&SetState{})
 }

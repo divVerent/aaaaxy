@@ -59,11 +59,10 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 		return fmt.Errorf("could not parse required orientation: %v", err)
 	}
 
-	c.Name = s.Properties["name"]
 	c.Text = s.Properties["text"]
 	c.Music = s.Properties["music"]
 
-	c.PlayerProperty = "checkpoint_seen." + c.Name
+	c.PlayerProperty = "checkpoint_seen." + c.Entity.Name
 	if c.Entity.Transform == requiredTransform {
 		c.PlayerPropertyFlipped = "Identity"
 	} else if c.Entity.Transform == requiredTransform.Concat(m.FlipX()) {
@@ -92,11 +91,11 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 	// Checkpoint always sets "mood".
 	music.Switch(c.Music)
 	player := c.World.Player.Impl.(*player.Player)
-	if player.PersistentState["last_checkpoint"] == c.Name && player.PersistentState[c.PlayerProperty] == c.PlayerPropertyFlipped {
+	if player.PersistentState["last_checkpoint"] == c.Entity.Name && player.PersistentState[c.PlayerProperty] == c.PlayerPropertyFlipped {
 		return
 	}
 	player.PersistentState[c.PlayerProperty] = c.PlayerPropertyFlipped
-	player.PersistentState["last_checkpoint"] = c.Name
+	player.PersistentState["last_checkpoint"] = c.Entity.Name
 	err := c.World.Save()
 	if err != nil {
 		log.Printf("Could not save game: %v", err)

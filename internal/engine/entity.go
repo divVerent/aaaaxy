@@ -57,6 +57,7 @@ type Entity struct {
 	Opaque    bool
 	Rect      m.Rect
 	Transform m.Orientation // Possibly needed for initialization.
+	Name      string        // Possibly searched for.
 
 	// Info needed for rendering.
 	Orientation  m.Orientation
@@ -134,8 +135,9 @@ func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
 	eImpl := eImplVal.Interface().(EntityImpl)
 	e := &Entity{
 		Incarnation: incarnation,
-		Impl:        eImpl,
 		Transform:   t.Transform,
+		Name:        s.Properties["name"],
+		Impl:        eImpl,
 	}
 	pivot2InTile := m.Pos{X: TileSize, Y: TileSize}
 	e.Rect = tInv.ApplyToRect2(pivot2InTile, s.RectInTile)

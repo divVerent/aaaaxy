@@ -26,21 +26,30 @@ import (
 )
 
 // Sprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
-type Sprite struct{}
+// Can be toggled from outside.
+type Sprite struct {
+	Entity *engine.Entity
+
+	Image  *ebiten.Image
+	Solid  bool
+	Opaque bool
+}
 
 func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
+	s.Entity = e
+
 	var err error
 	directory := sp.Properties["image_dir"]
 	if directory == "" {
 		directory = "sprites"
 	}
-	e.Image, err = image.Load(directory, sp.Properties["image"])
+	s.Image, err = image.Load(directory, sp.Properties["image"])
 	if err != nil {
 		return err
 	}
 	e.ResizeImage = true
-	e.Solid = sp.Properties["solid"] == "true"
-	e.Opaque = sp.Properties["opaque"] == "true"
+	s.Solid = sp.Properties["solid"] == "true"
+	s.Opaque = sp.Properties["opaque"] == "true"
 	if sp.Properties["alpha"] != "" {
 		e.Alpha, err = strconv.ParseFloat(sp.Properties["alpha"], 64)
 		if err != nil {
@@ -69,7 +78,21 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 			e.Orientation = e.Transform.Inverse().Concat(m.FlipY()).Concat(e.Orientation)
 		}
 	}
+	initialState := sp.Properties["initial_state"] != "false"
+	s.SetState(initialState)
 	return nil
+}
+
+func (s *Sprite) SetState(state bool) {
+	if state {
+		s.Entity.Image = s.Image
+		s.Entity.Solid = s.Solid
+		s.Entity.Opaque = s.Opaque
+	} else {
+		s.Entity.Image = nil
+		s.Entity.Solid = false
+		s.Entity.Opaque = false
+	}
 }
 
 func (s *Sprite) Despawn() {}
