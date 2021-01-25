@@ -32,6 +32,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/font"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/timing"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
@@ -274,6 +275,9 @@ func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 
 	// Scroll the player in view right away.
 	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
+
+	// Load the configured music.
+	music.Switch(cpSp.Properties["music"])
 
 	// Skip updating.
 	w.respawned = true
