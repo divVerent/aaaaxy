@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.4" tiledversion="1.4.3" name="tiles" tilewidth="16" tileheight="16" tilecount="192" columns="16" objectalignment="topleft">
  <grid orientation="orthogonal" width="1" height="1"/>
+ <terraintypes>
+  <terrain name="Block" tile="-1"/>
+  <terrain name="Open" tile="-1"/>
+ </terraintypes>
  <tile id="0">
   <properties>
    <property name="img.EN" value="notile.png"/>
@@ -132,7 +136,7 @@
   </properties>
   <image width="16" height="16" source="wall_s_w_sw0.png"/>
  </tile>
- <tile id="13">
+ <tile id="13" terrain="1,1,0,1">
   <properties>
    <property name="img.EN" value="wall_n_w_nw1.png"/>
    <property name="img.ES" value="wall_s_w_sw1.png"/>
@@ -192,7 +196,7 @@
   </properties>
   <image width="16" height="16" source="wall_e_s_se0.png"/>
  </tile>
- <tile id="17">
+ <tile id="17" terrain="1,1,1,0">
   <properties>
    <property name="img.EN" value="wall_n_e_ne1.png"/>
    <property name="img.ES" value="wall_e_s_se1.png"/>
@@ -252,7 +256,7 @@
   </properties>
   <image width="16" height="16" source="wall_e_s_w_se1_sw0.png"/>
  </tile>
- <tile id="21">
+ <tile id="21" terrain="1,1,0,0">
   <properties>
    <property name="img.EN" value="wall_n_e_w_ne1_nw1.png"/>
    <property name="img.ES" value="wall_e_s_w_se1_sw1.png"/>
@@ -297,7 +301,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_w_nw0.png"/>
  </tile>
- <tile id="24">
+ <tile id="24" terrain="0,1,1,1">
   <properties>
    <property name="img.EN" value="wall_s_w_sw1.png"/>
    <property name="img.ES" value="wall_n_w_nw1.png"/>
@@ -372,7 +376,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_s_w_sw1_nw0.png"/>
  </tile>
- <tile id="29">
+ <tile id="29" terrain="0,1,0,1">
   <properties>
    <property name="img.EN" value="wall_n_s_w_sw1_nw1.png"/>
    <property name="img.ES" value="wall_n_s_w_sw1_nw1.png"/>
@@ -402,7 +406,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_ne0.png"/>
  </tile>
- <tile id="31">
+ <tile id="31" terrain="1,0,1,1">
   <properties>
    <property name="img.EN" value="wall_e_s_se1.png"/>
    <property name="img.ES" value="wall_n_e_ne1.png"/>
@@ -462,7 +466,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_w_ne1_nw0.png"/>
  </tile>
- <tile id="35">
+ <tile id="35" terrain="0,0,1,1">
   <properties>
    <property name="img.EN" value="wall_e_s_w_se1_sw1.png"/>
    <property name="img.ES" value="wall_n_e_w_ne1_nw1.png"/>
@@ -522,7 +526,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_ne1_se0.png"/>
  </tile>
- <tile id="39">
+ <tile id="39" terrain="1,0,1,0">
   <properties>
    <property name="img.EN" value="wall_n_e_s_ne1_se1.png"/>
    <property name="img.ES" value="wall_n_e_s_ne1_se1.png"/>
@@ -612,7 +616,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne0_se1_sw0_nw0.png"/>
  </tile>
- <tile id="45">
+ <tile id="45" terrain="0,1,1,0">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se0_sw1_nw0.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne0_se1_sw0_nw1.png"/>
@@ -642,7 +646,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne0_se1_sw1_nw0.png"/>
  </tile>
- <tile id="47">
+ <tile id="47" terrain="0,1,0,0">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se0_sw1_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne0_se1_sw1_nw1.png"/>
@@ -687,7 +691,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se0_sw0_nw1.png"/>
  </tile>
- <tile id="50">
+ <tile id="50" terrain="1,0,0,1">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne0_se1_sw0_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se0_sw1_nw0.png"/>
@@ -702,7 +706,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se0_sw1_nw0.png"/>
  </tile>
- <tile id="51">
+ <tile id="51" terrain="0,0,0,1">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne0_se1_sw1_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se0_sw1_nw1.png"/>
@@ -732,7 +736,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw0_nw0.png"/>
  </tile>
- <tile id="53">
+ <tile id="53" terrain="0,0,1,0">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se1_sw1_nw0.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se1_sw0_nw1.png"/>
@@ -747,7 +751,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw0_nw1.png"/>
  </tile>
- <tile id="54">
+ <tile id="54" terrain="1,0,0,0">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se1_sw0_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se1_sw1_nw0.png"/>
@@ -762,7 +766,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw1_nw0.png"/>
  </tile>
- <tile id="55">
+ <tile id="55" terrain="0,0,0,0">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
@@ -777,56 +781,56 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
  </tile>
- <tile id="56">
+ <tile id="56" terrain="1,1,1,1" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_8.png"/>
  </tile>
- <tile id="57">
+ <tile id="57" terrain="1,1,1,1" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_9.png"/>
  </tile>
- <tile id="58">
+ <tile id="58" terrain="1,1,1,1" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_a.png"/>
  </tile>
- <tile id="59">
+ <tile id="59" terrain="1,1,1,1" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_b.png"/>
  </tile>
- <tile id="60">
+ <tile id="60" terrain="1,1,1,1" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_c.png"/>
  </tile>
- <tile id="61">
+ <tile id="61" terrain="1,1,1,1" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_d.png"/>
  </tile>
- <tile id="62">
+ <tile id="62" terrain="1,1,1,1" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_e.png"/>
  </tile>
- <tile id="63">
+ <tile id="63" terrain="1,1,1,1">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
