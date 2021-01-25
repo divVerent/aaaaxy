@@ -96,6 +96,11 @@ func (s *AnimatedSprite) Update() {
 		s.Entity.Solid = false
 		s.Entity.Opaque = false
 	}
+
+	// Make nonsolid if inside (to unstick player if needed).
+	if s.Entity.Solid && (s.Entity.Rect.Delta(a.World.Player.Rect) == m.Delta{}) {
+		s.Entity.Solid = false
+	}
 }
 
 func init() {
