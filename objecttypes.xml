@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objecttypes>
+ <objecttype name="AnimatedSprite" color="#ffffff">
+  <property name="alpha" type="string"/>
+  <property name="image" type="string"/>
+  <property name="image_dir" type="string"/>
+  <property name="initial_state" type="bool" default="true"/>
+  <property name="no_flip" type="string"/>
+  <property name="no_transform" type="bool" default="false"/>
+  <property name="opaque" type="bool" default="false"/>
+  <property name="solid" type="bool" default="false"/>
+  <property name="z_index" type="int" default="0"/>
+ </objecttype>
  <objecttype name="Checkpoint" color="#008000">
   <property name="music" type="file" default=""/>
   <property name="required_orientation" type="string"/>
