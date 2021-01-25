@@ -23,6 +23,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/game/player"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
@@ -31,6 +32,7 @@ import (
 
 // Checkpoint remembers that it was hit and allows spawning from there again. Also displays a text.
 type Checkpoint struct {
+	mixins.NonSolidTouchable
 	World  *engine.World
 	Entity *engine.Entity
 
@@ -46,6 +48,7 @@ type Checkpoint struct {
 }
 
 func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+	c.NonSolidTouchable.Init(w, e)
 	c.World = w
 	c.Entity = e
 
@@ -79,12 +82,11 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 
 func (c *Checkpoint) Despawn() {}
 
-func (c *Checkpoint) Update() {
-	if c.Inactive {
+func (c *Checkpoint) Touch(other *engine.Entity) {
+	if other != c.World.Player {
 		return
 	}
-	// The "down" direction must match. That way we allow x-flipping and still matching the CP.
-	if (c.World.Player.Rect.Delta(c.Entity.Rect) != m.Delta{}) {
+	if c.Inactive {
 		return
 	}
 	// Checkpoint always sets "mood".
@@ -103,8 +105,6 @@ func (c *Checkpoint) Update() {
 	centerprint.New(c.Text, centerprint.Important, centerprint.Middle, centerprint.BigFont, color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
 	c.Sound.Play()
 }
-
-func (c *Checkpoint) Touch(other *engine.Entity) {}
 
 func (c *Checkpoint) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 

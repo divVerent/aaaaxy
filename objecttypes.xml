@@ -26,5 +26,7 @@
  <objecttype name="TnihSign" color="#ffff00">
   <property name="text" type="string"/>
  </objecttype>
- <objecttype name="WarpZone" color="#ff0000"/>
+ <objecttype name="WarpZone" color="#ff0000"
+  <property name="initial_state" type="bool" default="true"/>
+ </objecttype>
 </objecttypes>

@@ -63,6 +63,9 @@ type World struct {
 	Level *Level
 	// Frame since last spawn. Used to let the world slowly "fade in".
 	FramesSinceSpawn int
+	// WarpZoneStates is the set of current overrides of warpzone state.
+	// WarpZones can be turned on/off at will, as long as they are offscreen.
+	WarpZoneStates map[string]bool
 
 	// Properties that can in theory be regenerated from the above and thus do not
 	// need serialization support.
@@ -259,6 +262,9 @@ func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
 
 	w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
 	w.visibilityMark++
+
+	// Reset all warpzones.
+	w.WarpZoneStates = map[string]bool{}
 
 	// Notify the player, reset animation state.
 	w.Player.Impl.(PlayerEntityImpl).Respawned()
@@ -836,6 +842,12 @@ func (w *World) Draw(screen *ebiten.Image) {
 	w.drawDebug(screen, scrollDelta)
 }
 
+// SetWarpZoneState overrides the enabled/disabled state of a warpzone.
+// This state resets on respawn.
+func (w *World) SetWarpZoneState(name string, state bool) {
+	w.WarpZoneStates[name] = state
+}
+
 // LoadTile loads the next tile into the current world based on a currently
 // known tile and its neighbor. Respects and applies warps.
 func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
@@ -849,11 +861,12 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 		log.Panicf("Trying to load with nonexisting neighbor tile at %v", p)
 	}
 	t := neighborTile.Transform
-	newLevelPos := neighborTile.LevelPos.Add(t.Apply(d))
+	neighborLevelPos := neighborTile.LevelPos
+	newLevelPos := neighborLevelPos.Add(t.Apply(d))
 	newLevelTile, found := w.Level.Tiles[newLevelPos]
 	if !found {
 		log.Printf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)",
-			newLevelPos, p, neighborTile.LevelPos, d, t.Apply(d))
+			newLevelPos, p, neighborLevelPos, d, t.Apply(d))
 		newTile := Tile{
 			LevelPos:           newLevelPos,
 			Transform:          t,
@@ -862,11 +875,28 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 		w.Tiles[newPos] = &newTile
 		return newPos
 	}
-	if newLevelTile.WarpZone != nil {
-		t = newLevelTile.WarpZone.Transform.Concat(t)
-		tile := w.Level.Tiles[newLevelTile.WarpZone.ToTile]
+	warped := false
+	for _, warp := range newLevelTile.WarpZones {
+		// Don't enter warps from behind.
+		if warp.PrevTile != neighborLevelPos {
+			continue
+		}
+		// Honor the warpzone toggle state.
+		state, overridden := w.WarpZoneStates[warp.Name]
+		if !overridden {
+			state = warp.InitialState
+		}
+		if !state {
+			continue
+		}
+		if warped {
+			log.Panicf("More than one active warpzone on %v", newLevelTile)
+		}
+		warped = true
+		t = warp.Transform.Concat(t)
+		tile := w.Level.Tiles[warp.ToTile]
 		if tile == nil {
-			log.Panicf("Nil new tile after warping to %v", newLevelTile.WarpZone)
+			log.Panicf("Nil new tile after warping to %v", warp)
 		}
 		newLevelTile = tile
 	}

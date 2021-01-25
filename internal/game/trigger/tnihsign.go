@@ -22,6 +22,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/sound"
@@ -29,6 +30,7 @@ import (
 
 // TnihSign just displays a text and remembers that it was hit.
 type TnihSign struct {
+	mixins.NonSolidTouchable
 	World           *engine.World
 	Entity          *engine.Entity
 	PersistentState map[string]string
@@ -41,6 +43,8 @@ type TnihSign struct {
 }
 
 func (t *TnihSign) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+	t.NonSolidTouchable.Init(w, e)
+	t.NotifyUntouched = true
 	t.World = w
 	t.Entity = e
 	t.PersistentState = s.PersistentState
@@ -72,8 +76,8 @@ func (t *TnihSign) Despawn() {
 	}
 }
 
-func (t *TnihSign) Update() {
-	if (t.World.Player.Rect.Delta(t.Entity.Rect) == m.Delta{}) {
+func (t *TnihSign) Touch(other *engine.Entity) {
+	if other == t.World.Player {
 		if t.Centerprint.Active() {
 			t.Centerprint.SetFadeOut(false)
 		} else {
@@ -93,8 +97,6 @@ func (t *TnihSign) Update() {
 		}
 	}
 }
-
-func (t *TnihSign) Touch(other *engine.Entity) {}
 
 func (t *TnihSign) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 

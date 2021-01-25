@@ -39,17 +39,21 @@ type Level struct {
 
 // LevelTile is a single tile in the level.
 type LevelTile struct {
-	Tile     Tile
-	WarpZone *WarpZone
+	Tile      Tile
+	WarpZones []*WarpZone
 }
 
 // WarpZone represents a warp tile. Whenever anything enters this tile, it gets
 // moved to "to" and the direction transformed by "transform". For the game to
 // work, every warpZone must be paired with an exact opposite elsewhere. This
-// is ensured at load time.
+// is ensured at load time. Warpzones can be temporarily toggled by name; this
+// state is lost on checkpoint restore.
 type WarpZone struct {
-	ToTile    m.Pos
-	Transform m.Orientation
+	Name         string
+	InitialState bool
+	PrevTile     m.Pos
+	ToTile       m.Pos
+	Transform    m.Orientation
 }
 
 // SaveGameData is a not-yet-hashed SaveGame.
@@ -282,6 +286,7 @@ func LoadLevel(filename string) (*Level, error) {
 	type RawWarpZone struct {
 		StartTile, EndTile m.Pos
 		Orientation        m.Orientation
+		InitialState       bool
 	}
 	warpZones := map[string][]RawWarpZone{}
 	for _, og := range t.ObjectGroups {
@@ -356,10 +361,13 @@ func LoadLevel(filename string) (*Level, error) {
 			}
 			if properties["type"] == "WarpZone" {
 				// WarpZones must be paired by name.
-				warpZones[properties["name"]] = append(warpZones[properties["name"]], RawWarpZone{
-					StartTile:   startTile,
-					EndTile:     endTile,
-					Orientation: orientation,
+				name := properties["name"]
+				initialState := properties["initial_state"] != "false" // Default enabled.
+				warpZones[name] = append(warpZones[name], RawWarpZone{
+					StartTile:    startTile,
+					EndTile:      endTile,
+					Orientation:  orientation,
+					InitialState: initialState,
 				})
 				continue
 			}
@@ -416,6 +424,7 @@ func LoadLevel(filename string) (*Level, error) {
 			for fromy := from.StartTile.Y; fromy <= from.EndTile.Y; fromy++ {
 				for fromx := from.StartTile.X; fromx <= from.EndTile.X; fromx++ {
 					fromPos := m.Pos{X: fromx, Y: fromy}
+					prevPos := fromPos.Add(from.Orientation.Apply(m.West()))
 					fromPos2 := fromPos.Add(fromPos.Delta(m.Pos{}))
 					toPos2 := toCenter2.Add(transform.Apply(fromPos2.Delta(fromCenter2)))
 					toPos := toPos2.Div(2).Add(to.Orientation.Apply(m.West()))
@@ -427,10 +436,13 @@ func LoadLevel(filename string) (*Level, error) {
 					if toTile == nil {
 						log.Panicf("Invalid WarpZone destination location: outside map bounds: %v in %v", toPos, warppair)
 					}
-					levelTile.WarpZone = &WarpZone{
-						ToTile:    toPos,
-						Transform: transform,
-					}
+					levelTile.WarpZones = append(levelTile.WarpZones, &WarpZone{
+						Name:         warpname,
+						InitialState: from.InitialState,
+						PrevTile:     prevPos,
+						ToTile:       toPos,
+						Transform:    transform,
+					})
 				}
 			}
 		}
