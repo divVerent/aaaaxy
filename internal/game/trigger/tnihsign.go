@@ -38,6 +38,7 @@ type TnihSign struct {
 	Text      string
 	SeenImage *ebiten.Image
 	Sound     *sound.Sound
+	Target    string
 
 	Centerprint *centerprint.Centerprint
 }
@@ -90,6 +91,7 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 			t.Centerprint = centerprint.New(t.Text, importance, centerprint.Top, centerprint.NormalFont, color.NRGBA{R: 255, G: 255, B: 85, A: 255})
 			t.PersistentState["seen"] = "true"
 			t.Entity.Image = t.SeenImage
+			setState(t.World, t.Target, true)
 		}
 	} else {
 		if t.Centerprint.Active() {

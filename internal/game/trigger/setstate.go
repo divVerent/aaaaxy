@@ -39,7 +39,7 @@ func (s *SetState) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity
 	s.Target = sp.Properties["target"]
 	s.State = sp.Properties["state"] == "true"
 	if sp.Properties["initial_state"] != "" {
-		s.apply(sp.Properties["initial_state"] == "true")
+		setState(w, s.Target, sp.Properties["initial_state"] != "false") // Default true.
 	}
 	return nil
 }
@@ -50,15 +50,19 @@ type stateSetter interface {
 	SetState(state bool)
 }
 
-func (s *SetState) apply(state bool) {
-	s.World.SetWarpZoneState(s.Target, state)
-	for _, ent := range s.World.Entities {
-		if ent.Name != s.Target {
+// setState is a helper other triggers might use. Maybe factor elsewhere.
+func setState(w *engine.World, target string, state bool) {
+	if target == "" {
+		return
+	}
+	w.SetWarpZoneState(target, state)
+	for _, ent := range w.Entities {
+		if ent.Name != target {
 			continue
 		}
 		setter, ok := ent.Impl.(stateSetter)
 		if !ok {
-			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", s.Target)
+			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", target)
 		}
 		setter.SetState(state)
 	}
@@ -66,7 +70,7 @@ func (s *SetState) apply(state bool) {
 
 func (s *SetState) Touch(other *engine.Entity) {
 	if other == s.World.Player {
-		s.apply(s.State)
+		setState(s.World, s.Target, s.State)
 	}
 }
 

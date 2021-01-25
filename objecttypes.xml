@@ -24,8 +24,8 @@
  <objecttype name="QuestionBlock" color="#000000">
   <property name="kaizo" type="bool" default="false"/>
  </objecttype>
- <objecttype name="SetWarpZoneState" color="#ff0000"
-  <property name="state" type="bool" default="false"/>
+ <objecttype name="SetState" color="#ff0000"
+  <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
  <objecttype name="Sprite" color="#ffffff">
@@ -39,6 +39,7 @@
   <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="TnihSign" color="#ffff00">
+  <property name="target" type="string"/>
   <property name="text" type="string"/>
  </objecttype>
  <objecttype name="WarpZone" color="#ff0000"
