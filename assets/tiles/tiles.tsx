@@ -2,8 +2,8 @@
 <tileset version="1.4" tiledversion="1.4.3" name="tiles" tilewidth="16" tileheight="16" tilecount="192" columns="16" objectalignment="topleft">
  <grid orientation="orthogonal" width="1" height="1"/>
  <terraintypes>
-  <terrain name="Block" tile="-1"/>
-  <terrain name="Open" tile="-1"/>
+  <terrain name="Block" tile="9"/>
+  <terrain name="Open" tile="63"/>
  </terraintypes>
  <tile id="0">
   <properties>
