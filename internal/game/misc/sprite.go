@@ -64,9 +64,9 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 		// This flips the view on the _level editor_ X axis.
 		switch sp.Properties["no_flip"] {
 		case "x":
-			e.Orientation = e.Transform.Inverse().Concat(m.FlipX()).Concat(e.Orientation)
+			e.Orientation = e.Transform.Inverse().Concat(m.FlipX()).Concat(sp.Orientation)
 		case "y":
-			e.Orientation = e.Transform.Inverse().Concat(m.FlipY()).Concat(e.Orientation)
+			e.Orientation = e.Transform.Inverse().Concat(m.FlipY()).Concat(sp.Orientation)
 		}
 	}
 	return nil

@@ -8,6 +8,7 @@
   <property name="no_flip" type="string"/>
   <property name="no_transform" type="bool" default="false"/>
   <property name="opaque" type="bool" default="false"/>
+  <property name="orientation" type="string"/>
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
@@ -38,6 +39,7 @@
   <property name="no_flip" type="string"/>
   <property name="no_transform" type="bool" default="false"/>
   <property name="opaque" type="bool" default="false"/>
+  <property name="orientation" type="string"/>
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
