@@ -24,13 +24,12 @@ Graph:
       * The Klein Bottle
         * The Projective Plane
           * The Sphere
-            * The Handlebody
-              * The House With Two Rooms
-                * -> Part 3: Topology 101 passed. Player can now stand on balloons.
-                  * Various sections to train ability. Platforming!
-                  * Part that starts requiring another ability connects to previous area to provide it.
-                  * Entrance to part 3+4 - requiring both abilities. Offers way to gain ability 4 first.
-                  * A "dev room" that requires all three abilities.
+            * The House With Two Rooms
+              * -> Part 3: Topology 101 passed. Player can now stand on balloons.
+                * Various sections to train ability. Platforming!
+                * Part that starts requiring another ability connects to previous area to provide it.
+                * Entrance to part 3+4 - requiring both abilities. Offers way to gain ability 4 first.
+                * A "dev room" that requires all three abilities.
     * The Torus
       * The Klein Bottle (see above)
   * Hilbert's Hotel
