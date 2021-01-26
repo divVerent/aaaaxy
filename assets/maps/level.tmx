@@ -857,7 +857,7 @@
   <object id="178" name="KleinTenth" gid="7" x="2144" y="5264" width="32" height="16"/>
   <object id="179" type="TnihSign" x="2080" y="5024" width="32" height="32">
    <properties>
-    <property name="text" value="If it doesn't fit in three dimensions, it might still fit in two."/>
+    <property name="text" value="If it doesn't fit in three dimensions, try two."/>
    </properties>
   </object>
   <object id="180" name="the_klein_bottle" type="Checkpoint" x="2208" y="5024" width="352" height="32">
