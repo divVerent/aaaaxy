@@ -23,56 +23,48 @@
  <tile id="1" type="WarpZone">
   <properties>
    <property name="orientation" value="EN"/>
-   <property name="type" value="WarpZone"/>
   </properties>
   <image width="16" height="16" source="warpzone_en.png"/>
  </tile>
  <tile id="2" type="WarpZone">
   <properties>
    <property name="orientation" value="ES"/>
-   <property name="type" value="WarpZone"/>
   </properties>
   <image width="16" height="16" source="warpzone_es.png"/>
  </tile>
  <tile id="3" type="WarpZone">
   <properties>
    <property name="orientation" value="NE"/>
-   <property name="type" value="WarpZone"/>
   </properties>
   <image width="16" height="16" source="warpzone_ne.png"/>
  </tile>
  <tile id="4" type="WarpZone">
   <properties>
    <property name="orientation" value="NW"/>
-   <property name="type" value="WarpZone"/>
   </properties>
   <image width="16" height="16" source="warpzone_nw.png"/>
  </tile>
  <tile id="5" type="WarpZone">
   <properties>
    <property name="orientation" value="SE"/>
-   <property name="type" value="WarpZone"/>
   </properties>
   <image width="16" height="16" source="warpzone_se.png"/>
  </tile>
  <tile id="6" type="WarpZone">
   <properties>
    <property name="orientation" value="SW"/>
-   <property name="type" value="WarpZone"/>
   </properties>
   <image width="16" height="16" source="warpzone_sw.png"/>
  </tile>
  <tile id="7" type="WarpZone">
   <properties>
    <property name="orientation" value="WN"/>
-   <property name="type" value="WarpZone"/>
   </properties>
   <image width="16" height="16" source="warpzone_wn.png"/>
  </tile>
  <tile id="8" type="WarpZone">
   <properties>
    <property name="orientation" value="WS"/>
-   <property name="type" value="WarpZone"/>
   </properties>
   <image width="16" height="16" source="warpzone_ws.png"/>
  </tile>

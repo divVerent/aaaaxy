@@ -213,7 +213,9 @@ func LoadLevel(filename string) (*Level, error) {
 			return nil, fmt.Errorf("unsupported tileset: got tile size %dx%d, want %dx%d", ts.TileWidth, ts.TileHeight, TileSize, TileSize)
 		}
 		// ts.Spacing, ts.Margin, ts.TileCount, ts.Columns doesn't matter (we only support multi image tilesets).
-		// TODO would be nice if we could compare ObjectAlignment here. We only support "topleft".
+		if ts.ObjectAlignment != "topleft" {
+			return nil, fmt.Errorf("unsupported tileset: got objectalignment %q, want topleft", ts.ObjectAlignment)
+		}
 		// ts.Properties doesn't matter.
 		if (ts.TileOffset != tmx.TileOffset{}) {
 			return nil, fmt.Errorf("unsupported tileset: got a tile offset")
@@ -343,7 +345,11 @@ func LoadLevel(filename string) (*Level, error) {
 			var tile *tmx.Tile
 			if o.GlobalID != 0 {
 				tile = t.TileSets[0].TileWithID(o.GlobalID.TileID(&t.TileSets[0]))
-				properties["type"] = "Sprite"
+				if tile.Type == "" {
+					properties["type"] = "Sprite"
+				} else {
+					properties["type"] = tile.Type
+				}
 				properties["image_dir"] = "tiles"
 				properties["image"] = tile.Image.Source
 				for _, prop := range tile.Properties {
