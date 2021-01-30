@@ -32,6 +32,7 @@ type imagePath = struct {
 var cache = map[imagePath]*ebiten.Image{}
 
 func Load(purpose, name string) (*ebiten.Image, error) {
+	name = vfs.Canonical(name)
 	ip := imagePath{purpose, name}
 	if img, found := cache[ip]; found {
 		return img, nil

@@ -41,6 +41,7 @@ var cache = map[string]*Sound{}
 // Load loads a sound effect.
 // Multiple Load calls to the same sound effect return the same cached instance.
 func Load(name string) (*Sound, error) {
+	name = vfs.Canonical(name)
 	if sound, found := cache[name]; found {
 		return sound, nil
 	}

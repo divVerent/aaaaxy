@@ -64,9 +64,18 @@ type ReadSeekCloser interface {
 	io.Closer
 }
 
+// Canonical returns the canonical name of the given asset.
+// If Canonical returns the same string, Load will load the same asset.
+func Canonical(name string) string {
+	if name == "" {
+		return name
+	}
+	return path.Base(name)
+}
+
 // Load loads a file from the VFS based on the given file purpose and "name".
 func Load(purpose string, name string) (ReadSeekCloser, error) {
-	vfsPath := path.Join("/", purpose, path.Base(name))
+	vfsPath := path.Join("/", purpose, Canonical(name))
 	if localAssetDirs != nil {
 		// Note: this must be consistent with statik-vfs.sh.
 		var err error

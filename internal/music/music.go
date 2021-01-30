@@ -140,6 +140,7 @@ func Update() {
 // Switch switches from the currently playing music to the given track.
 // Passing an empty string means fading to silence.
 func Switch(name string) {
+	name = vfs.Canonical(name)
 	if next.valid {
 		if next.name == name {
 			return
