@@ -29,6 +29,7 @@
   <property name="kaizo" type="bool" default="false"/>
  </objecttype>
  <objecttype name="SetState" color="#ff0000">
+  <property name="initial_state" type="string"/>
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
