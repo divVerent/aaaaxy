@@ -54,4 +54,4 @@ else
 		logged ln -snf "$root/$sourcedir/../LICENSE" "$tmpdir/$directory.LICENSE"
 	done
 fi
-logged statik -m -f -src "$tmpdir/" -dest "$root/$destdir"
+logged go run github.com/rakyll/statik -m -f -src "$tmpdir/" -dest "$root/$destdir"
