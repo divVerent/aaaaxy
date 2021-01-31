@@ -20,6 +20,7 @@
  <objecttype name="JumpPad" color="#ff00ff">
   <property name="delta" type="string"/>
   <property name="height" type="string"/>
+  <property name="initial_state" type="bool" default="true"/>
   <property name="rel_delta" type="string"/>
  </objecttype>
  <objecttype name="OneWay" color="#0000ff">

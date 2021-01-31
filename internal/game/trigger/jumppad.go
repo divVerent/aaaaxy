@@ -39,6 +39,7 @@ type JumpPad struct {
 
 	TouchedFrame int
 	JumpSound    *sound.Sound
+	Active       bool
 }
 
 func (j *JumpPad) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
@@ -121,6 +122,9 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 }
 
 func (j *JumpPad) Touch(other *engine.Entity) {
+	if !j.Active {
+		return
+	}
 	// Do we actually touch the player?
 	p, ok := other.Impl.(*player.Player)
 	if !ok {
@@ -158,6 +162,10 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 }
 
 func (j *JumpPad) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
+
+func (j *JumpPad) SetState(state bool) {
+	j.Active = state
+}
 
 func init() {
 	engine.RegisterEntityType(&JumpPad{})
