@@ -133,6 +133,9 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 				return nil, fmt.Errorf("next checkpoint ID for %q property %q in %q is not a checkpoint", name, propname, filename)
 			}
 			otherLoc := loc.Locs[other]
+			if otherLoc == nil {
+				return nil, fmt.Errorf("next checkpoint %q in %q has no location yet", other, filename)
+			}
 			otherPos := otherLoc.MapPos
 			moveDelta := otherPos.Delta(l.MapPos)
 			edges = append(edges, edge{
