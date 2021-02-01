@@ -25,15 +25,16 @@ import (
 )
 
 const (
-	alphaFrames = 64
+	alphaFrames = 32
 )
 
 type Centerprint struct {
-	text   string
-	bounds image.Rectangle
-	color  color.Color
-	force  bool
-	face   font.Face
+	text       string
+	bounds     image.Rectangle
+	color      color.Color
+	waitScroll bool
+	waitFade   bool
+	face       font.Face
 
 	alphaFrame int
 	scrollPos  int
@@ -69,7 +70,8 @@ func New(txt string, imp Importance, pos InitialPosition, face font.Face, color 
 	cp := &Centerprint{
 		text:       txt,
 		color:      color,
-		force:      imp == Important,
+		waitScroll: imp == Important,
+		waitFade:   true,
 		face:       face,
 		alphaFrame: 1,
 		active:     true,
@@ -99,12 +101,16 @@ func (cp *Centerprint) targetPos() int {
 func (cp *Centerprint) update() bool {
 	if cp.scrollPos < cp.targetPos() {
 		cp.scrollPos++
-	} else if cp.alphaFrame >= alphaFrames {
-		cp.force = false
+	} else {
+		cp.waitScroll = false
 	}
-	if cp.force || !cp.fadeOut {
-		if cp.scrollPos > 0 && cp.alphaFrame < alphaFrames {
-			cp.alphaFrame++
+	if cp.waitFade || cp.waitScroll || !cp.fadeOut {
+		if cp.scrollPos > 0 {
+			if cp.alphaFrame < alphaFrames {
+				cp.alphaFrame++
+			} else {
+				cp.waitFade = false
+			}
 		}
 	} else {
 		if cp.alphaFrame > 0 {
