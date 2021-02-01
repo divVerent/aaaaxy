@@ -1,10 +1,5 @@
 # TODO
 
-## Features
-
-* Make switchable a more generic in-engine thing. Give all entities a State
-  property, basically. Entities still have to respond to the state in Update.
-
 ## Level sections
 
 Graph:

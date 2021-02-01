@@ -46,10 +46,6 @@ func (s *SetState) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity
 
 func (s *SetState) Despawn() {}
 
-type stateSetter interface {
-	SetState(state bool)
-}
-
 // setState is a helper other triggers might use. Maybe factor elsewhere.
 func setState(w *engine.World, target string, state bool) {
 	if target == "" {
@@ -60,11 +56,9 @@ func setState(w *engine.World, target string, state bool) {
 		if ent.Name != target {
 			continue
 		}
-		setter, ok := ent.Impl.(stateSetter)
-		if !ok {
+		if !mixins.SetStateOf(ent, state) {
 			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", target)
 		}
-		setter.SetState(state)
 	}
 }
 

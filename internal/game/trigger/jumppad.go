@@ -21,6 +21,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/game/player"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/sound"
@@ -31,6 +32,7 @@ import (
 // May want to introduce required orientation like with checkpoints.
 // Or could require player to hit jumppad from above.
 type JumpPad struct {
+	mixins.Settable
 	World  *engine.World
 	Entity *engine.Entity
 
@@ -39,10 +41,10 @@ type JumpPad struct {
 
 	TouchedFrame int
 	JumpSound    *sound.Sound
-	Active       bool
 }
 
 func (j *JumpPad) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+	j.Settable.Init(s)
 	j.World = w
 	j.Entity = e
 	e.Opaque = false
@@ -122,7 +124,7 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 }
 
 func (j *JumpPad) Touch(other *engine.Entity) {
-	if !j.Active {
+	if !j.Settable.State {
 		return
 	}
 	// Do we actually touch the player?
@@ -162,10 +164,6 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 }
 
 func (j *JumpPad) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
-
-func (j *JumpPad) SetState(state bool) {
-	j.Active = state
-}
 
 func init() {
 	engine.RegisterEntityType(&JumpPad{})

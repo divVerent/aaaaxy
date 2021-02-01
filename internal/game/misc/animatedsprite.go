@@ -16,6 +16,7 @@ package misc
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -28,6 +29,7 @@ const (
 // Can be toggled from outside.
 type AnimatedSprite struct {
 	Sprite
+	mixins.Settable
 	World  *engine.World
 	Entity *engine.Entity
 
@@ -44,6 +46,7 @@ func (s *AnimatedSprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.
 	if err != nil {
 		return nil
 	}
+	s.Settable.Init(sp)
 
 	s.World = w
 	s.Entity = e
@@ -53,12 +56,8 @@ func (s *AnimatedSprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.
 	s.Solid = s.Entity.Solid
 	s.Opaque = s.Entity.Opaque
 
-	// Load the initial state.
-	initialState := sp.Properties["initial_state"] != "false" // Defaults to true.
-	s.SetState(initialState)
-
 	// Skip the animation on initial load.
-	if initialState {
+	if s.Settable.State {
 		s.AnimFrame = fadeFrames
 	} else {
 		s.AnimFrame = 0
@@ -68,18 +67,14 @@ func (s *AnimatedSprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.
 	return nil
 }
 
-func (s *AnimatedSprite) SetState(state bool) {
-	if state {
-		s.AnimDir = 1
-	} else {
-		s.AnimDir = -1
-	}
-}
-
 func (s *AnimatedSprite) Update() {
 	s.Sprite.Update()
 
-	s.AnimFrame += s.AnimDir
+	if s.Settable.State {
+		s.AnimFrame++
+	} else {
+		s.AnimFrame--
+	}
 
 	if s.AnimFrame <= 0 {
 		s.Entity.Alpha = 0
