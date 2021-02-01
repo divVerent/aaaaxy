@@ -13,6 +13,10 @@
   <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="Checkpoint" color="#008000">
+  <property name="_next_down" type="object" default="0"/>
+  <property name="_next_left" type="object" default="0"/>
+  <property name="_next_right" type="object" default="0"/>
+  <property name="_next_up" type="object" default="0"/>
   <property name="music" type="file" default=""/>
   <property name="required_orientation" type="string"/>
   <property name="text" type="string"/>
@@ -34,9 +38,6 @@
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
- <objecttype name="SwitchMusic" color="#00ff00">
-  <property name="music" type="file" default=""/>
- </objecttype>
  <objecttype name="Sprite" color="#ffffff">
   <property name="alpha" type="string"/>
   <property name="image" type="string"/>
@@ -47,6 +48,9 @@
   <property name="orientation" type="string"/>
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
+ </objecttype>
+ <objecttype name="SwitchMusic" color="#00ff00">
+  <property name="music" type="file" default=""/>
  </objecttype>
  <objecttype name="TnihSign" color="#ffff00">
   <property name="target" type="string"/>
