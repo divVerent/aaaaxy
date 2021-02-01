@@ -27,31 +27,27 @@ logged() {
 	"$@"
 }
 
-if $NO_VFS; then
-	logged touch "$tmpdir/use-local-assets.stamp"
-else
-	for sourcedir in assets third_party/*/assets; do
-		logged cd "$root/$sourcedir"
-		find . -type f | while read -r file; do
-			mkdir -p "$tmpdir/${file%/*}"
-			logged ln -snf "$root/$sourcedir/$file" "$tmpdir/$file"
-		done
-		# Also copy over our license and copyright files to make
-		# the copyright situation really clear to anyone extracting the
-		# VFS data.
-		directory=${sourcedir%/*}
-		directory=${directory##*/}
-		{
-			echo "Applying to the following files:"
-			logged find . -type f -print
-			if [ -f ../COPYRIGHT.md ]; then
-				echo
-				logged cat ../COPYRIGHT.md
-			fi
-			echo
-			echo "License file: $directory.LICENSE"
-		} | logged dd status=none of="$tmpdir/$directory.COPYRIGHT"
-		logged ln -snf "$root/$sourcedir/../LICENSE" "$tmpdir/$directory.LICENSE"
+for sourcedir in assets third_party/*/assets; do
+	logged cd "$root/$sourcedir"
+	find . -type f | while read -r file; do
+		mkdir -p "$tmpdir/${file%/*}"
+		logged ln -snf "$root/$sourcedir/$file" "$tmpdir/$file"
 	done
-fi
+	# Also copy over our license and copyright files to make
+	# the copyright situation really clear to anyone extracting the
+	# VFS data.
+	directory=${sourcedir%/*}
+	directory=${directory##*/}
+	{
+		echo "Applying to the following files:"
+		logged find . -type f -print
+		if [ -f ../COPYRIGHT.md ]; then
+			echo
+			logged cat ../COPYRIGHT.md
+		fi
+		echo
+		echo "License file: $directory.LICENSE"
+	} | logged dd status=none of="$tmpdir/$directory.COPYRIGHT"
+	logged ln -snf "$root/$sourcedir/../LICENSE" "$tmpdir/$directory.LICENSE"
+done
 logged go run github.com/rakyll/statik -m -f -src "$tmpdir/" -dest "$root/$destdir"

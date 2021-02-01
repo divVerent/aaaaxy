@@ -1,6 +1,3 @@
-# User configrable.
-NO_VFS = false
-
 # System properties.
 EXE = $(shell go env GOEXE)
 SUFFIX = -$(shell go env GOOS)-$(shell go env GOARCH)$(EXE)
@@ -13,6 +10,7 @@ DEBUG_GOFLAGS =
 RELEASE = aaaaaa$(SUFFIX)
 RELEASE_GOFLAGS = -ldflags="-s -w" -gcflags="-B -dwarf=false"
 UPXFLAGS = -9
+SOURCES = $(shell find . -name \*.go)
 
 .PHONY: default
 default: debug
@@ -36,13 +34,13 @@ vet:
 
 .PHONY: $(ASSETS)
 $(ASSETS):
-	NO_VFS=$(NO_VFS) ./statik-vfs.sh $(ASSETS)
+	./statik-vfs.sh $(ASSETS)
 
-$(DEBUG): $(ASSETS)
+$(DEBUG): $(SOURCES)
 	go build -o $(DEBUG) $(DEBUG_GOFLAGS) $(PACKAGE)
 
-$(RELEASE): $(ASSETS)
-	go build -o $(RELEASE) $(RELEASE_GOFLAGS) $(PACKAGE)
+$(RELEASE): $(ASSETS) $(SOURCES)
+	go build -tags statik -o $(RELEASE) $(RELEASE_GOFLAGS) $(PACKAGE)
 
 # Building of release zip files starts here.
 ZIPFILE = aaaaaa.zip
