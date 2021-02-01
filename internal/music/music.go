@@ -29,9 +29,10 @@ var (
 )
 
 const (
-	xFadeFrameOut = 120
-	xFadeFrameIn  = 60
-	xFadeFrameEnd = 180
+	xFadeFrameOut  = 120
+	xFadeFrameIn   = 60
+	xFadeFrameEnd  = 180
+	bytesPerSample = 4
 )
 
 type track struct {
@@ -40,6 +41,11 @@ type track struct {
 	handle vfs.ReadSeekCloser
 	data   *vorbis.Stream
 	player *audio.Player
+}
+
+type musicJson struct {
+	LoopStart int64
+	LoopEnd   int64
 }
 
 func (t *track) open(name string) {
@@ -58,7 +64,22 @@ func (t *track) open(name string) {
 	if err != nil {
 		log.Panicf("Could not start decoding music %q: %v", name, err)
 	}
-	loop := audio.NewInfiniteLoop(t.data, t.data.Length())
+	config := musicJson{
+		LoopStart: 0,
+		LoopEnd:   t.data.Length() / bytesPerSample,
+	}
+	j, err := vfs.Load("music", name+".json")
+	if err != nil && !os.IsNotExist(err) {
+		log.Panicf("Could not load music json config file for %q: %v", name, err)
+	}
+	if j != nil {
+		defer j.Close()
+		err = json.NewDecoder(j).Decode(&config)
+		if err != nil {
+			log.Panicf("Could not decode music json config file for %q: %v", name, err)
+		}
+	}
+	loop := audio.NewInfiniteLoopWithIntro(t.data, config.LoopStart*bytesPerSample, config.LoopEnd*bytesPerSample)
 	t.player, err = audio.NewPlayer(audio.CurrentContext(), loop)
 	if err != nil {
 		log.Panicf("Could not start playing music %q: %v", name, err)
