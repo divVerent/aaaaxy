@@ -114,7 +114,14 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 	b := float64(vDY)
 	c := -float64(delta.DY) * player.SubPixelScale
 	u := -b / (2 * a)
-	v := math.Sqrt(b*b-4*a*c) / (2 * a)
+	d := b*b - 4*a*c
+	v := 0.0
+	if d >= 0 {
+		// Mathematically, D < 0 means the jump is impossible.
+		// However usually it just implies a roundoff error,
+		// especially when height==0. So let's just allow it.
+		v = math.Sqrt(d) / (2 * a)
+	}
 	if apexOutside && !targetHigher {
 		v = -v
 	}
