@@ -81,17 +81,16 @@ func main() {
 	for id, sp := range cpMap {
 		vertices[id] = &Vertex{Name: sp.Properties["name"]}
 	}
-	deadEnds := 0
 	for id, sp := range cpMap {
 		v := vertices[id]
 		for _, conn := range []struct {
 			name string
 			dir  m.Delta
 		}{
-			{"_next_left", m.West()},
-			{"_next_right", m.East()},
-			{"_next_up", m.North()},
-			{"_next_down", m.South()},
+			{"next_left", m.West()},
+			{"next_right", m.East()},
+			{"next_up", m.North()},
+			{"next_down", m.South()},
 		} {
 			next := sp.Properties[conn.name]
 			if next == "" {
@@ -103,30 +102,19 @@ func main() {
 			}
 			nextVert := vertices[nextID]
 			if nextVert == nil {
-				// Allocate a dead end.
-				deadEndName := fmt.Sprintf("dead_end_%d", deadEnds)
-				deadEnd := &Vertex{
-					Name: deadEndName,
-				}
-				vertices[engine.EntityID(^deadEnds)] = deadEnd
-				edge := &Edge{
-					WantDelta: conn.dir.Mul(100),
-					From:      v,
-					To:        deadEnd,
-				}
-				v.OutEdges = append(v.OutEdges, edge)
-				deadEnd.InEdges = append(deadEnd.InEdges, edge)
-				deadEnds++
-			} else {
-				// Real node.
-				edge := &Edge{
-					WantDelta: conn.dir.Mul(200),
-					From:      v,
-					To:        nextVert,
-				}
-				v.OutEdges = append(v.OutEdges, edge)
-				nextVert.InEdges = append(nextVert.InEdges, edge)
+				log.Panicf("Checkpoint %q doesn't point at a checkpoint but entity %d", sp.Properties["name"], nextID)
 			}
+			distance := 200
+			if sp.Properties["dead_end"] == "true" {
+				distance = 100
+			}
+			edge := &Edge{
+				WantDelta: conn.dir.Mul(distance),
+				From:      v,
+				To:        nextVert,
+			}
+			v.OutEdges = append(v.OutEdges, edge)
+			nextVert.InEdges = append(nextVert.InEdges, edge)
 		}
 	}
 	// Build a .dot input file from all CPs.

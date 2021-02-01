@@ -36,9 +36,10 @@ type Checkpoint struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	Name  string
-	Text  string
-	Music string
+	Name    string
+	Text    string
+	Music   string
+	DeadEnd bool
 
 	PlayerProperty        string
 	PlayerPropertyFlipped string
@@ -61,6 +62,7 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 
 	c.Text = s.Properties["text"]
 	c.Music = s.Properties["music"]
+	c.DeadEnd = s.Properties["dead_end"] == "true"
 
 	c.PlayerProperty = "checkpoint_seen." + c.Entity.Name
 	if c.Entity.Transform == requiredTransform {
@@ -88,21 +90,35 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 	if c.Inactive {
 		return
 	}
-	// Checkpoint always sets "mood".
+	// All checkpoints set the "mood".
 	music.Switch(c.Music)
 	player := c.World.Player.Impl.(*player.Player)
-	if player.PersistentState["last_checkpoint"] == c.Entity.Name && player.PersistentState[c.PlayerProperty] == c.PlayerPropertyFlipped {
-		return
+	if c.DeadEnd {
+		// Dead ends just remember if you've hit them.
+		if player.PersistentState[c.PlayerProperty] == c.PlayerPropertyFlipped {
+			return
+		}
+		player.PersistentState[c.PlayerProperty] = c.PlayerPropertyFlipped
+		err := c.World.Save()
+		if err != nil {
+			log.Printf("Could not save game: %v", err)
+			return
+		}
+	} else {
+		// Checkpoint always sets "mood".
+		if player.PersistentState["last_checkpoint"] == c.Entity.Name && player.PersistentState[c.PlayerProperty] == c.PlayerPropertyFlipped {
+			return
+		}
+		player.PersistentState[c.PlayerProperty] = c.PlayerPropertyFlipped
+		player.PersistentState["last_checkpoint"] = c.Entity.Name
+		err := c.World.Save()
+		if err != nil {
+			log.Printf("Could not save game: %v", err)
+			return
+		}
+		centerprint.New(c.Text, centerprint.Important, centerprint.Middle, centerprint.BigFont, color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
+		c.Sound.Play()
 	}
-	player.PersistentState[c.PlayerProperty] = c.PlayerPropertyFlipped
-	player.PersistentState["last_checkpoint"] = c.Entity.Name
-	err := c.World.Save()
-	if err != nil {
-		log.Printf("Could not save game: %v", err)
-		return
-	}
-	centerprint.New(c.Text, centerprint.Important, centerprint.Middle, centerprint.BigFont, color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
-	c.Sound.Play()
 }
 
 func (c *Checkpoint) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}

@@ -30,11 +30,12 @@ import (
 
 // Level is a parsed form of a loaded level.
 type Level struct {
-	Tiles           map[m.Pos]*LevelTile
-	Player          *Spawnable
-	Checkpoints     map[string]*Spawnable
-	SaveGameVersion int
-	Hash            uint64
+	Tiles               map[m.Pos]*LevelTile
+	Player              *Spawnable
+	Checkpoints         map[string]*Spawnable
+	CheckpointLocations *CheckpointLocations
+	SaveGameVersion     int
+	Hash                uint64
 }
 
 // LevelTile is a single tile in the level.
@@ -446,6 +447,10 @@ func LoadLevel(filename string) (*Level, error) {
 				}
 			}
 		}
+	}
+	level.CheckpointLocations, err = level.LoadCheckpointLocations(filename)
+	if err != nil {
+		log.Printf("could not load checkpoint locations: %v", err)
 	}
 	level.Hash, err = hashstructure.Hash(&level, hashstructure.FormatV2, nil)
 	if err != nil {

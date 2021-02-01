@@ -13,11 +13,12 @@
   <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="Checkpoint" color="#008000">
-  <property name="_next_down" type="object" default="0"/>
-  <property name="_next_left" type="object" default="0"/>
-  <property name="_next_right" type="object" default="0"/>
-  <property name="_next_up" type="object" default="0"/>
+  <property name="dead_end" type="bool" default="false"/>
   <property name="music" type="file" default=""/>
+  <property name="next_down" type="object" default="0"/>
+  <property name="next_left" type="object" default="0"/>
+  <property name="next_right" type="object" default="0"/>
+  <property name="next_up" type="object" default="0"/>
   <property name="required_orientation" type="string"/>
   <property name="text" type="string"/>
  </objecttype>
