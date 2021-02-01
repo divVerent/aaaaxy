@@ -15,8 +15,11 @@
 package music
 
 import (
+	"encoding/json"
+	"errors"
 	"flag"
 	"log"
+	"os"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
@@ -69,7 +72,7 @@ func (t *track) open(name string) {
 		LoopEnd:   t.data.Length() / bytesPerSample,
 	}
 	j, err := vfs.Load("music", name+".json")
-	if err != nil && !os.IsNotExist(err) {
+	if err != nil && !errors.Is(err, os.ErrNotExist) {
 		log.Panicf("Could not load music json config file for %q: %v", name, err)
 	}
 	if j != nil {

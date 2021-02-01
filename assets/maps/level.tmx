@@ -1107,6 +1107,7 @@
   </object>
   <object id="288" name="short_circuited" type="Checkpoint" x="3920" y="5376" width="192" height="32">
    <properties>
+    <property name="music" type="file" value="../../third_party/joth_next_to_you/assets/music/Next to You.ogg"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Short Circuited"/>
    </properties>

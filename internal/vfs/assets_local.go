@@ -17,6 +17,7 @@
 package vfs
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -56,7 +57,7 @@ func Load(purpose string, name string) (ReadSeekCloser, error) {
 		}
 		return r, nil
 	}
-	return nil, fmt.Errorf("could not open local:%v: %v", vfsPath, err)
+	return nil, fmt.Errorf("could not open local:%v: %w", vfsPath, err)
 }
 
 // Lists all files in a directory. Returns their VFS paths!
@@ -66,7 +67,7 @@ func ReadDir(name string) ([]string, error) {
 	for _, dir := range localAssetDirs {
 		content, err := ioutil.ReadDir(path.Join(dir, vfsPath))
 		if err != nil {
-			if !os.IsNotExist(err) {
+			if !errors.Is(err, os.ErrNotExist) {
 				return nil, fmt.Errorf("could not scan local:%v:%v: %v", vfsPath, dir, err)
 			}
 			continue

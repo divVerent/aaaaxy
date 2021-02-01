@@ -47,7 +47,7 @@ func Load(purpose string, name string) (ReadSeekCloser, error) {
 	vfsPath := path.Join("/", purpose, Canonical(name))
 	r, err := myfs.Open(vfsPath)
 	if err != nil {
-		return nil, fmt.Errorf("could not open statik:%v: %v", vfsPath, err)
+		return nil, fmt.Errorf("could not open statik:%v: %w", vfsPath, err)
 	}
 	return r, nil
 }

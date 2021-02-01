@@ -16,6 +16,7 @@ package engine
 
 import (
 	"encoding/json"
+	"errors"
 	"flag"
 	"fmt"
 	"image/color"
@@ -153,7 +154,7 @@ func (w *World) Init() error {
 func (w *World) Load() error {
 	state, err := vfs.ReadState(vfs.SavedGames, "save.json")
 	if err != nil {
-		if os.IsNotExist(err) {
+		if errors.Is(err, os.ErrNotExist) {
 			return nil // Not loading anything due to there being no state to load is OK.
 		}
 		return err
