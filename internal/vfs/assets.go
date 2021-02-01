@@ -17,8 +17,6 @@ package vfs
 import (
 	"io"
 	"path"
-
-	_ "github.com/divVerent/aaaaaa/internal/assets/statik"
 )
 
 // ReadSeekCloser is a typical file interface.
