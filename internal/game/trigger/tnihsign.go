@@ -43,6 +43,11 @@ type TnihSign struct {
 	Centerprint *centerprint.Centerprint
 }
 
+const (
+	tnihWidth  = 32
+	tnihHeight = 32
+)
+
 func (t *TnihSign) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
 	t.NonSolidTouchable.Init(w, e)
 	t.NotifyUntouched = true
@@ -67,6 +72,10 @@ func (t *TnihSign) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity)
 	t.Sound, err = sound.Load("tnihsign.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load tnihsign sound: %v", err)
+	}
+	t.Entity.ResizeImage = s.Properties["resize_image"] == "true"
+	if !t.Entity.ResizeImage {
+		t.Entity.RenderOffset = t.Entity.Rect.Size.Sub(m.Delta{DX: tnihWidth, DY: tnihHeight}).Div(2)
 	}
 	return nil
 }

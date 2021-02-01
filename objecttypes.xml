@@ -54,6 +54,7 @@
   <property name="music" type="file" default=""/>
  </objecttype>
  <objecttype name="TnihSign" color="#ffff00">
+  <property name="resize_image" type="bool" default="false"/>
   <property name="target" type="string"/>
   <property name="text" type="string"/>
  </objecttype>
