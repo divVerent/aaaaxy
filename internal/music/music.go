@@ -32,9 +32,9 @@ var (
 )
 
 const (
-	xFadeFrameOut  = 120
-	xFadeFrameIn   = 60
-	xFadeFrameEnd  = 180
+	xFadeFrameOut  = 40
+	xFadeFrameIn   = 20
+	xFadeFrameEnd  = 60
 	bytesPerSample = 4
 )
 

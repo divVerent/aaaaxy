@@ -26,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
 	"github.com/divVerent/aaaaaa/internal/input"
+	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
@@ -70,6 +71,7 @@ func (m *Menu) Update() error {
 
 	timing.Section("global_hotkeys")
 	if input.Exit.JustHit && m.Screen == nil {
+		music.Switch("")
 		return m.SwitchToScreen(&MainScreen{})
 	}
 
