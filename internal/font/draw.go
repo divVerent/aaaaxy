@@ -42,10 +42,13 @@ func (f Face) BoundString(str string) m.Rect {
 }
 
 // Draw draws the given text.
-func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, fg, bg color.Color) {
+func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, centerX bool, fg, bg color.Color) {
 	// We need to do our own line splitting because
 	// we always want to center and ebiten would left adjust.
-	totalBounds := f.BoundString(str)
+	var totalBounds m.Rect
+	if !centerX {
+		totalBounds = f.BoundString(str)
+	}
 	fy := fixed.I(pos.Y)
 	for _, line := range strings.Split(str, "\n") {
 		lineBounds := f.BoundString(line)

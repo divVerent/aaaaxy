@@ -132,9 +132,9 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 	alphaM.Scale(1.0, 1.0, 1.0, a)
 	fg := alphaM.Apply(cp.color)
 	bg := color.NRGBA{R: 0, G: 0, B: 0, A: uint8(a * 255)}
-	x := (screenWidth-cp.bounds.Size.DX)/2 - cp.bounds.Origin.X
+	x := screenWidth / 2
 	y := cp.scrollPos - cp.bounds.Size.DY - cp.bounds.Origin.Y
-	cp.face.Draw(screen, cp.text, m.Pos{X: x, Y: y}, fg, bg)
+	cp.face.Draw(screen, cp.text, m.Pos{X: x, Y: y}, true, fg, bg)
 }
 
 func (cp *Centerprint) Active() bool {

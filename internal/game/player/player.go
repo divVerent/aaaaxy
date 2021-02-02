@@ -193,8 +193,7 @@ func (p *Player) Update() {
 	if input.Action.JustHit {
 		// TODO remove this debug hack, menu will do this instead. Maybe also a "death" routine.
 		cpName := p.PersistentState["last_checkpoint"]
-		cpFlipped := p.PersistentState["checkpoint_seen."+cpName] == "FlipX"
-		p.World.RespawnPlayer(cpName, cpFlipped)
+		p.World.RespawnPlayer(cpName)
 		return
 	}
 	p.LookUp = input.Up.Held

@@ -21,7 +21,6 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
-	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/menu"
@@ -38,8 +37,7 @@ var (
 )
 
 type Game struct {
-	World engine.World
-	Menu  menu.Menu
+	Menu menu.Menu
 }
 
 var _ ebiten.Game = &Game{}
@@ -55,13 +53,13 @@ func (g *Game) Update() error {
 	input.Update()
 
 	timing.Section("menu")
-	err := g.Menu.Update(&g.World)
+	err := g.Menu.Update()
 	if err != nil {
 		return err
 	}
 
 	timing.Section("world")
-	err = g.World.Update()
+	err = g.Menu.UpdateWorld()
 	if err != nil {
 		return err
 	}
@@ -85,7 +83,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	defer timing.Group()()
 
 	timing.Section("world")
-	g.World.Draw(screen)
+	g.Menu.DrawWorld(screen)
 
 	if *captureVideo != "" || *externalCapture {
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)

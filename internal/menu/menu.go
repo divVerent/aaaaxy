@@ -34,16 +34,25 @@ var (
 	showFps   = flag.Bool("show_fps", false, "show fps counter")
 )
 
-type Menu struct{}
+type MenuScreen interface {
+	Init(m *Menu) error
+	Update() error
+	Draw(screen *ebiten.Image)
+}
 
-func (m *Menu) Update(world *engine.World) error {
+type Menu struct {
+	World  engine.World
+	Screen MenuScreen
+}
+
+func (m *Menu) Update() error {
 	defer timing.Group()()
 
 	timing.Section("once")
-	if !world.Initialized() {
-		world.Init()
+	if !m.World.Initialized() {
+		m.World.Init()
 		if !*resetSave {
-			err := world.Load()
+			err := m.World.Load()
 			if err != nil {
 				return err
 			}
@@ -51,23 +60,72 @@ func (m *Menu) Update(world *engine.World) error {
 	}
 
 	timing.Section("global_hotkeys")
-	if input.Exit.JustHit {
-		err := world.Save()
+	if input.Exit.JustHit && m.Screen == nil {
+		return m.SwitchToScreen(&MainScreen{})
+	}
+
+	timing.Section("screen")
+	if m.Screen != nil {
+		err := m.Screen.Update()
 		if err != nil {
-			log.Panicf("could not save game: %v", err)
+			return err
 		}
-		return errors.New("esc")
 	}
 
 	return nil
 }
 
+func (m *Menu) UpdateWorld() error {
+	if m.Screen != nil {
+		// Game is paused while in menu.
+		return nil
+	}
+	return m.World.Update()
+}
+
 func (m *Menu) Draw(screen *ebiten.Image) {
 	defer timing.Group()()
+
+	timing.Section("screen")
+	if m.Screen != nil {
+		m.Screen.Draw(screen)
+	}
 
 	timing.Section("global_overlays")
 	if *showFps {
 		timing.Section("fps")
 		ebitenutil.DebugPrintAt(screen, fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()), 0, engine.GameHeight-16)
 	}
+}
+
+func (m *Menu) DrawWorld(screen *ebiten.Image) {
+	// TODO: If a menu screen is active, just draw the previous saved bitmap, but blur it.
+	m.World.Draw(screen)
+}
+
+// SwitchToGame is called by menu screens to view the game.
+func (m *Menu) SwitchToGame() error {
+	m.Screen = nil
+	return nil
+}
+
+// SwitchToCheckpoitn switches to a specific checkpoint.
+func (m *Menu) SwitchToCheckpoint(cp string) error {
+	m.World.RespawnPlayer(cp)
+	return m.SwitchToGame()
+}
+
+// SwitchToScreen is called by menu screens to go to a different menu screen.
+func (m *Menu) SwitchToScreen(screen MenuScreen) error {
+	m.Screen = screen
+	return m.Screen.Init(m)
+}
+
+// QuitGame is called by menu screens to end the game.
+func (m *Menu) QuitGame() error {
+	err := m.World.Save()
+	if err != nil {
+		log.Panicf("could not save game: %v", err)
+	}
+	return errors.New("game exited normally")
 }

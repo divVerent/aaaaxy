@@ -31,7 +31,7 @@ var (
 	Up     = (&Impulse{keys: []ebiten.Key{ebiten.KeyUp, ebiten.KeyW}}).register()
 	Down   = (&Impulse{keys: []ebiten.Key{ebiten.KeyDown, ebiten.KeyS}}).register()
 	Jump   = (&Impulse{keys: []ebiten.Key{ebiten.KeyControl, ebiten.KeySpace, ebiten.KeyX}}).register()
-	Action = (&Impulse{keys: []ebiten.Key{ebiten.KeyAlt, ebiten.KeyE, ebiten.KeyZ}}).register()
+	Action = (&Impulse{keys: []ebiten.Key{ebiten.KeyAlt, ebiten.KeyE, ebiten.KeyZ, ebiten.KeyEnter}}).register()
 	Exit   = (&Impulse{keys: []ebiten.Key{ebiten.KeyEscape}}).register()
 
 	impulses = []*Impulse{}

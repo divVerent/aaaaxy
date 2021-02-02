@@ -144,7 +144,7 @@ func (w *World) Init() error {
 	}
 
 	// Respawn the player at the desired start location (includes other startup).
-	w.RespawnPlayer("", false)
+	w.RespawnPlayer("")
 
 	return nil
 }
@@ -169,8 +169,7 @@ func (w *World) Load() error {
 		return err
 	}
 	cpName := w.Level.Player.PersistentState["last_checkpoint"]
-	cpFlipped := w.Level.Player.PersistentState["checkpoint_seen."+cpName] == "FlipX"
-	w.RespawnPlayer(cpName, cpFlipped)
+	w.RespawnPlayer(cpName)
 	return nil
 }
 
@@ -190,7 +189,10 @@ func (w *World) Save() error {
 // SpawnPlayer spawns the player in a newly initialized world.
 // As a side effect, it unloads all tiles.
 // Spawning at checkpoint "" means the initial player location.
-func (w *World) RespawnPlayer(checkpointName string, flipped bool) {
+func (w *World) RespawnPlayer(checkpointName string) {
+	// Load whether we've seen this checkpoint in flipped state.
+	flipped := w.Level.Player.PersistentState["checkpoint_seen."+checkpointName] == "FlipX"
+
 	if *debugInitialCheckpoint != "" {
 		checkpointName = *debugInitialCheckpoint
 	}

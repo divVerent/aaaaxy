@@ -59,7 +59,7 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 		txt := strings.ReplaceAll(sp.Properties["text"], "  ", "\n")
 		bounds := fnt.BoundString(txt)
 		e.Image = ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
-		fnt.Draw(e.Image, txt, bounds.Origin.Mul(-1), fg, bg)
+		fnt.Draw(e.Image, txt, bounds.Origin.Mul(-1), false, fg, bg)
 		e.ResizeImage = false
 		centerOffset := e.Rect.Size.Sub(bounds.Size).Div(2)
 		e.RenderOffset = e.RenderOffset.Add(centerOffset)

@@ -35,6 +35,8 @@ var (
 	Centerprint    Face
 	CenterprintBig Face
 	DebugSmall     Face
+	MenuBig        Face
+	Menu           Face
 )
 
 func init() {
@@ -94,6 +96,18 @@ func init() {
 	})}
 	DebugSmall = Face{truetype.NewFace(mono, &truetype.Options{
 		Size:       5,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	})}
+	Menu = Face{truetype.NewFace(smallcaps, &truetype.Options{
+		Size:       16,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	})}
+	MenuBig = Face{truetype.NewFace(smallcaps, &truetype.Options{
+		Size:       24,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
