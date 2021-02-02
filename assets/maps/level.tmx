@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="300">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="305">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -819,7 +819,7 @@
     <property name="text" value="Thinking outside the box can remove the need of getting over it."/>
    </properties>
   </object>
-  <object id="147" name="the_moebius_strip" type="Checkpoint" x="2784" y="5216" width="416" height="32">
+  <object id="147" name="the_moebius_strip" type="Checkpoint" x="3136" y="5216" width="32" height="32">
    <properties>
     <property name="music" type="file" value="../../../../../src/aaaaaa/third_party/centurionofwar_strange_inspiration/assets/music/strange_inspiraton.ogg"/>
     <property name="next_left" type="object" value="180"/>
@@ -1018,6 +1018,7 @@
   <object id="249" name="top_of_the_mountain" type="Checkpoint" x="608" y="5440" width="192" height="32">
    <properties>
     <property name="dead_end" type="bool" value="true"/>
+    <property name="required_orientation" value="WN"/>
    </properties>
   </object>
   <object id="251" name="WarpToBingRight" gid="2" x="1040" y="5664" width="16" height="32"/>
@@ -1152,5 +1153,10 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
+  <object id="300" type="AppearBlock" x="896" y="5264" width="16" height="16"/>
+  <object id="301" type="AppearBlock" x="896" y="5392" width="16" height="16"/>
+  <object id="302" type="AppearBlock" x="896" y="5520" width="16" height="16"/>
+  <object id="303" type="AppearBlock" x="1008" y="5216" width="16" height="16"/>
+  <object id="304" type="AppearBlock" x="1136" y="5216" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -41,9 +41,8 @@ type Checkpoint struct {
 	Music   string
 	DeadEnd bool
 
-	PlayerProperty        string
-	PlayerPropertyFlipped string
-	Inactive              bool
+	FlippedStr string
+	Inactive   bool
 
 	Sound *sound.Sound
 }
@@ -64,11 +63,10 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 	c.Music = s.Properties["music"]
 	c.DeadEnd = s.Properties["dead_end"] == "true"
 
-	c.PlayerProperty = "checkpoint_seen." + c.Entity.Name
 	if c.Entity.Transform == requiredTransform {
-		c.PlayerPropertyFlipped = "Identity"
+		c.FlippedStr = "Identity"
 	} else if c.Entity.Transform == requiredTransform.Concat(m.FlipX()) {
-		c.PlayerPropertyFlipped = "FlipX"
+		c.FlippedStr = "FlipX"
 	} else {
 		c.Inactive = true
 	}
@@ -83,6 +81,28 @@ func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entit
 
 func (c *Checkpoint) Despawn() {}
 
+func (c *Checkpoint) setCheckpoint() bool {
+	player := c.World.Player.Impl.(*player.Player)
+	changed := false
+	cpProperty := "checkpoint_seen." + c.Entity.Name
+	if player.PersistentState[cpProperty] != c.FlippedStr {
+		player.PersistentState[cpProperty] = c.FlippedStr
+		changed = true
+	}
+	if player.PersistentState["last_checkpoint"] != c.Entity.Name {
+		edgeProperty := "checkpoints_walked." + player.PersistentState["last_checkpoint"] + "." + c.Entity.Name
+		if player.PersistentState[edgeProperty] != "true" {
+			player.PersistentState[edgeProperty] = "true"
+			changed = true
+		}
+		if !c.DeadEnd {
+			player.PersistentState["last_checkpoint"] = c.Entity.Name
+			changed = true
+		}
+	}
+	return changed
+}
+
 func (c *Checkpoint) Touch(other *engine.Entity) {
 	if other != c.World.Player {
 		return
@@ -92,30 +112,15 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 	}
 	// All checkpoints set the "mood".
 	music.Switch(c.Music)
-	player := c.World.Player.Impl.(*player.Player)
-	if c.DeadEnd {
-		// Dead ends just remember if you've hit them.
-		if player.PersistentState[c.PlayerProperty] == c.PlayerPropertyFlipped {
-			return
-		}
-		player.PersistentState[c.PlayerProperty] = c.PlayerPropertyFlipped
-		err := c.World.Save()
-		if err != nil {
-			log.Printf("Could not save game: %v", err)
-			return
-		}
-	} else {
-		// Checkpoint always sets "mood".
-		if player.PersistentState["last_checkpoint"] == c.Entity.Name && player.PersistentState[c.PlayerProperty] == c.PlayerPropertyFlipped {
-			return
-		}
-		player.PersistentState[c.PlayerProperty] = c.PlayerPropertyFlipped
-		player.PersistentState["last_checkpoint"] = c.Entity.Name
-		err := c.World.Save()
-		if err != nil {
-			log.Printf("Could not save game: %v", err)
-			return
-		}
+	if !c.setCheckpoint() {
+		return
+	}
+	err := c.World.Save()
+	if err != nil {
+		log.Printf("Could not save game: %v", err)
+		return
+	}
+	if !c.DeadEnd {
 		centerprint.New(c.Text, centerprint.Important, centerprint.Middle, centerprint.BigFont, color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
 		c.Sound.Play()
 	}

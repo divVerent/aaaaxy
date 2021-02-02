@@ -49,8 +49,14 @@ func (s *MapScreen) moveBy(d m.Delta) {
 	if !found {
 		return
 	}
-	otherSeen := s.Menu.World.Level.Player.PersistentState["checkpoint_seen."+edge.Other] != ""
-	if !otherSeen {
+	edgeSeen := s.Menu.World.Level.Player.PersistentState["checkpoints_walked."+s.CurrentCP+"."+edge.Other] != ""
+	reverseSeen := s.Menu.World.Level.Player.PersistentState["checkpoints_walked."+edge.Other+"."+s.CurrentCP] != ""
+	if !edgeSeen && !reverseSeen {
+		// Don't know this yet :)
+		return
+	}
+	if s.Menu.World.Level.Checkpoints[edge.Other].Properties["dead_end"] == "true" {
+		// A dead end!
 		return
 	}
 	s.CurrentCP = edge.Other
@@ -112,9 +118,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				continue
 			}
 			otherName := edge.Other
-			otherSeen := s.Menu.World.Level.Player.PersistentState["checkpoint_seen."+otherName] != ""
+			edgeSeen := s.Menu.World.Level.Player.PersistentState["checkpoints_walked."+cpName+"."+otherName] != ""
 			closePos := pos.Add(dir.Mul(5))
-			if otherSeen {
+			if edgeSeen {
 				otherLoc := loc.Locs[otherName]
 				otherPos := otherLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
 				farPos := otherPos.Sub(dir.Mul(5))

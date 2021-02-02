@@ -11,11 +11,12 @@
   <property name="orientation" type="string"/>
   <property name="solid" type="bool" default="false"/>
   <property name="text" type="string"/>
-  <property name="text_bg" type="color" default=""/>
-  <property name="text_fg" type="color" default=""/>
+  <property name="text_bg" type="color"/>
+  <property name="text_fg" type="color"/>
   <property name="text_font" type="string"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
+ <objecttype name="AppearBlock" color="#00aa00"/>
  <objecttype name="Checkpoint" color="#008000">
   <property name="dead_end" type="bool" default="false"/>
   <property name="music" type="file" default=""/>
@@ -53,8 +54,8 @@
   <property name="orientation" type="string"/>
   <property name="solid" type="bool" default="false"/>
   <property name="text" type="string" default=""/>
-  <property name="text_bg" type="color" default=""/>
-  <property name="text_fg" type="color" default=""/>
+  <property name="text_bg" type="color"/>
+  <property name="text_fg" type="color"/>
   <property name="text_font" type="string"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>

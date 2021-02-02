@@ -269,6 +269,9 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	// Reset all warpzones.
 	w.WarpZoneStates = map[string]bool{}
 
+	// Make sure respawning always gets back to this CP.
+	w.Level.Player.PersistentState["last_checkpoint"] = checkpointName
+
 	// Notify the player, reset animation state.
 	w.Player.Impl.(PlayerEntityImpl).Respawned()
 
