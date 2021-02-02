@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
 	"github.com/divVerent/aaaaaa/internal/image"
+	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/menu"
 	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/noise"
@@ -49,6 +50,9 @@ func (g *Game) Update() error {
 	defer timing.Group()()
 	timing.Section("update")
 	defer timing.Group()()
+
+	timing.Section("input")
+	input.Update()
 
 	timing.Section("menu")
 	err := g.Menu.Update(&g.World)

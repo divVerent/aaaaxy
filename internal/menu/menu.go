@@ -25,6 +25,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
+	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
@@ -50,7 +51,7 @@ func (m *Menu) Update(world *engine.World) error {
 	}
 
 	timing.Section("global_hotkeys")
-	if ebiten.IsKeyPressed(ebiten.KeyEscape) {
+	if input.Exit.JustHit {
 		err := world.Save()
 		if err != nil {
 			log.Panicf("could not save game: %v", err)

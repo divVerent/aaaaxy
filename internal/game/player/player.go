@@ -23,6 +23,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/input"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/sound"
@@ -189,22 +190,18 @@ func friction(vel *int, friction int) {
 }
 
 func (p *Player) Update() {
-	if ebiten.IsKeyPressed(KeyRespawn) {
-		if !p.Respawning {
-			// TODO remove this debug hack, menu will do this instead. Maybe also a "death" routine.
-			cpName := p.PersistentState["last_checkpoint"]
-			cpFlipped := p.PersistentState["checkpoint_seen."+cpName] == "FlipX"
-			p.World.RespawnPlayer(cpName, cpFlipped)
-			return
-		}
-	} else {
-		p.Respawning = false
+	if input.Action.JustHit {
+		// TODO remove this debug hack, menu will do this instead. Maybe also a "death" routine.
+		cpName := p.PersistentState["last_checkpoint"]
+		cpFlipped := p.PersistentState["checkpoint_seen."+cpName] == "FlipX"
+		p.World.RespawnPlayer(cpName, cpFlipped)
+		return
 	}
-	p.LookUp = ebiten.IsKeyPressed(KeyUp)
-	p.LookDown = ebiten.IsKeyPressed(KeyDown)
-	moveLeft := ebiten.IsKeyPressed(KeyLeft)
-	moveRight := ebiten.IsKeyPressed(KeyRight)
-	if ebiten.IsKeyPressed(KeyJump) {
+	p.LookUp = input.Up.Held
+	p.LookDown = input.Down.Held
+	moveLeft := input.Left.Held
+	moveRight := input.Right.Held
+	if input.Jump.Held {
 		if !p.Jumping && p.OnGround {
 			p.Velocity.DY -= JumpVelocity
 			p.OnGround = false
