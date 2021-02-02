@@ -103,8 +103,9 @@ func (m *Menu) DrawWorld(screen *ebiten.Image) {
 	m.World.Draw(screen)
 }
 
-// SwitchToGame is called by menu screens to view the game.
-func (m *Menu) SwitchToGame() error {
+// ResetGame is called by menu screens to reset the game.
+func (m *Menu) ResetGame() error {
+	m.World.Init()
 	m.Screen = nil
 	return nil
 }
@@ -112,7 +113,8 @@ func (m *Menu) SwitchToGame() error {
 // SwitchToCheckpoitn switches to a specific checkpoint.
 func (m *Menu) SwitchToCheckpoint(cp string) error {
 	m.World.RespawnPlayer(cp)
-	return m.SwitchToGame()
+	m.Screen = nil
+	return nil
 }
 
 // SwitchToScreen is called by menu screens to go to a different menu screen.

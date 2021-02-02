@@ -190,12 +190,6 @@ func friction(vel *int, friction int) {
 }
 
 func (p *Player) Update() {
-	if input.Action.JustHit {
-		// TODO remove this debug hack, menu will do this instead. Maybe also a "death" routine.
-		cpName := p.PersistentState["last_checkpoint"]
-		p.World.RespawnPlayer(cpName)
-		return
-	}
 	p.LookUp = input.Up.Held
 	p.LookDown = input.Down.Held
 	moveLeft := input.Left.Held

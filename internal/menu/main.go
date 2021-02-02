@@ -59,10 +59,11 @@ func (s *MainScreen) Update() error {
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
 		case Start:
-			return s.Menu.SwitchToGame()
+			// TODO Checkpoints screen.
+			return s.Menu.SwitchToCheckpoint(s.Menu.World.Level.Player.PersistentState["last_checkpoint"])
 		case Reset:
-			// TODO
-			return s.Menu.SwitchToScreen(&MainScreen{})
+			// TODO Confirmation screen.
+			return s.Menu.ResetGame()
 		case Credits:
 			// TODO
 			return s.Menu.SwitchToScreen(&MainScreen{})
