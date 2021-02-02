@@ -46,7 +46,6 @@ var (
 	debugShowBboxes         = flag.Bool("debug_show_bboxes", false, "show the bounding boxes of all entities")
 	debugInitialOrientation = flag.String("debug_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
 	debugInitialCheckpoint  = flag.String("debug_initial_checkpoint", "", "initial checkpoint")
-	drawBlurs               = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 	drawOutside             = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
 	drawVisibilityMask      = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
 	expandUsingVertices     = flag.Bool("expand_using_vertices", false, "expand using polygon math (just approximate, simplifies rendering)")
@@ -734,10 +733,10 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 		})
 
 		if !*expandUsingVertices {
-			blurImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, expandSize, true, 1.0)
+			BlurImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, expandSize, true, 1.0)
 		}
 		if *drawBlurs {
-			blurImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, blurSize, false, 1.0)
+			BlurImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, blurSize, false, 1.0)
 		}
 	}
 
@@ -786,7 +785,7 @@ func (w *World) drawVisibilityMask(screen *ebiten.Image, scrollDelta m.Delta) {
 			// Blur and darken last image.
 			darkenAlpha := frameDarkenAlpha
 			if *drawBlurs {
-				blurImage(w.prevImageMasked, w.blurImage, w.prevImageMasked, frameBlurSize, false, darkenAlpha)
+				BlurImage(w.prevImageMasked, w.blurImage, w.prevImageMasked, frameBlurSize, false, darkenAlpha)
 				darkenAlpha = 1.0
 			}
 

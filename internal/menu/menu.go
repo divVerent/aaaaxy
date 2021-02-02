@@ -34,6 +34,11 @@ var (
 	showFps   = flag.Bool("show_fps", false, "show fps counter")
 )
 
+const (
+	blurSize     = 1
+	darkenFactor = 0.75
+)
+
 type MenuScreen interface {
 	Init(m *Menu) error
 	Update() error
@@ -41,15 +46,17 @@ type MenuScreen interface {
 }
 
 type Menu struct {
-	World  engine.World
-	Screen MenuScreen
+	initialized bool
+	World       engine.World
+	Screen      MenuScreen
+	blurImage   *ebiten.Image
 }
 
 func (m *Menu) Update() error {
 	defer timing.Group()()
 
 	timing.Section("once")
-	if !m.World.Initialized() {
+	if !m.initialized {
 		m.World.Init()
 		if !*resetSave {
 			err := m.World.Load()
@@ -57,6 +64,8 @@ func (m *Menu) Update() error {
 				return err
 			}
 		}
+		m.blurImage = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+		m.initialized = true
 	}
 
 	timing.Section("global_hotkeys")
@@ -99,8 +108,11 @@ func (m *Menu) Draw(screen *ebiten.Image) {
 }
 
 func (m *Menu) DrawWorld(screen *ebiten.Image) {
-	// TODO: If a menu screen is active, just draw the previous saved bitmap, but blur it.
 	m.World.Draw(screen)
+	if m.Screen != nil {
+		// If a menu screen is active, just draw the previous saved bitmap, but blur it.
+		engine.BlurImage(screen, m.blurImage, screen, blurSize, false, darkenFactor)
+	}
 }
 
 // ResetGame is called by menu screens to reset the game.
@@ -110,7 +122,13 @@ func (m *Menu) ResetGame() error {
 	return nil
 }
 
-// SwitchToCheckpoitn switches to a specific checkpoint.
+// SwitchToGame switches to a specific checkpoint.
+func (m *Menu) SwitchToGame() error {
+	m.Screen = nil
+	return nil
+}
+
+// SwitchToCheckpoint switches to a specific checkpoint.
 func (m *Menu) SwitchToCheckpoint(cp string) error {
 	m.World.RespawnPlayer(cp)
 	m.Screen = nil

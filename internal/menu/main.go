@@ -60,7 +60,8 @@ func (s *MainScreen) Update() error {
 		switch s.Item {
 		case Start:
 			// TODO Checkpoints screen.
-			return s.Menu.SwitchToCheckpoint(s.Menu.World.Level.Player.PersistentState["last_checkpoint"])
+			return s.Menu.SwitchToGame()
+			//return s.Menu.SwitchToCheckpoint(s.Menu.World.Level.Player.PersistentState["last_checkpoint"])
 		case Reset:
 			// TODO Confirmation screen.
 			return s.Menu.ResetGame()

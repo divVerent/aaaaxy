@@ -28,6 +28,7 @@ import (
 
 var (
 	debugUseShaders = flag.Bool("debug_use_shaders", true, "enable use of custom shaders")
+	drawBlurs       = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 )
 
 func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, weight, scale float64) {
@@ -82,7 +83,19 @@ var (
 	blurShader *ebiten.Shader
 )
 
-func blurImage(img, tmp, out *ebiten.Image, size int, expand bool, scale float64) {
+func BlurImage(img, tmp, out *ebiten.Image, size int, expand bool, scale float64) {
+	if !*drawBlurs && !expand {
+		// Blurs can be globally turned off.
+		if img != out {
+			options := &ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
+				Filter:        ebiten.FilterNearest,
+			}
+			options.ColorM.Scale(scale, scale, scale, 1.0)
+			out.DrawImage(img, options)
+		}
+		return
+	}
 	if !*debugUseShaders {
 		weight := 1.0
 		if !expand {
