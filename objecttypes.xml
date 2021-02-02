@@ -10,6 +10,10 @@
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
   <property name="solid" type="bool" default="false"/>
+  <property name="text" type="string"/>
+  <property name="text_bg" type="color" default=""/>
+  <property name="text_fg" type="color" default=""/>
+  <property name="text_font" type="string"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="Checkpoint" color="#008000">
@@ -48,6 +52,10 @@
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
   <property name="solid" type="bool" default="false"/>
+  <property name="text" type="string" default=""/>
+  <property name="text_bg" type="color" default=""/>
+  <property name="text_fg" type="color" default=""/>
+  <property name="text_font" type="string"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="SwitchMusic" color="#00ff00">

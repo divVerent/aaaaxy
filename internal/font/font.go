@@ -21,13 +21,17 @@ import (
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/goitalic"
 	"golang.org/x/image/font/gofont/gomono"
+	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/font/gofont/gosmallcaps"
 )
 
 // Face is an alias to font.Face so users do not need to import the font package.
-type Face = font.Face
+type Face struct {
+	font.Face
+}
 
 var (
+	ByName         = map[string]Face{}
 	Centerprint    Face
 	CenterprintBig Face
 	DebugSmall     Face
@@ -35,6 +39,10 @@ var (
 
 func init() {
 	// Load the fonts.
+	regular, err := truetype.Parse(goregular.TTF)
+	if err != nil {
+		log.Panicf("Could not load goitalic font: %v", err)
+	}
 	italic, err := truetype.Parse(goitalic.TTF)
 	if err != nil {
 		log.Panicf("Could not load goitalic font: %v", err)
@@ -48,22 +56,46 @@ func init() {
 		log.Panicf("Could not load gosmallcaps font: %v", err)
 	}
 
-	Centerprint = truetype.NewFace(italic, &truetype.Options{
+	ByName["Regular"] = Face{truetype.NewFace(regular, &truetype.Options{
 		Size:       16,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})
-	CenterprintBig = truetype.NewFace(smallcaps, &truetype.Options{
+	})}
+	ByName["Italic"] = Face{truetype.NewFace(italic, &truetype.Options{
+		Size:       16,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	})}
+	ByName["Mono"] = Face{truetype.NewFace(mono, &truetype.Options{
+		Size:       16,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	})}
+	ByName["SmallCaps"] = Face{truetype.NewFace(smallcaps, &truetype.Options{
+		Size:       16,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	})}
+	Centerprint = Face{truetype.NewFace(italic, &truetype.Options{
+		Size:       16,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	})}
+	CenterprintBig = Face{truetype.NewFace(smallcaps, &truetype.Options{
 		Size:       24,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})
-	DebugSmall = truetype.NewFace(mono, &truetype.Options{
+	})}
+	DebugSmall = Face{truetype.NewFace(mono, &truetype.Options{
 		Size:       5,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})
+	})}
 }

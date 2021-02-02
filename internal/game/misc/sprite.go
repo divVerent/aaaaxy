@@ -16,29 +16,63 @@ package misc
 
 import (
 	"fmt"
+	"image/color"
 	"strconv"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // Sprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
-type Sprite struct{}
+type Sprite struct {
+	Entity  *engine.Entity
+	MyImage bool
+}
 
 func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
+	s.Entity = e
 	var err error
 	directory := sp.Properties["image_dir"]
 	if directory == "" {
 		directory = "sprites"
 	}
-	e.Image, err = image.Load(directory, sp.Properties["image"])
-	if err != nil {
-		return err
+	if sp.Properties["image"] == "" && sp.Properties["text"] != "" {
+		fntString := sp.Properties["text_font"]
+		fnt := font.ByName[fntString]
+		if fnt.Face == nil {
+			return fmt.Errorf("could not find font %q", fntString)
+		}
+		var fg, bg color.NRGBA
+		fgString := sp.Properties["text_fg"]
+		if _, err := fmt.Sscanf(fgString, "#%02x%02x%02x%02x", &fg.A, &fg.R, &fg.G, &fg.B); err != nil {
+			return fmt.Errorf("could not decode color %q: %v", fgString, err)
+		}
+		bgString := sp.Properties["text_bg"]
+		if _, err := fmt.Sscanf(bgString, "#%02x%02x%02x%02x", &bg.A, &bg.R, &bg.G, &bg.B); err != nil {
+			return fmt.Errorf("could not decode color %q: %v", bgString, err)
+		}
+		txt := strings.ReplaceAll(sp.Properties["text"], "  ", "\n")
+		bounds := fnt.BoundString(txt)
+		e.Image = ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
+		fnt.Draw(e.Image, txt, bounds.Origin.Mul(-1), fg, bg)
+		e.ResizeImage = false
+		centerOffset := e.Rect.Size.Sub(bounds.Size).Div(2)
+		e.RenderOffset = e.RenderOffset.Add(centerOffset)
+		s.MyImage = true
+	} else if sp.Properties["text"] == "" && sp.Properties["image"] != "" {
+		e.Image, err = image.Load(directory, sp.Properties["image"])
+		if err != nil {
+			return err
+		}
+		e.ResizeImage = true
+	} else {
+		return fmt.Errorf("Sprite entity requires exactly one of image and text to be set")
 	}
-	e.ResizeImage = true
 	e.Solid = sp.Properties["solid"] == "true"
 	e.Opaque = sp.Properties["opaque"] == "true"
 	if sp.Properties["alpha"] != "" {
@@ -72,7 +106,12 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 	return nil
 }
 
-func (s *Sprite) Despawn() {}
+func (s *Sprite) Despawn() {
+	if s.MyImage {
+		s.Entity.Image.Dispose()
+		s.MyImage = false
+	}
+}
 
 func (s *Sprite) Update() {}
 

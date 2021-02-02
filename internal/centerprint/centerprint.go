@@ -15,13 +15,12 @@
 package centerprint
 
 import (
-	"image"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/text"
 
 	"github.com/divVerent/aaaaaa/internal/font"
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 const (
@@ -30,7 +29,7 @@ const (
 
 type Centerprint struct {
 	text       string
-	bounds     image.Rectangle
+	bounds     m.Rect
 	color      color.Color
 	waitScroll bool
 	waitFade   bool
@@ -76,12 +75,12 @@ func New(txt string, imp Importance, pos InitialPosition, face font.Face, color 
 		alphaFrame: 1,
 		active:     true,
 	}
-	cp.bounds = text.BoundString(cp.face, txt)
+	cp.bounds = cp.face.BoundString(txt)
 	if pos == Middle {
 		cp.scrollPos = cp.targetPos()
 	}
 	if len(centerprints) != 0 {
-		height := cp.bounds.Max.Y - cp.bounds.Min.Y
+		height := cp.bounds.Size.DY
 		if centerprints[0].scrollPos < height {
 			cp.scrollPos = centerprints[0].scrollPos - height
 		}
@@ -95,7 +94,7 @@ func (cp *Centerprint) SetFadeOut(fadeOut bool) {
 }
 
 func (cp *Centerprint) targetPos() int {
-	return (screenHeight - (cp.bounds.Min.Y - cp.bounds.Max.Y)) / 4
+	return screenHeight / 4
 }
 
 func (cp *Centerprint) update() bool {
@@ -133,18 +132,9 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 	alphaM.Scale(1.0, 1.0, 1.0, a)
 	fg := alphaM.Apply(cp.color)
 	bg := color.NRGBA{R: 0, G: 0, B: 0, A: uint8(a * 255)}
-	x := (screenWidth-(cp.bounds.Max.X-cp.bounds.Min.X))/2 - cp.bounds.Min.X
-	y := cp.scrollPos - cp.bounds.Max.Y
-	// TODO a better way to outline?
-	for dx := -1; dx <= +1; dx++ {
-		for dy := -1; dy <= +1; dy++ {
-			if dx == 0 && dy == 0 {
-				continue
-			}
-			text.Draw(screen, cp.text, cp.face, x+dx, y+dy, bg)
-		}
-	}
-	text.Draw(screen, cp.text, cp.face, x, y, fg)
+	x := (screenWidth-cp.bounds.Size.DX)/2 - cp.bounds.Origin.X
+	y := cp.scrollPos - cp.bounds.Size.DY - cp.bounds.Origin.Y
+	cp.face.Draw(screen, cp.text, m.Pos{X: x, Y: y}, fg, bg)
 }
 
 func (cp *Centerprint) Active() bool {
