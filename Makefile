@@ -36,7 +36,7 @@ vet:
 
 .PHONY: $(ASSETS)
 $(ASSETS): $(GENERATED_ASSETS)
-	./statik-vfs.sh $(ASSETS)
+	GOOS= GOARCH= ./statik-vfs.sh $(ASSETS)
 
 $(DEBUG): $(GENERATED_ASSETS) $(SOURCES)
 	go build -o $(DEBUG) $(DEBUG_GOFLAGS) $(PACKAGE)
