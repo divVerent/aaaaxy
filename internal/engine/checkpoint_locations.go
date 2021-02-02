@@ -27,9 +27,8 @@ import (
 
 type (
 	CheckpointLocations struct {
-		Locs   map[string]*CheckpointLocation
-		MinPos m.Pos
-		MaxPos m.Pos
+		Locs map[string]*CheckpointLocation
+		Rect m.Rect
 	}
 	CheckpointLocation struct {
 		MapPos    m.Pos
@@ -73,6 +72,7 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 	loc := &CheckpointLocations{
 		Locs: map[string]*CheckpointLocation{},
 	}
+	var minPos, maxPos m.Pos
 	for _, o := range g.Objects {
 		if o.Name == "" {
 			// Not a CP, but the player initial spawn.
@@ -86,22 +86,26 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 		if err != nil {
 			return nil, fmt.Errorf("could not parse checkpoint location %q for %q in %q: %v", o.Pos, o.Name, filename)
 		}
-		if len(loc.Locs) == 0 || pos.X < loc.MinPos.X {
-			loc.MinPos.X = pos.X
+		if len(loc.Locs) == 0 || pos.X < minPos.X {
+			minPos.X = pos.X
 		}
-		if len(loc.Locs) == 0 || pos.Y < loc.MinPos.Y {
-			loc.MinPos.Y = pos.Y
+		if len(loc.Locs) == 0 || pos.Y < minPos.Y {
+			minPos.Y = pos.Y
 		}
-		if len(loc.Locs) == 0 || pos.X > loc.MaxPos.X {
-			loc.MaxPos.X = pos.X
+		if len(loc.Locs) == 0 || pos.X > maxPos.X {
+			maxPos.X = pos.X
 		}
-		if len(loc.Locs) == 0 || pos.Y > loc.MaxPos.Y {
-			loc.MaxPos.Y = pos.Y
+		if len(loc.Locs) == 0 || pos.Y > maxPos.Y {
+			maxPos.Y = pos.Y
 		}
 		loc.Locs[o.Name] = &CheckpointLocation{
 			MapPos:    pos,
 			NextByDir: map[m.Delta]CheckpointEdge{},
 		}
+	}
+	loc.Rect = m.Rect{
+		Origin: minPos,
+		Size:   maxPos.Delta(minPos),
 	}
 	for name, cp := range l.Checkpoints {
 		if name == "" {

@@ -28,7 +28,7 @@ import (
 type MainScreenItem int
 
 const (
-	Start MainScreenItem = iota
+	Play MainScreenItem = iota
 	Reset
 	Credits
 	Quit
@@ -58,10 +58,8 @@ func (s *MainScreen) Update() error {
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
-		case Start:
-			// TODO Checkpoints screen.
-			return s.Menu.SwitchToGame()
-			//return s.Menu.SwitchToCheckpoint(s.Menu.World.Level.Player.PersistentState["last_checkpoint"])
+		case Play:
+			return s.Menu.SwitchToScreen(&MapScreen{})
 		case Reset:
 			// TODO Confirmation screen.
 			return s.Menu.ResetGame()
@@ -84,10 +82,10 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 0}
 	font.MenuBig.Draw(screen, "AAAAAA", m.Pos{X: x, Y: h / 4}, true, fgs, bgs)
 	fg, bg := fgn, bgn
-	if s.Item == Start {
+	if s.Item == Play {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Start", m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Play", m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Reset {
 		fg, bg = fgs, bgs

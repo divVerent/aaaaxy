@@ -39,3 +39,10 @@ func (d Pos) Mul(n int) Pos {
 func (d Pos) Div(m int) Pos {
 	return Pos{X: Div(d.X, m), Y: Div(d.Y, m)}
 }
+
+func (d Pos) FromRectToRect(a Rect, b Rect) Pos {
+	return Pos{
+		X: b.Origin.X + Div((d.X-a.Origin.X)*b.Size.DX, a.Size.DX),
+		Y: b.Origin.Y + Div((d.Y-a.Origin.Y)*b.Size.DY, a.Size.DY),
+	}
+}
