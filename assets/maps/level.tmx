@@ -824,7 +824,7 @@
     <property name="music" type="file" value="../../../../../src/aaaaaa/third_party/centurionofwar_strange_inspiration/assets/music/strange_inspiraton.ogg"/>
     <property name="next_left" type="object" value="180"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="The Moebius Strip"/>
+    <property name="text" value="The Möbius Strip"/>
    </properties>
   </object>
   <object id="148" name="the_torus" type="Checkpoint" x="2848" y="5280" width="352" height="32">

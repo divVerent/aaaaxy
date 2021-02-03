@@ -880,8 +880,7 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newLevelPos := neighborLevelPos.Add(t.Apply(d))
 	newLevelTile, found := w.Level.Tiles[newLevelPos]
 	if !found {
-		log.Printf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)",
-			newLevelPos, p, neighborLevelPos, d, t.Apply(d))
+		// log.Printf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)", newLevelPos, p, neighborLevelPos, d, t.Apply(d))
 		newTile := Tile{
 			LevelPos:           newLevelPos,
 			Transform:          t,

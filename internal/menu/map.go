@@ -112,22 +112,24 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	lineColor := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
 	darkLineColor := color.NRGBA{R: 75, G: 75, B: 75, A: 255}
-	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 7}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
+	cpText := s.Menu.World.Level.Checkpoints[s.CurrentCP].Properties["text"]
+	font.Menu.Draw(screen, cpText, m.Pos{X: x, Y: 7 * h / 8}, true, fgs, bgs)
 
 	// Draw all known checkpoints.
 	loc := s.Menu.World.Level.CheckpointLocations
-	mapSize := 2 * h / 3
-	mapWidth := mapSize
-	mapHeight := mapSize
-	if loc.Rect.Size.DX > loc.Rect.Size.DY {
-		mapHeight = mapWidth * loc.Rect.Size.DY / loc.Rect.Size.DX
-	} else {
+	mapWidth := w
+	mapHeight := h / 2
+	if mapWidth*loc.Rect.Size.DY > mapHeight*loc.Rect.Size.DX {
 		mapWidth = mapHeight * loc.Rect.Size.DX / loc.Rect.Size.DY
+	} else {
+		mapHeight = mapWidth * loc.Rect.Size.DY / loc.Rect.Size.DX
 	}
 	mapRect := m.Rect{
-		Origin: m.Pos{X: (w - mapWidth) / 2, Y: ((h - h/4) - mapHeight) / 2},
+		Origin: m.Pos{X: (w - mapWidth) / 2, Y: (h - mapHeight) / 2},
 		Size:   m.Delta{DX: mapWidth, DY: mapHeight},
 	}
+	// ebitenutil.DrawRect(screen, float64(mapRect.Origin.X), float64(mapRect.Origin.Y), float64(mapRect.Size.DX), float64(mapRect.Size.DY), bgs)
 	// First draw all edges.
 	for cpName, cpLoc := range loc.Locs {
 		cpSeen := s.Menu.World.Level.Player.PersistentState["checkpoint_seen."+cpName] != ""
