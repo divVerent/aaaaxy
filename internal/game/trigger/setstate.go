@@ -37,7 +37,7 @@ func (s *SetState) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity
 	s.NonSolidTouchable.Init(w, e)
 	s.World = w
 	s.Target = sp.Properties["target"]
-	s.State = sp.Properties["state"] == "true"
+	s.State = sp.Properties["state"] != "false"
 	if sp.Properties["initial_state"] != "" {
 		setState(w, s.Target, sp.Properties["initial_state"] != "false") // Default true.
 	}
