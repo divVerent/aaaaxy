@@ -544,9 +544,15 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta
 	// Step 1: compute the raw corners at source and destination.
 	rectI := m.Rect{Origin: m.Pos{}, Size: imgSize}
 	var rectR m.Rect
+	var scaledImgSize m.Delta
 	if resize {
+		scaledImgSize = entSize
+		if orientation.Right.DX == 0 {
+			scaledImgSize.DX, scaledImgSize.DY = scaledImgSize.DY, scaledImgSize.DX
+		}
 		rectR = m.Rect{Origin: pos, Size: entSize}
 	} else {
+		scaledImgSize = imgSize
 		flippedSize := imgSize
 		if orientation.Right.DX == 0 {
 			flippedSize.DX, flippedSize.DY = flippedSize.DY, flippedSize.DX
@@ -556,7 +562,7 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta
 
 	// Step 2: actually match up image corners with destination.
 	rectIR := orientation.ApplyToRect2(m.Pos{}, rectI)
-	rectIRS := orientation.ApplyToRect2(m.Pos{}, m.Rect{Origin: m.Pos{}, Size: rectR.Size})
+	rectIRS := orientation.ApplyToRect2(m.Pos{}, m.Rect{Origin: m.Pos{}, Size: scaledImgSize})
 
 	// Step 3: rotate the image first.
 	geoM.SetElement(0, 0, float64(orientation.Right.DX))
