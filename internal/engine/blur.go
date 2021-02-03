@@ -119,7 +119,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, expand bool, scale float64
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{
 			"Size":  float32(size),
-			"Step":  []float32{0.5 / float32(w), 0},
+			"Step":  []float32{1 / float32(w), 0},
 			"Scale": float32(scale),
 		},
 		Images: [4]*ebiten.Image{
@@ -133,7 +133,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, expand bool, scale float64
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{
 			"Size":  float32(size),
-			"Step":  []float32{0, 0.5 / float32(h)},
+			"Step":  []float32{0, 1 / float32(h)},
 			"Scale": float32(scale),
 		},
 		Images: [4]*ebiten.Image{

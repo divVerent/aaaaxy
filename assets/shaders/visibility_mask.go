@@ -12,23 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// A simple shader to perform blurs.
+// A simple shader to perform image mixing and scrolling.
 package main
 
-var Size float
-var Step vec2
-var Scale float
+var Scroll vec2
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
 	srcMax := srcOrigin + srcSize
-	acc := imageSrc0UnsafeAt(texCoord)
-	for y := 1.0; y <= 6.0; y += 1.0 {
-		if y <= Size {
-			d := y * Step * srcSize
-			acc += imageSrc0UnsafeAt(clamp(texCoord-d, srcOrigin, srcMax))
-			acc += imageSrc0UnsafeAt(clamp(texCoord+d, srcOrigin, srcMax))
-		}
-	}
-	return acc * Scale
+	mask := imageSrc0UnsafeAt(texCoord)
+	curr := imageSrc1UnsafeAt(texCoord)
+	scrolled := clamp(texCoord+Scroll*srcSize, srcOrigin, srcMax)
+	prev := imageSrc2UnsafeAt(scrolled)
+	return mix(prev, curr, mask)
 }
