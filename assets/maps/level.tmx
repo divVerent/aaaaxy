@@ -768,7 +768,7 @@
   <object id="105" name="the_strip" type="Checkpoint" x="3424" y="5296" width="416" height="32">
    <properties>
     <property name="music" value="strange_inspiraton.ogg"/>
-    <property name="next_down" type="object" value="148"/>
+    <property name="next_left" type="object" value="148"/>
     <property name="next_up" type="object" value="147"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="The Strip"/>
@@ -830,7 +830,7 @@
   <object id="148" name="the_torus" type="Checkpoint" x="2848" y="5280" width="352" height="32">
    <properties>
     <property name="music" value="strange_inspiraton.ogg"/>
-    <property name="next_left" type="object" value="180"/>
+    <property name="next_up" type="object" value="180"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="The Torus"/>
    </properties>
