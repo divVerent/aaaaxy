@@ -74,3 +74,13 @@ allreleaseclean:
 	GOOS=linux GOARCH=amd64 $(MAKE) clean
 	GOOS=windows GOARCH=amd64 $(MAKE) clean
 	$(RM) $(ZIPFILE)
+
+# Helper targets.
+.PHONY: run
+run: $(DEBUG)
+	$(DEBUG)
+
+.PHONY: setup-git
+setup-git:
+	git config filter.git-clean-tmx.clean "$$PWD"/git-clean-tmx.sh
+

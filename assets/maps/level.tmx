@@ -663,7 +663,7 @@
   <object id="65" name="WarpInfiniteStairsMirror" gid="6" x="4032" y="4336" width="32" height="16"/>
   <object id="66" name="stop_and_stair" type="Checkpoint" x="4416" y="4128" width="64" height="48">
    <properties>
-    <property name="music" type="file" value="retro_chiptune_1.ogg"/>
+    <property name="music" value="retro_chiptune_1.ogg"/>
     <property name="next_left" type="object" value="89"/>
     <property name="required_orientation" value="SW"/>
     <property name="text" value="Stop and Stair"/>
@@ -733,7 +733,7 @@
   <object id="98" name="WarpToHub" gid="8" x="3824" y="5104" width="16" height="32"/>
   <object id="99" name="the_hub" type="Checkpoint" x="3872" y="5136" width="288" height="32">
    <properties>
-    <property name="music" type="file" value=""/>
+    <property name="music" value=""/>
     <property name="next_down" type="object" value="288"/>
     <property name="next_left" type="object" value="105"/>
     <property name="required_orientation" value="ES"/>
@@ -767,7 +767,7 @@
   <object id="104" type="QuestionBlock" x="3456" y="5440" width="16" height="16"/>
   <object id="105" name="the_strip" type="Checkpoint" x="3424" y="5296" width="416" height="32">
    <properties>
-    <property name="music" type="file" value="../../../../../src/aaaaaa/third_party/centurionofwar_strange_inspiration/assets/music/strange_inspiraton.ogg"/>
+    <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_down" type="object" value="148"/>
     <property name="next_up" type="object" value="147"/>
     <property name="required_orientation" value="ES"/>
@@ -821,7 +821,7 @@
   </object>
   <object id="147" name="the_moebius_strip" type="Checkpoint" x="3136" y="5216" width="32" height="32">
    <properties>
-    <property name="music" type="file" value="../../../../../src/aaaaaa/third_party/centurionofwar_strange_inspiration/assets/music/strange_inspiraton.ogg"/>
+    <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_left" type="object" value="180"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="The Möbius Strip"/>
@@ -829,7 +829,7 @@
   </object>
   <object id="148" name="the_torus" type="Checkpoint" x="2848" y="5280" width="352" height="32">
    <properties>
-    <property name="music" type="file" value="../../../../../src/aaaaaa/third_party/centurionofwar_strange_inspiration/assets/music/strange_inspiraton.ogg"/>
+    <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_left" type="object" value="180"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="The Torus"/>
@@ -873,7 +873,7 @@
   </object>
   <object id="180" name="the_klein_bottle" type="Checkpoint" x="2560" y="5024" width="32" height="32">
    <properties>
-    <property name="music" type="file" value="../../../../../src/aaaaaa/third_party/centurionofwar_strange_inspiration/assets/music/strange_inspiraton.ogg"/>
+    <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_left" type="object" value="192"/>
     <property name="required_orientation" value="EN"/>
     <property name="text" value="The Klein Bottle"/>
@@ -921,7 +921,7 @@
   </object>
   <object id="192" name="the_projective_plane" type="Checkpoint" x="1792" y="5024" width="32" height="32">
    <properties>
-    <property name="music" type="file" value="../../../../../src/aaaaaa/third_party/centurionofwar_strange_inspiration/assets/music/strange_inspiraton.ogg"/>
+    <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_left" type="object" value="237"/>
     <property name="required_orientation" value="EN"/>
     <property name="text" value="The Projective Plane"/>
@@ -978,7 +978,7 @@
   <object id="236" name="SphereSixth" gid="4" x="1216" y="5184" width="32" height="16"/>
   <object id="237" name="the_sphere" type="Checkpoint" x="1248" y="5216" width="32" height="32">
    <properties>
-    <property name="music" type="file" value="../../../../../src/aaaaaa/third_party/centurionofwar_strange_inspiration/assets/music/strange_inspiraton.ogg"/>
+    <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_down" type="object" value="264"/>
     <property name="next_left" type="object" value="249"/>
     <property name="required_orientation" value="WN"/>
@@ -1046,7 +1046,7 @@
   </object>
   <object id="264" name="bings_house" type="Checkpoint" x="736" y="6368" width="352" height="32">
    <properties>
-    <property name="music" type="file" value="../../../../../../data/home/rpolzer/homedir/src/aaaaaa/third_party/centurionofwar_strange_inspiration/assets/music/strange_inspiraton.ogg"/>
+    <property name="music" value="strange_inspiraton.ogg"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="House with Two Rooms"/>
    </properties>
@@ -1108,7 +1108,7 @@
   </object>
   <object id="288" name="short_circuited" type="Checkpoint" x="3920" y="5376" width="192" height="32">
    <properties>
-    <property name="music" type="file" value="../../third_party/joth_next_to_you/assets/music/Next to You.ogg"/>
+    <property name="music" value="Next to You.ogg"/>
     <property name="next_right" type="object" value="296"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Short Circuited"/>
@@ -1132,7 +1132,7 @@
   </object>
   <object id="296" name="choose_wisely" type="Checkpoint" x="4144" y="6848" width="32" height="64">
    <properties>
-    <property name="music" type="file" value="../../third_party/joth_next_to_you/assets/music/Next to You.ogg"/>
+    <property name="music" value="Next to You.ogg"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Choose Wisely"/>
    </properties>

@@ -1,0 +1,2 @@
+*.tmx filter=git-clean-tmx
+*.tsx filter=git-clean-tsx
