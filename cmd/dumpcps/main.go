@@ -104,9 +104,9 @@ func main() {
 			if nextVert == nil {
 				log.Panicf("Checkpoint %q doesn't point at a checkpoint but entity %d", sp.Properties["name"], nextID)
 			}
-			distance := 200
+			distance := 20
 			if sp.Properties["dead_end"] == "true" {
-				distance = 100
+				distance = 10
 			}
 			edge := &Edge{
 				WantDelta: conn.dir.Mul(distance),
@@ -121,10 +121,9 @@ func main() {
 	fmt.Print(`
 		digraph G {
 			layout = "neato";
+			size = "256,256";
 			overlap = false;
 			splines = false;
-			ratio = fill;
-			model = subset;
 		`)
 	// Emit all nodes.
 	for _, v := range vertices {
@@ -138,9 +137,26 @@ func main() {
 		for _, e := range v.OutEdges {
 			l := math.Sqrt(float64(e.To.WantPos.Delta(v.WantPos).Length2()))
 			w := 1.0 / l
+			port := func(d m.Delta) string {
+				if d.DX < 0 {
+					return "w"
+				}
+				if d.DX > 0 {
+					return "e"
+				}
+				if d.DY < 0 {
+					return "n"
+				}
+				if d.DY > 0 {
+					return "s"
+				}
+				return "x"
+			}
+			headport := port(e.WantDelta.Mul(-1))
+			tailport := port(e.WantDelta)
 			fmt.Printf(`
-					%s -> %s [len=%f, w=%f];
-				`, v.Name, e.To.Name, l, w)
+					%s -> %s [len=%f, w=%f, headport=%s, tailport=%s];
+				`, v.Name, e.To.Name, l, w, headport, tailport)
 		}
 	}
 	fmt.Print(`
