@@ -153,6 +153,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				otherLoc := loc.Locs[otherName]
 				otherPos := otherLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
 				farPos := otherPos.Sub(dir.Mul(7))
+				engine.DrawPolyLine(screen, 6.0, []m.Pos{pos, closePos, farPos, otherPos}, s.whiteImage, darkLineColor, geoM, options)
 				engine.DrawPolyLine(screen, 3.0, []m.Pos{pos, closePos, farPos, otherPos}, s.whiteImage, lineColor, geoM, options)
 			} else {
 				engine.DrawPolyLine(screen, 3.0, []m.Pos{pos, closePos}, s.whiteImage, darkLineColor, geoM, options)

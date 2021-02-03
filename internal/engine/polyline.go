@@ -48,9 +48,22 @@ func DrawPolyLine(src *ebiten.Image, thickness float64, points []m.Pos, img *ebi
 			tY += vY / l
 		}
 		l := math.Hypot(tX, tY)
-		dX, dY := -tY*thickness/l*0.5, tX*thickness/l*0.5
-		dstX0, dstY0 := float64(p.X)-dX+0.5, float64(p.Y)-dY+0.5
-		dstX1, dstY1 := float64(p.X)+dX+0.5, float64(p.Y)+dY+0.5
+		dX, dY := tX*thickness/l*0.5, tY*thickness/l*0.5
+		dX0, dY0, dX1, dY1 := dY, -dX, -dY, dX
+		if i == 0 {
+			dX0 -= dX
+			dY0 -= dY
+			dX1 -= dX
+			dY1 -= dY
+		}
+		if i == len(points)-1 {
+			dX0 += dX
+			dY0 += dY
+			dX1 += dX
+			dY1 += dY
+		}
+		dstX0, dstY0 := float64(p.X)+dX0+0.5, float64(p.Y)+dY0+0.5
+		dstX1, dstY1 := float64(p.X)+dX1+0.5, float64(p.Y)+dY1+0.5
 		srcX0, srcY0 := geoM.Apply(dstX0, dstY0)
 		srcX1, srcY1 := geoM.Apply(dstX1, dstY1)
 		vertices[2*i] = ebiten.Vertex{
