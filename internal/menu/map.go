@@ -22,6 +22,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/font"
+	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/input"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
@@ -30,6 +31,10 @@ type MapScreen struct {
 	Menu      *Menu
 	Level     *engine.Level
 	CurrentCP string
+
+	cpSprite         *ebiten.Image
+	cpSelectedSprite *ebiten.Image
+	deadEndSprite    *ebiten.Image
 }
 
 func (s *MapScreen) Init(m *Menu) error {
@@ -38,6 +43,19 @@ func (s *MapScreen) Init(m *Menu) error {
 	if s.CurrentCP == "" {
 		// Have no checkpoint yet - start the game right away.
 		return s.Menu.SwitchToGame()
+	}
+	var err error
+	s.cpSprite, err = image.Load("sprites", "checkpoint.png")
+	if err != nil {
+		return err
+	}
+	s.cpSelectedSprite, err = image.Load("sprites", "checkpoint_selected.png")
+	if err != nil {
+		return err
+	}
+	s.deadEndSprite, err = image.Load("sprites", "dead_end.png")
+	if err != nil {
+		return err
 	}
 	return nil
 }
@@ -90,6 +108,8 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	x := w / 2
 	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
+	lineColor := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
+	darkLineColor := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 
 	// Draw all known checkpoints.
@@ -119,16 +139,21 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			}
 			otherName := edge.Other
 			edgeSeen := s.Menu.World.Level.Player.PersistentState["checkpoints_walked."+cpName+"."+otherName] != ""
-			closePos := pos.Add(dir.Mul(5))
+			closePos := pos.Add(dir.Mul(6))
 			if edgeSeen {
 				otherLoc := loc.Locs[otherName]
 				otherPos := otherLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
-				farPos := otherPos.Sub(dir.Mul(5))
-				ebitenutil.DrawLine(screen, float64(pos.X), float64(pos.Y), float64(closePos.X), float64(closePos.Y), fgs)
-				ebitenutil.DrawLine(screen, float64(closePos.X), float64(closePos.Y), float64(farPos.X), float64(farPos.Y), fgs)
-				ebitenutil.DrawLine(screen, float64(farPos.X), float64(farPos.Y), float64(otherPos.X), float64(otherPos.Y), fgs)
+				farPos := otherPos.Sub(dir.Mul(6))
+				// TODO actually use polygon drawing here. Much cleaner.
+				ebitenutil.DrawLine(screen, float64(pos.X), float64(pos.Y), float64(closePos.X), float64(closePos.Y), lineColor)
+				ebitenutil.DrawLine(screen, float64(closePos.X), float64(closePos.Y), float64(farPos.X), float64(farPos.Y), lineColor)
+				ebitenutil.DrawLine(screen, float64(farPos.X), float64(farPos.Y), float64(otherPos.X), float64(otherPos.Y), lineColor)
+				ebitenutil.DrawLine(screen, float64(otherPos.X), float64(otherPos.Y), float64(farPos.X), float64(farPos.Y), lineColor)
+				ebitenutil.DrawLine(screen, float64(farPos.X), float64(farPos.Y), float64(closePos.X), float64(closePos.Y), lineColor)
+				ebitenutil.DrawLine(screen, float64(closePos.X), float64(closePos.Y), float64(pos.X), float64(pos.Y), lineColor)
 			} else {
-				ebitenutil.DrawLine(screen, float64(pos.X), float64(pos.Y), float64(closePos.X), float64(closePos.Y), bgs)
+				ebitenutil.DrawLine(screen, float64(pos.X), float64(pos.Y), float64(closePos.X), float64(closePos.Y), darkLineColor)
+				ebitenutil.DrawLine(screen, float64(closePos.X), float64(closePos.Y), float64(pos.X), float64(pos.Y), darkLineColor)
 			}
 		}
 	}
@@ -138,19 +163,18 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		if !cpSeen {
 			continue
 		}
-		cpSprite := "checkpoint"
-		if s.Menu.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
-			cpSprite = "dead_end"
+		sprite := s.cpSprite
+		if cpName == s.CurrentCP {
+			sprite = s.cpSelectedSprite
+		} else if s.Menu.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
+			sprite = s.deadEndSprite
 		}
 		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
-		if cpName == s.CurrentCP {
-			cpSprite += "_selected"
+		opts := ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeSourceOver,
+			Filter:        ebiten.FilterNearest,
 		}
-		// TODO Draw sprite!
-		if cpName == s.CurrentCP {
-			ebitenutil.DrawRect(screen, float64(pos.X-4), float64(pos.Y-4), 8, 8, fgs)
-		} else {
-			ebitenutil.DrawRect(screen, float64(pos.X-2), float64(pos.Y-2), 4, 4, fgs)
-		}
+		opts.GeoM.Translate(float64(pos.X-7), float64(pos.Y-7))
+		screen.DrawImage(sprite, &opts)
 	}
 }
