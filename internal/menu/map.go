@@ -18,7 +18,6 @@ import (
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/font"
@@ -35,6 +34,7 @@ type MapScreen struct {
 	cpSprite         *ebiten.Image
 	cpSelectedSprite *ebiten.Image
 	deadEndSprite    *ebiten.Image
+	whiteImage       *ebiten.Image
 }
 
 func (s *MapScreen) Init(m *Menu) error {
@@ -57,6 +57,8 @@ func (s *MapScreen) Init(m *Menu) error {
 	if err != nil {
 		return err
 	}
+	s.whiteImage = ebiten.NewImage(1, 1)
+	s.whiteImage.Fill(color.Gray{255})
 	return nil
 }
 
@@ -106,11 +108,11 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	h := engine.GameHeight
 	w := engine.GameWidth
 	x := w / 2
-	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
+	fgs := color.NRGBA{R: 255, G: 255, B: 75, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	lineColor := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
-	darkLineColor := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
-	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
+	darkLineColor := color.NRGBA{R: 75, G: 75, B: 75, A: 255}
+	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 7}, true, fgs, bgs)
 
 	// Draw all known checkpoints.
 	loc := s.Menu.World.Level.CheckpointLocations
@@ -139,21 +141,21 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			}
 			otherName := edge.Other
 			edgeSeen := s.Menu.World.Level.Player.PersistentState["checkpoints_walked."+cpName+"."+otherName] != ""
-			closePos := pos.Add(dir.Mul(6))
+			closePos := pos.Add(dir.Mul(7))
+			options := &ebiten.DrawTrianglesOptions{
+				CompositeMode: ebiten.CompositeModeSourceOver,
+				Filter:        ebiten.FilterNearest,
+				Address:       ebiten.AddressUnsafe,
+			}
+			geoM := &ebiten.GeoM{}
+			geoM.Scale(0, 0)
 			if edgeSeen {
 				otherLoc := loc.Locs[otherName]
 				otherPos := otherLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
-				farPos := otherPos.Sub(dir.Mul(6))
-				// TODO actually use polygon drawing here. Much cleaner.
-				ebitenutil.DrawLine(screen, float64(pos.X), float64(pos.Y), float64(closePos.X), float64(closePos.Y), lineColor)
-				ebitenutil.DrawLine(screen, float64(closePos.X), float64(closePos.Y), float64(farPos.X), float64(farPos.Y), lineColor)
-				ebitenutil.DrawLine(screen, float64(farPos.X), float64(farPos.Y), float64(otherPos.X), float64(otherPos.Y), lineColor)
-				ebitenutil.DrawLine(screen, float64(otherPos.X), float64(otherPos.Y), float64(farPos.X), float64(farPos.Y), lineColor)
-				ebitenutil.DrawLine(screen, float64(farPos.X), float64(farPos.Y), float64(closePos.X), float64(closePos.Y), lineColor)
-				ebitenutil.DrawLine(screen, float64(closePos.X), float64(closePos.Y), float64(pos.X), float64(pos.Y), lineColor)
+				farPos := otherPos.Sub(dir.Mul(7))
+				engine.DrawPolyLine(screen, 3.0, []m.Pos{pos, closePos, farPos, otherPos}, s.whiteImage, lineColor, geoM, options)
 			} else {
-				ebitenutil.DrawLine(screen, float64(pos.X), float64(pos.Y), float64(closePos.X), float64(closePos.Y), darkLineColor)
-				ebitenutil.DrawLine(screen, float64(closePos.X), float64(closePos.Y), float64(pos.X), float64(pos.Y), darkLineColor)
+				engine.DrawPolyLine(screen, 3.0, []m.Pos{pos, closePos}, s.whiteImage, darkLineColor, geoM, options)
 			}
 		}
 	}
