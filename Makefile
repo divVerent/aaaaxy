@@ -78,7 +78,7 @@ allreleaseclean:
 # Helper targets.
 .PHONY: run
 run: $(DEBUG)
-	$(DEBUG)
+	./$(DEBUG) $(ARGS)
 
 .PHONY: setup-git
 setup-git:
