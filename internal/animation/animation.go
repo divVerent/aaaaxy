@@ -17,19 +17,23 @@ package animation
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/image"
+	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/music"
 )
 
 type Group struct {
-	Frames        int    // Number of frames of anim.
-	FrameInterval int    // Time till next frame.
-	NextInterval  int    // Time till NextAnim.
-	WaitFinish    bool   // Set if this anim shouldn't be interrupted.
-	NextAnim      string // Name of next animation.
+	Frames            int           // Number of frames of anim.
+	FrameInterval     int           // Time till next frame.
+	NextInterval      int           // Time till NextAnim.
+	WaitFinish        bool          // Set if this anim shouldn't be interrupted.
+	NextAnim          string        // Name of next animation.
+	SyncToMusicOffset time.Duration // Time in music to sync to frame 0.
 
 	// These will be filled in by Init.
 	Images    []*ebiten.Image // One image per frame.
@@ -113,6 +117,10 @@ func (s *State) Update(e *engine.Entity) {
 	}
 	if frame >= s.Group.Frames {
 		frame = s.Group.Frames - 1
+	}
+	if s.Group.SyncToMusicOffset != 0 {
+		absFrame := int((music.Now() - s.Group.SyncToMusicOffset) * engine.GameTPS / (time.Second * time.Duration(s.Group.FrameInterval)))
+		frame = m.Mod(absFrame, s.Group.Frames)
 	}
 	e.Image = s.Group.Images[frame]
 }
