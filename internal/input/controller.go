@@ -26,13 +26,14 @@ type Impulse struct {
 }
 
 var (
-	Left   = (&Impulse{keys: []ebiten.Key{ebiten.KeyLeft, ebiten.KeyA}}).register()
-	Right  = (&Impulse{keys: []ebiten.Key{ebiten.KeyRight, ebiten.KeyD}}).register()
-	Up     = (&Impulse{keys: []ebiten.Key{ebiten.KeyUp, ebiten.KeyW}}).register()
-	Down   = (&Impulse{keys: []ebiten.Key{ebiten.KeyDown, ebiten.KeyS}}).register()
-	Jump   = (&Impulse{keys: []ebiten.Key{ebiten.KeyControl, ebiten.KeySpace, ebiten.KeyX}}).register()
-	Action = (&Impulse{keys: []ebiten.Key{ebiten.KeyAlt, ebiten.KeyE, ebiten.KeyZ, ebiten.KeyEnter}}).register()
-	Exit   = (&Impulse{keys: []ebiten.Key{ebiten.KeyEscape}}).register()
+	Left       = (&Impulse{keys: []ebiten.Key{ebiten.KeyLeft, ebiten.KeyA}}).register()
+	Right      = (&Impulse{keys: []ebiten.Key{ebiten.KeyRight, ebiten.KeyD}}).register()
+	Up         = (&Impulse{keys: []ebiten.Key{ebiten.KeyUp, ebiten.KeyW}}).register()
+	Down       = (&Impulse{keys: []ebiten.Key{ebiten.KeyDown, ebiten.KeyS}}).register()
+	Jump       = (&Impulse{keys: []ebiten.Key{ebiten.KeyControl, ebiten.KeySpace, ebiten.KeyX}}).register()
+	Action     = (&Impulse{keys: []ebiten.Key{ebiten.KeyAlt, ebiten.KeyE, ebiten.KeyZ, ebiten.KeyEnter}}).register()
+	Exit       = (&Impulse{keys: []ebiten.Key{ebiten.KeyEscape}}).register()
+	Fullscreen = (&Impulse{keys: []ebiten.Key{ebiten.KeyF11, ebiten.KeyF}}).register()
 
 	impulses = []*Impulse{}
 )

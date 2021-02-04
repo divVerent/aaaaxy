@@ -74,6 +74,9 @@ func (m *Menu) Update() error {
 		music.Switch("")
 		return m.SwitchToScreen(&MainScreen{})
 	}
+	if input.Fullscreen.JustHit {
+		ebiten.SetFullscreen(!ebiten.IsFullscreen())
+	}
 
 	timing.Section("screen")
 	if m.Screen != nil {
