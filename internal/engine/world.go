@@ -758,12 +758,11 @@ func (w *World) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m
 			Address: ebiten.AddressRepeat,
 		})
 
+		e := expandSize
 		if !*expandUsingVertices {
-			BlurImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, expandSize, true, 1.0)
+			e = 0
 		}
-		if *drawBlurs {
-			BlurImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, blurSize, false, 1.0)
-		}
+		BlurExpandImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, blurSize, e, 1.0)
 	}
 
 	if *debugUseShadersForVisibilityMask && *drawOutside {
@@ -843,7 +842,7 @@ func (w *World) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m
 	}
 	if *drawOutside && w.needPrevImageMasked {
 		// Remember last image. Only do this once per update.
-		BlurImage(screen, w.blurImage, w.prevImage, frameBlurSize, false, frameDarkenAlpha)
+		BlurImage(screen, w.blurImage, w.prevImage, frameBlurSize, frameDarkenAlpha)
 		w.prevScrollPos = w.scrollPos
 	}
 

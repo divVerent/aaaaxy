@@ -20,6 +20,7 @@ import (
 	"image/color"
 	"io/ioutil"
 	"log"
+	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -83,8 +84,15 @@ var (
 	blurShader *ebiten.Shader
 )
 
-func BlurImage(img, tmp, out *ebiten.Image, size int, expand bool, scale float64) {
-	if !*drawBlurs && !expand {
+func BlurExpandImage(img, tmp, out *ebiten.Image, blurSize, expandSize int, scale float64) {
+	// Blurring and expanding can be done in a single step by doing a regular blur then scaling up at the last step.
+	size := blurSize + expandSize
+	scale *= (2*float64(size) + 1) / (2*float64(blurSize) + 1)
+	BlurImage(img, tmp, out, size, scale)
+}
+
+func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
+	if !*drawBlurs && scale <= 1 {
 		// Blurs can be globally turned off.
 		if img != out {
 			options := &ebiten.DrawImageOptions{
@@ -97,11 +105,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, expand bool, scale float64
 		return
 	}
 	if !*debugUseShaders {
-		weight := 1.0
-		if !expand {
-			weight = 0.5
-		}
-		blurImageFixedFunction(img, tmp, out, size, weight, scale)
+		blurImageFixedFunction(img, tmp, out, size, 0.5, scale)
 		return
 	}
 	if blurShader == nil {
@@ -112,9 +116,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, expand bool, scale float64
 		}
 	}
 	w, h := img.Size()
-	if !expand {
-		scale /= (2*float64(size) + 1)
-	}
+	scale = math.Sqrt(scale) / (2*float64(size) + 1)
 	tmp.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{

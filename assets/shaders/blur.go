@@ -23,7 +23,7 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
 	srcMax := srcOrigin + srcSize
 	acc := imageSrc0UnsafeAt(texCoord)
-	for y := 1.0; y <= 6.0; y += 1.0 {
+	for y := 1.0; y <= 12.0; y += 1.0 {
 		if y <= Size {
 			d := y * Step * srcSize
 			acc += imageSrc0UnsafeAt(clamp(texCoord-d, srcOrigin, srcMax))

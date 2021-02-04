@@ -113,7 +113,7 @@ func (m *Menu) DrawWorld(screen *ebiten.Image) {
 	m.World.Draw(screen)
 	if m.Screen != nil {
 		// If a menu screen is active, just draw the previous saved bitmap, but blur it.
-		engine.BlurImage(screen, m.blurImage, screen, blurSize, false, darkenFactor)
+		engine.BlurImage(screen, m.blurImage, screen, blurSize, darkenFactor)
 	}
 }
 
