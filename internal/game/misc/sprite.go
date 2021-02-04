@@ -44,7 +44,7 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 	if directory == "" {
 		directory = "sprites"
 	}
-	if sp.Properties["image"] == "" && sp.Properties["text"] != "" && sp.Properties["animation"] != "" {
+	if sp.Properties["text"] != "" && sp.Properties["image"] == "" && sp.Properties["animation"] == "" {
 		fntString := sp.Properties["text_font"]
 		fnt := font.ByName[fntString]
 		if fnt.Face == nil {
@@ -67,16 +67,17 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 		centerOffset := e.Rect.Size.Sub(bounds.Size).Div(2)
 		e.RenderOffset = e.RenderOffset.Add(centerOffset)
 		s.MyImage = true
-	} else if sp.Properties["text"] == "" && sp.Properties["image"] != "" && sp.Properties["animation"] != "" {
+	} else if sp.Properties["image"] != "" && sp.Properties["text"] == "" && sp.Properties["animation"] == "" {
 		e.Image, err = image.Load(directory, sp.Properties["image"])
 		if err != nil {
 			return err
 		}
 		e.ResizeImage = true
-	} else if sp.Properties["animation"] != "" {
+	} else if sp.Properties["animation"] != "" && sp.Properties["text"] == "" && sp.Properties["image"] == "" {
 		prefix := sp.Properties["animation"]
+		groupName := sp.Properties["animation_group"]
 		group := &animation.Group{
-			NextAnim: "default",
+			NextAnim: groupName,
 		}
 		framesString := sp.Properties["animation_frames"]
 		if _, err := fmt.Sscanf(framesString, "%d", &group.Frames); err != nil {
@@ -94,7 +95,7 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 		if group.SyncToMusicOffset, err = time.ParseDuration(syncToMusicOffsetString); err != nil {
 			return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %v", syncToMusicOffsetString, err)
 		}
-		s.Anim.Init(prefix, map[string]*animation.Group{"default": group}, "default")
+		s.Anim.Init(prefix, map[string]*animation.Group{groupName: group}, groupName)
 	} else {
 		return fmt.Errorf("Sprite entity requires exactly one of image, text and animation to be set")
 	}
@@ -134,10 +135,8 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 func (s *Sprite) Despawn() {
 	if s.MyImage {
 		s.Entity.Image.Dispose()
+		s.Entity.Image = nil
 		s.MyImage = false
-	}
-	if s.Anim.Groups != nil {
-		s.Anim.Dispose()
 	}
 }
 

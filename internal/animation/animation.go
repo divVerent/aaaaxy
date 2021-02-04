@@ -124,12 +124,3 @@ func (s *State) Update(e *engine.Entity) {
 	}
 	e.Image = s.Group.Images[frame]
 }
-
-func (s *State) Dispose() {
-	for _, g := range s.Groups {
-		for _, i := range g.Images {
-			i.Dispose()
-		}
-		g.Images = nil
-	}
-}
