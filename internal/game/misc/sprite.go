@@ -19,9 +19,11 @@ import (
 	"image/color"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/image"
@@ -32,6 +34,7 @@ import (
 type Sprite struct {
 	Entity  *engine.Entity
 	MyImage bool
+	Anim    animation.State
 }
 
 func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
@@ -41,7 +44,7 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 	if directory == "" {
 		directory = "sprites"
 	}
-	if sp.Properties["image"] == "" && sp.Properties["text"] != "" {
+	if sp.Properties["image"] == "" && sp.Properties["text"] != "" && sp.Properties["animation"] != "" {
 		fntString := sp.Properties["text_font"]
 		fnt := font.ByName[fntString]
 		if fnt.Face == nil {
@@ -64,14 +67,36 @@ func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) 
 		centerOffset := e.Rect.Size.Sub(bounds.Size).Div(2)
 		e.RenderOffset = e.RenderOffset.Add(centerOffset)
 		s.MyImage = true
-	} else if sp.Properties["text"] == "" && sp.Properties["image"] != "" {
+	} else if sp.Properties["text"] == "" && sp.Properties["image"] != "" && sp.Properties["animation"] != "" {
 		e.Image, err = image.Load(directory, sp.Properties["image"])
 		if err != nil {
 			return err
 		}
 		e.ResizeImage = true
+	} else if sp.Properties["animation"] != "" {
+		prefix := sp.Properties["animation"]
+		group := &animation.Group{
+			NextAnim: "default",
+		}
+		framesString := sp.Properties["animation_frames"]
+		if _, err := fmt.Sscanf(framesString, "%d", &group.Frames); err != nil {
+			return fmt.Errorf("could not decode animation_frames %q: %v", framesString, err)
+		}
+		frameIntervalString := sp.Properties["animation_frame_interval"]
+		if _, err := fmt.Sscanf(frameIntervalString, "%d", &group.FrameInterval); err != nil {
+			return fmt.Errorf("could not decode animation_frame_interval %q: %v", frameIntervalString, err)
+		}
+		repeatIntervalString := sp.Properties["animation_repeat_interval"]
+		if _, err := fmt.Sscanf(repeatIntervalString, "%d", &group.NextInterval); err != nil {
+			return fmt.Errorf("could not decode animation_repeat_interval %q: %v", repeatIntervalString, err)
+		}
+		syncToMusicOffsetString := sp.Properties["animation_sync_to_music_offset"]
+		if group.SyncToMusicOffset, err = time.ParseDuration(syncToMusicOffsetString); err != nil {
+			return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %v", syncToMusicOffsetString, err)
+		}
+		s.Anim.Init(prefix, map[string]*animation.Group{"default": group}, "default")
 	} else {
-		return fmt.Errorf("Sprite entity requires exactly one of image and text to be set")
+		return fmt.Errorf("Sprite entity requires exactly one of image, text and animation to be set")
 	}
 	e.Solid = sp.Properties["solid"] == "true"
 	e.Opaque = sp.Properties["opaque"] == "true"
@@ -111,9 +136,16 @@ func (s *Sprite) Despawn() {
 		s.Entity.Image.Dispose()
 		s.MyImage = false
 	}
+	if s.Anim.Groups != nil {
+		s.Anim.Dispose()
+	}
 }
 
-func (s *Sprite) Update() {}
+func (s *Sprite) Update() {
+	if s.Anim.Groups != nil {
+		s.Anim.Update(s.Entity)
+	}
+}
 
 func (s *Sprite) Touch(other *engine.Entity) {}
 

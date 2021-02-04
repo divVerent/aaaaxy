@@ -2,6 +2,11 @@
 <objecttypes>
  <objecttype name="AnimatedSprite" color="#ffffff">
   <property name="alpha" type="string"/>
+  <property name="animation" type="string"/>
+  <property name="animation_frames" type="int" default="0"/>
+  <property name="animation_frame_interval" type="int" default="0"/>
+  <property name="animation_repeat_interval" type="int" default="0"/>
+  <property name="animation_sync_to_music_offset" type="string" default="0s"/>
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>
   <property name="initial_state" type="bool" default="true"/>
@@ -46,6 +51,11 @@
  </objecttype>
  <objecttype name="Sprite" color="#ffffff">
   <property name="alpha" type="string"/>
+  <property name="animation" type="string"/>
+  <property name="animation_frames" type="int" default="0"/>
+  <property name="animation_frame_interval" type="int" default="0"/>
+  <property name="animation_repeat_interval" type="int" default="0"/>
+  <property name="animation_sync_to_music_offset" type="string" default="0s"/>
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>
   <property name="no_flip" type="string"/>
