@@ -20,6 +20,7 @@ import (
 	"flag"
 	"log"
 	"os"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
@@ -159,6 +160,17 @@ func Update() {
 		current, fadeTo = fadeTo, current
 		xFadeFrame = 0
 	}
+}
+
+// Now returns the current music playback time.
+func Now() time.Duration {
+	if fadeTo.valid && fadeTo.player != nil && fadeTo.player.IsPlaying() {
+		return fadeTo.player.Current()
+	}
+	if current.valid && current.player != nil && current.player.IsPlaying() {
+		return current.player.Current()
+	}
+	return 0
 }
 
 // Switch switches from the currently playing music to the given track.
