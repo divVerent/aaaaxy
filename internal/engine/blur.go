@@ -20,7 +20,6 @@ import (
 	"image/color"
 	"io/ioutil"
 	"log"
-	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -32,31 +31,39 @@ var (
 	drawBlurs       = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 )
 
-func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, weight, scale float64) {
+func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale float64) {
 	opts := ebiten.DrawImageOptions{
 		CompositeMode: ebiten.CompositeModeLighter,
 		Filter:        ebiten.FilterNearest,
 	}
-	opts.ColorM.Scale(weight, weight, weight, 1)
 	size++
+	// Only power-of-two blurs look good with this approach, so let's scale down the blur as much as needed.
+	for size&(size-1) != 0 {
+		size--
+	}
 	src := img
+	opts.ColorM.Scale(1, 1, 1, 0.5)
 	for size > 1 {
 		size /= 2
-		tmp.Fill(color.Gray{0})
+		tmp.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+		opts.CompositeMode = ebiten.CompositeModeCopy
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(-float64(size), 0)
 		tmp.DrawImage(src, &opts)
+		opts.CompositeMode = ebiten.CompositeModeLighter
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(float64(size), 0)
 		tmp.DrawImage(src, &opts)
 		src = out
-		out.Fill(color.Gray{0})
 		if size <= 1 {
-			opts.ColorM.Scale(scale, scale, scale, 1)
+			opts.ColorM.Scale(1, 1, 1, scale)
 		}
+		out.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+		opts.CompositeMode = ebiten.CompositeModeCopy
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(0, -float64(size))
 		out.DrawImage(tmp, &opts)
+		opts.CompositeMode = ebiten.CompositeModeLighter
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(0, float64(size))
 		out.DrawImage(tmp, &opts)
@@ -105,7 +112,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 		return
 	}
 	if !*debugUseShaders {
-		blurImageFixedFunction(img, tmp, out, size, 0.5, scale)
+		blurImageFixedFunction(img, tmp, out, size, scale)
 		return
 	}
 	if blurShader == nil {
@@ -116,13 +123,13 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 		}
 	}
 	w, h := img.Size()
-	scale = math.Sqrt(scale) / (2*float64(size) + 1)
+	scaleX := 1 / (2*float64(size) + 1)
 	tmp.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{
 			"Size":  float32(size),
 			"Step":  []float32{1 / float32(w), 0},
-			"Scale": float32(scale),
+			"Scale": float32(scaleX),
 		},
 		Images: [4]*ebiten.Image{
 			img,
@@ -131,12 +138,13 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 			nil,
 		},
 	})
+	scaleY := scale / (2*float64(size) + 1)
 	out.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{
 			"Size":  float32(size),
 			"Step":  []float32{0, 1 / float32(h)},
-			"Scale": float32(scale),
+			"Scale": float32(scaleY),
 		},
 		Images: [4]*ebiten.Image{
 			tmp,

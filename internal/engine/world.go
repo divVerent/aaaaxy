@@ -39,18 +39,17 @@ import (
 )
 
 var (
-	debugShowNeighbors               = flag.Bool("debug_show_neighbors", false, "show the neighbors tiles got loaded from")
-	debugShowCoords                  = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
-	debugShowOrientations            = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
-	debugShowTransforms              = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
-	debugShowBboxes                  = flag.Bool("debug_show_bboxes", false, "show the bounding boxes of all entities")
-	debugInitialOrientation          = flag.String("debug_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
-	debugInitialCheckpoint           = flag.String("debug_initial_checkpoint", "", "initial checkpoint")
-	drawOutside                      = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
-	drawVisibilityMask               = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
-	expandUsingVertices              = flag.Bool("expand_using_vertices", false, "expand using polygon math (just approximate, simplifies rendering)")
-	debugShowTrace                   = flag.String("debug_show_trace", "", "if set, the screen coordinates to trace towards and show trace info")
-	debugUseShadersForVisibilityMask = flag.Bool("debug_use_shaders_for_visibility_mask", true, "use GLSL for visibility masking. Faster.")
+	debugShowNeighbors      = flag.Bool("debug_show_neighbors", false, "show the neighbors tiles got loaded from")
+	debugShowCoords         = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
+	debugShowOrientations   = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
+	debugShowTransforms     = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
+	debugShowBboxes         = flag.Bool("debug_show_bboxes", false, "show the bounding boxes of all entities")
+	debugInitialOrientation = flag.String("debug_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
+	debugInitialCheckpoint  = flag.String("debug_initial_checkpoint", "", "initial checkpoint")
+	drawOutside             = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
+	drawVisibilityMask      = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
+	expandUsingVertices     = flag.Bool("expand_using_vertices", false, "expand using polygon math (just approximate, simplifies rendering)")
+	debugShowTrace          = flag.String("debug_show_trace", "", "if set, the screen coordinates to trace towards and show trace info")
 )
 
 // World represents the current game state including its entities.
@@ -80,8 +79,8 @@ type World struct {
 	visiblePolygonCenter m.Pos
 	// visiblePolygon is the currently visible polygon.
 	visiblePolygon []m.Pos
-	// needPrevImageMasked is set whenever the last call was Update.
-	needPrevImageMasked bool
+	// needPrevImage is set whenever the last call was Update.
+	needPrevImage bool
 
 	// Images retained across frames.
 
@@ -89,8 +88,8 @@ type World struct {
 	whiteImage *ebiten.Image
 	// prevImage is the previous screen content.
 	prevImage *ebiten.Image
-	// prevImageMasked is the previous screen content after masking.
-	prevImageMasked *ebiten.Image
+	// offScreenBuffer is the previous screen content after masking.
+	offScreenBuffer *ebiten.Image
 	// prevScrollPos is previous frame's scroll pos.
 	prevScrollPos m.Pos
 	// The shader for drawing visibility masks.
@@ -127,14 +126,14 @@ func (w *World) Init() error {
 		whiteImage:          ebiten.NewImage(1, 1),
 		blurImage:           ebiten.NewImage(GameWidth, GameHeight),
 		prevImage:           ebiten.NewImage(GameWidth, GameHeight),
-		prevImageMasked:     ebiten.NewImage(GameWidth, GameHeight),
+		offScreenBuffer:     ebiten.NewImage(GameWidth, GameHeight),
 		visibilityMaskImage: ebiten.NewImage(GameWidth, GameHeight),
 	}
 	w.whiteImage.Fill(color.Gray{255})
 	w.prevImage.Fill(color.Gray{0})
-	w.prevImageMasked.Fill(color.Gray{0})
+	w.offScreenBuffer.Fill(color.Gray{0})
 
-	if *debugUseShadersForVisibilityMask {
+	if *debugUseShaders {
 		w.visibilityMaskShader, err = loadShader("visibility_mask.go")
 		if err != nil {
 			log.Printf("could not load visibility mask shader: %v", err)
@@ -543,7 +542,7 @@ func (w *World) Update() error {
 	// Update centerprints.
 	centerprint.Update()
 
-	w.needPrevImageMasked = true
+	w.needPrevImage = true
 	return nil
 }
 
@@ -736,8 +735,8 @@ func (w *World) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 }
 
 func (w *World) rawDrawDest(screen *ebiten.Image) *ebiten.Image {
-	if *drawVisibilityMask && *debugUseShadersForVisibilityMask && *drawOutside {
-		return w.prevImageMasked
+	if *drawVisibilityMask && *drawOutside {
+		return w.offScreenBuffer
 	}
 	return screen
 }
@@ -747,106 +746,95 @@ func (w *World) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
 
-	if w.needPrevImageMasked {
+	if w.needPrevImage {
 		// Optimization note:
 		// - This isn't optimal. Visibility mask maybe shouldn't even exist?
 		// - If screen were a separate image, we could instead copy image to screen masked by polygon.
 		// - Would remove one render call.
 		// - Wouldn't allow blur though...?
-		w.visibilityMaskImage.Fill(color.Gray{0})
+		// Note: we put the mask on ALL four channels.
+		w.visibilityMaskImage.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
 		drawPolygonAround(w.visibilityMaskImage, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, geoM, &ebiten.DrawTrianglesOptions{
 			Address: ebiten.AddressRepeat,
 		})
 
 		e := expandSize
-		if !*expandUsingVertices {
+		if *expandUsingVertices {
 			e = 0
 		}
 		BlurExpandImage(w.visibilityMaskImage, w.blurImage, w.visibilityMaskImage, blurSize, e, 1.0)
 	}
 
-	if *debugUseShadersForVisibilityMask && *drawOutside {
-		delta := w.scrollPos.Delta(w.prevScrollPos)
-		screen.DrawRectShader(GameWidth, GameHeight, w.visibilityMaskShader, &ebiten.DrawRectShaderOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
-			Uniforms: map[string]interface{}{
-				"Scroll": []float32{float32(delta.DX) / GameWidth, float32(delta.DY) / GameHeight},
-			},
-			Images: [4]*ebiten.Image{
-				w.visibilityMaskImage,
-				drawDest,
-				w.prevImage,
-				nil,
-			},
-		})
-	} else {
-		screen.DrawImage(w.visibilityMaskImage, &ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeMultiply,
-			Filter:        ebiten.FilterNearest,
-		})
-
-		if *drawOutside {
+	if *drawOutside {
+		if *debugUseShaders && false {
 			delta := w.scrollPos.Delta(w.prevScrollPos)
-			if w.needPrevImageMasked {
-				// Optimization note:
-				// - This isn't optimal.
-				// - If we could precompute the blur during prev frame,
-				//   we could save another render pass by doing a shader based render.
-
-				// Make a scrolled copy of the last frame.
-				// We're using DrawTriangles so we can use AddressClampToZero and thus don't need to clear the destination image.
-				w.prevImageMasked.DrawTriangles([]ebiten.Vertex{
-					{
-						DstX: 0, DstY: 0,
-						SrcX: float32(delta.DX), SrcY: float32(delta.DY),
-						ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
-					},
-					{
-						DstX: GameWidth, DstY: 0,
-						SrcX: GameWidth + float32(delta.DX), SrcY: float32(delta.DY),
-						ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
-					},
-					{
-						DstX: 0, DstY: GameHeight,
-						SrcX: float32(delta.DX), SrcY: GameHeight + float32(delta.DY),
-						ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
-					},
-					{
-						DstX: GameWidth, DstY: GameHeight,
-						SrcX: GameWidth + float32(delta.DX), SrcY: GameHeight + float32(delta.DY),
-						ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
-					},
-				}, []uint16{0, 1, 2, 1, 2, 3}, w.prevImage, &ebiten.DrawTrianglesOptions{
-					CompositeMode: ebiten.CompositeModeCopy,
-					Filter:        ebiten.FilterNearest,
-					Address:       ebiten.AddressClampToZero,
-				})
-
-				// Mask out the parts we've already drawn.
-				opts := ebiten.DrawImageOptions{
-					CompositeMode: ebiten.CompositeModeMultiply,
-					Filter:        ebiten.FilterNearest,
-				}
-				opts.ColorM.Scale(-1, -1, -1, 0)
-				opts.ColorM.Translate(1, 1, 1, 1)
-				w.prevImageMasked.DrawImage(w.visibilityMaskImage, &opts)
-			}
-
-			// Add it to what we see.
-			screen.DrawImage(w.prevImageMasked, &ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeLighter,
+			screen.DrawRectShader(GameWidth, GameHeight, w.visibilityMaskShader, &ebiten.DrawRectShaderOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
+				Uniforms: map[string]interface{}{
+					"Scroll": []float32{float32(delta.DX) / GameWidth, float32(delta.DY) / GameHeight},
+				},
+				Images: [4]*ebiten.Image{
+					w.visibilityMaskImage,
+					drawDest,
+					w.prevImage,
+					nil,
+				},
+			})
+		} else {
+			// First set the alpha channel to the visibility mask.
+			drawDest.DrawImage(w.visibilityMaskImage, &ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeMultiply,
 				Filter:        ebiten.FilterNearest,
 			})
 
+			// Then draw the background.
+			delta := w.scrollPos.Delta(w.prevScrollPos)
+			screen.DrawTriangles([]ebiten.Vertex{
+				{
+					DstX: 0, DstY: 0,
+					SrcX: float32(delta.DX), SrcY: float32(delta.DY),
+					ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
+				},
+				{
+					DstX: GameWidth, DstY: 0,
+					SrcX: GameWidth + float32(delta.DX), SrcY: float32(delta.DY),
+					ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
+				},
+				{
+					DstX: 0, DstY: GameHeight,
+					SrcX: float32(delta.DX), SrcY: GameHeight + float32(delta.DY),
+					ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
+				},
+				{
+					DstX: GameWidth, DstY: GameHeight,
+					SrcX: GameWidth + float32(delta.DX), SrcY: GameHeight + float32(delta.DY),
+					ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
+				},
+			}, []uint16{0, 1, 2, 1, 2, 3}, w.prevImage, &ebiten.DrawTrianglesOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
+				Filter:        ebiten.FilterNearest,
+				Address:       ebiten.AddressClampToZero,
+			})
+
+			// Finally put the masked foreground on top.
+			screen.DrawImage(drawDest, &ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeSourceOver,
+				Filter:        ebiten.FilterNearest,
+			})
 		}
-	}
-	if *drawOutside && w.needPrevImageMasked {
-		// Remember last image. Only do this once per update.
-		BlurImage(screen, w.blurImage, w.prevImage, frameBlurSize, frameDarkenAlpha)
-		w.prevScrollPos = w.scrollPos
+		if w.needPrevImage {
+			// Remember last image. Only do this once per update.
+			BlurImage(screen, w.blurImage, w.prevImage, frameBlurSize, frameDarkenAlpha)
+			w.prevScrollPos = w.scrollPos
+		}
+	} else {
+		screen.DrawImage(w.visibilityMaskImage, &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeDestinationIn,
+			Filter:        ebiten.FilterNearest,
+		})
 	}
 
-	w.needPrevImageMasked = false
+	w.needPrevImage = false
 }
 
 func (w *World) drawOverlays(screen *ebiten.Image, scrollDelta m.Delta) {
