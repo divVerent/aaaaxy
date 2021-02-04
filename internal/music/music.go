@@ -47,8 +47,8 @@ type track struct {
 }
 
 type musicJson struct {
-	LoopStart int64
-	LoopEnd   int64
+	LoopStart int64 `json:"loop_start"`
+	LoopEnd   int64 `json:"loop_end"`
 }
 
 func (t *track) open(name string) {
