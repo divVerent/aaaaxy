@@ -80,6 +80,7 @@ func (s *MapScreen) moveBy(d m.Delta) {
 		return
 	}
 	s.CurrentCP = edge.Other
+	s.Menu.MoveSound(nil)
 }
 
 func (s *MapScreen) Update() error {
@@ -99,7 +100,7 @@ func (s *MapScreen) Update() error {
 		s.moveBy(m.South())
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
-		return s.Menu.SwitchToCheckpoint(s.CurrentCP)
+		return s.Menu.ActivateSound(s.Menu.SwitchToCheckpoint(s.CurrentCP))
 	}
 	return nil
 }
