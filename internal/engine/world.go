@@ -55,7 +55,7 @@ var (
 // World represents the current game state including its entities.
 type World struct {
 	// Tiles are all tiles currently loaded.
-	Tiles map[m.Pos]*Tile
+	tiles map[m.Pos]*Tile
 	// Entities are all entities currently loaded.
 	Entities map[EntityIncarnation]*Entity
 	// PlayerIncarnation is the incarnation ID of the player entity.
@@ -107,7 +107,25 @@ type World struct {
 
 // Initialized returns whether Init() has been called on this World before.
 func (w *World) Initialized() bool {
-	return w.Tiles != nil
+	return w.tiles != nil
+}
+
+func (w *World) Tile(pos m.Pos) *Tile {
+	return w.tiles[pos]
+}
+
+func (w *World) setTile(pos m.Pos, t *Tile) {
+	w.tiles[pos] = t
+}
+
+func (w *World) clearTile(pos m.Pos) {
+	delete(w.tiles, pos)
+}
+
+func (w *World) forEachTile(f func(pos m.Pos, t *Tile)) {
+	for pos, t := range w.tiles {
+		f(pos, t)
+	}
 }
 
 // Init brings a world into a working state.
@@ -120,7 +138,7 @@ func (w *World) Init() error {
 	}
 
 	*w = World{
-		Tiles:               map[m.Pos]*Tile{},
+		tiles:               map[m.Pos]*Tile{},
 		Entities:            map[EntityIncarnation]*Entity{},
 		Level:               level,
 		whiteImage:          ebiten.NewImage(1, 1),
@@ -143,7 +161,7 @@ func (w *World) Init() error {
 	// Load tile the player starts on.
 	tile := w.Level.Tile(w.Level.Player.LevelPos).Tile
 	tile.Transform = m.Identity()
-	w.Tiles[w.Level.Player.LevelPos] = &tile
+	w.setTile(w.Level.Player.LevelPos, &tile)
 
 	// Create player entity.
 	w.Player, err = w.Level.Player.Spawn(w, w.Level.Player.LevelPos, &tile)
@@ -246,9 +264,8 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	w.Entities = map[EntityIncarnation]*Entity{
 		w.Player.Incarnation: w.Player,
 	}
-	w.Tiles = map[m.Pos]*Tile{
-		cpSp.LevelPos: &tile,
-	}
+	w.tiles = map[m.Pos]*Tile{}
+	w.setTile(cpSp.LevelPos, &tile)
 
 	// Spawn the CP.
 	cp, err := cpSp.Spawn(w, cpSp.LevelPos, &tile)
@@ -305,7 +322,7 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 		ForEnt:    w.Player,
 	})
 	for _, tilePos := range result.Path {
-		w.Tiles[tilePos].visibilityMark = w.visibilityMark
+		w.Tile(tilePos).visibilityMark = w.visibilityMark
 	}
 	return result
 }
@@ -390,11 +407,11 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	timing.Section("cleanup_expanded")
 	prevVisibilityMark := w.visibilityMark - 1
 	eyePos := eye.Div(TileSize)
-	for pos, tile := range w.Tiles {
+	w.forEachTile(func(pos m.Pos, tile *Tile) {
 		if tile.visibilityMark != prevVisibilityMark && pos != eyePos {
-			delete(w.Tiles, pos)
+			w.clearTile(pos)
 		}
-	}
+	})
 
 	// Unmark all tiles and entities (just bump mark index).
 	w.visibilityMark++
@@ -439,11 +456,11 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	// For multiple expansion, need to do this in steps so initially we only base expansion on visible tiles.
 	timing.Section("expand")
 	markedTiles := []m.Pos{}
-	for tilePos, tile := range w.Tiles {
+	w.forEachTile(func(tilePos m.Pos, tile *Tile) {
 		if tile.visibilityMark == visibilityMark {
 			markedTiles = append(markedTiles, tilePos)
 		}
-	}
+	})
 	w.visibilityMark++
 	expansionMark := w.visibilityMark
 	numExpandSteps := (2*expandTiles+1)*(2*expandTiles+1) - 1
@@ -453,16 +470,16 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			from := pos.Add(step.from)
 			to := pos.Add(step.to)
 			w.LoadTile(from, to.Delta(from))
-			if w.Tiles[to].visibilityMark != visibilityMark {
-				w.Tiles[to].visibilityMark = expansionMark
+			if w.Tile(to).visibilityMark != visibilityMark {
+				w.Tile(to).visibilityMark = expansionMark
 			}
 		}
 	}
 
 	timing.Section("spawn_search")
-	for pos, tile := range w.Tiles {
+	w.forEachTile(func(pos m.Pos, tile *Tile) {
 		if tile.visibilityMark != expansionMark && tile.visibilityMark != visibilityMark {
-			continue
+			return
 		}
 		for _, spawnable := range tile.Spawnables {
 			timing.Section("spawn")
@@ -472,7 +489,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			}
 			timing.Section("spawn_search")
 		}
-	}
+	})
 
 	timing.Section("despawn_search")
 	for id, ent := range w.Entities {
@@ -482,7 +499,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		for y := tp0.Y; y <= tp1.Y; y++ {
 			for x := tp0.X; x <= tp1.X; x++ {
 				tp := m.Pos{X: x, Y: y}
-				tile := w.Tiles[tp]
+				tile := w.Tile(tp)
 				if tile == nil {
 					continue
 				}
@@ -498,8 +515,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			for y := tp0.Y; y <= tp1.Y; y++ {
 				for x := tp0.X; x <= tp1.X; x++ {
 					tp := m.Pos{X: x, Y: y}
-					if w.Tiles[tp].visibilityMark != visibilityMark {
-						w.Tiles[tp].visibilityMark = expansionMark
+					if w.Tile(tp).visibilityMark != visibilityMark {
+						w.Tile(tp).visibilityMark = expansionMark
 					}
 				}
 			}
@@ -514,11 +531,11 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 
 	// Delete all unmarked tiles.
 	timing.Section("cleanup_unmarked")
-	for pos, tile := range w.Tiles {
+	w.forEachTile(func(pos m.Pos, tile *Tile) {
 		if tile.visibilityMark != expansionMark && tile.visibilityMark != visibilityMark {
-			delete(w.Tiles, pos)
+			w.clearTile(pos)
 		}
-	}
+	})
 }
 
 func (w *World) Update() error {
@@ -589,9 +606,9 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta
 }
 
 func (w *World) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
-	for pos, tile := range w.Tiles {
+	w.forEachTile(func(pos m.Pos, tile *Tile) {
 		if tile.Image == nil {
-			continue
+			return
 		}
 		screenPos := pos.Mul(TileSize).Add(scrollDelta)
 		opts := ebiten.DrawImageOptions{
@@ -611,7 +628,7 @@ func (w *World) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: TileSize, DY: TileSize}, m.Delta{DX: TileSize, DY: TileSize}, renderOrientation)
 		screen.DrawImage(renderImage, &opts)
-	}
+	})
 }
 
 func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
@@ -639,7 +656,7 @@ func (w *World) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 }
 
 func (w *World) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
-	for pos, tile := range w.Tiles {
+	w.forEachTile(func(pos m.Pos, tile *Tile) {
 		screenPos := pos.Mul(TileSize).Add(scrollDelta)
 		if *debugShowNeighbors {
 			neighborScreenPos := tile.LoadedFromNeighbor.Mul(TileSize).Add(scrollDelta)
@@ -687,7 +704,7 @@ func (w *World) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			dy := tile.Transform.Apply(m.Delta{DX: 0, DY: 4})
 			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), color.NRGBA{R: 0, G: 255, B: 0, A: 255})
 		}
-	}
+	})
 	for _, ent := range w.Entities {
 		if *debugShowBboxes {
 			boxColor := color.NRGBA{R: 128, G: 128, B: 128, A: 128}
@@ -876,11 +893,11 @@ func (w *World) SetWarpZoneState(name string, state bool) {
 // known tile and its neighbor. Respects and applies warps.
 func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newPos := p.Add(d)
-	if _, found := w.Tiles[newPos]; found {
+	if w.Tile(newPos) != nil {
 		// Already loaded.
 		return newPos
 	}
-	neighborTile := w.Tiles[p]
+	neighborTile := w.Tile(p)
 	if neighborTile == nil {
 		log.Panicf("Trying to load with nonexisting neighbor tile at %v", p)
 	}
@@ -895,7 +912,7 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 			Transform:          t,
 			LoadedFromNeighbor: p,
 		}
-		w.Tiles[newPos] = &newTile
+		w.setTile(newPos, &newTile)
 		return newPos
 	}
 	warped := false
@@ -930,7 +947,7 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	// the orientation is for rendering ("how to rotate the sprite").
 	newTile.Orientation = t.Inverse().Concat(newTile.Orientation)
 	newTile.LoadedFromNeighbor = p
-	w.Tiles[newPos] = &newTile
+	w.setTile(newPos, &newTile)
 	return newPos
 }
 

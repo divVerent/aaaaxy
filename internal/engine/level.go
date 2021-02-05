@@ -49,6 +49,13 @@ func (l *Level) setTile(pos m.Pos, t *LevelTile) {
 	l.tiles[pos] = t
 }
 
+// forEachTile iterates over all tiles in the level.
+func (l *Level) forEachTile(f func(pos m.Pos, t *LevelTile)) {
+	for pos, t := range l.tiles {
+		f(pos, t)
+	}
+}
+
 // LevelTile is a single tile in the level.
 type LevelTile struct {
 	Tile      Tile
@@ -96,11 +103,11 @@ func (l *Level) SaveGame() (SaveGame, error) {
 			save.State[s.ID] = s.PersistentState
 		}
 	}
-	for _, tile := range l.tiles {
+	l.forEachTile(func(_ m.Pos, tile *LevelTile) {
 		for _, s := range tile.Tile.Spawnables {
 			saveOne(s)
 		}
-	}
+	})
 	saveOne(l.Player)
 	var err error
 	save.Hash, err = hashstructure.Hash(save.SaveGameData, hashstructure.FormatV2, nil)
@@ -135,11 +142,11 @@ func (l *Level) LoadGame(save SaveGame) error {
 			s.PersistentState[key] = value
 		}
 	}
-	for _, tile := range l.tiles {
+	l.forEachTile(func(_ m.Pos, tile *LevelTile) {
 		for _, s := range tile.Tile.Spawnables {
 			loadOne(s)
 		}
-	}
+	})
 	loadOne(l.Player)
 	return nil
 }

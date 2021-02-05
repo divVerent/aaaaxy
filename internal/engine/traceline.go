@@ -325,7 +325,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 			if o.LoadTiles {
 				w.LoadTile(prevTile, nextTile.Delta(prevTile))
 			}
-			tile := w.Tiles[nextTile]
+			tile := w.Tile(nextTile)
 			if tile == nil {
 				result.HitFogOfWar = true
 				return doneErr
