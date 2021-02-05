@@ -76,12 +76,12 @@ const (
 
 	// Nice run/jump speed.
 	MaxGroundSpeed = 160 * SubPixelScale / engine.GameTPS
-	GroundAccel    = 960 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	GroundAccel    = GroundFriction + AirAccel
 	GroundFriction = 640 * SubPixelScale / engine.GameTPS / engine.GameTPS
 
 	// Air max speed is lower than ground control, but same forward accel.
 	MaxAirSpeed = 120 * SubPixelScale / engine.GameTPS
-	AirAccel    = 320 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	AirAccel    = 480 * SubPixelScale / engine.GameTPS / engine.GameTPS
 
 	// We want 4.5 tiles high jumps, i.e. 72px high jumps (plus something).
 	// Jump shall take 1 second.

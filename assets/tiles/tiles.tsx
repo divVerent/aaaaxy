@@ -776,7 +776,7 @@
    <property name="img.SW" value="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
    <property name="img.WN" value="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
    <property name="img.WS" value="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
-   <property name="opaque" type="bool" value="true"/>
+   <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="true"/>
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
