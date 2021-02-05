@@ -30,12 +30,23 @@ import (
 
 // Level is a parsed form of a loaded level.
 type Level struct {
-	Tiles               map[m.Pos]*LevelTile
 	Player              *Spawnable
 	Checkpoints         map[string]*Spawnable
 	CheckpointLocations *CheckpointLocations
 	SaveGameVersion     int
 	Hash                uint64
+
+	tiles map[m.Pos]*LevelTile
+}
+
+// Tile returns the tile at the given position.
+func (l *Level) Tile(pos m.Pos) *LevelTile {
+	return l.tiles[pos]
+}
+
+// setTile sets the tile at the given position.
+func (l *Level) setTile(pos m.Pos, t *LevelTile) {
+	l.tiles[pos] = t
 }
 
 // LevelTile is a single tile in the level.
@@ -85,7 +96,7 @@ func (l *Level) SaveGame() (SaveGame, error) {
 			save.State[s.ID] = s.PersistentState
 		}
 	}
-	for _, tile := range l.Tiles {
+	for _, tile := range l.tiles {
 		for _, s := range tile.Tile.Spawnables {
 			saveOne(s)
 		}
@@ -124,7 +135,7 @@ func (l *Level) LoadGame(save SaveGame) error {
 			s.PersistentState[key] = value
 		}
 	}
-	for _, tile := range l.Tiles {
+	for _, tile := range l.tiles {
 		for _, s := range tile.Tile.Spawnables {
 			loadOne(s)
 		}
@@ -218,9 +229,9 @@ func LoadLevel(filename string) (*Level, error) {
 		return nil, fmt.Errorf("unsupported map: could not read save_game_version: %v", err)
 	}
 	level := Level{
-		Tiles:           map[m.Pos]*LevelTile{},
 		Checkpoints:     map[string]*Spawnable{},
 		SaveGameVersion: int(saveGameVersion),
+		tiles:           map[m.Pos]*LevelTile{},
 	}
 	for i, td := range tds {
 		if td.Nil {
@@ -273,7 +284,7 @@ func LoadLevel(filename string) (*Level, error) {
 				}
 			}
 		}
-		level.Tiles[pos] = &LevelTile{
+		level.setTile(pos, &LevelTile{
 			Tile: Tile{
 				Solid:              solid,
 				Opaque:             opaque,
@@ -282,7 +293,7 @@ func LoadLevel(filename string) (*Level, error) {
 				ImageByOrientation: imgByOrientation,
 				Orientation:        orientation,
 			},
-		}
+		})
 	}
 	type RawWarpZone struct {
 		StartTile, EndTile m.Pos
@@ -398,7 +409,7 @@ func LoadLevel(filename string) (*Level, error) {
 			for y := startTile.Y; y <= endTile.Y; y++ {
 				for x := startTile.X; x <= endTile.X; x++ {
 					pos := m.Pos{X: x, Y: y}
-					levelTile := level.Tiles[pos]
+					levelTile := level.Tile(pos)
 					if levelTile == nil {
 						log.Panicf("Invalid entity location: outside map bounds: %v in %v", pos, ent)
 					}
@@ -429,11 +440,11 @@ func LoadLevel(filename string) (*Level, error) {
 					fromPos2 := fromPos.Add(fromPos.Delta(m.Pos{}))
 					toPos2 := toCenter2.Add(transform.Apply(fromPos2.Delta(fromCenter2)))
 					toPos := toPos2.Div(2).Add(to.Orientation.Apply(m.West()))
-					levelTile := level.Tiles[fromPos]
+					levelTile := level.Tile(fromPos)
 					if levelTile == nil {
 						log.Panicf("Invalid WarpZone location: outside map bounds: %v in %v", fromPos, warppair)
 					}
-					toTile := level.Tiles[toPos]
+					toTile := level.Tile(toPos)
 					if toTile == nil {
 						log.Panicf("Invalid WarpZone destination location: outside map bounds: %v in %v", toPos, warppair)
 					}

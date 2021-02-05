@@ -141,7 +141,7 @@ func (w *World) Init() error {
 	}
 
 	// Load tile the player starts on.
-	tile := w.Level.Tiles[w.Level.Player.LevelPos].Tile
+	tile := w.Level.Tile(w.Level.Player.LevelPos).Tile
 	tile.Transform = m.Identity()
 	w.Tiles[w.Level.Player.LevelPos] = &tile
 
@@ -225,7 +225,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	w.visibilityMark++
 
 	// First spawn the tile on the checkpoint.
-	tile := w.Level.Tiles[cpSp.LevelPos].Tile
+	tile := w.Level.Tile(cpSp.LevelPos).Tile
 	var err error
 	tile.Transform, err = m.ParseOrientation(*debugInitialOrientation)
 	if err != nil {
@@ -887,8 +887,8 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	t := neighborTile.Transform
 	neighborLevelPos := neighborTile.LevelPos
 	newLevelPos := neighborLevelPos.Add(t.Apply(d))
-	newLevelTile, found := w.Level.Tiles[newLevelPos]
-	if !found {
+	newLevelTile := w.Level.Tile(newLevelPos)
+	if newLevelTile == nil {
 		// log.Printf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)", newLevelPos, p, neighborLevelPos, d, t.Apply(d))
 		newTile := Tile{
 			LevelPos:           newLevelPos,
@@ -917,7 +917,7 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 		}
 		warped = true
 		t = warp.Transform.Concat(t)
-		tile := w.Level.Tiles[warp.ToTile]
+		tile := w.Level.Tile(warp.ToTile)
 		if tile == nil {
 			log.Panicf("Nil new tile after warping to %v", warp)
 		}
