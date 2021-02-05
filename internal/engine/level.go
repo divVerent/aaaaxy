@@ -36,23 +36,26 @@ type Level struct {
 	SaveGameVersion     int
 	Hash                uint64
 
-	tiles map[m.Pos]*LevelTile
+	tiles []LevelTile
+	width int
 }
 
 // Tile returns the tile at the given position.
 func (l *Level) Tile(pos m.Pos) *LevelTile {
-	return l.tiles[pos]
+	i := pos.X + pos.Y*l.width
+	return &l.tiles[i]
 }
 
 // setTile sets the tile at the given position.
 func (l *Level) setTile(pos m.Pos, t *LevelTile) {
-	l.tiles[pos] = t
+	i := pos.X + pos.Y*l.width
+	l.tiles[i] = *t
 }
 
 // forEachTile iterates over all tiles in the level.
 func (l *Level) forEachTile(f func(pos m.Pos, t *LevelTile)) {
-	for pos, t := range l.tiles {
-		f(pos, t)
+	for i := range l.tiles {
+		f(m.Pos{X: i % l.width, Y: i / l.width}, &l.tiles[i])
 	}
 }
 
@@ -238,7 +241,8 @@ func LoadLevel(filename string) (*Level, error) {
 	level := Level{
 		Checkpoints:     map[string]*Spawnable{},
 		SaveGameVersion: int(saveGameVersion),
-		tiles:           map[m.Pos]*LevelTile{},
+		tiles:           make([]LevelTile, layer.Width*layer.Height),
+		width:           layer.Width,
 	}
 	for i, td := range tds {
 		if td.Nil {
