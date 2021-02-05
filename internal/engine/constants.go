@@ -60,6 +60,16 @@ const (
 
 	// Fully "fade in" in one second.
 	pixelsPerSpawnFrame = (GameWidth / 2) / 60
+
+	// borderWindowWidth is the maximum amount of pixels loaded outside the screen.
+	borderWindowWidth = GameWidth
+	// borderWindowHeight is the maximum amount of pixels loaded outside the screen.
+	borderWindowHeight = GameHeight
+
+	// tileWindowWidth is the maximum known width in tiles.
+	tileWindowWidth = (GameWidth+2*borderWindowWidth+TileSize-2)/TileSize + 1
+	// tileWindowHeight is the maximum known width in tiles.
+	tileWindowHeight = (GameHeight+2*borderWindowHeight+TileSize-2)/TileSize + 1
 )
 
 //expandStep is a single expansion step.

@@ -54,8 +54,11 @@ var (
 
 // World represents the current game state including its entities.
 type World struct {
-	// Tiles are all tiles currently loaded.
-	tiles map[m.Pos]*Tile
+	// tiles are all tiles currently loaded.
+	tiles []*Tile
+	// tilePos is the position of the first known tile (top left corner of the sliding window).
+	// Updated to match the visible area + max entity size.
+	tilePos m.Pos
 	// Entities are all entities currently loaded.
 	Entities map[EntityIncarnation]*Entity
 	// PlayerIncarnation is the incarnation ID of the player entity.
@@ -111,19 +114,32 @@ func (w *World) Initialized() bool {
 }
 
 func (w *World) Tile(pos m.Pos) *Tile {
-	return w.tiles[pos]
+	i := m.Mod(pos.X, tileWindowWidth) + m.Mod(pos.Y, tileWindowHeight)*tileWindowWidth
+	return w.tiles[i]
 }
 
 func (w *World) setTile(pos m.Pos, t *Tile) {
-	w.tiles[pos] = t
+	i := m.Mod(pos.X, tileWindowWidth) + m.Mod(pos.Y, tileWindowHeight)*tileWindowWidth
+	w.tiles[i] = t
 }
 
 func (w *World) clearTile(pos m.Pos) {
-	delete(w.tiles, pos)
+	i := m.Mod(pos.X, tileWindowWidth) + m.Mod(pos.Y, tileWindowHeight)*tileWindowWidth
+	w.tiles[i] = nil
 }
 
 func (w *World) forEachTile(f func(pos m.Pos, t *Tile)) {
-	for pos, t := range w.tiles {
+	center := w.scrollPos.Div(TileSize)
+	for i, t := range w.tiles {
+		if t == nil {
+			continue
+		}
+		x := i % tileWindowWidth
+		y := i / tileWindowWidth
+		pos := m.Pos{
+			X: x + tileWindowWidth*m.Div(center.X-x+tileWindowWidth/2, tileWindowWidth),
+			Y: y + tileWindowHeight*m.Div(center.Y-y+tileWindowHeight/2, tileWindowHeight),
+		}
 		f(pos, t)
 	}
 }
@@ -138,7 +154,7 @@ func (w *World) Init() error {
 	}
 
 	*w = World{
-		tiles:               map[m.Pos]*Tile{},
+		tiles:               make([]*Tile, tileWindowWidth*tileWindowHeight),
 		Entities:            map[EntityIncarnation]*Entity{},
 		Level:               level,
 		whiteImage:          ebiten.NewImage(1, 1),
@@ -264,7 +280,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	w.Entities = map[EntityIncarnation]*Entity{
 		w.Player.Incarnation: w.Player,
 	}
-	w.tiles = map[m.Pos]*Tile{}
+	w.tiles = make([]*Tile, tileWindowWidth*tileWindowHeight)
 	w.setTile(cpSp.LevelPos, &tile)
 
 	// Spawn the CP.
