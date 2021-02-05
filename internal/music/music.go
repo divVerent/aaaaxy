@@ -24,6 +24,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
+	"github.com/divVerent/aaaaaa/internal/audiowrap"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
@@ -43,7 +44,7 @@ type track struct {
 	valid  bool
 	handle vfs.ReadSeekCloser
 	data   *vorbis.Stream
-	player *audio.Player
+	player *audiowrap.Player
 }
 
 type musicJson struct {
@@ -83,7 +84,7 @@ func (t *track) open(name string) {
 		}
 	}
 	loop := audio.NewInfiniteLoopWithIntro(t.data, config.LoopStart*bytesPerSample, config.LoopEnd*bytesPerSample)
-	t.player, err = audio.NewPlayer(audio.CurrentContext(), loop)
+	t.player, err = audiowrap.NewPlayer(loop)
 	if err != nil {
 		log.Panicf("Could not start playing music %q: %v", name, err)
 	}

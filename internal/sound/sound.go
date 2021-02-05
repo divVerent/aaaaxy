@@ -22,6 +22,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
+	"github.com/divVerent/aaaaaa/internal/audiowrap"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
@@ -32,7 +33,7 @@ var (
 // Sound represents a sound effect.
 type Sound struct {
 	sound   []byte
-	players []*audio.Player
+	players []*audiowrap.Player
 }
 
 // Sounds are preloaded as byte streams.
@@ -65,7 +66,7 @@ func Load(name string) (*Sound, error) {
 
 // Play plays the given sound effect.
 func (s *Sound) Play() {
-	player := audio.NewPlayerFromBytes(audio.CurrentContext(), s.sound)
+	player := audiowrap.NewPlayerFromBytes(s.sound)
 	player.SetVolume(*soundVolume)
 	player.Play()
 }

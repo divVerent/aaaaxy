@@ -23,6 +23,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
+	"github.com/divVerent/aaaaaa/internal/audiowrap"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
@@ -36,7 +37,7 @@ const (
 
 var (
 	amount float64 = 0.0
-	noise  *audio.Player
+	noise  *audiowrap.Player
 )
 
 func Init() {
@@ -54,7 +55,7 @@ func Init() {
 		log.Panicf("Could not decode stereonoise: %v", err)
 	}
 	loop := audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded)))
-	noise, err = audio.NewPlayer(audio.CurrentContext(), loop)
+	noise, err = audiowrap.NewPlayer(loop)
 	if err != nil {
 		log.Panicf("could not start playing noise: %v", err)
 	}
