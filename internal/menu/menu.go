@@ -27,6 +27,7 @@ import (
 	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
 	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/music"
+	"github.com/divVerent/aaaaaa/internal/sound"
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
@@ -47,10 +48,12 @@ type MenuScreen interface {
 }
 
 type Menu struct {
-	initialized bool
-	World       engine.World
-	Screen      MenuScreen
-	blurImage   *ebiten.Image
+	initialized   bool
+	World         engine.World
+	Screen        MenuScreen
+	blurImage     *ebiten.Image
+	moveSound     *sound.Sound
+	activateSound *sound.Sound
 }
 
 func (m *Menu) Update() error {
@@ -66,6 +69,15 @@ func (m *Menu) Update() error {
 			}
 		}
 		m.blurImage = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+		var err error
+		m.moveSound, err = sound.Load("menu_move.ogg")
+		if err != nil {
+			return err
+		}
+		m.activateSound, err = sound.Load("menu_activate.ogg")
+		if err != nil {
+			return err
+		}
 		m.initialized = true
 	}
 
@@ -73,6 +85,9 @@ func (m *Menu) Update() error {
 	if input.Exit.JustHit && m.Screen == nil {
 		music.Switch("")
 		return m.SwitchToScreen(&MainScreen{})
+	}
+	if input.Fullscreen.JustHit {
+		ebiten.SetFullscreen(!ebiten.IsFullscreen())
 	}
 
 	timing.Section("screen")
@@ -150,4 +165,20 @@ func (m *Menu) QuitGame() error {
 		log.Panicf("could not save game: %v", err)
 	}
 	return errors.New("game exited normally")
+}
+
+// ActivateSound plays the sound effect to activate something.
+func (m *Menu) ActivateSound(err error) error {
+	if err == nil {
+		m.activateSound.Play()
+	}
+	return err
+}
+
+// MoveSound plays the sound effect to activate something.
+func (m *Menu) MoveSound(err error) error {
+	if err == nil {
+		m.moveSound.Play()
+	}
+	return err
 }

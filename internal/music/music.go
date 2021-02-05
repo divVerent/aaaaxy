@@ -20,6 +20,7 @@ import (
 	"flag"
 	"log"
 	"os"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
@@ -48,8 +49,8 @@ type track struct {
 }
 
 type musicJson struct {
-	LoopStart int64
-	LoopEnd   int64
+	LoopStart int64 `json:"loop_start"`
+	LoopEnd   int64 `json:"loop_end"`
 }
 
 func (t *track) open(name string) {
@@ -160,6 +161,17 @@ func Update() {
 		current, fadeTo = fadeTo, current
 		xFadeFrame = 0
 	}
+}
+
+// Now returns the current music playback time.
+func Now() time.Duration {
+	if fadeTo.valid && fadeTo.player != nil && fadeTo.player.IsPlaying() {
+		return fadeTo.player.Current()
+	}
+	if current.valid && current.player != nil && current.player.IsPlaying() {
+		return current.player.Current()
+	}
+	return 0
 }
 
 // Switch switches from the currently playing music to the given track.

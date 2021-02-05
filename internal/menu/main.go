@@ -48,26 +48,28 @@ func (s *MainScreen) Init(m *Menu) error {
 func (s *MainScreen) Update() error {
 	if input.Down.JustHit || input.Right.JustHit {
 		s.Item++
+		s.Menu.MoveSound(nil)
 	}
 	if input.Left.JustHit || input.Up.JustHit {
 		s.Item--
+		s.Menu.MoveSound(nil)
 	}
 	s.Item = MainScreenItem(m.Mod(int(s.Item), int(MainCount)))
 	if input.Exit.JustHit {
-		return s.Menu.QuitGame()
+		return s.Menu.ActivateSound(s.Menu.QuitGame())
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
 		case Play:
-			return s.Menu.SwitchToScreen(&MapScreen{})
+			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MapScreen{}))
 		case Reset:
 			// TODO Confirmation screen.
-			return s.Menu.ResetGame()
+			return s.Menu.ActivateSound(s.Menu.ResetGame())
 		case Credits:
 			// TODO
-			return s.Menu.SwitchToScreen(&MainScreen{})
+			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
 		case Quit:
-			return s.Menu.QuitGame()
+			return s.Menu.ActivateSound(s.Menu.QuitGame())
 		}
 	}
 	return nil
