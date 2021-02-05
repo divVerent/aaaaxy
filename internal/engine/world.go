@@ -74,8 +74,9 @@ type World struct {
 
 	// scrollPos is the current screen scrolling position.
 	scrollPos m.Pos
-	// scrollTile is the tile at scrollPos.
-	scrollTile m.Pos
+
+	// bottomRightTile is the tile at scrollPos.
+	bottomRightTile m.Pos
 	// visibilityMark is the current mark value to detect visible tiles/objects.
 	visibilityMark uint
 	// visiblePolygonCenter is the current eye position.
@@ -118,7 +119,7 @@ func (w *World) tileIndex(pos m.Pos) int {
 	if *debugTileWindowSize {
 		p := w.tilePos(i)
 		if p != pos {
-			log.Panicf("accessed out of range tile: got %v, want near scroll tile %v", pos, w.scrollTile)
+			log.Panicf("accessed out of range tile: got %v, want near scroll tile %v", pos, w.bottomRightTile)
 		}
 	}
 	return i
@@ -128,8 +129,8 @@ func (w *World) tilePos(i int) m.Pos {
 	x := i % tileWindowWidth
 	y := i / tileWindowWidth
 	return m.Pos{
-		X: x + tileWindowWidth*m.Div(w.scrollTile.X-x+tileWindowWidth/2, tileWindowWidth),
-		Y: y + tileWindowHeight*m.Div(w.scrollTile.Y-y+tileWindowHeight/2, tileWindowHeight),
+		X: x + tileWindowWidth*m.Div(w.bottomRightTile.X-x, tileWindowWidth),
+		Y: y + tileWindowHeight*m.Div(w.bottomRightTile.Y-y, tileWindowHeight),
 	}
 }
 
@@ -185,7 +186,7 @@ func (w *World) Init() error {
 	}
 
 	// Load tile the player starts on.
-	w.scrollTile = w.Level.Player.LevelPos // Needed so we can set the tile.
+	w.setScrollPos(w.Level.Player.LevelPos.Mul(TileSize)) // Needed so we can set the tile.
 	tile := w.Level.Tile(w.Level.Player.LevelPos).Tile
 	tile.Transform = m.Identity()
 	w.setTile(w.Level.Player.LevelPos, &tile)
@@ -292,7 +293,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 		w.Player.Incarnation: w.Player,
 	}
 	w.tiles = make([]*Tile, tileWindowWidth*tileWindowHeight)
-	w.scrollTile = cpSp.LevelPos // Needed so we can set the tile.
+	w.setScrollPos(cpSp.LevelPos.Mul(TileSize)) // Scroll the tile into view.
 	w.setTile(cpSp.LevelPos, &tile)
 
 	// Spawn the CP.
@@ -333,8 +334,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	w.FramesSinceSpawn = 0
 
 	// Scroll the player in view right away.
-	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
-	w.scrollTile = w.scrollPos.Div(TileSize)
+	w.setScrollPos(w.Player.Impl.(PlayerEntityImpl).LookPos())
 
 	// Load the configured music.
 	music.Switch(cpSp.Properties["music"])
@@ -420,8 +420,12 @@ func (w *World) updateScrollPos(target m.Pos) {
 	if target.Y > w.Player.Rect.Origin.Y+GameHeight/2-scrollMinDistance {
 		target.Y = w.Player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
 	}
-	w.scrollPos = target
-	w.scrollTile = w.scrollPos.Div(TileSize)
+	w.setScrollPos(target)
+}
+
+func (w *World) setScrollPos(pos m.Pos) {
+	w.scrollPos = pos
+	w.bottomRightTile = pos.Div(TileSize).Add(m.Delta{DX: tileWindowWidth / 2, DY: tileWindowHeight / 2})
 }
 
 // updateVisibility loads all visible tiles and discards all tiles not visible right now.
