@@ -50,15 +50,13 @@ var (
 	drawVisibilityMask      = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
 	expandUsingVertices     = flag.Bool("expand_using_vertices", false, "expand using polygon math (just approximate, simplifies rendering)")
 	debugShowTrace          = flag.String("debug_show_trace", "", "if set, the screen coordinates to trace towards and show trace info")
+	debugTileWindowSize     = flag.Bool("debug_check_window_size", false, "if set, we verify that the tile window size is set high enough")
 )
 
 // World represents the current game state including its entities.
 type World struct {
 	// tiles are all tiles currently loaded.
 	tiles []*Tile
-	// tilePos is the position of the first known tile (top left corner of the sliding window).
-	// Updated to match the visible area + max entity size.
-	tilePos m.Pos
 	// Entities are all entities currently loaded.
 	Entities map[EntityIncarnation]*Entity
 	// PlayerIncarnation is the incarnation ID of the player entity.
@@ -76,6 +74,8 @@ type World struct {
 
 	// scrollPos is the current screen scrolling position.
 	scrollPos m.Pos
+	// scrollTile is the tile at scrollPos.
+	scrollTile m.Pos
 	// visibilityMark is the current mark value to detect visible tiles/objects.
 	visibilityMark uint
 	// visiblePolygonCenter is the current eye position.
@@ -113,34 +113,44 @@ func (w *World) Initialized() bool {
 	return w.tiles != nil
 }
 
-func (w *World) Tile(pos m.Pos) *Tile {
+func (w *World) tileIndex(pos m.Pos) int {
 	i := m.Mod(pos.X, tileWindowWidth) + m.Mod(pos.Y, tileWindowHeight)*tileWindowWidth
-	return w.tiles[i]
+	if *debugTileWindowSize {
+		p := w.tilePos(i)
+		if p != pos {
+			log.Panicf("accessed out of range tile: got %v, want near scroll tile %v", pos, w.scrollTile)
+		}
+	}
+	return i
+}
+
+func (w *World) tilePos(i int) m.Pos {
+	x := i % tileWindowWidth
+	y := i / tileWindowWidth
+	return m.Pos{
+		X: x + tileWindowWidth*m.Div(w.scrollTile.X-x+tileWindowWidth/2, tileWindowWidth),
+		Y: y + tileWindowHeight*m.Div(w.scrollTile.Y-y+tileWindowHeight/2, tileWindowHeight),
+	}
+}
+
+func (w *World) Tile(pos m.Pos) *Tile {
+	return w.tiles[w.tileIndex(pos)]
 }
 
 func (w *World) setTile(pos m.Pos, t *Tile) {
-	i := m.Mod(pos.X, tileWindowWidth) + m.Mod(pos.Y, tileWindowHeight)*tileWindowWidth
-	w.tiles[i] = t
+	w.tiles[w.tileIndex(pos)] = t
 }
 
 func (w *World) clearTile(pos m.Pos) {
-	i := m.Mod(pos.X, tileWindowWidth) + m.Mod(pos.Y, tileWindowHeight)*tileWindowWidth
-	w.tiles[i] = nil
+	w.tiles[w.tileIndex(pos)] = nil
 }
 
 func (w *World) forEachTile(f func(pos m.Pos, t *Tile)) {
-	center := w.scrollPos.Div(TileSize)
 	for i, t := range w.tiles {
 		if t == nil {
 			continue
 		}
-		x := i % tileWindowWidth
-		y := i / tileWindowWidth
-		pos := m.Pos{
-			X: x + tileWindowWidth*m.Div(center.X-x+tileWindowWidth/2, tileWindowWidth),
-			Y: y + tileWindowHeight*m.Div(center.Y-y+tileWindowHeight/2, tileWindowHeight),
-		}
-		f(pos, t)
+		f(w.tilePos(i), t)
 	}
 }
 
@@ -175,6 +185,7 @@ func (w *World) Init() error {
 	}
 
 	// Load tile the player starts on.
+	w.scrollTile = w.Level.Player.LevelPos // Needed so we can set the tile.
 	tile := w.Level.Tile(w.Level.Player.LevelPos).Tile
 	tile.Transform = m.Identity()
 	w.setTile(w.Level.Player.LevelPos, &tile)
@@ -281,6 +292,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 		w.Player.Incarnation: w.Player,
 	}
 	w.tiles = make([]*Tile, tileWindowWidth*tileWindowHeight)
+	w.scrollTile = cpSp.LevelPos // Needed so we can set the tile.
 	w.setTile(cpSp.LevelPos, &tile)
 
 	// Spawn the CP.
@@ -322,6 +334,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 
 	// Scroll the player in view right away.
 	w.scrollPos = w.Player.Impl.(PlayerEntityImpl).LookPos()
+	w.scrollTile = w.scrollPos.Div(TileSize)
 
 	// Load the configured music.
 	music.Switch(cpSp.Properties["music"])
@@ -408,6 +421,7 @@ func (w *World) updateScrollPos(target m.Pos) {
 		target.Y = w.Player.Rect.Origin.Y + GameHeight/2 - scrollMinDistance
 	}
 	w.scrollPos = target
+	w.scrollTile = w.scrollPos.Div(TileSize)
 }
 
 // updateVisibility loads all visible tiles and discards all tiles not visible right now.
