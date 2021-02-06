@@ -148,7 +148,6 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			options := &ebiten.DrawTrianglesOptions{
 				CompositeMode: ebiten.CompositeModeSourceOver,
 				Filter:        ebiten.FilterNearest,
-				Address:       ebiten.AddressUnsafe,
 			}
 			geoM := &ebiten.GeoM{}
 			geoM.Scale(0, 0)

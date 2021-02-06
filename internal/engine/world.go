@@ -796,11 +796,11 @@ func (w *World) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m
 	// Draw trace polygon to buffer.
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
+	texM := ebiten.GeoM{}
+	texM.Scale(0, 0)
 
 	if *expandUsingVertices && !*drawBlurs && !*drawOutside {
-		drawAntiPolygonAround(screen, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, color.Gray{0}, geoM, &ebiten.DrawTrianglesOptions{
-			Address: ebiten.AddressRepeat,
-		})
+		drawAntiPolygonAround(screen, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, color.Gray{0}, geoM, texM, &ebiten.DrawTrianglesOptions{})
 		return
 	}
 
@@ -812,9 +812,7 @@ func (w *World) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m
 		// - Wouldn't allow blur though...?
 		// Note: we put the mask on ALL four channels.
 		w.visibilityMaskImage.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
-		drawPolygonAround(w.visibilityMaskImage, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, color.Gray{255}, geoM, &ebiten.DrawTrianglesOptions{
-			Address: ebiten.AddressRepeat,
-		})
+		drawPolygonAround(w.visibilityMaskImage, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, color.Gray{255}, geoM, texM, &ebiten.DrawTrianglesOptions{})
 
 		e := expandSize
 		if *expandUsingVertices {

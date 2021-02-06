@@ -24,8 +24,8 @@ import (
 )
 
 // DrawPolyLine draws a polygon line for the given points.
-// The screen coords are mapped to texcoords using GeoM (NOT VICE VERSA).
-func DrawPolyLine(src *ebiten.Image, thickness float64, points []m.Pos, img *ebiten.Image, color color.Color, geoM *ebiten.GeoM, options *ebiten.DrawTrianglesOptions) {
+// The screen coords are mapped to texcoords using texM (NOT VICE VERSA).
+func DrawPolyLine(src *ebiten.Image, thickness float64, points []m.Pos, img *ebiten.Image, color color.Color, texM *ebiten.GeoM, options *ebiten.DrawTrianglesOptions) {
 	rI, gI, bI, aI := color.RGBA()
 	r, g, b, a := float32(rI)/65535.0, float32(gI)/65535.0, float32(bI)/65535.0, float32(aI)/65535.0
 	vertices := make([]ebiten.Vertex, 2*len(points))
@@ -64,8 +64,8 @@ func DrawPolyLine(src *ebiten.Image, thickness float64, points []m.Pos, img *ebi
 		}
 		dstX0, dstY0 := float64(p.X)+dX0+0.5, float64(p.Y)+dY0+0.5
 		dstX1, dstY1 := float64(p.X)+dX1+0.5, float64(p.Y)+dY1+0.5
-		srcX0, srcY0 := geoM.Apply(dstX0, dstY0)
-		srcX1, srcY1 := geoM.Apply(dstX1, dstY1)
+		srcX0, srcY0 := texM.Apply(dstX0, dstY0)
+		srcX1, srcY1 := texM.Apply(dstX1, dstY1)
 		vertices[2*i] = ebiten.Vertex{
 			DstX:   float32(dstX0),
 			DstY:   float32(dstY0),
