@@ -93,6 +93,9 @@ var (
 
 func BlurExpandImage(img, tmp, out *ebiten.Image, blurSize, expandSize int, scale float64) {
 	// Blurring and expanding can be done in a single step by doing a regular blur then scaling up at the last step.
+	if !*drawBlurs {
+		blurSize = 0
+	}
 	size := blurSize + expandSize
 	scale *= (2*float64(size) + 1) / (2*float64(blurSize) + 1)
 	BlurImage(img, tmp, out, size, scale)

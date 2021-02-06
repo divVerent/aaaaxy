@@ -797,6 +797,13 @@ func (w *World) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
 
+	if *expandUsingVertices && !*drawBlurs && !*drawOutside {
+		drawAntiPolygonAround(screen, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, color.Gray{0}, geoM, &ebiten.DrawTrianglesOptions{
+			Address: ebiten.AddressRepeat,
+		})
+		return
+	}
+
 	if w.needPrevImage {
 		// Optimization note:
 		// - This isn't optimal. Visibility mask maybe shouldn't even exist?
@@ -805,7 +812,7 @@ func (w *World) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m
 		// - Wouldn't allow blur though...?
 		// Note: we put the mask on ALL four channels.
 		w.visibilityMaskImage.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
-		drawPolygonAround(w.visibilityMaskImage, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, geoM, &ebiten.DrawTrianglesOptions{
+		drawPolygonAround(w.visibilityMaskImage, w.visiblePolygonCenter, w.visiblePolygon, w.whiteImage, color.Gray{255}, geoM, &ebiten.DrawTrianglesOptions{
 			Address: ebiten.AddressRepeat,
 		})
 
