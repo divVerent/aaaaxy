@@ -164,6 +164,14 @@ func (w *World) Init() error {
 		log.Panicf("Could not load level: %v", err)
 	}
 
+	// Allow reiniting if already done.
+	for _, ent := range w.Entities {
+		if ent == w.Player {
+			continue
+		}
+		ent.Impl.Despawn()
+	}
+
 	*w = World{
 		tiles:               make([]*Tile, tileWindowWidth*tileWindowHeight),
 		Entities:            map[EntityIncarnation]*Entity{},
