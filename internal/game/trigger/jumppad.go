@@ -167,7 +167,7 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	// Perform the jump.
 	p.Velocity = calculateJump(delta, j.Height)
 	p.OnGround = false
-	p.GroundFrame = -1
+	p.AirFrames = player.ExtraGroundFrames + 1
 	j.JumpSound.Play()
 }
 

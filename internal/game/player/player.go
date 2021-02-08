@@ -35,7 +35,7 @@ type Player struct {
 	PersistentState map[string]string
 
 	OnGround      bool
-	GroundFrame   int // -1 when flying, ExtraGroundFrames when on ground, >=0 allows jumping.
+	AirFrames     int // Number of frames since last leaving ground.
 	LastGroundPos m.Pos
 	Jumping       bool
 	JumpingUp     bool
@@ -202,10 +202,11 @@ func (p *Player) Update() {
 	moveLeft := input.Left.Held
 	moveRight := input.Right.Held
 	if input.Jump.Held {
-		if !p.Jumping && p.GroundFrame >= 0 {
+		if !p.Jumping && p.AirFrames <= ExtraGroundFrames {
+			p.Velocity.DY -= Gravity * p.AirFrames
 			p.Velocity.DY -= JumpVelocity
 			p.OnGround = false
-			p.GroundFrame = -1
+			p.AirFrames = ExtraGroundFrames + 1
 			p.Jumping = true
 			p.JumpingUp = true
 			p.JumpSound.Play()
@@ -326,9 +327,9 @@ func (p *Player) Update() {
 		noise.Set(amount)
 	}
 	if p.OnGround {
-		p.GroundFrame = ExtraGroundFrames
-	} else if p.GroundFrame >= 0 {
-		p.GroundFrame--
+		p.AirFrames = 0
+	} else {
+		p.AirFrames++
 	}
 }
 
@@ -369,17 +370,17 @@ func (p *Player) LookPos() m.Pos {
 
 // Respawned informs the player that the world moved/respawned it.
 func (p *Player) Respawned() {
-	p.OnGround = true                 // Do not get landing anim right away.
-	p.LastGroundPos = p.EyePos()      // Center the camera.
-	p.GroundFrame = ExtraGroundFrames // Assume on ground.
-	p.Jumping = true                  // Jump key must be hit again.
-	p.JumpingUp = false               // Do not assume we're in the first half of a jump (fastfall).
-	p.Velocity = m.Delta{}            // Stop moving.
-	p.SubPixel = m.Delta{}            // Stop moving.
-	p.Respawning = true               // Block the respawn key until released.
-	p.Anim.ForceGroup("idle")         // Reset animation.
-	p.Entity.Image = nil              // Hide player until next Update.
-	p.Entity.Orientation = m.FlipX()  // Default to looking right.
+	p.OnGround = true                // Do not get landing anim right away.
+	p.LastGroundPos = p.EyePos()     // Center the camera.
+	p.AirFrames = 0                  // Assume on ground.
+	p.Jumping = true                 // Jump key must be hit again.
+	p.JumpingUp = false              // Do not assume we're in the first half of a jump (fastfall).
+	p.Velocity = m.Delta{}           // Stop moving.
+	p.SubPixel = m.Delta{}           // Stop moving.
+	p.Respawning = true              // Block the respawn key until released.
+	p.Anim.ForceGroup("idle")        // Reset animation.
+	p.Entity.Image = nil             // Hide player until next Update.
+	p.Entity.Orientation = m.FlipX() // Default to looking right.
 }
 
 func init() {
