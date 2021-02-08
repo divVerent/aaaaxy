@@ -203,7 +203,7 @@ func (p *Player) Update() {
 	moveRight := input.Right.Held
 	if input.Jump.Held {
 		if !p.Jumping && p.AirFrames <= ExtraGroundFrames {
-			p.Velocity.DY -= Gravity * p.AirFrames
+			p.Velocity.DY -= Gravity * p.AirFrames // Undo gravity added for the AirFrames. Kinda matches up jump height.
 			p.Velocity.DY -= JumpVelocity
 			p.OnGround = false
 			p.AirFrames = ExtraGroundFrames + 1
