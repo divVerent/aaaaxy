@@ -104,8 +104,8 @@ const (
 	// We want at least 19px high jumps so we can be sure a jump moves at least 2 tiles up.
 	JumpExtraGravity = 72*Gravity/19 - Gravity
 
-	// Number of frames to allow jumping after leaving ground. This is an extra 1/20 sec.
-	ExtraGroundFrames = 3
+	// Number of frames to allow jumping after leaving ground. This is an extra 1/30 sec.
+	ExtraGroundFrames = 2
 
 	// Animation tuning.
 	AnimGroundSpeed = 20 * SubPixelScale / engine.GameTPS
