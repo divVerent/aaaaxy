@@ -43,7 +43,11 @@ type Level struct {
 // Tile returns the tile at the given position.
 func (l *Level) Tile(pos m.Pos) *LevelTile {
 	i := pos.X + pos.Y*l.width
-	return &l.tiles[i]
+	t := &l.tiles[i]
+	if !t.Valid {
+		return nil
+	}
+	return t
 }
 
 // setTile sets the tile at the given position.
@@ -63,6 +67,7 @@ func (l *Level) forEachTile(f func(pos m.Pos, t *LevelTile)) {
 type LevelTile struct {
 	Tile      Tile
 	WarpZones []*WarpZone
+	Valid     bool
 }
 
 // WarpZone represents a warp tile. Whenever anything enters this tile, it gets
@@ -304,6 +309,7 @@ func LoadLevel(filename string) (*Level, error) {
 				ImageByOrientation: imgByOrientation,
 				Orientation:        orientation,
 			},
+			Valid: true,
 		})
 	}
 	type RawWarpZone struct {
