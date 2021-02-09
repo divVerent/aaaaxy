@@ -16,7 +16,6 @@ package noise
 
 import (
 	"bytes"
-	"flag"
 	"io/ioutil"
 	"log"
 
@@ -24,6 +23,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
 	"github.com/divVerent/aaaaaa/internal/audiowrap"
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 

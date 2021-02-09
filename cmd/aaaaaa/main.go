@@ -15,7 +15,6 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"os"
 	"runtime/pprof"
@@ -23,6 +22,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/aaaaaa"
+	"github.com/divVerent/aaaaaa/internal/flag"
 )
 
 var (
@@ -30,7 +30,7 @@ var (
 )
 
 func main() {
-	flag.Parse()
+	flag.Parse(aaaaaa.LoadConfig)
 	if *cpuprofile != "" {
 		f, err := os.Create(*cpuprofile)
 		if err != nil {

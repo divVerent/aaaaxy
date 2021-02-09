@@ -15,13 +15,13 @@
 package aaaaaa
 
 import (
-	"flag"
 	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
@@ -30,6 +30,10 @@ var (
 	vsync      = flag.Bool("vsync", true, "enable waiting for vertical synchronization")
 	fullscreen = flag.Bool("fullscreen", true, "enable fullscreen mode")
 )
+
+func LoadConfig() (*flag.Config, error) {
+	return engine.LoadConfig()
+}
 
 func InitEbiten() {
 	ebiten.SetCursorMode(ebiten.CursorModeHidden)

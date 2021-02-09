@@ -17,7 +17,6 @@ package engine
 import (
 	"encoding/json"
 	"errors"
-	"flag"
 	"fmt"
 	"image/color"
 	"log"
@@ -31,6 +30,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/text"
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/font"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"

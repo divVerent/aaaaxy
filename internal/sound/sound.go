@@ -15,7 +15,6 @@
 package sound
 
 import (
-	"flag"
 	"fmt"
 	"io/ioutil"
 
@@ -23,6 +22,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
 	"github.com/divVerent/aaaaaa/internal/audiowrap"
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 

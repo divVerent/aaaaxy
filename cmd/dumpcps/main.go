@@ -15,12 +15,12 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log"
 	"math"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/flag"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -62,7 +62,7 @@ func CalcPos(v *Vertex) {
 }
 
 func main() {
-	flag.Parse()
+	flag.Parse(flag.NoConfig)
 	level, err := engine.LoadLevel("level")
 	if err != nil {
 		log.Panicf("Could not load level: %v", err)

@@ -17,7 +17,6 @@ package music
 import (
 	"encoding/json"
 	"errors"
-	"flag"
 	"log"
 	"os"
 	"time"
@@ -26,6 +25,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
 	"github.com/divVerent/aaaaaa/internal/audiowrap"
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 

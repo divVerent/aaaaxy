@@ -16,7 +16,6 @@ package menu
 
 import (
 	"errors"
-	"flag"
 	"fmt"
 	"log"
 
@@ -24,6 +23,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/flag"
 	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
 	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/music"
@@ -87,7 +87,9 @@ func (m *Menu) Update() error {
 		return m.SwitchToScreen(&MainScreen{})
 	}
 	if input.Fullscreen.JustHit {
-		ebiten.SetFullscreen(!ebiten.IsFullscreen())
+		fs := !ebiten.IsFullscreen()
+		flag.Set("fullscreen", fs)
+		ebiten.SetFullscreen(fs)
 	}
 
 	timing.Section("screen")
@@ -163,6 +165,10 @@ func (m *Menu) QuitGame() error {
 	err := m.World.Save()
 	if err != nil {
 		log.Panicf("could not save game: %v", err)
+	}
+	err = engine.SaveConfig()
+	if err != nil {
+		log.Panicf("could not save config: %v", err)
 	}
 	return errors.New("game exited normally")
 }

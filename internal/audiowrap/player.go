@@ -15,10 +15,10 @@
 package audiowrap
 
 import (
-	"flag"
 	"io"
 	"time"
 
+	"github.com/divVerent/aaaaaa/internal/flag"
 	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
 )
 

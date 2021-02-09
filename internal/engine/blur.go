@@ -15,7 +15,6 @@
 package engine
 
 import (
-	"flag"
 	"fmt"
 	"image/color"
 	"io/ioutil"
@@ -23,6 +22,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
