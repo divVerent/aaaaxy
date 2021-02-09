@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1044">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1049">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -1302,8 +1302,6 @@
   <object id="372" type="AppearBlock" x="4128" y="7600" width="16" height="16"/>
   <object id="373" type="AppearBlock" x="4112" y="7600" width="16" height="16"/>
   <object id="374" type="AppearBlock" x="4096" y="7600" width="16" height="16"/>
-  <object id="375" type="AppearBlock" x="4064" y="7600" width="16" height="16"/>
-  <object id="377" type="AppearBlock" x="4032" y="7600" width="16" height="16"/>
   <object id="378" type="AppearBlock" x="4016" y="7600" width="16" height="16"/>
   <object id="379" type="AppearBlock" x="4000" y="7600" width="16" height="16"/>
   <object id="380" type="AppearBlock" x="3984" y="7600" width="16" height="16"/>
@@ -1318,7 +1316,7 @@
   </object>
   <object id="386" type="QuestionBlock" x="4048" y="7520" width="16" height="16"/>
   <object id="387" type="AppearBlock" x="4080" y="7600" width="16" height="16"/>
-  <object id="388" name="SilverCityAppearGap" type="AnimatedSprite" gid="10" x="4048" y="7600" width="16" height="16">
+  <object id="388" name="SilverCityAppearGap" type="AnimatedSprite" gid="10" x="4032" y="7600" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
@@ -4992,5 +4990,11 @@
   </object>
   <object id="1042" name="Box4E" gid="8" x="5328" y="7520" width="16" height="160"/>
   <object id="1043" name="Box4E" gid="2" x="6048" y="6400" width="16" height="160"/>
+  <object id="1046" name="SilverCityAppearGap" type="AnimatedSprite" gid="10" x="4048" y="7600" width="16" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="1048" type="AppearBlock" x="4064" y="7600" width="16" height="16"/>
  </objectgroup>
 </map>

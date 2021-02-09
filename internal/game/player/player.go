@@ -105,7 +105,10 @@ const (
 	JumpExtraGravity = 72*Gravity/19 - Gravity
 
 	// Number of frames to allow jumping after leaving ground. This is an extra 1/30 sec.
-	ExtraGroundFrames = 2
+	// 7 allows reliable walking over 2 tile gaps.
+	// 1 allows reliable walking over 1 tile gaps.
+	// 0 allows some walking over 1 tile gaps.
+	ExtraGroundFrames = 4
 
 	// Animation tuning.
 	AnimGroundSpeed = 20 * SubPixelScale / engine.GameTPS
@@ -203,7 +206,6 @@ func (p *Player) Update() {
 	moveRight := input.Right.Held
 	if input.Jump.Held {
 		if !p.Jumping && p.AirFrames <= ExtraGroundFrames {
-			p.Velocity.DY -= Gravity * p.AirFrames // Undo gravity added for the AirFrames. Kinda matches up jump height.
 			p.Velocity.DY -= JumpVelocity
 			p.OnGround = false
 			p.AirFrames = ExtraGroundFrames + 1
@@ -234,7 +236,10 @@ func (p *Player) Update() {
 			p.Velocity.DY += JumpExtraGravity
 		}
 	}
-	p.Velocity.DY += Gravity
+	if p.AirFrames > ExtraGroundFrames {
+		// No gravity while we still can jump.
+		p.Velocity.DY += Gravity
+	}
 	if p.Velocity.DY > MaxSpeed {
 		p.Velocity.DY = MaxSpeed
 	}
