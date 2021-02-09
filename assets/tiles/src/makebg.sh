@@ -40,6 +40,19 @@ for kc1 in $colors; do
 			-fill "$c2" -opaque "#ff00fe" \
 			-rotate 270 \
 			../bg_"$k1$k2"_h.png
+		if [ x"$k1" = x"8" ]; then
+			for img in l m nl nr r; do
+				convert train_"$img".png \
+					-fill "$c1" -opaque "#00fe00" \
+					-fill "$c2" -opaque "#ff00fe" \
+					../train_"$k1$k2"_"$img".png
+			done
+		fi
 	done
 	convert -size 16x16 xc:"$c1" ../bg_"$k1".png
+	if [ x"$k1" = x"8" ]; then
+		convert track.png \
+			-fill "$c1" -opaque "#00fe00" \
+			../track_"$k1"_v.png
+	fi
 done
