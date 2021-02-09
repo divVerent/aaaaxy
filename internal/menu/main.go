@@ -29,7 +29,7 @@ type MainScreenItem int
 
 const (
 	Play MainScreenItem = iota
-	Reset
+	Settings
 	Credits
 	Quit
 	MainCount
@@ -62,9 +62,10 @@ func (s *MainScreen) Update() error {
 		switch s.Item {
 		case Play:
 			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MapScreen{}))
-		case Reset:
-			// TODO Confirmation screen.
-			return s.Menu.ActivateSound(s.Menu.ResetGame())
+		case Settings:
+			// TODO settings screen.
+			// return s.Menu.ActivateSound(s.Menu.ResetGame())
+			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
 		case Credits:
 			// TODO
 			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
@@ -89,10 +90,10 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	}
 	font.Menu.Draw(screen, "Play", m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
-	if s.Item == Reset {
+	if s.Item == Settings {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset", m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Settings", m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Credits {
 		fg, bg = fgs, bgs
