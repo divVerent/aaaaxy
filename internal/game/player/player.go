@@ -23,6 +23,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/input"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/noise"
@@ -30,19 +31,17 @@ import (
 )
 
 type Player struct {
+	mixins.Physics
 	World           *engine.World
 	Entity          *engine.Entity
 	PersistentState map[string]string
 
-	OnGround      bool
 	AirFrames     int // Number of frames since last leaving ground.
 	LastGroundPos m.Pos
 	Jumping       bool
 	JumpingUp     bool
 	LookUp        bool
 	LookDown      bool
-	Velocity      m.Delta
-	SubPixel      m.Delta
 	Respawning    bool
 
 	Anim         animation.State
@@ -73,16 +72,14 @@ const (
 	// LookTiles is how many tiles the player can look up/down.
 	LookDistance = engine.TileSize * 4
 
-	SubPixelScale = 65536
-
 	// Nice run/jump speed.
-	MaxGroundSpeed = 160 * SubPixelScale / engine.GameTPS
+	MaxGroundSpeed = 160 * mixins.SubPixelScale / engine.GameTPS
 	GroundAccel    = GroundFriction + AirAccel
-	GroundFriction = 640 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	GroundFriction = 640 * mixins.SubPixelScale / engine.GameTPS / engine.GameTPS
 
 	// Air max speed is lower than ground control, but same forward accel.
-	MaxAirSpeed = 120 * SubPixelScale / engine.GameTPS
-	AirAccel    = 480 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	MaxAirSpeed = 120 * mixins.SubPixelScale / engine.GameTPS
+	AirAccel    = 480 * mixins.SubPixelScale / engine.GameTPS / engine.GameTPS
 
 	// We want 4.5 tiles high jumps, i.e. 72px high jumps (plus something).
 	// Jump shall take 1 second.
@@ -93,11 +90,11 @@ const (
 	// v0 = 288
 	// g = 576
 	// Note: assuming 1px=6cm, this is actually 17.3m/s and 3.5x earth gravity.
-	JumpVelocity = 288 * SubPixelScale / engine.GameTPS
-	Gravity      = 576 * SubPixelScale / engine.GameTPS / engine.GameTPS
-	MaxSpeed     = 2 * engine.TileSize * SubPixelScale
+	JumpVelocity = 288 * mixins.SubPixelScale / engine.GameTPS
+	Gravity      = 576 * mixins.SubPixelScale / engine.GameTPS / engine.GameTPS
+	MaxSpeed     = 2 * engine.TileSize * mixins.SubPixelScale
 
-	NoiseMinSpeed = 384 * SubPixelScale / engine.GameTPS
+	NoiseMinSpeed = 384 * mixins.SubPixelScale / engine.GameTPS
 	NoiseMaxSpeed = MaxSpeed
 	NoisePower    = 2.0
 
@@ -111,7 +108,7 @@ const (
 	ExtraGroundFrames = 4
 
 	// Animation tuning.
-	AnimGroundSpeed = 20 * SubPixelScale / engine.GameTPS
+	AnimGroundSpeed = 20 * mixins.SubPixelScale / engine.GameTPS
 
 	KeyLeft    = ebiten.KeyLeft
 	KeyRight   = ebiten.KeyRight
@@ -122,6 +119,7 @@ const (
 )
 
 func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+	p.Physics.Init(w, e)
 	p.World = w
 	p.Entity = e
 	p.PersistentState = s.PersistentState
@@ -243,71 +241,23 @@ func (p *Player) Update() {
 	if p.Velocity.DY > MaxSpeed {
 		p.Velocity.DY = MaxSpeed
 	}
-	p.SubPixel = p.SubPixel.Add(p.Velocity)
-	move := p.SubPixel.Div(SubPixelScale)
-	if move.DX != 0 {
-		dest := p.Entity.Rect.Origin.Add(m.Delta{DX: move.DX})
-		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
-			IgnoreEnt: p.Entity,
-			ForEnt:    p.Entity,
-		})
-		if trace.EndPos == dest {
-			// Nothing hit.
-			p.SubPixel.DX -= move.DX * SubPixelScale
-		} else {
-			// Hit something. Move as far as we can in direction of the hit, but not farther than intended.
-			if p.SubPixel.DX > SubPixelScale-1 {
-				p.SubPixel.DX = SubPixelScale - 1
-			} else if p.SubPixel.DX < 0 {
-				p.SubPixel.DX = 0
+
+	// Run physics.
+	wasOnGround := p.OnGround
+	p.Physics.Update(func(delta m.Delta, trace engine.TraceResult) {
+		if delta.DY > 0 {
+			if !wasOnGround {
+				p.Anim.SetGroup("land")
+				p.LandSound.Play()
 			}
-			p.Velocity.DX = 0
+			p.JumpingUp = false
 		}
-		p.Entity.Rect.Origin = trace.EndPos
-		p.handleTouch(trace)
-	}
-	if move.DY != 0 {
-		dest := p.Entity.Rect.Origin.Add(m.Delta{DY: move.DY})
-		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
-			IgnoreEnt: p.Entity,
-			ForEnt:    p.Entity,
-		})
-		if trace.EndPos == dest {
-			// Nothing hit.
-			p.SubPixel.DY -= move.DY * SubPixelScale
-		} else {
-			// Hit something. Move as far as we can in direction of the hit, but not farther than intended.
-			if p.SubPixel.DY > SubPixelScale-1 {
-				p.SubPixel.DY = SubPixelScale - 1
-			} else if p.SubPixel.DY < 0 {
-				p.SubPixel.DY = 0
-			}
-			p.Velocity.DY = 0
-			// If moving down, set OnGround flag.
-			if move.DY > 0 {
-				if !p.OnGround {
-					p.Anim.SetGroup("land")
-					p.LandSound.Play()
-				}
-				p.OnGround = true
-				p.JumpingUp = false
-			} else {
-				p.Anim.SetGroup("hithead")
-				p.HitHeadSound.Play()
-			}
-		}
-		p.Entity.Rect.Origin = trace.EndPos
-		p.handleTouch(trace)
-	} else if p.OnGround {
-		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
-			IgnoreEnt: p.Entity,
-			ForEnt:    p.Entity,
-		})
-		if trace.EndPos != p.Entity.Rect.Origin {
-			p.OnGround = false
+		if delta.DY < 0 {
+			p.Anim.SetGroup("hithead")
+			p.HitHeadSound.Play()
 		}
 		p.handleTouch(trace)
-	}
+	})
 
 	if moveLeft && !moveRight {
 		p.Entity.Orientation = m.Identity()
@@ -375,13 +325,11 @@ func (p *Player) LookPos() m.Pos {
 
 // Respawned informs the player that the world moved/respawned it.
 func (p *Player) Respawned() {
-	p.OnGround = true                // Do not get landing anim right away.
+	p.Physics.Reset()                // Stop moving.
 	p.LastGroundPos = p.EyePos()     // Center the camera.
 	p.AirFrames = 0                  // Assume on ground.
 	p.Jumping = true                 // Jump key must be hit again.
 	p.JumpingUp = false              // Do not assume we're in the first half of a jump (fastfall).
-	p.Velocity = m.Delta{}           // Stop moving.
-	p.SubPixel = m.Delta{}           // Stop moving.
 	p.Respawning = true              // Block the respawn key until released.
 	p.Anim.ForceGroup("idle")        // Reset animation.
 	p.Entity.Image = nil             // Hide player until next Update.
