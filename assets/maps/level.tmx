@@ -1149,11 +1149,6 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="300" type="AppearBlock" x="768" y="5136" width="16" height="16"/>
-  <object id="301" type="AppearBlock" x="768" y="5264" width="16" height="16"/>
-  <object id="302" type="AppearBlock" x="768" y="5392" width="16" height="16"/>
-  <object id="303" type="AppearBlock" x="880" y="5088" width="16" height="16"/>
-  <object id="304" type="AppearBlock" x="1008" y="5088" width="16" height="16"/>
   <object id="305" name="EscherFirst" gid="6" x="5248" y="7008" width="32" height="16"/>
   <object id="308" name="EscherSecond" gid="6" x="4768" y="6704" width="32" height="16"/>
   <object id="309" type="TnihSign" x="4704" y="6712" width="32" height="32">
