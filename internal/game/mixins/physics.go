@@ -82,6 +82,8 @@ func (p *Physics) Update(handleTouch func(delta m.Delta, trace engine.TraceResul
 			// Nothing hit.
 			p.SubPixel.DY -= move.DY * SubPixelScale
 			p.Entity.Rect.Origin = trace.EndPos
+			// If moving up, we're never on ground.
+			p.OnGround = false
 		} else {
 			// Hit something. Move as far as we can in direction of the hit, but not farther than intended.
 			if p.SubPixel.DY > SubPixelScale-1 {
@@ -90,10 +92,8 @@ func (p *Physics) Update(handleTouch func(delta m.Delta, trace engine.TraceResul
 				p.SubPixel.DY = 0
 			}
 			p.Velocity.DY = 0
-			// If moving down, set OnGround flag.
-			if move.DY > 0 {
-				p.OnGround = true
-			}
+			// If moving down and hitting something, set OnGround flag. Otherwise clear.
+			p.OnGround = move.DY > 0
 			p.Entity.Rect.Origin = trace.EndPos
 			handleTouch(delta, trace)
 		}
@@ -106,6 +106,7 @@ func (p *Physics) Update(handleTouch func(delta m.Delta, trace engine.TraceResul
 		if trace.EndPos != p.Entity.Rect.Origin {
 			p.OnGround = false
 		} else {
+			// p.OnGround = true // Always has been.
 			handleTouch(delta, trace)
 		}
 	}
