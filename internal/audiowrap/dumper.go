@@ -15,6 +15,7 @@
 package audiowrap
 
 import (
+	"bytes"
 	"encoding/binary"
 	"io"
 	"log"
@@ -57,6 +58,7 @@ func Update(toTime time.Duration) {
 	}
 	toSample := int(toTime * time.Duration(ebiaudio.CurrentContext().SampleRate()) / time.Second)
 	samples := toSample - sampleIndex
+	sampleIndex = toSample
 	dumpSamples(samples)
 }
 
@@ -91,10 +93,10 @@ func newDumperWithTee(src io.Reader) (*dumper, io.Reader) {
 	if *dumpAudio == "" {
 		return nil, src
 	}
-	pipeRd, pipeWr := io.Pipe()
-	teeRd := io.TeeReader(src, pipeWr)
-	// TODO DEADLOCK?
-	return newDumper(teeRd), pipeRd
+	// Yes, this will skip all music.
+	// TODO: implement proper teeing.
+	buf := bytes.Buffer{}
+	return newDumper(src), &buf
 }
 
 func (d *dumper) Close() {
