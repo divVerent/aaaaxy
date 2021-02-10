@@ -15,6 +15,7 @@
 package audiowrap
 
 import (
+	"bytes"
 	"io"
 	"time"
 
@@ -30,45 +31,68 @@ var (
 
 type Player struct {
 	ebi *ebiaudio.Player
+	dmp *dumper
 }
 
 func NewPlayer(src io.Reader) (*Player, error) {
+	dmp, src := newDumperWithTee(src)
 	ebi, err := ebiaudio.NewPlayer(ebiaudio.CurrentContext(), src)
 	if err != nil {
 		return nil, err
 	}
 	return &Player{
 		ebi: ebi,
+		dmp: dmp,
 	}, nil
 }
 
 func NewPlayerFromBytes(src []byte) *Player {
+	dmp := newDumper(bytes.NewReader(src))
 	ebi := ebiaudio.NewPlayerFromBytes(ebiaudio.CurrentContext(), src)
 	return &Player{
 		ebi: ebi,
+		dmp: dmp,
 	}
 }
 
 func (p *Player) Close() error {
+	if p.dmp != nil {
+		p.dmp.Close()
+	}
 	return p.ebi.Close()
 }
 
 func (p *Player) Current() time.Duration {
+	if p.dmp != nil {
+		return p.dmp.Current()
+	}
 	return p.ebi.Current()
 }
 
 func (p *Player) IsPlaying() bool {
+	if p.dmp != nil {
+		return p.dmp.IsPlaying()
+	}
 	return p.ebi.IsPlaying()
 }
 
 func (p *Player) Pause() {
+	if p.dmp != nil {
+		p.dmp.Pause()
+	}
 	p.ebi.Pause()
 }
 
 func (p *Player) Play() {
+	if p.dmp != nil {
+		p.dmp.Play()
+	}
 	p.ebi.Play()
 }
 
 func (p *Player) SetVolume(vol float64) {
+	if p.dmp != nil {
+		p.dmp.SetVolume(vol * *volume)
+	}
 	p.ebi.SetVolume(vol * *volume)
 }

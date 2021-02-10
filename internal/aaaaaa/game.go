@@ -16,9 +16,11 @@ package aaaaaa
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaaa/internal/audiowrap"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/image"
@@ -30,8 +32,8 @@ import (
 )
 
 var (
-	captureVideo    = flag.String("capture_video", "", "filename prefix to capture game frames to")
-	externalCapture = flag.Bool("external_capture", false, "assume an external capture application like apitrace is running; makes game run in lock step with rendering")
+	dumpVideo       = flag.String("dump_video", "", "filename prefix to dump game frames to")
+	externalCapture = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
 	loadGame        = flag.String("load_game", "", "filename to load game state from")
 	saveGame        = flag.String("save_game", "", "filename to save game state to")
 )
@@ -85,15 +87,16 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	timing.Section("world")
 	g.Menu.DrawWorld(screen)
 
-	if *captureVideo != "" || *externalCapture {
+	if *dumpVideo != "" || *externalCapture {
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)
 	}
 
-	if *captureVideo != "" {
-		timing.Section("capture")
-		image.Save(screen, fmt.Sprintf("%s_%08d.png", *captureVideo, frameIndex))
-		frameIndex++
+	timing.Section("dump")
+	if *dumpVideo != "" {
+		image.Save(screen, fmt.Sprintf("%s_%08d.png", *dumpVideo, frameIndex))
 	}
+	frameIndex++
+	audiowrap.Update(time.Duration(frameIndex) * time.Second / engine.GameTPS)
 
 	timing.Section("menu")
 	g.Menu.Draw(screen)

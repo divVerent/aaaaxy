@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 var (
@@ -72,6 +73,13 @@ func (c *Config) UnmarshalJSON(data []byte) error {
 func Marshal() *Config {
 	c := &Config{flags: map[string]string{}}
 	flagSet.Visit(func(f *flag.Flag) {
+		// Don't save debug or dump flags.
+		if strings.HasPrefix(f.Name, "debug_") {
+			return
+		}
+		if strings.HasPrefix(f.Name, "dump_") {
+			return
+		}
 		c.flags[f.Name] = f.Value.String()
 	})
 	return c
