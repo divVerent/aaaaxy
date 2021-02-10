@@ -93,6 +93,7 @@ func newDumperWithTee(src io.Reader) (*dumper, io.Reader) {
 	}
 	pipeRd, pipeWr := io.Pipe()
 	teeRd := io.TeeReader(src, pipeWr)
+	// TODO DEADLOCK?
 	return newDumper(teeRd), pipeRd
 }
 
