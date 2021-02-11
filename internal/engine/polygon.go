@@ -104,3 +104,20 @@ func drawAntiPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, sr
 	}
 	dst.DrawTriangles(eVerts, eIndices, src, options)
 }
+
+func expandPolygon(center m.Pos, polygon []m.Pos, shift int) {
+	orig := append([]m.Pos{}, polygon...)
+	for i, v1 := range orig {
+		// Rather approximate polygon expanding: just push each vertex shift away from the center.
+		// Unlike correct polygon expansion perpendicular to sides,
+		// this way ensures that we never include more than distance shift from the polugon.
+		// However this is just approximate and causes artifacts when close to a wall.
+		d := v1.Delta(center)
+		l := d.Length()
+		if l <= 0 {
+			continue
+		}
+		f := float64(shift) / l
+		polygon[i] = v1.Add(d.MulFloat(f))
+	}
+}
