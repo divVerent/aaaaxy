@@ -32,15 +32,17 @@ import (
 )
 
 var (
-	debugShowNeighbors    = flag.Bool("debug_show_neighbors", false, "show the neighbors tiles got loaded from")
-	debugShowCoords       = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
-	debugShowOrientations = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
-	debugShowTransforms   = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
-	debugShowBboxes       = flag.Bool("debug_show_bboxes", false, "show the bounding boxes of all entities")
-	drawOutside           = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
-	drawVisibilityMask    = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
-	expandUsingVertices   = flag.Bool("expand_using_vertices", false, "expand using polygon math (just approximate, simplifies rendering)")
-	debugShowTrace        = flag.String("debug_show_trace", "", "if set, the screen coordinates to trace towards and show trace info")
+	debugShowNeighbors            = flag.Bool("debug_show_neighbors", false, "show the neighbors tiles got loaded from")
+	debugShowCoords               = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
+	debugShowOrientations         = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
+	debugShowTransforms           = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
+	debugShowBboxes               = flag.Bool("debug_show_bboxes", false, "show the bounding boxes of all entities")
+	debugShowVisiblePolygon       = flag.Bool("debug_show_visible_polygon", false, "show the visibility polygon")
+	drawOutside                   = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
+	drawVisibilityMask            = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
+	expandUsingVertices           = flag.Bool("expand_using_vertices", true, "expand using polygon math (simplifies rendering)")
+	expandUsingVerticesAccurately = flag.Bool("expand_using_vertices_accurately", true, "expand using simpler polygon math (just approximate, removes a render pass)")
+	debugShowTrace                = flag.String("debug_show_trace", "", "if set, the screen coordinates to trace towards and show trace info")
 )
 
 type renderer struct {
@@ -281,6 +283,16 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			ebitenutil.DrawLine(screen, float64(traceEndR.X), float64(traceEndR.Y), float64(traceToR.X), float64(traceToR.Y), color.NRGBA{R: 255, G: 255, B: 0, A: 255})
 		}
 	}
+
+	if *debugShowVisiblePolygon {
+		adjustedPolygon := make([]m.Pos, len(r.visiblePolygon))
+		for i, pos := range r.visiblePolygon {
+			adjustedPolygon[i] = pos.Add(scrollDelta)
+		}
+		texM := ebiten.GeoM{}
+		texM.Scale(0, 0)
+		DrawPolyLine(screen, 3, adjustedPolygon, r.whiteImage, color.NRGBA{R: 255, G: 0, B: 0, A: 255}, &texM, &ebiten.DrawTrianglesOptions{})
+	}
 }
 
 func (r *renderer) rawDrawDest(screen *ebiten.Image) *ebiten.Image {
@@ -297,7 +309,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 	texM := ebiten.GeoM{}
 	texM.Scale(0, 0)
 
-	if *expandUsingVertices && !*drawBlurs && !*drawOutside {
+	if *expandUsingVertices && !*expandUsingVerticesAccurately && !*drawBlurs && !*drawOutside {
 		drawAntiPolygonAround(screen, r.visiblePolygonCenter, r.visiblePolygon, r.whiteImage, color.Gray{0}, geoM, texM, &ebiten.DrawTrianglesOptions{})
 		return
 	}

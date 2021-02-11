@@ -36,6 +36,9 @@ func makeVertex(geoM, texM *ebiten.GeoM, p m.Pos, r, g, b, a float32) ebiten.Ver
 	}
 }
 
+// drawAntiPolygonAround draws all pixels except for the ones covered by the polygon.
+// The polygon must have the property that any line from center to a point on an edge is entirely within the polygon.
+// This property is retained during Minkowski expansion.
 func drawPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, src *ebiten.Image, color color.Color, geoM, texM ebiten.GeoM, options *ebiten.DrawTrianglesOptions) {
 	rI, gI, bI, aI := color.RGBA()
 	r, g, b, a := float32(rI)/65535.0, float32(gI)/65535.0, float32(bI)/65535.0, float32(aI)/65535.0
@@ -55,6 +58,9 @@ func drawPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, src *e
 	dst.DrawTriangles(eVerts, eIndices, src, options)
 }
 
+// drawAntiPolygonAround draws all pixels except for the ones covered by the polygon.
+// The polygon must go exactly clockwise or counterclockwise from center.
+// Minkowski expanded polygons do NOT fulfill this right now, as they can contain self intersections! TODO fix this?
 func drawAntiPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, src *ebiten.Image, color color.Color, geoM, texM ebiten.GeoM, options *ebiten.DrawTrianglesOptions) {
 	rI, gI, bI, aI := color.RGBA()
 	r, g, b, a := float32(rI)/65535.0, float32(gI)/65535.0, float32(bI)/65535.0, float32(aI)/65535.0
@@ -105,9 +111,9 @@ func drawAntiPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, sr
 	dst.DrawTriangles(eVerts, eIndices, src, options)
 }
 
-func expandPolygon(center m.Pos, polygon []m.Pos, shift int) {
-	orig := append([]m.Pos{}, polygon...)
-	for i, v1 := range orig {
+func expandSimple(center m.Pos, polygon []m.Pos, shift int) []m.Pos {
+	out := make([]m.Pos, len(polygon))
+	for i, v1 := range polygon {
 		// Rather approximate polygon expanding: just push each vertex shift away from the center.
 		// Unlike correct polygon expansion perpendicular to sides,
 		// this way ensures that we never include more than distance shift from the polugon.
@@ -118,6 +124,99 @@ func expandPolygon(center m.Pos, polygon []m.Pos, shift int) {
 			continue
 		}
 		f := float64(shift) / l
-		polygon[i] = v1.Add(d.MulFloat(f))
+		out[i] = v1.Add(d.MulFloat(f))
 	}
+	return out
+}
+
+// intersection returns the intersection of the lines a..b and c..d.
+func intersection(a, b, c, d m.Pos) m.Pos {
+	dab := b.Delta(a)
+	dcd := d.Delta(c)
+	den := dab.DX*dcd.DY - dab.DY*dcd.DX
+	if den == 0 {
+		// Parallel. Return any common point. In our concrete scenario the midpoint of BC is best.
+		return b.Add(c.Delta(m.Pos{})).Div(2)
+	}
+	cdxy := c.X*d.Y - c.Y*d.X
+	abxy := a.X*b.Y - a.Y*b.X
+	nx := dab.DX*cdxy - dcd.DX*abxy
+	ny := dab.DY*cdxy - dcd.DY*abxy
+	return m.Pos{
+		X: (2*nx + den) / (2 * den),
+		Y: (2*ny + den) / (2 * den),
+	}
+}
+
+func collinear(a, b, c m.Pos) bool {
+	return (b.X-a.X)*(c.Y-b.Y)-(b.Y-a.Y)*(c.X-b.X) == 0
+}
+
+// expandMinkowski expands a given polygon to its Minkowski sum with a box from -boxSize,-boxSize to boxSize,boxSize.
+func expandMinkowski(polygon []m.Pos, boxSize int) []m.Pos {
+	// First simplify the polygon. We can't have any duplicate or collinear vertices.
+	// Sadly we need to remove dupes first and collinearities second,
+	// or a dupe at a corner causes us to lose an entire vertex.
+	simplified := make([]m.Pos, 0, len(polygon))
+	for i, a := range polygon {
+		b := polygon[m.Mod(i+1, len(polygon))]
+		if a != b {
+			simplified = append(simplified, b)
+		}
+	}
+	polygon = make([]m.Pos, 0, len(simplified))
+	for i, b := range simplified {
+		a := simplified[m.Mod(i-1, len(simplified))]
+		c := simplified[m.Mod(i+1, len(simplified))]
+		if !collinear(a, b, c) {
+			polygon = append(polygon, b)
+		}
+	}
+	// Iterate over all edges.
+	edgeCorner := make([]m.Delta, len(polygon))
+	for i, a := range polygon {
+		b := polygon[m.Mod(i+1, len(polygon))]
+		dab := b.Delta(a)
+		nab := m.Left().Apply(dab)
+		corner := m.Delta{DX: boxSize, DY: boxSize}
+		if nab.DX < 0 {
+			corner.DX = -corner.DX
+		}
+		if nab.DY < 0 {
+			corner.DY = -corner.DY
+		}
+		edgeCorner[i] = corner
+	}
+	// Iterate over all edge pairs.
+	out := make([]m.Pos, 0, len(polygon)*2)
+	for i, b := range polygon {
+		a := polygon[m.Mod(i-1, len(polygon))]
+		c := polygon[m.Mod(i+1, len(polygon))]
+		cab := edgeCorner[m.Mod(i-1, len(polygon))]
+		cbc := edgeCorner[i]
+		dab := b.Delta(a)
+		dbc := c.Delta(b)
+		nab := m.Left().Apply(dab)
+		isConcave := nab.Dot(dbc) > 0
+		if isConcave {
+			// The "concave" case. None of the corners remains.
+			out = append(out, intersection(
+				a.Add(cab), b.Add(cab),
+				b.Add(cbc), c.Add(cbc),
+			))
+		} else {
+			// The "convex" case. Add all corners on the path. Often just one.
+			corners := make([]m.Delta, 0, 4)
+			corner := cab
+			for corner != cbc {
+				corners = append(corners, corner)
+				corner = m.Right().Apply(corner)
+			}
+			corners = append(corners, corner)
+			for _, corner := range corners {
+				out = append(out, b.Add(corner))
+			}
+		}
+	}
+	return out
 }
