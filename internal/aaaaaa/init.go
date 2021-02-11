@@ -36,10 +36,16 @@ func LoadConfig() (*flag.Config, error) {
 }
 
 func InitEbiten() {
+	// TODO when adding a menu, actually show these credits.
+	credits, err := vfs.ReadDir("credits")
+	if err != nil {
+		log.Panicf("Could not list credits: %v", err)
+	}
+	log.Printf("Credits files: %v", credits)
+
 	ebiten.SetCursorMode(ebiten.CursorModeHidden)
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetInitFocused(true)
-	ebiten.SetMaxTPS(engine.GameTPS)
 	ebiten.SetRunnableOnUnfocused(false)
 	ebiten.SetScreenClearedEveryFrame(false)
 	ebiten.SetScreenTransparent(false)
@@ -50,12 +56,18 @@ func InitEbiten() {
 	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowSize(engine.GameWidth, engine.GameHeight)
 	ebiten.SetWindowTitle("AAAAAA")
+
+	initDumping()
+	if dumping() || *externalCapture {
+		ebiten.SetMaxTPS(ebiten.UncappedTPS)
+	} else {
+		ebiten.SetMaxTPS(engine.GameTPS)
+	}
+
 	audio.NewContext(48000)
 	noise.Init()
-	// TODO when adding a menu, actually show these credits.
-	credits, err := vfs.ReadDir("credits")
-	if err != nil {
-		log.Panicf("Could not list credits: %v", err)
-	}
-	log.Printf("Credits files: %v", credits)
+}
+
+func BeforeExit() {
+	finishDumping()
 }

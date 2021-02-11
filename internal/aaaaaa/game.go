@@ -15,15 +15,10 @@
 package aaaaaa
 
 import (
-	"fmt"
-	"time"
-
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/audiowrap"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/flag"
-	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/menu"
 	"github.com/divVerent/aaaaaa/internal/music"
@@ -32,10 +27,7 @@ import (
 )
 
 var (
-	dumpVideo       = flag.String("dump_video", "", "filename prefix to dump game frames to")
 	externalCapture = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
-	loadGame        = flag.String("load_game", "", "filename to load game state from")
-	saveGame        = flag.String("save_game", "", "filename to save game state to")
 )
 
 type Game struct {
@@ -77,8 +69,6 @@ func (g *Game) Update() error {
 	return nil
 }
 
-var frameIndex = 0
-
 func (g *Game) Draw(screen *ebiten.Image) {
 	defer timing.Group()()
 	timing.Section("draw")
@@ -87,19 +77,11 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	timing.Section("world")
 	g.Menu.DrawWorld(screen)
 
-	if *dumpVideo != "" || *externalCapture {
-		ebiten.SetMaxTPS(ebiten.UncappedTPS)
-	}
-
 	timing.Section("menu")
 	g.Menu.Draw(screen)
 
 	timing.Section("dump")
-	if *dumpVideo != "" {
-		image.Save(screen, fmt.Sprintf("%s_%08d.png", *dumpVideo, frameIndex))
-	}
-	frameIndex++
-	audiowrap.Update(time.Duration(frameIndex) * time.Second / engine.GameTPS)
+	dumpFrame(screen)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {

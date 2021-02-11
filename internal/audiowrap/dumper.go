@@ -19,16 +19,9 @@ import (
 	"encoding/binary"
 	"io"
 	"log"
-	"os"
 	"time"
 
 	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
-
-	"github.com/divVerent/aaaaaa/internal/flag"
-)
-
-var (
-	dumpAudio = flag.String("dump_audio", "", "filename to dump audio to")
 )
 
 type dumper struct {
@@ -39,30 +32,26 @@ type dumper struct {
 }
 
 var (
-	dumpFile      io.WriteCloser
+	dumping       bool
 	currentSounds []*dumper
 	sampleIndex   int
 )
 
-func Update(toTime time.Duration) {
-	if *dumpAudio == "" {
-		return
-	}
-	if dumpFile == nil {
-		var err error
-		dumpFile, err = os.Create(*dumpAudio)
-		if err != nil {
-			log.Printf("cannot create audio dump file: %v", err)
-			*dumpAudio = ""
-		}
+func InitDumping() {
+	dumping = true
+}
+
+func DumpFrame(dumpFile io.Writer, toTime time.Duration) {
+	if !dumping {
+		log.Panic("DumpFrame called when not dumping")
 	}
 	toSample := int(toTime * time.Duration(ebiaudio.CurrentContext().SampleRate()) / time.Second)
 	samples := toSample - sampleIndex
 	sampleIndex = toSample
-	dumpSamples(samples)
+	dumpSamples(dumpFile, samples)
 }
 
-func dumpSamples(samples int) {
+func dumpSamples(dumpFile io.Writer, samples int) {
 	buf := make([]int16, 2*samples)
 	for _, dmp := range currentSounds {
 		dmp.addTo(buf)
@@ -70,14 +59,12 @@ func dumpSamples(samples int) {
 	err := binary.Write(dumpFile, binary.LittleEndian, buf)
 	if err != nil {
 		log.Printf("cannot dump audio frame: %v", err)
-		dumpFile.Close()
-		dumpFile = nil
-		*dumpAudio = ""
+		dumping = false
 	}
 }
 
 func newDumper(src io.Reader) *dumper {
-	if *dumpAudio == "" {
+	if !dumping {
 		return nil
 	}
 	dmp := &dumper{
@@ -90,7 +77,7 @@ func newDumper(src io.Reader) *dumper {
 }
 
 func newDumperWithTee(src io.Reader) (*dumper, io.Reader) {
-	if *dumpAudio == "" {
+	if !dumping {
 		return nil, src
 	}
 	// Yes, this will skip all music.

@@ -41,7 +41,9 @@ func main() {
 	}
 	aaaaaa.InitEbiten()
 	game := &aaaaaa.Game{}
-	if err := ebiten.RunGame(game); err != nil {
+	err := ebiten.RunGame(game)
+	aaaaaa.BeforeExit()
+	if err != nil {
 		log.Print(err)
 	}
 }
