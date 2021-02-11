@@ -91,15 +91,15 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)
 	}
 
+	timing.Section("menu")
+	g.Menu.Draw(screen)
+
 	timing.Section("dump")
 	if *dumpVideo != "" {
 		image.Save(screen, fmt.Sprintf("%s_%08d.png", *dumpVideo, frameIndex))
 	}
 	frameIndex++
 	audiowrap.Update(time.Duration(frameIndex) * time.Second / engine.GameTPS)
-
-	timing.Section("menu")
-	g.Menu.Draw(screen)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
