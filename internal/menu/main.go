@@ -67,8 +67,7 @@ func (s *MainScreen) Update() error {
 			// return s.Menu.ActivateSound(s.Menu.ResetGame())
 			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
 		case Credits:
-			// TODO
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&CreditsScreen{}))
 		case Quit:
 			return s.Menu.ActivateSound(s.Menu.QuitGame())
 		}
