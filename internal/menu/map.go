@@ -37,6 +37,11 @@ type MapScreen struct {
 	whiteImage       *ebiten.Image
 }
 
+// TODO: parametrize.
+const (
+	firstCP = "leap_of_faith"
+)
+
 func (s *MapScreen) Init(m *Menu) error {
 	s.Menu = m
 	s.CurrentCP = s.Menu.World.Level.Player.PersistentState["last_checkpoint"]
@@ -83,9 +88,17 @@ func (s *MapScreen) moveBy(d m.Delta) {
 	s.Menu.MoveSound(nil)
 }
 
+func (s *MapScreen) exit() error {
+	if s.CurrentCP != firstCP && s.Menu.World.Level.Player.PersistentState["checkpoint_seen."+firstCP] != "" {
+		s.CurrentCP = firstCP
+		return s.Menu.MoveSound(nil)
+	}
+	return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+}
+
 func (s *MapScreen) Update() error {
 	if input.Exit.JustHit {
-		return s.Menu.SwitchToScreen(&MainScreen{})
+		return s.exit()
 	}
 	if input.Left.JustHit {
 		s.moveBy(m.West())
