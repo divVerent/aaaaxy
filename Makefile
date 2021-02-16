@@ -5,7 +5,6 @@ SUFFIX = -$(shell go env GOOS)-$(shell go env GOARCH)$(EXE)
 # Internal variables.
 PACKAGE = github.com/divVerent/aaaaaa/cmd/aaaaaa
 DUMPCPS = github.com/divVerent/aaaaaa/cmd/dumpcps
-ASSETS = internal/assets
 DEBUG = aaaaaa-debug$(SUFFIX)
 DEBUG_GOFLAGS =
 RELEASE = aaaaaa$(SUFFIX)
@@ -13,6 +12,8 @@ RELEASE_GOFLAGS = -ldflags="-s -w" -gcflags="-B -dwarf=false"
 UPXFLAGS = -9
 SOURCES = $(shell find . -name \*.go)
 GENERATED_ASSETS = assets/maps/level.cp.json
+STATIK_ASSETS_ROOT = internal/assets
+STATIK_ASSETS = $(STATIK_ASSETS_ROOT)/statik/statik.go
 
 .PHONY: default
 default: debug
@@ -28,20 +29,20 @@ release: $(RELEASE)
 
 .PHONY: clean
 clean:
-	$(RM) -r $(DEBUG) $(RELEASE) $(ASSETS) $(GENERATED_ASSETS)
+	$(RM) -r $(DEBUG) $(RELEASE) $(STATIK_ASSETS) $(GENERATED_ASSETS)
 
 .PHONY: vet
 vet:
 	go vet `find ./cmd ./internal -name \*.go -print | sed -e 's,/[^/]*$$,,' | sort -u`
 
-.PHONY: $(ASSETS)
-$(ASSETS): $(GENERATED_ASSETS)
-	GOOS= GOARCH= ./statik-vfs.sh $(ASSETS)
+.PHONY: $(STATIK_ASSETS)
+$(STATIK_ASSETS): $(GENERATED_ASSETS)
+	GOOS= GOARCH= ./statik-vfs.sh $(STATIK_ASSETS_ROOT)
 
 $(DEBUG): $(GENERATED_ASSETS) $(SOURCES)
 	go build -o $(DEBUG) $(DEBUG_GOFLAGS) $(PACKAGE)
 
-$(RELEASE): $(ASSETS) $(SOURCES)
+$(RELEASE): $(STATIK_ASSETS) $(SOURCES)
 	go build -tags statik -o $(RELEASE) $(RELEASE_GOFLAGS) $(PACKAGE)
 
 %.cp.json: %.cp.dot
