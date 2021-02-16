@@ -15,6 +15,7 @@
 package engine
 
 import (
+	"bytes"
 	"fmt"
 	"image/color"
 	"io/ioutil"
@@ -70,7 +71,7 @@ func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale float64
 	}
 }
 
-func loadShader(name string) (*ebiten.Shader, error) {
+func loadShader(name string, params map[string]string) (*ebiten.Shader, error) {
 	shaderReader, err := vfs.Load("shaders", name)
 	if err != nil {
 		return nil, fmt.Errorf("could not open shader %q: %v", name, err)
@@ -80,6 +81,11 @@ func loadShader(name string) (*ebiten.Shader, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not read shader %q: %v", name, err)
 	}
+	// Add some basic templating so we can remove branches from the shaders.
+	// Not using text/template so that shader files can still be processed by gofmt.
+	for name, value := range params {
+		shaderCode = bytes.ReplaceAll(shaderCode, []byte("PARAM_"+name), []byte(value))
+	}
 	shader, err := ebiten.NewShader(shaderCode)
 	if err != nil {
 		return nil, fmt.Errorf("could not compile shader %q: %v", name, err)
@@ -88,7 +94,7 @@ func loadShader(name string) (*ebiten.Shader, error) {
 }
 
 var (
-	blurShader *ebiten.Shader
+	blurShaders = map[int]*ebiten.Shader{}
 )
 
 func BlurExpandImage(img, tmp, out *ebiten.Image, blurSize, expandSize int, scale float64) {
@@ -118,19 +124,25 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 		blurImageFixedFunction(img, tmp, out, size, scale)
 		return
 	}
+	blurShader := blurShaders[size]
 	if blurShader == nil {
 		var err error
-		blurShader, err = loadShader("blur.kage")
+		// Too bad we can't have integer uniforms, so we need to templatize this
+		// shader instead. Should be faster than having conditionals inside the
+		// shader code.
+		blurShader, err = loadShader("blur.kage", map[string]string{
+			"Size": fmt.Sprint(size),
+		})
 		if err != nil {
 			log.Panicf("could not load blur shader: %v", err)
 		}
+		blurShaders[size] = blurShader
 	}
 	w, h := img.Size()
 	scaleX := 1 / (2*float64(size) + 1)
 	tmp.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{
-			"Size":  float32(size),
 			"Step":  []float32{1 / float32(w), 0},
 			"Scale": float32(scaleX),
 		},

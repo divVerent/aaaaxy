@@ -90,7 +90,7 @@ func (r *renderer) Init(w *World) {
 
 	if *debugUseShaders {
 		var err error
-		r.visibilityMaskShader, err = loadShader("visibility_mask.kage")
+		r.visibilityMaskShader, err = loadShader("visibility_mask.kage", nil)
 		if err != nil {
 			log.Printf("could not load visibility mask shader: %v", err)
 		}
