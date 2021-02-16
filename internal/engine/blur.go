@@ -120,7 +120,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 	}
 	if blurShader == nil {
 		var err error
-		blurShader, err = loadShader("blur.go")
+		blurShader, err = loadShader("blur.kage")
 		if err != nil {
 			log.Panicf("could not load blur shader: %v", err)
 		}
