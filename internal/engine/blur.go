@@ -84,7 +84,7 @@ func loadShader(name string, params map[string]string) (*ebiten.Shader, error) {
 	// Add some basic templating so we can remove branches from the shaders.
 	// Not using text/template so that shader files can still be processed by gofmt.
 	for name, value := range params {
-		shaderCode = bytes.ReplaceAll(shaderCode, []byte("PARAM_"+name), []byte(value))
+		shaderCode = bytes.ReplaceAll(shaderCode, []byte("PARAMS[\""+name+"\"]"), []byte("(("+value+"))"))
 	}
 	shader, err := ebiten.NewShader(shaderCode)
 	if err != nil {

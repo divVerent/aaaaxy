@@ -15,7 +15,6 @@
 // A simple shader to perform blurs.
 package main
 
-// PARAM_Size
 var Step vec2
 var Scale float
 
@@ -24,7 +23,7 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcMax := srcOrigin + srcSize
 	acc := imageSrc0UnsafeAt(texCoord)
 	srcStep := Step * srcSize
-	for y := 1.0; y <= PARAM_Size; y++ {
+	for y := 1.0; y <= PARAMS["Size"]; y++ {
 		d := y * srcStep
 		acc += imageSrc0UnsafeAt(clamp(texCoord-d, srcOrigin, srcMax))
 		acc += imageSrc0UnsafeAt(clamp(texCoord+d, srcOrigin, srcMax))
