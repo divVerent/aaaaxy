@@ -63,7 +63,7 @@ func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, centerX bool, fg, b
 			// Draw the outline.
 			for dx := -1; dx <= +1; dx++ {
 				for dy := -1; dy <= +1; dy++ {
-					if dx == 0 && dx == 0 {
+					if dx == 0 && dy == 0 {
 						continue
 					}
 					text.Draw(dst, line, f.Face, x+dx, y+dy, bg)

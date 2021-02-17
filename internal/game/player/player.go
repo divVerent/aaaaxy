@@ -303,16 +303,16 @@ func (p *Player) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 // EyePos returns the position the player eye is at.
 func (p *Player) EyePos() m.Pos {
 	return m.Pos{
-		p.Entity.Rect.Origin.X + PlayerEyeDX,
-		p.Entity.Rect.Origin.Y + PlayerEyeDY,
+		X: p.Entity.Rect.Origin.X + PlayerEyeDX,
+		Y: p.Entity.Rect.Origin.Y + PlayerEyeDY,
 	}
 }
 
 // LookPos returns the position the player is focusing at.
 func (p *Player) LookPos() m.Pos {
 	focus := m.Pos{
-		p.Entity.Rect.Origin.X + PlayerEyeDX,
-		p.LastGroundPos.Y + PlayerEyeDY,
+		X: p.Entity.Rect.Origin.X + PlayerEyeDX,
+		Y: p.LastGroundPos.Y + PlayerEyeDY,
 	}
 	if p.LookUp {
 		focus.Y -= LookDistance

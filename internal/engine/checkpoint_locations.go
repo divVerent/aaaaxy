@@ -84,7 +84,7 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 		}
 		pos, err := o.MapPos()
 		if err != nil {
-			return nil, fmt.Errorf("could not parse checkpoint location %q for %q in %q: %v", o.Pos, o.Name, filename)
+			return nil, fmt.Errorf("could not parse checkpoint location %q for %q in %q: %v", o.Pos, o.Name, filename, err)
 		}
 		if len(loc.Locs) == 0 || pos.X < minPos.X {
 			minPos.X = pos.X

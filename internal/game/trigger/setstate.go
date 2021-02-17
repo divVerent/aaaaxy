@@ -57,7 +57,7 @@ func setState(w *engine.World, target string, state bool) {
 			continue
 		}
 		if !mixins.SetStateOf(ent, state) {
-			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", target)
+			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
 		}
 	}
 }

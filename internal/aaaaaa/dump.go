@@ -78,7 +78,7 @@ func dumpFrame(screen *ebiten.Image) {
 	if dumpVideoFile != nil {
 		err := pngEncoder.Encode(dumpVideoFile, screen)
 		if err != nil {
-			log.Print("Failed to encode video - expect corruption: %v", err)
+			log.Printf("Failed to encode video - expect corruption: %v", err)
 			dumpVideoFile.Close()
 			dumpVideoFile = nil
 		}
@@ -95,14 +95,14 @@ func finishDumping() {
 	if dumpAudioFile != nil {
 		err := dumpAudioFile.Close()
 		if err != nil {
-			log.Print("Failed to close audio - expect corruption: %v", err)
+			log.Printf("Failed to close audio - expect corruption: %v", err)
 		}
 		dumpAudioFile = nil
 	}
 	if dumpVideoFile != nil {
 		err := dumpVideoFile.Close()
 		if err != nil {
-			log.Print("Failed to close video - expect corruption: %v", err)
+			log.Printf("Failed to close video - expect corruption: %v", err)
 		}
 		dumpVideoFile = nil
 	}
