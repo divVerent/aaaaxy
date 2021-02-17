@@ -44,9 +44,8 @@ func init() {
 	log.Printf("Local asset search path: %v", localAssetDirs)
 }
 
-// Load loads a file from the VFS based on the given file purpose and "name".
-func Load(purpose string, name string) (ReadSeekCloser, error) {
-	vfsPath := path.Join("/", purpose, Canonical(name))
+// load loads a file from the VFS.
+func load(vfsPath string) (ReadSeekCloser, error) {
 	// Note: this must be consistent with statik-vfs.sh.
 	var err error
 	for _, dir := range localAssetDirs {
@@ -60,9 +59,8 @@ func Load(purpose string, name string) (ReadSeekCloser, error) {
 	return nil, fmt.Errorf("could not open local:%v: %w", vfsPath, err)
 }
 
-// Lists all files in a directory. Returns their VFS paths!
-func ReadDir(name string) ([]string, error) {
-	vfsPath := path.Join("/", name)
+// readDir lists all files in a directory. Returns their VFS paths!
+func readDir(vfsPath string) ([]string, error) {
 	var results []string
 	for _, dir := range localAssetDirs {
 		content, err := ioutil.ReadDir(path.Join(dir, vfsPath))

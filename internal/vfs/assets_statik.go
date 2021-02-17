@@ -42,9 +42,8 @@ func init() {
 	}
 }
 
-// Load loads a file from the VFS based on the given file purpose and "name".
-func Load(purpose string, name string) (ReadSeekCloser, error) {
-	vfsPath := path.Join("/", purpose, Canonical(name))
+// load loads a file from the VFS.
+func load(vfsPath string) (ReadSeekCloser, error) {
 	r, err := myfs.Open(vfsPath)
 	if err != nil {
 		return nil, fmt.Errorf("could not open statik:%v: %w", vfsPath, err)
@@ -52,9 +51,8 @@ func Load(purpose string, name string) (ReadSeekCloser, error) {
 	return r, nil
 }
 
-// Lists all files in a directory. Returns their VFS paths!
-func ReadDir(name string) ([]string, error) {
-	vfsPath := path.Join("/", name)
+// readDir lists all files in a directory. Returns their VFS paths!
+func readDir(vfsPath string) ([]string, error) {
 	var results []string
 	dir, err := myfs.Open(vfsPath)
 	if err != nil {

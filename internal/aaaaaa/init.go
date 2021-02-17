@@ -22,7 +22,9 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/noise"
+	"github.com/divVerent/aaaaaa/internal/sound"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
@@ -36,6 +38,11 @@ func LoadConfig() (*flag.Config, error) {
 }
 
 func InitEbiten() {
+	audio.NewContext(48000)
+	image.Precache()
+	sound.Precache()
+	noise.Init()
+
 	// TODO when adding a menu, actually show these credits.
 	credits, err := vfs.ReadDir("credits")
 	if err != nil {
@@ -63,9 +70,6 @@ func InitEbiten() {
 	} else {
 		ebiten.SetMaxTPS(engine.GameTPS)
 	}
-
-	audio.NewContext(48000)
-	noise.Init()
 }
 
 func BeforeExit() {

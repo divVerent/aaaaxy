@@ -17,6 +17,8 @@ package sound
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
@@ -27,7 +29,8 @@ import (
 )
 
 var (
-	soundVolume = flag.Float64("sound_volume", 0.05, "sound volume (0..1)")
+	precacheSounds = flag.Bool("precache_sounds", true, "preload all sounds at startup (VERY recommended)")
+	soundVolume    = flag.Float64("sound_volume", 0.05, "sound volume (0..1)")
 )
 
 // Sound represents a sound effect.
@@ -37,7 +40,10 @@ type Sound struct {
 }
 
 // Sounds are preloaded as byte streams.
-var cache = map[string]*Sound{}
+var (
+	cache       = map[string]*Sound{}
+	cacheFrozen bool
+)
 
 // Load loads a sound effect.
 // Multiple Load calls to the same sound effect return the same cached instance.
@@ -45,6 +51,9 @@ func Load(name string) (*Sound, error) {
 	name = vfs.Canonical(name)
 	if sound, found := cache[name]; found {
 		return sound, nil
+	}
+	if cacheFrozen {
+		return nil, fmt.Errorf("sound %v was not precached", name)
 	}
 	data, err := vfs.Load("sounds", name)
 	if err != nil {
@@ -69,4 +78,24 @@ func (s *Sound) Play() {
 	player := audiowrap.NewPlayerFromBytes(s.sound)
 	player.SetVolume(*soundVolume)
 	player.Play()
+}
+
+func Precache() {
+	if !*precacheSounds {
+		return
+	}
+	names, err := vfs.ReadDir("sounds")
+	if err != nil {
+		log.Panicf("could not enumerate sounds: %v", err)
+	}
+	for _, name := range names {
+		if !strings.HasSuffix(name, ".ogg") {
+			continue
+		}
+		_, err := Load(name)
+		if err != nil {
+			log.Panicf("could not precache %v: %v", name, err)
+		}
+	}
+	cacheFrozen = true
 }

@@ -18,10 +18,17 @@ import (
 	"fmt"
 	"image"
 	_ "image/png"
+	"log"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/vfs"
+)
+
+var (
+	precacheImages = flag.Bool("precache_images", true, "preload all images at startup (VERY recommended)")
 )
 
 type imagePath = struct {
@@ -29,13 +36,19 @@ type imagePath = struct {
 	Name    string
 }
 
-var cache = map[imagePath]*ebiten.Image{}
+var (
+	cache       = map[imagePath]*ebiten.Image{}
+	cacheFrozen bool
+)
 
 func Load(purpose, name string) (*ebiten.Image, error) {
 	name = vfs.Canonical(name)
 	ip := imagePath{purpose, name}
 	if img, found := cache[ip]; found {
 		return img, nil
+	}
+	if cacheFrozen {
+		return nil, fmt.Errorf("image %v was not precached", ip)
 	}
 	data, err := vfs.Load(purpose, name)
 	if err != nil {
@@ -49,4 +62,26 @@ func Load(purpose, name string) (*ebiten.Image, error) {
 	eImg := ebiten.NewImageFromImage(img)
 	cache[ip] = eImg
 	return eImg, nil
+}
+
+func Precache() {
+	if !*precacheImages {
+		return
+	}
+	for _, purpose := range []string{"tiles", "sprites"} {
+		names, err := vfs.ReadDir(purpose)
+		if err != nil {
+			log.Panicf("could not enumerate files in %v: %v", purpose, err)
+		}
+		for _, name := range names {
+			if !strings.HasSuffix(name, ".png") {
+				continue
+			}
+			_, err := Load(purpose, name)
+			if err != nil {
+				log.Panicf("could not precache %v in %v: %v", name, purpose, err)
+			}
+		}
+	}
+	cacheFrozen = true
 }

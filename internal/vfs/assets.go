@@ -16,6 +16,7 @@ package vfs
 
 import (
 	"io"
+	"log"
 	"path"
 )
 
@@ -33,4 +34,17 @@ func Canonical(name string) string {
 		return name
 	}
 	return path.Base(name)
+}
+
+func Load(purpose string, name string) (ReadSeekCloser, error) {
+	vfsPath := path.Join("/", purpose, Canonical(name))
+	log.Printf("loading %v", vfsPath)
+	return load(vfsPath)
+}
+
+// ReadDir lists all files in a directory. Returns their VFS paths!
+func ReadDir(name string) ([]string, error) {
+	vfsPath := path.Join("/", Canonical(name))
+	log.Printf("listing %v", vfsPath)
+	return readDir(vfsPath)
 }
