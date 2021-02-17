@@ -80,6 +80,8 @@ addrelease: $(RELEASE)
 .PHONY: allrelease
 allrelease: allreleaseclean
 	$(RM) $(ZIPFILE)
+	$(MAKE) addextras
+	$(MAKE) addlicenses
 	GOOS=linux GOARCH=amd64 $(MAKE) addrelease
 	# Disabled due to Windows Defender FP:
 	# GOOS=windows GOARCH=386 $(MAKE) release
