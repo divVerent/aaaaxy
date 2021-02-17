@@ -16,6 +16,7 @@ package mixins
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/level"
 )
 
 // Settable implements the SetState handler for settable entities.
@@ -29,7 +30,7 @@ func (s *Settable) SetState(state bool) {
 }
 
 // Init initializes the initial state of the entity.
-func (s *Settable) Init(sp *engine.Spawnable) error {
+func (s *Settable) Init(sp *level.Spawnable) error {
 	s.State = sp.Properties["initial_state"] != "false" // Default true.
 	return nil
 }

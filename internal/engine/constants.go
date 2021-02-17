@@ -15,6 +15,7 @@
 package engine
 
 import (
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -26,8 +27,6 @@ const (
 	// GameTPS is the game ticks per second.
 	GameTPS = 60
 
-	// TileSize is the size of each tile graphics.
-	TileSize = 16
 	// sweepStep is the distance between visibility traces in pixels. Lower means worse performance.
 	sweepStep = 4
 	// numSweepTraces is the number of sweep operations we need.
@@ -38,7 +37,7 @@ const (
 	blurSize = 6
 	// expandTiles is the number of tiles beyond tiles hit by a trace that may need to be displayed.
 	// As map design may need to take this into account, try to keep it at 1.
-	expandTiles = (expandSize + blurSize + sweepStep + TileSize - 1) / TileSize
+	expandTiles = (expandSize + blurSize + sweepStep + level.TileSize - 1) / level.TileSize
 
 	// MinEntitySize is the smallest allowed entity size.
 	MinEntitySize = 8
@@ -51,7 +50,7 @@ const (
 	// How much to scroll towards focus point each frame.
 	scrollPerFrame = 0.05
 	// Minimum distance from screen edge when scrolling.
-	scrollMinDistance = 2 * TileSize
+	scrollMinDistance = 2 * level.TileSize
 
 	// MinZIndex is the minimal Z index of an entity.
 	MinZIndex = 0
@@ -67,9 +66,9 @@ const (
 	borderWindowHeight = GameHeight
 
 	// tileWindowWidth is the maximum known width in tiles.
-	tileWindowWidth = (GameWidth+2*borderWindowWidth+TileSize-2)/TileSize + 1
+	tileWindowWidth = (GameWidth+2*borderWindowWidth+level.TileSize-2)/level.TileSize + 1
 	// tileWindowHeight is the maximum known width in tiles.
-	tileWindowHeight = (GameHeight+2*borderWindowHeight+TileSize-2)/TileSize + 1
+	tileWindowHeight = (GameHeight+2*borderWindowHeight+level.TileSize-2)/level.TileSize + 1
 )
 
 //expandStep is a single expansion step.

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package engine
+package level
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
@@ -30,7 +30,7 @@ type Tile struct {
 	// Info needed for loading more tiles.
 	LevelPos       m.Pos
 	Transform      m.Orientation
-	visibilityMark uint
+	VisibilityMark uint
 
 	// Info needed for rendering.
 	Orientation m.Orientation

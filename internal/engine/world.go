@@ -25,6 +25,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/timing"
@@ -42,13 +43,13 @@ type World struct {
 	renderer renderer
 
 	// tiles are all tiles currently loaded.
-	tiles []*Tile
+	tiles []*level.Tile
 	// Entities are all entities currently loaded.
 	Entities map[EntityIncarnation]*Entity
 	// PlayerIncarnation is the incarnation ID of the player entity.
 	Player *Entity
 	// Level is the current tilemap (universal covering with warpZones).
-	Level *Level
+	Level *level.Level
 	// Frame since last spawn. Used to let the world slowly "fade in".
 	FramesSinceSpawn int
 	// WarpZoneStates is the set of current overrides of warpzone state.
@@ -95,11 +96,11 @@ func (w *World) tilePos(i int) m.Pos {
 	}
 }
 
-func (w *World) Tile(pos m.Pos) *Tile {
+func (w *World) Tile(pos m.Pos) *level.Tile {
 	return w.tiles[w.tileIndex(pos)]
 }
 
-func (w *World) setTile(pos m.Pos, t *Tile) {
+func (w *World) setTile(pos m.Pos, t *level.Tile) {
 	w.tiles[w.tileIndex(pos)] = t
 }
 
@@ -107,7 +108,7 @@ func (w *World) clearTile(pos m.Pos) {
 	w.tiles[w.tileIndex(pos)] = nil
 }
 
-func (w *World) forEachTile(f func(pos m.Pos, t *Tile)) {
+func (w *World) forEachTile(f func(pos m.Pos, t *level.Tile)) {
 	for i, t := range w.tiles {
 		if t == nil {
 			continue
@@ -120,7 +121,7 @@ func (w *World) forEachTile(f func(pos m.Pos, t *Tile)) {
 // Can be called more than once to reset _everything_.
 func (w *World) Init() error {
 	// Load map.
-	level, err := LoadLevel("level")
+	lvl, err := level.Load("level")
 	if err != nil {
 		log.Panicf("Could not load level: %v", err)
 	}
@@ -134,20 +135,20 @@ func (w *World) Init() error {
 	}
 
 	*w = World{
-		tiles:    make([]*Tile, tileWindowWidth*tileWindowHeight),
+		tiles:    make([]*level.Tile, tileWindowWidth*tileWindowHeight),
 		Entities: map[EntityIncarnation]*Entity{},
-		Level:    level,
+		Level:    lvl,
 	}
 	w.renderer.Init(w)
 
 	// Load tile the player starts on.
-	w.setScrollPos(w.Level.Player.LevelPos.Mul(TileSize)) // Needed so we can set the tile.
+	w.setScrollPos(w.Level.Player.LevelPos.Mul(level.TileSize)) // Needed so we can set the tile.
 	tile := w.Level.Tile(w.Level.Player.LevelPos).Tile
 	tile.Transform = m.Identity()
 	w.setTile(w.Level.Player.LevelPos, &tile)
 
 	// Create player entity.
-	w.Player, err = w.Level.Player.Spawn(w, w.Level.Player.LevelPos, &tile)
+	w.Player, err = w.Spawn(w.Level.Player, w.Level.Player.LevelPos, &tile)
 	if err != nil {
 		log.Panicf("Could not spawn player: %v", err)
 	}
@@ -168,7 +169,7 @@ func (w *World) Load() error {
 		}
 		return err
 	}
-	save := SaveGame{}
+	save := level.SaveGame{}
 	err = json.Unmarshal(state, &save)
 	if err != nil {
 		return err
@@ -237,7 +238,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 
 	// Build a new world around the CP tile and the player.
 	w.visibilityMark = 0
-	tile.visibilityMark = w.visibilityMark
+	tile.VisibilityMark = w.visibilityMark
 	for _, ent := range w.Entities {
 		if ent == w.Player {
 			continue
@@ -247,12 +248,12 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	w.Entities = map[EntityIncarnation]*Entity{
 		w.Player.Incarnation: w.Player,
 	}
-	w.tiles = make([]*Tile, tileWindowWidth*tileWindowHeight)
-	w.setScrollPos(cpSp.LevelPos.Mul(TileSize)) // Scroll the tile into view.
+	w.tiles = make([]*level.Tile, tileWindowWidth*tileWindowHeight)
+	w.setScrollPos(cpSp.LevelPos.Mul(level.TileSize)) // Scroll the tile into view.
 	w.setTile(cpSp.LevelPos, &tile)
 
 	// Spawn the CP.
-	cp, err := cpSp.Spawn(w, cpSp.LevelPos, &tile)
+	cp, err := w.Spawn(cpSp, cpSp.LevelPos, &tile)
 	if err != nil {
 		log.Panicf("Could not spawn checkpoint: %v", err)
 	}
@@ -306,7 +307,7 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 		ForEnt:    w.Player,
 	})
 	for _, tilePos := range result.Path {
-		w.Tile(tilePos).visibilityMark = w.visibilityMark
+		w.Tile(tilePos).VisibilityMark = w.visibilityMark
 	}
 	return result
 }
@@ -363,7 +364,7 @@ func (w *World) updateScrollPos(target m.Pos) {
 
 func (w *World) setScrollPos(pos m.Pos) {
 	w.scrollPos = pos
-	w.bottomRightTile = pos.Div(TileSize).Add(m.Delta{DX: tileWindowWidth / 2, DY: tileWindowHeight / 2})
+	w.bottomRightTile = pos.Div(level.TileSize).Add(m.Delta{DX: tileWindowWidth / 2, DY: tileWindowHeight / 2})
 }
 
 // updateVisibility loads all visible tiles and discards all tiles not visible right now.
@@ -378,9 +379,9 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	// TODO can we preserve but recheck them instead?
 	timing.Section("cleanup_expanded")
 	prevVisibilityMark := w.visibilityMark - 1
-	eyePos := eye.Div(TileSize)
-	w.forEachTile(func(pos m.Pos, tile *Tile) {
-		if tile.visibilityMark != prevVisibilityMark && pos != eyePos {
+	eyePos := eye.Div(level.TileSize)
+	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
+		if tile.VisibilityMark != prevVisibilityMark && pos != eyePos {
 			w.clearTile(pos)
 		}
 	})
@@ -432,8 +433,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	// For multiple expansion, need to do this in steps so initially we only base expansion on visible tiles.
 	timing.Section("expand")
 	markedTiles := []m.Pos{}
-	w.forEachTile(func(tilePos m.Pos, tile *Tile) {
-		if tile.visibilityMark == visibilityMark {
+	w.forEachTile(func(tilePos m.Pos, tile *level.Tile) {
+		if tile.VisibilityMark == visibilityMark {
 			markedTiles = append(markedTiles, tilePos)
 		}
 	})
@@ -446,20 +447,20 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			from := pos.Add(step.from)
 			to := pos.Add(step.to)
 			w.LoadTile(from, to.Delta(from))
-			if w.Tile(to).visibilityMark != visibilityMark {
-				w.Tile(to).visibilityMark = expansionMark
+			if w.Tile(to).VisibilityMark != visibilityMark {
+				w.Tile(to).VisibilityMark = expansionMark
 			}
 		}
 	}
 
 	timing.Section("spawn_search")
-	w.forEachTile(func(pos m.Pos, tile *Tile) {
-		if tile.visibilityMark != expansionMark && tile.visibilityMark != visibilityMark {
+	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
+		if tile.VisibilityMark != expansionMark && tile.VisibilityMark != visibilityMark {
 			return
 		}
 		for _, spawnable := range tile.Spawnables {
 			timing.Section("spawn")
-			_, err := spawnable.Spawn(w, pos, tile)
+			_, err := w.Spawn(spawnable, pos, tile)
 			if err != nil {
 				log.Panicf("Could not spawn entity %v: %v", spawnable, err)
 			}
@@ -479,7 +480,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 				if tile == nil {
 					continue
 				}
-				if tile.visibilityMark == expansionMark || tile.visibilityMark == visibilityMark {
+				if tile.VisibilityMark == expansionMark || tile.VisibilityMark == visibilityMark {
 					pos = &tp
 					break DESPAWN_SEARCH
 				}
@@ -491,8 +492,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			for y := tp0.Y; y <= tp1.Y; y++ {
 				for x := tp0.X; x <= tp1.X; x++ {
 					tp := m.Pos{X: x, Y: y}
-					if w.Tile(tp).visibilityMark != visibilityMark {
-						w.Tile(tp).visibilityMark = expansionMark
+					if w.Tile(tp).VisibilityMark != visibilityMark {
+						w.Tile(tp).VisibilityMark = expansionMark
 					}
 				}
 			}
@@ -507,8 +508,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 
 	// Delete all unmarked tiles.
 	timing.Section("cleanup_unmarked")
-	w.forEachTile(func(pos m.Pos, tile *Tile) {
-		if tile.visibilityMark != expansionMark && tile.visibilityMark != visibilityMark {
+	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
+		if tile.VisibilityMark != expansionMark && tile.VisibilityMark != visibilityMark {
 			w.clearTile(pos)
 		}
 	})
@@ -563,7 +564,7 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newLevelTile := w.Level.Tile(newLevelPos)
 	if newLevelTile == nil {
 		// log.Printf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)", newLevelPos, p, neighborLevelPos, d, t.Apply(d))
-		newTile := Tile{
+		newTile := level.Tile{
 			LevelPos:           newLevelPos,
 			Transform:          t,
 			LoadedFromNeighbor: p,
@@ -609,8 +610,8 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 
 // tilesBox returns corner coordinates for all tiles in a given box.
 func tilesBox(r m.Rect) (m.Pos, m.Pos) {
-	tp0 := r.Origin.Div(TileSize)
-	tp1 := r.OppositeCorner().Div(TileSize)
+	tp0 := r.Origin.Div(level.TileSize)
+	tp1 := r.OppositeCorner().Div(level.TileSize)
 	return tp0, tp1
 }
 

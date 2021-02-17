@@ -24,6 +24,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/image"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/sound"
 )
@@ -48,7 +49,7 @@ const (
 	tnihHeight = 32
 )
 
-func (t *TnihSign) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+func (t *TnihSign) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	t.NonSolidTouchable.Init(w, e)
 	t.NotifyUntouched = true
 	t.World = w

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package engine
+package level
 
 import (
 	"fmt"
@@ -159,7 +159,7 @@ func (l *Level) LoadGame(save SaveGame) error {
 	return nil
 }
 
-func LoadLevel(filename string) (*Level, error) {
+func Load(filename string) (*Level, error) {
 	r, err := vfs.Load("maps", filename+".tmx")
 	if err != nil {
 		return nil, fmt.Errorf("could not open map: %v", err)

@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/game/player"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/sound"
@@ -47,7 +48,7 @@ type Checkpoint struct {
 	Sound *sound.Sound
 }
 
-func (c *Checkpoint) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+func (c *Checkpoint) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	c.NonSolidTouchable.Init(w, e)
 	c.World = w
 	c.Entity = e

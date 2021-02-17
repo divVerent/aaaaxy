@@ -19,6 +19,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/image"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -32,12 +33,12 @@ type AppearBlock struct {
 
 const (
 	AppearFrames         = 16
-	AppearXDistance      = 2 * engine.TileSize
-	AppearYDistance      = engine.TileSize / 4
+	AppearXDistance      = 2 * level.TileSize
+	AppearYDistance      = level.TileSize / 4
 	AppearSolidThreshold = 12
 )
 
-func (a *AppearBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+func (a *AppearBlock) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	a.World = w
 	a.Entity = e
 

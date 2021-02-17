@@ -23,12 +23,13 @@ import (
 	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/input"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 type MapScreen struct {
 	Menu      *Menu
-	Level     *engine.Level
+	Level     *level.Level
 	CurrentCP string
 
 	cpSprite         *ebiten.Image

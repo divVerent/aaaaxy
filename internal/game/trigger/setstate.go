@@ -21,6 +21,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -33,7 +34,7 @@ type SetState struct {
 	State  bool
 }
 
-func (s *SetState) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
+func (s *SetState) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.NonSolidTouchable.Init(w, e)
 	s.World = w
 	s.Target = sp.Properties["target"]

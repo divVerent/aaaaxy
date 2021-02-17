@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/game/player"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/sound"
 )
@@ -43,7 +44,7 @@ type JumpPad struct {
 	JumpSound    *sound.Sound
 }
 
-func (j *JumpPad) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+func (j *JumpPad) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	j.Settable.Init(s)
 	j.World = w
 	j.Entity = e

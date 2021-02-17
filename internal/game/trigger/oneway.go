@@ -19,6 +19,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -33,7 +34,7 @@ type OneWay struct {
 	Anim animation.State
 }
 
-func (o *OneWay) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
+func (o *OneWay) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	o.World = w
 	o.Entity = e
 

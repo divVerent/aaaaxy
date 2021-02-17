@@ -27,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/image"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -37,7 +38,7 @@ type Sprite struct {
 	Anim    animation.State
 }
 
-func (s *Sprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
+func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.Entity = e
 	var err error
 	directory := sp.Properties["image_dir"]

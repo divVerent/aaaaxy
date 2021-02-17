@@ -19,8 +19,8 @@ import (
 	"log"
 	"math"
 
-	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -63,13 +63,13 @@ func CalcPos(v *Vertex) {
 
 func main() {
 	flag.Parse(flag.NoConfig)
-	level, err := engine.LoadLevel("level")
+	lvl, err := level.Load("level")
 	if err != nil {
 		log.Panicf("Could not load level: %v", err)
 	}
 	// Gather a checkpoint ID to name map.
-	cpMap := map[engine.EntityID]*engine.Spawnable{}
-	for name, sp := range level.Checkpoints {
+	cpMap := map[level.EntityID]*level.Spawnable{}
+	for name, sp := range lvl.Checkpoints {
 		if name == "" {
 			// Ignore initial player spawn.
 			continue
@@ -77,7 +77,7 @@ func main() {
 		cpMap[sp.ID] = sp
 	}
 	// Generate all edges and vertices.
-	vertices := map[engine.EntityID]*Vertex{}
+	vertices := map[level.EntityID]*Vertex{}
 	for id, sp := range cpMap {
 		vertices[id] = &Vertex{Name: sp.Properties["name"]}
 	}
@@ -96,7 +96,7 @@ func main() {
 			if next == "" {
 				continue
 			}
-			var nextID engine.EntityID
+			var nextID level.EntityID
 			if _, err := fmt.Sscanf(next, "%d", &nextID); err != nil {
 				log.Panicf("Could not parse next CP %q -> %q: %v", sp.Properties["name"], next, err)
 			}

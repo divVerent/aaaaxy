@@ -21,6 +21,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/image"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/sound"
 )
@@ -44,7 +45,7 @@ const (
 	UsePixels         = 4
 )
 
-func (q *QuestionBlock) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+func (q *QuestionBlock) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	q.World = w
 	q.Entity = e
 	q.PersistentState = s.PersistentState

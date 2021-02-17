@@ -17,6 +17,7 @@ package misc
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -41,7 +42,7 @@ type AnimatedSprite struct {
 	AnimFrame int
 }
 
-func (s *AnimatedSprite) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
+func (s *AnimatedSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	err := s.Sprite.Spawn(w, sp, e)
 	if err != nil {
 		return nil

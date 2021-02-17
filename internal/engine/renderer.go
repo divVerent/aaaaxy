@@ -28,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/font"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/shader"
 )
@@ -141,11 +142,11 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta
 }
 
 func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
-	r.world.forEachTile(func(pos m.Pos, tile *Tile) {
+	r.world.forEachTile(func(pos m.Pos, tile *level.Tile) {
 		if tile.Image == nil {
 			return
 		}
-		screenPos := pos.Mul(TileSize).Add(scrollDelta)
+		screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
 		opts := ebiten.DrawImageOptions{
 			// Note: could be CompositeModeCopy, but that can't be merged with entities pass.
 			CompositeMode: ebiten.CompositeModeSourceOver,
@@ -161,7 +162,7 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 				renderOrientation, renderImage = o, img
 			}
 		}
-		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: TileSize, DY: TileSize}, m.Delta{DX: TileSize, DY: TileSize}, renderOrientation)
+		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, renderOrientation)
 		screen.DrawImage(renderImage, &opts)
 	})
 }
@@ -191,14 +192,14 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 }
 
 func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
-	r.world.forEachTile(func(pos m.Pos, tile *Tile) {
-		screenPos := pos.Mul(TileSize).Add(scrollDelta)
+	r.world.forEachTile(func(pos m.Pos, tile *level.Tile) {
+		screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
 		if *debugShowNeighbors {
-			neighborScreenPos := tile.LoadedFromNeighbor.Mul(TileSize).Add(scrollDelta)
-			startx := float64(neighborScreenPos.X) + TileSize/2
-			starty := float64(neighborScreenPos.Y) + TileSize/2
-			endx := float64(screenPos.X) + TileSize/2
-			endy := float64(screenPos.Y) + TileSize/2
+			neighborScreenPos := tile.LoadedFromNeighbor.Mul(level.TileSize).Add(scrollDelta)
+			startx := float64(neighborScreenPos.X) + level.TileSize/2
+			starty := float64(neighborScreenPos.Y) + level.TileSize/2
+			endx := float64(screenPos.X) + level.TileSize/2
+			endy := float64(screenPos.Y) + level.TileSize/2
 			arrowpx := (startx + endx*2) / 3
 			arrowpy := (starty + endy*2) / 3
 			arrowdx := (endx - startx) / 6
@@ -212,7 +213,7 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			arrowrx := arrowpx - arrowdx - arrowdy
 			arrowry := arrowpy + arrowdx - arrowdy
 			c := color.Gray{64}
-			if tile.visibilityMark == r.world.visibilityMark {
+			if tile.VisibilityMark == r.world.visibilityMark {
 				c = color.Gray{192}
 			}
 			ebitenutil.DrawLine(screen, startx, starty, endx, endy, c)
@@ -221,19 +222,19 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		if *debugShowCoords {
 			c := color.Gray{128}
-			text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), font.DebugSmall, screenPos.X, screenPos.Y+TileSize-1, c)
+			text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), font.DebugSmall, screenPos.X, screenPos.Y+level.TileSize-1, c)
 		}
 		if *debugShowOrientations {
-			midx := float64(screenPos.X) + TileSize/2
-			midy := float64(screenPos.Y) + TileSize/2
+			midx := float64(screenPos.X) + level.TileSize/2
+			midy := float64(screenPos.Y) + level.TileSize/2
 			dx := tile.Orientation.Apply(m.Delta{DX: 4, DY: 0})
 			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), color.NRGBA{R: 255, G: 0, B: 0, A: 255})
 			dy := tile.Orientation.Apply(m.Delta{DX: 0, DY: 4})
 			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), color.NRGBA{R: 0, G: 255, B: 0, A: 255})
 		}
 		if *debugShowTransforms {
-			midx := float64(screenPos.X) + TileSize/2
-			midy := float64(screenPos.Y) + TileSize/2
+			midx := float64(screenPos.X) + level.TileSize/2
+			midy := float64(screenPos.Y) + level.TileSize/2
 			dx := tile.Transform.Apply(m.Delta{DX: 4, DY: 0})
 			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), color.NRGBA{R: 255, G: 0, B: 0, A: 255})
 			dy := tile.Transform.Apply(m.Delta{DX: 0, DY: 4})
@@ -274,9 +275,9 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			traceEndR := trace.EndPos.Add(scrollDelta)
 			if i == 0 {
 				for _, pos := range trace.Path {
-					posR := pos.Mul(TileSize).Add(scrollDelta)
-					a := float64(TileSize / 8)
-					b := float64(TileSize) - 2*a
+					posR := pos.Mul(level.TileSize).Add(scrollDelta)
+					a := float64(level.TileSize / 8)
+					b := float64(level.TileSize) - 2*a
 					ebitenutil.DrawRect(screen, float64(posR.X)+a, float64(posR.Y)+a, b, b, color.NRGBA{R: 0, G: 255, B: 0, A: 255})
 				}
 			}

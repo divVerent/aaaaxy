@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/input"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/sound"
@@ -70,7 +71,7 @@ const (
 	PlayerOffsetDY = -3
 
 	// LookTiles is how many tiles the player can look up/down.
-	LookDistance = engine.TileSize * 4
+	LookDistance = level.TileSize * 4
 
 	// Nice run/jump speed.
 	MaxGroundSpeed = 160 * mixins.SubPixelScale / engine.GameTPS
@@ -92,7 +93,7 @@ const (
 	// Note: assuming 1px=6cm, this is actually 17.3m/s and 3.5x earth gravity.
 	JumpVelocity = 288 * mixins.SubPixelScale / engine.GameTPS
 	Gravity      = 576 * mixins.SubPixelScale / engine.GameTPS / engine.GameTPS
-	MaxSpeed     = 2 * engine.TileSize * mixins.SubPixelScale
+	MaxSpeed     = 2 * level.TileSize * mixins.SubPixelScale
 
 	NoiseMinSpeed = 384 * mixins.SubPixelScale / engine.GameTPS
 	NoiseMaxSpeed = MaxSpeed
@@ -118,7 +119,7 @@ const (
 	KeyRespawn = ebiten.KeyR
 )
 
-func (p *Player) Spawn(w *engine.World, s *engine.Spawnable, e *engine.Entity) error {
+func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	p.Physics.Init(w, e)
 	p.World = w
 	p.Entity = e

@@ -21,31 +21,9 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
-
-// PersistentState is how entities retain values across loading/unloading and in
-// save games.
-type PersistentState map[string]string
-
-// A Spawnable is a blueprint to create an Entity.
-type Spawnable struct {
-	ID EntityID
-
-	// Type.
-	EntityType string
-
-	// Location.
-	LevelPos    m.Pos
-	RectInTile  m.Rect
-	Orientation m.Orientation
-
-	// Other properties.
-	Properties map[string]string
-
-	// Persistent entity state, if any, shall be kept in this map.
-	PersistentState map[string]string `hash:"-"`
-}
 
 // An Entity is an object that exists in the game.
 type Entity struct {
@@ -71,22 +49,18 @@ type Entity struct {
 	Impl EntityImpl
 }
 
-type (
-	// EntityID represents an unique ID of an entity.
-	EntityID int
-	// EntityIncarnation represents a specific incarnation of an entity. Entities spawn more than once if their tile is seen more than once.
-	EntityIncarnation struct {
-		ID      EntityID
-		TilePos m.Pos
-	}
-)
+// EntityIncarnation represents a specific incarnation of an entity. Entities spawn more than once if their tile is seen more than once.
+type EntityIncarnation struct {
+	ID      level.EntityID
+	TilePos m.Pos
+}
 
 type EntityImpl interface {
 	// Spawn initializes the entity based on a Spawnable.
 	// Receiver will be a zero struct of the entity type.
 	// Will usually remember a reference to the World and Entity.
 	// ID, Pos, Size and Orientation of the entity will be preset but may be changed.
-	Spawn(w *World, s *Spawnable, e *Entity) error
+	Spawn(w *World, s *level.Spawnable, e *Entity) error
 
 	// Despawn notifies the entity that it will be deleted.
 	Despawn()
@@ -116,7 +90,7 @@ func RegisterEntityType(t EntityImpl) {
 }
 
 // Spawn turns a Spawnable into an Entity.
-func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
+func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity, error) {
 	tInv := t.Transform.Inverse()
 	originTilePos := tilePos.Add(tInv.Apply(s.LevelPos.Delta(t.LevelPos)))
 	incarnation := EntityIncarnation{
@@ -139,9 +113,9 @@ func (s *Spawnable) Spawn(w *World, tilePos m.Pos, t *Tile) (*Entity, error) {
 		Name:        s.Properties["name"],
 		Impl:        eImpl,
 	}
-	pivot2InTile := m.Pos{X: TileSize, Y: TileSize}
+	pivot2InTile := m.Pos{X: level.TileSize, Y: level.TileSize}
 	e.Rect = tInv.ApplyToRect2(pivot2InTile, s.RectInTile)
-	e.Rect.Origin = originTilePos.Mul(TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
+	e.Rect.Origin = originTilePos.Mul(level.TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
 	e.Orientation = tInv.Concat(s.Orientation)
 	e.Alpha = 1.0
 	err := eImpl.Spawn(w, s, e)

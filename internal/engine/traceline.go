@@ -18,6 +18,7 @@ import (
 	"errors"
 	"math"
 
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -59,7 +60,7 @@ type TraceResult struct {
 	// hitTilePos is the position of the tile that stopped the trace, if any.
 	HitTilePos *m.Pos
 	// HitTile is the tile that stopped the trace, if any.
-	HitTile *Tile
+	HitTile *level.Tile
 	// HitEntity is the entity that stopped the trace, if any.
 	HitEntity *Entity
 	// HitFogOfWar is set if the trace ended by hitting an unloaded tile.
@@ -165,10 +166,10 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Po
 	// Algorithm idea:
 	// - INIT: calculate iMod, jMod, scanI, scanJ.
 	// - SEARCH:
-	//   - Find nextI > scanI so that i % TileSize == iMod.
-	//     - Actually can compute once, then just add TileSize.
-	//   - Find nextJ > scanJ so that j % TileSize == jMod.
-	//     - Actually can just conditionally add TileSize whenever we hit new tile.
+	//   - Find nextI > scanI so that i % level.TileSize == iMod.
+	//     - Actually can compute once, then just add level.TileSize.
+	//   - Find nextJ > scanJ so that j % level.TileSize == jMod.
+	//     - Actually can just conditionally add level.TileSize whenever we hit new tile.
 	//   - Compute nextJI from nextJ like i00 below.
 	//   - If nextI < nextJI:
 	//     - Set nextJ = f(nextI) like j00.
@@ -183,32 +184,32 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Po
 	//     - Yield (nextJI, nextJ-1) as endpos in current tile.
 	//     - Set scanI, scanJ = nextJI, nextJ.
 	// nextI, nextJ are the next i or j values that cross a tile border.
-	tile := l.Origin.Div(TileSize)
+	tile := l.Origin.Div(level.TileSize)
 	var nextI, nextJ int
 	var iDelta, jDelta m.Delta
 	if l.ScanX {
 		if l.XDir > 0 {
-			nextI = 1 + m.Mod(-l.Origin.X-1, TileSize)
+			nextI = 1 + m.Mod(-l.Origin.X-1, level.TileSize)
 		} else {
-			nextI = 1 + m.Mod(l.Origin.X, TileSize)
+			nextI = 1 + m.Mod(l.Origin.X, level.TileSize)
 		}
 		if l.YDir > 0 {
-			nextJ = 1 + m.Mod(-l.Origin.Y-1, TileSize)
+			nextJ = 1 + m.Mod(-l.Origin.Y-1, level.TileSize)
 		} else {
-			nextJ = 1 + m.Mod(l.Origin.Y, TileSize)
+			nextJ = 1 + m.Mod(l.Origin.Y, level.TileSize)
 		}
 		iDelta = m.Delta{DX: l.XDir, DY: 0}
 		jDelta = m.Delta{DX: 0, DY: l.YDir}
 	} else {
 		if l.YDir > 0 {
-			nextI = 1 + m.Mod(-l.Origin.Y-1, TileSize)
+			nextI = 1 + m.Mod(-l.Origin.Y-1, level.TileSize)
 		} else {
-			nextI = 1 + m.Mod(l.Origin.Y, TileSize)
+			nextI = 1 + m.Mod(l.Origin.Y, level.TileSize)
 		}
 		if l.XDir > 0 {
-			nextJ = 1 + m.Mod(-l.Origin.X-1, TileSize)
+			nextJ = 1 + m.Mod(-l.Origin.X-1, level.TileSize)
 		} else {
-			nextJ = 1 + m.Mod(l.Origin.X, TileSize)
+			nextJ = 1 + m.Mod(l.Origin.X, level.TileSize)
 		}
 		iDelta = m.Delta{DX: 0, DY: l.YDir}
 		jDelta = m.Delta{DX: l.XDir, DY: 0}
@@ -224,7 +225,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Po
 				return err
 			}
 			tile = nextTile
-			nextI += TileSize
+			nextI += level.TileSize
 		}
 	}
 	for {
@@ -239,7 +240,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Po
 				return err
 			}
 			tile = nextTile
-			nextJ += TileSize
+			nextJ += level.TileSize
 		} else if nextJI > nextI {
 			if nextI > l.NumSteps {
 				return nil
@@ -251,7 +252,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Po
 				return err
 			}
 			tile = nextTile
-			nextI += TileSize
+			nextI += level.TileSize
 		} else { // nextJI == nextI
 			// We cross both boundaries.
 			// By our line drawing algorithm, we always walk i first.
@@ -271,8 +272,8 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Po
 				return err
 			}
 			tile = nextTile
-			nextI += TileSize
-			nextJ += TileSize
+			nextI += level.TileSize
+			nextJ += level.TileSize
 		}
 	}
 }
@@ -298,7 +299,7 @@ func walkLine(from, to m.Pos, check func(prevTile, nextTile, prevPixel m.Pos) er
 	l := normalizeLine(from, to)
 	if l.NumSteps == 0 {
 		// Start point is end point. Nothing to do.
-		return check(from.Div(TileSize), from.Div(TileSize), from)
+		return check(from.Div(level.TileSize), from.Div(level.TileSize), from)
 	}
 	return l.walkTiles(check)
 }
@@ -318,7 +319,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 
 	if !o.NoTiles {
 		result.EndPos = from
-		result.Path = append(result.Path, from.Div(TileSize))
+		result.Path = append(result.Path, from.Div(level.TileSize))
 		doneErr := errors.New("done")
 		err := walkLine(from, to, func(prevTile, nextTile, prevPixel m.Pos) error {
 			result.EndPos = prevPixel
@@ -371,7 +372,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 			}
 		}
 		if result.HitEntity != nil {
-			endTile := result.EndPos.Div(TileSize)
+			endTile := result.EndPos.Div(level.TileSize)
 			for i, pos := range result.Path {
 				if pos == endTile {
 					result.Path = result.Path[:(i + 1)]

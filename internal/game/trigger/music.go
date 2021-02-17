@@ -19,6 +19,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
 )
@@ -30,7 +31,7 @@ type SwitchMusic struct {
 	Music string
 }
 
-func (s *SwitchMusic) Spawn(w *engine.World, sp *engine.Spawnable, e *engine.Entity) error {
+func (s *SwitchMusic) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.NonSolidTouchable.Init(w, e)
 	s.Music = sp.Properties["music"]
 	return nil
