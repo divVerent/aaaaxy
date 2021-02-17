@@ -104,6 +104,18 @@ func (m *Menu) Update() error {
 }
 
 func (m *Menu) UpdateWorld() error {
+	// Increment the frame counter.
+	framesStr := m.World.Level.Player.PersistentState["frames"]
+	var frames int
+	if framesStr != "" {
+		_, err := fmt.Sscanf(framesStr, "%d", &frames)
+		if err != nil {
+			return err
+		}
+	}
+	frames++
+	m.World.Level.Player.PersistentState["frames"] = fmt.Sprint(frames)
+
 	if m.Screen != nil {
 		// Game is paused while in menu.
 		return nil
