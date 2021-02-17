@@ -29,6 +29,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/font"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/shader"
 )
 
 var (
@@ -90,7 +91,7 @@ func (r *renderer) Init(w *World) {
 
 	if *debugUseShaders {
 		var err error
-		r.visibilityMaskShader, err = loadShader("visibility_mask.kage", nil)
+		r.visibilityMaskShader, err = shader.Load("visibility_mask.kage", nil)
 		if err != nil {
 			log.Printf("could not load visibility mask shader: %v", err)
 		}

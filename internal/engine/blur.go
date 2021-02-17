@@ -15,16 +15,14 @@
 package engine
 
 import (
-	"bytes"
 	"fmt"
 	"image/color"
-	"io/ioutil"
 	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/flag"
-	"github.com/divVerent/aaaaaa/internal/vfs"
+	"github.com/divVerent/aaaaaa/internal/shader"
 )
 
 var (
@@ -71,32 +69,6 @@ func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale float64
 	}
 }
 
-func loadShader(name string, params map[string]string) (*ebiten.Shader, error) {
-	shaderReader, err := vfs.Load("shaders", name)
-	if err != nil {
-		return nil, fmt.Errorf("could not open shader %q: %v", name, err)
-	}
-	defer shaderReader.Close()
-	shaderCode, err := ioutil.ReadAll(shaderReader)
-	if err != nil {
-		return nil, fmt.Errorf("could not read shader %q: %v", name, err)
-	}
-	// Add some basic templating so we can remove branches from the shaders.
-	// Not using text/template so that shader files can still be processed by gofmt.
-	for name, value := range params {
-		shaderCode = bytes.ReplaceAll(shaderCode, []byte("PARAMS[\""+name+"\"]"), []byte("(("+value+"))"))
-	}
-	shader, err := ebiten.NewShader(shaderCode)
-	if err != nil {
-		return nil, fmt.Errorf("could not compile shader %q: %v", name, err)
-	}
-	return shader, nil
-}
-
-var (
-	blurShaders = map[int]*ebiten.Shader{}
-)
-
 func BlurExpandImage(img, tmp, out *ebiten.Image, blurSize, expandSize int, scale float64) {
 	// Blurring and expanding can be done in a single step by doing a regular blur then scaling up at the last step.
 	if !*drawBlurs {
@@ -124,19 +96,14 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 		blurImageFixedFunction(img, tmp, out, size, scale)
 		return
 	}
-	blurShader := blurShaders[size]
-	if blurShader == nil {
-		var err error
-		// Too bad we can't have integer uniforms, so we need to templatize this
-		// shader instead. Should be faster than having conditionals inside the
-		// shader code.
-		blurShader, err = loadShader("blur.kage", map[string]string{
-			"Size": fmt.Sprint(size),
-		})
-		if err != nil {
-			log.Panicf("could not load blur shader: %v", err)
-		}
-		blurShaders[size] = blurShader
+	// Too bad we can't have integer uniforms, so we need to templatize this
+	// shader instead. Should be faster than having conditionals inside the
+	// shader code.
+	blurShader, err := shader.Load("blur.kage", map[string]string{
+		"Size": fmt.Sprint(size),
+	})
+	if err != nil {
+		log.Panicf("could not load blur shader: %v", err)
 	}
 	w, h := img.Size()
 	scaleX := 1 / (2*float64(size) + 1)
