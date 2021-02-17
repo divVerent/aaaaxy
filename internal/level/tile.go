@@ -15,8 +15,6 @@
 package level
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
-
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -34,7 +32,7 @@ type Tile struct {
 
 	// Info needed for rendering.
 	Orientation m.Orientation
-	Image       *ebiten.Image
+	ImageSrc    string
 
 	// If provided, these are used instead of image for "nicer" rotation (e.g. for shadow effects).
 	// Because Orientation is also set, looking these up is tricky; we want things to show up as in the editor but potentially rotated.
@@ -47,7 +45,7 @@ type Tile struct {
 	// - Orientation = (Transform * Orientation) * I
 	// - O = Transform Orientation
 	// - I = O^-1 Orientation
-	ImageByOrientation map[m.Orientation]*ebiten.Image
+	ImageSrcByOrientation map[m.Orientation]string
 
 	// Debug info.
 	LoadedFromNeighbor m.Pos

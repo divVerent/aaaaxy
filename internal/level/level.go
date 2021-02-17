@@ -20,10 +20,8 @@ import (
 	"strings"
 
 	"github.com/fardog/tmx"
-	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/mitchellh/hashstructure/v2"
 
-	"github.com/divVerent/aaaaaa/internal/image"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
@@ -56,8 +54,8 @@ func (l *Level) setTile(pos m.Pos, t *LevelTile) {
 	l.tiles[i] = *t
 }
 
-// forEachTile iterates over all tiles in the level.
-func (l *Level) forEachTile(f func(pos m.Pos, t *LevelTile)) {
+// ForEachTile iterates over all tiles in the level.
+func (l *Level) ForEachTile(f func(pos m.Pos, t *LevelTile)) {
 	for i := range l.tiles {
 		f(m.Pos{X: i % l.width, Y: i / l.width}, &l.tiles[i])
 	}
@@ -111,7 +109,7 @@ func (l *Level) SaveGame() (SaveGame, error) {
 			save.State[s.ID] = s.PersistentState
 		}
 	}
-	l.forEachTile(func(_ m.Pos, tile *LevelTile) {
+	l.ForEachTile(func(_ m.Pos, tile *LevelTile) {
 		for _, s := range tile.Tile.Spawnables {
 			saveOne(s)
 		}
@@ -150,7 +148,7 @@ func (l *Level) LoadGame(save SaveGame) error {
 			s.PersistentState[key] = value
 		}
 	}
-	l.forEachTile(func(_ m.Pos, tile *LevelTile) {
+	l.ForEachTile(func(_ m.Pos, tile *LevelTile) {
 		for _, s := range tile.Tile.Spawnables {
 			loadOne(s)
 		}
@@ -282,11 +280,8 @@ func Load(filename string) (*Level, error) {
 		}
 		solid := properties["solid"] != "false"
 		opaque := properties["opaque"] != "false"
-		img, err := image.Load("tiles", td.Tile.Image.Source)
-		if err != nil {
-			return nil, fmt.Errorf("invalid image: %v", err)
-		}
-		imgByOrientation := map[m.Orientation]*ebiten.Image{}
+		imgSrc := td.Tile.Image.Source
+		imgSrcByOrientation := map[m.Orientation]string{}
 		for propName, propValue := range properties {
 			if oStr := strings.TrimPrefix(propName, "img."); oStr != propName {
 				o, err := m.ParseOrientation(oStr)
@@ -296,20 +291,17 @@ func Load(filename string) (*Level, error) {
 				if o == m.Identity() && propValue != td.Tile.Image.Source {
 					return nil, fmt.Errorf("invalid tileset: unrotated image isn't same as img: got %q, want %q", propValue, td.Tile.Image.Source)
 				}
-				imgByOrientation[o], err = image.Load("tiles", propValue)
-				if err != nil {
-					return nil, fmt.Errorf("invalid image: %v", err)
-				}
+				imgSrcByOrientation[o] = propValue
 			}
 		}
 		level.setTile(pos, &LevelTile{
 			Tile: Tile{
-				Solid:              solid,
-				Opaque:             opaque,
-				LevelPos:           pos,
-				Image:              img,
-				ImageByOrientation: imgByOrientation,
-				Orientation:        orientation,
+				Solid:                 solid,
+				Opaque:                opaque,
+				LevelPos:              pos,
+				ImageSrc:              imgSrc,
+				ImageSrcByOrientation: imgSrcByOrientation,
+				Orientation:           orientation,
 			},
 			Valid: true,
 		})

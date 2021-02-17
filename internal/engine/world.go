@@ -25,6 +25,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
@@ -125,6 +126,22 @@ func (w *World) Init() error {
 	if err != nil {
 		log.Panicf("Could not load level: %v", err)
 	}
+
+	// Precache all images.
+	lvl.ForEachTile(func(pos m.Pos, t *level.LevelTile) {
+		if t.Tile.ImageSrc != "" {
+			_, err := image.Load("tiles", t.Tile.ImageSrc)
+			if err != nil {
+				log.Panicf("Could not precache tile image for level: %v", err)
+			}
+		}
+		for _, imgSrc := range t.Tile.ImageSrcByOrientation {
+			_, err := image.Load("tiles", imgSrc)
+			if err != nil {
+				log.Panicf("Could not precache tile image for level: %v", err)
+			}
+		}
+	})
 
 	// Allow reiniting if already done.
 	for _, ent := range w.Entities {

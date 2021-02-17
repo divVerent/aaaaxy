@@ -28,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/font"
+	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/shader"
@@ -143,27 +144,34 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta
 
 func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 	r.world.forEachTile(func(pos m.Pos, tile *level.Tile) {
-		if tile.Image == nil {
+		renderOrientation, renderImageSrc := tile.Orientation, tile.ImageSrc
+		if renderImageSrc == "" {
 			return
 		}
 		screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
+		if len(tile.ImageSrcByOrientation) > 0 {
+			// Locate pre-rotated tiles for better effect.
+			o := tile.Transform.Concat(tile.Orientation)
+			i := o.Inverse().Concat(tile.Orientation)
+			imgSrc := tile.ImageSrcByOrientation[i]
+			if imgSrc == "" {
+				return // Invisible.
+			}
+			if imgSrc != "" {
+				renderOrientation, renderImageSrc = o, imgSrc
+			}
+		}
+		img, err := image.Load("tiles", renderImageSrc)
+		if err != nil {
+			log.Panicf("Unreachable code: could not load already cached image for tile: %v", err)
+		}
 		opts := ebiten.DrawImageOptions{
 			// Note: could be CompositeModeCopy, but that can't be merged with entities pass.
 			CompositeMode: ebiten.CompositeModeSourceOver,
 			Filter:        ebiten.FilterNearest,
 		}
-		renderOrientation, renderImage := tile.Orientation, tile.Image
-		if len(tile.ImageByOrientation) > 0 {
-			// Locate pre-rotated tiles for better effect.
-			o := tile.Transform.Concat(tile.Orientation)
-			i := o.Inverse().Concat(tile.Orientation)
-			img := tile.ImageByOrientation[i]
-			if img != nil {
-				renderOrientation, renderImage = o, img
-			}
-		}
 		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, renderOrientation)
-		screen.DrawImage(renderImage, &opts)
+		screen.DrawImage(img, &opts)
 	})
 }
 
