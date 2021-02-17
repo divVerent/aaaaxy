@@ -71,3 +71,6 @@ Layout:
          -> dev room that requires 3
          -> middle of 3
          -> end
+
+
+* At end of game, print the time the game took from the frames counter in the player. Also, halt the frames counter then.
