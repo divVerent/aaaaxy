@@ -10,6 +10,7 @@ rm -rf "$out"
 # Note: ignoring errors here, as some golang.org packages
 # do not have a discoverable license file. As they're all under Go's license,
 # that is fine.
+go get github.com/google/go-licenses
 go run github.com/google/go-licenses save github.com/divVerent/aaaaaa/cmd/aaaaaa --save_path="$out" || true
 
 # Add our own third party stuff.
