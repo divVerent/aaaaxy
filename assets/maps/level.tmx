@@ -5492,7 +5492,7 @@
   </object>
   <object id="1173" name="hilberts_dotel" type="Checkpoint" x="4336" y="5056" width="32" height="176">
    <properties>
-    <property name="music" type="file" value="../../../../../../data/home/rpolzer/homedir/src/aaaaaa/third_party/emma_ma_at_the_end_of_hope/assets/music/at_the_end_of_hope.ogg"/>
+    <property name="music" value="at_the_end_of_hope.ogg"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Hilbert's Dotel"/>
    </properties>

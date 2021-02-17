@@ -14,6 +14,9 @@ SOURCES = $(shell find . -name \*.go)
 GENERATED_ASSETS = assets/maps/level.cp.json
 STATIK_ASSETS_ROOT = internal/assets
 STATIK_ASSETS = $(STATIK_ASSETS_ROOT)/statik/statik.go
+EXTRAFILES = README.md LICENSE CONTRIBUTING.md
+LICENSES_THIRD_PARTY = licenses
+ZIP = 7za -tzip -mx=9 a
 
 .PHONY: default
 default: debug
@@ -29,7 +32,7 @@ release: $(RELEASE)
 
 .PHONY: clean
 clean:
-	$(RM) -r $(DEBUG) $(RELEASE) $(STATIK_ASSETS) $(GENERATED_ASSETS)
+	$(RM) -r $(DEBUG) $(RELEASE) $(STATIK_ASSETS) $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
 
 .PHONY: vet
 vet:
@@ -54,12 +57,24 @@ $(RELEASE): $(STATIK_ASSETS) $(SOURCES)
 %.cp.dot: %.tmx cmd/dumpcps/main.go
 	GOOS= GOARCH= go run $(DUMPCPS) $< > $@
 
+.PHONY: $(LICENSES_THIRD_PARTY)
+$(LICENSES_THIRD_PARTY):
+	GOOS= GOARCH= ./collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
+
 # Building of release zip files starts here.
 ZIPFILE = aaaaaa.zip
 
+.PHONY: addextras
+addextras: $(EXTRAFILES)
+	$(ZIP) $(ZIPFILE) $(EXTRAFILES)
+
+.PHONY: addlicenses
+addlicenses: $(LICENSES_THIRD_PARTY)
+	$(ZIP) $(ZIPFILE) $(LICENSES_THIRD_PARTY)
+
 .PHONY: addrelease
 addrelease: $(RELEASE)
-	zip -9r $(ZIPFILE) $(RELEASE)
+	$(ZIP) $(ZIPFILE) $(RELEASE)
 	$(MAKE) clean
 
 .PHONY: allrelease
