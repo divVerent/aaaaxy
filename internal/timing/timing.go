@@ -20,6 +20,12 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/divVerent/aaaaaa/internal/flag"
+)
+
+var (
+	profiling = flag.Bool("profiling", false, "enable simple wall-clock profiling to log messages")
 )
 
 const (
@@ -58,29 +64,41 @@ func (e *entry) String() string {
 }
 
 var (
-	accumulator = map[string]*entry{}
+	accumulator map[string]*entry
 	stack       []node
 	nextReport  time.Time
 )
 
-func reset() {
+func restartProfiling() {
 	accumulator, stack = map[string]*entry{}, []node{
 		{name: "", started: time.Time{}},
 	}
 }
 
+func stopProfiling() {
+	accumulator, stack = nil, nil
+}
+
 func Group() func() {
-	sameName := stack[len(stack)-1].name
-	stack = append(stack, node{name: sameName, started: time.Now()})
+	if stack != nil {
+		sameName := stack[len(stack)-1].name
+		stack = append(stack, node{name: sameName, started: time.Now()})
+	}
 	return endGroup
 }
 
 func endGroup() {
+	if stack == nil {
+		return
+	}
 	accountTime(time.Now())
 	stack = stack[:len(stack)-1]
 }
 
 func Section(section string) {
+	if stack == nil {
+		return
+	}
 	now := time.Now()
 	accountTime(now)
 	newName := stack[len(stack)-2].name
@@ -114,6 +132,14 @@ func accountTime(now time.Time) {
 }
 
 func ReportRegularly() {
+	if *profiling && stack == nil {
+		restartProfiling()
+		return
+	}
+	if !*profiling {
+		stopProfiling()
+		return
+	}
 	for _, entry := range accumulator {
 		if entry.thisFrame == 0 {
 			continue
@@ -138,7 +164,7 @@ func ReportRegularly() {
 			sort.Strings(report)
 			log.Printf("Timing report:\n%v", strings.Join(report, "\n"))
 		}
-		reset()
+		restartProfiling()
 		nextReport = now.Add(time.Second)
 	}
 }
