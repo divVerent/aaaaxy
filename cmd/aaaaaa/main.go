@@ -17,6 +17,7 @@ package main
 import (
 	"log"
 	"os"
+	"runtime"
 	"runtime/pprof"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -26,7 +27,8 @@ import (
 )
 
 var (
-	cpuprofile = flag.String("cpuprofile", "", "write CPU profile to file")
+	cpuprofile = flag.String("debug_cpuprofile", "", "write CPU profile to file")
+	memprofile = flag.String("debug_memprofile", "", "write memory profile to file")
 )
 
 func main() {
@@ -34,15 +36,29 @@ func main() {
 	if *cpuprofile != "" {
 		f, err := os.Create(*cpuprofile)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("could not create CPU profile: %v", err)
 		}
-		pprof.StartCPUProfile(f)
+		defer f.Close()
+		if err := pprof.StartCPUProfile(f); err != nil {
+			log.Fatalf("could not start CPU profile: %v", err)
+		}
 		defer pprof.StopCPUProfile()
 	}
 	aaaaaa.InitEbiten()
 	game := &aaaaaa.Game{}
 	err := ebiten.RunGame(game)
 	aaaaaa.BeforeExit()
+	if *memprofile != "" {
+		f, err := os.Create(*memprofile)
+		if err != nil {
+			log.Fatalf("could not create memory profile: %v", err)
+		}
+		defer f.Close()
+		runtime.GC()
+		if err := pprof.WriteHeapProfile(f); err != nil {
+			log.Fatalf("could not write memory profile: %v", err)
+		}
+	}
 	if err != nil {
 		log.Print(err)
 	}
