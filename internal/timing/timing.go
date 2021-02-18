@@ -32,8 +32,11 @@ type node struct {
 }
 
 type entry struct {
-	duration time.Duration
-	count    int
+	total      time.Duration
+	worstFrame time.Duration
+	thisFrame  time.Duration
+	count      int
+	frames     int
 }
 
 func (e *entry) String() string {
@@ -41,10 +44,17 @@ func (e *entry) String() string {
 	if c < 1 {
 		c = 1
 	}
-	return fmt.Sprintf("%v (%d*%v)",
-		e.duration,
+	f := e.frames
+	if f < 1 {
+		f = 1
+	}
+	return fmt.Sprintf("%v (calls %d*%v, frames %d*%v, worst frame %v)",
+		e.total,
 		e.count,
-		e.duration/time.Duration(c))
+		e.total/time.Duration(c),
+		e.frames,
+		e.total/time.Duration(f),
+		e.worstFrame)
 }
 
 var (
@@ -100,16 +110,27 @@ func accountCount() {
 
 func accountTime(now time.Time) {
 	n, e := current()
-	e.duration += now.Sub(n.started)
+	e.thisFrame += now.Sub(n.started)
 }
 
 func ReportRegularly() {
+	for _, entry := range accumulator {
+		if entry.thisFrame == 0 {
+			continue
+		}
+		entry.total += entry.thisFrame
+		if entry.thisFrame > entry.worstFrame {
+			entry.worstFrame = entry.thisFrame
+		}
+		entry.frames++
+		entry.thisFrame = 0
+	}
 	now := time.Now()
 	if now.After(nextReport) {
 		if !nextReport.IsZero() {
 			report := make([]string, 0, len(accumulator))
 			for section, entry := range accumulator {
-				if entry.duration < minReportDuration {
+				if entry.total < minReportDuration {
 					continue
 				}
 				report = append(report, fmt.Sprintf("  %-48s %v", section, entry))
