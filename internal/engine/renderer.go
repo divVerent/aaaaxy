@@ -18,8 +18,6 @@ import (
 	"fmt"
 	"image/color"
 	"log"
-	"strconv"
-	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -45,7 +43,6 @@ var (
 	drawVisibilityMask            = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
 	expandUsingVertices           = flag.Bool("expand_using_vertices", true, "expand using polygon math (simplifies rendering)")
 	expandUsingVerticesAccurately = flag.Bool("expand_using_vertices_accurately", true, "expand using simpler polygon math (just approximate, removes a render pass)")
-	debugShowTrace                = flag.String("debug_show_trace", "", "if set, the screen coordinates to trace towards and show trace info")
 )
 
 type renderer struct {
@@ -259,38 +256,6 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 				boxColor.B = 255
 			}
 			ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY), float64(ent.Rect.Size.DX), float64(ent.Rect.Size.DY), boxColor)
-		}
-	}
-	if *debugShowTrace != "" {
-		traces := strings.Split(*debugShowTrace, " ")
-		for i := 0; i+1 < len(traces); i += 2 {
-			var tracePos m.Delta
-			var err error
-			tracePos.DX, err = strconv.Atoi(traces[i])
-			if err != nil {
-				log.Panicf("invalid debug_show_trace %q: %v", traces[i], err)
-			}
-			tracePos.DY, err = strconv.Atoi(traces[i+1])
-			if err != nil {
-				log.Panicf("invalid debug_show_trace %q: %v", traces[i+1], err)
-			}
-			traceFrom := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Sub(scrollDelta)
-			traceTo := traceFrom.Add(tracePos)
-			trace := r.world.TraceLine(traceFrom, traceTo, TraceOptions{})
-			log.Print(trace)
-			traceFromR := traceFrom.Add(scrollDelta)
-			traceToR := traceTo.Add(scrollDelta)
-			traceEndR := trace.EndPos.Add(scrollDelta)
-			if i == 0 {
-				for _, pos := range trace.Path {
-					posR := pos.Mul(level.TileSize).Add(scrollDelta)
-					a := float64(level.TileSize / 8)
-					b := float64(level.TileSize) - 2*a
-					ebitenutil.DrawRect(screen, float64(posR.X)+a, float64(posR.Y)+a, b, b, color.NRGBA{R: 0, G: 255, B: 0, A: 255})
-				}
-			}
-			ebitenutil.DrawLine(screen, float64(traceFromR.X), float64(traceFromR.Y), float64(traceEndR.X), float64(traceEndR.Y), color.NRGBA{R: 255, G: 0, B: 0, A: 255})
-			ebitenutil.DrawLine(screen, float64(traceEndR.X), float64(traceEndR.Y), float64(traceToR.X), float64(traceToR.Y), color.NRGBA{R: 255, G: 255, B: 0, A: 255})
 		}
 	}
 

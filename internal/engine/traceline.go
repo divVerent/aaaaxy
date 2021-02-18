@@ -48,15 +48,14 @@ type TraceOptions struct {
 	// Otherwise hitting a not-yet-loaded tile will end the trace.
 	// Only valid on line traces.
 	LoadTiles bool
+	// If set, the trace path will be collected into this array. Provided here to reduce memory allocation.
+	PathOut *[]m.Pos
 }
 
 // TraceResult returns the status of a trace operation.
 type TraceResult struct {
 	// EndPos is the pixel the trace ended on (the last nonsolid pixel).
 	EndPos m.Pos
-	// Path is the set of tiles touched, not including what stopped the trace.
-	// Only set by line traces.
-	Path []m.Pos
 	// hitTilePos is the position of the tile that stopped the trace, if any.
 	HitTilePos *m.Pos
 	// HitTile is the tile that stopped the trace, if any.
@@ -293,8 +292,7 @@ func traceEntity(from, to m.Pos, ent *Entity) (bool, m.Pos) {
 	return false, m.Pos{}
 }
 
-// walkLine walks on pixels from from to to, calling the check() function on every pixel hit.
-// Any two adjacent positions hit are exactly 1 pixel apart (no diagonal steps).
+// walkLine walks on pixels from from to to, calling the check() function on every new tile pixel hit.
 func walkLine(from, to m.Pos, check func(prevTile, nextTile, prevPixel m.Pos) error) error {
 	l := normalizeLine(from, to)
 	if l.NumSteps == 0 {
@@ -304,23 +302,27 @@ func walkLine(from, to m.Pos, check func(prevTile, nextTile, prevPixel m.Pos) er
 	return l.walkTiles(check)
 }
 
+var traceDoneErr = errors.New("traceDone")
+
 // traceLine moves from from to to and yields info about where this hit solid etc.
 func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
-	// TODO write an optimized implementation. We do the naive one first.
-
 	result := TraceResult{
 		EndPos:      to,
-		Path:        nil,
 		HitTilePos:  nil,
 		HitTile:     nil,
 		HitEntity:   nil,
 		HitFogOfWar: false,
 	}
 
+	if o.PathOut != nil {
+		*o.PathOut = (*o.PathOut)[:0]
+	}
+
 	if !o.NoTiles {
 		result.EndPos = from
-		result.Path = append(result.Path, from.Div(level.TileSize))
-		doneErr := errors.New("done")
+		if o.PathOut != nil {
+			*o.PathOut = append(*o.PathOut, from.Div(level.TileSize))
+		}
 		err := walkLine(from, to, func(prevTile, nextTile, prevPixel m.Pos) error {
 			result.EndPos = prevPixel
 			if o.LoadTiles {
@@ -329,17 +331,19 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 			tile := w.Tile(nextTile)
 			if tile == nil {
 				result.HitFogOfWar = true
-				return doneErr
+				return traceDoneErr
 			}
 			if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
 				result.HitTilePos = &nextTile
 				result.HitTile = tile
-				return doneErr
+				return traceDoneErr
 			}
-			result.Path = append(result.Path, nextTile)
+			if o.PathOut != nil {
+				*o.PathOut = append(*o.PathOut, nextTile)
+			}
 			return nil
 		})
-		if err != doneErr {
+		if err != traceDoneErr {
 			result.EndPos = to
 		}
 		result.Score = TraceScore{
@@ -373,9 +377,11 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		}
 		if result.HitEntity != nil {
 			endTile := result.EndPos.Div(level.TileSize)
-			for i, pos := range result.Path {
-				if pos == endTile {
-					result.Path = result.Path[:(i + 1)]
+			if o.PathOut != nil {
+				for i, pos := range *o.PathOut {
+					if pos == endTile {
+						*o.PathOut = (*o.PathOut)[:(i + 1)]
+					}
 				}
 			}
 			result.HitTilePos = nil

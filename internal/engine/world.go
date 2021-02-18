@@ -69,6 +69,10 @@ type World struct {
 
 	// respawned is set if the player got respawned this frame.
 	respawned bool
+
+	// traceLineAndMarkPath receives the path from tracing visibility.
+	// Exists to reduce memory allocation.
+	traceLineAndMarkPath []m.Pos
 }
 
 // Initialized returns whether Init() has been called on this World before.
@@ -305,8 +309,9 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 		LoadTiles: true,
 		IgnoreEnt: w.Player,
 		ForEnt:    w.Player,
+		PathOut:   &w.traceLineAndMarkPath,
 	})
-	for _, tilePos := range result.Path {
+	for _, tilePos := range w.traceLineAndMarkPath {
 		w.Tile(tilePos).VisibilityMark = w.visibilityMark
 	}
 	return result
