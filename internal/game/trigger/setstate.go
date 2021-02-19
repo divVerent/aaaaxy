@@ -19,6 +19,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
+	"github.com/divVerent/aaaaaa/internal/game/target"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
@@ -26,39 +27,23 @@ import (
 // SetState overrides the boolean state of a warpzone or entity.
 type SetState struct {
 	mixins.NonSolidTouchable
-	World  *engine.World
-	Entity *engine.Entity
-
-	Target string
-	State  bool
+	target.SetStateTarget
 }
 
 func (s *SetState) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.NonSolidTouchable.Init(w, e)
-	s.World = w
-	s.Entity = e
-	s.Target = sp.Properties["target"]
-	s.State = sp.Properties["state"] != "false"
-	if sp.Properties["initial_state"] != "" {
-		mixins.SetStateOfTarget(w, e, s.Target, sp.Properties["initial_state"] != "false") // Default true.
-	}
-	return nil
+	return s.SetStateTarget.Spawn(w, sp, e)
 }
 
 func (s *SetState) Despawn() {}
 
-func (s *SetState) SetState(state bool) {
-	// Turn my targets to s.State if state, to !s.State if !state.
-	mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.State == state)
-
-	// Turn off all my "siblings". Can be used to make mutually exclusive targets.
-	if s.Entity.Name != "" && state {
-		mixins.SetStateOfTarget(s.World, s.Entity, s.Entity.Name, false)
-	}
+func (s *SetState) Update() {
+	s.NonSolidTouchable.Update()
+	s.SetStateTarget.Update()
 }
 
 func (s *SetState) Touch(other *engine.Entity) {
-	if other == s.World.Player {
+	if other == s.SetStateTarget.World.Player {
 		s.SetState(true)
 	}
 }

@@ -18,5 +18,6 @@ import (
 	_ "github.com/divVerent/aaaaaa/internal/game/checkpoint"
 	_ "github.com/divVerent/aaaaaa/internal/game/misc"
 	_ "github.com/divVerent/aaaaaa/internal/game/player"
+	_ "github.com/divVerent/aaaaaa/internal/game/target"
 	_ "github.com/divVerent/aaaaaa/internal/game/trigger"
 )
