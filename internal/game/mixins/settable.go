@@ -15,6 +15,8 @@
 package mixins
 
 import (
+	"log"
+
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/level"
 )
@@ -53,12 +55,16 @@ func SetStateOfEntity(e *engine.Entity, state bool) bool {
 
 // SetStateOfTarget toggles the state of all entities of the given target name to the given state.
 // Includes WarpZones too.
-func SetStateOfTarget(w *engine.World, target string, state bool) {
+// Excludes the given entity (should be the caller).
+func SetStateOfTarget(w *engine.World, e *engine.Entity, target string, state bool) {
 	if target == "" {
 		return
 	}
 	w.SetWarpZoneState(target, state)
 	for _, ent := range w.Entities {
+		if ent == e {
+			continue
+		}
 		if ent.Name != target {
 			continue
 		}

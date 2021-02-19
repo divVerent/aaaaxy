@@ -101,7 +101,7 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 			t.Centerprint = centerprint.New(t.Text, importance, centerprint.Top, centerprint.NormalFont, color.NRGBA{R: 255, G: 255, B: 85, A: 255})
 			t.PersistentState["seen"] = "true"
 			t.Entity.Image = t.SeenImage
-			setState(t.World, t.Target, true)
+			mixins.SetStateOfTarget(t.World, t.Entity, t.Target, true)
 		}
 	} else {
 		if t.Centerprint.Active() {

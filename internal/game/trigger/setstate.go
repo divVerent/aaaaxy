@@ -15,8 +15,6 @@
 package trigger
 
 import (
-	"log"
-
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
@@ -28,7 +26,8 @@ import (
 // SetState overrides the boolean state of a warpzone or entity.
 type SetState struct {
 	mixins.NonSolidTouchable
-	World *engine.World
+	World  *engine.World
+	Entity *engine.Entity
 
 	Target string
 	State  bool
@@ -37,10 +36,11 @@ type SetState struct {
 func (s *SetState) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.NonSolidTouchable.Init(w, e)
 	s.World = w
+	s.Entity = e
 	s.Target = sp.Properties["target"]
 	s.State = sp.Properties["state"] != "false"
 	if sp.Properties["initial_state"] != "" {
-		mixins.SetStateOfTarget(w, s.Target, sp.Properties["initial_state"] != "false") // Default true.
+		mixins.SetStateOfTarget(w, e, s.Target, sp.Properties["initial_state"] != "false") // Default true.
 	}
 	return nil
 }
@@ -49,7 +49,7 @@ func (s *SetState) Despawn() {}
 
 func (s *SetState) Touch(other *engine.Entity) {
 	if other == s.World.Player {
-		mixins.SetStateOfTarget(s.World, s.Target, s.State)
+		mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.State)
 	}
 }
 
