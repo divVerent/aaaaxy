@@ -111,8 +111,8 @@ func drawAntiPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, sr
 	dst.DrawTriangles(eVerts, eIndices, src, options)
 }
 
+// expandSimple expands the given polygon IN PLACE (i.e. clobbers polygon).
 func expandSimple(center m.Pos, polygon []m.Pos, shift int) []m.Pos {
-	out := make([]m.Pos, len(polygon))
 	for i, v1 := range polygon {
 		// Rather approximate polygon expanding: just push each vertex shift away from the center.
 		// Unlike correct polygon expansion perpendicular to sides,
@@ -124,9 +124,9 @@ func expandSimple(center m.Pos, polygon []m.Pos, shift int) []m.Pos {
 			continue
 		}
 		f := float64(shift) / l
-		out[i] = v1.Add(d.MulFloat(f))
+		polygon[i] = v1.Add(d.MulFloat(f))
 	}
-	return out
+	return polygon
 }
 
 // intersection returns the intersection of the lines a..b and c..d.
@@ -152,29 +152,36 @@ func collinear(a, b, c m.Pos) bool {
 	return (b.X-a.X)*(c.Y-b.Y)-(b.Y-a.Y)*(c.X-b.X) == 0
 }
 
+// Global buffers to lose thread safety and reduce allocations.
+var (
+	minkowskiNoSame      []m.Pos
+	minkowskiNoCollinear []m.Pos
+	minkowskiEdgeCorner  []m.Delta
+	minkowskiOut         []m.Pos
+)
+
 // expandMinkowski expands a given polygon to its Minkowski sum with a box from -boxSize,-boxSize to boxSize,boxSize.
 func expandMinkowski(polygon []m.Pos, boxSize int) []m.Pos {
 	// First simplify the polygon. We can't have any duplicate or collinear vertices.
 	// Sadly we need to remove dupes first and collinearities second,
 	// or a dupe at a corner causes us to lose an entire vertex.
-	// TODO remove these allocations at runtime.
-	simplified := make([]m.Pos, 0, len(polygon))
+	minkowskiNoSame = minkowskiNoSame[:0]
 	for i, a := range polygon {
 		b := polygon[m.Mod(i+1, len(polygon))]
 		if a != b {
-			simplified = append(simplified, b)
+			minkowskiNoSame = append(minkowskiNoSame, b)
 		}
 	}
-	polygon = make([]m.Pos, 0, len(simplified))
-	for i, b := range simplified {
-		a := simplified[m.Mod(i-1, len(simplified))]
-		c := simplified[m.Mod(i+1, len(simplified))]
+	minkowskiNoCollinear = minkowskiNoCollinear[:0]
+	for i, b := range minkowskiNoSame {
+		a := minkowskiNoSame[m.Mod(i-1, len(minkowskiNoSame))]
+		c := minkowskiNoSame[m.Mod(i+1, len(minkowskiNoSame))]
 		if !collinear(a, b, c) {
-			polygon = append(polygon, b)
+			minkowskiNoCollinear = append(minkowskiNoCollinear, b)
 		}
 	}
 	// Iterate over all edges.
-	edgeCorner := make([]m.Delta, len(polygon))
+	minkowskiEdgeCorner = minkowskiEdgeCorner[:0]
 	for i, a := range polygon {
 		b := polygon[m.Mod(i+1, len(polygon))]
 		dab := b.Delta(a)
@@ -186,22 +193,22 @@ func expandMinkowski(polygon []m.Pos, boxSize int) []m.Pos {
 		if nab.DY < 0 {
 			corner.DY = -corner.DY
 		}
-		edgeCorner[i] = corner
+		minkowskiEdgeCorner = append(minkowskiEdgeCorner, corner)
 	}
 	// Iterate over all edge pairs.
-	out := make([]m.Pos, 0, len(polygon)*2)
+	minkowskiOut = minkowskiOut[:0]
 	for i, b := range polygon {
 		a := polygon[m.Mod(i-1, len(polygon))]
 		c := polygon[m.Mod(i+1, len(polygon))]
-		cab := edgeCorner[m.Mod(i-1, len(polygon))]
-		cbc := edgeCorner[i]
+		cab := minkowskiEdgeCorner[m.Mod(i-1, len(polygon))]
+		cbc := minkowskiEdgeCorner[i]
 		dab := b.Delta(a)
 		dbc := c.Delta(b)
 		nab := m.Left().Apply(dab)
 		isConcave := nab.Dot(dbc) > 0
 		if isConcave {
 			// The "concave" case. None of the corners remains.
-			out = append(out, intersection(
+			minkowskiOut = append(minkowskiOut, intersection(
 				a.Add(cab), b.Add(cab),
 				b.Add(cbc), c.Add(cbc),
 			))
@@ -215,9 +222,9 @@ func expandMinkowski(polygon []m.Pos, boxSize int) []m.Pos {
 			}
 			corners = append(corners, corner)
 			for _, corner := range corners {
-				out = append(out, b.Add(corner))
+				minkowskiOut = append(minkowskiOut, b.Add(corner))
 			}
 		}
 	}
-	return out
+	return minkowskiOut
 }
