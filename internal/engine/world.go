@@ -428,10 +428,12 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	}
 	if *expandUsingVertices {
 		if *expandUsingVerticesAccurately {
-			w.renderer.visiblePolygon = expandMinkowski(w.renderer.visiblePolygon, expandSize)
+			w.renderer.expandedVisiblePolygon = expandMinkowski(w.renderer.visiblePolygon, expandSize)
 		} else {
-			w.renderer.visiblePolygon = expandSimple(w.renderer.visiblePolygonCenter, w.renderer.visiblePolygon, expandSize)
+			w.renderer.expandedVisiblePolygon = expandSimple(w.renderer.visiblePolygonCenter, w.renderer.visiblePolygon, expandSize)
 		}
+	} else {
+		w.renderer.expandedVisiblePolygon = w.renderer.visiblePolygon
 	}
 
 	// Also mark all neighbors of hit tiles hit (up to expandTiles).

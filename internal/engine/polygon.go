@@ -157,6 +157,7 @@ func expandMinkowski(polygon []m.Pos, boxSize int) []m.Pos {
 	// First simplify the polygon. We can't have any duplicate or collinear vertices.
 	// Sadly we need to remove dupes first and collinearities second,
 	// or a dupe at a corner causes us to lose an entire vertex.
+	// TODO remove these allocations at runtime.
 	simplified := make([]m.Pos, 0, len(polygon))
 	for i, a := range polygon {
 		b := polygon[m.Mod(i+1, len(polygon))]

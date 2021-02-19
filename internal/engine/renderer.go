@@ -52,6 +52,8 @@ type renderer struct {
 	visiblePolygonCenter m.Pos
 	// visiblePolygon is the currently visible polygon.
 	visiblePolygon []m.Pos
+	// expandedVisiblePolygon is the visible polygon, expanded to show some walls.
+	expandedVisiblePolygon []m.Pos
 	// needPrevImage is set whenever the last call was Update.
 	needPrevImage bool
 
@@ -260,8 +262,8 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 	}
 
 	if *debugShowVisiblePolygon {
-		adjustedPolygon := make([]m.Pos, len(r.visiblePolygon))
-		for i, pos := range r.visiblePolygon {
+		adjustedPolygon := make([]m.Pos, len(r.expandedVisiblePolygon))
+		for i, pos := range r.expandedVisiblePolygon {
 			adjustedPolygon[i] = pos.Add(scrollDelta)
 		}
 		texM := ebiten.GeoM{}
@@ -285,7 +287,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 	texM.Scale(0, 0)
 
 	if *expandUsingVertices && !*expandUsingVerticesAccurately && !*drawBlurs && !*drawOutside {
-		drawAntiPolygonAround(screen, r.visiblePolygonCenter, r.visiblePolygon, r.whiteImage, color.Gray{0}, geoM, texM, &ebiten.DrawTrianglesOptions{})
+		drawAntiPolygonAround(screen, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, color.Gray{0}, geoM, texM, &ebiten.DrawTrianglesOptions{})
 		return
 	}
 
@@ -297,7 +299,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 		// - Wouldn't allow blur though...?
 		// Note: we put the mask on ALL four channels.
 		r.visibilityMaskImage.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
-		drawPolygonAround(r.visibilityMaskImage, r.visiblePolygonCenter, r.visiblePolygon, r.whiteImage, color.Gray{255}, geoM, texM, &ebiten.DrawTrianglesOptions{})
+		drawPolygonAround(r.visibilityMaskImage, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, color.Gray{255}, geoM, texM, &ebiten.DrawTrianglesOptions{})
 
 		e := expandSize
 		if *expandUsingVertices {

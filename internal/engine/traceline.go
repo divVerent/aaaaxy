@@ -292,16 +292,6 @@ func traceEntity(from, to m.Pos, ent *Entity) (bool, m.Pos) {
 	return false, m.Pos{}
 }
 
-// walkLine walks on pixels from from to to, calling the check() function on every new tile pixel hit.
-func walkLine(from, to m.Pos, check func(prevTile, nextTile, prevPixel m.Pos) error) error {
-	l := normalizeLine(from, to)
-	if l.NumSteps == 0 {
-		// Start point is end point. Nothing to do.
-		return check(from.Div(level.TileSize), from.Div(level.TileSize), from)
-	}
-	return l.walkTiles(check)
-}
-
 var traceDoneErr = errors.New("traceDone")
 
 // traceLine moves from from to to and yields info about where this hit solid etc.
@@ -323,7 +313,8 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		if o.PathOut != nil {
 			*o.PathOut = append(*o.PathOut, from.Div(level.TileSize))
 		}
-		err := walkLine(from, to, func(prevTile, nextTile, prevPixel m.Pos) error {
+		l := normalizeLine(from, to)
+		err := l.walkTiles(func(prevTile, nextTile, prevPixel m.Pos) error {
 			result.EndPos = prevPixel
 			if o.LoadTiles {
 				w.LoadTile(prevTile, nextTile.Delta(prevTile))
