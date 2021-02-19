@@ -40,13 +40,30 @@ type stateSetter interface {
 	SetState(state bool)
 }
 
-// SetStateOf sets the state of an entity, if available.
+// SetStateOfEntity sets the state of an entity, if available.
 // Returns whether the setting was successful.
-func SetStateOf(e *engine.Entity, state bool) bool {
+func SetStateOfEntity(e *engine.Entity, state bool) bool {
 	setter, ok := e.Impl.(stateSetter)
 	if !ok {
 		return false
 	}
 	setter.SetState(state)
 	return true
+}
+
+// SetStateOfTarget toggles the state of all entities of the given target name to the given state.
+// Includes WarpZones too.
+func SetStateOfTarget(w *engine.World, target string, state bool) {
+	if target == "" {
+		return
+	}
+	w.SetWarpZoneState(target, state)
+	for _, ent := range w.Entities {
+		if ent.Name != target {
+			continue
+		}
+		if !SetStateOfEntity(ent, state) {
+			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
+		}
+	}
 }

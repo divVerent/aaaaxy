@@ -40,32 +40,16 @@ func (s *SetState) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity)
 	s.Target = sp.Properties["target"]
 	s.State = sp.Properties["state"] != "false"
 	if sp.Properties["initial_state"] != "" {
-		setState(w, s.Target, sp.Properties["initial_state"] != "false") // Default true.
+		mixins.SetStateOfTarget(w, s.Target, sp.Properties["initial_state"] != "false") // Default true.
 	}
 	return nil
 }
 
 func (s *SetState) Despawn() {}
 
-// setState is a helper other triggers might use. Maybe factor elsewhere.
-func setState(w *engine.World, target string, state bool) {
-	if target == "" {
-		return
-	}
-	w.SetWarpZoneState(target, state)
-	for _, ent := range w.Entities {
-		if ent.Name != target {
-			continue
-		}
-		if !mixins.SetStateOf(ent, state) {
-			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
-		}
-	}
-}
-
 func (s *SetState) Touch(other *engine.Entity) {
 	if other == s.World.Player {
-		setState(s.World, s.Target, s.State)
+		mixins.SetStateOfTarget(s.World, s.Target, s.State)
 	}
 }
 
