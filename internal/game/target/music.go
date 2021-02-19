@@ -12,45 +12,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package trigger
+package target
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/game/mixins"
-	"github.com/divVerent/aaaaaa/internal/game/target"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/music"
 )
 
-// SwitchMusic just changes the music track to the given one.
-type SwitchMusic struct {
-	mixins.NonSolidTouchable
-	target.SwitchMusicTarget
+// SwitchMusicTarget just changes the music track to the given one.
+type SwitchMusicTarget struct {
+	Music string
 }
 
-func (s *SwitchMusic) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
-	s.NonSolidTouchable.Init(w, e)
-	return s.SwitchMusicTarget.Spawn(w, sp, e)
+func (s *SwitchMusicTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+	s.Music = sp.Properties["music"]
+	return nil
 }
 
-func (s *SwitchMusic) Despawn() {}
+func (s *SwitchMusicTarget) Despawn() {}
 
-func (s *SwitchMusic) Update() {
-	s.NonSolidTouchable.Update()
-	s.SwitchMusicTarget.Update()
-}
+func (s *SwitchMusicTarget) Update() {}
 
-func (s *SwitchMusic) Touch(other *engine.Entity) {
-	if other != s.World.Player {
-		return
+func (s *SwitchMusicTarget) Touch(other *engine.Entity) {}
+
+func (s *SwitchMusicTarget) SetState(state bool) {
+	if state {
+		music.Switch(s.Music)
 	}
-	s.SetState(true)
 }
 
-func (s *SwitchMusic) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
+func (s *SwitchMusicTarget) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
-	engine.RegisterEntityType(&SwitchMusic{})
+	engine.RegisterEntityType(&SwitchMusicTarget{})
 }

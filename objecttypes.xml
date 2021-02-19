@@ -81,6 +81,9 @@
  <objecttype name="SwitchMusic" color="#00ff00">
   <property name="music" type="file" default=""/>
  </objecttype>
+ <objecttype name="SwitchMusicTarget" color="#00ff00">
+  <property name="music" type="file" default=""/>
+ </objecttype>
  <objecttype name="TnihSign" color="#ffff00">
   <property name="resize_image" type="bool" default="false"/>
   <property name="target" type="string"/>
