@@ -28,6 +28,9 @@ import (
 type SetState struct {
 	mixins.NonSolidTouchable
 	target.SetStateTarget
+
+	Touching bool
+	Touched  bool
 }
 
 func (s *SetState) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -40,11 +43,19 @@ func (s *SetState) Despawn() {}
 func (s *SetState) Update() {
 	s.NonSolidTouchable.Update()
 	s.SetStateTarget.Update()
+	if s.Touching {
+		s.Touched = true
+	} else if s.Touched {
+		s.Touched = false
+	} else {
+		s.SetState(false)
+	}
 }
 
 func (s *SetState) Touch(other *engine.Entity) {
 	if other == s.SetStateTarget.World.Player {
 		s.SetState(true)
+		s.Touching = true
 	}
 }
 
