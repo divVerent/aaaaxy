@@ -61,6 +61,9 @@
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
+ <objecttype name="Sound" color="#0000ff">
+  <property name="sound" type="file" default=""/>
+ </objecttype>
  <objecttype name="Sprite" color="#ffffff">
   <property name="alpha" type="string"/>
   <property name="animation" type="string"/>

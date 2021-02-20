@@ -53,8 +53,14 @@ func DumpFrame(dumpFile io.Writer, toTime time.Duration) {
 
 func dumpSamples(dumpFile io.Writer, samples int) {
 	buf := make([]int16, 2*samples)
+	toClose := []*dumper{}
 	for _, dmp := range currentSounds {
-		dmp.addTo(buf)
+		if dmp.addTo(buf) != nil {
+			toClose = append(toClose, dmp)
+		}
+	}
+	for _, dmp := range toClose {
+		dmp.Close()
 	}
 	err := binary.Write(dumpFile, binary.LittleEndian, buf)
 	if err != nil {
@@ -115,14 +121,15 @@ func (d *dumper) SetVolume(vol float64) {
 	d.volume = vol
 }
 
-func (d *dumper) addTo(buf []int16) {
+func (d *dumper) addTo(buf []int16) error {
 	if !d.playing {
-		return
+		return nil
 	}
 	addBuf := make([]int16, len(buf))
-	binary.Read(d.reader, binary.LittleEndian, addBuf)
+	err := binary.Read(d.reader, binary.LittleEndian, addBuf)
 	for i, s := range addBuf {
 		buf[i] += int16(d.volume * float64(s))
 	}
 	d.played += len(buf) / 2
+	return err
 }

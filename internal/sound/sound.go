@@ -74,10 +74,11 @@ func Load(name string) (*Sound, error) {
 }
 
 // Play plays the given sound effect.
-func (s *Sound) Play() {
+func (s *Sound) Play() *audiowrap.Player {
 	player := audiowrap.NewPlayerFromBytes(s.sound)
 	player.SetVolume(*soundVolume)
 	player.Play()
+	return player
 }
 
 func Precache() {
