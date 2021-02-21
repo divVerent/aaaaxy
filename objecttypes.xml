@@ -49,6 +49,15 @@
  <objecttype name="QuestionBlock" color="#000000">
   <property name="kaizo" type="bool" default="false"/>
  </objecttype>
+ <objecttype name="SequenceCollector" color="#00ff00">
+  <property name="sequence" type="string"/>
+  <property name="state" type="bool" default="true"/>
+  <property name="target" type="string"/>
+ </objecttype>
+ <objecttype name="SequenceTarget" color="#00ff00">
+  <property name="sequence" type="string"/>
+  <property name="target" type="string"/>
+ </objecttype>
  <objecttype name="SetState" color="#ff0000">
   <property name="exclusive_targets" type="string"/>
   <property name="initial_state" type="string"/>
