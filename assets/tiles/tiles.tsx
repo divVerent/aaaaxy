@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="tiles" tilewidth="16" tileheight="16" tilecount="233" columns="16" objectalignment="topleft">
+<tileset version="1.4" tiledversion="1.4.3" name="tiles" tilewidth="16" tileheight="16" tilecount="256" columns="16" objectalignment="topleft">
  <grid orientation="orthogonal" width="1" height="1"/>
  <terraintypes>
   <terrain name="Block" tile="9"/>
@@ -2011,6 +2011,167 @@
    <property name="solid" type="bool" value="true"/>
   </properties>
   <image width="16" height="16" source="train_8f_r.png"/>
+ </tile>
+ <tile id="234">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_top_c.png"/>
+ </tile>
+ <tile id="235">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_top_d.png"/>
+ </tile>
+ <tile id="236">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_top_e.png"/>
+ </tile>
+ <tile id="237">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_top_f.png"/>
+ </tile>
+ <tile id="238">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_top_g.png"/>
+ </tile>
+ <tile id="239">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_top_a.png"/>
+ </tile>
+ <tile id="240">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_top_b.png"/>
+ </tile>
+ <tile id="241">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_middle_c.png"/>
+ </tile>
+ <tile id="242">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_middle_d.png"/>
+ </tile>
+ <tile id="243">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_middle_e.png"/>
+ </tile>
+ <tile id="244">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_middle_f.png"/>
+ </tile>
+ <tile id="245">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_middle_g.png"/>
+ </tile>
+ <tile id="246">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_middle_a.png"/>
+ </tile>
+ <tile id="247">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_middle_b.png"/>
+ </tile>
+ <tile id="248">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_bottom_c.png"/>
+ </tile>
+ <tile id="249">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_bottom_d.png"/>
+ </tile>
+ <tile id="250">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_bottom_e.png"/>
+ </tile>
+ <tile id="251">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_bottom_f.png"/>
+ </tile>
+ <tile id="252">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_bottom_g.png"/>
+ </tile>
+ <tile id="253">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_bottom_a.png"/>
+ </tile>
+ <tile id="254">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_black_bottom_b.png"/>
+ </tile>
+ <tile id="257">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_white_mid.png"/>
+ </tile>
+ <tile id="258">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="piano_white_bottom.png"/>
  </tile>
  <wangsets>
   <wangset name="Block/Open" tile="-1">
