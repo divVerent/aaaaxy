@@ -29,13 +29,20 @@ type SetState struct {
 	mixins.NonSolidTouchable
 	target.SetStateTarget
 
+	SendUntouch bool
+
 	Touching bool
 	Touched  bool
 }
 
 func (s *SetState) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.NonSolidTouchable.Init(w, e)
-	return s.SetStateTarget.Spawn(w, sp, e)
+	err := s.SetStateTarget.Spawn(w, sp, e)
+	if err != nil {
+		return err
+	}
+	s.SendUntouch = sp.Properties["send_untouch"] == "true"
+	return nil
 }
 
 func (s *SetState) Despawn() {}
@@ -43,19 +50,22 @@ func (s *SetState) Despawn() {}
 func (s *SetState) Update() {
 	s.NonSolidTouchable.Update()
 	s.SetStateTarget.Update()
-	if s.Touching {
-		s.Touched = true
-	} else if s.Touched {
-		s.Touched = false
-	} else {
+	if s.Touched && !s.Touching {
 		s.SetState(false)
 	}
+	s.Touching, s.Touched = false, s.Touching
 }
 
 func (s *SetState) Touch(other *engine.Entity) {
 	if other == s.SetStateTarget.World.Player {
-		s.SetState(true)
-		s.Touching = true
+		if s.SendUntouch {
+			if !s.Touching && !s.Touched {
+				s.SetState(true)
+			}
+			s.Touching = true
+		} else {
+			s.SetState(true)
+		}
 	}
 }
 
