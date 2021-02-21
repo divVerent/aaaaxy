@@ -32,7 +32,7 @@ Graph:
                 * A "dev room" that requires all three abilities.
   * Hilbert's Hotel
     * Choices, choices! (Endless sequence of two paths; have to turn back to proceed; actually more Antichamber reference)
-      * Shepard Tone (player has to play melody on an infinite piano by jumping on the right keys)
+      * Shepard Tone (player has to play melody on an infinite piano by jumping on the right keys) melody idea: E C E D to open (Loom), alterates: C D F D A A G never gonna give you up
         * Turtles all the way down (have to enter mouth of tutle, ends up in front of another turtle, but is actually a copied room).
           * Don't Look Up (if you do, you fall down ad infinitum, must escape)
             * More infinity stuff?
