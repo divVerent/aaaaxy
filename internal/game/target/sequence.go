@@ -99,10 +99,8 @@ func (s *SequenceCollector) Append(str string) {
 	}
 	matches := s.Current == s.Sequence
 	if matches != matched {
-		log.Printf("SEQUENCE MATCH: %v -> %v", s.Target, matches)
 		mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.State == matches)
 	}
-	log.Printf("SEQUENCE: got %v, want %v", s.Current, s.Sequence)
 }
 
 func (s *SequenceCollector) Touch(other *engine.Entity) {}
