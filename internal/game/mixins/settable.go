@@ -56,11 +56,13 @@ func SetStateOfEntity(e *engine.Entity, state bool) bool {
 // SetStateOfTarget toggles the state of all entities of the given target name to the given state.
 // Includes WarpZones too.
 // Excludes the given entity (should be the caller).
-func SetStateOfTarget(w *engine.World, e *engine.Entity, target string, state bool) {
+func SetStateOfTarget(w *engine.World, e *engine.Entity, target string, oneTarget bool, state bool) {
 	if target == "" {
 		return
 	}
-	w.SetWarpZoneState(target, state)
+	if !oneTarget {
+		w.SetWarpZoneState(target, state)
+	}
 	for _, ent := range w.Entities {
 		if ent == e {
 			continue
@@ -70,6 +72,9 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, target string, state bo
 		}
 		if !SetStateOfEntity(ent, state) {
 			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
+		}
+		if oneTarget {
+			break
 		}
 	}
 }

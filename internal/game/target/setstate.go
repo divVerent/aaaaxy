@@ -31,6 +31,7 @@ type SetStateTarget struct {
 	Entity *engine.Entity
 
 	Target           string
+	TargetOne        bool
 	ExclusiveTargets []string
 	State            bool
 }
@@ -39,10 +40,11 @@ func (s *SetStateTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.E
 	s.World = w
 	s.Entity = e
 	s.Target = sp.Properties["target"]
+	s.TargetOne = sp.Properties["target_one"] == "true"
 	s.State = sp.Properties["state"] != "false"
 	s.ExclusiveTargets = strings.Split(sp.Properties["exclusive_targets"], " ")
 	if sp.Properties["initial_state"] != "" {
-		mixins.SetStateOfTarget(w, e, s.Target, sp.Properties["initial_state"] != "false") // Default true.
+		mixins.SetStateOfTarget(w, e, s.Target, false, sp.Properties["initial_state"] != "false") // Default true.
 	}
 	return nil
 }
@@ -53,11 +55,11 @@ func (s *SetStateTarget) Update() {}
 
 func (s *SetStateTarget) SetState(state bool) {
 	// Turn my targets to s.State if state, to !s.State if !state.
-	mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.State == state)
+	mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.TargetOne, s.State == state)
 
 	// Turn off all my "siblings". Can be used to make mutually exclusive targets.
 	for _, t := range s.ExclusiveTargets {
-		mixins.SetStateOfTarget(s.World, s.Entity, t, false)
+		mixins.SetStateOfTarget(s.World, s.Entity, t, false, false)
 	}
 }
 

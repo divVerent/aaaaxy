@@ -38,7 +38,7 @@ func (t *EdgeTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 	t.Entity = e
 	t.Target = sp.Properties["target"]
 	t.State = sp.Properties["initial_state"] == "true"
-	mixins.SetStateOfTarget(t.World, t.Entity, t.Target, t.State)
+	mixins.SetStateOfTarget(t.World, t.Entity, t.Target, false, t.State)
 	return nil
 }
 
@@ -53,7 +53,7 @@ func (t *EdgeTarget) SetState(state bool) {
 		return
 	}
 	t.State = state
-	mixins.SetStateOfTarget(t.World, t.Entity, t.Target, t.State)
+	mixins.SetStateOfTarget(t.World, t.Entity, t.Target, false, t.State)
 }
 
 func (t *EdgeTarget) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}

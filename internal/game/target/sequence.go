@@ -99,7 +99,7 @@ func (s *SequenceCollector) Append(str string) {
 	}
 	matches := s.Current == s.Sequence
 	if matches != matched {
-		mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.State == matches)
+		mixins.SetStateOfTarget(s.World, s.Entity, s.Target, false, s.State == matches)
 	}
 }
 
