@@ -39,7 +39,7 @@ type TnihSign struct {
 	Text      string
 	SeenImage *ebiten.Image
 	Sound     *sound.Sound
-	Target    string
+	Target    mixins.TargetSelection
 
 	Centerprint *centerprint.Centerprint
 }
@@ -78,6 +78,7 @@ func (t *TnihSign) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) 
 	if !t.Entity.ResizeImage {
 		t.Entity.RenderOffset = t.Entity.Rect.Size.Sub(m.Delta{DX: tnihWidth, DY: tnihHeight}).Div(2)
 	}
+	t.Target = mixins.ParseTarget(s.Properties["target"])
 	return nil
 }
 
@@ -101,7 +102,7 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 			t.Centerprint = centerprint.New(t.Text, importance, centerprint.Top, centerprint.NormalFont, color.NRGBA{R: 255, G: 255, B: 85, A: 255})
 			t.PersistentState["seen"] = "true"
 			t.Entity.Image = t.SeenImage
-			mixins.SetStateOfTarget(t.World, t.Entity, t.Target, false, true)
+			mixins.SetStateOfTarget(t.World, t.Entity, t.Target, true)
 		}
 	} else {
 		if t.Centerprint.Active() {

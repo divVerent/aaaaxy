@@ -28,7 +28,7 @@ type EdgeTarget struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	Target string
+	Target mixins.TargetSelection
 
 	State bool
 }
@@ -36,9 +36,9 @@ type EdgeTarget struct {
 func (t *EdgeTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	t.World = w
 	t.Entity = e
-	t.Target = sp.Properties["target"]
+	t.Target = mixins.ParseTarget(sp.Properties["target"])
 	t.State = sp.Properties["initial_state"] == "true"
-	mixins.SetStateOfTarget(t.World, t.Entity, t.Target, false, t.State)
+	mixins.SetStateOfTarget(t.World, t.Entity, t.Target, t.State)
 	return nil
 }
 
@@ -53,7 +53,7 @@ func (t *EdgeTarget) SetState(state bool) {
 		return
 	}
 	t.State = state
-	mixins.SetStateOfTarget(t.World, t.Entity, t.Target, false, t.State)
+	mixins.SetStateOfTarget(t.World, t.Entity, t.Target, t.State)
 }
 
 func (t *EdgeTarget) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}

@@ -58,6 +58,12 @@ func init() {
 		log.Panicf("Could not load gosmallcaps font: %v", err)
 	}
 
+	ByName["Small"] = Face{truetype.NewFace(regular, &truetype.Options{
+		Size:       10,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	})}
 	ByName["Regular"] = Face{truetype.NewFace(regular, &truetype.Options{
 		Size:       16,
 		Hinting:    font.HintingFull,

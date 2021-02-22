@@ -16,6 +16,7 @@ package mixins
 
 import (
 	"log"
+	"strings"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/level"
@@ -53,28 +54,52 @@ func SetStateOfEntity(e *engine.Entity, state bool) bool {
 	return true
 }
 
+type TargetSelection []string
+
+func ParseTarget(target string) TargetSelection {
+	return TargetSelection(strings.Split(target, " "))
+}
+
 // SetStateOfTarget toggles the state of all entities of the given target name to the given state.
 // Includes WarpZones too.
 // Excludes the given entity (should be the caller).
-func SetStateOfTarget(w *engine.World, e *engine.Entity, target string, oneTarget bool, state bool) {
-	if target == "" {
-		return
-	}
-	if !oneTarget {
-		w.SetWarpZoneState(target, state)
-	}
-	for _, ent := range w.Entities {
-		if ent == e {
+func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection, state bool) {
+	for _, target := range targets {
+		if target == "" {
 			continue
 		}
-		if ent.Name != target {
-			continue
-		}
-		if !SetStateOfEntity(ent, state) {
-			log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
-		}
-		if oneTarget {
-			break
+		if target[0] == '=' {
+			target = target[1:]
+			var closest *engine.Entity
+			for _, ent := range w.Entities {
+				if ent == e {
+					continue
+				}
+				if ent.Name != target {
+					continue
+				}
+				if closest == nil || closest.Rect.Delta(w.Player.Rect).Norm1() > ent.Rect.Delta(w.Player.Rect).Norm1() {
+					closest = ent
+				}
+			}
+			if closest != nil {
+				if !SetStateOfEntity(closest, state) {
+					log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", closest, target)
+				}
+			}
+		} else {
+			w.SetWarpZoneState(target, state)
+			for _, ent := range w.Entities {
+				if ent == e {
+					continue
+				}
+				if ent.Name != target {
+					continue
+				}
+				if !SetStateOfEntity(ent, state) {
+					log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
+				}
+			}
 		}
 	}
 }

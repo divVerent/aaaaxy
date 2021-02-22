@@ -72,7 +72,7 @@ type SequenceCollector struct {
 	Entity *engine.Entity
 
 	Sequence string
-	Target   string
+	Target   mixins.TargetSelection
 	State    bool
 
 	Current string
@@ -81,8 +81,8 @@ type SequenceCollector struct {
 func (s *SequenceCollector) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
-	s.Sequence = sp.Properties["match"]
-	s.Target = sp.Properties["target"]
+	s.Sequence = sp.Properties["sequence"]
+	s.Target = mixins.ParseTarget(sp.Properties["target"])
 	s.State = sp.Properties["state"] != "false"
 	return nil
 }
@@ -99,8 +99,10 @@ func (s *SequenceCollector) Append(str string) {
 	}
 	matches := s.Current == s.Sequence
 	if matches != matched {
-		mixins.SetStateOfTarget(s.World, s.Entity, s.Target, false, s.State == matches)
+		log.Printf("SEQUENCE MATCH: %v -> %v", s.Target, matches)
+		mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.State == matches)
 	}
+	log.Printf("SEQUENCE: got %v, want %v", s.Current, s.Sequence)
 }
 
 func (s *SequenceCollector) Touch(other *engine.Entity) {}

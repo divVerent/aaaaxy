@@ -50,7 +50,7 @@ func (s *SetState) Despawn() {}
 func (s *SetState) Update() {
 	s.NonSolidTouchable.Update()
 	s.SetStateTarget.Update()
-	if s.Touched && !s.Touching {
+	if s.Touched && !s.Touching && s.SendUntouch {
 		s.SetState(false)
 	}
 	s.Touching, s.Touched = false, s.Touching
@@ -58,14 +58,10 @@ func (s *SetState) Update() {
 
 func (s *SetState) Touch(other *engine.Entity) {
 	if other == s.SetStateTarget.World.Player {
-		if s.SendUntouch {
-			if !s.Touching && !s.Touched {
-				s.SetState(true)
-			}
-			s.Touching = true
-		} else {
+		if !s.Touching && !s.Touched {
 			s.SetState(true)
 		}
+		s.Touching = true
 	}
 }
 
