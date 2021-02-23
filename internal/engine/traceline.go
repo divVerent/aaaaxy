@@ -279,12 +279,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile, prevPixel m.Po
 }
 
 // traceEntity returns whether the line from from to to hits the entity, as well as the last coordinate not hitting yet.
-func traceEntity(from, to m.Pos, ent *Entity) (bool, m.Pos) {
-	l := normalizeLine(from, to)
-	if l.NumSteps == 0 {
-		// Start point is end point. Nothing to do.
-		return false, m.Pos{}
-	}
+func traceEntity(l *normalizedLine, ent *Entity) (bool, m.Pos) {
 	i0, j0, i1, j1 := l.fromRect(ent.Rect)
 	if hit, i, j := traceLineBox(l.NumSteps, l.Height, i0, j0, i1, j1); hit {
 		return true, l.toPos(i, j)
@@ -309,12 +304,19 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		*o.PathOut = (*o.PathOut)[:0]
 	}
 
+	if from == to {
+		// Empty trace? Nothign we can hit.
+		return result
+	}
+
+	l := normalizeLine(from, to)
+	// As from != to, we know NumSteps > 0.
+
 	if !o.NoTiles {
 		result.EndPos = from
 		if o.PathOut != nil {
 			*o.PathOut = append(*o.PathOut, from.Div(level.TileSize))
 		}
-		l := normalizeLine(from, to)
 		err := l.walkTiles(func(prevTile, nextTile, prevPixel m.Pos) error {
 			result.EndPos = prevPixel
 			if o.LoadTiles {
@@ -355,11 +357,15 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		default:
 			log.Panicf("Unreachable code: invalid trace mode: %v", o.Mode)
 		}
+		traceRect := m.RectFromPoints(from, to)
 		for _, ent := range ents {
 			if ent == o.IgnoreEnt {
 				continue
 			}
-			if hit, endPos := traceEntity(from, to, ent); hit {
+			if ent.Rect.Delta(traceRect) != (m.Delta{}) {
+				continue
+			}
+			if hit, endPos := traceEntity(&l, ent); hit {
 				score := TraceScore{
 					TraceDistance: endPos.Delta(from).Norm1(),
 				}

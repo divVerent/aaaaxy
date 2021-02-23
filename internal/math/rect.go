@@ -41,6 +41,25 @@ func (r Rect) Normalized() Rect {
 	return r
 }
 
+func RectFromPoints(a, b Pos) Rect {
+	var r Rect
+	if a.X < b.X {
+		r.Origin.X = a.X
+		r.Size.DX = b.Y - a.X + 1
+	} else {
+		r.Origin.X = b.X
+		r.Size.DX = a.Y - b.X + 1
+	}
+	if a.Y < b.Y {
+		r.Origin.Y = a.Y
+		r.Size.DY = b.Y - a.Y + 1
+	} else {
+		r.Origin.Y = b.Y
+		r.Size.DY = a.Y - b.Y + 1
+	}
+	return r
+}
+
 // OppositeCorner returns the coordinate of the opposite corner of the rectangle. Only correct on normalized rectangles.
 func (r Rect) OppositeCorner() Pos {
 	return r.Origin.Add(r.Size).Sub(Delta{DX: 1, DY: 1})
