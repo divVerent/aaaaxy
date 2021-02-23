@@ -455,7 +455,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		for _, pos := range markedTiles {
 			from := pos.Add(step.from)
 			to := pos.Add(step.to)
-			w.LoadTile(from, to.Delta(from))
+			w.LoadTile(from, to, to.Delta(from))
 			if w.Tile(to).VisibilityMark != visibilityMark {
 				w.Tile(to).VisibilityMark = expansionMark
 			}
@@ -551,11 +551,10 @@ func (w *World) SetWarpZoneState(name string, state bool) {
 
 // LoadTile loads the next tile into the current world based on a currently
 // known tile and its neighbor. Respects and applies warps.
-func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
-	newPos := p.Add(d)
-	if w.Tile(newPos) != nil {
+func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
+	if tile := w.Tile(newPos); tile != nil {
 		// Already loaded.
-		return newPos
+		return tile
 	}
 	neighborTile := w.Tile(p)
 	if neighborTile == nil {
@@ -567,13 +566,13 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newLevelTile := w.Level.Tile(newLevelPos)
 	if newLevelTile == nil {
 		// log.Printf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)", newLevelPos, p, neighborLevelPos, d, t.Apply(d))
-		newTile := level.Tile{
+		newTile := &level.Tile{
 			LevelPos:           newLevelPos,
 			Transform:          t,
 			LoadedFromNeighbor: p,
 		}
-		w.setTile(newPos, &newTile)
-		return newPos
+		w.setTile(newPos, newTile)
+		return newTile
 	}
 	warped := false
 	for _, warp := range newLevelTile.WarpZones {
@@ -608,7 +607,7 @@ func (w *World) LoadTile(p m.Pos, d m.Delta) m.Pos {
 	newTile.Orientation = t.Inverse().Concat(newTile.Orientation)
 	newTile.LoadedFromNeighbor = p
 	w.setTile(newPos, &newTile)
-	return newPos
+	return &newTile
 }
 
 // tilesBox returns corner coordinates for all tiles in a given box.
@@ -628,17 +627,21 @@ func (w *World) LoadTilesForRect(r m.Rect, tp m.Pos) {
 func (w *World) LoadTilesForTileBox(tp0, tp1, tp m.Pos) {
 	// In range, load all.
 	for y := tp.Y; y > tp0.Y; y-- {
-		w.LoadTile(m.Pos{X: tp.X, Y: y}, m.North())
+		pos := m.Pos{X: tp.X, Y: y}
+		w.LoadTile(pos, pos.Add(m.North()), m.North())
 	}
 	for y := tp.Y; y < tp1.Y; y++ {
-		w.LoadTile(m.Pos{X: tp.X, Y: y}, m.South())
+		pos := m.Pos{X: tp.X, Y: y}
+		w.LoadTile(pos, pos.Add(m.South()), m.South())
 	}
 	for y := tp0.Y; y <= tp1.Y; y++ {
 		for x := tp.X; x > tp0.X; x-- {
-			w.LoadTile(m.Pos{X: x, Y: y}, m.West())
+			pos := m.Pos{X: x, Y: y}
+			w.LoadTile(pos, pos.Add(m.West()), m.West())
 		}
 		for x := tp.X; x < tp1.X; x++ {
-			w.LoadTile(m.Pos{X: x, Y: y}, m.East())
+			pos := m.Pos{X: x, Y: y}
+			w.LoadTile(pos, pos.Add(m.East()), m.East())
 		}
 	}
 }
