@@ -46,6 +46,8 @@ type World struct {
 	tiles []*level.Tile
 	// entities are all entities currently loaded.
 	entities map[EntityIncarnation]*Entity
+	// opaqueEntities are all opaque entities currently loaded.
+	opaqueEntities map[*Entity]struct{}
 	// PlayerIncarnation is the incarnation ID of the player entity.
 	Player *Entity
 	// Level is the current tilemap (universal covering with warpZones).
@@ -139,9 +141,10 @@ func (w *World) Init() error {
 	}
 
 	*w = World{
-		tiles:    make([]*level.Tile, tileWindowWidth*tileWindowHeight),
-		entities: map[EntityIncarnation]*Entity{},
-		Level:    lvl,
+		tiles:          make([]*level.Tile, tileWindowWidth*tileWindowHeight),
+		entities:       map[EntityIncarnation]*Entity{},
+		opaqueEntities: map[*Entity]struct{}{},
+		Level:          lvl,
 	}
 	w.renderer.Init(w)
 
@@ -249,9 +252,9 @@ func (w *World) RespawnPlayer(checkpointName string) {
 		}
 		ent.Impl.Despawn()
 	}
-	w.entities = map[EntityIncarnation]*Entity{
-		w.Player.Incarnation: w.Player,
-	}
+	w.entities = map[EntityIncarnation]*Entity{}
+	w.opaqueEntities = map[*Entity]struct{}{}
+	w.link(w.Player)
 	w.tiles = make([]*level.Tile, tileWindowWidth*tileWindowHeight)
 	w.setScrollPos(cpSp.LevelPos.Mul(level.TileSize)) // Scroll the tile into view.
 	w.setTile(cpSp.LevelPos, &tile)
@@ -466,12 +469,10 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			return
 		}
 		for _, spawnable := range tile.Spawnables {
-			timing.Section("spawn")
 			_, err := w.Spawn(spawnable, pos, tile)
 			if err != nil {
 				log.Panicf("Could not spawn entity %v: %v", spawnable, err)
 			}
-			timing.Section("spawn_search")
 		}
 	})
 
@@ -494,7 +495,6 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			}
 		}
 		if pos != nil {
-			timing.Section("load_entity_tiles")
 			w.LoadTilesForTileBox(tp0, tp1, *pos)
 			for y := tp0.Y; y <= tp1.Y; y++ {
 				for x := tp0.X; x <= tp1.X; x++ {
@@ -504,12 +504,9 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 					}
 				}
 			}
-			timing.Section("despawn_search")
 		} else {
-			timing.Section("despawn")
 			ent.Impl.Despawn()
 			w.unlink(ent)
-			timing.Section("despawn_search")
 		}
 	}
 
@@ -662,11 +659,17 @@ func (w *World) Draw(screen *ebiten.Image) {
 }
 
 func (w *World) unlink(e *Entity) {
+	if e.opaque {
+		delete(w.opaqueEntities, e)
+	}
 	delete(w.entities, e.Incarnation)
 }
 
 func (w *World) link(e *Entity) {
 	w.entities[e.Incarnation] = e
+	if e.opaque {
+		w.opaqueEntities[e] = struct{}{}
+	}
 }
 
 func (w *World) FindName(name string) []*Entity {
@@ -691,10 +694,8 @@ func (w *World) FindSolid() []*Entity {
 
 func (w *World) FindOpaque() []*Entity {
 	var out []*Entity
-	for _, ent := range w.entities {
-		if ent.opaque {
-			out = append(out, ent)
-		}
+	for ent := range w.opaqueEntities {
+		out = append(out, ent)
 	}
 	return out
 }
