@@ -357,12 +357,8 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 		default:
 			log.Panicf("Unreachable code: invalid trace mode: %v", o.Mode)
 		}
-		traceRect := m.RectFromPoints(from, to)
 		for _, ent := range ents {
 			if ent == o.IgnoreEnt {
-				continue
-			}
-			if ent.Rect.Delta(traceRect) != (m.Delta{}) {
 				continue
 			}
 			if hit, endPos := traceEntity(&l, ent); hit {

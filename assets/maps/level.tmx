@@ -5922,13 +5922,7 @@
     <property name="target" value="ShepardOpenBlocks"/>
    </properties>
   </object>
-  <object id="1266" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4256" y="5888" width="16" height="16"/>
-  <object id="1267" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4272" y="5888" width="16" height="16"/>
-  <object id="1268" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4288" y="5888" width="16" height="16"/>
-  <object id="1269" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4304" y="5888" width="16" height="16"/>
-  <object id="1270" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4320" y="5888" width="16" height="16"/>
-  <object id="1271" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4336" y="5888" width="16" height="16"/>
-  <object id="1272" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4352" y="5888" width="16" height="16"/>
+  <object id="1266" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4256" y="5888" width="112" height="16"/>
   <object id="1273" type="TnihSign" x="4352" y="6016" width="32" height="32">
    <properties>
     <property name="text" value="Sometimes all you need is a little opening."/>
