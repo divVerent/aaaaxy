@@ -5843,14 +5843,14 @@
   </object>
   <object id="1242" name="ShepardSequence" type="SequenceCollector" x="4320" y="5840" width="16" height="16">
    <properties>
-    <property name="sequence" value="CDFDAAG"/>
-    <property name="target" value="=ShepardAstley"/>
+    <property name="sequence" value="CGFGCDEGED"/>
+    <property name="target" value="=ShepardKhil"/>
    </properties>
   </object>
-  <object id="1243" type="Sprite" x="4256" y="5664" width="112" height="80">
+  <object id="1243" type="Sprite" x="4256" y="5680" width="112" height="64">
    <properties>
     <property name="no_flip" value="x"/>
-    <property name="text" value="NO  TROLLS    Open:  ECED"/>
+    <property name="text" value="Play ECED  to open.  No Trololos!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -5947,7 +5947,7 @@
     <property name="initial_state" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1280" name="ShepardAstley" type="SoundTarget" x="4336" y="5840" width="16" height="16">
+  <object id="1280" name="ShepardKhil" type="SoundTarget" x="4336" y="5840" width="16" height="16">
    <properties>
     <property name="sound" value="loom_minor.ogg"/>
     <property name="state" type="bool" value="true"/>
