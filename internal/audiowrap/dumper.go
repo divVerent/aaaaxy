@@ -93,6 +93,7 @@ func newDumperWithTee(src io.Reader) (*dumper, io.Reader) {
 }
 
 func (d *dumper) Close() {
+	d.playing = false
 	for i, snd := range currentSounds {
 		if snd == d {
 			currentSounds = append(currentSounds[:i], currentSounds[(i+1):]...)
