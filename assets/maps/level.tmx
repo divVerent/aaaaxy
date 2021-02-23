@@ -885,25 +885,21 @@
   <object id="182" type="Sprite" x="3488" y="5344" width="288" height="96">
    <properties>
     <property name="image" value="the_strip.png"/>
-    <property name="no_flip" value=""/>
    </properties>
   </object>
   <object id="183" type="Sprite" x="2848" y="5088" width="288" height="96">
    <properties>
     <property name="image" value="the_moebius_strip.png"/>
-    <property name="no_flip" value=""/>
    </properties>
   </object>
   <object id="184" type="Sprite" x="2848" y="5344" width="288" height="96">
    <properties>
     <property name="image" value="the_torus.png"/>
-    <property name="no_flip" value=""/>
    </properties>
   </object>
   <object id="185" type="Sprite" x="2176" y="5088" width="288" height="96">
    <properties>
     <property name="image" value="the_klein_bottle.png"/>
-    <property name="no_flip" value=""/>
     <property name="orientation" value="EN"/>
    </properties>
   </object>
@@ -917,7 +913,6 @@
   <object id="191" type="Sprite" x="1408" y="5088" width="288" height="96">
    <properties>
     <property name="image" value="the_projective_plane.png"/>
-    <property name="no_flip" value=""/>
     <property name="orientation" value="WN"/>
    </properties>
   </object>
@@ -5853,6 +5848,7 @@
   </object>
   <object id="1243" type="Sprite" x="4256" y="5664" width="112" height="80">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="NO  TROLLS    Open:  ECED"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5861,6 +5857,7 @@
   </object>
   <object id="1244" type="Sprite" x="4256" y="5856" width="16" height="16">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="C"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5869,6 +5866,7 @@
   </object>
   <object id="1245" type="Sprite" x="4272" y="5856" width="16" height="16">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="D"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5877,6 +5875,7 @@
   </object>
   <object id="1246" type="Sprite" x="4288" y="5856" width="16" height="16">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="E"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5885,6 +5884,7 @@
   </object>
   <object id="1247" type="Sprite" x="4304" y="5856" width="16" height="16">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="F"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5893,6 +5893,7 @@
   </object>
   <object id="1248" type="Sprite" x="4320" y="5856" width="16" height="16">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="G"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5901,6 +5902,7 @@
   </object>
   <object id="1249" type="Sprite" x="4336" y="5856" width="16" height="16">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="A"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5909,6 +5911,7 @@
   </object>
   <object id="1250" type="Sprite" x="4352" y="5856" width="16" height="16">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="B"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
