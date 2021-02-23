@@ -33,6 +33,7 @@ import (
 )
 
 var (
+	debugCountTiles         = flag.Bool("debug_count_tiles", false, "count tiles set/cleared")
 	debugInitialOrientation = flag.String("debug_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
 	debugInitialCheckpoint  = flag.String("debug_initial_checkpoint", "", "initial checkpoint")
 	debugTileWindowSize     = flag.Bool("debug_check_window_size", false, "if set, we verify that the tile window size is set high enough")
@@ -75,6 +76,9 @@ type World struct {
 	// traceLineAndMarkPath receives the path from tracing visibility.
 	// Exists to reduce memory allocation.
 	traceLineAndMarkPath []m.Pos
+
+	// Tile counter.
+	tilesSet, tilesCleared int
 }
 
 // Initialized returns whether Init() has been called on this World before.
@@ -108,10 +112,12 @@ func (w *World) Tile(pos m.Pos) *level.Tile {
 
 func (w *World) setTile(pos m.Pos, t *level.Tile) {
 	w.tiles[w.tileIndex(pos)] = t
+	w.tilesSet++
 }
 
 func (w *World) clearTile(pos m.Pos) {
 	w.tiles[w.tileIndex(pos)] = nil
+	w.tilesCleared++
 }
 
 func (w *World) forEachTile(f func(pos m.Pos, t *level.Tile)) {
@@ -429,11 +435,11 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		w.renderer.expandedVisiblePolygon = w.renderer.visiblePolygon
 	}
 	// BUG: the above also loads tiles (but doesn't mark) if their path was blocked by an entity.
-	// Workaround for now. We can probably remove this by adding an extra flag.
+	// Workaround: mark them as if they were previous frame's tiles, so they're not a basis for loading and get cleared at the end if needed.
 	timing.Section("untrace_workaround")
 	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
 		if tile.VisibilityFlags == w.frameVis {
-			w.clearTile(pos)
+			tile.VisibilityFlags ^= level.FrameVis
 		}
 	})
 
@@ -534,6 +540,11 @@ func (w *World) Update() error {
 	// Update centerprints.
 	centerprint.Update()
 
+	if *debugCountTiles {
+		log.Printf("%d tiles set, %d tiles cleared", w.tilesSet, w.tilesCleared)
+	}
+	w.tilesSet, w.tilesCleared = 0, 0
+
 	w.renderer.needPrevImage = true
 	return nil
 }
@@ -583,7 +594,6 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	for _, warp := range newLevelTile.WarpZones {
 		// Don't enter warps from behind.
 		if warp.PrevTile != neighborLevelPos {
-			log.Panic("warp from behind")
 			continue
 		}
 		// Honor the warpzone toggle state.
