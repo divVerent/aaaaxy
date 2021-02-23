@@ -118,11 +118,12 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 	e.Rect.Origin = originTilePos.Mul(level.TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
 	e.Orientation = tInv.Concat(s.Orientation)
 	e.Alpha = 1.0
+	w.link(e)
 	err := eImpl.Spawn(w, s, e)
 	if err != nil {
+		w.unlink(e)
 		return nil, err
 	}
-	w.link(e)
 	return e, nil
 }
 

@@ -671,6 +671,9 @@ func (w *World) unlink(e *Entity) {
 }
 
 func (w *World) link(e *Entity) {
+	if w.entities[e.Incarnation] != nil {
+		log.Panicf("linking an entity that has already been linked: %v", e)
+	}
 	w.entities[e.Incarnation] = e
 	if e.opaque {
 		w.opaqueEntities = append(w.opaqueEntities, e)
