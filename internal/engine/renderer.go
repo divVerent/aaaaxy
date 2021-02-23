@@ -220,7 +220,7 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			arrowrx := arrowpx - arrowdx - arrowdy
 			arrowry := arrowpy + arrowdx - arrowdy
 			c := color.Gray{64}
-			if tile.VisibilityMark == r.world.visibilityMark {
+			if tile.VisibilityFlags&level.FrameVis == r.world.frameVis {
 				c = color.Gray{192}
 			}
 			ebitenutil.DrawLine(screen, startx, starty, endx, endy, c)

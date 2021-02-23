@@ -18,6 +18,13 @@ import (
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
+type VisibilityFlags int
+
+const (
+	FrameVis  VisibilityFlags = 1
+	TracedVis VisibilityFlags = 2
+)
+
 // A Tile is a single game tile.
 type Tile struct {
 	// Info needed for gameplay.
@@ -26,9 +33,9 @@ type Tile struct {
 	Spawnables []*Spawnable // NOTE: not adjusted for transform!
 
 	// Info needed for loading more tiles.
-	LevelPos       m.Pos
-	Transform      m.Orientation
-	VisibilityMark uint
+	LevelPos        m.Pos
+	Transform       m.Orientation
+	VisibilityFlags VisibilityFlags
 
 	// Info needed for rendering.
 	Orientation m.Orientation

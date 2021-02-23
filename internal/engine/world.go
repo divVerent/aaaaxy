@@ -66,8 +66,8 @@ type World struct {
 
 	// bottomRightTile is the tile at scrollPos.
 	bottomRightTile m.Pos
-	// visibilityMark is the current mark value to detect visible tiles/objects.
-	visibilityMark uint
+	// frameVis is the current mark value to detect visible tiles/objects.
+	frameVis level.VisibilityFlags
 
 	// respawned is set if the player got respawned this frame.
 	respawned bool
@@ -230,8 +230,6 @@ func (w *World) RespawnPlayer(checkpointName string) {
 		cpTransform = cpTransform.Concat(m.FlipX())
 	}
 
-	w.visibilityMark++
-
 	// First spawn the tile on the checkpoint.
 	tile := w.Level.Tile(cpSp.LevelPos).Tile
 	var err error
@@ -243,8 +241,8 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	tile.Orientation = tile.Transform.Inverse().Concat(tile.Orientation)
 
 	// Build a new world around the CP tile and the player.
-	w.visibilityMark = 0
-	tile.VisibilityMark = w.visibilityMark
+	w.frameVis = 0
+	tile.VisibilityFlags = w.frameVis
 	for _, ent := range w.entities {
 		if ent == w.Player {
 			continue
@@ -281,7 +279,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	w.Player.Rect.Origin = trace.EndPos
 
 	w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
-	w.visibilityMark++
+	w.frameVis ^= level.FrameVis
 
 	// Reset all warpzones.
 	w.WarpZoneStates = map[string]bool{}
@@ -314,7 +312,7 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 		PathOut:   &w.traceLineAndMarkPath,
 	})
 	for _, tilePos := range w.traceLineAndMarkPath {
-		w.Tile(tilePos).VisibilityMark = w.visibilityMark
+		w.Tile(tilePos).VisibilityFlags = w.frameVis | level.TracedVis
 	}
 	return result
 }
@@ -382,20 +380,13 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	}
 	defer timing.Group()()
 
-	// Delete all tiles merely marked for expanding.
-	// TODO can we preserve but recheck them instead?
-	timing.Section("cleanup_expanded")
-	prevVisibilityMark := w.visibilityMark - 1
-	eyePos := eye.Div(level.TileSize)
-	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
-		if tile.VisibilityMark != prevVisibilityMark && pos != eyePos {
-			w.clearTile(pos)
-		}
-	})
+	// Reset visibility!
+	w.frameVis ^= level.FrameVis
 
-	// Unmark all tiles and entities (just bump mark index).
-	w.visibilityMark++
-	visibilityMark := w.visibilityMark
+	// Always mark the eye tile.
+	timing.Section("eye")
+	eyePos := eye.Div(level.TileSize)
+	w.Tile(eyePos).VisibilityFlags = w.frameVis | level.TracedVis
 
 	// Trace from player location to all directions (sweepStep pixels at screen edge).
 	// Mark all tiles hit (excl. the tiles that stopped us).
@@ -437,18 +428,25 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	} else {
 		w.renderer.expandedVisiblePolygon = w.renderer.visiblePolygon
 	}
+	// BUG: the above also loads tiles (but doesn't mark) if their path was blocked by an entity.
+	// Workaround for now. We can probably remove this by adding an extra flag.
+	timing.Section("untrace_workaround")
+	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
+		if tile.VisibilityFlags == w.frameVis {
+			w.clearTile(pos)
+		}
+	})
 
 	// Also mark all neighbors of hit tiles hit (up to expandTiles).
 	// For multiple expansion, need to do this in steps so initially we only base expansion on visible tiles.
 	timing.Section("expand")
 	markedTiles := []m.Pos{}
+	justTraced := w.frameVis | level.TracedVis
 	w.forEachTile(func(tilePos m.Pos, tile *level.Tile) {
-		if tile.VisibilityMark == visibilityMark {
+		if tile.VisibilityFlags == justTraced {
 			markedTiles = append(markedTiles, tilePos)
 		}
 	})
-	w.visibilityMark++
-	expansionMark := w.visibilityMark
 	numExpandSteps := (2*expandTiles+1)*(2*expandTiles+1) - 1
 	for i := 0; i < numExpandSteps; i++ {
 		step := &expandSteps[i]
@@ -456,15 +454,12 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			from := pos.Add(step.from)
 			to := pos.Add(step.to)
 			w.LoadTile(from, to, to.Delta(from))
-			if w.Tile(to).VisibilityMark != visibilityMark {
-				w.Tile(to).VisibilityMark = expansionMark
-			}
 		}
 	}
 
 	timing.Section("spawn_search")
 	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
-		if tile.VisibilityMark != expansionMark && tile.VisibilityMark != visibilityMark {
+		if tile.VisibilityFlags&level.FrameVis != w.frameVis {
 			return
 		}
 		for _, spawnable := range tile.Spawnables {
@@ -487,7 +482,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 				if tile == nil {
 					continue
 				}
-				if tile.VisibilityMark == expansionMark || tile.VisibilityMark == visibilityMark {
+				if tile.VisibilityFlags&level.FrameVis == w.frameVis {
 					pos = &tp
 					break DESPAWN_SEARCH
 				}
@@ -498,8 +493,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			for y := tp0.Y; y <= tp1.Y; y++ {
 				for x := tp0.X; x <= tp1.X; x++ {
 					tp := m.Pos{X: x, Y: y}
-					if w.Tile(tp).VisibilityMark != visibilityMark {
-						w.Tile(tp).VisibilityMark = expansionMark
+					if w.Tile(tp).VisibilityFlags&level.FrameVis != w.frameVis {
+						w.Tile(tp).VisibilityFlags = w.frameVis
 					}
 				}
 			}
@@ -512,7 +507,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	// Delete all unmarked tiles.
 	timing.Section("cleanup_unmarked")
 	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
-		if tile.VisibilityMark != expansionMark && tile.VisibilityMark != visibilityMark {
+		if tile.VisibilityFlags&level.FrameVis != w.frameVis {
 			w.clearTile(pos)
 		}
 	})
@@ -552,9 +547,18 @@ func (w *World) SetWarpZoneState(name string, state bool) {
 // LoadTile loads the next tile into the current world based on a currently
 // known tile and its neighbor. Respects and applies warps.
 func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
-	if tile := w.Tile(newPos); tile != nil {
-		// Already loaded.
-		return tile
+	tile := w.Tile(newPos)
+	if tile != nil {
+		if tile.VisibilityFlags&level.FrameVis == w.frameVis {
+			// Already loaded this frame.
+			return tile
+		}
+		// From now on we know it doesn't have the same FrameVis.
+		if tile.LoadedFromNeighbor == p {
+			// Loading from same neighbor as before is OK.
+			tile.VisibilityFlags = w.frameVis
+			return tile
+		}
 	}
 	neighborTile := w.Tile(p)
 	if neighborTile == nil {
@@ -570,6 +574,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			LevelPos:           newLevelPos,
 			Transform:          t,
 			LoadedFromNeighbor: p,
+			VisibilityFlags:    w.frameVis,
 		}
 		w.setTile(newPos, newTile)
 		return newTile
@@ -578,6 +583,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	for _, warp := range newLevelTile.WarpZones {
 		// Don't enter warps from behind.
 		if warp.PrevTile != neighborLevelPos {
+			log.Panic("warp from behind")
 			continue
 		}
 		// Honor the warpzone toggle state.
@@ -599,6 +605,14 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 		}
 		newLevelTile = tile
 	}
+	if tile != nil {
+		if tile.LevelPos == newLevelTile.Tile.LevelPos && tile.Transform == t {
+			// Same tile as we had before. Can skip the copying.
+			tile.LoadedFromNeighbor = p
+			tile.VisibilityFlags = w.frameVis
+			return tile
+		}
+	}
 	newTile := newLevelTile.Tile
 	newTile.Transform = t
 	// Orientation is inverse of the transform, as the transform is for loading
@@ -606,6 +620,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	// the orientation is for rendering ("how to rotate the sprite").
 	newTile.Orientation = t.Inverse().Concat(newTile.Orientation)
 	newTile.LoadedFromNeighbor = p
+	newTile.VisibilityFlags = w.frameVis
 	w.setTile(newPos, &newTile)
 	return &newTile
 }

@@ -84,9 +84,9 @@ var (
 		{m.Delta{}, m.Delta{DX: 0, DY: -1}},
 		{m.Delta{}, m.Delta{DX: -1, DY: 0}},
 		{m.Delta{}, m.Delta{DX: 0, DY: 1}},
-		{m.Delta{}, m.Delta{DX: 1, DY: -1}},
-		{m.Delta{}, m.Delta{DX: -1, DY: -1}},
-		{m.Delta{}, m.Delta{DX: -1, DY: 1}},
-		{m.Delta{}, m.Delta{DX: 1, DY: 1}},
+		{m.Delta{DX: 1, DY: 0}, m.Delta{DX: 1, DY: -1}},
+		{m.Delta{DX: -1, DY: 0}, m.Delta{DX: -1, DY: -1}},
+		{m.Delta{DX: -1, DY: 0}, m.Delta{DX: -1, DY: 1}},
+		{m.Delta{DX: 1, DY: 0}, m.Delta{DX: 1, DY: 1}},
 	}
 )
