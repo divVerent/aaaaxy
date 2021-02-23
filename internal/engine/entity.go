@@ -27,8 +27,7 @@ import (
 
 // An Entity is an object that exists in the game.
 type Entity struct {
-	Incarnation    EntityIncarnation
-	visibilityMark uint
+	Incarnation EntityIncarnation
 
 	// Info needed for gameplay.
 	solid     bool
