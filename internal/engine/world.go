@@ -678,6 +678,7 @@ func (w *World) link(e *Entity) {
 	if e.opaque {
 		w.opaqueEntities = append(w.opaqueEntities, e)
 	}
+	// log.Printf("%d entities (%d opaque)", len(w.entities), len(w.opaqueEntities))
 }
 
 func (w *World) FindName(name string) []*Entity {
