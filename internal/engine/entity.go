@@ -31,11 +31,11 @@ type Entity struct {
 	visibilityMark uint
 
 	// Info needed for gameplay.
-	Solid     bool
-	Opaque    bool
+	solid     bool
+	opaque    bool
 	Rect      m.Rect
 	Transform m.Orientation // Possibly needed for initialization.
-	Name      string        // Possibly searched for.
+	name      string        // Possibly searched for.
 
 	// Info needed for rendering.
 	Orientation  m.Orientation
@@ -97,7 +97,7 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 		ID:      s.ID,
 		TilePos: originTilePos,
 	}
-	if e := w.Entities[incarnation]; e != nil {
+	if e := w.entities[incarnation]; e != nil {
 		return e, nil
 	}
 	eTmpl := entityTypes[s.EntityType]
@@ -110,7 +110,7 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 	e := &Entity{
 		Incarnation: incarnation,
 		Transform:   t.Transform,
-		Name:        s.Properties["name"],
+		name:        s.Properties["name"],
 		Impl:        eImpl,
 	}
 	pivot2InTile := m.Pos{X: level.TileSize, Y: level.TileSize}
@@ -122,8 +122,34 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 	if err != nil {
 		return nil, err
 	}
-	w.Entities[incarnation] = e
+	w.link(e)
 	return e, nil
+}
+
+// SetSolid makes an entity solid (or not).
+func (w *World) SetSolid(e *Entity, solid bool) {
+	w.unlink(e)
+	e.solid = solid
+	w.link(e)
+}
+
+// SetOpaque makes an entity opaque (or not).
+func (w *World) SetOpaque(e *Entity, opaque bool) {
+	w.unlink(e)
+	e.opaque = opaque
+	w.link(e)
+}
+
+func (e *Entity) Solid() bool {
+	return e.solid
+}
+
+func (e *Entity) Opaque() bool {
+	return e.opaque
+}
+
+func (e *Entity) Name() string {
+	return e.name
 }
 
 // PlayerEntityImpl defines some additional methods player entities must have.

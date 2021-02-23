@@ -48,8 +48,8 @@ func (j *JumpPad) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) e
 	j.Settable.Init(s)
 	j.World = w
 	j.Entity = e
-	e.Opaque = false
-	e.Solid = true
+	w.SetOpaque(e, false)
+	w.SetSolid(e, true)
 
 	var delta m.Delta
 	_, err := fmt.Sscanf(s.Properties["delta"], "%d %d", &delta.DX, &delta.DY)

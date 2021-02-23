@@ -44,8 +44,8 @@ type World struct {
 
 	// tiles are all tiles currently loaded.
 	tiles []*level.Tile
-	// Entities are all entities currently loaded.
-	Entities map[EntityIncarnation]*Entity
+	// entities are all entities currently loaded.
+	entities map[EntityIncarnation]*Entity
 	// PlayerIncarnation is the incarnation ID of the player entity.
 	Player *Entity
 	// Level is the current tilemap (universal covering with warpZones).
@@ -131,7 +131,7 @@ func (w *World) Init() error {
 	}
 
 	// Allow reiniting if already done.
-	for _, ent := range w.Entities {
+	for _, ent := range w.entities {
 		if ent == w.Player {
 			continue
 		}
@@ -140,7 +140,7 @@ func (w *World) Init() error {
 
 	*w = World{
 		tiles:    make([]*level.Tile, tileWindowWidth*tileWindowHeight),
-		Entities: map[EntityIncarnation]*Entity{},
+		entities: map[EntityIncarnation]*Entity{},
 		Level:    lvl,
 	}
 	w.renderer.Init(w)
@@ -243,13 +243,13 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	// Build a new world around the CP tile and the player.
 	w.visibilityMark = 0
 	tile.VisibilityMark = w.visibilityMark
-	for _, ent := range w.Entities {
+	for _, ent := range w.entities {
 		if ent == w.Player {
 			continue
 		}
 		ent.Impl.Despawn()
 	}
-	w.Entities = map[EntityIncarnation]*Entity{
+	w.entities = map[EntityIncarnation]*Entity{
 		w.Player.Incarnation: w.Player,
 	}
 	w.tiles = make([]*level.Tile, tileWindowWidth*tileWindowHeight)
@@ -319,7 +319,7 @@ func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
 
 func (w *World) updateEntities() {
 	w.respawned = false
-	for _, ent := range w.Entities {
+	for _, ent := range w.entities {
 		ent.Impl.Update()
 		if w.respawned {
 			// Once respawned, stop further processing to avoid
@@ -476,7 +476,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	})
 
 	timing.Section("despawn_search")
-	for id, ent := range w.Entities {
+	for _, ent := range w.entities {
 		tp0, tp1 := tilesBox(ent.Rect)
 		var pos *m.Pos
 	DESPAWN_SEARCH:
@@ -508,7 +508,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		} else {
 			timing.Section("despawn")
 			ent.Impl.Despawn()
-			delete(w.Entities, id)
+			w.unlink(ent)
 			timing.Section("despawn_search")
 		}
 	}
@@ -659,4 +659,42 @@ func (w *World) TraceBox(from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 
 func (w *World) Draw(screen *ebiten.Image) {
 	w.renderer.Draw(screen)
+}
+
+func (w *World) unlink(e *Entity) {
+	delete(w.entities, e.Incarnation)
+}
+
+func (w *World) link(e *Entity) {
+	w.entities[e.Incarnation] = e
+}
+
+func (w *World) FindName(name string) []*Entity {
+	var out []*Entity
+	for _, ent := range w.entities {
+		if ent.name == name {
+			out = append(out, ent)
+		}
+	}
+	return out
+}
+
+func (w *World) FindSolid() []*Entity {
+	var out []*Entity
+	for _, ent := range w.entities {
+		if ent.solid {
+			out = append(out, ent)
+		}
+	}
+	return out
+}
+
+func (w *World) FindOpaque() []*Entity {
+	var out []*Entity
+	for _, ent := range w.entities {
+		if ent.opaque {
+			out = append(out, ent)
+		}
+	}
+	return out
 }

@@ -50,10 +50,7 @@ func (s *SequenceTarget) SetState(state bool) {
 	if !state {
 		return
 	}
-	for _, ent := range s.World.Entities {
-		if ent.Name != s.Target {
-			continue
-		}
+	for _, ent := range s.World.FindName(s.Target) {
 		collector, ok := ent.Impl.(*SequenceCollector)
 		if !ok {
 			log.Panicf("Target of SequenceTarget is not a SequenceCollector: %T, name: %v", ent, s.Target)

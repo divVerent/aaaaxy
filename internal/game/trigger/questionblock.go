@@ -51,8 +51,8 @@ func (q *QuestionBlock) Spawn(w *engine.World, s *level.Spawnable, e *engine.Ent
 	q.PersistentState = s.PersistentState
 
 	var err error
-	e.Solid = true
-	e.Opaque = false             // These shadows are annoying.
+	w.SetSolid(e, true)
+	w.SetOpaque(e, false)        // These shadows are annoying.
 	e.Orientation = m.Identity() // Always show upright.
 	q.Kaizo = s.Properties["kaizo"] == "true"
 	q.Used = q.PersistentState["used"] == "true"
@@ -102,7 +102,7 @@ func (q *QuestionBlock) Update() {
 	if !q.Kaizo {
 		return
 	}
-	q.Entity.Solid = q.isAbove(q.World.Player)
+	q.World.SetSolid(q.Entity, q.isAbove(q.World.Player))
 }
 
 func (q *QuestionBlock) Touch(other *engine.Entity) {
@@ -116,7 +116,7 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 	q.PersistentState["used"] = "true"
 	q.Entity.Image = q.UsedImage
 	q.UsedImage = nil
-	q.Entity.Solid = true
+	q.World.SetSolid(q.Entity, true)
 	q.Sound.Play()
 }
 

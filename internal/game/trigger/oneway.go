@@ -39,7 +39,7 @@ func (o *OneWay) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 	o.Entity = e
 
 	e.ResizeImage = true
-	e.Opaque = false
+	w.SetOpaque(e, false)
 
 	o.AllowedDirection = e.Orientation.Apply(m.East())
 
@@ -63,7 +63,7 @@ func (o *OneWay) Update() {
 	myP1 := o.Entity.Rect.OppositeCorner().Delta(m.Pos{}).Dot(o.AllowedDirection)
 	plP0 := o.World.Player.Rect.Origin.Delta(m.Pos{}).Dot(o.AllowedDirection)
 	plP1 := o.World.Player.Rect.OppositeCorner().Delta(m.Pos{}).Dot(o.AllowedDirection)
-	o.Entity.Solid = plP0 > myP0 && plP1 > myP0 && plP0 > myP1 && plP1 > myP1
+	o.World.SetSolid(o.Entity, plP0 > myP0 && plP1 > myP0 && plP0 > myP1 && plP1 > myP1)
 
 	// Animate.
 	o.Anim.Update(o.Entity)

@@ -16,6 +16,7 @@ package engine
 
 import (
 	"errors"
+	"log"
 	"math"
 
 	"github.com/divVerent/aaaaaa/internal/level"
@@ -345,11 +346,17 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 
 	if !o.NoEntities {
 		// Clip the trace to first entity hit.
-		for _, ent := range w.Entities {
+		var ents []*Entity
+		switch o.Mode {
+		case HitSolid:
+			ents = w.FindSolid()
+		case HitOpaque:
+			ents = w.FindOpaque()
+		default:
+			log.Panicf("Unreachable code: invalid trace mode: %v", o.Mode)
+		}
+		for _, ent := range ents {
 			if ent == o.IgnoreEnt {
-				continue
-			}
-			if o.Mode == HitSolid && !ent.Solid || o.Mode == HitOpaque && !ent.Opaque {
 				continue
 			}
 			if hit, endPos := traceEntity(from, to, ent); hit {

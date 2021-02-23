@@ -54,8 +54,8 @@ func (s *AnimatedSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.E
 
 	// Collect the sprite info.
 	s.Alpha = s.Entity.Alpha
-	s.Solid = s.Entity.Solid
-	s.Opaque = s.Entity.Opaque
+	s.Solid = s.Entity.Solid()
+	s.Opaque = s.Entity.Opaque()
 
 	// Skip the animation on initial load.
 	if s.Settable.State {
@@ -89,16 +89,16 @@ func (s *AnimatedSprite) Update() {
 	}
 
 	if s.AnimFrame >= solidThreshold {
-		s.Entity.Solid = s.Solid
-		s.Entity.Opaque = s.Opaque
+		s.World.SetSolid(s.Entity, s.Solid)
+		s.World.SetOpaque(s.Entity, s.Opaque)
 	} else {
-		s.Entity.Solid = false
-		s.Entity.Opaque = false
+		s.World.SetSolid(s.Entity, false)
+		s.World.SetOpaque(s.Entity, false)
 	}
 
 	// Make nonsolid if inside (to unstick player if needed).
-	if s.Entity.Solid && (s.Entity.Rect.Delta(s.World.Player.Rect) == m.Delta{}) {
-		s.Entity.Solid = false
+	if s.Solid && (s.Entity.Rect.Delta(s.World.Player.Rect) == m.Delta{}) {
+		s.World.SetSolid(s.Entity, false)
 	}
 }
 

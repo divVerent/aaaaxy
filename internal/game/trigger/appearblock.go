@@ -47,8 +47,8 @@ func (a *AppearBlock) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entit
 	if err != nil {
 		return err
 	}
-	e.Opaque = false
-	e.Solid = false
+	w.SetOpaque(e, false)
+	w.SetSolid(e, false)
 	e.Alpha = 0.0
 	e.ZIndex = 1 // Above normal sprites.
 
@@ -70,7 +70,7 @@ func (a *AppearBlock) Update() {
 	}
 	a.Entity.Alpha = float64(a.AnimFrame) / AppearFrames
 	// Make nonsolid if inside (to unstick player).
-	a.Entity.Solid = a.AnimFrame >= AppearSolidThreshold && delta.DY > 0
+	a.World.SetSolid(a.Entity, a.AnimFrame >= AppearSolidThreshold && delta.DY > 0)
 }
 
 func (a *AppearBlock) Touch(other *engine.Entity) {}

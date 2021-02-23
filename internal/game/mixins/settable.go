@@ -71,11 +71,8 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection
 		if target[0] == '=' {
 			target = target[1:]
 			var closest *engine.Entity
-			for _, ent := range w.Entities {
+			for _, ent := range w.FindName(target) {
 				if ent == e {
-					continue
-				}
-				if ent.Name != target {
 					continue
 				}
 				if closest == nil || closest.Rect.Delta(w.Player.Rect).Norm1() > ent.Rect.Delta(w.Player.Rect).Norm1() {
@@ -89,11 +86,8 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection
 			}
 		} else {
 			w.SetWarpZoneState(target, state)
-			for _, ent := range w.Entities {
+			for _, ent := range w.FindName(target) {
 				if ent == e {
-					continue
-				}
-				if ent.Name != target {
 					continue
 				}
 				if !SetStateOfEntity(ent, state) {

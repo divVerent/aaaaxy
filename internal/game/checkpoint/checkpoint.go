@@ -37,7 +37,6 @@ type Checkpoint struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	Name    string
 	Text    string
 	Music   string
 	DeadEnd bool
@@ -85,19 +84,19 @@ func (c *Checkpoint) Despawn() {}
 func (c *Checkpoint) setCheckpoint() bool {
 	player := c.World.Player.Impl.(*player.Player)
 	changed := false
-	cpProperty := "checkpoint_seen." + c.Entity.Name
+	cpProperty := "checkpoint_seen." + c.Entity.Name()
 	if player.PersistentState[cpProperty] != c.FlippedStr {
 		player.PersistentState[cpProperty] = c.FlippedStr
 		changed = true
 	}
-	if player.PersistentState["last_checkpoint"] != c.Entity.Name {
-		edgeProperty := "checkpoints_walked." + player.PersistentState["last_checkpoint"] + "." + c.Entity.Name
+	if player.PersistentState["last_checkpoint"] != c.Entity.Name() {
+		edgeProperty := "checkpoints_walked." + player.PersistentState["last_checkpoint"] + "." + c.Entity.Name()
 		if player.PersistentState[edgeProperty] != "true" {
 			player.PersistentState[edgeProperty] = "true"
 			changed = true
 		}
 		if !c.DeadEnd {
-			player.PersistentState["last_checkpoint"] = c.Entity.Name
+			player.PersistentState["last_checkpoint"] = c.Entity.Name()
 			changed = true
 		}
 	}
