@@ -5961,7 +5961,7 @@
   </object>
   <object id="1282" name="ShepardDontPunish" gid="6" x="4288" y="6064" width="48" height="16"/>
   <object id="1283" name="ShepardDontPunish" gid="4" x="4288" y="6256" width="48" height="16"/>
-  <object id="1284" name="rick_astley" type="Checkpoint" x="4240" y="6080" width="144" height="32">
+  <object id="1284" name="rick_astley" type="Checkpoint" x="4296" y="6192" width="32" height="32">
    <properties>
     <property name="dead_end" type="bool" value="true"/>
     <property name="music" value=""/>
