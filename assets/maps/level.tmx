@@ -5920,8 +5920,8 @@
   </object>
   <object id="1251" name="ShepardOpen" type="SoundTarget" x="4288" y="5840" width="16" height="16">
    <properties>
-    <property name="sound" value="shepard_02.ogg"/>
-    <property name="state" type="bool" value="false"/>
+    <property name="sound" value="loom.ogg"/>
+    <property name="state" type="bool" value="true"/>
     <property name="target" value="ShepardOpenBlocks"/>
    </properties>
   </object>
