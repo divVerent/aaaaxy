@@ -17,25 +17,32 @@
 
 center=0
 basevol=0.5
-falloff=0.95
+falloff=0.98
 attack=0.01
 decay=2.95
 len=3
+reverbdecay=1.5
 for basenote in $(seq 0 11); do
 	set --
 	vols=
 	ch=0
 	for i in $(seq -32 32); do
 		note=$((basenote + i * 12))
-		if [ $note -lt -48 ] || [ $note -gt 39 ]; then
-			continue
-		fi
+		#if [ $note -lt -48 ] || [ $note -gt 39 ]; then
+		#	continue
+		#fi
 		delta=$((note - center))
 		delta=${delta#-}
-		vol=$(echo "$falloff ^ $delta" | bc -l)
+		vol=$(echo "$basevol * $falloff ^ $delta" | bc -l)
 		ch=$((ch+1))
 		vols=$vols${ch}v$vol,
-		set -- "$@" "$len" triangle "%$note"
+		set -- "$@" "$len" sine "%$note"
 	done
-	sox -n -r 48k -e signed -b 16 -c 1 $(printf ../shepard_%02d.wav $basenote) synth "$@" remix -m "${vols%,}" fade l "$attack" "$len" "$decay"
+	sox -n -r 48k -e signed -b 16 -c 2 \
+	  $(printf ../shepard_%02d.wav $basenote) \
+	  synth "$@" \
+	  remix -m "${vols%,}" \
+	  fade l "$attack" "$len" "$decay" \
+	  reverb 95 50 100 100 \
+	  fade q 0 "$len" "$reverbdecay"
 done

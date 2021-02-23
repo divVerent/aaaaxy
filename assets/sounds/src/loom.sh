@@ -15,24 +15,24 @@
 
 # Generates "Loom" sound effects.
 
+# Better for shepard tone:
+# Major: C G7 G = C E G B D F G F D B G E C
+# Minor: d Bb d = d f a bb d bb a f d
+
 sox \
   --combine merge \
-  ../shepard_{00,04,07,00,04,07,00,07,04,00,07,04,00,04,07,00,04,07,00,07,04,00,07,04,00}.wav \
+  ../shepard_{00,04,07,10,02,05,07,05,02,10,07,04,00,04,07,10,02,05,07,05,02,10,07,04,00}.wav \
   ../loom.wav \
   delay $(seq 1 0.2 5.8) \
   remix - \
   remix - - \
-  reverb 95 50 100 100 \
-  fade q 0 7.8 1.5 \
   gain -n -1
 
 sox \
   --combine merge \
-  ../shepard_{09,00,04,09,04,00,09,00,04,09,04,00,09}.wav \
+  ../shepard_{02,05,09,10,02,10,09,05,02,05,09,10,02,10,09,05,02}.wav \
   ../loom_minor.wav \
-  delay $(seq 1 0.4 5.8) \
+  delay $(seq 1 0.3 5.8) \
   remix - \
   remix - - \
-  reverb 95 50 100 100 \
-  fade q 0 7.8 1.5 \
   gain -n -1
