@@ -47,7 +47,7 @@ type World struct {
 	// entities are all entities currently loaded.
 	entities map[EntityIncarnation]*Entity
 	// opaqueEntities are all opaque entities currently loaded.
-	opaqueEntities map[*Entity]struct{}
+	opaqueEntities []*Entity
 	// PlayerIncarnation is the incarnation ID of the player entity.
 	Player *Entity
 	// Level is the current tilemap (universal covering with warpZones).
@@ -141,10 +141,9 @@ func (w *World) Init() error {
 	}
 
 	*w = World{
-		tiles:          make([]*level.Tile, tileWindowWidth*tileWindowHeight),
-		entities:       map[EntityIncarnation]*Entity{},
-		opaqueEntities: map[*Entity]struct{}{},
-		Level:          lvl,
+		tiles:    make([]*level.Tile, tileWindowWidth*tileWindowHeight),
+		entities: map[EntityIncarnation]*Entity{},
+		Level:    lvl,
 	}
 	w.renderer.Init(w)
 
@@ -253,7 +252,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 		ent.Impl.Despawn()
 	}
 	w.entities = map[EntityIncarnation]*Entity{}
-	w.opaqueEntities = map[*Entity]struct{}{}
+	w.opaqueEntities = nil
 	w.link(w.Player)
 	w.tiles = make([]*level.Tile, tileWindowWidth*tileWindowHeight)
 	w.setScrollPos(cpSp.LevelPos.Mul(level.TileSize)) // Scroll the tile into view.
@@ -660,7 +659,13 @@ func (w *World) Draw(screen *ebiten.Image) {
 
 func (w *World) unlink(e *Entity) {
 	if e.opaque {
-		delete(w.opaqueEntities, e)
+		for i, e2 := range w.opaqueEntities {
+			if e2 == e {
+				w.opaqueEntities[i] = w.opaqueEntities[len(w.opaqueEntities)-1]
+				w.opaqueEntities = w.opaqueEntities[:len(w.opaqueEntities)-1]
+				break
+			}
+		}
 	}
 	delete(w.entities, e.Incarnation)
 }
@@ -668,7 +673,7 @@ func (w *World) unlink(e *Entity) {
 func (w *World) link(e *Entity) {
 	w.entities[e.Incarnation] = e
 	if e.opaque {
-		w.opaqueEntities[e] = struct{}{}
+		w.opaqueEntities = append(w.opaqueEntities, e)
 	}
 }
 
@@ -693,9 +698,5 @@ func (w *World) FindSolid() []*Entity {
 }
 
 func (w *World) FindOpaque() []*Entity {
-	var out []*Entity
-	for ent := range w.opaqueEntities {
-		out = append(out, ent)
-	}
-	return out
+	return w.opaqueEntities
 }
