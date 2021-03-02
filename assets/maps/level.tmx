@@ -829,7 +829,7 @@
     <property name="text" value="The Möbius Strip"/>
    </properties>
   </object>
-  <object id="148" name="the_torus" type="Checkpoint" x="2848" y="5280" width="352" height="32">
+  <object id="148" name="the_torus" type="Checkpoint" x="3104" y="5280" width="96" height="32">
    <properties>
     <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_up" type="object" value="180"/>
