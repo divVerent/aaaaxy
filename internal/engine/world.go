@@ -309,15 +309,15 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	w.respawned = true
 }
 
-func (w *World) traceLineAndMark(from, to m.Pos) TraceResult {
+func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult {
 	result := w.TraceLine(from, to, TraceOptions{
 		Mode:      HitOpaque,
 		LoadTiles: true,
 		IgnoreEnt: w.Player,
 		ForEnt:    w.Player,
-		PathOut:   &w.traceLineAndMarkPath,
+		PathOut:   pathStore,
 	})
-	for _, tilePos := range w.traceLineAndMarkPath {
+	for _, tilePos := range *pathStore {
 		w.Tile(tilePos).VisibilityFlags = w.frameVis | level.TracedVis
 	}
 	return result
@@ -400,30 +400,33 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	screen0 := w.scrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
 	w.renderer.visiblePolygonCenter = eye
-	w.renderer.visiblePolygon = w.renderer.visiblePolygon[0:0]
-	addTrace := func(rawTarget m.Pos) {
+	xLen := (screen1.X-screen0.X+sweepStep-1)/sweepStep + 1
+	yLen := (screen1.Y-screen0.Y+sweepStep-1)/sweepStep + 1
+	wantLen := 2*xLen + 2*yLen
+	if len(w.renderer.visiblePolygon) != wantLen {
+		if w.renderer.visiblePolygon != nil {
+			log.Panicf("Visible polygon size changed - unexpected but harmless. Optimize for resizing and remove this check then, I guess.")
+		}
+		w.renderer.visiblePolygon = make([]m.Pos, wantLen)
+	}
+	addTrace := func(rawTarget m.Pos, index int) {
 		delta := rawTarget.Delta(w.scrollPos)
-		// Diamond shape (cooler?). Could otherwise easily use Length2 here.
 		targetDist := delta.Length2()
 		if targetDist > maxDist*maxDist {
 			f := float64(maxDist) / math.Sqrt(float64(targetDist))
 			delta = delta.MulFloat(f)
 		}
 		target := w.scrollPos.Add(delta)
-		trace := w.traceLineAndMark(eye, target)
-		w.renderer.visiblePolygon = append(w.renderer.visiblePolygon, trace.EndPos)
+		trace := w.traceLineAndMark(eye, target, &w.traceLineAndMarkPath)
+		w.renderer.visiblePolygon[index] = trace.EndPos
 	}
-	for x := screen0.X; x < screen1.X; x += sweepStep {
-		addTrace(m.Pos{X: x, Y: screen0.Y})
+	for i := 0; i < xLen; i++ {
+		addTrace(m.Pos{X: screen0.X + sweepStep*i, Y: screen0.Y}, i)
+		addTrace(m.Pos{X: screen1.X - sweepStep*i, Y: screen1.Y}, xLen+yLen+i)
 	}
-	for y := screen0.Y; y < screen1.Y; y += sweepStep {
-		addTrace(m.Pos{X: screen1.X, Y: y})
-	}
-	for x := screen1.X; x > screen0.X; x -= sweepStep {
-		addTrace(m.Pos{X: x, Y: screen1.Y})
-	}
-	for y := screen1.Y; y > screen0.Y; y -= sweepStep {
-		addTrace(m.Pos{X: screen0.X, Y: y})
+	for i := 0; i < yLen; i++ {
+		addTrace(m.Pos{X: screen1.X, Y: screen0.Y + sweepStep*i}, xLen+i)
+		addTrace(m.Pos{X: screen0.X, Y: screen1.Y - sweepStep*i}, 2*xLen+yLen+i)
 	}
 	if *expandUsingVertices {
 		if *expandUsingVerticesAccurately {
