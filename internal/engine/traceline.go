@@ -57,8 +57,8 @@ type TraceOptions struct {
 type TraceResult struct {
 	// EndPos is the pixel the trace ended on (the last nonsolid pixel).
 	EndPos m.Pos
-	// hitTilePos is the position of the tile that stopped the trace, if any.
-	HitTilePos *m.Pos
+	// hitTilePos is the position of the tile that stopped the trace, if any (in this case, HitTile will also be set).
+	HitTilePos m.Pos
 	// HitTile is the tile that stopped the trace, if any.
 	HitTile *level.Tile
 	// HitEntity is the entity that stopped the trace, if any.
@@ -294,7 +294,6 @@ var traceDoneErr = errors.New("traceDone")
 func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 	result := TraceResult{
 		EndPos:      to,
-		HitTilePos:  nil,
 		HitTile:     nil,
 		HitEntity:   nil,
 		HitFogOfWar: false,
@@ -330,10 +329,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 				return traceDoneErr
 			}
 			if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
-				// We copy nextTile away here to avoid creating a heap copy of
-				// nextTile every time the entire function runs.
-				nextTileCopy := nextTile
-				result.HitTilePos = &nextTileCopy
+				result.HitTilePos = nextTile
 				result.HitTile = tile
 				return traceDoneErr
 			}
@@ -389,7 +385,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 					}
 				}
 			}
-			result.HitTilePos = nil
+			result.HitTilePos = m.Pos{}
 			result.HitTile = nil
 			result.HitFogOfWar = false
 		}
