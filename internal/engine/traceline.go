@@ -57,14 +57,14 @@ type TraceOptions struct {
 type TraceResult struct {
 	// EndPos is the pixel the trace ended on (the last nonsolid pixel).
 	EndPos m.Pos
-	// hitTilePos is the position of the tile that stopped the trace, if any (in this case, HitTile will also be set).
-	HitTilePos m.Pos
-	// HitTile is the tile that stopped the trace, if any.
-	HitTile *level.Tile
+	// // hitTilePos is the position of the tile that stopped the trace, if any (in this case, HitTile will also be set).
+	// HitTilePos m.Pos
+	// // HitTile is the tile that stopped the trace, if any.
+	// HitTile *level.Tile
 	// HitEntity is the entity that stopped the trace, if any.
 	HitEntity *Entity
-	// HitFogOfWar is set if the trace ended by hitting an unloaded tile.
-	HitFogOfWar bool
+	// // HitFogOfWar is set if the trace ended by hitting an unloaded tile.
+	// HitFogOfWar bool
 	// Score is a number used to decide which of multiple traces to keep.
 	// Typically related to the trace distance and which entity was hit if any.
 	Score TraceScore
@@ -293,10 +293,10 @@ var traceDoneErr = errors.New("traceDone")
 // traceLine moves from from to to and yields info about where this hit solid etc.
 func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 	result := TraceResult{
-		EndPos:      to,
-		HitTile:     nil,
-		HitEntity:   nil,
-		HitFogOfWar: false,
+		EndPos: to,
+		// HitTile:     nil,
+		// HitEntity:   nil,
+		// HitFogOfWar: false,
 	}
 
 	if o.PathOut != nil {
@@ -325,12 +325,12 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 				tile = w.Tile(nextTile)
 			}
 			if tile == nil {
-				result.HitFogOfWar = true
+				// result.HitFogOfWar = true
 				return traceDoneErr
 			}
 			if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
-				result.HitTilePos = nextTile
-				result.HitTile = tile
+				// result.HitTilePos = nextTile
+				// result.HitTile = tile
 				return traceDoneErr
 			}
 			if o.PathOut != nil {
@@ -385,9 +385,9 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 					}
 				}
 			}
-			result.HitTilePos = m.Pos{}
-			result.HitTile = nil
-			result.HitFogOfWar = false
+			// result.HitTilePos = m.Pos{}
+			// result.HitTile = nil
+			// result.HitFogOfWar = false
 		}
 	}
 

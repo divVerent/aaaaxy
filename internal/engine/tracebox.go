@@ -58,10 +58,10 @@ func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 		if !haveTrace || trace.Score.Less(result.Score) {
 			haveTrace = true
 			result.EndPos = adjustedEnd
-			result.HitTilePos = trace.HitTilePos
-			result.HitTile = trace.HitTile
+			// result.HitTilePos = trace.HitTilePos
+			// result.HitTile = trace.HitTile
 			result.HitEntity = trace.HitEntity
-			result.HitFogOfWar = trace.HitFogOfWar
+			// result.HitFogOfWar = trace.HitFogOfWar
 			result.Score = trace.Score
 		}
 	}
