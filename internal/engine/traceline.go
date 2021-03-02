@@ -330,7 +330,10 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 				return traceDoneErr
 			}
 			if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
-				result.HitTilePos = &nextTile
+				// We copy nextTile away here to avoid creating a heap copy of
+				// nextTile every time the entire function runs.
+				nextTileCopy := nextTile
+				result.HitTilePos = &nextTileCopy
 				result.HitTile = tile
 				return traceDoneErr
 			}
