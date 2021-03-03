@@ -73,20 +73,20 @@ const (
 
 //expandStep is a single expansion step.
 type expandStep struct {
-	from, to m.Delta
+	from, from2, to m.Delta
 }
 
 var (
 	// expandSteps is the list of steps to walk from each marked tile to expand.
 	expandSteps = []expandStep{
 		// First expansion tile.
-		{m.Delta{}, m.Delta{DX: 1, DY: 0}},
-		{m.Delta{}, m.Delta{DX: 0, DY: -1}},
-		{m.Delta{}, m.Delta{DX: -1, DY: 0}},
-		{m.Delta{}, m.Delta{DX: 0, DY: 1}},
-		{m.Delta{DX: 1, DY: 0}, m.Delta{DX: 1, DY: -1}},
-		{m.Delta{DX: -1, DY: 0}, m.Delta{DX: -1, DY: -1}},
-		{m.Delta{DX: -1, DY: 0}, m.Delta{DX: -1, DY: 1}},
-		{m.Delta{DX: 1, DY: 0}, m.Delta{DX: 1, DY: 1}},
+		{m.Delta{}, m.Delta{}, m.Delta{DX: 1, DY: 0}},
+		{m.Delta{}, m.Delta{}, m.Delta{DX: 0, DY: -1}},
+		{m.Delta{}, m.Delta{}, m.Delta{DX: -1, DY: 0}},
+		{m.Delta{}, m.Delta{}, m.Delta{DX: 0, DY: 1}},
+		{m.Delta{DX: 1, DY: 0}, m.Delta{DX: 0, DY: -1}, m.Delta{DX: 1, DY: -1}},
+		{m.Delta{DX: -1, DY: 0}, m.Delta{DX: 0, DY: -1}, m.Delta{DX: -1, DY: -1}},
+		{m.Delta{DX: -1, DY: 0}, m.Delta{DX: 0, DY: 1}, m.Delta{DX: -1, DY: 1}},
+		{m.Delta{DX: 1, DY: 0}, m.Delta{DX: 0, DY: 1}, m.Delta{DX: 1, DY: 1}},
 	}
 )

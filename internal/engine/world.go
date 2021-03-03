@@ -462,6 +462,14 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		for _, pos := range markedTiles {
 			from := pos.Add(step.from)
 			to := pos.Add(step.to)
+			// It's not OK to load from an opaque tile, as that may sidestep warpzones.
+			// So, pick an alternative in that case, or skip expanding entirely.
+			if w.Tile(from).Opaque {
+				from = pos.Add(step.from2)
+				if w.Tile(from).Opaque {
+					continue
+				}
+			}
 			w.LoadTile(from, to, to.Delta(from))
 		}
 	}
@@ -577,6 +585,9 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	neighborTile := w.Tile(p)
 	if neighborTile == nil {
 		log.Panicf("Trying to load with nonexisting neighbor tile at %v", p)
+	}
+	if neighborTile.Opaque {
+		log.Panicf("Trying to load from an opaque tile at %v", p)
 	}
 	t := neighborTile.Transform
 	neighborLevelPos := neighborTile.LevelPos
