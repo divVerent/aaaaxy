@@ -61,6 +61,7 @@
  <objecttype name="SetState" color="#ff0000">
   <property name="exclusive_targets" type="string"/>
   <property name="initial_state" type="string"/>
+  <property name="send_every_frame" type="bool" default="false"/>
   <property name="send_untouch" type="bool" default="false"/>
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>

@@ -1043,8 +1043,9 @@
     <property name="text" value="House with Two Rooms"/>
    </properties>
   </object>
-  <object id="274" type="SetState" x="784" y="6208" width="32" height="32">
+  <object id="274" type="SetState" x="768" y="6208" width="64" height="32">
    <properties>
+    <property name="send_every_frame" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="BingPads"/>
    </properties>
@@ -6064,6 +6065,7 @@
   </object>
   <object id="1302" type="Sprite" x="4240" y="6192" width="144" height="32">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="Trololololol, lololol, lololol,  Oh ha ha ha oh!"/>
     <property name="text_bg" type="color" value="#ffffff55"/>
     <property name="text_fg" type="color" value="#ff000000"/>
