@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="tiles" tilewidth="16" tileheight="16" tilecount="256" columns="16" objectalignment="topleft">
+<tileset version="1.4" tiledversion="1.4.3" name="tiles" tilewidth="16" tileheight="16" tilecount="270" columns="16" objectalignment="topleft">
  <grid orientation="orthogonal" width="1" height="1"/>
  <terraintypes>
   <terrain name="Block" tile="9"/>
@@ -2172,6 +2172,48 @@
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="piano_white_bottom.png"/>
+ </tile>
+ <tile id="259">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_01.png"/>
+ </tile>
+ <tile id="260">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_02.png"/>
+ </tile>
+ <tile id="261">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_03.png"/>
+ </tile>
+ <tile id="262">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_04.png"/>
+ </tile>
+ <tile id="263">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_05.png"/>
+ </tile>
+ <tile id="264">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_06.png"/>
+ </tile>
+ <tile id="265">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_07.png"/>
+ </tile>
+ <tile id="266">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_08.png"/>
+ </tile>
+ <tile id="267">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_09.png"/>
+ </tile>
+ <tile id="268">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_10.png"/>
+ </tile>
+ <tile id="269">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_11.png"/>
+ </tile>
+ <tile id="270">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_12.png"/>
+ </tile>
+ <tile id="271">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_13.png"/>
+ </tile>
+ <tile id="272">
+  <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_14.png"/>
  </tile>
  <wangsets>
   <wangset name="Block/Open" tile="-1">
