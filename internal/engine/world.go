@@ -33,10 +33,11 @@ import (
 )
 
 var (
-	debugCountTiles         = flag.Bool("debug_count_tiles", false, "count tiles set/cleared")
-	debugInitialOrientation = flag.String("debug_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
-	debugInitialCheckpoint  = flag.String("debug_initial_checkpoint", "", "initial checkpoint")
-	debugTileWindowSize     = flag.Bool("debug_check_window_size", false, "if set, we verify that the tile window size is set high enough")
+	debugCountTiles             = flag.Bool("debug_count_tiles", false, "count tiles set/cleared")
+	debugDetectLoadingConflicts = flag.Bool("debug_detect_loading_conflicts", false, "try to detect tile loading conflicts")
+	debugInitialOrientation     = flag.String("debug_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
+	debugInitialCheckpoint      = flag.String("debug_initial_checkpoint", "", "initial checkpoint")
+	debugTileWindowSize         = flag.Bool("debug_check_window_size", false, "if set, we verify that the tile window size is set high enough")
 )
 
 // World represents the current game state including its entities.
@@ -569,9 +570,10 @@ func (w *World) SetWarpZoneState(name string, state bool) {
 // LoadTile loads the next tile into the current world based on a currently
 // known tile and its neighbor. Respects and applies warps.
 func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
+	// log.Printf("LoadTile: %v -> %v (%v)", p, newPos, d)
 	tile := w.Tile(newPos)
 	if tile != nil {
-		if tile.VisibilityFlags&level.FrameVis == w.frameVis {
+		if tile.VisibilityFlags&level.FrameVis == w.frameVis && !*debugDetectLoadingConflicts {
 			// Already loaded this frame.
 			return tile
 		}
@@ -635,6 +637,9 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			tile.LoadedFromNeighbor = p
 			tile.VisibilityFlags = w.frameVis
 			return tile
+		} else if tile.VisibilityFlags&level.FrameVis != w.frameVis {
+			log.Panicf("Conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v).",
+				newPos, tile.LoadedFromNeighbor, tile.LevelPos, p, d, newLevelTile.Tile.LevelPos)
 		}
 	}
 	newTile := newLevelTile.Tile
