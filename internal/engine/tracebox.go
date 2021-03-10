@@ -32,6 +32,11 @@ func appendLineToTraces(traces map[m.Delta]struct{}, start, end m.Delta) {
 // traceBox moves a size-sized box from from to to and yields info about where it hits solid etc.
 func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 	// TODO make a real implementation.
+	// Idea:
+	// - traceEntities can simply expand entities hit by the from rectangle. Easy.
+	// - traceTiles has to trace using the point in from farthest in the given direction,
+	//   and on every tile boundary crossing, has to iterate through all new tiles hit on the other coordinate axis.
+	// That will eliminate the MinEntitySize requirement.
 	traces := map[m.Delta]struct{}{}
 	delta := to.Delta(from.Origin)
 	// TODO refactor using OppositeCorner?
