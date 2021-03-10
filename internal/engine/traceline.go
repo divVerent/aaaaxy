@@ -100,6 +100,7 @@ func (s TraceScore) Less(o TraceScore) bool {
 // - Then: j in {j0, j1}.
 type normalizedLine struct {
 	Origin   m.Pos
+	Target   m.Pos
 	NumSteps int
 	Height   int
 	XDir     int
@@ -112,6 +113,7 @@ func normalizeLine(from, to m.Pos) normalizedLine {
 	absDelta := delta
 	l := normalizedLine{
 		Origin: from,
+		Target: to,
 	}
 	l.XDir = 1
 	if absDelta.DX < 0 {
@@ -278,8 +280,48 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.
 	}
 }
 
+var traceDoneErr = errors.New("traceDone")
+
+// traceTiles cuts the given trace by hits against the tilemap.
+// l must have been initialized to finish at the current EndPos.
+func (l *normalizedLine) traceTiles(w *World, o TraceOptions, result *TraceResult) {
+	result.EndPos = l.Origin
+	if o.PathOut != nil {
+		*o.PathOut = append(*o.PathOut, l.Origin.Div(level.TileSize))
+	}
+	err := l.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixel m.Pos) error {
+		result.EndPos = prevPixel
+		var tile *level.Tile
+		if o.LoadTiles {
+			tile = w.LoadTile(prevTile, nextTile, delta)
+		} else {
+			tile = w.Tile(nextTile)
+		}
+		if tile == nil {
+			// result.HitFogOfWar = true
+			return traceDoneErr
+		}
+		if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
+			// result.HitTilePos = nextTile
+			// result.HitTile = tile
+			return traceDoneErr
+		}
+		if o.PathOut != nil {
+			*o.PathOut = append(*o.PathOut, nextTile)
+		}
+		return nil
+	})
+	if err != traceDoneErr {
+		result.EndPos = l.Target
+	}
+	result.Score = TraceScore{
+		TraceDistance:  result.EndPos.Delta(l.Origin).Norm1(),
+		EntityDistance: math.MaxInt32, // Not an entity.
+	}
+}
+
 // traceEntity returns whether the line from from to to hits the entity, as well as the last coordinate not hitting yet.
-func traceEntity(l *normalizedLine, ent *Entity) (bool, m.Pos) {
+func (l *normalizedLine) traceEntity(ent *Entity) (bool, m.Pos) {
 	i0, j0, i1, j1 := l.fromRect(ent.Rect)
 	if hit, i, j := traceLineBox(l.NumSteps, l.Height, i0, j0, i1, j1); hit {
 		return true, l.toPos(i, j)
@@ -288,7 +330,51 @@ func traceEntity(l *normalizedLine, ent *Entity) (bool, m.Pos) {
 	return false, m.Pos{}
 }
 
-var traceDoneErr = errors.New("traceDone")
+// traceEntities clips the given trace against all entities.
+// l must have been initialized to hit the current EndPos anywhere on its path.
+func (l *normalizedLine) traceEntities(w *World, o TraceOptions, result *TraceResult) {
+	// Clip the trace to first entity hit.
+	var ents []*Entity
+	switch o.Mode {
+	case HitSolid:
+		ents = w.FindSolid()
+	case HitOpaque:
+		ents = w.FindOpaque()
+	default:
+		log.Panicf("Unreachable code: invalid trace mode: %v", o.Mode)
+	}
+	for _, ent := range ents {
+		if ent == o.IgnoreEnt {
+			continue
+		}
+		if hit, endPos := l.traceEntity(ent); hit {
+			score := TraceScore{
+				TraceDistance: endPos.Delta(l.Origin).Norm1(),
+			}
+			if o.ForEnt != nil {
+				score.EntityDistance = ent.Rect.Center().Delta(o.ForEnt.Rect.Center()).Norm1()
+			}
+			if score.Less(result.Score) {
+				result.EndPos = endPos
+				result.HitEntity = ent
+				result.Score = score
+			}
+		}
+	}
+	if result.HitEntity != nil {
+		endTile := result.EndPos.Div(level.TileSize)
+		if o.PathOut != nil {
+			for i, pos := range *o.PathOut {
+				if pos == endTile {
+					*o.PathOut = (*o.PathOut)[:(i + 1)]
+				}
+			}
+		}
+		// result.HitTilePos = m.Pos{}
+		// result.HitTile = nil
+		// result.HitFogOfWar = false
+	}
+}
 
 // traceLine moves from from to to and yields info about where this hit solid etc.
 func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
@@ -312,83 +398,11 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 	// As from != to, we know NumSteps > 0.
 
 	if !o.NoTiles {
-		result.EndPos = from
-		if o.PathOut != nil {
-			*o.PathOut = append(*o.PathOut, from.Div(level.TileSize))
-		}
-		err := l.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixel m.Pos) error {
-			result.EndPos = prevPixel
-			var tile *level.Tile
-			if o.LoadTiles {
-				tile = w.LoadTile(prevTile, nextTile, delta)
-			} else {
-				tile = w.Tile(nextTile)
-			}
-			if tile == nil {
-				// result.HitFogOfWar = true
-				return traceDoneErr
-			}
-			if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
-				// result.HitTilePos = nextTile
-				// result.HitTile = tile
-				return traceDoneErr
-			}
-			if o.PathOut != nil {
-				*o.PathOut = append(*o.PathOut, nextTile)
-			}
-			return nil
-		})
-		if err != traceDoneErr {
-			result.EndPos = to
-		}
-		result.Score = TraceScore{
-			TraceDistance:  result.EndPos.Delta(from).Norm1(),
-			EntityDistance: math.MaxInt32, // Not an entity.
-		}
+		l.traceTiles(w, o, &result)
 	}
 
 	if !o.NoEntities {
-		// Clip the trace to first entity hit.
-		var ents []*Entity
-		switch o.Mode {
-		case HitSolid:
-			ents = w.FindSolid()
-		case HitOpaque:
-			ents = w.FindOpaque()
-		default:
-			log.Panicf("Unreachable code: invalid trace mode: %v", o.Mode)
-		}
-		for _, ent := range ents {
-			if ent == o.IgnoreEnt {
-				continue
-			}
-			if hit, endPos := traceEntity(&l, ent); hit {
-				score := TraceScore{
-					TraceDistance: endPos.Delta(from).Norm1(),
-				}
-				if o.ForEnt != nil {
-					score.EntityDistance = ent.Rect.Center().Delta(o.ForEnt.Rect.Center()).Norm1()
-				}
-				if score.Less(result.Score) {
-					result.EndPos = endPos
-					result.HitEntity = ent
-					result.Score = score
-				}
-			}
-		}
-		if result.HitEntity != nil {
-			endTile := result.EndPos.Div(level.TileSize)
-			if o.PathOut != nil {
-				for i, pos := range *o.PathOut {
-					if pos == endTile {
-						*o.PathOut = (*o.PathOut)[:(i + 1)]
-					}
-				}
-			}
-			// result.HitTilePos = m.Pos{}
-			// result.HitTile = nil
-			// result.HitFogOfWar = false
-		}
+		l.traceEntities(w, o, &result)
 	}
 
 	return result
