@@ -143,8 +143,8 @@ func (l *normalizedLine) fromPos(p m.Pos) (int, int) {
 	}
 }
 
-func (l *normalizedLine) fromRect(r m.Rect) (int, int, int, int) {
-	i0, j0 := l.fromPos(r.Origin)
+func (l *normalizedLine) fromRect(r m.Rect, enlarge m.Delta) (int, int, int, int) {
+	i0, j0 := l.fromPos(r.Origin.Sub(enlarge))
 	i1, j1 := l.fromPos(r.OppositeCorner())
 	if i0 > i1 {
 		i0, i1 = i1, i0
@@ -321,8 +321,8 @@ func (l *normalizedLine) traceTiles(w *World, o TraceOptions, result *TraceResul
 }
 
 // traceEntity returns whether the line from from to to hits the entity, as well as the last coordinate not hitting yet.
-func (l *normalizedLine) traceEntity(ent *Entity) (bool, m.Pos) {
-	i0, j0, i1, j1 := l.fromRect(ent.Rect)
+func (l *normalizedLine) traceEntity(ent *Entity, enlarge m.Delta) (bool, m.Pos) {
+	i0, j0, i1, j1 := l.fromRect(ent.Rect, enlarge)
 	if hit, i, j := traceLineBox(l.NumSteps, l.Height, i0, j0, i1, j1); hit {
 		return true, l.toPos(i, j)
 	}
@@ -332,7 +332,7 @@ func (l *normalizedLine) traceEntity(ent *Entity) (bool, m.Pos) {
 
 // traceEntities clips the given trace against all entities.
 // l must have been initialized to hit the current EndPos anywhere on its path.
-func (l *normalizedLine) traceEntities(w *World, o TraceOptions, result *TraceResult) {
+func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta, result *TraceResult) {
 	// Clip the trace to first entity hit.
 	var ents []*Entity
 	switch o.Mode {
@@ -347,7 +347,7 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, result *TraceRe
 		if ent == o.IgnoreEnt {
 			continue
 		}
-		if hit, endPos := l.traceEntity(ent); hit {
+		if hit, endPos := l.traceEntity(ent, enlarge); hit {
 			score := TraceScore{
 				TraceDistance: endPos.Delta(l.Origin).Norm1(),
 			}
@@ -402,7 +402,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 	}
 
 	if !o.NoEntities {
-		l.traceEntities(w, o, &result)
+		l.traceEntities(w, o, m.Delta{}, &result)
 	}
 
 	return result
