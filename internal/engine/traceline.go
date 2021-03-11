@@ -21,9 +21,9 @@ import (
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
-// traceTiles cuts the given trace by hits against the tilemap.
+// traceLineTiles cuts the given trace by hits against the tilemap.
 // l must have been initialized to finish at the current EndPos.
-func (l *normalizedLine) traceTiles(w *World, o TraceOptions, result *TraceResult) {
+func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceResult) {
 	result.EndPos = l.Origin
 	if o.PathOut != nil {
 		*o.PathOut = append(*o.PathOut, l.Origin.Div(level.TileSize))
@@ -81,7 +81,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 	// As from != to, we know NumSteps > 0.
 
 	if !o.NoTiles {
-		l.traceTiles(w, o, &result)
+		l.traceLineTiles(w, o, &result)
 	}
 
 	if !o.NoEntities {
