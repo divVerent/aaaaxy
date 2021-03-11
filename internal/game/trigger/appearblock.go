@@ -69,8 +69,7 @@ func (a *AppearBlock) Update() {
 		}
 	}
 	a.Entity.Alpha = float64(a.AnimFrame) / AppearFrames
-	// Make nonsolid if inside (to unstick player).
-	a.World.SetSolid(a.Entity, a.AnimFrame >= AppearSolidThreshold && delta.DY > 0)
+	a.World.SetSolid(a.Entity, a.AnimFrame >= AppearSolidThreshold)
 }
 
 func (a *AppearBlock) Touch(other *engine.Entity) {}

@@ -18,7 +18,6 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 const (
@@ -94,11 +93,6 @@ func (s *AnimatedSprite) Update() {
 	} else {
 		s.World.SetSolid(s.Entity, false)
 		s.World.SetOpaque(s.Entity, false)
-	}
-
-	// Make nonsolid if inside (to unstick player if needed).
-	if s.Solid && (s.Entity.Rect.Delta(s.World.Player.Rect) == m.Delta{}) {
-		s.World.SetSolid(s.Entity, false)
 	}
 }
 
