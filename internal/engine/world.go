@@ -639,7 +639,11 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			tile.LoadedFromNeighbor = p
 			tile.VisibilityFlags = w.frameVis
 			return tile
-		} else if tile.VisibilityFlags&level.FrameVis != w.frameVis {
+		} else if tile.VisibilityFlags&level.FrameVis == w.frameVis {
+			// Damn... these loading conflicts are actually normal and happen around all warpzones.
+			// Thus it'd be nice to have a better way to detect "bad" stuff.
+			// We only really care about loading conflicts during visibility tracing.
+			// During expanding it's nromal.
 			log.Panicf("Conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v).",
 				newPos, tile.LoadedFromNeighbor, tile.LevelPos, p, d, newLevelTile.Tile.LevelPos)
 		}
