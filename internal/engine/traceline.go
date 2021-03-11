@@ -28,8 +28,10 @@ func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceR
 	if o.PathOut != nil {
 		*o.PathOut = append(*o.PathOut, l.Origin.Div(level.TileSize))
 	}
-	err := l.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixel m.Pos) error {
+	err := l.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixel, nextPixel m.Pos) error {
+		// Record the EndPos as the prevPixel was sure fine.
 		result.EndPos = prevPixel
+		// Check the newly hit tile(s).
 		var tile *level.Tile
 		if o.LoadTiles {
 			tile = w.LoadTile(prevTile, nextTile, delta)

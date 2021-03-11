@@ -163,7 +163,7 @@ func (l *normalizedLine) toPos(i, j int) m.Pos {
 }
 
 // walkTiles yields all tile intersections on the line from start to end of the line.
-func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.Delta, prevPixel m.Pos) error) error {
+func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.Delta, prevPixel, nextPixel m.Pos) error) error {
 	// Algorithm idea:
 	// - INIT: calculate iMod, jMod, scanI, scanJ.
 	// - SEARCH:
@@ -222,7 +222,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.
 				return nil
 			}
 			nextTile := tile.Add(iDelta)
-			if err := check(tile, nextTile, iDelta, l.toPos(nextI-1, 0)); err != nil {
+			if err := check(tile, nextTile, iDelta, l.toPos(nextI-1, 0), l.toPos(nextI, 0)); err != nil {
 				return err
 			}
 			tile = nextTile
@@ -237,7 +237,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.
 				return nil
 			}
 			nextTile := tile.Add(jDelta)
-			if err := check(tile, nextTile, jDelta, l.toPos(nextJI, nextJ-1)); err != nil {
+			if err := check(tile, nextTile, jDelta, l.toPos(nextJI, nextJ-1), l.toPos(nextJI, nextJ)); err != nil {
 				return err
 			}
 			tile = nextTile
@@ -249,7 +249,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.
 			nextTile := tile.Add(iDelta)
 			// Compute the j for nextI. It is the SMALLEST j of the potential group.
 			nextIJ := (l.Height*(2*nextI-1) + l.NumSteps) / (2 * l.NumSteps) // Same as j00 below.
-			if err := check(tile, nextTile, iDelta, l.toPos(nextI-1, nextIJ)); err != nil {
+			if err := check(tile, nextTile, iDelta, l.toPos(nextI-1, nextIJ), l.toPos(nextI, nextIJ)); err != nil {
 				return err
 			}
 			tile = nextTile
@@ -261,7 +261,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.
 				return nil
 			}
 			nextTile := tile.Add(iDelta)
-			if err := check(tile, nextTile, iDelta, l.toPos(nextI-1, nextJ-1)); err != nil {
+			if err := check(tile, nextTile, iDelta, l.toPos(nextI-1, nextJ-1), l.toPos(nextI, nextJ-1)); err != nil {
 				return err
 			}
 			tile = nextTile
@@ -269,7 +269,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.
 				return nil
 			}
 			nextTile = tile.Add(jDelta)
-			if err := check(tile, nextTile, jDelta, l.toPos(nextI, nextJ-1)); err != nil {
+			if err := check(tile, nextTile, jDelta, l.toPos(nextI, nextJ-1), l.toPos(nextI, nextJ)); err != nil {
 				return err
 			}
 			tile = nextTile

@@ -15,60 +15,112 @@
 package engine
 
 import (
+	"math"
+
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
-func appendLineToTraces(traces map[m.Delta]struct{}, start, end m.Delta) {
-	delta := end.Sub(start)
-	length := delta.Norm1()
-	traces[start] = struct{}{}
-	for i := MinEntitySize; i < length; i += MinEntitySize {
-		pos := start.Add(delta.Mul(i).Div(length))
-		traces[pos] = struct{}{}
+func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta, result *TraceResult) {
+	result.EndPos = l.Origin
+	if o.PathOut != nil {
+		*o.PathOut = append(*o.PathOut, l.Origin.Div(level.TileSize))
 	}
-	traces[end] = struct{}{}
+	// Find the corner in direction of the trace.
+	var adjustment m.Delta
+	if l.XDir > 0 {
+		adjustment.DX = enlarge.DX
+	}
+	if l.YDir > 0 {
+		adjustment.DY = enlarge.DY
+	}
+	// Trace that corner path against the tilemap.
+	// TODO: do this more efficiently than copying the line. We maybe can
+	// even reuse the same adjustment for entity tracing? Or just edit the
+	// l object and reset when done?
+	ll := *l
+	ll.Origin = ll.Origin.Add(adjustment)
+	ll.Target = ll.Target.Add(adjustment)
+	err := ll.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixelAdj, nextPixelAdj m.Pos) error {
+		// First, unadjust.
+		prevPixel := prevPixelAdj.Sub(adjustment)
+		nextPixel := nextPixelAdj.Sub(adjustment)
+		// Record the EndPos as prevPixel was sure fine.
+		result.EndPos = prevPixel
+		// Check the newly hit tiles.
+		if nextPixel.X != prevPixel.X {
+			// X move.
+			// Check all newly hit tiles in Y range.
+			// TODO: One of these divisions is redundant. Worth optimizing?
+			top := m.Div(nextPixel.Y, level.TileSize)
+			bottom := m.Div(nextPixel.Y+enlarge.DY, level.TileSize)
+			for y := top; y <= bottom; y++ {
+				tile := w.Tile(m.Pos{X: nextTile.X, Y: y})
+				if tile == nil {
+					// result.HitFogOfWar = true
+					return traceDoneErr
+				}
+				if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
+					// result.HitTilePos = nextTile
+					// result.HitTile = tile
+					return traceDoneErr
+				}
+			}
+		} else {
+			// Y move.
+			// Check all newly hit tiles in X range.
+			// TODO: One of these divisions is redundant. Worth optimizing?
+			left := m.Div(nextPixel.X, level.TileSize)
+			right := m.Div(nextPixel.X+enlarge.DX, level.TileSize)
+			for x := left; x <= right; x++ {
+				tile := w.Tile(m.Pos{X: x, Y: nextTile.Y})
+				if tile == nil {
+					// result.HitFogOfWar = true
+					return traceDoneErr
+				}
+				if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
+					// result.HitTilePos = nextTile
+					// result.HitTile = tile
+					return traceDoneErr
+				}
+			}
+		}
+		return nil
+	})
+	if err != traceDoneErr {
+		result.EndPos = l.Target
+	}
+	result.Score = TraceScore{
+		TraceDistance:  result.EndPos.Delta(l.Origin).Norm1(),
+		EntityDistance: math.MaxInt32, // Not an entity.
+	}
 }
 
-// traceBox moves a size-sized box from from to to and yields info about where it hits solid etc.
 func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
-	// TODO make a real implementation.
-	// Idea:
-	// - traceEntities can simply expand entities hit by the from rectangle. Easy.
-	// - traceTiles has to trace using the point in from farthest in the given direction,
-	//   and on every tile boundary crossing, has to iterate through all new tiles hit on the other coordinate axis.
-	// That will eliminate the MinEntitySize requirement.
-	traces := map[m.Delta]struct{}{}
-	delta := to.Delta(from.Origin)
-	// TODO refactor using OppositeCorner?
-	if delta.DX < 0 {
-		appendLineToTraces(traces, m.Delta{DX: 0, DY: 0}, m.Delta{DX: 0, DY: from.Size.DY - 1})
-	} else {
-		appendLineToTraces(traces, m.Delta{DX: from.Size.DX - 1, DY: 0}, m.Delta{DX: from.Size.DX - 1, DY: from.Size.DY - 1})
+	result := TraceResult{
+		EndPos: to,
+		// HitTile:     nil,
+		// HitEntity:   nil,
+		// HitFogOfWar: false,
 	}
-	if delta.DY < 0 {
-		appendLineToTraces(traces, m.Delta{DX: 0, DY: 0}, m.Delta{DX: from.Size.DX - 1, DY: 0})
-	} else {
-		appendLineToTraces(traces, m.Delta{DX: 0, DY: from.Size.DY - 1}, m.Delta{DX: from.Size.DX - 1, DY: from.Size.DY - 1})
+
+	if from.Origin == to {
+		// Empty trace? Nothign we can hit.
+		return result
 	}
-	var result TraceResult
-	haveTrace := false
-	for delta := range traces {
-		trace := traceLine(w, from.Origin.Add(delta), to.Add(delta), o)
-		adjustedEnd := trace.EndPos.Sub(delta)
-		score := adjustedEnd.Delta(from.Origin).Norm1() * 2
-		if trace.HitEntity == nil {
-			// Get shortest trace, BUT prefer those that hit entities.
-			score++
-		}
-		if !haveTrace || trace.Score.Less(result.Score) {
-			haveTrace = true
-			result.EndPos = adjustedEnd
-			// result.HitTilePos = trace.HitTilePos
-			// result.HitTile = trace.HitTile
-			result.HitEntity = trace.HitEntity
-			// result.HitFogOfWar = trace.HitFogOfWar
-			result.Score = trace.Score
-		}
+
+	l := normalizeLine(from.Origin, to)
+	// As from != to, we know NumSteps > 0.
+
+	enlarge := from.Size.Sub(m.Delta{DX: 1, DY: 1})
+
+	if !o.NoTiles {
+		l.traceBoxTiles(w, o, enlarge, &result)
 	}
+
+	if !o.NoEntities {
+		l.traceEntities(w, o, enlarge, &result)
+	}
+
 	return result
 }
