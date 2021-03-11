@@ -55,7 +55,13 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 			top := m.Div(nextPixel.Y, level.TileSize)
 			bottom := m.Div(nextPixel.Y+enlarge.DY, level.TileSize)
 			for y := top; y <= bottom; y++ {
-				tile := w.Tile(m.Pos{X: nextTile.X, Y: y})
+				tilePos := m.Pos{X: nextTile.X, Y: y}
+				var tile *level.Tile
+				if o.LoadTiles {
+					tile = w.LoadTile(tilePos.Sub(delta), tilePos, delta)
+				} else {
+					tile = w.Tile(tilePos)
+				}
 				if tile == nil {
 					// result.HitFogOfWar = true
 					return traceDoneErr
@@ -73,7 +79,13 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 			left := m.Div(nextPixel.X, level.TileSize)
 			right := m.Div(nextPixel.X+enlarge.DX, level.TileSize)
 			for x := left; x <= right; x++ {
-				tile := w.Tile(m.Pos{X: x, Y: nextTile.Y})
+				tilePos := m.Pos{X: x, Y: nextTile.Y}
+				var tile *level.Tile
+				if o.LoadTiles {
+					tile = w.LoadTile(tilePos.Sub(delta), tilePos, delta)
+				} else {
+					tile = w.Tile(tilePos)
+				}
 				if tile == nil {
 					// result.HitFogOfWar = true
 					return traceDoneErr

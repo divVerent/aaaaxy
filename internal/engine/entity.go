@@ -30,11 +30,12 @@ type Entity struct {
 	Incarnation EntityIncarnation
 
 	// Info needed for gameplay.
-	solid     bool
-	opaque    bool
-	Rect      m.Rect
-	Transform m.Orientation // Possibly needed for initialization.
-	name      string        // Possibly searched for.
+	solid        bool
+	opaque       bool
+	Rect         m.Rect
+	Transform    m.Orientation // Possibly needed for initialization.
+	name         string        // Possibly searched for.
+	RequireTiles bool          // Entity requires tiles to be loaded.
 
 	// Info needed for rendering.
 	Orientation  m.Orientation

@@ -272,9 +272,8 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	// Move the player to the center of the checkpoint.
 	w.Player.Rect.Origin = cp.Rect.Origin.Add(cp.Rect.Size.Div(2)).Sub(w.Player.Rect.Size.Div(2))
 
-	// Load all the stuff that the CP and player need.
+	// Load all the stuff that the player needs.
 	w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
-	w.LoadTilesForRect(cp.Rect, cpSp.LevelPos)
 
 	// Move the player down as far as possible.
 	trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(m.Delta{DX: 0, DY: 1024}), TraceOptions{
@@ -285,7 +284,8 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	})
 	w.Player.Rect.Origin = trace.EndPos
 
-	w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
+	// Note that TraceBox must have loaded all tiles the player needs.
+	// w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
 	w.frameVis ^= level.FrameVis
 
 	// Reset all warpzones.
@@ -507,12 +507,14 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			}
 		}
 		if pos != nil {
-			w.LoadTilesForTileBox(tp0, tp1, *pos)
-			for y := tp0.Y; y <= tp1.Y; y++ {
-				for x := tp0.X; x <= tp1.X; x++ {
-					tp := m.Pos{X: x, Y: y}
-					if w.Tile(tp).VisibilityFlags&level.FrameVis != w.frameVis {
-						w.Tile(tp).VisibilityFlags = w.frameVis
+			if ent.RequireTiles {
+				w.LoadTilesForTileBox(tp0, tp1, *pos)
+				for y := tp0.Y; y <= tp1.Y; y++ {
+					for x := tp0.X; x <= tp1.X; x++ {
+						tp := m.Pos{X: x, Y: y}
+						if w.Tile(tp).VisibilityFlags&level.FrameVis != w.frameVis {
+							w.Tile(tp).VisibilityFlags = w.frameVis
+						}
 					}
 				}
 			}
