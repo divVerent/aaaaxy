@@ -15,6 +15,7 @@
 package menu
 
 import (
+	"fmt"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -81,7 +82,7 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	fgn := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
-	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 0}
+	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
 	font.MenuBig.Draw(screen, "AAAAAA", m.Pos{X: x, Y: h / 4}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == Play {
@@ -92,6 +93,7 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	if s.Item == Settings {
 		fg, bg = fgs, bgs
 	}
+	// TODO: menu item for signs seen and coins gotten.
 	font.Menu.Draw(screen, "Settings", m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Credits {
@@ -103,4 +105,14 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 		fg, bg = fgs, bgs
 	}
 	font.Menu.Draw(screen, "Quit", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
+
+	// Display stats.
+	var frames int
+	fmt.Sscanf(s.Menu.World.Level.Player.PersistentState["frames"], "%d", &frames)
+	ss, ms := frames/60, (frames%60)*1000/60
+	mm, ss := ss/60, ss%60
+	hh, mm := mm/60, mm%60
+	font.MenuSmall.Draw(screen, fmt.Sprintf("Time: %d:%02d:%02d.%03d", hh, mm, ss, ms),
+		m.Pos{X: x, Y: 17 * h / 32}, true, fgn, bgn)
+	// TODO: also add
 }

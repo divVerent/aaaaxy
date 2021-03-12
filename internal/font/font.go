@@ -37,6 +37,7 @@ var (
 	DebugSmall     Face
 	MenuBig        Face
 	Menu           Face
+	MenuSmall      Face
 )
 
 func init() {
@@ -114,6 +115,12 @@ func init() {
 	})}
 	MenuBig = Face{truetype.NewFace(smallcaps, &truetype.Options{
 		Size:       24,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	})}
+	MenuSmall = Face{truetype.NewFace(smallcaps, &truetype.Options{
+		Size:       12,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
