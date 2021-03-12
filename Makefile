@@ -10,7 +10,7 @@ DEBUG_GOFLAGS =
 RELEASE = aaaaaa$(SUFFIX)
 RELEASE_GOFLAGS = -ldflags="-s -w" -gcflags="-B -dwarf=false"
 UPXFLAGS = -9
-SOURCES = $(shell find . -name \*.go)
+SOURCES = $(shell git ls-files \*.go)
 GENERATED_ASSETS = assets/maps/level.cp.json
 STATIK_ASSETS_ROOT = internal/assets
 STATIK_ASSETS = $(STATIK_ASSETS_ROOT)/statik/statik.go
