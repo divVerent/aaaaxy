@@ -60,10 +60,13 @@ const (
 	Middle
 )
 
-var (
-	NormalFont = font.Centerprint
-	BigFont    = font.CenterprintBig
-)
+func NormalFont() font.Face {
+	return font.Centerprint
+}
+
+func BigFont() font.Face {
+	return font.CenterprintBig
+}
 
 func New(txt string, imp Importance, pos InitialPosition, face font.Face, color color.Color) *Centerprint {
 	cp := &Centerprint{
