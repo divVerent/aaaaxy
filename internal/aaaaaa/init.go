@@ -37,10 +37,13 @@ func LoadConfig() (*flag.Config, error) {
 	return engine.LoadConfig()
 }
 
-func InitEbiten() {
+func InitEbiten() error {
 	audio.NewContext(48000)
 	image.Precache()
-	sound.Precache()
+	err := sound.Precache()
+	if err != nil {
+		return err
+	}
 	noise.Init()
 
 	// TODO when adding a menu, actually show these credits.
@@ -70,6 +73,8 @@ func InitEbiten() {
 	} else {
 		ebiten.SetMaxTPS(engine.GameTPS)
 	}
+
+	return nil
 }
 
 func BeforeExit() {

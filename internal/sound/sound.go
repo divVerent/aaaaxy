@@ -17,7 +17,6 @@ package sound
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
@@ -81,13 +80,13 @@ func (s *Sound) Play() *audiowrap.Player {
 	return player
 }
 
-func Precache() {
+func Precache() error {
 	if !*precacheSounds {
-		return
+		return nil
 	}
 	names, err := vfs.ReadDir("sounds")
 	if err != nil {
-		log.Panicf("could not enumerate sounds: %v", err)
+		return fmt.Errorf("could not enumerate sounds: %v", err)
 	}
 	for _, name := range names {
 		if !strings.HasSuffix(name, ".ogg") {
@@ -95,8 +94,9 @@ func Precache() {
 		}
 		_, err := Load(name)
 		if err != nil {
-			log.Panicf("could not precache %v: %v", name, err)
+			return fmt.Errorf("could not precache %v: %v", name, err)
 		}
 	}
 	cacheFrozen = true
+	return nil
 }

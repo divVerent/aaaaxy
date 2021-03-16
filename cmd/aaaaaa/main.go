@@ -44,9 +44,12 @@ func main() {
 		}
 		defer pprof.StopCPUProfile()
 	}
-	aaaaaa.InitEbiten()
+	err := aaaaaa.InitEbiten()
+	if err != nil {
+		log.Panicf("could not initialize game: %v", err)
+	}
 	game := &aaaaaa.Game{}
-	err := ebiten.RunGame(game)
+	err = ebiten.RunGame(game)
 	aaaaaa.BeforeExit()
 	if *memprofile != "" {
 		f, err := os.Create(*memprofile)
