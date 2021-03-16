@@ -166,9 +166,9 @@ func (l *normalizedLine) toPos(i, j int) m.Pos {
 
 func (l *normalizedLine) toDelta(u, v int) m.Delta {
 	if l.ScanX {
-		return m.Delta{DX: l.XDir * u, DY: l.YDir * u}
+		return m.Delta{DX: l.XDir * u, DY: l.YDir * v}
 	} else {
-		return m.Delta{DX: l.XDir * v, DY: l.YDir * v}
+		return m.Delta{DX: l.XDir * v, DY: l.YDir * u}
 	}
 }
 

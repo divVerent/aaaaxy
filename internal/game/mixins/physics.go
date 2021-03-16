@@ -43,62 +43,62 @@ func (p *Physics) Reset() {
 	p.SubPixel = m.Delta{}
 }
 
-func (p *Physics) Update(handleTouch func(delta m.Delta, trace engine.TraceResult)) {
+func (p *Physics) Update(handleTouch func(trace engine.TraceResult)) {
 	p.SubPixel = p.SubPixel.Add(p.Velocity)
 	move := p.SubPixel.Div(SubPixelScale)
 
-	if move.DX != 0 {
-		delta := m.Delta{DX: move.DX, DY: 0}
-		dest := p.Entity.Rect.Origin.Add(delta)
+	groundChecked := false
+	for (move != m.Delta{}) {
+		dest := p.Entity.Rect.Origin.Add(move)
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
 			IgnoreEnt: p.Entity,
 			ForEnt:    p.Entity,
 		})
-		if trace.EndPos == dest {
-			// Nothing hit.
+		if (trace.HitDelta == m.Delta{}) {
+			// Nothing hit. We're done.
 			p.SubPixel.DX -= move.DX * SubPixelScale
+			p.SubPixel.DY -= move.DY * SubPixelScale
 			p.Entity.Rect.Origin = trace.EndPos
-		} else {
-			// Hit something. Move as far as we can in direction of the hit, but not farther than intended.
+			if move.DY != 0 {
+				// If move had a Y component, we're flying.
+				p.OnGround, groundChecked = false, true
+			}
+			break
+		}
+		if trace.HitDelta.DX != 0 {
+			// An X hit. Just adjust X subpixel to be as close to the hit as possible.
 			if p.SubPixel.DX > SubPixelScale-1 {
 				p.SubPixel.DX = SubPixelScale - 1
 			} else if p.SubPixel.DX < 0 {
 				p.SubPixel.DX = 0
 			}
+			p.SubPixel.DY -= (trace.EndPos.Y - p.Entity.Rect.Origin.Y) * SubPixelScale
 			p.Velocity.DX = 0
+			move.DX = 0
+			move.DY -= trace.EndPos.Y - p.Entity.Rect.Origin.Y
 			p.Entity.Rect.Origin = trace.EndPos
-			handleTouch(delta, trace)
-		}
-	}
 
-	if move.DY != 0 {
-		delta := m.Delta{DX: 0, DY: move.DY}
-		dest := p.Entity.Rect.Origin.Add(delta)
-		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
-			IgnoreEnt: p.Entity,
-			ForEnt:    p.Entity,
-		})
-		if trace.EndPos == dest {
-			// Nothing hit.
-			p.SubPixel.DY -= move.DY * SubPixelScale
-			p.Entity.Rect.Origin = trace.EndPos
-			// If moving up, we're never on ground.
-			p.OnGround = false
-		} else {
-			// Hit something. Move as far as we can in direction of the hit, but not farther than intended.
+			handleTouch(trace)
+		} else if trace.HitDelta.DY != 0 {
+			// A Y hit. Also update ground status.
 			if p.SubPixel.DY > SubPixelScale-1 {
 				p.SubPixel.DY = SubPixelScale - 1
 			} else if p.SubPixel.DY < 0 {
 				p.SubPixel.DY = 0
 			}
+			p.SubPixel.DX -= (trace.EndPos.X - p.Entity.Rect.Origin.X) * SubPixelScale
 			p.Velocity.DY = 0
-			// If moving down and hitting something, set OnGround flag. Otherwise clear.
-			p.OnGround = move.DY > 0
+			move.DX -= trace.EndPos.X - p.Entity.Rect.Origin.X
+			move.DY = 0
 			p.Entity.Rect.Origin = trace.EndPos
-			handleTouch(delta, trace)
+
+			p.OnGround, groundChecked = trace.HitDelta.DY > 0, true
+
+			handleTouch(trace)
 		}
-	} else if p.OnGround {
-		delta := m.Delta{DX: 0, DY: 1}
+	}
+
+	if p.OnGround && !groundChecked {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
 			IgnoreEnt: p.Entity,
 			ForEnt:    p.Entity,
@@ -107,7 +107,7 @@ func (p *Physics) Update(handleTouch func(delta m.Delta, trace engine.TraceResul
 			p.OnGround = false
 		} else {
 			// p.OnGround = true // Always has been.
-			handleTouch(delta, trace)
+			handleTouch(trace)
 		}
 	}
 }

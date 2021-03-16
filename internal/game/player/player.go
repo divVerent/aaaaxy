@@ -248,15 +248,15 @@ func (p *Player) Update() {
 
 	// Run physics.
 	wasOnGround := p.OnGround
-	p.Physics.Update(func(delta m.Delta, trace engine.TraceResult) {
-		if delta.DY > 0 {
+	p.Physics.Update(func(trace engine.TraceResult) {
+		if trace.HitDelta.DY > 0 {
 			if !wasOnGround {
 				p.Anim.SetGroup("land")
 				p.LandSound.Play()
 			}
 			p.JumpingUp = false
 		}
-		if delta.DY < 0 {
+		if trace.HitDelta.DY < 0 {
 			p.Anim.SetGroup("hithead")
 			p.HitHeadSound.Play()
 		}
