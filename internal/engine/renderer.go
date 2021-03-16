@@ -94,7 +94,8 @@ func (r *renderer) Init(w *World) {
 		var err error
 		r.visibilityMaskShader, err = shader.Load("visibility_mask.kage", nil)
 		if err != nil {
-			log.Printf("could not load visibility mask shader: %v", err)
+			log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load visibility mask shader: %v", err)
+			r.visibilityMaskShader = nil
 		}
 	}
 }
@@ -309,7 +310,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 	}
 
 	if *drawOutside {
-		if *debugUseShaders && false {
+		if r.visibilityMaskShader != nil {
 			delta := r.world.scrollPos.Delta(r.prevScrollPos)
 			screen.DrawRectShader(GameWidth, GameHeight, r.visibilityMaskShader, &ebiten.DrawRectShaderOptions{
 				CompositeMode: ebiten.CompositeModeCopy,

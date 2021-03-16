@@ -79,6 +79,10 @@ func BlurExpandImage(img, tmp, out *ebiten.Image, blurSize, expandSize int, scal
 	BlurImage(img, tmp, out, size, scale)
 }
 
+var (
+	blurBroken = false
+)
+
 func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 	if !*drawBlurs && scale <= 1 {
 		// Blurs can be globally turned off.
@@ -92,7 +96,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 		}
 		return
 	}
-	if !*debugUseShaders {
+	if blurBroken || !*debugUseShaders {
 		blurImageFixedFunction(img, tmp, out, size, scale)
 		return
 	}
@@ -103,7 +107,8 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 		"Size": fmt.Sprint(size),
 	})
 	if err != nil {
-		log.Panicf("could not load blur shader: %v", err)
+		log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load blur shader: %v", err)
+		blurBroken = true
 	}
 	w, h := img.Size()
 	scaleX := 1 / (2*float64(size) + 1)
