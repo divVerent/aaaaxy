@@ -128,7 +128,7 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	p.Entity.ZIndex = engine.MaxZIndex
 	p.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
 
-	p.Anim.Init("player", map[string]*animation.Group{
+	err := p.Anim.Init("player", map[string]*animation.Group{
 		"idle": {
 			Frames:        2,
 			FrameInterval: 172,
@@ -158,8 +158,10 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 			NextAnim:     "idle",
 			WaitFinish:   true,
 		}}, "idle")
+	if err != nil {
+		return fmt.Errorf("could not initialize player animation: %v", err)
+	}
 
-	var err error
 	p.JumpSound, err = sound.Load("jump.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load jump sound: %v", err)

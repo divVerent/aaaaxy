@@ -115,7 +115,10 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 		if group.SyncToMusicOffset, err = time.ParseDuration(syncToMusicOffsetString); err != nil {
 			return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %v", syncToMusicOffsetString, err)
 		}
-		s.Anim.Init(prefix, map[string]*animation.Group{groupName: group}, groupName)
+		err := s.Anim.Init(prefix, map[string]*animation.Group{groupName: group}, groupName)
+		if err != nil {
+			return fmt.Errorf("could not initialize animation %v: %v", prefix, err)
+		}
 	} else {
 		return fmt.Errorf("Sprite entity requires exactly one of image, text and animation to be set")
 	}

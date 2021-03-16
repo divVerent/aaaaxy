@@ -15,6 +15,8 @@
 package trigger
 
 import (
+	"fmt"
+
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/animation"
@@ -43,7 +45,7 @@ func (o *OneWay) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 
 	o.AllowedDirection = e.Orientation.Apply(m.East())
 
-	o.Anim.Init("oneway", map[string]*animation.Group{
+	err := o.Anim.Init("oneway", map[string]*animation.Group{
 		"idle": {
 			Frames:        2,
 			FrameInterval: 16,
@@ -51,6 +53,9 @@ func (o *OneWay) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 			NextAnim:      "idle",
 		},
 	}, "idle")
+	if err != nil {
+		return fmt.Errorf("could not initialize oneway animation: %v", err)
+	}
 
 	return nil
 }

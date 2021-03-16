@@ -16,7 +16,6 @@ package animation
 
 import (
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -51,11 +50,11 @@ type State struct {
 	NextGroup *Group
 }
 
-func (s *State) Init(spritePrefix string, groups map[string]*Group, initialGroup string) {
+func (s *State) Init(spritePrefix string, groups map[string]*Group, initialGroup string) error {
 	for name, group := range groups {
 		group.NextGroup = groups[group.NextAnim]
 		if group.NextGroup == nil {
-			log.Panicf("Animation group %q references nonexisting frame group %q", name, group.NextAnim)
+			return fmt.Errorf("animation group %q references nonexisting frame group %q", name, group.NextAnim)
 		}
 		group.Images = make([]*ebiten.Image, group.Frames)
 		for i := range group.Images {
@@ -68,18 +67,19 @@ func (s *State) Init(spritePrefix string, groups map[string]*Group, initialGroup
 			var err error
 			group.Images[i], err = image.Load("sprites", spriteName)
 			if err != nil {
-				log.Panicf("Could not load image %v for group %q: %v", spriteName, name, err)
+				return fmt.Errorf("could not load image %v for group %q: %v", spriteName, name, err)
 			}
 		}
 	}
 	s.Groups = groups
 	s.ForceGroup(initialGroup)
+	return nil
 }
 
 func (s *State) ForceGroup(group string) {
 	requested := s.Groups[group]
 	if requested == nil {
-		log.Panicf("Trying to switch to nonexisting frame group: %q.", group)
+		fmt.Printf("Trying to switch to nonexisting frame group: %q.", group)
 	}
 	s.WantNext = true
 	s.NextGroup = requested
@@ -88,7 +88,8 @@ func (s *State) ForceGroup(group string) {
 func (s *State) SetGroup(group string) {
 	requested := s.Groups[group]
 	if requested == nil {
-		log.Panicf("Trying to switch to nonexisting frame group: %q.", group)
+		fmt.Printf("Trying to switch to nonexisting frame group: %q.", group)
+		return
 	}
 	// Moving to same non-WaitFinish group does nothing.
 	if requested == s.Group && !s.Group.WaitFinish {
@@ -101,6 +102,7 @@ func (s *State) SetGroup(group string) {
 	// Immediately switch over if current group isn't WaitFinish.
 	s.WantNext = s.Group == nil || !s.Group.WaitFinish
 	s.NextGroup = requested
+	return
 }
 
 func (s *State) Update(e *engine.Entity) {
