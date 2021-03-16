@@ -16,6 +16,7 @@ package misc
 
 import (
 	"fmt"
+	go_image "image"
 	"image/color"
 	"strconv"
 	"strings"
@@ -74,6 +75,24 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 			return err
 		}
 		e.ResizeImage = true
+		subX, subY := 0, 0
+		subW, subH := e.Image.Size()
+		regionString := sp.Properties["image_region"]
+		if regionString != "" {
+			if _, err := fmt.Sscanf(regionString, "%d %d %d %d", &subX, &subY, &subW, &subH); err != nil {
+				return fmt.Errorf("could not decode image region %q: %v", regionString, err)
+			}
+			e.Image = e.Image.SubImage(go_image.Rectangle{
+				Min: go_image.Point{
+					X: subX,
+					Y: subY,
+				},
+				Max: go_image.Point{
+					X: subX + subW,
+					Y: subY + subH,
+				},
+			}).(*ebiten.Image)
+		}
 	} else if sp.Properties["animation"] != "" && sp.Properties["text"] == "" && sp.Properties["image"] == "" {
 		prefix := sp.Properties["animation"]
 		groupName := sp.Properties["animation_group"]
