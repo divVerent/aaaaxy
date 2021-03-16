@@ -32,16 +32,17 @@ var (
 )
 
 // Init initializes the VFS. Must run after loading the assets.
-func init() {
+func Init() error {
 	localAssetDirs = []string{"assets"}
 	content, err := ioutil.ReadDir("third_party")
 	if err != nil {
-		log.Panicf("Could not find third party directory: %v", err)
+		return fmt.Errorf("could not find third party directory: %v", err)
 	}
 	for _, info := range content {
 		localAssetDirs = append(localAssetDirs, filepath.Join("third_party", info.Name(), "assets"))
 	}
 	log.Printf("Local asset search path: %v", localAssetDirs)
+	return nil
 }
 
 // load loads a file from the VFS.

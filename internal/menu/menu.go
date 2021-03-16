@@ -17,7 +17,6 @@ package menu
 import (
 	"errors"
 	"fmt"
-	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -176,11 +175,11 @@ func (m *Menu) SwitchToScreen(screen MenuScreen) error {
 func (m *Menu) QuitGame() error {
 	err := m.World.Save()
 	if err != nil {
-		log.Panicf("could not save game: %v", err)
+		return fmt.Errorf("could not save game: %v", err)
 	}
 	err = engine.SaveConfig()
 	if err != nil {
-		log.Panicf("could not save config: %v", err)
+		return fmt.Errorf("could not save config: %v", err)
 	}
 	return errors.New("game exited normally")
 }

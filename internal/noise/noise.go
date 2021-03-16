@@ -16,8 +16,8 @@ package noise
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
-	"log"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
@@ -40,25 +40,26 @@ var (
 	noise  *audiowrap.Player
 )
 
-func Init() {
+func Init() error {
 	data, err := vfs.Load("sounds", "stereonoise.ogg")
 	if err != nil {
-		log.Panicf("Could not load stereonoise: %v", err)
+		return fmt.Errorf("Could not load stereonoise: %v", err)
 	}
 	defer data.Close()
 	stream, err := vorbis.Decode(audio.CurrentContext(), data)
 	if err != nil {
-		log.Panicf("Could not start decoding stereonosie: %v", err)
+		return fmt.Errorf("Could not start decoding stereonosie: %v", err)
 	}
 	decoded, err := ioutil.ReadAll(stream)
 	if err != nil {
-		log.Panicf("Could not decode stereonoise: %v", err)
+		return fmt.Errorf("Could not decode stereonoise: %v", err)
 	}
 	loop := audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded)))
 	noise, err = audiowrap.NewPlayer(loop)
 	if err != nil {
-		log.Panicf("could not start playing noise: %v", err)
+		return fmt.Errorf("could not start playing noise: %v", err)
 	}
+	return nil
 }
 
 func Update() {

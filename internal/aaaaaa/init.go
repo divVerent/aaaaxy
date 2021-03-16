@@ -15,13 +15,15 @@
 package aaaaaa
 
 import (
-	"log"
+	"fmt"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
 
+	"github.com/divVerent/aaaaaa/internal/credits"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/sound"
@@ -38,21 +40,6 @@ func LoadConfig() (*flag.Config, error) {
 }
 
 func InitEbiten() error {
-	audio.NewContext(48000)
-	image.Precache()
-	err := sound.Precache()
-	if err != nil {
-		return err
-	}
-	noise.Init()
-
-	// TODO when adding a menu, actually show these credits.
-	credits, err := vfs.ReadDir("credits")
-	if err != nil {
-		log.Panicf("Could not list credits: %v", err)
-	}
-	log.Printf("Credits files: %v", credits)
-
 	ebiten.SetCursorMode(ebiten.CursorModeHidden)
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetInitFocused(true)
@@ -66,8 +53,37 @@ func InitEbiten() error {
 	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowSize(engine.GameWidth, engine.GameHeight)
 	ebiten.SetWindowTitle("AAAAAA")
+	audio.NewContext(48000)
 
-	initDumping()
+	err := vfs.Init()
+	if err != nil {
+		return fmt.Errorf("could not initialize VFS: %v", err)
+	}
+	err = font.Init()
+	if err != nil {
+		return fmt.Errorf("could not initialize fonts: %v", err)
+	}
+	err = credits.Precache()
+	if err != nil {
+		return fmt.Errorf("could not precache credits: %v", err)
+	}
+	err = image.Precache()
+	if err != nil {
+		return fmt.Errorf("could not precache images: %v", err)
+	}
+	err = sound.Precache()
+	if err != nil {
+		return fmt.Errorf("could not precache sounds: %v", err)
+	}
+	err = noise.Init()
+	if err != nil {
+		return fmt.Errorf("could not initialize noise: %v", err)
+	}
+	err = initDumping()
+	if err != nil {
+		return fmt.Errorf("could not initialize dumping: %v", err)
+	}
+
 	if dumping() || *externalCapture {
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)
 	} else {

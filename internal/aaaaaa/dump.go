@@ -43,16 +43,12 @@ var (
 	}
 )
 
-func initDumping() {
-	if *dumpVideo == "" && *dumpAudio == "" {
-		return
-	}
-
+func initDumping() error {
 	if *dumpAudio != "" {
 		var err error
 		dumpAudioFile, err = os.Create(*dumpAudio)
 		if err != nil {
-			log.Panicf("Could not initialize audio dump: %v", err)
+			return fmt.Errorf("could not initialize audio dump: %v", err)
 		}
 		audiowrap.InitDumping()
 	}
@@ -61,9 +57,11 @@ func initDumping() {
 		var err error
 		dumpVideoFile, err = os.Create(*dumpVideo)
 		if err != nil {
-			log.Panicf("Could not initialize video dump: %v", err)
+			return fmt.Errorf("could not initialize video dump: %v", err)
 		}
 	}
+
+	return nil
 }
 
 func dumping() bool {

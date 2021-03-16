@@ -15,7 +15,7 @@
 package font
 
 import (
-	"log"
+	"fmt"
 
 	"github.com/golang/freetype/truetype"
 	"golang.org/x/image/font"
@@ -40,23 +40,23 @@ var (
 	MenuSmall      Face
 )
 
-func init() {
+func Init() error {
 	// Load the fonts.
 	regular, err := truetype.Parse(goregular.TTF)
 	if err != nil {
-		log.Panicf("Could not load goitalic font: %v", err)
+		return fmt.Errorf("could not load goitalic font: %v", err)
 	}
 	italic, err := truetype.Parse(goitalic.TTF)
 	if err != nil {
-		log.Panicf("Could not load goitalic font: %v", err)
+		return fmt.Errorf("could not load goitalic font: %v", err)
 	}
 	mono, err := truetype.Parse(gomono.TTF)
 	if err != nil {
-		log.Panicf("Could not load gomono font: %v", err)
+		return fmt.Errorf("could not load gomono font: %v", err)
 	}
 	smallcaps, err := truetype.Parse(gosmallcaps.TTF)
 	if err != nil {
-		log.Panicf("Could not load gosmallcaps font: %v", err)
+		return fmt.Errorf("could not load gosmallcaps font: %v", err)
 	}
 
 	ByName["Small"] = Face{truetype.NewFace(regular, &truetype.Options{
@@ -125,4 +125,6 @@ func init() {
 		SubPixelsX: 1,
 		SubPixelsY: 1,
 	})}
+
+	return nil
 }

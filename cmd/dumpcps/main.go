@@ -22,6 +22,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
 var (
@@ -62,6 +63,10 @@ func CalcPos(v *Vertex) {
 }
 
 func main() {
+	err := vfs.Init()
+	if err != nil {
+		log.Panicf("Could not initialize VFS: %v", err)
+	}
 	flag.Parse(flag.NoConfig)
 	lvl, err := level.Load("level")
 	if err != nil {

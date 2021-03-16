@@ -33,12 +33,13 @@ var (
 )
 
 // Init initializes the VFS. Must run after loading the assets.
-func init() {
+func Init() error {
 	var err error
 	myfs, err = fs.New()
 	if err != nil {
-		log.Panicf("Could not load statik file system: %v", err)
+		return fmt.Errorf("could not load statik file system: %v", err)
 	}
+	return nil
 }
 
 // load loads a file from the VFS.

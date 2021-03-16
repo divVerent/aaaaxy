@@ -17,6 +17,7 @@ package music
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -53,21 +54,23 @@ type musicJson struct {
 	LoopEnd   int64 `json:"loop_end"`
 }
 
-func (t *track) open(name string) {
+func (t *track) open(name string) error {
 	t.stop()
 	t.valid = true
 	if name == "" {
-		return
+		return nil
 	}
 	t.name = name
 	var err error
 	t.handle, err = vfs.Load("music", name)
 	if err != nil {
-		log.Panicf("Could not load music %q: %v", name, err)
+		t.stop()
+		return fmt.Errorf("Could not load music %q: %v", name, err)
 	}
 	t.data, err = vorbis.Decode(audio.CurrentContext(), t.handle)
 	if err != nil {
-		log.Panicf("Could not start decoding music %q: %v", name, err)
+		t.stop()
+		return fmt.Errorf("Could not start decoding music %q: %v", name, err)
 	}
 	config := musicJson{
 		LoopStart: 0,
@@ -75,20 +78,24 @@ func (t *track) open(name string) {
 	}
 	j, err := vfs.Load("music", name+".json")
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
-		log.Panicf("Could not load music json config file for %q: %v", name, err)
+		t.stop()
+		return fmt.Errorf("Could not load music json config file for %q: %v", name, err)
 	}
 	if j != nil {
 		defer j.Close()
 		err = json.NewDecoder(j).Decode(&config)
 		if err != nil {
-			log.Panicf("Could not decode music json config file for %q: %v", name, err)
+			t.stop()
+			return fmt.Errorf("Could not decode music json config file for %q: %v", name, err)
 		}
 	}
 	loop := audio.NewInfiniteLoopWithIntro(t.data, config.LoopStart*bytesPerSample, config.LoopEnd*bytesPerSample)
 	t.player, err = audiowrap.NewPlayer(loop)
 	if err != nil {
-		log.Panicf("Could not start playing music %q: %v", name, err)
+		t.stop()
+		return fmt.Errorf("Could not start playing music %q: %v", name, err)
 	}
+	return nil
 }
 
 func (t *track) play() {
@@ -198,7 +205,10 @@ func Switch(name string) {
 		next.handle.Close()
 		next.handle = nil
 	}
-	next.open(name)
+	err := next.open(name)
+	if err != nil {
+		log.Printf("could not open music %q: %v", name, err)
+	}
 }
 
 // End ends all music playback, then notifies the given channel.

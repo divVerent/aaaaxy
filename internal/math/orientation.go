@@ -16,7 +16,6 @@ package math
 
 import (
 	"fmt"
-	"log"
 )
 
 // Orientation represents a transformation matrix, written as a right and a down vector.
@@ -114,35 +113,6 @@ func ParseOrientation(s string) (Orientation, error) {
 	default:
 		return Orientation{}, fmt.Errorf("unsupported orientation %q; want <right><down> direction like ES", s)
 	}
-}
-
-func (o Orientation) String() string {
-	result := ""
-	switch o.Right {
-	case East():
-		result += "E"
-	case North():
-		result += "N"
-	case South():
-		result += "S"
-	case West():
-		result += "W"
-	default:
-		log.Panicf("unsupported orientation: %#v", o)
-	}
-	switch o.Down {
-	case East():
-		result += "E"
-	case North():
-		result += "N"
-	case South():
-		result += "S"
-	case West():
-		result += "W"
-	default:
-		log.Panicf("unsupported orientation: %#v", o)
-	}
-	return result
 }
 
 func (o Orientation) Determinant() int {

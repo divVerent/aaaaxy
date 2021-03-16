@@ -16,7 +16,7 @@ package credits
 
 import (
 	"bufio"
-	"log"
+	"fmt"
 
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
@@ -25,12 +25,11 @@ var (
 	Lines []string
 )
 
-func init() {
+func Precache() error {
 	credits, err := vfs.ReadDir("credits")
 	if err != nil {
-		log.Panicf("Could not list credits: %v", err)
+		return fmt.Errorf("could not list credits: %v", err)
 	}
-	log.Printf("Credits files: %v", credits)
 	var lines []string
 	for _, file := range credits {
 		if lines != nil {
@@ -38,7 +37,7 @@ func init() {
 		}
 		rd, err := vfs.Load("credits", file)
 		if err != nil {
-			log.Panicf("Could not load credits: %v", err)
+			return fmt.Errorf("could not load credits: %v", err)
 		}
 		defer rd.Close()
 		scanner := bufio.NewScanner(rd)
@@ -47,9 +46,10 @@ func init() {
 			lines = append(lines, scanner.Text())
 		}
 		if err = scanner.Err(); err != nil {
-			log.Panicf("Could not scan credits from %q: %v", file, err)
+			return fmt.Errorf("could not scan credits from %q: %v", file, err)
 		}
 	}
-	log.Print(lines)
 	Lines = lines
+
+	return nil
 }

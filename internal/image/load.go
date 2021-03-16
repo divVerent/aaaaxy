@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"image"
 	_ "image/png"
-	"log"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -64,14 +63,14 @@ func Load(purpose, name string) (*ebiten.Image, error) {
 	return eImg, nil
 }
 
-func Precache() {
+func Precache() error {
 	if !*precacheImages {
-		return
+		return nil
 	}
 	for _, purpose := range []string{"tiles", "sprites"} {
 		names, err := vfs.ReadDir(purpose)
 		if err != nil {
-			log.Panicf("could not enumerate files in %v: %v", purpose, err)
+			return fmt.Errorf("could not enumerate files in %v: %v", purpose, err)
 		}
 		for _, name := range names {
 			if !strings.HasSuffix(name, ".png") {
@@ -79,9 +78,10 @@ func Precache() {
 			}
 			_, err := Load(purpose, name)
 			if err != nil {
-				log.Panicf("could not precache %v in %v: %v", name, purpose, err)
+				return fmt.Errorf("could not precache %v in %v: %v", name, purpose, err)
 			}
 		}
 	}
 	cacheFrozen = true
+	return nil
 }
