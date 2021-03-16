@@ -16,7 +16,6 @@ package player
 
 import (
 	"fmt"
-	"log"
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -181,7 +180,7 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 }
 
 func (p *Player) Despawn() {
-	log.Panicf("The player should never despawn")
+	panic("tried to despawn the player - this should never happen")
 }
 
 func accelerate(vel *int, accel, max, dir int) {

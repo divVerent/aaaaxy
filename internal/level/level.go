@@ -426,7 +426,7 @@ func Load(filename string) (*Level, error) {
 					pos := m.Pos{X: x, Y: y}
 					levelTile := level.Tile(pos)
 					if levelTile == nil {
-						log.Panicf("Invalid entity location: outside map bounds: %v in %v", pos, ent)
+						return nil, fmt.Errorf("invalid entity location: outside map bounds: %v in %v", pos, ent)
 					}
 					levelTile.Tile.Spawnables = append(levelTile.Tile.Spawnables, &ent)
 				}
@@ -457,11 +457,11 @@ func Load(filename string) (*Level, error) {
 					toPos := toPos2.Div(2).Add(to.Orientation.Apply(m.West()))
 					levelTile := level.Tile(fromPos)
 					if levelTile == nil {
-						log.Panicf("Invalid WarpZone location: outside map bounds: %v in %v", fromPos, warppair)
+						return nil, fmt.Errorf("invalid WarpZone location: outside map bounds: %v in %v", fromPos, warppair)
 					}
 					toTile := level.Tile(toPos)
 					if toTile == nil {
-						log.Panicf("Invalid WarpZone destination location: outside map bounds: %v in %v", toPos, warppair)
+						return nil, fmt.Errorf("invalid WarpZone destination location: outside map bounds: %v in %v", toPos, warppair)
 					}
 					levelTile.WarpZones = append(levelTile.WarpZones, &WarpZone{
 						Name:         warpname,
