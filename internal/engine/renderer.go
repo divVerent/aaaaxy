@@ -163,7 +163,8 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		img, err := image.Load("tiles", renderImageSrc)
 		if err != nil {
-			log.Panicf("Unreachable code: could not load already cached image for tile: %v", err)
+			log.Printf("could not load already cached image %q for tile: %v", renderImageSrc, err)
+			return
 		}
 		opts := ebiten.DrawImageOptions{
 			// Note: could be CompositeModeCopy, but that can't be merged with entities pass.
