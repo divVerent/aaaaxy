@@ -16,6 +16,7 @@ package engine
 
 import (
 	"errors"
+	"log"
 
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
@@ -301,7 +302,7 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 	case HitOpaque:
 		ents = w.FindOpaque()
 	default:
-		panic("invalid trace mode")
+		log.Panicf("invalid trace mode: %v", o.Mode)
 	}
 	for _, ent := range ents {
 		if ent == o.IgnoreEnt {

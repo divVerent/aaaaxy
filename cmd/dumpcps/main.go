@@ -65,12 +65,12 @@ func CalcPos(v *Vertex) {
 func main() {
 	err := vfs.Init()
 	if err != nil {
-		log.Panicf("Could not initialize VFS: %v", err)
+		log.Fatalf("Could not initialize VFS: %v", err)
 	}
 	flag.Parse(flag.NoConfig)
 	lvl, err := level.Load("level")
 	if err != nil {
-		log.Panicf("Could not load level: %v", err)
+		log.Fatalf("Could not load level: %v", err)
 	}
 	// Gather a checkpoint ID to name map.
 	cpMap := map[level.EntityID]*level.Spawnable{}
@@ -103,11 +103,11 @@ func main() {
 			}
 			var nextID level.EntityID
 			if _, err := fmt.Sscanf(next, "%d", &nextID); err != nil {
-				log.Panicf("Could not parse next CP %q -> %q: %v", sp.Properties["name"], next, err)
+				log.Fatalf("Could not parse next CP %q -> %q: %v", sp.Properties["name"], next, err)
 			}
 			nextVert := vertices[nextID]
 			if nextVert == nil {
-				log.Panicf("Checkpoint %q doesn't point at a checkpoint but entity %d", sp.Properties["name"], nextID)
+				log.Fatalf("Checkpoint %q doesn't point at a checkpoint but entity %d", sp.Properties["name"], nextID)
 			}
 			distance := 20
 			if sp.Properties["dead_end"] == "true" {

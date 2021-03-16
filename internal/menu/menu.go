@@ -160,7 +160,10 @@ func (m *Menu) SwitchToGame() error {
 
 // SwitchToCheckpoint switches to a specific checkpoint.
 func (m *Menu) SwitchToCheckpoint(cp string) error {
-	m.World.RespawnPlayer(cp)
+	err := m.World.RespawnPlayer(cp)
+	if err != nil {
+		return fmt.Errorf("could not respawn player: %v", err)
+	}
 	m.Screen = nil
 	return nil
 }

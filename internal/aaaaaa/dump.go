@@ -82,7 +82,12 @@ func dumpFrame(screen *ebiten.Image) {
 		}
 	}
 	if dumpAudioFile != nil {
-		audiowrap.DumpFrame(dumpAudioFile, time.Duration(dumpFrameCount)*time.Second/engine.GameTPS)
+		err := audiowrap.DumpFrame(dumpAudioFile, time.Duration(dumpFrameCount)*time.Second/engine.GameTPS)
+		if err != nil {
+			log.Printf("Failed to encode audio - expect corruption: %v", err)
+			dumpAudioFile.Close()
+			dumpAudioFile = nil
+		}
 	}
 }
 

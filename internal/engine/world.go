@@ -17,6 +17,7 @@ package engine
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"math"
 	"os"
@@ -70,6 +71,8 @@ type World struct {
 	bottomRightTile m.Pos
 	// frameVis is the current mark value to detect visible tiles/objects.
 	frameVis level.VisibilityFlags
+	// visTracing is set while tracing visibility and enables loading conflict detection
+	visTracing bool
 
 	// respawned is set if the player got respawned this frame.
 	respawned bool
@@ -136,7 +139,7 @@ func (w *World) Init() error {
 	// Load map.
 	lvl, err := level.Load("level")
 	if err != nil {
-		log.Panicf("Could not load level: %v", err)
+		return fmt.Errorf("could not load level: %v", err)
 	}
 
 	// Allow reiniting if already done.
@@ -163,13 +166,11 @@ func (w *World) Init() error {
 	// Create player entity.
 	w.Player, err = w.Spawn(w.Level.Player, w.Level.Player.LevelPos, &tile)
 	if err != nil {
-		log.Panicf("Could not spawn player: %v", err)
+		return fmt.Errorf("could not spawn player: %v", err)
 	}
 
 	// Respawn the player at the desired start location (includes other startup).
-	w.RespawnPlayer("")
-
-	return nil
+	return w.RespawnPlayer("")
 }
 
 // Load loads the current savegame.
@@ -192,8 +193,7 @@ func (w *World) Load() error {
 		return err
 	}
 	cpName := w.Level.Player.PersistentState["last_checkpoint"]
-	w.RespawnPlayer(cpName)
-	return nil
+	return w.RespawnPlayer(cpName)
 }
 
 // Save saves the current savegame.
@@ -212,7 +212,7 @@ func (w *World) Save() error {
 // SpawnPlayer spawns the player in a newly initialized world.
 // As a side effect, it unloads all tiles.
 // Spawning at checkpoint "" means the initial player location.
-func (w *World) RespawnPlayer(checkpointName string) {
+func (w *World) RespawnPlayer(checkpointName string) error {
 	// Load whether we've seen this checkpoint in flipped state.
 	flipped := w.Level.Player.PersistentState["checkpoint_seen."+checkpointName] == "FlipX"
 
@@ -221,7 +221,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	}
 	cpSp := w.Level.Checkpoints[checkpointName]
 	if cpSp == nil {
-		log.Panicf("Could not spawn player: checkpoint %q not found", checkpointName)
+		return fmt.Errorf("could not spawn player: checkpoint %q not found", checkpointName)
 	}
 
 	cpTransform := m.Identity()
@@ -230,7 +230,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 		var err error
 		cpTransform, err = m.ParseOrientation(cpTransformStr)
 		if err != nil {
-			log.Panicf("Could not parse checkpoint orientation: %v", err)
+			return fmt.Errorf("could not parse checkpoint orientation: %v", err)
 		}
 	}
 	if flipped {
@@ -242,7 +242,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	var err error
 	tile.Transform, err = m.ParseOrientation(*debugInitialOrientation)
 	if err != nil {
-		log.Panicf("Could not parse initial orientation: %v", err)
+		return fmt.Errorf("could not parse initial orientation: %v", err)
 	}
 	tile.Transform = cpTransform.Concat(tile.Transform)
 	tile.Orientation = tile.Transform.Inverse().Concat(tile.Orientation)
@@ -266,7 +266,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 	// Spawn the CP.
 	cp, err := w.Spawn(cpSp, cpSp.LevelPos, &tile)
 	if err != nil {
-		log.Panicf("Could not spawn checkpoint: %v", err)
+		return fmt.Errorf("could not spawn checkpoint: %v", err)
 	}
 
 	// Move the player to the center of the checkpoint.
@@ -308,6 +308,7 @@ func (w *World) RespawnPlayer(checkpointName string) {
 
 	// Skip updating.
 	w.respawned = true
+	return nil
 }
 
 func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult {
@@ -406,7 +407,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	wantLen := 2*xLen + 2*yLen
 	if len(w.renderer.visiblePolygon) != wantLen {
 		if w.renderer.visiblePolygon != nil {
-			log.Panicf("Visible polygon size changed - unexpected but harmless. Optimize for resizing and remove this check then, I guess.")
+			log.Print("visible polygon size changed - unexpected but harmless; optimize for resizing and remove this check then, I guess")
 		}
 		w.renderer.visiblePolygon = make([]m.Pos, wantLen)
 	}
@@ -421,6 +422,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		trace := w.traceLineAndMark(eye, target, &w.traceLineAndMarkPath)
 		w.renderer.visiblePolygon[index] = trace.EndPos
 	}
+	w.visTracing = true
 	for i := 0; i < xLen; i++ {
 		addTrace(m.Pos{X: screen0.X + sweepStep*i, Y: screen0.Y}, i)
 		addTrace(m.Pos{X: screen1.X - sweepStep*i, Y: screen1.Y}, xLen+yLen+i)
@@ -429,6 +431,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		addTrace(m.Pos{X: screen1.X, Y: screen0.Y + sweepStep*i}, xLen+i)
 		addTrace(m.Pos{X: screen0.X, Y: screen1.Y - sweepStep*i}, 2*xLen+yLen+i)
 	}
+	w.visTracing = false
 	if *expandUsingVertices {
 		if *expandUsingVerticesAccurately {
 			w.renderer.expandedVisiblePolygon = expandMinkowski(w.renderer.visiblePolygon, expandSize)
@@ -483,7 +486,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		for _, spawnable := range tile.Spawnables {
 			_, err := w.Spawn(spawnable, pos, tile)
 			if err != nil {
-				log.Panicf("Could not spawn entity %v: %v", spawnable, err)
+				log.Printf("Could not spawn entity %v: %v", spawnable, err)
 			}
 		}
 	})
@@ -588,10 +591,12 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	}
 	neighborTile := w.Tile(p)
 	if neighborTile == nil {
-		log.Panicf("Trying to load with nonexisting neighbor tile at %v", p)
+		log.Printf("Trying to load with nonexisting neighbor tile at %v", p)
+		return nil // Can't load.
 	}
 	if neighborTile.Opaque {
-		log.Panicf("Trying to load from an opaque tile at %v", p)
+		log.Printf("Trying to load from an opaque tile at %v", p)
+		return nil // Can't load.
 	}
 	t := neighborTile.Transform
 	neighborLevelPos := neighborTile.LevelPos
@@ -623,13 +628,15 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			continue
 		}
 		if warped {
-			log.Panicf("More than one active warpzone on %v", newLevelTile)
+			log.Printf("More than one active warpzone on %v", newLevelTile)
+			return nil // Can't load.
 		}
 		warped = true
 		t = warp.Transform.Concat(t)
 		tile := w.Level.Tile(warp.ToTile)
 		if tile == nil {
-			log.Panicf("Nil new tile after warping to %v", warp)
+			log.Printf("Nil new tile after warping to %v", warp)
+			return nil // Can't load.
 		}
 		newLevelTile = tile
 	}
@@ -639,12 +646,12 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			tile.LoadedFromNeighbor = p
 			tile.VisibilityFlags = w.frameVis
 			return tile
-		} else if tile.VisibilityFlags&level.FrameVis == w.frameVis {
+		} else if w.visTracing && tile.VisibilityFlags&level.FrameVis == w.frameVis {
 			// Damn... these loading conflicts are actually normal and happen around all warpzones.
 			// Thus it'd be nice to have a better way to detect "bad" stuff.
 			// We only really care about loading conflicts during visibility tracing.
-			// During expanding it's nromal.
-			log.Panicf("Conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v).",
+			// TODO: During expanding it's normal, so detect that situation here.
+			log.Panicf("conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v).",
 				newPos, tile.LoadedFromNeighbor, tile.LevelPos, p, d, newLevelTile.Tile.LevelPos)
 		}
 	}
@@ -725,7 +732,7 @@ func (w *World) unlink(e *Entity) {
 
 func (w *World) link(e *Entity) {
 	if w.entities[e.Incarnation] != nil {
-		log.Panicf("linking an entity that has already been linked: %v", e)
+		log.Panicf("linking an entity that has already been linked, which should never happen: %v", e)
 	}
 	w.entities[e.Incarnation] = e
 	if e.opaque {

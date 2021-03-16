@@ -83,7 +83,7 @@ var entityTypes = map[string]EntityImpl{}
 func RegisterEntityType(t EntityImpl) {
 	typeName := reflect.TypeOf(t).Elem().Name()
 	if entityTypes[typeName] != nil {
-		panic("duplicate entity type " + typeName)
+		log.Fatalf("duplicate entity type: %v", typeName)
 	}
 	entityTypes[typeName] = t
 	log.Printf("Registered entity type %q", typeName)

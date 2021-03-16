@@ -17,8 +17,9 @@ package audiowrap
 import (
 	"bytes"
 	"encoding/binary"
+	"errors"
+	"fmt"
 	"io"
-	"log"
 	"time"
 
 	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
@@ -41,17 +42,17 @@ func InitDumping() {
 	dumping = true
 }
 
-func DumpFrame(dumpFile io.Writer, toTime time.Duration) {
+func DumpFrame(dumpFile io.Writer, toTime time.Duration) error {
 	if !dumping {
-		log.Panic("DumpFrame called when not dumping")
+		return errors.New("DumpFrame called when not dumping")
 	}
 	toSample := int(toTime * time.Duration(ebiaudio.CurrentContext().SampleRate()) / time.Second)
 	samples := toSample - sampleIndex
 	sampleIndex = toSample
-	dumpSamples(dumpFile, samples)
+	return dumpSamples(dumpFile, samples)
 }
 
-func dumpSamples(dumpFile io.Writer, samples int) {
+func dumpSamples(dumpFile io.Writer, samples int) error {
 	buf := make([]int16, 2*samples)
 	toClose := []*dumper{}
 	for _, dmp := range currentSounds {
@@ -64,9 +65,10 @@ func dumpSamples(dumpFile io.Writer, samples int) {
 	}
 	err := binary.Write(dumpFile, binary.LittleEndian, buf)
 	if err != nil {
-		log.Printf("cannot dump audio frame: %v", err)
 		dumping = false
+		return fmt.Errorf("cannot dump audio frame: %v", err)
 	}
+	return nil
 }
 
 func newDumper(src io.Reader) *dumper {
