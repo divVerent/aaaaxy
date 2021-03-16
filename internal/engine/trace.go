@@ -56,7 +56,9 @@ type TraceOptions struct {
 type TraceResult struct {
 	// EndPos is the pixel the trace ended on (the last nonsolid pixel).
 	EndPos m.Pos
-	// // hitTilePos is the position of the tile that stopped the trace, if any (in this case, HitTile will also be set).
+	// HitDelta is the one-pixel delta that hit the obstacle.
+	HitDelta m.Delta
+	// // HitTilePos is the position of the tile that stopped the trace, if any (in this case, HitTile will also be set).
 	// HitTilePos m.Pos
 	// // HitTile is the tile that stopped the trace, if any.
 	// HitTile *level.Tile
@@ -159,6 +161,14 @@ func (l *normalizedLine) toPos(i, j int) m.Pos {
 		return m.Pos{X: l.Origin.X + l.XDir*i, Y: l.Origin.Y + l.YDir*j}
 	} else {
 		return m.Pos{X: l.Origin.X + l.XDir*j, Y: l.Origin.Y + l.YDir*i}
+	}
+}
+
+func (l *normalizedLine) toDelta(u, v int) m.Delta {
+	if l.ScanX {
+		return m.Delta{DX: l.XDir * u, DY: l.YDir * u}
+	} else {
+		return m.Delta{DX: l.XDir * v, DY: l.YDir * v}
 	}
 }
 
@@ -282,13 +292,13 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.
 var traceDoneErr = errors.New("traceDone")
 
 // traceEntity returns whether the line from from to to hits the entity, as well as the last coordinate not hitting yet.
-func (l *normalizedLine) traceEntity(ent *Entity, enlarge m.Delta) (bool, m.Pos) {
+func (l *normalizedLine) traceEntity(ent *Entity, enlarge m.Delta) (bool, m.Pos, m.Delta) {
 	i0, j0, i1, j1 := l.fromRect(ent.Rect, enlarge)
-	if hit, i, j := traceLineBox(l.NumSteps, l.Height, i0, j0, i1, j1); hit {
-		return true, l.toPos(i, j)
+	if hit, i, j, u, v := traceLineBox(l.NumSteps, l.Height, i0, j0, i1, j1); hit {
+		return true, l.toPos(i, j), l.toDelta(u, v)
 	}
 	// Not hit.
-	return false, m.Pos{}
+	return false, m.Pos{}, m.Delta{}
 }
 
 // traceEntities clips the given trace against all entities.
@@ -308,7 +318,7 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 		if ent == o.IgnoreEnt {
 			continue
 		}
-		if hit, endPos := l.traceEntity(ent, enlarge); hit {
+		if hit, endPos, delta := l.traceEntity(ent, enlarge); hit {
 			score := TraceScore{
 				TraceDistance: endPos.Delta(l.Origin).Norm1(),
 			}
@@ -317,6 +327,7 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 			}
 			if score.Less(result.Score) {
 				result.EndPos = endPos
+				result.HitDelta = delta
 				result.HitEntity = ent
 				result.Score = score
 			}
@@ -339,18 +350,22 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 
 // traceLineBox checks if from..to intersects with box, and if so, returns the pixel right before the intersection.
 // i, j must be positive and i > j. The box is described by i0, j0, i1, j1 such that i0 <= i1 and j0 <= j1.
-func traceLineBox(i, j, i0, j0, i1, j1 int) (bool, int, int) {
+func traceLineBox(i, j, i0, j0, i1, j1 int) (bool, int, int, int, int) {
 	// Is the box even hittable?
 	if j < j0 || j1 < 0 {
-		return false, 0, 0
+		return false, 0, 0, 0, 0
 	}
 	if i < i0 || i1 < 0 {
-		return false, 0, 0
+		return false, 0, 0, 0, 0
 	}
 	if i0 <= 0 && j0 <= 0 {
 		// We already overlap. Consider this a non-hit so we can get out of solid.
-		return false, 0, 0
+		return false, 0, 0, 0, 0
 	}
+
+	// TODO: some of the cases here may be redundant.
+	// Do we really need four hit cases?
+	// Maybe it's enough to just have the j0<=j00<=j1 and the i0<=i00<=i1 case?
 
 	// Formula is: y(x) = x * j / i.
 	// Pixels hit by x are thus: round(y(x-0.5)), round(y(x+0.5)).
@@ -369,17 +384,17 @@ func traceLineBox(i, j, i0, j0, i1, j1 int) (bool, int, int) {
 	// Better to make this a range?
 	if j00 >= j0 && j00 <= j1 {
 		// Return the last pixel before hit.
-		return true, i0 - 1, j00
+		return true, i0 - 1, j00, 1, 0
 	}
 	if j01 >= j0 && j01 <= j1 {
 		// Return the last pixel before.
-		return true, i0, j01 - 1
+		return true, i0, j01 - 1, 0, 1
 	}
 
 	if j == 0 {
 		// i movement only.
 		// But we already checked all we need.
-		return false, 0, 0
+		return false, 0, 0, 0, 0
 	}
 
 	// Do we hit at j0?
@@ -398,16 +413,16 @@ func traceLineBox(i, j, i0, j0, i1, j1 int) (bool, int, int) {
 
 	// Compare ranges.
 	if i00 >= i0 && i00 <= i1 {
-		return true, i00, j0 - 1
+		return true, i00, j0 - 1, 0, 1
 	}
 	iHit := i0
 	if iHit < i00+1 {
 		iHit = i00 + 1
 	}
 	if iHit <= i01 && iHit <= i1 {
-		return true, iHit - 1, j0
+		return true, iHit - 1, j0, 1, 0
 	}
 
 	// No hit.
-	return false, 0, 0
+	return false, 0, 0, 0, 0
 }

@@ -24,13 +24,10 @@ import (
 // traceLineTiles cuts the given trace by hits against the tilemap.
 // l must have been initialized to finish at the current EndPos.
 func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceResult) {
-	result.EndPos = l.Origin
 	if o.PathOut != nil {
 		*o.PathOut = append(*o.PathOut, l.Origin.Div(level.TileSize))
 	}
-	err := l.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixel, nextPixel m.Pos) error {
-		// Record the EndPos as the prevPixel was sure fine.
-		result.EndPos = prevPixel
+	l.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixel, nextPixel m.Pos) error {
 		// Check the newly hit tile(s).
 		var tile *level.Tile
 		if o.LoadTiles {
@@ -39,10 +36,14 @@ func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceR
 			tile = w.Tile(nextTile)
 		}
 		if tile == nil {
+			result.EndPos = prevPixel
+			result.HitDelta = delta
 			// result.HitFogOfWar = true
 			return traceDoneErr
 		}
 		if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
+			result.EndPos = prevPixel
+			result.HitDelta = delta
 			// result.HitTilePos = nextTile
 			// result.HitTile = tile
 			return traceDoneErr
@@ -52,9 +53,6 @@ func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceR
 		}
 		return nil
 	})
-	if err != traceDoneErr {
-		result.EndPos = l.Target
-	}
 	result.Score = TraceScore{
 		TraceDistance:  result.EndPos.Delta(l.Origin).Norm1(),
 		EntityDistance: math.MaxInt32, // Not an entity.

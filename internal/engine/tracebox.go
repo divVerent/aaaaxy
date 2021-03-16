@@ -22,7 +22,6 @@ import (
 )
 
 func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta, result *TraceResult) {
-	result.EndPos = l.Origin
 	if o.PathOut != nil {
 		*o.PathOut = append(*o.PathOut, l.Origin.Div(level.TileSize))
 	}
@@ -41,12 +40,10 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 	ll := *l
 	ll.Origin = ll.Origin.Add(adjustment)
 	ll.Target = ll.Target.Add(adjustment)
-	err := ll.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixelAdj, nextPixelAdj m.Pos) error {
+	ll.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixelAdj, nextPixelAdj m.Pos) error {
 		// First, unadjust.
 		prevPixel := prevPixelAdj.Sub(adjustment)
 		nextPixel := nextPixelAdj.Sub(adjustment)
-		// Record the EndPos as prevPixel was sure fine.
-		result.EndPos = prevPixel
 		// Check the newly hit tiles.
 		if nextPixel.X != prevPixel.X {
 			// X move.
@@ -63,10 +60,14 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 					tile = w.Tile(tilePos)
 				}
 				if tile == nil {
+					result.EndPos = prevPixel
+					result.HitDelta = delta
 					// result.HitFogOfWar = true
 					return traceDoneErr
 				}
 				if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
+					result.EndPos = prevPixel
+					result.HitDelta = delta
 					// result.HitTilePos = nextTile
 					// result.HitTile = tile
 					return traceDoneErr
@@ -87,10 +88,14 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 					tile = w.Tile(tilePos)
 				}
 				if tile == nil {
+					result.EndPos = prevPixel
+					result.HitDelta = delta
 					// result.HitFogOfWar = true
 					return traceDoneErr
 				}
 				if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
+					result.EndPos = prevPixel
+					result.HitDelta = delta
 					// result.HitTilePos = nextTile
 					// result.HitTile = tile
 					return traceDoneErr
@@ -99,9 +104,6 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 		}
 		return nil
 	})
-	if err != traceDoneErr {
-		result.EndPos = l.Target
-	}
 	result.Score = TraceScore{
 		TraceDistance:  result.EndPos.Delta(l.Origin).Norm1(),
 		EntityDistance: math.MaxInt32, // Not an entity.
