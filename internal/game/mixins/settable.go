@@ -81,7 +81,7 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection
 			}
 			if closest != nil {
 				if !SetStateOfEntity(closest, state) {
-					log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", closest, target)
+					log.Printf("Tried to set state of a non-supporting entity: %T, name: %v", closest, target)
 				}
 			}
 		} else {
@@ -91,7 +91,7 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection
 					continue
 				}
 				if !SetStateOfEntity(ent, state) {
-					log.Panicf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
+					log.Printf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
 				}
 			}
 		}

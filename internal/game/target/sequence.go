@@ -53,7 +53,7 @@ func (s *SequenceTarget) SetState(state bool) {
 	for _, ent := range s.World.FindName(s.Target) {
 		collector, ok := ent.Impl.(*SequenceCollector)
 		if !ok {
-			log.Panicf("Target of SequenceTarget is not a SequenceCollector: %T, name: %v", ent, s.Target)
+			log.Printf("Target of SequenceTarget is not a SequenceCollector: %T, name: %v", ent, s.Target)
 		}
 		collector.Append(s.Sequence)
 	}
