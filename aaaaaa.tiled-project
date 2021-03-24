@@ -4,6 +4,7 @@
     ],
     "extensionsPath": "extensions",
     "folders": [
+        ".",
         "."
     ],
     "objectTypesFile": "objecttypes.xml"
