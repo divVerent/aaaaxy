@@ -43,6 +43,7 @@
   <property name="height" type="string"/>
   <property name="initial_state" type="bool" default="true"/>
   <property name="rel_delta" type="string"/>
+  <property name="solid" type="bool" default="true"/>
  </objecttype>
  <objecttype name="OneWay" color="#0000ff">
   <property name="orientation" type="string"/>

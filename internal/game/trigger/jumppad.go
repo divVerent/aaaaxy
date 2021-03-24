@@ -34,6 +34,7 @@ import (
 // Or could require player to hit jumppad from above.
 type JumpPad struct {
 	mixins.Settable
+	mixins.NonSolidTouchable
 	World  *engine.World
 	Entity *engine.Entity
 
@@ -46,10 +47,11 @@ type JumpPad struct {
 
 func (j *JumpPad) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	j.Settable.Init(s)
+	j.NonSolidTouchable.Init(w, e)
 	j.World = w
 	j.Entity = e
 	w.SetOpaque(e, false)
-	w.SetSolid(e, true)
+	w.SetSolid(e, s.Properties["solid"] != "false") // Default true.
 
 	var delta m.Delta
 	_, err := fmt.Sscanf(s.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
@@ -79,6 +81,7 @@ func (j *JumpPad) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) e
 func (j *JumpPad) Despawn() {}
 
 func (j *JumpPad) Update() {
+	j.NonSolidTouchable.Update()
 	if j.TouchedFrame > 0 {
 		j.TouchedFrame--
 	}
@@ -168,6 +171,7 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	// Perform the jump.
 	p.Velocity = calculateJump(delta, j.Height)
 	p.OnGround = false
+	p.JumpingUp = false
 	p.AirFrames = player.ExtraGroundFrames + 1
 	j.JumpSound.Play()
 }
