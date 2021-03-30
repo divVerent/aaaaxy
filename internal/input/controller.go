@@ -18,7 +18,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-type Impulse struct {
+type impulse struct {
 	Held    bool
 	JustHit bool
 
@@ -26,34 +26,30 @@ type Impulse struct {
 }
 
 var (
-	Left       = (&Impulse{keys: []ebiten.Key{ebiten.KeyLeft, ebiten.KeyA}}).register()
-	Right      = (&Impulse{keys: []ebiten.Key{ebiten.KeyRight, ebiten.KeyD}}).register()
-	Up         = (&Impulse{keys: []ebiten.Key{ebiten.KeyUp, ebiten.KeyW}}).register()
-	Down       = (&Impulse{keys: []ebiten.Key{ebiten.KeyDown, ebiten.KeyS}}).register()
-	Jump       = (&Impulse{keys: []ebiten.Key{ebiten.KeyControl, ebiten.KeySpace, ebiten.KeyX}}).register()
-	Action     = (&Impulse{keys: []ebiten.Key{ebiten.KeyAlt, ebiten.KeyE, ebiten.KeyZ, ebiten.KeyEnter}}).register()
-	Exit       = (&Impulse{keys: []ebiten.Key{ebiten.KeyEscape}}).register()
-	Fullscreen = (&Impulse{keys: []ebiten.Key{ebiten.KeyF11, ebiten.KeyF}}).register()
+	Left       = (&impulse{keys: leftKeys}).register()
+	Right      = (&impulse{keys: rightKeys}).register()
+	Up         = (&impulse{keys: upKeys}).register()
+	Down       = (&impulse{keys: downKeys}).register()
+	Jump       = (&impulse{keys: jumpKeys}).register()
+	Action     = (&impulse{keys: actionKeys}).register()
+	Exit       = (&impulse{keys: exitKeys}).register()
+	Fullscreen = (&impulse{keys: fullscreenKeys}).register()
 
-	impulses = []*Impulse{}
+	impulses = []*impulse{}
 )
 
-func (i *Impulse) register() *Impulse {
+func (i *impulse) register() *impulse {
 	impulses = append(impulses, i)
 	return i
 }
 
-func (i *Impulse) update() {
-	held := false
-	for _, k := range i.keys {
-		if ebiten.IsKeyPressed(k) {
-			held = true
-			break
-		}
-	}
+func (i *impulse) update() {
+	held := i.keyboardPressed()
 	i.JustHit = held && !i.Held
 	i.Held = held
 }
+
+func Init() {}
 
 func Update() {
 	for _, i := range impulses {
