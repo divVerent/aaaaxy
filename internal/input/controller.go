@@ -15,8 +15,6 @@
 package input
 
 import (
-	"log"
-
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -48,22 +46,28 @@ func (i *impulse) register() *impulse {
 }
 
 func (i *impulse) update() {
-	held := i.keyboardPressed()
+	held := i.keyboardPressed() || i.gamepadPressed()
 	i.JustHit = held && !i.Held
 	i.Held = held
 }
 
 func Init() error {
-	err := gamepadInit()
-	if err != nil {
-		log.Printf("Could not initialize gamepad: %v", err)
-	}
-	// We always have the keyboard.
+	gamepadInit()
 	return nil
 }
 
 func Update() {
+	gamepadUpdate()
 	for _, i := range impulses {
 		i.update()
 	}
+	/*
+		s := ""
+		for _, pad := range ebiten.GamepadIDs() {
+			for axis := 0; axis < ebiten.GamepadAxisNum(pad); axis++ {
+				s += fmt.Sprintf("%d.%d=%f ", pad, axis, ebiten.GamepadAxis(pad, axis))
+			}
+		}
+		log.Print(s)
+	*/
 }

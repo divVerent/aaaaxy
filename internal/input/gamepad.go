@@ -28,9 +28,8 @@ import (
 )
 
 var (
-	debugGamepadOverridePlatform = flag.String("debug_gamepad_override_platform", "", "the platform name to look for in the game pad definition")
-	debugGamepadString           = flag.String("debug_gamepad_string", "03000000d62000006dca000000000000,PowerA Pro Ex,a:b1,b:b2,back:b8,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b4,leftstick:b10,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b11,righttrigger:b7,rightx:a2,righty:a3,start:b9,x:b0,y:b3,platform:Windows,", "SDL gamepad definition")
-	gamepadAxisThreshold         = flag.Float64("gamepad_axis_threshold", 0.1, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
+	debugGamepadString   = flag.String("debug_gamepad_string", "03000000d62000000228000001010000,PowerA Pro Ex,a:b0,b:b1,back:b6,dpdown:+a7,dpleft:-a6,dpright:+a6,dpup:-a7,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux", "SDL gamepad definition")
+	gamepadAxisThreshold = flag.Float64("gamepad_axis_threshold", 0.5, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
 )
 
 type (
@@ -58,7 +57,7 @@ func (i *impulse) gamepadPressed() bool {
 }
 
 var (
-	defRE = regexp.MustCompile(`^(?:(\w+):(?:a([+-]?)(\d+)(~?)|b(\d+)|h(\d+)\.(\d+))|platform:(\S+))$`)
+	defRE = regexp.MustCompile(`^(?:(\w+):(?:([+-]?)a(\d+)(~?)|b(\d+)|h(\d+)\.(\d+))|platform:(\S+))$`)
 )
 
 const (
@@ -72,148 +71,179 @@ const (
 	defPlatform   = 8
 )
 
-func gamepadInit() error {
-	// First clear all existing gamepad mappings.
-	for _, i := range impulses {
-		i.padControls = nil
+var (
+	gamepads = map[ebiten.GamepadID]bool{}
+)
+
+func gamepadUpdate() {
+	for pad := range gamepads {
+		gamepads[pad] = false
 	}
-	// We need to filter by platform.
-	wantPlatform := *debugGamepadOverridePlatform
-	if wantPlatform == "" {
-		switch runtime.GOOS {
-		case "android":
-			wantPlatform = "Android"
-		case "windows":
-			wantPlatform = "Windows"
-		case "darwin":
-			if runtime.GOARCH == "arm64" {
-				wantPlatform = "iOS"
-			} else {
-				wantPlatform = "Mac OS X"
-			}
-		default: // Include the BSDs too.
-			wantPlatform = "Linux"
+	for _, pad := range ebiten.GamepadIDs() {
+		if _, found := gamepads[pad]; !found {
+			gamepadAdd(pad)
+		}
+		gamepads[pad] = true
+	}
+	for pad, stillThere := range gamepads {
+		if !stillThere {
+			gamepadRemove(pad)
 		}
 	}
-	// Now configure the gamepad.
+}
+
+func gamepadRemove(pad ebiten.GamepadID) {
+	log.Printf("Removing gamepad %v", ebiten.GamepadName(pad))
+	for _, i := range impulses {
+		l := len(i.padControls)
+		for j := 0; j < l; j++ {
+			if i.padControls[j].pad == pad {
+				l--
+				i.padControls[j] = i.padControls[l]
+				i.padControls = i.padControls[:l]
+				j--
+			}
+		}
+	}
+	delete(gamepads, pad)
+}
+
+var gamepadPlatform string
+
+func gamepadInit() {
+	// We need to filter by platform.
+	switch runtime.GOOS {
+	case "android":
+		gamepadPlatform = "Android"
+	case "windows":
+		gamepadPlatform = "Windows"
+	case "darwin":
+		if runtime.GOARCH == "arm64" {
+			gamepadPlatform = "iOS"
+		} else {
+			gamepadPlatform = "Mac OS X"
+		}
+	default: // Include the BSDs too.
+		gamepadPlatform = "Linux"
+	}
+}
+
+func gamepadAdd(pad ebiten.GamepadID) error {
+	log.Printf("Adding gamepad %v", ebiten.GamepadName(pad))
+	gamepads[pad] = true // Don't try again.
 	if *debugGamepadString == "" {
-		return nil
+		return fmt.Errorf("no config found")
 	}
 	// TODO: support the entire database and environment override.
-	data := strings.Split(*debugGamepadString, ",")
+	return gamepadAddWithConfig(pad, *debugGamepadString)
+}
+
+func gamepadAddWithConfig(pad ebiten.GamepadID, config string) error {
+	data := strings.Split(config, ",")
 	id := data[0]
 	name := data[1]
-	havePad := false
-	ids := []string{}
-nextPad:
-	for _, pad := range ebiten.GamepadIDs() {
-		padID := ebiten.GamepadSDLID(pad)
-		ids = append(ids, padID)
-		if id != ebiten.GamepadSDLID(pad) {
+	padID := ebiten.GamepadSDLID(pad)
+	if id != padID {
+		return fmt.Errorf("different ID: got %v, want %v", padID, id)
+	}
+	controls := map[*impulse][]padControl{
+		Jump:   nil,
+		Action: nil,
+		Left:   nil,
+		Right:  nil,
+		Up:     nil,
+		Down:   nil,
+	}
+	for _, def := range data[2:] {
+		match := defRE.FindStringSubmatch(def)
+		if match == nil {
+			log.Printf("Unmatched game pad definition directive: %v", def)
 			continue
 		}
-		controls := map[*impulse][]padControl{
-			Jump:   nil,
-			Action: nil,
-			Left:   nil,
-			Right:  nil,
-			Up:     nil,
-			Down:   nil,
+		if platform := match[defPlatform]; platform != "" {
+			if platform != gamepadPlatform {
+				return fmt.Errorf("wrong platform: got %v, want %v", gamepadPlatform, platform)
+			}
+			continue
 		}
-		for _, def := range data[2:] {
-			match := defRE.FindStringSubmatch(def)
-			if match == nil {
-				log.Printf("Unmatched game pad definition directive: %v", def)
-				continue
+		var addTo, addInverseTo *impulse
+		switch match[defAssignment] {
+		case "a", "righttrigger", "x":
+			addTo = Jump
+		case "b", "lefttrigger", "y":
+			addTo = Action
+		case "back", "guide", "leftshoulder", "rightshoulder", "start":
+			addTo = Exit
+		case "dpleft":
+			addTo = Left
+		case "dpright":
+			addTo = Right
+		case "dpdown":
+			addTo = Down
+		case "dpup":
+			addTo = Up
+		case "leftx", "rightx":
+			addTo, addInverseTo = Right, Left
+		case "lefty", "righty":
+			addTo, addInverseTo = Down, Up
+		case "leftstick", "misc1", "paddle1", "paddle2", "paddle3", "paddle4", "rightstick", "touchpad":
+		// Ignore.
+		// Where to put fullscreen?
+		default:
+			log.Printf("Unknown assignment in game pad definition directive: %v", def)
+			continue
+		}
+		switch match[defHalfAxis] {
+		case "+":
+			addInverseTo = nil
+		case "-":
+			addTo = nil
+		}
+		if match[defInvertAxis] != "" {
+			addTo, addInverseTo = addInverseTo, addTo
+		}
+		if a := match[defAxis]; a != "" {
+			ax, err := strconv.Atoi(a)
+			if err != nil {
+				log.Printf("Could not parse axis %v: %v", a, err)
 			}
-			if match[defPlatform] != "" {
-				if match[defPlatform] != wantPlatform {
-					continue nextPad
-				}
+			if addTo != nil {
+				controls[addTo] = append(controls[addTo], padControl{
+					pad:              pad,
+					invAxisThreshold: 1.0 / *gamepadAxisThreshold,
+					axis:             ax,
+				})
 			}
-			var addTo, addInverseTo *impulse
-			switch match[defAssignment] {
-			case "a", "righttrigger", "x":
-				addTo = Jump
-			case "b", "lefttrigger", "y":
-				addTo = Action
-			case "back", "guide", "leftshoulder", "rightshoulder", "start":
-				addTo = Exit
-			case "dpleft":
-				addTo = Left
-			case "dpright":
-				addTo = Right
-			case "dpdown":
-				addTo = Down
-			case "dpup":
-				addTo = Up
-			case "leftx", "rightx":
-				addTo, addInverseTo = Right, Left
-			case "lefty", "righty":
-				addTo, addInverseTo = Up, Down
-			case "leftstick", "misc1", "paddle1", "paddle2", "paddle3", "paddle4", "rightstick", "touchpad":
-			// Ignore.
-			// Where to put fullscreen?
-			default:
-				log.Printf("Unknown assignment in game pad definition directive: %v", def)
-				continue
-			}
-			switch match[defHalfAxis] {
-			case "+":
-				addInverseTo = nil
-			case "-":
-				addTo = nil
-			}
-			if match[defInvertAxis] != "" {
-				addTo, addInverseTo = addInverseTo, addTo
-			}
-			if a := match[defAxis]; a != "" {
-				ax, err := strconv.Atoi(a)
-				if err != nil {
-					log.Printf("Could not parse axis %v: %v", a, err)
-				}
-				if addTo != nil {
-					controls[addTo] = append(controls[addTo], padControl{
-						pad:              pad,
-						invAxisThreshold: 1.0 / *gamepadAxisThreshold,
-						axis:             ax,
-					})
-				}
-				if addInverseTo != nil {
-					controls[addTo] = append(controls[addTo], padControl{
-						pad:              pad,
-						invAxisThreshold: -1.0 / *gamepadAxisThreshold,
-						axis:             ax,
-					})
-				}
-			}
-			if b := match[defButton]; b != "" {
-				bt, err := strconv.Atoi(b)
-				if err != nil {
-					log.Printf("Could not parse button %v: %v", b, err)
-				}
-				if addTo != nil {
-					controls[addTo] = append(controls[addTo], padControl{
-						pad:    pad,
-						button: ebiten.GamepadButton(bt),
-					})
-				}
+			if addInverseTo != nil {
+				controls[addInverseTo] = append(controls[addInverseTo], padControl{
+					pad:              pad,
+					invAxisThreshold: -1.0 / *gamepadAxisThreshold,
+					axis:             ax,
+				})
 			}
 		}
-		for i, c := range controls {
-			if c == nil {
-				log.Printf("Skipping gamepad %v (missing assignment for %v)", name, i.Name)
-				continue nextPad
+		if b := match[defButton]; b != "" {
+			bt, err := strconv.Atoi(b)
+			if err != nil {
+				log.Printf("Could not parse button %v: %v", b, err)
+			}
+			if addTo != nil {
+				controls[addTo] = append(controls[addTo], padControl{
+					pad:    pad,
+					button: ebiten.GamepadButton(bt),
+				})
 			}
 		}
-		for i, c := range controls {
-			i.padControls = append(i.padControls, c...)
-		}
-		log.Printf("Gamepad configured and found: %v (configured: %v)", ebiten.GamepadName(pad), name)
-		havePad = true
 	}
-	if !havePad {
-		return fmt.Errorf("Gamepad configured but not present: got %v, want %v", ids, id)
+	for i, c := range controls {
+		if c == nil {
+			return fmt.Errorf("missing assignment for %v", i.Name)
+		}
 	}
+	// If we get here, the pad is configured fully.
+	for i, c := range controls {
+		i.padControls = append(i.padControls, c...)
+	}
+	log.Printf("Gamepad configured and found: %v (configured: %v)", ebiten.GamepadName(pad), name)
 	return nil
 }
