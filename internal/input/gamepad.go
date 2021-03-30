@@ -28,7 +28,7 @@ import (
 )
 
 var (
-	debugGamepadString   = flag.String("debug_gamepad_string", "03000000d62000000228000001010000,PowerA Pro Ex,a:b0,b:b1,back:b6,dpdown:+a7,dpleft:-a6,dpright:+a6,dpup:-a7,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux", "SDL gamepad definition")
+	debugGamepadString   = flag.String("debug_gamepad_string", "03000000d62000000228000001010000,PowerA Pro Ex,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux", "SDL gamepad definition")
 	gamepadAxisThreshold = flag.Float64("gamepad_axis_threshold", 0.5, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
 )
 
@@ -206,6 +206,7 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config string) error {
 			ax, err := strconv.Atoi(a)
 			if err != nil {
 				log.Printf("Could not parse axis %v: %v", a, err)
+				continue
 			}
 			if addTo != nil {
 				controls[addTo] = append(controls[addTo], padControl{
@@ -226,11 +227,39 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config string) error {
 			bt, err := strconv.Atoi(b)
 			if err != nil {
 				log.Printf("Could not parse button %v: %v", b, err)
+				continue
 			}
 			if addTo != nil {
 				controls[addTo] = append(controls[addTo], padControl{
 					pad:    pad,
 					button: ebiten.GamepadButton(bt),
+				})
+			}
+		}
+		if h, b := match[defHat], match[defHatBit]; h != "" {
+			ht, err := strconv.Atoi(h)
+			if err != nil {
+				log.Printf("Could not parse hat %v: %v", b, err)
+				continue
+			}
+			bt, err := strconv.Atoi(b)
+			if err != nil {
+				log.Printf("Could not parse hat bit %v: %v", b, err)
+				continue
+			}
+			// Note: ebiten currently doesn't support "hats" in GLFW properly.
+			// However, hat 0 always occupies the last four buttons.
+			if ht != 0 {
+				log.Printf("Sorry, non-zero hat numbers are not supported right now")
+				continue
+			}
+			vbt := ebiten.GamepadButtonNum(pad) - map[int]int{
+				1: 3, 2: 2, 4: 1, 8: 0,
+			}[bt]
+			if addTo != nil {
+				controls[addTo] = append(controls[addTo], padControl{
+					pad:    pad,
+					button: ebiten.GamepadButton(vbt),
 				})
 			}
 		}
