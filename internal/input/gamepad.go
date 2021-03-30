@@ -254,7 +254,7 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config string) error {
 				continue
 			}
 			vbt := ebiten.GamepadButtonNum(pad) - map[int]int{
-				1: 3, 2: 2, 4: 1, 8: 0,
+				1: 4, 2: 3, 4: 2, 8: 1,
 			}[bt]
 			if addTo != nil {
 				controls[addTo] = append(controls[addTo], padControl{
