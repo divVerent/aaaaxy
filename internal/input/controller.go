@@ -15,25 +15,29 @@
 package input
 
 import (
+	"log"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type impulse struct {
+	Name    string
 	Held    bool
 	JustHit bool
 
-	keys []ebiten.Key
+	keys        []ebiten.Key
+	padControls []padControl
 }
 
 var (
-	Left       = (&impulse{keys: leftKeys}).register()
-	Right      = (&impulse{keys: rightKeys}).register()
-	Up         = (&impulse{keys: upKeys}).register()
-	Down       = (&impulse{keys: downKeys}).register()
-	Jump       = (&impulse{keys: jumpKeys}).register()
-	Action     = (&impulse{keys: actionKeys}).register()
-	Exit       = (&impulse{keys: exitKeys}).register()
-	Fullscreen = (&impulse{keys: fullscreenKeys}).register()
+	Left       = (&impulse{Name: "Left", keys: leftKeys}).register()
+	Right      = (&impulse{Name: "Right", keys: rightKeys}).register()
+	Up         = (&impulse{Name: "Up", keys: upKeys}).register()
+	Down       = (&impulse{Name: "Down", keys: downKeys}).register()
+	Jump       = (&impulse{Name: "Jump", keys: jumpKeys}).register()
+	Action     = (&impulse{Name: "Action", keys: actionKeys}).register()
+	Exit       = (&impulse{Name: "Exit", keys: exitKeys}).register()
+	Fullscreen = (&impulse{Name: "Fullscreen", keys: fullscreenKeys}).register()
 
 	impulses = []*impulse{}
 )
@@ -49,7 +53,14 @@ func (i *impulse) update() {
 	i.Held = held
 }
 
-func Init() {}
+func Init() error {
+	err := gamepadInit()
+	if err != nil {
+		log.Printf("Could not initialize gamepad: %v", err)
+	}
+	// We always have the keyboard.
+	return nil
+}
 
 func Update() {
 	for _, i := range impulses {

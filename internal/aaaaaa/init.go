@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/image"
+	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/sound"
 	"github.com/divVerent/aaaaaa/internal/vfs"
@@ -58,6 +59,10 @@ func InitEbiten() error {
 	err := vfs.Init()
 	if err != nil {
 		return fmt.Errorf("could not initialize VFS: %v", err)
+	}
+	err = input.Init()
+	if err != nil {
+		return fmt.Errorf("could not initialize input: %v", err)
 	}
 	err = font.Init()
 	if err != nil {
