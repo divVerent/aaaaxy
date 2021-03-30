@@ -28,8 +28,9 @@ import (
 )
 
 var (
-	debugGamepadString   = flag.String("debug_gamepad_string", "03000000d62000006dca000000000000,PowerA Pro Ex,a:b1,b:b2,back:b8,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b4,leftstick:b10,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b11,righttrigger:b7,rightx:a2,righty:a3,start:b9,x:b0,y:b3,platform:Linux", "SDL gamepad definition")
-	gamepadAxisThreshold = flag.Float64("gamepad_axis_threshold", 0.1, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
+	debugGamepadOverridePlatform = flag.String("debug_gamepad_override_platform", "", "the platform name to look for in the game pad definition")
+	debugGamepadString           = flag.String("debug_gamepad_string", "03000000d62000006dca000000000000,PowerA Pro Ex,a:b1,b:b2,back:b8,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b4,leftstick:b10,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b11,righttrigger:b7,rightx:a2,righty:a3,start:b9,x:b0,y:b3,platform:Windows,", "SDL gamepad definition")
+	gamepadAxisThreshold         = flag.Float64("gamepad_axis_threshold", 0.1, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
 )
 
 type (
@@ -76,6 +77,24 @@ func gamepadInit() error {
 	for _, i := range impulses {
 		i.padControls = nil
 	}
+	// We need to filter by platform.
+	wantPlatform := *debugGamepadOverridePlatform
+	if wantPlatform == "" {
+		switch runtime.GOOS {
+		case "android":
+			wantPlatform = "Android"
+		case "windows":
+			wantPlatform = "Windows"
+		case "darwin":
+			if runtime.GOARCH == "arm64" {
+				wantPlatform = "iOS"
+			} else {
+				wantPlatform = "Mac OS X"
+			}
+		default: // Include the BSDs too.
+			wantPlatform = "Linux"
+		}
+	}
 	// Now configure the gamepad.
 	if *debugGamepadString == "" {
 		return nil
@@ -108,27 +127,8 @@ nextPad:
 				continue
 			}
 			if match[defPlatform] != "" {
-				switch match[defPlatform] {
-				case "Android":
-					if runtime.GOOS != "android" {
-						continue nextPad
-					}
-				case "Linux":
-					if runtime.GOOS == "android" || runtime.GOOS == "darwin" || runtime.GOOS == "windows" {
-						continue nextPad
-					}
-				case "Mac OS X":
-					if runtime.GOOS != "darwin" || runtime.GOARCH == "arm64" {
-						continue nextPad
-					}
-				case "Windows":
-					if runtime.GOOS != "windows" {
-						continue nextPad
-					}
-				case "iOS":
-					if runtime.GOOS != "darwin" || runtime.GOARCH != "arm64" {
-						continue nextPad
-					}
+				if match[defPlatform] != wantPlatform {
+					continue nextPad
 				}
 			}
 			var addTo, addInverseTo *impulse
