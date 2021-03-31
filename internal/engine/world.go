@@ -471,7 +471,10 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			if w.Tile(from).Opaque {
 				from = pos.Add(step.from2)
 				if w.Tile(from).Opaque {
-					continue
+					from = pos.Add(step.from3)
+					if w.Tile(from).Opaque {
+						continue
+					}
 				}
 			}
 			w.LoadTile(from, to, to.Delta(from))
