@@ -15,8 +15,10 @@
 package input
 
 import (
+	"bufio"
 	"fmt"
 	"log"
+	"os"
 	"regexp"
 	"runtime"
 	"strconv"
@@ -25,6 +27,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
 var (
@@ -108,7 +111,10 @@ func gamepadRemove(pad ebiten.GamepadID) {
 	delete(gamepads, pad)
 }
 
-var gamepadPlatform string
+var (
+	gamepadPlatform string
+	gamepadDatabase map[string][][]string
+)
 
 func gamepadInit() {
 	// We need to filter by platform.
@@ -126,26 +132,69 @@ func gamepadInit() {
 	default: // Include the BSDs too.
 		gamepadPlatform = "Linux"
 	}
+
+	gamepadLoadDatabase()
+	gamepadAddOverrides()
 }
 
-func gamepadAdd(pad ebiten.GamepadID) error {
+func gamepadLoadDatabase() {
+	gamepadDatabase = map[string][][]string{}
+	f, err := vfs.Load("input", "gamecontrollerdb.txt")
+	if err != nil {
+		log.Printf("could not open game controller database: %v", err)
+		return
+	}
+	defer f.Close()
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		gamepadAddLine(scanner.Text())
+	}
+	if err := scanner.Err(); err != nil {
+		log.Printf("could not read game controller database: %v", err)
+	}
+}
+
+func gamepadAddOverrides() {
+	for _, line := range strings.Split(os.Getenv("SDL_GAMECONTROLLERCONFIG"), "\n") {
+		gamepadAddLine(line)
+	}
+}
+
+func gamepadAddLine(line string) {
+	if line == "" || line[0] == '#' {
+		return
+	}
+	data := strings.Split(line, ",")
+	id := data[0]
+	gamepadDatabase[id] = append(gamepadDatabase[id], data[1:])
+}
+
+func gamepadAdd(pad ebiten.GamepadID) {
 	log.Printf("Adding gamepad %v", ebiten.GamepadName(pad))
 	gamepads[pad] = true // Don't try again.
-	if *debugGamepadString == "" {
-		return fmt.Errorf("no config found")
+	type gamepadError struct {
+		name string
+		err  error
 	}
-	// TODO: support the entire database and environment override.
-	return gamepadAddWithConfig(pad, *debugGamepadString)
+	var errors []gamepadError
+	for _, config := range gamepadDatabase[ebiten.GamepadSDLID(pad)] {
+		name, err := gamepadAddWithConfig(pad, config)
+		if err != nil {
+			errors = append(errors, gamepadError{name, err})
+			continue
+		}
+		return
+	}
+	for _, ge := range errors {
+		log.Printf("Error adding gamepad %v as %v: %v", ebiten.GamepadName(pad), ge.name, ge.err)
+	}
+	if len(errors) == 0 {
+		log.Printf("Error adding gamepad %v: no suitable entry found for %v", ebiten.GamepadName(pad), ebiten.GamepadSDLID(pad))
+	}
 }
 
-func gamepadAddWithConfig(pad ebiten.GamepadID, config string) error {
-	data := strings.Split(config, ",")
-	id := data[0]
-	name := data[1]
-	padID := ebiten.GamepadSDLID(pad)
-	if id != padID {
-		return fmt.Errorf("different ID: got %v, want %v", padID, id)
-	}
+func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error) {
+	name := config[0]
 	controls := map[*impulse][]padControl{
 		Jump:   nil,
 		Action: nil,
@@ -154,7 +203,7 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config string) error {
 		Up:     nil,
 		Down:   nil,
 	}
-	for _, def := range data[2:] {
+	for _, def := range config[1:] {
 		match := defRE.FindStringSubmatch(def)
 		if match == nil {
 			log.Printf("Unmatched game pad definition directive: %v", def)
@@ -162,7 +211,7 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config string) error {
 		}
 		if platform := match[defPlatform]; platform != "" {
 			if platform != gamepadPlatform {
-				return fmt.Errorf("wrong platform: got %v, want %v", gamepadPlatform, platform)
+				return name, fmt.Errorf("wrong platform: got %v, want %v", gamepadPlatform, platform)
 			}
 			continue
 		}
@@ -266,7 +315,7 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config string) error {
 	}
 	for i, c := range controls {
 		if c == nil {
-			return fmt.Errorf("missing assignment for %v", i.Name)
+			return name, fmt.Errorf("missing assignment for %v", i.Name)
 		}
 	}
 	// If we get here, the pad is configured fully.
@@ -274,5 +323,5 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config string) error {
 		i.padControls = append(i.padControls, c...)
 	}
 	log.Printf("Gamepad configured and found: %v (configured: %v)", ebiten.GamepadName(pad), name)
-	return nil
+	return name, nil
 }
