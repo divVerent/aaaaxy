@@ -31,35 +31,28 @@ import (
 )
 
 var (
-	debugGamepadString   = flag.String("debug_gamepad_string", "03000000d62000000228000001010000,PowerA Pro Ex,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux", "SDL gamepad definition")
 	gamepadAxisThreshold = flag.Float64("gamepad_axis_threshold", 0.5, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
 )
 
 type (
 	padControl struct {
-		pad              ebiten.GamepadID
-		invAxisThreshold float64 // 0 if button.
-		axis             int
-		button           ebiten.GamepadButton
+		pad           ebiten.GamepadID
+		axisDirection float64 // 0 if button, -1 or 1 if axis.
+		axis          int
+		button        ebiten.GamepadButton
 	}
 )
 
-func (i *impulse) gamepadPressed() bool {
-	for _, c := range i.padControls {
-		if c.invAxisThreshold == 0 {
-			if ebiten.IsGamepadButtonPressed(c.pad, c.button) {
-				return true
-			}
-		} else {
-			if ebiten.GamepadAxis(c.pad, c.axis)*c.invAxisThreshold >= 1 {
-				return true
-			}
-		}
-	}
-	return false
-}
-
 var (
+	// gamepadPlatform is the current platform name in the same form as gamecontrollerdb.txt uses.
+	gamepadPlatform string
+	// gamepadDatabase is the currently loaded gamepad database, keyed by GUID, each entry being a list of all gamepad definitions for that GUID.
+	gamepadDatabase map[string][][]string
+	// gamepadInvAxisThreshold is 1.0 divided by the variable gamepadAxisThreshold. Done to save a division for every axis test.
+	gamepadInvAxisThreshold float64
+	// gamepads is the set of currently active gamepads. The boolean value should always be true, except during rescanning, where it's set to false temporarily to detect removed gamepads.
+	gamepads = map[ebiten.GamepadID]bool{}
+	// defRE is a regular expression to match a gamecontrollerdb.txt assignment. See also the def* constants that match parts of this RE.
 	defRE = regexp.MustCompile(`^(?:(\w+):(?:([+-]?)a(\d+)(~?)|b(\d+)|h(\d+)\.(\d+))|platform:(\S+))$`)
 )
 
@@ -74,11 +67,23 @@ const (
 	defPlatform   = 8
 )
 
-var (
-	gamepads = map[ebiten.GamepadID]bool{}
-)
+func (i *impulse) gamepadPressed() bool {
+	for _, c := range i.padControls {
+		if c.axisDirection == 0 {
+			if ebiten.IsGamepadButtonPressed(c.pad, c.button) {
+				return true
+			}
+		} else {
+			if ebiten.GamepadAxis(c.pad, c.axis)*c.axisDirection*gamepadInvAxisThreshold >= 1 {
+				return true
+			}
+		}
+	}
+	return false
+}
 
 func gamepadUpdate() {
+	gamepadInvAxisThreshold = 1.0 / *gamepadAxisThreshold
 	for pad := range gamepads {
 		gamepads[pad] = false
 	}
@@ -110,11 +115,6 @@ func gamepadRemove(pad ebiten.GamepadID) {
 	}
 	delete(gamepads, pad)
 }
-
-var (
-	gamepadPlatform string
-	gamepadDatabase map[string][][]string
-)
 
 func gamepadInit() {
 	// We need to filter by platform.
@@ -259,16 +259,16 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 			}
 			if addTo != nil {
 				controls[addTo] = append(controls[addTo], padControl{
-					pad:              pad,
-					invAxisThreshold: 1.0 / *gamepadAxisThreshold,
-					axis:             ax,
+					pad:           pad,
+					axisDirection: 1.0,
+					axis:          ax,
 				})
 			}
 			if addInverseTo != nil {
 				controls[addInverseTo] = append(controls[addInverseTo], padControl{
-					pad:              pad,
-					invAxisThreshold: -1.0 / *gamepadAxisThreshold,
-					axis:             ax,
+					pad:           pad,
+					axisDirection: -1.0,
+					axis:          ax,
 				})
 			}
 		}
