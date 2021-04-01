@@ -15,14 +15,17 @@
 package misc
 
 import (
+	"fmt"
+	"time"
+
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
 )
 
 const (
-	fadeFrames     = 16
-	solidThreshold = 12
+	defaultFadeFrames = 16
+	solidThreshold    = 12
 )
 
 // AnimatedSprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -33,9 +36,10 @@ type AnimatedSprite struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	Alpha  float64
-	Solid  bool
-	Opaque bool
+	Alpha      float64
+	Solid      bool
+	Opaque     bool
+	FadeFrames int
 
 	AnimDir   int
 	AnimFrame int
@@ -56,9 +60,23 @@ func (s *AnimatedSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.E
 	s.Solid = s.Entity.Solid()
 	s.Opaque = s.Entity.Opaque()
 
+	fadeString := sp.Properties["fade_time"]
+	if fadeString != "" {
+		animTime, err := time.ParseDuration(fadeString)
+		if err != nil {
+			return fmt.Errorf("could not parse fade time: %v", fadeString)
+		}
+		s.FadeFrames = int((animTime*engine.GameTPS + (time.Second / 2)) / time.Second)
+		if s.FadeFrames < 1 {
+			s.FadeFrames = 1
+		}
+	} else {
+		s.FadeFrames = defaultFadeFrames
+	}
+
 	// Skip the animation on initial load.
 	if s.Settable.State {
-		s.AnimFrame = fadeFrames
+		s.AnimFrame = s.FadeFrames
 	} else {
 		s.AnimFrame = 0
 	}
@@ -79,11 +97,11 @@ func (s *AnimatedSprite) Update() {
 	if s.AnimFrame <= 0 {
 		s.Entity.Alpha = 0
 		s.AnimFrame = 0
-	} else if s.AnimFrame >= fadeFrames {
+	} else if s.AnimFrame >= s.FadeFrames {
 		s.Entity.Alpha = s.Alpha
-		s.AnimFrame = fadeFrames
+		s.AnimFrame = s.FadeFrames
 	} else {
-		alpha := float64(s.AnimFrame) / float64(fadeFrames)
+		alpha := float64(s.AnimFrame) / float64(s.FadeFrames)
 		s.Entity.Alpha = alpha * s.Alpha
 	}
 

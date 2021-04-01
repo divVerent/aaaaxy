@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1419">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1423">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -976,7 +976,8 @@
   </object>
   <object id="244" type="TnihSign" x="560" y="5168" width="32" height="32">
    <properties>
-    <property name="text" value="Welcome to the top of the mountain. If you're alone, all this was just a waste of time."/>
+    <property name="target" value="EscapeButton"/>
+    <property name="text" value="Welcome to the top of the mountain.  If you're alone, all this was just a waste of time."/>
    </properties>
   </object>
   <object id="245" type="TnihSign" x="896" y="5536" width="32" height="32">
@@ -5945,6 +5946,7 @@
   </object>
   <object id="1281" type="TnihSign" x="4352" y="6144" width="32" height="32">
    <properties>
+    <property name="target" value="EscapeButton"/>
     <property name="text" value="I am so happy to finally be back home.  Press Escape."/>
    </properties>
   </object>
@@ -6161,6 +6163,7 @@
   </object>
   <object id="1364" type="Sprite" x="160" y="102" width="160" height="32">
    <properties>
+    <property name="no_flip" value="x"/>
     <property name="text" value="Don't  ↑ Look Up! ↑"/>
     <property name="text_bg" type="color" value="#ffaa0000"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
@@ -6322,6 +6325,7 @@
   </object>
   <object id="1407" type="TnihSign" x="224" y="8128" width="32" height="32">
    <properties>
+    <property name="target" value="EscapeButton"/>
     <property name="text" value="Curiosity killed the Carl.  Press Escape."/>
    </properties>
   </object>
@@ -6398,6 +6402,34 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffffffff"/>
     <property name="text_font" value="Italic"/>
+   </properties>
+  </object>
+  <object id="1419" name="EscapeButton" type="AnimatedSprite" x="176" y="7984" width="128" height="128">
+   <properties>
+    <property name="fade_time" value="10s"/>
+    <property name="image" value="esc.png"/>
+    <property name="initial_state" type="bool" value="false"/>
+    <property name="no_flip" value="x"/>
+    <property name="z_index" type="int" value="12"/>
+   </properties>
+  </object>
+  <object id="1421" name="EscapeButton" type="AnimatedSprite" x="4264" y="6104" width="64" height="64">
+   <properties>
+    <property name="fade_time" value="10s"/>
+    <property name="image" value="esc.png"/>
+    <property name="initial_state" type="bool" value="false"/>
+    <property name="no_flip" value="x"/>
+    <property name="z_index" type="int" value="12"/>
+   </properties>
+  </object>
+  <object id="1422" name="EscapeButton" type="AnimatedSprite" x="504" y="5208" width="128" height="128">
+   <properties>
+    <property name="fade_time" value="10s"/>
+    <property name="image" value="esc.png"/>
+    <property name="initial_state" type="bool" value="false"/>
+    <property name="no_flip" value="x"/>
+    <property name="orientation" value="WN"/>
+    <property name="z_index" type="int" value="12"/>
    </properties>
   </object>
  </objectgroup>
