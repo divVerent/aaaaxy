@@ -264,13 +264,20 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 	}
 
 	if *debugShowVisiblePolygon {
+		texM := ebiten.GeoM{}
+		texM.Scale(0, 0)
+
 		adjustedPolygon := make([]m.Pos, len(r.expandedVisiblePolygon))
 		for i, pos := range r.expandedVisiblePolygon {
 			adjustedPolygon[i] = pos.Add(scrollDelta)
 		}
-		texM := ebiten.GeoM{}
-		texM.Scale(0, 0)
 		DrawPolyLine(screen, 3, adjustedPolygon, r.whiteImage, color.NRGBA{R: 255, G: 0, B: 0, A: 255}, &texM, &ebiten.DrawTrianglesOptions{})
+
+		adjustedPolygon = make([]m.Pos, len(r.visiblePolygon))
+		for i, pos := range r.visiblePolygon {
+			adjustedPolygon[i] = pos.Add(scrollDelta)
+		}
+		DrawPolyLine(screen, 3, adjustedPolygon, r.whiteImage, color.NRGBA{R: 0, G: 0, B: 255, A: 255}, &texM, &ebiten.DrawTrianglesOptions{})
 	}
 }
 
