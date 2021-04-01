@@ -769,7 +769,7 @@
    <property name="img.WN" value="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
    <property name="img.WS" value="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
    <property name="opaque" type="bool" value="false"/>
-   <property name="solid" type="bool" value="true"/>
+   <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
  </tile>
@@ -2174,45 +2174,101 @@
   <image width="16" height="16" source="piano_white_bottom.png"/>
  </tile>
  <tile id="259">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_01.png"/>
  </tile>
  <tile id="260">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_02.png"/>
  </tile>
  <tile id="261">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_03.png"/>
  </tile>
  <tile id="262">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_04.png"/>
  </tile>
  <tile id="263">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_05.png"/>
  </tile>
  <tile id="264">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_06.png"/>
  </tile>
  <tile id="265">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_07.png"/>
  </tile>
  <tile id="266">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_08.png"/>
  </tile>
  <tile id="267">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_09.png"/>
  </tile>
  <tile id="268">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_10.png"/>
  </tile>
  <tile id="269">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_11.png"/>
  </tile>
  <tile id="270">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_12.png"/>
  </tile>
  <tile id="271">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_13.png"/>
  </tile>
  <tile id="272">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_14.png"/>
  </tile>
  <wangsets>
