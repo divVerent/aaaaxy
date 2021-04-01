@@ -38,6 +38,7 @@ var (
 	debugDetectLoadingConflicts = flag.Bool("debug_detect_loading_conflicts", false, "try to detect tile loading conflicts")
 	debugInitialOrientation     = flag.String("debug_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
 	debugInitialCheckpoint      = flag.String("debug_initial_checkpoint", "", "initial checkpoint")
+	debugDumpVisiblePolygon     = flag.Bool("debug_dump_visible_polygon", false, "dump the visible polygon to the log")
 	debugTileWindowSize         = flag.Bool("debug_check_window_size", false, "if set, we verify that the tile window size is set high enough")
 )
 
@@ -402,8 +403,9 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	screen0 := w.scrollPos.Sub(m.Delta{DX: GameWidth / 2, DY: GameHeight / 2})
 	screen1 := screen0.Add(m.Delta{DX: GameWidth - 1, DY: GameHeight - 1})
 	w.renderer.visiblePolygonCenter = eye
-	xLen := (screen1.X-screen0.X+sweepStep-1)/sweepStep + 1
-	yLen := (screen1.Y-screen0.Y+sweepStep-1)/sweepStep + 1
+	// Pick xLen so that it is the SMALLEST xLen so that screen0+sweepStep*xLen>=screen1.
+	xLen := (screen1.X - screen0.X + sweepStep - 1) / sweepStep
+	yLen := (screen1.Y - screen0.Y + sweepStep - 1) / sweepStep
 	wantLen := 2*xLen + 2*yLen
 	if len(w.renderer.visiblePolygon) != wantLen {
 		if w.renderer.visiblePolygon != nil {
@@ -440,6 +442,10 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		}
 	} else {
 		w.renderer.expandedVisiblePolygon = w.renderer.visiblePolygon
+	}
+	if *debugDumpVisiblePolygon {
+		log.Printf("visible polygon: %v", w.renderer.visiblePolygon)
+		log.Printf("expanded polygon: %v", w.renderer.expandedVisiblePolygon)
 	}
 	// BUG: the above also loads tiles (but doesn't mark) if their path was blocked by an entity.
 	// Workaround: mark them as if they were previous frame's tiles, so they're not a basis for loading and get cleared at the end if needed.
