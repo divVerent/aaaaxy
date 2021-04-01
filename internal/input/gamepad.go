@@ -194,6 +194,8 @@ func gamepadAdd(pad ebiten.GamepadID) {
 }
 
 func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error) {
+	axes := ebiten.GamepadAxisNum(pad)
+	buttons := ebiten.GamepadButtonNum(pad)
 	name := config[0]
 	controls := map[*impulse][]padControl{
 		Jump:   nil,
@@ -257,6 +259,10 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 				log.Printf("Could not parse axis %v: %v", a, err)
 				continue
 			}
+			if ax < 0 || ax >= axes {
+				log.Printf("Invalid axis : got %v, want 0 <= ax < %d", ax, axes)
+				continue
+			}
 			if addTo != nil {
 				controls[addTo] = append(controls[addTo], padControl{
 					pad:           pad,
@@ -276,6 +282,10 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 			bt, err := strconv.Atoi(b)
 			if err != nil {
 				log.Printf("Could not parse button %v: %v", b, err)
+				continue
+			}
+			if bt < 0 || bt >= buttons {
+				log.Printf("Invalid button: got %v, want 0 <= bt < %d", bt, buttons)
 				continue
 			}
 			if addTo != nil {
@@ -302,9 +312,13 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 				log.Printf("Sorry, non-zero hat numbers are not supported right now")
 				continue
 			}
-			vbt := ebiten.GamepadButtonNum(pad) - map[int]int{
+			vbt := buttons - map[int]int{
 				1: 4, 2: 3, 4: 2, 8: 1,
 			}[bt]
+			if vbt < 0 || vbt >= buttons {
+				log.Printf("Invalid hat button: got %v, want 0 <= vbt < %d", vbt, buttons)
+				continue
+			}
 			if addTo != nil {
 				controls[addTo] = append(controls[addTo], padControl{
 					pad:    pad,
