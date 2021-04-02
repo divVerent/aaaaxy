@@ -43,6 +43,16 @@ func (p *Physics) Reset() {
 	p.SubPixel = m.Delta{}
 }
 
+// TODO: implement groundentities.
+// In pusher code:
+// - A groundentity has a list of entities it pushes (ideally some form of weak references).
+// - Whenever groundentity moves, it takes the entities with it using another trace.
+// - If entity hits solid during that trace, ignore that fact, just stop there.
+// - Entity then runs its normal physics.
+// In pushee code:
+// - Always downtrace; if not hitting pusher, dissolve pushing relationship.
+// - Easy: groundentity counts as onground.
+
 func (p *Physics) Update(handleTouch func(trace engine.TraceResult)) {
 	p.SubPixel = p.SubPixel.Add(p.Velocity)
 	move := p.SubPixel.Div(SubPixelScale)
