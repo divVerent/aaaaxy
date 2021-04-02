@@ -44,6 +44,19 @@ Graph:
   * The End
     * -> Part 5: Series of puzzles that require all three abilities.
 
+Abilities:
+- Carry item
+  - Press button while touching to grab, release to release.
+  - No hold-to-grab
+  - Animation: idle when carried, up/inactive when released.
+- Stand on item
+  - Before this, items are nonsolid
+  - After this, items are solid IFF player is above (i.e. semisolids)
+  - Animation: up (blink).
+- Push item away
+  - Hold button to push away
+  - Animation: left/right (blink), up/inactive when released.
+
 Layout:
 
 1
