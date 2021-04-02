@@ -281,16 +281,13 @@ func (p *Player) Update() {
 
 func (p *Player) handleTouch(trace engine.TraceResult) {
 	if trace.HitDelta.DY > 0 {
-		if !p.WasOnGround {
-			p.Anim.SetGroup("land")
-			p.LandSound.Play()
-		}
 		p.JumpingUp = false
-		p.WasOnGround = true
 	}
-	if !p.OnGround {
-		p.WasOnGround = false
+	if p.OnGround && !p.WasOnGround {
+		p.Anim.SetGroup("land")
+		p.LandSound.Play()
 	}
+	p.WasOnGround = p.OnGround
 	if trace.HitDelta.DY < 0 {
 		p.Anim.SetGroup("hithead")
 		p.HitHeadSound.Play()
