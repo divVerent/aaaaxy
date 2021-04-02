@@ -44,6 +44,7 @@ type Player struct {
 	LookUp        bool
 	LookDown      bool
 	Respawning    bool
+	WasOnGround   bool
 
 	Anim         animation.State
 	JumpSound    *sound.Sound
@@ -120,7 +121,7 @@ const (
 )
 
 func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
-	p.Physics.Init(w, e)
+	p.Physics.Init(w, e, p.handleTouch)
 	p.World = w
 	p.Entity = e
 	p.PersistentState = s.PersistentState
@@ -247,21 +248,7 @@ func (p *Player) Update() {
 	}
 
 	// Run physics.
-	wasOnGround := p.OnGround
-	p.Physics.Update(func(trace engine.TraceResult) {
-		if trace.HitDelta.DY > 0 {
-			if !wasOnGround {
-				p.Anim.SetGroup("land")
-				p.LandSound.Play()
-			}
-			p.JumpingUp = false
-		}
-		if trace.HitDelta.DY < 0 {
-			p.Anim.SetGroup("hithead")
-			p.HitHeadSound.Play()
-		}
-		p.handleTouch(trace)
-	})
+	p.Physics.Update() // May call handleTouch.
 
 	if moveLeft && !moveRight {
 		p.Entity.Orientation = m.Identity()
@@ -293,6 +280,21 @@ func (p *Player) Update() {
 }
 
 func (p *Player) handleTouch(trace engine.TraceResult) {
+	if trace.HitDelta.DY > 0 {
+		if !p.WasOnGround {
+			p.Anim.SetGroup("land")
+			p.LandSound.Play()
+		}
+		p.JumpingUp = false
+		p.WasOnGround = true
+	}
+	if !p.OnGround {
+		p.WasOnGround = false
+	}
+	if trace.HitDelta.DY < 0 {
+		p.Anim.SetGroup("hithead")
+		p.HitHeadSound.Play()
+	}
 	if trace.HitEntity != nil {
 		trace.HitEntity.Impl.Touch(p.Entity)
 	}
@@ -332,6 +334,7 @@ func (p *Player) Respawned() {
 	p.Physics.Reset()                // Stop moving.
 	p.LastGroundPos = p.EyePos()     // Center the camera.
 	p.AirFrames = 0                  // Assume on ground.
+	p.WasOnGround = p.OnGround       // Back to ground.
 	p.Jumping = true                 // Jump key must be hit again.
 	p.JumpingUp = false              // Do not assume we're in the first half of a jump (fastfall).
 	p.Respawning = true              // Block the respawn key until released.

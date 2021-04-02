@@ -27,33 +27,29 @@ type Physics struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	OnGround bool
-	Velocity m.Delta // An input to be set changed by caller.
-	SubPixel m.Delta
+	OnGround        bool
+	GroundEntity    *engine.Entity
+	Velocity        m.Delta // An input to be set changed by caller.
+	SubPixel        m.Delta
+	handleTouchFunc func(trace engine.TraceResult)
 }
 
-func (p *Physics) Init(w *engine.World, e *engine.Entity) {
+func (p *Physics) Init(w *engine.World, e *engine.Entity, handleTouch func(trace engine.TraceResult)) {
 	p.World = w
 	p.Entity = e
+	p.handleTouchFunc = handleTouch
 }
 
 func (p *Physics) Reset() {
 	p.OnGround = true
+	p.GroundEntity = nil
 	p.Velocity = m.Delta{}
 	p.SubPixel = m.Delta{}
 }
 
-// TODO: implement groundentities.
-// In pusher code:
-// - A groundentity has a list of entities it pushes (ideally some form of weak references).
-// - Whenever groundentity moves, it takes the entities with it using another trace.
-// - If entity hits solid during that trace, ignore that fact, just stop there.
-// - Entity then runs its normal physics.
-// In pushee code:
-// - Always downtrace; if not hitting pusher, dissolve pushing relationship.
-// - Easy: groundentity counts as onground.
+func (p *Physics) Update() {
+	oldOrigin := p.Entity.Rect.Origin
 
-func (p *Physics) Update(handleTouch func(trace engine.TraceResult)) {
 	p.SubPixel = p.SubPixel.Add(p.Velocity)
 	move := p.SubPixel.Div(SubPixelScale)
 
@@ -71,7 +67,7 @@ func (p *Physics) Update(handleTouch func(trace engine.TraceResult)) {
 			p.Entity.Rect.Origin = trace.EndPos
 			if move.DY != 0 {
 				// If move had a Y component, we're flying.
-				p.OnGround, groundChecked = false, true
+				p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 			}
 			break
 		}
@@ -88,7 +84,7 @@ func (p *Physics) Update(handleTouch func(trace engine.TraceResult)) {
 			move.DY -= trace.EndPos.Y - p.Entity.Rect.Origin.Y
 			p.Entity.Rect.Origin = trace.EndPos
 
-			handleTouch(trace)
+			p.handleTouchFunc(trace)
 		} else if trace.HitDelta.DY != 0 {
 			// A Y hit. Also update ground status.
 			if p.SubPixel.DY > SubPixelScale-1 {
@@ -102,9 +98,13 @@ func (p *Physics) Update(handleTouch func(trace engine.TraceResult)) {
 			move.DY = 0
 			p.Entity.Rect.Origin = trace.EndPos
 
-			p.OnGround, groundChecked = trace.HitDelta.DY > 0, true
+			if trace.HitDelta.DY > 0 {
+				p.OnGround, p.GroundEntity, groundChecked = true, trace.HitEntity, true
+			} else {
+				p.OnGround, p.GroundEntity, groundChecked = false, nil, true
+			}
 
-			handleTouch(trace)
+			p.handleTouchFunc(trace)
 		}
 	}
 
@@ -114,10 +114,46 @@ func (p *Physics) Update(handleTouch func(trace engine.TraceResult)) {
 			ForEnt:    p.Entity,
 		})
 		if trace.EndPos != p.Entity.Rect.Origin {
-			p.OnGround = false
+			p.OnGround, p.GroundEntity = false, nil
 		} else {
 			// p.OnGround = true // Always has been.
-			handleTouch(trace)
+			p.GroundEntity = trace.HitEntity
+			p.handleTouchFunc(trace)
 		}
 	}
+
+	// Now if I am the ground, push everyone on me.
+	delta := p.Entity.Rect.Origin.Delta(oldOrigin)
+	if (delta != m.Delta{}) {
+		p.World.ForEachEntity(func(other *engine.Entity) {
+			otherP, ok := other.Impl.(GroundEntityer)
+			if !ok {
+				return
+			}
+			if otherP.groundEntity() == p.Entity {
+				trace := p.World.TraceBox(other.Rect, other.Rect.Origin.Add(delta), engine.TraceOptions{
+					IgnoreEnt: other,
+					ForEnt:    other,
+				})
+				other.Rect.Origin = trace.EndPos
+				if (trace.HitDelta != m.Delta{}) {
+					otherP.handleTouch(trace)
+				}
+			}
+		})
+	}
+}
+
+func (p *Physics) groundEntity() *engine.Entity {
+	return p.GroundEntity
+}
+
+func (p *Physics) handleTouch(trace engine.TraceResult) {
+	p.handleTouchFunc(trace)
+}
+
+type GroundEntityer interface {
+	engine.EntityImpl
+	groundEntity() *engine.Entity
+	handleTouch(trace engine.TraceResult)
 }

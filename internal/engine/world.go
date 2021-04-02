@@ -134,6 +134,12 @@ func (w *World) forEachTile(f func(pos m.Pos, t *level.Tile)) {
 	}
 }
 
+func (w *World) ForEachEntity(f func(e *Entity)) {
+	for _, e := range w.entities {
+		f(e)
+	}
+}
+
 // Init brings a world into a working state.
 // Can be called more than once to reset _everything_.
 func (w *World) Init() error {
