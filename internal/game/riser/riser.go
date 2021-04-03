@@ -22,6 +22,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
+	"github.com/divVerent/aaaaaa/internal/game/player"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
@@ -127,7 +128,23 @@ func (r *Riser) isAbove(other *engine.Entity) bool {
 }
 
 func (r *Riser) Update() {
-	// TODO define the state.
+	player := r.World.Player.Impl.(*player.Player)
+	playerIsLeft := player.Entity.Rect.Center().X < r.Entity.Rect.Center().X
+	if player.CanCarry && (player.Entity.Rect.Delta(r.Entity.Rect) == m.Delta{}) && player.ActionPressed() {
+		r.State = GettingCarried
+	} else if player.CanPush && player.ActionPressed() {
+		if playerIsLeft {
+			r.State = MovingLeft
+		} else {
+			r.State = MovingRight
+		}
+	} else if player.CanStand && player.GroundEntity == r.Entity {
+		r.State = MovingUp
+	} else if player.CanCarry || player.CanPush || player.CanStand {
+		r.State = IdlingUp
+	} else {
+		r.State = Inactive
+	}
 
 	switch r.State {
 	case Inactive:
@@ -137,22 +154,22 @@ func (r *Riser) Update() {
 	case IdlingUp:
 		r.Anim.SetGroup("idle")
 		r.Velocity = m.Delta{DX: 0, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, r.isAbove(r.World.Player))
+		r.World.SetSolid(r.Entity, r.isAbove(player.Entity))
 	case MovingUp:
 		r.Anim.SetGroup("up")
 		r.Velocity = m.Delta{DX: 0, DY: -UpSpeed}
-		r.World.SetSolid(r.Entity, r.isAbove(r.World.Player))
+		r.World.SetSolid(r.Entity, r.isAbove(player.Entity))
 	case MovingLeft:
 		r.Anim.SetGroup("left")
 		r.Velocity = m.Delta{DX: 0, DY: -SideSpeed}
-		r.World.SetSolid(r.Entity, r.isAbove(r.World.Player))
+		r.World.SetSolid(r.Entity, r.isAbove(player.Entity))
 	case MovingRight:
 		r.Anim.SetGroup("right")
 		r.Velocity = m.Delta{DX: 0, DY: SideSpeed}
-		r.World.SetSolid(r.Entity, r.isAbove(r.World.Player))
+		r.World.SetSolid(r.Entity, r.isAbove(player.Entity))
 	case GettingCarried:
 		r.Anim.SetGroup("idle")
-		r.Velocity = m.Delta{}
+		r.Velocity = player.Velocity // Hacky carry physics; good enough?
 		r.World.SetSolid(r.Entity, false)
 	}
 

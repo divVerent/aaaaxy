@@ -46,6 +46,11 @@ type Player struct {
 	Respawning    bool
 	WasOnGround   bool
 
+	// Controlling Riser objects.
+	CanCarry bool
+	CanPush  bool
+	CanStand bool
+
 	Anim         animation.State
 	JumpSound    *sound.Sound
 	LandSound    *sound.Sound
@@ -338,6 +343,10 @@ func (p *Player) Respawned() {
 	p.Anim.ForceGroup("idle")        // Reset animation.
 	p.Entity.Image = nil             // Hide player until next Update.
 	p.Entity.Orientation = m.FlipX() // Default to looking right.
+}
+
+func (p *Player) ActionPressed() bool {
+	return input.Action.Held
 }
 
 func init() {
