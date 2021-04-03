@@ -8,8 +8,8 @@ DUMPCPS = github.com/divVerent/aaaaaa/cmd/dumpcps
 DEBUG = aaaaaa-debug$(SUFFIX)
 DEBUG_GOFLAGS =
 RELEASE = aaaaaa$(SUFFIX)
-# TODO -trimpath is nice but not entirely - glfw stuff still has absolute path in it.
-RELEASE_GOFLAGS = -ldflags="-s -w" -gcflags="-B -dwarf=false" -trimpath
+# TODO glfw is gccgo-built, which still seems to include private paths. Fix.
+RELEASE_GOFLAGS = -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath
 UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
 GENERATED_ASSETS = assets/maps/level.cp.json
