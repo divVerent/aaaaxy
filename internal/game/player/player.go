@@ -16,12 +16,14 @@ package player
 
 import (
 	"fmt"
+	"image/color"
 	"log"
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/animation"
+	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/input"
@@ -51,10 +53,11 @@ type Player struct {
 	CanPush  bool
 	CanStand bool
 
-	Anim         animation.State
-	JumpSound    *sound.Sound
-	LandSound    *sound.Sound
-	HitHeadSound *sound.Sound
+	Anim            animation.State
+	JumpSound       *sound.Sound
+	LandSound       *sound.Sound
+	HitHeadSound    *sound.Sound
+	GotAbilitySound *sound.Sound
 }
 
 // Player height is 30 px.
@@ -125,6 +128,35 @@ const (
 	KeyRespawn = ebiten.KeyR
 )
 
+func (p *Player) HasAbility(name string) bool {
+	key := "can_" + name
+	return p.PersistentState[key] == "true"
+}
+
+func (p *Player) GiveAbility(name, text string) {
+	key := "can_" + name
+	if p.PersistentState[key] == "true" {
+		return
+	}
+
+	p.PersistentState[key] = "true"
+	err := p.World.Save()
+	if err != nil {
+		log.Printf("Could not save game: %v", err)
+		return
+	}
+	p.reloadAbilities()
+
+	centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 190, G: 0, B: 0, A: 255}).SetFadeOut(true)
+	p.GotAbilitySound.Play()
+}
+
+func (p *Player) reloadAbilities() {
+	p.CanCarry = p.HasAbility("carry")
+	p.CanPush = p.HasAbility("push")
+	p.CanStand = p.HasAbility("stand")
+}
+
 func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	p.Physics.Init(w, e, p.handleTouch)
 	p.World = w
@@ -134,6 +166,7 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	p.Entity.RenderOffset = m.Delta{DX: PlayerOffsetDX, DY: PlayerOffsetDY}
 	p.Entity.ZIndex = engine.MaxZIndex
 	p.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
+	p.reloadAbilities()
 
 	err := p.Anim.Init("player", map[string]*animation.Group{
 		"idle": {
