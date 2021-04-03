@@ -5,11 +5,7 @@ SUFFIX = -$(shell go env GOOS)-$(shell go env GOARCH)$(EXE)
 # Internal variables.
 PACKAGE = github.com/divVerent/aaaaaa/cmd/aaaaaa
 DUMPCPS = github.com/divVerent/aaaaaa/cmd/dumpcps
-DEBUG = aaaaaa-debug$(SUFFIX)
-DEBUG_GOFLAGS =
-RELEASE = aaaaaa$(SUFFIX)
 # TODO glfw is gccgo-built, which still seems to include private paths. Fix.
-RELEASE_GOFLAGS = -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath
 UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
 GENERATED_ASSETS = assets/maps/level.cp.json
@@ -19,21 +15,40 @@ EXTRAFILES = README.md LICENSE CONTRIBUTING.md
 LICENSES_THIRD_PARTY = licenses
 ZIP = 7za -tzip -mx=9 a
 
-.PHONY: default
-default: debug
+# Release/debug flags.
+ifeq ($(BUILDTYPE),release)
+GOFLAGS ?= -tags statik -ldflags=all="-s -w -linkmode=external" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
+LDFLAGS ?= -s
+BINARY = aaaaaa$(SUFFIX)
+BINARY_ASSETS = $(STATIK_ASSETS)
+else
+BINARY = aaaaaa-debug$(SUFFIX)
+BINARY_ASSETS = $(GENERATED_ASSETS)
+endif
+
+# cgo support.
+CGO_CPPFLAGS ?= $(CPPFLAGS)
+CGO_CFLAGS ?= $(CFLAGS)
+CGO_CXXFLAGS ?= $(CXXFLAGS)
+CGO_LDFLAGS ?= $(LDFLAGS)
+
+.PHONY: bin
+bin: $(BINARY)
 
 .PHONY: all
 all: debug release
 
 .PHONY: debug
-debug: $(DEBUG)
+debug:
+	$(MAKE) BUILDTYPE=debug bin
 
 .PHONY: release
-release: $(RELEASE)
+release:
+	$(MAKE) BUILDTYPE=release bin
 
 .PHONY: clean
 clean:
-	$(RM) -r $(DEBUG) $(RELEASE) $(STATIK_ASSETS) $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
+	$(RM) -r $(BINARY) $(STATIK_ASSETS) $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
 
 .PHONY: vet
 vet:
@@ -43,11 +58,12 @@ vet:
 $(STATIK_ASSETS): $(GENERATED_ASSETS)
 	GOOS= GOARCH= ./statik-vfs.sh $(STATIK_ASSETS_ROOT)
 
-$(DEBUG): $(GENERATED_ASSETS) $(SOURCES)
-	go build -o $(DEBUG) $(DEBUG_GOFLAGS) $(PACKAGE)
-
-$(RELEASE): $(STATIK_ASSETS) $(SOURCES)
-	go build -tags statik -o $(RELEASE) $(RELEASE_GOFLAGS) $(PACKAGE)
+$(BINARY): $(BINARY_ASSETS) $(SOURCES)
+	CGO_CPPFLAGS="$(CGO_CPPFLAGS)" \
+	CGO_CFLAGS="$(CGO_CFLAGS)" \
+	CGO_CXXFLAGS="$(CGO_CXXFLAGS)" \
+	CGO_LDFLAGS="$(CGO_LDFLAGS)" \
+	go build -o $(BINARY) $(GOFLAGS) $(PACKAGE)
 
 %.cp.json: %.cp.dot
 	neato -Tjson $< > $@
@@ -96,8 +112,8 @@ allreleaseclean:
 
 # Helper targets.
 .PHONY: run
-run: $(DEBUG)
-	./$(DEBUG) $(ARGS)
+run: $(BINARY)
+	./$(BINARY) $(ARGS)
 
 .PHONY: setup-git
 setup-git:
