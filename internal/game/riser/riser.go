@@ -130,13 +130,13 @@ func (r *Riser) isAbove(other *engine.Entity) bool {
 func (r *Riser) Update() {
 	player := r.World.Player.Impl.(*player.Player)
 	playerIsLeft := player.Entity.Rect.Center().X < r.Entity.Rect.Center().X
-	if player.CanCarry && (player.Entity.Rect.Delta(r.Entity.Rect) == m.Delta{}) && player.ActionPressed() {
+	if player.CanCarry && player.GroundEntity != r.Entity && (player.Entity.Rect.Delta(r.Entity.Rect) == m.Delta{}) && player.ActionPressed() {
 		r.State = GettingCarried
 	} else if player.CanPush && player.ActionPressed() {
 		if playerIsLeft {
-			r.State = MovingLeft
-		} else {
 			r.State = MovingRight
+		} else {
+			r.State = MovingLeft
 		}
 	} else if player.CanStand && player.GroundEntity == r.Entity {
 		r.State = MovingUp
