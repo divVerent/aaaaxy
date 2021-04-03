@@ -88,3 +88,9 @@ Layout:
 
 
 * At end of game, print the time the game took from the frames counter in the player. Also, halt the frames counter then.
+
+ADD:
+- Entity that gives player an ability.
+- Sound file for new ability.
+- Icons for abilities (blinking or even Z-rotating sprites).
+- Puzzles!
