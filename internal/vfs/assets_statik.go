@@ -18,7 +18,6 @@ package vfs
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"path/filepath"
 	"sort"
