@@ -18,7 +18,8 @@ ZIP = 7za -tzip -mx=9 a
 # Release/debug flags.
 ifeq ($(BUILDTYPE),release)
 GOFLAGS ?= -tags statik -ldflags=all="-s -w -linkmode=external" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
-CFLAGS ?= -g0
+CFLAGS ?= -g0 -O3
+CXXFLAGS ?= -g0 -O3
 LDFLAGS ?= -g0 -s
 BINARY = aaaaaa$(SUFFIX)
 BINARY_ASSETS = $(STATIK_ASSETS)
