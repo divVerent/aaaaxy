@@ -29,7 +29,7 @@ logged() {
 
 for sourcedir in assets third_party/*/assets; do
 	logged cd "$root/$sourcedir"
-	find . -type f | while read -r file; do
+	find . -name src -prune -or -type f | while read -r file; do
 		mkdir -p "$tmpdir/${file%/*}"
 		logged ln -snf "$root/$sourcedir/$file" "$tmpdir/$file"
 	done
