@@ -16,8 +16,9 @@ LICENSES_THIRD_PARTY = licenses
 ZIP = 7za -tzip -mx=9 a
 
 # Release/debug flags.
+BUILDTYPE = debug
 ifeq ($(BUILDTYPE),release)
-GOFLAGS ?= -tags statik -ldflags=all="-s -w -linkmode=external" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
+GOFLAGS ?= -tags statik -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
 CFLAGS ?= -g0 -O3
 CXXFLAGS ?= -g0 -O3
 LDFLAGS ?= -g0 -s
@@ -92,8 +93,8 @@ addlicenses: $(LICENSES_THIRD_PARTY)
 	$(ZIP) $(ZIPFILE) $(LICENSES_THIRD_PARTY)
 
 .PHONY: addrelease
-addrelease: $(RELEASE)
-	$(ZIP) $(ZIPFILE) $(RELEASE)
+addrelease: $(BINARY)
+	$(ZIP) $(ZIPFILE) $(BINARY)
 	$(MAKE) clean
 
 .PHONY: allrelease
@@ -101,10 +102,10 @@ allrelease: allreleaseclean
 	$(RM) $(ZIPFILE)
 	$(MAKE) addextras
 	$(MAKE) addlicenses
-	GOOS=linux GOARCH=amd64 $(MAKE) addrelease
+	GOOS=linux GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
 	# Disabled due to Windows Defender FP:
 	# GOOS=windows GOARCH=386 $(MAKE) release
-	GOOS=windows GOARCH=amd64 $(MAKE) addrelease
+	GOOS=windows GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
 
 .PHONY: allreleaseclean
 allreleaseclean:
