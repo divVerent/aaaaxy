@@ -37,14 +37,13 @@ type (
 	CheckpointEdge struct {
 		Other    string
 		Forward  bool
-		Opposite bool
+		Optional bool
 	}
 )
 
 type edge struct {
 	a, b           string
 	unstraightness float64
-	opposite       bool
 }
 
 func unstraightness(d m.Delta) float64 {
@@ -58,6 +57,41 @@ var allDirs = []m.Delta{
 	m.East(),
 	m.South(),
 	m.West(),
+}
+
+func possibleDirs(d m.Delta) (m.Delta, m.Delta) {
+	dx := 0
+	if d.DX > 0 {
+		dx = 1
+	}
+	if d.DX < 0 {
+		dx = -1
+	}
+	dy := 0
+	if d.DY > 0 {
+		dy = 1
+	}
+	if d.DY < 0 {
+		dy = -1
+	}
+	prefersX := d.DX*dx > d.DY*dy // Sorry, have no abs.
+	if prefersX {
+		if dy == 0 {
+			// x-only.
+			return m.Delta{DX: dx, DY: 0}, m.Delta{DX: dx, DY: 0}
+		} else {
+			// x better than y.
+			return m.Delta{DX: dx, DY: 0}, m.Delta{DX: 0, DY: dy}
+		}
+	} else {
+		if dx == 0 {
+			// y-only.
+			return m.Delta{DX: 0, DY: dy}, m.Delta{DX: 0, DY: dy}
+		} else {
+			// y better than x.
+			return m.Delta{DX: 0, DY: dy}, m.Delta{DX: dx, DY: 0}
+		}
+	}
 }
 
 // LoadCheckpointLocations loads the checkpoint locations for the given level.
@@ -150,62 +184,87 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 				b:              other,
 				unstraightness: unstraight,
 			})
-			if unstraight > 0 {
-				// Try to include each edge twice so that we can walk using all "obvious" keys whereever possible.
-				edges = append(edges, edge{
-					a:              name,
-					b:              other,
-					unstraightness: 1.0 / unstraight,
-					opposite:       true,
-				})
-			}
 		}
 	}
+	// Assign all edges to keyboard mapping.
+	// Note: there MIGHT be a shorter algorithm for all this, not sure.
+	// Those three separate steps look suspicious.
+	// This one is sure correct though, as whenever we choose the unpreferred direction,
+	// we MUST chose it or we'd fail (so order of assigning the unpreferred ones does not matter).
+	// However, if we assign the unpreferred one once we have to,
+	// this helps choosing the unpreferred one in further assignments, so it is necessary.
 	// Now translate to NextByDir. Successively map the "most straight direction" to the closest remaining available direction.
 	sort.Slice(edges, func(a, b int) bool {
 		return edges[a].unstraightness < edges[b].unstraightness
 	})
+nextEdge:
 	for _, edge := range edges {
-		bestDir := m.Delta{}
-		bestScore := 0
 		a := loc.Locs[edge.a]
 		b := loc.Locs[edge.b]
 		delta := b.MapPos.Delta(a.MapPos)
-		for _, dir := range allDirs {
+		bestDir, otherDir := possibleDirs(delta)
+		for _, dir := range []m.Delta{bestDir, otherDir} {
 			if _, found := a.NextByDir[dir]; found {
 				continue
 			}
 			if _, found := b.NextByDir[dir.Mul(-1)]; found {
 				continue
 			}
-			score := dir.Dot(delta)
-			if score <= 0 {
-				continue
+			a.NextByDir[dir] = CheckpointEdge{
+				Other:   edge.b,
+				Forward: true,
 			}
-			if bestScore > 0 && (score <= bestScore) != edge.opposite {
-				continue
+			b.NextByDir[dir.Mul(-1)] = CheckpointEdge{
+				Other:   edge.a,
+				Forward: false,
 			}
-			bestDir, bestScore = dir, score
+			continue nextEdge
 		}
-		if (bestDir == m.Delta{}) {
-			if edge.opposite {
-				// Opposite edges are optional.
-				continue
+		return nil, fmt.Errorf("could not map edge %v to keyboard direction in %q", edge, filename)
+	}
+	// Now add the preferred direction undirectionally whereever not there yet.
+	for _, edge := range edges {
+		a := loc.Locs[edge.a]
+		b := loc.Locs[edge.b]
+		delta := b.MapPos.Delta(a.MapPos)
+		dir, _ := possibleDirs(delta)
+		if _, found := a.NextByDir[dir]; !found {
+			a.NextByDir[dir] = CheckpointEdge{
+				Other:    edge.b,
+				Forward:  true,
+				Optional: true,
 			}
-			return nil, fmt.Errorf("could not map edge %v to keyboard direction in %q", edge, filename)
 		}
-		a.NextByDir[bestDir] = CheckpointEdge{
-			Other:    edge.b,
-			Forward:  true,
-			Opposite: edge.opposite,
-		}
-		b.NextByDir[bestDir.Mul(-1)] = CheckpointEdge{
-			Other:    edge.a,
-			Forward:  false,
-			Opposite: edge.opposite,
+		if _, found := b.NextByDir[dir.Mul(-1)]; !found {
+			b.NextByDir[dir.Mul(-1)] = CheckpointEdge{
+				Other:    edge.a,
+				Forward:  false,
+				Optional: true,
+			}
 		}
 	}
-	// Now, in decreasing order, try mapping the edges to the _other_ direction again.
+	// Now add the unpreferred direction undirectionally whereever not there yet.
+	for i := len(edges) - 1; i >= 0; i-- {
+		edge := edges[i]
+		a := loc.Locs[edge.a]
+		b := loc.Locs[edge.b]
+		delta := b.MapPos.Delta(a.MapPos)
+		_, dir := possibleDirs(delta)
+		if _, found := a.NextByDir[dir]; !found {
+			a.NextByDir[dir] = CheckpointEdge{
+				Other:    edge.b,
+				Forward:  true,
+				Optional: true,
+			}
+		}
+		if _, found := b.NextByDir[dir.Mul(-1)]; !found {
+			b.NextByDir[dir.Mul(-1)] = CheckpointEdge{
+				Other:    edge.a,
+				Forward:  false,
+				Optional: true,
+			}
+		}
+	}
 	return loc, nil
 }
 

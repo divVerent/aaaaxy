@@ -153,7 +153,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		}
 		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
 		for dir, edge := range cpLoc.NextByDir {
-			if !edge.Forward || edge.Opposite {
+			if !edge.Forward || edge.Optional {
 				continue
 			}
 			otherName := edge.Other
