@@ -19,6 +19,7 @@ ZIP = 7za -tzip -mx=9 a
 BUILDTYPE = debug
 ifeq ($(BUILDTYPE),release)
 GOFLAGS ?= -tags statik -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
+CPPFLAGS ?= -DNDEBUG
 CFLAGS ?= -g0 -O3
 CXXFLAGS ?= -g0 -O3
 LDFLAGS ?= -g0 -s
