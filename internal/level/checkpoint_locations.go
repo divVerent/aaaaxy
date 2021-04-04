@@ -35,14 +35,16 @@ type (
 		NextByDir map[m.Delta]CheckpointEdge // Note: two sided.
 	}
 	CheckpointEdge struct {
-		Other   string
-		Forward bool
+		Other    string
+		Forward  bool
+		Opposite bool
 	}
 )
 
 type edge struct {
 	a, b           string
 	unstraightness float64
+	opposite       bool
 }
 
 func unstraightness(d m.Delta) float64 {
@@ -142,11 +144,21 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 			}
 			otherPos := otherLoc.MapPos
 			moveDelta := otherPos.Delta(l.MapPos)
+			unstraight := unstraightness(moveDelta)
 			edges = append(edges, edge{
 				a:              name,
 				b:              other,
-				unstraightness: unstraightness(moveDelta),
+				unstraightness: unstraight,
 			})
+			if unstraight > 0 {
+				// Try to include each edge twice so that we can walk using all "obvious" keys whereever possible.
+				edges = append(edges, edge{
+					a:              name,
+					b:              other,
+					unstraightness: 1.0 / unstraight,
+					opposite:       true,
+				})
+			}
 		}
 	}
 	// Now translate to NextByDir. Successively map the "most straight direction" to the closest remaining available direction.
@@ -167,23 +179,33 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 				continue
 			}
 			score := dir.Dot(delta)
-			if score <= bestScore {
+			if score <= 0 {
+				continue
+			}
+			if bestScore > 0 && (score <= bestScore) != edge.opposite {
 				continue
 			}
 			bestDir, bestScore = dir, score
 		}
 		if (bestDir == m.Delta{}) {
+			if edge.opposite {
+				// Opposite edges are optional.
+				continue
+			}
 			return nil, fmt.Errorf("could not map edge %v to keyboard direction in %q", edge, filename)
 		}
 		a.NextByDir[bestDir] = CheckpointEdge{
-			Other:   edge.b,
-			Forward: true,
+			Other:    edge.b,
+			Forward:  true,
+			Opposite: edge.opposite,
 		}
 		b.NextByDir[bestDir.Mul(-1)] = CheckpointEdge{
-			Other:   edge.a,
-			Forward: false,
+			Other:    edge.a,
+			Forward:  false,
+			Opposite: edge.opposite,
 		}
 	}
+	// Now, in decreasing order, try mapping the edges to the _other_ direction again.
 	return loc, nil
 }
 
