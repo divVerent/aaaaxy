@@ -58,7 +58,7 @@ vet:
 	go vet `find ./cmd ./internal -name \*.go -print | sed -e 's,/[^/]*$$,,' | sort -u`
 
 .PHONY: $(STATIK_ASSETS)
-$(STATIK_ASSETS): $(GENERATED_ASSETS)
+$(STATIK_ASSETS): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
 	GOOS= GOARCH= ./statik-vfs.sh $(STATIK_ASSETS_ROOT)
 
 $(BINARY): $(BINARY_ASSETS) $(SOURCES)
