@@ -6175,7 +6175,7 @@
     <property name="music" value="at_the_end_of_hope.ogg"/>
     <property name="next_down" type="object" value="1408"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="The Rover and the Carl"/>
+    <property name="text" value="The Rover and the Feline"/>
    </properties>
   </object>
   <object id="1366" name="DontLookUp" gid="6" x="5040" y="6192" width="48" height="16"/>
@@ -6326,7 +6326,7 @@
   <object id="1407" type="TnihSign" x="224" y="8128" width="32" height="32">
    <properties>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Curiosity killed the Carl.  Press Escape."/>
+    <property name="text" value="Curiosity killed the Cat.  Press Escape."/>
    </properties>
   </object>
   <object id="1408" name="curiosity_killed_the_carl" type="Checkpoint" x="64" y="8128" width="352" height="32">
