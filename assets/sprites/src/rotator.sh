@@ -1,0 +1,48 @@
+#!/bin/sh
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+steps=16
+size=64
+
+#images="can_carry can_push can_stand"
+images="can_stand"
+
+for i in $(seq 0 $((steps-1))); do
+	width=$(echo "(c(8 * a(1) * $i / $steps) * 0.5 + 0.5) * $size" | bc -l)
+	width=${width%.*}
+	case "$width" in
+		''|0)
+			width=1
+			;;
+	esac
+	echo "$i -> $width"
+	for img in $images; do
+		convert "$img.png" \
+			-filter Point \
+			-resize "${width}x${size}!" \
+			-gravity center \
+			-background none \
+			-extent "${size}x${size}" \
+			\( \
+				+clone \
+				+level 0,0 \
+				-channel A \
+				-morphology Dilate:1 Square \
+			\) \
+			+swap \
+			-composite \
+			../"${img}_default_${i}.png"
+	done
+done
