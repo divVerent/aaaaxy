@@ -60,7 +60,10 @@ func (m *Menu) Update() error {
 
 	timing.Section("once")
 	if !m.initialized {
-		m.World.Init()
+		err := m.World.Init()
+		if err != nil {
+			return fmt.Errorf("could not initialize world: %v", err)
+		}
 		if !*resetSave {
 			err := m.World.Load()
 			if err != nil {
@@ -68,7 +71,6 @@ func (m *Menu) Update() error {
 			}
 		}
 		m.blurImage = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
-		var err error
 		m.moveSound, err = sound.Load("menu_move.ogg")
 		if err != nil {
 			return err

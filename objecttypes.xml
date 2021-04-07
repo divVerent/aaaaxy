@@ -56,7 +56,7 @@
  <objecttype name="QuestionBlock" color="#000000">
   <property name="kaizo" type="bool" default="false"/>
  </objecttype>
- <objecttype name="RiserBlock" color="#000080">
+ <objecttype name="Riser" color="#000080">
  </objecttype>
  <objecttype name="SequenceCollector" color="#00ff00">
   <property name="sequence" type="string"/>

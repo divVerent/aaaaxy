@@ -214,6 +214,10 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	if err != nil {
 		return fmt.Errorf("could not load hithead sound: %v", err)
 	}
+	p.GotAbilitySound, err = sound.Load("got_ability.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load got_ability sound: %v", err)
+	}
 
 	// Reset as if after respawn.
 	p.Respawned()
