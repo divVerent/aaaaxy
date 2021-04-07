@@ -31,6 +31,7 @@ type Physics struct {
 	GroundEntity    *engine.Entity
 	Velocity        m.Delta // An input to be set changed by caller.
 	SubPixel        m.Delta
+	IgnoreEnt       *engine.Entity
 	handleTouchFunc func(trace engine.TraceResult)
 }
 
@@ -57,7 +58,7 @@ func (p *Physics) Update() {
 	for (move != m.Delta{}) {
 		dest := p.Entity.Rect.Origin.Add(move)
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
-			IgnoreEnt: p.Entity,
+			IgnoreEnt: p.IgnoreEnt,
 			ForEnt:    p.Entity,
 		})
 		if (trace.HitDelta == m.Delta{}) {
@@ -110,7 +111,7 @@ func (p *Physics) Update() {
 
 	if p.OnGround && !groundChecked {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
-			IgnoreEnt: p.Entity,
+			IgnoreEnt: p.IgnoreEnt,
 			ForEnt:    p.Entity,
 		})
 		if trace.EndPos != p.Entity.Rect.Origin {
@@ -132,7 +133,7 @@ func (p *Physics) Update() {
 			}
 			if otherP.groundEntity() == p.Entity {
 				trace := p.World.TraceBox(other.Rect, other.Rect.Origin.Add(delta), engine.TraceOptions{
-					IgnoreEnt: other,
+					IgnoreEnt: p.IgnoreEnt,
 					ForEnt:    other,
 				})
 				other.Rect.Origin = trace.EndPos

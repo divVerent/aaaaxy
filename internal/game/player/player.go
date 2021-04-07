@@ -166,6 +166,7 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	p.Entity.RenderOffset = m.Delta{DX: PlayerOffsetDX, DY: PlayerOffsetDY}
 	p.Entity.ZIndex = engine.MaxZIndex
 	p.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
+	w.SetSolid(p.Entity, true)   // Needed so platforms don't let players fall through.
 	p.reloadAbilities()
 
 	err := p.Anim.Init("player", map[string]*animation.Group{
@@ -380,6 +381,7 @@ func (p *Player) Respawned() {
 	p.Anim.ForceGroup("idle")        // Reset animation.
 	p.Entity.Image = nil             // Hide player until next Update.
 	p.Entity.Orientation = m.FlipX() // Default to looking right.
+	p.reloadAbilities()              // Abilities may have changed.
 }
 
 func (p *Player) ActionPressed() bool {

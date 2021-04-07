@@ -286,7 +286,6 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(m.Delta{DX: 0, DY: 1024}), TraceOptions{
 		NoEntities: true,
 		LoadTiles:  true,
-		IgnoreEnt:  w.Player,
 		ForEnt:     w.Player,
 	})
 	w.Player.Rect.Origin = trace.EndPos
@@ -322,7 +321,6 @@ func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult
 	result := w.TraceLine(from, to, TraceOptions{
 		Mode:      HitOpaque,
 		LoadTiles: true,
-		IgnoreEnt: w.Player,
 		ForEnt:    w.Player,
 		PathOut:   pathStore,
 	})

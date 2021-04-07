@@ -50,16 +50,26 @@ type Riser struct {
 }
 
 const (
-	// RiserWidth is the hitbox width of the player.
+	// SmallRiserWidth is the hitbox width of the riser.
 	// Actual width is 16 (one extra pixel to left and right).
-	RiserWidth = 14
-	// RiserHeight is the hitbox height of the player.
+	SmallRiserWidth = 14
+	// SmallRiserHeight is the hitbox height of the riser.
 	// Actual height is 16 (one extra pixel to left and right).
-	RiserHeight = 14
-	// RiserOffsetDX is the riser's render offset.
-	RiserOffsetDX = -1
-	// RiserOffsetDY is the riser's render offset.
-	RiserOffsetDY = -1
+	SmallRiserHeight = 14
+	// SmallRiserOffsetDX is the riser's render offset.
+	SmallRiserOffsetDX = -1
+	// SmallRiserOffsetDY is the riser's render offset.
+	SmallRiserOffsetDY = -1
+	// LargeRiserWidth is the hitbox width of the riser.
+	// Actual width is 16 (one extra pixel to left and right).
+	LargeRiserWidth = 30
+	// LargeRiserHeight is the hitbox height of the riser.
+	// Actual height is 32 (one extra pixel to left and right).
+	LargeRiserHeight = 14
+	// LargeRiserOffsetDX is the riser's render offset.
+	LargeRiserOffsetDX = -1
+	// LargeRiserOffsetDY is the riser's render offset.
+	LargeRiserOffsetDY = -1
 
 	// IdleSpeed is the speed the riser moves upwards when not used.
 	IdleSpeed = 16 * mixins.SubPixelScale / engine.GameTPS
@@ -75,14 +85,22 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	r.Physics.Init(w, e, r.handleTouch)
 	r.World = w
 	r.Entity = e
-	r.Entity.Rect.Size = m.Delta{DX: RiserWidth, DY: RiserHeight}
-	r.Entity.RenderOffset = m.Delta{DX: RiserOffsetDX, DY: RiserOffsetDY}
+	var sprite string
+	if s.Properties["large"] == "true" {
+		r.Entity.Rect.Size = m.Delta{DX: LargeRiserWidth, DY: LargeRiserHeight}
+		r.Entity.RenderOffset = m.Delta{DX: LargeRiserOffsetDX, DY: LargeRiserOffsetDY}
+		sprite = "riser_large"
+	} else {
+		r.Entity.Rect.Size = m.Delta{DX: SmallRiserWidth, DY: SmallRiserHeight}
+		r.Entity.RenderOffset = m.Delta{DX: SmallRiserOffsetDX, DY: SmallRiserOffsetDY}
+		sprite = "riser_small"
+	}
 	r.Entity.Rect.Origin = r.Entity.Rect.Origin.Sub(r.Entity.RenderOffset)
 	r.Entity.ZIndex = engine.MaxZIndex - 1
 	r.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
 	r.State = Inactive
 
-	err := r.Anim.Init("riser", map[string]*animation.Group{
+	err := r.Anim.Init(sprite, map[string]*animation.Group{
 		"inactive": {
 			Frames:        1,
 			FrameInterval: 16,
@@ -123,8 +141,8 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 
 func (r *Riser) Despawn() {}
 
-func (r *Riser) isAbove(other *engine.Entity) bool {
-	return r.Entity.Rect.OppositeCorner().Y < other.Rect.Origin.Y
+func (r *Riser) isBelow(other *engine.Entity) bool {
+	return other.Rect.OppositeCorner().Y < r.Entity.Rect.Origin.Y
 }
 
 func (r *Riser) Update() {
@@ -151,26 +169,32 @@ func (r *Riser) Update() {
 		r.Anim.SetGroup("inactive")
 		r.Velocity = m.Delta{}
 		r.World.SetSolid(r.Entity, false)
+		r.Physics.IgnoreEnt = nil // Should never hit player.
 	case IdlingUp:
 		r.Anim.SetGroup("idle")
 		r.Velocity = m.Delta{DX: 0, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, r.isAbove(player.Entity))
+		r.World.SetSolid(r.Entity, r.isBelow(player.Entity))
+		r.Physics.IgnoreEnt = nil // Stop at player!
 	case MovingUp:
 		r.Anim.SetGroup("up")
 		r.Velocity = m.Delta{DX: 0, DY: -UpSpeed}
-		r.World.SetSolid(r.Entity, r.isAbove(player.Entity))
+		r.World.SetSolid(r.Entity, r.isBelow(player.Entity))
+		r.Physics.IgnoreEnt = player.Entity // Move upwards despite player standing on it.
 	case MovingLeft:
 		r.Anim.SetGroup("left")
 		r.Velocity = m.Delta{DX: 0, DY: -SideSpeed}
-		r.World.SetSolid(r.Entity, r.isAbove(player.Entity))
+		r.World.SetSolid(r.Entity, r.isBelow(player.Entity))
+		r.Physics.IgnoreEnt = nil // Should never hit player.
 	case MovingRight:
 		r.Anim.SetGroup("right")
 		r.Velocity = m.Delta{DX: 0, DY: SideSpeed}
-		r.World.SetSolid(r.Entity, r.isAbove(player.Entity))
+		r.World.SetSolid(r.Entity, r.isBelow(player.Entity))
+		r.Physics.IgnoreEnt = nil // Should never hit player.
 	case GettingCarried:
 		r.Anim.SetGroup("idle")
 		r.Velocity = player.Velocity // Hacky carry physics; good enough?
 		r.World.SetSolid(r.Entity, false)
+		r.Physics.IgnoreEnt = player.Entity // May collide with player.
 	}
 
 	// Run physics.
