@@ -291,6 +291,7 @@ func (p *Player) Update() {
 	}
 
 	// Run physics.
+	p.WasOnGround = p.OnGround
 	p.Physics.Update() // May call handleTouch.
 
 	if moveLeft && !moveRight {
