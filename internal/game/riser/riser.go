@@ -175,22 +175,22 @@ func (r *Riser) Update() {
 	case IdlingUp:
 		r.Anim.SetGroup("idle")
 		r.Velocity = m.Delta{DX: 0, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, r.isBelow(player.Entity))
+		r.World.SetSolid(r.Entity, player.CanStand && r.isBelow(player.Entity))
 		r.Physics.IgnoreEnt = nil // Stop at player!
 	case MovingUp:
 		r.Anim.SetGroup("up")
 		r.Velocity = m.Delta{DX: 0, DY: -UpSpeed}
-		r.World.SetSolid(r.Entity, r.isBelow(player.Entity))
+		r.World.SetSolid(r.Entity, player.CanStand && r.isBelow(player.Entity))
 		r.Physics.IgnoreEnt = player.Entity // Move upwards despite player standing on it.
 	case MovingLeft:
 		r.Anim.SetGroup("left")
 		r.Velocity = m.Delta{DX: -SideSpeed, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, r.isBelow(player.Entity))
+		r.World.SetSolid(r.Entity, player.CanStand && r.isBelow(player.Entity))
 		r.Physics.IgnoreEnt = player.Entity // Player may be standing on it.
 	case MovingRight:
 		r.Anim.SetGroup("right")
 		r.Velocity = m.Delta{DX: SideSpeed, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, r.isBelow(player.Entity))
+		r.World.SetSolid(r.Entity, player.CanStand && r.isBelow(player.Entity))
 		r.Physics.IgnoreEnt = player.Entity // Player may be standing on it.
 	case GettingCarried:
 		r.Anim.SetGroup("idle")

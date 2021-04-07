@@ -152,8 +152,8 @@ func (p *Player) GiveAbility(name, text string) {
 }
 
 func (p *Player) reloadAbilities() {
-	p.CanCarry = p.HasAbility("carry") || true
-	p.CanPush = p.HasAbility("push") || true
+	p.CanCarry = p.HasAbility("carry")
+	p.CanPush = p.HasAbility("push")
 	p.CanStand = p.HasAbility("stand")
 }
 
