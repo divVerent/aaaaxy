@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1436">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1441">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -6464,5 +6464,40 @@
   <object id="1433" type="SwitchMusic" x="544" y="6688" width="48" height="16"/>
   <object id="1434" type="SwitchMusic" x="976" y="6688" width="48" height="16"/>
   <object id="1435" type="Riser" x="4792" y="4032" width="16" height="16"/>
+  <object id="1436" name="LeapOfFaithAnyAbility" type="AnimatedSprite" gid="15" x="4816" y="3984" width="16" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+    <property name="opaque" type="bool" value="false"/>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="1437" name="LeapOfFaithAnyAbility" type="AnimatedSprite" gid="16" x="4832" y="3984" width="16" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+    <property name="opaque" type="bool" value="false"/>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="1438" name="LeapOfFaithAnyAbility" type="AnimatedSprite" gid="53" x="4848" y="3984" width="16" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+    <property name="opaque" type="bool" value="false"/>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="1439" type="SetState" x="4576" y="3888" width="208" height="16">
+   <properties>
+    <property name="target" value="LeapOfFaithAnyAbility"/>
+   </properties>
+  </object>
+  <object id="1440" type="Sprite" x="4752" y="3968" width="32" height="32">
+   <properties>
+    <property name="image" value="arrow32.png"/>
+    <property name="opaque" type="bool" value="false"/>
+    <property name="orientation" value="WN"/>
+    <property name="solid" type="bool" value="false"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

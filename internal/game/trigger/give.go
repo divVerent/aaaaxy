@@ -83,9 +83,10 @@ func (g *Give) Update() {
 }
 
 func (g *Give) Touch(other *engine.Entity) {
-	if other == g.World.Player {
-		g.World.Player.Impl.(*player.Player).GiveAbility(g.Ability, g.Text)
+	if other != g.World.Player {
+		return
 	}
+	g.World.Player.Impl.(*player.Player).GiveAbility(g.Ability, g.Text)
 }
 
 func (g *Give) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}

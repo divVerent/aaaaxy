@@ -59,12 +59,10 @@ func (s *SetState) Update() {
 }
 
 func (s *SetState) Touch(other *engine.Entity) {
-	if other == s.SetStateTarget.World.Player {
-		if s.SendEveryFrame || (!s.Touching && !s.Touched) {
-			s.SetState(true)
-		}
-		s.Touching = true
+	if s.SendEveryFrame || (!s.Touching && !s.Touched) {
+		s.SetState(true)
 	}
+	s.Touching = true
 }
 
 func (s *SetState) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}

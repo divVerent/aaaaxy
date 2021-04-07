@@ -34,10 +34,19 @@ func (t *NonSolidTouchable) Init(w *engine.World, e *engine.Entity) error {
 }
 
 func (t *NonSolidTouchable) Update() {
-	delta := t.Entity.Rect.Delta(t.World.Player.Rect)
-	if (delta == m.Delta{}) {
-		t.Entity.Impl.Touch(t.World.Player)
-	} else if t.NotifyUntouched {
+	touched := false
+	t.World.ForEachEntity(func(e *engine.Entity) {
+		if e == t.Entity {
+			return
+		}
+		// Should we filter stronger? Like, only triggers?
+		delta := t.Entity.Rect.Delta(e.Rect)
+		if (delta == m.Delta{}) {
+			t.Entity.Impl.Touch(e)
+			touched = true
+		}
+	})
+	if !touched && t.NotifyUntouched {
 		t.Entity.Impl.Touch(nil)
 	}
 }

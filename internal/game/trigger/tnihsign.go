@@ -105,7 +105,7 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 			t.Entity.Image = t.SeenImage
 			mixins.SetStateOfTarget(t.World, t.Entity, t.Target, true)
 		}
-	} else {
+	} else if other == nil {
 		if t.Centerprint.Active() {
 			t.Centerprint.SetFadeOut(true)
 		}

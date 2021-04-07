@@ -106,6 +106,9 @@ func (q *QuestionBlock) Update() {
 }
 
 func (q *QuestionBlock) Touch(other *engine.Entity) {
+	if other != q.World.Player {
+		return
+	}
 	if q.Used {
 		return
 	}
