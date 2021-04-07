@@ -85,6 +85,7 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	r.Physics.Init(w, e, r.handleTouch)
 	r.World = w
 	r.Entity = e
+
 	var sprite string
 	if s.Properties["large"] == "true" {
 		r.Entity.Rect.Size = m.Delta{DX: LargeRiserWidth, DY: LargeRiserHeight}
@@ -99,6 +100,7 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	r.Entity.ZIndex = engine.MaxZIndex - 1
 	r.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
 	r.State = Inactive
+	r.Entity.Orientation = m.Identity()
 
 	err := r.Anim.Init(sprite, map[string]*animation.Group{
 		"inactive": {
