@@ -16,6 +16,7 @@ package mixins
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -34,6 +35,17 @@ type Physics struct {
 	IgnoreEnt       *engine.Entity
 	handleTouchFunc func(trace engine.TraceResult)
 }
+
+type trivialPhysics struct {
+	engine.EntityImpl
+	Physics
+}
+
+func (t *trivialPhysics) Update() {
+	t.Physics.Update()
+}
+
+var _ interfaces.Physics = &trivialPhysics{}
 
 func (p *Physics) Init(w *engine.World, e *engine.Entity, handleTouch func(trace engine.TraceResult)) {
 	p.World = w
@@ -127,34 +139,41 @@ func (p *Physics) Update() {
 	delta := p.Entity.Rect.Origin.Delta(oldOrigin)
 	if (delta != m.Delta{}) {
 		p.World.ForEachEntity(func(other *engine.Entity) {
-			otherP, ok := other.Impl.(groundEntityer)
+			otherP, ok := other.Impl.(interfaces.Physics)
 			if !ok {
 				return
 			}
-			if otherP.groundEntity() == p.Entity {
+			if otherP.ReadGroundEntity() == p.Entity {
 				trace := p.World.TraceBox(other.Rect, other.Rect.Origin.Add(delta), engine.TraceOptions{
 					IgnoreEnt: p.IgnoreEnt,
 					ForEnt:    other,
 				})
 				other.Rect.Origin = trace.EndPos
 				if (trace.HitDelta != m.Delta{}) {
-					otherP.handleTouch(trace)
+					otherP.HandleTouch(trace)
 				}
 			}
 		})
 	}
 }
 
-func (p *Physics) groundEntity() *engine.Entity {
+func (p *Physics) ReadGroundEntity() *engine.Entity {
 	return p.GroundEntity
 }
 
-func (p *Physics) handleTouch(trace engine.TraceResult) {
+func (p *Physics) HandleTouch(trace engine.TraceResult) {
 	p.handleTouchFunc(trace)
 }
 
-type groundEntityer interface {
-	engine.EntityImpl
-	groundEntity() *engine.Entity
-	handleTouch(trace engine.TraceResult)
+func (p *Physics) ReadVelocity() m.Delta {
+	return p.Velocity
+}
+
+func (p *Physics) SetVelocity(velocity m.Delta) {
+	p.Velocity = velocity
+}
+
+func (p *Physics) SetVelocityForJump(velocity m.Delta) {
+	p.SetVelocity(velocity)
+	p.OnGround = false
 }

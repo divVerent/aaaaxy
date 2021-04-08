@@ -21,8 +21,9 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
+	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
-	"github.com/divVerent/aaaaaa/internal/game/player"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/sound"
@@ -106,7 +107,7 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 	//   -> vDY = -sqrt(-2 * height * playerGravity * SubpixelScale)
 	// - vDY + playerGravity * tA = 0
 	//   -> tA = -vDY / playerGravity
-	vDY := -int(math.Sqrt(2 * float64(-height) * float64(player.Gravity) * float64(mixins.SubPixelScale)))
+	vDY := -int(math.Sqrt(2 * float64(-height) * float64(constants.Gravity) * float64(mixins.SubPixelScale)))
 	// Actually move downwards if requested!
 	if apexOutside && !targetHigher {
 		vDY = -vDY
@@ -114,7 +115,7 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 	// Finally:
 	// - vDY * t + 1/2 * playerGravity * t^2 = deltaDY * SubpixelScale
 	// - vDX * t = deltaDX
-	a := 0.5 * player.Gravity
+	a := 0.5 * constants.Gravity
 	b := float64(vDY)
 	c := -float64(delta.DY) * mixins.SubPixelScale
 	u := -b / (2 * a)
@@ -139,8 +140,7 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 		return
 	}
 	// Do we actually touch the player?
-	p, ok := other.Impl.(*player.Player)
-	if !ok {
+	if other != j.World.Player {
 		return
 	}
 	// Can not touch from below (not gonna work anyway).
@@ -169,10 +169,8 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 		return
 	}
 	// Perform the jump.
-	p.Velocity = calculateJump(delta, j.Height)
-	p.OnGround = false
-	p.JumpingUp = false
-	p.AirFrames = player.ExtraGroundFrames + 1
+	p := other.Impl.(interfaces.Physics)
+	p.SetVelocityForJump(calculateJump(delta, j.Height))
 	j.JumpSound.Play()
 }
 

@@ -21,8 +21,8 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
-	"github.com/divVerent/aaaaaa/internal/game/player"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
@@ -148,19 +148,26 @@ func (r *Riser) isBelow(other *engine.Entity) bool {
 }
 
 func (r *Riser) Update() {
-	player := r.World.Player.Impl.(*player.Player)
-	playerIsLeft := player.Entity.Rect.Center().X < r.Entity.Rect.Center().X
-	if player.CanCarry && player.GroundEntity != r.Entity && (player.Entity.Rect.Delta(r.Entity.Rect) == m.Delta{}) && player.ActionPressed() {
+	playerAbilities := r.World.Player.Impl.(interfaces.Abilityer)
+	playerButtons := r.World.Player.Impl.(interfaces.ActionPresseder)
+	playerPhysics := r.World.Player.Impl.(interfaces.Physics)
+	canCarry := playerAbilities.HasAbility("carry")
+	canPush := playerAbilities.HasAbility("push")
+	canStand := playerAbilities.HasAbility("stand")
+	actionPressed := playerButtons.ActionPressed()
+	playerGround := playerPhysics.ReadGroundEntity()
+
+	if canCarry && playerGround != r.Entity && (r.World.Player.Rect.Delta(r.Entity.Rect) == m.Delta{}) && actionPressed {
 		r.State = GettingCarried
-	} else if player.CanPush && player.ActionPressed() {
-		if playerIsLeft {
+	} else if canPush && actionPressed {
+		if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X {
 			r.State = MovingRight
 		} else {
 			r.State = MovingLeft
 		}
-	} else if player.CanStand && player.GroundEntity == r.Entity {
+	} else if canStand && playerGround == r.Entity {
 		r.State = MovingUp
-	} else if player.CanCarry || player.CanPush || player.CanStand {
+	} else if canCarry || canPush || canStand {
 		r.State = IdlingUp
 	} else {
 		r.State = Inactive
@@ -175,28 +182,28 @@ func (r *Riser) Update() {
 	case IdlingUp:
 		r.Anim.SetGroup("idle")
 		r.Velocity = m.Delta{DX: 0, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, player.CanStand && r.isBelow(player.Entity))
+		r.World.SetSolid(r.Entity, canStand && r.isBelow(r.World.Player))
 		r.Physics.IgnoreEnt = nil // Stop at player!
 	case MovingUp:
 		r.Anim.SetGroup("up")
 		r.Velocity = m.Delta{DX: 0, DY: -UpSpeed}
-		r.World.SetSolid(r.Entity, player.CanStand && r.isBelow(player.Entity))
-		r.Physics.IgnoreEnt = player.Entity // Move upwards despite player standing on it.
+		r.World.SetSolid(r.Entity, canStand && r.isBelow(r.World.Player))
+		r.Physics.IgnoreEnt = r.World.Player // Move upwards despite player standing on it.
 	case MovingLeft:
 		r.Anim.SetGroup("left")
 		r.Velocity = m.Delta{DX: -SideSpeed, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, player.CanStand && r.isBelow(player.Entity))
-		r.Physics.IgnoreEnt = player.Entity // Player may be standing on it.
+		r.World.SetSolid(r.Entity, canStand && r.isBelow(r.World.Player))
+		r.Physics.IgnoreEnt = r.World.Player // Player may be standing on it.
 	case MovingRight:
 		r.Anim.SetGroup("right")
 		r.Velocity = m.Delta{DX: SideSpeed, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, player.CanStand && r.isBelow(player.Entity))
-		r.Physics.IgnoreEnt = player.Entity // Player may be standing on it.
+		r.World.SetSolid(r.Entity, canStand && r.isBelow(r.World.Player))
+		r.Physics.IgnoreEnt = r.World.Player // Player may be standing on it.
 	case GettingCarried:
 		r.Anim.SetGroup("idle")
-		r.Velocity = player.Velocity // Hacky carry physics; good enough?
+		r.Velocity = playerPhysics.ReadVelocity() // Hacky carry physics; good enough?
 		r.World.SetSolid(r.Entity, false)
-		r.Physics.IgnoreEnt = player.Entity // May collide with player.
+		r.Physics.IgnoreEnt = r.World.Player // May collide with player.
 	}
 
 	// Run physics.

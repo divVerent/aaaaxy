@@ -63,7 +63,7 @@ func (g *Give) Despawn() {}
 
 func (g *Give) Update() {
 	g.NonSolidTouchable.Update()
-	if g.World.Player.Impl.(interfaces.HasAbilityer).HasAbility(g.Ability) {
+	if g.World.Player.Impl.(interfaces.Abilityer).HasAbility(g.Ability) {
 		g.AnimFrame--
 	} else {
 		g.AnimFrame++
@@ -86,7 +86,7 @@ func (g *Give) Touch(other *engine.Entity) {
 	if other != g.World.Player {
 		return
 	}
-	g.World.Player.Impl.(interfaces.HasAbilityer).GiveAbility(g.Ability, g.Text)
+	g.World.Player.Impl.(interfaces.Abilityer).GiveAbility(g.Ability, g.Text)
 }
 
 func (g *Give) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}

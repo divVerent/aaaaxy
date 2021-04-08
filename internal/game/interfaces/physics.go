@@ -14,7 +14,33 @@
 
 package interfaces
 
-type HasAbilityer interface {
-	HasAbility(name string) bool
-	GiveAbility(name, text string)
+import (
+	"github.com/divVerent/aaaaaa/internal/engine"
+	m "github.com/divVerent/aaaaaa/internal/math"
+)
+
+type Velocityer interface {
+	engine.EntityImpl
+
+	SetVelocity(velocity m.Delta)
+	SetVelocityForJump(velocity m.Delta)
+	ReadVelocity() m.Delta
+}
+
+type GroundEntityer interface {
+	engine.EntityImpl
+
+	ReadGroundEntity() *engine.Entity
+}
+
+type HandleToucher interface {
+	engine.EntityImpl
+
+	HandleTouch(trace engine.TraceResult)
+}
+
+type Physics interface {
+	Velocityer
+	GroundEntityer
+	HandleToucher
 }

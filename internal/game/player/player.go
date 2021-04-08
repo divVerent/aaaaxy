@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/input"
@@ -61,7 +62,8 @@ type Player struct {
 	GotAbilitySound *sound.Sound
 }
 
-var _ interfaces.HasAbilityer = &Player{}
+var _ interfaces.Abilityer = &Player{}
+var _ interfaces.ActionPresseder = &Player{}
 
 // Player height is 30 px.
 // So 30 px ~ 180 cm.
@@ -104,7 +106,6 @@ const (
 	// g = 576
 	// Note: assuming 1px=6cm, this is actually 17.3m/s and 3.5x earth gravity.
 	JumpVelocity = 288 * mixins.SubPixelScale / engine.GameTPS
-	Gravity      = 576 * mixins.SubPixelScale / engine.GameTPS / engine.GameTPS
 	MaxSpeed     = 2 * level.TileSize * mixins.SubPixelScale
 
 	NoiseMinSpeed = 384 * mixins.SubPixelScale / engine.GameTPS
@@ -112,7 +113,7 @@ const (
 	NoisePower    = 2.0
 
 	// We want at least 19px high jumps so we can be sure a jump moves at least 2 tiles up.
-	JumpExtraGravity = 72*Gravity/19 - Gravity
+	JumpExtraGravity = 72*constants.Gravity/19 - constants.Gravity
 
 	// Number of frames to allow jumping after leaving ground. This is an extra 1/30 sec.
 	// 7 allows reliable walking over 2 tile gaps.
@@ -287,7 +288,7 @@ func (p *Player) Update() {
 	}
 	if p.AirFrames > ExtraGroundFrames {
 		// No gravity while we still can jump.
-		p.Velocity.DY += Gravity
+		p.Velocity.DY += constants.Gravity
 	}
 	if p.Velocity.DY > MaxSpeed {
 		p.Velocity.DY = MaxSpeed
@@ -390,6 +391,12 @@ func (p *Player) Respawned() {
 
 func (p *Player) ActionPressed() bool {
 	return input.Action.Held
+}
+
+func (p *Player) SetVelocityForJump(velocity m.Delta) {
+	p.Physics.SetVelocityForJump(velocity)
+	p.JumpingUp = false
+	p.AirFrames = ExtraGroundFrames + 1
 }
 
 func init() {
