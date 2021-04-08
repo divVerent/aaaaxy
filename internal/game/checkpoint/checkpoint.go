@@ -24,7 +24,6 @@ import (
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
-	"github.com/divVerent/aaaaaa/internal/game/player"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
@@ -82,7 +81,7 @@ func (c *Checkpoint) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity
 func (c *Checkpoint) Despawn() {}
 
 func (c *Checkpoint) setCheckpoint() bool {
-	player := c.World.Player.Impl.(*player.Player)
+	player := c.World.Level.Player
 	changed := false
 	cpProperty := "checkpoint_seen." + c.Entity.Name()
 	if player.PersistentState[cpProperty] != c.FlippedStr {
