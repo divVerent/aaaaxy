@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/level"
@@ -59,6 +60,8 @@ type Player struct {
 	HitHeadSound    *sound.Sound
 	GotAbilitySound *sound.Sound
 }
+
+var _ interfaces.HasAbilityer = &Player{}
 
 // Player height is 30 px.
 // So 30 px ~ 180 cm.

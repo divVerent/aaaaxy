@@ -127,7 +127,7 @@ func (p *Physics) Update() {
 	delta := p.Entity.Rect.Origin.Delta(oldOrigin)
 	if (delta != m.Delta{}) {
 		p.World.ForEachEntity(func(other *engine.Entity) {
-			otherP, ok := other.Impl.(GroundEntityer)
+			otherP, ok := other.Impl.(groundEntityer)
 			if !ok {
 				return
 			}
@@ -153,7 +153,7 @@ func (p *Physics) handleTouch(trace engine.TraceResult) {
 	p.handleTouchFunc(trace)
 }
 
-type GroundEntityer interface {
+type groundEntityer interface {
 	engine.EntityImpl
 	groundEntity() *engine.Entity
 	handleTouch(trace engine.TraceResult)
