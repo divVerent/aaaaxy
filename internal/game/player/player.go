@@ -50,11 +50,6 @@ type Player struct {
 	Respawning    bool
 	WasOnGround   bool
 
-	// Controlling Riser objects.
-	CanCarry bool
-	CanPush  bool
-	CanStand bool
-
 	Anim            animation.State
 	JumpSound       *sound.Sound
 	LandSound       *sound.Sound
@@ -149,16 +144,9 @@ func (p *Player) GiveAbility(name, text string) {
 		log.Printf("Could not save game: %v", err)
 		return
 	}
-	p.reloadAbilities()
 
 	centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 190, G: 0, B: 0, A: 255}).SetFadeOut(true)
 	p.GotAbilitySound.Play()
-}
-
-func (p *Player) reloadAbilities() {
-	p.CanCarry = p.HasAbility("carry")
-	p.CanPush = p.HasAbility("push")
-	p.CanStand = p.HasAbility("stand")
 }
 
 func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -171,7 +159,6 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	p.Entity.ZIndex = engine.MaxZIndex
 	p.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
 	w.SetSolid(p.Entity, true)   // Needed so platforms don't let players fall through.
-	p.reloadAbilities()
 
 	err := p.Anim.Init("player", map[string]*animation.Group{
 		"idle": {
@@ -386,7 +373,6 @@ func (p *Player) Respawned() {
 	p.Anim.ForceGroup("idle")        // Reset animation.
 	p.Entity.Image = nil             // Hide player until next Update.
 	p.Entity.Orientation = m.FlipX() // Default to looking right.
-	p.reloadAbilities()              // Abilities may have changed.
 }
 
 func (p *Player) ActionPressed() bool {
