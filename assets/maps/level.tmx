@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1441">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1446">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -615,7 +615,7 @@
   </object>
   <object id="51" type="TnihSign" x="4992" y="3792" width="32" height="32">
    <properties>
-    <property name="reached_from" type="object" value="53"/>
+    <property name="reached_from" type="object" value="281"/>
     <property name="text" value="Sometimes the angle of looking at things is all that matters."/>
    </properties>
   </object>
@@ -6549,6 +6549,30 @@
     <property name="orientation" value="WN"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="1441" type="TnihSign" x="32" y="288" width="32" height="32">
+   <properties>
+    <property name="reached_from" type="object" value="1365"/>
+    <property name="text" value="Steadfastly holding on to the iron rod prevents disasters."/>
+   </properties>
+  </object>
+  <object id="1442" type="TnihSign" x="4000" y="5056" width="32" height="32">
+   <properties>
+    <property name="reached_from" type="object" value="99"/>
+    <property name="text" value="Sometimes the thing that is in plain sight can be a challenge to reach."/>
+   </properties>
+  </object>
+  <object id="1443" type="TnihSign" x="5920" y="7088" width="32" height="32">
+   <properties>
+    <property name="reached_from" type="object" value="865"/>
+    <property name="text" value="Can't tell if this place is pointless or not."/>
+   </properties>
+  </object>
+  <object id="1445" type="TnihSign" x="5056" y="8096" width="32" height="32">
+   <properties>
+    <property name="reached_from" type="object" value="865"/>
+    <property name="text" value="Peaceful games require peaceful solutions."/>
    </properties>
   </object>
  </objectgroup>

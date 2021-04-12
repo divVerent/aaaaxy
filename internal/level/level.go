@@ -459,6 +459,15 @@ func Load(filename string) (*Level, error) {
 		name := cp.Properties["name"]
 		level.TnihSignsByCheckpoint[name] = append(level.TnihSignsByCheckpoint[name], sign)
 	}
+	for name := range level.Checkpoints {
+		if name == "" {
+			// This isn't a real CP.
+			continue
+		}
+		if len(level.TnihSignsByCheckpoint[name]) == 0 {
+			log.Printf("note: checkpoint %v has no TnihSign - intended?", name)
+		}
+	}
 	for warpname, warppair := range warpZones {
 		if len(warppair) != 2 {
 			return nil, fmt.Errorf("unpaired WarpZone %q: got %d, want 2", warpname, len(warppair))

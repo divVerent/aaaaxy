@@ -15,6 +15,7 @@
 package menu
 
 import (
+	"fmt"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -130,6 +131,10 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	darkLineColor := color.NRGBA{R: 75, G: 75, B: 75, A: 255}
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := s.Menu.World.Level.Checkpoints[s.CurrentCP].Properties["text"]
+	seen, total := s.Menu.World.PlayerState.TnihSignsSeen(s.CurrentCP)
+	if total > 0 {
+		cpText += fmt.Sprintf(" (%d/%d)", seen, total)
+	}
 	font.Menu.Draw(screen, cpText, m.Pos{X: x, Y: 7 * h / 8}, true, fgs, bgs)
 
 	// Draw all known checkpoints.

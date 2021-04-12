@@ -88,6 +88,17 @@ func (s *PlayerState) RecordCheckpointEdge(name string, flipped bool) bool {
 	return updated
 }
 
+func (s *PlayerState) TnihSignsSeen(name string) (seen, total int) {
+	seen, total = 0, 0
+	for _, sign := range s.Level.TnihSignsByCheckpoint[name] {
+		total++
+		if sign.Properties["seen"] == "true" {
+			seen++
+		}
+	}
+	return
+}
+
 func (s *PlayerState) Frames() int {
 	framesStr := s.Level.Player.PersistentState["frames"]
 	var frames int
