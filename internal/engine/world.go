@@ -29,6 +29,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
+	"github.com/divVerent/aaaaaa/internal/player_state"
 	"github.com/divVerent/aaaaaa/internal/timing"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
@@ -52,8 +53,10 @@ type World struct {
 	entities map[EntityIncarnation]*Entity
 	// opaqueEntities are all opaque entities currently loaded.
 	opaqueEntities []*Entity
-	// PlayerIncarnation is the incarnation ID of the player entity.
+	// Player is the player entity.
 	Player *Entity
+	// PlayerState is the managed persistent state of the player.
+	PlayerState player_state.PlayerState
 	// Level is the current tilemap (universal covering with warpZones).
 	Level *level.Level
 	// Frame since last spawn. Used to let the world slowly "fade in".
@@ -158,9 +161,10 @@ func (w *World) Init() error {
 	}
 
 	*w = World{
-		tiles:    make([]*level.Tile, tileWindowWidth*tileWindowHeight),
-		entities: map[EntityIncarnation]*Entity{},
-		Level:    lvl,
+		tiles:       make([]*level.Tile, tileWindowWidth*tileWindowHeight),
+		entities:    map[EntityIncarnation]*Entity{},
+		Level:       lvl,
+		PlayerState: player_state.PlayerState{lvl},
 	}
 	w.renderer.Init(w)
 
@@ -199,8 +203,7 @@ func (w *World) Load() error {
 	if err != nil {
 		return err
 	}
-	cpName := w.Level.Player.PersistentState["last_checkpoint"]
-	return w.RespawnPlayer(cpName)
+	return w.RespawnPlayer(w.PlayerState.LastCheckpoint())
 }
 
 // Save saves the current savegame.
@@ -221,7 +224,7 @@ func (w *World) Save() error {
 // Spawning at checkpoint "" means the initial player location.
 func (w *World) RespawnPlayer(checkpointName string) error {
 	// Load whether we've seen this checkpoint in flipped state.
-	flipped := w.Level.Player.PersistentState["checkpoint_seen."+checkpointName] == "FlipX"
+	flipped := w.PlayerState.CheckpointSeen(checkpointName) == player_state.SeenFlipped
 
 	if *debugInitialCheckpoint != "" {
 		checkpointName = *debugInitialCheckpoint
@@ -299,7 +302,7 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	w.WarpZoneStates = map[string]bool{}
 
 	// Make sure respawning always gets back to this CP.
-	w.Level.Player.PersistentState["last_checkpoint"] = checkpointName
+	w.PlayerState.RecordCheckpoint(checkpointName, flipped)
 
 	// Notify the player, reset animation state.
 	w.Player.Impl.(PlayerEntityImpl).Respawned()

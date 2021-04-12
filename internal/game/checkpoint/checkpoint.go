@@ -40,8 +40,8 @@ type Checkpoint struct {
 	Music   string
 	DeadEnd bool
 
-	FlippedStr string
-	Inactive   bool
+	Flipped  bool
+	Inactive bool
 
 	Sound *sound.Sound
 }
@@ -63,9 +63,9 @@ func (c *Checkpoint) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity
 	c.DeadEnd = s.Properties["dead_end"] == "true"
 
 	if c.Entity.Transform == requiredTransform {
-		c.FlippedStr = "Identity"
+		c.Flipped = false
 	} else if c.Entity.Transform == requiredTransform.Concat(m.FlipX()) {
-		c.FlippedStr = "FlipX"
+		c.Flipped = true
 	} else {
 		c.Inactive = true
 	}
@@ -80,28 +80,6 @@ func (c *Checkpoint) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity
 
 func (c *Checkpoint) Despawn() {}
 
-func (c *Checkpoint) setCheckpoint() bool {
-	player := c.World.Level.Player
-	changed := false
-	cpProperty := "checkpoint_seen." + c.Entity.Name()
-	if player.PersistentState[cpProperty] != c.FlippedStr {
-		player.PersistentState[cpProperty] = c.FlippedStr
-		changed = true
-	}
-	if player.PersistentState["last_checkpoint"] != c.Entity.Name() {
-		edgeProperty := "checkpoints_walked." + player.PersistentState["last_checkpoint"] + "." + c.Entity.Name()
-		if player.PersistentState[edgeProperty] != "true" {
-			player.PersistentState[edgeProperty] = "true"
-			changed = true
-		}
-		if !c.DeadEnd {
-			player.PersistentState["last_checkpoint"] = c.Entity.Name()
-			changed = true
-		}
-	}
-	return changed
-}
-
 func (c *Checkpoint) Touch(other *engine.Entity) {
 	if other != c.World.Player {
 		return
@@ -111,7 +89,7 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 	}
 	// All checkpoints set the "mood".
 	music.Switch(c.Music)
-	if !c.setCheckpoint() {
+	if !c.World.PlayerState.RecordCheckpointEdge(c.Entity.Name(), c.Flipped) {
 		return
 	}
 	err := c.World.Save()

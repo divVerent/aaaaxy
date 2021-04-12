@@ -107,8 +107,7 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	font.Menu.Draw(screen, "Quit", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
 
 	// Display stats.
-	var frames int
-	fmt.Sscanf(s.Menu.World.Level.Player.PersistentState["frames"], "%d", &frames)
+	frames := s.Menu.World.PlayerState.Frames()
 	ss, ms := frames/60, (frames%60)*1000/60
 	mm, ss := ss/60, ss%60
 	hh, mm := mm/60, mm%60

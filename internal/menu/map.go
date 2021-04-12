@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/player_state"
 )
 
 type MapScreen struct {
@@ -45,7 +46,7 @@ const (
 
 func (s *MapScreen) Init(m *Menu) error {
 	s.Menu = m
-	s.CurrentCP = s.Menu.World.Level.Player.PersistentState["last_checkpoint"]
+	s.CurrentCP = s.Menu.World.PlayerState.LastCheckpoint()
 	if s.CurrentCP == "" {
 		// Have no checkpoint yet - start the game right away.
 		return s.Menu.SwitchToGame()
@@ -75,8 +76,8 @@ func (s *MapScreen) moveBy(d m.Delta) {
 	if !found {
 		return
 	}
-	edgeSeen := s.Menu.World.Level.Player.PersistentState["checkpoints_walked."+s.CurrentCP+"."+edge.Other] != ""
-	reverseSeen := s.Menu.World.Level.Player.PersistentState["checkpoints_walked."+edge.Other+"."+s.CurrentCP] != ""
+	edgeSeen := s.Menu.World.PlayerState.CheckpointsWalked(s.CurrentCP, edge.Other)
+	reverseSeen := s.Menu.World.PlayerState.CheckpointsWalked(edge.Other, s.CurrentCP)
 	if !edgeSeen && !reverseSeen {
 		// Don't know this yet :)
 		return
@@ -90,7 +91,7 @@ func (s *MapScreen) moveBy(d m.Delta) {
 }
 
 func (s *MapScreen) exit() error {
-	if s.CurrentCP != firstCP && s.Menu.World.Level.Player.PersistentState["checkpoint_seen."+firstCP] != "" {
+	if s.CurrentCP != firstCP && s.Menu.World.PlayerState.CheckpointSeen(firstCP) != player_state.NotSeen {
 		s.CurrentCP = firstCP
 		return s.Menu.MoveSound(nil)
 	}
@@ -147,8 +148,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	// ebitenutil.DrawRect(screen, float64(mapRect.Origin.X), float64(mapRect.Origin.Y), float64(mapRect.Size.DX), float64(mapRect.Size.DY), bgs)
 	// First draw all edges.
 	for cpName, cpLoc := range loc.Locs {
-		cpSeen := s.Menu.World.Level.Player.PersistentState["checkpoint_seen."+cpName] != ""
-		if !cpSeen {
+		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 			continue
 		}
 		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
@@ -157,7 +157,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				continue
 			}
 			otherName := edge.Other
-			edgeSeen := s.Menu.World.Level.Player.PersistentState["checkpoints_walked."+cpName+"."+otherName] != ""
+			edgeSeen := s.Menu.World.PlayerState.CheckpointsWalked(cpName, otherName)
 			closePos := pos.Add(dir.Mul(7))
 			options := &ebiten.DrawTrianglesOptions{
 				CompositeMode: ebiten.CompositeModeSourceOver,
@@ -178,8 +178,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	}
 	// Then draw the CPs.
 	for cpName, cpLoc := range loc.Locs {
-		cpSeen := s.Menu.World.Level.Player.PersistentState["checkpoint_seen."+cpName] != ""
-		if !cpSeen {
+		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 			continue
 		}
 		sprite := s.cpSprite
