@@ -18,6 +18,33 @@ import (
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
+// Contents indicates what kind of tiles/objects we want to hit.
+type Contents int
+
+const (
+	NoContents          Contents = 0
+	OpaqueContents      Contents = 1
+	PlayerSolidContents Contents = 2
+	ObjectSolidContents Contents = 4
+	SolidContents       Contents = PlayerSolidContents | ObjectSolidContents
+)
+
+func (c Contents) Empty() bool {
+	return c == NoContents
+}
+
+func (c Contents) Opaque() bool {
+	return c&OpaqueContents != 0
+}
+
+func (c Contents) PlayerSolid() bool {
+	return c&PlayerSolidContents != 0
+}
+
+func (c Contents) ObjectSolid() bool {
+	return c&ObjectSolidContents != 0
+}
+
 type VisibilityFlags int
 
 const (
@@ -28,8 +55,7 @@ const (
 // A Tile is a single game tile.
 type Tile struct {
 	// Info needed for gameplay.
-	Solid      bool
-	Opaque     bool
+	Contents   Contents
 	Spawnables []*Spawnable // NOTE: not adjusted for transform!
 
 	// Info needed for loading more tiles.

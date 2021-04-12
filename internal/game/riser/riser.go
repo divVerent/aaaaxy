@@ -82,7 +82,7 @@ const (
 )
 
 func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
-	r.Physics.Init(w, e, r.handleTouch)
+	r.Physics.Init(w, e, level.ObjectSolidContents, r.handleTouch)
 	r.World = w
 	r.Entity = e
 
@@ -177,32 +177,32 @@ func (r *Riser) Update() {
 	case Inactive:
 		r.Anim.SetGroup("inactive")
 		r.Velocity = m.Delta{}
-		r.World.SetSolid(r.Entity, false)
+		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, false)
 		r.Physics.IgnoreEnt = nil // Should never hit player.
 	case IdlingUp:
 		r.Anim.SetGroup("idle")
 		r.Velocity = m.Delta{DX: 0, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, canStand && r.isBelow(r.World.Player))
+		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && r.isBelow(r.World.Player))
 		r.Physics.IgnoreEnt = nil // Stop at player!
 	case MovingUp:
 		r.Anim.SetGroup("up")
 		r.Velocity = m.Delta{DX: 0, DY: -UpSpeed}
-		r.World.SetSolid(r.Entity, canStand && r.isBelow(r.World.Player))
+		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && r.isBelow(r.World.Player))
 		r.Physics.IgnoreEnt = r.World.Player // Move upwards despite player standing on it.
 	case MovingLeft:
 		r.Anim.SetGroup("left")
 		r.Velocity = m.Delta{DX: -SideSpeed, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, canStand && r.isBelow(r.World.Player))
+		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && r.isBelow(r.World.Player))
 		r.Physics.IgnoreEnt = r.World.Player // Player may be standing on it.
 	case MovingRight:
 		r.Anim.SetGroup("right")
 		r.Velocity = m.Delta{DX: SideSpeed, DY: -IdleSpeed}
-		r.World.SetSolid(r.Entity, canStand && r.isBelow(r.World.Player))
+		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && r.isBelow(r.World.Player))
 		r.Physics.IgnoreEnt = r.World.Player // Player may be standing on it.
 	case GettingCarried:
 		r.Anim.SetGroup("idle")
 		r.Velocity = playerPhysics.ReadVelocity() // Hacky carry physics; good enough?
-		r.World.SetSolid(r.Entity, false)
+		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, false)
 		r.Physics.IgnoreEnt = r.World.Player // May collide with player.
 	}
 

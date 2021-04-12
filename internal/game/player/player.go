@@ -150,7 +150,7 @@ func (p *Player) GiveAbility(name, text string) {
 }
 
 func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
-	p.Physics.Init(w, e, p.handleTouch)
+	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch)
 	p.World = w
 	p.Entity = e
 	p.PersistentState = s.PersistentState

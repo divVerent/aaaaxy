@@ -37,8 +37,7 @@ type AnimatedSprite struct {
 	Entity *engine.Entity
 
 	Alpha      float64
-	Solid      bool
-	Opaque     bool
+	Contents   level.Contents
 	FadeFrames int
 
 	AnimDir   int
@@ -57,8 +56,7 @@ func (s *AnimatedSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.E
 
 	// Collect the sprite info.
 	s.Alpha = s.Entity.Alpha
-	s.Solid = s.Entity.Solid()
-	s.Opaque = s.Entity.Opaque()
+	s.Contents = s.Entity.Contents()
 
 	fadeString := sp.Properties["fade_time"]
 	if fadeString != "" {
@@ -105,13 +103,7 @@ func (s *AnimatedSprite) Update() {
 		s.Entity.Alpha = alpha * s.Alpha
 	}
 
-	if s.AnimFrame >= solidThreshold {
-		s.World.SetSolid(s.Entity, s.Solid)
-		s.World.SetOpaque(s.Entity, s.Opaque)
-	} else {
-		s.World.SetSolid(s.Entity, false)
-		s.World.SetOpaque(s.Entity, false)
-	}
+	s.World.MutateContentsBool(s.Entity, s.Contents, s.AnimFrame >= solidThreshold)
 }
 
 func init() {

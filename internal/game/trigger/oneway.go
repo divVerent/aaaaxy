@@ -68,7 +68,7 @@ func (o *OneWay) Update() {
 	myP1 := o.Entity.Rect.OppositeCorner().Delta(m.Pos{}).Dot(o.AllowedDirection)
 	plP0 := o.World.Player.Rect.Origin.Delta(m.Pos{}).Dot(o.AllowedDirection)
 	plP1 := o.World.Player.Rect.OppositeCorner().Delta(m.Pos{}).Dot(o.AllowedDirection)
-	o.World.SetSolid(o.Entity, plP0 > myP0 && plP1 > myP0 && plP0 > myP1 && plP1 > myP1)
+	o.World.MutateContentsBool(o.Entity, level.PlayerSolidContents, plP0 > myP0 && plP1 > myP0 && plP0 > myP1 && plP1 > myP1)
 
 	// Animate.
 	o.Anim.Update(o.Entity)

@@ -17,6 +17,7 @@ package mixins
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -28,6 +29,7 @@ type Physics struct {
 	World  *engine.World
 	Entity *engine.Entity
 
+	Contents        level.Contents
 	OnGround        bool
 	GroundEntity    *engine.Entity
 	Velocity        m.Delta // An input to be set changed by caller.
@@ -47,9 +49,10 @@ func (t *trivialPhysics) Update() {
 
 var _ interfaces.Physics = &trivialPhysics{}
 
-func (p *Physics) Init(w *engine.World, e *engine.Entity, handleTouch func(trace engine.TraceResult)) {
+func (p *Physics) Init(w *engine.World, e *engine.Entity, contents level.Contents, handleTouch func(trace engine.TraceResult)) {
 	p.World = w
 	p.Entity = e
+	p.Contents = contents
 	p.handleTouchFunc = handleTouch
 }
 
@@ -70,6 +73,7 @@ func (p *Physics) Update() {
 	for (move != m.Delta{}) {
 		dest := p.Entity.Rect.Origin.Add(move)
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
+			Contents:  p.Contents,
 			IgnoreEnt: p.IgnoreEnt,
 			ForEnt:    p.Entity,
 		})
@@ -123,6 +127,7 @@ func (p *Physics) Update() {
 
 	if p.OnGround && !groundChecked {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
+			Contents:  p.Contents,
 			IgnoreEnt: p.IgnoreEnt,
 			ForEnt:    p.Entity,
 		})
@@ -145,6 +150,7 @@ func (p *Physics) Update() {
 			}
 			if otherP.ReadGroundEntity() == p.Entity {
 				trace := p.World.TraceBox(other.Rect, other.Rect.Origin.Add(delta), engine.TraceOptions{
+					Contents:  p.Contents,
 					IgnoreEnt: p.IgnoreEnt,
 					ForEnt:    other,
 				})

@@ -16,26 +16,14 @@ package engine
 
 import (
 	"errors"
-	"log"
 
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
-// TraceMode indicates what kind of tiles/objects we want to hit.
-type TraceMode int
-
-const (
-	// HitSolid indicates we want to hit solid (non passable) tiles.
-	HitSolid TraceMode = iota
-
-	// HitOpaque indicates we want to hit opaque (non see through) tiles.
-	HitOpaque
-)
-
 type TraceOptions struct {
-	// Mode is the TraceMode to trace by (whether we want to do a visibility or collision trace).
-	Mode TraceMode
+	// Contents is the OR'd set of contents to stop at (whether we want to do a visibility or collision trace).
+	Contents level.Contents
 	// If NoTiles is set, we ignore hits against tiles.
 	NoTiles bool
 	// If NoEntities is set, we ignore hits against entities.
@@ -305,15 +293,7 @@ func (l *normalizedLine) traceEntity(ent *Entity, enlarge m.Delta) (bool, m.Pos,
 // l must have been initialized to hit the current EndPos anywhere on its path.
 func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta, result *TraceResult) {
 	// Clip the trace to first entity hit.
-	var ents []*Entity
-	switch o.Mode {
-	case HitSolid:
-		ents = w.FindSolid()
-	case HitOpaque:
-		ents = w.FindOpaque()
-	default:
-		log.Panicf("invalid trace mode: %v", o.Mode)
-	}
+	ents := w.FindContents(o.Contents)
 	for _, ent := range ents {
 		if ent == o.IgnoreEnt {
 			continue

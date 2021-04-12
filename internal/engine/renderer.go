@@ -253,10 +253,13 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 	for _, ent := range r.world.entities {
 		if *debugShowBboxes {
 			boxColor := color.NRGBA{R: 128, G: 128, B: 128, A: 128}
-			if ent.solid {
+			if ent.contents.PlayerSolid() {
 				boxColor.R = 255
 			}
-			if ent.opaque {
+			if ent.contents.ObjectSolid() {
+				boxColor.G = 255
+			}
+			if ent.contents.Opaque() {
 				boxColor.B = 255
 			}
 			ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY), float64(ent.Rect.Size.DX), float64(ent.Rect.Size.DY), boxColor)

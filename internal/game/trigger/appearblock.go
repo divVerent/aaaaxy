@@ -47,8 +47,6 @@ func (a *AppearBlock) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entit
 	if err != nil {
 		return err
 	}
-	w.SetOpaque(e, false)
-	w.SetSolid(e, false)
 	e.Alpha = 0.0
 	e.ZIndex = 1 // Above normal sprites.
 
@@ -69,7 +67,7 @@ func (a *AppearBlock) Update() {
 		}
 	}
 	a.Entity.Alpha = float64(a.AnimFrame) / AppearFrames
-	a.World.SetSolid(a.Entity, a.AnimFrame >= AppearSolidThreshold)
+	a.World.MutateContentsBool(a.Entity, level.PlayerSolidContents, a.AnimFrame >= AppearSolidThreshold)
 }
 
 func (a *AppearBlock) Touch(other *engine.Entity) {}

@@ -15,6 +15,7 @@
 package engine
 
 import (
+	"log"
 	"math"
 
 	"github.com/divVerent/aaaaaa/internal/level"
@@ -41,7 +42,7 @@ func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceR
 			// result.HitFogOfWar = true
 			return traceDoneErr
 		}
-		if o.Mode == HitSolid && tile.Solid || o.Mode == HitOpaque && tile.Opaque {
+		if o.Contents&tile.Contents != 0 {
 			result.EndPos = prevPixel
 			result.HitDelta = delta
 			// result.HitTilePos = nextTile
@@ -61,6 +62,9 @@ func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceR
 
 // traceLine moves from from to to and yields info about where this hit solid etc.
 func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
+	if o.Contents == level.NoContents {
+		log.Panicf("do not know what to stop at - need to specify Contents in every trace")
+	}
 	result := TraceResult{
 		EndPos: to,
 		// HitTile:     nil,

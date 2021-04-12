@@ -124,6 +124,12 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 	}
 	w.SetSolid(e, sp.Properties["solid"] == "true")
 	w.SetOpaque(e, sp.Properties["opaque"] == "true")
+	if s := sp.Properties["player_solid"]; s != "" {
+		w.MutateContentsBool(e, level.PlayerSolidContents, s == "true")
+	}
+	if s := sp.Properties["object_solid"]; s != "" {
+		w.MutateContentsBool(e, level.ObjectSolidContents, s == "true")
+	}
 	if sp.Properties["alpha"] != "" {
 		e.Alpha, err = strconv.ParseFloat(sp.Properties["alpha"], 64)
 		if err != nil {

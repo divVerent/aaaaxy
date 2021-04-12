@@ -278,8 +278,13 @@ func Load(filename string) (*Level, error) {
 		for _, prop := range td.Tile.Properties {
 			properties[prop.Name] = prop.Value
 		}
-		solid := properties["solid"] != "false"
-		opaque := properties["opaque"] != "false"
+		var contents Contents
+		if properties["solid"] != "false" {
+			contents |= SolidContents
+		}
+		if properties["opaque"] != "false" {
+			contents |= OpaqueContents
+		}
 		imgSrc := td.Tile.Image.Source
 		imgSrcByOrientation := map[m.Orientation]string{}
 		for propName, propValue := range properties {
@@ -296,8 +301,7 @@ func Load(filename string) (*Level, error) {
 		}
 		level.setTile(pos, &LevelTile{
 			Tile: Tile{
-				Solid:                 solid,
-				Opaque:                opaque,
+				Contents:              contents,
 				LevelPos:              pos,
 				ImageSrc:              imgSrc,
 				ImageSrcByOrientation: imgSrcByOrientation,

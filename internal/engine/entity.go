@@ -30,8 +30,7 @@ type Entity struct {
 	Incarnation EntityIncarnation
 
 	// Info needed for gameplay.
-	solid        bool
-	opaque       bool
+	contents     level.Contents
 	Rect         m.Rect
 	Transform    m.Orientation // Possibly needed for initialization.
 	name         string        // Possibly searched for.
@@ -127,26 +126,37 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 	return e, nil
 }
 
+// MutateContents mutates an entity's contents.
+func (w *World) MutateContents(e *Entity, mask, set level.Contents) {
+	w.unlink(e)
+	e.contents &= ^mask
+	e.contents |= set
+	w.link(e)
+}
+
+// MutateContentsBool mutates an entity's contents.
+func (w *World) MutateContentsBool(e *Entity, mask level.Contents, set bool) {
+	w.unlink(e)
+	if set {
+		e.contents |= mask
+	} else {
+		e.contents &= ^mask
+	}
+	w.link(e)
+}
+
 // SetSolid makes an entity solid (or not).
 func (w *World) SetSolid(e *Entity, solid bool) {
-	w.unlink(e)
-	e.solid = solid
-	w.link(e)
+	w.MutateContentsBool(e, level.SolidContents, solid)
 }
 
 // SetOpaque makes an entity opaque (or not).
 func (w *World) SetOpaque(e *Entity, opaque bool) {
-	w.unlink(e)
-	e.opaque = opaque
-	w.link(e)
+	w.MutateContentsBool(e, level.OpaqueContents, opaque)
 }
 
-func (e *Entity) Solid() bool {
-	return e.solid
-}
-
-func (e *Entity) Opaque() bool {
-	return e.opaque
+func (e *Entity) Contents() level.Contents {
+	return e.contents
 }
 
 func (e *Entity) Name() string {

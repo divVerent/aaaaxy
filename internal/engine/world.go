@@ -284,6 +284,7 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 
 	// Move the player down as far as possible.
 	trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(m.Delta{DX: 0, DY: 1024}), TraceOptions{
+		Contents:   level.PlayerSolidContents,
 		NoEntities: true,
 		LoadTiles:  true,
 		ForEnt:     w.Player,
@@ -319,7 +320,7 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 
 func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult {
 	result := w.TraceLine(from, to, TraceOptions{
-		Mode:      HitOpaque,
+		Contents:  level.OpaqueContents,
 		LoadTiles: true,
 		ForEnt:    w.Player,
 		PathOut:   pathStore,
@@ -478,11 +479,11 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			to := pos.Add(step.to)
 			// It's not OK to load from an opaque tile, as that may sidestep warpzones.
 			// So, pick an alternative in that case, or skip expanding entirely.
-			if w.Tile(from).Opaque {
+			if w.Tile(from).Contents.Opaque() {
 				from = pos.Add(step.from2)
-				if w.Tile(from).Opaque {
+				if w.Tile(from).Contents.Opaque() {
 					from = pos.Add(step.from3)
-					if w.Tile(from).Opaque {
+					if w.Tile(from).Contents.Opaque() {
 						continue
 					}
 				}
@@ -607,7 +608,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 		log.Printf("Trying to load with nonexisting neighbor tile at %v", p)
 		return nil // Can't load.
 	}
-	if neighborTile.Opaque {
+	if neighborTile.Contents.Opaque() {
 		log.Printf("Trying to load from an opaque tile at %v", p)
 		return nil // Can't load.
 	}
@@ -731,7 +732,7 @@ func (w *World) Draw(screen *ebiten.Image) {
 }
 
 func (w *World) unlink(e *Entity) {
-	if e.opaque {
+	if e.contents.Opaque() {
 		for i, e2 := range w.opaqueEntities {
 			if e2 == e {
 				w.opaqueEntities[i] = w.opaqueEntities[len(w.opaqueEntities)-1]
@@ -748,7 +749,7 @@ func (w *World) link(e *Entity) {
 		log.Panicf("linking an entity that has already been linked, which should never happen: %v", e)
 	}
 	w.entities[e.Incarnation] = e
-	if e.opaque {
+	if e.contents.Opaque() {
 		w.opaqueEntities = append(w.opaqueEntities, e)
 	}
 	// log.Printf("%d entities (%d opaque)", len(w.entities), len(w.opaqueEntities))
@@ -764,16 +765,16 @@ func (w *World) FindName(name string) []*Entity {
 	return out
 }
 
-func (w *World) FindSolid() []*Entity {
+func (w *World) FindContents(c level.Contents) []*Entity {
+	// TODO maybe keep such a list for all contents masks?
+	if c == level.OpaqueContents {
+		return w.opaqueEntities
+	}
 	var out []*Entity
 	for _, ent := range w.entities {
-		if ent.solid {
+		if ent.contents&c != 0 {
 			out = append(out, ent)
 		}
 	}
 	return out
-}
-
-func (w *World) FindOpaque() []*Entity {
-	return w.opaqueEntities
 }
