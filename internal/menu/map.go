@@ -34,10 +34,11 @@ type MapScreen struct {
 	Level     *level.Level
 	CurrentCP string
 
-	cpSprite         *ebiten.Image
-	cpSelectedSprite *ebiten.Image
-	deadEndSprite    *ebiten.Image
-	whiteImage       *ebiten.Image
+	cpSprite          *ebiten.Image
+	cpSelectedSprite  *ebiten.Image
+	deadEndSprite     *ebiten.Image
+	cpCheckmarkSprite *ebiten.Image
+	whiteImage        *ebiten.Image
 }
 
 // TODO: parametrize.
@@ -62,6 +63,10 @@ func (s *MapScreen) Init(m *Menu) error {
 		return err
 	}
 	s.deadEndSprite, err = image.Load("sprites", "dead_end.png")
+	if err != nil {
+		return err
+	}
+	s.cpCheckmarkSprite, err = image.Load("sprites", "checkpoint_checkmark.png")
 	if err != nil {
 		return err
 	}
@@ -199,5 +204,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		}
 		opts.GeoM.Translate(float64(pos.X-7), float64(pos.Y-7))
 		screen.DrawImage(sprite, &opts)
+		if seen, total := s.Menu.World.PlayerState.TnihSignsSeen(cpName); seen >= total {
+			sprite = s.cpCheckmarkSprite
+			screen.DrawImage(sprite, &opts)
+		}
 	}
 }

@@ -92,7 +92,7 @@ func (s *PlayerState) TnihSignsSeen(name string) (seen, total int) {
 	seen, total = 0, 0
 	for _, sign := range s.Level.TnihSignsByCheckpoint[name] {
 		total++
-		if sign.Properties["seen"] == "true" {
+		if sign.PersistentState["seen"] == "true" {
 			seen++
 		}
 	}
