@@ -17,6 +17,7 @@ package level
 import (
 	"fmt"
 	"log"
+	"strconv"
 	"strings"
 
 	"github.com/fardog/tmx"
@@ -28,11 +29,12 @@ import (
 
 // Level is a parsed form of a loaded level.
 type Level struct {
-	Player              *Spawnable
-	Checkpoints         map[string]*Spawnable
-	CheckpointLocations *CheckpointLocations
-	SaveGameVersion     int
-	Hash                uint64
+	Player                *Spawnable
+	Checkpoints           map[string]*Spawnable
+	TnihSignsByCheckpoint map[string][]*Spawnable
+	CheckpointLocations   *CheckpointLocations
+	SaveGameVersion       int
+	Hash                  uint64
 
 	tiles []LevelTile
 	width int
@@ -244,11 +246,14 @@ func Load(filename string) (*Level, error) {
 		return nil, fmt.Errorf("unsupported map: could not read save_game_version: %v", err)
 	}
 	level := Level{
-		Checkpoints:     map[string]*Spawnable{},
-		SaveGameVersion: int(saveGameVersion),
-		tiles:           make([]LevelTile, layer.Width*layer.Height),
-		width:           layer.Width,
+		Checkpoints:           map[string]*Spawnable{},
+		TnihSignsByCheckpoint: map[string][]*Spawnable{},
+		SaveGameVersion:       int(saveGameVersion),
+		tiles:                 make([]LevelTile, layer.Width*layer.Height),
+		width:                 layer.Width,
 	}
+	var tnihSigns []*Spawnable
+	checkpoints := map[EntityID]*Spawnable{}
 	for i, td := range tds {
 		if td.Nil {
 			continue
@@ -423,6 +428,11 @@ func Load(filename string) (*Level, error) {
 			}
 			if properties["type"] == "Checkpoint" {
 				level.Checkpoints[properties["name"]] = &ent
+				checkpoints[ent.ID] = &ent
+				// These do get linked.
+			}
+			if properties["type"] == "TnihSign" {
+				tnihSigns = append(tnihSigns, &ent)
 				// These do get linked.
 			}
 			for y := startTile.Y; y <= endTile.Y; y++ {
@@ -436,6 +446,18 @@ func Load(filename string) (*Level, error) {
 				}
 			}
 		}
+	}
+	for _, sign := range tnihSigns {
+		id, err := strconv.Atoi(sign.Properties["reached_from"])
+		if err != nil {
+			return nil, fmt.Errorf("invalid TnihSign: reached_from not set: %v: %v", sign, err)
+		}
+		cp := checkpoints[EntityID(id)]
+		if cp == nil {
+			return nil, fmt.Errorf("invalid TnihSign: checkpoint ID %v not found", id)
+		}
+		name := cp.Properties["name"]
+		level.TnihSignsByCheckpoint[name] = append(level.TnihSignsByCheckpoint[name], sign)
 	}
 	for warpname, warppair := range warpZones {
 		if len(warppair) != 2 {
