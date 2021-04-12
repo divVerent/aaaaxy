@@ -597,26 +597,31 @@
   </object>
   <object id="48" type="TnihSign" x="4816" y="4048" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="53"/>
     <property name="text" value="A short walk can go a long way."/>
    </properties>
   </object>
   <object id="49" type="TnihSign" x="4608" y="4256" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="53"/>
     <property name="text" value="Failure was never an option."/>
    </properties>
   </object>
   <object id="50" type="TnihSign" x="4704" y="3760" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="280"/>
     <property name="text" value="Exploring new opportunities will often pay off."/>
    </properties>
   </object>
   <object id="51" type="TnihSign" x="4992" y="3792" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="53"/>
     <property name="text" value="Sometimes the angle of looking at things is all that matters."/>
    </properties>
   </object>
   <object id="52" type="TnihSign" x="3872" y="4176" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="66"/>
     <property name="text" value="There can be too much of a good thing."/>
    </properties>
   </object>
@@ -634,16 +639,19 @@
   <object id="59" name="WarpInfiniteStairs" gid="8" x="3840" y="4128" width="16" height="48"/>
   <object id="61" type="TnihSign" x="4352" y="4240" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="66"/>
     <property name="text" value="There are no wrong ways, just wrong goals."/>
    </properties>
   </object>
   <object id="62" type="TnihSign" x="4032" y="4240" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="66"/>
     <property name="text" value="Where there's a down, there must also be an up."/>
    </properties>
   </object>
   <object id="63" type="TnihSign" x="4192" y="4176" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="66"/>
     <property name="text" value="Persistence is the key to success."/>
    </properties>
   </object>
@@ -687,32 +695,38 @@
   </object>
   <object id="90" type="TnihSign" x="4000" y="4544" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="89"/>
     <property name="text" value="Sometimes you just keep running in circles."/>
    </properties>
   </object>
   <object id="91" type="TnihSign" x="4320" y="4992" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="89"/>
     <property name="text" value="Some people prefer 2τ over 4π."/>
    </properties>
   </object>
   <object id="92" type="TnihSign" x="4640" y="4544" width="32" height="32">
    <properties>
     <property name="greetings_to" value="Dieter F. Uchtdorf"/>
+    <property name="reached_from" type="object" value="89"/>
     <property name="text" value="&quot;In spite of one-time overwhelming consensus, the earth isn't flat.&quot;"/>
    </properties>
   </object>
   <object id="93" type="TnihSign" x="4960" y="4992" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="89"/>
     <property name="text" value="Some people prefer 4π over 2τ."/>
    </properties>
   </object>
   <object id="94" type="TnihSign" x="3872" y="4992" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="89"/>
     <property name="text" value="Interesting things are hardly ever found in corners."/>
    </properties>
   </object>
   <object id="95" type="TnihSign" x="4512" y="4992" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="89"/>
     <property name="text" value="Interesting things are always found in corners."/>
    </properties>
   </object>
@@ -795,16 +809,19 @@
   <object id="142" name="TorusTenth" gid="4" x="3168" y="5264" width="32" height="16"/>
   <object id="143" type="TnihSign" x="3376" y="5344" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="105"/>
     <property name="text" value="The path of least resistance will not always lead to success."/>
    </properties>
   </object>
   <object id="144" type="TnihSign" x="2720" y="5024" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="147"/>
     <property name="text" value="Some things only have one side to them."/>
    </properties>
   </object>
   <object id="145" type="TnihSign" x="2720" y="5280" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="148"/>
     <property name="text" value="Thinking outside the box can remove the need of getting over it."/>
    </properties>
   </object>
@@ -857,6 +874,7 @@
   <object id="178" name="KleinTenth" gid="7" x="2112" y="5264" width="32" height="16"/>
   <object id="179" type="TnihSign" x="2048" y="5024" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="180"/>
     <property name="text" value="If it doesn't fit in three dimensions, try two."/>
    </properties>
   </object>
@@ -892,6 +910,7 @@
   </object>
   <object id="188" type="TnihSign" x="1968" y="5136" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="180"/>
     <property name="text" value="Whenever I climb I am followed by a dog called Ego."/>
    </properties>
   </object>
@@ -971,27 +990,32 @@
   </object>
   <object id="238" type="TnihSign" x="1280" y="5216" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="192"/>
     <property name="text" value="Unparalleled execution is all you really need here."/>
    </properties>
   </object>
   <object id="244" type="TnihSign" x="560" y="5168" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="249"/>
     <property name="target" value="EscapeButton"/>
     <property name="text" value="Welcome to the top of the mountain.  If you're alone, all this was just a waste of time."/>
    </properties>
   </object>
   <object id="245" type="TnihSign" x="896" y="5536" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="237"/>
     <property name="text" value="The shortest pah can be the one that takes longest."/>
    </properties>
   </object>
   <object id="246" type="TnihSign" x="448" y="5472" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="237"/>
     <property name="text" value="If you just press on forward, you will eventually reach your goal."/>
    </properties>
   </object>
   <object id="247" type="TnihSign" x="768" y="5728" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="237"/>
     <property name="text" value="Falling a long distance does not always hurt."/>
    </properties>
   </object>
@@ -1007,6 +1031,7 @@
   <object id="254" name="WarpToBingLeft" gid="4" x="608" y="5728" width="32" height="16"/>
   <object id="255" type="TnihSign" x="720" y="6176" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="264"/>
     <property name="text" value="Entering through the front door is boring."/>
    </properties>
   </object>
@@ -1054,6 +1079,7 @@
   </object>
   <object id="277" type="TnihSign" x="752" y="6576" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="264"/>
     <property name="text" value="Taking the right entrance makes all the difference."/>
    </properties>
   </object>
@@ -1079,11 +1105,13 @@
   <object id="284" name="ShortCircuitedL" gid="4" x="3984" y="6800" width="64" height="16"/>
   <object id="286" type="TnihSign" x="4080" y="6752" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="288"/>
     <property name="text" value="If this isn't your downfall, I don't know what is."/>
    </properties>
   </object>
   <object id="287" type="TnihSign" x="3920" y="5424" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="288"/>
     <property name="text" value="Oh, gravity, you're a heartless... force?"/>
    </properties>
   </object>
@@ -1107,6 +1135,7 @@
   <object id="294" name="ChoicesTop" gid="8" x="4400" y="6896" width="16" height="96"/>
   <object id="295" type="TnihSign" x="4608" y="6864" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="296"/>
     <property name="text" value="Your choices don't matter."/>
    </properties>
   </object>
@@ -1140,11 +1169,13 @@
   <object id="308" name="EscherSecond" gid="6" x="4768" y="6704" width="32" height="16"/>
   <object id="309" type="TnihSign" x="4704" y="6712" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="312"/>
     <property name="text" value="Some water must be periodically added to compensate for evaporation."/>
    </properties>
   </object>
   <object id="311" type="TnihSign" x="4976" y="6712" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="312"/>
     <property name="text" value="You broke out of the stream, yet you're back in the stream."/>
    </properties>
   </object>
@@ -1178,11 +1209,13 @@
   </object>
   <object id="317" type="TnihSign" x="4448" y="7152" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="330"/>
     <property name="text" value="The prospect of additional strength fills you with determination."/>
    </properties>
   </object>
   <object id="319" type="TnihSign" x="4304" y="7264" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="330"/>
     <property name="text" value="Behold the cage of health!"/>
    </properties>
   </object>
@@ -1263,11 +1296,13 @@
   <object id="351" type="QuestionBlock" x="4448" y="7216" width="16" height="16"/>
   <object id="353" type="TnihSign" x="4448" y="8112" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="330"/>
     <property name="text" value="A slight breeze is enough for water to escape the waterfall."/>
    </properties>
   </object>
   <object id="354" type="TnihSign" x="4928" y="7568" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="330"/>
     <property name="text" value="If it ain't broke, don't fix it."/>
    </properties>
   </object>
@@ -1300,6 +1335,7 @@
   <object id="384" type="AppearBlock" x="3920" y="7600" width="16" height="16"/>
   <object id="385" type="TnihSign" x="3968" y="7568" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="330"/>
     <property name="text" value="What's broken is in need of repair."/>
    </properties>
   </object>
@@ -1337,11 +1373,13 @@
   </object>
   <object id="394" type="TnihSign" x="4080" y="7920" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="330"/>
     <property name="text" value="There is no need to hide if nobody is after you."/>
    </properties>
   </object>
   <object id="395" type="TnihSign" x="4816" y="7920" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="330"/>
     <property name="text" value="Hide and seek is never fun without opponents."/>
    </properties>
   </object>
@@ -4998,6 +5036,7 @@
   </object>
   <object id="1052" type="TnihSign" x="6400" y="8096" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1051"/>
     <property name="text" value="Looking behind the scenes can be important at times."/>
    </properties>
   </object>
@@ -5295,11 +5334,13 @@
   </object>
   <object id="1101" type="TnihSign" x="7648" y="8080" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1051"/>
     <property name="text" value="The first track is never the one with your train."/>
    </properties>
   </object>
   <object id="1102" type="TnihSign" x="7648" y="7760" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1051"/>
     <property name="text" value="Reaching for the stars can really tear you down."/>
    </properties>
   </object>
@@ -5462,6 +5503,7 @@
   <object id="1170" type="AppearBlock" x="6960" y="7808" width="16" height="16"/>
   <object id="1171" type="TnihSign" x="7648" y="7520" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1051"/>
     <property name="text" value="A watched train never departs."/>
    </properties>
   </object>
@@ -5617,6 +5659,7 @@
   <object id="1198" name="ToShepard" gid="6" x="4144" y="5600" width="16" height="16"/>
   <object id="1199" type="TnihSign" x="4336" y="5488" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1173"/>
     <property name="source" value="Ezekiel 46:9"/>
     <property name="text" value="He shall not return by the way of the gate whereby he came in."/>
    </properties>
@@ -5919,6 +5962,7 @@
   <object id="1266" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4256" y="5888" width="112" height="16"/>
   <object id="1273" type="TnihSign" x="4352" y="6016" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1228"/>
     <property name="text" value="Sometimes all you need is a little opening."/>
    </properties>
   </object>
@@ -5946,6 +5990,7 @@
   </object>
   <object id="1281" type="TnihSign" x="4352" y="6144" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1284"/>
     <property name="target" value="EscapeButton"/>
     <property name="text" value="I am so happy to finally be back home.  Press Escape."/>
    </properties>
@@ -5961,11 +6006,13 @@
   </object>
   <object id="1285" type="TnihSign" x="4944" y="6240" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1300"/>
     <property name="text" value="Try the lower path."/>
    </properties>
   </object>
   <object id="1286" type="TnihSign" x="4944" y="6400" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1300"/>
     <property name="text" value="Try the upper path."/>
    </properties>
   </object>
@@ -6072,6 +6119,7 @@
   </object>
   <object id="1306" type="TnihSign" x="6176" y="7744" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1051"/>
     <property name="text" value="Some things just aren't that simple."/>
    </properties>
   </object>
@@ -6095,6 +6143,7 @@
   </object>
   <object id="1321" type="TnihSign" x="4928" y="6144" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1304"/>
     <property name="text" value="It's turtles all the way in."/>
    </properties>
   </object>
@@ -6146,6 +6195,7 @@
   </object>
   <object id="1354" type="TnihSign" x="4424" y="6168" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1304"/>
     <property name="text" value="Listen to the spell of the magical turtle and you may proceed."/>
    </properties>
   </object>
@@ -6182,6 +6232,7 @@
   <object id="1367" name="DontLookUp" gid="4" x="448" y="32" width="48" height="16"/>
   <object id="1368" type="TnihSign" x="456" y="288" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1304"/>
     <property name="text" value="Some things you simply can't see right away."/>
    </properties>
   </object>
@@ -6325,6 +6376,7 @@
   </object>
   <object id="1407" type="TnihSign" x="224" y="8128" width="32" height="32">
    <properties>
+    <property name="reached_from" type="object" value="1408"/>
     <property name="target" value="EscapeButton"/>
     <property name="text" value="Curiosity killed the Cat.  Press Escape."/>
    </properties>
