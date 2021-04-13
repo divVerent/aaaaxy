@@ -72,13 +72,13 @@ const (
 	LargeRiserOffsetDY = -1
 
 	// IdleSpeed is the speed the riser moves upwards when not used.
-	IdleSpeed = 16 * mixins.SubPixelScale / engine.GameTPS
+	IdleSpeed = 15 * mixins.SubPixelScale / engine.GameTPS
 
 	// UpSpeed is the speed the riser moves upwards when the player is standing on it.
-	UpSpeed = 64 * mixins.SubPixelScale / engine.GameTPS
+	UpSpeed = 60 * mixins.SubPixelScale / engine.GameTPS
 
 	// SideSpeed is the speed of the riser when pushed away.
-	SideSpeed = 64 * mixins.SubPixelScale / engine.GameTPS
+	SideSpeed = 60 * mixins.SubPixelScale / engine.GameTPS
 )
 
 func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
