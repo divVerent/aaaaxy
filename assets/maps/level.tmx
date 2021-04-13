@@ -6623,6 +6623,7 @@
   </object>
   <object id="1457" name="fly_high" type="Checkpoint" x="448" y="6528" width="128" height="32">
    <properties>
+    <property name="music" value="AugustUltraAmbience.ogg"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Fly High"/>
    </properties>
