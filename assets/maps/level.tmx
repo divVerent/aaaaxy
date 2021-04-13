@@ -1052,6 +1052,7 @@
   <object id="264" name="bings_house" type="Checkpoint" x="608" y="6240" width="352" height="32">
    <properties>
     <property name="music" value="strange_inspiraton.ogg"/>
+    <property name="next_down" type="object" value="1457"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="House with Two Rooms"/>
    </properties>
@@ -6623,7 +6624,7 @@
   </object>
   <object id="1457" name="fly_high" type="Checkpoint" x="448" y="6528" width="128" height="32">
    <properties>
-    <property name="music" value="AugustUltraAmbience.ogg"/>
+    <property name="music" value="Pressure.ogg"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Fly High"/>
    </properties>
