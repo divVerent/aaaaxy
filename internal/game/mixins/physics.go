@@ -150,7 +150,7 @@ func (p *Physics) Update() {
 			}
 			if otherP.ReadGroundEntity() == p.Entity {
 				trace := p.World.TraceBox(other.Rect, other.Rect.Origin.Add(delta), engine.TraceOptions{
-					Contents:  p.Contents,
+					Contents:  otherP.ReadContents(),
 					IgnoreEnt: p.IgnoreEnt,
 					ForEnt:    other,
 				})
@@ -182,4 +182,8 @@ func (p *Physics) SetVelocity(velocity m.Delta) {
 func (p *Physics) SetVelocityForJump(velocity m.Delta) {
 	p.SetVelocity(velocity)
 	p.OnGround = false
+}
+
+func (p *Physics) ReadContents() level.Contents {
+	return p.Contents
 }

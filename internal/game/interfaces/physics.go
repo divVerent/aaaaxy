@@ -16,6 +16,7 @@ package interfaces
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -39,8 +40,15 @@ type HandleToucher interface {
 	HandleTouch(trace engine.TraceResult)
 }
 
+type Contentser interface {
+	engine.EntityImpl
+
+	ReadContents() level.Contents
+}
+
 type Physics interface {
 	Velocityer
 	GroundEntityer
 	HandleToucher
+	Contentser
 }
