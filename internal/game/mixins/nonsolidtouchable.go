@@ -16,6 +16,7 @@ package mixins
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
@@ -37,6 +38,10 @@ func (t *NonSolidTouchable) Update() {
 	touched := false
 	t.World.ForEachEntity(func(e *engine.Entity) {
 		if e == t.Entity {
+			return
+		}
+		// It has to be something that can move.
+		if _, ok := e.Impl.(interfaces.Velocityer); !ok {
 			return
 		}
 		// Should we filter stronger? Like, only triggers?
