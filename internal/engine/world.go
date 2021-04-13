@@ -532,8 +532,12 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 				for y := tp0.Y; y <= tp1.Y; y++ {
 					for x := tp0.X; x <= tp1.X; x++ {
 						tp := m.Pos{X: x, Y: y}
-						if w.Tile(tp).VisibilityFlags&level.FrameVis != w.frameVis {
-							w.Tile(tp).VisibilityFlags = w.frameVis
+						tile := w.Tile(tp)
+						if tile == nil {
+							continue
+						}
+						if tile.VisibilityFlags&level.FrameVis != w.frameVis {
+							tile.VisibilityFlags = w.frameVis
 						}
 					}
 				}

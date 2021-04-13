@@ -76,6 +76,7 @@ func (p *Physics) Update() {
 			Contents:  p.Contents,
 			IgnoreEnt: p.IgnoreEnt,
 			ForEnt:    p.Entity,
+			LoadTiles: true,
 		})
 		if (trace.HitDelta == m.Delta{}) {
 			// Nothing hit. We're done.
@@ -130,6 +131,7 @@ func (p *Physics) Update() {
 			Contents:  p.Contents,
 			IgnoreEnt: p.IgnoreEnt,
 			ForEnt:    p.Entity,
+			LoadTiles: true,
 		})
 		if trace.EndPos != p.Entity.Rect.Origin {
 			p.OnGround, p.GroundEntity = false, nil
@@ -153,6 +155,7 @@ func (p *Physics) Update() {
 					Contents:  otherP.ReadContents(),
 					IgnoreEnt: p.IgnoreEnt,
 					ForEnt:    other,
+					LoadTiles: true,
 				})
 				other.Rect.Origin = trace.EndPos
 				if (trace.HitDelta != m.Delta{}) {
