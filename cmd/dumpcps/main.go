@@ -37,6 +37,7 @@ type (
 		Name       string
 		HasPos     bool
 		CalcingPos bool
+		MapPos     m.Pos
 		WantPos    m.Pos
 		OutEdges   []*Edge
 		InEdges    []*Edge
@@ -91,7 +92,10 @@ func main() {
 	// Generate all edges and vertices.
 	vertices := map[level.EntityID]*Vertex{}
 	for id, sp := range cpMap {
-		vertices[id] = &Vertex{Name: sp.Properties["name"]}
+		vertices[id] = &Vertex{
+			Name:   sp.Properties["name"],
+			MapPos: sp.LevelPos.Mul(level.TileSize).Add(sp.RectInTile.Center().Delta(m.Pos{})),
+		}
 	}
 	for id, sp := range cpMap {
 		v := vertices[id]
@@ -133,24 +137,27 @@ func main() {
 	fmt.Print(`
 		digraph G {
 			layout = "neato";
-			ratio = "fill";
-			size = "640,180";
-			overlap = false;
+			ratio = 0.5;
+			overlap = true;
 			splines = false;
+			mode = KK;
+			model = subset;
+			maxiter = 131072;
+			epsilon = 0.000001;
 		`)
 	// Emit all nodes.
 	for _, v := range vertices {
 		CalcPos(v)
 		fmt.Printf(`
 				%s [width=2.0, height=2.0, fixedsize=true, shape=box, label="%s", pos="%d,%d"];
-			`, v.Name, v.Name, v.WantPos.X*72, -v.WantPos.Y*72)
+			`, v.Name, v.Name, v.MapPos.X, -v.MapPos.Y)
 	}
 	// Emit all edges.
 	for _, v := range vertices {
 		for _, e := range v.OutEdges {
 			fmt.Printf(`
-					%s -> %s;
-				`, v.Name, e.To.Name)
+					%s -> %s [len=%d];
+				`, v.Name, e.To.Name, e.WantDelta.Norm1())
 		}
 	}
 	fmt.Print(`
