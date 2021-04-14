@@ -166,11 +166,12 @@ func main() {
 				}
 				return "x"
 			}
+			_ = w
 			headport := port(e.WantDelta.Mul(-1))
 			tailport := port(e.WantDelta)
 			fmt.Printf(`
-					%s -> %s [len=%f, w=%f, headport=%s, tailport=%s];
-				`, v.Name, e.To.Name, l, w, headport, tailport)
+					%s -> %s [headport=%s, tailport=%s];
+				`, v.Name, e.To.Name, headport, tailport)
 		}
 	}
 	fmt.Print(`
