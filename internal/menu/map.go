@@ -204,9 +204,22 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		}
 		opts.GeoM.Translate(float64(pos.X-7), float64(pos.Y-7))
 		screen.DrawImage(sprite, &opts)
-		if seen, total := s.Menu.World.PlayerState.TnihSignsSeen(cpName); seen >= total {
-			sprite = s.cpCheckmarkSprite
-			screen.DrawImage(sprite, &opts)
+	}
+	// Finally the checkmarks.
+	for cpName, cpLoc := range loc.Locs {
+		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
+			continue
 		}
+		if seen, total := s.Menu.World.PlayerState.TnihSignsSeen(cpName); seen < total {
+			continue
+		}
+		sprite := s.cpCheckmarkSprite
+		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
+		opts := ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeSourceOver,
+			Filter:        ebiten.FilterNearest,
+		}
+		opts.GeoM.Translate(float64(pos.X-7), float64(pos.Y-7))
+		screen.DrawImage(sprite, &opts)
 	}
 }
