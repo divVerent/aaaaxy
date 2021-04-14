@@ -35,19 +35,27 @@ type (
 		From, To  *Vertex
 	}
 	Vertex struct {
-		Name     string
-		HasPos   bool
-		WantPos  m.Pos
-		OutEdges []*Edge
-		InEdges  []*Edge
+		Name       string
+		HasPos     bool
+		CalcingPos bool
+		WantPos    m.Pos
+		OutEdges   []*Edge
+		InEdges    []*Edge
 	}
 )
 
 func CalcPos(v *Vertex) {
+	// TODO: This algorithm is BAD. Need a better way that also kinda handles cycles.
+	// Or maybe give up on hinting and find working options for dot that don't need it?
 	// Already done?
 	if v.HasPos {
 		return
 	}
+	// Cycle?
+	if v.CalcingPos {
+		return
+	}
+	v.CalcingPos = true
 	// Nothing to do?
 	if len(v.InEdges) == 0 {
 		return
@@ -60,6 +68,7 @@ func CalcPos(v *Vertex) {
 	}
 	d = d.Div(len(v.InEdges))
 	v.WantPos = m.Pos{}.Add(d)
+	v.CalcingPos = false
 }
 
 func main() {
