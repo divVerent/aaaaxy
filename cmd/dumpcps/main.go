@@ -51,23 +51,22 @@ func CalcPos(v *Vertex) {
 	if v.HasPos {
 		return
 	}
-	// Cycle?
-	if v.CalcingPos {
-		return
-	}
 	v.CalcingPos = true
-	// Nothing to do?
-	if len(v.InEdges) == 0 {
-		return
-	}
 	// First do all in-edges.
 	var d m.Delta
+	n := 0
 	for _, in := range v.InEdges {
-		CalcPos(in.From)
-		d = d.Add(in.From.WantPos.Add(in.WantDelta).Delta(m.Pos{}))
+		if !in.From.CalcingPos {
+			CalcPos(in.From)
+			d = d.Add(in.From.WantPos.Add(in.WantDelta).Delta(m.Pos{}))
+			n++
+		}
 	}
-	d = d.Div(len(v.InEdges))
-	v.WantPos = m.Pos{}.Add(d)
+	// Nothing to do?
+	if n > 0 {
+		d = d.Div(n)
+		v.WantPos = m.Pos{}.Add(d)
+	}
 	v.CalcingPos = false
 }
 
