@@ -13,25 +13,39 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-steps=16
+steps=30
 size=64
+minwidth=4
 
 #images="can_carry can_push can_stand"
-images="can_stand"
+images="can_push can_stand"
 
 for i in $(seq 0 $((steps-1))); do
-	width=$(echo "(c(8 * a(1) * $i / $steps) * 0.5 + 0.5) * $size" | bc -l)
+	width=$(echo "c(8 * a(1) * $i / $steps) * $size" | bc -l)
 	width=${width%.*}
+	case "$width" in
+		-*)
+			width=${width#-}
+			flip=-flop
+			;;
+		*)
+			flip=
+			;;
+	esac
 	case "$width" in
 		''|0)
 			width=1
 			;;
 	esac
-	echo "$i -> $width"
+	if [ $width -lt $minwidth ]; then
+		width=$minwidth
+	fi
+	echo "$i -> $width $flip"
 	for img in $images; do
 		convert "$img.png" \
 			-filter Point \
 			-resize "${width}x${size}!" \
+			$flip \
 			-gravity center \
 			-background none \
 			-extent "${size}x${size}" \

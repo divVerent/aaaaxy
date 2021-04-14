@@ -48,9 +48,9 @@ func (g *Give) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) erro
 	g.Text = s.Properties["text"]
 	err := g.Anim.Init("can_"+g.Ability, map[string]*animation.Group{
 		"default": &animation.Group{
-			Frames:        16,
+			Frames:        30,
 			FrameInterval: 4,
-			NextInterval:  4 * 16,
+			NextInterval:  4 * 30,
 			NextAnim:      "default",
 		}}, "default")
 	if err != nil {
@@ -64,7 +64,7 @@ func (g *Give) Despawn() {}
 func (g *Give) Update() {
 	g.NonSolidTouchable.Update()
 	if g.World.Player.Impl.(interfaces.Abilityer).HasAbility(g.Ability) {
-		g.AnimFrame--
+		g.AnimFrame++
 	} else {
 		g.AnimFrame++
 	}
