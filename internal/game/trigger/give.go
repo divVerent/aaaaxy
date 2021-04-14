@@ -64,7 +64,7 @@ func (g *Give) Despawn() {}
 func (g *Give) Update() {
 	g.NonSolidTouchable.Update()
 	if g.World.Player.Impl.(interfaces.Abilityer).HasAbility(g.Ability) {
-		g.AnimFrame++
+		g.AnimFrame--
 	} else {
 		g.AnimFrame++
 	}
