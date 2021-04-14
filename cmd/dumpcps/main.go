@@ -17,7 +17,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"math"
 
 	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/level"
@@ -148,29 +147,9 @@ func main() {
 	// Emit all edges.
 	for _, v := range vertices {
 		for _, e := range v.OutEdges {
-			l := math.Sqrt(float64(e.To.WantPos.Delta(v.WantPos).Length2()))
-			w := 1.0 / l
-			port := func(d m.Delta) string {
-				if d.DX < 0 {
-					return "w"
-				}
-				if d.DX > 0 {
-					return "e"
-				}
-				if d.DY < 0 {
-					return "n"
-				}
-				if d.DY > 0 {
-					return "s"
-				}
-				return "x"
-			}
-			_ = w
-			headport := port(e.WantDelta.Mul(-1))
-			tailport := port(e.WantDelta)
 			fmt.Printf(`
-					%s -> %s [headport=%s, tailport=%s];
-				`, v.Name, e.To.Name, headport, tailport)
+					%s -> %s;
+				`, v.Name, e.To.Name)
 		}
 	}
 	fmt.Print(`
