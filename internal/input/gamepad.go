@@ -31,7 +31,8 @@ import (
 )
 
 var (
-	gamepadAxisThreshold = flag.Float64("gamepad_axis_threshold", 0.5, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
+	gamepadAxisOnThreshold  = flag.Float64("gamepad_axis_on_threshold", 0.6, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
+	gamepadAxisOffThreshold = flag.Float64("gamepad_axis_off_threshold", 0.4, "Maximum amount to push the game pad for unregistering an action. Can be zero to accept any movement.")
 )
 
 type (
@@ -48,8 +49,10 @@ var (
 	gamepadPlatform string
 	// gamepadDatabase is the currently loaded gamepad database, keyed by GUID, each entry being a list of all gamepad definitions for that GUID.
 	gamepadDatabase map[string][][]string
-	// gamepadInvAxisThreshold is 1.0 divided by the variable gamepadAxisThreshold. Done to save a division for every axis test.
-	gamepadInvAxisThreshold float64
+	// gamepadInvAxisOnThreshold is 1.0 divided by the variable gamepadAxisOnThreshold. Done to save a division for every axis test.
+	gamepadInvAxisOnThreshold float64
+	// gamepadInvAxisOffThreshold is 1.0 divided by the variable gamepadAxisOffThreshold. Done to save a division for every axis test.
+	gamepadInvAxisOffThreshold float64
 	// gamepads is the set of currently active gamepads. The boolean value should always be true, except during rescanning, where it's set to false temporarily to detect removed gamepads.
 	gamepads = map[ebiten.GamepadID]bool{}
 	// defRE is a regular expression to match a gamecontrollerdb.txt assignment. See also the def* constants that match parts of this RE.
@@ -74,7 +77,11 @@ func (i *impulse) gamepadPressed() bool {
 				return true
 			}
 		} else {
-			if ebiten.GamepadAxis(c.pad, c.axis)*c.axisDirection*gamepadInvAxisThreshold >= 1 {
+			t := gamepadInvAxisOnThreshold
+			if i.Held {
+				t = gamepadInvAxisOffThreshold
+			}
+			if ebiten.GamepadAxis(c.pad, c.axis)*c.axisDirection*t >= 1 {
 				return true
 			}
 		}
@@ -83,7 +90,8 @@ func (i *impulse) gamepadPressed() bool {
 }
 
 func gamepadUpdate() {
-	gamepadInvAxisThreshold = 1.0 / *gamepadAxisThreshold
+	gamepadInvAxisOnThreshold = 1.0 / *gamepadAxisOnThreshold
+	gamepadInvAxisOffThreshold = 1.0 / *gamepadAxisOffThreshold
 	for pad := range gamepads {
 		gamepads[pad] = false
 	}
