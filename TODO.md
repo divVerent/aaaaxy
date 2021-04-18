@@ -1,5 +1,18 @@
 # TODO
 
+## Objects
+
+* ContentsMod
+  * Not a real object
+  * Any tiles on the rectangle get contents flags updated
+  * Properties:
+    * solid: ""/"true"/"false"
+    * player_solid: ""/"true"/"false"
+    * object_solid: ""/"true"/"false"
+    * opaque: ""/"true"/"false"
+    * Parse as an AndMask and an OrMask, initialize AndMask to all contents, OrMask to none.
+    * Apply each mod to one of the masks.
+
 ## Level sections
 
 Graph:
