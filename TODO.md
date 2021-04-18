@@ -12,6 +12,12 @@
     * opaque: ""/"true"/"false"
     * Parse as an AndMask and an OrMask, initialize AndMask to all contents, OrMask to none.
     * Apply each mod to one of the masks.
+* Gradient
+  * Rectangle object
+  * Does nothing
+  * Renders as a gradient between two or three given colors
+  * Direction: radial, or N/E/S/W single dir, or NE/ES/... two dirs
+  * Use seldomly, but e.g. in the item rooms
 
 ## Level sections
 
