@@ -29,9 +29,8 @@ const (
 )
 
 type entityList struct {
-	index       listIndex
-	items       []*Entity
-	shadowItems []*Entity
+	index listIndex
+	items []*Entity
 }
 
 func makeList(index listIndex) entityList {
@@ -47,32 +46,35 @@ func (l *entityList) insert(e *Entity) {
 }
 
 func (l *entityList) remove(e *Entity) {
-	last := len(l.items) - 1
 	idxPlusOne := e.indexInListPlusOne[l.index]
 	if idxPlusOne == 0 {
 		log.Panicf("removing from an intrusive items the entity isn't in: entity %v, list %v", e, l.index)
 	}
 	idx := idxPlusOne - 1
-	if idx != last {
-		other := l.items[last]
-		l.items[idx] = other
-		other.indexInListPlusOne[l.index] = idxPlusOne
-	}
-	l.items = l.items[0:last]
+	l.items[idx] = nil
 	e.indexInListPlusOne[l.index] = 0
+}
+
+func (l *entityList) compact() {
+	n := 0
+	for _, e := range l.items {
+		if e == nil {
+			continue
+		}
+		l.items[n] = e
+		n++
+		e.indexInListPlusOne[l.index] = n
+	}
+	l.items = l.items[:n]
 }
 
 var breakError = errors.New("break")
 
 func (l *entityList) forEach(f func(e *Entity) error) error {
-	// TODO: Can we make this work without copying?
-	// The hard part is not breaking the iteration when existing elements are relinked.
-	n := len(l.items)
-	for len(l.shadowItems) < n {
-		l.shadowItems = append(l.shadowItems, nil)
-	}
-	copy(l.shadowItems, l.items)
-	for _, e := range l.shadowItems[:n] {
+	for _, e := range l.items {
+		if e == nil {
+			continue
+		}
 		err := f(e)
 		if err != nil {
 			return err

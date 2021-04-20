@@ -356,6 +356,11 @@ func (w *World) updateEntities() {
 		}
 		return nil
 	})
+	w.entities.compact()
+	for _, l := range w.entitiesByZ {
+		l.compact()
+	}
+	w.opaqueEntities.compact()
 }
 
 // updateScrollPos updates the current scroll position.
