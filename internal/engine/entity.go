@@ -128,6 +128,9 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 
 // MutateContents mutates an entity's contents.
 func (w *World) MutateContents(e *Entity, mask, set level.Contents) {
+	if e.contents&mask == set {
+		return
+	}
 	w.unlink(e)
 	e.contents &= ^mask
 	e.contents |= set
@@ -136,13 +139,11 @@ func (w *World) MutateContents(e *Entity, mask, set level.Contents) {
 
 // MutateContentsBool mutates an entity's contents.
 func (w *World) MutateContentsBool(e *Entity, mask level.Contents, set bool) {
-	w.unlink(e)
 	if set {
-		e.contents |= mask
+		w.MutateContents(e, mask, mask)
 	} else {
-		e.contents &= ^mask
+		w.MutateContents(e, mask, 0)
 	}
-	w.link(e)
 }
 
 // SetSolid makes an entity solid (or not).
@@ -157,6 +158,9 @@ func (w *World) SetOpaque(e *Entity, opaque bool) {
 
 // SetZIndex sets an entity's Z index.
 func (w *World) SetZIndex(e *Entity, index int) {
+	if e.zIndex == index {
+		return
+	}
 	w.unlink(e)
 	e.zIndex = index
 	w.link(e)
