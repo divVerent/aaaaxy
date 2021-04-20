@@ -1064,14 +1064,14 @@
     <property name="target" value="BingPads"/>
    </properties>
   </object>
-  <object id="275" name="BingPads" type="AnimatedSprite" x="608" y="6240" width="32" height="32">
+  <object id="275" name="BingPads" type="SwitchableSprite" x="608" y="6240" width="32" height="32">
    <properties>
     <property name="image" value="arrow32.png"/>
     <property name="initial_state" type="bool" value="false"/>
     <property name="orientation" value="NE"/>
    </properties>
   </object>
-  <object id="276" name="BingPads" type="AnimatedSprite" x="928" y="6240" width="32" height="32">
+  <object id="276" name="BingPads" type="SwitchableSprite" x="928" y="6240" width="32" height="32">
    <properties>
     <property name="image" value="arrow32.png"/>
     <property name="initial_state" type="bool" value="false"/>
@@ -1342,7 +1342,7 @@
   </object>
   <object id="386" type="QuestionBlock" x="4048" y="7520" width="16" height="16"/>
   <object id="387" type="AppearBlock" x="4080" y="7600" width="16" height="16"/>
-  <object id="388" name="SilverCityAppearGap" type="AnimatedSprite" gid="10" x="4032" y="7600" width="16" height="16">
+  <object id="388" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4032" y="7600" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
@@ -5020,7 +5020,7 @@
   </object>
   <object id="1042" name="Box4E" gid="8" x="5328" y="7520" width="16" height="160"/>
   <object id="1043" name="Box4E" gid="2" x="6048" y="6400" width="16" height="160"/>
-  <object id="1046" name="SilverCityAppearGap" type="AnimatedSprite" gid="10" x="4048" y="7600" width="16" height="16">
+  <object id="1046" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4048" y="7600" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
@@ -5960,7 +5960,7 @@
     <property name="target" value="ShepardOpenBlocks"/>
    </properties>
   </object>
-  <object id="1266" name="ShepardOpenBlocks" type="AnimatedSprite" gid="16" x="4256" y="5888" width="112" height="16"/>
+  <object id="1266" name="ShepardOpenBlocks" type="SwitchableSprite" gid="16" x="4256" y="5888" width="112" height="16"/>
   <object id="1273" type="TnihSign" x="4352" y="6016" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1228"/>
@@ -6203,7 +6203,7 @@
     <property name="kaizo" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1360" name="TurtlesOut" type="AnimatedSprite" gid="16" x="5024" y="6144" width="80" height="16"/>
+  <object id="1360" name="TurtlesOut" type="SwitchableSprite" gid="16" x="5024" y="6144" width="80" height="16"/>
   <object id="1361" type="SetState" x="5232" y="6176" width="32" height="32">
    <properties>
     <property name="state" type="bool" value="true"/>
@@ -6241,133 +6241,133 @@
     <property name="target" value="LookedUp"/>
    </properties>
   </object>
-  <object id="1375" name="LookedUp" type="AnimatedSprite" x="64" y="320" width="16" height="16">
+  <object id="1375" name="LookedUp" type="SwitchableSprite" x="64" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1377" name="LookedUp" type="AnimatedSprite" x="80" y="320" width="16" height="16">
+  <object id="1377" name="LookedUp" type="SwitchableSprite" x="80" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1378" name="LookedUp" type="AnimatedSprite" x="96" y="320" width="16" height="16">
+  <object id="1378" name="LookedUp" type="SwitchableSprite" x="96" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1379" name="LookedUp" type="AnimatedSprite" x="112" y="320" width="16" height="16">
+  <object id="1379" name="LookedUp" type="SwitchableSprite" x="112" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1380" name="LookedUp" type="AnimatedSprite" x="128" y="320" width="16" height="16">
+  <object id="1380" name="LookedUp" type="SwitchableSprite" x="128" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1381" name="LookedUp" type="AnimatedSprite" x="144" y="320" width="16" height="16">
+  <object id="1381" name="LookedUp" type="SwitchableSprite" x="144" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1382" name="LookedUp" type="AnimatedSprite" x="160" y="320" width="16" height="16">
+  <object id="1382" name="LookedUp" type="SwitchableSprite" x="160" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1383" name="LookedUp" type="AnimatedSprite" x="176" y="320" width="16" height="16">
+  <object id="1383" name="LookedUp" type="SwitchableSprite" x="176" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1384" name="LookedUp" type="AnimatedSprite" x="192" y="320" width="16" height="16">
+  <object id="1384" name="LookedUp" type="SwitchableSprite" x="192" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1385" name="LookedUp" type="AnimatedSprite" x="208" y="320" width="16" height="16">
+  <object id="1385" name="LookedUp" type="SwitchableSprite" x="208" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1386" name="LookedUp" type="AnimatedSprite" x="224" y="320" width="16" height="16">
+  <object id="1386" name="LookedUp" type="SwitchableSprite" x="224" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1387" name="LookedUp" type="AnimatedSprite" x="240" y="320" width="16" height="16">
+  <object id="1387" name="LookedUp" type="SwitchableSprite" x="240" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1388" name="LookedUp" type="AnimatedSprite" x="256" y="320" width="16" height="16">
+  <object id="1388" name="LookedUp" type="SwitchableSprite" x="256" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1389" name="LookedUp" type="AnimatedSprite" x="272" y="320" width="16" height="16">
+  <object id="1389" name="LookedUp" type="SwitchableSprite" x="272" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1390" name="LookedUp" type="AnimatedSprite" x="288" y="320" width="16" height="16">
+  <object id="1390" name="LookedUp" type="SwitchableSprite" x="288" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1391" name="LookedUp" type="AnimatedSprite" x="304" y="320" width="16" height="16">
+  <object id="1391" name="LookedUp" type="SwitchableSprite" x="304" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1392" name="LookedUp" type="AnimatedSprite" x="320" y="320" width="16" height="16">
+  <object id="1392" name="LookedUp" type="SwitchableSprite" x="320" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1393" name="LookedUp" type="AnimatedSprite" x="336" y="320" width="16" height="16">
+  <object id="1393" name="LookedUp" type="SwitchableSprite" x="336" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1394" name="LookedUp" type="AnimatedSprite" x="352" y="320" width="16" height="16">
+  <object id="1394" name="LookedUp" type="SwitchableSprite" x="352" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1395" name="LookedUp" type="AnimatedSprite" x="368" y="320" width="16" height="16">
+  <object id="1395" name="LookedUp" type="SwitchableSprite" x="368" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1396" name="LookedUp" type="AnimatedSprite" x="384" y="320" width="16" height="16">
+  <object id="1396" name="LookedUp" type="SwitchableSprite" x="384" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1397" name="LookedUp" type="AnimatedSprite" x="400" y="320" width="16" height="16">
+  <object id="1397" name="LookedUp" type="SwitchableSprite" x="400" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
     <property name="solid" type="bool" value="true"/>
@@ -6455,7 +6455,7 @@
     <property name="text_font" value="Italic"/>
    </properties>
   </object>
-  <object id="1419" name="EscapeButton" type="AnimatedSprite" x="176" y="7984" width="128" height="128">
+  <object id="1419" name="EscapeButton" type="SwitchableSprite" x="176" y="7984" width="128" height="128">
    <properties>
     <property name="fade_time" value="10s"/>
     <property name="image" value="esc.png"/>
@@ -6464,7 +6464,7 @@
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="1421" name="EscapeButton" type="AnimatedSprite" x="4264" y="6104" width="64" height="64">
+  <object id="1421" name="EscapeButton" type="SwitchableSprite" x="4264" y="6104" width="64" height="64">
    <properties>
     <property name="fade_time" value="10s"/>
     <property name="image" value="esc.png"/>
@@ -6473,7 +6473,7 @@
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="1422" name="EscapeButton" type="AnimatedSprite" x="504" y="5208" width="128" height="128">
+  <object id="1422" name="EscapeButton" type="SwitchableSprite" x="504" y="5208" width="128" height="128">
    <properties>
     <property name="fade_time" value="10s"/>
     <property name="image" value="esc.png"/>
@@ -6515,21 +6515,21 @@
   <object id="1433" type="SwitchMusic" x="528" y="6688" width="48" height="16"/>
   <object id="1434" type="SwitchMusic" x="992" y="6688" width="48" height="16"/>
   <object id="1435" type="Riser" x="4792" y="4032" width="16" height="16"/>
-  <object id="1436" name="LeapOfFaithAnyAbility" type="AnimatedSprite" gid="15" x="4816" y="3984" width="16" height="16">
+  <object id="1436" name="LeapOfFaithAnyAbility" type="SwitchableSprite" gid="15" x="4816" y="3984" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
     <property name="opaque" type="bool" value="false"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1437" name="LeapOfFaithAnyAbility" type="AnimatedSprite" gid="16" x="4832" y="3984" width="16" height="16">
+  <object id="1437" name="LeapOfFaithAnyAbility" type="SwitchableSprite" gid="16" x="4832" y="3984" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
     <property name="opaque" type="bool" value="false"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1438" name="LeapOfFaithAnyAbility" type="AnimatedSprite" gid="53" x="4848" y="3984" width="16" height="16">
+  <object id="1438" name="LeapOfFaithAnyAbility" type="SwitchableSprite" gid="53" x="4848" y="3984" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
     <property name="opaque" type="bool" value="false"/>
@@ -6746,22 +6746,22 @@
     <property name="orientation" value="EN"/>
    </properties>
   </object>
-  <object id="1486" name="LearnToPush" type="AnimatedSprite" gid="11" x="7760" y="7312" width="16" height="16">
+  <object id="1486" name="LearnToPush" type="SwitchableSprite" gid="11" x="7760" y="7312" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1487" name="LearnToPush" type="AnimatedSprite" gid="15" x="7744" y="7312" width="16" height="16">
+  <object id="1487" name="LearnToPush" type="SwitchableSprite" gid="15" x="7744" y="7312" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1488" name="LearnToPush" type="AnimatedSprite" gid="11" x="7744" y="7248" width="16" height="16">
+  <object id="1488" name="LearnToPush" type="SwitchableSprite" gid="11" x="7744" y="7248" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1489" name="LearnToPush" type="AnimatedSprite" gid="15" x="7728" y="7248" width="16" height="16">
+  <object id="1489" name="LearnToPush" type="SwitchableSprite" gid="15" x="7728" y="7248" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
@@ -6813,22 +6813,22 @@
     <property name="orientation" value="WN"/>
    </properties>
   </object>
-  <object id="1500" name="LearnToGrab" type="AnimatedSprite" gid="11" x="560" y="560" width="16" height="16">
+  <object id="1500" name="LearnToGrab" type="SwitchableSprite" gid="11" x="560" y="560" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1501" name="LearnToGrab" type="AnimatedSprite" gid="15" x="544" y="560" width="16" height="16">
+  <object id="1501" name="LearnToGrab" type="SwitchableSprite" gid="15" x="544" y="560" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1502" name="LearnToGrab" type="AnimatedSprite" gid="11" x="544" y="496" width="16" height="16">
+  <object id="1502" name="LearnToGrab" type="SwitchableSprite" gid="11" x="544" y="496" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1503" name="LearnToGrab" type="AnimatedSprite" gid="15" x="528" y="496" width="16" height="16">
+  <object id="1503" name="LearnToGrab" type="SwitchableSprite" gid="15" x="528" y="496" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>

@@ -6,32 +6,6 @@
   <property name="player_solid" type="string"/>
   <property name="solid" type="string"/>
  </objecttype>
- <objecttype name="AnimatedSprite" color="#ffffff">
-  <property name="alpha" type="string"/>
-  <property name="animation" type="string"/>
-  <property name="animation_frame_interval" type="int" default="0"/>
-  <property name="animation_frames" type="int" default="0"/>
-  <property name="animation_group" type="string"/>
-  <property name="animation_repeat_interval" type="int" default="0"/>
-  <property name="animation_sync_to_music_offset" type="string" default="0s"/>
-  <property name="fade_time" type="string" default="0s"/>
-  <property name="image" type="string"/>
-  <property name="image_dir" type="string"/>
-  <property name="image_region" type="string"/>
-  <property name="initial_state" type="bool" default="true"/>
-  <property name="no_flip" type="string"/>
-  <property name="no_transform" type="bool" default="false"/>
-  <property name="object_solid" type="string"/>
-  <property name="opaque" type="bool" default="false"/>
-  <property name="orientation" type="string"/>
-  <property name="player_solid" type="string"/>
-  <property name="solid" type="bool" default="false"/>
-  <property name="text" type="string"/>
-  <property name="text_bg" type="color"/>
-  <property name="text_fg" type="color"/>
-  <property name="text_font" type="string"/>
-  <property name="z_index" type="int" default="0"/>
- </objecttype>
  <objecttype name="AppearBlock" color="#00aa00"/>
  <objecttype name="Checkpoint" color="#008000">
   <property name="dead_end" type="bool" default="false"/>
@@ -114,6 +88,32 @@
   <property name="player_solid" type="string"/>
   <property name="solid" type="bool" default="false"/>
   <property name="text" type="string" default=""/>
+  <property name="text_bg" type="color"/>
+  <property name="text_fg" type="color"/>
+  <property name="text_font" type="string"/>
+  <property name="z_index" type="int" default="0"/>
+ </objecttype>
+ <objecttype name="SwitchableSprite" color="#ffffff">
+  <property name="alpha" type="string"/>
+  <property name="animation" type="string"/>
+  <property name="animation_frame_interval" type="int" default="0"/>
+  <property name="animation_frames" type="int" default="0"/>
+  <property name="animation_group" type="string"/>
+  <property name="animation_repeat_interval" type="int" default="0"/>
+  <property name="animation_sync_to_music_offset" type="string" default="0s"/>
+  <property name="fade_time" type="string" default="0s"/>
+  <property name="image" type="string"/>
+  <property name="image_dir" type="string"/>
+  <property name="image_region" type="string"/>
+  <property name="initial_state" type="bool" default="true"/>
+  <property name="no_flip" type="string"/>
+  <property name="no_transform" type="bool" default="false"/>
+  <property name="object_solid" type="string"/>
+  <property name="opaque" type="bool" default="false"/>
+  <property name="orientation" type="string"/>
+  <property name="player_solid" type="string"/>
+  <property name="solid" type="bool" default="false"/>
+  <property name="text" type="string"/>
   <property name="text_bg" type="color"/>
   <property name="text_fg" type="color"/>
   <property name="text_font" type="string"/>

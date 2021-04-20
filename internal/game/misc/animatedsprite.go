@@ -28,9 +28,9 @@ const (
 	solidThreshold    = 12
 )
 
-// AnimatedSprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
+// SwitchableSprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
 // Can be toggled from outside.
-type AnimatedSprite struct {
+type SwitchableSprite struct {
 	Sprite
 	mixins.Settable
 	World  *engine.World
@@ -44,7 +44,7 @@ type AnimatedSprite struct {
 	AnimFrame int
 }
 
-func (s *AnimatedSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SwitchableSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	err := s.Sprite.Spawn(w, sp, e)
 	if err != nil {
 		return nil
@@ -83,7 +83,7 @@ func (s *AnimatedSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.E
 	return nil
 }
 
-func (s *AnimatedSprite) Update() {
+func (s *SwitchableSprite) Update() {
 	s.Sprite.Update()
 
 	if s.Settable.State {
@@ -107,5 +107,5 @@ func (s *AnimatedSprite) Update() {
 }
 
 func init() {
-	engine.RegisterEntityType(&AnimatedSprite{})
+	engine.RegisterEntityType(&SwitchableSprite{})
 }
