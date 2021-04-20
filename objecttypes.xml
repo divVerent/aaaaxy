@@ -6,6 +6,23 @@
   <property name="player_solid" type="string"/>
   <property name="solid" type="string"/>
  </objecttype>
+ <objecttype name="Animation" color="#ffffff">
+  <property name="alpha" type="string"/>
+  <property name="animation" type="string"/>
+  <property name="animation_frame_interval" type="int" default="0"/>
+  <property name="animation_frames" type="int" default="0"/>
+  <property name="animation_group" type="string"/>
+  <property name="animation_repeat_interval" type="int" default="0"/>
+  <property name="animation_sync_to_music_offset" type="string" default="0s"/>
+  <property name="no_flip" type="string"/>
+  <property name="no_transform" type="bool" default="false"/>
+  <property name="object_solid" type="string"/>
+  <property name="opaque" type="bool" default="false"/>
+  <property name="orientation" type="string"/>
+  <property name="player_solid" type="string"/>
+  <property name="solid" type="bool" default="false"/>
+  <property name="z_index" type="int" default="0"/>
+ </objecttype>
  <objecttype name="AppearBlock" color="#00aa00"/>
  <objecttype name="Checkpoint" color="#008000">
   <property name="dead_end" type="bool" default="false"/>
@@ -18,8 +35,8 @@
   <property name="text" type="string"/>
  </objecttype>
  <objecttype name="EdgeTarget" color="#000000">
-  <property name="target" type="string"/>
   <property name="initial_state" type="bool" default="false"/>
+  <property name="target" type="string"/>
  </objecttype>
  <objecttype name="Give" color="#ffff00">
   <property name="ability" type="string"/>
@@ -66,17 +83,11 @@
  </objecttype>
  <objecttype name="SoundTarget" color="#0000ff">
   <property name="sound" type="file" default=""/>
-  <property name="target" type="string"/>
   <property name="state" type="bool" default="true"/>
+  <property name="target" type="string"/>
  </objecttype>
  <objecttype name="Sprite" color="#ffffff">
   <property name="alpha" type="string"/>
-  <property name="animation" type="string"/>
-  <property name="animation_frame_interval" type="int" default="0"/>
-  <property name="animation_frames" type="int" default="0"/>
-  <property name="animation_group" type="string"/>
-  <property name="animation_repeat_interval" type="int" default="0"/>
-  <property name="animation_sync_to_music_offset" type="string" default="0s"/>
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>
   <property name="image_region" type="string"/>
@@ -87,20 +98,10 @@
   <property name="orientation" type="string"/>
   <property name="player_solid" type="string"/>
   <property name="solid" type="bool" default="false"/>
-  <property name="text" type="string" default=""/>
-  <property name="text_bg" type="color"/>
-  <property name="text_fg" type="color"/>
-  <property name="text_font" type="string"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="SwitchableSprite" color="#ffffff">
   <property name="alpha" type="string"/>
-  <property name="animation" type="string"/>
-  <property name="animation_frame_interval" type="int" default="0"/>
-  <property name="animation_frames" type="int" default="0"/>
-  <property name="animation_group" type="string"/>
-  <property name="animation_repeat_interval" type="int" default="0"/>
-  <property name="animation_sync_to_music_offset" type="string" default="0s"/>
   <property name="fade_time" type="string" default="0s"/>
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>
@@ -113,10 +114,6 @@
   <property name="orientation" type="string"/>
   <property name="player_solid" type="string"/>
   <property name="solid" type="bool" default="false"/>
-  <property name="text" type="string"/>
-  <property name="text_bg" type="color"/>
-  <property name="text_fg" type="color"/>
-  <property name="text_font" type="string"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="SwitchMusic" color="#00ff00">
@@ -124,6 +121,21 @@
  </objecttype>
  <objecttype name="SwitchMusicTarget" color="#00ff00">
   <property name="music" type="file" default=""/>
+ </objecttype>
+ <objecttype name="Text" color="#ffffff">
+  <property name="alpha" type="string"/>
+  <property name="no_flip" type="string"/>
+  <property name="no_transform" type="bool" default="false"/>
+  <property name="object_solid" type="string"/>
+  <property name="opaque" type="bool" default="false"/>
+  <property name="orientation" type="string"/>
+  <property name="player_solid" type="string"/>
+  <property name="solid" type="bool" default="false"/>
+  <property name="text" type="string" default=""/>
+  <property name="text_bg" type="color"/>
+  <property name="text_fg" type="color"/>
+  <property name="text_font" type="string"/>
+  <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="TnihSign" color="#ffff00">
   <property name="reached_from" type="object" default="0"/>

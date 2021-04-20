@@ -1148,7 +1148,7 @@
     <property name="text" value="Choose Wisely"/>
    </properties>
   </object>
-  <object id="298" type="Sprite" x="4240" y="6784" width="80" height="64">
+  <object id="298" type="Text" x="4240" y="6784" width="80" height="64">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="Pick  this path?"/>
@@ -1157,7 +1157,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="299" type="Sprite" x="4240" y="6912" width="80" height="64">
+  <object id="299" type="Text" x="4240" y="6912" width="80" height="64">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="Pick  that path?"/>
@@ -1190,7 +1190,7 @@
   </object>
   <object id="313" name="EscherFirst" gid="4" x="4704" y="6512" width="32" height="16"/>
   <object id="314" name="EscherSecond" gid="4" x="4976" y="6688" width="32" height="16"/>
-  <object id="315" type="Sprite" x="3968" y="6848" width="96" height="32">
+  <object id="315" type="Text" x="3968" y="6848" width="96" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="A shortcut?"/>
@@ -1199,7 +1199,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="316" type="Sprite" x="5232" y="6896" width="64" height="32">
+  <object id="316" type="Text" x="5232" y="6896" width="64" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="Draaains"/>
@@ -1384,7 +1384,7 @@
     <property name="text" value="Hide and seek is never fun without opponents."/>
    </properties>
   </object>
-  <object id="396" type="Sprite" x="4064" y="8080" width="128" height="32">
+  <object id="396" type="Text" x="4064" y="8080" width="128" height="32">
    <properties>
     <property name="text" value="Welcome to..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -1560,7 +1560,7 @@
     <property name="orientation" value="NW"/>
    </properties>
   </object>
-  <object id="421" type="Sprite" x="4736" y="8080" width="128" height="32">
+  <object id="421" type="Text" x="4736" y="8080" width="128" height="32">
    <properties>
     <property name="text" value="Nexuiz!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -1568,7 +1568,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="422" type="Sprite" x="4352" y="7056" width="224" height="32">
+  <object id="422" type="Text" x="4352" y="7056" width="224" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="BRLOGENSHFEGLE doesn't lol."/>
@@ -4401,7 +4401,7 @@
   </object>
   <object id="868" name="Box9E" gid="8" x="6032" y="7168" width="16" height="160"/>
   <object id="870" name="Box9E" gid="2" x="5536" y="6848" width="16" height="160"/>
-  <object id="873" type="Sprite" x="5856" y="7520" width="160" height="160">
+  <object id="873" type="Animation" x="5856" y="7520" width="160" height="160">
    <properties>
     <property name="animation" value="clock"/>
     <property name="animation_frame_interval" type="int" value="4"/>
@@ -5225,7 +5225,7 @@
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1088" type="Sprite" x="6512" y="8096" width="32" height="48">
+  <object id="1088" type="Text" x="6512" y="8096" width="32" height="48">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="00"/>
@@ -5234,7 +5234,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1090" type="Sprite" x="6448" y="8000" width="32" height="32">
+  <object id="1090" type="Text" x="6448" y="8000" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="01"/>
@@ -5243,7 +5243,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1091" type="Sprite" x="6448" y="7968" width="32" height="32">
+  <object id="1091" type="Text" x="6448" y="7968" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="02"/>
@@ -5252,7 +5252,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1092" type="Sprite" x="6448" y="7936" width="32" height="32">
+  <object id="1092" type="Text" x="6448" y="7936" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="03"/>
@@ -5261,7 +5261,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1093" type="Sprite" x="6448" y="7904" width="32" height="32">
+  <object id="1093" type="Text" x="6448" y="7904" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="04"/>
@@ -5270,7 +5270,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1094" type="Sprite" x="6528" y="7872" width="32" height="32">
+  <object id="1094" type="Text" x="6528" y="7872" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="05"/>
@@ -5279,7 +5279,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1095" type="Sprite" x="6528" y="7840" width="32" height="32">
+  <object id="1095" type="Text" x="6528" y="7840" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="06"/>
@@ -5288,7 +5288,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1096" type="Sprite" x="6528" y="7808" width="32" height="32">
+  <object id="1096" type="Text" x="6528" y="7808" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="07"/>
@@ -5297,7 +5297,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1097" type="Sprite" x="6528" y="7776" width="32" height="32">
+  <object id="1097" type="Text" x="6528" y="7776" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="08"/>
@@ -5306,7 +5306,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1098" type="Sprite" x="7088" y="7680" width="32" height="32">
+  <object id="1098" type="Text" x="7088" y="7680" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="09"/>
@@ -5315,7 +5315,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1099" type="Sprite" x="7088" y="7584" width="32" height="32">
+  <object id="1099" type="Text" x="7088" y="7584" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="10"/>
@@ -5324,7 +5324,7 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1100" type="Sprite" x="7088" y="7536" width="32" height="48">
+  <object id="1100" type="Text" x="7088" y="7536" width="32" height="48">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="11"/>
@@ -5345,7 +5345,7 @@
     <property name="text" value="Reaching for the stars can really tear you down."/>
    </properties>
   </object>
-  <object id="1103" type="Sprite" x="8144" y="7056" width="32" height="32">
+  <object id="1103" type="Text" x="8144" y="7056" width="32" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="9¾"/>
@@ -5508,7 +5508,7 @@
     <property name="text" value="A watched train never departs."/>
    </properties>
   </object>
-  <object id="1172" type="Sprite" x="4272" y="5088" width="160" height="96">
+  <object id="1172" type="Text" x="4272" y="5088" width="160" height="96">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="Hilbert's Dotel    Welcome!    1) Check in  2) Take your keys  3) Esc for checkout"/>
@@ -5607,7 +5607,7 @@
     <property name="target" value="InfiniteHotelEntrance"/>
    </properties>
   </object>
-  <object id="1189" type="Sprite" x="4272" y="5376" width="160" height="96">
+  <object id="1189" type="Text" x="4272" y="5376" width="160" height="96">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="I ran out of ...        rooms"/>
@@ -5881,7 +5881,7 @@
     <property name="target" value="=ShepardKhil"/>
    </properties>
   </object>
-  <object id="1243" type="Sprite" x="4256" y="5680" width="112" height="64">
+  <object id="1243" type="Text" x="4256" y="5680" width="112" height="64">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="Play ECED  to open.  No Trololos!"/>
@@ -5890,7 +5890,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1244" type="Sprite" x="4256" y="5856" width="16" height="16">
+  <object id="1244" type="Text" x="4256" y="5856" width="16" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="C"/>
@@ -5899,7 +5899,7 @@
     <property name="text_font" value="Small"/>
    </properties>
   </object>
-  <object id="1245" type="Sprite" x="4272" y="5856" width="16" height="16">
+  <object id="1245" type="Text" x="4272" y="5856" width="16" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="D"/>
@@ -5908,7 +5908,7 @@
     <property name="text_font" value="Small"/>
    </properties>
   </object>
-  <object id="1246" type="Sprite" x="4288" y="5856" width="16" height="16">
+  <object id="1246" type="Text" x="4288" y="5856" width="16" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="E"/>
@@ -5917,7 +5917,7 @@
     <property name="text_font" value="Small"/>
    </properties>
   </object>
-  <object id="1247" type="Sprite" x="4304" y="5856" width="16" height="16">
+  <object id="1247" type="Text" x="4304" y="5856" width="16" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="F"/>
@@ -5926,7 +5926,7 @@
     <property name="text_font" value="Small"/>
    </properties>
   </object>
-  <object id="1248" type="Sprite" x="4320" y="5856" width="16" height="16">
+  <object id="1248" type="Text" x="4320" y="5856" width="16" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="G"/>
@@ -5935,7 +5935,7 @@
     <property name="text_font" value="Small"/>
    </properties>
   </object>
-  <object id="1249" type="Sprite" x="4336" y="5856" width="16" height="16">
+  <object id="1249" type="Text" x="4336" y="5856" width="16" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="A"/>
@@ -5944,7 +5944,7 @@
     <property name="text_font" value="Small"/>
    </properties>
   </object>
-  <object id="1250" type="Sprite" x="4352" y="5856" width="16" height="16">
+  <object id="1250" type="Text" x="4352" y="5856" width="16" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="B"/>
@@ -6096,7 +6096,7 @@
     <property name="text" value="The Axiom of Choiche"/>
    </properties>
   </object>
-  <object id="1302" type="Sprite" x="4240" y="6192" width="144" height="32">
+  <object id="1302" type="Text" x="4240" y="6192" width="144" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="Trololololol, lololol, lololol,  Oh ha ha ha oh!"/>
@@ -6210,7 +6210,7 @@
     <property name="target" value="AxiomOfChoiceOut"/>
    </properties>
   </object>
-  <object id="1364" type="Sprite" x="160" y="102" width="160" height="32">
+  <object id="1364" type="Text" x="160" y="102" width="160" height="32">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="Don't  ↑ Look Up! ↑"/>
@@ -6391,7 +6391,7 @@
     <property name="orientation" value="SW"/>
    </properties>
   </object>
-  <object id="1410" type="Sprite" x="112" y="192" width="16" height="16">
+  <object id="1410" type="Text" x="112" y="192" width="16" height="16">
    <properties>
     <property name="text" value="?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6399,7 +6399,7 @@
     <property name="text_font" value="Italic"/>
    </properties>
   </object>
-  <object id="1411" type="Sprite" x="272" y="176" width="16" height="16">
+  <object id="1411" type="Text" x="272" y="176" width="16" height="16">
    <properties>
     <property name="text" value="?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6407,7 +6407,7 @@
     <property name="text_font" value="Italic"/>
    </properties>
   </object>
-  <object id="1412" type="Sprite" x="336" y="240" width="16" height="16">
+  <object id="1412" type="Text" x="336" y="240" width="16" height="16">
    <properties>
     <property name="text" value="?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6415,7 +6415,7 @@
     <property name="text_font" value="Italic"/>
    </properties>
   </object>
-  <object id="1413" type="Sprite" x="160" y="240" width="16" height="16">
+  <object id="1413" type="Text" x="160" y="240" width="16" height="16">
    <properties>
     <property name="text" value="?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6423,7 +6423,7 @@
     <property name="text_font" value="Italic"/>
    </properties>
   </object>
-  <object id="1414" type="Sprite" x="96" y="144" width="16" height="16">
+  <object id="1414" type="Text" x="96" y="144" width="16" height="16">
    <properties>
     <property name="text" value="?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6431,7 +6431,7 @@
     <property name="text_font" value="Italic"/>
    </properties>
   </object>
-  <object id="1415" type="Sprite" x="368" y="112" width="16" height="16">
+  <object id="1415" type="Text" x="368" y="112" width="16" height="16">
    <properties>
     <property name="text" value="?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6439,7 +6439,7 @@
     <property name="text_font" value="Italic"/>
    </properties>
   </object>
-  <object id="1416" type="Sprite" x="256" y="256" width="16" height="16">
+  <object id="1416" type="Text" x="256" y="256" width="16" height="16">
    <properties>
     <property name="text" value="?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6447,7 +6447,7 @@
     <property name="text_font" value="Italic"/>
    </properties>
   </object>
-  <object id="1418" type="Sprite" x="176" y="160" width="16" height="16">
+  <object id="1418" type="Text" x="176" y="160" width="16" height="16">
    <properties>
     <property name="text" value="?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6493,7 +6493,7 @@
   <object id="1427" name="StandFailWarp2" gid="6" x="912" y="7008" width="48" height="16"/>
   <object id="1428" name="StandFailWarp1" gid="4" x="992" y="6624" width="48" height="16"/>
   <object id="1429" name="StandFailWarp2" gid="4" x="528" y="6624" width="48" height="16"/>
-  <object id="1430" type="Sprite" x="752" y="6704" width="64" height="48">
+  <object id="1430" type="Text" x="752" y="6704" width="64" height="48">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="The  Cleats"/>
@@ -6578,7 +6578,7 @@
   <object id="1447" name="GotStandWarp2" gid="4" x="912" y="6720" width="48" height="16"/>
   <object id="1450" name="GotStandWarp1" gid="6" x="528" y="6592" width="48" height="16"/>
   <object id="1451" name="GotStandWarp2" gid="6" x="448" y="6592" width="48" height="16"/>
-  <object id="1452" type="Sprite" x="480" y="6496" width="64" height="16">
+  <object id="1452" type="Text" x="480" y="6496" width="64" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="3..."/>
@@ -6587,7 +6587,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1453" type="Sprite" x="480" y="6240" width="64" height="16">
+  <object id="1453" type="Text" x="480" y="6240" width="64" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="2..."/>
@@ -6596,7 +6596,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1454" type="Sprite" x="480" y="5984" width="64" height="16">
+  <object id="1454" type="Text" x="480" y="5984" width="64" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="1..."/>
@@ -6605,7 +6605,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1455" type="Sprite" x="480" y="5728" width="64" height="16">
+  <object id="1455" type="Text" x="480" y="5728" width="64" height="16">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="Blast off?"/>
@@ -6713,7 +6713,7 @@
     <property name="text" value="You can now push platforms away!"/>
    </properties>
   </object>
-  <object id="1479" type="Sprite" x="7872" y="7168" width="64" height="48">
+  <object id="1479" type="Text" x="7872" y="7168" width="64" height="48">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="The Coil  (hold button)"/>
@@ -6780,7 +6780,7 @@
     <property name="text" value="You can now grab and carry platforms!"/>
    </properties>
   </object>
-  <object id="1494" type="Sprite" x="672" y="416" width="64" height="48">
+  <object id="1494" type="Text" x="672" y="416" width="64" height="48">
    <properties>
     <property name="no_flip" value="x"/>
     <property name="text" value="The Gloves  (hold button)"/>
