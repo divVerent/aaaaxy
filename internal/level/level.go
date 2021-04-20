@@ -159,6 +159,44 @@ func (l *Level) LoadGame(save SaveGame) error {
 	return nil
 }
 
+func (l *Level) applyTileMod(startTile, endTile m.Pos, mods map[string]string) {
+	var add, remove Contents
+	switch mods["object_solid"] {
+	case "true":
+		add |= ObjectSolidContents
+	case "false":
+		remove |= ObjectSolidContents
+	}
+	switch mods["opaque"] {
+	case "true":
+		add |= OpaqueContents
+	case "false":
+		remove |= OpaqueContents
+	}
+	switch mods["player_solid"] {
+	case "true":
+		add |= PlayerSolidContents
+	case "false":
+		remove |= PlayerSolidContents
+	}
+	switch mods["solid"] {
+	case "true":
+		add |= SolidContents
+	case "false":
+		remove |= SolidContents
+	}
+	for y := startTile.Y; y <= endTile.Y; y++ {
+		for x := startTile.X; x <= endTile.X; x++ {
+			t := l.Tile(m.Pos{X: x, Y: y})
+			if t == nil {
+				continue
+			}
+			t.Tile.Contents |= add
+			t.Tile.Contents &= ^remove
+		}
+	}
+}
+
 func Load(filename string) (*Level, error) {
 	r, err := vfs.Load("maps", filename+".tmx")
 	if err != nil {
@@ -419,6 +457,11 @@ func Load(filename string) (*Level, error) {
 				Orientation:     orientation,
 				Properties:      properties,
 				PersistentState: PersistentState{},
+			}
+			if properties["type"] == "_TileMod" {
+				level.applyTileMod(startTile, endTile, properties)
+				// Do not link to tiles.
+				continue
 			}
 			if properties["type"] == "Player" {
 				level.Player = &ent

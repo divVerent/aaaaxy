@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objecttypes>
+ <objecttype name="_TileMod" color="#0000ff">
+  <property name="object_solid" type="string"/>
+  <property name="opaque" type="string"/>
+  <property name="player_solid" type="string"/>
+  <property name="solid" type="string"/>
+ </objecttype>
  <objecttype name="AnimatedSprite" color="#ffffff">
   <property name="alpha" type="string"/>
   <property name="animation" type="string"/>
