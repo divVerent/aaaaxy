@@ -61,8 +61,6 @@ func (s *SequenceTarget) SetState(state bool) {
 
 func (s *SequenceTarget) Touch(other *engine.Entity) {}
 
-func (s *SequenceTarget) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
-
 // SequenceCollector waits for receiving strings, and sends a trigger event when the correct string was received.
 type SequenceCollector struct {
 	World  *engine.World

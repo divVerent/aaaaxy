@@ -6139,7 +6139,6 @@
    <properties>
     <property name="image" value="turtle-bw.png"/>
     <property name="image_region" value="0 48 304 208"/>
-    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="1321" type="TnihSign" x="4928" y="6144" width="32" height="32">
@@ -6185,7 +6184,6 @@
    <properties>
     <property name="image" value="turtle-bw.png"/>
     <property name="image_region" value="0 0 304 48"/>
-    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="1349" type="SetState" x="5063" y="6048" width="2" height="2">
@@ -6463,7 +6461,7 @@
     <property name="image" value="esc.png"/>
     <property name="initial_state" type="bool" value="false"/>
     <property name="no_flip" value="x"/>
-    <property name="z_index" type="int" value="12"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="1421" name="EscapeButton" type="AnimatedSprite" x="4264" y="6104" width="64" height="64">
@@ -6472,7 +6470,7 @@
     <property name="image" value="esc.png"/>
     <property name="initial_state" type="bool" value="false"/>
     <property name="no_flip" value="x"/>
-    <property name="z_index" type="int" value="12"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="1422" name="EscapeButton" type="AnimatedSprite" x="504" y="5208" width="128" height="128">
@@ -6482,7 +6480,7 @@
     <property name="initial_state" type="bool" value="false"/>
     <property name="no_flip" value="x"/>
     <property name="orientation" value="WN"/>
-    <property name="z_index" type="int" value="12"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="1423" type="Give" x="752" y="6768" width="64" height="64">

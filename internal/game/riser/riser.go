@@ -17,10 +17,9 @@ package riser
 import (
 	"fmt"
 
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
@@ -97,7 +96,7 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 		sprite = "riser_small"
 	}
 	r.Entity.Rect.Origin = r.Entity.Rect.Origin.Sub(r.Entity.RenderOffset)
-	r.Entity.ZIndex = engine.MaxZIndex - 1
+	w.SetZIndex(r.Entity, constants.RiserZ)
 	r.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
 	r.State = Inactive
 	r.Entity.Orientation = m.Identity()
@@ -224,8 +223,6 @@ func (r *Riser) handleTouch(trace engine.TraceResult) {
 func (r *Riser) Touch(other *engine.Entity) {
 	// Nothing happens; we rather handle this on other's Touch event.
 }
-
-func (r *Riser) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&Riser{})

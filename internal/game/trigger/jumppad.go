@@ -18,8 +18,6 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
@@ -173,8 +171,6 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	p.SetVelocityForJump(calculateJump(delta, j.Height))
 	j.JumpSound.Play()
 }
-
-func (j *JumpPad) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&JumpPad{})

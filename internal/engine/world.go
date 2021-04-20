@@ -49,10 +49,14 @@ type World struct {
 
 	// tiles are all tiles currently loaded.
 	tiles []*level.Tile
+	// incarnations are all currently existing entity incarnations.
+	incarnations map[EntityIncarnation]struct{}
 	// entities are all entities currently loaded.
-	entities map[EntityIncarnation]*Entity
+	entities entityList
+	// entitiesByZ are all entities, grouped by Z index.
+	entitiesByZ []entityList
 	// opaqueEntities are all opaque entities currently loaded.
-	opaqueEntities []*Entity
+	opaqueEntities entityList
 	// Player is the player entity.
 	Player *Entity
 	// PlayerState is the managed persistent state of the player.
@@ -138,9 +142,20 @@ func (w *World) forEachTile(f func(pos m.Pos, t *level.Tile)) {
 }
 
 func (w *World) ForEachEntity(f func(e *Entity)) {
-	for _, e := range w.entities {
+	w.entities.forEach(func(e *Entity) error {
 		f(e)
-	}
+		return nil
+	})
+}
+
+func (w *World) clearEntities() {
+	w.entities.forEach(func(e *Entity) error {
+		if e != w.Player {
+			e.Impl.Despawn()
+		}
+		w.unlink(e)
+		return nil
+	})
 }
 
 // Init brings a world into a working state.
@@ -153,18 +168,15 @@ func (w *World) Init() error {
 	}
 
 	// Allow reiniting if already done.
-	for _, ent := range w.entities {
-		if ent == w.Player {
-			continue
-		}
-		ent.Impl.Despawn()
-	}
+	w.clearEntities()
 
 	*w = World{
-		tiles:       make([]*level.Tile, tileWindowWidth*tileWindowHeight),
-		entities:    map[EntityIncarnation]*Entity{},
-		Level:       lvl,
-		PlayerState: player_state.PlayerState{lvl},
+		tiles:          make([]*level.Tile, tileWindowWidth*tileWindowHeight),
+		incarnations:   map[EntityIncarnation]struct{}{},
+		entities:       makeList(allList),
+		opaqueEntities: makeList(opaqueList),
+		Level:          lvl,
+		PlayerState:    player_state.PlayerState{lvl},
 	}
 	w.renderer.Init(w)
 
@@ -260,23 +272,22 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	// Build a new world around the CP tile and the player.
 	w.frameVis = 0
 	tile.VisibilityFlags = w.frameVis
-	for _, ent := range w.entities {
-		if ent == w.Player {
-			continue
-		}
-		ent.Impl.Despawn()
-	}
-	w.entities = map[EntityIncarnation]*Entity{}
-	w.opaqueEntities = nil
+	w.clearEntities()
 	w.link(w.Player)
 	w.tiles = make([]*level.Tile, tileWindowWidth*tileWindowHeight)
 	w.setScrollPos(cpSp.LevelPos.Mul(level.TileSize)) // Scroll the tile into view.
 	w.setTile(cpSp.LevelPos, &tile)
 
 	// Spawn the CP.
-	cp, err := w.Spawn(cpSp, cpSp.LevelPos, &tile)
-	if err != nil {
-		return fmt.Errorf("could not spawn checkpoint: %v", err)
+	var cp *Entity
+	if cpSp == w.Level.Player {
+		cp = w.Player
+	} else {
+		var err error
+		cp, err = w.Spawn(cpSp, cpSp.LevelPos, &tile)
+		if err != nil {
+			return fmt.Errorf("could not spawn checkpoint: %v", err)
+		}
 	}
 
 	// Move the player to the center of the checkpoint.
@@ -336,14 +347,15 @@ func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult
 
 func (w *World) updateEntities() {
 	w.respawned = false
-	for _, ent := range w.entities {
+	w.entities.forEach(func(ent *Entity) error {
 		ent.Impl.Update()
 		if w.respawned {
 			// Once respawned, stop further processing to avoid
 			// entities to interact with the respawned player.
-			return
+			return breakError
 		}
-	}
+		return nil
+	})
 }
 
 // updateScrollPos updates the current scroll position.
@@ -509,7 +521,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	})
 
 	timing.Section("despawn_search")
-	for _, ent := range w.entities {
+	w.entities.forEach(func(ent *Entity) error {
 		tp0, tp1 := tilesBox(ent.Rect)
 		var pos *m.Pos
 	DESPAWN_SEARCH:
@@ -546,7 +558,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 			ent.Impl.Despawn()
 			w.unlink(ent)
 		}
-	}
+		return nil
+	})
 
 	// Delete all unmarked tiles.
 	timing.Section("cleanup_unmarked")
@@ -738,50 +751,67 @@ func (w *World) Draw(screen *ebiten.Image) {
 	w.renderer.Draw(screen)
 }
 
-func (w *World) unlink(e *Entity) {
-	if e.contents.Opaque() {
-		for i, e2 := range w.opaqueEntities {
-			if e2 == e {
-				w.opaqueEntities[i] = w.opaqueEntities[len(w.opaqueEntities)-1]
-				w.opaqueEntities = w.opaqueEntities[:len(w.opaqueEntities)-1]
-				break
-			}
-		}
+func encodeZ(z int) int {
+	if z < 0 {
+		return -1 - 2*z
+	} else {
+		return 2 * z
 	}
-	delete(w.entities, e.Incarnation)
+}
+
+func zBounds(l int) (min, max int) {
+	last := l - 1
+	max = last / 2
+	min = -max - last%2
+	return
+}
+
+func (w *World) unlink(e *Entity) {
+	z := encodeZ(e.zIndex)
+	w.entitiesByZ[z].remove(e)
+	if e.contents.Opaque() {
+		w.opaqueEntities.remove(e)
+	}
+	w.entities.remove(e)
+	delete(w.incarnations, e.Incarnation)
 }
 
 func (w *World) link(e *Entity) {
-	if w.entities[e.Incarnation] != nil {
-		log.Panicf("linking an entity that has already been linked, which should never happen: %v", e)
-	}
-	w.entities[e.Incarnation] = e
+	w.incarnations[e.Incarnation] = struct{}{}
+	w.entities.insert(e)
 	if e.contents.Opaque() {
-		w.opaqueEntities = append(w.opaqueEntities, e)
+		w.opaqueEntities.insert(e)
 	}
-	// log.Printf("%d entities (%d opaque)", len(w.entities), len(w.opaqueEntities))
+	z := encodeZ(e.zIndex)
+	for len(w.entitiesByZ) <= z {
+		w.entitiesByZ = append(w.entitiesByZ, makeList(zList))
+	}
+	w.entitiesByZ[z].insert(e)
 }
 
 func (w *World) FindName(name string) []*Entity {
+	// TODO maybe optimize this too by an intrusive list?
 	var out []*Entity
-	for _, ent := range w.entities {
+	w.entities.forEach(func(ent *Entity) error {
 		if ent.name == name {
 			out = append(out, ent)
 		}
-	}
+		return nil
+	})
 	return out
 }
 
 func (w *World) FindContents(c level.Contents) []*Entity {
 	// TODO maybe keep such a list for all contents masks?
 	if c == level.OpaqueContents {
-		return w.opaqueEntities
+		return w.opaqueEntities.items
 	}
 	var out []*Entity
-	for _, ent := range w.entities {
+	w.entities.forEach(func(ent *Entity) error {
 		if ent.contents&c != 0 {
 			out = append(out, ent)
 		}
-	}
+		return nil
+	})
 	return out
 }

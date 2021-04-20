@@ -177,14 +177,11 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 }
 
 func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
-	zEnts := map[int][]*Entity{}
-	for _, ent := range r.world.entities {
-		zEnts[ent.ZIndex] = append(zEnts[ent.ZIndex], ent)
-	}
-	for z := MinZIndex; z <= MaxZIndex; z++ {
-		for _, ent := range zEnts[z] {
+	minZ, maxZ := zBounds(len(r.world.entitiesByZ))
+	for z := minZ; z <= maxZ; z++ {
+		r.world.entitiesByZ[encodeZ(z)].forEach(func(ent *Entity) error {
 			if ent.Image == nil || ent.Alpha == 0 {
-				continue
+				return nil
 			}
 			screenPos := ent.Rect.Origin.Add(scrollDelta).Add(ent.RenderOffset)
 			opts := ebiten.DrawImageOptions{
@@ -196,7 +193,8 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 			setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation)
 			opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
 			screen.DrawImage(ent.Image, &opts)
-		}
+			return nil
+		})
 	}
 }
 
@@ -250,8 +248,8 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), color.NRGBA{R: 0, G: 255, B: 0, A: 255})
 		}
 	})
-	for _, ent := range r.world.entities {
-		if *debugShowBboxes {
+	if *debugShowBboxes {
+		r.world.entities.forEach(func(ent *Entity) error {
 			boxColor := color.NRGBA{R: 128, G: 128, B: 128, A: 128}
 			if ent.contents.PlayerSolid() {
 				boxColor.R = 255
@@ -263,7 +261,8 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 				boxColor.B = 255
 			}
 			ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY), float64(ent.Rect.Size.DX), float64(ent.Rect.Size.DY), boxColor)
-		}
+			return nil
+		})
 	}
 
 	if *debugShowVisiblePolygon {
@@ -392,18 +391,6 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 	r.needPrevImage = false
 }
 
-func (r *renderer) drawOverlays(screen *ebiten.Image, scrollDelta m.Delta) {
-	zEnts := map[int][]*Entity{}
-	for _, ent := range r.world.entities {
-		zEnts[ent.ZIndex] = append(zEnts[ent.ZIndex], ent)
-	}
-	for z := MinZIndex; z <= MaxZIndex; z++ {
-		for _, ent := range zEnts[z] {
-			ent.Impl.DrawOverlay(screen, scrollDelta)
-		}
-	}
-}
-
 func (r *renderer) Draw(screen *ebiten.Image) {
 	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(r.world.scrollPos)
 
@@ -414,7 +401,6 @@ func (r *renderer) Draw(screen *ebiten.Image) {
 	if *drawVisibilityMask {
 		r.drawVisibilityMask(screen, dest, scrollDelta)
 	}
-	r.drawOverlays(screen, scrollDelta)
 	centerprint.Draw(screen)
 
 	// Debug stuff comes last.

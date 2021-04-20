@@ -15,12 +15,10 @@
 package trigger
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // AppearBlock is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -30,6 +28,8 @@ type AppearBlock struct {
 
 	AnimFrame int
 }
+
+var count int = 0
 
 const (
 	AppearFrames         = 16
@@ -48,7 +48,7 @@ func (a *AppearBlock) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entit
 		return err
 	}
 	e.Alpha = 0.0
-	e.ZIndex = 1 // Above normal sprites.
+	w.SetZIndex(e, constants.AppearBlockZ)
 
 	return nil
 }
@@ -71,8 +71,6 @@ func (a *AppearBlock) Update() {
 }
 
 func (a *AppearBlock) Touch(other *engine.Entity) {}
-
-func (a *AppearBlock) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&AppearBlock{})

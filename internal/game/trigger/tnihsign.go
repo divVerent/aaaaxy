@@ -112,8 +112,6 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 	}
 }
 
-func (t *TnihSign) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
-
 func init() {
 	engine.RegisterEntityType(&TnihSign{})
 }

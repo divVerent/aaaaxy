@@ -42,7 +42,10 @@ type Entity struct {
 	RenderOffset m.Delta
 	ResizeImage  bool // Conceptually incompatible with RenderOffset.
 	Alpha        float64
-	ZIndex       int
+	zIndex       int
+
+	// Intrusive list state.
+	indexInListPlusOne [numLists]int
 
 	// Entity's own state.
 	Impl EntityImpl
@@ -69,9 +72,6 @@ type EntityImpl interface {
 
 	// Touch notifies the entity that it was hit by another entity moving.
 	Touch(other *Entity)
-
-	// Draw the entity's overlay. Useful for entities that are more than just a sprite.
-	DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta)
 }
 
 // entityTypes is a helper map to know how to spawn an entity.
@@ -96,8 +96,8 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 		ID:      s.ID,
 		TilePos: originTilePos,
 	}
-	if e := w.entities[incarnation]; e != nil {
-		return e, nil
+	if _, found := w.incarnations[incarnation]; found {
+		return nil, nil
 	}
 	eTmpl := entityTypes[s.EntityType]
 	if eTmpl == nil {
@@ -153,6 +153,17 @@ func (w *World) SetSolid(e *Entity, solid bool) {
 // SetOpaque makes an entity opaque (or not).
 func (w *World) SetOpaque(e *Entity, opaque bool) {
 	w.MutateContentsBool(e, level.OpaqueContents, opaque)
+}
+
+// SetZIndex sets an entity's Z index.
+func (w *World) SetZIndex(e *Entity, index int) {
+	w.unlink(e)
+	e.zIndex = index
+	w.link(e)
+}
+
+func (e *Entity) ZIndex() int {
+	return e.zIndex
 }
 
 func (e *Entity) Contents() level.Contents {

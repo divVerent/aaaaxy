@@ -17,8 +17,6 @@ package trigger
 import (
 	"fmt"
 
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/level"
@@ -75,8 +73,6 @@ func (o *OneWay) Update() {
 }
 
 func (o *OneWay) Touch(other *engine.Entity) {}
-
-func (o *OneWay) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&OneWay{})

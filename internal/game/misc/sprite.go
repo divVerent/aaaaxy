@@ -27,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/font"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
@@ -137,10 +138,14 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 		}
 	}
 	if sp.Properties["z_index"] != "" {
-		e.ZIndex, err = strconv.Atoi(sp.Properties["z_index"])
+		zIndex, err := strconv.Atoi(sp.Properties["z_index"])
 		if err != nil {
 			return fmt.Errorf("could not decode z index %q: %v", sp.Properties["z_index"], err)
 		}
+		if zIndex < constants.MinSpriteZ || zIndex > constants.MaxSpriteZ {
+			return fmt.Errorf("z index out of range: got %v, want %v..%v", zIndex, constants.MinSpriteZ, constants.MaxSpriteZ)
+		}
+		w.SetZIndex(e, zIndex)
 	}
 	if sp.Properties["no_transform"] == "true" {
 		// Undo transform of orientation by tile.
@@ -176,8 +181,6 @@ func (s *Sprite) Update() {
 }
 
 func (s *Sprite) Touch(other *engine.Entity) {}
-
-func (s *Sprite) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&Sprite{})

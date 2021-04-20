@@ -15,12 +15,9 @@
 package target
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // EdgeTarget cleans up SetState events to match edges only.
@@ -55,8 +52,6 @@ func (t *EdgeTarget) SetState(state bool) {
 	t.State = state
 	mixins.SetStateOfTarget(t.World, t.Entity, t.Target, t.State)
 }
-
-func (t *EdgeTarget) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&EdgeTarget{})

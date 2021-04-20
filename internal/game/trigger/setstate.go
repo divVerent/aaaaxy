@@ -15,13 +15,10 @@
 package trigger
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/game/target"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // SetState overrides the boolean state of a warpzone or entity.
@@ -64,8 +61,6 @@ func (s *SetState) Touch(other *engine.Entity) {
 	}
 	s.Touching = true
 }
-
-func (s *SetState) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&SetState{})

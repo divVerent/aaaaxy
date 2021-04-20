@@ -15,13 +15,10 @@
 package trigger
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/game/target"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // SwitchMusic just changes the music track to the given one.
@@ -48,8 +45,6 @@ func (s *SwitchMusic) Touch(other *engine.Entity) {
 	}
 	s.SetState(true)
 }
-
-func (s *SwitchMusic) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&SwitchMusic{})

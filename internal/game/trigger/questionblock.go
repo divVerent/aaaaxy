@@ -123,8 +123,6 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 	q.Sound.Play()
 }
 
-func (q *QuestionBlock) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
-
 func init() {
 	engine.RegisterEntityType(&QuestionBlock{})
 }

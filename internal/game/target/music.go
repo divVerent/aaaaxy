@@ -15,11 +15,8 @@
 package target
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
 )
 
@@ -44,8 +41,6 @@ func (s *SwitchMusicTarget) SetState(state bool) {
 		music.Switch(s.Music)
 	}
 }
-
-func (s *SwitchMusicTarget) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&SwitchMusicTarget{})

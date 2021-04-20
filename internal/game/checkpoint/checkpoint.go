@@ -19,8 +19,6 @@ import (
 	"image/color"
 	"log"
 
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
@@ -102,8 +100,6 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 		c.Sound.Play()
 	}
 }
-
-func (c *Checkpoint) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&Checkpoint{})

@@ -18,13 +18,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/audiowrap"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/sound"
 )
 
@@ -87,8 +84,6 @@ func (s *SoundTarget) SetState(state bool) {
 		}
 	}
 }
-
-func (s *SoundTarget) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&SoundTarget{})

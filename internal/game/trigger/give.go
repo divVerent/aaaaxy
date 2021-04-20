@@ -17,14 +17,11 @@ package trigger
 import (
 	"fmt"
 
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 const (
@@ -88,8 +85,6 @@ func (g *Give) Touch(other *engine.Entity) {
 	}
 	g.World.Player.Impl.(interfaces.Abilityer).GiveAbility(g.Ability, g.Text)
 }
-
-func (g *Give) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&Give{})

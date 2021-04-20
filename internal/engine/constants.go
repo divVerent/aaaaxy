@@ -52,11 +52,6 @@ const (
 	// Minimum distance from screen edge when scrolling.
 	scrollMinDistance = 2 * level.TileSize
 
-	// MinZIndex is the minimal Z index of an entity.
-	MinZIndex = -16
-	// MaxZIndex is the maximum Z index of an entity.
-	MaxZIndex = 15
-
 	// Fully "fade in" in one second.
 	pixelsPerSpawnFrame = (GameWidth / 2) / 60
 
