@@ -8,6 +8,7 @@ find .. -name \*.png | sort | while read -r file; do
 		../assets/tiles/warpzone_*.png) continue ;;
 		# Intentionally violating.
 		../assets/sprites/clock_*.png) continue ;;
+		../assets/sprites/gradient_*.png) continue ;;
 	esac
 	f=$(
 		convert \
