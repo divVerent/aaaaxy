@@ -31,6 +31,7 @@ type SetState struct {
 
 	Touching bool
 	Touched  bool
+	State    bool
 }
 
 func (s *SetState) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -50,6 +51,7 @@ func (s *SetState) Update() {
 	s.NonSolidTouchable.Update()
 	s.SetStateTarget.Update()
 	if s.Touched && !s.Touching && s.SendUntouch {
+		s.State = false
 		s.SetState(false)
 	}
 	s.Touching, s.Touched = false, s.Touching
@@ -57,6 +59,7 @@ func (s *SetState) Update() {
 
 func (s *SetState) Touch(other *engine.Entity) {
 	if s.SendEveryFrame || (!s.Touching && !s.Touched) {
+		s.State = true
 		s.SetState(true)
 	}
 	s.Touching = true
