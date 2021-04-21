@@ -52,9 +52,13 @@ type State struct {
 
 func (s *State) Init(spritePrefix string, groups map[string]*Group, initialGroup string) error {
 	for name, group := range groups {
-		group.NextGroup = groups[group.NextAnim]
-		if group.NextGroup == nil {
-			return fmt.Errorf("animation group %q references nonexisting frame group %q", name, group.NextAnim)
+		if group.NextAnim == "" {
+			group.NextGroup = nil
+		} else {
+			group.NextGroup = groups[group.NextAnim]
+			if group.NextGroup == nil {
+				return fmt.Errorf("animation group %q references nonexisting frame group %q", name, group.NextAnim)
+			}
 		}
 		group.Images = make([]*ebiten.Image, group.Frames)
 		for i := range group.Images {
@@ -73,6 +77,7 @@ func (s *State) Init(spritePrefix string, groups map[string]*Group, initialGroup
 	}
 	s.Groups = groups
 	s.ForceGroup(initialGroup)
+	s.Group = s.NextGroup // Don't crash on SetGroup calls.
 	return nil
 }
 
@@ -100,14 +105,14 @@ func (s *State) SetGroup(group string) {
 		return
 	}
 	// Immediately switch over if current group isn't WaitFinish.
-	s.WantNext = s.Group == nil || !s.Group.WaitFinish
+	s.WantNext = !s.Group.WaitFinish
 	s.NextGroup = requested
 	return
 }
 
 func (s *State) Update(e *engine.Entity) {
 	s.Frame += 1
-	if s.WantNext || s.Frame >= s.Group.NextInterval {
+	if s.NextGroup != nil && (s.WantNext || s.Frame >= s.Group.NextInterval) {
 		s.Frame = 0
 		s.Group = s.NextGroup
 		s.WantNext = false
