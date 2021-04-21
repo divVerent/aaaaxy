@@ -33,29 +33,55 @@ type entityList struct {
 	items []*Entity
 }
 
-func makeList(index listIndex) entityList {
-	return entityList{index: index, items: nil}
+func makeList(index listIndex) *entityList {
+	return &entityList{index: index, items: nil}
+}
+
+func (l *entityList) verify(step string) {
+	// Uncomment this if you suspect lists may get corrupted.
+	/*
+		if l == nil {
+			log.Panicf("verifying nil list")
+		}
+		for i, e := range l.items {
+			if e == nil {
+				continue
+			}
+			idx := e.indexInListPlusOne[l.index] - 1
+			if idx != i {
+				log.Panicf("%v: corrupted entity list %v: entity %v: got index %v, want %v", step, l.index, e, e.indexInListPlusOne[l.index]-1, i)
+			}
+		}
+	*/
 }
 
 func (l *entityList) insert(e *Entity) {
+	l.verify("insert pre")
 	if e.indexInListPlusOne[l.index] != 0 {
-		log.Panicf("inserting into the same intrusive items twice: entity %v, items %v", e, l.index)
+		log.Panicf("inserting into the same entity list twice: entity %v, items %v", e, l.index)
 	}
 	l.items = append(l.items, e)
 	e.indexInListPlusOne[l.index] = len(l.items)
+	l.verify("insert post")
 }
 
 func (l *entityList) remove(e *Entity) {
+	l.verify("remove pre")
 	idxPlusOne := e.indexInListPlusOne[l.index]
 	if idxPlusOne == 0 {
-		log.Panicf("removing from an intrusive items the entity isn't in: entity %v, list %v", e, l.index)
+		log.Panicf("removing from an entity list the entity isn't in: entity %v, list %v", e, l.index)
 	}
 	idx := idxPlusOne - 1
+	if l.items[idx] != e {
+		log.Panicf("removing from a corrupted entity list %v: entity %v isn't actually at index %v", l.index, e, idx)
+	}
 	l.items[idx] = nil
 	e.indexInListPlusOne[l.index] = 0
+	l.verify("remove post")
 }
 
 func (l *entityList) compact() {
+	l.verify("compact pre")
 	n := 0
 	for _, e := range l.items {
 		if e == nil {
@@ -66,6 +92,7 @@ func (l *entityList) compact() {
 		e.indexInListPlusOne[l.index] = n
 	}
 	l.items = l.items[:n]
+	l.verify("compact post")
 }
 
 var breakError = errors.New("break")
