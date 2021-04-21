@@ -17,20 +17,12 @@ package misc
 import (
 	"fmt"
 	go_image "image"
-	"image/color"
-	"strconv"
-	"strings"
-	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/font"
-	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // Sprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.

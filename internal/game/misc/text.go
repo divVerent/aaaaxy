@@ -16,21 +16,14 @@ package misc
 
 import (
 	"fmt"
-	go_image "image"
 	"image/color"
-	"strconv"
 	"strings"
-	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/font"
-	"github.com/divVerent/aaaaaa/internal/game/constants"
-	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // Text is a simple entity type that renders text.
@@ -62,8 +55,7 @@ func (t *Text) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) erro
 	e.ResizeImage = false
 	centerOffset := e.Rect.Size.Sub(bounds.Size).Div(2)
 	e.RenderOffset = e.RenderOffset.Add(centerOffset)
-	t.MyImage = true
-	t.Sprite.Spawn(w, s, e)
+	return t.SpriteBase.Spawn(w, s, e)
 }
 
 func (t *Text) Despawn() {

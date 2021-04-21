@@ -14,6 +14,8 @@
   <property name="animation_group" type="string"/>
   <property name="animation_repeat_interval" type="int" default="0"/>
   <property name="animation_sync_to_music_offset" type="string" default="0s"/>
+  <property name="map_black_to" type="color"/>
+  <property name="map_white_to" type="color"/>
   <property name="no_flip" type="string"/>
   <property name="no_transform" type="bool" default="false"/>
   <property name="object_solid" type="string"/>
@@ -91,6 +93,8 @@
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>
   <property name="image_region" type="string"/>
+  <property name="map_black_to" type="color"/>
+  <property name="map_white_to" type="color"/>
   <property name="no_flip" type="string"/>
   <property name="no_transform" type="bool" default="false"/>
   <property name="object_solid" type="string"/>
@@ -107,6 +111,8 @@
   <property name="image_dir" type="string"/>
   <property name="image_region" type="string"/>
   <property name="initial_state" type="bool" default="true"/>
+  <property name="map_black_to" type="color"/>
+  <property name="map_white_to" type="color"/>
   <property name="no_flip" type="string"/>
   <property name="no_transform" type="bool" default="false"/>
   <property name="object_solid" type="string"/>
@@ -124,6 +130,8 @@
  </objecttype>
  <objecttype name="Text" color="#ffffff">
   <property name="alpha" type="string"/>
+  <property name="map_black_to" type="color"/>
+  <property name="map_white_to" type="color"/>
   <property name="no_flip" type="string"/>
   <property name="no_transform" type="bool" default="false"/>
   <property name="object_solid" type="string"/>

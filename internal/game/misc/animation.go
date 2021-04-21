@@ -16,21 +16,11 @@ package misc
 
 import (
 	"fmt"
-	go_image "image"
-	"image/color"
-	"strconv"
-	"strings"
 	"time"
-
-	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/font"
-	"github.com/divVerent/aaaaaa/internal/game/constants"
-	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // Animation is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -60,10 +50,11 @@ func (a *Animation) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity)
 		return fmt.Errorf("could not decode animation_repeat_interval %q: %v", repeatIntervalString, err)
 	}
 	syncToMusicOffsetString := s.Properties["animation_sync_to_music_offset"]
+	var err error
 	if group.SyncToMusicOffset, err = time.ParseDuration(syncToMusicOffsetString); err != nil {
 		return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %v", syncToMusicOffsetString, err)
 	}
-	err := a.Anim.Init(prefix, map[string]*animation.Group{groupName: group}, groupName)
+	err = a.Anim.Init(prefix, map[string]*animation.Group{groupName: group}, groupName)
 	if err != nil {
 		return fmt.Errorf("could not initialize animation %v: %v", prefix, err)
 	}
