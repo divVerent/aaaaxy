@@ -52,11 +52,11 @@ type World struct {
 	// incarnations are all currently existing entity incarnations.
 	incarnations map[EntityIncarnation]struct{}
 	// entities are all entities currently loaded.
-	entities *entityList
+	entities entityList
 	// entitiesByZ are all entities, grouped by Z index.
-	entitiesByZ []*entityList
+	entitiesByZ []entityList
 	// opaqueEntities are all opaque entities currently loaded.
-	opaqueEntities *entityList
+	opaqueEntities entityList
 	// Player is the player entity.
 	Player *Entity
 	// PlayerState is the managed persistent state of the player.
@@ -149,9 +149,6 @@ func (w *World) ForEachEntity(f func(e *Entity)) {
 }
 
 func (w *World) clearEntities() {
-	if w.entities == nil {
-		return
-	}
 	w.entities.forEach(func(e *Entity) error {
 		if e != w.Player {
 			e.Impl.Despawn()
@@ -360,8 +357,8 @@ func (w *World) updateEntities() {
 		return nil
 	})
 	w.entities.compact()
-	for _, l := range w.entitiesByZ {
-		l.compact()
+	for i := range w.entitiesByZ {
+		w.entitiesByZ[i].compact()
 	}
 	w.opaqueEntities.compact()
 }

@@ -33,8 +33,8 @@ type entityList struct {
 	items []*Entity
 }
 
-func makeList(index listIndex) *entityList {
-	return &entityList{index: index, items: nil}
+func makeList(index listIndex) entityList {
+	return entityList{index: index, items: nil}
 }
 
 func (l *entityList) verify(step string) {
