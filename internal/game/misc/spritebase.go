@@ -45,22 +45,22 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 		}
 	}
 	if mapBlackToString := sp.Properties["map_black_to"]; mapBlackToString != "" {
-		var r, g, b, a float64
+		var r, g, b, a int
 		if _, err := fmt.Sscanf(mapBlackToString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
 			return fmt.Errorf("could not decode color %q: %v", mapBlackToString, err)
 		}
-		e.ColorAdd[0] = r / 255.0
-		e.ColorAdd[1] = g / 255.0
-		e.ColorAdd[2] = b / 255.0
+		e.ColorAdd[0] = float64(r) / 255.0
+		e.ColorAdd[1] = float64(g) / 255.0
+		e.ColorAdd[2] = float64(b) / 255.0
 	}
 	if mapWhiteToString := sp.Properties["map_white_to"]; mapWhiteToString != "" {
-		var r, g, b, a float64
+		var r, g, b, a int
 		if _, err := fmt.Sscanf(mapWhiteToString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
 			return fmt.Errorf("could not decode color %q: %v", mapWhiteToString, err)
 		}
-		e.ColorMod[0] = r/255.0 - e.ColorAdd[0]
-		e.ColorMod[1] = g/255.0 - e.ColorAdd[1]
-		e.ColorMod[2] = b/255.0 - e.ColorAdd[2]
+		e.ColorMod[0] = float64(r)/255.0 - e.ColorAdd[0]
+		e.ColorMod[1] = float64(g)/255.0 - e.ColorAdd[1]
+		e.ColorMod[2] = float64(b)/255.0 - e.ColorAdd[2]
 	}
 	if sp.Properties["z_index"] != "" {
 		zIndex, err := strconv.Atoi(sp.Properties["z_index"])
