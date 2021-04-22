@@ -85,16 +85,24 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	r.World = w
 	r.Entity = e
 
+	if r.Entity.Rect.Size.DY != 16 {
+		return fmt.Errorf("unexpected riser height: got %v, want 16", r.Entity.Rect.Size.DY)
+	}
+
 	var sprite string
-	if s.Properties["large"] == "true" {
-		r.Entity.Rect.Size = m.Delta{DX: LargeRiserWidth, DY: LargeRiserHeight}
-		r.Entity.RenderOffset = m.Delta{DX: LargeRiserOffsetDX, DY: LargeRiserOffsetDY}
-		sprite = "riser_large"
-	} else {
+	switch r.Entity.Rect.Size.DX {
+	case 16:
 		r.Entity.Rect.Size = m.Delta{DX: SmallRiserWidth, DY: SmallRiserHeight}
 		r.Entity.RenderOffset = m.Delta{DX: SmallRiserOffsetDX, DY: SmallRiserOffsetDY}
 		sprite = "riser_small"
+	case 32:
+		r.Entity.Rect.Size = m.Delta{DX: LargeRiserWidth, DY: LargeRiserHeight}
+		r.Entity.RenderOffset = m.Delta{DX: LargeRiserOffsetDX, DY: LargeRiserOffsetDY}
+		sprite = "riser_large"
+	default:
+		return fmt.Errorf("unexpected riser width: got %v, want 16 or 32", r.Entity.Rect.Size.DX)
 	}
+
 	r.Entity.Rect.Origin = r.Entity.Rect.Origin.Sub(r.Entity.RenderOffset)
 	w.SetZIndex(r.Entity, constants.RiserZ)
 	r.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.

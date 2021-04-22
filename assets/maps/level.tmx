@@ -6502,16 +6502,8 @@
     <property name="text_font" value="SmallCaps"/>
    </properties>
   </object>
-  <object id="1431" type="Riser" x="616" y="6912" width="32" height="16">
-   <properties>
-    <property name="large" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1432" type="Riser" x="920" y="6912" width="32" height="16">
-   <properties>
-    <property name="large" type="bool" value="true"/>
-   </properties>
-  </object>
+  <object id="1431" type="Riser" x="616" y="6912" width="32" height="16"/>
+  <object id="1432" type="Riser" x="920" y="6912" width="32" height="16"/>
   <object id="1433" type="SwitchMusic" x="528" y="6688" width="48" height="16"/>
   <object id="1434" type="SwitchMusic" x="992" y="6688" width="48" height="16"/>
   <object id="1435" type="Riser" x="4792" y="4032" width="16" height="16"/>
@@ -6723,11 +6715,7 @@
     <property name="text_font" value="SmallCaps"/>
    </properties>
   </object>
-  <object id="1481" type="Riser" x="8040" y="7376" width="32" height="16">
-   <properties>
-    <property name="large" type="bool" value="true"/>
-   </properties>
-  </object>
+  <object id="1481" type="Riser" x="8040" y="7376" width="32" height="16"/>
   <object id="1482" type="SwitchMusic" x="7648" y="7152" width="48" height="16"/>
   <object id="1483" type="Sprite" x="8048" y="7328" width="32" height="32">
    <properties>
@@ -6790,11 +6778,7 @@
     <property name="text_font" value="SmallCaps"/>
    </properties>
   </object>
-  <object id="1495" type="Riser" x="840" y="624" width="32" height="16">
-   <properties>
-    <property name="large" type="bool" value="true"/>
-   </properties>
-  </object>
+  <object id="1495" type="Riser" x="840" y="624" width="32" height="16"/>
   <object id="1496" type="SwitchMusic" x="448" y="400" width="48" height="16"/>
   <object id="1497" type="Sprite" x="880" y="640" width="32" height="32">
    <properties>
@@ -6853,11 +6837,7 @@
   </object>
   <object id="1510" name="CanStandWorld" gid="8" x="432" y="5888" width="16" height="32"/>
   <object id="1511" name="CanStandWorld" gid="2" x="784" y="7200" width="16" height="32"/>
-  <object id="1512" type="Riser" x="720" y="7216" width="32" height="16">
-   <properties>
-    <property name="large" type="bool" value="true"/>
-   </properties>
-  </object>
+  <object id="1512" type="Riser" x="720" y="7216" width="32" height="16"/>
   <object id="1513" type="Sprite" x="592" y="7184" width="16" height="16">
    <properties>
     <property name="image" value="playerclip.png"/>
@@ -6875,11 +6855,7 @@
     <property name="opaque" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1516" type="Riser" x="592" y="7360" width="32" height="16">
-   <properties>
-    <property name="large" type="bool" value="true"/>
-   </properties>
-  </object>
+  <object id="1516" type="Riser" x="592" y="7360" width="32" height="16"/>
   <object id="1517" type="Sprite" x="592" y="7072" width="16" height="16">
    <properties>
     <property name="image" value="objectclip.png"/>
@@ -6924,11 +6900,7 @@
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="1525" type="Riser" x="576" y="7664" width="32" height="16">
-   <properties>
-    <property name="large" type="bool" value="true"/>
-   </properties>
-  </object>
+  <object id="1525" type="Riser" x="576" y="7664" width="32" height="16"/>
   <object id="1539" type="Sprite" x="560" y="7536" width="16" height="16">
    <properties>
     <property name="image" value="playerclip.png"/>
@@ -6953,11 +6925,7 @@
     <property name="player_solid" value="true"/>
    </properties>
   </object>
-  <object id="1543" type="Riser" x="704" y="7664" width="32" height="16">
-   <properties>
-    <property name="large" type="bool" value="true"/>
-   </properties>
-  </object>
+  <object id="1543" type="Riser" x="704" y="7664" width="32" height="16"/>
   <object id="1544" type="Sprite" x="608" y="7440" width="32" height="32">
    <properties>
     <property name="image" value="arrow32.png"/>

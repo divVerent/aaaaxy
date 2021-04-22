@@ -58,7 +58,6 @@
   <property name="kaizo" type="bool" default="false"/>
  </objecttype>
  <objecttype name="Riser" color="#000080">
-  <property name="large" type="bool" default="false"/>
  </objecttype>
  <objecttype name="SequenceCollector" color="#00ff00">
   <property name="sequence" type="string"/>
