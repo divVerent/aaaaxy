@@ -15,10 +15,10 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/mitchellh/hashstructure/v2 v2.0.1
 	github.com/rakyll/statik v0.1.7
-	golang.org/x/exp v0.0.0-20210405174845-4513512abef3 // indirect
+	golang.org/x/exp v0.0.0-20210417010653-0739314eea07 // indirect
 	golang.org/x/image v0.0.0-20210220032944-ac19c3e999fb
 	golang.org/x/mobile v0.0.0-20210220033013-bdb1ca9a1e08 // indirect
-	golang.org/x/sys v0.0.0-20210415045647-66c3f260301c
+	golang.org/x/sys v0.0.0-20210421221651-33663a62ff08
 	golang.org/x/text v0.3.6 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
