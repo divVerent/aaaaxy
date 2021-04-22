@@ -6871,7 +6871,7 @@
   <object id="1520" type="Sprite" x="720" y="6704" width="128" height="128">
    <properties>
     <property name="image" value="gradient_outside_inside.png"/>
-    <property name="map_black_to" type="color" value="#ffffff55"/>
+    <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#ffffffff"/>
     <property name="z_index" type="int" value="-1"/>
    </properties>
@@ -6879,7 +6879,7 @@
   <object id="1521" type="Sprite" x="7840" y="7168" width="128" height="128">
    <properties>
     <property name="image" value="gradient_outside_inside.png"/>
-    <property name="map_black_to" type="color" value="#ffffff55"/>
+    <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#ffffffff"/>
     <property name="z_index" type="int" value="-1"/>
    </properties>
@@ -6895,7 +6895,7 @@
   <object id="1524" type="Sprite" x="640" y="416" width="128" height="128">
    <properties>
     <property name="image" value="gradient_outside_inside.png"/>
-    <property name="map_black_to" type="color" value="#ffffff55"/>
+    <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#ffffffff"/>
     <property name="z_index" type="int" value="-1"/>
    </properties>
