@@ -42,16 +42,18 @@ const (
 )
 
 type track struct {
-	name   string
-	valid  bool
-	handle vfs.ReadSeekCloser
-	data   *vorbis.Stream
-	player *audiowrap.Player
+	name       string
+	valid      bool
+	replayGain float64
+	handle     vfs.ReadSeekCloser
+	data       *vorbis.Stream
+	player     *audiowrap.Player
 }
 
 type musicJson struct {
-	LoopStart int64 `json:"loop_start"`
-	LoopEnd   int64 `json:"loop_end"`
+	ReplayGain float64 `json:"replay_gain"`
+	LoopStart  int64   `json:"loop_start"`
+	LoopEnd    int64   `json:"loop_end"`
 }
 
 func (t *track) open(name string) error {
@@ -73,8 +75,9 @@ func (t *track) open(name string) error {
 		return fmt.Errorf("Could not start decoding music %q: %v", name, err)
 	}
 	config := musicJson{
-		LoopStart: 0,
-		LoopEnd:   t.data.Length() / bytesPerSample,
+		LoopStart:  0,
+		LoopEnd:    t.data.Length() / bytesPerSample,
+		ReplayGain: 1,
 	}
 	j, err := vfs.Load("music", name+".json")
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
@@ -90,6 +93,7 @@ func (t *track) open(name string) error {
 		}
 	}
 	loop := audio.NewInfiniteLoopWithIntro(t.data, config.LoopStart*bytesPerSample, config.LoopEnd*bytesPerSample)
+	t.replayGain = config.ReplayGain
 	t.player, err = audiowrap.NewPlayer(loop)
 	if err != nil {
 		t.stop()
@@ -106,7 +110,7 @@ func (t *track) play() {
 
 func (t *track) setVolume(vol float64) {
 	if t.player != nil {
-		t.player.SetVolume(vol * *musicVolume)
+		t.player.SetVolume(vol * *musicVolume * t.replayGain)
 	}
 }
 
