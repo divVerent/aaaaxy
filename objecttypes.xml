@@ -131,7 +131,7 @@
   <property name="alpha" type="string"/>
   <property name="map_black_to" type="color"/>
   <property name="map_white_to" type="color"/>
-  <property name="no_flip" type="string"/>
+  <property name="no_flip" type="string" default="x"/>
   <property name="no_transform" type="bool" default="false"/>
   <property name="object_solid" type="bool" default="false"/>
   <property name="opaque" type="bool" default="false"/>

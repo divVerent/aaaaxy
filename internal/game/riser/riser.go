@@ -45,7 +45,8 @@ type Riser struct {
 
 	State riserState
 
-	Anim animation.State
+	Anim      animation.State
+	FadeFrame int
 }
 
 const (
@@ -78,6 +79,9 @@ const (
 
 	// SideSpeed is the speed of the riser when pushed away.
 	SideSpeed = 60 * mixins.SubPixelScale / engine.GameTPS
+
+	// FadeFrames is how many frames risers take to fade in.
+	FadeFrames = 16
 )
 
 func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -106,6 +110,7 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	r.Entity.Rect.Origin = r.Entity.Rect.Origin.Sub(r.Entity.RenderOffset)
 	w.SetZIndex(r.Entity, constants.RiserZ)
 	r.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
+	r.Entity.Alpha = 0           // We fade in.
 	r.State = Inactive
 	r.Entity.Orientation = m.Identity()
 
@@ -150,10 +155,6 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 
 func (r *Riser) Despawn() {}
 
-func (r *Riser) isBelow(other *engine.Entity) bool {
-	return other.Rect.OppositeCorner().Y < r.Entity.Rect.Origin.Y
-}
-
 func (r *Riser) Update() {
 	playerAbilities := r.World.Player.Impl.(interfaces.Abilityer)
 	playerButtons := r.World.Player.Impl.(interfaces.ActionPresseder)
@@ -162,9 +163,11 @@ func (r *Riser) Update() {
 	canPush := playerAbilities.HasAbility("push")
 	canStand := playerAbilities.HasAbility("stand")
 	actionPressed := playerButtons.ActionPressed()
-	playerGround := playerPhysics.ReadGroundEntity()
+	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
+	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
+	playerAboveMe := playerDelta.DX == 0 && playerDelta.DY < 0
 
-	if canCarry && playerGround != r.Entity && (r.World.Player.Rect.Delta(r.Entity.Rect) == m.Delta{}) && actionPressed {
+	if canCarry && !playerOnMe && (playerDelta == m.Delta{}) && actionPressed {
 		r.State = GettingCarried
 	} else if canPush && actionPressed {
 		if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X {
@@ -172,7 +175,7 @@ func (r *Riser) Update() {
 		} else {
 			r.State = MovingLeft
 		}
-	} else if canStand && playerGround == r.Entity {
+	} else if canStand && playerAboveMe {
 		r.State = MovingUp
 	} else if canCarry || canPush || canStand {
 		r.State = IdlingUp
@@ -184,33 +187,27 @@ func (r *Riser) Update() {
 	case Inactive:
 		r.Anim.SetGroup("inactive")
 		r.Velocity = m.Delta{}
-		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, false)
-		r.Physics.IgnoreEnt = nil // Should never hit player.
 	case IdlingUp:
 		r.Anim.SetGroup("idle")
 		r.Velocity = m.Delta{DX: 0, DY: -IdleSpeed}
-		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && r.isBelow(r.World.Player))
-		r.Physics.IgnoreEnt = nil // Stop at player!
 	case MovingUp:
 		r.Anim.SetGroup("up")
 		r.Velocity = m.Delta{DX: 0, DY: -UpSpeed}
-		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && r.isBelow(r.World.Player))
-		r.Physics.IgnoreEnt = r.World.Player // Move upwards despite player standing on it.
 	case MovingLeft:
 		r.Anim.SetGroup("left")
 		r.Velocity = m.Delta{DX: -SideSpeed, DY: -IdleSpeed}
-		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && r.isBelow(r.World.Player))
-		r.Physics.IgnoreEnt = r.World.Player // Player may be standing on it.
 	case MovingRight:
 		r.Anim.SetGroup("right")
 		r.Velocity = m.Delta{DX: SideSpeed, DY: -IdleSpeed}
-		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && r.isBelow(r.World.Player))
-		r.Physics.IgnoreEnt = r.World.Player // Player may be standing on it.
 	case GettingCarried:
 		r.Anim.SetGroup("idle")
 		r.Velocity = playerPhysics.ReadVelocity() // Hacky carry physics; good enough?
-		r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, false)
-		r.Physics.IgnoreEnt = r.World.Player // May collide with player.
+	}
+	r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && playerAboveMe && r.State != GettingCarried)
+	if playerOnMe {
+		r.Physics.IgnoreEnt = r.World.Player // Move upwards despite player standing on it.
+	} else {
+		r.Physics.IgnoreEnt = nil
 	}
 
 	// Run physics.
@@ -219,6 +216,12 @@ func (r *Riser) Update() {
 	}
 
 	r.Anim.Update(r.Entity)
+	r.FadeFrame++
+	if r.FadeFrame < FadeFrames {
+		r.Entity.Alpha = float64(r.FadeFrame) / float64(FadeFrames)
+	} else {
+		r.Entity.Alpha = 1
+	}
 }
 
 func (r *Riser) handleTouch(trace engine.TraceResult) {

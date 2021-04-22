@@ -33,6 +33,9 @@ type Text struct {
 }
 
 func (t *Text) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+	if s.Properties["no_flip"] == "" {
+		s.Properties["no_flip"] = "x"
+	}
 	t.Entity = e
 	fntString := s.Properties["text_font"]
 	fnt := font.ByName[fntString]

@@ -88,6 +88,10 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 			e.Orientation = e.Transform.Inverse().Concat(m.FlipX()).Concat(sp.Orientation)
 		case "y":
 			e.Orientation = e.Transform.Inverse().Concat(m.FlipY()).Concat(sp.Orientation)
+		case "", "false":
+			// Nothing to do.
+		default:
+			return fmt.Errorf("invalid no_flip value: got %v, want one of empty, x, y, false", sp.Properties["no_flip"])
 		}
 	}
 	return nil
