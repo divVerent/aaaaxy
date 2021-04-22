@@ -191,8 +191,9 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 			w, h := ent.Image.Size()
 			imageSize := m.Delta{DX: w, DY: h}
 			setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation)
-			opts.ColorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.Alpha)
-			opts.ColorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], 0.0)
+			opts.ColorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.ColorMod[3])
+			opts.ColorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], ent.ColorAdd[3])
+			opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
 			screen.DrawImage(ent.Image, &opts)
 			return nil
 		})

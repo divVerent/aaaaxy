@@ -42,8 +42,8 @@ type Entity struct {
 	RenderOffset m.Delta
 	ResizeImage  bool // Conceptually incompatible with RenderOffset.
 	Alpha        float64
-	ColorAdd     [3]float64
-	ColorMod     [3]float64
+	ColorAdd     [4]float64
+	ColorMod     [4]float64
 	zIndex       int
 
 	// Intrusive list state.
@@ -122,6 +122,7 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 	e.ColorMod[0] = 1.0
 	e.ColorMod[1] = 1.0
 	e.ColorMod[2] = 1.0
+	e.ColorMod[3] = 1.0
 	w.link(e)
 	err := eImpl.Spawn(w, s, e)
 	if err != nil {
