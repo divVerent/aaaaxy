@@ -63,6 +63,8 @@ type TraceResult struct {
 type TraceScore struct {
 	// TraceDistance is the length of the trace.
 	TraceDistance int
+	// EntityZ is the Z index of the entity hit.
+	EntityZ int
 	// EntityDistance is the distance between entity centers of the traces.
 	// This is used as a tie breaker.
 	EntityDistance int
@@ -70,12 +72,21 @@ type TraceScore struct {
 
 // Less returns whether this score is smaller than the other.
 func (s TraceScore) Less(o TraceScore) bool {
+	// Prefer lower TraceDistance.
 	if s.TraceDistance < o.TraceDistance {
 		return true
 	}
 	if s.TraceDistance > o.TraceDistance {
 		return false
 	}
+	// Prefer higher EntityZ.
+	if s.EntityZ < o.EntityZ {
+		return false
+	}
+	if s.EntityZ > o.EntityZ {
+		return true
+	}
+	// Prefer lower EntityDistance.
 	return s.EntityDistance < o.EntityDistance
 }
 
@@ -304,6 +315,7 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 			}
 			if o.ForEnt != nil {
 				score.EntityDistance = ent.Rect.Center().Delta(o.ForEnt.Rect.Center()).Norm1()
+				score.EntityZ = ent.ZIndex()
 			}
 			if score.Less(result.Score) {
 				result.EndPos = endPos

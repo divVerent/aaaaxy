@@ -106,8 +106,8 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 		return nil
 	})
 	result.Score = TraceScore{
-		TraceDistance:  result.EndPos.Delta(l.Origin).Norm1(),
-		EntityDistance: math.MaxInt32, // Not an entity.
+		TraceDistance: result.EndPos.Delta(l.Origin).Norm1(),
+		EntityZ:       math.MinInt32, // Not an entity.
 	}
 }
 

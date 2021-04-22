@@ -55,8 +55,8 @@ func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceR
 		return nil
 	})
 	result.Score = TraceScore{
-		TraceDistance:  result.EndPos.Delta(l.Origin).Norm1(),
-		EntityDistance: math.MaxInt32, // Not an entity.
+		TraceDistance: result.EndPos.Delta(l.Origin).Norm1(),
+		EntityZ:       math.MinInt32, // Not an entity.
 	}
 }
 
