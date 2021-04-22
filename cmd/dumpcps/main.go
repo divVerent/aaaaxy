@@ -140,7 +140,6 @@ func main() {
 			ratio = 0.5;
 			overlap = true;
 			splines = false;
-			mode = KK;
 			model = subset;
 			maxiter = 131072;
 			epsilon = 0.000001;
