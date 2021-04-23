@@ -108,7 +108,7 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	}
 
 	r.Entity.Rect.Origin = r.Entity.Rect.Origin.Sub(r.Entity.RenderOffset)
-	w.SetZIndex(r.Entity, constants.RiserZ)
+	w.SetZIndex(r.Entity, constants.RiserMovingZ)
 	r.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
 	r.Entity.Alpha = 0           // We fade in.
 	r.State = Inactive
@@ -208,6 +208,11 @@ func (r *Riser) Update() {
 		r.Physics.IgnoreEnt = r.World.Player // Move upwards despite player standing on it.
 	} else {
 		r.Physics.IgnoreEnt = nil
+	}
+	if r.State == GettingCarried {
+		r.World.SetZIndex(r.Entity, constants.RiserCarriedZ)
+	} else {
+		r.World.SetZIndex(r.Entity, constants.RiserMovingZ)
 	}
 
 	// Run physics.

@@ -15,9 +15,10 @@
 package constants
 
 const (
-	MinSpriteZ   = -1
-	MaxSpriteZ   = 1
-	AppearBlockZ = 2
-	PlayerZ      = 3
-	RiserZ       = 4
+	MinSpriteZ    = -1
+	MaxSpriteZ    = 1
+	AppearBlockZ  = 2
+	RiserMovingZ  = 3
+	PlayerZ       = 4
+	RiserCarriedZ = 5
 )
