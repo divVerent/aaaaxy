@@ -13,6 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-convert -size 128x128 gradient:transparent-white -colorspace sRGB -depth 8 ../gradient_top_bottom.png
-convert -size 128x128 gradient:transparent-white -rotate 270 -colorspace sRGB -depth 8 ../gradient_left_right.png
-convert -size 128x128 radial-gradient:white-transparent -colorspace sRGB -depth 8 ../gradient_outside_inside.png
+convert -size 128x128 gradient:black-white -colorspace sRGB -depth 8 -alpha copy ../gradient_top_bottom.png
+convert -size 128x128 gradient:black-white -rotate 270 -colorspace sRGB -depth 8 -alpha copy ../gradient_left_right.png
+convert -size 128x128 radial-gradient:white-black -colorspace sRGB -depth 8 -alpha copy ../gradient_outside_inside.png

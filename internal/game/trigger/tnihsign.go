@@ -42,6 +42,9 @@ type TnihSign struct {
 	Sound     *sound.Sound
 	Target    mixins.TargetSelection
 
+	Touching bool
+	Touched  bool
+
 	Centerprint *centerprint.Centerprint
 }
 
@@ -90,26 +93,34 @@ func (t *TnihSign) Despawn() {
 }
 
 func (t *TnihSign) Touch(other *engine.Entity) {
-	if other == t.World.Player {
-		if t.Centerprint.Active() {
-			t.Centerprint.SetFadeOut(false)
+	if other != t.World.Player {
+		return
+	}
+	if t.Centerprint.Active() {
+		t.Centerprint.SetFadeOut(false)
+	} else {
+		importance := centerprint.Important
+		if t.PersistentState["seen"] == "true" {
+			importance = centerprint.NotImportant
 		} else {
-			importance := centerprint.Important
-			if t.PersistentState["seen"] == "true" {
-				importance = centerprint.NotImportant
-			} else {
-				t.Sound.Play()
-			}
-			t.Centerprint = centerprint.New(t.Text, importance, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 255, B: 85, A: 255})
-			t.PersistentState["seen"] = "true"
-			t.Entity.Image = t.SeenImage
-			mixins.SetStateOfTarget(t.World, t.Entity, t.Target, true)
+			t.Sound.Play()
 		}
-	} else if other == nil {
+		t.Centerprint = centerprint.New(t.Text, importance, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 255, B: 85, A: 255})
+		t.PersistentState["seen"] = "true"
+		t.Entity.Image = t.SeenImage
+		mixins.SetStateOfTarget(t.World, t.Entity, t.Target, true)
+	}
+	t.Touching = true
+}
+
+func (t *TnihSign) Update() {
+	t.NonSolidTouchable.Update()
+	if t.Touched && !t.Touching {
 		if t.Centerprint.Active() {
 			t.Centerprint.SetFadeOut(true)
 		}
 	}
+	t.Touching, t.Touched = false, t.Touching
 }
 
 func init() {
