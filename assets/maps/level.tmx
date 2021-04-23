@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1586">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1586">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -6914,10 +6914,10 @@
     <property name="text" value="Some things just take a second attempts."/>
    </properties>
   </object>
-  <object id="1548" type="Riser" x="800" y="7396" width="32" height="16"/>
-  <object id="1549" type="Riser" x="896" y="7352" width="32" height="16"/>
-  <object id="1550" type="Riser" x="992" y="7308" width="32" height="16"/>
-  <object id="1551" type="Riser" x="1088" y="7264" width="32" height="16"/>
+  <object id="1548" type="Riser" x="800" y="7400" width="32" height="16"/>
+  <object id="1549" type="Riser" x="896" y="7356" width="32" height="16"/>
+  <object id="1550" type="Riser" x="992" y="7312" width="32" height="16"/>
+  <object id="1551" type="Riser" x="1088" y="7268" width="32" height="16"/>
   <object id="1552" type="Sprite" x="720" y="7376" width="32" height="32">
    <properties>
     <property name="image" value="arrow32.png"/>
