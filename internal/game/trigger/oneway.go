@@ -19,6 +19,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
@@ -40,6 +41,7 @@ func (o *OneWay) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 
 	e.ResizeImage = true
 	w.SetOpaque(e, false)
+	w.SetZIndex(e, constants.OneWayZ)
 
 	o.AllowedDirection = e.Orientation.Apply(m.East())
 
