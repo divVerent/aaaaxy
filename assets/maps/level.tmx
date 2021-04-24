@@ -6819,18 +6819,8 @@
    </properties>
   </object>
   <object id="1516" type="Riser" x="592" y="7360" width="32" height="16"/>
-  <object id="1517" type="Sprite" x="592" y="7072" width="16" height="16">
-   <properties>
-    <property name="image" value="objectclip.png"/>
-    <property name="object_solid" value="true"/>
-   </properties>
-  </object>
-  <object id="1518" type="Sprite" x="608" y="7072" width="16" height="16">
-   <properties>
-    <property name="image" value="objectclip.png"/>
-    <property name="object_solid" value="true"/>
-   </properties>
-  </object>
+  <object id="1517" type="RiserFsck" x="592" y="7072" width="16" height="16"/>
+  <object id="1518" type="RiserFsck" x="608" y="7072" width="16" height="16"/>
   <object id="1520" type="Sprite" x="720" y="6704" width="128" height="128">
    <properties>
     <property name="image" value="gradient_outside_inside.png"/>

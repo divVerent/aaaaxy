@@ -132,6 +132,11 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 	return e, nil
 }
 
+func (w *World) Despawn(e *Entity) {
+	e.Impl.Despawn()
+	w.unlink(e)
+}
+
 // MutateContents mutates an entity's contents.
 func (w *World) MutateContents(e *Entity, mask, set level.Contents) {
 	if e.contents&mask == set {

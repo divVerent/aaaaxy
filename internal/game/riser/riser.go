@@ -45,8 +45,9 @@ type Riser struct {
 
 	State riserState
 
-	Anim      animation.State
-	FadeFrame int
+	Anim       animation.State
+	Despawning bool
+	FadeFrame  int
 }
 
 const (
@@ -80,7 +81,7 @@ const (
 	// SideSpeed is the speed of the riser when pushed away.
 	SideSpeed = 60 * mixins.SubPixelScale / engine.GameTPS
 
-	// FadeFrames is how many frames risers take to fade in.
+	// FadeFrames is how many frames risers take to fade in or out.
 	FadeFrames = 16
 )
 
@@ -221,12 +222,20 @@ func (r *Riser) Update() {
 	}
 
 	r.Anim.Update(r.Entity)
-	r.FadeFrame++
-	if r.FadeFrame < FadeFrames {
-		r.Entity.Alpha = float64(r.FadeFrame) / float64(FadeFrames)
+
+	if r.Despawning {
+		if r.FadeFrame > 0 {
+			r.FadeFrame--
+		}
+		if r.FadeFrame == 0 {
+			r.World.Despawn(r.Entity)
+		}
 	} else {
-		r.Entity.Alpha = 1
+		if r.FadeFrame < FadeFrames {
+			r.FadeFrame++
+		}
 	}
+	r.Entity.Alpha = float64(r.FadeFrame) / float64(FadeFrames)
 }
 
 func (r *Riser) handleTouch(trace engine.TraceResult) {
