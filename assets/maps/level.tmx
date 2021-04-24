@@ -7580,12 +7580,12 @@
     <property name="text" value="The note on the left is much more interesting than this one."/>
    </properties>
   </object>
-  <object id="1703" type="SetState" x="976" y="8032" width="48" height="16">
+  <object id="1703" type="SetState" x="976" y="7984" width="48" height="16">
    <properties>
     <property name="target" value="ThreePlatformsDarkness"/>
    </properties>
   </object>
-  <object id="1704" type="SetState" x="976" y="8032" width="48" height="16">
+  <object id="1704" type="SetState" x="976" y="7984" width="48" height="16">
    <properties>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="ThreePlatformsBackground"/>
@@ -7606,7 +7606,7 @@
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1711" type="SwitchMusic" x="976" y="8032" width="48" height="16"/>
+  <object id="1711" type="SwitchMusic" x="976" y="7984" width="48" height="16"/>
   <object id="1712" name="WarpFromThreePlatforms" gid="4" x="976" y="7888" width="48" height="16"/>
   <object id="1713" name="the_antihub" type="Checkpoint" x="4192" y="1680" width="288" height="32">
    <properties>
