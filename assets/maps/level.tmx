@@ -7655,11 +7655,13 @@
   <object id="1725" type="Sprite" x="4128" y="1664" width="16" height="16">
    <properties>
     <property name="image" value="objectclip.png"/>
+    <property name="object_solid" value="true"/>
    </properties>
   </object>
   <object id="1726" type="Sprite" x="4144" y="1648" width="16" height="16">
    <properties>
     <property name="image" value="objectclip.png"/>
+    <property name="object_solid" value="true"/>
    </properties>
   </object>
  </objectgroup>
