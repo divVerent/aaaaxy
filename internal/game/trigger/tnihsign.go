@@ -23,6 +23,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
@@ -73,6 +74,7 @@ func (t *TnihSign) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) 
 		}
 	}
 	t.Entity.Orientation = m.Identity()
+	w.SetZIndex(t.Entity, constants.TnihSignZ)
 	t.Text = strings.ReplaceAll(s.Properties["text"], "  ", "\n")
 	t.Sound, err = sound.Load("tnihsign.ogg")
 	if err != nil {

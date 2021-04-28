@@ -25,7 +25,8 @@ import (
 
 const (
 	defaultFadeFrames = 16
-	solidThreshold    = 12
+	solidThreshold    = 8
+	opaqueThreshold   = 16
 )
 
 // SwitchableSprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -121,7 +122,8 @@ func (s *SwitchableSprite) Update() {
 		s.Entity.Alpha = alpha * s.Alpha
 	}
 
-	s.World.MutateContentsBool(s.Entity, s.Contents, s.AnimFrame >= solidThreshold)
+	s.World.MutateContentsBool(s.Entity, s.Contents&level.SolidContents, s.AnimFrame >= solidThreshold)
+	s.World.MutateContentsBool(s.Entity, s.Contents&level.OpaqueContents, s.AnimFrame >= opaqueThreshold)
 }
 
 func init() {
