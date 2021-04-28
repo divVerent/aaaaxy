@@ -6497,7 +6497,7 @@
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1439" type="SetState" x="4576" y="3888" width="208" height="16">
+  <object id="1439" type="Switch" x="4736" y="3888" width="16" height="16">
    <properties>
     <property name="target" value="LeapOfFaithAnyAbility"/>
    </properties>

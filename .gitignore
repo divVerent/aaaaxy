@@ -4,3 +4,4 @@
 /internal/assets/statik/statik.go
 /licenses
 *.cp.json
+*~

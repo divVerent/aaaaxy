@@ -36,18 +36,18 @@ func (s *Switch) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 	}
 	err = s.Anim.Init("switch", map[string]*animation.Group{
 		"switchon": {
-			Frames:        4,
-			FrameInterval: 4,
-			NextInterval:  4 * 4,
+			Frames:        10,
+			FrameInterval: 2,
+			NextInterval:  2 * 10,
 			NextAnim:      "on",
 		},
 		"on": {
 			Frames: 1,
 		},
 		"switchoff": {
-			Frames:        4,
-			FrameInterval: 4,
-			NextInterval:  4 * 4,
+			Frames:        10,
+			FrameInterval: 2,
+			NextInterval:  2 * 10,
 			NextAnim:      "off",
 		},
 		"off": {
@@ -65,10 +65,11 @@ func (s *Switch) Update() {
 	if s.State != s.AnimState {
 		if s.State {
 			s.Anim.SetGroup("switchon")
-		} else {
+			s.AnimState = true
+		} else if s.SendUntouch {
 			s.Anim.SetGroup("switchoff")
+			s.AnimState = false
 		}
-		s.AnimState = s.State
 	}
 	s.Anim.Update(s.Entity)
 }
