@@ -103,6 +103,14 @@
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
+ <objecttype name="Switch" color="#ff0000">
+  <property name="exclusive_targets" type="string"/>
+  <property name="initial_state" type="string"/>
+  <property name="send_every_frame" type="bool" default="false"/>
+  <property name="send_untouch" type="bool" default="false"/>
+  <property name="state" type="bool" default="true"/>
+  <property name="target" type="string"/>
+ </objecttype>
  <objecttype name="SwitchableSprite" color="#ffffff">
   <property name="alpha" type="string"/>
   <property name="fade_time" type="string" default="0s"/>
