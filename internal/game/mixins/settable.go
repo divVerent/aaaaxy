@@ -68,6 +68,10 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection
 		if target == "" {
 			continue
 		}
+		thisState := state
+		if target[0] == '!' {
+			thisState = !state
+		}
 		if target[0] == '=' {
 			target = target[1:]
 			var closest *engine.Entity
@@ -85,12 +89,12 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection
 				}
 			}
 		} else {
-			w.SetWarpZoneState(target, state)
+			w.SetWarpZoneState(target, thisState)
 			for _, ent := range w.FindName(target) {
 				if ent == e {
 					continue
 				}
-				if !SetStateOfEntity(ent, state) {
+				if !SetStateOfEntity(ent, thisState) {
 					log.Printf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
 				}
 			}
