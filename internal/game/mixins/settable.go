@@ -71,6 +71,10 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection
 		thisState := state
 		if target[0] == '!' {
 			thisState = !state
+			target = target[1:]
+		}
+		if target == "" {
+			continue
 		}
 		if target[0] == '=' {
 			target = target[1:]
