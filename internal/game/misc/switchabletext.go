@@ -12,44 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package interfaces
+package misc
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
-type Velocityer interface {
-	engine.EntityImpl
-
-	SetVelocity(velocity m.Delta)
-	SetVelocityForJump(velocity m.Delta)
-	ReadVelocity() m.Delta
-	ReadSubPixel() m.Delta
+// SwitchableText is a simple entity type that renders text.
+// Can be toggled from outside.
+type SwitchableText struct {
+	Text
+	mixins.Fadable
 }
 
-type GroundEntityer interface {
-	engine.EntityImpl
-
-	ReadGroundEntity() *engine.Entity
+func (s *SwitchableText) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+	err := s.Text.Spawn(w, sp, e)
+	if err != nil {
+		return nil
+	}
+	s.Fadable.Init(w, sp, e)
+	return nil
 }
 
-type HandleToucher interface {
-	engine.EntityImpl
-
-	HandleTouch(trace engine.TraceResult)
+func (s *SwitchableText) Update() {
+	s.Text.Update()
+	s.Fadable.Update()
 }
 
-type Contentser interface {
-	engine.EntityImpl
-
-	ReadContents() level.Contents
-}
-
-type Physics interface {
-	Velocityer
-	GroundEntityer
-	HandleToucher
-	Contentser
+func init() {
+	engine.RegisterEntityType(&SwitchableText{})
 }

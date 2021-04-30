@@ -129,6 +129,25 @@
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
+ <objecttype name="SwitchableText" color="#ffffff">
+  <property name="alpha" type="string"/>
+  <property name="fade_time" type="string" default="0s"/>
+  <property name="initial_state" type="bool" default="true"/>
+  <property name="map_black_to" type="color"/>
+  <property name="map_white_to" type="color"/>
+  <property name="no_flip" type="string" default="x"/>
+  <property name="no_transform" type="bool" default="false"/>
+  <property name="object_solid" type="bool" default="false"/>
+  <property name="opaque" type="bool" default="false"/>
+  <property name="orientation" type="string"/>
+  <property name="player_solid" type="string" default="false"/>
+  <property name="solid" type="bool" default="false"/>
+  <property name="text" type="string" default=""/>
+  <property name="text_bg" type="color"/>
+  <property name="text_fg" type="color"/>
+  <property name="text_font" type="string"/>
+  <property name="z_index" type="int" default="0"/>
+ </objecttype>
  <objecttype name="SwitchMusic" color="#00ff00">
   <property name="music" type="file" default=""/>
  </objecttype>

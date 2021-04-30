@@ -190,3 +190,7 @@ func (p *Physics) SetVelocityForJump(velocity m.Delta) {
 func (p *Physics) ReadContents() level.Contents {
 	return p.Contents
 }
+
+func (p *Physics) ReadSubPixel() m.Delta {
+	return p.SubPixel
+}

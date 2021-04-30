@@ -83,6 +83,9 @@ const (
 
 	// FadeFrames is how many frames risers take to fade in or out.
 	FadeFrames = 16
+
+	// FollowFactor is how fast a riser should follow the player per second.
+	FollowFactor = 32.0
 )
 
 func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -202,7 +205,11 @@ func (r *Riser) Update() {
 		r.Velocity = m.Delta{DX: SideSpeed, DY: -IdleSpeed}
 	case GettingCarried:
 		r.Anim.SetGroup("idle")
-		r.Velocity = playerPhysics.ReadVelocity() // Hacky carry physics; good enough?
+		// r.Velocity = playerPhysics.ReadVelocity() // Hacky carry physics; good enough?
+		pxDelta := r.World.Player.Rect.Center().Delta(r.Entity.Rect.Center())
+		subDelta := playerPhysics.ReadSubPixel().Sub(r.SubPixel)
+		fullDelta := pxDelta.Mul(mixins.SubPixelScale).Add(subDelta)
+		r.Velocity = fullDelta.MulFloat(FollowFactor / engine.GameTPS)
 	}
 	r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && playerAboveMe && r.State != GettingCarried)
 	if playerOnMe {
