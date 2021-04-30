@@ -68,7 +68,7 @@
   </properties>
   <image width="16" height="16" source="warpzone_ws.png"/>
  </tile>
- <tile id="9">
+ <tile id="9" probability="0">
   <properties>
    <property name="img.EN" value="wall_.png"/>
    <property name="img.ES" value="wall_.png"/>
@@ -822,7 +822,7 @@
   </properties>
   <image width="16" height="16" source="bg_e.png"/>
  </tile>
- <tile id="63" terrain="1,1,1,1">
+ <tile id="63" terrain="1,1,1,1" probability="1">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
@@ -2273,11 +2273,19 @@
  </tile>
  <wangsets>
   <wangset name="Block/Open" tile="-1">
-   <wangedgecolor name="Block" color="#000080" tile="-1" probability="1"/>
-   <wangedgecolor name="Open" color="#ffff80" tile="-1" probability="1"/>
-   <wangcornercolor name="Block" color="#000080" tile="-1" probability="1"/>
-   <wangcornercolor name="Open" color="#ffff80" tile="-1" probability="1"/>
+   <wangedgecolor name="BlockE" color="#000080" tile="-1" probability="1"/>
+   <wangedgecolor name="OpenE" color="#ffff80" tile="-1" probability="1"/>
+   <wangcornercolor name="BlockC" color="#0000ff" tile="-1" probability="1"/>
+   <wangcornercolor name="OpenC" color="#ffff00" tile="-1" probability="1"/>
    <wangtile tileid="9" wangid="0x22222222"/>
+   <wangtile tileid="56" wangid="0x22222222"/>
+   <wangtile tileid="57" wangid="0x22222222"/>
+   <wangtile tileid="58" wangid="0x22222222"/>
+   <wangtile tileid="59" wangid="0x22222222"/>
+   <wangtile tileid="60" wangid="0x22222222"/>
+   <wangtile tileid="61" wangid="0x22222222"/>
+   <wangtile tileid="62" wangid="0x22222222"/>
+   <wangtile tileid="63" wangid="0x22222222"/>
    <wangtile tileid="10" wangid="0x21222222"/>
    <wangtile tileid="11" wangid="0x22212222"/>
    <wangtile tileid="12" wangid="0x21212222"/>
