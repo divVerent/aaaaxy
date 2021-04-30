@@ -17,6 +17,7 @@ package menu
 import (
 	"fmt"
 	"image/color"
+	"sort"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -30,9 +31,10 @@ import (
 )
 
 type MapScreen struct {
-	Menu      *Menu
-	Level     *level.Level
-	CurrentCP string
+	Menu       *Menu
+	Level      *level.Level
+	CurrentCP  string
+	SortedLocs []string
 
 	cpSprite          *ebiten.Image
 	cpSelectedSprite  *ebiten.Image
@@ -72,6 +74,14 @@ func (s *MapScreen) Init(m *Menu) error {
 	}
 	s.whiteImage = ebiten.NewImage(1, 1)
 	s.whiteImage.Fill(color.Gray{255})
+
+	s.SortedLocs = nil
+	for name := range s.Menu.World.Level.Checkpoints {
+		s.SortedLocs = append(s.SortedLocs, name)
+	}
+	// Note: we do not care for the actual order, just that it does not change between frames.
+	sort.Strings(s.SortedLocs)
+
 	return nil
 }
 
@@ -157,13 +167,15 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	}
 	// ebitenutil.DrawRect(screen, float64(mapRect.Origin.X), float64(mapRect.Origin.Y), float64(mapRect.Size.DX), float64(mapRect.Size.DY), bgs)
 	// First draw all edges.
-	for cpName, cpLoc := range loc.Locs {
+	for _, cpName := range s.SortedLocs {
+		cpLoc := loc.Locs[cpName]
 		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 			continue
 		}
 		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
-		for dir, edge := range cpLoc.NextByDir {
-			if !edge.Forward || edge.Optional {
+		for _, dir := range level.AllCheckpointDirs {
+			edge, found := cpLoc.NextByDir[dir]
+			if !found || !edge.Forward || edge.Optional {
 				continue
 			}
 			otherName := edge.Other
@@ -187,7 +199,8 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		}
 	}
 	// Then draw the CPs.
-	for cpName, cpLoc := range loc.Locs {
+	for _, cpName := range s.SortedLocs {
+		cpLoc := loc.Locs[cpName]
 		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 			continue
 		}
@@ -206,7 +219,8 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		screen.DrawImage(sprite, &opts)
 	}
 	// Finally the checkmarks.
-	for cpName, cpLoc := range loc.Locs {
+	for _, cpName := range s.SortedLocs {
+		cpLoc := loc.Locs[cpName]
 		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 			continue
 		}

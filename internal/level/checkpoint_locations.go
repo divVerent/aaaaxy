@@ -52,7 +52,7 @@ func unstraightness(d m.Delta) float64 {
 	return math.Min(dx, dy) / math.Max(dx, dy)
 }
 
-var allDirs = []m.Delta{
+var AllCheckpointDirs = []m.Delta{
 	m.North(),
 	m.East(),
 	m.South(),
