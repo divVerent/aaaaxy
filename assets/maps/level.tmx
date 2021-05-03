@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2379">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2382">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -9547,5 +9547,13 @@
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
+  <object id="2379" type="Riser" x="1768" y="304" width="16" height="16"/>
+  <object id="2380" type="Sprite" x="1792" y="272" width="16" height="16">
+   <properties>
+    <property name="image" value="playerclip.png"/>
+    <property name="player_solid" value="true"/>
+   </properties>
+  </object>
+  <object id="2381" x="1728" y="-96"/>
  </objectgroup>
 </map>

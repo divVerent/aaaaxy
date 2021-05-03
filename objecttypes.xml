@@ -21,7 +21,7 @@
   <property name="object_solid" type="bool" default="false"/>
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
-  <property name="player_solid" type="string" default="false"/>
+  <property name="player_solid" type="bool" default="false"/>
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
@@ -99,7 +99,7 @@
   <property name="object_solid" type="bool" default="false"/>
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
-  <property name="player_solid" type="string" default="false"/>
+  <property name="player_solid" type="bool" default="false"/>
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
@@ -125,7 +125,7 @@
   <property name="object_solid" type="bool" default="false"/>
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
-  <property name="player_solid" type="string" default="false"/>
+  <property name="player_solid" type="bool" default="false"/>
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
@@ -140,7 +140,7 @@
   <property name="object_solid" type="bool" default="false"/>
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
-  <property name="player_solid" type="string" default="false"/>
+  <property name="player_solid" type="bool" default="false"/>
   <property name="solid" type="bool" default="false"/>
   <property name="text" type="string" default=""/>
   <property name="text_bg" type="color"/>
@@ -163,7 +163,7 @@
   <property name="object_solid" type="bool" default="false"/>
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
-  <property name="player_solid" type="string" default="false"/>
+  <property name="player_solid" type="bool" default="false"/>
   <property name="solid" type="bool" default="false"/>
   <property name="text" type="string" default=""/>
   <property name="text_bg" type="color"/>
