@@ -75,6 +75,9 @@ func Marshal() *Config {
 	c := &Config{flags: map[string]string{}}
 	flagSet.Visit(func(f *flag.Flag) {
 		// Don't save debug or dump flags.
+		if strings.HasPrefix(f.Name, "cheat_") {
+			return
+		}
 		if strings.HasPrefix(f.Name, "debug_") {
 			return
 		}
@@ -84,6 +87,17 @@ func Marshal() *Config {
 		c.flags[f.Name] = f.Value.String()
 	})
 	return c
+}
+
+// Cheating returns if any cheats are enabled.
+func Cheating() bool {
+	cheating := false
+	flagSet.Visit(func(f *flag.Flag) {
+		if strings.HasPrefix(f.Name, "cheat_") {
+			cheating = true
+		}
+	})
+	return cheating
 }
 
 var defaultUsage func()

@@ -37,7 +37,7 @@ import (
 )
 
 var (
-	debugPlayerAbilities = flag.StringMap("debug_player_abilities_override", map[string]string{}, "Override player abilities.")
+	cheatPlayerAbilities = flag.StringMap("cheat_player_abilities", map[string]string{}, "Override player abilities.")
 )
 
 type Player struct {
@@ -133,8 +133,7 @@ const (
 )
 
 func (p *Player) HasAbility(name string) bool {
-	log.Printf("debug: %v %v", *debugPlayerAbilities, name)
-	switch (*debugPlayerAbilities)[name] {
+	switch (*cheatPlayerAbilities)[name] {
 	case "true":
 		return true
 	case "false":
@@ -145,7 +144,7 @@ func (p *Player) HasAbility(name string) bool {
 }
 
 func (p *Player) GiveAbility(name, text string) {
-	if (*debugPlayerAbilities)[name] != "" {
+	if (*cheatPlayerAbilities)[name] != "" {
 		return
 	}
 

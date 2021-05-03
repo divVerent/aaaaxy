@@ -37,7 +37,7 @@ var (
 	debugShowCoords               = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
 	debugShowOrientations         = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
 	debugShowTransforms           = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
-	debugShowBboxes               = flag.Bool("debug_show_bboxes", false, "show the bounding boxes of all entities")
+	cheatShowBboxes               = flag.Bool("cheat_show_bboxes", false, "show the bounding boxes of all entities")
 	debugShowVisiblePolygon       = flag.Bool("debug_show_visible_polygon", false, "show the visibility polygon")
 	drawOutside                   = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
 	drawVisibilityMask            = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
@@ -250,7 +250,7 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), color.NRGBA{R: 0, G: 255, B: 0, A: 255})
 		}
 	})
-	if *debugShowBboxes {
+	if *cheatShowBboxes {
 		r.world.entities.forEach(func(ent *Entity) error {
 			boxColor := color.NRGBA{R: 128, G: 128, B: 128, A: 128}
 			if ent.contents.PlayerSolid() {
