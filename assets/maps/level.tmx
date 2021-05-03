@@ -9263,6 +9263,7 @@
    <properties>
     <property name="music" value="Pressure.ogg"/>
     <property name="next_down" type="object" value="2302"/>
+    <property name="next_right" type="object" value="1713"/>
     <property name="next_up" type="object" value="2325"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Gotta carry it out"/>
