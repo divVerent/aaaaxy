@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
@@ -33,6 +34,10 @@ import (
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/sound"
+)
+
+var (
+	debugPlayerAbilities = flag.StringMap("debug_player_abilities_override", map[string]string{}, "Override player abilities.")
 )
 
 type Player struct {
@@ -128,11 +133,22 @@ const (
 )
 
 func (p *Player) HasAbility(name string) bool {
+	log.Printf("debug: %v %v", *debugPlayerAbilities, name)
+	switch (*debugPlayerAbilities)[name] {
+	case "true":
+		return true
+	case "false":
+		return false
+	}
 	key := "can_" + name
 	return p.PersistentState[key] == "true"
 }
 
 func (p *Player) GiveAbility(name, text string) {
+	if (*debugPlayerAbilities)[name] != "" {
+		return
+	}
+
 	key := "can_" + name
 	if p.PersistentState[key] == "true" {
 		return

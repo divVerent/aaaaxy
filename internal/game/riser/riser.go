@@ -212,7 +212,7 @@ func (r *Riser) Update() {
 		r.Velocity = fullDelta.MulFloat(FollowFactor / engine.GameTPS)
 	}
 	r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && playerAboveMe && r.State != GettingCarried)
-	if playerOnMe {
+	if playerOnMe || !canStand {
 		r.Physics.IgnoreEnt = r.World.Player // Move upwards despite player standing on it.
 	} else {
 		r.Physics.IgnoreEnt = nil

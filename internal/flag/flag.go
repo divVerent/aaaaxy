@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -145,4 +146,54 @@ func Parse(getDefaults func() (*Config, error)) {
 // NoConfig can be passed to Parse if the binary wants to do no config file processing.
 func NoConfig() (*Config, error) {
 	return nil, nil
+}
+
+// StringMap is a custom flag type to contain maps from string to string.
+func StringMap(name string, value map[string]string, usage string) *map[string]string {
+	m := stringMap{m: value}
+	flagSet.Var(&m, name, usage)
+	return &m.m
+}
+
+type stringMap struct {
+	m map[string]string
+}
+
+func (m *stringMap) String() string {
+	a := make([]string, 0, len(m.m))
+	for k := range m.m {
+		a = append(a, k)
+	}
+	sort.Strings(a)
+	s := ""
+	for _, k := range a {
+		if s != "" {
+			s += ","
+		}
+		s += k
+		s += "="
+		s += m.m[k]
+	}
+	return s
+}
+
+func (m *stringMap) Set(s string) error {
+	m.m = map[string]string{}
+	if s == "" {
+		return nil
+	}
+	for _, word := range strings.Split(s, ",") {
+		kv := strings.SplitN(word, "=", 2)
+		switch len(kv) {
+		case 2:
+			m.m[kv[0]] = kv[1]
+		default:
+			return fmt.Errorf("invalid StringMap flag value, got %q, want something of the form key1=value1,key2=value2,...", s)
+		}
+	}
+	return nil
+}
+
+func (m *stringMap) Get() interface{} {
+	return m.m
 }
