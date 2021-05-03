@@ -9259,7 +9259,7 @@
   <object id="2298" name="Grab2" type="SwitchableSprite" x="592" y="96" width="16" height="16"/>
   <object id="2299" name="Grab2" type="SwitchableSprite" x="592" y="112" width="16" height="16"/>
   <object id="2300" name="Grab2" type="SwitchableSprite" x="592" y="128" width="16" height="16"/>
-  <object id="2301" name="carry_it_out" type="Checkpoint" x="3088" y="32" width="16" height="32">
+  <object id="2301" name="carry_it_out" type="Checkpoint" x="512" y="240" width="16" height="32">
    <properties>
     <property name="music" value="Pressure.ogg"/>
     <property name="next_down" type="object" value="2302"/>
