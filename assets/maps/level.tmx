@@ -9948,7 +9948,7 @@
   </object>
   <object id="2672" type="OneWay" x="2704" y="0" width="32" height="32">
    <properties>
-    <property name="orientation" value="NE"/>
+    <property name="orientation" value="SW"/>
    </properties>
   </object>
   <object id="2673" type="Sprite" x="2768" y="64" width="32" height="224">

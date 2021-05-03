@@ -220,9 +220,7 @@ func Load(filename string) (*Level, error) {
 	// t.StaggerIndex doesn't matter.
 	// t.BackgroundColor doesn't matter.
 	// t.NextObjectID doesn't matter.
-	if len(t.TileSets) != 1 {
-		return nil, fmt.Errorf("unsupported map: got %d embedded tilesets, want 1", len(t.TileSets))
-	}
+	// t.TileSets used later.
 	// t.Properties used later.
 	if len(t.Layers) != 1 {
 		return nil, fmt.Errorf("unsupported map: got %d layers, want 1", len(t.Layers))
@@ -381,9 +379,17 @@ func Load(filename string) (*Level, error) {
 			if o.Rotation != 0 {
 				return nil, fmt.Errorf("unsupported map: object %v has a rotation (maybe implement this?)", o.ObjectID)
 			}
-			var tile *tmx.Tile
 			if o.GlobalID != 0 {
-				tile = t.TileSets[0].TileWithID(o.GlobalID.TileID(&t.TileSets[0]))
+				var tile *tmx.Tile
+				for _, ts := range t.TileSets {
+					tile = ts.TileWithID(o.GlobalID.TileID(&ts))
+					if tile != nil {
+						break
+					}
+				}
+				if tile == nil {
+					return nil, fmt.Errorf("unsupported map: object %v references nonexisting tile %d", o.ObjectID)
+				}
 				if tile.Type == "" {
 					properties["type"] = "Sprite"
 				} else {

@@ -77,6 +77,9 @@ func (s *MapScreen) Init(m *Menu) error {
 
 	s.SortedLocs = nil
 	for name := range s.Menu.World.Level.Checkpoints {
+		if name == "" {
+			continue
+		}
 		s.SortedLocs = append(s.SortedLocs, name)
 	}
 	// Note: we do not care for the actual order, just that it does not change between frames.

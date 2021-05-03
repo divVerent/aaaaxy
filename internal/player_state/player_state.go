@@ -18,7 +18,13 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/level"
+)
+
+var (
+	cheatFullMapNormal  = flag.Bool("cheat_full_map_normal", false, "Show the full map.")
+	cheatFullMapFlipped = flag.Bool("cheat_full_map_flipped", false, "Show the full map.")
 )
 
 type PlayerState struct {
@@ -30,6 +36,9 @@ func (s *PlayerState) LastCheckpoint() string {
 }
 
 func (s *PlayerState) CheckpointsWalked(from, to string) bool {
+	if *cheatFullMapNormal || *cheatFullMapFlipped {
+		return true
+	}
 	return s.Level.Player.PersistentState["checkpoints_walked."+from+"."+to] != ""
 }
 
@@ -42,6 +51,12 @@ const (
 )
 
 func (s *PlayerState) CheckpointSeen(name string) SeenState {
+	if *cheatFullMapNormal {
+		return SeenNormal
+	}
+	if *cheatFullMapFlipped {
+		return SeenFlipped
+	}
 	state := s.Level.Player.PersistentState["checkpoint_seen."+name]
 	switch state {
 	case "":
