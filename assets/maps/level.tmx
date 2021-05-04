@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2766">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2816">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -1321,7 +1321,11 @@
   </object>
   <object id="386" gid="295" x="4048" y="7520" width="16" height="16"/>
   <object id="387" gid="297" x="4080" y="7600" width="16" height="16"/>
-  <object id="388" name="SilverCityAppearGap" gid="293" x="4032" y="7600" width="16" height="16"/>
+  <object id="388" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4032" y="7600" width="16" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+   </properties>
+  </object>
   <object id="389" type="SetState" x="4048" y="7536" width="16" height="16">
    <properties>
     <property name="target" value="SilverCityAppearGap"/>
@@ -4828,7 +4832,11 @@
   <object id="1041" gid="287" x="6096" y="7248" width="32" height="32"/>
   <object id="1042" name="Box4E" gid="281" x="5328" y="7520" width="16" height="160"/>
   <object id="1043" name="Box4E" gid="275" x="6048" y="6400" width="16" height="160"/>
-  <object id="1046" name="SilverCityAppearGap" gid="293" x="4048" y="7600" width="16" height="16"/>
+  <object id="1046" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4048" y="7600" width="16" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+   </properties>
+  </object>
   <object id="1048" gid="297" x="4064" y="7600" width="16" height="16"/>
   <object id="1049" name="ToKingsCross" gid="275" x="5120" y="7568" width="16" height="64"/>
   <object id="1050" name="ToKingsCross" gid="281" x="6336" y="7968" width="16" height="64"/>
@@ -5738,7 +5746,7 @@
     <property name="target" value="ShepardOpenBlocks"/>
    </properties>
   </object>
-  <object id="1266" name="ShepardOpenBlocks" gid="292" x="4256" y="5888" width="112" height="16"/>
+  <object id="1266" name="ShepardOpenBlocks" type="SwitchableSprite" gid="16" x="4256" y="5888" width="112" height="16"/>
   <object id="1273" gid="294" x="4352" y="6016" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1228"/>
@@ -5948,7 +5956,7 @@
    </properties>
   </object>
   <object id="1359" gid="296" x="4726" y="6043" width="16" height="16"/>
-  <object id="1360" name="TurtlesOut" gid="292" x="5024" y="6144" width="80" height="16"/>
+  <object id="1360" name="TurtlesOut" type="SwitchableSprite" gid="16" x="5032" y="6144" width="64" height="16"/>
   <object id="1361" type="SetState" x="5232" y="6176" width="32" height="32">
    <properties>
     <property name="state" type="bool" value="true"/>
@@ -5957,7 +5965,7 @@
   </object>
   <object id="1364" type="Text" x="160" y="102" width="160" height="32">
    <properties>
-    <property name="text" value="Don't  ↑ Look Up! ↑"/>
+    <property name="text" value="Don't  Look Up!"/>
     <property name="text_bg" type="color" value="#ffaa0000"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6777,9 +6785,11 @@
     <property name="target" value="ThreePlatformsDarkness !ThreePlatformsBackground"/>
    </properties>
   </object>
-  <object id="1705" name="ThreePlatformsDarkness" gid="293" x="976" y="8112" width="16" height="16"/>
-  <object id="1706" name="ThreePlatformsDarkness" gid="293" x="992" y="8112" width="16" height="16"/>
-  <object id="1707" name="ThreePlatformsDarkness" gid="293" x="1008" y="8112" width="16" height="16"/>
+  <object id="1707" name="ThreePlatformsDarkness" type="SwitchableSprite" gid="16" x="968" y="8112" width="64" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+   </properties>
+  </object>
   <object id="1711" type="SwitchMusic" x="976" y="7984" width="48" height="16"/>
   <object id="1712" name="WarpFromThreePlatforms" gid="277" x="976" y="7888" width="48" height="16"/>
   <object id="1713" name="the_antihub" type="Checkpoint" x="4192" y="1680" width="288" height="32">
@@ -6821,7 +6831,11 @@
   </object>
   <object id="1720" name="WarpFromThreePlatforms" gid="279" x="4048" y="1872" width="48" height="16"/>
   <object id="1722" gid="287" x="4056" y="1632" width="32" height="32"/>
-  <object id="1723" name="ThreePlatformsDarkness" gid="293" x="4048" y="1600" width="48" height="480"/>
+  <object id="1723" name="ThreePlatformsDarkness" type="SwitchableSprite" gid="56" x="4048" y="1600" width="48" height="480">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+   </properties>
+  </object>
   <object id="1724" type="SetState" x="4096" y="1600" width="32" height="32">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
@@ -6874,10 +6888,11 @@
     <property name="target" value="NotThatSimpleExit"/>
    </properties>
   </object>
-  <object id="1749" name="NotThatSimpleExit" gid="293" x="6336" y="7792" width="16" height="16"/>
-  <object id="1750" name="NotThatSimpleExit" gid="293" x="6336" y="7808" width="16" height="16"/>
-  <object id="1751" name="NotThatSimpleExit" gid="293" x="6336" y="7824" width="16" height="16"/>
-  <object id="1752" name="NotThatSimpleExit" gid="293" x="6336" y="7840" width="16" height="16"/>
+  <object id="1749" name="NotThatSimpleExit" type="SwitchableSprite" gid="26" x="6336" y="7784" width="16" height="80">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+   </properties>
+  </object>
   <object id="1753" gid="291" x="7568" y="7216" width="16" height="16"/>
   <object id="1754" gid="290" x="7616" y="7152" width="16" height="16">
    <properties>
@@ -6897,7 +6912,7 @@
     <property name="target" value="HelloWorld"/>
    </properties>
   </object>
-  <object id="1762" name="HelloWorld" gid="292" x="7936" y="6928" width="16" height="80"/>
+  <object id="1762" name="HelloWorld" type="SwitchableSprite" gid="26" x="7936" y="6928" width="16" height="80"/>
   <object id="1765" name="HelloWorldText" type="Text" x="8032" y="6928" width="64" height="48">
    <properties>
     <property name="text" value="Hello,  World!"/>
@@ -6912,7 +6927,11 @@
     <property name="required_orientation" value="ES"/>
    </properties>
   </object>
-  <object id="1767" name="HelloWorldCloser" gid="293" x="7952" y="6928" width="16" height="80"/>
+  <object id="1767" name="HelloWorldCloser" type="SwitchableSprite" gid="26" x="7952" y="6928" width="16" height="80">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+   </properties>
+  </object>
   <object id="1768" type="SetState" x="8000" y="6896" width="16" height="112">
    <properties>
     <property name="target" value="HelloWorldCloser"/>
@@ -7696,7 +7715,7 @@
     <property name="target" value="Xyzzy"/>
    </properties>
   </object>
-  <object id="2323" name="Xyzzy" gid="292" x="960" y="120" width="16" height="48"/>
+  <object id="2323" name="Xyzzy" type="SwitchableSprite" gid="26" x="960" y="120" width="16" height="48"/>
   <object id="2324" name="XyzzyCloser" type="SwitchableText" x="1008" y="32" width="128" height="112">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
@@ -7712,7 +7731,11 @@
     <property name="required_orientation" value="ES"/>
    </properties>
   </object>
-  <object id="2326" name="XyzzyCloser" gid="293" x="976" y="120" width="16" height="48"/>
+  <object id="2326" name="XyzzyCloser" type="SwitchableSprite" gid="26" x="976" y="120" width="16" height="48">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+   </properties>
+  </object>
   <object id="2327" type="SetState" x="1024" y="16" width="16" height="144">
    <properties>
     <property name="target" value="XyzzyCloser"/>
@@ -8173,6 +8196,7 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="2765" type="Text" x="5696" y="272" width="80" height="16">
@@ -8181,7 +8205,57 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
+  <object id="2766" gid="303" x="320" y="144" width="32" height="32"/>
+  <object id="2767" gid="303" x="128" y="144" width="32" height="32"/>
+  <object id="2768" gid="303" x="224" y="144" width="32" height="32"/>
+  <object id="2769" gid="306" x="576" y="6640" width="32" height="32"/>
+  <object id="2770" gid="308" x="960" y="6640" width="32" height="32"/>
+  <object id="2771" gid="303" x="616" y="6736" width="32" height="32"/>
+  <object id="2772" gid="303" x="920" y="6736" width="32" height="32"/>
+  <object id="2773" gid="302" x="1152" y="7200" width="32" height="32"/>
+  <object id="2774" gid="304" x="832" y="7536" width="32" height="32"/>
+  <object id="2775" gid="301" x="672" y="8080" width="32" height="32"/>
+  <object id="2776" gid="301" x="720" y="8048" width="32" height="32"/>
+  <object id="2777" gid="301" x="768" y="8016" width="32" height="32"/>
+  <object id="2778" gid="304" x="4416" y="7296" width="32" height="32"/>
+  <object id="2779" gid="304" x="4912" y="7392" width="32" height="32"/>
+  <object id="2780" gid="304" x="4880" y="7376" width="32" height="32"/>
+  <object id="2781" gid="305" x="7488" y="7632" width="32" height="32"/>
+  <object id="2782" gid="306" x="7696" y="7104" width="32" height="32"/>
+  <object id="2783" gid="303" x="7720" y="7200" width="32" height="32"/>
+  <object id="2784" gid="303" x="7752" y="7200" width="32" height="32"/>
+  <object id="2785" gid="306" x="7264" y="6976" width="32" height="32"/>
+  <object id="2786" gid="303" x="7120" y="7376" width="32" height="32"/>
+  <object id="2787" gid="303" x="7120" y="7200" width="32" height="32"/>
+  <object id="2788" gid="303" x="7120" y="7072" width="32" height="32"/>
+  <object id="2789" gid="305" x="7120" y="6976" width="32" height="32"/>
+  <object id="2790" gid="302" x="6784" y="7344" width="32" height="32"/>
+  <object id="2791" gid="304" x="6592" y="7200" width="32" height="32"/>
+  <object id="2792" gid="302" x="6912" y="7056" width="32" height="32"/>
+  <object id="2793" gid="304" x="6528" y="6928" width="32" height="32"/>
+  <object id="2794" gid="302" x="4512" y="6272" width="32" height="32"/>
+  <object id="2795" gid="308" x="4512" y="6368" width="32" height="32"/>
+  <object id="2796" gid="302" x="912" y="176" width="32" height="32"/>
+  <object id="2797" gid="304" x="1232" y="176" width="32" height="32"/>
+  <object id="2798" gid="302" x="1232" y="64" width="32" height="32"/>
+  <object id="2799" gid="301" x="1664" y="40" width="32" height="32"/>
+  <object id="2801" gid="301" x="2992" y="32" width="32" height="32"/>
+  <object id="2802" gid="301" x="3024" y="32" width="32" height="32"/>
+  <object id="2803" gid="301" x="3056" y="32" width="32" height="32"/>
+  <object id="2804" gid="302" x="3952" y="288" width="32" height="32"/>
+  <object id="2805" gid="302" x="4560" y="288" width="32" height="32"/>
+  <object id="2806" gid="302" x="4592" y="224" width="32" height="32"/>
+  <object id="2807" gid="302" x="4848" y="288" width="32" height="32"/>
+  <object id="2808" gid="302" x="5056" y="288" width="32" height="32"/>
+  <object id="2809" gid="302" x="5264" y="288" width="32" height="32"/>
+  <object id="2810" gid="302" x="5696" y="272" width="32" height="32"/>
+  <object id="2811" gid="304" x="5744" y="272" width="32" height="32"/>
+  <object id="2812" gid="308" x="5696" y="224" width="32" height="32"/>
+  <object id="2813" gid="306" x="5744" y="224" width="32" height="32"/>
+  <object id="2814" gid="302" x="7184" y="256" width="32" height="32"/>
+  <object id="2815" gid="303" x="7304" y="64" width="32" height="32"/>
  </objectgroup>
 </map>
