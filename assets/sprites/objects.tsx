@@ -116,4 +116,16 @@
  <tile id="20" type="TnihSign">
   <image width="32" height="32" source="tnihsign.png"/>
  </tile>
+ <tile id="21" type="QuestionBlock">
+  <image width="16" height="16" source="questionblock.png"/>
+ </tile>
+ <tile id="22" type="QuestionBlock">
+  <image width="16" height="16" source="editorimgs/kaizoblock.png"/>
+  <properties>
+   <property name="kaizo" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="23" type="AppearBlock">
+  <image width="16" height="16" source="appearblock.png"/>
+ </tile>
 </tileset>

@@ -55,17 +55,15 @@ sub fix_object {
     my %prop = props $el;
     if (!defined $prop{image}) {
       if (($prop{initial_state} // '') ne 'false') {
-        $el->removeChildNodes();
         $el->removeAttribute('type');
         $el->setAttribute('gid', 292);
       } else {
-        $el->removeChildNodes();
         $el->removeAttribute('type');
         $el->setAttribute('gid', 293);
       }
       for my $node($el->getElementsByTagName('property')) {
         if ($node->getAttribute('name') eq 'initial_state') {
-          $node->parent->removeChildNode($node);
+          $node->parentNode->removeChild($node);
         }
       }
     }
@@ -73,6 +71,17 @@ sub fix_object {
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'TnihSign') {
     $el->removeAttribute('type');
     $el->setAttribute('gid', 294);
+  }
+  if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'QuestionBlock') {
+    my %prop = props $el;
+    $el->removeChildNodes();
+    $el->removeAttribute('type');
+    $el->setAttribute('gid', (($prop{kaizo} // '') eq 'true') ? 296 : 295);
+  }
+  if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'AppearBlock') {
+    $el->removeChildNodes();
+    $el->removeAttribute('type');
+    $el->setAttribute('gid', 297);
   }
 }
 
