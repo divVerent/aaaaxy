@@ -56,13 +56,13 @@ type musicJson struct {
 	LoopEnd    int64   `json:"loop_end"`
 }
 
-func (t *track) open(name string) error {
+func (t *track) open(cacheName, name string) error {
 	t.stop()
 	t.valid = true
-	if name == "" {
+	if cacheName == "" {
 		return nil
 	}
-	t.name = name
+	t.name = cacheName
 	var err error
 	t.handle, err = vfs.Load("music", name)
 	if err != nil {
@@ -188,17 +188,17 @@ func Now() time.Duration {
 // Switch switches from the currently playing music to the given track.
 // Passing an empty string means fading to silence.
 func Switch(name string) {
-	name = vfs.Canonical(name)
+	cacheName := vfs.Canonical("music", name)
 	if next.valid {
-		if next.name == name {
+		if next.name == cacheName {
 			return
 		}
 	} else if fadeTo.valid {
-		if fadeTo.name == name {
+		if fadeTo.name == cacheName {
 			return
 		}
 	} else if current.valid {
-		if current.name == name {
+		if current.name == cacheName {
 			return
 		}
 	}
@@ -209,7 +209,7 @@ func Switch(name string) {
 		next.handle.Close()
 		next.handle = nil
 	}
-	err := next.open(name)
+	err := next.open(cacheName, name)
 	if err != nil {
 		log.Printf("could not open music %q: %v", name, err)
 	}

@@ -47,8 +47,8 @@ var (
 // Load loads a sound effect.
 // Multiple Load calls to the same sound effect return the same cached instance.
 func Load(name string) (*Sound, error) {
-	name = vfs.Canonical(name)
-	if sound, found := cache[name]; found {
+	cacheName := vfs.Canonical("sounds", name)
+	if sound, found := cache[cacheName]; found {
 		return sound, nil
 	}
 	if cacheFrozen {
@@ -68,7 +68,7 @@ func Load(name string) (*Sound, error) {
 		return nil, fmt.Errorf("could not decode: %v", err)
 	}
 	sound := &Sound{sound: decoded}
-	cache[name] = sound
+	cache[cacheName] = sound
 	return sound, nil
 }
 

@@ -197,6 +197,40 @@ func (l *Level) applyTileMod(startTile, endTile m.Pos, mods map[string]string) {
 	}
 }
 
+func FetchTileset(ts *tmx.TileSet) error {
+	if ts.Source != "" {
+		r, err := vfs.Load("", ts.Source)
+		if err != nil {
+			return fmt.Errorf("could not open tileset: %v", err)
+		}
+		defer r.Close()
+		decoded, err := tmx.DecodeTileset(r)
+		if err != nil {
+			return fmt.Errorf("could not decode tileset: %v", err)
+		}
+		decoded.FirstGlobalID = ts.FirstGlobalID
+		decoded.Source = ts.Source
+		*ts = *decoded
+	}
+	if ts.TileWidth != TileSize || ts.TileHeight != TileSize {
+		return fmt.Errorf("unsupported tileset: got tile size %dx%d, want %dx%d", ts.TileWidth, ts.TileHeight, TileSize, TileSize)
+	}
+	// ts.Spacing, ts.Margin, ts.TileCount, ts.Columns doesn't matter (we only support multi image tilesets).
+	if ts.ObjectAlignment != "topleft" {
+		return fmt.Errorf("unsupported tileset: got objectalignment %q, want topleft", ts.ObjectAlignment)
+	}
+	// ts.Properties doesn't matter.
+	if (ts.TileOffset != tmx.TileOffset{}) {
+		return fmt.Errorf("unsupported tileset: got a tile offset")
+	}
+	if ts.Image.Source != "" {
+		return fmt.Errorf("unsupported tileset: got single image, want image collection")
+	}
+	// ts.TerrainTypes doesn't matter (editor only).
+	// ts.Tiles used later.
+	return nil
+}
+
 func Load(filename string) (*Level, error) {
 	r, err := vfs.Load("maps", filename+".tmx")
 	if err != nil {
@@ -229,40 +263,11 @@ func Load(filename string) (*Level, error) {
 	if len(t.ImageLayers) != 0 {
 		return nil, fmt.Errorf("unsupported map: got %d image layers, want 0", len(t.ImageLayers))
 	}
-	for i, ts := range t.TileSets {
-		if ts.Source == "" {
-			continue
-		}
-		r, err := vfs.Load("tiles", ts.Source)
+	for i := range t.TileSets {
+		err := FetchTileset(&t.TileSets[i])
 		if err != nil {
-			return nil, fmt.Errorf("could not open tileset: %v", err)
+			return nil, fmt.Errorf("unsupported map: failed to decode tileset %d: %v", i, err)
 		}
-		defer r.Close()
-		decoded, err := tmx.DecodeTileset(r)
-		if err != nil {
-			return nil, fmt.Errorf("could not decode tileset: %v", err)
-		}
-		decoded.FirstGlobalID = ts.FirstGlobalID
-		decoded.Source = ts.Source
-		t.TileSets[i] = *decoded
-	}
-	for _, ts := range t.TileSets {
-		if ts.TileWidth != TileSize || ts.TileHeight != TileSize {
-			return nil, fmt.Errorf("unsupported tileset: got tile size %dx%d, want %dx%d", ts.TileWidth, ts.TileHeight, TileSize, TileSize)
-		}
-		// ts.Spacing, ts.Margin, ts.TileCount, ts.Columns doesn't matter (we only support multi image tilesets).
-		if ts.ObjectAlignment != "topleft" {
-			return nil, fmt.Errorf("unsupported tileset: got objectalignment %q, want topleft", ts.ObjectAlignment)
-		}
-		// ts.Properties doesn't matter.
-		if (ts.TileOffset != tmx.TileOffset{}) {
-			return nil, fmt.Errorf("unsupported tileset: got a tile offset")
-		}
-		if ts.Image.Source != "" {
-			return nil, fmt.Errorf("unsupported tileset: got single image, want image collection")
-		}
-		// ts.TerrainTypes doesn't matter (editor only).
-		// ts.Tiles used later.
 	}
 	layer := &t.Layers[0]
 	if layer.X != 0 || layer.Y != 0 {
@@ -321,7 +326,8 @@ func Load(filename string) (*Level, error) {
 			orientation = m.FlipD().Concat(orientation)
 		}
 		properties := map[string]string{}
-		for _, prop := range td.Tile.Properties {
+		for i := range td.Tile.Properties {
+			prop := &td.Tile.Properties[i]
 			properties[prop.Name] = prop.Value
 		}
 		var contents Contents
@@ -361,8 +367,9 @@ func Load(filename string) (*Level, error) {
 		Orientation        m.Orientation
 		InitialState       bool
 	}
-	warpZones := map[string][]RawWarpZone{}
-	for _, og := range t.ObjectGroups {
+	warpZones := map[string][]*RawWarpZone{}
+	for i := range t.ObjectGroups {
+		og := &t.ObjectGroups[i]
 		// og.Name, og.Color not used (editor only).
 		if og.X != 0 || og.Y != 0 {
 			return nil, fmt.Errorf("unsupported map: object group has been shifted")
@@ -374,7 +381,8 @@ func Load(filename string) (*Level, error) {
 		}
 		// og.DrawOrder not used (we use our own z index).
 		// og.Properties not used.
-		for _, o := range og.Objects {
+		for j := range og.Objects {
+			o := &og.Objects[j]
 			// o.ObjectID used later.
 			properties := map[string]string{}
 			if o.Name != "" {
@@ -386,8 +394,9 @@ func Load(filename string) (*Level, error) {
 			}
 			if o.GlobalID != 0 {
 				var tile *tmx.Tile
-				for _, ts := range t.TileSets {
-					tile = ts.TileWithID(o.GlobalID.TileID(&ts))
+				for k := range t.TileSets {
+					ts := &t.TileSets[k]
+					tile = ts.TileWithID(o.GlobalID.TileID(ts))
 					if tile != nil {
 						break
 					}
@@ -402,7 +411,8 @@ func Load(filename string) (*Level, error) {
 				}
 				properties["image_dir"] = "tiles"
 				properties["image"] = tile.Image.Source
-				for _, prop := range tile.Properties {
+				for k := range tile.Properties {
+					prop := &tile.Properties[k]
 					properties[prop.Name] = prop.Value
 				}
 			}
@@ -421,7 +431,8 @@ func Load(filename string) (*Level, error) {
 			if o.Type != "" {
 				properties["type"] = o.Type
 			}
-			for _, prop := range o.Properties {
+			for k := range o.Properties {
+				prop := &o.Properties[k]
 				properties[prop.Name] = prop.Value
 			}
 			// o.RawExtra not used.
@@ -448,7 +459,7 @@ func Load(filename string) (*Level, error) {
 				// WarpZones must be paired by name.
 				name := properties["name"]
 				initialState := properties["initial_state"] != "false" // Default enabled.
-				warpZones[name] = append(warpZones[name], RawWarpZone{
+				warpZones[name] = append(warpZones[name], &RawWarpZone{
 					StartTile:    startTile,
 					EndTile:      endTile,
 					Orientation:  orientation,

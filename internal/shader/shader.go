@@ -32,8 +32,8 @@ type shaderPath = struct {
 var cache = map[shaderPath]*ebiten.Shader{}
 
 func Load(name string, params map[string]string) (*ebiten.Shader, error) {
-	name = vfs.Canonical(name)
-	sp := shaderPath{name, fmt.Sprint(params)}
+	cacheName := vfs.Canonical("shaders", name)
+	sp := shaderPath{cacheName, fmt.Sprint(params)}
 	if shader, found := cache[sp]; found {
 		return shader, nil
 	}
