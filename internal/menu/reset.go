@@ -34,7 +34,7 @@ const (
 	ResetNothing ResetScreenItem = iota
 	ResetConfig
 	ResetGame
-	BackToSettings
+	BackToMain
 	ResetCount
 )
 
@@ -71,7 +71,7 @@ func (s *ResetScreen) Update() error {
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
-		case ResetNothing, BackToSettings:
+		case ResetNothing:
 			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&SettingsScreen{}))
 		case ResetConfig:
 			flag.ResetToDefaults()
@@ -80,6 +80,8 @@ func (s *ResetScreen) Update() error {
 			if s.ResetFrame >= resetFrames {
 				return s.Menu.ActivateSound(s.Menu.ResetGame())
 			}
+		case BackToMain:
+			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
 		}
 	}
 	return nil
@@ -119,7 +121,7 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 	}
 	font.Menu.Draw(screen, resetText, m.Pos{X: x + dx, Y: 25*h/32 + dy}, true, fg, bg)
 	fg, bg = fgn, bgn
-	if s.Item == BackToSettings {
+	if s.Item == BackToMain {
 		fg, bg = fgs, bgs
 	}
 	font.Menu.Draw(screen, "Main Menu", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
