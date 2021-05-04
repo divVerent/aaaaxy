@@ -55,6 +55,16 @@ func Set(name string, value interface{}) error {
 	return flagSet.Set(name, fmt.Sprint(value))
 }
 
+// Get loads a flag by name.
+func Get(name string) interface{} {
+	f := flagSet.Lookup(name)
+	if f == nil {
+		log.Printf("Queried non-existing flag: %v", name)
+		return ""
+	}
+	return f.Value.(flag.Getter).Get()
+}
+
 // Config is a JSON serializable type containing the flags.
 type Config struct {
 	flags map[string]string
@@ -71,6 +81,7 @@ func (c *Config) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal returns a config object for the currently set flags (both those from the config and command line).
+// We only write non-default flag values.
 func Marshal() *Config {
 	c := &Config{flags: map[string]string{}}
 	flagSet.Visit(func(f *flag.Flag) {
@@ -82,6 +93,9 @@ func Marshal() *Config {
 			return
 		}
 		if strings.HasPrefix(f.Name, "dump_") {
+			return
+		}
+		if f.Value.String() == f.DefValue {
 			return
 		}
 		c.flags[f.Name] = f.Value.String()
@@ -100,6 +114,13 @@ func Cheating() bool {
 	return cheating
 }
 
+// ResetToDefaults returns all flags to their default value.
+func ResetToDefaults() {
+	flagSet.Visit(func(f *flag.Flag) {
+		f.Value.Set(f.DefValue)
+	})
+}
+
 var defaultUsage func()
 var getConfig func() (*Config, error)
 
@@ -108,7 +129,6 @@ func applyConfig() {
 	// This ability is why flag loading is hard;
 	// we need to parse the command line to detect whether we want to load the config,
 	// but then we want the command line to have precedence over the config.
-	// Also, we want --help to show the _configured_ defaults.
 	if !*loadConfig {
 		log.Printf("config loading was disabled by the command line")
 		return
@@ -132,14 +152,11 @@ func applyConfig() {
 		if _, found := set[name]; found {
 			continue
 		}
-		// Otherwise, override both the value and the default.
 		err = flagSet.Set(name, value)
 		if err != nil {
 			log.Printf("could not apply config value %q=%q: %v", name, value, err)
 			continue
 		}
-		// Also override the default so that --help shows the configured values.
-		flagSet.Lookup(name).DefValue = value
 	}
 }
 

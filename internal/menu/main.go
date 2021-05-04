@@ -47,11 +47,11 @@ func (s *MainScreen) Init(m *Menu) error {
 }
 
 func (s *MainScreen) Update() error {
-	if input.Down.JustHit || input.Right.JustHit {
+	if input.Down.JustHit {
 		s.Item++
 		s.Menu.MoveSound(nil)
 	}
-	if input.Left.JustHit || input.Up.JustHit {
+	if input.Up.JustHit {
 		s.Item--
 		s.Menu.MoveSound(nil)
 	}
@@ -64,9 +64,7 @@ func (s *MainScreen) Update() error {
 		case Play:
 			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MapScreen{}))
 		case Settings:
-			// TODO settings screen.
-			// return s.Menu.ActivateSound(s.Menu.ResetGame())
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&SettingsScreen{}))
 		case Credits:
 			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&CreditsScreen{}))
 		case Quit:
