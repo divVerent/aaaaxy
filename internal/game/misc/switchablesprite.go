@@ -47,7 +47,7 @@ func (s *SwitchableSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine
 
 	err := s.Sprite.Spawn(w, sp, e)
 	if err != nil {
-		return nil
+		return err
 	}
 	s.Fadable.Init(w, sp, e)
 	return nil

@@ -101,6 +101,7 @@
  </tile>
  <tile id="18" type="SwitchableSprite">
   <properties>
+   <property name="image_dir" value=""/>
    <property name="image" value=""/>
    <property name="initial_state" type="bool" value="true"/>
   </properties>
@@ -108,6 +109,7 @@
  </tile>
  <tile id="19" type="SwitchableSprite">
   <properties>
+   <property name="image_dir" value=""/>
    <property name="image" value=""/>
    <property name="initial_state" type="bool" value="false"/>
   </properties>
