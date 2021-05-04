@@ -15,12 +15,12 @@ sub fix_sprite {
   if ($prop{image} eq 'playerclip.png') {
     $el->removeChildNodes();
     $el->removeAttribute('type');
-    $el->setAttribute('gid', 1000);
+    $el->setAttribute('gid', 283);
   }
   if ($prop{image} eq 'objectclip.png') {
     $el->removeChildNodes();
     $el->removeAttribute('type');
-    $el->setAttribute('gid', 1001);
+    $el->setAttribute('gid', 284);
   }
 }
 
@@ -28,6 +28,10 @@ sub fix_object {
   my ($el) = @_;
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'Sprite') {
     fix_sprite($el);
+  }
+  if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'RiserFsck') {
+    $el->removeAttribute('type');
+    $el->setAttribute('gid', 285);
   }
   # TODO: Also show one-ways.
 }

@@ -52,4 +52,21 @@
   </properties>
   <image width="16" height="16" source="warpzone_ws.png"/>
  </tile>
+ <tile id="9" type="Sprite">
+  <properties>
+   <property name="image_dir" value="sprites"/>
+   <property name="player_solid" type="bool" value="true"/>
+  </properties>
+  <image width="16" height="16" source="playerclip.png"/>
+ </tile>
+ <tile id="10" type="Sprite">
+  <properties>
+   <property name="image_dir" value="sprites"/>
+   <property name="object_solid" type="bool" value="true"/>
+  </properties>
+  <image width="16" height="16" source="objectclip.png"/>
+ </tile>
+ <tile id="11" type="RiserFsck">
+  <image width="16" height="16" source="riserfsck.png"/>
+ </tile>
 </tileset>
