@@ -130,4 +130,22 @@
  <tile id="23" type="AppearBlock">
   <image width="16" height="16" source="appearblock.png"/>
  </tile>
+ <tile id="24" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+  </properties>
+  <image width="16" height="16" source="gradient_left_right.png"/>
+ </tile>
+ <tile id="25" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+  </properties>
+  <image width="16" height="16" source="gradient_top_bottom.png"/>
+ </tile>
+ <tile id="26" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+  </properties>
+  <image width="16" height="16" source="gradient_outside_inside.png"/>
+ </tile>
 </tileset>

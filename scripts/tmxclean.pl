@@ -14,19 +14,44 @@ sub props {
   return %prop;
 }
 
+sub remove_props {
+  my ($el, @props) = @_;
+  my %props = map { $_ => 1 } @props;
+  for my $node($el->getElementsByTagName('property')) {
+    if (exists $props{$node->getAttribute('name')}) {
+      $node->parentNode->removeChild($node);
+    }
+  }
+}
+
 sub fix_object {
   my ($el) = @_;
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'Sprite') {
     my %prop = props $el;
     if ($prop{image} eq 'playerclip.png') {
-      $el->removeChildNodes();
+      remove_props $el, 'image';
       $el->removeAttribute('type');
       $el->setAttribute('gid', 283);
     }
     if ($prop{image} eq 'objectclip.png') {
-      $el->removeChildNodes();
+      remove_props $el, 'image';
       $el->removeAttribute('type');
       $el->setAttribute('gid', 284);
+    }
+    if ($prop{image} eq 'gradient_left_right.png') {
+      remove_props $el, 'image';
+      $el->removeAttribute('type');
+      $el->setAttribute('gid', 298);
+    }
+    if ($prop{image} eq 'gradient_top_bottom.png') {
+      remove_props $el, 'image';
+      $el->removeAttribute('type');
+      $el->setAttribute('gid', 299);
+    }
+    if ($prop{image} eq 'gradient_outside_inside.png') {
+      remove_props $el, 'image';
+      $el->removeAttribute('type');
+      $el->setAttribute('gid', 300);
     }
   }
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'RiserFsck') {
@@ -36,7 +61,7 @@ sub fix_object {
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'OneWay') {
     my %prop = props $el;
     my $orientation = $prop{orientation} // 'ES';
-    $el->removeChildNodes();
+    remove_props $el, 'orientation';
     $el->removeAttribute('type');
     $el->setAttribute('gid', 286) if $orientation =~ /^E/;
     $el->setAttribute('gid', 287) if $orientation =~ /^N/;
@@ -61,11 +86,7 @@ sub fix_object {
         $el->removeAttribute('type');
         $el->setAttribute('gid', 293);
       }
-      for my $node($el->getElementsByTagName('property')) {
-        if ($node->getAttribute('name') eq 'initial_state') {
-          $node->parentNode->removeChild($node);
-        }
-      }
+      remove_props $el, 'initial_state';
     }
   }
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'TnihSign') {
@@ -74,12 +95,11 @@ sub fix_object {
   }
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'QuestionBlock') {
     my %prop = props $el;
-    $el->removeChildNodes();
+    remove_props $el, 'kaizo';
     $el->removeAttribute('type');
     $el->setAttribute('gid', (($prop{kaizo} // '') eq 'true') ? 296 : 295);
   }
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'AppearBlock') {
-    $el->removeChildNodes();
     $el->removeAttribute('type');
     $el->setAttribute('gid', 297);
   }
