@@ -296,6 +296,9 @@ func Load(filename string) (*Level, error) {
 		if td.Nil {
 			continue
 		}
+		if td.Tile == nil {
+			return nil, fmt.Errorf("invalid tiledef: %v [%s]", td, td.TileSet.Source)
+		}
 		// td.Tile.Probability not used (editor only).
 		// td.Tile.Properties used later.
 		// td.Tile.Image used later.
