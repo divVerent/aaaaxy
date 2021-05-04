@@ -563,31 +563,25 @@
   <object id="39" gid="297" x="4768" y="4064" width="16" height="16"/>
   <object id="40" name="Warp1-1Back" gid="277" x="4208" y="3856" width="32" height="16"/>
   <object id="41" name="Warp1-1Back" gid="279" x="4576" y="4304" width="32" height="16"/>
-  <object id="42" type="Sprite" x="4752" y="3904" width="32" height="32">
+  <object id="42" gid="302" x="4752" y="3904" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="NE"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="43" type="Sprite" x="4816" y="4112" width="32" height="32">
+  <object id="43" gid="302" x="4816" y="4112" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="NE"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="44" name="WarpSquare3" gid="276" x="3968" y="4064" width="16" height="32"/>
   <object id="46" name="WarpSquare3" gid="279" x="4032" y="4000" width="32" height="16"/>
-  <object id="47" type="Sprite" x="4112" y="3952" width="32" height="32">
+  <object id="47" gid="304" x="4112" y="3952" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="NW"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
@@ -1055,14 +1049,14 @@
   </object>
   <object id="275" name="BingPads" type="SwitchableSprite" x="608" y="6240" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
+    <property name="image" value="arrow32d.png"/>
     <property name="initial_state" type="bool" value="false"/>
     <property name="orientation" value="NE"/>
    </properties>
   </object>
   <object id="276" name="BingPads" type="SwitchableSprite" x="928" y="6240" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
+    <property name="image" value="arrow32d.png"/>
     <property name="initial_state" type="bool" value="false"/>
     <property name="orientation" value="WN"/>
    </properties>
@@ -1373,174 +1367,78 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="397" type="Sprite" x="4160" y="7568" width="32" height="32">
+  <object id="397" gid="304" x="4160" y="7568" width="32" height="32"/>
+  <object id="398" gid="302" x="3952" y="7408" width="32" height="32"/>
+  <object id="399" gid="304" x="4512" y="7568" width="32" height="32"/>
+  <object id="400" gid="304" x="4848" y="7440" width="32" height="32"/>
+  <object id="401" gid="302" x="4384" y="7568" width="32" height="32"/>
+  <object id="402" gid="302" x="4736" y="7568" width="32" height="32"/>
+  <object id="403" gid="302" x="4048" y="7440" width="32" height="32"/>
+  <object id="404" gid="304" x="4944" y="7408" width="32" height="32"/>
+  <object id="405" gid="304" x="4960" y="4512" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="398" type="Sprite" x="3952" y="7408" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="399" type="Sprite" x="4512" y="7568" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="400" type="Sprite" x="4848" y="7440" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="401" type="Sprite" x="4384" y="7568" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="402" type="Sprite" x="4736" y="7568" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="403" type="Sprite" x="4048" y="7440" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="404" type="Sprite" x="4944" y="7408" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="405" type="Sprite" x="4960" y="4512" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="NW"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="406" type="Sprite" x="4320" y="4512" width="32" height="32">
+  <object id="406" gid="308" x="4320" y="4512" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="SE"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="407" type="Sprite" x="4176" y="6848" width="32" height="32">
+  <object id="407" gid="302" x="4176" y="6848" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="NE"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="408" type="Sprite" x="4176" y="6880" width="32" height="32">
+  <object id="408" gid="308" x="4176" y="6880" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="SE"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="409" type="Sprite" x="4736" y="6656" width="32" height="32">
+  <object id="409" gid="308" x="4736" y="6656" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="SE"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="410" type="Sprite" x="4672" y="6656" width="32" height="32">
+  <object id="410" gid="306" x="4672" y="6656" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="SW"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="411" type="Sprite" x="5264" y="6928" width="32" height="32">
+  <object id="411" gid="306" x="5264" y="6928" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="SW"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="412" type="Sprite" x="5232" y="6928" width="32" height="32">
+  <object id="412" gid="308" x="5232" y="6928" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="SE"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="413" type="Sprite" x="4208" y="8016" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="414" type="Sprite" x="4352" y="7888" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="415" type="Sprite" x="4352" y="7680" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="416" type="Sprite" x="4880" y="8048" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="417" type="Sprite" x="4016" y="8048" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="418" type="Sprite" x="4688" y="8016" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="419" type="Sprite" x="4544" y="7888" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="420" type="Sprite" x="4544" y="7680" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
+  <object id="413" gid="302" x="4208" y="8016" width="32" height="32"/>
+  <object id="414" gid="302" x="4352" y="7888" width="32" height="32"/>
+  <object id="415" gid="302" x="4352" y="7680" width="32" height="32"/>
+  <object id="416" gid="302" x="4880" y="8048" width="32" height="32"/>
+  <object id="417" gid="304" x="4016" y="8048" width="32" height="32"/>
+  <object id="418" gid="304" x="4688" y="8016" width="32" height="32"/>
+  <object id="419" gid="304" x="4544" y="7888" width="32" height="32"/>
+  <object id="420" gid="304" x="4544" y="7680" width="32" height="32"/>
   <object id="421" type="Text" x="4736" y="8080" width="128" height="32">
    <properties>
     <property name="text" value="Nexuiz!"/>
@@ -4912,42 +4810,12 @@
   <object id="1021" name="Box8E" gid="281" x="5456" y="7872" width="16" height="160"/>
   <object id="1022" name="Box2W" gid="276" x="5696" y="7168" width="16" height="160"/>
   <object id="1023" name="Box2E" gid="281" x="5456" y="7168" width="16" height="160"/>
-  <object id="1025" type="Sprite" x="5408" y="8112" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
-  <object id="1026" type="Sprite" x="5376" y="8112" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="SE"/>
-   </properties>
-  </object>
-  <object id="1027" type="Sprite" x="5760" y="8112" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
-  <object id="1028" type="Sprite" x="5728" y="8112" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="SE"/>
-   </properties>
-  </object>
-  <object id="1029" type="Sprite" x="5056" y="7488" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="SE"/>
-   </properties>
-  </object>
-  <object id="1030" type="Sprite" x="5072" y="7088" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
+  <object id="1025" gid="306" x="5408" y="8112" width="32" height="32"/>
+  <object id="1026" gid="308" x="5376" y="8112" width="32" height="32"/>
+  <object id="1027" gid="306" x="5760" y="8112" width="32" height="32"/>
+  <object id="1028" gid="308" x="5728" y="8112" width="32" height="32"/>
+  <object id="1029" gid="308" x="5056" y="7488" width="32" height="32"/>
+  <object id="1030" gid="306" x="5072" y="7088" width="32" height="32"/>
   <object id="1031" gid="287" x="5392" y="7952" width="32" height="32"/>
   <object id="1032" gid="287" x="5744" y="7952" width="32" height="32"/>
   <object id="1033" gid="287" x="5744" y="7600" width="32" height="32"/>
@@ -5287,12 +5155,7 @@
     <property name="height" value="8"/>
    </properties>
   </object>
-  <object id="1124" type="Sprite" x="6960" y="8016" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
+  <object id="1124" gid="306" x="6960" y="8016" width="32" height="32"/>
   <object id="1126" gid="275" x="8176" y="7056" width="16" height="32"/>
   <object id="1127" gid="281" x="7120" y="7632" width="16" height="32"/>
   <object id="1128" type="Sprite" x="7680" y="7520" width="16" height="16">
@@ -6389,11 +6252,9 @@
     <property name="target" value="LeapOfFaithAnyAbility"/>
    </properties>
   </object>
-  <object id="1440" type="Sprite" x="4752" y="3968" width="32" height="32">
+  <object id="1440" gid="304" x="4752" y="3968" width="32" height="32">
    <properties>
-    <property name="image" value="arrow32.png"/>
     <property name="opaque" type="bool" value="false"/>
-    <property name="orientation" value="WN"/>
     <property name="solid" type="bool" value="false"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
@@ -6518,24 +6379,9 @@
   </object>
   <object id="1481" gid="291" x="8040" y="7376" width="32" height="16"/>
   <object id="1482" type="SwitchMusic" x="7648" y="7152" width="48" height="16"/>
-  <object id="1483" type="Sprite" x="8048" y="7328" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="EN"/>
-   </properties>
-  </object>
-  <object id="1484" type="Sprite" x="8064" y="7264" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="EN"/>
-   </properties>
-  </object>
-  <object id="1485" type="Sprite" x="8080" y="7200" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="EN"/>
-   </properties>
-  </object>
+  <object id="1483" gid="302" x="8048" y="7328" width="32" height="32"/>
+  <object id="1484" gid="302" x="8064" y="7264" width="32" height="32"/>
+  <object id="1485" gid="302" x="8080" y="7200" width="32" height="32"/>
   <object id="1490" gid="290" x="8128" y="7168" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
@@ -6560,24 +6406,9 @@
   </object>
   <object id="1495" gid="291" x="840" y="624" width="32" height="16"/>
   <object id="1496" type="SwitchMusic" x="448" y="400" width="48" height="16"/>
-  <object id="1497" type="Sprite" x="880" y="640" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="ES"/>
-   </properties>
-  </object>
-  <object id="1498" type="Sprite" x="912" y="640" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="EN"/>
-   </properties>
-  </object>
-  <object id="1499" type="Sprite" x="928" y="608" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="WN"/>
-   </properties>
-  </object>
+  <object id="1497" gid="308" x="880" y="640" width="32" height="32"/>
+  <object id="1498" gid="302" x="912" y="640" width="32" height="32"/>
+  <object id="1499" gid="304" x="928" y="608" width="32" height="32"/>
   <object id="1504" gid="290" x="928" y="592" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
@@ -6589,12 +6420,7 @@
     <property name="opaque" value="false"/>
    </properties>
   </object>
-  <object id="1509" type="Sprite" x="448" y="5872" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="WS"/>
-   </properties>
-  </object>
+  <object id="1509" gid="306" x="448" y="5872" width="32" height="32"/>
   <object id="1510" name="CanStandWorld" gid="281" x="432" y="5888" width="16" height="32"/>
   <object id="1511" name="CanStandWorld" gid="275" x="784" y="7200" width="16" height="32"/>
   <object id="1512" gid="291" x="720" y="7216" width="32" height="16"/>
@@ -6635,12 +6461,7 @@
   <object id="1541" gid="283" x="592" y="7552" width="16" height="16"/>
   <object id="1542" gid="283" x="608" y="7552" width="16" height="16"/>
   <object id="1543" gid="291" x="704" y="7664" width="32" height="16"/>
-  <object id="1544" type="Sprite" x="608" y="7440" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="EN"/>
-   </properties>
-  </object>
+  <object id="1544" gid="302" x="608" y="7440" width="32" height="32"/>
   <object id="1545" name="little_big_platforms" type="Checkpoint" x="656" y="7088" width="32" height="288">
    <properties>
     <property name="music" value="Pressure.ogg"/>
@@ -6665,12 +6486,7 @@
   <object id="1549" gid="291" x="896" y="7356" width="32" height="16"/>
   <object id="1550" gid="291" x="992" y="7312" width="32" height="16"/>
   <object id="1551" gid="291" x="1088" y="7268" width="32" height="16"/>
-  <object id="1552" type="Sprite" x="720" y="7376" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="EN"/>
-   </properties>
-  </object>
+  <object id="1552" gid="302" x="720" y="7376" width="32" height="32"/>
   <object id="1553" gid="299" x="448" y="7088" width="32" height="320">
    <properties>
     <property name="map_black_to" type="color" value="#00ff5555"/>
@@ -7198,12 +7014,7 @@
   <object id="1803" gid="284" x="7264" y="7440" width="16" height="16"/>
   <object id="1804" gid="284" x="7264" y="7456" width="16" height="16"/>
   <object id="1805" gid="284" x="7264" y="7472" width="16" height="16"/>
-  <object id="1806" type="Sprite" x="7472" y="7232" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32.png"/>
-    <property name="orientation" value="EN"/>
-   </properties>
-  </object>
+  <object id="1806" gid="302" x="7472" y="7232" width="32" height="32"/>
   <object id="1807" type="Text" x="7296" y="7344" width="160" height="32">
    <properties>
     <property name="text" value="He who waits,  retries... #DGR"/>

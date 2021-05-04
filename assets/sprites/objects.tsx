@@ -148,4 +148,68 @@
   </properties>
   <image width="16" height="16" source="editorimgs/gradient_outside_inside.png"/>
  </tile>
+ <tile id="27" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+   <property name="image" value="arrow32s.png"/>
+   <property name="orientation" value="ES"/>
+  </properties>
+  <image width="32" height="32" source="editorimgs/arrow32_e.png"/>
+ </tile>
+ <tile id="28" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+   <property name="image" value="arrow32d.png"/>
+   <property name="orientation" value="NE"/>
+  </properties>
+  <image width="32" height="32" source="editorimgs/arrow32_ne.png"/>
+ </tile>
+ <tile id="29" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+   <property name="image" value="arrow32s.png"/>
+   <property name="orientation" value="NE"/>
+  </properties>
+  <image width="32" height="32" source="editorimgs/arrow32_n.png"/>
+ </tile>
+ <tile id="30" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+   <property name="image" value="arrow32d.png"/>
+   <property name="orientation" value="WN"/>
+  </properties>
+  <image width="32" height="32" source="editorimgs/arrow32_nw.png"/>
+ </tile>
+ <tile id="31" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+   <property name="image" value="arrow32s.png"/>
+   <property name="orientation" value="WN"/>
+  </properties>
+  <image width="32" height="32" source="editorimgs/arrow32_w.png"/>
+ </tile>
+ <tile id="32" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+   <property name="image" value="arrow32d.png"/>
+   <property name="orientation" value="SW"/>
+  </properties>
+  <image width="32" height="32" source="editorimgs/arrow32_sw.png"/>
+ </tile>
+ <tile id="33" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+   <property name="image" value="arrow32d.png"/>
+   <property name="orientation" value="SW"/>
+  </properties>
+  <image width="32" height="32" source="editorimgs/arrow32_s.png"/>
+ </tile>
+ <tile id="34" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+   <property name="image" value="arrow32s.png"/>
+   <property name="orientation" value="ES"/>
+  </properties>
+  <image width="32" height="32" source="editorimgs/arrow32_se.png"/>
+ </tile>
 </tileset>

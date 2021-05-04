@@ -63,6 +63,14 @@ sub fix_object {
       $el->removeAttribute('type');
       $el->setAttribute('gid', 300);
     }
+    if ($img eq 'arrow32.png') {
+      remove_props $el, 'image', 'orientation';
+      $el->removeAttribute('type');
+      $el->setAttribute('gid', 302) if $prop{orientation} =~ /EN|NE/;
+      $el->setAttribute('gid', 304) if $prop{orientation} =~ /NW|WN/;
+      $el->setAttribute('gid', 306) if $prop{orientation} =~ /SW|WS/;
+      $el->setAttribute('gid', 308) if $prop{orientation} =~ /SE|ES/;
+    }
   }
   if ($type eq 'RiserFsck') {
     $el->removeAttribute('type');
