@@ -8352,7 +8352,7 @@
     <property name="map_white_to" type="color" value="#ff000000"/>
    </properties>
   </object>
-  <object id="2759" name="WarpFromCarryItOut" type="WarpZone" gid="281" x="3936" y="1600" width="16" height="32"/>
+  <object id="2759" name="WarpFromCarryItOut" gid="281" x="3936" y="1600" width="16" height="32"/>
   <object id="2761" name="YellowFall" gid="279" x="5728" y="336" width="176" height="16"/>
   <object id="2762" name="YellowFall" gid="277" x="5728" y="0" width="176" height="16"/>
   <object id="2763" gid="296" x="5728" y="256" width="16" height="16"/>
