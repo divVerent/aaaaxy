@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2766">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2766">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
  <tileset firstgid="1" source="../tiles/tiles.tsx"/>
+ <tileset firstgid="274" source="../sprites/objects.tsx"/>
  <layer id="1" name="Tile Layer 1" width="512" height="512">
   <data encoding="csv">
 18,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,20,16,16,16,16,16,16,16,16,16,16,21,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,14,59,59,18,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,14,63,63,63,63,63,63,63,63,63,63,63,18,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,
@@ -550,7 +551,7 @@
     <property name="kaizo" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="26" name="Warp1-1Win" gid="2" x="4864" y="3904" width="16" height="32"/>
+  <object id="26" name="Warp1-1Win" gid="275" x="4864" y="3904" width="16" height="32"/>
   <object id="27" type="AppearBlock" x="4576" y="4064" width="16" height="16"/>
   <object id="28" type="AppearBlock" x="4592" y="4064" width="16" height="16"/>
   <object id="29" type="AppearBlock" x="4608" y="4064" width="16" height="16"/>
@@ -564,8 +565,8 @@
   <object id="37" type="AppearBlock" x="4736" y="4064" width="16" height="16"/>
   <object id="38" type="AppearBlock" x="4752" y="4064" width="16" height="16"/>
   <object id="39" type="AppearBlock" x="4768" y="4064" width="16" height="16"/>
-  <object id="40" name="Warp1-1Back" gid="4" x="4208" y="3856" width="32" height="16"/>
-  <object id="41" name="Warp1-1Back" gid="6" x="4576" y="4304" width="32" height="16"/>
+  <object id="40" name="Warp1-1Back" gid="277" x="4208" y="3856" width="32" height="16"/>
+  <object id="41" name="Warp1-1Back" gid="279" x="4576" y="4304" width="32" height="16"/>
   <object id="42" type="Sprite" x="4752" y="3904" width="32" height="32">
    <properties>
     <property name="image" value="arrow32.png"/>
@@ -584,8 +585,8 @@
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="44" name="WarpSquare3" gid="3" x="3968" y="4064" width="16" height="32"/>
-  <object id="46" name="WarpSquare3" gid="6" x="4032" y="4000" width="32" height="16"/>
+  <object id="44" name="WarpSquare3" gid="276" x="3968" y="4064" width="16" height="32"/>
+  <object id="46" name="WarpSquare3" gid="279" x="4032" y="4000" width="32" height="16"/>
   <object id="47" type="Sprite" x="4112" y="3952" width="32" height="32">
    <properties>
     <property name="image" value="arrow32.png"/>
@@ -635,8 +636,8 @@
     <property name="text" value="Leap of Faith"/>
    </properties>
   </object>
-  <object id="58" name="WarpInfiniteStairs" gid="2" x="4496" y="4128" width="16" height="48"/>
-  <object id="59" name="WarpInfiniteStairs" gid="8" x="3840" y="4128" width="16" height="48"/>
+  <object id="58" name="WarpInfiniteStairs" gid="275" x="4496" y="4128" width="16" height="48"/>
+  <object id="59" name="WarpInfiniteStairs" gid="281" x="3840" y="4128" width="16" height="48"/>
   <object id="61" type="TnihSign" x="4352" y="4240" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="66"/>
@@ -655,8 +656,8 @@
     <property name="text" value="Persistence is the key to success."/>
    </properties>
   </object>
-  <object id="64" name="WarpInfiniteStairsMirror" gid="6" x="4352" y="4336" width="32" height="16"/>
-  <object id="65" name="WarpInfiniteStairsMirror" gid="6" x="4032" y="4336" width="32" height="16"/>
+  <object id="64" name="WarpInfiniteStairsMirror" gid="279" x="4352" y="4336" width="32" height="16"/>
+  <object id="65" name="WarpInfiniteStairsMirror" gid="279" x="4032" y="4336" width="32" height="16"/>
   <object id="66" name="stop_and_stair" type="Checkpoint" x="4416" y="4128" width="64" height="48">
    <properties>
     <property name="music" value="retro_chiptune_1.ogg"/>
@@ -665,16 +666,16 @@
     <property name="text" value="Stop and Stair"/>
    </properties>
   </object>
-  <object id="67" name="Warp1-1Win" gid="7" x="4816" y="4272" width="32" height="16"/>
-  <object id="69" name="WarpToEndlessEight" gid="4" x="4192" y="4112" width="32" height="16"/>
-  <object id="71" name="WarpEndlessEightL" gid="6" x="3904" y="4688" width="32" height="16"/>
-  <object id="72" name="WarpEndlessEightLR" gid="6" x="4416" y="4688" width="32" height="16"/>
-  <object id="73" name="WarpEndlessEightR" gid="6" x="4544" y="4688" width="32" height="16"/>
-  <object id="74" name="WarpEndlessEightRL" gid="6" x="5056" y="4688" width="32" height="16"/>
-  <object id="75" name="WarpEndlessEightL" gid="4" x="3904" y="4704" width="32" height="16"/>
-  <object id="76" name="WarpEndlessEightRL" gid="4" x="4416" y="4704" width="32" height="16"/>
-  <object id="77" name="WarpEndlessEightR" gid="4" x="4544" y="4704" width="32" height="16"/>
-  <object id="78" name="WarpEndlessEightLR" gid="4" x="5056" y="4704" width="32" height="16"/>
+  <object id="67" name="Warp1-1Win" gid="280" x="4816" y="4272" width="32" height="16"/>
+  <object id="69" name="WarpToEndlessEight" gid="277" x="4192" y="4112" width="32" height="16"/>
+  <object id="71" name="WarpEndlessEightL" gid="279" x="3904" y="4688" width="32" height="16"/>
+  <object id="72" name="WarpEndlessEightLR" gid="279" x="4416" y="4688" width="32" height="16"/>
+  <object id="73" name="WarpEndlessEightR" gid="279" x="4544" y="4688" width="32" height="16"/>
+  <object id="74" name="WarpEndlessEightRL" gid="279" x="5056" y="4688" width="32" height="16"/>
+  <object id="75" name="WarpEndlessEightL" gid="277" x="3904" y="4704" width="32" height="16"/>
+  <object id="76" name="WarpEndlessEightRL" gid="277" x="4416" y="4704" width="32" height="16"/>
+  <object id="77" name="WarpEndlessEightR" gid="277" x="4544" y="4704" width="32" height="16"/>
+  <object id="78" name="WarpEndlessEightLR" gid="277" x="5056" y="4704" width="32" height="16"/>
   <object id="79" type="QuestionBlock" x="4000" y="4384" width="16" height="16"/>
   <object id="80" type="QuestionBlock" x="4016" y="4384" width="16" height="16"/>
   <object id="81" type="QuestionBlock" x="4016" y="4864" width="16" height="16"/>
@@ -730,9 +731,9 @@
     <property name="text" value="Interesting things are always found in corners."/>
    </properties>
   </object>
-  <object id="96" name="WarpToEndlessEight" gid="2" x="5152" y="4640" width="16" height="32"/>
-  <object id="97" name="WarpToHub" gid="2" x="4480" y="4640" width="16" height="32"/>
-  <object id="98" name="WarpToHub" gid="8" x="3456" y="4880" width="16" height="32"/>
+  <object id="96" name="WarpToEndlessEight" gid="275" x="5152" y="4640" width="16" height="32"/>
+  <object id="97" name="WarpToHub" gid="275" x="4480" y="4640" width="16" height="32"/>
+  <object id="98" name="WarpToHub" gid="281" x="3456" y="4880" width="16" height="32"/>
   <object id="99" name="the_hub" type="Checkpoint" x="3872" y="5136" width="288" height="32">
    <properties>
     <property name="music" value=""/>
@@ -777,36 +778,36 @@
     <property name="text" value="The Strip"/>
    </properties>
   </object>
-  <object id="106" name="StripSecond" gid="2" x="3856" y="5408" width="16" height="32"/>
-  <object id="107" name="StripBottom" gid="2" x="3856" y="5472" width="16" height="32"/>
-  <object id="108" name="StripSecond" gid="8" x="3392" y="5408" width="16" height="32"/>
-  <object id="109" name="StripBottom" gid="8" x="3392" y="5472" width="16" height="32"/>
-  <object id="112" name="MoebiusThird" gid="8" x="2752" y="5088" width="16" height="32"/>
-  <object id="113" name="MoebiusSecond" gid="8" x="2752" y="5152" width="16" height="32"/>
-  <object id="114" name="MoebiusFirst" gid="8" x="2752" y="5216" width="16" height="32"/>
-  <object id="115" name="MoebiusThird" gid="3" x="3216" y="5152" width="16" height="32"/>
-  <object id="116" name="MoebiusSecond" gid="3" x="3216" y="5088" width="16" height="32"/>
-  <object id="117" name="MoebiusFirst" gid="3" x="3216" y="5024" width="16" height="32"/>
-  <object id="118" name="TorusFirst" gid="2" x="3200" y="5344" width="16" height="32"/>
-  <object id="119" name="TorusSecond" gid="2" x="3200" y="5408" width="16" height="32"/>
-  <object id="120" name="TorusThird" gid="2" x="3200" y="5472" width="16" height="32"/>
-  <object id="121" name="TorusFirst" gid="8" x="2736" y="5344" width="16" height="32"/>
-  <object id="122" name="TorusSecond" gid="8" x="2736" y="5408" width="16" height="32"/>
-  <object id="123" name="TorusThird" gid="8" x="2736" y="5472" width="16" height="32"/>
-  <object id="124" name="TorusNinth" gid="6" x="3104" y="5536" width="32" height="16"/>
-  <object id="127" name="TorusEighth" gid="6" x="3040" y="5536" width="32" height="16"/>
-  <object id="128" name="TorusSeventh" gid="6" x="2976" y="5536" width="32" height="16"/>
-  <object id="129" name="TorusSixth" gid="6" x="2912" y="5536" width="32" height="16"/>
-  <object id="131" name="TorusFifth" gid="6" x="2848" y="5536" width="32" height="16"/>
-  <object id="132" name="TorusFourth" gid="6" x="2784" y="5536" width="32" height="16"/>
-  <object id="133" name="TorusFourth" gid="4" x="2784" y="5264" width="32" height="16"/>
-  <object id="134" name="TorusFifth" gid="4" x="2848" y="5264" width="32" height="16"/>
-  <object id="136" name="TorusSixth" gid="4" x="2912" y="5264" width="32" height="16"/>
-  <object id="137" name="TorusSeventh" gid="4" x="2976" y="5264" width="32" height="16"/>
-  <object id="138" name="TorusEighth" gid="4" x="3040" y="5264" width="32" height="16"/>
-  <object id="139" name="TorusNinth" gid="4" x="3104" y="5264" width="32" height="16"/>
-  <object id="141" name="TorusTenth" gid="6" x="3168" y="5536" width="32" height="16"/>
-  <object id="142" name="TorusTenth" gid="4" x="3168" y="5264" width="32" height="16"/>
+  <object id="106" name="StripSecond" gid="275" x="3856" y="5408" width="16" height="32"/>
+  <object id="107" name="StripBottom" gid="275" x="3856" y="5472" width="16" height="32"/>
+  <object id="108" name="StripSecond" gid="281" x="3392" y="5408" width="16" height="32"/>
+  <object id="109" name="StripBottom" gid="281" x="3392" y="5472" width="16" height="32"/>
+  <object id="112" name="MoebiusThird" gid="281" x="2752" y="5088" width="16" height="32"/>
+  <object id="113" name="MoebiusSecond" gid="281" x="2752" y="5152" width="16" height="32"/>
+  <object id="114" name="MoebiusFirst" gid="281" x="2752" y="5216" width="16" height="32"/>
+  <object id="115" name="MoebiusThird" gid="276" x="3216" y="5152" width="16" height="32"/>
+  <object id="116" name="MoebiusSecond" gid="276" x="3216" y="5088" width="16" height="32"/>
+  <object id="117" name="MoebiusFirst" gid="276" x="3216" y="5024" width="16" height="32"/>
+  <object id="118" name="TorusFirst" gid="275" x="3200" y="5344" width="16" height="32"/>
+  <object id="119" name="TorusSecond" gid="275" x="3200" y="5408" width="16" height="32"/>
+  <object id="120" name="TorusThird" gid="275" x="3200" y="5472" width="16" height="32"/>
+  <object id="121" name="TorusFirst" gid="281" x="2736" y="5344" width="16" height="32"/>
+  <object id="122" name="TorusSecond" gid="281" x="2736" y="5408" width="16" height="32"/>
+  <object id="123" name="TorusThird" gid="281" x="2736" y="5472" width="16" height="32"/>
+  <object id="124" name="TorusNinth" gid="279" x="3104" y="5536" width="32" height="16"/>
+  <object id="127" name="TorusEighth" gid="279" x="3040" y="5536" width="32" height="16"/>
+  <object id="128" name="TorusSeventh" gid="279" x="2976" y="5536" width="32" height="16"/>
+  <object id="129" name="TorusSixth" gid="279" x="2912" y="5536" width="32" height="16"/>
+  <object id="131" name="TorusFifth" gid="279" x="2848" y="5536" width="32" height="16"/>
+  <object id="132" name="TorusFourth" gid="279" x="2784" y="5536" width="32" height="16"/>
+  <object id="133" name="TorusFourth" gid="277" x="2784" y="5264" width="32" height="16"/>
+  <object id="134" name="TorusFifth" gid="277" x="2848" y="5264" width="32" height="16"/>
+  <object id="136" name="TorusSixth" gid="277" x="2912" y="5264" width="32" height="16"/>
+  <object id="137" name="TorusSeventh" gid="277" x="2976" y="5264" width="32" height="16"/>
+  <object id="138" name="TorusEighth" gid="277" x="3040" y="5264" width="32" height="16"/>
+  <object id="139" name="TorusNinth" gid="277" x="3104" y="5264" width="32" height="16"/>
+  <object id="141" name="TorusTenth" gid="279" x="3168" y="5536" width="32" height="16"/>
+  <object id="142" name="TorusTenth" gid="277" x="3168" y="5264" width="32" height="16"/>
   <object id="143" type="TnihSign" x="3376" y="5344" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="105"/>
@@ -846,32 +847,32 @@
     <property name="orientation" value="WS"/>
    </properties>
   </object>
-  <object id="151" name="TorusToKlein" gid="6" x="2624" y="5328" width="64" height="16"/>
-  <object id="155" name="KleinFirst" gid="2" x="2544" y="5088" width="16" height="32"/>
-  <object id="156" name="KleinSecond" gid="2" x="2544" y="5152" width="16" height="32"/>
-  <object id="157" name="KleinThird" gid="2" x="2544" y="5216" width="16" height="32"/>
-  <object id="159" name="KleinFirst" gid="8" x="2080" y="5088" width="16" height="32"/>
-  <object id="160" name="KleinSecond" gid="8" x="2080" y="5152" width="16" height="32"/>
-  <object id="161" name="KleinThird" gid="8" x="2080" y="5216" width="16" height="32"/>
+  <object id="151" name="TorusToKlein" gid="279" x="2624" y="5328" width="64" height="16"/>
+  <object id="155" name="KleinFirst" gid="275" x="2544" y="5088" width="16" height="32"/>
+  <object id="156" name="KleinSecond" gid="275" x="2544" y="5152" width="16" height="32"/>
+  <object id="157" name="KleinThird" gid="275" x="2544" y="5216" width="16" height="32"/>
+  <object id="159" name="KleinFirst" gid="281" x="2080" y="5088" width="16" height="32"/>
+  <object id="160" name="KleinSecond" gid="281" x="2080" y="5152" width="16" height="32"/>
+  <object id="161" name="KleinThird" gid="281" x="2080" y="5216" width="16" height="32"/>
   <object id="162" type="OneWay" x="2592" y="5024" width="32" height="32">
    <properties>
     <property name="orientation" value="WS"/>
    </properties>
   </object>
-  <object id="163" name="KleinTenth" gid="4" x="2496" y="4992" width="32" height="16"/>
-  <object id="164" name="KleinNinth" gid="4" x="2432" y="4992" width="32" height="16"/>
-  <object id="166" name="KleinEighth" gid="4" x="2368" y="4992" width="32" height="16"/>
-  <object id="167" name="KleinSeventh" gid="4" x="2304" y="4992" width="32" height="16"/>
-  <object id="168" name="KleinSixth" gid="4" x="2240" y="4992" width="32" height="16"/>
-  <object id="169" name="KleinFifth" gid="4" x="2176" y="4992" width="32" height="16"/>
-  <object id="170" name="KleinFourth" gid="4" x="2112" y="4992" width="32" height="16"/>
-  <object id="171" name="KleinFourth" gid="7" x="2496" y="5264" width="32" height="16"/>
-  <object id="173" name="KleinFifth" gid="7" x="2432" y="5264" width="32" height="16"/>
-  <object id="174" name="KleinSixth" gid="7" x="2368" y="5264" width="32" height="16"/>
-  <object id="175" name="KleinSeventh" gid="7" x="2304" y="5264" width="32" height="16"/>
-  <object id="176" name="KleinEighth" gid="7" x="2240" y="5264" width="32" height="16"/>
-  <object id="177" name="KleinNinth" gid="7" x="2176" y="5264" width="32" height="16"/>
-  <object id="178" name="KleinTenth" gid="7" x="2112" y="5264" width="32" height="16"/>
+  <object id="163" name="KleinTenth" gid="277" x="2496" y="4992" width="32" height="16"/>
+  <object id="164" name="KleinNinth" gid="277" x="2432" y="4992" width="32" height="16"/>
+  <object id="166" name="KleinEighth" gid="277" x="2368" y="4992" width="32" height="16"/>
+  <object id="167" name="KleinSeventh" gid="277" x="2304" y="4992" width="32" height="16"/>
+  <object id="168" name="KleinSixth" gid="277" x="2240" y="4992" width="32" height="16"/>
+  <object id="169" name="KleinFifth" gid="277" x="2176" y="4992" width="32" height="16"/>
+  <object id="170" name="KleinFourth" gid="277" x="2112" y="4992" width="32" height="16"/>
+  <object id="171" name="KleinFourth" gid="280" x="2496" y="5264" width="32" height="16"/>
+  <object id="173" name="KleinFifth" gid="280" x="2432" y="5264" width="32" height="16"/>
+  <object id="174" name="KleinSixth" gid="280" x="2368" y="5264" width="32" height="16"/>
+  <object id="175" name="KleinSeventh" gid="280" x="2304" y="5264" width="32" height="16"/>
+  <object id="176" name="KleinEighth" gid="280" x="2240" y="5264" width="32" height="16"/>
+  <object id="177" name="KleinNinth" gid="280" x="2176" y="5264" width="32" height="16"/>
+  <object id="178" name="KleinTenth" gid="280" x="2112" y="5264" width="32" height="16"/>
   <object id="179" type="TnihSign" x="2048" y="5024" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="180"/>
@@ -886,7 +887,7 @@
     <property name="text" value="The Klein Bottle"/>
    </properties>
   </object>
-  <object id="181" name="TorusToKlein" gid="6" x="2624" y="5104" width="64" height="16"/>
+  <object id="181" name="TorusToKlein" gid="279" x="2624" y="5104" width="64" height="16"/>
   <object id="182" type="Sprite" x="3488" y="5344" width="288" height="96">
    <properties>
     <property name="image" value="the_strip.png"/>
@@ -914,8 +915,8 @@
     <property name="text" value="Whenever I climb I am followed by a dog called Ego."/>
    </properties>
   </object>
-  <object id="189" name="GettingOverItMirror" gid="7" x="1952" y="5152" width="64" height="16"/>
-  <object id="190" name="GettingOverItMirror" gid="7" x="1856" y="5152" width="64" height="16"/>
+  <object id="189" name="GettingOverItMirror" gid="280" x="1952" y="5152" width="64" height="16"/>
+  <object id="190" name="GettingOverItMirror" gid="280" x="1856" y="5152" width="64" height="16"/>
   <object id="191" type="Sprite" x="1408" y="5088" width="288" height="96">
    <properties>
     <property name="image" value="the_projective_plane.png"/>
@@ -930,26 +931,26 @@
     <property name="text" value="The Projective Plane"/>
    </properties>
   </object>
-  <object id="193" name="ProjectivePlaneFirst" gid="8" x="1312" y="5024" width="16" height="32"/>
-  <object id="194" name="ProjectivePlaneSecond" gid="8" x="1312" y="5088" width="16" height="32"/>
-  <object id="195" name="ProjectivePlaneThird" gid="8" x="1312" y="5152" width="16" height="32"/>
-  <object id="197" name="ProjectivePlaneThird" gid="3" x="1776" y="5088" width="16" height="32"/>
-  <object id="198" name="ProjectivePlaneSecond" gid="3" x="1776" y="5152" width="16" height="32"/>
-  <object id="199" name="ProjectivePlaneFirst" gid="3" x="1776" y="5216" width="16" height="32"/>
-  <object id="200" name="ProjectivePlaneTenth" gid="4" x="1344" y="4992" width="32" height="16"/>
-  <object id="201" name="ProjectivePlaneNinth" gid="4" x="1408" y="4992" width="32" height="16"/>
-  <object id="202" name="ProjectiveePlaneEighth" gid="4" x="1472" y="4992" width="32" height="16"/>
-  <object id="203" name="ProjectivePlaneSeventh" gid="4" x="1536" y="4992" width="32" height="16"/>
-  <object id="204" name="ProjectivePlaneSixth" gid="4" x="1600" y="4992" width="32" height="16"/>
-  <object id="205" name="ProjectivePlaneFifth" gid="4" x="1664" y="4992" width="32" height="16"/>
-  <object id="206" name="ProjectivePlaneFourth" gid="4" x="1728" y="4992" width="32" height="16"/>
-  <object id="207" name="ProjectivePlaneFourth" gid="7" x="1344" y="5264" width="32" height="16"/>
-  <object id="208" name="ProjectivePlaneFifth" gid="7" x="1408" y="5264" width="32" height="16"/>
-  <object id="209" name="ProjectivePlaneSixth" gid="7" x="1472" y="5264" width="32" height="16"/>
-  <object id="210" name="ProjectivePlaneSeventh" gid="7" x="1536" y="5264" width="32" height="16"/>
-  <object id="211" name="ProjectiveePlaneEighth" gid="7" x="1600" y="5264" width="32" height="16"/>
-  <object id="212" name="ProjectivePlaneNinth" gid="7" x="1664" y="5264" width="32" height="16"/>
-  <object id="213" name="ProjectivePlaneTenth" gid="7" x="1728" y="5264" width="32" height="16"/>
+  <object id="193" name="ProjectivePlaneFirst" gid="281" x="1312" y="5024" width="16" height="32"/>
+  <object id="194" name="ProjectivePlaneSecond" gid="281" x="1312" y="5088" width="16" height="32"/>
+  <object id="195" name="ProjectivePlaneThird" gid="281" x="1312" y="5152" width="16" height="32"/>
+  <object id="197" name="ProjectivePlaneThird" gid="276" x="1776" y="5088" width="16" height="32"/>
+  <object id="198" name="ProjectivePlaneSecond" gid="276" x="1776" y="5152" width="16" height="32"/>
+  <object id="199" name="ProjectivePlaneFirst" gid="276" x="1776" y="5216" width="16" height="32"/>
+  <object id="200" name="ProjectivePlaneTenth" gid="277" x="1344" y="4992" width="32" height="16"/>
+  <object id="201" name="ProjectivePlaneNinth" gid="277" x="1408" y="4992" width="32" height="16"/>
+  <object id="202" name="ProjectiveePlaneEighth" gid="277" x="1472" y="4992" width="32" height="16"/>
+  <object id="203" name="ProjectivePlaneSeventh" gid="277" x="1536" y="4992" width="32" height="16"/>
+  <object id="204" name="ProjectivePlaneSixth" gid="277" x="1600" y="4992" width="32" height="16"/>
+  <object id="205" name="ProjectivePlaneFifth" gid="277" x="1664" y="4992" width="32" height="16"/>
+  <object id="206" name="ProjectivePlaneFourth" gid="277" x="1728" y="4992" width="32" height="16"/>
+  <object id="207" name="ProjectivePlaneFourth" gid="280" x="1344" y="5264" width="32" height="16"/>
+  <object id="208" name="ProjectivePlaneFifth" gid="280" x="1408" y="5264" width="32" height="16"/>
+  <object id="209" name="ProjectivePlaneSixth" gid="280" x="1472" y="5264" width="32" height="16"/>
+  <object id="210" name="ProjectivePlaneSeventh" gid="280" x="1536" y="5264" width="32" height="16"/>
+  <object id="211" name="ProjectiveePlaneEighth" gid="280" x="1600" y="5264" width="32" height="16"/>
+  <object id="212" name="ProjectivePlaneNinth" gid="280" x="1664" y="5264" width="32" height="16"/>
+  <object id="213" name="ProjectivePlaneTenth" gid="280" x="1728" y="5264" width="32" height="16"/>
   <object id="214" type="Sprite" x="832" y="5152" width="224" height="224">
    <properties>
     <property name="image" value="the_sphere.png"/>
@@ -957,28 +958,28 @@
     <property name="orientation" value="WN"/>
    </properties>
   </object>
-  <object id="215" name="SphereSeventh" gid="2" x="1136" y="5152" width="16" height="32"/>
-  <object id="216" name="SphereEigth" gid="2" x="1136" y="5216" width="16" height="32"/>
-  <object id="217" name="SphereNinth" gid="2" x="1136" y="5280" width="16" height="32"/>
-  <object id="218" name="SphereTenth" gid="2" x="1136" y="5344" width="16" height="32"/>
-  <object id="219" name="SphereEleventh" gid="2" x="1136" y="5408" width="16" height="32"/>
-  <object id="220" name="SphereEleventh" gid="7" x="1088" y="5456" width="32" height="16"/>
-  <object id="221" name="SphereTenth" gid="7" x="1024" y="5456" width="32" height="16"/>
-  <object id="222" name="SphereNinth" gid="7" x="960" y="5456" width="32" height="16"/>
-  <object id="223" name="SphereEigth" gid="7" x="896" y="5456" width="32" height="16"/>
-  <object id="224" name="SphereSeventh" gid="7" x="832" y="5456" width="32" height="16"/>
-  <object id="225" name="SphereFirst" gid="9" x="736" y="5088" width="16" height="32"/>
-  <object id="226" name="SphereSecond" gid="9" x="736" y="5152" width="16" height="32"/>
-  <object id="227" name="SphereThird" gid="9" x="736" y="5216" width="16" height="32"/>
-  <object id="228" name="SphereFourth" gid="9" x="736" y="5280" width="16" height="32"/>
-  <object id="229" name="SphereFifth" gid="9" x="736" y="5344" width="16" height="32"/>
-  <object id="230" name="SphereSixth" gid="9" x="736" y="5408" width="16" height="32"/>
-  <object id="231" name="SphereFirst" gid="4" x="768" y="5056" width="32" height="16"/>
-  <object id="232" name="SphereSecond" gid="4" x="832" y="5056" width="32" height="16"/>
-  <object id="233" name="SphereThird" gid="4" x="896" y="5056" width="32" height="16"/>
-  <object id="234" name="SphereFourth" gid="4" x="960" y="5056" width="32" height="16"/>
-  <object id="235" name="SphereFifth" gid="4" x="1024" y="5056" width="32" height="16"/>
-  <object id="236" name="SphereSixth" gid="4" x="1088" y="5056" width="32" height="16"/>
+  <object id="215" name="SphereSeventh" gid="275" x="1136" y="5152" width="16" height="32"/>
+  <object id="216" name="SphereEigth" gid="275" x="1136" y="5216" width="16" height="32"/>
+  <object id="217" name="SphereNinth" gid="275" x="1136" y="5280" width="16" height="32"/>
+  <object id="218" name="SphereTenth" gid="275" x="1136" y="5344" width="16" height="32"/>
+  <object id="219" name="SphereEleventh" gid="275" x="1136" y="5408" width="16" height="32"/>
+  <object id="220" name="SphereEleventh" gid="280" x="1088" y="5456" width="32" height="16"/>
+  <object id="221" name="SphereTenth" gid="280" x="1024" y="5456" width="32" height="16"/>
+  <object id="222" name="SphereNinth" gid="280" x="960" y="5456" width="32" height="16"/>
+  <object id="223" name="SphereEigth" gid="280" x="896" y="5456" width="32" height="16"/>
+  <object id="224" name="SphereSeventh" gid="280" x="832" y="5456" width="32" height="16"/>
+  <object id="225" name="SphereFirst" gid="282" x="736" y="5088" width="16" height="32"/>
+  <object id="226" name="SphereSecond" gid="282" x="736" y="5152" width="16" height="32"/>
+  <object id="227" name="SphereThird" gid="282" x="736" y="5216" width="16" height="32"/>
+  <object id="228" name="SphereFourth" gid="282" x="736" y="5280" width="16" height="32"/>
+  <object id="229" name="SphereFifth" gid="282" x="736" y="5344" width="16" height="32"/>
+  <object id="230" name="SphereSixth" gid="282" x="736" y="5408" width="16" height="32"/>
+  <object id="231" name="SphereFirst" gid="277" x="768" y="5056" width="32" height="16"/>
+  <object id="232" name="SphereSecond" gid="277" x="832" y="5056" width="32" height="16"/>
+  <object id="233" name="SphereThird" gid="277" x="896" y="5056" width="32" height="16"/>
+  <object id="234" name="SphereFourth" gid="277" x="960" y="5056" width="32" height="16"/>
+  <object id="235" name="SphereFifth" gid="277" x="1024" y="5056" width="32" height="16"/>
+  <object id="236" name="SphereSixth" gid="277" x="1088" y="5056" width="32" height="16"/>
   <object id="237" name="the_sphere" type="Checkpoint" x="1152" y="5088" width="32" height="32">
    <properties>
     <property name="music" value="strange_inspiraton.ogg"/>
@@ -1025,10 +1026,10 @@
     <property name="required_orientation" value="WN"/>
    </properties>
   </object>
-  <object id="251" name="WarpToBingRight" gid="2" x="912" y="5536" width="16" height="32"/>
-  <object id="252" name="WarpToBingLeft" gid="9" x="448" y="5472" width="16" height="32"/>
-  <object id="253" name="WarpToBingRight" gid="4" x="928" y="5728" width="32" height="16"/>
-  <object id="254" name="WarpToBingLeft" gid="4" x="608" y="5728" width="32" height="16"/>
+  <object id="251" name="WarpToBingRight" gid="275" x="912" y="5536" width="16" height="32"/>
+  <object id="252" name="WarpToBingLeft" gid="282" x="448" y="5472" width="16" height="32"/>
+  <object id="253" name="WarpToBingRight" gid="277" x="928" y="5728" width="32" height="16"/>
+  <object id="254" name="WarpToBingLeft" gid="277" x="608" y="5728" width="32" height="16"/>
   <object id="255" type="TnihSign" x="720" y="6176" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="264"/>
@@ -1084,8 +1085,8 @@
     <property name="text" value="Taking the right entrance makes all the difference."/>
    </properties>
   </object>
-  <object id="278" name="BingChimney" gid="6" x="816" y="5984" width="32" height="16"/>
-  <object id="279" name="BingChimney" gid="4" x="816" y="6368" width="32" height="16"/>
+  <object id="278" name="BingChimney" gid="279" x="816" y="5984" width="32" height="16"/>
+  <object id="279" name="BingChimney" gid="277" x="816" y="6368" width="32" height="16"/>
   <object id="280" name="leap_of_faith_exit_top" type="Checkpoint" x="4704" y="3760" width="32" height="32">
    <properties>
     <property name="dead_end" type="bool" value="true"/>
@@ -1102,8 +1103,8 @@
     <property name="text" value=""/>
    </properties>
   </object>
-  <object id="283" name="ShortCircuitedL" gid="6" x="3984" y="5440" width="64" height="16"/>
-  <object id="284" name="ShortCircuitedL" gid="4" x="3984" y="6800" width="64" height="16"/>
+  <object id="283" name="ShortCircuitedL" gid="279" x="3984" y="5440" width="64" height="16"/>
+  <object id="284" name="ShortCircuitedL" gid="277" x="3984" y="6800" width="64" height="16"/>
   <object id="286" type="TnihSign" x="4080" y="6752" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="288"/>
@@ -1130,10 +1131,10 @@
     <property name="height" value="0"/>
    </properties>
   </object>
-  <object id="291" name="ChoicesTop" gid="2" x="4384" y="6768" width="16" height="96"/>
-  <object id="292" name="ChoicesBottom" gid="2" x="4384" y="6896" width="16" height="96"/>
-  <object id="293" name="ChoicesBottom" gid="8" x="4400" y="6768" width="16" height="96"/>
-  <object id="294" name="ChoicesTop" gid="8" x="4400" y="6896" width="16" height="96"/>
+  <object id="291" name="ChoicesTop" gid="275" x="4384" y="6768" width="16" height="96"/>
+  <object id="292" name="ChoicesBottom" gid="275" x="4384" y="6896" width="16" height="96"/>
+  <object id="293" name="ChoicesBottom" gid="281" x="4400" y="6768" width="16" height="96"/>
+  <object id="294" name="ChoicesTop" gid="281" x="4400" y="6896" width="16" height="96"/>
   <object id="295" type="TnihSign" x="4608" y="6864" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="296"/>
@@ -1164,8 +1165,8 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="305" name="EscherFirst" gid="6" x="5248" y="7008" width="32" height="16"/>
-  <object id="308" name="EscherSecond" gid="6" x="4768" y="6704" width="32" height="16"/>
+  <object id="305" name="EscherFirst" gid="279" x="5248" y="7008" width="32" height="16"/>
+  <object id="308" name="EscherSecond" gid="279" x="4768" y="6704" width="32" height="16"/>
   <object id="309" type="TnihSign" x="4704" y="6712" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="312"/>
@@ -1186,8 +1187,8 @@
     <property name="text" value="M. C. Waterfall"/>
    </properties>
   </object>
-  <object id="313" name="EscherFirst" gid="4" x="4704" y="6512" width="32" height="16"/>
-  <object id="314" name="EscherSecond" gid="4" x="4976" y="6688" width="32" height="16"/>
+  <object id="313" name="EscherFirst" gid="277" x="4704" y="6512" width="32" height="16"/>
+  <object id="314" name="EscherSecond" gid="277" x="4976" y="6688" width="32" height="16"/>
   <object id="315" type="Text" x="3968" y="6848" width="96" height="32">
    <properties>
     <property name="text" value="A shortcut?"/>
@@ -1252,8 +1253,8 @@
     <property name="height" value="40"/>
    </properties>
   </object>
-  <object id="328" name="ToSilverCity" gid="4" x="4448" y="7952" width="32" height="16"/>
-  <object id="329" name="ToSilverCity" gid="6" x="4640" y="6704" width="32" height="16"/>
+  <object id="328" name="ToSilverCity" gid="277" x="4448" y="7952" width="32" height="16"/>
+  <object id="329" name="ToSilverCity" gid="279" x="4640" y="6704" width="32" height="16"/>
   <object id="330" name="silvercity" type="Checkpoint" x="4448" y="7952" width="32" height="32">
    <properties>
     <property name="music" value="Next to You.ogg"/>
@@ -1572,7 +1573,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="423" name="ToNineBoxes" gid="8" x="4224" y="7264" width="16" height="32"/>
+  <object id="423" name="ToNineBoxes" gid="281" x="4224" y="7264" width="16" height="32"/>
   <object id="424" type="Sprite" x="5152" y="8064" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
@@ -4373,7 +4374,7 @@
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="864" name="ToNineBoxes" gid="2" x="6384" y="7584" width="16" height="32"/>
+  <object id="864" name="ToNineBoxes" gid="275" x="6384" y="7584" width="16" height="32"/>
   <object id="865" name="nine_boxes_in_sight" type="Checkpoint" x="6304" y="7584" width="32" height="32">
    <properties>
     <property name="music" value="ticking_clock.ogg"/>
@@ -4394,8 +4395,8 @@
     <property name="height" value="0"/>
    </properties>
   </object>
-  <object id="868" name="Box9E" gid="8" x="6032" y="7168" width="16" height="160"/>
-  <object id="870" name="Box9E" gid="2" x="5536" y="6848" width="16" height="160"/>
+  <object id="868" name="Box9E" gid="281" x="6032" y="7168" width="16" height="160"/>
+  <object id="870" name="Box9E" gid="275" x="5536" y="6848" width="16" height="160"/>
   <object id="873" type="Animation" x="5856" y="7520" width="160" height="160">
    <properties>
     <property name="animation" value="clock"/>
@@ -4406,39 +4407,39 @@
     <property name="animation_sync_to_music_offset" value="0.16s"/>
    </properties>
   </object>
-  <object id="874" name="Box9N" gid="2" x="5792" y="6848" width="16" height="160"/>
-  <object id="875" name="Box9W" gid="2" x="6048" y="6848" width="16" height="160"/>
-  <object id="876" name="Box9N" gid="7" x="5856" y="7136" width="160" height="16"/>
-  <object id="877" name="Box9W" gid="3" x="5824" y="7168" width="16" height="160"/>
+  <object id="874" name="Box9N" gid="275" x="5792" y="6848" width="16" height="160"/>
+  <object id="875" name="Box9W" gid="275" x="6048" y="6848" width="16" height="160"/>
+  <object id="876" name="Box9N" gid="280" x="5856" y="7136" width="160" height="16"/>
+  <object id="877" name="Box9W" gid="276" x="5824" y="7168" width="16" height="160"/>
   <object id="878" type="SwitchMusic" x="6352" y="7584" width="32" height="32">
    <properties>
     <property name="music" value="Next to You.ogg"/>
    </properties>
   </object>
-  <object id="879" name="Box3E" gid="8" x="6032" y="7872" width="16" height="160"/>
-  <object id="880" name="Box3N" gid="7" x="5856" y="7840" width="160" height="16"/>
-  <object id="881" name="Box3W" gid="3" x="5824" y="7872" width="16" height="160"/>
-  <object id="882" name="Box3E" gid="2" x="5536" y="6624" width="16" height="160"/>
-  <object id="883" name="Box3N" gid="2" x="5792" y="6624" width="16" height="160"/>
-  <object id="884" name="Box3W" gid="2" x="6048" y="6624" width="16" height="160"/>
-  <object id="890" name="Box5N" gid="7" x="5504" y="7488" width="160" height="16"/>
-  <object id="891" name="Box5E" gid="8" x="5680" y="7520" width="16" height="160"/>
-  <object id="895" name="Box5N" gid="7" x="5504" y="7712" width="160" height="16"/>
-  <object id="897" name="Box5E" gid="2" x="5536" y="6400" width="16" height="160"/>
-  <object id="898" name="Box5W" gid="2" x="5792" y="6400" width="16" height="160"/>
-  <object id="899" name="Box5W" gid="3" x="5472" y="7520" width="16" height="160"/>
-  <object id="900" name="Box7N" gid="7" x="5152" y="7136" width="160" height="16"/>
-  <object id="901" name="Box7W" gid="3" x="5120" y="7168" width="16" height="160"/>
-  <object id="902" name="Box7E" gid="8" x="5328" y="7168" width="16" height="160"/>
-  <object id="903" name="Box7W" gid="2" x="6048" y="6176" width="16" height="160"/>
-  <object id="904" name="Box7E" gid="2" x="5536" y="6176" width="16" height="160"/>
-  <object id="905" name="Box7N" gid="2" x="5792" y="6176" width="16" height="160"/>
-  <object id="906" name="Box1W" gid="2" x="6048" y="5952" width="16" height="160"/>
-  <object id="907" name="Box1E" gid="2" x="5536" y="5952" width="16" height="160"/>
-  <object id="908" name="Box1N" gid="2" x="5792" y="5952" width="16" height="160"/>
-  <object id="909" name="Box1N" gid="7" x="5152" y="7840" width="160" height="16"/>
-  <object id="910" name="Box1W" gid="3" x="5120" y="7872" width="16" height="160"/>
-  <object id="911" name="Box1E" gid="8" x="5328" y="7872" width="16" height="160"/>
+  <object id="879" name="Box3E" gid="281" x="6032" y="7872" width="16" height="160"/>
+  <object id="880" name="Box3N" gid="280" x="5856" y="7840" width="160" height="16"/>
+  <object id="881" name="Box3W" gid="276" x="5824" y="7872" width="16" height="160"/>
+  <object id="882" name="Box3E" gid="275" x="5536" y="6624" width="16" height="160"/>
+  <object id="883" name="Box3N" gid="275" x="5792" y="6624" width="16" height="160"/>
+  <object id="884" name="Box3W" gid="275" x="6048" y="6624" width="16" height="160"/>
+  <object id="890" name="Box5N" gid="280" x="5504" y="7488" width="160" height="16"/>
+  <object id="891" name="Box5E" gid="281" x="5680" y="7520" width="16" height="160"/>
+  <object id="895" name="Box5N" gid="280" x="5504" y="7712" width="160" height="16"/>
+  <object id="897" name="Box5E" gid="275" x="5536" y="6400" width="16" height="160"/>
+  <object id="898" name="Box5W" gid="275" x="5792" y="6400" width="16" height="160"/>
+  <object id="899" name="Box5W" gid="276" x="5472" y="7520" width="16" height="160"/>
+  <object id="900" name="Box7N" gid="280" x="5152" y="7136" width="160" height="16"/>
+  <object id="901" name="Box7W" gid="276" x="5120" y="7168" width="16" height="160"/>
+  <object id="902" name="Box7E" gid="281" x="5328" y="7168" width="16" height="160"/>
+  <object id="903" name="Box7W" gid="275" x="6048" y="6176" width="16" height="160"/>
+  <object id="904" name="Box7E" gid="275" x="5536" y="6176" width="16" height="160"/>
+  <object id="905" name="Box7N" gid="275" x="5792" y="6176" width="16" height="160"/>
+  <object id="906" name="Box1W" gid="275" x="6048" y="5952" width="16" height="160"/>
+  <object id="907" name="Box1E" gid="275" x="5536" y="5952" width="16" height="160"/>
+  <object id="908" name="Box1N" gid="275" x="5792" y="5952" width="16" height="160"/>
+  <object id="909" name="Box1N" gid="280" x="5152" y="7840" width="160" height="16"/>
+  <object id="910" name="Box1W" gid="276" x="5120" y="7872" width="16" height="160"/>
+  <object id="911" name="Box1E" gid="281" x="5328" y="7872" width="16" height="160"/>
   <object id="912" type="Sprite" x="5168" y="8000" width="16" height="16">
    <properties>
     <property name="image" value="checkers_black.png"/>
@@ -4919,14 +4920,14 @@
     <property name="image" value="checkers_white.png"/>
    </properties>
   </object>
-  <object id="1016" name="Box8W" gid="3" x="5472" y="7168" width="16" height="160"/>
-  <object id="1017" name="Box8E" gid="8" x="5680" y="7168" width="16" height="160"/>
-  <object id="1018" name="Box2W" gid="3" x="5472" y="7872" width="16" height="160"/>
-  <object id="1019" name="Box2E" gid="8" x="5680" y="7872" width="16" height="160"/>
-  <object id="1020" name="Box8W" gid="3" x="5696" y="7872" width="16" height="160"/>
-  <object id="1021" name="Box8E" gid="8" x="5456" y="7872" width="16" height="160"/>
-  <object id="1022" name="Box2W" gid="3" x="5696" y="7168" width="16" height="160"/>
-  <object id="1023" name="Box2E" gid="8" x="5456" y="7168" width="16" height="160"/>
+  <object id="1016" name="Box8W" gid="276" x="5472" y="7168" width="16" height="160"/>
+  <object id="1017" name="Box8E" gid="281" x="5680" y="7168" width="16" height="160"/>
+  <object id="1018" name="Box2W" gid="276" x="5472" y="7872" width="16" height="160"/>
+  <object id="1019" name="Box2E" gid="281" x="5680" y="7872" width="16" height="160"/>
+  <object id="1020" name="Box8W" gid="276" x="5696" y="7872" width="16" height="160"/>
+  <object id="1021" name="Box8E" gid="281" x="5456" y="7872" width="16" height="160"/>
+  <object id="1022" name="Box2W" gid="276" x="5696" y="7168" width="16" height="160"/>
+  <object id="1023" name="Box2E" gid="281" x="5456" y="7168" width="16" height="160"/>
   <object id="1025" type="Sprite" x="5408" y="8112" width="32" height="32">
    <properties>
     <property name="image" value="arrow32.png"/>
@@ -5013,16 +5014,16 @@
     <property name="orientation" value="NE"/>
    </properties>
   </object>
-  <object id="1042" name="Box4E" gid="8" x="5328" y="7520" width="16" height="160"/>
-  <object id="1043" name="Box4E" gid="2" x="6048" y="6400" width="16" height="160"/>
+  <object id="1042" name="Box4E" gid="281" x="5328" y="7520" width="16" height="160"/>
+  <object id="1043" name="Box4E" gid="275" x="6048" y="6400" width="16" height="160"/>
   <object id="1046" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4048" y="7600" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="1048" type="AppearBlock" x="4064" y="7600" width="16" height="16"/>
-  <object id="1049" name="ToKingsCross" gid="2" x="5120" y="7568" width="16" height="64"/>
-  <object id="1050" name="ToKingsCross" gid="8" x="6336" y="7968" width="16" height="64"/>
+  <object id="1049" name="ToKingsCross" gid="275" x="5120" y="7568" width="16" height="64"/>
+  <object id="1050" name="ToKingsCross" gid="281" x="6336" y="7968" width="16" height="64"/>
   <object id="1051" name="kings_cross" type="Checkpoint" x="6368" y="7968" width="32" height="64">
    <properties>
     <property name="music" value="Next to You.ogg"/>
@@ -5338,8 +5339,8 @@
     <property name="text_font" value="Mono"/>
    </properties>
   </object>
-  <object id="1105" name="Track934" gid="6" x="6416" y="7616" width="704" height="16"/>
-  <object id="1108" name="Track934" gid="4" x="6416" y="7664" width="704" height="16"/>
+  <object id="1105" name="Track934" gid="279" x="6416" y="7616" width="704" height="16"/>
+  <object id="1108" name="Track934" gid="277" x="6416" y="7664" width="704" height="16"/>
   <object id="1123" type="JumpPad" x="6958" y="8048" width="4" height="16">
    <properties>
     <property name="delta" value="0 -264"/>
@@ -5352,8 +5353,8 @@
     <property name="orientation" value="SW"/>
    </properties>
   </object>
-  <object id="1126" gid="2" x="8176" y="7056" width="16" height="32"/>
-  <object id="1127" gid="8" x="7120" y="7632" width="16" height="32"/>
+  <object id="1126" gid="275" x="8176" y="7056" width="16" height="32"/>
+  <object id="1127" gid="281" x="7120" y="7632" width="16" height="32"/>
   <object id="1128" type="Sprite" x="7680" y="7520" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
@@ -5568,12 +5569,12 @@
     <property name="orientation" value="ES"/>
    </properties>
   </object>
-  <object id="1184" name="InfiniteHotelEntrance" gid="8" x="4560" y="5232" width="16" height="64">
+  <object id="1184" name="InfiniteHotelEntrance" gid="281" x="4560" y="5232" width="16" height="64">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1185" name="InfiniteHotelEntrance" gid="2" x="5536" y="5232" width="16" height="64">
+  <object id="1185" name="InfiniteHotelEntrance" gid="275" x="5536" y="5232" width="16" height="64">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
@@ -5598,12 +5599,12 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1190" name="InfiniteHotelExit" gid="8" x="4544" y="5232" width="16" height="64">
+  <object id="1190" name="InfiniteHotelExit" gid="281" x="4544" y="5232" width="16" height="64">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1191" name="InfiniteHotelExit" gid="2" x="4560" y="5520" width="16" height="64">
+  <object id="1191" name="InfiniteHotelExit" gid="275" x="4560" y="5520" width="16" height="64">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
@@ -5639,7 +5640,7 @@
     <property name="image" value="dotel5.png"/>
    </properties>
   </object>
-  <object id="1198" name="ToShepard" gid="6" x="4144" y="5600" width="16" height="16"/>
+  <object id="1198" name="ToShepard" gid="279" x="4144" y="5600" width="16" height="16"/>
   <object id="1199" type="TnihSign" x="4336" y="5488" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1173"/>
@@ -5647,8 +5648,8 @@
     <property name="text" value="He shall not return by the way of the gate whereby he came in."/>
    </properties>
   </object>
-  <object id="1201" name="ShepardWarp" gid="2" x="4368" y="5616" width="16" height="432"/>
-  <object id="1202" name="ShepardWarp" gid="8" x="4240" y="5616" width="16" height="432"/>
+  <object id="1201" name="ShepardWarp" gid="275" x="4368" y="5616" width="16" height="432"/>
+  <object id="1202" name="ShepardWarp" gid="281" x="4240" y="5616" width="16" height="432"/>
   <object id="1203" type="SetState" x="4263" y="5886" width="2" height="2">
    <properties>
     <property name="target" value="=ShepardC =ShepardSequenceC"/>
@@ -5769,7 +5770,7 @@
     <property name="sound" value="shepard_10.ogg"/>
    </properties>
   </object>
-  <object id="1227" name="ToShepard" gid="4" x="4304" y="5584" width="16" height="16"/>
+  <object id="1227" name="ToShepard" gid="277" x="4304" y="5584" width="16" height="16"/>
   <object id="1228" name="shepard_tone" type="Checkpoint" x="4160" y="5552" width="32" height="32">
    <properties>
     <property name="music" value=""/>
@@ -5946,12 +5947,12 @@
     <property name="orientation" value="WS"/>
    </properties>
   </object>
-  <object id="1277" name="ShepardOpenBlocks" gid="6" x="4256" y="5904" width="112" height="16">
+  <object id="1277" name="ShepardOpenBlocks" gid="279" x="4256" y="5904" width="112" height="16">
    <properties>
     <property name="initial_state" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="1278" name="ShepardOpenBlocks" gid="4" x="4416" y="5616" width="112" height="16">
+  <object id="1278" name="ShepardOpenBlocks" gid="277" x="4416" y="5616" width="112" height="16">
    <properties>
     <property name="initial_state" type="bool" value="true"/>
    </properties>
@@ -5970,8 +5971,8 @@
     <property name="text" value="I am so happy to finally be back home.  Press Escape."/>
    </properties>
   </object>
-  <object id="1282" name="ShepardDontPunish" gid="6" x="4288" y="6064" width="48" height="16"/>
-  <object id="1283" name="ShepardDontPunish" gid="4" x="4288" y="6256" width="48" height="16"/>
+  <object id="1282" name="ShepardDontPunish" gid="279" x="4288" y="6064" width="48" height="16"/>
+  <object id="1283" name="ShepardDontPunish" gid="277" x="4288" y="6256" width="48" height="16"/>
   <object id="1284" name="eduard_anatolyevich_khil" type="Checkpoint" x="4288" y="6080" width="48" height="16">
    <properties>
     <property name="dead_end" type="bool" value="true"/>
@@ -5991,22 +5992,22 @@
     <property name="text" value="Try the upper path."/>
    </properties>
   </object>
-  <object id="1287" name="AxiomOfChoiceTop" gid="2" x="5264" y="6240" width="16" height="32">
+  <object id="1287" name="AxiomOfChoiceTop" gid="275" x="5264" y="6240" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1288" name="AxiomOfChoiceBottom" gid="2" x="5264" y="6400" width="16" height="32">
+  <object id="1288" name="AxiomOfChoiceBottom" gid="275" x="5264" y="6400" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1289" name="AxiomOfChoiceTop" gid="8" x="4400" y="6320" width="16" height="32">
+  <object id="1289" name="AxiomOfChoiceTop" gid="281" x="4400" y="6320" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1290" name="AxiomOfChoiceBottom" gid="8" x="4400" y="6320" width="16" height="32">
+  <object id="1290" name="AxiomOfChoiceBottom" gid="281" x="4400" y="6320" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
@@ -6033,7 +6034,7 @@
     <property name="target" value="AxiomOfChoiceOut !AxiomOfChoiceTop !AxiomOfChoiceBottom"/>
    </properties>
   </object>
-  <object id="1299" name="AxiomOfChoiceOut" gid="8" x="4400" y="6320" width="16" height="32">
+  <object id="1299" name="AxiomOfChoiceOut" gid="281" x="4400" y="6320" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
@@ -6062,7 +6063,7 @@
     <property name="text" value="Turtles All the Way In"/>
    </properties>
   </object>
-  <object id="1305" name="AxiomOfChoiceOut" gid="2" x="5280" y="6176" width="16" height="32">
+  <object id="1305" name="AxiomOfChoiceOut" gid="275" x="5280" y="6176" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
@@ -6073,8 +6074,8 @@
     <property name="text" value="Some things just aren't that simple."/>
    </properties>
   </object>
-  <object id="1307" name="NotThatSimple" gid="6" x="6192" y="7904" width="32" height="16"/>
-  <object id="1309" name="NotThatSimple" gid="5" x="6176" y="7728" width="32" height="16"/>
+  <object id="1307" name="NotThatSimple" gid="279" x="6192" y="7904" width="32" height="16"/>
+  <object id="1309" name="NotThatSimple" gid="278" x="6176" y="7728" width="32" height="16"/>
   <object id="1310" type="AppearBlock" x="6192" y="7888" width="16" height="16"/>
   <object id="1311" type="AppearBlock" x="6208" y="7888" width="16" height="16"/>
   <object id="1313" type="JumpPad" x="6192" y="7896" width="32" height="8">
@@ -6096,8 +6097,8 @@
     <property name="text" value="It's turtles all the way in."/>
    </properties>
   </object>
-  <object id="1322" name="Returtlion" gid="6" x="4800" y="5984" width="80" height="16"/>
-  <object id="1323" name="Returtlion" gid="4" x="5104" y="5904" width="80" height="16"/>
+  <object id="1322" name="Returtlion" gid="279" x="4800" y="5984" width="80" height="16"/>
+  <object id="1323" name="Returtlion" gid="277" x="5104" y="5904" width="80" height="16"/>
   <object id="1324" type="AppearBlock" x="4976" y="6144" width="16" height="16"/>
   <object id="1325" type="AppearBlock" x="4960" y="6144" width="16" height="16"/>
   <object id="1326" type="AppearBlock" x="4944" y="6144" width="16" height="16"/>
@@ -6176,8 +6177,8 @@
     <property name="text" value="The Rover and the Feline"/>
    </properties>
   </object>
-  <object id="1366" name="DontLookUp" gid="6" x="5040" y="6192" width="48" height="16"/>
-  <object id="1367" name="DontLookUp" gid="4" x="448" y="32" width="48" height="16"/>
+  <object id="1366" name="DontLookUp" gid="279" x="5040" y="6192" width="48" height="16"/>
+  <object id="1367" name="DontLookUp" gid="277" x="448" y="32" width="48" height="16"/>
   <object id="1368" type="TnihSign" x="456" y="288" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1304"/>
@@ -6438,10 +6439,10 @@
     <property name="text" value="You now can stand on platforms!"/>
    </properties>
   </object>
-  <object id="1426" name="StandFailWarp1" gid="6" x="608" y="7008" width="48" height="16"/>
-  <object id="1427" name="StandFailWarp2" gid="6" x="912" y="7008" width="48" height="16"/>
-  <object id="1428" name="StandFailWarp1" gid="4" x="992" y="6624" width="48" height="16"/>
-  <object id="1429" name="StandFailWarp2" gid="4" x="528" y="6624" width="48" height="16"/>
+  <object id="1426" name="StandFailWarp1" gid="279" x="608" y="7008" width="48" height="16"/>
+  <object id="1427" name="StandFailWarp2" gid="279" x="912" y="7008" width="48" height="16"/>
+  <object id="1428" name="StandFailWarp1" gid="277" x="992" y="6624" width="48" height="16"/>
+  <object id="1429" name="StandFailWarp2" gid="277" x="528" y="6624" width="48" height="16"/>
   <object id="1430" type="Text" x="752" y="6704" width="64" height="48">
    <properties>
     <property name="text" value="The  Cleats"/>
@@ -6493,10 +6494,10 @@
     <property name="text" value="Peaceful games require peaceful solutions."/>
    </properties>
   </object>
-  <object id="1446" name="GotStandWarp1" gid="4" x="608" y="6720" width="48" height="16"/>
-  <object id="1447" name="GotStandWarp2" gid="4" x="912" y="6720" width="48" height="16"/>
-  <object id="1450" name="GotStandWarp1" gid="6" x="528" y="6592" width="48" height="16"/>
-  <object id="1451" name="GotStandWarp2" gid="6" x="448" y="6592" width="48" height="16"/>
+  <object id="1446" name="GotStandWarp1" gid="277" x="608" y="6720" width="48" height="16"/>
+  <object id="1447" name="GotStandWarp2" gid="277" x="912" y="6720" width="48" height="16"/>
+  <object id="1450" name="GotStandWarp1" gid="279" x="528" y="6592" width="48" height="16"/>
+  <object id="1451" name="GotStandWarp2" gid="279" x="448" y="6592" width="48" height="16"/>
   <object id="1452" type="Text" x="480" y="6496" width="64" height="16">
    <properties>
     <property name="text" value="3..."/>
@@ -6605,10 +6606,10 @@
     <property name="orientation" value="SW"/>
    </properties>
   </object>
-  <object id="1470" name="BackToHub" gid="8" x="3392" y="5200" width="16" height="32"/>
-  <object id="1471" name="BackToHub" gid="2" x="4176" y="5104" width="16" height="32"/>
-  <object id="1473" name="StandToHub" gid="8" x="3456" y="4944" width="16" height="32"/>
-  <object id="1474" name="StandToHub" gid="2" x="576" y="5888" width="16" height="32"/>
+  <object id="1470" name="BackToHub" gid="281" x="3392" y="5200" width="16" height="32"/>
+  <object id="1471" name="BackToHub" gid="275" x="4176" y="5104" width="16" height="32"/>
+  <object id="1473" name="StandToHub" gid="281" x="3456" y="4944" width="16" height="32"/>
+  <object id="1474" name="StandToHub" gid="275" x="576" y="5888" width="16" height="32"/>
   <object id="1476" name="pre_hub_1" type="Checkpoint" x="3760" y="5200" width="32" height="32">
    <properties>
     <property name="next_left" type="object" value="1477"/>
@@ -6663,8 +6664,8 @@
     <property name="target" value="LearnToPush"/>
    </properties>
   </object>
-  <object id="1491" name="WarpToGrab" gid="8" x="0" y="288" width="16" height="32"/>
-  <object id="1492" name="WarpToGrab" gid="2" x="976" y="352" width="16" height="32"/>
+  <object id="1491" name="WarpToGrab" gid="281" x="0" y="288" width="16" height="32"/>
+  <object id="1492" name="WarpToGrab" gid="275" x="976" y="352" width="16" height="32"/>
   <object id="1493" type="Give" x="672" y="480" width="64" height="64">
    <properties>
     <property name="ability" value="carry"/>
@@ -6716,8 +6717,8 @@
     <property name="orientation" value="WS"/>
    </properties>
   </object>
-  <object id="1510" name="CanStandWorld" gid="8" x="432" y="5888" width="16" height="32"/>
-  <object id="1511" name="CanStandWorld" gid="2" x="784" y="7200" width="16" height="32"/>
+  <object id="1510" name="CanStandWorld" gid="281" x="432" y="5888" width="16" height="32"/>
+  <object id="1511" name="CanStandWorld" gid="275" x="784" y="7200" width="16" height="32"/>
   <object id="1512" type="Riser" x="720" y="7216" width="32" height="16"/>
   <object id="1513" type="Sprite" x="592" y="7184" width="16" height="16">
    <properties>
@@ -7509,7 +7510,7 @@
    </properties>
   </object>
   <object id="1711" type="SwitchMusic" x="976" y="7984" width="48" height="16"/>
-  <object id="1712" name="WarpFromThreePlatforms" gid="4" x="976" y="7888" width="48" height="16"/>
+  <object id="1712" name="WarpFromThreePlatforms" gid="277" x="976" y="7888" width="48" height="16"/>
   <object id="1713" name="the_antihub" type="Checkpoint" x="4192" y="1680" width="288" height="32">
    <properties>
     <property name="music" value=""/>
@@ -7547,7 +7548,7 @@
     <property name="text" value="Welcome to Moonside."/>
    </properties>
   </object>
-  <object id="1720" name="WarpFromThreePlatforms" gid="6" x="4048" y="1872" width="48" height="16"/>
+  <object id="1720" name="WarpFromThreePlatforms" gid="279" x="4048" y="1872" width="48" height="16"/>
   <object id="1722" type="OneWay" x="4056" y="1632" width="32" height="32">
    <properties>
     <property name="orientation" value="NW"/>
@@ -7576,8 +7577,8 @@
     <property name="object_solid" value="true"/>
    </properties>
   </object>
-  <object id="1727" name="CanPushWarp" gid="4" x="7728" y="7168" width="48" height="16"/>
-  <object id="1728" name="CanPushWarp" gid="6" x="7568" y="7472" width="48" height="16"/>
+  <object id="1727" name="CanPushWarp" gid="277" x="7728" y="7168" width="48" height="16"/>
+  <object id="1728" name="CanPushWarp" gid="279" x="7568" y="7472" width="48" height="16"/>
   <object id="1729" type="Riser" x="7600" y="7328" width="16" height="16"/>
   <object id="1732" type="Switch" x="7552" y="7264" width="16" height="16">
    <properties>
@@ -7974,7 +7975,7 @@
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="1813" name="BlockedInWarp" gid="2" x="7520" y="7424" width="16" height="64"/>
+  <object id="1813" name="BlockedInWarp" gid="275" x="7520" y="7424" width="16" height="64"/>
   <object id="1814" type="Text" x="7296" y="7440" width="208" height="32">
    <properties>
     <property name="text" value="Avoid getting blocked in!"/>
@@ -7983,7 +7984,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1815" name="BlockedInWarp" gid="8" x="7056" y="7424" width="16" height="64"/>
+  <object id="1815" name="BlockedInWarp" gid="281" x="7056" y="7424" width="16" height="64"/>
   <object id="1816" type="TnihSign" x="7184" y="6976" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1793"/>
@@ -8979,8 +8980,8 @@
     <property name="orientation" value="WS"/>
    </properties>
   </object>
-  <object id="2222" name="PushToHub" gid="6" x="7872" y="7008" width="32" height="16"/>
-  <object id="2223" name="PushToHub" gid="4" x="3632" y="5024" width="32" height="16"/>
+  <object id="2222" name="PushToHub" gid="279" x="7872" y="7008" width="32" height="16"/>
+  <object id="2223" name="PushToHub" gid="277" x="3632" y="5024" width="32" height="16"/>
   <object id="2224" name="pre_hub_3" type="Checkpoint" x="3632" y="5200" width="32" height="32">
    <properties>
     <property name="next_left" type="object" value="2302"/>
@@ -9134,8 +9135,8 @@
     <property name="map_white_to" type="color" value="#00000000"/>
    </properties>
   </object>
-  <object id="2259" name="WarpFromSwitchingItUp" gid="6" x="6096" y="7008" width="32" height="16"/>
-  <object id="2260" name="WarpFromSwitchingItUp" gid="4" x="3984" y="1376" width="32" height="16"/>
+  <object id="2259" name="WarpFromSwitchingItUp" gid="279" x="6096" y="7008" width="32" height="16"/>
+  <object id="2260" name="WarpFromSwitchingItUp" gid="277" x="3984" y="1376" width="32" height="16"/>
   <object id="2261" name="Leave0" type="SwitchMusicTarget" x="6464" y="6848" width="16" height="16"/>
   <object id="2262" name="Leave0" type="SwitchableSprite" x="6432" y="6864" width="16" height="16">
    <properties>
@@ -9230,8 +9231,8 @@
     <property name="map_white_to" type="color" value="#ffffff00"/>
    </properties>
   </object>
-  <object id="2280" name="CanCarryWarp" gid="4" x="528" y="416" width="48" height="16"/>
-  <object id="2282" name="CanCarryWarp" gid="6" x="528" y="304" width="48" height="16"/>
+  <object id="2280" name="CanCarryWarp" gid="277" x="528" y="416" width="48" height="16"/>
+  <object id="2282" name="CanCarryWarp" gid="279" x="528" y="304" width="48" height="16"/>
   <object id="2285" type="Riser" x="576" y="160" width="16" height="16"/>
   <object id="2286" name="Grab1" type="SwitchableSprite" x="512" y="144" width="16" height="16"/>
   <object id="2287" name="Grab1" type="SwitchableSprite" x="528" y="144" width="16" height="16"/>
@@ -9276,8 +9277,8 @@
     <property name="text" value="Closest To The Hub"/>
    </properties>
   </object>
-  <object id="2303" name="GrabToHub" gid="2" x="960" y="288" width="16" height="32"/>
-  <object id="2304" name="GrabToHub" gid="8" x="3456" y="5072" width="16" height="32"/>
+  <object id="2303" name="GrabToHub" gid="275" x="960" y="288" width="16" height="32"/>
+  <object id="2304" name="GrabToHub" gid="281" x="3456" y="5072" width="16" height="32"/>
   <object id="2307" name="GrabPlat4" type="SwitchableSprite" x="912" y="224" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
@@ -9911,8 +9912,8 @@
    </properties>
   </object>
   <object id="2662" type="Riser" x="2720" y="112" width="16" height="16"/>
-  <object id="2663" name="INeededThat" gid="6" x="2704" y="336" width="32" height="16"/>
-  <object id="2664" name="INeededThat" gid="4" x="2704" y="0" width="32" height="16"/>
+  <object id="2663" name="INeededThat" gid="279" x="2704" y="336" width="32" height="16"/>
+  <object id="2664" name="INeededThat" gid="277" x="2704" y="0" width="32" height="16"/>
   <object id="2665" type="TnihSign" x="2704" y="0" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="2301"/>
@@ -10314,7 +10315,7 @@
     <property name="target" value="GrabExit"/>
    </properties>
   </object>
-  <object id="2757" name="WarpFromCarryItOut" gid="2" x="8176" y="288" width="16" height="32"/>
+  <object id="2757" name="WarpFromCarryItOut" gid="275" x="8176" y="288" width="16" height="32"/>
   <object id="2758" type="Sprite" x="7552" y="64" width="32" height="224">
    <properties>
     <property name="image" value="gradient_top_bottom.png"/>
@@ -10322,9 +10323,9 @@
     <property name="map_white_to" type="color" value="#ff000000"/>
    </properties>
   </object>
-  <object id="2759" name="WarpFromCarryItOut" type="WarpZone" gid="8" x="3936" y="1600" width="16" height="32"/>
-  <object id="2761" name="YellowFall" gid="6" x="5728" y="336" width="176" height="16"/>
-  <object id="2762" name="YellowFall" gid="4" x="5728" y="0" width="176" height="16"/>
+  <object id="2759" name="WarpFromCarryItOut" type="WarpZone" gid="281" x="3936" y="1600" width="16" height="32"/>
+  <object id="2761" name="YellowFall" gid="279" x="5728" y="336" width="176" height="16"/>
+  <object id="2762" name="YellowFall" gid="277" x="5728" y="0" width="176" height="16"/>
   <object id="2763" type="QuestionBlock" x="5728" y="256" width="16" height="16">
    <properties>
     <property name="kaizo" type="bool" value="true"/>
