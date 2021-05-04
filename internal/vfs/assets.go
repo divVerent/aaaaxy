@@ -30,6 +30,9 @@ type ReadSeekCloser interface {
 // Canonical returns the canonical name of the given asset.
 // If Canonical returns the same string, Load will load the same asset.
 func Canonical(purpose, name string) string {
+	if name == "" {
+		return ""
+	}
 	if purpose == "" {
 		purpose = path.Base(path.Dir(name))
 	}
@@ -45,7 +48,7 @@ func Load(purpose string, name string) (ReadSeekCloser, error) {
 
 // ReadDir lists all files in a directory. Returns their VFS paths!
 func ReadDir(purpose string) ([]string, error) {
-	vfsPath := Canonical(purpose, "")
+	vfsPath := path.Join("/", path.Base(purpose))
 	log.Printf("listing %v", vfsPath)
 	return readDir(vfsPath)
 }

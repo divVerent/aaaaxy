@@ -842,11 +842,7 @@
     <property name="text" value="The Torus"/>
    </properties>
   </object>
-  <object id="149" type="OneWay" x="2688" y="5024" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WS"/>
-   </properties>
-  </object>
+  <object id="149" x="2688" y="5024" width="32" height="32" gid="288"/>
   <object id="151" name="TorusToKlein" gid="279" x="2624" y="5328" width="64" height="16"/>
   <object id="155" name="KleinFirst" gid="275" x="2544" y="5088" width="16" height="32"/>
   <object id="156" name="KleinSecond" gid="275" x="2544" y="5152" width="16" height="32"/>
@@ -854,11 +850,7 @@
   <object id="159" name="KleinFirst" gid="281" x="2080" y="5088" width="16" height="32"/>
   <object id="160" name="KleinSecond" gid="281" x="2080" y="5152" width="16" height="32"/>
   <object id="161" name="KleinThird" gid="281" x="2080" y="5216" width="16" height="32"/>
-  <object id="162" type="OneWay" x="2592" y="5024" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WS"/>
-   </properties>
-  </object>
+  <object id="162" x="2592" y="5024" width="32" height="32" gid="288"/>
   <object id="163" name="KleinTenth" gid="277" x="2496" y="4992" width="32" height="16"/>
   <object id="164" name="KleinNinth" gid="277" x="2432" y="4992" width="32" height="16"/>
   <object id="166" name="KleinEighth" gid="277" x="2368" y="4992" width="32" height="16"/>
@@ -4964,56 +4956,16 @@
     <property name="orientation" value="SW"/>
    </properties>
   </object>
-  <object id="1031" type="OneWay" x="5392" y="7952" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="1032" type="OneWay" x="5744" y="7952" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="1033" type="OneWay" x="5744" y="7600" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="1034" type="OneWay" x="5392" y="7600" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="1035" type="OneWay" x="5392" y="7248" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="1036" type="OneWay" x="5744" y="7248" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="1037" type="OneWay" x="5040" y="7248" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="1039" type="OneWay" x="5040" y="7952" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="1040" type="OneWay" x="6096" y="7952" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="1041" type="OneWay" x="6096" y="7248" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
+  <object id="1031" x="5392" y="7952" width="32" height="32" gid="287"/>
+  <object id="1032" x="5744" y="7952" width="32" height="32" gid="287"/>
+  <object id="1033" x="5744" y="7600" width="32" height="32" gid="287"/>
+  <object id="1034" x="5392" y="7600" width="32" height="32" gid="287"/>
+  <object id="1035" x="5392" y="7248" width="32" height="32" gid="287"/>
+  <object id="1036" x="5744" y="7248" width="32" height="32" gid="287"/>
+  <object id="1037" x="5040" y="7248" width="32" height="32" gid="287"/>
+  <object id="1039" x="5040" y="7952" width="32" height="32" gid="287"/>
+  <object id="1040" x="6096" y="7952" width="32" height="32" gid="287"/>
+  <object id="1041" x="6096" y="7248" width="32" height="32" gid="287"/>
   <object id="1042" name="Box4E" gid="281" x="5328" y="7520" width="16" height="160"/>
   <object id="1043" name="Box4E" gid="275" x="6048" y="6400" width="16" height="160"/>
   <object id="1046" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4048" y="7600" width="16" height="16">
@@ -5942,11 +5894,7 @@
     <property name="text" value="Sometimes all you need is a little opening."/>
    </properties>
   </object>
-  <object id="1275" type="OneWay" x="4208" y="5552" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WS"/>
-   </properties>
-  </object>
+  <object id="1275" x="4208" y="5552" width="32" height="32" gid="288"/>
   <object id="1277" name="ShepardOpenBlocks" gid="279" x="4256" y="5904" width="112" height="16">
    <properties>
     <property name="initial_state" type="bool" value="true"/>
@@ -6336,11 +6284,7 @@
     <property name="required_orientation" value="ES"/>
    </properties>
   </object>
-  <object id="1409" type="OneWay" x="456" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
+  <object id="1409" x="456" y="256" width="32" height="32" gid="289"/>
   <object id="1410" type="Text" x="112" y="192" width="16" height="16">
    <properties>
     <property name="text" value="?"/>
@@ -6551,31 +6495,11 @@
   <object id="1462" x="448" y="5792" width="16" height="16" gid="283"/>
   <object id="1463" x="464" y="5792" width="16" height="16" gid="283"/>
   <object id="1464" x="480" y="5792" width="16" height="16" gid="283"/>
-  <object id="1465" type="OneWay" x="3504" y="5168" width="32" height="32">
-   <properties>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
-  <object id="1466" type="OneWay" x="3568" y="5168" width="32" height="32">
-   <properties>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
-  <object id="1467" type="OneWay" x="3632" y="5168" width="32" height="32">
-   <properties>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
-  <object id="1468" type="OneWay" x="3696" y="5168" width="32" height="32">
-   <properties>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
-  <object id="1469" type="OneWay" x="3760" y="5168" width="32" height="32">
-   <properties>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
+  <object id="1465" x="3504" y="5168" width="32" height="32" gid="289"/>
+  <object id="1466" x="3568" y="5168" width="32" height="32" gid="289"/>
+  <object id="1467" x="3632" y="5168" width="32" height="32" gid="289"/>
+  <object id="1468" x="3696" y="5168" width="32" height="32" gid="289"/>
+  <object id="1469" x="3760" y="5168" width="32" height="32" gid="289"/>
   <object id="1470" name="BackToHub" gid="281" x="3392" y="5200" width="16" height="32"/>
   <object id="1471" name="BackToHub" gid="275" x="4176" y="5104" width="16" height="32"/>
   <object id="1473" name="StandToHub" gid="281" x="3456" y="4944" width="16" height="32"/>
@@ -7124,11 +7048,7 @@
    </properties>
   </object>
   <object id="1720" name="WarpFromThreePlatforms" gid="279" x="4048" y="1872" width="48" height="16"/>
-  <object id="1722" type="OneWay" x="4056" y="1632" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
+  <object id="1722" x="4056" y="1632" width="32" height="32" gid="287"/>
   <object id="1723" name="ThreePlatformsDarkness" type="SwitchableSprite" gid="56" x="4048" y="1600" width="48" height="480">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
@@ -8174,21 +8094,9 @@
     <property name="target" value="!BlockOut10 BlockOut11"/>
    </properties>
   </object>
-  <object id="2215" type="OneWay" x="6192" y="7024" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WS"/>
-   </properties>
-  </object>
-  <object id="2216" type="OneWay" x="6192" y="7216" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WS"/>
-   </properties>
-  </object>
-  <object id="2217" type="OneWay" x="6192" y="7408" width="32" height="32">
-   <properties>
-    <property name="orientation" value="EN"/>
-   </properties>
-  </object>
+  <object id="2215" x="6192" y="7024" width="32" height="32" gid="288"/>
+  <object id="2216" x="6192" y="7216" width="32" height="32" gid="288"/>
+  <object id="2217" x="6192" y="7408" width="32" height="32" gid="286"/>
   <object id="2218" name="BlockOut8" type="SwitchableSprite" x="6384" y="7104" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="true"/>
@@ -8205,11 +8113,7 @@
     <property name="text" value="If you don't look ahead, you'll end up dead-  ended."/>
    </properties>
   </object>
-  <object id="2221" type="OneWay" x="6304" y="7168" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WS"/>
-   </properties>
-  </object>
+  <object id="2221" x="6304" y="7168" width="32" height="32" gid="288"/>
   <object id="2222" name="PushToHub" gid="279" x="7872" y="7008" width="32" height="16"/>
   <object id="2223" name="PushToHub" gid="277" x="3632" y="5024" width="32" height="16"/>
   <object id="2224" name="pre_hub_3" type="Checkpoint" x="3632" y="5200" width="32" height="32">
@@ -8383,56 +8287,16 @@
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="2265" type="OneWay" x="6752" y="6992" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="2266" type="OneWay" x="6752" y="6944" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="2267" type="OneWay" x="6752" y="7040" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="2268" type="OneWay" x="6752" y="7088" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="2269" type="OneWay" x="6752" y="7136" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="2270" type="OneWay" x="6752" y="7184" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="2271" type="OneWay" x="6752" y="7232" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="2273" type="OneWay" x="6752" y="7280" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="2274" type="OneWay" x="6752" y="7328" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
-  <object id="2275" type="OneWay" x="6752" y="7376" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NW"/>
-   </properties>
-  </object>
+  <object id="2265" x="6752" y="6992" width="32" height="32" gid="287"/>
+  <object id="2266" x="6752" y="6944" width="32" height="32" gid="287"/>
+  <object id="2267" x="6752" y="7040" width="32" height="32" gid="287"/>
+  <object id="2268" x="6752" y="7088" width="32" height="32" gid="287"/>
+  <object id="2269" x="6752" y="7136" width="32" height="32" gid="287"/>
+  <object id="2270" x="6752" y="7184" width="32" height="32" gid="287"/>
+  <object id="2271" x="6752" y="7232" width="32" height="32" gid="287"/>
+  <object id="2273" x="6752" y="7280" width="32" height="32" gid="287"/>
+  <object id="2274" x="6752" y="7328" width="32" height="32" gid="287"/>
+  <object id="2275" x="6752" y="7376" width="32" height="32" gid="287"/>
   <object id="2276" type="Sprite" x="5904" y="7216" width="64" height="64">
    <properties>
     <property name="image" value="gradient_outside_inside.png"/>
@@ -8868,11 +8732,7 @@
   <object id="2633" x="2368" y="64" width="16" height="16" gid="283"/>
   <object id="2634" x="2384" y="64" width="16" height="16" gid="283"/>
   <object id="2635" x="2400" y="64" width="16" height="16" gid="283"/>
-  <object id="2641" type="OneWay" x="2112" y="32" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WN"/>
-   </properties>
-  </object>
+  <object id="2641" x="2112" y="32" width="32" height="32" gid="288"/>
   <object id="2642" name="GrabSesame2" type="SwitchableSprite" x="2416" y="32" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="true"/>
@@ -8886,36 +8746,12 @@
   <object id="2644" x="2368" y="128" width="16" height="16" gid="285"/>
   <object id="2645" x="2384" y="128" width="16" height="16" gid="285"/>
   <object id="2646" x="2400" y="128" width="16" height="16" gid="285"/>
-  <object id="2648" type="OneWay" x="2052" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="2649" type="OneWay" x="2088" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="2650" type="OneWay" x="2124" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="2651" type="OneWay" x="1892" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="2652" type="OneWay" x="1928" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="2653" type="OneWay" x="1964" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
+  <object id="2648" x="2052" y="256" width="32" height="32" gid="287"/>
+  <object id="2649" x="2088" y="256" width="32" height="32" gid="287"/>
+  <object id="2650" x="2124" y="256" width="32" height="32" gid="287"/>
+  <object id="2651" x="1892" y="256" width="32" height="32" gid="287"/>
+  <object id="2652" x="1928" y="256" width="32" height="32" gid="287"/>
+  <object id="2653" x="1964" y="256" width="32" height="32" gid="287"/>
   <object id="2654" x="2176" y="208" width="16" height="16" gid="285"/>
   <object id="2655" x="2176" y="224" width="16" height="16" gid="285"/>
   <object id="2656" x="2176" y="240" width="16" height="16" gid="285"/>
@@ -8987,11 +8823,7 @@
     <property name="initial_state" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="2672" type="OneWay" x="2704" y="0" width="32" height="32">
-   <properties>
-    <property name="orientation" value="SW"/>
-   </properties>
-  </object>
+  <object id="2672" x="2704" y="0" width="32" height="32" gid="289"/>
   <object id="2673" type="Sprite" x="2768" y="64" width="32" height="224">
    <properties>
     <property name="image" value="gradient_top_bottom.png"/>
@@ -9103,11 +8935,7 @@
     <property name="initial_state" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="2702" type="OneWay" x="2800" y="288" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WN"/>
-   </properties>
-  </object>
+  <object id="2702" x="2800" y="288" width="32" height="32" gid="288"/>
   <object id="2703" name="RedRoom" type="SwitchableSprite" x="3056" y="64" width="16" height="16">
    <properties>
     <property name="initial_state" type="bool" value="true"/>
@@ -9282,36 +9110,12 @@
     <property name="map_white_to" type="color" value="#ffffff55"/>
    </properties>
   </object>
-  <object id="2741" type="OneWay" x="7232" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WN"/>
-   </properties>
-  </object>
-  <object id="2743" type="OneWay" x="7264" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WN"/>
-   </properties>
-  </object>
-  <object id="2744" type="OneWay" x="7296" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WN"/>
-   </properties>
-  </object>
-  <object id="2745" type="OneWay" x="7328" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WN"/>
-   </properties>
-  </object>
-  <object id="2746" type="OneWay" x="7360" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WN"/>
-   </properties>
-  </object>
-  <object id="2747" type="OneWay" x="7392" y="256" width="32" height="32">
-   <properties>
-    <property name="orientation" value="WN"/>
-   </properties>
-  </object>
+  <object id="2741" x="7232" y="256" width="32" height="32" gid="288"/>
+  <object id="2743" x="7264" y="256" width="32" height="32" gid="288"/>
+  <object id="2744" x="7296" y="256" width="32" height="32" gid="288"/>
+  <object id="2745" x="7328" y="256" width="32" height="32" gid="288"/>
+  <object id="2746" x="7360" y="256" width="32" height="32" gid="288"/>
+  <object id="2747" x="7392" y="256" width="32" height="32" gid="288"/>
   <object id="2748" type="TnihSign" x="7488" y="288" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="2301"/>

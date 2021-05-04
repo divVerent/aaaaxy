@@ -69,4 +69,28 @@
  <tile id="11" type="RiserFsck">
   <image width="16" height="16" source="riserfsck.png"/>
  </tile>
+ <tile id="12" type="OneWay">
+  <properties>
+   <property name="orientation" value="EN"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/oneway_e.png"/>
+ </tile>
+ <tile id="13" type="OneWay">
+  <properties>
+   <property name="orientation" value="NW"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/oneway_n.png"/>
+ </tile>
+ <tile id="14" type="OneWay">
+  <properties>
+   <property name="orientation" value="WS"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/oneway_w.png"/>
+ </tile>
+ <tile id="15" type="OneWay">
+  <properties>
+   <property name="orientation" value="SE"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/oneway_s.png"/>
+ </tile>
 </tileset>

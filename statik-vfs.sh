@@ -37,7 +37,7 @@ for sourcedir in assets third_party/*/assets licenses; do
 			;;
 	esac
 	logged cd "$root/$sourcedir"
-	find . -name src -prune -or -type f -print | while read -r file; do
+	find . -name src -prune -or -name editorimgs -prune -or -type f -print | while read -r file; do
 		mkdir -p "$tmpdir/$prefix${file%/*}"
 		logged ln -snf "$root/$sourcedir/$file" "$tmpdir/$prefix$file"
 	done
