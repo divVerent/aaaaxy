@@ -14,26 +14,20 @@ sub props {
   return %prop;
 }
 
-sub fix_sprite {
-  my ($el) = @_;
-  my %prop = props $el;
-  # Make clips visible in the editor.
-  if ($prop{image} eq 'playerclip.png') {
-    $el->removeChildNodes();
-    $el->removeAttribute('type');
-    $el->setAttribute('gid', 283);
-  }
-  if ($prop{image} eq 'objectclip.png') {
-    $el->removeChildNodes();
-    $el->removeAttribute('type');
-    $el->setAttribute('gid', 284);
-  }
-}
-
 sub fix_object {
   my ($el) = @_;
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'Sprite') {
-    fix_sprite($el);
+    my %prop = props $el;
+    if ($prop{image} eq 'playerclip.png') {
+      $el->removeChildNodes();
+      $el->removeAttribute('type');
+      $el->setAttribute('gid', 283);
+    }
+    if ($prop{image} eq 'objectclip.png') {
+      $el->removeChildNodes();
+      $el->removeAttribute('type');
+      $el->setAttribute('gid', 284);
+    }
   }
   if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'RiserFsck') {
     $el->removeAttribute('type');
@@ -48,6 +42,37 @@ sub fix_object {
     $el->setAttribute('gid', 287) if $orientation =~ /^N/;
     $el->setAttribute('gid', 288) if $orientation =~ /^W/;
     $el->setAttribute('gid', 289) if $orientation =~ /^S/;
+  }
+  if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'Switch') {
+    $el->removeAttribute('type');
+    $el->setAttribute('gid', 290);
+  }
+  if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'Riser') {
+    $el->removeAttribute('type');
+    $el->setAttribute('gid', 291);
+  }
+  if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'SwitchableSprite') {
+    my %prop = props $el;
+    if (!defined $prop{image}) {
+      if (($prop{initial_state} // '') ne 'false') {
+        $el->removeChildNodes();
+        $el->removeAttribute('type');
+        $el->setAttribute('gid', 292);
+      } else {
+        $el->removeChildNodes();
+        $el->removeAttribute('type');
+        $el->setAttribute('gid', 293);
+      }
+      for my $node($el->getElementsByTagName('property')) {
+        if ($node->getAttribute('name') eq 'initial_state') {
+          $node->parent->removeChildNode($node);
+        }
+      }
+    }
+  }
+  if ($el->hasAttribute('type') && $el->getAttribute('type') eq 'TnihSign') {
+    $el->removeAttribute('type');
+    $el->setAttribute('gid', 294);
   }
 }
 

@@ -73,24 +73,47 @@
   <properties>
    <property name="orientation" value="EN"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/oneway_e.png"/>
+  <image width="32" height="32" source="editorimgs/oneway_e.png"/>
  </tile>
  <tile id="13" type="OneWay">
   <properties>
    <property name="orientation" value="NW"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/oneway_n.png"/>
+  <image width="32" height="32" source="editorimgs/oneway_n.png"/>
  </tile>
  <tile id="14" type="OneWay">
   <properties>
    <property name="orientation" value="WS"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/oneway_w.png"/>
+  <image width="32" height="32" source="editorimgs/oneway_w.png"/>
  </tile>
  <tile id="15" type="OneWay">
   <properties>
    <property name="orientation" value="SE"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/oneway_s.png"/>
+  <image width="32" height="32" source="editorimgs/oneway_s.png"/>
+ </tile>
+ <tile id="16" type="Switch">
+  <image width="16" height="16" source="switch_off.png"/>
+ </tile>
+ <tile id="17" type="Riser">
+  <image width="16" height="16" source="riser_small_idle.png"/>
+ </tile>
+ <tile id="18" type="SwitchableSprite">
+  <properties>
+   <property name="image" value=""/>
+   <property name="initial_state" type="bool" value="true"/>
+  </properties>
+  <image width="16" height="16" source="switchblock_off.png"/>
+ </tile>
+ <tile id="19" type="SwitchableSprite">
+  <properties>
+   <property name="image" value=""/>
+   <property name="initial_state" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="switchblock_on.png"/>
+ </tile>
+ <tile id="20" type="TnihSign">
+  <image width="32" height="32" source="tnihsign.png"/>
  </tile>
 </tileset>
