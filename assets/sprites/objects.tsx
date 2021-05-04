@@ -199,7 +199,7 @@
  <tile id="33" type="Sprite">
   <properties>
    <property name="image_dir" value=""/>
-   <property name="image" value="arrow32d.png"/>
+   <property name="image" value="arrow32s.png"/>
    <property name="orientation" value="SW"/>
   </properties>
   <image width="32" height="32" source="editorimgs/arrow32_s.png"/>
@@ -207,7 +207,7 @@
  <tile id="34" type="Sprite">
   <properties>
    <property name="image_dir" value=""/>
-   <property name="image" value="arrow32s.png"/>
+   <property name="image" value="arrow32d.png"/>
    <property name="orientation" value="ES"/>
   </properties>
   <image width="32" height="32" source="editorimgs/arrow32_se.png"/>
