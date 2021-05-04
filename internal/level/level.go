@@ -230,19 +230,21 @@ func Load(filename string) (*Level, error) {
 		return nil, fmt.Errorf("unsupported map: got %d image layers, want 0", len(t.ImageLayers))
 	}
 	for i, ts := range t.TileSets {
-		if ts.Source != "" {
-			r, err := vfs.Load("tiles", ts.Source)
-			if err != nil {
-				return nil, fmt.Errorf("could not open tileset: %v", err)
-			}
-			defer r.Close()
-			decoded, err := tmx.DecodeTileset(r)
-			if err != nil {
-				return nil, fmt.Errorf("could not decode tileset: %v", err)
-			}
-			decoded.FirstGlobalID = ts.FirstGlobalID
-			t.TileSets[i] = *decoded
+		if ts.Source == "" {
+			continue
 		}
+		r, err := vfs.Load("tiles", ts.Source)
+		if err != nil {
+			return nil, fmt.Errorf("could not open tileset: %v", err)
+		}
+		defer r.Close()
+		decoded, err := tmx.DecodeTileset(r)
+		if err != nil {
+			return nil, fmt.Errorf("could not decode tileset: %v", err)
+		}
+		decoded.FirstGlobalID = ts.FirstGlobalID
+		decoded.Source = ts.Source
+		t.TileSets[i] = *decoded
 	}
 	for _, ts := range t.TileSets {
 		if ts.TileWidth != TileSize || ts.TileHeight != TileSize {
