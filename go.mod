@@ -8,6 +8,7 @@ require (
 	github.com/fardog/tmx v0.0.0-20210211064746-9688df2fe407
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210410170116-ea3d685f79fb // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
+	github.com/google/go-licenses v0.0.0-20210329231322-ce1d9163b77d // indirect
 	github.com/hajimehoshi/bitmapfont/v2 v2.1.3 // indirect
 	github.com/hajimehoshi/ebiten/v2 v2.0.8
 	github.com/hajimehoshi/oto v0.7.1 // indirect
