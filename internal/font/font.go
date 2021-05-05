@@ -18,11 +18,18 @@ import (
 	"fmt"
 
 	"github.com/golang/freetype/truetype"
+	"github.com/hajimehoshi/ebiten/v2/text"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/goitalic"
 	"golang.org/x/image/font/gofont/gomono"
 	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/font/gofont/gosmallcaps"
+
+	"github.com/divVerent/aaaaaa/internal/flag"
+)
+
+var (
+	pinFontsToCache = flag.Bool("pin_fonts_to_cache", false, "Pin all fonts to glyph cache.")
 )
 
 // Face is an alias to font.Face so users do not need to import the font package.
@@ -30,7 +37,27 @@ type Face struct {
 	font.Face
 }
 
+func makeFace(f font.Face) Face {
+	face := Face{Face: f}
+	all = append(all, face)
+	return face
+}
+
+var cacheChars = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+
+// We always keep the game character set in cache.
+// This has to be repeated regularly as ebiten expires unused cache entries.
+func KeepInCache() {
+	if !*pinFontsToCache {
+		return
+	}
+	for _, f := range all {
+		text.CacheGlyphs(f, cacheChars)
+	}
+}
+
 var (
+	all            = []Face{}
 	ByName         = map[string]Face{}
 	Centerprint    Face
 	CenterprintBig Face
@@ -59,72 +86,72 @@ func Init() error {
 		return fmt.Errorf("could not load gosmallcaps font: %v", err)
 	}
 
-	ByName["Small"] = Face{truetype.NewFace(regular, &truetype.Options{
+	ByName["Small"] = makeFace(truetype.NewFace(regular, &truetype.Options{
 		Size:       10,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	ByName["Regular"] = Face{truetype.NewFace(regular, &truetype.Options{
+	}))
+	ByName["Regular"] = makeFace(truetype.NewFace(regular, &truetype.Options{
 		Size:       16,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	ByName["Italic"] = Face{truetype.NewFace(italic, &truetype.Options{
+	}))
+	ByName["Italic"] = makeFace(truetype.NewFace(italic, &truetype.Options{
 		Size:       16,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	ByName["Mono"] = Face{truetype.NewFace(mono, &truetype.Options{
+	}))
+	ByName["Mono"] = makeFace(truetype.NewFace(mono, &truetype.Options{
 		Size:       16,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	ByName["SmallCaps"] = Face{truetype.NewFace(smallcaps, &truetype.Options{
+	}))
+	ByName["SmallCaps"] = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
 		Size:       16,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	Centerprint = Face{truetype.NewFace(italic, &truetype.Options{
+	}))
+	Centerprint = makeFace(truetype.NewFace(italic, &truetype.Options{
 		Size:       16,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	CenterprintBig = Face{truetype.NewFace(smallcaps, &truetype.Options{
+	}))
+	CenterprintBig = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
 		Size:       24,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	DebugSmall = Face{truetype.NewFace(mono, &truetype.Options{
+	}))
+	DebugSmall = makeFace(truetype.NewFace(mono, &truetype.Options{
 		Size:       5,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	Menu = Face{truetype.NewFace(smallcaps, &truetype.Options{
+	}))
+	Menu = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
 		Size:       16,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	MenuBig = Face{truetype.NewFace(smallcaps, &truetype.Options{
+	}))
+	MenuBig = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
 		Size:       24,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
-	MenuSmall = Face{truetype.NewFace(smallcaps, &truetype.Options{
+	}))
+	MenuSmall = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
 		Size:       12,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
-	})}
+	}))
 
 	return nil
 }

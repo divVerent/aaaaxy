@@ -19,6 +19,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/input"
 	"github.com/divVerent/aaaaaa/internal/menu"
 	"github.com/divVerent/aaaaaa/internal/music"
@@ -44,6 +45,9 @@ func (g *Game) Update() error {
 	defer timing.Group()()
 	timing.Section("update")
 	defer timing.Group()()
+
+	timing.Section("fontcache")
+	font.KeepInCache()
 
 	timing.Section("input")
 	input.Update()
