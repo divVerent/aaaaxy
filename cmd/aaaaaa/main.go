@@ -62,7 +62,7 @@ func main() {
 			log.Fatalf("could not write memory profile: %v", err)
 		}
 	}
-	if err != nil {
+	if err != nil && err != aaaaaa.RegularTermination {
 		log.Fatal(err)
 	}
 }

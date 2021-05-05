@@ -30,6 +30,8 @@ import (
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
+var RegularTermination = errors.New("exited normally")
+
 var (
 	resetSave = flag.Bool("reset_save", false, "reset the savegame on startup")
 	showFps   = flag.Bool("show_fps", false, "show fps counter")
@@ -177,7 +179,7 @@ func (m *Menu) QuitGame() error {
 	if err != nil {
 		return fmt.Errorf("could not save config: %v", err)
 	}
-	return errors.New("game exited normally")
+	return RegularTermination
 }
 
 // ActivateSound plays the sound effect to activate something.

@@ -26,6 +26,8 @@ import (
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
+var RegularTermination = menu.RegularTermination
+
 var (
 	externalCapture = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
 )
