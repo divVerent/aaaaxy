@@ -115,7 +115,11 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 		if s.Item == ResetGame {
 			fg, bg = color.NRGBA{R: 255, G: 85, B: 85, A: 255}, color.NRGBA{R: 170, G: 0, B: 0, A: 255}
 		}
-		resetText = fmt.Sprintf("Reset and Lose Saved Game (think about it for %d sec)", (resetFrames-s.ResetFrame+engine.GameTPS-1)/engine.GameTPS)
+		if s.Item == ResetGame {
+			resetText = fmt.Sprintf("Reset and Lose Saved Game (think about it for %d sec)", (resetFrames-s.ResetFrame+engine.GameTPS-1)/engine.GameTPS)
+		} else {
+			resetText = "Reset and Lose Saved Game"
+		}
 		dx = rand.Intn(3) - 1
 		dy = rand.Intn(3) - 1
 	}
