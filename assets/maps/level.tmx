@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2886">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2887">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -6473,7 +6473,7 @@
   <object id="1545" name="little_big_platforms" type="Checkpoint" x="656" y="7088" width="32" height="288">
    <properties>
     <property name="music" value="Pressure.ogg"/>
-    <property name="next_up" type="object" value="1713"/>
+    <property name="next_up" type="object" value="2886"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Little &amp; Big Platforms"/>
    </properties>
@@ -6837,7 +6837,7 @@
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="1724" type="SetState" x="4096" y="1600" width="32" height="32">
+  <object id="1724" type="SetState" x="4016" y="1600" width="112" height="32">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ThreePlatformsDarkness"/>
@@ -7003,7 +7003,7 @@
   <object id="1793" name="switching_it_up" type="Checkpoint" x="7248" y="7008" width="16" height="32">
    <properties>
     <property name="music" value="Pressure.ogg"/>
-    <property name="next_up" type="object" value="1713"/>
+    <property name="next_up" type="object" value="2886"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Switching it up"/>
    </properties>
@@ -7663,7 +7663,7 @@
    <properties>
     <property name="music" value="Pressure.ogg"/>
     <property name="next_down" type="object" value="2302"/>
-    <property name="next_right" type="object" value="1713"/>
+    <property name="next_right" type="object" value="2886"/>
     <property name="next_up" type="object" value="2325"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Gotta carry it out"/>
@@ -8341,5 +8341,13 @@
   <object id="2883" gid="15" x="2784" y="128" width="16" height="16"/>
   <object id="2884" gid="15" x="2784" y="256" width="16" height="16"/>
   <object id="2885" gid="11" x="2768" y="192" width="16" height="16"/>
+  <object id="2886" name="pre_antihub" type="Checkpoint" x="4096" y="1600" width="32" height="32">
+   <properties>
+    <property name="music" value=""/>
+    <property name="next_right" type="object" value="1713"/>
+    <property name="required_orientation" value="ES"/>
+    <property name="text" value="Before The Anti-Hub"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
