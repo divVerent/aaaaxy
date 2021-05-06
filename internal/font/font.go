@@ -29,7 +29,7 @@ import (
 )
 
 var (
-	pinFontsToCache       = flag.Bool("pin_fonts_to_cache", false, "Pin all fonts to glyph cache.")
+	pinFontsToCache       = flag.Bool("pin_fonts_to_cache", true, "Pin all fonts to glyph cache.")
 	pinFontsToCacheHarder = flag.Bool("pin_fonts_to_cache_harder", false, "Do a dummy draw command to pin fonts to glyph cache harder.")
 )
 
