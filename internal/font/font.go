@@ -18,7 +18,7 @@ import (
 	"fmt"
 
 	"github.com/golang/freetype/truetype"
-	"github.com/hajimehoshi/ebiten/v2/text"
+	"github.com/hajimehoshi/ebiten/v2"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/goitalic"
 	"golang.org/x/image/font/gofont/gomono"
@@ -29,7 +29,8 @@ import (
 )
 
 var (
-	pinFontsToCache = flag.Bool("pin_fonts_to_cache", false, "Pin all fonts to glyph cache.")
+	pinFontsToCache       = flag.Bool("pin_fonts_to_cache", false, "Pin all fonts to glyph cache.")
+	pinFontsToCacheHarder = flag.Bool("pin_fonts_to_cache_harder", false, "Do a dummy draw command to pin fonts to glyph cache harder.")
 )
 
 // Face is an alias to font.Face so users do not need to import the font package.
@@ -47,12 +48,16 @@ var cacheChars = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\
 
 // We always keep the game character set in cache.
 // This has to be repeated regularly as ebiten expires unused cache entries.
-func KeepInCache() {
-	if !*pinFontsToCache {
-		return
+func KeepInCache(dst *ebiten.Image) {
+	if *pinFontsToCacheHarder {
+		for _, f := range all {
+			f.precache(dst, cacheChars)
+		}
 	}
-	for _, f := range all {
-		text.CacheGlyphs(f, cacheChars)
+	if *pinFontsToCache {
+		for _, f := range all {
+			f.recache(cacheChars)
+		}
 	}
 }
 

@@ -46,9 +46,6 @@ func (g *Game) Update() error {
 	timing.Section("update")
 	defer timing.Group()()
 
-	timing.Section("fontcache")
-	font.KeepInCache()
-
 	timing.Section("input")
 	input.Update()
 
@@ -79,6 +76,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	defer timing.Group()()
 	timing.Section("draw")
 	defer timing.Group()()
+
+	timing.Section("fontcache")
+	font.KeepInCache(screen)
 
 	timing.Section("world")
 	g.Menu.DrawWorld(screen)
