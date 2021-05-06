@@ -59,6 +59,10 @@ type EntityIncarnation struct {
 	TilePos m.Pos
 }
 
+func (e EntityIncarnation) IsValid() bool {
+	return e.ID.IsValid()
+}
+
 type EntityImpl interface {
 	// Spawn initializes the entity based on a Spawnable.
 	// Receiver will be a zero struct of the entity type.
@@ -174,6 +178,17 @@ func (w *World) SetZIndex(e *Entity, index int) {
 	}
 	w.unlink(e)
 	e.zIndex = index
+	w.link(e)
+}
+
+// Detach detaches an entity from its spawn origin.
+// If the spawn origin is onscreen, this will respawn the entity from there this frame.
+func (w *World) Detach(e *Entity) {
+	if !e.Incarnation.IsValid() {
+		return
+	}
+	w.unlink(e)
+	e.Incarnation.ID = level.InvalidEntityID
 	w.link(e)
 }
 

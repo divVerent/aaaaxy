@@ -781,11 +781,15 @@ func (w *World) unlink(e *Entity) {
 		w.opaqueEntities.remove(e)
 	}
 	w.entities.remove(e)
-	delete(w.incarnations, e.Incarnation)
+	if e.Incarnation.IsValid() {
+		delete(w.incarnations, e.Incarnation)
+	}
 }
 
 func (w *World) link(e *Entity) {
-	w.incarnations[e.Incarnation] = struct{}{}
+	if e.Incarnation.IsValid() {
+		w.incarnations[e.Incarnation] = struct{}{}
+	}
 	w.entities.insert(e)
 	if e.contents.Opaque() {
 		w.opaqueEntities.insert(e)

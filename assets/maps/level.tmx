@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3109">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3110">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -7689,22 +7689,22 @@
   <object id="2315" gid="291" x="688" y="176" width="32" height="16"/>
   <object id="2316" type="SetState" x="688" y="48" width="32" height="16">
    <properties>
-    <property name="target" value="GrabPlat4 !GrabPlat2"/>
+    <property name="target" value="GrabPlat4 !GrabPlat2 GrabPlat"/>
    </properties>
   </object>
   <object id="2317" type="SetState" x="688" y="80" width="32" height="16">
    <properties>
-    <property name="target" value="GrabPlat3 !GrabPlat1"/>
+    <property name="target" value="GrabPlat3 !GrabPlat1 GrabPlat"/>
    </properties>
   </object>
   <object id="2318" type="SetState" x="688" y="112" width="32" height="16">
    <properties>
-    <property name="target" value="GrabPlat2 !GrabPlat4"/>
+    <property name="target" value="GrabPlat2 !GrabPlat4 GrabPlat"/>
    </properties>
   </object>
   <object id="2319" type="SetState" x="688" y="144" width="32" height="16">
    <properties>
-    <property name="target" value="GrabPlat1 !GrabPlat3"/>
+    <property name="target" value="GrabPlat1 !GrabPlat3 GrabPlat"/>
    </properties>
   </object>
   <object id="2320" gid="285" x="688" y="32" width="16" height="16"/>
@@ -8605,5 +8605,10 @@
   <object id="3106" name="PushMeNot3a" gid="292" x="3904" y="2848" width="16" height="16"/>
   <object id="3107" name="PushMeNot3b" gid="292" x="3888" y="2832" width="16" height="16"/>
   <object id="3108" name="PushMeNot3b" gid="292" x="3904" y="2832" width="16" height="16"/>
+  <object id="3109" name="GrabPlat" type="SoundTarget" x="688" y="160" width="32" height="16">
+   <properties>
+    <property name="sound" value="timedplatform.ogg"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

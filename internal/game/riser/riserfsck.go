@@ -31,6 +31,8 @@ type RiserFsck struct {
 }
 
 func (r *RiserFsck) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+	r.World = w
+
 	err := r.NonSolidTouchable.Init(w, e)
 	if err != nil {
 		return fmt.Errorf("could not initialize nonsolidtouchbale: %v", err)
@@ -49,6 +51,7 @@ func (r *RiserFsck) Despawn() {}
 func (r *RiserFsck) Touch(other *engine.Entity) {
 	if otherR, ok := other.Impl.(*Riser); ok {
 		otherR.Despawning = true
+		r.World.Detach(other)
 	}
 }
 

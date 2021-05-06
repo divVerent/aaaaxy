@@ -43,3 +43,12 @@ type Spawnable struct {
 
 // EntityID represents an unique ID of an entity.
 type EntityID int
+
+// InvalidEntityID is an ID that cannot be used in Tiled.
+// Tiled's first entity has ID 1.
+const InvalidEntityID EntityID = 0
+
+// IsValid returns whether an EntityID is valid for an actual entity.
+func (e EntityID) IsValid() bool {
+	return e != InvalidEntityID
+}
