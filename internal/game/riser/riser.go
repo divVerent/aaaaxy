@@ -85,10 +85,10 @@ const (
 	FadeFrames = 16
 
 	// FollowFactor is how fast a riser should follow the player per second.
-	FollowFactor = 16.0
+	FollowFactor = 24.0
 
 	// FollowMaxDistance is the max distance allowed while following the player.
-	FollowMaxDistance = 64
+	FollowMaxDistance = 16
 )
 
 func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
