@@ -5,10 +5,11 @@ find .. -name \*.png | sort | while read -r file; do
 	case "$file" in
 		# Editing only.
 		*/src/*) continue ;;
-		../assets/tiles/warpzone_*.png) continue ;;
+		../assets/sprites/warpzone_*.png) continue ;;
 		# Intentionally violating.
 		../assets/sprites/clock_*.png) continue ;;
 		../assets/sprites/gradient_*.png) continue ;;
+		../assets/sprites/editorimgs/gradient_*.png) continue ;;
 	esac
 	f=$(
 		convert \
