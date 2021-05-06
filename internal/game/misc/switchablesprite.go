@@ -16,6 +16,7 @@ package misc
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
 )
@@ -42,6 +43,10 @@ func (s *SwitchableSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine
 		}
 		if sp.Properties["no_transform"] == "" {
 			sp.Properties["no_transform"] = "true"
+		}
+		// HACK: allow switch blocks use a higher Z by default.
+		if sp.Properties["z_index"] == "" {
+			s.ZBase = constants.SwitchBlockZ
 		}
 	}
 
