@@ -16,6 +16,8 @@ package riser
 
 import (
 	"fmt"
+	"math"
+	"math/rand"
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
@@ -89,6 +91,9 @@ const (
 
 	// FollowMaxDistance is the max distance allowed while following the player.
 	FollowMaxDistance = 16
+
+	// RepelSpeed is the speed at which risers repel each other until they no longer overlap.
+	RepelSpeed = 15 * mixins.SubPixelScale / engine.GameTPS
 )
 
 func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -225,6 +230,34 @@ func (r *Riser) Update() {
 	} else {
 		r.World.SetZIndex(r.Entity, constants.RiserMovingZ)
 	}
+
+	// Also, risers that touch each other repel each other.
+	r.World.ForEachEntity(func(other *engine.Entity) {
+		if other == r.Entity {
+			return
+		}
+		otherR, ok := other.Impl.(*Riser)
+		if !ok {
+			return
+		}
+		dr := r.Entity.Rect.Delta(other.Rect)
+		if dr == (m.Delta{}) {
+			pxDelta := r.Entity.Rect.Center().Delta(other.Rect.Center())
+			subDelta := r.SubPixel.Sub(otherR.SubPixel)
+			fullDelta := pxDelta.Mul(mixins.SubPixelScale).Add(subDelta)
+			var scaledDelta m.Delta
+			if fullDelta == (m.Delta{}) {
+				angle := rand.Float64() * (2 * math.Pi)
+				scaledDelta = m.Delta{
+					DX: int(RepelSpeed * math.Cos(angle)),
+					DY: int(RepelSpeed * math.Sin(angle)),
+				}
+			} else {
+				scaledDelta = fullDelta.MulFloat(RepelSpeed / math.Sqrt(float64(fullDelta.Length2())))
+			}
+			r.Velocity = r.Velocity.Add(scaledDelta)
+		}
+	})
 
 	// Run physics.
 	if (r.Velocity != m.Delta{}) {
