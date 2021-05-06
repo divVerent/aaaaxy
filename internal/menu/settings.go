@@ -50,9 +50,9 @@ func (s *SettingsScreen) Init(m *Menu) error {
 type graphicsSetting int
 
 const (
-	highGraphics graphicsSetting = iota
+	lowGraphics graphicsSetting = iota
 	mediumGraphics
-	lowGraphics
+	highGraphics
 	graphicsSettingCount
 )
 
