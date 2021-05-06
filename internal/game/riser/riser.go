@@ -85,7 +85,10 @@ const (
 	FadeFrames = 16
 
 	// FollowFactor is how fast a riser should follow the player per second.
-	FollowFactor = 32.0
+	FollowFactor = 16.0
+
+	// FollowMaxDistance is the max distance allowed while following the player.
+	FollowMaxDistance = 64
 )
 
 func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -171,7 +174,7 @@ func (r *Riser) Update() {
 	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
 	playerAboveMe := playerDelta.DX == 0 && playerDelta.DY < 0
 
-	if canCarry && !playerOnMe && (playerDelta == m.Delta{}) && actionPressed {
+	if canCarry && !playerOnMe && actionPressed && (playerDelta == m.Delta{} || (r.State == GettingCarried && playerDelta.Norm1() <= FollowMaxDistance)) {
 		r.State = GettingCarried
 	} else if canPush && actionPressed {
 		if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X {
@@ -212,7 +215,7 @@ func (r *Riser) Update() {
 		r.Velocity = fullDelta.MulFloat(FollowFactor / engine.GameTPS)
 	}
 	r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && playerAboveMe && r.State != GettingCarried)
-	if playerOnMe || !canStand {
+	if playerOnMe || !canStand || r.State == GettingCarried {
 		r.Physics.IgnoreEnt = r.World.Player // Move upwards despite player standing on it.
 	} else {
 		r.Physics.IgnoreEnt = nil
