@@ -17,12 +17,9 @@ package target
 import (
 	"log"
 
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // SequenceTarget sends a given string to a SequenceCollector when triggered.
@@ -99,8 +96,6 @@ func (s *SequenceCollector) Append(str string) {
 }
 
 func (s *SequenceCollector) Touch(other *engine.Entity) {}
-
-func (s *SequenceCollector) DrawOverlay(screen *ebiten.Image, scrollDelta m.Delta) {}
 
 func init() {
 	engine.RegisterEntityType(&SequenceTarget{})

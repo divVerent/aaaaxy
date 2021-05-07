@@ -801,6 +801,11 @@ func (w *World) link(e *Entity) {
 	w.entitiesByZ[z].insert(e)
 }
 
+func (w *World) EntityIsAlive(incarnation EntityIncarnation) bool {
+	_, found := w.incarnations[incarnation]
+	return found
+}
+
 func (w *World) FindName(name string) []*Entity {
 	// TODO maybe optimize this too by an intrusive list?
 	var out []*Entity
