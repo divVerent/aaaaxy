@@ -664,8 +664,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 		// Honor the warpzone toggle state.
 		if warp.Switchable {
 			state := warp.InitialState
-			var overridden bool
-			overState, overridden = w.WarpZoneStates[warp.Name]
+			overState, overridden := w.WarpZoneStates[warp.Name]
 			if overridden {
 				state = overState
 			}

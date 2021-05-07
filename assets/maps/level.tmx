@@ -5383,11 +5383,13 @@
   <object id="1184" name="InfiniteHotelEntrance" gid="281" x="4560" y="5232" width="16" height="64">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1185" name="InfiniteHotelEntrance" gid="275" x="5536" y="5232" width="16" height="64">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1186" type="SetState" x="5024" y="5200" width="16" height="96">
@@ -5413,11 +5415,13 @@
   <object id="1190" name="InfiniteHotelExit" gid="281" x="4544" y="5232" width="16" height="64">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1191" name="InfiniteHotelExit" gid="275" x="4560" y="5520" width="16" height="64">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1192" type="SetState" x="5424" y="5200" width="16" height="96">
@@ -5794,21 +5798,25 @@
   <object id="1287" name="AxiomOfChoiceTop" gid="275" x="5264" y="6240" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1288" name="AxiomOfChoiceBottom" gid="275" x="5264" y="6400" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1289" name="AxiomOfChoiceTop" gid="281" x="4400" y="6320" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1290" name="AxiomOfChoiceBottom" gid="281" x="4400" y="6320" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1291" type="SetState" x="4944" y="6240" width="32" height="32">
@@ -5836,6 +5844,7 @@
   <object id="1299" name="AxiomOfChoiceOut" gid="281" x="4400" y="6320" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1300" name="axiom_of_choice" type="Checkpoint" x="4288" y="6288" width="48" height="16">
@@ -5865,6 +5874,7 @@
   <object id="1305" name="AxiomOfChoiceOut" gid="275" x="5280" y="6176" width="16" height="32">
    <properties>
     <property name="initial_state" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1306" gid="294" x="6176" y="7744" width="32" height="32">

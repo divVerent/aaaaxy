@@ -369,6 +369,7 @@ func Load(filename string) (*Level, error) {
 		Orientation        m.Orientation
 		InitialState       bool
 		Invert             bool
+		Switchable         bool
 	}
 	warpZones := map[string][]*RawWarpZone{}
 	for i := range t.ObjectGroups {
