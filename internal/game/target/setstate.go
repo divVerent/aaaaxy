@@ -46,7 +46,7 @@ func (s *SetStateTarget) Despawn() {}
 
 func (s *SetStateTarget) Update() {}
 
-func (s *SetStateTarget) SetState(state bool) {
+func (s *SetStateTarget) SetState(by *engine.Entity, state bool) {
 	// Turn my targets to s.State if state, to !s.State if !state.
 	mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.State == state)
 

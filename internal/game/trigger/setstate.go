@@ -23,6 +23,7 @@ import (
 
 // SetState overrides the boolean state of a warpzone or entity.
 type SetState struct {
+	Entity *engine.Entity
 	mixins.NonSolidTouchable
 	target.SetStateTarget
 
@@ -35,6 +36,7 @@ type SetState struct {
 }
 
 func (s *SetState) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+	s.Entity = e
 	s.NonSolidTouchable.Init(w, e)
 	err := s.SetStateTarget.Spawn(w, sp, e)
 	if err != nil {
@@ -52,7 +54,7 @@ func (s *SetState) Update() {
 	s.SetStateTarget.Update()
 	if s.Touched && !s.Touching && s.SendUntouch {
 		s.State = false
-		s.SetState(false)
+		s.SetState(s.Entity, false)
 	}
 	s.Touching, s.Touched = false, s.Touching
 }
@@ -60,7 +62,7 @@ func (s *SetState) Update() {
 func (s *SetState) Touch(other *engine.Entity) {
 	if s.SendEveryFrame || (!s.Touching && !s.Touched) {
 		s.State = true
-		s.SetState(true)
+		s.SetState(s.Entity, true)
 	}
 	s.Touching = true
 }

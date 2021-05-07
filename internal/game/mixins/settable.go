@@ -28,7 +28,7 @@ type Settable struct {
 }
 
 // SetState changes the state of the entity.
-func (s *Settable) SetState(state bool) {
+func (s *Settable) SetState(by *engine.Entity, state bool) {
 	s.State = state
 }
 
@@ -40,17 +40,17 @@ func (s *Settable) Init(sp *level.Spawnable) error {
 
 // stateSetter is an entity that contains this mixin.
 type stateSetter interface {
-	SetState(state bool)
+	SetState(by *engine.Entity, state bool)
 }
 
 // SetStateOfEntity sets the state of an entity, if available.
 // Returns whether the setting was successful.
-func SetStateOfEntity(e *engine.Entity, state bool) bool {
-	setter, ok := e.Impl.(stateSetter)
+func SetStateOfEntity(by *engine.Entity, of *engine.Entity, state bool) bool {
+	setter, ok := of.Impl.(stateSetter)
 	if !ok {
 		return false
 	}
-	setter.SetState(state)
+	setter.SetState(by, state)
 	return true
 }
 
@@ -63,7 +63,7 @@ func ParseTarget(target string) TargetSelection {
 // SetStateOfTarget toggles the state of all entities of the given target name to the given state.
 // Includes WarpZones too.
 // Excludes the given entity (should be the caller).
-func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection, state bool) {
+func SetStateOfTarget(w *engine.World, by *engine.Entity, targets TargetSelection, state bool) {
 	for _, target := range targets {
 		if target == "" {
 			continue
@@ -80,7 +80,7 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection
 			target = target[1:]
 			var closest *engine.Entity
 			for _, ent := range w.FindName(target) {
-				if ent == e {
+				if ent == by {
 					continue
 				}
 				if closest == nil || closest.Rect.Delta(w.Player.Rect).Norm1() > ent.Rect.Delta(w.Player.Rect).Norm1() {
@@ -88,17 +88,17 @@ func SetStateOfTarget(w *engine.World, e *engine.Entity, targets TargetSelection
 				}
 			}
 			if closest != nil {
-				if !SetStateOfEntity(closest, state) {
+				if !SetStateOfEntity(by, closest, state) {
 					log.Printf("Tried to set state of a non-supporting entity: %T, name: %v", closest, target)
 				}
 			}
 		} else {
 			w.SetWarpZoneState(target, thisState)
 			for _, ent := range w.FindName(target) {
-				if ent == e {
+				if ent == by {
 					continue
 				}
-				if !SetStateOfEntity(ent, thisState) {
+				if !SetStateOfEntity(by, ent, thisState) {
 					log.Printf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
 				}
 			}

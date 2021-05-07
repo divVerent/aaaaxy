@@ -45,7 +45,7 @@ func (t *EdgeTarget) Update() {}
 
 func (t *EdgeTarget) Touch(other *engine.Entity) {}
 
-func (t *EdgeTarget) SetState(state bool) {
+func (t *EdgeTarget) SetState(by *engine.Entity, state bool) {
 	if state == t.State {
 		return
 	}

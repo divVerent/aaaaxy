@@ -43,7 +43,7 @@ func (s *SwitchMusic) Touch(other *engine.Entity) {
 	if other != s.World.Player {
 		return
 	}
-	s.SetState(true)
+	s.SetState(s.Entity, true)
 }
 
 func init() {

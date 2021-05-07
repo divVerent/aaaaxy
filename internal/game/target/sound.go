@@ -66,7 +66,7 @@ func (s *SoundTarget) Update() {
 
 func (s *SoundTarget) Touch(other *engine.Entity) {}
 
-func (s *SoundTarget) SetState(state bool) {
+func (s *SoundTarget) SetState(by *engine.Entity, state bool) {
 	if state {
 		if s.Player != nil {
 			if s.Player.Current() < 100*time.Millisecond {
@@ -75,6 +75,7 @@ func (s *SoundTarget) SetState(state bool) {
 			s.Player.Close()
 		}
 		s.Player = s.Sound.Play()
+		// Do we need this redirection?
 		mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.State)
 	} else {
 		if s.Player != nil {

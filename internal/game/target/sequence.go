@@ -46,7 +46,7 @@ func (s *SequenceTarget) Despawn() {}
 
 func (s *SequenceTarget) Update() {}
 
-func (s *SequenceTarget) SetState(state bool) {
+func (s *SequenceTarget) SetState(by *engine.Entity, state bool) {
 	if !state {
 		return
 	}

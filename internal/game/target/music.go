@@ -36,7 +36,7 @@ func (s *SwitchMusicTarget) Update() {}
 
 func (s *SwitchMusicTarget) Touch(other *engine.Entity) {}
 
-func (s *SwitchMusicTarget) SetState(state bool) {
+func (s *SwitchMusicTarget) SetState(by *engine.Entity, state bool) {
 	if state {
 		music.Switch(s.Music)
 	}
