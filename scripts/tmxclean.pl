@@ -96,7 +96,7 @@ sub fix_object {
   }
   if ($type eq 'SwitchableSprite') {
     my %prop = props $el;
-    if (!defined $prop{image}) {
+    if (!defined $prop{image} && !$el->hasAttribute('gid')) {
       if (($prop{initial_state} // '') ne 'false') {
         $el->removeAttribute('type');
         $el->setAttribute('gid', 292);
