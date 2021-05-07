@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3220">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3221">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -1018,14 +1018,14 @@
     <property name="text" value="Entering through the front door is boring."/>
    </properties>
   </object>
-  <object id="256" name="BingPads" type="JumpPad" x="608" y="6272" width="4" height="4">
+  <object id="256" name="BingPads" type="SwitchableJumpPad" x="608" y="6272" width="4" height="4">
    <properties>
     <property name="delta" value="216 -352"/>
     <property name="height" value="64"/>
     <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="257" name="BingPads" type="JumpPad" x="956" y="6272" width="4" height="4">
+  <object id="257" name="BingPads" type="SwitchableJumpPad" x="956" y="6272" width="4" height="4">
    <properties>
     <property name="delta" value="-120 -352"/>
     <property name="height" value="64"/>
@@ -5982,7 +5982,8 @@
   </object>
   <object id="1373" type="SetStateTarget" x="160" y="80" width="160" height="16">
    <properties>
-    <property name="initial_state" value="false"/>
+    <property name="on_spawn" type="bool" value="true"/>
+    <property name="state" type="bool" value="false"/>
     <property name="target" value="LookedUp"/>
    </properties>
   </object>

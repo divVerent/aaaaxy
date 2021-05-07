@@ -32,7 +32,6 @@ import (
 // May want to introduce required orientation like with checkpoints.
 // Or could require player to hit jumppad from above.
 type JumpPad struct {
-	mixins.Settable
 	mixins.NonSolidTouchable
 	World  *engine.World
 	Entity *engine.Entity
@@ -45,7 +44,6 @@ type JumpPad struct {
 }
 
 func (j *JumpPad) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
-	j.Settable.Init(s)
 	j.NonSolidTouchable.Init(w, e)
 	j.World = w
 	j.Entity = e
@@ -134,9 +132,6 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 }
 
 func (j *JumpPad) Touch(other *engine.Entity) {
-	if !j.Settable.State {
-		return
-	}
 	// Do we actually touch the player?
 	if other != j.World.Player {
 		return

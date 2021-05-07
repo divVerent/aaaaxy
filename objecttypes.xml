@@ -43,8 +43,6 @@
  <objecttype name="JumpPad" color="#ff00ff">
   <property name="delta" type="string"/>
   <property name="height" type="string"/>
-  <property name="initial_state" type="bool" default="true"/>
-  <property name="invert" type="bool" default="false"/>
   <property name="rel_delta" type="string"/>
   <property name="solid" type="bool" default="true"/>
  </objecttype>
@@ -72,7 +70,6 @@
  </objecttype>
  <objecttype name="SetState" color="#ff0000">
   <property name="exclusive_targets" type="string"/>
-  <property name="initial_state" type="string"/>
   <property name="invert" type="bool" default="false"/>
   <property name="send_every_frame" type="bool" default="false"/>
   <property name="send_untouch" type="bool" default="false"/>
@@ -81,10 +78,10 @@
  </objecttype>
  <objecttype name="SetStateTarget" color="#ff0000">
   <property name="exclusive_targets" type="string"/>
-  <property name="initial_state" type="string"/>
   <property name="invert" type="bool" default="false"/>
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
+  <property name="on_spawn" type="bool" default="false"/>
  </objecttype>
  <objecttype name="SoundTarget" color="#0000ff">
   <property name="sound" type="file" default=""/>
@@ -115,6 +112,14 @@
   <property name="send_untouch" type="bool" default="false"/>
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
+ </objecttype>
+ <objecttype name="SwitchableJumpPad" color="#ff00ff">
+  <property name="delta" type="string"/>
+  <property name="height" type="string"/>
+  <property name="initial_state" type="bool" default="true"/>
+  <property name="invert" type="bool" default="false"/>
+  <property name="rel_delta" type="string"/>
+  <property name="solid" type="bool" default="true"/>
  </objecttype>
  <objecttype name="SwitchableSprite" color="#ffffff">
   <property name="alpha" type="string"/>

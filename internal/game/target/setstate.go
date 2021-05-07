@@ -36,8 +36,8 @@ func (s *SetStateTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.E
 	s.Target = mixins.ParseTarget(sp.Properties["target"])
 	s.State = sp.Properties["state"] != "false"
 	s.ExclusiveTargets = mixins.ParseTarget(sp.Properties["exclusive_targets"])
-	if sp.Properties["initial_state"] != "" {
-		mixins.SetStateOfTarget(w, e, s.Target, sp.Properties["initial_state"] != "false") // Default true.
+	if sp.Properties["on_spawn"] == "true" {
+		mixins.SetStateOfTarget(w, e, s.Target, s.State)
 	}
 	return nil
 }
