@@ -5750,7 +5750,12 @@
     <property name="target" value="ShepardOpenBlocks"/>
    </properties>
   </object>
-  <object id="1266" name="ShepardOpenBlocks" type="SwitchableSprite" gid="16" x="4256" y="5888" width="112" height="16"/>
+  <object id="1266" name="ShepardOpenBlocks" type="SwitchableSprite" gid="16" x="4256" y="5888" width="112" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+    <property name="invert" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="1273" gid="294" x="4352" y="6016" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1228"/>
@@ -5758,8 +5763,20 @@
    </properties>
   </object>
   <object id="1275" gid="288" x="4208" y="5552" width="32" height="32"/>
-  <object id="1277" name="ShepardOpenBlocks" gid="279" x="4256" y="5904" width="112" height="16"/>
-  <object id="1278" name="ShepardOpenBlocks" gid="277" x="4416" y="5616" width="112" height="16"/>
+  <object id="1277" name="ShepardOpenBlocks" gid="279" x="4256" y="5904" width="112" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+    <property name="invert" type="bool" value="true"/>
+    <property name="switchable" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="1278" name="ShepardOpenBlocks" gid="277" x="4416" y="5616" width="112" height="16">
+   <properties>
+    <property name="initial_state" type="bool" value="false"/>
+    <property name="invert" type="bool" value="true"/>
+    <property name="switchable" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="1280" name="ShepardKhil" type="SoundTarget" x="4336" y="5840" width="16" height="16">
    <properties>
     <property name="sound" value="loom_minor.ogg"/>
