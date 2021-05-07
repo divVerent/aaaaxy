@@ -8741,62 +8741,62 @@
   <object id="3192" gid="285" x="4000" y="2352" width="16" height="16"/>
   <object id="3193" name="BlockOut0" type="SoundTarget" x="6192" y="7440" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3194" name="BlockOut1" type="SoundTarget" x="6192" y="7392" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3195" name="BlockOut2" type="SoundTarget" x="6192" y="7344" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3196" name="BlockOut3" type="SoundTarget" x="6192" y="7296" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3197" name="BlockOut4" type="SoundTarget" x="6192" y="7248" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3198" name="BlockOut5" type="SoundTarget" x="6192" y="7200" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3199" name="BlockOut6" type="SoundTarget" x="6192" y="7152" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3200" name="BlockOut7" type="SoundTarget" x="6192" y="7104" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3201" name="BlockOut8" type="SoundTarget" x="6192" y="7056" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3202" name="BlockOut9" type="SoundTarget" x="6192" y="7008" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3203" name="BlockOut10" type="SoundTarget" x="6192" y="6960" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3204" name="BlockOut11" type="SoundTarget" x="6192" y="6912" width="16" height="16">
    <properties>
-    <property name="sound" type="file" value="timedplatform.ogg"/>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
   <object id="3205" name="PushMeNot6a0" gid="292" x="3824" y="2176" width="16" height="16"/>
