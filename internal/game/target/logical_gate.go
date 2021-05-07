@@ -59,7 +59,7 @@ func (g *LogicalGate) Update() {
 			delete(g.IncomingState, ent)
 		}
 	}
-	g.MaybeSendEvent()
+	g.MaybeSendEvent(true)
 }
 
 func (g *LogicalGate) Touch(other *engine.Entity) {}
@@ -72,12 +72,11 @@ func (g *LogicalGate) SetState(by *engine.Entity, state bool) {
 	}
 }
 
-func (g *LogicalGate) MaybeSendEvent() {
+func (g *LogicalGate) MaybeSendEvent(sendEveryFrame bool) {
 	newState := len(g.IncomingState) >= g.CountRequired
-	if newState == g.State {
+	if newState == g.State && !(sendEveryFrame && newState) {
 		return
 	}
-	// TODO SendEveryFrame mode?
 	g.State = newState
 	mixins.SetStateOfTarget(g.World, g.Entity, g.Target, newState != g.Invert)
 }
