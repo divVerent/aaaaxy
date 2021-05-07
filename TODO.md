@@ -6,10 +6,19 @@ Sections to do:
     - I.e. time to hold button is limited.
 
 - Grab & Stand
+  - Music: mythica.mp3
   - The Butterfly Effect (from Antichamber)
     - Lots of doors that are LogicalOr of three inputs (LeftSw, DoorBlocker, RightSw)
     - At the end you get stuck UNLESS you have a platforms left
     - Solution is to go to end, get the one platform that is there, walk back, block doors and collect all platforms you can find.
 
 - Push & Stand
+  - Music: 2012_november_fakeAwake04 back to A minor.wav
   - A platform race! Steer left/right, overtake other "drivers"...
+    - need "evil" platform object: solid, moves, thereby kicking us off our platform
+
+- Finale
+  - Music: Juhani Junkala [Retro Game Music Pack] Level 3.wav
+
+- Credits
+  - Music: need to find some
