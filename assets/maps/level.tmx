@@ -8507,17 +8507,17 @@
   <object id="3020" gid="302" x="4048" y="3328" width="32" height="32"/>
   <object id="3021" gid="304" x="4000" y="3392" width="32" height="32"/>
   <object id="3022" gid="303" x="3968" y="3328" width="32" height="32"/>
-  <object id="3023" name="PushMeNot1b" gid="309" x="3872" y="3040" width="16" height="16"/>
-  <object id="3024" name="PushMeNot1a" gid="309" x="3888" y="3056" width="16" height="16"/>
-  <object id="3025" name="PushMeNot1b" gid="309" x="3888" y="3040" width="16" height="16"/>
-  <object id="3026" name="PushMeNot1a" gid="309" x="3904" y="3056" width="16" height="16"/>
-  <object id="3027" name="PushMeNot1b" gid="309" x="3904" y="3040" width="16" height="16"/>
-  <object id="3028" name="PushMeNot1a" gid="309" x="3920" y="3056" width="16" height="16"/>
+  <object id="3023" name="PushMeNot1b" gid="292" x="3872" y="3040" width="16" height="16"/>
+  <object id="3024" name="PushMeNot1a" gid="292" x="3888" y="3056" width="16" height="16"/>
+  <object id="3025" name="PushMeNot1b" gid="292" x="3888" y="3040" width="16" height="16"/>
+  <object id="3026" name="PushMeNot1a" gid="292" x="3904" y="3056" width="16" height="16"/>
+  <object id="3027" name="PushMeNot1b" gid="292" x="3904" y="3040" width="16" height="16"/>
+  <object id="3028" name="PushMeNot1a" gid="292" x="3920" y="3056" width="16" height="16"/>
   <object id="3029" gid="290" x="3856" y="3072" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
-    <property name="state" type="bool" value="false"/>
+    <property name="state" type="bool" value="true"/>
     <property name="target" value="PushMeNot1a"/>
    </properties>
   </object>
@@ -8525,7 +8525,7 @@
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
-    <property name="state" type="bool" value="false"/>
+    <property name="state" type="bool" value="true"/>
     <property name="target" value="PushMeNot1b"/>
    </properties>
   </object>
@@ -8543,12 +8543,12 @@
   <object id="3050" name="PushMeNot2b" gid="309" x="3856" y="2944" width="16" height="16"/>
   <object id="3051" name="PushMeNot2a" gid="309" x="3856" y="2960" width="16" height="16"/>
   <object id="3052" name="PushMeNot2b" gid="309" x="3872" y="2944" width="16" height="16"/>
-  <object id="3053" name="PushMeNot1a" gid="309" x="3936" y="3056" width="16" height="16"/>
-  <object id="3054" name="PushMeNot1a" gid="309" x="3952" y="3056" width="16" height="16"/>
-  <object id="3055" name="PushMeNot1b" gid="309" x="3920" y="3040" width="16" height="16"/>
-  <object id="3056" name="PushMeNot1b" gid="309" x="3936" y="3040" width="16" height="16"/>
-  <object id="3057" name="PushMeNot1b" gid="309" x="3952" y="3040" width="16" height="16"/>
-  <object id="3058" name="PushMeNot1b" gid="309" x="3968" y="3040" width="16" height="16"/>
+  <object id="3053" name="PushMeNot1a" gid="292" x="3936" y="3056" width="16" height="16"/>
+  <object id="3054" name="PushMeNot1a" gid="292" x="3952" y="3056" width="16" height="16"/>
+  <object id="3055" name="PushMeNot1b" gid="292" x="3920" y="3040" width="16" height="16"/>
+  <object id="3056" name="PushMeNot1b" gid="292" x="3936" y="3040" width="16" height="16"/>
+  <object id="3057" name="PushMeNot1b" gid="292" x="3952" y="3040" width="16" height="16"/>
+  <object id="3058" name="PushMeNot1b" gid="292" x="3968" y="3040" width="16" height="16"/>
   <object id="3059" gid="291" x="3968" y="2976" width="16" height="16"/>
   <object id="3060" name="PushMeNot2b" gid="309" x="3824" y="2944" width="16" height="16"/>
   <object id="3061" name="PushMeNot2b" gid="309" x="3808" y="2944" width="16" height="16"/>
