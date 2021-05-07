@@ -36,10 +36,6 @@
   <property name="required_orientation" type="string"/>
   <property name="text" type="string"/>
  </objecttype>
- <objecttype name="EdgeTarget" color="#000000">
-  <property name="initial_state" type="bool" default="false"/>
-  <property name="target" type="string"/>
- </objecttype>
  <objecttype name="Give" color="#ffff00">
   <property name="ability" type="string"/>
   <property name="text" type="string"/>
@@ -50,6 +46,11 @@
   <property name="initial_state" type="bool" default="true"/>
   <property name="rel_delta" type="string"/>
   <property name="solid" type="bool" default="true"/>
+ </objecttype>
+ <objecttype name="LogicalGate" color="#000000">
+  <property name="count_required" type="int" default="1"/>
+  <property name="state" type="bool" default="true"/>
+  <property name="target" type="string"/>
  </objecttype>
  <objecttype name="OneWay" color="#0000ff">
   <property name="orientation" type="string"/>

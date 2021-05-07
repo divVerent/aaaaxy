@@ -39,7 +39,8 @@ func (g *LogicalGate) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Enti
 	g.World = w
 	g.Entity = e
 	g.Target = mixins.ParseTarget(sp.Properties["target"])
-	g.CountRequired = 1 // An "or" gate by default.
+	g.CountRequired = 1                         // An "or" gate by default.
+	g.State = sp.Properties["state"] != "false" // true by default.
 	if countStr := sp.Properties["count_required"]; countStr != "" {
 		_, err := fmt.Sscanf(countStr, "%d", &g.CountRequired)
 		if err != nil {
