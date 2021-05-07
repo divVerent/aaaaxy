@@ -6853,15 +6853,15 @@
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="PushToOpen1"/>
+    <property name="target" value="!PushToOpen1"/>
    </properties>
   </object>
   <object id="1733" name="LearnToGrab" gid="293" x="528" y="496" width="16" height="16"/>
   <object id="1734" name="LearnToGrab" gid="293" x="544" y="496" width="16" height="16"/>
   <object id="1735" name="LearnToGrab" gid="293" x="544" y="560" width="16" height="16"/>
   <object id="1736" name="LearnToGrab" gid="293" x="560" y="560" width="16" height="16"/>
-  <object id="1737" name="PushToOpen1" gid="309" x="7584" y="7200" width="16" height="16"/>
-  <object id="1738" name="PushToOpen1" gid="309" x="7600" y="7200" width="16" height="16"/>
+  <object id="1737" name="PushToOpen1" gid="292" x="7584" y="7200" width="16" height="16"/>
+  <object id="1738" name="PushToOpen1" gid="292" x="7600" y="7200" width="16" height="16"/>
   <object id="1739" name="LearnToPush" gid="293" x="7728" y="7248" width="16" height="16"/>
   <object id="1740" name="LearnToPush" gid="293" x="7744" y="7248" width="16" height="16"/>
   <object id="1741" name="LearnToPush" gid="293" x="7744" y="7312" width="16" height="16"/>
@@ -6900,11 +6900,11 @@
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="PushToOpen2"/>
+    <property name="target" value="!PushToOpen2"/>
    </properties>
   </object>
-  <object id="1755" name="PushToOpen2" gid="309" x="7568" y="7088" width="16" height="16"/>
-  <object id="1756" name="PushToOpen2" gid="309" x="7584" y="7088" width="16" height="16"/>
+  <object id="1755" name="PushToOpen2" gid="292" x="7568" y="7088" width="16" height="16"/>
+  <object id="1756" name="PushToOpen2" gid="292" x="7584" y="7088" width="16" height="16"/>
   <object id="1758" gid="290" x="7920" y="6896" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
@@ -6984,7 +6984,7 @@
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="openb"/>
+    <property name="target" value="!openb"/>
    </properties>
   </object>
   <object id="1787" gid="290" x="7328" y="7136" width="16" height="16">
@@ -6992,13 +6992,13 @@
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="opena"/>
+    <property name="target" value="!opena"/>
    </properties>
   </object>
-  <object id="1788" name="opena" gid="309" x="7264" y="7136" width="16" height="16"/>
-  <object id="1789" name="openb" gid="309" x="7264" y="7152" width="16" height="16"/>
-  <object id="1790" name="opena" gid="309" x="7264" y="7168" width="16" height="16"/>
-  <object id="1791" name="openb" gid="309" x="7264" y="7184" width="16" height="16"/>
+  <object id="1788" name="opena" gid="292" x="7264" y="7136" width="16" height="16"/>
+  <object id="1789" name="openb" gid="292" x="7264" y="7152" width="16" height="16"/>
+  <object id="1790" name="opena" gid="292" x="7264" y="7168" width="16" height="16"/>
+  <object id="1791" name="openb" gid="292" x="7264" y="7184" width="16" height="16"/>
   <object id="1792" gid="291" x="7360" y="7168" width="16" height="16"/>
   <object id="1793" name="switching_it_up" type="Checkpoint" x="7248" y="7008" width="16" height="32">
    <properties>
@@ -7014,7 +7014,7 @@
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="open2"/>
+    <property name="target" value="!open2"/>
    </properties>
   </object>
   <object id="1796" gid="290" x="7360" y="7232" width="16" height="16">
@@ -7022,14 +7022,14 @@
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="open1"/>
+    <property name="target" value="!open1"/>
    </properties>
   </object>
   <object id="1797" gid="291" x="7328" y="7264" width="16" height="16"/>
-  <object id="1798" name="open1" gid="309" x="7504" y="7232" width="16" height="16"/>
-  <object id="1799" name="open2" gid="309" x="7504" y="7248" width="16" height="16"/>
-  <object id="1800" name="open1" gid="309" x="7504" y="7264" width="16" height="16"/>
-  <object id="1801" name="open2" gid="309" x="7504" y="7280" width="16" height="16"/>
+  <object id="1798" name="open1" gid="292" x="7504" y="7232" width="16" height="16"/>
+  <object id="1799" name="open2" gid="292" x="7504" y="7248" width="16" height="16"/>
+  <object id="1800" name="open1" gid="292" x="7504" y="7264" width="16" height="16"/>
+  <object id="1801" name="open2" gid="292" x="7504" y="7280" width="16" height="16"/>
   <object id="1802" gid="284" x="7264" y="7424" width="16" height="16"/>
   <object id="1803" gid="284" x="7264" y="7440" width="16" height="16"/>
   <object id="1804" gid="284" x="7264" y="7456" width="16" height="16"/>
@@ -7517,30 +7517,30 @@
     <property name="text" value="Closer To The Hub"/>
    </properties>
   </object>
-  <object id="2225" name="Leave6" gid="309" x="6128" y="6816" width="16" height="16"/>
-  <object id="2226" name="Leave6" gid="309" x="6128" y="6832" width="16" height="16"/>
-  <object id="2227" name="Leave6" gid="309" x="6128" y="6848" width="16" height="16"/>
-  <object id="2231" name="Leave5" gid="309" x="6176" y="6816" width="16" height="16"/>
-  <object id="2232" name="Leave5" gid="309" x="6176" y="6832" width="16" height="16"/>
-  <object id="2233" name="Leave5" gid="309" x="6176" y="6848" width="16" height="16"/>
-  <object id="2234" name="Leave4" gid="309" x="6224" y="6816" width="16" height="16"/>
-  <object id="2235" name="Leave4" gid="309" x="6224" y="6832" width="16" height="16"/>
-  <object id="2236" name="Leave4" gid="309" x="6224" y="6848" width="16" height="16"/>
-  <object id="2237" name="Leave3" gid="309" x="6272" y="6816" width="16" height="16"/>
-  <object id="2238" name="Leave3" gid="309" x="6272" y="6832" width="16" height="16"/>
-  <object id="2239" name="Leave3" gid="309" x="6272" y="6848" width="16" height="16"/>
-  <object id="2240" name="Leave2" gid="309" x="6320" y="6816" width="16" height="16"/>
-  <object id="2241" name="Leave2" gid="309" x="6320" y="6832" width="16" height="16"/>
-  <object id="2242" name="Leave2" gid="309" x="6320" y="6848" width="16" height="16"/>
-  <object id="2243" name="Leave1" gid="309" x="6368" y="6816" width="16" height="16"/>
-  <object id="2244" name="Leave1" gid="309" x="6368" y="6832" width="16" height="16"/>
-  <object id="2245" name="Leave1" gid="309" x="6368" y="6848" width="16" height="16"/>
+  <object id="2225" name="Leave6" gid="292" x="6128" y="6816" width="16" height="16"/>
+  <object id="2226" name="Leave6" gid="292" x="6128" y="6832" width="16" height="16"/>
+  <object id="2227" name="Leave6" gid="292" x="6128" y="6848" width="16" height="16"/>
+  <object id="2231" name="Leave5" gid="292" x="6176" y="6816" width="16" height="16"/>
+  <object id="2232" name="Leave5" gid="292" x="6176" y="6832" width="16" height="16"/>
+  <object id="2233" name="Leave5" gid="292" x="6176" y="6848" width="16" height="16"/>
+  <object id="2234" name="Leave4" gid="292" x="6224" y="6816" width="16" height="16"/>
+  <object id="2235" name="Leave4" gid="292" x="6224" y="6832" width="16" height="16"/>
+  <object id="2236" name="Leave4" gid="292" x="6224" y="6848" width="16" height="16"/>
+  <object id="2237" name="Leave3" gid="292" x="6272" y="6816" width="16" height="16"/>
+  <object id="2238" name="Leave3" gid="292" x="6272" y="6832" width="16" height="16"/>
+  <object id="2239" name="Leave3" gid="292" x="6272" y="6848" width="16" height="16"/>
+  <object id="2240" name="Leave2" gid="292" x="6320" y="6816" width="16" height="16"/>
+  <object id="2241" name="Leave2" gid="292" x="6320" y="6832" width="16" height="16"/>
+  <object id="2242" name="Leave2" gid="292" x="6320" y="6848" width="16" height="16"/>
+  <object id="2243" name="Leave1" gid="292" x="6368" y="6816" width="16" height="16"/>
+  <object id="2244" name="Leave1" gid="292" x="6368" y="6832" width="16" height="16"/>
+  <object id="2245" name="Leave1" gid="292" x="6368" y="6848" width="16" height="16"/>
   <object id="2246" gid="290" x="6392" y="6816" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="Leave1"/>
+    <property name="target" value="!Leave1"/>
    </properties>
   </object>
   <object id="2247" gid="290" x="6344" y="6816" width="16" height="16">
@@ -7548,7 +7548,7 @@
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="Leave1 Leave2 !Leave0"/>
+    <property name="target" value="!Leave1 !Leave2 !Leave0"/>
    </properties>
   </object>
   <object id="2248" gid="290" x="6296" y="6816" width="16" height="16">
@@ -7556,7 +7556,7 @@
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="Leave2 Leave3"/>
+    <property name="target" value="!Leave2 !Leave3"/>
    </properties>
   </object>
   <object id="2249" gid="290" x="6248" y="6816" width="16" height="16">
@@ -7564,7 +7564,7 @@
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="Leave3 Leave4"/>
+    <property name="target" value="!Leave3 !Leave4"/>
    </properties>
   </object>
   <object id="2250" gid="290" x="6200" y="6816" width="16" height="16">
@@ -7572,7 +7572,7 @@
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="Leave4 Leave5"/>
+    <property name="target" value="!Leave4 !Leave5"/>
    </properties>
   </object>
   <object id="2251" gid="290" x="6152" y="6816" width="16" height="16">
@@ -7580,7 +7580,7 @@
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="Leave5 Leave6"/>
+    <property name="target" value="!Leave5 !Leave6"/>
    </properties>
   </object>
   <object id="2256" gid="291" x="6432" y="6960" width="32" height="16"/>
@@ -7633,32 +7633,32 @@
   <object id="2280" name="CanCarryWarp" gid="277" x="528" y="416" width="48" height="16"/>
   <object id="2282" name="CanCarryWarp" gid="279" x="528" y="304" width="48" height="16"/>
   <object id="2285" gid="291" x="576" y="160" width="16" height="16"/>
-  <object id="2286" name="Grab1" gid="309" x="512" y="144" width="16" height="16"/>
-  <object id="2287" name="Grab1" gid="309" x="528" y="144" width="16" height="16"/>
-  <object id="2288" name="Grab1" gid="309" x="544" y="144" width="16" height="16"/>
-  <object id="2289" name="Grab1" gid="309" x="560" y="144" width="16" height="16"/>
+  <object id="2286" name="Grab1" gid="292" x="512" y="144" width="16" height="16"/>
+  <object id="2287" name="Grab1" gid="292" x="528" y="144" width="16" height="16"/>
+  <object id="2288" name="Grab1" gid="292" x="544" y="144" width="16" height="16"/>
+  <object id="2289" name="Grab1" gid="292" x="560" y="144" width="16" height="16"/>
   <object id="2290" gid="291" x="512" y="32" width="16" height="16"/>
   <object id="2291" gid="290" x="520" y="80" width="16" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="Grab2"/>
+    <property name="target" value="!Grab2"/>
    </properties>
   </object>
   <object id="2293" gid="290" x="568" y="208" width="16" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="Grab1"/>
+    <property name="target" value="!Grab1"/>
    </properties>
   </object>
-  <object id="2294" name="Grab2" gid="309" x="592" y="32" width="16" height="16"/>
-  <object id="2295" name="Grab2" gid="309" x="592" y="48" width="16" height="16"/>
-  <object id="2296" name="Grab2" gid="309" x="592" y="64" width="16" height="16"/>
-  <object id="2297" name="Grab2" gid="309" x="592" y="80" width="16" height="16"/>
-  <object id="2298" name="Grab2" gid="309" x="592" y="96" width="16" height="16"/>
-  <object id="2299" name="Grab2" gid="309" x="592" y="112" width="16" height="16"/>
-  <object id="2300" name="Grab2" gid="309" x="592" y="128" width="16" height="16"/>
+  <object id="2294" name="Grab2" gid="292" x="592" y="32" width="16" height="16"/>
+  <object id="2295" name="Grab2" gid="292" x="592" y="48" width="16" height="16"/>
+  <object id="2296" name="Grab2" gid="292" x="592" y="64" width="16" height="16"/>
+  <object id="2297" name="Grab2" gid="292" x="592" y="80" width="16" height="16"/>
+  <object id="2298" name="Grab2" gid="292" x="592" y="96" width="16" height="16"/>
+  <object id="2299" name="Grab2" gid="292" x="592" y="112" width="16" height="16"/>
+  <object id="2300" name="Grab2" gid="292" x="592" y="128" width="16" height="16"/>
   <object id="2301" name="carry_it_out" type="Checkpoint" x="512" y="240" width="16" height="32">
    <properties>
     <property name="music" value="Pressure.ogg"/>
@@ -7811,7 +7811,7 @@
    <properties>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="GrabSesame !GrabAntiSesame"/>
+    <property name="target" value="!GrabSesame !GrabAntiSesame"/>
    </properties>
   </object>
   <object id="2360" gid="285" x="1408" y="128" width="16" height="16"/>
@@ -7840,8 +7840,8 @@
     <property name="map_white_to" type="color" value="#ff00aa00"/>
    </properties>
   </object>
-  <object id="2372" name="GrabSesame" gid="309" x="1696" y="32" width="16" height="16"/>
-  <object id="2373" name="GrabSesame" gid="309" x="1696" y="48" width="16" height="16"/>
+  <object id="2372" name="GrabSesame" gid="292" x="1696" y="32" width="16" height="16"/>
+  <object id="2373" name="GrabSesame" gid="292" x="1696" y="48" width="16" height="16"/>
   <object id="2375" gid="285" x="1104" y="288" width="16" height="16"/>
   <object id="2376" gid="285" x="1104" y="304" width="16" height="16"/>
   <object id="2377" name="GrabAntiSesame" gid="293" x="1664" y="80" width="16" height="16"/>
@@ -7918,7 +7918,7 @@
    <properties>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="GrabSesame2"/>
+    <property name="target" value="!GrabSesame2"/>
    </properties>
   </object>
   <object id="2622" gid="285" x="1856" y="112" width="16" height="16"/>
@@ -7936,8 +7936,8 @@
   <object id="2634" gid="283" x="2384" y="64" width="16" height="16"/>
   <object id="2635" gid="283" x="2400" y="64" width="16" height="16"/>
   <object id="2641" gid="288" x="2112" y="32" width="32" height="32"/>
-  <object id="2642" name="GrabSesame2" gid="309" x="2416" y="32" width="16" height="16"/>
-  <object id="2643" name="GrabSesame2" gid="309" x="2416" y="48" width="16" height="16"/>
+  <object id="2642" name="GrabSesame2" gid="292" x="2416" y="32" width="16" height="16"/>
+  <object id="2643" name="GrabSesame2" gid="292" x="2416" y="48" width="16" height="16"/>
   <object id="2644" gid="285" x="2368" y="128" width="16" height="16"/>
   <object id="2645" gid="285" x="2384" y="128" width="16" height="16"/>
   <object id="2646" gid="285" x="2400" y="128" width="16" height="16"/>
@@ -7951,7 +7951,7 @@
   <object id="2655" gid="285" x="2176" y="224" width="16" height="16"/>
   <object id="2656" gid="285" x="2176" y="240" width="16" height="16"/>
   <object id="2657" gid="285" x="2336" y="192" width="16" height="16"/>
-  <object id="2658" name="GrabSesame" gid="309" x="1696" y="64" width="16" height="16"/>
+  <object id="2658" name="GrabSesame" gid="292" x="1696" y="64" width="16" height="16"/>
   <object id="2659" gid="294" x="2384" y="288" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="2301"/>
@@ -7989,13 +7989,13 @@
    <properties>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="GrabSesame3 !GrabAntiSesame3"/>
+    <property name="target" value="!GrabSesame3 !GrabAntiSesame3"/>
    </properties>
   </object>
   <object id="2668" name="GrabAntiSesame3" gid="293" x="2704" y="320" width="16" height="16"/>
   <object id="2669" name="GrabAntiSesame3" gid="293" x="2720" y="320" width="16" height="16"/>
-  <object id="2670" name="GrabSesame3" gid="309" x="2736" y="288" width="16" height="16"/>
-  <object id="2671" name="GrabSesame3" gid="309" x="2736" y="304" width="16" height="16"/>
+  <object id="2670" name="GrabSesame3" gid="292" x="2736" y="288" width="16" height="16"/>
+  <object id="2671" name="GrabSesame3" gid="292" x="2736" y="304" width="16" height="16"/>
   <object id="2672" gid="289" x="2704" y="0" width="32" height="32"/>
   <object id="2673" gid="299" x="2768" y="64" width="32" height="224">
    <properties>
@@ -8026,55 +8026,55 @@
    <properties>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="RedRoom"/>
+    <property name="target" value="!RedRoom"/>
    </properties>
   </object>
   <object id="2683" gid="290" x="2952" y="256" width="16" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="RedRoom"/>
+    <property name="target" value="!RedRoom"/>
    </properties>
   </object>
   <object id="2684" gid="290" x="3032" y="240" width="16" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="RedRoom"/>
+    <property name="target" value="!RedRoom"/>
    </properties>
   </object>
   <object id="2686" gid="290" x="2992" y="144" width="16" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="RedRoom"/>
+    <property name="target" value="!RedRoom"/>
    </properties>
   </object>
   <object id="2687" gid="290" x="2912" y="176" width="16" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="RedRoom"/>
+    <property name="target" value="!RedRoom"/>
    </properties>
   </object>
-  <object id="2688" name="RedRoom" gid="309" x="2904" y="160" width="16" height="16"/>
-  <object id="2689" name="RedRoom" gid="309" x="2920" y="160" width="16" height="16"/>
-  <object id="2690" name="RedRoom" gid="309" x="2984" y="128" width="16" height="16"/>
-  <object id="2691" name="RedRoom" gid="309" x="3000" y="128" width="16" height="16"/>
-  <object id="2696" name="RedRoom" gid="309" x="2864" y="256" width="16" height="16"/>
-  <object id="2697" name="RedRoom" gid="309" x="2880" y="256" width="16" height="16"/>
-  <object id="2698" name="RedRoom" gid="309" x="2944" y="240" width="16" height="16"/>
-  <object id="2699" name="RedRoom" gid="309" x="2960" y="240" width="16" height="16"/>
-  <object id="2700" name="RedRoom" gid="309" x="3024" y="224" width="16" height="16"/>
-  <object id="2701" name="RedRoom" gid="309" x="3040" y="224" width="16" height="16"/>
+  <object id="2688" name="RedRoom" gid="292" x="2904" y="160" width="16" height="16"/>
+  <object id="2689" name="RedRoom" gid="292" x="2920" y="160" width="16" height="16"/>
+  <object id="2690" name="RedRoom" gid="292" x="2984" y="128" width="16" height="16"/>
+  <object id="2691" name="RedRoom" gid="292" x="3000" y="128" width="16" height="16"/>
+  <object id="2696" name="RedRoom" gid="292" x="2864" y="256" width="16" height="16"/>
+  <object id="2697" name="RedRoom" gid="292" x="2880" y="256" width="16" height="16"/>
+  <object id="2698" name="RedRoom" gid="292" x="2944" y="240" width="16" height="16"/>
+  <object id="2699" name="RedRoom" gid="292" x="2960" y="240" width="16" height="16"/>
+  <object id="2700" name="RedRoom" gid="292" x="3024" y="224" width="16" height="16"/>
+  <object id="2701" name="RedRoom" gid="292" x="3040" y="224" width="16" height="16"/>
   <object id="2702" gid="288" x="2800" y="288" width="32" height="32"/>
-  <object id="2703" name="RedRoom" gid="309" x="3056" y="64" width="16" height="16"/>
-  <object id="2704" name="RedRoom" gid="309" x="3072" y="64" width="16" height="16"/>
-  <object id="2705" name="RedRoom" gid="309" x="3040" y="64" width="16" height="16"/>
-  <object id="2706" name="RedRoom" gid="309" x="3024" y="64" width="16" height="16"/>
-  <object id="2707" name="RedRoom" gid="309" x="3008" y="64" width="16" height="16"/>
-  <object id="2709" name="RedRoom" gid="309" x="2992" y="64" width="16" height="16"/>
-  <object id="2710" name="RedRoom" gid="309" x="2832" y="192" width="16" height="16"/>
+  <object id="2703" name="RedRoom" gid="292" x="3056" y="64" width="16" height="16"/>
+  <object id="2704" name="RedRoom" gid="292" x="3072" y="64" width="16" height="16"/>
+  <object id="2705" name="RedRoom" gid="292" x="3040" y="64" width="16" height="16"/>
+  <object id="2706" name="RedRoom" gid="292" x="3024" y="64" width="16" height="16"/>
+  <object id="2707" name="RedRoom" gid="292" x="3008" y="64" width="16" height="16"/>
+  <object id="2709" name="RedRoom" gid="292" x="2992" y="64" width="16" height="16"/>
+  <object id="2710" name="RedRoom" gid="292" x="2832" y="192" width="16" height="16"/>
   <object id="2711" gid="298" x="3088" y="32" width="32" height="32">
    <properties>
     <property name="Alpha" type="int" value="0"/>
@@ -8302,16 +8302,16 @@
     <property name="text" value="If there seems to be no way, you just haven't found it yet."/>
    </properties>
   </object>
-  <object id="2843" name="NotSoSmart" gid="309" x="3728" y="3808" width="16" height="16"/>
-  <object id="2844" name="NotSoSmart" gid="309" x="3744" y="3808" width="16" height="16"/>
-  <object id="2845" name="NotSoSmart" gid="309" x="3760" y="3808" width="16" height="16"/>
-  <object id="2846" name="NotSoSmart" gid="309" x="3760" y="3824" width="16" height="16"/>
-  <object id="2847" name="NotSoSmart" gid="309" x="3760" y="3840" width="16" height="16"/>
+  <object id="2843" name="NotSoSmart" gid="292" x="3728" y="3808" width="16" height="16"/>
+  <object id="2844" name="NotSoSmart" gid="292" x="3744" y="3808" width="16" height="16"/>
+  <object id="2845" name="NotSoSmart" gid="292" x="3760" y="3808" width="16" height="16"/>
+  <object id="2846" name="NotSoSmart" gid="292" x="3760" y="3824" width="16" height="16"/>
+  <object id="2847" name="NotSoSmart" gid="292" x="3760" y="3840" width="16" height="16"/>
   <object id="2848" gid="290" x="3736" y="3744" width="16" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="NotSoSmart"/>
+    <property name="target" value="!NotSoSmart"/>
    </properties>
   </object>
   <object id="2853" name="PushyAF4" gid="293" x="3792" y="3712" width="16" height="16"/>
@@ -8534,15 +8534,15 @@
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="PushMeNot2a"/>
+    <property name="target" value="!PushMeNot2a"/>
    </properties>
   </object>
-  <object id="3047" name="PushMeNot2a" gid="309" x="3824" y="2960" width="16" height="16"/>
-  <object id="3048" name="PushMeNot2b" gid="309" x="3840" y="2944" width="16" height="16"/>
-  <object id="3049" name="PushMeNot2a" gid="309" x="3840" y="2960" width="16" height="16"/>
-  <object id="3050" name="PushMeNot2b" gid="309" x="3856" y="2944" width="16" height="16"/>
-  <object id="3051" name="PushMeNot2a" gid="309" x="3856" y="2960" width="16" height="16"/>
-  <object id="3052" name="PushMeNot2b" gid="309" x="3872" y="2944" width="16" height="16"/>
+  <object id="3047" name="PushMeNot2a" gid="292" x="3824" y="2960" width="16" height="16"/>
+  <object id="3048" name="PushMeNot2b" gid="292" x="3840" y="2944" width="16" height="16"/>
+  <object id="3049" name="PushMeNot2a" gid="292" x="3840" y="2960" width="16" height="16"/>
+  <object id="3050" name="PushMeNot2b" gid="292" x="3856" y="2944" width="16" height="16"/>
+  <object id="3051" name="PushMeNot2a" gid="292" x="3856" y="2960" width="16" height="16"/>
+  <object id="3052" name="PushMeNot2b" gid="292" x="3872" y="2944" width="16" height="16"/>
   <object id="3053" name="PushMeNot1a" gid="292" x="3936" y="3056" width="16" height="16"/>
   <object id="3054" name="PushMeNot1a" gid="292" x="3952" y="3056" width="16" height="16"/>
   <object id="3055" name="PushMeNot1b" gid="292" x="3920" y="3040" width="16" height="16"/>
@@ -8550,18 +8550,18 @@
   <object id="3057" name="PushMeNot1b" gid="292" x="3952" y="3040" width="16" height="16"/>
   <object id="3058" name="PushMeNot1b" gid="292" x="3968" y="3040" width="16" height="16"/>
   <object id="3059" gid="291" x="3968" y="2976" width="16" height="16"/>
-  <object id="3060" name="PushMeNot2b" gid="309" x="3824" y="2944" width="16" height="16"/>
-  <object id="3061" name="PushMeNot2b" gid="309" x="3808" y="2944" width="16" height="16"/>
-  <object id="3062" name="PushMeNot2b" gid="309" x="3792" y="2944" width="16" height="16"/>
-  <object id="3063" name="PushMeNot2b" gid="309" x="3776" y="2944" width="16" height="16"/>
-  <object id="3064" name="PushMeNot2a" gid="309" x="3808" y="2960" width="16" height="16"/>
-  <object id="3065" name="PushMeNot2a" gid="309" x="3792" y="2960" width="16" height="16"/>
+  <object id="3060" name="PushMeNot2b" gid="292" x="3824" y="2944" width="16" height="16"/>
+  <object id="3061" name="PushMeNot2b" gid="292" x="3808" y="2944" width="16" height="16"/>
+  <object id="3062" name="PushMeNot2b" gid="292" x="3792" y="2944" width="16" height="16"/>
+  <object id="3063" name="PushMeNot2b" gid="292" x="3776" y="2944" width="16" height="16"/>
+  <object id="3064" name="PushMeNot2a" gid="292" x="3808" y="2960" width="16" height="16"/>
+  <object id="3065" name="PushMeNot2a" gid="292" x="3792" y="2960" width="16" height="16"/>
   <object id="3066" gid="290" x="3792" y="2880" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="PushMeNot2b"/>
+    <property name="target" value="!PushMeNot2b"/>
    </properties>
   </object>
   <object id="3072" gid="290" x="3984" y="2800" width="16" height="16">
@@ -8569,18 +8569,18 @@
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="PushMeNot3a"/>
+    <property name="target" value="!PushMeNot3a"/>
    </properties>
   </object>
   <object id="3078" gid="291" x="3792" y="2880" width="16" height="16"/>
-  <object id="3080" name="PushMeNot3b" gid="309" x="3936" y="2832" width="16" height="16"/>
-  <object id="3081" name="PushMeNot3a" gid="309" x="3920" y="2848" width="16" height="16"/>
+  <object id="3080" name="PushMeNot3b" gid="292" x="3936" y="2832" width="16" height="16"/>
+  <object id="3081" name="PushMeNot3a" gid="292" x="3920" y="2848" width="16" height="16"/>
   <object id="3083" gid="290" x="3888" y="2800" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="PushMeNot3b !CLogoB"/>
+    <property name="target" value="!PushMeNot3b !CLogoB"/>
    </properties>
   </object>
   <object id="3084" gid="291" x="3888" y="2800" width="16" height="16"/>
@@ -8600,19 +8600,19 @@
     <property name="text" value="Those who walk, fall."/>
    </properties>
   </object>
-  <object id="3095" name="PushMeNot3a" gid="309" x="3888" y="2848" width="16" height="16"/>
-  <object id="3096" name="PushMeNot3b" gid="309" x="3920" y="2832" width="16" height="16"/>
+  <object id="3095" name="PushMeNot3a" gid="292" x="3888" y="2848" width="16" height="16"/>
+  <object id="3096" name="PushMeNot3b" gid="292" x="3920" y="2832" width="16" height="16"/>
   <object id="3098" name="CLogoB" gid="293" x="3872" y="2704" width="16" height="16"/>
   <object id="3099" name="CLogoB" gid="293" x="3872" y="2720" width="16" height="16"/>
   <object id="3100" name="CLogoB" gid="293" x="3872" y="2736" width="16" height="16"/>
-  <object id="3101" name="CLogoR" gid="309" x="3872" y="2784" width="16" height="16"/>
-  <object id="3102" name="CLogoR" gid="309" x="3872" y="2768" width="16" height="16"/>
-  <object id="3103" name="CLogoR" gid="309" x="3872" y="2752" width="16" height="16"/>
-  <object id="3104" name="PushMeNot3a" gid="309" x="3936" y="2816" width="16" height="16"/>
-  <object id="3105" name="PushMeNot3b" gid="309" x="3936" y="2800" width="16" height="16"/>
-  <object id="3106" name="PushMeNot3a" gid="309" x="3904" y="2848" width="16" height="16"/>
-  <object id="3107" name="PushMeNot3b" gid="309" x="3888" y="2832" width="16" height="16"/>
-  <object id="3108" name="PushMeNot3b" gid="309" x="3904" y="2832" width="16" height="16"/>
+  <object id="3101" name="CLogoR" gid="292" x="3872" y="2784" width="16" height="16"/>
+  <object id="3102" name="CLogoR" gid="292" x="3872" y="2768" width="16" height="16"/>
+  <object id="3103" name="CLogoR" gid="292" x="3872" y="2752" width="16" height="16"/>
+  <object id="3104" name="PushMeNot3a" gid="292" x="3936" y="2816" width="16" height="16"/>
+  <object id="3105" name="PushMeNot3b" gid="292" x="3936" y="2800" width="16" height="16"/>
+  <object id="3106" name="PushMeNot3a" gid="292" x="3904" y="2848" width="16" height="16"/>
+  <object id="3107" name="PushMeNot3b" gid="292" x="3888" y="2832" width="16" height="16"/>
+  <object id="3108" name="PushMeNot3b" gid="292" x="3904" y="2832" width="16" height="16"/>
   <object id="3109" name="GrabPlat" type="SoundTarget" x="688" y="160" width="32" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
@@ -8623,16 +8623,16 @@
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
-    <property name="target" value="CLogoR PushMeNot4a"/>
+    <property name="target" value="!CLogoR !PushMeNot4a"/>
    </properties>
   </object>
-  <object id="3111" name="PushMeNot4a" gid="309" x="3888" y="2640" width="16" height="16"/>
-  <object id="3112" name="PushMeNot4a" gid="309" x="3888" y="2624" width="16" height="16"/>
-  <object id="3113" name="PushMeNot4a" gid="309" x="3904" y="2624" width="16" height="16"/>
-  <object id="3114" name="PushMeNot4a" gid="309" x="3904" y="2640" width="16" height="16"/>
-  <object id="3115" name="PushMeNot4a" gid="309" x="3920" y="2640" width="16" height="16"/>
-  <object id="3116" name="PushMeNot4a" gid="309" x="3920" y="2624" width="16" height="16"/>
-  <object id="3117" name="PushMeNot4a" gid="309" x="3936" y="2624" width="16" height="16"/>
+  <object id="3111" name="PushMeNot4a" gid="292" x="3888" y="2640" width="16" height="16"/>
+  <object id="3112" name="PushMeNot4a" gid="292" x="3888" y="2624" width="16" height="16"/>
+  <object id="3113" name="PushMeNot4a" gid="292" x="3904" y="2624" width="16" height="16"/>
+  <object id="3114" name="PushMeNot4a" gid="292" x="3904" y="2640" width="16" height="16"/>
+  <object id="3115" name="PushMeNot4a" gid="292" x="3920" y="2640" width="16" height="16"/>
+  <object id="3116" name="PushMeNot4a" gid="292" x="3920" y="2624" width="16" height="16"/>
+  <object id="3117" name="PushMeNot4a" gid="292" x="3936" y="2624" width="16" height="16"/>
   <object id="3120" name="PushMeNot4b" gid="293" x="3952" y="2640" width="16" height="16"/>
   <object id="3121" name="PushMeNot4b" gid="293" x="3968" y="2624" width="16" height="16"/>
   <object id="3122" name="PushMeNot4b" gid="293" x="3968" y="2640" width="16" height="16"/>
@@ -8702,7 +8702,7 @@
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
-    <property name="target" value="PushMeNot6a !PushMeNot6a0"/>
+    <property name="target" value="PushMeNot6a PushMeNot6a0"/>
    </properties>
   </object>
   <object id="3174" gid="290" x="3976" y="2240" width="16" height="16">
@@ -8710,7 +8710,7 @@
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
-    <property name="target" value="PushMeNot6b !PushMeNot6b0"/>
+    <property name="target" value="PushMeNot6b PushMeNot6b0"/>
    </properties>
   </object>
   <object id="3175" name="PushMeNot6a" gid="293" x="3840" y="2304" width="16" height="16"/>
@@ -8799,19 +8799,19 @@
     <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
-  <object id="3205" name="PushMeNot6a0" gid="309" x="3824" y="2176" width="16" height="16"/>
-  <object id="3206" name="PushMeNot6a0" gid="309" x="3840" y="2176" width="16" height="16"/>
-  <object id="3207" name="PushMeNot6a0" gid="309" x="3856" y="2176" width="16" height="16"/>
-  <object id="3208" name="PushMeNot6a0" gid="309" x="3872" y="2176" width="16" height="16"/>
-  <object id="3209" name="PushMeNot6a0" gid="309" x="3888" y="2176" width="16" height="16"/>
-  <object id="3210" name="PushMeNot6a0" gid="309" x="3904" y="2176" width="16" height="16"/>
-  <object id="3211" name="PushMeNot6a0" gid="309" x="3920" y="2176" width="16" height="16"/>
-  <object id="3212" name="PushMeNot6b0" gid="309" x="3824" y="2192" width="16" height="16"/>
-  <object id="3213" name="PushMeNot6b0" gid="309" x="3840" y="2192" width="16" height="16"/>
-  <object id="3214" name="PushMeNot6b0" gid="309" x="3856" y="2192" width="16" height="16"/>
-  <object id="3215" name="PushMeNot6b0" gid="309" x="3872" y="2192" width="16" height="16"/>
-  <object id="3216" name="PushMeNot6b0" gid="309" x="3888" y="2192" width="16" height="16"/>
-  <object id="3217" name="PushMeNot6b0" gid="309" x="3904" y="2192" width="16" height="16"/>
-  <object id="3218" name="PushMeNot6b0" gid="309" x="3920" y="2192" width="16" height="16"/>
+  <object id="3205" name="PushMeNot6a0" gid="292" x="3824" y="2176" width="16" height="16"/>
+  <object id="3206" name="PushMeNot6a0" gid="292" x="3840" y="2176" width="16" height="16"/>
+  <object id="3207" name="PushMeNot6a0" gid="292" x="3856" y="2176" width="16" height="16"/>
+  <object id="3208" name="PushMeNot6a0" gid="292" x="3872" y="2176" width="16" height="16"/>
+  <object id="3209" name="PushMeNot6a0" gid="292" x="3888" y="2176" width="16" height="16"/>
+  <object id="3210" name="PushMeNot6a0" gid="292" x="3904" y="2176" width="16" height="16"/>
+  <object id="3211" name="PushMeNot6a0" gid="292" x="3920" y="2176" width="16" height="16"/>
+  <object id="3212" name="PushMeNot6b0" gid="292" x="3824" y="2192" width="16" height="16"/>
+  <object id="3213" name="PushMeNot6b0" gid="292" x="3840" y="2192" width="16" height="16"/>
+  <object id="3214" name="PushMeNot6b0" gid="292" x="3856" y="2192" width="16" height="16"/>
+  <object id="3215" name="PushMeNot6b0" gid="292" x="3872" y="2192" width="16" height="16"/>
+  <object id="3216" name="PushMeNot6b0" gid="292" x="3888" y="2192" width="16" height="16"/>
+  <object id="3217" name="PushMeNot6b0" gid="292" x="3904" y="2192" width="16" height="16"/>
+  <object id="3218" name="PushMeNot6b0" gid="292" x="3920" y="2192" width="16" height="16"/>
  </objectgroup>
 </map>
