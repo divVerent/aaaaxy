@@ -78,6 +78,7 @@ type LevelTile struct {
 type WarpZone struct {
 	Name         string
 	InitialState bool
+	Invert       bool
 	PrevTile     m.Pos
 	ToTile       m.Pos
 	Transform    m.Orientation
@@ -366,6 +367,7 @@ func Load(filename string) (*Level, error) {
 		StartTile, EndTile m.Pos
 		Orientation        m.Orientation
 		InitialState       bool
+		Invert             bool
 	}
 	warpZones := map[string][]*RawWarpZone{}
 	for i := range t.ObjectGroups {
@@ -459,11 +461,14 @@ func Load(filename string) (*Level, error) {
 				// WarpZones must be paired by name.
 				name := properties["name"]
 				initialState := properties["initial_state"] != "false" // Default enabled.
+				invert := properties["invert"] == "true"               // Default false.
+				initialState = initialState != invert
 				warpZones[name] = append(warpZones[name], &RawWarpZone{
 					StartTile:    startTile,
 					EndTile:      endTile,
 					Orientation:  orientation,
 					InitialState: initialState,
+					Invert:       invert,
 				})
 				continue
 			}
@@ -566,6 +571,7 @@ func Load(filename string) (*Level, error) {
 					levelTile.WarpZones = append(levelTile.WarpZones, &WarpZone{
 						Name:         warpname,
 						InitialState: from.InitialState,
+						Invert:       from.Invert,
 						PrevTile:     prevPos,
 						ToTile:       toPos,
 						Transform:    transform,

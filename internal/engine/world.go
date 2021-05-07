@@ -666,6 +666,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 		if !overridden {
 			state = warp.InitialState
 		}
+		state = state != warp.Invert
 		if !state {
 			continue
 		}

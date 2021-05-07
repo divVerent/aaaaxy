@@ -24,17 +24,22 @@ import (
 
 // Settable implements the SetState handler for settable entities.
 type Settable struct {
-	State bool
+	State  bool
+	Invert bool
 }
 
 // SetState changes the state of the entity.
 func (s *Settable) SetState(by *engine.Entity, state bool) {
-	s.State = state
+	s.State = state != s.Invert
 }
 
 // Init initializes the initial state of the entity.
 func (s *Settable) Init(sp *level.Spawnable) error {
-	s.State = sp.Properties["initial_state"] != "false" // Default true.
+	if sp.Properties["internal_state"] != "false" {
+		log.Printf("WARNING: deprecated internal_state at %v - move to invert and adjust senders!", sp.Properties["name"])
+	}
+	s.Invert = sp.Properties["invert"] == "true"               // Default false.
+	s.SetState(nil, sp.Properties["initial_state"] != "false") // Default true.
 	return nil
 }
 

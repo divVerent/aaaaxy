@@ -44,6 +44,7 @@
   <property name="delta" type="string"/>
   <property name="height" type="string"/>
   <property name="initial_state" type="bool" default="true"/>
+  <property name="invert" type="bool" default="false"/>
   <property name="rel_delta" type="string"/>
   <property name="solid" type="bool" default="true"/>
  </objecttype>
@@ -72,6 +73,7 @@
  <objecttype name="SetState" color="#ff0000">
   <property name="exclusive_targets" type="string"/>
   <property name="initial_state" type="string"/>
+  <property name="invert" type="bool" default="false"/>
   <property name="send_every_frame" type="bool" default="false"/>
   <property name="send_untouch" type="bool" default="false"/>
   <property name="state" type="bool" default="true"/>
@@ -80,6 +82,7 @@
  <objecttype name="SetStateTarget" color="#ff0000">
   <property name="exclusive_targets" type="string"/>
   <property name="initial_state" type="string"/>
+  <property name="invert" type="bool" default="false"/>
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
@@ -107,6 +110,7 @@
  <objecttype name="Switch" color="#ff0000">
   <property name="exclusive_targets" type="string"/>
   <property name="initial_state" type="string"/>
+  <property name="invert" type="bool" default="false"/>
   <property name="send_every_frame" type="bool" default="false"/>
   <property name="send_untouch" type="bool" default="false"/>
   <property name="state" type="bool" default="true"/>
@@ -119,6 +123,7 @@
   <property name="image_dir" type="string"/>
   <property name="image_region" type="string"/>
   <property name="initial_state" type="bool" default="true"/>
+  <property name="invert" type="bool" default="false"/>
   <property name="map_black_to" type="color"/>
   <property name="map_white_to" type="color"/>
   <property name="no_flip" type="string"/>
@@ -134,6 +139,7 @@
   <property name="alpha" type="string"/>
   <property name="fade_time" type="string" default="0s"/>
   <property name="initial_state" type="bool" default="true"/>
+  <property name="invert" type="bool" default="false"/>
   <property name="map_black_to" type="color"/>
   <property name="map_white_to" type="color"/>
   <property name="no_flip" type="string" default="x"/>
@@ -180,5 +186,6 @@
  </objecttype>
  <objecttype name="WarpZone" color="#ff0000">
   <property name="initial_state" type="bool" default="true"/>
+  <property name="invert" type="bool" default="false"/>
  </objecttype>
 </objecttypes>
