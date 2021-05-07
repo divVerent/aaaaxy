@@ -90,7 +90,7 @@ const (
 	FollowFactor = 24.0
 
 	// FollowMaxDistance is the max distance allowed while following the player.
-	FollowMaxDistance = 16
+	FollowMaxDistance = 32
 
 	// RepelSpeed is the speed at which risers repel each other until they no longer overlap.
 	RepelSpeed = 15 * mixins.SubPixelScale / engine.GameTPS
