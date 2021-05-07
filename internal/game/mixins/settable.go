@@ -35,7 +35,7 @@ func (s *Settable) SetState(by *engine.Entity, state bool) {
 
 // Init initializes the initial state of the entity.
 func (s *Settable) Init(sp *level.Spawnable) error {
-	if sp.Properties["internal_state"] != "false" {
+	if sp.Properties["initial_state"] != "false" {
 		log.Printf("WARNING: deprecated internal_state at %v - move to invert and adjust senders!", sp.Properties["name"])
 	}
 	s.Invert = sp.Properties["invert"] == "true"               // Default false.
