@@ -95,14 +95,14 @@ sub fix_object {
   }
   if ($type eq 'SwitchableSprite') {
     if (!defined $prop{image} && !$el->hasAttribute('gid')) {
-      if (($prop{initial_state} // '') ne 'false') {
+      if (($prop{invert} // '') eq 'true') {
         $el->removeAttribute('type');
         $el->setAttribute('gid', 292);
       } else {
         $el->removeAttribute('type');
         $el->setAttribute('gid', 293);
       }
-      remove_props $el, 'initial_state';
+      remove_props $el, 'invert';
     }
   }
   if ($type eq 'TnihSign') {
@@ -117,12 +117,6 @@ sub fix_object {
   if ($type eq 'AppearBlock') {
     $el->removeAttribute('type');
     $el->setAttribute('gid', 297);
-  }
-  if ($type =~ /^Switchable.*/ || ($prop{switchable} // '') eq 'true') {
-    my $name = $el->hasAttribute('name') ? $el->getAttribute('name') : $el->getAttribute('id');
-    if (($prop{initial_state} // '') ne 'false') {
-      warn "Object $name is a deprecated $type";
-    }
   }
 }
 

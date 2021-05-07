@@ -31,7 +31,7 @@ type SwitchableSprite struct {
 func (s *SwitchableSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	// Default sprites for easy mapping and coherence.
 	if sp.Properties["image"] == "" {
-		if sp.Properties["initial_state"] != "false" != (sp.Properties["invert"] == "true") { // Default true, false.
+		if sp.Properties["invert"] == "true" { // Default false.
 			// This block shows by default, and thus whenever it is "off".
 			sp.Properties["image"] = "switchblock_off.png"
 		} else {

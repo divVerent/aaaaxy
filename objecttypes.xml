@@ -113,7 +113,6 @@
  <objecttype name="SwitchableJumpPad" color="#ff00ff">
   <property name="delta" type="string"/>
   <property name="height" type="string"/>
-  <property name="initial_state" type="bool" default="true"/>
   <property name="invert" type="bool" default="false"/>
   <property name="rel_delta" type="string"/>
   <property name="solid" type="bool" default="true"/>
@@ -124,7 +123,6 @@
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>
   <property name="image_region" type="string"/>
-  <property name="initial_state" type="bool" default="true"/>
   <property name="invert" type="bool" default="false"/>
   <property name="map_black_to" type="color"/>
   <property name="map_white_to" type="color"/>
@@ -140,7 +138,6 @@
  <objecttype name="SwitchableText" color="#ffffff">
   <property name="alpha" type="string"/>
   <property name="fade_time" type="string" default="0s"/>
-  <property name="initial_state" type="bool" default="true"/>
   <property name="invert" type="bool" default="false"/>
   <property name="map_black_to" type="color"/>
   <property name="map_white_to" type="color"/>
@@ -187,7 +184,6 @@
   <property name="text" type="string"/>
  </objecttype>
  <objecttype name="WarpZone" color="#ff0000">
-  <property name="initial_state" type="bool" default="true"/>
   <property name="invert" type="bool" default="false"/>
   <property name="switchable" type="bool" default="false"/>
  </objecttype>

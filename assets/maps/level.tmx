@@ -1022,14 +1022,12 @@
    <properties>
     <property name="delta" value="216 -352"/>
     <property name="height" value="64"/>
-    <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="257" name="BingPads" type="SwitchableJumpPad" x="956" y="6272" width="4" height="4">
    <properties>
     <property name="delta" value="-120 -352"/>
     <property name="height" value="64"/>
-    <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="264" name="bings_house" type="Checkpoint" x="608" y="6240" width="352" height="32">
@@ -1050,14 +1048,12 @@
   <object id="275" name="BingPads" type="SwitchableSprite" x="608" y="6240" width="32" height="32">
    <properties>
     <property name="image" value="arrow32d.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="orientation" value="NE"/>
    </properties>
   </object>
   <object id="276" name="BingPads" type="SwitchableSprite" x="928" y="6240" width="32" height="32">
    <properties>
     <property name="image" value="arrow32d.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="orientation" value="WN"/>
    </properties>
   </object>
@@ -1323,7 +1319,6 @@
   <object id="387" gid="297" x="4080" y="7600" width="16" height="16"/>
   <object id="388" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4032" y="7600" width="16" height="16">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="389" type="SetState" x="4048" y="7536" width="16" height="16">
@@ -4834,7 +4829,6 @@
   <object id="1043" name="Box4E" gid="275" x="6048" y="6400" width="16" height="160"/>
   <object id="1046" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4048" y="7600" width="16" height="16">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="1048" gid="297" x="4064" y="7600" width="16" height="16"/>
@@ -5382,13 +5376,11 @@
   </object>
   <object id="1184" name="InfiniteHotelEntrance" gid="281" x="4560" y="5232" width="16" height="64">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1185" name="InfiniteHotelEntrance" gid="275" x="5536" y="5232" width="16" height="64">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
@@ -5414,13 +5406,11 @@
   </object>
   <object id="1190" name="InfiniteHotelExit" gid="281" x="4544" y="5232" width="16" height="64">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1191" name="InfiniteHotelExit" gid="275" x="4560" y="5520" width="16" height="64">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
@@ -5752,7 +5742,6 @@
   </object>
   <object id="1266" name="ShepardOpenBlocks" type="SwitchableSprite" gid="16" x="4256" y="5888" width="112" height="16">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
    </properties>
   </object>
@@ -5765,14 +5754,12 @@
   <object id="1275" gid="288" x="4208" y="5552" width="32" height="32"/>
   <object id="1277" name="ShepardOpenBlocks" gid="279" x="4256" y="5904" width="112" height="16">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1278" name="ShepardOpenBlocks" gid="277" x="4416" y="5616" width="112" height="16">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
@@ -5814,25 +5801,21 @@
   </object>
   <object id="1287" name="AxiomOfChoiceTop" gid="275" x="5264" y="6240" width="16" height="32">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1288" name="AxiomOfChoiceBottom" gid="275" x="5264" y="6400" width="16" height="32">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1289" name="AxiomOfChoiceTop" gid="281" x="4400" y="6320" width="16" height="32">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1290" name="AxiomOfChoiceBottom" gid="281" x="4400" y="6320" width="16" height="32">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
@@ -5860,7 +5843,6 @@
   </object>
   <object id="1299" name="AxiomOfChoiceOut" gid="281" x="4400" y="6320" width="16" height="32">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
@@ -5890,7 +5872,6 @@
   </object>
   <object id="1305" name="AxiomOfChoiceOut" gid="275" x="5280" y="6176" width="16" height="32">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
@@ -5977,7 +5958,6 @@
   <object id="1359" gid="296" x="4726" y="6043" width="16" height="16"/>
   <object id="1360" name="TurtlesOut" type="SwitchableSprite" gid="16" x="5032" y="6144" width="64" height="16">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
    </properties>
   </object>
@@ -6022,7 +6002,6 @@
   <object id="1375" name="LookedUp" type="SwitchableSprite" x="64" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6030,7 +6009,6 @@
   <object id="1377" name="LookedUp" type="SwitchableSprite" x="80" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6038,7 +6016,6 @@
   <object id="1378" name="LookedUp" type="SwitchableSprite" x="96" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6046,7 +6023,6 @@
   <object id="1379" name="LookedUp" type="SwitchableSprite" x="112" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6054,7 +6030,6 @@
   <object id="1380" name="LookedUp" type="SwitchableSprite" x="128" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6062,7 +6037,6 @@
   <object id="1381" name="LookedUp" type="SwitchableSprite" x="144" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6070,7 +6044,6 @@
   <object id="1382" name="LookedUp" type="SwitchableSprite" x="160" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6078,7 +6051,6 @@
   <object id="1383" name="LookedUp" type="SwitchableSprite" x="176" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6086,7 +6058,6 @@
   <object id="1384" name="LookedUp" type="SwitchableSprite" x="192" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6094,7 +6065,6 @@
   <object id="1385" name="LookedUp" type="SwitchableSprite" x="208" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6102,7 +6072,6 @@
   <object id="1386" name="LookedUp" type="SwitchableSprite" x="224" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6110,7 +6079,6 @@
   <object id="1387" name="LookedUp" type="SwitchableSprite" x="240" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6118,7 +6086,6 @@
   <object id="1388" name="LookedUp" type="SwitchableSprite" x="256" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6126,7 +6093,6 @@
   <object id="1389" name="LookedUp" type="SwitchableSprite" x="272" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6134,7 +6100,6 @@
   <object id="1390" name="LookedUp" type="SwitchableSprite" x="288" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6142,7 +6107,6 @@
   <object id="1391" name="LookedUp" type="SwitchableSprite" x="304" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6150,7 +6114,6 @@
   <object id="1392" name="LookedUp" type="SwitchableSprite" x="320" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6158,7 +6121,6 @@
   <object id="1393" name="LookedUp" type="SwitchableSprite" x="336" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6166,7 +6128,6 @@
   <object id="1394" name="LookedUp" type="SwitchableSprite" x="352" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6174,7 +6135,6 @@
   <object id="1395" name="LookedUp" type="SwitchableSprite" x="368" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6182,7 +6142,6 @@
   <object id="1396" name="LookedUp" type="SwitchableSprite" x="384" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6190,7 +6149,6 @@
   <object id="1397" name="LookedUp" type="SwitchableSprite" x="400" y="320" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
@@ -6277,7 +6235,6 @@
    <properties>
     <property name="fade_time" value="10s"/>
     <property name="image" value="esc.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
@@ -6286,7 +6243,6 @@
    <properties>
     <property name="fade_time" value="10s"/>
     <property name="image" value="esc.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
@@ -6295,7 +6251,6 @@
    <properties>
     <property name="fade_time" value="10s"/>
     <property name="image" value="esc.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="no_flip" value="x"/>
     <property name="orientation" value="WN"/>
     <property name="z_index" type="int" value="1"/>
@@ -6822,7 +6777,6 @@
   <object id="1694" name="ThreePlatformsBackground" type="SwitchableSprite" x="832" y="7824" width="336" height="336">
    <properties>
     <property name="image" value="gradient_outside_inside.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
     <property name="map_black_to" type="color" value="#00555555"/>
     <property name="map_white_to" type="color" value="#ff555555"/>
@@ -6858,7 +6812,6 @@
   </object>
   <object id="1707" name="ThreePlatformsDarkness" type="SwitchableSprite" gid="16" x="968" y="8112" width="64" height="16">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="1711" type="SwitchMusic" x="976" y="7984" width="48" height="16"/>
@@ -6905,7 +6858,6 @@
   <object id="1722" gid="287" x="4056" y="1632" width="32" height="32"/>
   <object id="1723" name="ThreePlatformsDarkness" type="SwitchableSprite" gid="56" x="4048" y="1600" width="48" height="480">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="1724" type="SetState" x="4016" y="1600" width="112" height="32">
@@ -6962,7 +6914,6 @@
   </object>
   <object id="1749" name="NotThatSimpleExit" type="SwitchableSprite" gid="26" x="6336" y="7784" width="16" height="80">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="1753" gid="291" x="7568" y="7216" width="16" height="16"/>
@@ -6986,7 +6937,6 @@
   </object>
   <object id="1762" name="HelloWorld" type="SwitchableSprite" gid="26" x="7936" y="6928" width="16" height="80">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
    </properties>
   </object>
@@ -7006,7 +6956,6 @@
   </object>
   <object id="1767" name="HelloWorldCloser" type="SwitchableSprite" gid="26" x="7952" y="6928" width="16" height="80">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="1768" type="SetState" x="8000" y="6896" width="16" height="112">
@@ -7017,7 +6966,6 @@
   <object id="1769" name="HelloWorldCloser" type="SwitchableSprite" x="7968" y="6896" width="192" height="112">
    <properties>
     <property name="image" value="code.png"/>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
@@ -7786,13 +7734,11 @@
   </object>
   <object id="2323" name="Xyzzy" type="SwitchableSprite" gid="26" x="960" y="120" width="16" height="48">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="invert" type="bool" value="true"/>
    </properties>
   </object>
   <object id="2324" name="XyzzyCloser" type="SwitchableText" x="1008" y="32" width="128" height="112">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
     <property name="text" value="You are in a  maze of twisted  little passages,  all alike."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -7807,7 +7753,6 @@
   </object>
   <object id="2326" name="XyzzyCloser" type="SwitchableSprite" gid="26" x="976" y="120" width="16" height="48">
    <properties>
-    <property name="initial_state" type="bool" value="false"/>
    </properties>
   </object>
   <object id="2327" type="SetState" x="1024" y="16" width="16" height="144">

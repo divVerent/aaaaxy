@@ -76,13 +76,12 @@ type LevelTile struct {
 // is ensured at load time. Warpzones can be temporarily toggled by name; this
 // state is lost on checkpoint restore.
 type WarpZone struct {
-	Name         string
-	InitialState bool
-	Invert       bool
-	Switchable   bool
-	PrevTile     m.Pos
-	ToTile       m.Pos
-	Transform    m.Orientation
+	Name       string
+	Invert     bool
+	Switchable bool
+	PrevTile   m.Pos
+	ToTile     m.Pos
+	Transform  m.Orientation
 }
 
 // SaveGameData is a not-yet-hashed SaveGame.
@@ -367,7 +366,6 @@ func Load(filename string) (*Level, error) {
 	type RawWarpZone struct {
 		StartTile, EndTile m.Pos
 		Orientation        m.Orientation
-		InitialState       bool
 		Invert             bool
 		Switchable         bool
 	}
@@ -462,16 +460,14 @@ func Load(filename string) (*Level, error) {
 			if properties["type"] == "WarpZone" {
 				// WarpZones must be paired by name.
 				name := properties["name"]
-				initialState := properties["initial_state"] != "false" // Default enabled.
-				invert := properties["invert"] == "true"               // Default false.
-				switchable := properties["switchable"] == "true"       // Default false.
+				invert := properties["invert"] == "true"         // Default false.
+				switchable := properties["switchable"] == "true" // Default false.
 				warpZones[name] = append(warpZones[name], &RawWarpZone{
-					StartTile:    startTile,
-					EndTile:      endTile,
-					Orientation:  orientation,
-					InitialState: initialState,
-					Switchable:   switchable,
-					Invert:       invert,
+					StartTile:   startTile,
+					EndTile:     endTile,
+					Orientation: orientation,
+					Switchable:  switchable,
+					Invert:      invert,
 				})
 				continue
 			}
@@ -572,13 +568,12 @@ func Load(filename string) (*Level, error) {
 						return nil, fmt.Errorf("invalid WarpZone destination location: outside map bounds: %v in %v", toPos, warppair)
 					}
 					levelTile.WarpZones = append(levelTile.WarpZones, &WarpZone{
-						Name:         warpname,
-						InitialState: from.InitialState,
-						Invert:       from.Invert,
-						Switchable:   from.Switchable,
-						PrevTile:     prevPos,
-						ToTile:       toPos,
-						Transform:    transform,
+						Name:       warpname,
+						Invert:     from.Invert,
+						Switchable: from.Switchable,
+						PrevTile:   prevPos,
+						ToTile:     toPos,
+						Transform:  transform,
 					})
 				}
 			}

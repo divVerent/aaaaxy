@@ -103,7 +103,6 @@
   <properties>
    <property name="image_dir" value=""/>
    <property name="image" value=""/>
-   <property name="initial_state" type="bool" value="false"/>
    <property name="invert" type="bool" value="true"/>
   </properties>
   <image width="16" height="16" source="switchblock_off.png"/>
@@ -112,7 +111,6 @@
   <properties>
    <property name="image_dir" value=""/>
    <property name="image" value=""/>
-   <property name="initial_state" type="bool" value="false"/>
    <property name="invert" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="switchblock_on.png"/>
