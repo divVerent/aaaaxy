@@ -34,8 +34,8 @@ sub fix_object {
   $el->hasAttribute('type') or return;
   my $type = $el->getAttribute('type');
   ++$objects{$type};
+  my %prop = props $el;
   if ($type eq 'Sprite') {
-    my %prop = props $el;
     my $img = $prop{image};
     ++$objects{'Sprite=' . $img};
     if ($img eq 'playerclip.png') {
@@ -77,7 +77,6 @@ sub fix_object {
     $el->setAttribute('gid', 285);
   }
   if ($type eq 'OneWay') {
-    my %prop = props $el;
     my $orientation = $prop{orientation} // 'ES';
     remove_props $el, 'orientation';
     $el->removeAttribute('type');
@@ -95,7 +94,6 @@ sub fix_object {
     $el->setAttribute('gid', 291);
   }
   if ($type eq 'SwitchableSprite') {
-    my %prop = props $el;
     if (!defined $prop{image} && !$el->hasAttribute('gid')) {
       if (($prop{initial_state} // '') ne 'false') {
         $el->removeAttribute('type');
@@ -112,7 +110,6 @@ sub fix_object {
     $el->setAttribute('gid', 294);
   }
   if ($type eq 'QuestionBlock') {
-    my %prop = props $el;
     remove_props $el, 'kaizo';
     $el->removeAttribute('type');
     $el->setAttribute('gid', (($prop{kaizo} // '') eq 'true') ? 296 : 295);
@@ -120,6 +117,12 @@ sub fix_object {
   if ($type eq 'AppearBlock') {
     $el->removeAttribute('type');
     $el->setAttribute('gid', 297);
+  }
+  if ($type =~ /^Switchable.*/ || ($prop{switchable} // '') eq 'true') {
+    my $name = $el->hasAttribute('name') ? $el->getAttribute('name') : $el->getAttribute('id');
+    if (($prop{initial_state} // '') ne 'false') {
+      warn "Object $name is a deprecated $type";
+    }
   }
 }
 

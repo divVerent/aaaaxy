@@ -79,6 +79,7 @@ type WarpZone struct {
 	Name         string
 	InitialState bool
 	Invert       bool
+	Switchable   bool
 	PrevTile     m.Pos
 	ToTile       m.Pos
 	Transform    m.Orientation
@@ -462,12 +463,13 @@ func Load(filename string) (*Level, error) {
 				name := properties["name"]
 				initialState := properties["initial_state"] != "false" // Default enabled.
 				invert := properties["invert"] == "true"               // Default false.
-				initialState = initialState != invert
+				switchable := properties["switchable"] == "true"       // Default false.
 				warpZones[name] = append(warpZones[name], &RawWarpZone{
 					StartTile:    startTile,
 					EndTile:      endTile,
 					Orientation:  orientation,
 					InitialState: initialState,
+					Switchable:   switchable,
 					Invert:       invert,
 				})
 				continue
@@ -572,6 +574,7 @@ func Load(filename string) (*Level, error) {
 						Name:         warpname,
 						InitialState: from.InitialState,
 						Invert:       from.Invert,
+						Switchable:   from.Switchable,
 						PrevTile:     prevPos,
 						ToTile:       toPos,
 						Transform:    transform,
