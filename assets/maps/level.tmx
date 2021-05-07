@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3219">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3220">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -6970,14 +6970,14 @@
    <properties>
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
-    <property name="state" type="bool" value="false"/>
+    <property name="state" type="bool" value="true"/>
     <property name="target" value="open"/>
    </properties>
   </object>
-  <object id="1781" name="open" gid="309" x="7504" y="7040" width="16" height="16"/>
-  <object id="1782" name="open" gid="309" x="7504" y="7056" width="16" height="16"/>
-  <object id="1783" name="open" gid="309" x="7504" y="7072" width="16" height="16"/>
-  <object id="1784" name="open" gid="309" x="7504" y="7088" width="16" height="16"/>
+  <object id="1781" name="open" gid="292" x="7504" y="7040" width="16" height="16"/>
+  <object id="1782" name="open" gid="292" x="7504" y="7056" width="16" height="16"/>
+  <object id="1783" name="open" gid="292" x="7504" y="7072" width="16" height="16"/>
+  <object id="1784" name="open" gid="292" x="7504" y="7088" width="16" height="16"/>
   <object id="1785" gid="291" x="7392" y="7168" width="16" height="16"/>
   <object id="1786" gid="290" x="7424" y="7136" width="16" height="16">
    <properties>
@@ -7302,7 +7302,7 @@
    <properties>
     <property name="send_every_frame" type="bool" value="false"/>
     <property name="send_untouch" type="bool" value="true"/>
-    <property name="state" type="bool" value="false"/>
+    <property name="state" type="bool" value="true"/>
     <property name="target" value="BlockOut"/>
    </properties>
   </object>
@@ -7369,8 +7369,8 @@
   <object id="2152" gid="283" x="6928" y="6944" width="16" height="16"/>
   <object id="2153" gid="283" x="6944" y="6944" width="16" height="16"/>
   <object id="2154" gid="283" x="6960" y="6944" width="16" height="16"/>
-  <object id="2155" name="BlockOut" gid="309" x="6496" y="7008" width="16" height="16"/>
-  <object id="2156" name="BlockOut" gid="309" x="6496" y="7024" width="16" height="16"/>
+  <object id="2155" name="BlockOut" gid="292" x="6496" y="7008" width="16" height="16"/>
+  <object id="2156" name="BlockOut" gid="292" x="6496" y="7024" width="16" height="16"/>
   <object id="2157" gid="298" x="7024" y="6976" width="32" height="32">
    <properties>
     <property name="map_black_to" type="color" value="#ff5555ff"/>
@@ -7386,121 +7386,113 @@
    </properties>
   </object>
   <object id="2159" gid="291" x="6160" y="7472" width="32" height="16"/>
-  <object id="2160" gid="290" x="6168" y="6896" width="16" height="16">
-   <properties>
-    <property name="send_every_frame" type="bool" value="false"/>
-    <property name="send_untouch" type="bool" value="true"/>
-    <property name="state" type="bool" value="false"/>
-    <property name="target" value="BlockOut"/>
-   </properties>
-  </object>
-  <object id="2161" name="BlockOut1" gid="309" x="6256" y="7440" width="16" height="16"/>
-  <object id="2162" name="BlockOut1" gid="309" x="6272" y="7440" width="16" height="16"/>
-  <object id="2163" name="BlockOut1" gid="309" x="6288" y="7440" width="16" height="16"/>
-  <object id="2164" name="BlockOut2" gid="309" x="6320" y="7392" width="16" height="16"/>
-  <object id="2165" name="BlockOut2" gid="309" x="6336" y="7392" width="16" height="16"/>
-  <object id="2166" name="BlockOut2" gid="309" x="6352" y="7392" width="16" height="16"/>
-  <object id="2167" name="BlockOut3" gid="309" x="6208" y="7344" width="16" height="16"/>
-  <object id="2168" name="BlockOut3" gid="309" x="6224" y="7344" width="16" height="16"/>
-  <object id="2169" name="BlockOut4" gid="309" x="6384" y="7296" width="16" height="16"/>
-  <object id="2170" name="BlockOut4" gid="309" x="6400" y="7296" width="16" height="16"/>
-  <object id="2171" name="BlockOut5" gid="309" x="6208" y="7248" width="16" height="16"/>
-  <object id="2172" name="BlockOut5" gid="309" x="6224" y="7248" width="16" height="16"/>
-  <object id="2173" name="BlockOut5" gid="309" x="6384" y="7248" width="16" height="16"/>
-  <object id="2174" name="BlockOut5" gid="309" x="6400" y="7248" width="16" height="16"/>
-  <object id="2175" name="BlockOut6" gid="309" x="6208" y="7200" width="16" height="16"/>
-  <object id="2176" name="BlockOut6" gid="309" x="6224" y="7200" width="16" height="16"/>
-  <object id="2177" name="BlockOut6" gid="309" x="6384" y="7200" width="16" height="16"/>
-  <object id="2178" name="BlockOut6" gid="309" x="6400" y="7200" width="16" height="16"/>
-  <object id="2179" name="BlockOut7" gid="309" x="6256" y="7152" width="16" height="16"/>
-  <object id="2180" name="BlockOut7" gid="309" x="6272" y="7152" width="16" height="16"/>
-  <object id="2181" name="BlockOut7" gid="309" x="6288" y="7152" width="16" height="16"/>
-  <object id="2182" name="BlockOut7" gid="309" x="6320" y="7152" width="16" height="16"/>
-  <object id="2183" name="BlockOut7" gid="309" x="6336" y="7152" width="16" height="16"/>
-  <object id="2184" name="BlockOut7" gid="309" x="6352" y="7152" width="16" height="16"/>
-  <object id="2185" name="BlockOut8" gid="309" x="6256" y="7104" width="16" height="16"/>
-  <object id="2186" name="BlockOut8" gid="309" x="6272" y="7104" width="16" height="16"/>
-  <object id="2187" name="BlockOut8" gid="309" x="6288" y="7104" width="16" height="16"/>
-  <object id="2188" name="BlockOut9" gid="309" x="6208" y="7056" width="16" height="16"/>
-  <object id="2189" name="BlockOut9" gid="309" x="6224" y="7056" width="16" height="16"/>
-  <object id="2190" name="BlockOut9" gid="309" x="6384" y="7056" width="16" height="16"/>
-  <object id="2191" name="BlockOut9" gid="309" x="6400" y="7056" width="16" height="16"/>
-  <object id="2192" name="BlockOut10" gid="309" x="6256" y="7008" width="16" height="16"/>
-  <object id="2193" name="BlockOut10" gid="309" x="6272" y="7008" width="16" height="16"/>
-  <object id="2194" name="BlockOut10" gid="309" x="6288" y="7008" width="16" height="16"/>
-  <object id="2195" name="BlockOut10" gid="309" x="6320" y="7008" width="16" height="16"/>
-  <object id="2196" name="BlockOut10" gid="309" x="6336" y="7008" width="16" height="16"/>
-  <object id="2197" name="BlockOut10" gid="309" x="6352" y="7008" width="16" height="16"/>
-  <object id="2198" name="BlockOut11" gid="309" x="6208" y="6960" width="16" height="16"/>
-  <object id="2199" name="BlockOut11" gid="309" x="6224" y="6960" width="16" height="16"/>
-  <object id="2200" name="BlockOut11" gid="309" x="6320" y="6960" width="16" height="16"/>
-  <object id="2201" name="BlockOut11" gid="309" x="6336" y="6960" width="16" height="16"/>
-  <object id="2202" name="BlockOut11" gid="309" x="6352" y="6960" width="16" height="16"/>
+  <object id="2161" name="BlockOut1" gid="292" x="6256" y="7440" width="16" height="16"/>
+  <object id="2162" name="BlockOut1" gid="292" x="6272" y="7440" width="16" height="16"/>
+  <object id="2163" name="BlockOut1" gid="292" x="6288" y="7440" width="16" height="16"/>
+  <object id="2164" name="BlockOut2" gid="292" x="6320" y="7392" width="16" height="16"/>
+  <object id="2165" name="BlockOut2" gid="292" x="6336" y="7392" width="16" height="16"/>
+  <object id="2166" name="BlockOut2" gid="292" x="6352" y="7392" width="16" height="16"/>
+  <object id="2167" name="BlockOut3" gid="292" x="6208" y="7344" width="16" height="16"/>
+  <object id="2168" name="BlockOut3" gid="292" x="6224" y="7344" width="16" height="16"/>
+  <object id="2169" name="BlockOut4" gid="292" x="6384" y="7296" width="16" height="16"/>
+  <object id="2170" name="BlockOut4" gid="292" x="6400" y="7296" width="16" height="16"/>
+  <object id="2171" name="BlockOut5" gid="292" x="6208" y="7248" width="16" height="16"/>
+  <object id="2172" name="BlockOut5" gid="292" x="6224" y="7248" width="16" height="16"/>
+  <object id="2173" name="BlockOut5" gid="292" x="6384" y="7248" width="16" height="16"/>
+  <object id="2174" name="BlockOut5" gid="292" x="6400" y="7248" width="16" height="16"/>
+  <object id="2175" name="BlockOut6" gid="292" x="6208" y="7200" width="16" height="16"/>
+  <object id="2176" name="BlockOut6" gid="292" x="6224" y="7200" width="16" height="16"/>
+  <object id="2177" name="BlockOut6" gid="292" x="6384" y="7200" width="16" height="16"/>
+  <object id="2178" name="BlockOut6" gid="292" x="6400" y="7200" width="16" height="16"/>
+  <object id="2179" name="BlockOut7" gid="292" x="6256" y="7152" width="16" height="16"/>
+  <object id="2180" name="BlockOut7" gid="292" x="6272" y="7152" width="16" height="16"/>
+  <object id="2181" name="BlockOut7" gid="292" x="6288" y="7152" width="16" height="16"/>
+  <object id="2182" name="BlockOut7" gid="292" x="6320" y="7152" width="16" height="16"/>
+  <object id="2183" name="BlockOut7" gid="292" x="6336" y="7152" width="16" height="16"/>
+  <object id="2184" name="BlockOut7" gid="292" x="6352" y="7152" width="16" height="16"/>
+  <object id="2185" name="BlockOut8" gid="292" x="6256" y="7104" width="16" height="16"/>
+  <object id="2186" name="BlockOut8" gid="292" x="6272" y="7104" width="16" height="16"/>
+  <object id="2187" name="BlockOut8" gid="292" x="6288" y="7104" width="16" height="16"/>
+  <object id="2188" name="BlockOut9" gid="292" x="6208" y="7056" width="16" height="16"/>
+  <object id="2189" name="BlockOut9" gid="292" x="6224" y="7056" width="16" height="16"/>
+  <object id="2190" name="BlockOut9" gid="292" x="6384" y="7056" width="16" height="16"/>
+  <object id="2191" name="BlockOut9" gid="292" x="6400" y="7056" width="16" height="16"/>
+  <object id="2192" name="BlockOut10" gid="292" x="6256" y="7008" width="16" height="16"/>
+  <object id="2193" name="BlockOut10" gid="292" x="6272" y="7008" width="16" height="16"/>
+  <object id="2194" name="BlockOut10" gid="292" x="6288" y="7008" width="16" height="16"/>
+  <object id="2195" name="BlockOut10" gid="292" x="6320" y="7008" width="16" height="16"/>
+  <object id="2196" name="BlockOut10" gid="292" x="6336" y="7008" width="16" height="16"/>
+  <object id="2197" name="BlockOut10" gid="292" x="6352" y="7008" width="16" height="16"/>
+  <object id="2198" name="BlockOut11" gid="292" x="6208" y="6960" width="16" height="16"/>
+  <object id="2199" name="BlockOut11" gid="292" x="6224" y="6960" width="16" height="16"/>
+  <object id="2200" name="BlockOut11" gid="292" x="6320" y="6960" width="16" height="16"/>
+  <object id="2201" name="BlockOut11" gid="292" x="6336" y="6960" width="16" height="16"/>
+  <object id="2202" name="BlockOut11" gid="292" x="6352" y="6960" width="16" height="16"/>
   <object id="2203" type="SetState" x="6160" y="7440" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut0 !BlockOut1"/>
+    <property name="target" value="BlockOut1 BlockOutSound"/>
    </properties>
   </object>
   <object id="2204" type="SetState" x="6160" y="7392" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut1 !BlockOut2"/>
+    <property name="target" value="!BlockOut1 BlockOut2 BlockOutSound"/>
    </properties>
   </object>
   <object id="2205" type="SetState" x="6160" y="7344" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut1 BlockOut2 !BlockOut3"/>
+    <property name="target" value="BlockOut1 !BlockOut2 BlockOut3 BlockOutSound"/>
    </properties>
   </object>
   <object id="2206" type="SetState" x="6160" y="7296" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut2 BlockOut3 !BlockOut4"/>
+    <property name="target" value="BlockOut2 !BlockOut3 BlockOut4 BlockOutSound"/>
    </properties>
   </object>
   <object id="2207" type="SetState" x="6160" y="7248" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut3 BlockOut4 !BlockOut5"/>
+    <property name="target" value="BlockOut3 !BlockOut4 BlockOut5 BlockOutSound"/>
    </properties>
   </object>
   <object id="2208" type="SetState" x="6160" y="7200" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut4 BlockOut5 !BlockOut6"/>
+    <property name="target" value="BlockOut4 !BlockOut5 BlockOut6 BlockOutSound"/>
    </properties>
   </object>
   <object id="2209" type="SetState" x="6160" y="7152" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut5 BlockOut6 !BlockOut7"/>
+    <property name="target" value="BlockOut5 !BlockOut6 BlockOut7 BlockOutSound"/>
    </properties>
   </object>
   <object id="2210" type="SetState" x="6160" y="7104" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut6 BlockOut7 !BlockOut8"/>
+    <property name="target" value="BlockOut6 !BlockOut7 BlockOut8 BlockOutSound"/>
    </properties>
   </object>
   <object id="2211" type="SetState" x="6160" y="7056" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut7 BlockOut8 !BlockOut9"/>
+    <property name="target" value="BlockOut7 !BlockOut8 BlockOut9 BlockOutSound"/>
    </properties>
   </object>
   <object id="2212" type="SetState" x="6160" y="7008" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut8 BlockOut9 !BlockOut10"/>
+    <property name="target" value="BlockOut8 !BlockOut9 BlockOut10 BlockOutSound"/>
    </properties>
   </object>
   <object id="2213" type="SetState" x="6160" y="6960" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut9 BlockOut10 !BlockOut11"/>
+    <property name="target" value="BlockOut9 !BlockOut10 BlockOut11 BlockOutSound"/>
    </properties>
   </object>
   <object id="2214" type="SetState" x="6160" y="6912" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut10 BlockOut11"/>
+    <property name="target" value="BlockOut10 !BlockOut11 BlockOutSound"/>
    </properties>
   </object>
   <object id="2215" gid="288" x="6192" y="7024" width="32" height="32"/>
   <object id="2216" gid="288" x="6192" y="7216" width="32" height="32"/>
   <object id="2217" gid="286" x="6192" y="7408" width="32" height="32"/>
-  <object id="2218" name="BlockOut8" gid="309" x="6384" y="7104" width="16" height="16"/>
-  <object id="2219" name="BlockOut8" gid="309" x="6400" y="7104" width="16" height="16"/>
+  <object id="2218" name="BlockOut8" gid="292" x="6384" y="7104" width="16" height="16"/>
+  <object id="2219" name="BlockOut8" gid="292" x="6400" y="7104" width="16" height="16"/>
   <object id="2220" gid="294" x="6384" y="7024" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1793"/>
@@ -8739,66 +8731,6 @@
   <object id="3190" gid="284" x="3808" y="2576" width="16" height="16"/>
   <object id="3191" gid="284" x="3760" y="2576" width="16" height="16"/>
   <object id="3192" gid="285" x="4000" y="2352" width="16" height="16"/>
-  <object id="3193" name="BlockOut0" type="SoundTarget" x="6192" y="7440" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3194" name="BlockOut1" type="SoundTarget" x="6192" y="7392" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3195" name="BlockOut2" type="SoundTarget" x="6192" y="7344" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3196" name="BlockOut3" type="SoundTarget" x="6192" y="7296" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3197" name="BlockOut4" type="SoundTarget" x="6192" y="7248" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3198" name="BlockOut5" type="SoundTarget" x="6192" y="7200" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3199" name="BlockOut6" type="SoundTarget" x="6192" y="7152" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3200" name="BlockOut7" type="SoundTarget" x="6192" y="7104" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3201" name="BlockOut8" type="SoundTarget" x="6192" y="7056" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3202" name="BlockOut9" type="SoundTarget" x="6192" y="7008" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3203" name="BlockOut10" type="SoundTarget" x="6192" y="6960" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
-  <object id="3204" name="BlockOut11" type="SoundTarget" x="6192" y="6912" width="16" height="16">
-   <properties>
-    <property name="sound" value="timedplatform.ogg"/>
-   </properties>
-  </object>
   <object id="3205" name="PushMeNot6a0" gid="292" x="3824" y="2176" width="16" height="16"/>
   <object id="3206" name="PushMeNot6a0" gid="292" x="3840" y="2176" width="16" height="16"/>
   <object id="3207" name="PushMeNot6a0" gid="292" x="3856" y="2176" width="16" height="16"/>
@@ -8813,5 +8745,10 @@
   <object id="3216" name="PushMeNot6b0" gid="292" x="3888" y="2192" width="16" height="16"/>
   <object id="3217" name="PushMeNot6b0" gid="292" x="3904" y="2192" width="16" height="16"/>
   <object id="3218" name="PushMeNot6b0" gid="292" x="3920" y="2192" width="16" height="16"/>
+  <object id="3219" name="BlockOutSound" type="SoundTarget" x="6192" y="6912" width="16" height="544">
+   <properties>
+    <property name="sound" value="timedplatform.ogg"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

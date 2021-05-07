@@ -214,13 +214,4 @@
   </properties>
   <image width="32" height="32" source="editorimgs/arrow32_se.png"/>
  </tile>
- <tile id="35" type="SwitchableSprite">
-  <properties>
-   <property name="image_dir" value=""/>
-   <property name="image" value=""/>
-   <property name="initial_state" type="bool" value="true"/>
-   <property name="invert" type="bool" value="false"/>
-  </properties>
-  <image width="16" height="16" source="editorimgs/switchblock_off_deprecated.png"/>
- </tile>
 </tileset>
