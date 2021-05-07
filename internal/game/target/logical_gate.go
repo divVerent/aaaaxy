@@ -28,19 +28,19 @@ type LogicalGate struct {
 	Entity *engine.Entity
 
 	Target        mixins.TargetSelection
-	State         bool
+	Invert        bool
 	CountRequired int
 
 	IncomingState map[engine.EntityIncarnation]struct{}
-	OutgoingState bool
+	State         bool
 }
 
 func (g *LogicalGate) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	g.World = w
 	g.Entity = e
 	g.Target = mixins.ParseTarget(sp.Properties["target"])
-	g.CountRequired = 1                         // An "or" gate by default.
-	g.State = sp.Properties["state"] != "false" // true by default.
+	g.CountRequired = 1                          // An "or" gate by default.
+	g.Invert = sp.Properties["invert"] == "true" // false by default.
 	if countStr := sp.Properties["count_required"]; countStr != "" {
 		_, err := fmt.Sscanf(countStr, "%d", &g.CountRequired)
 		if err != nil {
@@ -74,11 +74,12 @@ func (g *LogicalGate) SetState(by *engine.Entity, state bool) {
 
 func (g *LogicalGate) MaybeSendEvent() {
 	newState := len(g.IncomingState) >= g.CountRequired
-	if newState == g.OutgoingState {
+	if newState == g.State {
 		return
 	}
-	g.OutgoingState = newState
-	mixins.SetStateOfTarget(g.World, g.Entity, g.Target, newState == g.State)
+	// TODO SendEveryFrame mode?
+	g.State = newState
+	mixins.SetStateOfTarget(g.World, g.Entity, g.Target, newState != g.Invert)
 }
 
 func init() {
