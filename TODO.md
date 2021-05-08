@@ -17,6 +17,14 @@ Sections to do:
   - A platform race! Steer left/right, overtake other "drivers"...
     - need "evil" platform object: solid, moves, thereby kicking us off our platform
 
+- End of each: a fourth ability (surge protector) that lets you go through electric shock things.
+  - Without the ability, going into one throws you back to the side you came from. Also, just to make sure, the beams are solid then.
+  - One such place at start of game, right behind the thing one can open with ANY of three abilities.
+  - Also, one after each part.
+  - Maybe hide another place that has electric beams?
+  - After that, dump player right in top of the third ability (the missing one).
+  - Means there are 3 copies of the obtain-fourth-ability room. Yeah, could also warpzone-hack around that, but why.
+
 - Finale
   - Music: Juhani Junkala [Retro Game Music Pack] Level 3.wav
   - There has to be a "filigran teleport pattern" room. Impl wise, when standing right in the center, the screen is guaranteed to not contain anything else, so we "teleport" by enabling warpzones offscreen that connect the room to another room.
