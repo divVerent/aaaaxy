@@ -31,6 +31,7 @@ Sections to do:
   - Maybe add a small section with gravity flipping instead of jumping? Will have to change some isAbove checks but shouldn't be too hard.
     - Should gravity flipping also flip the direction platforms go? Probably yes.
     - Or should platforms have their own gravity direction, and only flip if player flips while carrying them?
+    - Maybe not - may not be worth it given it requires changes to physics itself (to support onground). But maybe do.
 
 - Credits
   - Music: need to find some
