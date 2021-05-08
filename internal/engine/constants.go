@@ -44,8 +44,10 @@ const (
 
 	// frameBlurSize is how much the previous frame is to be blurred.
 	frameBlurSize = 1
-	// frameDarkenAlpha is how much the previous frame is to be darkened.
-	frameDarkenAlpha = 0.95
+	// frameDarkenAlpha is how much the previous frame is to be darkened relatively.
+	frameDarkenAlpha = 0.99
+	// frameDarkenAlpha is how much the previous frame is to be darkened absolutely.
+	frameDarkenAmount = 1.0 / 255.0
 
 	// How much to scroll towards focus point each frame.
 	scrollPerFrame = 0.05

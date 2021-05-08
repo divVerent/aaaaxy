@@ -30,7 +30,7 @@ var (
 	drawBlurs       = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 )
 
-func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale float64) {
+func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale, darken float64) {
 	opts := ebiten.DrawImageOptions{
 		CompositeMode: ebiten.CompositeModeLighter,
 		Filter:        ebiten.FilterNearest,
@@ -56,6 +56,7 @@ func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale float64
 		src = out
 		if size <= 1 {
 			opts.ColorM.Scale(1, 1, 1, scale)
+			opts.ColorM.Translate(-darken, -darken, -darken, 0)
 		}
 		out.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
 		opts.CompositeMode = ebiten.CompositeModeCopy
@@ -69,35 +70,48 @@ func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale float64
 	}
 }
 
-func BlurExpandImage(img, tmp, out *ebiten.Image, blurSize, expandSize int, scale float64) {
+func BlurExpandImage(img, tmp, out *ebiten.Image, blurSize, expandSize int, scale, darken float64) {
 	// Blurring and expanding can be done in a single step by doing a regular blur then scaling up at the last step.
 	if !*drawBlurs {
 		blurSize = 0
 	}
 	size := blurSize + expandSize
 	scale *= (2*float64(size) + 1) / (2*float64(blurSize) + 1)
-	BlurImage(img, tmp, out, size, scale)
+	BlurImage(img, tmp, out, size, scale, darken)
 }
 
 var (
 	blurBroken = false
 )
 
-func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
+func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken float64) {
 	if !*drawBlurs && scale <= 1 {
 		// Blurs can be globally turned off.
-		if img != out {
+		if img == out {
+			if scale == 1.0 && darken == 0.0 {
+				return
+			}
+			options := &ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
+				Filter:        ebiten.FilterNearest,
+			}
+			tmp.DrawImage(img, options)
+			options.ColorM.Scale(scale, scale, scale, 1.0)
+			options.ColorM.Translate(-darken, -darken, -darken, 0.0)
+			out.DrawImage(tmp, options)
+		} else {
 			options := &ebiten.DrawImageOptions{
 				CompositeMode: ebiten.CompositeModeCopy,
 				Filter:        ebiten.FilterNearest,
 			}
 			options.ColorM.Scale(scale, scale, scale, 1.0)
+			options.ColorM.Translate(-darken, -darken, -darken, 0.0)
 			out.DrawImage(img, options)
 		}
 		return
 	}
 	if blurBroken || !*debugUseShaders {
-		blurImageFixedFunction(img, tmp, out, size, scale)
+		blurImageFixedFunction(img, tmp, out, size, scale, darken)
 		return
 	}
 	// Too bad we can't have integer uniforms, so we need to templatize this
@@ -117,6 +131,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 		Uniforms: map[string]interface{}{
 			"Step":  []float32{1 / float32(w), 0},
 			"Scale": float32(scaleX),
+			"Add":   []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},
 		},
 		Images: [4]*ebiten.Image{
 			img,
@@ -129,9 +144,9 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale float64) {
 	out.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{
-			"Size":  float32(size),
 			"Step":  []float32{0, 1 / float32(h)},
 			"Scale": float32(scaleY),
+			"Add":   []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},
 		},
 		Images: [4]*ebiten.Image{
 			tmp,

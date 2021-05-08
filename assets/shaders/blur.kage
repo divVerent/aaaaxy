@@ -17,6 +17,7 @@ package main
 
 var Step vec2
 var Scale float
+var Add vec4
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
@@ -28,5 +29,5 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 		acc += imageSrc0UnsafeAt(clamp(texCoord-d, srcOrigin, srcMax))
 		acc += imageSrc0UnsafeAt(clamp(texCoord+d, srcOrigin, srcMax))
 	}
-	return acc * Scale
+	return acc * Scale + Add
 }
