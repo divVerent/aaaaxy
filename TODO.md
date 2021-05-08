@@ -28,6 +28,8 @@ Sections to do:
 - Finale
   - Music: Juhani Junkala [Retro Game Music Pack] Level 3.wav
   - There has to be a "filigran teleport pattern" room. Impl wise, when standing right in the center, the screen is guaranteed to not contain anything else, so we "teleport" by enabling warpzones offscreen that connect the room to another room.
+  - Maybe add a small section with gravity flipping instead of jumping? Will have to change some isAbove checks but shouldn't be too hard.
+    - Should gravity flipping also flip the direction platforms go? Probably yes.
 
 - Credits
   - Music: need to find some
