@@ -26,11 +26,13 @@ type VVVVVV struct {
 	mixins.NonSolidTouchable
 
 	State bool
+	Text  string
 }
 
 func (v *VVVVVV) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	v.NonSolidTouchable.Init(w, e)
 	v.State = s.Properties["state"] != "false" // Default true.
+	v.Text = s.Properties["text"]
 	return nil
 }
 
@@ -44,7 +46,7 @@ func (v *VVVVVV) Touch(other *engine.Entity) {
 	if other != v.World.Player {
 		return
 	}
-	v.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(v.State)
+	v.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(v.State, v.Text)
 }
 
 func init() {

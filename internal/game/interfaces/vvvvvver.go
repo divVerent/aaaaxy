@@ -20,5 +20,5 @@ import (
 
 type VVVVVVer interface {
 	engine.EntityImpl
-	SetVVVVVV(vvvvvv bool)
+	SetVVVVVV(vvvvvv bool, text string)
 }
