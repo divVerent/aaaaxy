@@ -37,7 +37,8 @@ import (
 )
 
 var (
-	cheatPlayerAbilities = flag.StringMap("cheat_player_abilities", map[string]string{}, "Override player abilities.")
+	cheatPlayerAbilities = flag.StringMap("cheat_player_abilities", map[string]string{}, "Override player abilities")
+	debugVVVVVV          = flag.Bool("debug_vvvvvv", false, "Use gravity flipping physics")
 )
 
 type Player struct {
@@ -258,11 +259,14 @@ func (p *Player) Update() {
 	moveRight := input.Right.Held
 	if input.Jump.Held {
 		if !p.Jumping && p.AirFrames <= ExtraGroundFrames {
-			p.Velocity.DY -= JumpVelocity
+			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(-JumpVelocity))
 			p.OnGround = false
 			p.AirFrames = ExtraGroundFrames + 1
 			p.Jumping = true
 			p.JumpingUp = true
+			if *debugVVVVVV {
+				p.OnGroundVec = p.OnGroundVec.Mul(-1)
+			}
 			p.JumpSound.Play()
 		}
 	} else {
@@ -284,16 +288,18 @@ func (p *Player) Update() {
 		if moveRight {
 			accelerate(&p.Velocity.DX, AirAccel, MaxAirSpeed, +1)
 		}
-		if p.Velocity.DY < 0 && p.JumpingUp && !p.Jumping {
-			p.Velocity.DY += JumpExtraGravity
+		if p.Velocity.Dot(p.OnGroundVec) < 0 && p.JumpingUp && !p.Jumping {
+			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(JumpExtraGravity))
 		}
 	}
 	if p.AirFrames > ExtraGroundFrames {
 		// No gravity while we still can jump.
-		p.Velocity.DY += constants.Gravity
+		p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(constants.Gravity))
 	}
-	if p.Velocity.DY > MaxSpeed {
-		p.Velocity.DY = MaxSpeed
+	speed := math.Sqrt(float64(p.Velocity.Length2()))
+	if speed > MaxSpeed {
+		p.Velocity = p.Velocity.MulFloat(MaxSpeed / speed)
+		speed = MaxSpeed
 	}
 
 	// Run physics.
@@ -306,6 +312,9 @@ func (p *Player) Update() {
 	if moveRight && !moveLeft {
 		p.Entity.Orientation = m.FlipX()
 	}
+	if p.OnGroundVec.Dot(p.Entity.Orientation.Down) < 0 {
+		p.Entity.Orientation = p.Entity.Orientation.Concat(m.FlipY())
+	}
 	if p.OnGround {
 		p.LastGroundPos = p.Entity.Rect.Origin
 		if p.Velocity.DX > -AnimGroundSpeed && p.Velocity.DX < AnimGroundSpeed {
@@ -317,7 +326,6 @@ func (p *Player) Update() {
 		p.Anim.SetGroup("jump")
 	}
 	p.Anim.Update(p.Entity)
-	speed := math.Sqrt(float64(p.Velocity.Length2()))
 	if speed >= NoiseMinSpeed {
 		amount := math.Pow((speed-NoiseMinSpeed)/(NoiseMaxSpeed-NoiseMinSpeed), NoisePower)
 		noise.Set(amount)
@@ -330,7 +338,7 @@ func (p *Player) Update() {
 }
 
 func (p *Player) handleTouch(trace engine.TraceResult) {
-	if trace.HitDelta.DY > 0 {
+	if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
 		p.JumpingUp = false
 	}
 	if p.OnGround && !p.WasOnGround {
@@ -338,7 +346,7 @@ func (p *Player) handleTouch(trace engine.TraceResult) {
 		p.LandSound.Play()
 	}
 	p.WasOnGround = p.OnGround
-	if trace.HitDelta.DY < 0 {
+	if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
 		p.Anim.SetGroup("hithead")
 		p.HitHeadSound.Play()
 	}
@@ -376,16 +384,17 @@ func (p *Player) LookPos() m.Pos {
 
 // Respawned informs the player that the world moved/respawned it.
 func (p *Player) Respawned() {
-	p.Physics.Reset()                // Stop moving.
-	p.LastGroundPos = p.EyePos()     // Center the camera.
-	p.AirFrames = 0                  // Assume on ground.
-	p.WasOnGround = p.OnGround       // Back to ground.
-	p.Jumping = true                 // Jump key must be hit again.
-	p.JumpingUp = false              // Do not assume we're in the first half of a jump (fastfall).
-	p.Respawning = true              // Block the respawn key until released.
-	p.Anim.ForceGroup("idle")        // Reset animation.
-	p.Entity.Image = nil             // Hide player until next Update.
-	p.Entity.Orientation = m.FlipX() // Default to looking right.
+	p.Physics.Reset()                     // Stop moving.
+	p.LastGroundPos = p.EyePos()          // Center the camera.
+	p.AirFrames = 0                       // Assume on ground.
+	p.WasOnGround = p.OnGround            // Back to ground.
+	p.Jumping = true                      // Jump key must be hit again.
+	p.OnGroundVec = m.Delta{DX: 0, DY: 1} // Gravity points down.
+	p.JumpingUp = false                   // Do not assume we're in the first half of a jump (fastfall).
+	p.Respawning = true                   // Block the respawn key until released.
+	p.Anim.ForceGroup("idle")             // Reset animation.
+	p.Entity.Image = nil                  // Hide player until next Update.
+	p.Entity.Orientation = m.FlipX()      // Default to looking right.
 }
 
 func (p *Player) ActionPressed() bool {

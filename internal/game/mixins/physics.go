@@ -85,7 +85,7 @@ func (p *Physics) Update() {
 			p.SubPixel.DX -= move.DX * SubPixelScale
 			p.SubPixel.DY -= move.DY * SubPixelScale
 			p.Entity.Rect.Origin = trace.EndPos
-			if move.DY != 0 {
+			if move.Dot(p.OnGroundVec) != 0 {
 				// If move had a Y component, we're flying.
 				p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 			}
@@ -104,6 +104,13 @@ func (p *Physics) Update() {
 			move.DY -= trace.EndPos.Y - p.Entity.Rect.Origin.Y
 			p.Entity.Rect.Origin = trace.EndPos
 
+			// Just in case we have left/right gravity... (not yet).
+			if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
+				p.OnGround, p.GroundEntity, groundChecked = true, trace.HitEntity, true
+			} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
+				p.OnGround, p.GroundEntity, groundChecked = false, nil, true
+			}
+
 			p.handleTouchFunc(trace)
 		} else if trace.HitDelta.DY != 0 {
 			// A Y hit. Also update ground status.
@@ -118,9 +125,9 @@ func (p *Physics) Update() {
 			move.DY = 0
 			p.Entity.Rect.Origin = trace.EndPos
 
-			if trace.HitDelta.DY > 0 {
+			if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
 				p.OnGround, p.GroundEntity, groundChecked = true, trace.HitEntity, true
-			} else {
+			} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
 				p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 			}
 
