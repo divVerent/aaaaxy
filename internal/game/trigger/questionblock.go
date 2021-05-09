@@ -20,6 +20,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
@@ -81,7 +82,11 @@ func (q *QuestionBlock) Spawn(w *engine.World, s *level.Spawnable, e *engine.Ent
 func (q *QuestionBlock) Despawn() {}
 
 func (q *QuestionBlock) isAbove(other *engine.Entity) bool {
-	return q.Entity.Rect.OppositeCorner().Y < other.Rect.Origin.Y
+	onGroundVec := m.Delta{DX: 0, DY: 1}
+	if phys, ok := other.Impl.(interfaces.Physics); ok {
+		onGroundVec = phys.ReadOnGroundVec()
+	}
+	return q.Entity.Rect.Delta(other.Rect).Dot(onGroundVec) < 0
 }
 
 func (q *QuestionBlock) Update() {

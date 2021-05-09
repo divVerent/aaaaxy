@@ -203,3 +203,7 @@ func (p *Physics) ReadContents() level.Contents {
 func (p *Physics) ReadSubPixel() m.Delta {
 	return p.SubPixel
 }
+
+func (p *Physics) ReadOnGroundVec() m.Delta {
+	return p.OnGroundVec
+}
