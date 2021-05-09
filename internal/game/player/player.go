@@ -65,6 +65,7 @@ type Player struct {
 
 var _ interfaces.Abilityer = &Player{}
 var _ interfaces.ActionPresseder = &Player{}
+var _ interfaces.VVVVVVer = &Player{}
 
 // Player height is 30 px.
 // So 30 px ~ 180 cm.
@@ -132,6 +133,17 @@ const (
 	KeyJump    = ebiten.KeySpace
 	KeyRespawn = ebiten.KeyR
 )
+
+func (p *Player) SetVVVVVV(vvvvvv bool) {
+	if vvvvvv == p.VVVVVV {
+		return
+	}
+	if !vvvvvv {
+		// Reset VVVVVV state.
+		p.OnGroundVec = m.Delta{DX: 0, DY: 1}
+	}
+	p.VVVVVV = vvvvvv
+}
 
 func (p *Player) HasAbility(name string) bool {
 	switch (*cheatPlayerAbilities)[name] {
