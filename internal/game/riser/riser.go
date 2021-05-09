@@ -17,7 +17,6 @@ package riser
 import (
 	"fmt"
 	"math"
-	"math/rand"
 
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/engine"
@@ -258,11 +257,8 @@ func (r *Riser) Update() {
 			fullDelta := pxDelta.Mul(mixins.SubPixelScale).Add(subDelta)
 			var scaledDelta m.Delta
 			if fullDelta == (m.Delta{}) {
-				angle := rand.Float64() * (2 * math.Pi)
-				scaledDelta = m.Delta{
-					DX: int(RepelSpeed * math.Cos(angle)),
-					DY: int(RepelSpeed * math.Sin(angle)),
-				}
+				// On full overlap, move them _down_ which is the most gameplay friendly direction.
+				scaledDelta = r.OnGroundVec.Mul(RepelSpeed)
 			} else {
 				scaledDelta = fullDelta.MulFloat(RepelSpeed / math.Sqrt(float64(fullDelta.Length2())))
 			}

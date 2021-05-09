@@ -38,7 +38,6 @@ import (
 
 var (
 	cheatPlayerAbilities = flag.StringMap("cheat_player_abilities", map[string]string{}, "Override player abilities")
-	debugVVVVVV          = flag.Bool("debug_vvvvvv", false, "Use gravity flipping physics")
 )
 
 type Player struct {
@@ -55,6 +54,7 @@ type Player struct {
 	LookDown      bool
 	Respawning    bool
 	WasOnGround   bool
+	VVVVVV        bool
 
 	Anim            animation.State
 	JumpSound       *sound.Sound
@@ -264,7 +264,7 @@ func (p *Player) Update() {
 			p.AirFrames = ExtraGroundFrames + 1
 			p.Jumping = true
 			p.JumpingUp = true
-			if *debugVVVVVV {
+			if p.VVVVVV {
 				p.OnGroundVec = p.OnGroundVec.Mul(-1)
 			}
 			p.JumpSound.Play()
@@ -389,6 +389,7 @@ func (p *Player) Respawned() {
 	p.AirFrames = 0                       // Assume on ground.
 	p.WasOnGround = p.OnGround            // Back to ground.
 	p.Jumping = true                      // Jump key must be hit again.
+	p.VVVVVV = false                      // Normal physics.
 	p.OnGroundVec = m.Delta{DX: 0, DY: 1} // Gravity points down.
 	p.JumpingUp = false                   // Do not assume we're in the first half of a jump (fastfall).
 	p.Respawning = true                   // Block the respawn key until released.

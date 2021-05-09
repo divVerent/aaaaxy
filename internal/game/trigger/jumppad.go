@@ -136,8 +136,9 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	if other != j.World.Player {
 		return
 	}
+	p := other.Impl.(interfaces.Physics)
 	// Can not touch from below (not gonna work anyway).
-	if other.Rect.Origin.Y > j.Entity.Rect.OppositeCorner().Y {
+	if other.Rect.Delta(j.Entity.Rect).Dot(p.ReadOnGroundVec()) > 0 {
 		return
 	}
 	// Compute parameters for jump.
@@ -162,8 +163,12 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 		return
 	}
 	// Perform the jump.
-	p := other.Impl.(interfaces.Physics)
-	p.SetVelocityForJump(calculateJump(delta, j.Height))
+	if p.ReadOnGroundVec().DY < 0 {
+		// HACK: Can we rather support arbitrary OnGroundVec?
+		p.SetVelocityForJump(m.FlipY().Apply(calculateJump(m.FlipY().Apply(delta), j.Height)))
+	} else {
+		p.SetVelocityForJump(calculateJump(delta, j.Height))
+	}
 	j.JumpSound.Play()
 }
 
