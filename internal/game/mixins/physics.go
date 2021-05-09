@@ -31,6 +31,7 @@ type Physics struct {
 
 	Contents        level.Contents
 	OnGround        bool
+	OnGroundVec     m.Delta // Vector that points "down" in gravity direction.
 	GroundEntity    *engine.Entity
 	Velocity        m.Delta // An input to be set changed by caller.
 	SubPixel        m.Delta
@@ -54,6 +55,7 @@ func (p *Physics) Init(w *engine.World, e *engine.Entity, contents level.Content
 	p.Entity = e
 	p.Contents = contents
 	p.handleTouchFunc = handleTouch
+	p.OnGroundVec = m.Delta{DX: 0, DY: 1}
 }
 
 func (p *Physics) Reset() {
@@ -126,8 +128,8 @@ func (p *Physics) Update() {
 		}
 	}
 
-	if p.OnGround && !groundChecked {
-		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(m.Delta{DX: 0, DY: 1}), engine.TraceOptions{
+	if p.OnGround && !groundChecked && p.OnGroundVec != (m.Delta{}) {
+		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(p.OnGroundVec), engine.TraceOptions{
 			Contents:  p.Contents,
 			IgnoreEnt: p.IgnoreEnt,
 			ForEnt:    p.Entity,
