@@ -50,6 +50,8 @@ type Riser struct {
 	Anim       animation.State
 	Despawning bool
 	FadeFrame  int
+
+	PlayerOnGroundVec m.Delta
 }
 
 const (
@@ -177,7 +179,7 @@ func (r *Riser) Update() {
 	actionPressed := playerButtons.ActionPressed()
 	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
 	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
-	playerAboveMe := playerDelta.DX == 0 && playerDelta.DY < 0
+	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
 
 	if canCarry && !playerOnMe && actionPressed && (playerDelta == m.Delta{} || (r.State == GettingCarried && playerDelta.Norm1() <= FollowMaxDistance)) {
 		r.State = GettingCarried
@@ -201,16 +203,16 @@ func (r *Riser) Update() {
 		r.Velocity = m.Delta{}
 	case IdlingUp:
 		r.Anim.SetGroup("idle")
-		r.Velocity = m.Delta{DX: 0, DY: -IdleSpeed}
+		r.Velocity = r.OnGroundVec.Mul(-IdleSpeed)
 	case MovingUp:
 		r.Anim.SetGroup("up")
-		r.Velocity = m.Delta{DX: 0, DY: -UpSpeed}
+		r.Velocity = r.OnGroundVec.Mul(-UpSpeed)
 	case MovingLeft:
 		r.Anim.SetGroup("left")
-		r.Velocity = m.Delta{DX: -SideSpeed, DY: -IdleSpeed}
+		r.Velocity = r.OnGroundVec.Mul(-IdleSpeed).Add(m.Delta{DX: -SideSpeed, DY: 0})
 	case MovingRight:
 		r.Anim.SetGroup("right")
-		r.Velocity = m.Delta{DX: SideSpeed, DY: -IdleSpeed}
+		r.Velocity = r.OnGroundVec.Mul(-IdleSpeed).Add(m.Delta{DX: SideSpeed, DY: 0})
 	case GettingCarried:
 		r.Anim.SetGroup("idle")
 		// r.Velocity = playerPhysics.ReadVelocity() // Hacky carry physics; good enough?
@@ -218,6 +220,15 @@ func (r *Riser) Update() {
 		subDelta := playerPhysics.ReadSubPixel().Sub(r.SubPixel)
 		fullDelta := pxDelta.Mul(mixins.SubPixelScale).Add(subDelta)
 		r.Velocity = fullDelta.MulFloat(FollowFactor / engine.GameTPS)
+
+		if r.PlayerOnGroundVec == (m.Delta{}) {
+			// All OK, just need to initialize grabbing.
+		} else if r.PlayerOnGroundVec != playerPhysics.ReadOnGroundVec() {
+			// Player's onground vec changed. Apply the change to ours.
+			// TODO(divVerent): Actually make this smarter?
+			r.OnGroundVec = r.OnGroundVec.Mul(-1)
+		}
+		r.PlayerOnGroundVec = playerPhysics.ReadOnGroundVec()
 	}
 	r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && playerAboveMe && r.State != GettingCarried)
 	if playerOnMe || !canStand || r.State == GettingCarried {
@@ -265,6 +276,12 @@ func (r *Riser) Update() {
 	}
 
 	r.Anim.Update(r.Entity)
+
+	if r.OnGroundVec.DY < 0 {
+		r.Entity.Orientation = m.FlipY()
+	} else {
+		r.Entity.Orientation = m.Identity()
+	}
 
 	if r.Despawning {
 		if r.FadeFrame > 0 {
