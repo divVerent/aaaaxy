@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3494">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3512">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -8965,26 +8965,26 @@
   <object id="3378" name="ShinyYetDeadlyCoins" gid="292" x="3248" y="3488" width="16" height="16"/>
   <object id="3379" name="ShinyYetDeadlyCoins" gid="292" x="3264" y="3488" width="16" height="16"/>
   <object id="3380" name="ShinyYetDeadlyCoins" gid="292" x="3280" y="3488" width="16" height="16"/>
-  <object id="3381" name="ShinyYetDeadlyCoins" gid="292" x="3296" y="3488" width="16" height="16"/>
-  <object id="3382" name="ShinyYetDeadlyCoins" gid="292" x="3312" y="3488" width="16" height="16"/>
+  <object id="3381" name="ShinyYetDeadlyCoins" gid="292" x="3312" y="3488" width="16" height="16"/>
+  <object id="3382" name="Shiny2" gid="292" x="3296" y="3488" width="16" height="16"/>
   <object id="3383" name="ShinyYetDeadlyCoins" gid="292" x="3328" y="3488" width="16" height="16"/>
   <object id="3384" name="ShinyYetDeadlyCoins" gid="292" x="3408" y="3488" width="16" height="16"/>
-  <object id="3385" name="ShinyYetDeadlyCoins" gid="292" x="3424" y="3488" width="16" height="16"/>
-  <object id="3386" name="ShinyYetDeadlyCoins" gid="292" x="3440" y="3488" width="16" height="16"/>
+  <object id="3385" name="Shiny2" gid="292" x="3440" y="3488" width="16" height="16"/>
+  <object id="3386" name="ShinyYetDeadlyCoins" gid="292" x="3424" y="3488" width="16" height="16"/>
   <object id="3387" name="ShinyYetDeadlyCoins" gid="292" x="3456" y="3488" width="16" height="16"/>
   <object id="3388" name="ShinyYetDeadlyCoins" gid="292" x="3472" y="3488" width="16" height="16"/>
   <object id="3389" name="ShinyYetDeadlyCoins" gid="292" x="3488" y="3488" width="16" height="16"/>
   <object id="3390" name="ShinyYetDeadlyCoins" gid="292" x="3504" y="3488" width="16" height="16"/>
   <object id="3391" name="ShinyYetDeadlyCoins" gid="292" x="3520" y="3488" width="16" height="16"/>
   <object id="3392" name="ShinyYetDeadlyCoins" gid="292" x="3536" y="3488" width="16" height="16"/>
-  <object id="3396" gid="290" x="3440" y="3504" width="16" height="16">
+  <object id="3396" gid="290" x="3424" y="3504" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny2"/>
    </properties>
   </object>
-  <object id="3397" gid="290" x="3296" y="3504" width="16" height="16">
+  <object id="3397" gid="290" x="3312" y="3504" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
@@ -9011,12 +9011,12 @@
   <object id="3424" name="ShinyYetDeadlyCoins" gid="292" x="3248" y="3328" width="16" height="16"/>
   <object id="3425" name="ShinyYetDeadlyCoins" gid="292" x="3264" y="3328" width="16" height="16"/>
   <object id="3426" name="ShinyYetDeadlyCoins" gid="292" x="3280" y="3328" width="16" height="16"/>
-  <object id="3427" name="ShinyYetDeadlyCoins" gid="292" x="3296" y="3328" width="16" height="16"/>
-  <object id="3428" name="ShinyYetDeadlyCoins" gid="292" x="3312" y="3328" width="16" height="16"/>
+  <object id="3427" name="Shiny3" gid="292" x="3296" y="3328" width="16" height="16"/>
+  <object id="3428" name="Shiny3" gid="292" x="3312" y="3328" width="16" height="16"/>
   <object id="3429" name="ShinyYetDeadlyCoins" gid="292" x="3328" y="3328" width="16" height="16"/>
   <object id="3430" name="ShinyYetDeadlyCoins" gid="292" x="3408" y="3328" width="16" height="16"/>
-  <object id="3431" name="ShinyYetDeadlyCoins" gid="292" x="3424" y="3328" width="16" height="16"/>
-  <object id="3432" name="ShinyYetDeadlyCoins" gid="292" x="3440" y="3328" width="16" height="16"/>
+  <object id="3431" name="Shiny3" gid="292" x="3424" y="3328" width="16" height="16"/>
+  <object id="3432" name="Shiny3" gid="292" x="3440" y="3328" width="16" height="16"/>
   <object id="3433" name="ShinyYetDeadlyCoins" gid="292" x="3456" y="3328" width="16" height="16"/>
   <object id="3434" name="ShinyYetDeadlyCoins" gid="292" x="3472" y="3328" width="16" height="16"/>
   <object id="3435" name="ShinyYetDeadlyCoins" gid="292" x="3488" y="3328" width="16" height="16"/>
@@ -9061,8 +9061,6 @@
     <property name="target" value="Shiny3"/>
    </properties>
   </object>
-  <object id="3473" gid="291" x="3312" y="3408" width="16" height="16"/>
-  <object id="3474" gid="291" x="3424" y="3408" width="16" height="16"/>
   <object id="3475" name="ShinyYetDeadlyCoins" gid="292" x="3344" y="3808" width="16" height="16"/>
   <object id="3476" name="ShinyYetDeadlyCoins" gid="292" x="3344" y="3792" width="16" height="16"/>
   <object id="3477" name="ShinyYetDeadlyCoins" gid="292" x="3360" y="3792" width="16" height="16"/>
@@ -9081,5 +9079,23 @@
   <object id="3491" name="ShinyYetDeadlyCoins" gid="292" x="3456" y="3504" width="16" height="16"/>
   <object id="3492" name="ShinyYetDeadlyCoins" gid="292" x="3440" y="3664" width="16" height="16"/>
   <object id="3493" name="ShinyYetDeadlyCoins" gid="292" x="3296" y="3664" width="16" height="16"/>
+  <object id="3494" name="ShinyYetDeadlyCoins" gid="292" x="3200" y="3168" width="16" height="16"/>
+  <object id="3495" name="ShinyYetDeadlyCoins" gid="292" x="3216" y="3168" width="16" height="16"/>
+  <object id="3496" name="ShinyYetDeadlyCoins" gid="292" x="3232" y="3168" width="16" height="16"/>
+  <object id="3497" name="ShinyYetDeadlyCoins" gid="292" x="3248" y="3168" width="16" height="16"/>
+  <object id="3498" name="ShinyYetDeadlyCoins" gid="292" x="3264" y="3168" width="16" height="16"/>
+  <object id="3499" name="ShinyYetDeadlyCoins" gid="292" x="3280" y="3168" width="16" height="16"/>
+  <object id="3500" name="ShinyYetDeadlyCoins" gid="292" x="3296" y="3168" width="16" height="16"/>
+  <object id="3501" name="ShinyYetDeadlyCoins" gid="292" x="3312" y="3168" width="16" height="16"/>
+  <object id="3502" name="ShinyYetDeadlyCoins" gid="292" x="3328" y="3168" width="16" height="16"/>
+  <object id="3503" name="ShinyYetDeadlyCoins" gid="292" x="3408" y="3168" width="16" height="16"/>
+  <object id="3504" name="ShinyYetDeadlyCoins" gid="292" x="3424" y="3168" width="16" height="16"/>
+  <object id="3505" name="ShinyYetDeadlyCoins" gid="292" x="3440" y="3168" width="16" height="16"/>
+  <object id="3506" name="ShinyYetDeadlyCoins" gid="292" x="3456" y="3168" width="16" height="16"/>
+  <object id="3507" name="ShinyYetDeadlyCoins" gid="292" x="3472" y="3168" width="16" height="16"/>
+  <object id="3508" name="ShinyYetDeadlyCoins" gid="292" x="3488" y="3168" width="16" height="16"/>
+  <object id="3509" name="ShinyYetDeadlyCoins" gid="292" x="3504" y="3168" width="16" height="16"/>
+  <object id="3510" name="ShinyYetDeadlyCoins" gid="292" x="3520" y="3168" width="16" height="16"/>
+  <object id="3511" name="ShinyYetDeadlyCoins" gid="292" x="3536" y="3168" width="16" height="16"/>
  </objectgroup>
 </map>
