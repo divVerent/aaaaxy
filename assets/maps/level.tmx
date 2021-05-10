@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3512">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3581">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -9097,5 +9097,48 @@
   <object id="3509" name="ShinyYetDeadlyCoins" gid="292" x="3504" y="3168" width="16" height="16"/>
   <object id="3510" name="ShinyYetDeadlyCoins" gid="292" x="3520" y="3168" width="16" height="16"/>
   <object id="3511" name="ShinyYetDeadlyCoins" gid="292" x="3536" y="3168" width="16" height="16"/>
+  <object id="3540" name="ShinyYetDeadlyCoins" gid="292" x="3248" y="3216" width="16" height="16"/>
+  <object id="3541" name="ShinyYetDeadlyCoins" gid="292" x="3264" y="3216" width="16" height="16"/>
+  <object id="3542" name="ShinyYetDeadlyCoins" gid="292" x="3280" y="3216" width="16" height="16"/>
+  <object id="3543" name="ShinyYetDeadlyCoins" gid="292" x="3296" y="3216" width="16" height="16"/>
+  <object id="3544" name="ShinyYetDeadlyCoins" gid="292" x="3312" y="3216" width="16" height="16"/>
+  <object id="3545" name="Shiny4" gid="292" x="3328" y="3216" width="16" height="16"/>
+  <object id="3546" name="Shiny4" gid="292" x="3344" y="3216" width="16" height="16"/>
+  <object id="3547" name="ShinyYetDeadlyCoins" gid="292" x="3360" y="3216" width="16" height="16"/>
+  <object id="3548" name="ShinyYetDeadlyCoins" gid="292" x="3376" y="3216" width="16" height="16"/>
+  <object id="3549" name="Shiny4" gid="292" x="3392" y="3216" width="16" height="16"/>
+  <object id="3550" name="Shiny4" gid="292" x="3408" y="3216" width="16" height="16"/>
+  <object id="3551" name="ShinyYetDeadlyCoins" gid="292" x="3424" y="3216" width="16" height="16"/>
+  <object id="3552" name="ShinyYetDeadlyCoins" gid="292" x="3440" y="3216" width="16" height="16"/>
+  <object id="3553" name="ShinyYetDeadlyCoins" gid="292" x="3456" y="3216" width="16" height="16"/>
+  <object id="3554" name="ShinyYetDeadlyCoins" gid="292" x="3472" y="3216" width="16" height="16"/>
+  <object id="3555" name="ShinyYetDeadlyCoins" gid="292" x="3488" y="3216" width="16" height="16"/>
+  <object id="3557" name="Shiny4" gid="293" x="3200" y="3280" width="16" height="16"/>
+  <object id="3558" name="Shiny4" gid="293" x="3216" y="3280" width="16" height="16"/>
+  <object id="3560" name="Shiny4" gid="293" x="3280" y="3280" width="16" height="16"/>
+  <object id="3561" name="Shiny4" gid="293" x="3296" y="3280" width="16" height="16"/>
+  <object id="3562" name="Shiny4" gid="293" x="3312" y="3280" width="16" height="16"/>
+  <object id="3563" name="Shiny4" gid="293" x="3328" y="3280" width="16" height="16"/>
+  <object id="3564" name="Shiny4" gid="293" x="3344" y="3280" width="16" height="16"/>
+  <object id="3565" name="Shiny4" gid="293" x="3360" y="3280" width="16" height="16"/>
+  <object id="3566" name="Shiny4" gid="293" x="3376" y="3280" width="16" height="16"/>
+  <object id="3567" name="Shiny4" gid="293" x="3392" y="3280" width="16" height="16"/>
+  <object id="3568" name="Shiny4" gid="293" x="3408" y="3280" width="16" height="16"/>
+  <object id="3569" name="Shiny4" gid="293" x="3424" y="3280" width="16" height="16"/>
+  <object id="3570" name="Shiny4" gid="293" x="3440" y="3280" width="16" height="16"/>
+  <object id="3571" name="Shiny4" gid="293" x="3456" y="3280" width="16" height="16"/>
+  <object id="3573" name="Shiny4" gid="293" x="3520" y="3280" width="16" height="16"/>
+  <object id="3574" name="Shiny4" gid="293" x="3536" y="3280" width="16" height="16"/>
+  <object id="3576" gid="290" x="3368" y="3232" width="16" height="16">
+   <properties>
+    <property name="send_every_frame" type="bool" value="true"/>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="Shiny4"/>
+   </properties>
+  </object>
+  <object id="3577" name="Shiny4" gid="293" x="3344" y="3168" width="16" height="16"/>
+  <object id="3578" name="Shiny4" gid="293" x="3360" y="3168" width="16" height="16"/>
+  <object id="3579" name="Shiny4" gid="293" x="3376" y="3168" width="16" height="16"/>
+  <object id="3580" name="Shiny4" gid="293" x="3392" y="3168" width="16" height="16"/>
  </objectgroup>
 </map>
