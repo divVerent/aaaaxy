@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3835">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3836">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -9512,5 +9512,6 @@
     <property name="text_font" value="SmallCaps"/>
    </properties>
   </object>
+  <object id="3835" type="SwitchMusic" x="3328" y="1360" width="32" height="32"/>
  </objectgroup>
 </map>
