@@ -30,7 +30,7 @@ type SwitchableText struct {
 func (s *SwitchableText) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	err := s.Text.Spawn(w, sp, e)
 	if err != nil {
-		return nil
+		return err
 	}
 	s.Fadable.Init(w, sp, e)
 	return nil

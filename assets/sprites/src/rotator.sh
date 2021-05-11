@@ -17,7 +17,7 @@ steps=30
 size=64
 minwidth=4
 
-images="can_carry can_push can_stand"
+images="can_carry can_control can_push can_stand"
 
 for i in $(seq 0 $((steps-1))); do
 	width=$(echo "c(8 * a(1) * $i / $steps) * $size" | bc -l)
