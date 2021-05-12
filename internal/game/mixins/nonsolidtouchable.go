@@ -46,7 +46,7 @@ func (t *NonSolidTouchable) Update() {
 		}
 		// Should we filter stronger? Like, only triggers?
 		delta := t.Entity.Rect.Delta(e.Rect)
-		if (delta == m.Delta{}) {
+		if delta.IsZero() {
 			t.Entity.Impl.Touch(e)
 			touched = true
 		}

@@ -180,7 +180,7 @@ func (r *Riser) Update() {
 	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
 	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
 
-	if canCarry && !playerOnMe && actionPressed && (playerDelta == m.Delta{} || (r.State == GettingCarried && playerDelta.Norm1() <= FollowMaxDistance)) {
+	if canCarry && !playerOnMe && actionPressed && (playerDelta.IsZero() || (r.State == GettingCarried && playerDelta.Norm1() <= FollowMaxDistance)) {
 		r.State = GettingCarried
 	} else if canPush && actionPressed {
 		if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X {
@@ -220,7 +220,7 @@ func (r *Riser) Update() {
 		fullDelta := pxDelta.Mul(mixins.SubPixelScale).Add(subDelta)
 		r.Velocity = fullDelta.MulFloat(FollowFactor / engine.GameTPS)
 
-		if r.PlayerOnGroundVec == (m.Delta{}) {
+		if r.PlayerOnGroundVec.IsZero() {
 			// All OK, just need to initialize grabbing.
 		} else if r.PlayerOnGroundVec != playerPhysics.ReadOnGroundVec() {
 			// Player's onground vec changed. Apply the change to ours.
@@ -251,12 +251,12 @@ func (r *Riser) Update() {
 			return
 		}
 		dr := r.Entity.Rect.Delta(other.Rect)
-		if dr == (m.Delta{}) {
+		if dr.IsZero() {
 			pxDelta := r.Entity.Rect.Center().Delta(other.Rect.Center())
 			subDelta := r.SubPixel.Sub(otherR.SubPixel)
 			fullDelta := pxDelta.Mul(mixins.SubPixelScale).Add(subDelta)
 			var scaledDelta m.Delta
-			if fullDelta == (m.Delta{}) {
+			if fullDelta.IsZero() {
 				// On full overlap, move them _down_ which is the most gameplay friendly direction.
 				scaledDelta = r.OnGroundVec.Mul(RepelSpeed)
 			} else {
@@ -267,7 +267,7 @@ func (r *Riser) Update() {
 	})
 
 	// Run physics.
-	if (r.Velocity != m.Delta{}) {
+	if !r.Velocity.IsZero() {
 		r.Physics.Update() // May call handleTouch.
 	}
 

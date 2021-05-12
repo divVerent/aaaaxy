@@ -72,7 +72,7 @@ func (p *Physics) Update() {
 	move := p.SubPixel.Div(SubPixelScale)
 
 	groundChecked := false
-	for (move != m.Delta{}) {
+	for !move.IsZero() {
 		dest := p.Entity.Rect.Origin.Add(move)
 		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
 			Contents:  p.Contents,
@@ -80,7 +80,7 @@ func (p *Physics) Update() {
 			ForEnt:    p.Entity,
 			LoadTiles: true,
 		})
-		if (trace.HitDelta == m.Delta{}) {
+		if trace.HitDelta.IsZero() {
 			// Nothing hit. We're done.
 			p.SubPixel.DX -= move.DX * SubPixelScale
 			p.SubPixel.DY -= move.DY * SubPixelScale
@@ -135,7 +135,7 @@ func (p *Physics) Update() {
 		}
 	}
 
-	if p.OnGround && !groundChecked && p.OnGroundVec != (m.Delta{}) {
+	if p.OnGround && !groundChecked && !p.OnGroundVec.IsZero() {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(p.OnGroundVec), engine.TraceOptions{
 			Contents:  p.Contents,
 			IgnoreEnt: p.IgnoreEnt,
@@ -153,7 +153,7 @@ func (p *Physics) Update() {
 
 	// Now if I am the ground, push everyone on me.
 	delta := p.Entity.Rect.Origin.Delta(oldOrigin)
-	if (delta != m.Delta{}) {
+	if !delta.IsZero() {
 		p.World.ForEachEntity(func(other *engine.Entity) {
 			otherP, ok := other.Impl.(interfaces.Physics)
 			if !ok {
@@ -167,7 +167,7 @@ func (p *Physics) Update() {
 					LoadTiles: true,
 				})
 				other.Rect.Origin = trace.EndPos
-				if (trace.HitDelta != m.Delta{}) {
+				if !trace.HitDelta.IsZero() {
 					otherP.HandleTouch(trace)
 				}
 			}

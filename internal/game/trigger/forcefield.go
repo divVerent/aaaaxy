@@ -169,7 +169,7 @@ func (f *ForceField) Touch(other *engine.Entity) {
 	// Should point away from jumppad, and 45 degrees at the corners.
 	// So, look at center-center vector.
 	cc := other.Rect.Center().Delta(f.Entity.Rect.Center())
-	if cc == (m.Delta{}) {
+	if cc.IsZero() {
 		// Can't jump if overlapping at center. Oops. Shouldn't happen though.
 		log.Printf("Forcefield: refusing to jump player due to full overlap.")
 		return

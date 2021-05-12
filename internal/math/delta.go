@@ -81,3 +81,7 @@ func West() Delta {
 func (d Delta) Dot(d2 Delta) int {
 	return d.DX*d2.DX + d.DY*d2.DY
 }
+
+func (d Delta) IsZero() bool {
+	return d.DX == 0 && d.DY == 0
+}
