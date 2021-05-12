@@ -38,18 +38,22 @@ type ForceField struct {
 	World  *engine.World
 	Entity *engine.Entity
 
+	AlphaMod  float64
 	AnimFrame int
 	Active    bool
 
 	TouchedFrame int
-	JumpSound    *sound.Sound
+	ShockSound   *sound.Sound
 	SourceImg    *ebiten.Image
 }
 
 const (
-	forceFieldStrength = 256 * mixins.SubPixelScale / engine.GameTPS
-	ffFadeFrames       = 32
-	ffActiveThreshold  = 16
+	forceFieldStrength = 1024 * mixins.SubPixelScale / engine.GameTPS
+	ffFadeFrames       = 16
+	ffActiveThreshold  = 4
+	ffAlphaBrownian    = 0.5
+	ffAlphaMin         = 0.5
+	ffAlphaMax         = 1.0
 )
 
 func (f *ForceField) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -61,7 +65,7 @@ func (f *ForceField) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity
 
 	// TODO: change to a dedicated sound.
 	var err error
-	f.JumpSound, err = sound.Load("jump.ogg")
+	f.ShockSound, err = sound.Load("forcefield.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load jump sound: %v", err)
 	}
@@ -74,6 +78,7 @@ func (f *ForceField) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity
 	// Force fields always spawn active.
 	f.Active = true
 	f.AnimFrame = ffFadeFrames
+	f.AlphaMod = (ffAlphaMin + ffAlphaMax) / 2
 
 	return nil
 }
@@ -91,6 +96,15 @@ func (f *ForceField) Update() {
 		}
 	}
 
+	// Brownian motion.
+	f.AlphaMod = f.AlphaMod + (2*rand.Float64()-1)*ffAlphaBrownian
+	if f.AlphaMod < ffAlphaMin {
+		f.AlphaMod = ffAlphaMin
+	}
+	if f.AlphaMod > ffAlphaMax {
+		f.AlphaMod = ffAlphaMax
+	}
+
 	if active {
 		f.AnimFrame++
 	} else {
@@ -100,11 +114,11 @@ func (f *ForceField) Update() {
 		f.Entity.Alpha = 0
 		f.AnimFrame = 0
 	} else if f.AnimFrame >= ffFadeFrames {
-		f.Entity.Alpha = 1
+		f.Entity.Alpha = f.AlphaMod
 		f.AnimFrame = ffFadeFrames
 	} else {
 		alpha := float64(f.AnimFrame) / float64(ffFadeFrames)
-		f.Entity.Alpha = alpha
+		f.Entity.Alpha = f.AlphaMod * alpha
 	}
 	f.Active = f.AnimFrame >= ffActiveThreshold
 	f.World.SetSolid(f.Entity, f.Active)
@@ -116,7 +130,7 @@ func (f *ForceField) Update() {
 	if f.Entity.Orientation.Right.DX == 0 {
 		wantW, wantH = wantH, wantW
 	}
-	xOffset, yOffset := rand.Intn(gotW-wantW), rand.Intn(gotH-wantH)
+	xOffset, yOffset := rand.Intn(gotW-wantW+1), rand.Intn(gotH-wantH+1)
 	f.Entity.Image = f.SourceImg.SubImage(go_image.Rectangle{
 		Min: go_image.Point{
 			X: xOffset,
@@ -167,7 +181,7 @@ func (f *ForceField) Touch(other *engine.Entity) {
 	away := cc.MulFloat(forceFieldStrength / math.Sqrt(float64(cc.Length2())))
 	// Perform the jump.
 	p.SetVelocityForJump(away)
-	f.JumpSound.Play()
+	f.ShockSound.Play()
 }
 
 func init() {

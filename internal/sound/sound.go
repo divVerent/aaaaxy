@@ -29,7 +29,7 @@ import (
 
 var (
 	precacheSounds = flag.Bool("precache_sounds", true, "preload all sounds at startup (VERY recommended)")
-	soundVolume    = flag.Float64("sound_volume", 0.05, "sound volume (0..1)")
+	soundVolume    = flag.Float64("sound_volume", 0.5, "sound volume (0..1)")
 )
 
 // Sound represents a sound effect.

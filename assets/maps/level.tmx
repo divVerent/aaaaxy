@@ -8725,7 +8725,7 @@
     <property name="text" value="Ganz einfach, wenn man's doppelt nimmt."/>
    </properties>
   </object>
-  <object id="3186" name="brlogenshfegle" type="Checkpoint" x="3776" y="2112" width="32" height="64">
+  <object id="3186" name="brlogenshfegle" type="Checkpoint" x="3552" y="1728" width="32" height="64">
    <properties>
     <property name="music" value="AugustUltraAmbience.ogg"/>
     <property name="required_orientation" value="ES"/>
