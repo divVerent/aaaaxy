@@ -17,7 +17,6 @@ package mixins
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // NonSolidTouchable implements the Touch handler for nonsolid entities.
