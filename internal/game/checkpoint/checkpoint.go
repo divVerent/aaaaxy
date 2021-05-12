@@ -85,6 +85,7 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 	if c.Inactive {
 		return
 	}
+	c.World.PlayerTouchedCheckpoint(c.Entity)
 	// All checkpoints set the "mood".
 	music.Switch(c.Music)
 	if !c.World.PlayerState.RecordCheckpointEdge(c.Entity.Name(), c.Flipped) {

@@ -91,6 +91,10 @@ type World struct {
 
 	// Tile counter.
 	tilesSet, tilesCleared int
+
+	// Checkpoint spawn offset.
+	prevCpID     level.EntityID
+	prevCpOrigin m.Pos
 }
 
 // Initialized returns whether Init() has been called on this World before.
@@ -177,6 +181,7 @@ func (w *World) Init() error {
 		opaqueEntities: makeList(opaqueList),
 		Level:          lvl,
 		PlayerState:    player_state.PlayerState{lvl},
+		prevCpID:       level.InvalidEntityID,
 	}
 	w.renderer.Init(w)
 
@@ -330,9 +335,23 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	// Load the configured music.
 	music.Switch(cpSp.Properties["music"])
 
+	// Adjust previous scroll position by how much the CP "moved".
+	// That way, respawning right after touching a CP will retain CP-near screen content.
+	// Mainly useful for VVVVVV mode.
+	if w.prevCpID == cp.Incarnation.ID {
+		cpDelta := cp.Rect.Origin.Delta(w.prevCpOrigin)
+		w.renderer.prevScrollPos = w.renderer.prevScrollPos.Add(cpDelta)
+		w.prevCpOrigin = cp.Rect.Origin
+	}
+
 	// Skip updating.
 	w.respawned = true
 	return nil
+}
+
+func (w *World) PlayerTouchedCheckpoint(cp *Entity) {
+	w.prevCpID = cp.Incarnation.ID
+	w.prevCpOrigin = cp.Rect.Origin
 }
 
 func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult {
