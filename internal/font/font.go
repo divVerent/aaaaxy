@@ -20,6 +20,7 @@ import (
 	"github.com/golang/freetype/truetype"
 	"github.com/hajimehoshi/ebiten/v2"
 	"golang.org/x/image/font"
+	"golang.org/x/image/font/gofont/gobold"
 	"golang.org/x/image/font/gofont/goitalic"
 	"golang.org/x/image/font/gofont/gomono"
 	"golang.org/x/image/font/gofont/goregular"
@@ -83,6 +84,10 @@ func Init() error {
 	if err != nil {
 		return fmt.Errorf("could not load goitalic font: %v", err)
 	}
+	bold, err := truetype.Parse(gobold.TTF)
+	if err != nil {
+		return fmt.Errorf("could not load gosmallcaps font: %v", err)
+	}
 	mono, err := truetype.Parse(gomono.TTF)
 	if err != nil {
 		return fmt.Errorf("could not load gomono font: %v", err)
@@ -105,6 +110,12 @@ func Init() error {
 		SubPixelsY: 1,
 	}))
 	ByName["Italic"] = makeFace(truetype.NewFace(italic, &truetype.Options{
+		Size:       16,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	}))
+	ByName["Bold"] = makeFace(truetype.NewFace(bold, &truetype.Options{
 		Size:       16,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
