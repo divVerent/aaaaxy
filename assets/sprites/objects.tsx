@@ -212,4 +212,16 @@
   </properties>
   <image width="32" height="32" source="editorimgs/arrow32_se.png"/>
  </tile>
+ <tile id="35" type="ForceField">
+  <properties>
+   <property name="orientation" value="ES"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/forcefield_v.png"/>
+ </tile>
+ <tile id="36" type="ForceField">
+  <properties>
+   <property name="orientation" value="SW"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/forcefield_h.png"/>
+ </tile>
 </tileset>
