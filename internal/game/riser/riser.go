@@ -229,7 +229,16 @@ func (r *Riser) Update() {
 		}
 		r.PlayerOnGroundVec = playerPhysics.ReadOnGroundVec()
 	}
-	r.World.MutateContentsBool(r.Entity, level.PlayerSolidContents, canStand && playerAboveMe && r.State != GettingCarried)
+	if r.State == GettingCarried {
+		// Never solid during carrying.
+		r.World.MutateContents(r.Entity, level.SolidContents, 0)
+	} else if canStand && playerAboveMe {
+		// Solid to player when player is above.
+		r.World.MutateContents(r.Entity, level.SolidContents, level.SolidContents)
+	} else {
+		// Otherwise, only solid to objects.
+		r.World.MutateContents(r.Entity, level.SolidContents, level.ObjectSolidContents)
+	}
 	if playerOnMe || !canStand || r.State == GettingCarried {
 		r.Physics.IgnoreEnt = r.World.Player // Move upwards despite player standing on it.
 	} else {

@@ -993,7 +993,7 @@
   <object id="245" gid="294" x="896" y="5536" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="237"/>
-    <property name="text" value="The shortest pah can be the one that takes longest."/>
+    <property name="text" value="The shortest path can be the one that takes longest."/>
    </properties>
   </object>
   <object id="246" gid="294" x="448" y="5472" width="32" height="32">
@@ -8462,8 +8462,8 @@
   </object>
   <object id="2988" gid="294" x="4064" y="2112" width="32" height="32">
    <properties>
-    <property name="reached_from" type="object" value="2992"/>
-    <property name="text" value="Just because there doesn't seem to be a purpose, this doesn't mean you're not gonna do it."/>
+    <property name="reached_from" type="object" value="2840"/>
+    <property name="text" value="Lack of purpose never was a reason not to do it."/>
    </properties>
   </object>
   <object id="2989" gid="299" x="4064" y="2112" width="32" height="1024">
