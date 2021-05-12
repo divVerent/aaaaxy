@@ -221,7 +221,7 @@ func FetchTileset(ts *tmx.TileSet) error {
 		return fmt.Errorf("unsupported tileset: got objectalignment %q, want topleft", ts.ObjectAlignment)
 	}
 	// ts.Properties doesn't matter.
-	if (ts.TileOffset != tmx.TileOffset{}) {
+	if ts.TileOffset.X != 0 || ts.TileOffset.Y != 0 {
 		return fmt.Errorf("unsupported tileset: got a tile offset")
 	}
 	if ts.Image.Source != "" {
