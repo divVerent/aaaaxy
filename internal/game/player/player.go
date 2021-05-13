@@ -187,8 +187,7 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
 	p.Entity.RenderOffset = m.Delta{DX: PlayerOffsetDX, DY: PlayerOffsetDY}
 	w.SetZIndex(p.Entity, constants.PlayerZ)
-	p.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
-	w.SetSolid(p.Entity, true)   // Needed so platforms don't let players fall through.
+	w.SetSolid(p.Entity, true) // Needed so platforms don't let players fall through.
 
 	err := p.Anim.Init("player", map[string]*animation.Group{
 		"idle": {

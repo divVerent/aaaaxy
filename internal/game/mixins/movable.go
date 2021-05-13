@@ -101,4 +101,6 @@ func (v *Movable) Update() {
 
 	// Move.
 	v.Physics.Update()
+	// Note: this object does not get pushed by other ground.
+	v.Physics.GroundEntity = nil
 }

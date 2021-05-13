@@ -122,8 +122,7 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 
 	r.Entity.Rect.Origin = r.Entity.Rect.Origin.Sub(r.Entity.RenderOffset)
 	w.SetZIndex(r.Entity, constants.RiserMovingZ)
-	r.Entity.RequireTiles = true // We're tracing, so we need our tiles to be loaded.
-	r.Entity.Alpha = 0           // We fade in.
+	r.Entity.Alpha = 0 // We fade in.
 	r.State = Inactive
 	r.Entity.Orientation = m.Identity()
 

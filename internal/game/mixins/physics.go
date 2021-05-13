@@ -53,6 +53,9 @@ func (p *Physics) Init(w *engine.World, e *engine.Entity, contents level.Content
 	p.Contents = contents
 	p.handleTouchFunc = handleTouch
 	p.OnGroundVec = m.Delta{DX: 0, DY: 1}
+
+	// We're tracing, so we need our tiles to be loaded.
+	p.Entity.RequireTiles = true
 }
 
 func (p *Physics) Reset() {
