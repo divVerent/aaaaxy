@@ -24,4 +24,5 @@ const (
 	RiserMovingZ  = 4
 	PlayerZ       = 5
 	RiserCarriedZ = 6
+	ForceFieldZ   = 7
 )

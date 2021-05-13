@@ -24,6 +24,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/image"
@@ -61,6 +62,7 @@ func (f *ForceField) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity
 	f.Entity = e
 	w.SetOpaque(e, false)
 	w.SetSolid(e, true)
+	w.SetZIndex(e, constants.ForceFieldZ)
 
 	// TODO: change to a dedicated sound.
 	var err error
