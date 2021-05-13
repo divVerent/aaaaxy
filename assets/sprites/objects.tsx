@@ -224,4 +224,12 @@
   </properties>
   <image width="16" height="16" source="editorimgs/forcefield_h.png"/>
  </tile>
+ <tile id="37" type="MovableSprite">
+  <properties>
+   <property name="image_dir" value=""/>
+   <property name="delta" value="0 -64"/>
+   <property name="solid" value="true"/>
+  </properties>
+  <image width="32" height="64" source="movingdoor.png"/>
+ </tile>
 </tileset>
