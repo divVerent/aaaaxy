@@ -14,10 +14,6 @@
 
 package constants
 
-import (
-	"github.com/divVerent/aaaaaa/internal/engine"
-)
-
 const (
-	Gravity = 576 * SubPixelScale / engine.GameTPS / engine.GameTPS
+	SubPixelScale = 65536
 )

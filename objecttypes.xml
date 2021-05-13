@@ -54,6 +54,25 @@
   <property name="invert" type="bool" default="false"/>
   <property name="target" type="string"/>
  </objecttype>
+ <objecttype name="MovableSprite" color="#ffffff">
+  <property name="alpha" type="string"/>
+  <property name="acceleration" type="string"/>
+  <property name="delta" type="string"/>
+  <property name="image" type="string"/>
+  <property name="image_dir" type="string"/>
+  <property name="image_region" type="string"/>
+  <property name="invert" type="bool" default="false"/>
+  <property name="map_black_to" type="color"/>
+  <property name="map_white_to" type="color"/>
+  <property name="no_flip" type="string"/>
+  <property name="no_transform" type="bool" default="false"/>
+  <property name="object_solid" type="bool" default="false"/>
+  <property name="opaque" type="bool" default="false"/>
+  <property name="orientation" type="string"/>
+  <property name="player_solid" type="bool" default="false"/>
+  <property name="solid" type="bool" default="false"/>
+  <property name="z_index" type="int" default="0"/>
+ </objecttype>
  <objecttype name="OneWay" color="#0000ff">
   <property name="orientation" type="string"/>
  </objecttype>

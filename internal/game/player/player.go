@@ -90,13 +90,13 @@ const (
 	LookDistance = level.TileSize * 4
 
 	// Nice run/jump speed.
-	MaxGroundSpeed = 160 * mixins.SubPixelScale / engine.GameTPS
+	MaxGroundSpeed = 160 * constants.SubPixelScale / engine.GameTPS
 	GroundAccel    = GroundFriction + AirAccel
-	GroundFriction = 640 * mixins.SubPixelScale / engine.GameTPS / engine.GameTPS
+	GroundFriction = 640 * constants.SubPixelScale / engine.GameTPS / engine.GameTPS
 
 	// Air max speed is lower than ground control, but same forward accel.
-	MaxAirSpeed = 120 * mixins.SubPixelScale / engine.GameTPS
-	AirAccel    = 480 * mixins.SubPixelScale / engine.GameTPS / engine.GameTPS
+	MaxAirSpeed = 120 * constants.SubPixelScale / engine.GameTPS
+	AirAccel    = 480 * constants.SubPixelScale / engine.GameTPS / engine.GameTPS
 
 	// We want 4.5 tiles high jumps, i.e. 72px high jumps (plus something).
 	// Jump shall take 1 second.
@@ -107,10 +107,10 @@ const (
 	// v0 = 288
 	// g = 576
 	// Note: assuming 1px=6cm, this is actually 17.3m/s and 3.5x earth gravity.
-	JumpVelocity = 288 * mixins.SubPixelScale / engine.GameTPS
-	MaxSpeed     = 2 * level.TileSize * mixins.SubPixelScale
+	JumpVelocity = 288 * constants.SubPixelScale / engine.GameTPS
+	MaxSpeed     = 2 * level.TileSize * constants.SubPixelScale
 
-	NoiseMinSpeed = 384 * mixins.SubPixelScale / engine.GameTPS
+	NoiseMinSpeed = 384 * constants.SubPixelScale / engine.GameTPS
 	NoiseMaxSpeed = MaxSpeed
 	NoisePower    = 2.0
 
@@ -124,7 +124,7 @@ const (
 	ExtraGroundFrames = 4
 
 	// Animation tuning.
-	AnimGroundSpeed = 20 * mixins.SubPixelScale / engine.GameTPS
+	AnimGroundSpeed = 20 * constants.SubPixelScale / engine.GameTPS
 
 	KeyLeft    = ebiten.KeyLeft
 	KeyRight   = ebiten.KeyRight

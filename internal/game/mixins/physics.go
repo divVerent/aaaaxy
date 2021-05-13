@@ -16,13 +16,10 @@ package mixins
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
-)
-
-const (
-	SubPixelScale = 65536
 )
 
 type Physics struct {
@@ -62,14 +59,14 @@ func (p *Physics) Reset() {
 	p.OnGround = true
 	p.GroundEntity = nil
 	p.Velocity = m.Delta{}
-	p.SubPixel = m.Delta{}
+	p.SubPixel = m.Delta{DX: constants.SubPixelScale / 2, DY: constants.SubPixelScale / 2}
 }
 
 func (p *Physics) Update() {
 	oldOrigin := p.Entity.Rect.Origin
 
 	p.SubPixel = p.SubPixel.Add(p.Velocity)
-	move := p.SubPixel.Div(SubPixelScale)
+	move := p.SubPixel.Div(constants.SubPixelScale)
 
 	groundChecked := false
 	for !move.IsZero() {
@@ -82,8 +79,8 @@ func (p *Physics) Update() {
 		})
 		if trace.HitDelta.IsZero() {
 			// Nothing hit. We're done.
-			p.SubPixel.DX -= move.DX * SubPixelScale
-			p.SubPixel.DY -= move.DY * SubPixelScale
+			p.SubPixel.DX -= move.DX * constants.SubPixelScale
+			p.SubPixel.DY -= move.DY * constants.SubPixelScale
 			p.Entity.Rect.Origin = trace.EndPos
 			if move.Dot(p.OnGroundVec) != 0 {
 				// If move had a Y component, we're flying.
@@ -93,12 +90,12 @@ func (p *Physics) Update() {
 		}
 		if trace.HitDelta.DX != 0 {
 			// An X hit. Just adjust X subpixel to be as close to the hit as possible.
-			if p.SubPixel.DX > SubPixelScale-1 {
-				p.SubPixel.DX = SubPixelScale - 1
+			if p.SubPixel.DX > constants.SubPixelScale-1 {
+				p.SubPixel.DX = constants.SubPixelScale - 1
 			} else if p.SubPixel.DX < 0 {
 				p.SubPixel.DX = 0
 			}
-			p.SubPixel.DY -= (trace.EndPos.Y - p.Entity.Rect.Origin.Y) * SubPixelScale
+			p.SubPixel.DY -= (trace.EndPos.Y - p.Entity.Rect.Origin.Y) * constants.SubPixelScale
 			p.Velocity.DX = 0
 			move.DX = 0
 			move.DY -= trace.EndPos.Y - p.Entity.Rect.Origin.Y
@@ -114,12 +111,12 @@ func (p *Physics) Update() {
 			p.handleTouchFunc(trace)
 		} else if trace.HitDelta.DY != 0 {
 			// A Y hit. Also update ground status.
-			if p.SubPixel.DY > SubPixelScale-1 {
-				p.SubPixel.DY = SubPixelScale - 1
+			if p.SubPixel.DY > constants.SubPixelScale-1 {
+				p.SubPixel.DY = constants.SubPixelScale - 1
 			} else if p.SubPixel.DY < 0 {
 				p.SubPixel.DY = 0
 			}
-			p.SubPixel.DX -= (trace.EndPos.X - p.Entity.Rect.Origin.X) * SubPixelScale
+			p.SubPixel.DX -= (trace.EndPos.X - p.Entity.Rect.Origin.X) * constants.SubPixelScale
 			p.Velocity.DY = 0
 			move.DX -= trace.EndPos.X - p.Entity.Rect.Origin.X
 			move.DY = 0

@@ -48,7 +48,7 @@ type ForceField struct {
 }
 
 const (
-	forceFieldStrength = 1536 * mixins.SubPixelScale / engine.GameTPS
+	forceFieldStrength = 1536 * constants.SubPixelScale / engine.GameTPS
 	ffFadeFrames       = 16
 	ffActiveThreshold  = 4
 	ffAlphaBrownian    = 0.5

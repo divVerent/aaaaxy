@@ -76,13 +76,13 @@ const (
 	LargeRiserOffsetDY = -1
 
 	// IdleSpeed is the speed the riser moves upwards when not used.
-	IdleSpeed = 15 * mixins.SubPixelScale / engine.GameTPS
+	IdleSpeed = 15 * constants.SubPixelScale / engine.GameTPS
 
 	// UpSpeed is the speed the riser moves upwards when the player is standing on it.
-	UpSpeed = 60 * mixins.SubPixelScale / engine.GameTPS
+	UpSpeed = 60 * constants.SubPixelScale / engine.GameTPS
 
 	// SideSpeed is the speed of the riser when pushed away.
-	SideSpeed = 60 * mixins.SubPixelScale / engine.GameTPS
+	SideSpeed = 60 * constants.SubPixelScale / engine.GameTPS
 
 	// FadeFrames is how many frames risers take to fade in or out.
 	FadeFrames = 16
@@ -94,7 +94,7 @@ const (
 	FollowMaxDistance = 32
 
 	// RepelSpeed is the speed at which risers repel each other until they no longer overlap.
-	RepelSpeed = 15 * mixins.SubPixelScale / engine.GameTPS
+	RepelSpeed = 15 * constants.SubPixelScale / engine.GameTPS
 )
 
 func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -217,7 +217,7 @@ func (r *Riser) Update() {
 		// r.Velocity = playerPhysics.ReadVelocity() // Hacky carry physics; good enough?
 		pxDelta := r.World.Player.Rect.Center().Delta(r.Entity.Rect.Center())
 		subDelta := playerPhysics.ReadSubPixel().Sub(r.SubPixel)
-		fullDelta := pxDelta.Mul(mixins.SubPixelScale).Add(subDelta)
+		fullDelta := pxDelta.Mul(constants.SubPixelScale).Add(subDelta)
 		r.Velocity = fullDelta.MulFloat(FollowFactor / engine.GameTPS)
 
 		if r.PlayerOnGroundVec.IsZero() {
@@ -263,7 +263,7 @@ func (r *Riser) Update() {
 		if dr.IsZero() {
 			pxDelta := r.Entity.Rect.Center().Delta(other.Rect.Center())
 			subDelta := r.SubPixel.Sub(otherR.SubPixel)
-			fullDelta := pxDelta.Mul(mixins.SubPixelScale).Add(subDelta)
+			fullDelta := pxDelta.Mul(constants.SubPixelScale).Add(subDelta)
 			var scaledDelta m.Delta
 			if fullDelta.IsZero() {
 				// On full overlap, move them _down_ which is the most gameplay friendly direction.

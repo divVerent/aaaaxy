@@ -103,7 +103,7 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 	//   -> vDY = -sqrt(-2 * height * playerGravity * SubpixelScale)
 	// - vDY + playerGravity * tA = 0
 	//   -> tA = -vDY / playerGravity
-	vDY := -int(math.Sqrt(2 * float64(-height) * float64(constants.Gravity) * float64(mixins.SubPixelScale)))
+	vDY := -int(math.Sqrt(2 * float64(-height) * float64(constants.Gravity) * float64(constants.SubPixelScale)))
 	// Actually move downwards if requested!
 	if apexOutside && !targetHigher {
 		vDY = -vDY
@@ -113,7 +113,7 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 	// - vDX * t = deltaDX
 	a := 0.5 * constants.Gravity
 	b := float64(vDY)
-	c := -float64(delta.DY) * mixins.SubPixelScale
+	c := -float64(delta.DY) * constants.SubPixelScale
 	u := -b / (2 * a)
 	d := b*b - 4*a*c
 	v := 0.0
@@ -127,7 +127,7 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 		v = -v
 	}
 	t := u + v
-	vDX := int(float64(delta.DX) * mixins.SubPixelScale / t)
+	vDX := int(float64(delta.DX) * constants.SubPixelScale / t)
 	return m.Delta{DX: vDX, DY: vDY}
 }
 
