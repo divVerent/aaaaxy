@@ -17,12 +17,14 @@ package trigger
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/constants"
+	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
 )
 
 // DisappearBlock is an entity that disappears when touched and never reappears.
 type DisappearBlock struct {
+	mixins.Settable
 	World  *engine.World
 	Entity *engine.Entity
 
@@ -61,7 +63,7 @@ func (a *DisappearBlock) Update() {
 			a.Disappearing = true
 		}
 	}
-	if a.Disappearing {
+	if a.Disappearing || a.State {
 		if a.AnimFrame > 0 {
 			a.AnimFrame--
 		}

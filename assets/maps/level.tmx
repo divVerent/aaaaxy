@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3929">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3975">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -5999,160 +5999,6 @@
     <property name="target" value="LookedUp"/>
    </properties>
   </object>
-  <object id="1375" name="LookedUp" type="SwitchableSprite" x="64" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1377" name="LookedUp" type="SwitchableSprite" x="80" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1378" name="LookedUp" type="SwitchableSprite" x="96" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1379" name="LookedUp" type="SwitchableSprite" x="112" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1380" name="LookedUp" type="SwitchableSprite" x="128" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1381" name="LookedUp" type="SwitchableSprite" x="144" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1382" name="LookedUp" type="SwitchableSprite" x="160" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1383" name="LookedUp" type="SwitchableSprite" x="176" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1384" name="LookedUp" type="SwitchableSprite" x="192" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1385" name="LookedUp" type="SwitchableSprite" x="208" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1386" name="LookedUp" type="SwitchableSprite" x="224" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1387" name="LookedUp" type="SwitchableSprite" x="240" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1388" name="LookedUp" type="SwitchableSprite" x="256" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1389" name="LookedUp" type="SwitchableSprite" x="272" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1390" name="LookedUp" type="SwitchableSprite" x="288" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1391" name="LookedUp" type="SwitchableSprite" x="304" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1392" name="LookedUp" type="SwitchableSprite" x="320" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1393" name="LookedUp" type="SwitchableSprite" x="336" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1394" name="LookedUp" type="SwitchableSprite" x="352" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1395" name="LookedUp" type="SwitchableSprite" x="368" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1396" name="LookedUp" type="SwitchableSprite" x="384" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="1397" name="LookedUp" type="SwitchableSprite" x="400" y="320" width="16" height="16">
-   <properties>
-    <property name="image" value="glass.png"/>
-    <property name="invert" type="bool" value="true"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
   <object id="1407" gid="294" x="224" y="8128" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1408"/>
@@ -9869,5 +9715,37 @@
     <property name="opaque" type="bool" value="false"/>
    </properties>
   </object>
+  <object id="3929" name="LookedUp" gid="312" x="64" y="320" width="16" height="16"/>
+  <object id="3930" name="LookedUp" gid="312" x="80" y="320" width="16" height="16"/>
+  <object id="3931" name="LookedUp" gid="312" x="96" y="320" width="16" height="16"/>
+  <object id="3932" name="LookedUp" gid="312" x="112" y="320" width="16" height="16"/>
+  <object id="3933" name="LookedUp" gid="312" x="128" y="320" width="16" height="16"/>
+  <object id="3934" name="LookedUp" gid="312" x="144" y="320" width="16" height="16"/>
+  <object id="3935" name="LookedUp" gid="312" x="160" y="320" width="16" height="16"/>
+  <object id="3936" name="LookedUp" gid="312" x="176" y="320" width="16" height="16"/>
+  <object id="3937" name="LookedUp" gid="312" x="192" y="320" width="16" height="16"/>
+  <object id="3938" name="LookedUp" gid="312" x="208" y="320" width="16" height="16"/>
+  <object id="3939" name="LookedUp" gid="312" x="224" y="320" width="16" height="16"/>
+  <object id="3940" name="LookedUp" gid="312" x="240" y="320" width="16" height="16"/>
+  <object id="3941" name="LookedUp" gid="312" x="256" y="320" width="16" height="16"/>
+  <object id="3942" name="LookedUp" gid="312" x="272" y="320" width="16" height="16"/>
+  <object id="3943" name="LookedUp" gid="312" x="288" y="320" width="16" height="16"/>
+  <object id="3944" name="LookedUp" gid="312" x="304" y="320" width="16" height="16"/>
+  <object id="3945" name="LookedUp" gid="312" x="320" y="320" width="16" height="16"/>
+  <object id="3946" name="LookedUp" gid="312" x="336" y="320" width="16" height="16"/>
+  <object id="3947" name="LookedUp" gid="312" x="352" y="320" width="16" height="16"/>
+  <object id="3948" name="LookedUp" gid="312" x="368" y="320" width="16" height="16"/>
+  <object id="3949" name="LookedUp" gid="312" x="384" y="320" width="16" height="16"/>
+  <object id="3950" name="LookedUp" gid="312" x="400" y="320" width="16" height="16"/>
+  <object id="3963" gid="312" x="6112" y="7616" width="16" height="16"/>
+  <object id="3964" gid="312" x="6096" y="7616" width="16" height="16"/>
+  <object id="3967" gid="312" x="6064" y="7568" width="16" height="16"/>
+  <object id="3968" gid="312" x="6080" y="7568" width="16" height="16"/>
+  <object id="3969" gid="312" x="6096" y="7520" width="16" height="16"/>
+  <object id="3970" gid="312" x="6112" y="7520" width="16" height="16"/>
+  <object id="3971" gid="312" x="816" y="6400" width="16" height="16"/>
+  <object id="3972" gid="312" x="832" y="6400" width="16" height="16"/>
+  <object id="3973" gid="312" x="816" y="6000" width="16" height="16"/>
+  <object id="3974" gid="312" x="832" y="6000" width="16" height="16"/>
  </objectgroup>
 </map>
