@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4008">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4008">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -9762,12 +9762,12 @@
    </properties>
   </object>
   <object id="3978" gid="287" x="5520" y="3424" width="32" height="32"/>
-  <object id="3979" name="KaizoFail" gid="312" x="5552" y="3424" width="16" height="16"/>
-  <object id="3980" name="KaizoFail" gid="312" x="5568" y="3424" width="16" height="16"/>
-  <object id="3981" name="KaizoFail" gid="312" x="5584" y="3424" width="16" height="16"/>
-  <object id="3982" name="KaizoFail" gid="312" x="5600" y="3424" width="16" height="16"/>
-  <object id="3983" name="KaizoFail" gid="312" x="5616" y="3424" width="16" height="16"/>
-  <object id="3984" name="KaizoFail" gid="312" x="5632" y="3424" width="16" height="16"/>
+  <object id="3979" gid="312" x="5552" y="3424" width="16" height="16"/>
+  <object id="3980" gid="312" x="5568" y="3424" width="16" height="16"/>
+  <object id="3981" gid="312" x="5584" y="3424" width="16" height="16"/>
+  <object id="3982" gid="312" x="5600" y="3424" width="16" height="16"/>
+  <object id="3983" gid="312" x="5616" y="3424" width="16" height="16"/>
+  <object id="3984" gid="312" x="5632" y="3424" width="16" height="16"/>
   <object id="3985" gid="291" x="5528" y="3344" width="16" height="16"/>
   <object id="3986" gid="285" x="5552" y="3440" width="16" height="16"/>
   <object id="3987" gid="285" x="5568" y="3440" width="16" height="16"/>
@@ -9783,13 +9783,6 @@
    </properties>
   </object>
   <object id="3993" gid="284" x="5088" y="3376" width="16" height="16"/>
-  <object id="3996" type="ActionButton" x="5632" y="3392" width="16" height="16">
-   <properties>
-    <property name="invert" type="bool" value="true"/>
-    <property name="send_release" type="bool" value="true"/>
-    <property name="target" value="KaizoFail"/>
-   </properties>
-  </object>
   <object id="4001" name="KaizoFail" type="SwitchableText" x="5552" y="3376" width="64" height="16">
    <properties>
     <property name="text" value="Reset"/>
