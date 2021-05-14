@@ -36,6 +36,7 @@
   <property name="required_orientation" type="string"/>
   <property name="text" type="string"/>
  </objecttype>
+ <objecttype name="DisappearBlock" color="#00aa00"/>
  <objecttype name="ForceField" color="#ff00ff">
   <property name="orientation" type="string"/>
  </objecttype>

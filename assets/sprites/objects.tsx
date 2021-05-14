@@ -232,4 +232,7 @@
   </properties>
   <image width="32" height="64" source="movingdoor.png"/>
  </tile>
+ <tile id="38" type="DisappearBlock">
+  <image width="16" height="16" source="disappearblock.png"/>
+ </tile>
 </tileset>

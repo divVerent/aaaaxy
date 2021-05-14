@@ -57,7 +57,7 @@ func (a *AppearBlock) Despawn() {}
 
 func (a *AppearBlock) Update() {
 	delta := a.Entity.Rect.Delta(a.World.Player.Rect)
-	if delta.DY > 0 && delta.DX <= AppearXDistance && delta.DX >= -AppearXDistance && delta.DY <= AppearYDistance && delta.DY >= -AppearYDistance {
+	if delta.DY != 0 && delta.DX <= AppearXDistance && delta.DX >= -AppearXDistance && delta.DY <= AppearYDistance && delta.DY >= -AppearYDistance {
 		if a.AnimFrame < AppearFrames {
 			a.AnimFrame++
 		}
