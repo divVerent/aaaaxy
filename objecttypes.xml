@@ -6,6 +6,13 @@
   <property name="player_solid" type="bool" default="false"/>
   <property name="solid" type="bool" default="false"/>
  </objecttype>
+ <objecttype name="ActionButton" color="#808000">
+  <property name="invert" type="bool" default="false"/>
+  <property name="send_hold" type="bool" default="false"/>
+  <property name="send_press" type="bool" default="false"/>
+  <property name="send_release" type="bool" default="false"/>
+  <property name="target" type="string"/>
+ </objecttype>
  <objecttype name="Animation" color="#ffffff">
   <property name="alpha" type="string"/>
   <property name="animation" type="string"/>
