@@ -33,7 +33,7 @@ type DisappearBlock struct {
 }
 
 const (
-	DisappearFrames         = 32
+	DisappearFrames         = 16
 	DisappearSolidThreshold = 1
 )
 
@@ -69,8 +69,7 @@ func (a *DisappearBlock) Update() {
 		}
 	}
 	a.Entity.Alpha = float64(a.AnimFrame) / DisappearFrames
-	// Note: becomes nonsolid when triggered right away.
-	a.World.MutateContentsBool(a.Entity, level.PlayerSolidContents, a.AnimFrame >= DisappearSolidThreshold && !a.State)
+	a.World.MutateContentsBool(a.Entity, level.PlayerSolidContents, a.AnimFrame >= DisappearSolidThreshold)
 }
 
 func (a *DisappearBlock) Touch(other *engine.Entity) {}
