@@ -5898,7 +5898,7 @@
     <property name="image_region" value="0 48 304 208"/>
    </properties>
   </object>
-  <object id="1321" gid="294" x="4928" y="6160" width="32" height="32">
+  <object id="1321" gid="294" x="4928" y="6144" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1304"/>
     <property name="text" value="It's turtles all the way in."/>
@@ -5906,25 +5906,25 @@
   </object>
   <object id="1322" name="Returtlion" gid="279" x="4800" y="5984" width="80" height="16"/>
   <object id="1323" name="Returtlion" gid="277" x="5104" y="5904" width="80" height="16"/>
-  <object id="1324" gid="312" x="4976" y="6144" width="16" height="16"/>
-  <object id="1325" gid="312" x="4960" y="6144" width="16" height="16"/>
-  <object id="1326" gid="312" x="4944" y="6144" width="16" height="16"/>
-  <object id="1327" gid="312" x="4928" y="6144" width="16" height="16"/>
-  <object id="1328" gid="312" x="4912" y="6144" width="16" height="16"/>
-  <object id="1329" gid="312" x="4896" y="6144" width="16" height="16"/>
-  <object id="1330" gid="312" x="4880" y="6144" width="16" height="16"/>
-  <object id="1331" gid="312" x="4864" y="6144" width="16" height="16"/>
-  <object id="1332" gid="312" x="4848" y="6144" width="16" height="16"/>
-  <object id="1333" gid="312" x="4832" y="6144" width="16" height="16"/>
-  <object id="1334" gid="312" x="4816" y="6144" width="16" height="16"/>
-  <object id="1335" gid="312" x="4800" y="6144" width="16" height="16"/>
-  <object id="1336" gid="312" x="4784" y="6144" width="16" height="16"/>
-  <object id="1337" gid="312" x="4768" y="6144" width="16" height="16"/>
-  <object id="1338" gid="312" x="4752" y="6144" width="16" height="16"/>
-  <object id="1339" gid="312" x="4736" y="6144" width="16" height="16"/>
-  <object id="1340" gid="312" x="4720" y="6144" width="16" height="16"/>
-  <object id="1341" gid="312" x="4704" y="6144" width="16" height="16"/>
-  <object id="1342" gid="312" x="4688" y="6144" width="16" height="16"/>
+  <object id="1324" gid="297" x="4976" y="6144" width="16" height="16"/>
+  <object id="1325" gid="297" x="4960" y="6144" width="16" height="16"/>
+  <object id="1326" gid="297" x="4944" y="6144" width="16" height="16"/>
+  <object id="1327" gid="297" x="4928" y="6144" width="16" height="16"/>
+  <object id="1328" gid="297" x="4912" y="6144" width="16" height="16"/>
+  <object id="1329" gid="297" x="4896" y="6144" width="16" height="16"/>
+  <object id="1330" gid="297" x="4880" y="6144" width="16" height="16"/>
+  <object id="1331" gid="297" x="4864" y="6144" width="16" height="16"/>
+  <object id="1332" gid="297" x="4848" y="6144" width="16" height="16"/>
+  <object id="1333" gid="297" x="4832" y="6144" width="16" height="16"/>
+  <object id="1334" gid="297" x="4816" y="6144" width="16" height="16"/>
+  <object id="1335" gid="297" x="4800" y="6144" width="16" height="16"/>
+  <object id="1336" gid="297" x="4784" y="6144" width="16" height="16"/>
+  <object id="1337" gid="297" x="4768" y="6144" width="16" height="16"/>
+  <object id="1338" gid="297" x="4752" y="6144" width="16" height="16"/>
+  <object id="1339" gid="297" x="4736" y="6144" width="16" height="16"/>
+  <object id="1340" gid="297" x="4720" y="6144" width="16" height="16"/>
+  <object id="1341" gid="297" x="4704" y="6144" width="16" height="16"/>
+  <object id="1342" gid="297" x="4688" y="6144" width="16" height="16"/>
   <object id="1343" type="JumpPad" x="4751" y="6208" width="2" height="16">
    <properties>
     <property name="delta" value="28 -256"/>
