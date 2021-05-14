@@ -235,4 +235,11 @@
  <tile id="38" type="DisappearBlock">
   <image width="16" height="16" source="disappearblock.png"/>
  </tile>
+ <tile id="39" type="Sprite">
+  <properties>
+   <property name="image_dir" value="sprites"/>
+   <property name="object_solid" type="bool" value="true"/>
+  </properties>
+  <image width="3" height="5" source="miniobjectclip.png"/>
+ </tile>
 </tileset>

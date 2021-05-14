@@ -15,8 +15,11 @@
 package sound
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
@@ -34,8 +37,9 @@ var (
 
 // Sound represents a sound effect.
 type Sound struct {
-	sound   []byte
-	players []*audiowrap.Player
+	sound        []byte
+	players      []*audiowrap.Player
+	volumeAdjust float64
 }
 
 // Sounds are preloaded as byte streams.
@@ -43,6 +47,10 @@ var (
 	cache       = map[string]*Sound{}
 	cacheFrozen bool
 )
+
+type soundJson struct {
+	VolumeAdjust float64 `json:"volume_adjust"`
+}
 
 // Load loads a sound effect.
 // Multiple Load calls to the same sound effect return the same cached instance.
@@ -67,7 +75,24 @@ func Load(name string) (*Sound, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not decode: %v", err)
 	}
-	sound := &Sound{sound: decoded}
+	config := soundJson{
+		VolumeAdjust: 1,
+	}
+	j, err := vfs.Load("sounds", name+".json")
+	if err != nil && !errors.Is(err, os.ErrNotExist) {
+		return nil, fmt.Errorf("could not load sound json config file for %q: %v", name, err)
+	}
+	if j != nil {
+		defer j.Close()
+		err = json.NewDecoder(j).Decode(&config)
+		if err != nil {
+			return nil, fmt.Errorf("could not decode sound json config file for %q: %v", name, err)
+		}
+	}
+	sound := &Sound{
+		sound:        decoded,
+		volumeAdjust: config.VolumeAdjust,
+	}
 	cache[cacheName] = sound
 	return sound, nil
 }
@@ -75,7 +100,7 @@ func Load(name string) (*Sound, error) {
 // Play plays the given sound effect.
 func (s *Sound) Play() *audiowrap.Player {
 	player := audiowrap.NewPlayerFromBytes(s.sound)
-	player.SetVolume(*soundVolume)
+	player.SetVolume(s.volumeAdjust * *soundVolume)
 	player.Play()
 	return player
 }
