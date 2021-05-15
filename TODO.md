@@ -1,3 +1,12 @@
+Fix:
+
+- Tile rotation: make Sprite object support orientation via img.* properties.
+  - Will fix most existing issues.
+  - Unlike tiles, can NOT do this safely at render time, as we do not know the image name there.
+  - Could however have ImgByOrientation on entities too.
+  - Decision: don't do ImgByOrientation but have Sprite itself resolve. Reason: entities rarely change orientation once loaded. If they do, they can handle this themselves.
+  - While at it, we could also refactor ImgByOrientation for tiles so the loaded tile has orientation already resolved. Then the renderer never hits this map.
+
 Sections to do:
 
 - Grab & Push
