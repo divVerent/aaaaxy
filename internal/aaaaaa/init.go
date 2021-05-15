@@ -18,8 +18,8 @@ import (
 	"fmt"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/audio"
 
+	"github.com/divVerent/aaaaaa/internal/audiowrap"
 	"github.com/divVerent/aaaaaa/internal/credits"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/flag"
@@ -54,7 +54,6 @@ func InitEbiten() error {
 	ebiten.SetWindowResizable(true)
 	ebiten.SetWindowSize(engine.GameWidth, engine.GameHeight)
 	ebiten.SetWindowTitle("AAAAAA")
-	audio.NewContext(48000)
 
 	err := vfs.Init()
 	if err != nil {
@@ -75,6 +74,10 @@ func InitEbiten() error {
 	err = image.Precache()
 	if err != nil {
 		return fmt.Errorf("could not precache images: %v", err)
+	}
+	err = audiowrap.Init()
+	if err != nil {
+		return fmt.Errorf("could not initialize audio: %v", err)
 	}
 	err = sound.Precache()
 	if err != nil {

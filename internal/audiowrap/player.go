@@ -24,7 +24,9 @@ import (
 )
 
 var (
-	volume = flag.Float64("volume", 1.0, "global volume (0..1)")
+	audio     = flag.Bool("audio", true, "enable audio")
+	audioRate = flag.Int("audio_rate", 44100, "preferred audio sample rate")
+	volume    = flag.Float64("volume", 1.0, "global volume (0..1)")
 	// TODO: add a way to simulate audio and write to disk, syncing with the frame clock (i.e. each frame renders exactly 1/60 sec of audio).
 	// Also a way to don't actually render audio (but still advance clock) would be nice.
 )
@@ -32,11 +34,35 @@ var (
 type Player struct {
 	ebi *ebiaudio.Player
 	dmp *dumper
+
+	// These fields are only really used when -audio=false.
+	accumulatedTime time.Duration
+	playTime        time.Time
+}
+
+func Rate() int {
+	return *audioRate
+}
+
+func Init() error {
+	// TODO(divVerent): Figure out a way to work without a context.
+	// This means we need to be able to decode and resample the wav and ogg files without using the ebiten helpers.
+	// if *audio {
+	ebiaudio.NewContext(*audioRate)
+	// }
+	return nil
+}
+
+func ebiPlayer(src io.Reader) (*ebiaudio.Player, error) {
+	if !*audio {
+		return nil, nil
+	}
+	return ebiaudio.NewPlayer(ebiaudio.CurrentContext(), src)
 }
 
 func NewPlayer(src io.Reader) (*Player, error) {
 	dmp, src := newDumperWithTee(src)
-	ebi, err := ebiaudio.NewPlayer(ebiaudio.CurrentContext(), src)
+	ebi, err := ebiPlayer(src)
 	if err != nil {
 		return nil, err
 	}
@@ -46,9 +72,16 @@ func NewPlayer(src io.Reader) (*Player, error) {
 	}, nil
 }
 
+func ebiPlayerFromBytes(src []byte) *ebiaudio.Player {
+	if !*audio {
+		return nil
+	}
+	return ebiaudio.NewPlayerFromBytes(ebiaudio.CurrentContext(), src)
+}
+
 func NewPlayerFromBytes(src []byte) *Player {
 	dmp := newDumper(bytes.NewReader(src))
-	ebi := ebiaudio.NewPlayerFromBytes(ebiaudio.CurrentContext(), src)
+	ebi := ebiPlayerFromBytes(src)
 	return &Player{
 		ebi: ebi,
 		dmp: dmp,
@@ -59,40 +92,67 @@ func (p *Player) Close() error {
 	if p.dmp != nil {
 		p.dmp.Close()
 	}
-	return p.ebi.Close()
+	if p.ebi != nil {
+		return p.ebi.Close()
+	}
+	return nil
 }
 
 func (p *Player) Current() time.Duration {
 	if p.dmp != nil {
 		return p.dmp.Current()
 	}
-	return p.ebi.Current()
+	if p.ebi != nil {
+		return p.ebi.Current()
+	}
+	// TODO(divVerent): add a fake timer.
+	t := p.accumulatedTime
+	if !p.playTime.IsZero() {
+		t += time.Since(p.playTime)
+	}
+	return t
 }
 
 func (p *Player) IsPlaying() bool {
 	if p.dmp != nil {
 		return p.dmp.IsPlaying()
 	}
-	return p.ebi.IsPlaying()
+	if p.ebi != nil {
+		return p.ebi.IsPlaying()
+	}
+	return !p.playTime.IsZero()
 }
 
 func (p *Player) Pause() {
 	if p.dmp != nil {
 		p.dmp.Pause()
 	}
-	p.ebi.Pause()
+	if p.ebi != nil {
+		p.ebi.Pause()
+	}
+	if !p.playTime.IsZero() {
+		p.accumulatedTime += time.Since(p.playTime)
+		p.playTime = time.Time{}
+	}
 }
 
 func (p *Player) Play() {
 	if p.dmp != nil {
 		p.dmp.Play()
 	}
-	p.ebi.Play()
+	if p.ebi != nil {
+		p.ebi.Play()
+	}
+	if p.playTime.IsZero() {
+		p.playTime = time.Now()
+	}
 }
 
 func (p *Player) SetVolume(vol float64) {
 	if p.dmp != nil {
 		p.dmp.SetVolume(vol * *volume)
 	}
-	p.ebi.SetVolume(vol * *volume)
+	if p.ebi != nil {
+		p.ebi.SetVolume(vol * *volume)
+	}
 }

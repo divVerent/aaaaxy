@@ -114,7 +114,7 @@ func finishDumping() {
 	inputs := []string{}
 	settings := []string{}
 	if *dumpAudio != "" {
-		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar 48000  -i '%s'", strings.ReplaceAll(*dumpAudio, "'", "'\\''")))
+		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.Rate(), strings.ReplaceAll(*dumpAudio, "'", "'\\''")))
 		settings = append(settings, "-codec:a aac -b:a 128k")
 	}
 	if *dumpVideo != "" {
