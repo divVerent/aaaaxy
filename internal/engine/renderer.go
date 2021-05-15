@@ -142,25 +142,29 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta
 		float64(rectR.Origin.Y-rectIRS.Origin.Y))
 }
 
+func resolveTransform(transform, orientation m.Orientation) (renderOrientation, spriteOrientation m.Orientation) {
+	renderOrientation = transform.Concat(orientation)
+	spriteOrientation = renderOrientation.Inverse().Concat(orientation)
+	return
+}
+
+func resolveTransformToMatchingSprite(transform, orientation m.Orientation, defaultImageSrc string, imageSrcByOrientation map[m.Orientation]string) (string, m.Orientation) {
+	o, i := resolveTransform(transform, orientation)
+	imageSrc, found := imageSrcByOrientation[i]
+	if found {
+		return imageSrc, o
+	}
+	return defaultImageSrc, orientation
+}
+
 func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 	r.world.forEachTile(func(pos m.Pos, tile *level.Tile) {
-		renderOrientation, renderImageSrc := tile.Orientation, tile.ImageSrc
+		// TODO Can we move this to tile loading?
+		renderImageSrc, renderOrientation := resolveTransformToMatchingSprite(tile.Transform, tile.Orientation, tile.ImageSrc, tile.ImageSrcByOrientation)
 		if renderImageSrc == "" {
 			return
 		}
 		screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
-		if len(tile.ImageSrcByOrientation) > 0 {
-			// Locate pre-rotated tiles for better effect.
-			o := tile.Transform.Concat(tile.Orientation)
-			i := o.Inverse().Concat(tile.Orientation)
-			imgSrc := tile.ImageSrcByOrientation[i]
-			if imgSrc == "" {
-				return // Invisible.
-			}
-			if imgSrc != "" {
-				renderOrientation, renderImageSrc = o, imgSrc
-			}
-		}
 		img, err := image.Load("tiles", renderImageSrc)
 		if err != nil {
 			log.Printf("could not load already cached image %q for tile: %v", renderImageSrc, err)
