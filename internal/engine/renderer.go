@@ -142,32 +142,15 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta
 		float64(rectR.Origin.Y-rectIRS.Origin.Y))
 }
 
-func resolveTransform(transform, orientation m.Orientation) (renderOrientation, spriteOrientation m.Orientation) {
-	renderOrientation = transform.Concat(orientation)
-	spriteOrientation = renderOrientation.Inverse().Concat(orientation)
-	return
-}
-
-func resolveTransformToMatchingSprite(transform, orientation m.Orientation, defaultImageSrc string, imageSrcByOrientation map[m.Orientation]string) (string, m.Orientation) {
-	o, i := resolveTransform(transform, orientation)
-	imageSrc, found := imageSrcByOrientation[i]
-	if found {
-		return imageSrc, o
-	}
-	return defaultImageSrc, orientation
-}
-
 func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 	r.world.forEachTile(func(pos m.Pos, tile *level.Tile) {
-		// TODO Can we move this to tile loading?
-		renderImageSrc, renderOrientation := resolveTransformToMatchingSprite(tile.Transform, tile.Orientation, tile.ImageSrc, tile.ImageSrcByOrientation)
-		if renderImageSrc == "" {
+		if tile.ImageSrc == "" {
 			return
 		}
 		screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
-		img, err := image.Load("tiles", renderImageSrc)
+		img, err := image.Load("tiles", tile.ImageSrc)
 		if err != nil {
-			log.Printf("could not load already cached image %q for tile: %v", renderImageSrc, err)
+			log.Printf("could not load already cached image %q for tile: %v", tile.ImageSrc, err)
 			return
 		}
 		opts := ebiten.DrawImageOptions{
@@ -175,7 +158,7 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 			CompositeMode: ebiten.CompositeModeSourceOver,
 			Filter:        ebiten.FilterNearest,
 		}
-		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, renderOrientation)
+		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, tile.Orientation)
 		screen.DrawImage(img, &opts)
 	})
 }

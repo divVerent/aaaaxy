@@ -276,6 +276,7 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	}
 	tile.Transform = cpTransform.Concat(tile.Transform)
 	tile.Orientation = tile.Transform.Inverse().Concat(tile.Orientation)
+	tile.ResolveImage()
 
 	// Build a new world around the CP tile and the player.
 	w.frameVis = 0
@@ -720,6 +721,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	// new tiles ("which tilemap direction is looking right on the screen") and
 	// the orientation is for rendering ("how to rotate the sprite").
 	newTile.Orientation = t.Inverse().Concat(newTile.Orientation)
+	newTile.ResolveImage()
 	newTile.LoadedFromNeighbor = p
 	newTile.VisibilityFlags = w.frameVis
 	w.setTile(newPos, &newTile)

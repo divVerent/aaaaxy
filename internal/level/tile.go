@@ -83,3 +83,20 @@ type Tile struct {
 	// Debug info.
 	LoadedFromNeighbor m.Pos
 }
+
+// ResolveImage applies ImageSrcByOrientation data to Image, and possibly changes Orientation when it did.
+func (t *Tile) ResolveImage() {
+	t.ImageSrc, t.Orientation = ResolveImage(t.Transform, t.Orientation, t.ImageSrc, t.ImageSrcByOrientation)
+	t.ImageSrcByOrientation = nil
+}
+
+// ResolveImage applies the given imageSrcByOrientation map.
+func ResolveImage(transform, orientation m.Orientation, defaultImageSrc string, imageSrcByOrientation map[m.Orientation]string) (string, m.Orientation) {
+	renderOrientation := transform.Concat(orientation)
+	spriteOrientation := renderOrientation.Inverse().Concat(orientation)
+	imageSrc, found := imageSrcByOrientation[spriteOrientation]
+	if found {
+		return imageSrc, renderOrientation
+	}
+	return defaultImageSrc, orientation
+}
