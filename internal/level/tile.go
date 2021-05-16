@@ -78,16 +78,16 @@ type Tile struct {
 	// - Orientation = (Transform * Orientation) * I
 	// - O = Transform Orientation
 	// - I = O^-1 Orientation
-	ImageSrcByOrientation map[m.Orientation]string
+	imageSrcByOrientation map[m.Orientation]string
 
 	// Debug info.
 	LoadedFromNeighbor m.Pos
 }
 
-// ResolveImage applies ImageSrcByOrientation data to Image, and possibly changes Orientation when it did.
+// ResolveImage applies imageSrcByOrientation data to Image, and possibly changes Orientation when it did.
 func (t *Tile) ResolveImage() {
-	t.ImageSrc, t.Orientation = ResolveImage(t.Transform, t.Orientation, t.ImageSrc, t.ImageSrcByOrientation)
-	t.ImageSrcByOrientation = nil
+	t.ImageSrc, t.Orientation = ResolveImage(t.Transform, t.Orientation, t.ImageSrc, t.imageSrcByOrientation)
+	t.imageSrcByOrientation = nil
 }
 
 // ResolveImage applies the given imageSrcByOrientation map.

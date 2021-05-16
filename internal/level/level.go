@@ -348,7 +348,7 @@ func Load(filename string) (*Level, error) {
 				Contents:              contents,
 				LevelPos:              pos,
 				ImageSrc:              imgSrc,
-				ImageSrcByOrientation: imgSrcByOrientation,
+				imageSrcByOrientation: imgSrcByOrientation,
 				Orientation:           orientation,
 			},
 			Valid: true,
