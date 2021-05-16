@@ -35,8 +35,13 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 	if directory == "" {
 		directory = "sprites"
 	}
-	var err error
-	e.Image, err = image.Load(directory, sp.Properties["image"])
+	imgSrc := sp.Properties["image"]
+	imgSrcByOrientation, err := level.ParseImageSrcByOrientation(imgSrc, sp.Properties)
+	if err != nil {
+		return err
+	}
+	imgSrc, e.Orientation = level.ResolveImage(e.Transform, e.Orientation, imgSrc, imgSrcByOrientation)
+	e.Image, err = image.Load(directory, imgSrc)
 	if err != nil {
 		return err
 	}

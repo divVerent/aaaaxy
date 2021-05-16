@@ -339,18 +339,9 @@ func Load(filename string) (*Level, error) {
 			contents |= OpaqueContents
 		}
 		imgSrc := td.Tile.Image.Source
-		imgSrcByOrientation := map[m.Orientation]string{}
-		for propName, propValue := range properties {
-			if oStr := strings.TrimPrefix(propName, "img."); oStr != propName {
-				o, err := m.ParseOrientation(oStr)
-				if err != nil {
-					return nil, fmt.Errorf("invalid map: could not parse orientation tile: %v", err)
-				}
-				if o == m.Identity() && propValue != td.Tile.Image.Source {
-					return nil, fmt.Errorf("invalid tileset: unrotated image isn't same as img: got %q, want %q", propValue, td.Tile.Image.Source)
-				}
-				imgSrcByOrientation[o] = propValue
-			}
+		imgSrcByOrientation, err := ParseImageSrcByOrientation(imgSrc, properties)
+		if err != nil {
+			return nil, fmt.Errorf("invalid map: %v", err)
 		}
 		level.setTile(pos, &LevelTile{
 			Tile: Tile{
@@ -588,4 +579,22 @@ func Load(filename string) (*Level, error) {
 		return nil, fmt.Errorf("could not hash level: %v", err)
 	}
 	return &level, nil
+}
+
+// ParseImageSrcByOrientation parses the imgSrcByOrientation map.
+func ParseImageSrcByOrientation(defaultSrc string, properties map[string]string) (map[m.Orientation]string, error) {
+	imgSrcByOrientation := map[m.Orientation]string{}
+	for propName, propValue := range properties {
+		if oStr := strings.TrimPrefix(propName, "img."); oStr != propName {
+			o, err := m.ParseOrientation(oStr)
+			if err != nil {
+				return nil, fmt.Errorf("could not parse orientation tile: %v", err)
+			}
+			if o == m.Identity() && propValue != defaultSrc {
+				return nil, fmt.Errorf("unrotated image isn't same as img: got %q, want %q", propValue, defaultSrc)
+			}
+			imgSrcByOrientation[o] = propValue
+		}
+	}
+	return imgSrcByOrientation, nil
 }
