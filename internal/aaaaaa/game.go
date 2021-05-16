@@ -15,6 +15,8 @@
 package aaaaaa
 
 import (
+	"log"
+
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
@@ -31,10 +33,13 @@ var RegularTermination = menu.RegularTermination
 
 var (
 	externalCapture = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
+	screenFilter    = flag.String("screen_filter", "default", "filter to use for rendering the screen; current possible values are 'default', 'linear' and 'nearest'")
 )
 
 type Game struct {
 	Menu menu.Menu
+
+	offScreen *ebiten.Image
 }
 
 var _ ebiten.Game = &Game{}
@@ -72,11 +77,7 @@ func (g *Game) Update() error {
 	return nil
 }
 
-func (g *Game) Draw(screen *ebiten.Image) {
-	defer timing.Group()()
-	timing.Section("draw")
-	defer timing.Group()()
-
+func (g *Game) drawAtGameSize(screen *ebiten.Image) {
 	timing.Section("fontcache")
 	font.KeepInCache(screen)
 
@@ -90,6 +91,62 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	dumpFrame(screen)
 }
 
+func (g *Game) drawOffscreen() *ebiten.Image {
+	if g.offScreen == nil {
+		g.offScreen = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+	}
+	g.drawAtGameSize(g.offScreen)
+	return g.offScreen
+}
+
+func (g *Game) setOffscreenGeoM(screen *ebiten.Image, geoM *ebiten.GeoM) {
+	sw, sh := screen.Size()
+	fw := float64(sw) / float64(engine.GameWidth)
+	fh := float64(sh) / float64(engine.GameHeight)
+	f := fw
+	if fh < fw {
+		f = fh
+	}
+	dx := (float64(sw) - f*engine.GameWidth) * 0.5
+	dy := (float64(sh) - f*engine.GameHeight) * 0.5
+	geoM.Scale(f, f)
+	geoM.Translate(dx, dy)
+}
+
+func (g *Game) Draw(screen *ebiten.Image) {
+	defer timing.Group()()
+	timing.Section("draw")
+	defer timing.Group()()
+
+	switch *screenFilter {
+	case "default":
+		g.drawAtGameSize(screen)
+	case "linear":
+		screen.Clear()
+		options := &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Filter:        ebiten.FilterLinear,
+		}
+		g.setOffscreenGeoM(screen, &options.GeoM)
+		screen.DrawImage(g.drawOffscreen(), options)
+	case "nearest":
+		screen.Clear()
+		options := &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Filter:        ebiten.FilterNearest,
+		}
+		g.setOffscreenGeoM(screen, &options.GeoM)
+		screen.DrawImage(g.drawOffscreen(), options)
+		// TODO: Add some shader based filters.
+	default:
+		log.Printf("WARNING: unknown screen filter type: %q; reverted to default", *screenFilter)
+		*screenFilter = "default"
+	}
+}
+
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
+	if *screenFilter != "default" {
+		return outsideWidth, outsideHeight
+	}
 	return engine.GameWidth, engine.GameHeight
 }
