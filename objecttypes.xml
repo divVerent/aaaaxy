@@ -78,6 +78,7 @@
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
   <property name="player_solid" type="bool" default="false"/>
+  <property name="render_offset" type="string"/>
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
@@ -129,6 +130,7 @@
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
   <property name="player_solid" type="bool" default="false"/>
+  <property name="render_offset" type="string"/>
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
@@ -162,6 +164,7 @@
   <property name="opaque" type="bool" default="false"/>
   <property name="orientation" type="string"/>
   <property name="player_solid" type="bool" default="false"/>
+  <property name="render_offset" type="string"/>
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>

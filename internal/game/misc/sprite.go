@@ -45,7 +45,14 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 	if err != nil {
 		return err
 	}
-	e.ResizeImage = true
+	offsetString := sp.Properties["render_offset"]
+	if offsetString == "" {
+		e.ResizeImage = true
+	} else {
+		if _, err := fmt.Sscanf(offsetString, "%d %d", &e.RenderOffset.DX, &e.RenderOffset.DY); err != nil {
+			return fmt.Errorf("could not decode render offset %q: %v", offsetString, err)
+		}
+	}
 	subX, subY := 0, 0
 	subW, subH := e.Image.Size()
 	regionString := sp.Properties["image_region"]
