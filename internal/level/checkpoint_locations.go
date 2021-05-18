@@ -45,7 +45,6 @@ type (
 type edge struct {
 	a, b           string
 	unstraightness float64
-	index          int
 }
 
 func unstraightness(d m.Delta) float64 {
@@ -106,24 +105,25 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 		return nil, fmt.Errorf("could not decode checkpoint locations for %q: %v", filename, err)
 	}
 	loc, err := l.loadCheckpointLocations(filename, g, m.Delta{DX: 1, DY: 0}, m.Delta{DX: 0, DY: 1})
+	if err == nil {
+		return loc, nil
+	}
 	err0 := err
-	for d := 32; d > 0; d-- {
-		if err != nil {
-			// Try some rotation.
-			log.Printf("Trying direction %d...", d)
-			loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: 1}, m.Delta{DX: -1, DY: d})
+	for d := 16; d > 0; d-- {
+		// Try some rotation.
+		loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: 1}, m.Delta{DX: -1, DY: d})
+		if err == nil {
+			log.Printf("Note: loading checkpoint locations required rotation by %d 1", d)
+			return loc, nil
 		}
-		if err != nil {
-			// Try the opposite.
-			log.Printf("Trying direction -%d...", d)
-			loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: -1}, m.Delta{DX: 1, DY: d})
+		// Try the opposite.
+		loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: -1}, m.Delta{DX: 1, DY: d})
+		if err == nil {
+			log.Printf("Note: loading checkpoint locations required rotation by %d -1", d)
+			return loc, nil
 		}
 	}
-	if err != nil {
-		// Revert to the initial error.
-		err = err0
-	}
-	return loc, err
+	return nil, err0
 }
 
 // loadCheckpointLocations loads the checkpoint locations for the given level, possibly with a matrix transform.
@@ -259,8 +259,8 @@ nextEdge:
 			continue nextEdge
 		}
 		if edge.unstraightness != 0 {
-			edge.unstraightness = 0
 			log.Printf("Prioritizing edge %v...", edge)
+			edge.unstraightness = 0
 			goto again
 		}
 		return nil, fmt.Errorf("could not map edge %v to keyboard direction in %q", edge, filename)

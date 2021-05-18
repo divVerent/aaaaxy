@@ -9821,7 +9821,7 @@
   <object id="4019" gid="313" x="5248" y="3376" width="3" height="5"/>
   <object id="4020" name="KaizoWarp" gid="277" x="5616" y="3312" width="32" height="16"/>
   <object id="4021" name="KaizoWarp" gid="279" x="5744" y="3296" width="32" height="16"/>
-  <object id="4023" gid="299" x="5680" y="3280" width="32" height="384">
+  <object id="4023" gid="299" x="5680" y="3312" width="32" height="352">
    <properties>
     <property name="map_black_to" type="color" value="#00ff5555"/>
     <property name="map_white_to" type="color" value="#ffff5555"/>
@@ -9884,7 +9884,7 @@
   <object id="4077" gid="307" x="6304" y="3344" width="32" height="32"/>
   <object id="4078" gid="307" x="6064" y="3408" width="32" height="32"/>
   <object id="4080" gid="301" x="6304" y="3488" width="32" height="32"/>
-  <object id="4093" type="SetState" x="6032" y="3376" width="16" height="272">
+  <object id="4093" type="SetState" x="6032" y="3376" width="16" height="280">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
@@ -9950,6 +9950,6 @@
     <property name="target" value="RaaaaaaceStart"/>
    </properties>
   </object>
-  <object id="4132" name="RaaaaaaceStart" gid="292" x="6032" y="3632" width="16" height="16"/>
+  <object id="4132" name="RaaaaaaceStart" gid="292" x="6032" y="3640" width="16" height="16"/>
  </objectgroup>
 </map>
