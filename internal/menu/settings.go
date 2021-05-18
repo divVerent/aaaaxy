@@ -50,7 +50,8 @@ func (s *SettingsScreen) Init(m *Menu) error {
 type graphicsSetting int
 
 const (
-	lowGraphics graphicsSetting = iota
+	lowestGraphics graphicsSetting = iota
+	lowGraphics
 	mediumGraphics
 	highGraphics
 	graphicsSettingCount
@@ -64,6 +65,8 @@ func (s graphicsSetting) String() string {
 		return "Medium"
 	case lowGraphics:
 		return "Low"
+	case lowestGraphics:
+		return "Lowest"
 	}
 	return "???"
 }
@@ -75,7 +78,10 @@ func currentGraphics() graphicsSetting {
 	if flag.Get("draw_blurs").(bool) {
 		return mediumGraphics
 	}
-	return lowGraphics
+	if flag.Get("expand_using_vertices_accurately").(bool) {
+		return lowGraphics
+	}
+	return lowestGraphics
 }
 
 func (s graphicsSetting) apply() error {
@@ -86,18 +92,28 @@ func (s graphicsSetting) apply() error {
 		flag.Set("draw_visibility_mask", true)
 		flag.Set("expand_using_vertices", true)
 		flag.Set("expand_using_vertices_accurately", true)
+		flag.Set("screen_filter", "linear2x")
 	case mediumGraphics:
 		flag.Set("draw_blurs", true)
 		flag.Set("draw_outside", false)
 		flag.Set("draw_visibility_mask", true)
 		flag.Set("expand_using_vertices", true)
 		flag.Set("expand_using_vertices_accurately", true)
+		flag.Set("screen_filter", "linear2x")
 	case lowGraphics:
 		flag.Set("draw_blurs", false)
 		flag.Set("draw_outside", false)
 		flag.Set("draw_visibility_mask", true)
 		flag.Set("expand_using_vertices", true)
 		flag.Set("expand_using_vertices_accurately", true)
+		flag.Set("screen_filter", "linear2x")
+	case lowestGraphics:
+		flag.Set("draw_blurs", false)
+		flag.Set("draw_outside", false)
+		flag.Set("draw_visibility_mask", true)
+		flag.Set("expand_using_vertices", true)
+		flag.Set("expand_using_vertices_accurately", false)
+		flag.Set("screen_filter", "simple")
 	}
 	return nil
 }

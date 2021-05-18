@@ -26,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/menu"
 	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/noise"
+	"github.com/divVerent/aaaaaa/internal/shader"
 	"github.com/divVerent/aaaaaa/internal/timing"
 )
 
@@ -33,14 +34,14 @@ var RegularTermination = menu.RegularTermination
 
 var (
 	externalCapture = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
-	screenFilter    = flag.String("screen_filter", "default", "filter to use for rendering the screen; current possible values are 'default', 'linear' and 'nearest'")
+	screenFilter    = flag.String("screen_filter", "simple", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x' and 'nearest'")
 )
 
 type Game struct {
 	Menu menu.Menu
 
-	offScreen   *ebiten.Image
-	offScreen2x *ebiten.Image
+	offScreen      *ebiten.Image
+	linear2xShader *ebiten.Shader
 }
 
 var _ ebiten.Game = &Game{}
@@ -120,7 +121,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	defer timing.Group()()
 
 	switch *screenFilter {
-	case "default":
+	case "simple":
 		g.drawAtGameSize(screen)
 	case "linear":
 		screen.Clear()
@@ -131,22 +132,26 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
 		screen.DrawImage(g.drawOffscreen(), options)
 	case "linear2x":
-		// TODO: replace by a shader. Faster.
-		if g.offScreen2x == nil {
-			g.offScreen2x = ebiten.NewImage(engine.GameWidth*2, engine.GameHeight*2)
+		if g.linear2xShader == nil {
+			var err error
+			g.linear2xShader, err = shader.Load("linear2x.kage", nil)
+			if err != nil {
+				log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load linear2x shader: %v", err)
+				*screenFilter = "simple"
+				return
+			}
 		}
-		options := &ebiten.DrawImageOptions{
+		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
-			Filter:        ebiten.FilterNearest,
+			Images: [4]*ebiten.Image{
+				g.drawOffscreen(),
+				nil,
+				nil,
+				nil,
+			},
 		}
-		options.GeoM.Scale(2, 2)
-		g.offScreen2x.DrawImage(g.drawOffscreen(), options)
-		options = &ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
-			Filter:        ebiten.FilterLinear,
-		}
-		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth*2, engine.GameHeight*2)
-		screen.DrawImage(g.offScreen2x, options)
+		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
+		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xShader, options)
 	case "nearest":
 		screen.Clear()
 		options := &ebiten.DrawImageOptions{
@@ -157,13 +162,13 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		screen.DrawImage(g.drawOffscreen(), options)
 		// TODO: Add some shader based filters.
 	default:
-		log.Printf("WARNING: unknown screen filter type: %q; reverted to default", *screenFilter)
-		*screenFilter = "default"
+		log.Printf("WARNING: unknown screen filter type: %q; reverted to simple", *screenFilter)
+		*screenFilter = "simple"
 	}
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	if *screenFilter != "default" {
+	if *screenFilter != "simple" {
 		return outsideWidth, outsideHeight
 	}
 	return engine.GameWidth, engine.GameHeight
