@@ -34,7 +34,7 @@ var RegularTermination = menu.RegularTermination
 
 var (
 	externalCapture = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
-	screenFilter    = flag.String("screen_filter", "simple", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x' and 'nearest'")
+	screenFilter    = flag.String("screen_filter", "linear2x", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x' and 'nearest'")
 )
 
 type Game struct {
