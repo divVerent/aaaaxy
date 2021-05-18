@@ -36,10 +36,22 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	f := fract(topLeft * srcImageSize)
 
 	// Reduce the blur to better match VGA-like scan line doubling.
-	// Why factor 1.333?
+	// Why factor 1.333333333?
 	// Because our vertical resolution is 360p - VGA mode 13h was 240p.
 	// And thus we want to blur just as much as upscaling from 480p would.
-	f = clamp(0.5 + (f - 0.5) * 1.333, 0.0, 1.0)
-
+	f = clamp(0.5+(f-0.5)*1.333333333, 0.0, 1.0)
 	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y)
+
+	/*
+		// Scan line effect?
+		pixel := texCoord * srcImageSize * 1.333
+		col := mod(pixel.y, 3.0) * 2.09439510239319549229
+		mask := vec4(
+			1.0+0.1*cos(col),
+			1.0+0.1*cos(col+2.09439510239319549229),
+			1.0+0.1*cos(col+4.18879020478639098458),
+			1.0)
+		return mix(mix(a, b, f.x), mix(c, d, f.x), f.y) * mask
+	*/
+
 }
