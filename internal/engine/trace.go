@@ -291,8 +291,16 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.
 var traceDoneErr = errors.New("traceDone")
 
 // traceEntity returns whether the line from from to to hits the entity, as well as the last coordinate not hitting yet.
-func (l *normalizedLine) traceEntity(ent *Entity, enlarge m.Delta) (bool, m.Pos, m.Delta) {
+func (l *normalizedLine) traceEntity(ent *Entity, enlarge m.Delta, maxBorder int) (bool, m.Pos, m.Delta) {
+	border := ent.BorderPixels
+	if border > maxBorder {
+		border = maxBorder
+	}
 	i0, j0, i1, j1 := l.fromRect(ent.Rect, enlarge)
+	i0 -= border
+	j0 -= border
+	i1 += border
+	j1 += border
 	if hit, i, j, u, v := traceLineBox(l.NumSteps, l.Height, i0, j0, i1, j1); hit {
 		return true, l.toPos(i, j), l.toDelta(u, v)
 	}
@@ -302,14 +310,14 @@ func (l *normalizedLine) traceEntity(ent *Entity, enlarge m.Delta) (bool, m.Pos,
 
 // traceEntities clips the given trace against all entities.
 // l must have been initialized to hit the current EndPos anywhere on its path.
-func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta, result *TraceResult) {
+func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta, maxBorder int, result *TraceResult) {
 	// Clip the trace to first entity hit.
 	ents := w.FindContents(o.Contents)
 	for _, ent := range ents {
 		if ent == o.IgnoreEnt {
 			continue
 		}
-		if hit, endPos, delta := l.traceEntity(ent, enlarge); hit {
+		if hit, endPos, delta := l.traceEntity(ent, enlarge, maxBorder); hit {
 			score := TraceScore{
 				TraceDistance: endPos.Delta(l.Origin).Norm1(),
 			}

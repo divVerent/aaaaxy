@@ -85,6 +85,8 @@ const (
 	PlayerOffsetDX = -2
 	// PlayerOffsetDY is the player's render offset.
 	PlayerOffsetDY = -4
+	// PlayerBorderPixels is the size of the player's black border.
+	PlayerBorderPixels = 1
 
 	// LookTiles is how many tiles the player can look up/down.
 	LookDistance = level.TileSize * 4
@@ -186,6 +188,7 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	p.PersistentState = s.PersistentState
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
 	p.Entity.RenderOffset = m.Delta{DX: PlayerOffsetDX, DY: PlayerOffsetDY}
+	p.Entity.BorderPixels = PlayerBorderPixels
 	w.SetZIndex(p.Entity, constants.PlayerZ)
 	w.SetSolid(p.Entity, true) // Needed so platforms don't let players fall through.
 

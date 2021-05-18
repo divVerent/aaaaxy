@@ -89,7 +89,7 @@ func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 	}
 
 	if !o.NoEntities {
-		l.traceEntities(w, o, m.Delta{}, &result)
+		l.traceEntities(w, o, m.Delta{}, 0, &result)
 	}
 
 	return result

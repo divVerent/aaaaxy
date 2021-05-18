@@ -74,6 +74,8 @@ const (
 	LargeRiserOffsetDX = -1
 	// LargeRiserOffsetDY is the riser's render offset.
 	LargeRiserOffsetDY = -1
+	// RiserBorderPixels is the riser's border size.
+	RiserBorderPixels = 1
 
 	// IdleSpeed is the speed the riser moves upwards when not used.
 	IdleSpeed = 15 * constants.SubPixelScale / engine.GameTPS
@@ -91,7 +93,7 @@ const (
 	FollowFactor = 24.0
 
 	// FollowMaxDistance is the max distance allowed while following the player.
-	FollowMaxDistance = 32
+	FollowMaxDistance = 16
 
 	// RepelSpeed is the speed at which risers repel each other until they no longer overlap.
 	RepelSpeed = 15 * constants.SubPixelScale / engine.GameTPS
@@ -119,6 +121,7 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	default:
 		return fmt.Errorf("unexpected riser width: got %v, want 16 or 32", r.Entity.Rect.Size.DX)
 	}
+	r.Entity.BorderPixels = RiserBorderPixels
 
 	r.Entity.Rect.Origin = r.Entity.Rect.Origin.Sub(r.Entity.RenderOffset)
 	w.SetZIndex(r.Entity, constants.RiserMovingZ)

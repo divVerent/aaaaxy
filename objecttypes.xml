@@ -65,6 +65,7 @@
  <objecttype name="MovableSprite" color="#ffffff">
   <property name="alpha" type="string"/>
   <property name="acceleration" type="string"/>
+  <property name="border_pixels" type="int" default="0"/>
   <property name="delta" type="string"/>
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>
@@ -119,6 +120,7 @@
  </objecttype>
  <objecttype name="Sprite" color="#ffffff">
   <property name="alpha" type="string"/>
+  <property name="border_pixels" type="int" default="0"/>
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>
   <property name="image_region" type="string"/>
@@ -151,6 +153,7 @@
  </objecttype>
  <objecttype name="SwitchableSprite" color="#ffffff">
   <property name="alpha" type="string"/>
+  <property name="border_pixels" type="int" default="0"/>
   <property name="fade_time" type="string" default="0s"/>
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>

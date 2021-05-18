@@ -131,13 +131,17 @@ func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 	// As from != to, we know NumSteps > 0.
 
 	enlarge := from.Size.Sub(m.Delta{DX: 1, DY: 1})
+	maxBorder := 0
+	if o.ForEnt != nil {
+		maxBorder = o.ForEnt.BorderPixels
+	}
 
 	if !o.NoTiles {
 		l.traceBoxTiles(w, o, enlarge, &result)
 	}
 
 	if !o.NoEntities {
-		l.traceEntities(w, o, enlarge, &result)
+		l.traceEntities(w, o, enlarge, maxBorder, &result)
 	}
 
 	return result

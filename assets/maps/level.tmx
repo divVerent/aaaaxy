@@ -9568,35 +9568,40 @@
     <property name="target" value="ButterflyA"/>
    </properties>
   </object>
-  <object id="3872" name="ButterflyA" gid="311" x="5040" y="3522" width="32" height="62">
+  <object id="3872" name="ButterflyA" gid="311" x="5041" y="3522" width="30" height="62">
    <properties>
+    <property name="border_pixels" type="int" value="1"/>
     <property name="delta" value="0 -66"/>
-    <property name="render_offset" value="0 -1"/>
+    <property name="render_offset" value="-1 -1"/>
    </properties>
   </object>
-  <object id="3876" name="ButterflyB" gid="311" x="4928" y="3522" width="32" height="62">
+  <object id="3876" name="ButterflyB" gid="311" x="4929" y="3522" width="30" height="62">
    <properties>
+    <property name="border_pixels" type="int" value="1"/>
     <property name="delta" value="0 -66"/>
-    <property name="render_offset" value="0 -1"/>
+    <property name="render_offset" value="-1 -1"/>
    </properties>
   </object>
-  <object id="3877" name="ButterflyC" gid="311" x="4850" y="3424" width="62" height="32">
+  <object id="3877" name="ButterflyC" gid="311" x="4850" y="3425" width="62" height="30">
    <properties>
+    <property name="border_pixels" type="int" value="1"/>
     <property name="delta" value="-66 0"/>
     <property name="orientation" value="SW"/>
-    <property name="render_offset" value="-1 0"/>
+    <property name="render_offset" value="-1 -1"/>
    </properties>
   </object>
-  <object id="3878" name="ButterflyD" gid="311" x="4912" y="3378" width="32" height="62">
+  <object id="3878" name="ButterflyD" gid="311" x="4913" y="3378" width="30" height="62">
    <properties>
+    <property name="border_pixels" type="int" value="1"/>
     <property name="delta" value="0 -66"/>
-    <property name="render_offset" value="0 -1"/>
+    <property name="render_offset" value="-1 -1"/>
    </properties>
   </object>
-  <object id="3879" name="ButterflyE" gid="311" x="5056" y="3378" width="32" height="62">
+  <object id="3879" name="ButterflyE" gid="311" x="5057" y="3378" width="30" height="62">
    <properties>
+    <property name="border_pixels" type="int" value="1"/>
     <property name="delta" value="0 -66"/>
-    <property name="render_offset" value="0 -1"/>
+    <property name="render_offset" value="-1 -1"/>
    </properties>
   </object>
   <object id="3881" gid="290" x="4976" y="3376" width="16" height="16">
@@ -9670,12 +9675,14 @@
   </object>
   <object id="3921" name="ButterflyRealExit" gid="311" x="5328" y="3346" width="32" height="62">
    <properties>
+    <property name="border_pixels" type="int" value="1"/>
     <property name="delta" value="0 -66"/>
     <property name="render_offset" value="0 -1"/>
    </properties>
   </object>
   <object id="3922" name="ButterflyExit" gid="311" x="5328" y="3424" width="32" height="62">
    <properties>
+    <property name="border_pixels" type="int" value="1"/>
     <property name="delta" value="0 66"/>
     <property name="render_offset" value="0 -1"/>
    </properties>

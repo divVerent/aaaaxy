@@ -71,6 +71,11 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 			},
 		}).(*ebiten.Image)
 	}
+	if s := sp.Properties["border_pixels"]; s != "" {
+		if _, err := fmt.Sscanf(s, "%d", &e.BorderPixels); err != nil {
+			return fmt.Errorf("failed to decode borde pixels %q: %v", s, err)
+		}
+	}
 	return s.SpriteBase.Spawn(w, sp, e)
 }
 

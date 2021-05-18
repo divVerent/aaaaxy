@@ -32,6 +32,7 @@ type Entity struct {
 	// Info needed for gameplay.
 	contents     level.Contents
 	Rect         m.Rect
+	BorderPixels int           // Border applied to ALL sides. Used for entity tracing only.
 	Transform    m.Orientation // Possibly needed for initialization.
 	name         string        // Possibly searched for.
 	RequireTiles bool          // Entity requires tiles to be loaded.
