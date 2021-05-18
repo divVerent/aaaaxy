@@ -225,7 +225,13 @@ again:
 		loc.NextByDir = map[m.Delta]CheckpointEdge{}
 	}
 	sort.Slice(edges, func(a, b int) bool {
-		return edges[a].unstraightness < edges[b].unstraightness
+		du := edges[a].unstraightness - edges[b].unstraightness
+		if du != 0 {
+			return du < 0
+		}
+		na := fmt.Sprintf("%v -> %v", edges[a].a, edges[a].b)
+		nb := fmt.Sprintf("%v -> %v", edges[b].a, edges[b].b)
+		return na < nb
 	})
 nextEdge:
 	for i := range edges {
