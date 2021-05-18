@@ -107,13 +107,15 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 	}
 	loc, err := l.loadCheckpointLocations(filename, g, m.Delta{DX: 1, DY: 0}, m.Delta{DX: 0, DY: 1})
 	err0 := err
-	for d := 8; d > 0; d-- {
+	for d := 32; d > 0; d-- {
 		if err != nil {
 			// Try some rotation.
+			log.Printf("Trying direction %d...", d)
 			loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: 1}, m.Delta{DX: -1, DY: d})
 		}
 		if err != nil {
 			// Try the opposite.
+			log.Printf("Trying direction -%d...", d)
 			loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: -1}, m.Delta{DX: 1, DY: d})
 		}
 	}
