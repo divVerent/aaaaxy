@@ -39,7 +39,8 @@ var (
 type Game struct {
 	Menu menu.Menu
 
-	offScreen *ebiten.Image
+	offScreen   *ebiten.Image
+	offScreen2x *ebiten.Image
 }
 
 var _ ebiten.Game = &Game{}
@@ -99,16 +100,16 @@ func (g *Game) drawOffscreen() *ebiten.Image {
 	return g.offScreen
 }
 
-func (g *Game) setOffscreenGeoM(screen *ebiten.Image, geoM *ebiten.GeoM) {
+func (g *Game) setOffscreenGeoM(screen *ebiten.Image, geoM *ebiten.GeoM, w, h int) {
 	sw, sh := screen.Size()
-	fw := float64(sw) / float64(engine.GameWidth)
-	fh := float64(sh) / float64(engine.GameHeight)
+	fw := float64(sw) / float64(w)
+	fh := float64(sh) / float64(h)
 	f := fw
 	if fh < fw {
 		f = fh
 	}
-	dx := (float64(sw) - f*engine.GameWidth) * 0.5
-	dy := (float64(sh) - f*engine.GameHeight) * 0.5
+	dx := (float64(sw) - f*float64(w)) * 0.5
+	dy := (float64(sh) - f*float64(h)) * 0.5
 	geoM.Scale(f, f)
 	geoM.Translate(dx, dy)
 }
@@ -127,15 +128,32 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			CompositeMode: ebiten.CompositeModeCopy,
 			Filter:        ebiten.FilterLinear,
 		}
-		g.setOffscreenGeoM(screen, &options.GeoM)
+		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
 		screen.DrawImage(g.drawOffscreen(), options)
+	case "linear2x":
+		// TODO: replace by a shader. Faster.
+		if g.offScreen2x == nil {
+			g.offScreen2x = ebiten.NewImage(engine.GameWidth*2, engine.GameHeight*2)
+		}
+		options := &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Filter:        ebiten.FilterNearest,
+		}
+		options.GeoM.Scale(2, 2)
+		g.offScreen2x.DrawImage(g.drawOffscreen(), options)
+		options = &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Filter:        ebiten.FilterLinear,
+		}
+		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth*2, engine.GameHeight*2)
+		screen.DrawImage(g.offScreen2x, options)
 	case "nearest":
 		screen.Clear()
 		options := &ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Filter:        ebiten.FilterNearest,
 		}
-		g.setOffscreenGeoM(screen, &options.GeoM)
+		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
 		screen.DrawImage(g.drawOffscreen(), options)
 		// TODO: Add some shader based filters.
 	default:
