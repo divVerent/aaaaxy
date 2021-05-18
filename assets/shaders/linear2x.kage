@@ -1,0 +1,43 @@
+// Copyright 2021 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// A simple shader to upscale and linearly "interpolate".
+package main
+
+func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
+	srcOrigin, srcSize := imageSrcRegionOnTexture()
+	srcMax := srcOrigin + srcSize
+
+	// Set up typical linear interpolation.
+	srcImageSize := imageSrcTextureSize()
+	halfTexel := 0.5 / srcImageSize
+	tieBreaker := halfTexel / 256.0
+	topLeft := clamp(texCoord-halfTexel+tieBreaker, srcOrigin, srcMax)
+	bottomRight := clamp(texCoord+halfTexel+tieBreaker, srcOrigin, srcMax)
+
+	// Get the four texels.
+	a := imageSrc0UnsafeAt(topLeft)
+	b := imageSrc0UnsafeAt(vec2(bottomRight.x, topLeft.y))
+	c := imageSrc0UnsafeAt(vec2(topLeft.x, bottomRight.y))
+	d := imageSrc0UnsafeAt(bottomRight)
+
+	// Mix them properly.
+	f := fract(topLeft * srcImageSize)
+
+	// Reduce the blur to better match VGA-like scan line doubling.
+	// Why factor 1.5?
+	f = clamp(0.5 + (f - 0.5) * 1.333, 0.0, 1.0)
+
+	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y)
+}
