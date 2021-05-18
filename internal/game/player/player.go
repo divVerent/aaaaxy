@@ -73,18 +73,18 @@ var _ interfaces.VVVVVVer = &Player{}
 const (
 	// PlayerWidth is the hitbox width of the player.
 	// Actual width is 14 (one extra pixel to left and right).
-	PlayerWidth = 12
+	PlayerWidth = 10
 	// PlayerHeight is the hitbox height of the player.
 	// Actual height is 30 (three extra pixels at the top).
-	PlayerHeight = 27
+	PlayerHeight = 25
 	// PlayerEyeDX is the X coordinate of the player's eye.
-	PlayerEyeDX = 6
+	PlayerEyeDX = 5
 	// PlayerEyeDY is the Y coordinate of the player's eye.
-	PlayerEyeDY = 4
+	PlayerEyeDY = 3
 	// PlayerOffsetDX is the player's render offset.
-	PlayerOffsetDX = -1
+	PlayerOffsetDX = -2
 	// PlayerOffsetDY is the player's render offset.
-	PlayerOffsetDY = -3
+	PlayerOffsetDY = -4
 
 	// LookTiles is how many tiles the player can look up/down.
 	LookDistance = level.TileSize * 4
