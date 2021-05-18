@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4108">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4109">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -6674,6 +6674,7 @@
     <property name="music" value=""/>
     <property name="next_down" type="object" value="3866"/>
     <property name="next_left" type="object" value="2840"/>
+    <property name="next_right" type="object" value="2301"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="The Anti-Hub"/>
    </properties>
@@ -7521,9 +7522,7 @@
   <object id="2301" name="carry_it_out" type="Checkpoint" x="512" y="240" width="16" height="32">
    <properties>
     <property name="music" value="Pressure.ogg"/>
-    <property name="next_down" type="object" value="2302"/>
-    <property name="next_right" type="object" value="2886"/>
-    <property name="next_up" type="object" value="2325"/>
+    <property name="next_right" type="object" value="4108"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Gotta carry it out"/>
    </properties>
@@ -9932,6 +9931,16 @@
     <property name="next_up" type="object" value="2224"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Moved Enough?"/>
+   </properties>
+  </object>
+  <object id="4108" name="carried_enough" type="Checkpoint" x="624" y="288" width="32" height="32">
+   <properties>
+    <property name="music" value="Pressure.ogg"/>
+    <property name="next_down" type="object" value="2302"/>
+    <property name="next_right" type="object" value="2886"/>
+    <property name="next_up" type="object" value="2325"/>
+    <property name="required_orientation" value="ES"/>
+    <property name="text" value="Carried enough?"/>
    </properties>
   </object>
  </objectgroup>

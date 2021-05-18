@@ -17,6 +17,7 @@ package level
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math"
 	"sort"
 	"strings"
@@ -94,7 +95,6 @@ func possibleDirs(d m.Delta) (m.Delta, m.Delta) {
 	}
 }
 
-// LoadCheckpointLocations loads the checkpoint locations for the given level.
 func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, error) {
 	r, err := vfs.Load("maps", filename+".cp.json")
 	if err != nil {
@@ -104,6 +104,29 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 	if err := json.NewDecoder(r).Decode(&g); err != nil {
 		return nil, fmt.Errorf("could not decode checkpoint locations for %q: %v", filename, err)
 	}
+	loc, err := l.loadCheckpointLocations(filename, g, m.Delta{DX: 1, DY: 0}, m.Delta{DX: 0, DY: 1})
+	/*
+		err0 := err
+		for d := 8; d > 0; d-- {
+			if err != nil {
+				// Try some rotation.
+				loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: 1}, m.Delta{DX: -1, DY: d})
+			}
+			if err != nil {
+				// Try the opposite.
+				loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: -1}, m.Delta{DX: 1, DY: d})
+			}
+		}
+		if err != nil {
+			// Revert to the initial error.
+			err = err0
+		}
+	*/
+	return loc, err
+}
+
+// loadCheckpointLocations loads the checkpoint locations for the given level, possibly with a matrix transform.
+func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, right, down m.Delta) (*CheckpointLocations, error) {
 	id2name := map[EntityID]string{}
 	loc := &CheckpointLocations{
 		Locs: map[string]*CheckpointLocation{},
@@ -118,9 +141,13 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 		if cp == nil {
 			return nil, fmt.Errorf("could not find checkpoint referenced by locations for %q in %q", o.Name, filename)
 		}
-		pos, err := o.MapPos()
+		rawPos, err := o.MapPos()
 		if err != nil {
 			return nil, fmt.Errorf("could not parse checkpoint location %q for %q in %q: %v", o.Pos, o.Name, filename, err)
+		}
+		pos := m.Pos{
+			X: rawPos.Delta(m.Pos{}).Dot(right),
+			Y: rawPos.Delta(m.Pos{}).Dot(down),
 		}
 		if len(loc.Locs) == 0 || pos.X < minPos.X {
 			minPos.X = pos.X
@@ -135,8 +162,7 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 			maxPos.Y = pos.Y
 		}
 		loc.Locs[o.Name] = &CheckpointLocation{
-			MapPos:    pos,
-			NextByDir: map[m.Delta]CheckpointEdge{},
+			MapPos: pos,
 		}
 	}
 	loc.Rect = m.Rect{
@@ -194,11 +220,16 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 	// However, if we assign the unpreferred one once we have to,
 	// this helps choosing the unpreferred one in further assignments, so it is necessary.
 	// Now translate to NextByDir. Successively map the "most straight direction" to the closest remaining available direction.
+again:
+	for _, loc := range loc.Locs {
+		loc.NextByDir = map[m.Delta]CheckpointEdge{}
+	}
 	sort.Slice(edges, func(a, b int) bool {
 		return edges[a].unstraightness < edges[b].unstraightness
 	})
 nextEdge:
-	for _, edge := range edges {
+	for i := range edges {
+		edge := &edges[i]
 		a := loc.Locs[edge.a]
 		b := loc.Locs[edge.b]
 		delta := b.MapPos.Delta(a.MapPos)
@@ -220,9 +251,14 @@ nextEdge:
 			}
 			continue nextEdge
 		}
+		if edge.unstraightness != 0 {
+			edge.unstraightness = 0
+			log.Printf("Prioritizing edge %v...", edge)
+			goto again
+		}
 		return nil, fmt.Errorf("could not map edge %v to keyboard direction in %q", edge, filename)
 	}
-	// Now add the preferred direction undirectionally whereever not there yet.
+	// Now add the preferred direction unidirectionally whereever not there yet.
 	for _, edge := range edges {
 		a := loc.Locs[edge.a]
 		b := loc.Locs[edge.b]
