@@ -45,6 +45,7 @@ type (
 type edge struct {
 	a, b           string
 	unstraightness float64
+	index          int
 }
 
 func unstraightness(d m.Delta) float64 {
@@ -105,23 +106,21 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 		return nil, fmt.Errorf("could not decode checkpoint locations for %q: %v", filename, err)
 	}
 	loc, err := l.loadCheckpointLocations(filename, g, m.Delta{DX: 1, DY: 0}, m.Delta{DX: 0, DY: 1})
-	/*
-		err0 := err
-		for d := 8; d > 0; d-- {
-			if err != nil {
-				// Try some rotation.
-				loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: 1}, m.Delta{DX: -1, DY: d})
-			}
-			if err != nil {
-				// Try the opposite.
-				loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: -1}, m.Delta{DX: 1, DY: d})
-			}
+	err0 := err
+	for d := 8; d > 0; d-- {
+		if err != nil {
+			// Try some rotation.
+			loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: 1}, m.Delta{DX: -1, DY: d})
 		}
 		if err != nil {
-			// Revert to the initial error.
-			err = err0
+			// Try the opposite.
+			loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: -1}, m.Delta{DX: 1, DY: d})
 		}
-	*/
+	}
+	if err != nil {
+		// Revert to the initial error.
+		err = err0
+	}
 	return loc, err
 }
 
