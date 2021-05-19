@@ -138,9 +138,8 @@ func main() {
 		digraph G {
 			layout = "neato";
 			ratio = 0.5;
-			overlap = true;
+			overlap = false;
 			splines = false;
-			model = subset;
 			maxiter = 131072;
 			epsilon = 0.000001;
 		`)

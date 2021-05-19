@@ -143,10 +143,10 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	h := engine.GameHeight
 	w := engine.GameWidth
 	x := w / 2
-	fgs := color.NRGBA{R: 255, G: 255, B: 75, A: 255}
+	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	lineColor := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
-	darkLineColor := color.NRGBA{R: 75, G: 75, B: 75, A: 255}
+	darkLineColor := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := s.Menu.World.Level.Checkpoints[s.CurrentCP].Properties["text"]
 	seen, total := s.Menu.World.PlayerState.TnihSignsSeen(s.CurrentCP)
@@ -168,7 +168,14 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		Origin: m.Pos{X: (w - mapWidth) / 2, Y: (h - mapHeight) / 2},
 		Size:   m.Delta{DX: mapWidth, DY: mapHeight},
 	}
-	// ebitenutil.DrawRect(screen, float64(mapRect.Origin.X), float64(mapRect.Origin.Y), float64(mapRect.Size.DX), float64(mapRect.Size.DY), bgs)
+	opts := ebiten.DrawImageOptions{
+		CompositeMode: ebiten.CompositeModeSourceOver,
+		Filter:        ebiten.FilterNearest,
+	}
+	opts.GeoM.Scale(float64(mapRect.Size.DX+24), float64(mapRect.Size.DY+24))
+	opts.GeoM.Translate(float64(mapRect.Origin.X-12), float64(mapRect.Origin.Y-12))
+	opts.ColorM.Scale(1.0/3.0, 1.0/3.0, 1.0/3.0, 2.0/3.0)
+	screen.DrawImage(s.whiteImage, &opts)
 	// First draw all edges.
 	for _, cpName := range s.SortedLocs {
 		cpLoc := loc.Locs[cpName]
@@ -194,7 +201,6 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				otherLoc := loc.Locs[otherName]
 				otherPos := otherLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
 				farPos := otherPos.Sub(dir.Mul(7))
-				engine.DrawPolyLine(screen, 6.0, []m.Pos{pos, closePos, farPos, otherPos}, s.whiteImage, darkLineColor, geoM, options)
 				engine.DrawPolyLine(screen, 3.0, []m.Pos{pos, closePos, farPos, otherPos}, s.whiteImage, lineColor, geoM, options)
 			} else {
 				engine.DrawPolyLine(screen, 3.0, []m.Pos{pos, closePos}, s.whiteImage, darkLineColor, geoM, options)
