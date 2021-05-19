@@ -16,6 +16,7 @@ package aaaaaa
 
 import (
 	"log"
+	"math/rand"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -33,8 +34,9 @@ import (
 var RegularTermination = menu.RegularTermination
 
 var (
-	externalCapture = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
-	screenFilter    = flag.String("screen_filter", "linear2x", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x' and 'nearest'")
+	externalCapture    = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
+	screenFilter       = flag.String("screen_filter", "linear2x", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x' and 'nearest'")
+	screenFilterJitter = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 )
 
 type Game struct {
@@ -113,6 +115,7 @@ func (g *Game) setOffscreenGeoM(screen *ebiten.Image, geoM *ebiten.GeoM, w, h in
 	dy := (float64(sh) - f*float64(h)) * 0.5
 	geoM.Scale(f, f)
 	geoM.Translate(dx, dy)
+	geoM.Translate((rand.Float64()-0.5)**screenFilterJitter, (rand.Float64()-0.5)**screenFilterJitter)
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
@@ -160,7 +163,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		}
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
 		screen.DrawImage(g.drawOffscreen(), options)
-		// TODO: Add some shader based filters.
 	default:
 		log.Printf("WARNING: unknown screen filter type: %q; reverted to simple", *screenFilter)
 		*screenFilter = "simple"
