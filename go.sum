@@ -54,6 +54,8 @@ github.com/hajimehoshi/ebiten/v2 v2.0.8 h1:+LPEcUhsLS3swxf2LtBb2V1TO72YoGPArWPqx
 github.com/hajimehoshi/ebiten/v2 v2.0.8/go.mod h1:uS3OjMW3f2DRDMtWoIF7yMMmrMkv+fZ6pXcwR1pfA0Y=
 github.com/hajimehoshi/ebiten/v2 v2.1.0 h1:TU4ptPJ8wFeoZoXDzvxxk4QiqbHqhaiOCV3yDM1ANr4=
 github.com/hajimehoshi/ebiten/v2 v2.1.0/go.mod h1:mpAvpmTRbMdhQDZplZ4rfEogRhdsfAGTC0zLhxawKHY=
+github.com/hajimehoshi/ebiten/v2 v2.1.1 h1:ZrMZOGGMHK7A6vj3A9vGPLL337AxrbmpZor7D9S/r+4=
+github.com/hajimehoshi/ebiten/v2 v2.1.1/go.mod h1:mpAvpmTRbMdhQDZplZ4rfEogRhdsfAGTC0zLhxawKHY=
 github.com/hajimehoshi/file2byteslice v0.0.0-20200812174855-0e5e8a80490e/go.mod h1:CqqAHp7Dk/AqQiwuhV1yT2334qbA/tFWQW0MD2dGqUE=
 github.com/hajimehoshi/go-mp3 v0.3.1/go.mod h1:qMJj/CSDxx6CGHiZeCgbiq2DSUkbK0UbtXShQcnfyMM=
 github.com/hajimehoshi/go-mp3 v0.3.2/go.mod h1:qMJj/CSDxx6CGHiZeCgbiq2DSUkbK0UbtXShQcnfyMM=
@@ -159,6 +161,8 @@ golang.org/x/exp v0.0.0-20210417010653-0739314eea07 h1:B++6xOM/K7sWi0y6Ji36eIMkZ
 golang.org/x/exp v0.0.0-20210417010653-0739314eea07/go.mod h1:UjMNdUHwQ6WIvg3xW80lhIWsmxZLZf67lkFSwkMjyZ8=
 golang.org/x/exp v0.0.0-20210503015746-b3083d562e1d h1:GVdk3fETn7OIrVsO9oikNOn5qWu8EcgkTtcDD9IGyQ4=
 golang.org/x/exp v0.0.0-20210503015746-b3083d562e1d/go.mod h1:MSdmUWF4ZWBPSUbgUX/gaau5kvnbkSs9pgtY6B9JXDE=
+golang.org/x/exp v0.0.0-20210514180818-737f94c0881e h1:VqVU3dsTLGDa5pW74b+xG1lvKltt4EZIUrFPeKOqV2s=
+golang.org/x/exp v0.0.0-20210514180818-737f94c0881e/go.mod h1:MSdmUWF4ZWBPSUbgUX/gaau5kvnbkSs9pgtY6B9JXDE=
 golang.org/x/image v0.0.0-20190227222117-0694c2d4d067/go.mod h1:kZ7UVZpmo3dzQBMxlp+ypCbDeSB+sBbTgSJuh5dn5js=
 golang.org/x/image v0.0.0-20190703141733-d6a02ce849c9/go.mod h1:FeLwcggjj3mMvU+oOTbSwawSJRM1uh48EjtB4UJZlP0=
 golang.org/x/image v0.0.0-20190802002840-cff245a6509b/go.mod h1:FeLwcggjj3mMvU+oOTbSwawSJRM1uh48EjtB4UJZlP0=
@@ -213,6 +217,8 @@ golang.org/x/sys v0.0.0-20210421221651-33663a62ff08 h1:qyN5bV+96OX8pL78eXDuz6YlD
 golang.org/x/sys v0.0.0-20210421221651-33663a62ff08/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20210503173754-0981d6026fa6 h1:cdsMqa2nXzqlgs183pHxtvoVwU7CyzaCTAUOg94af4c=
 golang.org/x/sys v0.0.0-20210503173754-0981d6026fa6/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.0.0-20210514084401-e8d321eab015 h1:hZR0X1kPW+nwyJ9xRxqZk1vx5RUObAPBdKVvXPDUH/E=
+golang.org/x/sys v0.0.0-20210514084401-e8d321eab015/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2/go.mod h1:bEr9sfX3Q8Zfm5fL9x+3itogRgK3+ptLWKqgva+5dAk=
 golang.org/x/text v0.3.3/go.mod h1:5Zoc/QRtKVWzQhOtBMvqHzDpF6irO9z98xDceosuGiQ=
