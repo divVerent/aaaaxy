@@ -23,17 +23,16 @@ sox \
   --combine merge \
   ../shepard_{00,04,07,10,02,05,07,05,02,10,07,04,00,04,07,10,02,05,07,05,02,10,07,04,00}.wav \
   ../loom.wav \
-  delay $(seq 1 0.2 5.8) \
-  remix - \
+  delay $(seq 1 0.2 5.8 | sed -e 's,.*,& &,g') \
   remix - - \
   gain -n -1
 
 sox \
   --combine merge \
+  -c 2 \
   ../shepard_{02,05,09,10,02,10,09,05,02,05,09,10,02,10,09,05,02}.wav \
   ../loom_minor.wav \
-  delay $(seq 1 0.3 5.8) \
-  remix - \
+  delay $(seq 1 0.3 5.8 | sed -e 's,.*,& &,g') \
   remix - - \
   gain -n -1
 
