@@ -38,11 +38,13 @@ for basenote in $(seq 0 11); do
 		vols=$vols${ch}v$vol,
 		set -- "$@" "$len" sine "%$note"
 	done
-	sox -n -r 48k -e signed -b 16 -c 2 \
-	  $(printf ../shepard_%02d.wav $basenote) \
+	name=$(printf ../shepard_%02d $basenote)
+	sox -n -r 44.1k -e signed -b 16 -c 2 \
+	  "$name.wav" \
 	  synth "$@" \
 	  remix -m "${vols%,}" \
 	  fade l "$attack" "$len" "$decay" \
 	  reverb 95 50 100 100 \
 	  fade q 0 "$len" "$reverbdecay"
+	oggenc -q3 -o "$name.ogg" "$name.wav"
 done
