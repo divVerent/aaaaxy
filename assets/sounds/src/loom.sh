@@ -36,3 +36,6 @@ sox \
   remix - \
   remix - - \
   gain -n -1
+
+oggenc -q3 -o ../loom.ogg ../loom.wav
+oggenc -q3 -o ../loom_minor.ogg ../loom_minor.wav
