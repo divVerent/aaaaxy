@@ -40,6 +40,8 @@ Sections to do:
   - Maybe add a small section with gravity flipping instead of jumping? Will have to change some isAbove checks but shouldn't be too hard.
     - Use the VVVVVV entity to enable/disable gravity flipping.
     - Create an entity that force-respawns the player at last CP?
+    - Name: Van Vlijmen's Vexing Vertical Vector Vertigo.
 
 - Credits
   - Music: need to find some
+
