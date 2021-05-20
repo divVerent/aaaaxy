@@ -143,6 +143,9 @@ func (p *Player) SetVVVVVV(vvvvvv bool, text string) {
 	if !vvvvvv {
 		// Reset VVVVVV state.
 		p.OnGroundVec = m.Delta{DX: 0, DY: 1}
+	} else {
+		// To indicate to the player that it is happening, immediately have gravity point _up_.
+		p.OnGroundVec = m.Delta{DX: 0, DY: -1}
 	}
 	p.VVVVVV = vvvvvv
 	centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 190, G: 0, B: 0, A: 255}).SetFadeOut(true)
