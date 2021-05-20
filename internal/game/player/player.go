@@ -150,8 +150,10 @@ func (p *Player) SetVVVVVV(vvvvvv bool, text string, up bool) {
 		p.OnGroundVec = m.Delta{DX: 0, DY: -1}
 	}
 	p.VVVVVV = vvvvvv
-	centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 190, G: 0, B: 0, A: 255}).SetFadeOut(true)
-	p.GotAbilitySound.Play()
+	if text != "" {
+		centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 190, G: 0, B: 0, A: 255}).SetFadeOut(true)
+		p.GotAbilitySound.Play()
+	}
 }
 
 func (p *Player) HasAbility(name string) bool {

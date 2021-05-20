@@ -21,6 +21,7 @@ import (
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
@@ -40,6 +41,7 @@ type Checkpoint struct {
 
 	Flipped  bool
 	Inactive bool
+	VVVVVV   bool
 
 	Sound *sound.Sound
 }
@@ -59,6 +61,7 @@ func (c *Checkpoint) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity
 	c.Text = s.Properties["text"]
 	c.Music = s.Properties["music"]
 	c.DeadEnd = s.Properties["dead_end"] == "true"
+	c.VVVVVV = s.Properties["vvvvvv"] == "true"
 
 	if c.Entity.Transform == requiredTransform {
 		c.Flipped = false
@@ -84,6 +87,9 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 	}
 	if c.Inactive {
 		return
+	}
+	if c.VVVVVV {
+		c.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(true, "", false)
 	}
 	c.World.PlayerTouchedCheckpoint(c.Entity)
 	// All checkpoints set the "mood".

@@ -42,6 +42,7 @@
   <property name="next_up" type="object" default="0"/>
   <property name="required_orientation" type="string"/>
   <property name="text" type="string"/>
+  <property name="vvvvvv" type="bool" default="false"/>
  </objecttype>
  <objecttype name="DisappearBlock" color="#00aa00"/>
  <objecttype name="ForceField" color="#ff00ff">
