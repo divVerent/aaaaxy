@@ -136,11 +136,11 @@ const (
 	KeyRespawn = ebiten.KeyR
 )
 
-func (p *Player) SetVVVVVV(vvvvvv bool, text string) {
+func (p *Player) SetVVVVVV(vvvvvv bool, text string, up bool) {
 	if vvvvvv == p.VVVVVV {
 		return
 	}
-	if !vvvvvv {
+	if !vvvvvv || !up {
 		// Reset VVVVVV state.
 		p.OnGroundVec = m.Delta{DX: 0, DY: 1}
 	} else {

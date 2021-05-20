@@ -71,25 +71,25 @@
  </tile>
  <tile id="12" type="OneWay">
   <properties>
-   <property name="orientation" value="EN"/>
+   <property name="orientation" value="ES"/>
   </properties>
   <image width="32" height="32" source="editorimgs/oneway_e.png"/>
  </tile>
  <tile id="13" type="OneWay">
   <properties>
-   <property name="orientation" value="NW"/>
+   <property name="orientation" value="NE"/>
   </properties>
   <image width="32" height="32" source="editorimgs/oneway_n.png"/>
  </tile>
  <tile id="14" type="OneWay">
   <properties>
-   <property name="orientation" value="WS"/>
+   <property name="orientation" value="WN"/>
   </properties>
   <image width="32" height="32" source="editorimgs/oneway_w.png"/>
  </tile>
  <tile id="15" type="OneWay">
   <properties>
-   <property name="orientation" value="SE"/>
+   <property name="orientation" value="SW"/>
   </properties>
   <image width="32" height="32" source="editorimgs/oneway_s.png"/>
  </tile>
@@ -241,5 +241,29 @@
    <property name="object_solid" type="bool" value="true"/>
   </properties>
   <image width="3" height="5" source="miniobjectclip.png"/>
+ </tile>
+ <tile id="40" type="VVVVVV">
+  <properties>
+   <property name="orientation" value="ES"/>
+  </properties>
+  <image width="16" height="16" source="v.png"/>
+ </tile>
+ <tile id="41" type="VVVVVV">
+  <properties>
+   <property name="orientation" value="NE"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/v_n.png"/>
+ </tile>
+ <tile id="42" type="VVVVVV">
+  <properties>
+   <property name="orientation" value="WN"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/v_w.png"/>
+ </tile>
+ <tile id="43" type="VVVVVV">
+  <properties>
+   <property name="orientation" value="SW"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/v_s.png"/>
  </tile>
 </tileset>

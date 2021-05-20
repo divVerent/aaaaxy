@@ -15,13 +15,17 @@
 package trigger
 
 import (
+	"fmt"
+
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
+	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
-// VVVVVV enables/disables gravity flipping when jumping.
+// VVVVVV enables/disables gravity flipping when jumping through.
 type VVVVVV struct {
 	mixins.NonSolidTouchable
 
@@ -31,8 +35,12 @@ type VVVVVV struct {
 
 func (v *VVVVVV) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	v.NonSolidTouchable.Init(w, e)
-	v.State = s.Properties["state"] != "false" // Default true.
 	v.Text = s.Properties["text"]
+	var err error
+	e.Image, err = image.Load("sprites", "v.png")
+	if err != nil {
+		return fmt.Errorf("could not load vvvvvv image: %v", err)
+	}
 	return nil
 }
 
@@ -46,7 +54,12 @@ func (v *VVVVVV) Touch(other *engine.Entity) {
 	if other != v.World.Player {
 		return
 	}
-	v.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(v.State, v.Text)
+	side := other.Rect.Center().Delta(v.Entity.Rect.Center()).Dot(v.Entity.Orientation.Right) > 0
+	up := true
+	if v.Entity.Orientation.Right == m.South() {
+		up = false
+	}
+	v.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(side, v.Text, up)
 }
 
 func init() {
