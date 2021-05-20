@@ -119,6 +119,7 @@
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
+ <objecttype name="RespawnPlayer" color="#ff0000"/>
  <objecttype name="Sprite" color="#ffffff">
   <property name="alpha" type="string"/>
   <property name="border_pixels" type="int" default="0"/>

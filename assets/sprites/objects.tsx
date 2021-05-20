@@ -266,4 +266,28 @@
   </properties>
   <image width="16" height="16" source="editorimgs/v_s.png"/>
  </tile>
+ <tile id="44" type="RespawnPlayer">
+  <properties>
+   <property name="orientation" value="ES"/>
+  </properties>
+  <image width="16" height="16" source="spike.png"/>
+ </tile>
+ <tile id="45" type="RespawnPlayer">
+  <properties>
+   <property name="orientation" value="NE"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/spike_n.png"/>
+ </tile>
+ <tile id="46" type="RespawnPlayer">
+  <properties>
+   <property name="orientation" value="WN"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/spike_w.png"/>
+ </tile>
+ <tile id="47" type="RespawnPlayer">
+  <properties>
+   <property name="orientation" value="SW"/>
+  </properties>
+  <image width="16" height="16" source="editorimgs/spike_s.png"/>
+ </tile>
 </tileset>

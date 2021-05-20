@@ -28,7 +28,6 @@ import (
 	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
-	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/player_state"
 	"github.com/divVerent/aaaaaa/internal/timing"
 	"github.com/divVerent/aaaaaa/internal/vfs"
@@ -334,7 +333,7 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	w.setScrollPos(w.Player.Impl.(PlayerEntityImpl).LookPos())
 
 	// Load the configured music.
-	music.Switch(cpSp.Properties["music"])
+	cp.Impl.Touch(w.Player)
 
 	// Adjust previous scroll position by how much the CP "moved".
 	// That way, respawning right after touching a CP will retain CP-near screen content.
