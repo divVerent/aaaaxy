@@ -20,8 +20,6 @@ import (
 	"log"
 	"math"
 
-	"github.com/hajimehoshi/ebiten/v2"
-
 	"github.com/divVerent/aaaaaa/internal/animation"
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/engine"
@@ -129,13 +127,6 @@ const (
 
 	// Animation tuning.
 	AnimGroundSpeed = 20 * constants.SubPixelScale / engine.GameTPS
-
-	KeyLeft    = ebiten.KeyLeft
-	KeyRight   = ebiten.KeyRight
-	KeyUp      = ebiten.KeyUp
-	KeyDown    = ebiten.KeyDown
-	KeyJump    = ebiten.KeySpace
-	KeyRespawn = ebiten.KeyR
 )
 
 func (p *Player) SetVVVVVV(vvvvvv bool, text string, up bool) {
