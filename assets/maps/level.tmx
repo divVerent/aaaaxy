@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4558">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4561">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
  </properties>
@@ -10502,10 +10502,10 @@
     <property name="target" value="TrashWon"/>
    </properties>
   </object>
-  <object id="4486" gid="299" x="6176" y="3728" width="32" height="304">
+  <object id="4486" gid="299" x="6176" y="3968" width="32" height="48">
    <properties>
-    <property name="map_black_to" type="color" value="#ff000000"/>
-    <property name="map_white_to" type="color" value="#00000000"/>
+    <property name="map_black_to" type="color" value="#ffaa0000"/>
+    <property name="map_white_to" type="color" value="#00aa0000"/>
    </properties>
   </object>
   <object id="4487" gid="299" x="6432" y="3312" width="32" height="896">
@@ -10795,6 +10795,24 @@
    <properties>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="Leave0"/>
+   </properties>
+  </object>
+  <object id="4558" gid="299" x="6176" y="3920" width="32" height="48">
+   <properties>
+    <property name="map_black_to" type="color" value="#ffff5555"/>
+    <property name="map_white_to" type="color" value="#ffaa0000"/>
+   </properties>
+  </object>
+  <object id="4559" gid="299" x="6176" y="3872" width="32" height="48">
+   <properties>
+    <property name="map_black_to" type="color" value="#ffffff55"/>
+    <property name="map_white_to" type="color" value="#ffff5555"/>
+   </properties>
+  </object>
+  <object id="4560" gid="299" x="6176" y="3728" width="32" height="144">
+   <properties>
+    <property name="map_black_to" type="color" value="#ffffffff"/>
+    <property name="map_white_to" type="color" value="#ffffff55"/>
    </properties>
   </object>
  </objectgroup>
