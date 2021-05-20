@@ -167,6 +167,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		log.Printf("WARNING: unknown screen filter type: %q; reverted to simple", *screenFilter)
 		*screenFilter = "simple"
 	}
+
+	// Once this has run, we can start fading in music.
+	music.Enable()
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {

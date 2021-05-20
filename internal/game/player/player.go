@@ -73,10 +73,10 @@ var _ interfaces.VVVVVVer = &Player{}
 const (
 	// PlayerWidth is the hitbox width of the player.
 	// Actual width is 14 (one extra pixel to left and right).
-	PlayerWidth = 10
+	PlayerWidth = 14 + 2*PlayerOffsetDX
 	// PlayerHeight is the hitbox height of the player.
 	// Actual height is 30 (three extra pixels at the top).
-	PlayerHeight = 25
+	PlayerHeight = 30 + PlayerOffsetDY + PlayerFlippedOffsetDY
 	// PlayerEyeDX is the X coordinate of the player's eye.
 	PlayerEyeDX = 5
 	// PlayerEyeDY is the Y coordinate of the player's eye.
@@ -85,6 +85,8 @@ const (
 	PlayerOffsetDX = -2
 	// PlayerOffsetDY is the player's render offset.
 	PlayerOffsetDY = -4
+	// PlayerFlippedOffsetDY is the player's render offset.
+	PlayerFlippedOffsetDY = -1
 	// PlayerBorderPixels is the size of the player's black border.
 	PlayerBorderPixels = 1
 
@@ -333,6 +335,11 @@ func (p *Player) Update() {
 	}
 	if p.OnGroundVec.Dot(p.Entity.Orientation.Down) < 0 {
 		p.Entity.Orientation = p.Entity.Orientation.Concat(m.FlipY())
+	}
+	if p.OnGroundVec.DY < 0 {
+		p.Entity.RenderOffset.DY = PlayerFlippedOffsetDY
+	} else {
+		p.Entity.RenderOffset.DY = PlayerOffsetDY
 	}
 	if p.OnGround {
 		p.LastGroundPos = p.Entity.Rect.Origin

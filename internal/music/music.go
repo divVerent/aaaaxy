@@ -133,9 +133,17 @@ var (
 	haveNext              bool
 	xFadeFrame            int
 	idleNotifier          chan<- struct{}
+	active                bool
 )
 
+func Enable() {
+	active = true
+}
+
 func Update() {
+	if !active {
+		return
+	}
 	// If idle, initiate fading.
 	if !fadeTo.valid && next.valid {
 		fadeTo, next = next, fadeTo
