@@ -6605,7 +6605,7 @@
   <object id="1667" gid="294" x="1168" y="7504" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1545"/>
-    <property name="text" value="Congratulations!  You have found a shiny trinket!    One out of one"/>
+    <property name="text" value="Distractions are all the fun."/>
    </properties>
   </object>
   <object id="1668" gid="283" x="1184" y="7536" width="16" height="16"/>
@@ -10863,7 +10863,7 @@
     <property name="text" value="The Other Way Round"/>
    </properties>
   </object>
-  <object id="4610" name="deja_vu" type="Checkpoint" x="6208" y="6304" width="64" height="32">
+  <object id="4610" name="deja_vu" type="Checkpoint" x="6208" y="6112" width="64" height="32">
    <properties>
     <property name="dead_end" type="bool" value="false"/>
     <property name="music" value="Theme Song 8-bit V1.ogg"/>
