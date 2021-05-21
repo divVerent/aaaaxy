@@ -87,6 +87,7 @@ func (m *Menu) Update() error {
 	timing.Section("global_hotkeys")
 	if input.Exit.JustHit && m.Screen == nil {
 		music.Switch("")
+		m.World.PlayerState.AddEscape()
 		return m.SwitchToScreen(&MainScreen{})
 	}
 	if input.Fullscreen.JustHit {

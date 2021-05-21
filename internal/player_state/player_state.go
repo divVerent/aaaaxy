@@ -129,3 +129,68 @@ func (s *PlayerState) Frames() int {
 func (s *PlayerState) AddFrame() {
 	s.Level.Player.PersistentState["frames"] = fmt.Sprint(s.Frames() + 1)
 }
+
+func (s *PlayerState) Escapes() int {
+	escapesStr := s.Level.Player.PersistentState["escapes"]
+	var escapes int
+	if escapesStr != "" {
+		_, err := fmt.Sscanf(escapesStr, "%d", &escapes)
+		if err != nil {
+			log.Panicf("could not parse escapes counter: %v", err)
+		}
+	}
+	return escapes
+}
+
+func (s *PlayerState) AddEscape() {
+	s.Level.Player.PersistentState["escapes"] = fmt.Sprint(s.Escapes() + 1)
+}
+
+func (s *PlayerState) Won() bool {
+	return s.Level.Player.PersistentState["won"] == "true"
+}
+
+func (s *PlayerState) SetWon() {
+	s.Level.Player.PersistentState["won"] = "true"
+}
+
+type SpeedrunCategories int
+
+const (
+	AnyPercentSpeedrun     SpeedrunCategories = 0x01
+	HundredPercentSpeedrun                    = 0x02
+	AllFlippedSpeedrun                        = 0x04
+	NoEscapeSpeedrun                          = 0x08
+	AllSignsSpeedrun                          = 0x10
+)
+
+func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
+	cat := AnyPercentSpeedrun | HundredPercentSpeedrun | AllFlippedSpeedrun | NoEscapeSpeedrun | AllSignsSpeedrun
+	if !s.Won() {
+		cat &^= AnyPercentSpeedrun
+	}
+	cat |= HundredPercentSpeedrun | AllFlippedSpeedrun | AllSignsSpeedrun
+	for cp := range s.Level.Checkpoints {
+		if cp == "" {
+			// Start is not a real CP.
+			continue
+		}
+		switch s.CheckpointSeen(cp) {
+		case NotSeen:
+			cat &^= HundredPercentSpeedrun
+		case SeenNormal:
+			cat &^= AllFlippedSpeedrun
+		}
+	}
+	if s.Escapes() != 0 {
+		cat &^= NoEscapeSpeedrun
+	}
+	for _, signs := range s.Level.TnihSignsByCheckpoint {
+		for _, sign := range signs {
+			if sign.PersistentState["seen"] != "true" {
+				cat &^= AllSignsSpeedrun
+			}
+		}
+	}
+	return cat
+}

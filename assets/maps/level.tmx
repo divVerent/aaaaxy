@@ -6235,7 +6235,6 @@
   <object id="1466" gid="289" x="3568" y="5168" width="32" height="32"/>
   <object id="1467" gid="289" x="3632" y="5168" width="32" height="32"/>
   <object id="1468" gid="289" x="3696" y="5168" width="32" height="32"/>
-  <object id="1469" gid="289" x="3760" y="5168" width="32" height="32"/>
   <object id="1470" name="BackToHub" gid="281" x="3392" y="5200" width="16" height="32"/>
   <object id="1471" name="BackToHub" gid="275" x="4176" y="5104" width="16" height="32"/>
   <object id="1473" name="StandToHub" gid="281" x="3456" y="4944" width="16" height="32"/>
