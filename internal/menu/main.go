@@ -21,9 +21,14 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaaa/internal/flag"
 	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/input"
 	m "github.com/divVerent/aaaaaa/internal/math"
+)
+
+var (
+	cheatShowFinalCredits = flag.Bool("cheat_show_final_credits", false, "show the final credits screen for testing")
 )
 
 type MainScreenItem int
@@ -66,7 +71,7 @@ func (s *MainScreen) Update() error {
 		case Settings:
 			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&SettingsScreen{}))
 		case Credits:
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&CreditsScreen{}))
+			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&CreditsScreen{Fancy: *cheatShowFinalCredits}))
 		case Quit:
 			return s.Menu.ActivateSound(s.Menu.QuitGame())
 		}

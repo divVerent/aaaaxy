@@ -15,6 +15,7 @@
 package menu
 
 import (
+	"fmt"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -24,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/input"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/player_state"
 )
 
 const (
@@ -32,14 +34,51 @@ const (
 )
 
 type CreditsScreen struct {
+	// Must be set when creating.
+	Fancy bool // With music, and constant speed - no scrolling. No exiting. Background image not needed - we use last game screen.
+
 	Menu     *Menu
-	Fancy    bool // With music, and constant speed - no scrolling. No exiting. Background image not needed - we use last game screen.
-	Frame    int  // Current scroll position.
-	MaxFrame int  // Maximum scroll position.
+	Lines    []string // Actual lines to display.
+	Frame    int      // Current scroll position.
+	MaxFrame int      // Maximum scroll position.
 }
 
 func (s *CreditsScreen) Init(m *Menu) error {
 	s.Menu = m
+	s.Lines = credits.Lines
+	if s.Fancy {
+		cat := s.Menu.World.PlayerState.SpeedrunCategories()
+		frames := s.Menu.World.PlayerState.Frames()
+		ss, ms := frames/60, (frames%60)*1000/60
+		mm, ss := ss/60, ss%60
+		hh, mm := mm/60, mm%60
+		timeStr := fmt.Sprintf("Time: %d:%02d:%02d.%03d", hh, mm, ss, ms)
+		s.Lines = append(
+			append([]string{}, s.Lines...),
+			"",
+			"Your Time",
+			timeStr,
+			"",
+			"Your Speedrun Categories",
+		)
+		if cat&player_state.HundredPercentSpeedrun != 0 {
+			s.Lines = append(s.Lines, "100%")
+		} else if cat&player_state.AnyPercentSpeedrun != 0 {
+			s.Lines = append(s.Lines, "Any%")
+		}
+		if cat&player_state.AllFlippedSpeedrun != 0 {
+			s.Lines = append(s.Lines, "All Flipped")
+		}
+		if cat&player_state.NoEscapeSpeedrun != 0 {
+			s.Lines = append(s.Lines, "No Escape")
+		}
+		if cat&player_state.AllSignsSpeedrun != 0 {
+			s.Lines = append(s.Lines, "All Signs")
+		}
+		s.Lines = append(s.Lines,
+			"",
+			"Thank You!")
+	}
 	s.Frame = (-engine.GameHeight - creditsLineHeight) * creditsFrames
 	s.MaxFrame = (creditsLineHeight*len(credits.Lines) - 3*creditsLineHeight/2 - engine.GameHeight/2) * creditsFrames
 	return nil
@@ -75,7 +114,7 @@ func (s *CreditsScreen) Draw(screen *ebiten.Image) {
 	fgn := color.NRGBA{R: 85, G: 255, B: 255, A: 255}
 	bgn := color.NRGBA{R: 0, G: 0, B: 0, A: 0}
 	nextIsTitle := true
-	for i, line := range credits.Lines {
+	for i, line := range s.Lines {
 		if line == "" {
 			nextIsTitle = true
 			continue
