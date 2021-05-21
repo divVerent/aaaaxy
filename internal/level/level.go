@@ -34,6 +34,7 @@ type Level struct {
 	TnihSignsByCheckpoint map[string][]*Spawnable
 	CheckpointLocations   *CheckpointLocations
 	SaveGameVersion       int
+	CreditsMusic          string
 	Hash                  uint64
 
 	tiles []LevelTile
@@ -289,10 +290,15 @@ func Load(filename string) (*Level, error) {
 	if err != nil {
 		return nil, fmt.Errorf("unsupported map: could not read save_game_version: %v", err)
 	}
+	var creditsMusic string
+	if prop := t.Properties.WithName("credits_music"); prop != nil {
+		creditsMusic = prop.Value
+	}
 	level := Level{
 		Checkpoints:           map[string]*Spawnable{},
 		TnihSignsByCheckpoint: map[string][]*Spawnable{},
 		SaveGameVersion:       int(saveGameVersion),
+		CreditsMusic:          creditsMusic,
 		tiles:                 make([]LevelTile, layer.Width*layer.Height),
 		width:                 layer.Width,
 	}

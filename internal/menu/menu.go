@@ -39,6 +39,7 @@ var (
 
 const (
 	blurSize     = 1
+	blurFrames   = 32
 	darkenFactor = 0.75
 )
 
@@ -55,6 +56,7 @@ type Menu struct {
 	blurImage     *ebiten.Image
 	moveSound     *sound.Sound
 	activateSound *sound.Sound
+	blurFrame     int
 }
 
 func (m *Menu) Update() error {
@@ -88,6 +90,7 @@ func (m *Menu) Update() error {
 	if input.Exit.JustHit && m.Screen == nil {
 		music.Switch("")
 		m.World.PlayerState.AddEscape()
+		m.blurFrame = 0
 		return m.SwitchToScreen(&MainScreen{})
 	}
 	if input.Fullscreen.JustHit {
@@ -97,6 +100,9 @@ func (m *Menu) Update() error {
 	}
 
 	timing.Section("screen")
+	if m.blurFrame < blurFrames {
+		m.blurFrame++
+	}
 	if m.Screen != nil {
 		err := m.Screen.Update()
 		if err != nil {
@@ -140,7 +146,7 @@ func (m *Menu) DrawWorld(screen *ebiten.Image) {
 	m.World.Draw(screen)
 	if m.Screen != nil {
 		// If a menu screen is active, just draw the previous saved bitmap, but blur it.
-		engine.BlurImage(screen, m.blurImage, screen, blurSize, darkenFactor, 0.0)
+		engine.BlurImage(screen, m.blurImage, screen, blurSize, darkenFactor, 0.0, float64(m.blurFrame)/blurFrames)
 	}
 }
 

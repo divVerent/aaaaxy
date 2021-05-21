@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/input"
 	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/player_state"
 )
 
@@ -47,6 +48,7 @@ func (s *CreditsScreen) Init(m *Menu) error {
 	s.Menu = m
 	s.Lines = credits.Lines
 	if s.Fancy {
+		music.Switch(s.Menu.World.Level.CreditsMusic)
 		cat := s.Menu.World.PlayerState.SpeedrunCategories()
 		frames := s.Menu.World.PlayerState.Frames()
 		ss, ms := frames/60, (frames%60)*1000/60

@@ -77,14 +77,17 @@ func BlurExpandImage(img, tmp, out *ebiten.Image, blurSize, expandSize int, scal
 	}
 	size := blurSize + expandSize
 	scale *= (2*float64(size) + 1) / (2*float64(blurSize) + 1)
-	BlurImage(img, tmp, out, size, scale, darken)
+	BlurImage(img, tmp, out, size, scale, darken, 1.0)
 }
 
 var (
 	blurBroken = false
 )
 
-func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken float64) {
+func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken, blurFade float64) {
+	scale *= scale * blurFade
+	scale += 1 - blurFade
+	darken *= blurFade
 	if !*drawBlurs && scale <= 1 {
 		// Blurs can be globally turned off.
 		if img == out {
@@ -123,15 +126,19 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken float64) {
 	if err != nil {
 		log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load blur shader: %v", err)
 		blurBroken = true
+		blurImageFixedFunction(img, tmp, out, size, scale, darken)
+		return
 	}
 	w, h := img.Size()
-	scaleX := 1 / (2*float64(size) + 1)
+	centerScale := 1.0 / (2*float64(size)*blurFade + 1)
+	otherScale := blurFade * centerScale
 	tmp.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{
-			"Step":  []float32{1 / float32(w), 0},
-			"Scale": float32(scaleX),
-			"Add":   []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},
+			"Step":        []float32{1 / float32(w), 0},
+			"CenterScale": float32(centerScale),
+			"OtherScale":  float32(otherScale),
+			"Add":         []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},
 		},
 		Images: [4]*ebiten.Image{
 			img,
@@ -140,13 +147,13 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken float64) {
 			nil,
 		},
 	})
-	scaleY := scale / (2*float64(size) + 1)
 	out.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{
-			"Step":  []float32{0, 1 / float32(h)},
-			"Scale": float32(scaleY),
-			"Add":   []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},
+			"Step":        []float32{0, 1 / float32(h)},
+			"CenterScale": float32(centerScale * scale),
+			"OtherScale":  float32(otherScale * scale),
+			"Add":         []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},
 		},
 		Images: [4]*ebiten.Image{
 			tmp,

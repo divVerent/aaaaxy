@@ -2,6 +2,7 @@
 <map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4636">
  <properties>
   <property name="save_game_version" type="int" value="0"/>
+  <property name="credits_music" type="string" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tiles/tiles.tsx"/>
  <tileset firstgid="274" source="../sprites/objects.tsx"/>

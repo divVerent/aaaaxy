@@ -367,7 +367,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 		}
 		if r.needPrevImage {
 			// Remember last image. Only do this once per update.
-			BlurImage(screen, r.blurImage, r.prevImage, frameBlurSize, frameDarkenAlpha, frameDarkenAmount)
+			BlurImage(screen, r.blurImage, r.prevImage, frameBlurSize, frameDarkenAlpha, frameDarkenAmount, 1.0)
 			r.prevScrollPos = r.world.scrollPos
 		}
 	} else {
