@@ -30,14 +30,12 @@ type VVVVVV struct {
 	mixins.NonSolidTouchable
 
 	State        bool
-	Text         string
 	OnGroundVec  m.Delta
 	ResetGravity bool
 }
 
 func (v *VVVVVV) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	v.NonSolidTouchable.Init(w, e)
-	v.Text = s.Properties["text"]
 	var err error
 	e.Image, err = image.Load("sprites", "v.png")
 	if err != nil {
@@ -68,7 +66,7 @@ func (v *VVVVVV) Touch(other *engine.Entity) {
 	if !side && v.ResetGravity {
 		down = m.Delta{DX: 0, DY: 1}
 	}
-	v.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(side, v.Text, down)
+	v.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(side, down)
 }
 
 func init() {

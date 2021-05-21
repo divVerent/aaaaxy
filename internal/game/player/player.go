@@ -56,6 +56,7 @@ type Player struct {
 
 	Anim            animation.State
 	JumpSound       *sound.Sound
+	VVVVVVSound     *sound.Sound
 	LandSound       *sound.Sound
 	HitHeadSound    *sound.Sound
 	GotAbilitySound *sound.Sound
@@ -129,7 +130,7 @@ const (
 	AnimGroundSpeed = 20 * constants.SubPixelScale / engine.GameTPS
 )
 
-func (p *Player) SetVVVVVV(vvvvvv bool, text string, up m.Delta) {
+func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta) {
 	if vvvvvv == p.VVVVVV {
 		return
 	}
@@ -137,10 +138,7 @@ func (p *Player) SetVVVVVV(vvvvvv bool, text string, up m.Delta) {
 		p.OnGroundVec = up
 	}
 	p.VVVVVV = vvvvvv
-	if text != "" {
-		centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 190, G: 0, B: 0, A: 255}).SetFadeOut(true)
-		p.GotAbilitySound.Play()
-	}
+	p.VVVVVVSound.Play()
 }
 
 func (p *Player) HasAbility(name string) bool {
@@ -223,6 +221,10 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	p.JumpSound, err = sound.Load("jump.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load jump sound: %v", err)
+	}
+	p.VVVVVVSound, err = sound.Load("vvvvvv.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load vvvvvv sound: %v", err)
 	}
 	p.LandSound, err = sound.Load("land.ogg")
 	if err != nil {
