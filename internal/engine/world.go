@@ -332,9 +332,6 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	// Scroll the player in view right away.
 	w.setScrollPos(w.Player.Impl.(PlayerEntityImpl).LookPos())
 
-	// Load the configured music.
-	cp.Impl.Touch(w.Player)
-
 	// Adjust previous scroll position by how much the CP "moved".
 	// That way, respawning right after touching a CP will retain CP-near screen content.
 	// Mainly useful for VVVVVV mode.
@@ -343,6 +340,9 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 		w.renderer.prevScrollPos = w.renderer.prevScrollPos.Add(cpDelta)
 		w.prevCpOrigin = cp.Rect.Origin
 	}
+
+	// Load the configured music.
+	cp.Impl.Touch(w.Player)
 
 	// Skip updating.
 	w.respawned = true
