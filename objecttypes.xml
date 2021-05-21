@@ -222,6 +222,8 @@
   <property name="text" type="string"/>
  </objecttype>
  <objecttype name="VVVVVV" color="#00ff00">
+  <property name="gravity_direction" type="string"/>
+  <property name="reset_gravity" type="bool" default="true"/>
   <property name="state" type="bool" default="true"/>
   <property name="text" type="string"/>
  </objecttype>

@@ -16,9 +16,10 @@ package interfaces
 
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 type VVVVVVer interface {
 	engine.EntityImpl
-	SetVVVVVV(vvvvvv bool, text string, up bool)
+	SetVVVVVV(vvvvvv bool, text string, down m.Delta)
 }

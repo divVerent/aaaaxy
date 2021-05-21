@@ -89,7 +89,7 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 		return
 	}
 	if c.VVVVVV {
-		c.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(true, "", false)
+		c.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(true, "", m.Delta{})
 	}
 	c.World.PlayerTouchedCheckpoint(c.Entity)
 	// All checkpoints set the "mood".

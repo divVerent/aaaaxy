@@ -29,8 +29,10 @@ import (
 type VVVVVV struct {
 	mixins.NonSolidTouchable
 
-	State bool
-	Text  string
+	State        bool
+	Text         string
+	OnGroundVec  m.Delta
+	ResetGravity bool
 }
 
 func (v *VVVVVV) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -40,6 +42,13 @@ func (v *VVVVVV) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	e.Image, err = image.Load("sprites", "v.png")
 	if err != nil {
 		return fmt.Errorf("could not load vvvvvv image: %v", err)
+	}
+	v.ResetGravity = s.Properties["reset_gravity"] != "false" // Default true.
+	if onGroundVecStr := s.Properties["gravity_direction"]; onGroundVecStr != "" {
+		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &v.OnGroundVec.DX, &v.OnGroundVec.DY)
+		if err != nil {
+			return fmt.Errorf("invalid gravity_direction: %v", err)
+		}
 	}
 	return nil
 }
@@ -55,11 +64,11 @@ func (v *VVVVVV) Touch(other *engine.Entity) {
 		return
 	}
 	side := other.Rect.Center().Delta(v.Entity.Rect.Center()).Dot(v.Entity.Orientation.Right) > 0
-	up := true
-	if v.Entity.Orientation.Right == m.South() {
-		up = false
+	down := v.OnGroundVec
+	if !side && v.ResetGravity {
+		down = m.Delta{DX: 0, DY: 1}
 	}
-	v.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(side, v.Text, up)
+	v.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(side, v.Text, down)
 }
 
 func init() {

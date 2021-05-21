@@ -129,16 +129,12 @@ const (
 	AnimGroundSpeed = 20 * constants.SubPixelScale / engine.GameTPS
 )
 
-func (p *Player) SetVVVVVV(vvvvvv bool, text string, up bool) {
+func (p *Player) SetVVVVVV(vvvvvv bool, text string, up m.Delta) {
 	if vvvvvv == p.VVVVVV {
 		return
 	}
-	if !vvvvvv || !up {
-		// Reset VVVVVV state.
-		p.OnGroundVec = m.Delta{DX: 0, DY: 1}
-	} else {
-		// To indicate to the player that it is happening, immediately have gravity point _up_.
-		p.OnGroundVec = m.Delta{DX: 0, DY: -1}
+	if !up.IsZero() {
+		p.OnGroundVec = up
 	}
 	p.VVVVVV = vvvvvv
 	if text != "" {
