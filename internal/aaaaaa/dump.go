@@ -119,7 +119,7 @@ func finishDumping() {
 	}
 	if *dumpVideo != "" {
 		inputs = append(inputs, fmt.Sprintf("-f png_pipe -r %d -i '%s'", engine.GameTPS, strings.ReplaceAll(*dumpVideo, "'", "'\\''")))
-		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -preset:v fast -vf premultiply=inplace=1,scale=1920:1080:flags=neighbor")
+		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -preset:v fast -vf premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080")
 	}
 	log.Printf("ffmpeg %s %s -vsync vfr video.mp4", strings.Join(inputs, " "), strings.Join(settings, " "))
 }
