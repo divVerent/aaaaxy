@@ -33,7 +33,7 @@ import (
 var RegularTermination = errors.New("exited normally")
 
 var (
-	resetSave = flag.Bool("reset_save", false, "reset the savegame on startup")
+	saveState = flag.Int("save_state", 0, "number of save state slot")
 	showFps   = flag.Bool("show_fps", false, "show fps counter")
 )
 
@@ -64,15 +64,9 @@ func (m *Menu) Update() error {
 
 	timing.Section("once")
 	if !m.initialized {
-		err := m.World.Init()
+		err := m.InitGame(loadGame)
 		if err != nil {
-			return fmt.Errorf("could not initialize world: %v", err)
-		}
-		if !*resetSave {
-			err := m.World.Load()
-			if err != nil {
-				return err
-			}
+			return err
 		}
 		m.blurImage = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
 		m.moveSound, err = sound.Load("menu_move.ogg")
@@ -150,9 +144,30 @@ func (m *Menu) DrawWorld(screen *ebiten.Image) {
 	}
 }
 
-// ResetGame is called by menu screens to reset the game.
-func (m *Menu) ResetGame() error {
-	m.World.Init()
+type resetFlag int
+
+const (
+	loadGame resetFlag = iota
+	resetGame
+)
+
+// InitGame is called by menu screens to load/reset the game.
+func (m *Menu) InitGame(f resetFlag) error {
+	// Initialize the world.
+	err := m.World.Init(*saveState)
+	if err != nil {
+		return fmt.Errorf("could not initialize world: %v", err)
+	}
+
+	// Load the saved state.
+	if f == loadGame {
+		err := m.World.Load()
+		if err != nil {
+			return err
+		}
+	}
+
+	// Go to the game screen.
 	m.Screen = nil
 	return nil
 }

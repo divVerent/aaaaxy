@@ -94,6 +94,9 @@ type World struct {
 	// Checkpoint spawn offset.
 	prevCpID     level.EntityID
 	prevCpOrigin m.Pos
+
+	// Name of the save state.
+	saveState int
 }
 
 // Initialized returns whether Init() has been called on this World before.
@@ -163,7 +166,7 @@ func (w *World) clearEntities() {
 
 // Init brings a world into a working state.
 // Can be called more than once to reset _everything_.
-func (w *World) Init() error {
+func (w *World) Init(saveState int) error {
 	// Load map.
 	lvl, err := level.Load("level")
 	if err != nil {
@@ -181,6 +184,7 @@ func (w *World) Init() error {
 		Level:          lvl,
 		PlayerState:    player_state.PlayerState{lvl},
 		prevCpID:       level.InvalidEntityID,
+		saveState:      saveState,
 	}
 	w.renderer.Init(w)
 
@@ -203,7 +207,7 @@ func (w *World) Init() error {
 // Load loads the current savegame.
 // If this fails, the world may be in an undefined state; call w.Init() or w.Load() to resume.
 func (w *World) Load() error {
-	state, err := vfs.ReadState(vfs.SavedGames, "save.json")
+	state, err := vfs.ReadState(vfs.SavedGames, fmt.Sprintf("save-%d.json", w.saveState))
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
 			return nil // Not loading anything due to there being no state to load is OK.
@@ -235,7 +239,7 @@ func (w *World) Save() error {
 	if flag.Cheating() {
 		return errors.New("not saving, as cheats are enabled")
 	}
-	return vfs.WriteState(vfs.SavedGames, "save.json", state)
+	return vfs.WriteState(vfs.SavedGames, fmt.Sprintf("save-%d.json", w.saveState), state)
 }
 
 // SpawnPlayer spawns the player in a newly initialized world.

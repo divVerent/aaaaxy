@@ -78,7 +78,7 @@ func (s *ResetScreen) Update() error {
 			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&SettingsScreen{}))
 		case ResetGame:
 			if s.ResetFrame >= resetFrames {
-				return s.Menu.ActivateSound(s.Menu.ResetGame())
+				return s.Menu.ActivateSound(s.Menu.InitGame(resetGame))
 			}
 		case BackToMain:
 			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
