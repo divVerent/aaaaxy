@@ -172,6 +172,20 @@ func (m *Menu) InitGame(f resetFlag) error {
 	return nil
 }
 
+// SwitchSaveState switches to a given save state.
+func (m *Menu) SwitchSaveState(state int) error {
+	err := m.World.Save()
+	if err != nil {
+		return fmt.Errorf("could not save game: %v", err)
+	}
+	*saveState = state
+	err = engine.SaveConfig()
+	if err != nil {
+		return fmt.Errorf("could not save config: %v", err)
+	}
+	return m.InitGame(loadGame)
+}
+
 // SwitchToGame switches to a specific checkpoint.
 func (m *Menu) SwitchToGame() error {
 	m.Screen = nil
