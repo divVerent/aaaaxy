@@ -309,13 +309,15 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
 
 	// Move the player down as far as possible.
-	trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(m.Delta{DX: 0, DY: 1024}), TraceOptions{
-		Contents:   level.PlayerSolidContents,
-		NoEntities: true,
-		LoadTiles:  true,
-		ForEnt:     w.Player,
-	})
-	w.Player.Rect.Origin = trace.EndPos
+	if cpSp.Properties["downtrace_on_spawn"] != "false" {
+		trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(m.Delta{DX: 0, DY: 1024}), TraceOptions{
+			Contents:   level.PlayerSolidContents,
+			NoEntities: true,
+			LoadTiles:  true,
+			ForEnt:     w.Player,
+		})
+		w.Player.Rect.Origin = trace.EndPos
+	}
 
 	// Note that TraceBox must have loaded all tiles the player needs.
 	// w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)

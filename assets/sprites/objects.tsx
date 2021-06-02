@@ -73,7 +73,7 @@
   <properties>
    <property name="orientation" value="ES"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/oneway_e.png"/>
+  <image width="32" height="32" source="oneway_idle_0.png"/>
  </tile>
  <tile id="13" type="OneWay">
   <properties>
@@ -151,10 +151,9 @@
  <tile id="27" type="Sprite">
   <properties>
    <property name="image_dir" value=""/>
-   <property name="image" value="arrow32s.png"/>
    <property name="orientation" value="ES"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/arrow32_e.png"/>
+  <image width="32" height="32" source="arrow32s.png"/>
  </tile>
  <tile id="28" type="Sprite">
   <properties>
@@ -207,10 +206,9 @@
  <tile id="34" type="Sprite">
   <properties>
    <property name="image_dir" value=""/>
-   <property name="image" value="arrow32d.png"/>
    <property name="orientation" value="ES"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/arrow32_se.png"/>
+  <image width="32" height="32" source="arrow32d.png"/>
  </tile>
  <tile id="35" type="ForceField">
   <properties>
@@ -227,10 +225,11 @@
  <tile id="37" type="MovableSprite">
   <properties>
    <property name="image_dir" value=""/>
+   <property name="image" value="movingdoor.png"/>
    <property name="delta" value="0 -64"/>
    <property name="solid" value="true"/>
   </properties>
-  <image width="32" height="64" source="movingdoor.png"/>
+  <image width="32" height="64" source="editorimgs/movingdoor.png"/>
  </tile>
  <tile id="38" type="DisappearBlock">
   <image width="16" height="16" source="disappearblock.png"/>
