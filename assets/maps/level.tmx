@@ -6989,7 +6989,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1822" gid="291" x="7200" y="7344" width="16" height="16"/>
+  <object id="1822" gid="291" x="7200" y="7360" width="16" height="16"/>
   <object id="1823" gid="290" x="7200" y="7296" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
@@ -6998,7 +6998,7 @@
     <property name="target" value="BlockMeIn1"/>
    </properties>
   </object>
-  <object id="1824" gid="291" x="7056" y="7344" width="16" height="16"/>
+  <object id="1824" gid="291" x="7056" y="7360" width="16" height="16"/>
   <object id="1825" gid="290" x="7056" y="7296" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
@@ -7007,7 +7007,7 @@
     <property name="target" value="BlockMeIn1"/>
    </properties>
   </object>
-  <object id="1830" gid="291" x="7200" y="7088" width="16" height="16"/>
+  <object id="1830" gid="291" x="7200" y="7104" width="16" height="16"/>
   <object id="1831" gid="290" x="7200" y="7040" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
@@ -7016,7 +7016,7 @@
     <property name="target" value="BlockMeIn2 !BlockMeIn1"/>
    </properties>
   </object>
-  <object id="1832" gid="291" x="7056" y="7088" width="16" height="16"/>
+  <object id="1832" gid="291" x="7056" y="7104" width="16" height="16"/>
   <object id="1833" gid="290" x="7056" y="7040" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
