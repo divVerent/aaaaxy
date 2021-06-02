@@ -11087,22 +11087,7 @@
   </object>
   <object id="4733" gid="284" x="5152" y="448" width="16" height="16"/>
   <object id="4734" gid="291" x="5552" y="1824" width="32" height="16"/>
-  <object id="4735" gid="285" x="5472" y="800" width="16" height="16"/>
-  <object id="4736" gid="285" x="5392" y="1152" width="16" height="16"/>
-  <object id="4737" gid="285" x="5472" y="1600" width="16" height="16"/>
-  <object id="4738" gid="285" x="5456" y="1600" width="16" height="16"/>
-  <object id="4740" gid="308" x="5440" y="992" width="32" height="32"/>
-  <object id="4743" gid="306" x="5440" y="1440" width="32" height="32"/>
   <object id="4744" gid="286" x="5488" y="1808" width="32" height="32"/>
-  <object id="4745" gid="312" x="5424" y="1200" width="16" height="16"/>
-  <object id="4746" gid="312" x="5440" y="1200" width="16" height="16"/>
-  <object id="4747" gid="312" x="5456" y="1200" width="16" height="16"/>
-  <object id="4748" gid="312" x="5472" y="1200" width="16" height="16"/>
-  <object id="4749" gid="312" x="5424" y="1648" width="16" height="16"/>
-  <object id="4750" gid="312" x="5440" y="1648" width="16" height="16"/>
-  <object id="4751" gid="312" x="5456" y="1648" width="16" height="16"/>
-  <object id="4752" gid="312" x="5472" y="1648" width="16" height="16"/>
-  <object id="4753" gid="285" x="5408" y="1152" width="16" height="16"/>
   <object id="4754" gid="286" x="5392" y="1808" width="32" height="32"/>
   <object id="4755" gid="294" x="5440" y="1808" width="32" height="32">
    <properties>
@@ -11110,13 +11095,5 @@
     <property name="text" value="It's Bring Your Own Platform, you know."/>
    </properties>
   </object>
-  <object id="4756" gid="285" x="5456" y="800" width="16" height="16"/>
-  <object id="4757" gid="312" x="5408" y="1200" width="16" height="16"/>
-  <object id="4758" gid="312" x="5392" y="1200" width="16" height="16"/>
-  <object id="4759" gid="312" x="5408" y="1648" width="16" height="16"/>
-  <object id="4760" gid="312" x="5392" y="1648" width="16" height="16"/>
-  <object id="4761" gid="285" x="5440" y="1600" width="16" height="16"/>
-  <object id="4762" gid="285" x="5424" y="1152" width="16" height="16"/>
-  <object id="4763" gid="285" x="5440" y="800" width="16" height="16"/>
  </objectgroup>
 </map>
