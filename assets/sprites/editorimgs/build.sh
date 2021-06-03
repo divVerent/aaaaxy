@@ -6,6 +6,7 @@ convert ../arrow32d.png -rotate 90 arrow32_sw.png
 convert ../arrow32s.png -rotate 180 arrow32_w.png
 convert ../arrow32s.png -rotate 270 arrow32_n.png
 convert ../arrow32s.png -rotate 90 arrow32_s.png
+convert ../car_idle_0.png -geometry 16x32 car.png
 convert ../forcefield.png -crop 16x16+0+0 +repage -rotate 90 forcefield_v.png
 convert ../forcefield.png -crop 16x16+0+0 +repage forcefield_h.png
 convert ../gradient_left_right.png -alpha off -geometry 32x32 gradient_left_right.png

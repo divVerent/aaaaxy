@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4942">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4953">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -11270,7 +11270,7 @@
     <property name="text_font" value="Small"/>
    </properties>
   </object>
-  <object id="4935" name="road_rage" type="Checkpoint" x="4624" y="1120" width="64" height="32">
+  <object id="4935" name="road_rage" type="Checkpoint" x="4624" y="1088" width="64" height="32">
    <properties>
     <property name="downtrace_on_spawn" type="bool" value="false"/>
     <property name="music" value="boss_battle_3_alternate.ogg"/>
@@ -11286,6 +11286,47 @@
    <properties>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="Grant Theft Auto?"/>
+   </properties>
+  </object>
+  <object id="4944" gid="322" x="4657" y="2737" width="30" height="62"/>
+  <object id="4945" gid="322" x="4529" y="2625" width="30" height="62">
+   <properties>
+    <property name="velocity" value="0 -32"/>
+   </properties>
+  </object>
+  <object id="4946" gid="322" x="4593" y="2593" width="30" height="62">
+   <properties>
+    <property name="velocity" value="0 -32"/>
+   </properties>
+  </object>
+  <object id="4947" gid="322" x="4721" y="2657" width="30" height="62">
+   <properties>
+    <property name="velocity" value="0 -24"/>
+   </properties>
+  </object>
+  <object id="4948" gid="322" x="4657" y="2385" width="30" height="62">
+   <properties>
+    <property name="velocity" value="0 -16"/>
+   </properties>
+  </object>
+  <object id="4949" gid="322" x="4529" y="2273" width="30" height="62">
+   <properties>
+    <property name="velocity" value="16 -24"/>
+   </properties>
+  </object>
+  <object id="4950" gid="322" x="4721" y="2273" width="30" height="62">
+   <properties>
+    <property name="velocity" value="-16 -24"/>
+   </properties>
+  </object>
+  <object id="4951" gid="322" x="4657" y="2657" width="30" height="62">
+   <properties>
+    <property name="velocity" value="0 -8"/>
+   </properties>
+  </object>
+  <object id="4952" gid="322" x="4593" y="2401" width="30" height="62">
+   <properties>
+    <property name="velocity" value="0 -16"/>
    </properties>
   </object>
  </objectgroup>

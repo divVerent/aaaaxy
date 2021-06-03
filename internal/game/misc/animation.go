@@ -50,11 +50,26 @@ func (a *Animation) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity)
 		return fmt.Errorf("could not decode animation_repeat_interval %q: %v", repeatIntervalString, err)
 	}
 	syncToMusicOffsetString := s.Properties["animation_sync_to_music_offset"]
-	var err error
-	if group.SyncToMusicOffset, err = time.ParseDuration(syncToMusicOffsetString); err != nil {
-		return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %v", syncToMusicOffsetString, err)
+	if syncToMusicOffsetString != "" {
+		var err error
+		if group.SyncToMusicOffset, err = time.ParseDuration(syncToMusicOffsetString); err != nil {
+			return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %v", syncToMusicOffsetString, err)
+		}
 	}
-	err = a.Anim.Init(prefix, map[string]*animation.Group{groupName: group}, groupName)
+	offsetString := s.Properties["render_offset"]
+	if offsetString == "" {
+		e.ResizeImage = true
+	} else {
+		if _, err := fmt.Sscanf(offsetString, "%d %d", &e.RenderOffset.DX, &e.RenderOffset.DY); err != nil {
+			return fmt.Errorf("could not decode render offset %q: %v", offsetString, err)
+		}
+	}
+	if s := s.Properties["border_pixels"]; s != "" {
+		if _, err := fmt.Sscanf(s, "%d", &e.BorderPixels); err != nil {
+			return fmt.Errorf("failed to decode borde pixels %q: %v", s, err)
+		}
+	}
+	err := a.Anim.Init(prefix, map[string]*animation.Group{groupName: group}, groupName)
 	if err != nil {
 		return fmt.Errorf("could not initialize animation %v: %v", prefix, err)
 	}

@@ -289,4 +289,17 @@
   </properties>
   <image width="16" height="16" source="editorimgs/spike_s.png"/>
  </tile>
+ <tile id="48" type="MovingAnimation">
+  <properties>
+   <property name="animation" value="car"/>
+   <property name="animation_frame_interval" type="int" value="8"/>
+   <property name="animation_frames" type="int" value="4"/>
+   <property name="animation_group" value="idle"/>
+   <property name="animation_repeat_interval" type="int" value="32"/>
+   <property name="border_pixels" value="1"/>
+   <property name="render_offset" value="-1 -1"/>
+   <property name="solid" value="true"/>
+  </properties>
+  <image width="30" height="62" source="editorimgs/car.png"/>
+ </tile>
 </tileset>
