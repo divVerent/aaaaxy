@@ -63,7 +63,7 @@ func (d Delta) Div(m int) Delta {
 }
 
 func (d Delta) MulFloat(f float64) Delta {
-	return Delta{DX: int(float64(d.DX)*f + 0.5), DY: int(float64(d.DY)*f + 0.5)}
+	return Delta{DX: Rint(float64(d.DX) * f), DY: Rint(float64(d.DY) * f)}
 }
 
 func North() Delta {
