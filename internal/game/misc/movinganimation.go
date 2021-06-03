@@ -24,17 +24,21 @@ import (
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
+const (
+	FadeFrames = 16
+)
+
 // MovingAnimation is a simple entity type that moves in a specified direction.
 // Optionally despawns when hitting solid.
 type MovingAnimation struct {
 	Animation
 	mixins.Physics
 
-	Alpha             float64
-	DespawnFadeFrames int
+	Alpha float64
 
-	Despawning bool
-	FadeFrame  int
+	DespawnOnTouch bool // TODO implement.
+	Despawning     bool
+	FadeFrame      int
 }
 
 func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -68,12 +72,16 @@ func (s *MovingAnimation) Update() {
 		if s.FadeFrame == 0 {
 			s.World.Despawn(s.Physics.Entity)
 		}
-		s.Physics.Entity.Alpha = s.Alpha * float64(s.FadeFrame) / float64(s.DespawnFadeFrames)
+	} else {
+		if s.FadeFrame < FadeFrames {
+			s.FadeFrame++
+		}
 	}
+	s.Physics.Entity.Alpha = s.Alpha * float64(s.FadeFrame) / float64(FadeFrames)
 }
 
 func (s *MovingAnimation) handleTouch(trace engine.TraceResult) {
-	if s.DespawnFadeFrames > 0 && trace.HitEntity != s.World.Player {
+	if s.DespawnOnTouch && trace.HitEntity != s.World.Player {
 		s.Despawning = true
 	}
 }
