@@ -18,18 +18,23 @@ ZIP = 7za -tzip -mx=9 a
 # Release/debug flags.
 BUILDTYPE = debug
 ifeq ($(BUILDTYPE),release)
+ifeq ($(GOARCH),wasm)
+GOFLAGS ?= -tags statik,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
+else
 GOFLAGS ?= -tags statik,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
+endif
 CPPFLAGS ?= -DNDEBUG
 CFLAGS ?= -g0 -O3
 CXXFLAGS ?= -g0 -O3
 LDFLAGS ?= -g0 -s
-BINARY = aaaaaa$(SUFFIX)
+INFIX =
 BINARY_ASSETS = $(STATIK_ASSETS)
 else
 GOFLAGS ?= -tags ebitensinglethread
-BINARY = aaaaaa-debug$(SUFFIX)
+INFIX = -debug
 BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
+BINARY = aaaaaa$(INFIX)$(SUFFIX)
 
 # cgo support.
 CGO_CPPFLAGS ?= $(CPPFLAGS)
@@ -99,6 +104,14 @@ addrelease: $(BINARY)
 	$(ZIP) $(ZIPFILE) $(BINARY)
 	$(MAKE) clean
 
+.PHONY: webprepare
+webprepare:
+	cp $(shell go env GOROOT)/misc/wasm/wasm_exec.js .
+
+.PHONY: addwebstuff
+addwebstuff: webprepare
+	$(ZIP) $(ZIPFILE) aaaaaa$(INFIX).html wasm_exec.js
+
 .PHONY: allrelease
 allrelease: allreleaseclean
 	$(RM) $(ZIPFILE)
@@ -108,6 +121,17 @@ allrelease: allreleaseclean
 	# Disabled due to Windows Defender FP:
 	# GOOS=windows GOARCH=386 $(MAKE) release
 	GOOS=windows GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
+	# Disabled because build is WAY too slow to be playable.
+	# $(MAKE) BUILDTYPE=release addwebstuff
+	# GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm BUILDTYPE=release addrelease
+
+.PHONY: webdebug
+webdebug: webprepare
+	GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm debug
+
+.PHONY: webrelease
+webrelease: webprepare
+	GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm release
 
 .PHONY: allreleaseclean
 allreleaseclean:

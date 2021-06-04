@@ -1,7 +1,9 @@
-/aaaaaa-*
+/aaaaaa-debug-*
+/aaaaaa-release-*
 /aaaaaa.tiled-session
 /aaaaaa.zip
 /internal/assets/statik/statik.go
 /licenses
+/wasm_exec.js
 *.cp.json
 *~
