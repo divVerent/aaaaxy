@@ -16,6 +16,8 @@ package aaaaaa
 
 import (
 	"fmt"
+	"log"
+	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -26,18 +28,50 @@ import (
 	"github.com/divVerent/aaaaaa/internal/font"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/input"
+	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/noise"
 	"github.com/divVerent/aaaaaa/internal/sound"
 	"github.com/divVerent/aaaaaa/internal/vfs"
 )
 
 var (
-	vsync      = flag.Bool("vsync", true, "enable waiting for vertical synchronization")
-	fullscreen = flag.Bool("fullscreen", true, "enable fullscreen mode")
+	vsync             = flag.Bool("vsync", true, "enable waiting for vertical synchronization")
+	fullscreen        = flag.Bool("fullscreen", true, "enable fullscreen mode")
+	windowScaleFactor = flag.Float64("window_scale_factor", 0, "window scale factor in device pixels per game pixel (0 means auto integer scaling)")
 )
 
 func LoadConfig() (*flag.Config, error) {
 	return engine.LoadConfig()
+}
+
+func setWindowSize() {
+	f := *windowScaleFactor
+	log.Printf("Requested window scale factor: %v", f)
+	dscale := ebiten.DeviceScaleFactor()
+	log.Printf("Device scale factor: %v", dscale)
+	if f <= 0 {
+		screenw, screenh := ebiten.ScreenSizeInFullscreen()
+		log.Printf("Screen size: %vx%v", screenw, screenh)
+		// Reserve 128 device independent pixels for system controls.
+		maxw, maxh := screenw-128, screenh-128
+		log.Printf("Max size: %vx%v", maxw, maxh)
+		// Compute max scaling factors.
+		maxwf, maxhf := float64(maxw)*dscale/engine.GameWidth, float64(maxh)*dscale/engine.GameHeight
+		log.Printf("Max raw scale factor: %v, %v", maxwf, maxhf)
+		f = maxwf
+		if maxhf < f {
+			f = maxhf
+		}
+		if f < 1 {
+			f = 1
+		}
+		f = math.Floor(f)
+		log.Printf("Chosen raw scale factor: %v", f)
+	}
+	f /= dscale
+	w, h := m.Rint(engine.GameWidth*f), m.Rint(engine.GameHeight*f)
+	log.Printf("Chosen window size: %vx%v", w, h)
+	ebiten.SetWindowSize(w, h)
 }
 
 func InitEbiten() error {
@@ -52,7 +86,7 @@ func InitEbiten() error {
 	ebiten.SetWindowFloating(false)
 	ebiten.SetWindowPosition(0, 0)
 	ebiten.SetWindowResizable(true)
-	ebiten.SetWindowSize(engine.GameWidth, engine.GameHeight)
+	setWindowSize()
 	ebiten.SetWindowTitle("AAAAAA")
 
 	err := vfs.Init()
