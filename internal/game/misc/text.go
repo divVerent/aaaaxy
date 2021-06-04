@@ -56,6 +56,9 @@ func (t *Text) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) erro
 	e.Image = ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
 	fnt.Draw(e.Image, txt, bounds.Origin.Mul(-1), false, fg, bg)
 	e.ResizeImage = false
+	if e.Orientation.Right.DX == 0 {
+		bounds.Size.DX, bounds.Size.DY = bounds.Size.DY, bounds.Size.DX
+	}
 	centerOffset := e.Rect.Size.Sub(bounds.Size).Div(2)
 	e.RenderOffset = e.RenderOffset.Add(centerOffset)
 	return t.SpriteBase.Spawn(w, s, e)
