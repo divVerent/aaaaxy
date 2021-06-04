@@ -297,6 +297,10 @@
    <property name="animation_group" value="idle"/>
    <property name="animation_repeat_interval" type="int" value="32"/>
    <property name="border_pixels" value="1"/>
+   <property name="fade_despawn" type="bool" value="true"/>
+   <property name="fade_skip_animation" type="bool" value="false"/>
+   <property name="fade_time" type="string" value="0.5s"/>
+   <property name="invert" type="bool" value="true"/>
    <property name="render_offset" value="-1 -1"/>
    <property name="solid" value="true"/>
   </properties>

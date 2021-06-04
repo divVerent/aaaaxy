@@ -15,13 +15,9 @@
 package misc
 
 import (
-	"fmt"
-
 	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/game/constants"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 const (
@@ -32,13 +28,13 @@ const (
 // Optionally despawns when hitting solid.
 type MovingAnimation struct {
 	Animation
-	mixins.Physics
+	mixins.Moving
+	mixins.Fadable
 
 	Alpha float64
 
-	DespawnOnTouch bool // TODO implement.
-	Despawning     bool
-	FadeFrame      int
+	FadeOnTouch    bool
+	RespawnOnTouch bool
 }
 
 func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -47,42 +43,31 @@ func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.
 		return err
 	}
 	s.Alpha = e.Alpha
-	s.Physics.Init(w, e, level.ObjectSolidContents, s.handleTouch)
-	if str := sp.Properties["velocity"]; str != "" {
-		var dx, dy float64
-		if _, err := fmt.Sscanf(str, "%f %f", &dx, &dy); err != nil {
-			return fmt.Errorf("Failed to parse velocity %q: %v", str, err)
-		}
-		s.Physics.Velocity = e.Transform.Inverse().Apply(m.Delta{
-			DX: m.Rint(dx * constants.SubPixelScale / engine.GameTPS),
-			DY: m.Rint(dy * constants.SubPixelScale / engine.GameTPS),
-		})
+	s.Moving.Init(w, sp, e, level.ObjectSolidContents, s.handleTouch)
+	err = s.Fadable.Init(w, sp, e)
+	if err != nil {
+		return err
 	}
+	s.FadeOnTouch = sp.Properties["fade_on_touch"] == "true"
+	s.RespawnOnTouch = sp.Properties["respawn_on_touch"] == "true"
 	return nil
 }
 
 func (s *MovingAnimation) Update() {
-	s.Physics.Update()
+	s.Moving.Update()
 	s.Animation.Update()
-
-	if s.Despawning {
-		if s.FadeFrame > 0 {
-			s.FadeFrame--
-		}
-		if s.FadeFrame == 0 {
-			s.World.Despawn(s.Physics.Entity)
-		}
-	} else {
-		if s.FadeFrame < FadeFrames {
-			s.FadeFrame++
-		}
-	}
-	s.Physics.Entity.Alpha = s.Alpha * float64(s.FadeFrame) / float64(FadeFrames)
+	s.Fadable.Update()
 }
 
 func (s *MovingAnimation) handleTouch(trace engine.TraceResult) {
-	if s.DespawnOnTouch && trace.HitEntity != s.World.Player {
-		s.Despawning = true
+	if trace.HitEntity == s.World.Player {
+		if s.RespawnOnTouch {
+			s.World.RespawnPlayer(s.World.PlayerState.LastCheckpoint())
+		}
+	} else {
+		if s.FadeOnTouch {
+			s.State = false
+		}
 	}
 }
 

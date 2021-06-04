@@ -35,9 +35,10 @@ type Fadable struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	Alpha      float64
-	Contents   level.Contents
-	FadeFrames int
+	Alpha       float64
+	Contents    level.Contents
+	FadeFrames  int
+	FadeDespawn bool
 
 	AnimDir   int
 	AnimFrame int
@@ -66,9 +67,10 @@ func (f *Fadable) Init(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 	} else {
 		f.FadeFrames = defaultFadeFrames
 	}
+	f.FadeDespawn = sp.Properties["fade_despawn"] == "true" // default false
 
 	// Skip the animation on initial load.
-	if f.Settable.State {
+	if f.Settable.State && sp.Properties["fade_skip_animation"] != "false" { // default true
 		f.AnimFrame = f.FadeFrames
 	} else {
 		f.AnimFrame = 0
@@ -83,6 +85,10 @@ func (f *Fadable) Update() {
 		f.AnimFrame++
 	} else {
 		f.AnimFrame--
+		if f.AnimFrame <= 0 && f.FadeDespawn {
+			f.World.Despawn(f.Entity)
+			return
+		}
 	}
 
 	if f.AnimFrame <= 0 {
