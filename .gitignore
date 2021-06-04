@@ -1,9 +1,11 @@
+*~
 /aaaaaa-debug-*
-/aaaaaa-release-*
+/aaaaaa-js-*
+/aaaaaa-linux-*
+/aaaaaa-windows-*
 /aaaaaa.tiled-session
 /aaaaaa.zip
+/assets/maps/*.cp.json
 /internal/assets/statik/statik.go
 /licenses
 /wasm_exec.js
-*.cp.json
-*~
