@@ -53,10 +53,10 @@ func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.
 		if _, err := fmt.Sscanf(str, "%f %f", &dx, &dy); err != nil {
 			return fmt.Errorf("Failed to parse velocity %q: %v", str, err)
 		}
-		s.Physics.Velocity = m.Delta{
+		s.Physics.Velocity = e.Transform.Inverse().Apply(m.Delta{
 			DX: m.Rint(dx * constants.SubPixelScale / engine.GameTPS),
 			DY: m.Rint(dy * constants.SubPixelScale / engine.GameTPS),
-		}
+		})
 	}
 	return nil
 }
