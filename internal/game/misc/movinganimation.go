@@ -30,6 +30,9 @@ type MovingAnimation struct {
 	Animation
 	mixins.Moving
 	mixins.Fadable
+	mixins.NonSolidTouchable
+
+	World *engine.World
 
 	Alpha float64
 
@@ -38,6 +41,7 @@ type MovingAnimation struct {
 }
 
 func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+	s.World = w
 	err := s.Animation.Spawn(w, sp, e)
 	if err != nil {
 		return err
@@ -48,6 +52,7 @@ func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.
 	if err != nil {
 		return err
 	}
+	s.NonSolidTouchable.Init(w, e)
 	s.FadeOnTouch = sp.Properties["fade_on_touch"] == "true"
 	s.RespawnOnTouch = sp.Properties["respawn_on_touch"] == "true"
 	return nil
@@ -57,10 +62,11 @@ func (s *MovingAnimation) Update() {
 	s.Moving.Update()
 	s.Animation.Update()
 	s.Fadable.Update()
+	s.NonSolidTouchable.Update()
 }
 
-func (s *MovingAnimation) handleTouch(trace engine.TraceResult) {
-	if trace.HitEntity == s.World.Player {
+func (s *MovingAnimation) Touch(other *engine.Entity) {
+	if other == s.World.Player {
 		if s.RespawnOnTouch {
 			s.World.RespawnPlayer(s.World.PlayerState.LastCheckpoint())
 		}
@@ -69,6 +75,10 @@ func (s *MovingAnimation) handleTouch(trace engine.TraceResult) {
 			s.State = false
 		}
 	}
+}
+
+func (s *MovingAnimation) handleTouch(trace engine.TraceResult) {
+	s.Touch(trace.HitEntity)
 }
 
 func init() {

@@ -306,4 +306,162 @@
   </properties>
   <image width="30" height="62" source="editorimgs/car.png"/>
  </tile>
+ <tile id="49" type="Sprite">
+  <properties>
+   <property name="image_dir" value="sprites"/>
+  </properties>
+  <image width="8" height="8" source="police.png"/>
+ </tile>
+ <tile id="50" type="MovingAnimation">
+  <properties>
+   <property name="animation" value="bullet8s"/>
+   <property name="animation_frame_interval" type="int" value="2"/>
+   <property name="animation_frames" type="int" value="2"/>
+   <property name="animation_group" value="idle"/>
+   <property name="animation_repeat_interval" type="int" value="4"/>
+   <property name="border_pixels" value="1"/>
+   <property name="fade_despawn" type="bool" value="true"/>
+   <property name="fade_time" type="string" value="0.5s"/>
+   <property name="fade_on_touch" type="bool" value="true"/>
+   <property name="invert" type="bool" value="true"/>
+   <property name="orientation" value="ES"/>
+   <property name="render_offset" value="-1 -1"/>
+   <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="velocity" type="string" value="96 0"/>
+  </properties>
+  <image width="6" height="6" source="bullet8s_idle_0.png"/>
+ </tile>
+ <tile id="51" type="MovingAnimation">
+  <properties>
+   <property name="animation" value="bullet8d"/>
+   <property name="animation_frame_interval" type="int" value="2"/>
+   <property name="animation_frames" type="int" value="2"/>
+   <property name="animation_group" value="idle"/>
+   <property name="animation_repeat_interval" type="int" value="4"/>
+   <property name="border_pixels" value="1"/>
+   <property name="fade_despawn" type="bool" value="true"/>
+   <property name="fade_time" type="string" value="0.5s"/>
+   <property name="fade_on_touch" type="bool" value="true"/>
+   <property name="invert" type="bool" value="true"/>
+   <property name="orientation" value="NE"/>
+   <property name="render_offset" value="-1 -1"/>
+   <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="velocity" type="string" value="64 -64"/>
+  </properties>
+  <image width="6" height="6" source="editorimgs/bullet8_ne.png"/>
+ </tile>
+ <tile id="52" type="MovingAnimation">
+  <properties>
+   <property name="animation" value="bullet8s"/>
+   <property name="animation_frame_interval" type="int" value="2"/>
+   <property name="animation_frames" type="int" value="2"/>
+   <property name="animation_group" value="idle"/>
+   <property name="animation_repeat_interval" type="int" value="4"/>
+   <property name="border_pixels" value="1"/>
+   <property name="fade_despawn" type="bool" value="true"/>
+   <property name="fade_time" type="string" value="0.5s"/>
+   <property name="fade_on_touch" type="bool" value="true"/>
+   <property name="invert" type="bool" value="true"/>
+   <property name="orientation" value="NE"/>
+   <property name="render_offset" value="-1 -1"/>
+   <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="velocity" type="string" value="0 -96"/>
+  </properties>
+  <image width="6" height="6" source="editorimgs/bullet8_n.png"/>
+ </tile>
+ <tile id="53" type="MovingAnimation">
+  <properties>
+   <property name="animation" value="bullet8d"/>
+   <property name="animation_frame_interval" type="int" value="2"/>
+   <property name="animation_frames" type="int" value="2"/>
+   <property name="animation_group" value="idle"/>
+   <property name="animation_repeat_interval" type="int" value="4"/>
+   <property name="border_pixels" value="1"/>
+   <property name="fade_despawn" type="bool" value="true"/>
+   <property name="fade_time" type="string" value="0.5s"/>
+   <property name="fade_on_touch" type="bool" value="true"/>
+   <property name="invert" type="bool" value="true"/>
+   <property name="orientation" value="WN"/>
+   <property name="render_offset" value="-1 -1"/>
+   <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="velocity" type="string" value="-64 -64"/>
+  </properties>
+  <image width="6" height="6" source="editorimgs/bullet8_nw.png"/>
+ </tile>
+ <tile id="54" type="MovingAnimation">
+  <properties>
+   <property name="animation" value="bullet8s"/>
+   <property name="animation_frame_interval" type="int" value="2"/>
+   <property name="animation_frames" type="int" value="2"/>
+   <property name="animation_group" value="idle"/>
+   <property name="animation_repeat_interval" type="int" value="4"/>
+   <property name="border_pixels" value="1"/>
+   <property name="fade_despawn" type="bool" value="true"/>
+   <property name="fade_time" type="string" value="0.5s"/>
+   <property name="fade_on_touch" type="bool" value="true"/>
+   <property name="invert" type="bool" value="true"/>
+   <property name="orientation" value="WN"/>
+   <property name="render_offset" value="-1 -1"/>
+   <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="velocity" type="string" value="-96 0"/>
+  </properties>
+  <image width="6" height="6" source="editorimgs/bullet8_w.png"/>
+ </tile>
+ <tile id="55" type="MovingAnimation">
+  <properties>
+   <property name="animation" value="bullet8d"/>
+   <property name="animation_frame_interval" type="int" value="2"/>
+   <property name="animation_frames" type="int" value="2"/>
+   <property name="animation_group" value="idle"/>
+   <property name="animation_repeat_interval" type="int" value="4"/>
+   <property name="border_pixels" value="1"/>
+   <property name="fade_despawn" type="bool" value="true"/>
+   <property name="fade_time" type="string" value="0.5s"/>
+   <property name="fade_on_touch" type="bool" value="true"/>
+   <property name="invert" type="bool" value="true"/>
+   <property name="orientation" value="SW"/>
+   <property name="render_offset" value="-1 -1"/>
+   <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="velocity" type="string" value="-64 64"/>
+  </properties>
+  <image width="6" height="6" source="editorimgs/bullet8_sw.png"/>
+ </tile>
+ <tile id="56" type="MovingAnimation">
+  <properties>
+   <property name="animation" value="bullet8s"/>
+   <property name="animation_frame_interval" type="int" value="2"/>
+   <property name="animation_frames" type="int" value="2"/>
+   <property name="animation_group" value="idle"/>
+   <property name="animation_repeat_interval" type="int" value="4"/>
+   <property name="border_pixels" value="1"/>
+   <property name="fade_despawn" type="bool" value="true"/>
+   <property name="fade_time" type="string" value="0.5s"/>
+   <property name="fade_on_touch" type="bool" value="true"/>
+   <property name="invert" type="bool" value="true"/>
+   <property name="orientation" value="SW"/>
+   <property name="render_offset" value="-1 -1"/>
+   <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="velocity" type="string" value="0 96"/>
+  </properties>
+  <image width="6" height="6" source="editorimgs/bullet8_s.png"/>
+ </tile>
+ <tile id="57" type="MovingAnimation">
+  <properties>
+   <property name="animation" value="bullet8d"/>
+   <property name="animation_frame_interval" type="int" value="2"/>
+   <property name="animation_frames" type="int" value="2"/>
+   <property name="animation_group" value="idle"/>
+   <property name="animation_repeat_interval" type="int" value="4"/>
+   <property name="border_pixels" value="1"/>
+   <property name="fade_despawn" type="bool" value="true"/>
+   <property name="fade_time" type="string" value="0.5s"/>
+   <property name="fade_on_touch" type="bool" value="true"/>
+   <property name="invert" type="bool" value="true"/>
+   <property name="orientation" value="ES"/>
+   <property name="render_offset" value="-1 -1"/>
+   <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="velocity" type="string" value="64 64"/>
+  </properties>
+  <image width="6" height="6" source="bullet8d_idle_0.png"/>
+ </tile>
 </tileset>

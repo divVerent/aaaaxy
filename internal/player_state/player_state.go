@@ -170,9 +170,13 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 		cat &^= AnyPercentSpeedrun
 	}
 	cat |= HundredPercentSpeedrun | AllFlippedSpeedrun | AllSignsSpeedrun
-	for cp := range s.Level.Checkpoints {
+	for cp, cpSp := range s.Level.Checkpoints {
 		if cp == "" {
 			// Start is not a real CP.
+			continue
+		}
+		if cpSp.Properties["dead_end"] == "true" {
+			// Dead ends not needed for 100% run. They're covered by all signs runs.
 			continue
 		}
 		switch s.CheckpointSeen(cp) {

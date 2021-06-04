@@ -6,6 +6,12 @@ convert ../arrow32d.png -rotate 90 arrow32_sw.png
 convert ../arrow32s.png -rotate 180 arrow32_w.png
 convert ../arrow32s.png -rotate 270 arrow32_n.png
 convert ../arrow32s.png -rotate 90 arrow32_s.png
+convert ../bullet8d_idle_0.png -rotate 180 bullet8_nw.png
+convert ../bullet8d_idle_0.png -rotate 270 bullet8_ne.png
+convert ../bullet8d_idle_0.png -rotate 90 bullet8_sw.png
+convert ../bullet8s_idle_0.png -rotate 180 bullet8_w.png
+convert ../bullet8s_idle_0.png -rotate 270 bullet8_n.png
+convert ../bullet8s_idle_0.png -rotate 90 bullet8_s.png
 convert ../car_idle_0.png -geometry 16x32 car.png
 convert ../forcefield.png -crop 16x16+0+0 +repage -rotate 90 forcefield_v.png
 convert ../forcefield.png -crop 16x16+0+0 +repage forcefield_h.png
