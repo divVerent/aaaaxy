@@ -93,7 +93,8 @@ const (
 	FollowFactor = 24.0
 
 	// FollowMaxDistance is the max distance allowed while following the player.
-	FollowMaxDistance = 16
+	// Hardest part: Multi-Party Authorization.
+	FollowMaxDistance = 24
 
 	// RepelSpeed is the speed at which risers repel each other until they no longer overlap.
 	RepelSpeed = 15 * constants.SubPixelScale / engine.GameTPS
