@@ -823,7 +823,7 @@
     <property name="text" value="Thinking outside the box can remove the need of getting over it."/>
    </properties>
   </object>
-  <object id="147" name="the_moebius_strip" type="Checkpoint" x="3136" y="5216" width="32" height="32">
+  <object id="147" name="the_moebius_strip" type="Checkpoint" x="3104" y="5216" width="96" height="32">
    <properties>
     <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_left" type="object" value="180"/>
