@@ -7816,7 +7816,7 @@
   <object id="2659" gid="294" x="2384" y="288" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="2301"/>
-    <property name="text" value="If you lose sight of something, you might lose it."/>
+    <property name="text" value="Sometimes you don't just lose sight of something."/>
    </properties>
   </object>
   <object id="2660" gid="298" x="2480" y="96" width="224" height="32">
