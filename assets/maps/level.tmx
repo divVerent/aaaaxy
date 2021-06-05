@@ -7776,6 +7776,7 @@
   <object id="2617" gid="283" x="2064" y="64" width="16" height="16"/>
   <object id="2618" gid="290" x="2256" y="32" width="16" height="16">
    <properties>
+    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!GrabSesame2"/>
