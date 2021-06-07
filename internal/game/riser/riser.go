@@ -46,9 +46,8 @@ type Riser struct {
 
 	State riserState
 
-	Anim       animation.State
-	Despawning bool
-	FadeFrame  int
+	Anim      animation.State
+	FadeFrame int
 
 	PlayerOnGroundVec m.Delta
 }
@@ -291,7 +290,7 @@ func (r *Riser) Update() {
 		r.Entity.Orientation = m.Identity()
 	}
 
-	if r.Despawning {
+	if r.Entity.Detached() {
 		if r.FadeFrame > 0 {
 			r.FadeFrame--
 		}

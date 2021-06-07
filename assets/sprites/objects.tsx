@@ -327,6 +327,7 @@
    <property name="orientation" value="ES"/>
    <property name="render_offset" value="-1 -1"/>
    <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="96 0"/>
   </properties>
   <image width="6" height="6" source="bullet8s_idle_0.png"/>
@@ -346,6 +347,7 @@
    <property name="orientation" value="NE"/>
    <property name="render_offset" value="-1 -1"/>
    <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="64 -64"/>
   </properties>
   <image width="6" height="6" source="editorimgs/bullet8_ne.png"/>
@@ -365,6 +367,7 @@
    <property name="orientation" value="NE"/>
    <property name="render_offset" value="-1 -1"/>
    <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="0 -96"/>
   </properties>
   <image width="6" height="6" source="editorimgs/bullet8_n.png"/>
@@ -384,6 +387,7 @@
    <property name="orientation" value="WN"/>
    <property name="render_offset" value="-1 -1"/>
    <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="-64 -64"/>
   </properties>
   <image width="6" height="6" source="editorimgs/bullet8_nw.png"/>
@@ -403,6 +407,7 @@
    <property name="orientation" value="WN"/>
    <property name="render_offset" value="-1 -1"/>
    <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="-96 0"/>
   </properties>
   <image width="6" height="6" source="editorimgs/bullet8_w.png"/>
@@ -422,6 +427,7 @@
    <property name="orientation" value="SW"/>
    <property name="render_offset" value="-1 -1"/>
    <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="-64 64"/>
   </properties>
   <image width="6" height="6" source="editorimgs/bullet8_sw.png"/>
@@ -441,6 +447,7 @@
    <property name="orientation" value="SW"/>
    <property name="render_offset" value="-1 -1"/>
    <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="0 96"/>
   </properties>
   <image width="6" height="6" source="editorimgs/bullet8_s.png"/>
@@ -460,6 +467,7 @@
    <property name="orientation" value="ES"/>
    <property name="render_offset" value="-1 -1"/>
    <property name="respawn_on_touch" type="bool" value="true"/>
+   <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="64 64"/>
   </properties>
   <image width="6" height="6" source="bullet8d_idle_0.png"/>

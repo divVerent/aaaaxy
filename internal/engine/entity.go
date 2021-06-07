@@ -193,6 +193,10 @@ func (w *World) Detach(e *Entity) {
 	w.link(e)
 }
 
+func (e *Entity) Detached() bool {
+	return e.Incarnation.ID == level.InvalidEntityID
+}
+
 func (e *Entity) ZIndex() int {
 	return e.zIndex
 }

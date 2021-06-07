@@ -49,8 +49,7 @@ func (r *RiserFsck) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity)
 func (r *RiserFsck) Despawn() {}
 
 func (r *RiserFsck) Touch(other *engine.Entity) {
-	if otherR, ok := other.Impl.(*Riser); ok {
-		otherR.Despawning = true
+	if _, ok := other.Impl.(*Riser); ok {
 		r.World.Detach(other)
 	}
 }

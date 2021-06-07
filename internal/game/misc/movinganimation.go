@@ -18,10 +18,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
-)
-
-const (
-	FadeFrames = 16
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // MovingAnimation is a simple entity type that moves in a specified direction.
@@ -32,16 +29,19 @@ type MovingAnimation struct {
 	mixins.Fadable
 	mixins.NonSolidTouchable
 
-	World *engine.World
+	World  *engine.World
+	Entity *engine.Entity
 
 	Alpha float64
 
 	FadeOnTouch    bool
 	RespawnOnTouch bool
+	StopOnTouch    bool
 }
 
 func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.World = w
+	s.Entity = e
 	err := s.Animation.Spawn(w, sp, e)
 	if err != nil {
 		return err
@@ -55,6 +55,7 @@ func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.
 	s.NonSolidTouchable.Init(w, e)
 	s.FadeOnTouch = sp.Properties["fade_on_touch"] == "true"
 	s.RespawnOnTouch = sp.Properties["respawn_on_touch"] == "true"
+	s.StopOnTouch = sp.Properties["stop_on_touch"] == "true"
 	return nil
 }
 
@@ -66,14 +67,21 @@ func (s *MovingAnimation) Update() {
 }
 
 func (s *MovingAnimation) Touch(other *engine.Entity) {
+	if other != nil && (other.Contents()&level.ObjectSolidContents == 0) {
+		// Exclude some "fake hits" by NonSolidTouchable as that one does not care for contents (trace does).
+		return
+	}
 	if other == s.World.Player {
 		if s.RespawnOnTouch {
 			s.World.RespawnPlayer(s.World.PlayerState.LastCheckpoint())
 		}
 	} else {
 		if s.FadeOnTouch {
-			s.State = false
+			s.SetState(s.Entity, s.Invert)
 		}
+	}
+	if s.StopOnTouch {
+		s.Velocity = m.Delta{}
 	}
 }
 
