@@ -27,6 +27,7 @@ import (
 	m "github.com/divVerent/aaaaaa/internal/math"
 	"github.com/divVerent/aaaaaa/internal/music"
 	"github.com/divVerent/aaaaaa/internal/player_state"
+	"github.com/divVerent/aaaaaa/internal/version"
 )
 
 const (
@@ -46,7 +47,13 @@ type CreditsScreen struct {
 
 func (s *CreditsScreen) Init(m *Menu) error {
 	s.Menu = m
-	s.Lines = credits.Lines
+	s.Lines = append([]string{}, credits.Lines...)
+	s.Lines = append(
+		s.Lines,
+		"",
+		fmt.Sprintf("Level Version: %d", s.Menu.World.Level.SaveGameVersion),
+		"Build: "+version.Revision(),
+	)
 	if s.Fancy {
 		music.Switch(s.Menu.World.Level.CreditsMusic)
 		cat := s.Menu.World.PlayerState.SpeedrunCategories()
@@ -56,7 +63,7 @@ func (s *CreditsScreen) Init(m *Menu) error {
 		hh, mm := mm/60, mm%60
 		timeStr := fmt.Sprintf("Time: %d:%02d:%02d.%03d", hh, mm, ss, ms)
 		s.Lines = append(
-			append([]string{}, s.Lines...),
+			s.Lines,
 			"",
 			"Your Time",
 			timeStr,

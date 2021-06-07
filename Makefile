@@ -5,6 +5,7 @@ SUFFIX = -$(shell go env GOOS)-$(shell go env GOARCH)$(EXE)
 # Internal variables.
 PACKAGE = github.com/divVerent/aaaaaa/cmd/aaaaaa
 DUMPCPS = github.com/divVerent/aaaaaa/cmd/dumpcps
+VERSION = github.com/divVerent/aaaaaa/internal/version
 # TODO glfw is gccgo-built, which still seems to include private paths. Fix.
 UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
@@ -35,6 +36,9 @@ INFIX = -debug
 BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
 BINARY = aaaaaa$(INFIX)$(SUFFIX)
+
+# Include version.
+GOFLAGS += -ldflags="-X $(VERSION).revision=$(shell git describe --always --dirty --first-parent)"
 
 # cgo support.
 CGO_CPPFLAGS ?= $(CPPFLAGS)
