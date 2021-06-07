@@ -11312,12 +11312,12 @@
     <property name="velocity" value="0 -16"/>
    </properties>
   </object>
-  <object id="4949" gid="322" x="4529" y="2257" width="30" height="62">
+  <object id="4949" gid="322" x="4529" y="2209" width="30" height="62">
    <properties>
     <property name="velocity" value="16 -24"/>
    </properties>
   </object>
-  <object id="4950" gid="322" x="4721" y="2257" width="30" height="62">
+  <object id="4950" gid="322" x="4721" y="2209" width="30" height="62">
    <properties>
     <property name="velocity" value="-16 -24"/>
    </properties>
