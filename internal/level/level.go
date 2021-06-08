@@ -401,7 +401,7 @@ func Load(filename string) (*Level, error) {
 					}
 				}
 				if tile == nil {
-					return nil, fmt.Errorf("unsupported map: object %v references nonexisting tile %d", o.ObjectID)
+					return nil, fmt.Errorf("unsupported map: object %v references nonexisting tile %d", o.ObjectID, o.GlobalID)
 				}
 				if tile.Type == "" {
 					properties["type"] = "Sprite"

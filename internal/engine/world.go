@@ -182,9 +182,11 @@ func (w *World) Init(saveState int) error {
 		entities:       makeList(allList),
 		opaqueEntities: makeList(opaqueList),
 		Level:          lvl,
-		PlayerState:    player_state.PlayerState{lvl},
-		prevCpID:       level.InvalidEntityID,
-		saveState:      saveState,
+		PlayerState: player_state.PlayerState{
+			Level: lvl,
+		},
+		prevCpID:  level.InvalidEntityID,
+		saveState: saveState,
 	}
 	w.renderer.Init(w)
 
