@@ -33,6 +33,7 @@ type LogicalGate struct {
 
 	IncomingState map[engine.EntityIncarnation]struct{}
 	State         bool
+	Originator    *engine.Entity
 }
 
 func (g *LogicalGate) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -64,12 +65,13 @@ func (g *LogicalGate) Update() {
 
 func (g *LogicalGate) Touch(other *engine.Entity) {}
 
-func (g *LogicalGate) SetState(by *engine.Entity, state bool) {
+func (g *LogicalGate) SetState(originator, predecessor *engine.Entity, state bool) {
 	if state {
-		g.IncomingState[by.Incarnation] = struct{}{}
+		g.IncomingState[predecessor.Incarnation] = struct{}{}
 	} else {
-		delete(g.IncomingState, by.Incarnation)
+		delete(g.IncomingState, predecessor.Incarnation)
 	}
+	g.Originator = originator
 }
 
 func (g *LogicalGate) MaybeSendEvent(sendEveryFrame bool) {
@@ -78,7 +80,7 @@ func (g *LogicalGate) MaybeSendEvent(sendEveryFrame bool) {
 		return
 	}
 	g.State = newState
-	mixins.SetStateOfTarget(g.World, g.Entity, g.Target, newState != g.Invert)
+	mixins.SetStateOfTarget(g.World, g.Originator, g.Entity, g.Target, newState != g.Invert)
 }
 
 func init() {

@@ -77,7 +77,7 @@ func (s *MovingAnimation) Touch(other *engine.Entity) {
 		}
 	} else {
 		if s.FadeOnTouch {
-			s.SetState(s.Entity, s.Invert)
+			s.SetState(other, s.Entity, s.Invert)
 		}
 	}
 	if s.StopOnTouch {

@@ -80,8 +80,8 @@ func (f *Fadable) Init(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 	return nil
 }
 
-func (f *Fadable) SetState(by *engine.Entity, state bool) {
-	f.Settable.SetState(by, state)
+func (f *Fadable) SetState(originator, predecessor *engine.Entity, state bool) {
+	f.Settable.SetState(originator, predecessor, state)
 	if f.FadeDespawn {
 		f.World.Detach(f.Entity)
 	}

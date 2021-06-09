@@ -43,7 +43,7 @@ func (s *SequenceTarget) Despawn() {}
 
 func (s *SequenceTarget) Update() {}
 
-func (s *SequenceTarget) SetState(by *engine.Entity, state bool) {
+func (s *SequenceTarget) SetState(originator, predecessor *engine.Entity, state bool) {
 	if !state {
 		return
 	}
@@ -52,7 +52,7 @@ func (s *SequenceTarget) SetState(by *engine.Entity, state bool) {
 		if !ok {
 			log.Printf("Target of SequenceTarget is not a SequenceCollector: %T, name: %v", ent, s.Target)
 		}
-		collector.Append(s.Sequence)
+		collector.Append(originator, s.Sequence)
 	}
 }
 
@@ -83,7 +83,7 @@ func (s *SequenceCollector) Despawn() {}
 
 func (s *SequenceCollector) Update() {}
 
-func (s *SequenceCollector) Append(str string) {
+func (s *SequenceCollector) Append(originator *engine.Entity, str string) {
 	matched := s.Current == s.Sequence
 	s.Current += str
 	if len(s.Current) > len(s.Sequence) {
@@ -91,7 +91,7 @@ func (s *SequenceCollector) Append(str string) {
 	}
 	matches := s.Current == s.Sequence
 	if matches != matched {
-		mixins.SetStateOfTarget(s.World, s.Entity, s.Target, s.State == matches)
+		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, s.State == matches)
 	}
 }
 

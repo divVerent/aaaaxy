@@ -55,10 +55,10 @@ func (g *ActionButton) Update() {
 	}
 	g.State = newState
 	if newState && g.SendPress {
-		mixins.SetStateOfTarget(g.World, g.Entity, g.Target, !g.Invert)
+		mixins.SetStateOfTarget(g.World, g.World.Player, g.Entity, g.Target, !g.Invert)
 	}
 	if !newState && g.SendRelease {
-		mixins.SetStateOfTarget(g.World, g.Entity, g.Target, g.Invert)
+		mixins.SetStateOfTarget(g.World, g.World.Player, g.Entity, g.Target, g.Invert)
 	}
 }
 
