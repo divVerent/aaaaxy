@@ -5380,22 +5380,26 @@
   </object>
   <object id="1184" name="InfiniteHotelEntrance" gid="299" x="4560" y="5232" width="16" height="64">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1185" name="InfiniteHotelEntrance" gid="293" x="5536" y="5232" width="16" height="64">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="1186" type="SetState" x="5024" y="5200" width="16" height="96">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="InfiniteHotelEntrance"/>
    </properties>
   </object>
   <object id="1188" type="SetState" x="5056" y="5200" width="16" height="96">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="InfiniteHotelEntrance"/>
    </properties>
@@ -5420,6 +5424,7 @@
   </object>
   <object id="1192" type="SetState" x="5424" y="5200" width="16" height="96">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="InfiniteHotelExit"/>
    </properties>
@@ -5835,22 +5840,26 @@
   </object>
   <object id="1291" type="SetState" x="4944" y="6240" width="32" height="32">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="AxiomOfChoiceTop !AxiomOfChoiceBottom !AxiomOfChoiceOut"/>
    </properties>
   </object>
   <object id="1292" type="SetState" x="4944" y="6400" width="32" height="32">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="AxiomOfChoiceBottom !AxiomOfChoiceTop !AxiomOfChoiceOut"/>
    </properties>
   </object>
   <object id="1295" type="SetState" x="4896" y="6400" width="32" height="32">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="AxiomOfChoiceOut !AxiomOfChoiceTop !AxiomOfChoiceBottom"/>
    </properties>
   </object>
   <object id="1296" type="SetState" x="4896" y="6240" width="32" height="32">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="AxiomOfChoiceOut !AxiomOfChoiceTop !AxiomOfChoiceBottom"/>
    </properties>
@@ -9407,6 +9416,7 @@
   <object id="3836" gid="328" x="3296" y="2016" width="96" height="16"/>
   <object id="3837" type="SetState" x="3120" y="2512" width="512" height="16">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="BrlogenTopDown BrlogenLeftRight CarryPushRed CarryPushBlue CarryPushOut !CarryStandRed !CarryStandBlue !CarryStandOut !PushStandRed !PushStandBlue !PushStandOut"/>
    </properties>
   </object>
@@ -10742,16 +10752,19 @@
   </object>
   <object id="4546" type="SetState" x="6592" y="4240" width="32" height="16">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="!0ToL RToL !RRToL"/>
    </properties>
   </object>
   <object id="4547" type="SetState" x="6592" y="4400" width="32" height="16">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="!0ToL !RToL RRToL !LLToOut RRToOut"/>
    </properties>
   </object>
   <object id="4548" type="SetState" x="6432" y="4208" width="32" height="16">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="0ToL !RToL !RRToL 0ToR !LToR !LLToR"/>
    </properties>
   </object>
@@ -10773,6 +10786,7 @@
   </object>
   <object id="4552" type="SetState" x="6432" y="4368" width="32" height="16">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="BrlogenTopDown BrlogenLeftRight !CarryPushRed !CarryPushBlue !CarryPushOut CarryStandRed CarryStandBlue CarryStandOut !PushStandRed !PushStandBlue !PushStandOut"/>
    </properties>
   </object>
@@ -11415,6 +11429,7 @@
   <object id="5000" gid="303" x="5600" y="576" width="16" height="16"/>
   <object id="5001" type="SetState" x="5296" y="3168" width="64" height="32">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="BrlogenTopDown BrlogenLeftRight !CarryPushRed !CarryPushBlue !CarryPushOut !CarryStandRed !CarryStandBlue !CarryStandOut PushStandRed PushStandBlue PushStandOut"/>
    </properties>
   </object>
@@ -11462,6 +11477,7 @@
   </object>
   <object id="5011" type="SetState" x="5248" y="2608" width="160" height="16">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="WrapWarp"/>
    </properties>
   </object>
