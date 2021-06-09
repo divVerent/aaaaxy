@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	alphaFrames = 60
+	alphaFrames = 120
 )
 
 type Centerprint struct {
