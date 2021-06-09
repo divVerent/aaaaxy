@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="tiles" tilewidth="16" tileheight="16" tilecount="270" columns="16" objectalignment="topleft">
+<tileset version="1.5" tiledversion="1.6.0" name="tiles" tilewidth="16" tileheight="16" tilecount="288" columns="16" objectalignment="topleft">
  <grid orientation="orthogonal" width="1" height="1"/>
- <terraintypes>
-  <terrain name="Block" tile="9"/>
-  <terrain name="Open" tile="63"/>
- </terraintypes>
  <tile id="0">
   <image width="16" height="16" source="notile.png"/>
  </tile>
@@ -92,7 +88,7 @@
   </properties>
   <image width="16" height="16" source="wall_s_w_sw0.png"/>
  </tile>
- <tile id="13" terrain="1,1,0,1">
+ <tile id="13">
   <properties>
    <property name="img.EN" value="wall_n_w_nw1.png"/>
    <property name="img.ES" value="wall_s_w_sw1.png"/>
@@ -152,7 +148,7 @@
   </properties>
   <image width="16" height="16" source="wall_e_s_se0.png"/>
  </tile>
- <tile id="17" terrain="1,1,1,0">
+ <tile id="17">
   <properties>
    <property name="img.EN" value="wall_n_e_ne1.png"/>
    <property name="img.ES" value="wall_e_s_se1.png"/>
@@ -212,7 +208,7 @@
   </properties>
   <image width="16" height="16" source="wall_e_s_w_se1_sw0.png"/>
  </tile>
- <tile id="21" terrain="1,1,0,0">
+ <tile id="21">
   <properties>
    <property name="img.EN" value="wall_n_e_w_ne1_nw1.png"/>
    <property name="img.ES" value="wall_e_s_w_se1_sw1.png"/>
@@ -257,7 +253,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_w_nw0.png"/>
  </tile>
- <tile id="24" terrain="0,1,1,1">
+ <tile id="24">
   <properties>
    <property name="img.EN" value="wall_s_w_sw1.png"/>
    <property name="img.ES" value="wall_n_w_nw1.png"/>
@@ -332,7 +328,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_s_w_sw1_nw0.png"/>
  </tile>
- <tile id="29" terrain="0,1,0,1">
+ <tile id="29">
   <properties>
    <property name="img.EN" value="wall_n_s_w_sw1_nw1.png"/>
    <property name="img.ES" value="wall_n_s_w_sw1_nw1.png"/>
@@ -362,7 +358,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_ne0.png"/>
  </tile>
- <tile id="31" terrain="1,0,1,1">
+ <tile id="31">
   <properties>
    <property name="img.EN" value="wall_e_s_se1.png"/>
    <property name="img.ES" value="wall_n_e_ne1.png"/>
@@ -422,7 +418,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_w_ne1_nw0.png"/>
  </tile>
- <tile id="35" terrain="0,0,1,1">
+ <tile id="35">
   <properties>
    <property name="img.EN" value="wall_e_s_w_se1_sw1.png"/>
    <property name="img.ES" value="wall_n_e_w_ne1_nw1.png"/>
@@ -482,7 +478,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_ne1_se0.png"/>
  </tile>
- <tile id="39" terrain="1,0,1,0">
+ <tile id="39">
   <properties>
    <property name="img.EN" value="wall_n_e_s_ne1_se1.png"/>
    <property name="img.ES" value="wall_n_e_s_ne1_se1.png"/>
@@ -572,7 +568,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne0_se1_sw0_nw0.png"/>
  </tile>
- <tile id="45" terrain="0,1,1,0">
+ <tile id="45">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se0_sw1_nw0.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne0_se1_sw0_nw1.png"/>
@@ -602,7 +598,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne0_se1_sw1_nw0.png"/>
  </tile>
- <tile id="47" terrain="0,1,0,0">
+ <tile id="47">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se0_sw1_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne0_se1_sw1_nw1.png"/>
@@ -647,7 +643,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se0_sw0_nw1.png"/>
  </tile>
- <tile id="50" terrain="1,0,0,1">
+ <tile id="50">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne0_se1_sw0_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se0_sw1_nw0.png"/>
@@ -662,7 +658,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se0_sw1_nw0.png"/>
  </tile>
- <tile id="51" terrain="0,0,0,1">
+ <tile id="51">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne0_se1_sw1_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se0_sw1_nw1.png"/>
@@ -692,7 +688,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw0_nw0.png"/>
  </tile>
- <tile id="53" terrain="0,0,1,0">
+ <tile id="53">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se1_sw1_nw0.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se1_sw0_nw1.png"/>
@@ -707,7 +703,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw0_nw1.png"/>
  </tile>
- <tile id="54" terrain="1,0,0,0">
+ <tile id="54">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se1_sw0_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se1_sw1_nw0.png"/>
@@ -722,7 +718,7 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw1_nw0.png"/>
  </tile>
- <tile id="55" terrain="0,0,0,0">
+ <tile id="55">
   <properties>
    <property name="img.EN" value="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
    <property name="img.ES" value="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
@@ -737,56 +733,56 @@
   </properties>
   <image width="16" height="16" source="wall_n_e_s_w_ne1_se1_sw1_nw1.png"/>
  </tile>
- <tile id="56" terrain="1,1,1,1" probability="0">
+ <tile id="56" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_8.png"/>
  </tile>
- <tile id="57" terrain="1,1,1,1" probability="0">
+ <tile id="57" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_9.png"/>
  </tile>
- <tile id="58" terrain="1,1,1,1" probability="0">
+ <tile id="58" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_a.png"/>
  </tile>
- <tile id="59" terrain="1,1,1,1" probability="0">
+ <tile id="59" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_b.png"/>
  </tile>
- <tile id="60" terrain="1,1,1,1" probability="0">
+ <tile id="60" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_c.png"/>
  </tile>
- <tile id="61" terrain="1,1,1,1" probability="0">
+ <tile id="61" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_d.png"/>
  </tile>
- <tile id="62" terrain="1,1,1,1" probability="0">
+ <tile id="62" probability="0">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
   </properties>
   <image width="16" height="16" source="bg_e.png"/>
  </tile>
- <tile id="63" terrain="1,1,1,1" probability="1">
+ <tile id="63">
   <properties>
    <property name="opaque" type="bool" value="false"/>
    <property name="solid" type="bool" value="false"/>
@@ -2235,87 +2231,200 @@
   </properties>
   <image width="16" height="16" source="../../../../homedir/src/aaaaaa/assets/tiles/pixels_14.png"/>
  </tile>
+ <tile id="273">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="274">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="275">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="276">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="277">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="278">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="279">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="280">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="281">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="282">
+  <image width="16" height="16" source="notile.png"/>
+ </tile>
+ <tile id="283">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="bgfinal_8.png"/>
+ </tile>
+ <tile id="284">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="bgfinal_9.png"/>
+ </tile>
+ <tile id="285">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="bgfinal_a.png"/>
+ </tile>
+ <tile id="286">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="bgfinal_b.png"/>
+ </tile>
+ <tile id="287">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="bgfinal_c.png"/>
+ </tile>
+ <tile id="288">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="bgfinal_d.png"/>
+ </tile>
+ <tile id="289">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="bgfinal_e.png"/>
+ </tile>
+ <tile id="290">
+  <properties>
+   <property name="opaque" type="bool" value="false"/>
+   <property name="solid" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="bgfinal_f.png"/>
+ </tile>
  <wangsets>
-  <wangset name="Block/Open" tile="-1">
-   <wangedgecolor name="BlockE" color="#000080" tile="-1" probability="1"/>
-   <wangedgecolor name="OpenE" color="#ffff80" tile="-1" probability="1"/>
-   <wangcornercolor name="BlockC" color="#0000ff" tile="-1" probability="1"/>
-   <wangcornercolor name="OpenC" color="#ffff00" tile="-1" probability="1"/>
-   <wangtile tileid="9" wangid="0x22222222"/>
-   <wangtile tileid="56" wangid="0x22222222"/>
-   <wangtile tileid="57" wangid="0x22222222"/>
-   <wangtile tileid="58" wangid="0x22222222"/>
-   <wangtile tileid="59" wangid="0x22222222"/>
-   <wangtile tileid="60" wangid="0x22222222"/>
-   <wangtile tileid="61" wangid="0x22222222"/>
-   <wangtile tileid="62" wangid="0x22222222"/>
-   <wangtile tileid="63" wangid="0x22222222"/>
-   <wangtile tileid="10" wangid="0x21222222"/>
-   <wangtile tileid="11" wangid="0x22212222"/>
-   <wangtile tileid="12" wangid="0x21212222"/>
-   <wangtile tileid="13" wangid="0x21112222"/>
-   <wangtile tileid="14" wangid="0x22222122"/>
-   <wangtile tileid="15" wangid="0x21222122"/>
-   <wangtile tileid="16" wangid="0x22212122"/>
-   <wangtile tileid="17" wangid="0x22211122"/>
-   <wangtile tileid="18" wangid="0x21212122"/>
-   <wangtile tileid="19" wangid="0x21112122"/>
-   <wangtile tileid="20" wangid="0x21211122"/>
-   <wangtile tileid="21" wangid="0x21111122"/>
-   <wangtile tileid="22" wangid="0x22222221"/>
-   <wangtile tileid="23" wangid="0x21222221"/>
-   <wangtile tileid="24" wangid="0x11222221"/>
-   <wangtile tileid="25" wangid="0x22212221"/>
-   <wangtile tileid="26" wangid="0x21212221"/>
-   <wangtile tileid="27" wangid="0x11212221"/>
-   <wangtile tileid="28" wangid="0x21112221"/>
-   <wangtile tileid="29" wangid="0x11112221"/>
-   <wangtile tileid="30" wangid="0x22222121"/>
-   <wangtile tileid="31" wangid="0x22222111"/>
-   <wangtile tileid="32" wangid="0x21222121"/>
-   <wangtile tileid="33" wangid="0x11222121"/>
-   <wangtile tileid="34" wangid="0x21222111"/>
-   <wangtile tileid="35" wangid="0x11222111"/>
-   <wangtile tileid="36" wangid="0x22212121"/>
-   <wangtile tileid="37" wangid="0x22211121"/>
-   <wangtile tileid="38" wangid="0x22212111"/>
-   <wangtile tileid="39" wangid="0x22211111"/>
-   <wangtile tileid="40" wangid="0x21212121"/>
-   <wangtile tileid="41" wangid="0x11212121"/>
-   <wangtile tileid="42" wangid="0x21112121"/>
-   <wangtile tileid="43" wangid="0x11112121"/>
-   <wangtile tileid="44" wangid="0x21211121"/>
-   <wangtile tileid="45" wangid="0x11211121"/>
-   <wangtile tileid="46" wangid="0x21111121"/>
-   <wangtile tileid="47" wangid="0x11111121"/>
-   <wangtile tileid="48" wangid="0x21212111"/>
-   <wangtile tileid="49" wangid="0x11212111"/>
-   <wangtile tileid="50" wangid="0x21112111"/>
-   <wangtile tileid="51" wangid="0x11112111"/>
-   <wangtile tileid="52" wangid="0x21211111"/>
-   <wangtile tileid="53" wangid="0x11211111"/>
-   <wangtile tileid="54" wangid="0x21111111"/>
-   <wangtile tileid="55" wangid="0x11111111"/>
+  <wangset name="Terrains" type="corner" tile="-1">
+   <wangcolor name="Block" color="#ff0000" tile="9" probability="1"/>
+   <wangcolor name="Open" color="#00ff00" tile="63" probability="1"/>
+   <wangtile tileid="13" wangid="0,2,0,2,0,1,0,2"/>
+   <wangtile tileid="17" wangid="0,2,0,1,0,2,0,2"/>
+   <wangtile tileid="21" wangid="0,2,0,1,0,1,0,2"/>
+   <wangtile tileid="24" wangid="0,2,0,2,0,2,0,1"/>
+   <wangtile tileid="29" wangid="0,2,0,2,0,1,0,1"/>
+   <wangtile tileid="31" wangid="0,1,0,2,0,2,0,2"/>
+   <wangtile tileid="35" wangid="0,1,0,2,0,2,0,1"/>
+   <wangtile tileid="39" wangid="0,1,0,1,0,2,0,2"/>
+   <wangtile tileid="45" wangid="0,2,0,1,0,2,0,1"/>
+   <wangtile tileid="47" wangid="0,2,0,1,0,1,0,1"/>
+   <wangtile tileid="50" wangid="0,1,0,2,0,1,0,2"/>
+   <wangtile tileid="51" wangid="0,1,0,2,0,1,0,1"/>
+   <wangtile tileid="53" wangid="0,1,0,1,0,2,0,1"/>
+   <wangtile tileid="54" wangid="0,1,0,1,0,1,0,2"/>
+   <wangtile tileid="55" wangid="0,1,0,1,0,1,0,1"/>
+   <wangtile tileid="56" wangid="0,2,0,2,0,2,0,2"/>
+   <wangtile tileid="57" wangid="0,2,0,2,0,2,0,2"/>
+   <wangtile tileid="58" wangid="0,2,0,2,0,2,0,2"/>
+   <wangtile tileid="59" wangid="0,2,0,2,0,2,0,2"/>
+   <wangtile tileid="60" wangid="0,2,0,2,0,2,0,2"/>
+   <wangtile tileid="61" wangid="0,2,0,2,0,2,0,2"/>
+   <wangtile tileid="62" wangid="0,2,0,2,0,2,0,2"/>
+   <wangtile tileid="63" wangid="0,2,0,2,0,2,0,2"/>
   </wangset>
-  <wangset name="Block/Open 1row" tile="-1">
-   <wangedgecolor name="" color="#000080" tile="-1" probability="1"/>
-   <wangedgecolor name="" color="#ffff80" tile="-1" probability="1"/>
-   <wangtile tileid="9" wangid="0x2020202"/>
-   <wangtile tileid="10" wangid="0x1020202"/>
-   <wangtile tileid="11" wangid="0x2010202"/>
-   <wangtile tileid="12" wangid="0x1010202"/>
-   <wangtile tileid="14" wangid="0x2020102"/>
-   <wangtile tileid="15" wangid="0x1020102"/>
-   <wangtile tileid="16" wangid="0x2010102"/>
-   <wangtile tileid="18" wangid="0x1010102"/>
-   <wangtile tileid="22" wangid="0x2020201"/>
-   <wangtile tileid="23" wangid="0x1020201"/>
-   <wangtile tileid="25" wangid="0x2010201"/>
-   <wangtile tileid="26" wangid="0x1010201"/>
-   <wangtile tileid="30" wangid="0x2020101"/>
-   <wangtile tileid="32" wangid="0x1020101"/>
-   <wangtile tileid="36" wangid="0x2010101"/>
-   <wangtile tileid="40" wangid="0x1010101"/>
+  <wangset name="Block/Open" type="mixed" tile="-1">
+   <wangcolor name="BlockE" color="#000080" tile="-1" probability="1"/>
+   <wangcolor name="OpenE" color="#ffff80" tile="-1" probability="1"/>
+   <wangcolor name="BlockC" color="#0000ff" tile="-1" probability="1"/>
+   <wangcolor name="OpenC" color="#ffff00" tile="-1" probability="1"/>
+   <wangtile tileid="9" wangid="2,4,2,4,2,4,2,4"/>
+   <wangtile tileid="10" wangid="2,4,2,4,2,4,1,4"/>
+   <wangtile tileid="11" wangid="2,4,2,4,1,4,2,4"/>
+   <wangtile tileid="12" wangid="2,4,2,4,1,4,1,4"/>
+   <wangtile tileid="13" wangid="2,4,2,4,1,3,1,4"/>
+   <wangtile tileid="14" wangid="2,4,1,4,2,4,2,4"/>
+   <wangtile tileid="15" wangid="2,4,1,4,2,4,1,4"/>
+   <wangtile tileid="16" wangid="2,4,1,4,1,4,2,4"/>
+   <wangtile tileid="17" wangid="2,4,1,3,1,4,2,4"/>
+   <wangtile tileid="18" wangid="2,4,1,4,1,4,1,4"/>
+   <wangtile tileid="19" wangid="2,4,1,4,1,3,1,4"/>
+   <wangtile tileid="20" wangid="2,4,1,3,1,4,1,4"/>
+   <wangtile tileid="21" wangid="2,4,1,3,1,3,1,4"/>
+   <wangtile tileid="22" wangid="1,4,2,4,2,4,2,4"/>
+   <wangtile tileid="23" wangid="1,4,2,4,2,4,1,4"/>
+   <wangtile tileid="24" wangid="1,4,2,4,2,4,1,3"/>
+   <wangtile tileid="25" wangid="1,4,2,4,1,4,2,4"/>
+   <wangtile tileid="26" wangid="1,4,2,4,1,4,1,4"/>
+   <wangtile tileid="27" wangid="1,4,2,4,1,4,1,3"/>
+   <wangtile tileid="28" wangid="1,4,2,4,1,3,1,4"/>
+   <wangtile tileid="29" wangid="1,4,2,4,1,3,1,3"/>
+   <wangtile tileid="30" wangid="1,4,1,4,2,4,2,4"/>
+   <wangtile tileid="31" wangid="1,3,1,4,2,4,2,4"/>
+   <wangtile tileid="32" wangid="1,4,1,4,2,4,1,4"/>
+   <wangtile tileid="33" wangid="1,4,1,4,2,4,1,3"/>
+   <wangtile tileid="34" wangid="1,3,1,4,2,4,1,4"/>
+   <wangtile tileid="35" wangid="1,3,1,4,2,4,1,3"/>
+   <wangtile tileid="36" wangid="1,4,1,4,1,4,2,4"/>
+   <wangtile tileid="37" wangid="1,4,1,3,1,4,2,4"/>
+   <wangtile tileid="38" wangid="1,3,1,4,1,4,2,4"/>
+   <wangtile tileid="39" wangid="1,3,1,3,1,4,2,4"/>
+   <wangtile tileid="40" wangid="1,4,1,4,1,4,1,4"/>
+   <wangtile tileid="41" wangid="1,4,1,4,1,4,1,3"/>
+   <wangtile tileid="42" wangid="1,4,1,4,1,3,1,4"/>
+   <wangtile tileid="43" wangid="1,4,1,4,1,3,1,3"/>
+   <wangtile tileid="44" wangid="1,4,1,3,1,4,1,4"/>
+   <wangtile tileid="45" wangid="1,4,1,3,1,4,1,3"/>
+   <wangtile tileid="46" wangid="1,4,1,3,1,3,1,4"/>
+   <wangtile tileid="47" wangid="1,4,1,3,1,3,1,3"/>
+   <wangtile tileid="48" wangid="1,3,1,4,1,4,1,4"/>
+   <wangtile tileid="49" wangid="1,3,1,4,1,4,1,3"/>
+   <wangtile tileid="50" wangid="1,3,1,4,1,3,1,4"/>
+   <wangtile tileid="51" wangid="1,3,1,4,1,3,1,3"/>
+   <wangtile tileid="52" wangid="1,3,1,3,1,4,1,4"/>
+   <wangtile tileid="53" wangid="1,3,1,3,1,4,1,3"/>
+   <wangtile tileid="54" wangid="1,3,1,3,1,3,1,4"/>
+   <wangtile tileid="55" wangid="1,3,1,3,1,3,1,3"/>
+   <wangtile tileid="56" wangid="2,4,2,4,2,4,2,4"/>
+   <wangtile tileid="57" wangid="2,4,2,4,2,4,2,4"/>
+   <wangtile tileid="58" wangid="2,4,2,4,2,4,2,4"/>
+   <wangtile tileid="59" wangid="2,4,2,4,2,4,2,4"/>
+   <wangtile tileid="60" wangid="2,4,2,4,2,4,2,4"/>
+   <wangtile tileid="61" wangid="2,4,2,4,2,4,2,4"/>
+   <wangtile tileid="62" wangid="2,4,2,4,2,4,2,4"/>
+   <wangtile tileid="63" wangid="2,4,2,4,2,4,2,4"/>
+  </wangset>
+  <wangset name="Block/Open 1row" type="edge" tile="-1">
+   <wangcolor name="" color="#000080" tile="-1" probability="1"/>
+   <wangcolor name="" color="#ffff80" tile="-1" probability="1"/>
+   <wangtile tileid="9" wangid="2,0,2,0,2,0,2,0"/>
+   <wangtile tileid="10" wangid="2,0,2,0,2,0,1,0"/>
+   <wangtile tileid="11" wangid="2,0,2,0,1,0,2,0"/>
+   <wangtile tileid="12" wangid="2,0,2,0,1,0,1,0"/>
+   <wangtile tileid="14" wangid="2,0,1,0,2,0,2,0"/>
+   <wangtile tileid="15" wangid="2,0,1,0,2,0,1,0"/>
+   <wangtile tileid="16" wangid="2,0,1,0,1,0,2,0"/>
+   <wangtile tileid="18" wangid="2,0,1,0,1,0,1,0"/>
+   <wangtile tileid="22" wangid="1,0,2,0,2,0,2,0"/>
+   <wangtile tileid="23" wangid="1,0,2,0,2,0,1,0"/>
+   <wangtile tileid="25" wangid="1,0,2,0,1,0,2,0"/>
+   <wangtile tileid="26" wangid="1,0,2,0,1,0,1,0"/>
+   <wangtile tileid="30" wangid="1,0,1,0,2,0,2,0"/>
+   <wangtile tileid="32" wangid="1,0,1,0,2,0,1,0"/>
+   <wangtile tileid="36" wangid="1,0,1,0,1,0,2,0"/>
+   <wangtile tileid="40" wangid="1,0,1,0,1,0,1,0"/>
   </wangset>
  </wangsets>
 </tileset>

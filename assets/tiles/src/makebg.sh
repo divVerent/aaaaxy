@@ -42,19 +42,6 @@ for kc1 in $colors; do
 			-fill "$c2" -opaque "#ff00fe" \
 			-rotate 270 \
 			../bg_"$k1$k2"_h.png
-		convert bgcheckerstransition.png \
-			-fill "$c1" -opaque "#00fe00" \
-			-fill "$cc1" -opaque "#007e00" \
-			-fill "$c2" -opaque "#ff00fe" \
-			-fill "$cc2" -opaque "#7f007e" \
-			../bgcheckers_"$k1$k2"_v.png
-		convert bgcheckerstransition.png \
-			-fill "$c1" -opaque "#00fe00" \
-			-fill "$cc1" -opaque "#007e00" \
-			-fill "$c2" -opaque "#ff00fe" \
-			-fill "$cc2" -opaque "#7f007e" \
-			-rotate 270 \
-			../bgcheckers_"$k1$k2"_h.png
 		if [ x"$k1" = x"8" ]; then
 			for img in l m nl nr r; do
 				convert train_"$img".png \
@@ -65,10 +52,10 @@ for kc1 in $colors; do
 		fi
 	done
 	convert -size 16x16 xc:"$c1" ../bg_"$k1".png
-	convert -size 16x16 bgcheckers.png \
+	convert -size 16x16 bgfinal.png \
 		-fill "$c1" -opaque "#00fe00" \
 		-fill "$cc1" -opaque "#007e00" \
-		../bgcheckers_"$k1".png
+		../bgfinal_"$k1".png
 	if [ x"$k1" = x"8" ]; then
 		convert track.png \
 			-fill "$c1" -opaque "#00fe00" \
