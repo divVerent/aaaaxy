@@ -350,11 +350,17 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	}
 
 	// Load the configured music.
-	cp.Impl.Touch(w.Player)
+	w.TouchEvent(cp, w.Player)
 
 	// Skip updating.
 	w.respawned = true
 	return nil
+}
+
+// TouchEvent notifies both entities that they touched the other.
+func (w *World) TouchEvent(a *Entity, b *Entity) {
+	a.Impl.Touch(b)
+	b.Impl.Touch(a)
 }
 
 func (w *World) PlayerTouchedCheckpoint(cp *Entity) {

@@ -368,7 +368,7 @@ func (p *Player) handleTouch(trace engine.TraceResult) {
 		p.HitHeadSound.Play()
 	}
 	if trace.HitEntity != nil {
-		trace.HitEntity.Impl.Touch(p.Entity)
+		p.World.TouchEvent(p.Entity, trace.HitEntity)
 	}
 }
 

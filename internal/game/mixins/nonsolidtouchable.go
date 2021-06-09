@@ -34,6 +34,7 @@ func (t *NonSolidTouchable) Init(w *engine.World, e *engine.Entity) error {
 }
 
 func (t *NonSolidTouchable) Update() {
+	// NOTE: These Touch events are NOT symmetric like all others! The other entity is NOT notified that we touched it.
 	touched := false
 	t.World.ForEachEntity(func(e *engine.Entity) {
 		if e == t.Entity {
