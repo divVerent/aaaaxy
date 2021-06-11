@@ -11885,6 +11885,7 @@
   </object>
   <object id="5186" type="SetState" x="5632" y="3856" width="32" height="16">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="YThoughFallDown YThoughLookBack"/>
    </properties>
   </object>
