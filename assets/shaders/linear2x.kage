@@ -39,6 +39,9 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	// With a factor of 2.0, we get 50% of the pixels as nearest and 50%
 	// in the linear region. Also means that at 2x scaling or above, every
 	// pixel value is guaranteed to occur unchanged _somewhere_.
+	// When scaling 3x (from 360p to 1080p), this will change adjacent pixel
+	// values of 0 1 to 0 1/6 5/6 1. The same can be done in ffmpeg by first
+	// nearest-scaling to 2x then linear-scaling to 3x.
 	f = clamp(0.5+(f-0.5)*2.0, 0.0, 1.0)
 	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y)
 
