@@ -16,6 +16,7 @@ package centerprint
 
 import (
 	"image/color"
+	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -106,6 +107,7 @@ func (cp *Centerprint) targetPos() int {
 		return screenHeight / 3
 	default:
 		log.Panicf("invalid initial position: %v", cp.pos)
+		return 0
 	}
 }
 
