@@ -9835,7 +9835,7 @@
   <object id="4019" gid="331" x="5248" y="3376" width="3" height="5"/>
   <object id="4020" name="KaizoWarp" gid="295" x="5616" y="3312" width="32" height="16"/>
   <object id="4021" name="KaizoWarp" gid="297" x="5744" y="3296" width="32" height="16"/>
-  <object id="4023" gid="317" x="5680" y="3312" width="32" height="352">
+  <object id="4023" gid="317" x="5680" y="3344" width="32" height="320">
    <properties>
     <property name="map_black_to" type="color" value="#00ff5555"/>
     <property name="map_white_to" type="color" value="#ffff5555"/>
