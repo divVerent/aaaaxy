@@ -34,6 +34,7 @@ type Centerprint struct {
 	waitScroll bool
 	waitFade   bool
 	face       font.Face
+	pos        InitialPosition
 
 	alphaFrame int
 	scrollPos  int
@@ -56,7 +57,7 @@ const (
 type InitialPosition int
 
 const (
-	Top = iota
+	Top InitialPosition = iota
 	Middle
 )
 
@@ -75,6 +76,7 @@ func New(txt string, imp Importance, pos InitialPosition, face font.Face, color 
 		waitScroll: imp == Important,
 		waitFade:   true,
 		face:       face,
+		pos:        pos,
 		alphaFrame: 1,
 		active:     true,
 	}
@@ -97,7 +99,14 @@ func (cp *Centerprint) SetFadeOut(fadeOut bool) {
 }
 
 func (cp *Centerprint) targetPos() int {
-	return screenHeight / 4
+	switch cp.pos {
+	case Top:
+		return screenHeight / 4
+	case Middle:
+		return screenHeight / 3
+	default:
+		log.Panicf("invalid initial position: %v", cp.pos)
+	}
 }
 
 func (cp *Centerprint) update() bool {
