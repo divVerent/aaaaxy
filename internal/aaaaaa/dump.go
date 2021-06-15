@@ -119,7 +119,14 @@ func finishDumping() {
 	}
 	if *dumpVideo != "" {
 		inputs = append(inputs, fmt.Sprintf("-f png_pipe -r %d -i '%s'", engine.GameTPS, strings.ReplaceAll(*dumpVideo, "'", "'\\''")))
-		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -preset:v fast -vf premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080")
+		// Note: the two step upscale simulates the effect of the normal2x shader.
+		// Note: using high quality, fast settings and many keyframes
+		// as the assumption is that the output file will be further edited.
+		// Note: disabling 8x8 DCT here as some older FFmpeg versions -
+		// or even newer versions with decoding options changed for compatibility,
+		// if the video file has also been losslessly cut -
+		// have trouble decoding that.
+		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -vf premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080")
 	}
 	log.Printf("ffmpeg %s %s -vsync vfr video.mp4", strings.Join(inputs, " "), strings.Join(settings, " "))
 }
