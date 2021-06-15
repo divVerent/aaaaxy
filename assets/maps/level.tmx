@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5538">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5539">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -12130,7 +12130,7 @@
   <object id="5478" gid="312" x="6912" y="5408" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5482"/>
-    <property name="text" value="If you come back to a familiar place,  it may no longer look like you remember it."/>
+    <property name="text" value="If you come back to a familiar place,  it may no longer look the way you remember it."/>
    </properties>
   </object>
   <object id="5479" name="TwiceTwice" gid="293" x="6976" y="5408" width="16" height="32">
@@ -12152,7 +12152,7 @@
     <property name="text" value="Twice Twice"/>
    </properties>
   </object>
-  <object id="5483" type="SetState" x="7024" y="4848" width="336" height="16">
+  <object id="5483" type="SetState" x="7024" y="4880" width="336" height="16">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="TwiceTwice"/>
@@ -12168,13 +12168,13 @@
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5488" type="SetState" x="7392" y="4848" width="336" height="16">
+  <object id="5488" type="SetState" x="7392" y="4880" width="336" height="16">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="FriceFriceFriceFrice"/>
    </properties>
   </object>
-  <object id="5489" type="SetState" x="6880" y="5408" width="32" height="32">
+  <object id="5489" type="SetState" x="6880" y="5408" width="64" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="ThriceThriceThrice"/>
@@ -12199,7 +12199,7 @@
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5517" type="SetState" x="6880" y="5472" width="16" height="32">
+  <object id="5517" type="SetState" x="6880" y="5472" width="64" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="QuinceQuinceQuinceQuinceQuince"/>
@@ -12208,7 +12208,7 @@
   <object id="5518" gid="312" x="6912" y="5472" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5482"/>
-    <property name="text" value="Why didn't you like the one you got?"/>
+    <property name="text" value="Why didn't you like the one I gave you?"/>
    </properties>
   </object>
   <object id="5519" name="FriceFriceFriceFrice" gid="293" x="6992" y="5472" width="16" height="32">
@@ -12223,16 +12223,18 @@
   </object>
   <object id="5521" gid="309" x="6880" y="5408" width="32" height="16"/>
   <object id="5524" gid="322" x="7760" y="4224" width="32" height="32"/>
-  <object id="5525" name="SeviceCounter" gid="308" x="7636" y="4160" width="16" height="16">
+  <object id="5525" gid="308" x="7636" y="4160" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="SeviceCounter"/>
    </properties>
   </object>
-  <object id="5526" name="SeviceCounter" gid="308" x="7596" y="4160" width="16" height="16">
+  <object id="5526" gid="308" x="7596" y="4160" width="16" height="16">
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="SeviceCounter"/>
    </properties>
   </object>
   <object id="5527" type="SetState" x="7744" y="4160" width="16" height="64">
@@ -12246,7 +12248,7 @@
     <property name="text" value="You really don't get it, do you?"/>
    </properties>
   </object>
-  <object id="5529" type="SetState" x="6880" y="5536" width="32" height="32">
+  <object id="5529" type="SetState" x="6880" y="5536" width="64" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="!QuinceQuinceQuinceQuinceQuince"/>
@@ -12273,5 +12275,11 @@
   <object id="5535" name="Sevice" gid="310" x="7488" y="4176" width="16" height="16"/>
   <object id="5536" name="Sevice" gid="310" x="7488" y="4192" width="16" height="16"/>
   <object id="5537" name="Sevice" gid="310" x="7488" y="4208" width="16" height="16"/>
+  <object id="5538" gid="312" x="7408" y="4192" width="32" height="32">
+   <properties>
+    <property name="reached_from" type="object" value="5482"/>
+    <property name="text" value="Square peg in a round hole, eh?  Das Runde geht in das Eckige, oder?"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
