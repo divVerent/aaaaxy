@@ -91,6 +91,27 @@ func dumpFrame(screen *ebiten.Image) {
 	}
 }
 
+func ffmpegCommand(audio, video, output string) string {
+	inputs := []string{}
+	settings := []string{}
+	if audio != "" {
+		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.Rate(), strings.ReplaceAll(audio, "'", "'\\''")))
+		settings = append(settings, "-codec:a aac -b:a 128k")
+	}
+	if video != "" {
+		inputs = append(inputs, fmt.Sprintf("-f png_pipe -r %d -i '%s'", engine.GameTPS, strings.ReplaceAll(video, "'", "'\\''")))
+		// Note: the two step upscale simulates the effect of the normal2x shader.
+		// Note: using high quality, fast settings and many keyframes
+		// as the assumption is that the output file will be further edited.
+		// Note: disabling 8x8 DCT here as some older FFmpeg versions -
+		// or even newer versions with decoding options changed for compatibility,
+		// if the video file has also been losslessly cut -
+		// have trouble decoding that.
+		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -vf premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080")
+	}
+	return fmt.Sprintf("ffmpeg %s %s -vsync vfr %s", strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''"))
+}
+
 func finishDumping() {
 	if !dumping() {
 		return
@@ -111,22 +132,5 @@ func finishDumping() {
 	}
 	log.Print("Media has been dumped.")
 	log.Print("To convert to something uploadable, run:")
-	inputs := []string{}
-	settings := []string{}
-	if *dumpAudio != "" {
-		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.Rate(), strings.ReplaceAll(*dumpAudio, "'", "'\\''")))
-		settings = append(settings, "-codec:a aac -b:a 128k")
-	}
-	if *dumpVideo != "" {
-		inputs = append(inputs, fmt.Sprintf("-f png_pipe -r %d -i '%s'", engine.GameTPS, strings.ReplaceAll(*dumpVideo, "'", "'\\''")))
-		// Note: the two step upscale simulates the effect of the normal2x shader.
-		// Note: using high quality, fast settings and many keyframes
-		// as the assumption is that the output file will be further edited.
-		// Note: disabling 8x8 DCT here as some older FFmpeg versions -
-		// or even newer versions with decoding options changed for compatibility,
-		// if the video file has also been losslessly cut -
-		// have trouble decoding that.
-		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -vf premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080")
-	}
-	log.Printf("ffmpeg %s %s -vsync vfr video.mp4", strings.Join(inputs, " "), strings.Join(settings, " "))
+	log.Print(ffmpegCommand(*dumpAudio, *dumpVideo, "video.mp4"))
 }
