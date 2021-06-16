@@ -11945,7 +11945,7 @@
   <object id="5213" gid="312" x="6584" y="4912" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5207"/>
-    <property name="text" value="Not every staircase leads somewhere good."/>
+    <property name="text" value="Not every staircase leads somewhere nice."/>
    </properties>
   </object>
   <object id="5216" type="_TileMod" x="6224" y="4944" width="304" height="16">
