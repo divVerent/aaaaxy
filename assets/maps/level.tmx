@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5539">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5539">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -5302,7 +5302,7 @@
     <property name="text" value="A watched train never departs."/>
    </properties>
   </object>
-  <object id="1172" type="Text" x="4272" y="5088" width="160" height="96">
+  <object id="1172" type="Text" x="4272" y="5088" width="160" height="112">
    <properties>
     <property name="text" value="Hilbert's Dotel    Welcome!    1) Check in  2) Take your keys  3) Esc for checkout"/>
     <property name="text_bg" type="color" value="#ff000000"/>

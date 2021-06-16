@@ -63,7 +63,7 @@ func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, centerX bool, fg, b
 		}
 		// Draw the text itself.
 		text.Draw(dst, line, f.Face, x, y, fg)
-		fy += f.Face.Metrics().Height
+		fy += f.Outline.Metrics().Height + 1 // Line height is 1 pixel above font height.
 	}
 }
 

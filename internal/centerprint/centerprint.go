@@ -86,7 +86,7 @@ func New(txt string, imp Importance, pos InitialPosition, face font.Face, color 
 		cp.scrollPos = cp.targetPos()
 	}
 	if len(centerprints) != 0 {
-		height := cp.bounds.Size.DY
+		height := cp.bounds.Size.DY + 1 // Leave one pixel between lines.
 		if centerprints[0].scrollPos < height {
 			cp.scrollPos = centerprints[0].scrollPos - height
 		}

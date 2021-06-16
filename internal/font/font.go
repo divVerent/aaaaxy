@@ -116,37 +116,37 @@ func Init() error {
 		SubPixelsY: 1,
 	}))
 	ByName["Regular"] = makeFace(truetype.NewFace(regular, &truetype.Options{
-		Size:       16,
+		Size:       14,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
 	}))
 	ByName["Italic"] = makeFace(truetype.NewFace(italic, &truetype.Options{
-		Size:       16,
+		Size:       14,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
 	}))
 	ByName["Bold"] = makeFace(truetype.NewFace(bold, &truetype.Options{
-		Size:       16,
+		Size:       14,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
 	}))
 	ByName["Mono"] = makeFace(truetype.NewFace(mono, &truetype.Options{
-		Size:       16,
+		Size:       14,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
 	}))
 	ByName["SmallCaps"] = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
-		Size:       16,
+		Size:       14,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
 	}))
 	Centerprint = makeFace(truetype.NewFace(italic, &truetype.Options{
-		Size:       16,
+		Size:       14,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
@@ -164,7 +164,7 @@ func Init() error {
 		SubPixelsY: 1,
 	}))
 	Menu = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
-		Size:       16,
+		Size:       18,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,
