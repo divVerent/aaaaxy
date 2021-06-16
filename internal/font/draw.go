@@ -60,15 +60,7 @@ func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, centerX bool, fg, b
 		x := pos.X + totalBounds.Origin.X - lineBounds.Origin.X + (totalBounds.Size.DX-lineBounds.Size.DX)/2
 		y := fy.Floor()
 		if _, _, _, a := bg.RGBA(); a != 0 {
-			// Draw the outline.
-			for dx := -1; dx <= +1; dx++ {
-				for dy := -1; dy <= +1; dy++ {
-					if dx == 0 && dy == 0 {
-						continue
-					}
-					text.Draw(dst, line, f.Face, x+dx, y+dy, bg)
-				}
-			}
+			text.Draw(dst, line, f.Outline, x, y, bg)
 		}
 		// Draw the text itself.
 		text.Draw(dst, line, f.Face, x, y, fg)
@@ -78,8 +70,10 @@ func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, centerX bool, fg, b
 
 func (f Face) precache(dst *ebiten.Image, chars string) {
 	text.Draw(dst, chars, f.Face, 0, 0, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+	text.Draw(dst, chars, f.Outline, 0, 0, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
 }
 
 func (f Face) recache(chars string) {
 	text.CacheGlyphs(f.Face, chars)
+	text.CacheGlyphs(f.Outline, chars)
 }

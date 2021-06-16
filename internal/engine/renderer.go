@@ -21,7 +21,6 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/hajimehoshi/ebiten/v2/text"
 
 	"github.com/divVerent/aaaaaa/internal/centerprint"
 	"github.com/divVerent/aaaaaa/internal/flag"
@@ -218,7 +217,10 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		if *debugShowCoords {
 			c := color.Gray{128}
-			text.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), font.DebugSmall, screenPos.X, screenPos.Y+level.TileSize-1, c)
+			font.DebugSmall.Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), screenPos.Add(m.Delta{
+				DX: 0,
+				DY: level.TileSize - 1,
+			}), false, c, color.Transparent)
 		}
 		if *debugShowOrientations {
 			midx := float64(screenPos.X) + level.TileSize/2

@@ -87,13 +87,21 @@ func intervalDistance(a0, a1, b0, b1 int) int {
 	return 0
 }
 
-// Diff returns the vector between the closest points of two rectangles.
-func (r Rect) Delta(other Rect) Delta {
+// delta returns the vector between the closest points of two rectangles.
+func (r Rect) delta(c10, c11 Pos) Delta {
 	c00 := r.Origin
 	c01 := r.OppositeCorner()
-	c10 := other.Origin
-	c11 := other.OppositeCorner()
 	xDist := intervalDistance(c00.X, c01.X, c10.X, c11.X)
 	yDist := intervalDistance(c00.Y, c01.Y, c10.Y, c11.Y)
 	return Delta{DX: xDist, DY: yDist}
+}
+
+// Delta returns the vector between the closest points of two rectangles.
+func (r Rect) Delta(other Rect) Delta {
+	return r.delta(other.Origin, other.OppositeCorner())
+}
+
+// DeltaPos returns the vector between the closest points of a rectangle and a point.
+func (r Rect) DeltaPos(other Pos) Delta {
+	return r.delta(other, other)
 }
