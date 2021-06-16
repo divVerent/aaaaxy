@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5539">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5539">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -12004,14 +12004,14 @@
     <property name="text" value="Don't be fooled by appearances."/>
    </properties>
   </object>
-  <object id="5257" gid="314" x="6544" y="4832" width="16" height="16"/>
-  <object id="5258" gid="314" x="6640" y="4784" width="16" height="16"/>
-  <object id="5259" gid="314" x="6544" y="4736" width="16" height="16"/>
-  <object id="5260" gid="314" x="6640" y="4688" width="16" height="16"/>
-  <object id="5261" gid="322" x="6560" y="4848" width="32" height="32"/>
-  <object id="5262" gid="322" x="6560" y="4752" width="32" height="32"/>
-  <object id="5263" gid="320" x="6608" y="4704" width="32" height="32"/>
-  <object id="5264" gid="320" x="6608" y="4800" width="32" height="32"/>
+  <object id="5257" gid="314" x="6544" y="4848" width="16" height="16"/>
+  <object id="5258" gid="314" x="6640" y="4800" width="16" height="16"/>
+  <object id="5259" gid="314" x="6544" y="4752" width="16" height="16"/>
+  <object id="5260" gid="314" x="6640" y="4704" width="16" height="16"/>
+  <object id="5261" gid="322" x="6560" y="4864" width="32" height="32"/>
+  <object id="5262" gid="322" x="6560" y="4768" width="32" height="32"/>
+  <object id="5263" gid="320" x="6608" y="4720" width="32" height="32"/>
+  <object id="5264" gid="320" x="6608" y="4816" width="32" height="32"/>
   <object id="5271" gid="330" x="448" y="304" width="16" height="16"/>
   <object id="5272" gid="330" x="464" y="304" width="16" height="16"/>
   <object id="5273" gid="330" x="480" y="304" width="16" height="16"/>
@@ -12024,15 +12024,15 @@
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5279" gid="314" x="6640" y="4880" width="16" height="16"/>
-  <object id="5280" gid="320" x="6608" y="4896" width="32" height="32"/>
+  <object id="5279" gid="314" x="6640" y="4896" width="16" height="16"/>
+  <object id="5280" gid="320" x="6608" y="4912" width="32" height="32"/>
   <object id="5281" type="_TileMod" x="6672" y="4944" width="48" height="16">
    <properties>
     <property name="opaque" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5282" type="_TileMod" x="6672" y="4896" width="48" height="16">
+  <object id="5282" type="_TileMod" x="6672" y="4912" width="48" height="16">
    <properties>
     <property name="opaque" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
@@ -12046,11 +12046,11 @@
   </object>
   <object id="5284" name="BelowStairsWarp" gid="293" x="6512" y="4912" width="16" height="32"/>
   <object id="5285" name="BelowStairsWarp" gid="299" x="6672" y="4912" width="16" height="32"/>
-  <object id="5286" gid="313" x="6720" y="4832" width="16" height="16"/>
-  <object id="5287" gid="313" x="6816" y="4784" width="16" height="16"/>
-  <object id="5288" gid="313" x="6720" y="4736" width="16" height="16"/>
-  <object id="5289" gid="313" x="6816" y="4688" width="16" height="16"/>
-  <object id="5290" gid="313" x="6816" y="4880" width="16" height="16"/>
+  <object id="5286" gid="313" x="6720" y="4848" width="16" height="16"/>
+  <object id="5287" gid="313" x="6816" y="4800" width="16" height="16"/>
+  <object id="5288" gid="313" x="6720" y="4752" width="16" height="16"/>
+  <object id="5289" gid="313" x="6816" y="4704" width="16" height="16"/>
+  <object id="5290" gid="313" x="6816" y="4896" width="16" height="16"/>
   <object id="5291" name="AboveStairsWarp" gid="293" x="6864" y="4976" width="16" height="112"/>
   <object id="5292" name="AboveStairsWarp" gid="299" x="6688" y="4544" width="16" height="112"/>
   <object id="5293" gid="309" x="6496" y="5120" width="32" height="16"/>
@@ -12239,6 +12239,7 @@
   </object>
   <object id="5527" type="SetState" x="7744" y="4160" width="16" height="64">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="SiceSiceSiceSiceSiceSice"/>
    </properties>
   </object>
