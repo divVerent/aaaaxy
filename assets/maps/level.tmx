@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5560">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5561">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -12279,7 +12279,7 @@
   <object id="5538" gid="312" x="7408" y="4192" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5482"/>
-    <property name="text" value="Square peg in a round hole, eh?  Das Runde geht in das Eckige, oder?"/>
+    <property name="text" value="Looking at things and observing how they change  is what brought us science."/>
    </properties>
   </object>
   <object id="5539" name="PlatformSound" type="SoundTarget" x="7184" y="4880" width="16" height="16">
@@ -12345,5 +12345,11 @@
   </object>
   <object id="5556" gid="305" x="7264" y="4160" width="32" height="32"/>
   <object id="5558" gid="305" x="8064" y="4064" width="32" height="32"/>
+  <object id="5560" gid="317" x="7392" y="4256" width="336" height="32">
+   <properties>
+    <property name="map_black_to" type="color" value="#ff00aa00"/>
+    <property name="map_white_to" type="color" value="#0000aa00"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
