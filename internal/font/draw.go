@@ -27,16 +27,15 @@ import (
 
 // BoundString returns the bounding rectangle of the given text.
 func (f Face) BoundString(str string) m.Rect {
-	rect := text.BoundString(f.Face, str)
-	// Note: we expand the rect by 1 to include the outline.
+	rect := text.BoundString(f.Outline, str)
 	return m.Rect{
 		Origin: m.Pos{
-			X: rect.Min.X - 1,
-			Y: rect.Min.Y - 1,
+			X: rect.Min.X,
+			Y: rect.Min.Y,
 		},
 		Size: m.Delta{
-			DX: rect.Max.X - rect.Min.X + 2,
-			DY: rect.Max.Y - rect.Min.Y + 2,
+			DX: rect.Max.X - rect.Min.X,
+			DY: rect.Max.Y - rect.Min.Y,
 		},
 	}
 }

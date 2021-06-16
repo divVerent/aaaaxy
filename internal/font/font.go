@@ -36,7 +36,7 @@ import (
 var (
 	pinFontsToCache       = flag.Bool("pin_fonts_to_cache", true, "Pin all fonts to glyph cache.")
 	pinFontsToCacheHarder = flag.Bool("pin_fonts_to_cache_harder", false, "Do a dummy draw command to pin fonts to glyph cache harder.")
-	fontThreshold         = flag.Int("font_threshold", 0x8000, "Threshold for font rendering; lower values are bolder. 0 means antialias as usual; threshold range is 1 to 65535 inclusive.")
+	fontThreshold         = flag.Int("font_threshold", 0x5E00, "Threshold for font rendering; lower values are bolder. 0 means antialias as usual; threshold range is 1 to 65535 inclusive.")
 	fontExtraSpacing      = flag.Int("font_extra_spacing", 32, "Additional spacing for fonts in 64th pixels; should help with outline effect.")
 )
 
@@ -254,21 +254,31 @@ func (o *fontOutline) Glyph(dot fixed.Point26_6, r rune) (
 
 func (o *fontOutline) GlyphBounds(r rune) (fixed.Rectangle26_6, fixed.Int26_6, bool) {
 	bounds, advance, ok := o.Face.GlyphBounds(r)
-	return fixed.Rectangle26_6{
-		Min: fixed.Point26_6{
-			X: bounds.Min.X - (1 << 6),
-			Y: bounds.Min.Y - (1 << 6),
-		},
-		Max: fixed.Point26_6{
-			X: bounds.Max.X + (1 << 6),
-			Y: bounds.Max.Y + (1 << 6),
-		},
-	}, advance, ok
+	bounds.Min.X -= 1 << 6
+	bounds.Min.Y -= 1 << 6
+	bounds.Max.X += 1 << 6
+	bounds.Max.Y += 1 << 6
+	return bounds, advance, ok
+}
+
+func (o *fontOutline) Metrics() font.Metrics {
+	m := o.Face.Metrics()
+	m.Height += 2 << 6
+	m.Ascent += 1 << 6
+	m.Descent += 1 << 6
+	return m
 }
 
 type fontOutlineMask struct {
 	image.Image
 	Rect m.Rect
+}
+
+func (o *fontOutlineMask) Bounds() image.Rectangle {
+	r := o.Image.Bounds()
+	r.Max.X += 2
+	r.Max.Y += 2
+	return r
 }
 
 func (o *fontOutlineMask) atRaw(x, y int) color.Color {
