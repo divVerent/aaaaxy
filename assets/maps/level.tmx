@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5539">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="5545">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -12155,7 +12155,7 @@
   <object id="5483" type="SetState" x="7024" y="4880" width="336" height="16">
    <properties>
     <property name="player_only" type="bool" value="true"/>
-    <property name="target" value="TwiceTwice"/>
+    <property name="target" value="TwiceTwice PlatformSound"/>
    </properties>
   </object>
   <object id="5484" name="ThriceThriceThrice" gid="297" x="7392" y="5120" width="336" height="16">
@@ -12171,13 +12171,13 @@
   <object id="5488" type="SetState" x="7392" y="4880" width="336" height="16">
    <properties>
     <property name="player_only" type="bool" value="true"/>
-    <property name="target" value="FriceFriceFriceFrice !SiceSiceSiceSiceSiceSice"/>
+    <property name="target" value="FriceFriceFriceFrice !SiceSiceSiceSiceSiceSice PlatformSound"/>
    </properties>
   </object>
-  <object id="5489" type="SetState" x="6880" y="5408" width="64" height="32">
+  <object id="5489" type="SetState" x="6880" y="5408" width="96" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
-    <property name="target" value="ThriceThriceThrice"/>
+    <property name="target" value="ThriceThriceThrice PlatformSound"/>
    </properties>
   </object>
   <object id="5493" gid="303" x="7392" y="4528" width="16" height="16"/>
@@ -12199,10 +12199,10 @@
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5517" type="SetState" x="6880" y="5472" width="64" height="32">
+  <object id="5517" type="SetState" x="6880" y="5472" width="96" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
-    <property name="target" value="QuinceQuinceQuinceQuinceQuince"/>
+    <property name="target" value="QuinceQuinceQuinceQuinceQuince PlatformSound"/>
    </properties>
   </object>
   <object id="5518" gid="312" x="6912" y="5472" width="32" height="32">
@@ -12240,7 +12240,7 @@
   <object id="5527" type="SetState" x="7744" y="4160" width="16" height="64">
    <properties>
     <property name="player_only" type="bool" value="true"/>
-    <property name="target" value="SiceSiceSiceSiceSiceSice"/>
+    <property name="target" value="SiceSiceSiceSiceSiceSice PlatformSound"/>
    </properties>
   </object>
   <object id="5528" gid="312" x="6912" y="5536" width="32" height="32">
@@ -12249,10 +12249,10 @@
     <property name="text" value="You really don't get it, do you?"/>
    </properties>
   </object>
-  <object id="5529" type="SetState" x="6880" y="5536" width="64" height="32">
+  <object id="5529" type="SetState" x="6880" y="5536" width="96" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
-    <property name="target" value="!QuinceQuinceQuinceQuinceQuince"/>
+    <property name="target" value="!QuinceQuinceQuinceQuinceQuince PlatformSound"/>
    </properties>
   </object>
   <object id="5530" gid="309" x="6880" y="5536" width="32" height="16"/>
@@ -12280,6 +12280,36 @@
    <properties>
     <property name="reached_from" type="object" value="5482"/>
     <property name="text" value="Square peg in a round hole, eh?  Das Runde geht in das Eckige, oder?"/>
+   </properties>
+  </object>
+  <object id="5539" name="PlatformSound" type="SoundTarget" x="7184" y="4880" width="16" height="16">
+   <properties>
+    <property name="sound" value="timedplatform.ogg"/>
+   </properties>
+  </object>
+  <object id="5540" name="PlatformSound" type="SoundTarget" x="7552" y="4880" width="16" height="16">
+   <properties>
+    <property name="sound" value="timedplatform.ogg"/>
+   </properties>
+  </object>
+  <object id="5541" name="PlatformSound" type="SoundTarget" x="7744" y="4184" width="16" height="16">
+   <properties>
+    <property name="sound" value="timedplatform.ogg"/>
+   </properties>
+  </object>
+  <object id="5542" name="PlatformSound" type="SoundTarget" x="6960" y="5416" width="16" height="16">
+   <properties>
+    <property name="sound" value="timedplatform.ogg"/>
+   </properties>
+  </object>
+  <object id="5543" name="PlatformSound" type="SoundTarget" x="6960" y="5480" width="16" height="16">
+   <properties>
+    <property name="sound" value="timedplatform.ogg"/>
+   </properties>
+  </object>
+  <object id="5544" name="PlatformSound" type="SoundTarget" x="6960" y="5544" width="16" height="16">
+   <properties>
+    <property name="sound" value="timedplatform.ogg"/>
    </properties>
   </object>
  </objectgroup>
