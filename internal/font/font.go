@@ -16,6 +16,8 @@ package font
 
 import (
 	"fmt"
+	"image"
+	"image/color"
 
 	"github.com/golang/freetype/truetype"
 	"github.com/hajimehoshi/ebiten/v2"
@@ -25,6 +27,7 @@ import (
 	"golang.org/x/image/font/gofont/gomono"
 	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/font/gofont/gosmallcaps"
+	"golang.org/x/image/math/fixed"
 
 	"github.com/divVerent/aaaaaa/internal/flag"
 )
@@ -32,6 +35,7 @@ import (
 var (
 	pinFontsToCache       = flag.Bool("pin_fonts_to_cache", true, "Pin all fonts to glyph cache.")
 	pinFontsToCacheHarder = flag.Bool("pin_fonts_to_cache_harder", false, "Do a dummy draw command to pin fonts to glyph cache harder.")
+	fontThreshold         = flag.Int("font_threshold", 0x7000, "Threshold for font rendering; lower values are bolder. 0 means antialias as usual; threshold range is 1 to 65535 inclusive.")
 )
 
 // Face is an alias to font.Face so users do not need to import the font package.
@@ -40,7 +44,7 @@ type Face struct {
 }
 
 func makeFace(f font.Face) Face {
-	face := Face{Face: f}
+	face := Face{Face: &unAntiAlias{f}}
 	all = append(all, face)
 	return face
 }
@@ -171,4 +175,30 @@ func Init() error {
 	}))
 
 	return nil
+}
+
+type unAntiAlias struct {
+	font.Face
+}
+
+func (u *unAntiAlias) Glyph(dot fixed.Point26_6, r rune) (
+	image.Rectangle, image.Image, image.Point, fixed.Int26_6, bool) {
+	dr, mask, maskp, advance, ok := u.Face.Glyph(dot, r)
+	return dr, &unAntiAliasMask{mask}, maskp, advance, ok
+}
+
+type unAntiAliasMask struct {
+	image.Image
+}
+
+func (u *unAntiAliasMask) At(x, y int) color.Color {
+	base := u.Image.At(x, y)
+	if *fontThreshold <= 0 {
+		return base
+	}
+	_, _, _, a := base.RGBA()
+	if int(a) < *fontThreshold {
+		return color.Transparent
+	}
+	return color.Opaque
 }
