@@ -12152,7 +12152,7 @@
     <property name="text" value="Twice Twice"/>
    </properties>
   </object>
-  <object id="5483" type="SetState" x="7024" y="4880" width="336" height="16">
+  <object id="5483" type="SetState" x="7024" y="4816" width="336" height="96">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="TwiceTwice PlatformSound"/>
@@ -12168,7 +12168,7 @@
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5488" type="SetState" x="7392" y="4880" width="336" height="16">
+  <object id="5488" type="SetState" x="7392" y="4816" width="336" height="96">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="FriceFriceFriceFrice !SiceSiceSiceSiceSiceSice PlatformSound"/>
