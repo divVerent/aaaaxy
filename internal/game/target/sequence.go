@@ -90,8 +90,9 @@ func (s *SequenceCollector) Append(originator *engine.Entity, str string) {
 		s.Current = s.Current[len(s.Current)-len(s.Sequence):]
 	}
 	matches := s.Current == s.Sequence
-	if matches != matched {
-		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, s.State == matches)
+	if matches && !matched {
+		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, true)
+		// TODO(divVerent): Maybe also add a send_untouch-like feature to send "off" events too?
 	}
 }
 
