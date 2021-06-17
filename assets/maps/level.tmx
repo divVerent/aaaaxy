@@ -9563,8 +9563,8 @@
     <property name="text" value="And now you've learned  not to touch the hot stove."/>
    </properties>
   </object>
-  <object id="3864" gid="303" x="8144" y="6320" width="16" height="16"/>
-  <object id="3865" gid="303" x="8128" y="6320" width="16" height="16"/>
+  <object id="3864" gid="303" x="5024" y="3808" width="16" height="16"/>
+  <object id="3865" gid="303" x="5040" y="3792" width="16" height="16"/>
   <object id="3866" name="butterfly_effect" type="Checkpoint" x="4192" y="3776" width="288" height="32">
    <properties>
     <property name="music" value="mythica.ogg"/>
