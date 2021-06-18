@@ -65,6 +65,71 @@ func (p *Physics) Reset() {
 	p.SubPixel = m.Delta{DX: constants.SubPixelScale / 2, DY: constants.SubPixelScale / 2}
 }
 
+func (p *Physics) tryMove(move m.Delta) (m.Delta, bool) {
+	groundChecked := false
+	dest := p.Entity.Rect.Origin.Add(move)
+	trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
+		Contents:  p.Contents,
+		IgnoreEnt: p.IgnoreEnt,
+		ForEnt:    p.Entity,
+		LoadTiles: true,
+	})
+	if trace.HitDelta.IsZero() {
+		// Nothing hit. We're done.
+		p.SubPixel.DX -= move.DX * constants.SubPixelScale
+		p.SubPixel.DY -= move.DY * constants.SubPixelScale
+		p.Entity.Rect.Origin = trace.EndPos
+		if move.Dot(p.OnGroundVec) != 0 {
+			// If move had a Y component, we're flying.
+			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
+		}
+		return m.Delta{DX: 0, DY: 0}, groundChecked
+	}
+	if trace.HitDelta.DX != 0 {
+		// An X hit. Just adjust X subpixel to be as close to the hit as possible.
+		if p.SubPixel.DX > constants.SubPixelScale-1 {
+			p.SubPixel.DX = constants.SubPixelScale - 1
+		} else if p.SubPixel.DX < 0 {
+			p.SubPixel.DX = 0
+		}
+		p.SubPixel.DY -= (trace.EndPos.Y - p.Entity.Rect.Origin.Y) * constants.SubPixelScale
+		p.Velocity.DX = 0
+		move.DX = 0
+		move.DY -= trace.EndPos.Y - p.Entity.Rect.Origin.Y
+		p.Entity.Rect.Origin = trace.EndPos
+
+		// Just in case we have left/right gravity... (not yet).
+		if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
+			p.OnGround, p.GroundEntity, groundChecked = true, trace.HitEntity, true
+		} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
+			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
+		}
+
+		p.handleTouchFunc(trace)
+	} else if trace.HitDelta.DY != 0 {
+		// A Y hit. Also update ground status.
+		if p.SubPixel.DY > constants.SubPixelScale-1 {
+			p.SubPixel.DY = constants.SubPixelScale - 1
+		} else if p.SubPixel.DY < 0 {
+			p.SubPixel.DY = 0
+		}
+		p.SubPixel.DX -= (trace.EndPos.X - p.Entity.Rect.Origin.X) * constants.SubPixelScale
+		p.Velocity.DY = 0
+		move.DX -= trace.EndPos.X - p.Entity.Rect.Origin.X
+		move.DY = 0
+		p.Entity.Rect.Origin = trace.EndPos
+
+		if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
+			p.OnGround, p.GroundEntity, groundChecked = true, trace.HitEntity, true
+		} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
+			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
+		}
+
+		p.handleTouchFunc(trace)
+	}
+	return move, groundChecked
+}
+
 func (p *Physics) Update() {
 	oldOrigin := p.Entity.Rect.Origin
 
@@ -73,66 +138,9 @@ func (p *Physics) Update() {
 
 	groundChecked := false
 	for !move.IsZero() {
-		dest := p.Entity.Rect.Origin.Add(move)
-		trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
-			Contents:  p.Contents,
-			IgnoreEnt: p.IgnoreEnt,
-			ForEnt:    p.Entity,
-			LoadTiles: true,
-		})
-		if trace.HitDelta.IsZero() {
-			// Nothing hit. We're done.
-			p.SubPixel.DX -= move.DX * constants.SubPixelScale
-			p.SubPixel.DY -= move.DY * constants.SubPixelScale
-			p.Entity.Rect.Origin = trace.EndPos
-			if move.Dot(p.OnGroundVec) != 0 {
-				// If move had a Y component, we're flying.
-				p.OnGround, p.GroundEntity, groundChecked = false, nil, true
-			}
-			break
-		}
-		if trace.HitDelta.DX != 0 {
-			// An X hit. Just adjust X subpixel to be as close to the hit as possible.
-			if p.SubPixel.DX > constants.SubPixelScale-1 {
-				p.SubPixel.DX = constants.SubPixelScale - 1
-			} else if p.SubPixel.DX < 0 {
-				p.SubPixel.DX = 0
-			}
-			p.SubPixel.DY -= (trace.EndPos.Y - p.Entity.Rect.Origin.Y) * constants.SubPixelScale
-			p.Velocity.DX = 0
-			move.DX = 0
-			move.DY -= trace.EndPos.Y - p.Entity.Rect.Origin.Y
-			p.Entity.Rect.Origin = trace.EndPos
-
-			// Just in case we have left/right gravity... (not yet).
-			if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
-				p.OnGround, p.GroundEntity, groundChecked = true, trace.HitEntity, true
-			} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
-				p.OnGround, p.GroundEntity, groundChecked = false, nil, true
-			}
-
-			p.handleTouchFunc(trace)
-		} else if trace.HitDelta.DY != 0 {
-			// A Y hit. Also update ground status.
-			if p.SubPixel.DY > constants.SubPixelScale-1 {
-				p.SubPixel.DY = constants.SubPixelScale - 1
-			} else if p.SubPixel.DY < 0 {
-				p.SubPixel.DY = 0
-			}
-			p.SubPixel.DX -= (trace.EndPos.X - p.Entity.Rect.Origin.X) * constants.SubPixelScale
-			p.Velocity.DY = 0
-			move.DX -= trace.EndPos.X - p.Entity.Rect.Origin.X
-			move.DY = 0
-			p.Entity.Rect.Origin = trace.EndPos
-
-			if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
-				p.OnGround, p.GroundEntity, groundChecked = true, trace.HitEntity, true
-			} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
-				p.OnGround, p.GroundEntity, groundChecked = false, nil, true
-			}
-
-			p.handleTouchFunc(trace)
-		}
+		var ground bool
+		move, ground = p.tryMove(move)
+		groundChecked = groundChecked || ground
 	}
 
 	if p.OnGround && !groundChecked && !p.OnGroundVec.IsZero() {
@@ -206,4 +214,63 @@ func (p *Physics) ReadSubPixel() m.Delta {
 
 func (p *Physics) ReadOnGroundVec() m.Delta {
 	return p.OnGroundVec
+}
+
+func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
+	prevOrigin := p.Entity.Rect.Origin
+	prevSize := p.Entity.Rect.Size
+	targetSize := prevSize.Add(bySize)
+
+	// First grow in minus directions.
+	topLeftDelta := bySize.Div(2)
+	if topLeftDelta.DX > 0 {
+		p.tryMove(m.Delta{DX: -topLeftDelta.DX, DY: 0})
+	} else {
+		p.Entity.Rect.Origin.X -= topLeftDelta.DX
+	}
+	p.Entity.Rect.Size.DX += prevOrigin.X - p.Entity.Rect.Origin.X
+	if topLeftDelta.DY > 0 {
+		p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta.DY})
+	} else {
+		p.Entity.Rect.Origin.Y -= topLeftDelta.DY
+	}
+	p.Entity.Rect.Size.DY += prevOrigin.Y - p.Entity.Rect.Origin.Y
+
+	// Then grow in plus directions.
+	prevOrigin2 := p.Entity.Rect.Origin
+	bottomRightDelta := targetSize.Sub(p.Entity.Rect.Size)
+	if bottomRightDelta.DX > 0 {
+		p.tryMove(m.Delta{DX: bottomRightDelta.DX, DY: 0})
+		p.Entity.Rect.Size.DX += p.Entity.Rect.Origin.X - prevOrigin2.X
+		p.Entity.Rect.Origin.X = prevOrigin2.X
+	} else {
+		p.Entity.Rect.Size.DX += bottomRightDelta.DX
+	}
+	if bottomRightDelta.DY > 0 {
+		p.tryMove(m.Delta{DX: 0, DY: bottomRightDelta.DY})
+		p.Entity.Rect.Size.DY += p.Entity.Rect.Origin.Y - prevOrigin2.Y
+		p.Entity.Rect.Origin.Y = prevOrigin2.Y
+	} else {
+		p.Entity.Rect.Size.DY += bottomRightDelta.DY
+	}
+
+	// Grow remaining amount in minus directions again.
+	prevOrigin3 := p.Entity.Rect.Origin
+	topLeftDelta3 := targetSize.Sub(p.Entity.Rect.Size)
+	if topLeftDelta3.DX > 0 {
+		p.tryMove(m.Delta{DX: -topLeftDelta3.DX, DY: 0})
+	} else {
+		p.Entity.Rect.Origin.X -= topLeftDelta3.DX
+	}
+	p.Entity.Rect.Size.DX += prevOrigin3.X - p.Entity.Rect.Origin.X
+	if topLeftDelta3.DY > 0 {
+		p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta3.DY})
+	} else {
+		p.Entity.Rect.Origin.Y -= topLeftDelta3.DY
+	}
+	p.Entity.Rect.Size.DY += prevOrigin3.Y - p.Entity.Rect.Origin.Y
+
+	// Adjust render offset.
+	p.Entity.RenderOffset = p.Entity.RenderOffset.Add(topLeftDelta)
+	return p.Entity.Rect.Size.Sub(prevSize)
 }

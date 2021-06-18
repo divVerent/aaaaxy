@@ -40,9 +40,10 @@ const (
 
 type Riser struct {
 	mixins.Physics
-	World           *engine.World
-	Entity          *engine.Entity
-	PersistentState map[string]string
+	World  *engine.World
+	Entity *engine.Entity
+
+	NormalSize m.Delta
 
 	State riserState
 
@@ -75,6 +76,10 @@ const (
 	LargeRiserOffsetDY = -1
 	// RiserBorderPixels is the riser's border size.
 	RiserBorderPixels = 1
+	// CarriedRiserWidth is the hitbox width of a riser being carried.
+	CarriedRiserWidth = 8
+	// CarriedRiserHeight is the hitbox height of a riser being carried.
+	CarriedRiserHeight = 8
 
 	// IdleSpeed is the speed the riser moves upwards when not used.
 	IdleSpeed = 15 * constants.SubPixelScale / engine.GameTPS
@@ -122,10 +127,10 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 		return fmt.Errorf("unexpected riser width: got %v, want 16 or 32", r.Entity.Rect.Size.DX)
 	}
 	r.Entity.BorderPixels = RiserBorderPixels
-
 	r.Entity.Rect.Origin = r.Entity.Rect.Origin.Sub(r.Entity.RenderOffset)
 	w.SetZIndex(r.Entity, constants.RiserMovingZ)
 	r.Entity.Alpha = 0 // We fade in.
+	r.NormalSize = r.Entity.Rect.Size
 	r.State = Inactive
 	r.Entity.Orientation = m.Identity()
 
@@ -250,6 +255,16 @@ func (r *Riser) Update() {
 		r.World.SetZIndex(r.Entity, constants.RiserCarriedZ)
 	} else {
 		r.World.SetZIndex(r.Entity, constants.RiserMovingZ)
+	}
+
+	// Adjust hitbox size.
+	targetSize := r.NormalSize
+	if r.State == GettingCarried {
+		targetSize = m.Delta{DX: CarriedRiserWidth, DY: CarriedRiserHeight}
+	}
+	targetSizeChange := targetSize.Sub(r.Entity.Rect.Size)
+	if r.ModifyHitBoxCentered(targetSizeChange) != targetSizeChange {
+		r.World.Detach(r.Entity)
 	}
 
 	// Also, risers that touch each other repel each other.
