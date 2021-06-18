@@ -43,7 +43,8 @@ type Riser struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	NormalSize m.Delta
+	NormalSize  m.Delta
+	CarriedSize m.Delta
 
 	State riserState
 
@@ -76,10 +77,14 @@ const (
 	LargeRiserOffsetDY = -1
 	// RiserBorderPixels is the riser's border size.
 	RiserBorderPixels = 1
-	// CarriedRiserWidth is the hitbox width of a riser being carried.
-	CarriedRiserWidth = 8
-	// CarriedRiserHeight is the hitbox height of a riser being carried.
-	CarriedRiserHeight = 8
+	// CarriedSmallRiserWidth is the hitbox width of a riser being carried.
+	CarriedSmallRiserWidth = 8
+	// CarriedSmallRiserHeight is the hitbox height of a riser being carried.
+	CarriedSmallRiserHeight = 8
+	// CarriedLargeRiserWidth is the hitbox width of a riser being carried.
+	CarriedLargeRiserWidth = 24
+	// CarriedLargeRiserHeight is the hitbox height of a riser being carried.
+	CarriedLargeRiserHeight = 8
 
 	// IdleSpeed is the speed the riser moves upwards when not used.
 	IdleSpeed = 15 * constants.SubPixelScale / engine.GameTPS
@@ -116,11 +121,13 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	var sprite string
 	switch r.Entity.Rect.Size.DX {
 	case 16:
-		r.Entity.Rect.Size = m.Delta{DX: SmallRiserWidth, DY: SmallRiserHeight}
+		r.NormalSize = m.Delta{DX: SmallRiserWidth, DY: SmallRiserHeight}
+		r.CarriedSize = m.Delta{DX: CarriedSmallRiserWidth, DY: CarriedSmallRiserHeight}
 		r.Entity.RenderOffset = m.Delta{DX: SmallRiserOffsetDX, DY: SmallRiserOffsetDY}
 		sprite = "riser_small"
 	case 32:
-		r.Entity.Rect.Size = m.Delta{DX: LargeRiserWidth, DY: LargeRiserHeight}
+		r.NormalSize = m.Delta{DX: LargeRiserWidth, DY: LargeRiserHeight}
+		r.CarriedSize = m.Delta{DX: CarriedLargeRiserWidth, DY: CarriedLargeRiserHeight}
 		r.Entity.RenderOffset = m.Delta{DX: LargeRiserOffsetDX, DY: LargeRiserOffsetDY}
 		sprite = "riser_large"
 	default:
@@ -128,9 +135,9 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	}
 	r.Entity.BorderPixels = RiserBorderPixels
 	r.Entity.Rect.Origin = r.Entity.Rect.Origin.Sub(r.Entity.RenderOffset)
+	r.Entity.Rect.Size = r.NormalSize
 	w.SetZIndex(r.Entity, constants.RiserMovingZ)
 	r.Entity.Alpha = 0 // We fade in.
-	r.NormalSize = r.Entity.Rect.Size
 	r.State = Inactive
 	r.Entity.Orientation = m.Identity()
 
@@ -260,10 +267,11 @@ func (r *Riser) Update() {
 	// Adjust hitbox size.
 	targetSize := r.NormalSize
 	if r.State == GettingCarried {
-		targetSize = m.Delta{DX: CarriedRiserWidth, DY: CarriedRiserHeight}
+		targetSize = r.CarriedSize
 	}
 	targetSizeChange := targetSize.Sub(r.Entity.Rect.Size)
 	if r.ModifyHitBoxCentered(targetSizeChange) != targetSizeChange {
+		// TODO(divVerent): Could also track the missing size change instead. That will require hitbox modifying to not always be centered.
 		r.World.Detach(r.Entity)
 	}
 
