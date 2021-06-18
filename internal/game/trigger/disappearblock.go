@@ -33,7 +33,7 @@ type DisappearBlock struct {
 }
 
 const (
-	DisappearFrames         = 16
+	DisappearFrames         = 24
 	DisappearSolidThreshold = 1
 )
 
