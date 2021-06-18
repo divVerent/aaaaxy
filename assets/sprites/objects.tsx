@@ -472,4 +472,10 @@
   </properties>
   <image width="6" height="6" source="bullet8d_idle_0.png"/>
  </tile>
+ <tile id="58" type="Sprite">
+  <properties>
+   <property name="image_dir" value=""/>
+  </properties>
+  <image width="16" height="16" source="flag.png"/>
+ </tile>
 </tileset>
