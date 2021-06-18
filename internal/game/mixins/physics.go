@@ -217,6 +217,12 @@ func (p *Physics) ReadOnGroundVec() m.Delta {
 }
 
 func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
+	if bySize.IsZero() {
+		// Skip processing if we would have nothing to do.
+		// NOTE: Function should verifiably do nothing in this case even if this return were missing.
+		return
+	}
+
 	prevOrigin := p.Entity.Rect.Origin
 	prevSize := p.Entity.Rect.Size
 	targetSize := prevSize.Add(bySize)
