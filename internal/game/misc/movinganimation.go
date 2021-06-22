@@ -15,6 +15,9 @@
 package misc
 
 import (
+	"fmt"
+	"time"
+
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/level"
@@ -32,11 +35,12 @@ type MovingAnimation struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	Alpha float64
-
+	Alpha          float64
 	FadeOnTouch    bool
 	RespawnOnTouch bool
 	StopOnTouch    bool
+
+	FramesToMove int
 }
 
 func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -56,11 +60,24 @@ func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.
 	s.FadeOnTouch = sp.Properties["fade_on_touch"] == "true"
 	s.RespawnOnTouch = sp.Properties["respawn_on_touch"] == "true"
 	s.StopOnTouch = sp.Properties["stop_on_touch"] == "true"
+	timeToMoveString := sp.Properties["time_to_move"]
+	if timeToMoveString != "" {
+		timeToMove, err := time.ParseDuration(timeToMoveString)
+		if err != nil {
+			return fmt.Errorf("could not parse time to move: %v", timeToMoveString)
+		}
+		s.FramesToMove = int((timeToMove*engine.GameTPS + (time.Second / 2)) / time.Second)
+	}
+
 	return nil
 }
 
 func (s *MovingAnimation) Update() {
-	s.Moving.Update()
+	if s.FramesToMove > 0 {
+		s.FramesToMove--
+	} else {
+		s.Moving.Update()
+	}
 	s.Animation.Update()
 	s.Fadable.Update()
 	s.NonSolidTouchable.Update()

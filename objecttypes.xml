@@ -110,6 +110,7 @@
   <property name="player_solid" type="bool" default="false"/>
   <property name="render_offset" type="string"/>
   <property name="solid" type="bool" default="false"/>
+  <property name="time_to_move" type="string" default="0s"/>
   <property name="velocity" type="string" default="0 0"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
