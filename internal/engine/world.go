@@ -359,8 +359,12 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 
 // TouchEvent notifies both entities that they touched the other.
 func (w *World) TouchEvent(a *Entity, b *Entity) {
-	a.Impl.Touch(b)
-	b.Impl.Touch(a)
+	if a != nil {
+		a.Impl.Touch(b)
+	}
+	if b != nil {
+		b.Impl.Touch(a)
+	}
 }
 
 func (w *World) PlayerTouchedCheckpoint(cp *Entity) {
