@@ -13319,7 +13319,7 @@
     <property name="target" value="!Regrets"/>
    </properties>
   </object>
-  <object id="6138" type="SetState" x="4416" y="4128" width="64" height="48">
+  <object id="6138" type="SetState" x="3872" y="4048" width="48" height="48">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="!Regrets"/>
