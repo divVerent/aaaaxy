@@ -137,7 +137,6 @@ func main() {
 	fmt.Print(`
 		digraph G {
 			layout = "neato";
-			ratio = 0.5;
 			overlap = false;
 			splines = false;
 			maxiter = 131072;
