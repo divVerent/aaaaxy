@@ -86,7 +86,9 @@ func (s *MovingAnimation) Touch(other *engine.Entity) {
 }
 
 func (s *MovingAnimation) handleTouch(trace engine.TraceResult) {
-	s.World.TouchEvent(s.Entity, trace.HitEntity)
+	if trace.HitEntity != nil {
+		s.World.TouchEvent(s.Entity, trace.HitEntity)
+	}
 }
 
 func init() {
