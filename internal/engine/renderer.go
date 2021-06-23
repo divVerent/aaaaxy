@@ -252,6 +252,13 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 				boxColor.B = 255
 			}
 			ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY), float64(ent.Rect.Size.DX), float64(ent.Rect.Size.DY), boxColor)
+			if ent.BorderPixels > 0 {
+				boxColor.A = 255
+				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float64(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float64(ent.Rect.Size.DX+ent.BorderPixels), float64(ent.BorderPixels), boxColor)
+				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX+ent.Rect.Size.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float64(ent.BorderPixels), float64(ent.Rect.Size.DY+ent.BorderPixels), boxColor)
+				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY+ent.Rect.Size.DY), float64(ent.Rect.Size.DX+ent.BorderPixels), float64(ent.BorderPixels), boxColor)
+				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float64(ent.Rect.Origin.Y+scrollDelta.DY), float64(ent.BorderPixels), float64(ent.Rect.Size.DY+ent.BorderPixels), boxColor)
+			}
 			return nil
 		})
 	}
