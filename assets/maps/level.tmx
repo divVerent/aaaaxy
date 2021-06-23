@@ -13220,37 +13220,37 @@
     <property name="text" value="All good things ..."/>
    </properties>
   </object>
-  <object id="6111" gid="347" x="5972" y="384" width="8" height="8">
+  <object id="6111" gid="347" x="5972" y="384" width="6" height="6">
    <properties>
     <property name="fade_skip_animation" type="bool" value="false"/>
     <property name="time_to_move" value="0.5s"/>
    </properties>
   </object>
-  <object id="6112" gid="349" x="5972" y="384" width="8" height="8">
+  <object id="6112" gid="349" x="5972" y="384" width="6" height="6">
    <properties>
     <property name="fade_skip_animation" type="bool" value="false"/>
     <property name="time_to_move" value="0.5s"/>
    </properties>
   </object>
-  <object id="6113" gid="348" x="5972" y="384" width="8" height="8">
+  <object id="6113" gid="348" x="5972" y="384" width="6" height="6">
    <properties>
     <property name="fade_skip_animation" type="bool" value="false"/>
     <property name="time_to_move" value="0.8s"/>
    </properties>
   </object>
-  <object id="6114" gid="347" x="6356" y="384" width="8" height="8">
+  <object id="6114" gid="347" x="6356" y="384" width="6" height="6">
    <properties>
     <property name="fade_skip_animation" type="bool" value="false"/>
     <property name="time_to_move" value="0.5s"/>
    </properties>
   </object>
-  <object id="6115" gid="349" x="6356" y="384" width="8" height="8">
+  <object id="6115" gid="349" x="6356" y="384" width="6" height="6">
    <properties>
     <property name="fade_skip_animation" type="bool" value="false"/>
     <property name="time_to_move" value="0.5s"/>
    </properties>
   </object>
-  <object id="6116" gid="348" x="6356" y="384" width="8" height="8">
+  <object id="6116" gid="348" x="6356" y="384" width="6" height="6">
    <properties>
     <property name="fade_skip_animation" type="bool" value="false"/>
     <property name="time_to_move" value="0.8s"/>
