@@ -319,7 +319,6 @@
    <property name="animation_frames" type="int" value="2"/>
    <property name="animation_group" value="idle"/>
    <property name="animation_repeat_interval" type="int" value="4"/>
-   <property name="border_pixels" value="1"/>
    <property name="fade_despawn" type="bool" value="true"/>
    <property name="fade_time" type="string" value="0.5s"/>
    <property name="fade_on_touch" type="bool" value="true"/>
@@ -339,7 +338,6 @@
    <property name="animation_frames" type="int" value="2"/>
    <property name="animation_group" value="idle"/>
    <property name="animation_repeat_interval" type="int" value="4"/>
-   <property name="border_pixels" value="1"/>
    <property name="fade_despawn" type="bool" value="true"/>
    <property name="fade_time" type="string" value="0.5s"/>
    <property name="fade_on_touch" type="bool" value="true"/>
@@ -359,7 +357,6 @@
    <property name="animation_frames" type="int" value="2"/>
    <property name="animation_group" value="idle"/>
    <property name="animation_repeat_interval" type="int" value="4"/>
-   <property name="border_pixels" value="1"/>
    <property name="fade_despawn" type="bool" value="true"/>
    <property name="fade_time" type="string" value="0.5s"/>
    <property name="fade_on_touch" type="bool" value="true"/>
@@ -379,7 +376,6 @@
    <property name="animation_frames" type="int" value="2"/>
    <property name="animation_group" value="idle"/>
    <property name="animation_repeat_interval" type="int" value="4"/>
-   <property name="border_pixels" value="1"/>
    <property name="fade_despawn" type="bool" value="true"/>
    <property name="fade_time" type="string" value="0.5s"/>
    <property name="fade_on_touch" type="bool" value="true"/>
@@ -399,7 +395,6 @@
    <property name="animation_frames" type="int" value="2"/>
    <property name="animation_group" value="idle"/>
    <property name="animation_repeat_interval" type="int" value="4"/>
-   <property name="border_pixels" value="1"/>
    <property name="fade_despawn" type="bool" value="true"/>
    <property name="fade_time" type="string" value="0.5s"/>
    <property name="fade_on_touch" type="bool" value="true"/>
@@ -419,7 +414,6 @@
    <property name="animation_frames" type="int" value="2"/>
    <property name="animation_group" value="idle"/>
    <property name="animation_repeat_interval" type="int" value="4"/>
-   <property name="border_pixels" value="1"/>
    <property name="fade_despawn" type="bool" value="true"/>
    <property name="fade_time" type="string" value="0.5s"/>
    <property name="fade_on_touch" type="bool" value="true"/>
@@ -439,7 +433,6 @@
    <property name="animation_frames" type="int" value="2"/>
    <property name="animation_group" value="idle"/>
    <property name="animation_repeat_interval" type="int" value="4"/>
-   <property name="border_pixels" value="1"/>
    <property name="fade_despawn" type="bool" value="true"/>
    <property name="fade_time" type="string" value="0.5s"/>
    <property name="fade_on_touch" type="bool" value="true"/>
@@ -459,7 +452,6 @@
    <property name="animation_frames" type="int" value="2"/>
    <property name="animation_group" value="idle"/>
    <property name="animation_repeat_interval" type="int" value="4"/>
-   <property name="border_pixels" value="1"/>
    <property name="fade_despawn" type="bool" value="true"/>
    <property name="fade_time" type="string" value="0.5s"/>
    <property name="fade_on_touch" type="bool" value="true"/>
