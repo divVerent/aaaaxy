@@ -114,6 +114,13 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	r.World = w
 	r.Entity = e
 
+	if r.Entity.Rect.Size.DY > 16 {
+		// We actually allow this, but create a _small_ riser centered at the same place.
+		// We can't use a large one as it might be in solid.
+		// Do NOT adjust Y; we keep the upper edge as is,
+		// as the upper edge is what matters for standing on it.
+		r.Entity.Rect.Size.DY = 16
+	}
 	if r.Entity.Rect.Size.DY != 16 {
 		return fmt.Errorf("unexpected riser height: got %v, want 16", r.Entity.Rect.Size.DY)
 	}
