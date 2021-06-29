@@ -17,6 +17,7 @@ package noise
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"io/ioutil"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
@@ -54,8 +55,9 @@ func Init() error {
 	if err != nil {
 		return fmt.Errorf("Could not decode stereonoise: %v", err)
 	}
-	loop := audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded)))
-	noise, err = audiowrap.NewPlayer(loop)
+	noise, err = audiowrap.NewPlayer(func() (io.Reader, error) {
+		return audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded))), nil
+	})
 	if err != nil {
 		return fmt.Errorf("could not start playing noise: %v", err)
 	}

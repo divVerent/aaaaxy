@@ -17,6 +17,7 @@ package audiowrap
 import (
 	"bytes"
 	"io"
+	"log"
 	"time"
 
 	"github.com/divVerent/aaaaaa/internal/flag"
@@ -60,9 +61,16 @@ func ebiPlayer(src io.Reader) (*ebiaudio.Player, error) {
 	return ebiaudio.NewPlayer(ebiaudio.CurrentContext(), src)
 }
 
-func NewPlayer(src io.Reader) (*Player, error) {
-	dmp, src := newDumperWithTee(src)
-	ebi, err := ebiPlayer(src)
+func NewPlayer(src func() (io.Reader, error)) (*Player, error) {
+	dmp, err := newDumper(src)
+	if err != nil {
+		return nil, err
+	}
+	srcReader, err := src()
+	if err != nil {
+		return nil, err
+	}
+	ebi, err := ebiPlayer(srcReader)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +88,13 @@ func ebiPlayerFromBytes(src []byte) *ebiaudio.Player {
 }
 
 func NewPlayerFromBytes(src []byte) *Player {
-	dmp := newDumper(bytes.NewReader(src))
+	dmp, err := newDumper(func() (io.Reader, error) {
+		return bytes.NewReader(src), nil
+	})
+	if err != nil {
+		log.Panicf("UNREACHABLE CODE: newDumper returned an error despite passed an always-succeed function: %v", err)
+		return nil
+	}
 	ebi := ebiPlayerFromBytes(src)
 	return &Player{
 		ebi: ebi,
@@ -105,7 +119,6 @@ func (p *Player) Current() time.Duration {
 	if p.ebi != nil {
 		return p.ebi.Current()
 	}
-	// TODO(divVerent): add a fake timer.
 	t := p.accumulatedTime
 	if !p.playTime.IsZero() {
 		t += time.Since(p.playTime)

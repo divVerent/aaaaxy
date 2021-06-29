@@ -18,6 +18,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"time"
@@ -45,8 +46,7 @@ type track struct {
 	name       string
 	valid      bool
 	replayGain float64
-	handle     vfs.ReadSeekCloser
-	data       *vorbis.Stream
+	handles    []vfs.ReadSeekCloser
 	player     *audiowrap.Player
 }
 
@@ -63,42 +63,48 @@ func (t *track) open(cacheName, name string) error {
 		return nil
 	}
 	t.name = cacheName
-	var err error
-	t.handle, err = vfs.Load("music", name)
-	if err != nil {
-		t.stop()
-		return fmt.Errorf("Could not load music %q: %v", name, err)
-	}
-	t.data, err = vorbis.Decode(audio.CurrentContext(), t.handle)
-	if err != nil {
-		t.stop()
-		return fmt.Errorf("Could not start decoding music %q: %v", name, err)
-	}
+
 	config := musicJson{
 		LoopStart:  0,
-		LoopEnd:    t.data.Length() / bytesPerSample,
+		LoopEnd:    -1,
 		ReplayGain: 1,
 	}
 	j, err := vfs.Load("music", name+".json")
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
 		t.stop()
-		return fmt.Errorf("Could not load music json config file for %q: %v", name, err)
+		return fmt.Errorf("could not load music json config file for %q: %v", name, err)
 	}
 	if j != nil {
 		defer j.Close()
 		err = json.NewDecoder(j).Decode(&config)
 		if err != nil {
 			t.stop()
-			return fmt.Errorf("Could not decode music json config file for %q: %v", name, err)
+			return fmt.Errorf("could not decode music json config file for %q: %v", name, err)
 		}
 	}
-	loop := audio.NewInfiniteLoopWithIntro(t.data, config.LoopStart*bytesPerSample, config.LoopEnd*bytesPerSample)
 	t.replayGain = config.ReplayGain
-	t.player, err = audiowrap.NewPlayer(loop)
+
+	t.player, err = audiowrap.NewPlayer(func() (io.Reader, error) {
+		handle, err := vfs.Load("music", name)
+		if err != nil {
+			return nil, fmt.Errorf("could not load music %q: %v", name, err)
+		}
+		t.handles = append(t.handles, handle)
+		data, err := vorbis.Decode(audio.CurrentContext(), handle)
+		if err != nil {
+			return nil, fmt.Errorf("could not start decoding music %q: %v", name, err)
+		}
+		loopEnd := data.Length()
+		if config.LoopEnd >= 0 {
+			loopEnd = config.LoopEnd * bytesPerSample
+		}
+		return audio.NewInfiniteLoopWithIntro(data, config.LoopStart*bytesPerSample, loopEnd), nil
+	})
 	if err != nil {
 		t.stop()
-		return fmt.Errorf("Could not start playing music %q: %v", name, err)
+		return fmt.Errorf("could not start playing music %q: %v", name, err)
 	}
+
 	return nil
 }
 
@@ -119,11 +125,10 @@ func (t *track) stop() {
 		t.player.Close()
 	}
 	t.player = nil
-	t.data = nil
-	if t.handle != nil {
-		t.handle.Close()
+	for _, handle := range t.handles {
+		handle.Close()
 	}
-	t.handle = nil
+	t.handles = nil
 	t.valid = false
 	t.name = ""
 }
@@ -213,9 +218,10 @@ func Switch(name string) {
 	if next.player != nil {
 		next.player.Close()
 		next.player = nil
-		next.data = nil
-		next.handle.Close()
-		next.handle = nil
+		for _, handle := range next.handles {
+			handle.Close()
+		}
+		next.handles = nil
 	}
 	err := next.open(cacheName, name)
 	if err != nil {

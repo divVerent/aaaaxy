@@ -15,7 +15,6 @@
 package audiowrap
 
 import (
-	"bytes"
 	"encoding/binary"
 	"errors"
 	"fmt"
@@ -71,27 +70,21 @@ func dumpSamples(dumpFile io.Writer, samples int) error {
 	return nil
 }
 
-func newDumper(src io.Reader) *dumper {
+func newDumper(src func() (io.Reader, error)) (*dumper, error) {
 	if !dumping {
-		return nil
+		return nil, nil
+	}
+	srcReader, err := src()
+	if err != nil {
+		return nil, err
 	}
 	dmp := &dumper{
-		reader:  src,
+		reader:  srcReader,
 		volume:  0.0,
 		playing: false,
 	}
 	currentSounds = append(currentSounds, dmp)
-	return dmp
-}
-
-func newDumperWithTee(src io.Reader) (*dumper, io.Reader) {
-	if !dumping {
-		return nil, src
-	}
-	// Yes, this will skip all music.
-	// TODO: implement proper teeing.
-	buf := bytes.Buffer{}
-	return newDumper(src), &buf
+	return dmp, nil
 }
 
 func (d *dumper) Close() {
