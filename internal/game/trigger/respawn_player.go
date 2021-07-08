@@ -24,7 +24,9 @@ import (
 )
 
 // RespawnPlayer respawns the player when touched.
-type RespawnPlayer struct{}
+type RespawnPlayer struct {
+	World *engine.World
+}
 
 // Let's do a somewhat forgiving hitbox.
 const (
@@ -32,6 +34,7 @@ const (
 )
 
 func (r *RespawnPlayer) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+	r.World = w
 	var err error
 	e.Image, err = image.Load("sprites", "spike.png")
 	if err != nil {
@@ -40,15 +43,13 @@ func (r *RespawnPlayer) Spawn(w *engine.World, s *level.Spawnable, e *engine.Ent
 	e.RenderOffset = m.Delta{DX: -RespawnHitboxBorder, DY: -RespawnHitboxBorder}
 	e.Rect.Origin = e.Rect.Origin.Sub(e.RenderOffset)
 	e.Rect.Size = e.Rect.Size.Add(e.RenderOffset.Mul(2))
-	e.SetContents(level.SolidContents)
+	w.SetSolid(e, true)
 	return nil
 }
 
 func (r *RespawnPlayer) Despawn() {}
 
-func (r *RespawnPlayer) Update() {
-	r.NonSolidTouchable.Update()
-}
+func (r *RespawnPlayer) Update() {}
 
 func (r *RespawnPlayer) Touch(other *engine.Entity) {
 	if other != r.World.Player {
