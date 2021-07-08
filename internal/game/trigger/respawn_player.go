@@ -18,16 +18,13 @@ import (
 	"fmt"
 
 	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/game/mixins"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
 	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 // RespawnPlayer respawns the player when touched.
-type RespawnPlayer struct {
-	mixins.NonSolidTouchable
-}
+type RespawnPlayer struct{}
 
 // Let's do a somewhat forgiving hitbox.
 const (
@@ -35,7 +32,6 @@ const (
 )
 
 func (r *RespawnPlayer) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
-	r.NonSolidTouchable.Init(w, e)
 	var err error
 	e.Image, err = image.Load("sprites", "spike.png")
 	if err != nil {
@@ -44,6 +40,7 @@ func (r *RespawnPlayer) Spawn(w *engine.World, s *level.Spawnable, e *engine.Ent
 	e.RenderOffset = m.Delta{DX: -RespawnHitboxBorder, DY: -RespawnHitboxBorder}
 	e.Rect.Origin = e.Rect.Origin.Sub(e.RenderOffset)
 	e.Rect.Size = e.Rect.Size.Add(e.RenderOffset.Mul(2))
+	e.SetContents(level.SolidContents)
 	return nil
 }
 
