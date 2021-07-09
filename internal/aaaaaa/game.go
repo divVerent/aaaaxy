@@ -34,9 +34,10 @@ import (
 var RegularTermination = menu.RegularTermination
 
 var (
-	externalCapture    = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
-	screenFilter       = flag.String("screen_filter", "linear2x", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x' and 'nearest'")
-	screenFilterJitter = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
+	externalCapture       = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
+	screenFilter          = flag.String("screen_filter", "linear2x", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x' and 'nearest'")
+	screenFilterScanLines = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2x filter; not supported below 720px screen height")
+	screenFilterJitter    = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 )
 
 type Game struct {
@@ -144,6 +145,12 @@ func (g *Game) Draw(screen *ebiten.Image) {
 				return
 			}
 		}
+		_, screenHeight := screen.Size()
+		scanLinesMod := 1.0
+		if screenHeight < engine.GameHeight*3 {
+			// Turn off the scan lines effect on screens where it'd be Moiré galore.
+			scanLinesMod = 0
+		}
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Images: [4]*ebiten.Image{
@@ -151,6 +158,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 				nil,
 				nil,
 				nil,
+			},
+			Uniforms: map[string]interface{}{
+				"ScanLineEffect": float32(*screenFilterScanLines * 2.0 * scanLinesMod),
 			},
 		}
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)

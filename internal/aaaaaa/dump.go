@@ -27,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaaa/internal/audiowrap"
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/flag"
+	m "github.com/divVerent/aaaaaa/internal/math"
 )
 
 var (
@@ -92,12 +93,10 @@ func dumpFrame(screen *ebiten.Image) {
 }
 
 func ffmpegCommand(audio, video, output string) string {
+	var pre string
 	inputs := []string{}
 	settings := []string{}
-	if audio != "" {
-		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.Rate(), strings.ReplaceAll(audio, "'", "'\\''")))
-		settings = append(settings, "-codec:a aac -b:a 128k")
-	}
+	// Video first, so we can refer to the video stream as [0:v] for sure.
 	if video != "" {
 		inputs = append(inputs, fmt.Sprintf("-f png_pipe -r %d -i '%s'", engine.GameTPS, strings.ReplaceAll(video, "'", "'\\''")))
 		// Note: the two step upscale simulates the effect of the normal2x shader.
@@ -107,9 +106,15 @@ func ffmpegCommand(audio, video, output string) string {
 		// or even newer versions with decoding options changed for compatibility,
 		// if the video file has also been losslessly cut -
 		// have trouble decoding that.
-		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -vf premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080")
+		darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
+		pre = fmt.Sprintf("echo 'P2 1 3 255 %d 255 %d' | convert -size 1920x1080 TILE:PNM:- scanlines.png; ", darkened, darkened)
+		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -filter_complex '[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply'")
 	}
-	return fmt.Sprintf("ffmpeg %s %s -vsync vfr %s", strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''"))
+	if audio != "" {
+		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.Rate(), strings.ReplaceAll(audio, "'", "'\\''")))
+		settings = append(settings, "-codec:a aac -b:a 128k")
+	}
+	return fmt.Sprintf("%sffmpeg %s %s -vsync vfr %s", pre, strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''"))
 }
 
 func finishDumping() {
