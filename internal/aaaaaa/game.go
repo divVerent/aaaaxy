@@ -132,7 +132,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		filter = "linear2x"
 	}
 
-	switch *screenFilter {
+	switch filter {
 	case "simple":
 		g.drawAtGameSize(screen)
 	case "linear":
