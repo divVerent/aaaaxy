@@ -23,6 +23,21 @@ type Delta struct {
 	DX, DY int
 }
 
+func (d Delta) Norm0() int {
+	norm := 0
+	if d.DX > norm {
+		norm = d.DX
+	} else if -d.DX > norm {
+		norm = -d.DX
+	}
+	if d.DY > norm {
+		norm = d.DY
+	} else if -d.DY > norm {
+		norm = -d.DY
+	}
+	return norm
+}
+
 func (d Delta) Norm1() int {
 	norm := 0
 	if d.DX >= 0 {
@@ -56,6 +71,10 @@ func (d Delta) Sub(d2 Delta) Delta {
 
 func (d Delta) Mul(n int) Delta {
 	return Delta{DX: d.DX * n, DY: d.DY * n}
+}
+
+func (d Delta) Mul2(mx, my int) Delta {
+	return Delta{DX: d.DX * mx, DY: d.DY * my}
 }
 
 func (d Delta) Div(m int) Delta {

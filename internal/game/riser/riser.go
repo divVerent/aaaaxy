@@ -292,7 +292,7 @@ func (r *Riser) Update() {
 			return
 		}
 		dr := r.Entity.Rect.Delta(other.Rect)
-		if dr.IsZero() {
+		if dr.Norm0() <= RiserBorderPixels {
 			pxDelta := r.Entity.Rect.Center().Delta(other.Rect.Center())
 			subDelta := r.SubPixel.Sub(otherR.SubPixel)
 			fullDelta := pxDelta.Mul(constants.SubPixelScale).Add(subDelta)

@@ -17,6 +17,7 @@ package trigger
 import (
 	"github.com/divVerent/aaaaaa/internal/engine"
 	"github.com/divVerent/aaaaaa/internal/game/constants"
+	"github.com/divVerent/aaaaaa/internal/game/interfaces"
 	"github.com/divVerent/aaaaaa/internal/image"
 	"github.com/divVerent/aaaaaa/internal/level"
 )
@@ -57,7 +58,7 @@ func (a *AppearBlock) Despawn() {}
 
 func (a *AppearBlock) Update() {
 	delta := a.Entity.Rect.Delta(a.World.Player.Rect)
-	if delta.DY != 0 && delta.DX <= AppearXDistance && delta.DX >= -AppearXDistance && delta.DY <= AppearYDistance && delta.DY >= -AppearYDistance {
+	if delta.Mul2(AppearYDistance, AppearXDistance).Norm0() <= AppearXDistance*AppearYDistance && delta.Dot(a.World.Player.Impl.(interfaces.Physics).ReadOnGroundVec()) > 0 {
 		if a.AnimFrame < AppearFrames {
 			a.AnimFrame++
 		}
