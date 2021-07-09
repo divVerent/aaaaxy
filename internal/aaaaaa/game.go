@@ -35,16 +35,17 @@ var RegularTermination = menu.RegularTermination
 
 var (
 	externalCapture       = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
-	screenFilter          = flag.String("screen_filter", "linear2x", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x' and 'nearest'")
-	screenFilterScanLines = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2x filter; not supported below 720px screen height")
+	screenFilter          = flag.String("screen_filter", "linear2xcrt", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
+	screenFilterScanLines = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filter; not supported below 720px screen height")
 	screenFilterJitter    = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 )
 
 type Game struct {
 	Menu menu.Menu
 
-	offScreen      *ebiten.Image
-	linear2xShader *ebiten.Shader
+	offScreen         *ebiten.Image
+	linear2xShader    *ebiten.Shader
+	linear2xCRTShader *ebiten.Shader
 }
 
 var _ ebiten.Game = &Game{}
@@ -124,6 +125,13 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	timing.Section("draw")
 	defer timing.Group()()
 
+	filter := *screenFilter
+	_, screenHeight := screen.Size()
+	if filter == "linear2xcrt" && screenHeight < engine.GameHeight*3 {
+		// Below 3x game size, linear2xcrt just adds Moiré. Don't use it.
+		filter = "linear2x"
+	}
+
 	switch *screenFilter {
 	case "simple":
 		g.drawAtGameSize(screen)
@@ -145,11 +153,26 @@ func (g *Game) Draw(screen *ebiten.Image) {
 				return
 			}
 		}
-		_, screenHeight := screen.Size()
-		scanLinesMod := 1.0
-		if screenHeight < engine.GameHeight*3 {
-			// Turn off the scan lines effect on screens where it'd be Moiré galore.
-			scanLinesMod = 0
+		options := &ebiten.DrawRectShaderOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Images: [4]*ebiten.Image{
+				g.drawOffscreen(),
+				nil,
+				nil,
+				nil,
+			},
+		}
+		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
+		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xShader, options)
+	case "linear2xcrt":
+		if g.linear2xCRTShader == nil {
+			var err error
+			g.linear2xCRTShader, err = shader.Load("linear2xcrt.kage", nil)
+			if err != nil {
+				log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load linear2xcrt shader: %v", err)
+				*screenFilter = "linear2x"
+				return
+			}
 		}
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
@@ -160,11 +183,11 @@ func (g *Game) Draw(screen *ebiten.Image) {
 				nil,
 			},
 			Uniforms: map[string]interface{}{
-				"ScanLineEffect": float32(*screenFilterScanLines * 2.0 * scanLinesMod),
+				"ScanLineEffect": float32(*screenFilterScanLines * 2.0),
 			},
 		}
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
-		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xShader, options)
+		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xCRTShader, options)
 	case "nearest":
 		screen.Clear()
 		options := &ebiten.DrawImageOptions{

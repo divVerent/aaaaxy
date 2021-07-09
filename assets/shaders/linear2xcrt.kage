@@ -15,6 +15,12 @@
 // A simple shader to upscale and linearly "interpolate".
 package main
 
+// Strength of the scan line effect.
+// Full effect at value of 2.0 (scaled in calling code).
+// As a rule of thumb, below 2x (720px) height, the effect should be left off
+// because all it will do is cause Moiré.
+var ScanLineEffect float
+
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
 	srcMax := srcOrigin + srcSize
@@ -44,5 +50,14 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	// nearest-scaling to 2x then linear-scaling to 3x.
 	f = clamp(0.5+(f-0.5)*2.0, 0.0, 1.0)
 
-	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y)
+	// Scan line effect?
+	row := texCoord.y * srcImageSize.y
+	fRow := fract(row)
+	fMask := 1.0 - abs(fRow-0.5)*ScanLineEffect
+	mask := vec4(fMask, fMask, fMask, 1.0)
+	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y) * mask
+
+	// Note: for 1080p (3x resolution), this will map every centeral pixel to full value,
+	// but every other row to 1/3 its value.
+	// We take that into account when generating the ffmpeg command.
 }
