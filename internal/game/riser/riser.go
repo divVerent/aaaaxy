@@ -245,7 +245,7 @@ func (r *Riser) Update() {
 			// All OK, just need to initialize grabbing.
 		} else if r.PlayerOnGroundVec != playerPhysics.ReadOnGroundVec() {
 			// Player's onground vec changed. Apply the change to ours.
-			// TODO(divVerent): Actually make this smarter?
+			// TODO(divVerent): Actually make this smarter? Like, actually apply the transform by which the player changed?
 			r.OnGroundVec = r.OnGroundVec.Mul(-1)
 		}
 		r.PlayerOnGroundVec = playerPhysics.ReadOnGroundVec()
@@ -296,11 +296,22 @@ func (r *Riser) Update() {
 			pxDelta := r.Entity.Rect.Center().Delta(other.Rect.Center())
 			subDelta := r.SubPixel.Sub(otherR.SubPixel)
 			fullDelta := pxDelta.Mul(constants.SubPixelScale).Add(subDelta)
+			left := m.Right().Apply(r.OnGroundVec)
 			var scaledDelta m.Delta
 			if fullDelta.IsZero() {
-				// On full overlap, move them _down_ which is the most gameplay friendly direction.
-				scaledDelta = r.OnGroundVec.Mul(RepelSpeed)
+				// On full overlap, move one of them _left_ which is the most gameplay friendly direction.
+				// This will cause the other one to get repelled to the right.
+				// Why not down? Yes, these are easier to grab then,
+				// but it helps more that one can stand between them and push them away from each other.
+				scaledDelta = left.Mul(RepelSpeed)
 			} else {
+				// Similarly, ensure that the left/right component is at least half the work.
+				// We do this by assuming an increased L/R delta of exactly the value of the U/D delta.
+				upDown := fullDelta.Sub(left.Mul(fullDelta.Dot(left))).Norm1()
+				if fullDelta.Dot(left) < 0 {
+					upDown = -upDown
+				}
+				fullDelta = fullDelta.Add(left.Mul(upDown))
 				scaledDelta = fullDelta.MulFloat(RepelSpeed / math.Sqrt(float64(fullDelta.Length2())))
 			}
 			r.Velocity = r.Velocity.Add(scaledDelta)
