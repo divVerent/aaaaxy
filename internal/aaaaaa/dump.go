@@ -112,10 +112,6 @@ func ffmpegCommand(audio, video, output string) string {
 			filterComplex = "[0:v]premultiply=inplace=1,scale=1920:1080"
 		case "linear2x":
 			filterComplex = "[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080"
-		case "linear2xscan":
-			darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
-			pre = fmt.Sprintf("echo 'P2 1 3 255 %d 255 %d' | convert -size 1920x1080 TILE:PNM:- scanlines.png; ", darkened, darkened)
-			filterComplex = "[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply"
 		case "linear2xcrt":
 			darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
 			pre = fmt.Sprintf("echo 'P2 1 3 255 %d 255 %d' | convert -size 1920x1080 TILE:PNM:- scanlines.png; ", darkened, darkened)
