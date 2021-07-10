@@ -23,16 +23,17 @@ var ScanLineEffect float // [0.0, 2.0]
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
+	srcMax := srcOrigin + srcSize
 
 	// Set up typical linear interpolation.
 	srcImageSize := imageSrcTextureSize()
 
 	halfTexel := 0.5 / srcImageSize
 	tieBreaker := halfTexel / 256.0
-	topLeft := texCoord - halfTexel + tieBreaker
-	bottomRight := texCoord + halfTexel + tieBreaker
+	topLeft := clamp(texCoord-halfTexel+tieBreaker, srcOrigin, srcMax)
+	bottomRight := clamp(texCoord+halfTexel+tieBreaker, srcOrigin, srcMax)
 
-	// Get the four texels (black for outside).
+	// Get the four texels.
 	a := imageSrc0UnsafeAt(topLeft)
 	b := imageSrc0UnsafeAt(vec2(bottomRight.x, topLeft.y))
 	c := imageSrc0UnsafeAt(vec2(topLeft.x, bottomRight.y))

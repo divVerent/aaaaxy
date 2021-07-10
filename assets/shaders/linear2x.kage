@@ -21,6 +21,7 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 
 	// Set up typical linear interpolation.
 	srcImageSize := imageSrcTextureSize()
+
 	halfTexel := 0.5 / srcImageSize
 	tieBreaker := halfTexel / 256.0
 	topLeft := clamp(texCoord-halfTexel+tieBreaker, srcOrigin, srcMax)
