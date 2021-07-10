@@ -19,30 +19,47 @@ package main
 // Full effect at value of 2.0 (scaled in calling code).
 // As a rule of thumb, below 2x (720px) height, the effect should be left off
 // because all it will do is cause Moiré.
-var ScanLineEffect float
+var ScanLineEffect float // [0.0, 2.0]
 
-func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
+// Strength of the CRT bending effect.
+// This effect cannot be turned off; use a very small value to mostly disable the effect.
+var CRTStrength float // ]0.0, 1.0]
+
+func crtMap(srcOrigin, srcSize, srcImageSize, in vec2) vec2 {
+	// mapVec chosen so that diagonal has length "CRTStrength".
+	// also correct for aspect.
+	// I.e.:
+	// length(srcSize * 0.5 * mapVec) == CRTStrength.
+	// mapVec.x / mapVec.y = srcImageSize.x / srcImageSize.y
+	// TODO(divVerent): port this effect to ffmpeg.
+	mapVec := srcImageSize * CRTStrength / (0.5 * length(srcImageSize*srcSize))
+	srcMid := srcOrigin + srcSize*0.5
+	inRel := (in - srcMid) * mapVec
+	inLen := length(inRel)
+	outLen := asin(inLen)
+	outRel := normalize(inRel) * outLen
+	return srcMid + outRel/mapVec
+}
+
+func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
-	srcMax := srcOrigin + srcSize
-
-	/*
-	// TODO(rpolzer): Emulate CRT bulge.
-	srcMid := srcOrigin + 0.5 * srcSize
-	texCoord := srcMid + (texCoord_ - srcMid) * (0.5 / (1.0 - 0.5 * length(texCoord_ - srcMid)))
-	*/
 
 	// Set up typical linear interpolation.
 	srcImageSize := imageSrcTextureSize()
+
+	// Map texture coordinate to CRT.
+	texCoord := crtMap(srcOrigin, srcSize, srcImageSize, texCoord_)
+
 	halfTexel := 0.5 / srcImageSize
 	tieBreaker := halfTexel / 256.0
-	topLeft := clamp(texCoord-halfTexel+tieBreaker, srcOrigin, srcMax)
-	bottomRight := clamp(texCoord+halfTexel+tieBreaker, srcOrigin, srcMax)
+	topLeft := texCoord - halfTexel + tieBreaker
+	bottomRight := texCoord + halfTexel + tieBreaker
 
-	// Get the four texels.
-	a := imageSrc0UnsafeAt(topLeft)
-	b := imageSrc0UnsafeAt(vec2(bottomRight.x, topLeft.y))
-	c := imageSrc0UnsafeAt(vec2(topLeft.x, bottomRight.y))
-	d := imageSrc0UnsafeAt(bottomRight)
+	// Get the four texels (black for outside).
+	a := imageSrc0At(topLeft)
+	b := imageSrc0At(vec2(bottomRight.x, topLeft.y))
+	c := imageSrc0At(vec2(topLeft.x, bottomRight.y))
+	d := imageSrc0At(bottomRight)
 
 	// Mix them properly.
 	f := fract(topLeft * srcImageSize)

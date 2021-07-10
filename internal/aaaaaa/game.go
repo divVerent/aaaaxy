@@ -34,10 +34,11 @@ import (
 var RegularTermination = menu.RegularTermination
 
 var (
-	externalCapture       = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
-	screenFilter          = flag.String("screen_filter", "linear2xcrt", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
-	screenFilterScanLines = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filter; not supported below 720px screen height")
-	screenFilterJitter    = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
+	externalCapture         = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
+	screenFilter            = flag.String("screen_filter", "linear2xcrt", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
+	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filter; not supported below 720px screen height")
+	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation")
+	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 )
 
 type Game struct {
@@ -125,14 +126,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	timing.Section("draw")
 	defer timing.Group()()
 
-	filter := *screenFilter
-	_, screenHeight := screen.Size()
-	if filter == "linear2xcrt" && screenHeight < engine.GameHeight*3 {
-		// Below 3x game size, linear2xcrt just adds Moiré. Don't use it.
-		filter = "linear2x"
-	}
-
-	switch filter {
+	switch *screenFilter {
 	case "simple":
 		g.drawAtGameSize(screen)
 	case "linear":
@@ -184,6 +178,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			},
 			Uniforms: map[string]interface{}{
 				"ScanLineEffect": float32(*screenFilterScanLines * 2.0),
+				"CRTStrength":    float32(*screenFilterCRTStrength),
 			},
 		}
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
