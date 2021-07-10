@@ -25,6 +25,12 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
 	srcMax := srcOrigin + srcSize
 
+	/*
+	// TODO(rpolzer): Emulate CRT bulge.
+	srcMid := srcOrigin + 0.5 * srcSize
+	texCoord := srcMid + (texCoord_ - srcMid) * (0.5 / (1.0 - 0.5 * length(texCoord_ - srcMid)))
+	*/
+
 	// Set up typical linear interpolation.
 	srcImageSize := imageSrcTextureSize()
 	halfTexel := 0.5 / srcImageSize
