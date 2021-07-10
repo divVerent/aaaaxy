@@ -171,7 +171,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	case "linear2xscan":
 		if g.linear2xScanShader == nil {
 			var err error
-			g.linear2xScanShader, err = shader.Load("linear2xcrt.kage", nil)
+			g.linear2xScanShader, err = shader.Load("linear2xscan.kage", nil)
 			if err != nil {
 				log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load linear2xcrt shader: %v", err)
 				*screenFilter = "linear2x"
