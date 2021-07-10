@@ -113,9 +113,20 @@ func ffmpegCommand(audio, video, output string) string {
 		case "linear2x":
 			filterComplex = "[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080"
 		case "linear2xcrt":
-			darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
-			pre = fmt.Sprintf("echo 'P2 1 3 255 %d 255 %d' | convert -size 1920x1080 TILE:PNM:- scanlines.png; ", darkened, darkened)
-			filterComplex = fmt.Sprintf("[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
+			// For 3x scale, pattern is: 1 (1-2/3*f) 1.
+			// darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
+			// pre = fmt.Sprintf("echo 'P2 1 3 255 %d 255 %d' | convert -size 1920x1080 TILE:PNM:- scanlines.png; ", darkened, darkened)
+			// Then second scale is to 1920:1080.
+			// But for the lens correction, we gotta do better.
+			// For 6x scale, pattern is: (1-5/6*f) (1-3/6*f) (1-1/6*f) (1-1/6*f) (1-3/6*f) (1-5/6*f).
+			pre = fmt.Sprintf("echo 'P2 1 6 255 %d %d %d %d %d %d' | convert -size 3840:2160 TILE:PNM:- scanlines.png; ",
+				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
+			filterComplex = fmt.Sprintf("[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=3840:2160,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
 		case "simple", "nearest":
 			filterComplex = "[0:v]premultiply=inplace=1,scale=1920:1080:flags=neighbor"
 		}
