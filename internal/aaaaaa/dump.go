@@ -106,9 +106,24 @@ func ffmpegCommand(audio, video, output string) string {
 		// or even newer versions with decoding options changed for compatibility,
 		// if the video file has also been losslessly cut -
 		// have trouble decoding that.
-		darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
-		pre = fmt.Sprintf("echo 'P2 1 3 255 %d 255 %d' | convert -size 1920x1080 TILE:PNM:- scanlines.png; ", darkened, darkened)
-		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -filter_complex '[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply'")
+		var filterComplex string
+		switch *screenFilter {
+		case "linear":
+			filterComplex = "[0:v]premultiply=inplace=1,scale=1920:1080"
+		case "linear2x":
+			filterComplex = "[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080"
+		case "linear2xscan":
+			darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
+			pre = fmt.Sprintf("echo 'P2 1 3 255 %d 255 %d' | convert -size 1920x1080 TILE:PNM:- scanlines.png; ", darkened, darkened)
+			filterComplex = "[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply"
+		case "linear2xcrt":
+			darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
+			pre = fmt.Sprintf("echo 'P2 1 3 255 %d 255 %d' | convert -size 1920x1080 TILE:PNM:- scanlines.png; ", darkened, darkened)
+			filterComplex = fmt.Sprintf("[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
+		case "simple", "nearest":
+			filterComplex = "[0:v]premultiply=inplace=1,scale=1920:1080:flags=neighbor"
+		}
+		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -filter_complex '"+filterComplex+"'")
 	}
 	if audio != "" {
 		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.Rate(), strings.ReplaceAll(audio, "'", "'\\''")))

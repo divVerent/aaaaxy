@@ -21,22 +21,21 @@ package main
 // because all it will do is cause Moiré.
 var ScanLineEffect float // [0.0, 2.0]
 
-// Strength of the CRT bending effect.
-// This effect cannot be turned off; use a very small value to mostly disable the effect.
-var CRTStrength float // ]0.0, 1.0]
+// Strength of the CRT bending effect. Matches k1 and k2 parameters of FFmpeg lenscorrection.
+var CRTK1, CRTK2 float
 
 func crtMap(srcOrigin, srcSize, srcImageSize, in vec2) vec2 {
 	// mapVec chosen so that diagonal has length "CRTStrength".
 	// also correct for aspect.
 	// I.e.:
-	// length(srcSize * 0.5 * mapVec) == CRTStrength.
+	// length(srcSize * 0.5 * mapVec) == 1.
 	// mapVec.x / mapVec.y = srcImageSize.x / srcImageSize.y
-	// TODO(divVerent): port this effect to ffmpeg.
-	mapVec := srcImageSize * CRTStrength / (0.5 * length(srcImageSize*srcSize))
+	mapVec := srcImageSize / (0.5 * length(srcImageSize*srcSize))
 	srcMid := srcOrigin + srcSize*0.5
 	inRel := (in - srcMid) * mapVec
 	inLen := length(inRel)
-	outLen := asin(inLen)
+	inLen2 := inLen * inLen;
+	outLen := inLen * (1.0 + inLen2 * (CRTK1 + inLen2 * CRTK2));
 	outRel := normalize(inRel) * outLen
 	return srcMid + outRel/mapVec
 }

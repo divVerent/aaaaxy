@@ -16,6 +16,7 @@ package aaaaaa
 
 import (
 	"log"
+	"math"
 	"math/rand"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -35,7 +36,7 @@ var RegularTermination = menu.RegularTermination
 
 var (
 	externalCapture         = flag.Bool("external_dump", false, "assume an external dump application like apitrace is running; makes game run in lock step with rendering")
-	screenFilter            = flag.String("screen_filter", "linear2xscan", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt', 'linear2xscan' and 'nearest'")
+	screenFilter            = flag.String("screen_filter", "linear2xcrt", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt', 'linear2xscan' and 'nearest'")
 	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt and linear2xscan filter; not supported below 1080px screen height")
 	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.75, "strength of CRT deformation in the linear2xcrt filter")
 	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
@@ -120,6 +121,15 @@ func (g *Game) setOffscreenGeoM(screen *ebiten.Image, geoM *ebiten.GeoM, w, h in
 	geoM.Scale(f, f)
 	geoM.Translate(dx, dy)
 	geoM.Translate((rand.Float64()-0.5)**screenFilterJitter, (rand.Float64()-0.5)**screenFilterJitter)
+}
+
+// First two terms of the Taylor expansion of asin(strength*x)/strength.
+func crtK1() float64 {
+	return 1.0 / 6.0 * math.Pow(*screenFilterCRTStrength, 2)
+}
+
+func crtK2() float64 {
+	return 3.0 / 40.0 * math.Pow(*screenFilterCRTStrength, 4)
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
@@ -212,7 +222,8 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			},
 			Uniforms: map[string]interface{}{
 				"ScanLineEffect": float32(*screenFilterScanLines * 2.0),
-				"CRTStrength":    float32(*screenFilterCRTStrength),
+				"CRTK1":          float32(crtK1()),
+				"CRTK2":          float32(crtK2()),
 			},
 		}
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
