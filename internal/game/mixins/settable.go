@@ -18,8 +18,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/level"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/level"
 )
 
 // Settable implements the SetState handler for settable entities.

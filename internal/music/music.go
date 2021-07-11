@@ -26,9 +26,9 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
-	"github.com/divVerent/aaaaaa/internal/audiowrap"
-	"github.com/divVerent/aaaaaa/internal/flag"
-	"github.com/divVerent/aaaaaa/internal/vfs"
+	"github.com/divVerent/aaaaxy/internal/audiowrap"
+	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 var (

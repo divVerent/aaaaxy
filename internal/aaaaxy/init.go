@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package aaaaaa
+package aaaaxy
 
 import (
 	"fmt"
@@ -21,17 +21,17 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/audiowrap"
-	"github.com/divVerent/aaaaaa/internal/credits"
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/flag"
-	"github.com/divVerent/aaaaaa/internal/font"
-	"github.com/divVerent/aaaaaa/internal/image"
-	"github.com/divVerent/aaaaaa/internal/input"
-	m "github.com/divVerent/aaaaaa/internal/math"
-	"github.com/divVerent/aaaaaa/internal/noise"
-	"github.com/divVerent/aaaaaa/internal/sound"
-	"github.com/divVerent/aaaaaa/internal/vfs"
+	"github.com/divVerent/aaaaxy/internal/audiowrap"
+	"github.com/divVerent/aaaaxy/internal/credits"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/image"
+	"github.com/divVerent/aaaaxy/internal/input"
+	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/noise"
+	"github.com/divVerent/aaaaxy/internal/sound"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 var (
@@ -87,7 +87,7 @@ func InitEbiten() error {
 	ebiten.SetWindowPosition(0, 0)
 	ebiten.SetWindowResizable(true)
 	setWindowSize()
-	ebiten.SetWindowTitle("AAAAAA")
+	ebiten.SetWindowTitle("AAAAXY")
 
 	err := vfs.Init()
 	if err != nil {

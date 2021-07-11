@@ -20,10 +20,10 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/image"
-	m "github.com/divVerent/aaaaaa/internal/math"
-	"github.com/divVerent/aaaaaa/internal/music"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/image"
+	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/music"
 )
 
 type Group struct {

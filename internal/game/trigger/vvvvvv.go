@@ -17,12 +17,12 @@ package trigger
 import (
 	"fmt"
 
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/game/interfaces"
-	"github.com/divVerent/aaaaaa/internal/game/mixins"
-	"github.com/divVerent/aaaaaa/internal/image"
-	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/game/interfaces"
+	"github.com/divVerent/aaaaxy/internal/game/mixins"
+	"github.com/divVerent/aaaaxy/internal/image"
+	"github.com/divVerent/aaaaxy/internal/level"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 // VVVVVV enables/disables gravity flipping when jumping through.

@@ -21,14 +21,14 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/centerprint"
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/game/constants"
-	"github.com/divVerent/aaaaaa/internal/game/mixins"
-	"github.com/divVerent/aaaaaa/internal/image"
-	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
-	"github.com/divVerent/aaaaaa/internal/sound"
+	"github.com/divVerent/aaaaxy/internal/centerprint"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/game/constants"
+	"github.com/divVerent/aaaaxy/internal/game/mixins"
+	"github.com/divVerent/aaaaxy/internal/image"
+	"github.com/divVerent/aaaaxy/internal/level"
+	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
 // TnihSign just displays a text and remembers that it was hit.

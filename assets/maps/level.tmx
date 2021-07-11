@@ -9847,13 +9847,13 @@
     <property name="map_white_to" type="color" value="#ffffff55"/>
    </properties>
   </object>
-  <object id="4025" name="kaaaaaart_race" type="Checkpoint" x="5680" y="3664" width="32" height="32">
+  <object id="4025" name="kaaaart_race" type="Checkpoint" x="5680" y="3664" width="32" height="32">
    <properties>
     <property name="dead_end" type="bool" value="false"/>
     <property name="music" value="mythica.ogg"/>
     <property name="next_right" type="object" value="4409"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="Kaaaaaart Race"/>
+    <property name="text" value="Kaaaart Race"/>
    </properties>
   </object>
   <object id="4026" gid="309" x="6032" y="3632" width="16" height="16"/>
@@ -9902,12 +9902,12 @@
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
-    <property name="target" value="RaaaaaaceFinish"/>
+    <property name="target" value="RaaaaceFinish"/>
    </properties>
   </object>
-  <object id="4094" name="RaaaaaaceFinish" gid="310" x="6344" y="3496" width="16" height="16"/>
-  <object id="4095" name="RaaaaaaceFinish" gid="310" x="6344" y="3512" width="16" height="16"/>
-  <object id="4096" name="RaaaaaaceFinish" gid="310" x="6344" y="3528" width="16" height="16"/>
+  <object id="4094" name="RaaaaceFinish" gid="310" x="6344" y="3496" width="16" height="16"/>
+  <object id="4095" name="RaaaaceFinish" gid="310" x="6344" y="3512" width="16" height="16"/>
+  <object id="4096" name="RaaaaceFinish" gid="310" x="6344" y="3528" width="16" height="16"/>
   <object id="4097" gid="312" x="6296" y="3656" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4025"/>
@@ -9957,10 +9957,10 @@
   <object id="4131" type="SetState" x="5984" y="3632" width="32" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="true"/>
-    <property name="target" value="RaaaaaaceStart"/>
+    <property name="target" value="RaaaaceStart"/>
    </properties>
   </object>
-  <object id="4132" name="RaaaaaaceStart" gid="310" x="6032" y="3616" width="16" height="16"/>
+  <object id="4132" name="RaaaaceStart" gid="310" x="6032" y="3616" width="16" height="16"/>
   <object id="4133" gid="316" x="5744" y="3648" width="240" height="48">
    <properties>
     <property name="map_black_to" type="color" value="#0055ff55"/>
@@ -10320,7 +10320,7 @@
   <object id="4403" gid="302" x="6336" y="4144" width="16" height="16"/>
   <object id="4407" gid="302" x="6336" y="4160" width="16" height="16"/>
   <object id="4408" gid="302" x="6336" y="4176" width="16" height="16"/>
-  <object id="4409" name="traaaaaash" type="Checkpoint" x="6368" y="4048" width="32" height="32">
+  <object id="4409" name="traaaash" type="Checkpoint" x="6368" y="4048" width="32" height="32">
    <properties>
     <property name="dead_end" type="bool" value="false"/>
     <property name="music" value="mythica.ogg"/>

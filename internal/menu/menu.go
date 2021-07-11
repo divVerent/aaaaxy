@@ -21,13 +21,13 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/flag"
-	_ "github.com/divVerent/aaaaaa/internal/game" // Load entities.
-	"github.com/divVerent/aaaaaa/internal/input"
-	"github.com/divVerent/aaaaaa/internal/music"
-	"github.com/divVerent/aaaaaa/internal/sound"
-	"github.com/divVerent/aaaaaa/internal/timing"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
+	_ "github.com/divVerent/aaaaxy/internal/game" // Load entities.
+	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/music"
+	"github.com/divVerent/aaaaxy/internal/sound"
+	"github.com/divVerent/aaaaxy/internal/timing"
 )
 
 var RegularTermination = errors.New("exited normally")

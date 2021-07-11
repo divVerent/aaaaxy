@@ -15,10 +15,10 @@
 package trigger
 
 import (
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/game/mixins"
-	"github.com/divVerent/aaaaaa/internal/game/target"
-	"github.com/divVerent/aaaaaa/internal/level"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/game/mixins"
+	"github.com/divVerent/aaaaxy/internal/game/target"
+	"github.com/divVerent/aaaaxy/internal/level"
 )
 
 // SetState overrides the boolean state of a warpzone or entity.

@@ -18,7 +18,7 @@ import (
 	"bufio"
 	"fmt"
 
-	"github.com/divVerent/aaaaaa/internal/vfs"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 var (

@@ -15,7 +15,7 @@
 package level
 
 import (
-	m "github.com/divVerent/aaaaaa/internal/math"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 // Contents indicates what kind of tiles/objects we want to hit.

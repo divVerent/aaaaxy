@@ -3,9 +3,9 @@ EXE = $(shell go env GOEXE)
 SUFFIX = -$(shell go env GOOS)-$(shell go env GOARCH)$(EXE)
 
 # Internal variables.
-PACKAGE = github.com/divVerent/aaaaaa/cmd/aaaaaa
-DUMPCPS = github.com/divVerent/aaaaaa/cmd/dumpcps
-VERSION = github.com/divVerent/aaaaaa/internal/version
+PACKAGE = github.com/divVerent/aaaaxy/cmd/aaaaxy
+DUMPCPS = github.com/divVerent/aaaaxy/cmd/dumpcps
+VERSION = github.com/divVerent/aaaaxy/internal/version
 # TODO glfw is gccgo-built, which still seems to include private paths. Fix.
 UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
@@ -35,7 +35,7 @@ GOFLAGS ?= -tags ebitensinglethread
 INFIX = -debug
 BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
-BINARY = aaaaaa$(INFIX)$(SUFFIX)
+BINARY = aaaaxy$(INFIX)$(SUFFIX)
 
 # Include version.
 GOFLAGS += -ldflags="-X $(VERSION).revision=$(shell git describe --always --dirty --first-parent)"
@@ -93,7 +93,7 @@ $(LICENSES_THIRD_PARTY):
 	GOOS= GOARCH= ./collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
 
 # Building of release zip files starts here.
-ZIPFILE = aaaaaa.zip
+ZIPFILE = aaaaxy.zip
 
 .PHONY: addextras
 addextras: $(EXTRAFILES)
@@ -114,7 +114,7 @@ webprepare:
 
 .PHONY: addwebstuff
 addwebstuff: webprepare
-	$(ZIP) $(ZIPFILE) aaaaaa$(INFIX).html wasm_exec.js
+	$(ZIP) $(ZIPFILE) aaaaxy$(INFIX).html wasm_exec.js
 
 .PHONY: allrelease
 allrelease: allreleaseclean

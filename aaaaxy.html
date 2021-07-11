@@ -13,7 +13,7 @@
   }
 
   const go = new Go();
-  WebAssembly.instantiateStreaming(fetch("aaaaaa-debug-js-wasm.wasm"), go.importObject).then(result => {
+  WebAssembly.instantiateStreaming(fetch("aaaaxy-js-wasm.wasm"), go.importObject).then(result => {
   go.run(result.instance);
   });
   </script>

@@ -22,7 +22,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/text"
 	"golang.org/x/image/math/fixed"
 
-	m "github.com/divVerent/aaaaaa/internal/math"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 // BoundString returns the bounding rectangle of the given text.

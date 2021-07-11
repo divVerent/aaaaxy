@@ -1,4 +1,4 @@
-# AAAAAA
+# AAAAXY
 
 This is a game. NOT RELEASED YET. USE AT YOUR OWN RISK.
 

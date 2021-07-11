@@ -22,8 +22,8 @@ import (
 	"sort"
 	"strings"
 
-	m "github.com/divVerent/aaaaaa/internal/math"
-	"github.com/divVerent/aaaaaa/internal/vfs"
+	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 type (

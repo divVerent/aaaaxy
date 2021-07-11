@@ -11,7 +11,7 @@ rm -rf "$out"
 # do not have a discoverable license file. As they're all under Go's license,
 # that is fine.
 go get github.com/google/go-licenses
-go run github.com/google/go-licenses save github.com/divVerent/aaaaaa/cmd/aaaaaa --save_path="$out" || true
+go run github.com/google/go-licenses save github.com/divVerent/aaaaxy/cmd/aaaaxy --save_path="$out" || true
 
 # Add our own third party stuff.
 find third_party -name LICENSE -o -name COPYRIGHT.md | while read -r path; do

@@ -18,8 +18,8 @@ import (
 	"log"
 	"math"
 
-	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaxy/internal/level"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 // traceLineTiles cuts the given trace by hits against the tilemap.

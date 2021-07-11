@@ -15,7 +15,7 @@
 package interfaces
 
 import (
-	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/engine"
 )
 
 type Abilityer interface {

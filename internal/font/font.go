@@ -29,8 +29,8 @@ import (
 	"golang.org/x/image/font/gofont/gosmallcaps"
 	"golang.org/x/image/math/fixed"
 
-	"github.com/divVerent/aaaaaa/internal/flag"
-	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaxy/internal/flag"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 var (

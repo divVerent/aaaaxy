@@ -23,13 +23,13 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/game/constants"
-	"github.com/divVerent/aaaaaa/internal/game/interfaces"
-	"github.com/divVerent/aaaaaa/internal/game/mixins"
-	"github.com/divVerent/aaaaaa/internal/image"
-	"github.com/divVerent/aaaaaa/internal/level"
-	"github.com/divVerent/aaaaaa/internal/sound"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/game/constants"
+	"github.com/divVerent/aaaaxy/internal/game/interfaces"
+	"github.com/divVerent/aaaaxy/internal/game/mixins"
+	"github.com/divVerent/aaaaxy/internal/image"
+	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
 // ForceField, when hit by the player, sends the player away from it.

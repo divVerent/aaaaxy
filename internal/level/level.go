@@ -23,8 +23,8 @@ import (
 	"github.com/fardog/tmx"
 	"github.com/mitchellh/hashstructure/v2"
 
-	m "github.com/divVerent/aaaaaa/internal/math"
-	"github.com/divVerent/aaaaaa/internal/vfs"
+	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 // Level is a parsed form of a loaded level.

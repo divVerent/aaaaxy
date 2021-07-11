@@ -22,8 +22,8 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/aaaaaa"
-	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/aaaaxy"
+	"github.com/divVerent/aaaaxy/internal/flag"
 )
 
 var (
@@ -32,7 +32,7 @@ var (
 )
 
 func main() {
-	flag.Parse(aaaaaa.LoadConfig)
+	flag.Parse(aaaaxy.LoadConfig)
 	if *cpuprofile != "" {
 		f, err := os.Create(*cpuprofile)
 		if err != nil {
@@ -44,13 +44,13 @@ func main() {
 		}
 		defer pprof.StopCPUProfile()
 	}
-	err := aaaaaa.InitEbiten()
+	err := aaaaxy.InitEbiten()
 	if err != nil {
 		log.Panicf("could not initialize game: %v", err)
 	}
-	game := &aaaaaa.Game{}
+	game := &aaaaxy.Game{}
 	err = ebiten.RunGame(game)
-	aaaaaa.BeforeExit()
+	aaaaxy.BeforeExit()
 	if *memprofile != "" {
 		f, err := os.Create(*memprofile)
 		if err != nil {
@@ -62,7 +62,7 @@ func main() {
 			log.Fatalf("could not write memory profile: %v", err)
 		}
 	}
-	if err != nil && err != aaaaaa.RegularTermination {
+	if err != nil && err != aaaaxy.RegularTermination {
 		log.Fatal(err)
 	}
 }

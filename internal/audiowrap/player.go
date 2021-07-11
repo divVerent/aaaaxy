@@ -20,7 +20,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/flag"
 	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
 )
 

@@ -21,7 +21,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/divVerent/aaaaaa/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/flag"
 )
 
 var (

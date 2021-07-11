@@ -15,9 +15,9 @@
 package trigger
 
 import (
-	"github.com/divVerent/aaaaaa/internal/animation"
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/level"
+	"github.com/divVerent/aaaaxy/internal/animation"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/level"
 )
 
 // Switch overrides the boolean state of a warpzone or entity.

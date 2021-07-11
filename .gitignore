@@ -1,10 +1,10 @@
 *~
-/aaaaaa-debug-*
-/aaaaaa-js-*
-/aaaaaa-linux-*
-/aaaaaa-windows-*
-/aaaaaa.tiled-session
-/aaaaaa.zip
+/aaaaxy-debug-*
+/aaaaxy-js-*
+/aaaaxy-linux-*
+/aaaaxy-windows-*
+/aaaaxy.tiled-session
+/aaaaxy.zip
 /assets/maps/*.cp.json
 /internal/assets/statik/statik.go
 /licenses

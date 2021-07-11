@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package aaaaaa
+package aaaaxy
 
 import (
 	"log"
@@ -21,15 +21,15 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/flag"
-	"github.com/divVerent/aaaaaa/internal/font"
-	"github.com/divVerent/aaaaaa/internal/input"
-	"github.com/divVerent/aaaaaa/internal/menu"
-	"github.com/divVerent/aaaaaa/internal/music"
-	"github.com/divVerent/aaaaaa/internal/noise"
-	"github.com/divVerent/aaaaaa/internal/shader"
-	"github.com/divVerent/aaaaaa/internal/timing"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/menu"
+	"github.com/divVerent/aaaaxy/internal/music"
+	"github.com/divVerent/aaaaxy/internal/noise"
+	"github.com/divVerent/aaaaxy/internal/shader"
+	"github.com/divVerent/aaaaxy/internal/timing"
 )
 
 var RegularTermination = menu.RegularTermination

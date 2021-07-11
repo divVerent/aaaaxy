@@ -15,7 +15,7 @@
 package level
 
 import (
-	m "github.com/divVerent/aaaaaa/internal/math"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 // PersistentState is how entities retain values across loading/unloading and in

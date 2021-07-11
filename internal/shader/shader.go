@@ -21,7 +21,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/vfs"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 type shaderPath = struct {

@@ -20,11 +20,11 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/flag"
-	"github.com/divVerent/aaaaaa/internal/font"
-	"github.com/divVerent/aaaaaa/internal/input"
-	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/input"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 var (
@@ -86,7 +86,7 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	fgn := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
 	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
-	font.MenuBig.Draw(screen, "AAAAAA", m.Pos{X: x, Y: h / 4}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, "AAAAXY", m.Pos{X: x, Y: h / 4}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == Play {
 		fg, bg = fgs, bgs

@@ -18,9 +18,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/divVerent/aaaaaa/internal/animation"
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/level"
+	"github.com/divVerent/aaaaxy/internal/animation"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/level"
 )
 
 // Animation is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.

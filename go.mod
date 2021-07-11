@@ -1,4 +1,4 @@
-module github.com/divVerent/aaaaaa
+module github.com/divVerent/aaaaxy
 
 go 1.14
 

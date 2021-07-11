@@ -15,7 +15,7 @@
 package constants
 
 import (
-	"github.com/divVerent/aaaaaa/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/engine"
 )
 
 const (

@@ -18,11 +18,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/divVerent/aaaaaa/internal/audiowrap"
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/game/mixins"
-	"github.com/divVerent/aaaaaa/internal/level"
-	"github.com/divVerent/aaaaaa/internal/sound"
+	"github.com/divVerent/aaaaxy/internal/audiowrap"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/game/mixins"
+	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
 // SoundTarget just changes the music track to the given one.

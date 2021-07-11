@@ -18,8 +18,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/divVerent/aaaaaa/internal/flag"
-	"github.com/divVerent/aaaaaa/internal/level"
+	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/level"
 )
 
 var (

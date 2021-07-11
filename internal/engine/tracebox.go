@@ -18,8 +18,8 @@ import (
 	"log"
 	"math"
 
-	"github.com/divVerent/aaaaaa/internal/level"
-	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaxy/internal/level"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta, result *TraceResult) {

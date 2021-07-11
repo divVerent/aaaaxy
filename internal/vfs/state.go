@@ -24,7 +24,7 @@ import (
 type StateKind int
 
 const (
-	gameName = "AAAAAA"
+	gameName = "AAAAXY"
 )
 
 const (

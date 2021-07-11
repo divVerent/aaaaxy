@@ -15,9 +15,9 @@
 package target
 
 import (
-	"github.com/divVerent/aaaaaa/internal/engine"
-	"github.com/divVerent/aaaaaa/internal/level"
-	"github.com/divVerent/aaaaaa/internal/music"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/music"
 )
 
 // SwitchMusicTarget just changes the music track to the given one.

@@ -15,8 +15,8 @@
 package interfaces
 
 import (
-	"github.com/divVerent/aaaaaa/internal/engine"
-	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaxy/internal/engine"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 type VVVVVVer interface {

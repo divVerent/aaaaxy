@@ -20,8 +20,8 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaaa/internal/font"
-	m "github.com/divVerent/aaaaaa/internal/math"
+	"github.com/divVerent/aaaaxy/internal/font"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 const (
