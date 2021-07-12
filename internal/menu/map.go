@@ -46,6 +46,9 @@ type MapScreen struct {
 // TODO: parametrize.
 const (
 	firstCP = "leap_of_faith"
+
+	edgeFarAttachDistance = 7
+	edgeThickness         = 3
 )
 
 func (s *MapScreen) Init(m *Menu) error {
@@ -146,6 +149,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	lineColor := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
+	selectedLineColor := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	darkLineColor := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := s.Menu.World.Level.Checkpoints[s.CurrentCP].Properties["text"]
@@ -190,7 +194,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			}
 			otherName := edge.Other
 			edgeSeen := s.Menu.World.PlayerState.CheckpointsWalked(cpName, otherName)
-			closePos := pos.Add(dir.Mul(7))
+			farPos := pos.Add(dir.Mul(edgeFarAttachDistance))
 			options := &ebiten.DrawTrianglesOptions{
 				CompositeMode: ebiten.CompositeModeSourceOver,
 				Filter:        ebiten.FilterNearest,
@@ -200,10 +204,13 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			if edgeSeen {
 				otherLoc := loc.Locs[otherName]
 				otherPos := otherLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
-				farPos := otherPos.Sub(dir.Mul(7))
-				engine.DrawPolyLine(screen, 3.0, []m.Pos{pos, closePos, farPos, otherPos}, s.whiteImage, lineColor, geoM, options)
+				color := lineColor
+				if cpName == s.CurrentCP || otherName == s.CurrentCP {
+					color = selectedLineColor
+				}
+				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{pos, otherPos}, s.whiteImage, color, geoM, options)
 			} else if s.Menu.World.Level.Checkpoints[edge.Other].Properties["dead_end"] != "true" {
-				engine.DrawPolyLine(screen, 3.0, []m.Pos{pos, closePos}, s.whiteImage, darkLineColor, geoM, options)
+				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{pos, farPos}, s.whiteImage, darkLineColor, geoM, options)
 			}
 		}
 	}
