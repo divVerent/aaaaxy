@@ -1086,7 +1086,6 @@
     <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
     <property name="next_down" type="object" value="4597"/>
     <property name="next_left" type="object" value="4609"/>
-    <property name="next_right" type="object" value="4604"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="A New Beginning"/>
    </properties>
@@ -10849,7 +10848,7 @@
     <property name="dead_end" type="bool" value="false"/>
     <property name="music" value="Theme Song 8-bit V1.ogg"/>
     <property name="next_right" type="object" value="4610"/>
-    <property name="next_up" type="object" value="4604"/>
+    <property name="next_up" type="object" value="281"/>
     <property name="required_orientation" value="WN"/>
     <property name="text" value="Van Vlijmen's Vexing Vertical Vector Vertigo"/>
     <property name="vvvvvv" type="bool" value="true"/>
@@ -10860,14 +10859,6 @@
   <object id="4601" gid="321" x="6104" y="6672" width="32" height="32"/>
   <object id="4602" gid="321" x="6104" y="6608" width="32" height="32"/>
   <object id="4603" gid="321" x="6104" y="6544" width="32" height="32"/>
-  <object id="4604" name="the_other_way" type="Checkpoint" x="6144" y="5920" width="32" height="96">
-   <properties>
-    <property name="dead_end" type="bool" value="false"/>
-    <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
-    <property name="required_orientation" value="WN"/>
-    <property name="text" value="The Other Way Round"/>
-   </properties>
-  </object>
   <object id="4605" gid="305" x="6104" y="6016" width="32" height="32"/>
   <object id="4606" gid="305" x="6104" y="6400" width="32" height="32"/>
   <object id="4607" gid="305" x="6104" y="6144" width="32" height="32"/>
@@ -11526,7 +11517,7 @@
   </object>
   <object id="5058" gid="312" x="6440" y="5872" width="32" height="32">
    <properties>
-    <property name="reached_from" type="object" value="4604"/>
+    <property name="reached_from" type="object" value="281"/>
     <property name="text" value="Did you bring the pie?"/>
    </properties>
   </object>
