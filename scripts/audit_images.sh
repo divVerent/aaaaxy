@@ -4,6 +4,7 @@ find .. -name \*.png | sort | while read -r file; do
 	# Exceptions.
 	case "$file" in
 		# Editing only.
+		*/editorimgs/*) continue ;;
 		*/src/*) continue ;;
 		../assets/sprites/warpzone_*.png) continue ;;
 		# Intentionally violating.
@@ -11,22 +12,21 @@ find .. -name \*.png | sort | while read -r file; do
 		../assets/sprites/gradient_*.png) continue ;;
 		../assets/sprites/editorimgs/gradient_*.png) continue ;;
 	esac
+	set -- \
+		"$file" -depth 8 +dither \
+		-write MPR:orig \
+		-channel RGB -remap cga_palette.pnm +channel \
+		MPR:orig -alpha set -compose copy-opacity -composite \
+		-channel A -threshold 50% +channel
 	f=$(
 		convert \
-			\( \
-				"$file" -depth 8 -alpha off \
-			\) \
-			\( \
-				"$file" -depth 8 -alpha off +dither \
-				-channel RGB -remap cga_palette.pnm \
-				-channel A -threshold 50% \
-				+channel \
-			\) \
+			\( "$file" -depth 8 +dither \) \
+			\( "$@" \) \
 			-channel RGBA \
 			-metric RMSE -format '%[distortion]\n' -compare \
 			INFO:
 	)
 	if [ "$f" !=  0 ]; then
-		echo "convert \( '$file' -depth 8 -alpha off +dither -remap cga_palette.pnm \) \( '$file' -depth 8 -alpha extract -threshold 50% \) -compose CopyOpacity -composite "$file"  # $f"
+		echo "convert "$@" "$file"  # $f"
 	fi
 done
