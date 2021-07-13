@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6558">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6560">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -14010,5 +14010,15 @@
   </object>
   <object id="6556" gid="302" x="768" y="7200" width="16" height="16"/>
   <object id="6557" gid="302" x="768" y="7216" width="16" height="16"/>
+  <object id="6558" type="Sprite" x="4000" y="7664" width="288" height="112">
+   <properties>
+    <property name="image" value="silvercity_left.png"/>
+   </properties>
+  </object>
+  <object id="6559" type="Sprite" x="4640" y="7664" width="288" height="112">
+   <properties>
+    <property name="image" value="silvercity_right.png"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
