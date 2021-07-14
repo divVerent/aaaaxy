@@ -9,7 +9,7 @@ VERSION = github.com/divVerent/aaaaxy/internal/version
 # TODO glfw is gccgo-built, which still seems to include private paths. Fix.
 UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
-GENERATED_ASSETS = assets/maps/level.cp.json
+GENERATED_ASSETS = assets/maps/level.cp.json assets/generated/image_load_order.txt
 STATIK_ASSETS_ROOT = internal/assets
 STATIK_ASSETS = $(STATIK_ASSETS_ROOT)/statik/statik.go
 EXTRAFILES = README.md LICENSE CONTRIBUTING.md
@@ -78,6 +78,12 @@ $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 	CGO_CXXFLAGS="$(CGO_CXXFLAGS)" \
 	CGO_LDFLAGS="$(CGO_LDFLAGS)" \
 	go build -o $(BINARY) $(GOFLAGS) $(PACKAGE)
+
+# Note: we can't detect whether this needs to be regenerated, so for now let's always do it.
+.PHONY: assets/generated/image_load_order.txt
+assets/generated/image_load_order.txt:
+	mkdir -p assets/generated
+	scripts/image_load_order.sh > $@
 
 %.cp.json: %.cp.dot
 	neato -Tjson $< > $@

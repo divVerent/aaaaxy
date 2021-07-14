@@ -15,9 +15,11 @@
 package image
 
 import (
+	"bufio"
 	"fmt"
 	"image"
 	_ "image/png"
+	"path"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -67,6 +69,7 @@ func Precache() error {
 	if !*precacheImages {
 		return nil
 	}
+	toLoad := map[imagePath]struct{}{}
 	for _, purpose := range []string{"tiles", "sprites"} {
 		names, err := vfs.ReadDir(purpose)
 		if err != nil {
@@ -76,11 +79,32 @@ func Precache() error {
 			if !strings.HasSuffix(name, ".png") {
 				continue
 			}
-			_, err := Load(purpose, name)
-			if err != nil {
-				return fmt.Errorf("could not precache %v in %v: %v", name, purpose, err)
-			}
+			toLoad[imagePath{Purpose: purpose, Name: name}] = struct{}{}
 		}
+	}
+	listFile, err := vfs.Load("generated", "image_load_order.txt")
+	if err != nil {
+		return fmt.Errorf("could query load order: %v", err)
+	}
+	listScanner := bufio.NewScanner(listFile)
+	for listScanner.Scan() {
+		line := listScanner.Text()
+		purpose := path.Dir(line)
+		name := path.Base(line)
+		name = vfs.Canonical(purpose, name)
+		item := imagePath{Purpose: purpose, Name: name}
+		if _, found := toLoad[item]; found {
+			_, err := Load(item.Purpose, item.Name)
+			if err != nil {
+				return fmt.Errorf("could not precache %v: %v", item, err)
+			}
+			delete(toLoad, item)
+		} else {
+			return fmt.Errorf("could not find file for precache item %v", item)
+		}
+	}
+	for item := range toLoad {
+		return fmt.Errorf("could not find precache item for file %v", item)
 	}
 	cacheFrozen = true
 	return nil
