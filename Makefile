@@ -9,7 +9,7 @@ VERSION = github.com/divVerent/aaaaxy/internal/version
 # TODO glfw is gccgo-built, which still seems to include private paths. Fix.
 UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
-GENERATED_ASSETS = assets/maps/level.cp.json assets/generated/image_load_order.txt
+GENERATED_ASSETS = assets/generated/level.cp.json assets/generated/image_load_order.txt
 STATIK_ASSETS_ROOT = internal/assets
 STATIK_ASSETS = $(STATIK_ASSETS_ROOT)/statik/statik.go
 EXTRAFILES = README.md LICENSE CONTRIBUTING.md
@@ -83,13 +83,14 @@ assets/generated/image_load_order.txt: assets/tiles assets/sprites $(wildcard th
 	mkdir -p assets/generated
 	scripts/image_load_order.sh $^ > $@
 
-%.cp.json: %.cp.dot
+assets/generated/%.cp.json: assets/generated/%.cp.dot
 	neato -Tjson $< > $@
 
-%.cp.pdf: %.cp.dot
+assets/generated/%.cp.pdf: assets/generated/%.cp.dot
 	neato -Tpdf $< > $@
 
-%.cp.dot: %.tmx cmd/dumpcps/main.go
+assets/generated/%.cp.dot: assets/maps/%.tmx cmd/dumpcps/main.go
+	mkdir -p assets/generated
 	GOOS= GOARCH= go run $(DUMPCPS) $< > $@
 
 .PHONY: $(LICENSES_THIRD_PARTY)

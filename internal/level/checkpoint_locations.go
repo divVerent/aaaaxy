@@ -96,7 +96,7 @@ func possibleDirs(d m.Delta) (m.Delta, m.Delta) {
 }
 
 func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, error) {
-	r, err := vfs.Load("maps", filename+".cp.json")
+	r, err := vfs.Load("generated", filename+".cp.json")
 	if err != nil {
 		return nil, fmt.Errorf("could not load checkpoint locations for %q: %v", filename, err)
 	}
