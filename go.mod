@@ -7,7 +7,7 @@ require (
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
-	github.com/hajimehoshi/ebiten/v2 v2.1.2
+	github.com/hajimehoshi/ebiten/v2 v2.2.0-alpha.9.0.20210714035519-b249fe889da5
 	github.com/hajimehoshi/oto v0.7.2 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/mitchellh/hashstructure/v2 v2.0.2

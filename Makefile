@@ -31,7 +31,7 @@ LDFLAGS ?= -g0 -s
 INFIX =
 BINARY_ASSETS = $(STATIK_ASSETS)
 else
-GOFLAGS ?= -tags ebitensinglethread,ebitendebug
+GOFLAGS ?= -tags ebitensinglethread
 INFIX = -debug
 BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
@@ -79,11 +79,9 @@ $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 	CGO_LDFLAGS="$(CGO_LDFLAGS)" \
 	go build -o $(BINARY) $(GOFLAGS) $(PACKAGE)
 
-# Note: we can't detect whether this needs to be regenerated, so for now let's always do it.
-.PHONY: assets/generated/image_load_order.txt
-assets/generated/image_load_order.txt:
+assets/generated/image_load_order.txt: assets/tiles assets/sprites $(wildcard third_party/*/assets/sprites)
 	mkdir -p assets/generated
-	scripts/image_load_order.sh > $@
+	scripts/image_load_order.sh $^ > $@
 
 %.cp.json: %.cp.dot
 	neato -Tjson $< > $@

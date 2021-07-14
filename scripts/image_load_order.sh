@@ -18,9 +18,11 @@ set -e
 root=$PWD
 
 # Load largest images first to optimize the BSP-based atlas ebiten generates.
-for img in assets/*/*.png third_party/*/assets/*/*.png; do
-	vfsimg=${img#third_party/*/}
-	vfsimg=${vfsimg#assets/}
-	set -- $(identify -format '%[width] %[height]' "$img")
-	echo "$(($1 * $2)) $1 $2 $vfsimg"
+for dir in "$@"; do
+	for img in "$dir"/*.png; do
+		vfsimg=${img#third_party/*/}
+		vfsimg=${vfsimg#assets/}
+		set -- $(identify -format '%[width] %[height]' "$img")
+		echo "$(($1 * $2)) $1 $2 $vfsimg"
+	done
 done | sort -r -n -k 1,3 -s | cut -d ' ' -f 4
