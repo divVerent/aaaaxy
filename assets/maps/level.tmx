@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6564">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6577">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -14033,6 +14033,36 @@
   <object id="6563" type="Sprite" x="720" y="6480" width="128" height="80">
    <properties>
     <property name="image" value="can_stand_intro.png"/>
+   </properties>
+  </object>
+  <object id="6564" type="Sprite" x="768" y="64" width="160" height="112">
+   <properties>
+    <property name="image" value="switching_it_up.png"/>
+   </properties>
+  </object>
+  <object id="6565" type="Sprite" x="4272" y="80" width="272" height="192">
+   <properties>
+    <property name="image" value="stereo_madness.png"/>
+   </properties>
+  </object>
+  <object id="6566" type="Sprite" x="5760" y="64" width="112" height="112">
+   <properties>
+    <property name="image" value="huh.png"/>
+   </properties>
+  </object>
+  <object id="6567" gid="319" x="5936" y="64" width="32" height="32"/>
+  <object id="6575" type="Text" x="6368" y="64" width="144" height="32">
+   <properties>
+    <property name="image" value="huh.png"/>
+    <property name="text" value="Quo vadis?"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
+   </properties>
+  </object>
+  <object id="6576" type="Sprite" x="7440" y="208" width="64" height="64">
+   <properties>
+    <property name="image" value="recycle.png"/>
    </properties>
   </object>
  </objectgroup>
