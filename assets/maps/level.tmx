@@ -14045,7 +14045,7 @@
     <property name="image" value="stereo_madness.png"/>
    </properties>
   </object>
-  <object id="6566" type="Sprite" x="5760" y="64" width="112" height="112">
+  <object id="6566" type="Sprite" x="5760" y="96" width="112" height="112">
    <properties>
     <property name="image" value="huh.png"/>
    </properties>
