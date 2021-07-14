@@ -31,7 +31,7 @@ LDFLAGS ?= -g0 -s
 INFIX =
 BINARY_ASSETS = $(STATIK_ASSETS)
 else
-GOFLAGS ?= -tags ebitensinglethread
+GOFLAGS ?= -tags ebitensinglethread,ebitendebug
 INFIX = -debug
 BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
