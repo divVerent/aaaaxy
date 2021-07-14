@@ -4287,8 +4287,8 @@
   <object id="873" type="Animation" x="5856" y="7520" width="160" height="160">
    <properties>
     <property name="animation" value="clock"/>
-    <property name="animation_frame_interval" type="int" value="2"/>
-    <property name="animation_frames" type="int" value="60"/>
+    <property name="animation_frame_interval" type="int" value="4"/>
+    <property name="animation_frames" type="int" value="30"/>
     <property name="animation_group" value="top"/>
     <property name="animation_repeat_interval" type="int" value="120"/>
     <property name="animation_sync_to_music_offset" value="0.16s"/>

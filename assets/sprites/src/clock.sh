@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-for frame in $(seq 0 59); do
-	a=$(echo "$frame / 60 * 8 * a(1)" | bc -l)
+for frame in $(seq 0 29); do
+	a=$(echo "$frame / 30 * 8 * a(1)" | bc -l)
 	# Max angle:
 	# Can move 32 left/right.
 	# Total had length 80.
