@@ -70,7 +70,7 @@ vet:
 
 .PHONY: $(STATIK_ASSETS)
 $(STATIK_ASSETS): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
-	GOOS= GOARCH= ./statik-vfs.sh $(STATIK_ASSETS_ROOT)
+	GOOS= GOARCH= scripts/statik-vfs.sh $(STATIK_ASSETS_ROOT)
 
 $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 	CGO_CPPFLAGS="$(CGO_CPPFLAGS)" \
@@ -90,7 +90,7 @@ $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 
 .PHONY: $(LICENSES_THIRD_PARTY)
 $(LICENSES_THIRD_PARTY):
-	GOOS= GOARCH= ./collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
+	GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
 
 # Building of release zip files starts here.
 ZIPFILE = aaaaxy.zip
@@ -150,5 +150,5 @@ run: $(BINARY)
 
 .PHONY: setup-git
 setup-git:
-	git config filter.git-clean-tmx.clean "$$PWD"/git-clean-tmx.sh
+	git config filter.git-clean-tmx.clean "$$PWD"/scripts/git-clean-tmx.sh
 
