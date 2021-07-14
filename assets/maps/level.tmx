@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6577">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6578">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -14035,7 +14035,7 @@
     <property name="image" value="can_stand_intro.png"/>
    </properties>
   </object>
-  <object id="6564" type="Sprite" x="768" y="64" width="160" height="112">
+  <object id="6564" type="Sprite" x="768" y="80" width="160" height="112">
    <properties>
     <property name="image" value="switching_it_up.png"/>
    </properties>
@@ -14045,7 +14045,7 @@
     <property name="image" value="stereo_madness.png"/>
    </properties>
   </object>
-  <object id="6566" type="Sprite" x="5760" y="96" width="112" height="112">
+  <object id="6566" type="Sprite" x="5760" y="112" width="112" height="112">
    <properties>
     <property name="image" value="huh.png"/>
    </properties>
@@ -14063,6 +14063,11 @@
   <object id="6576" type="Sprite" x="7440" y="208" width="64" height="64">
    <properties>
     <property name="image" value="recycle.png"/>
+   </properties>
+  </object>
+  <object id="6577" type="Sprite" x="1168" y="224" width="64" height="64">
+   <properties>
+    <property name="image" value="told_you_about_stairs.png"/>
    </properties>
   </object>
  </objectgroup>
