@@ -74,6 +74,10 @@ func (key textCacheKey) load() (*ebiten.Image, error) {
 	bounds := fnt.BoundString(txt)
 	img := ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
 	fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, fg, bg)
+	// NewImageFromImage forces the text to actually be written to the atlas.
+	// Sadly we can only do that once actually initialized, as it reads from an *ebiten.Image.
+	// If only we could render the text to an image.Image... TBD.
+	// TODO(divVerent): Fix that, and move level precaching into engine.Precache.
 	img2 := ebiten.NewImageFromImage(img)
 	img.Dispose()
 	return img2, nil
