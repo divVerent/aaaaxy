@@ -31,7 +31,7 @@ LDFLAGS ?= -g0 -s
 INFIX =
 BINARY_ASSETS = $(STATIK_ASSETS)
 else
-GOFLAGS ?= -tags ebitensinglethread
+GOFLAGS ?= -tags ebitensinglethread,ebitendebug
 INFIX = -debug
 BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
@@ -151,7 +151,7 @@ allreleaseclean:
 # Helper targets.
 .PHONY: run
 run: $(BINARY)
-	./$(BINARY) $(ARGS)
+	EBITEN_INTERNAL_IMAGES_KEY=i EBITEN_SCREENSHOT_KEY=p ./$(BINARY) $(ARGS)
 
 .PHONY: setup-git
 setup-git:
