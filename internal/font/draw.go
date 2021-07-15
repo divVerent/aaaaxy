@@ -44,18 +44,18 @@ func (f Face) BoundString(str string) m.Rect {
 }
 
 // drawLine draws one line of text.
-func drawLine(f font.Face, dst draw.Image, line string, pos m.Pos, fg color.Color) {
+func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color) {
 	switch dst := dst.(type) {
 	case *ebiten.Image:
 		// Use ebiten's glyph cache.
-		text.Draw(dst, line, f, pos.X, pos.Y, fg)
+		text.Draw(dst, line, f, x, y, fg)
 	default:
 		// No glyph cache.
 		d := font.Drawer{
 			Dst:  dst,
 			Src:  image.NewUniform(fg),
 			Face: f,
-			Dot:  fixed.P(pos.X, pos.Y),
+			Dot:  fixed.P(x, y),
 		}
 		d.DrawString(line)
 	}
@@ -80,10 +80,10 @@ func (f Face) Draw(dst draw.Image, str string, pos m.Pos, centerX bool, fg, bg c
 		x := pos.X + totalBounds.Origin.X - lineBounds.Origin.X + (totalBounds.Size.DX-lineBounds.Size.DX)/2
 		y := fy.Floor()
 		if _, _, _, a := bg.RGBA(); a != 0 {
-			drawLine(f.Outline, dst, line, m.Pos{X: x, Y: y}, bg)
+			drawLine(f.Outline, dst, line, x, y, bg)
 		}
 		// Draw the text itself.
-		drawLine(f.Face, dst, line, m.Pos{X: x, Y: y}, fg)
+		drawLine(f.Face, dst, line, x, y, fg)
 		fy += f.Outline.Metrics().Height + 1 // Line height is 1 pixel above font height.
 	}
 }
