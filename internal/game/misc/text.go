@@ -74,7 +74,9 @@ func (key textCacheKey) load() (*ebiten.Image, error) {
 	bounds := fnt.BoundString(txt)
 	img := ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
 	fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, fg, bg)
-	return img, nil
+	img2 := ebiten.NewImageFromImage(img)
+	img.Dispose()
+	return img2, nil
 }
 
 func (t *Text) Precache(s *level.Spawnable) error {

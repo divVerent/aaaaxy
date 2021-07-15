@@ -174,11 +174,7 @@ func loadLevel() (*level.Level, error) {
 }
 
 func Precache() error {
-	lvl, err := loadLevel()
-	if err != nil {
-		return err
-	}
-	return precacheEntities(lvl)
+	return nil
 }
 
 // Init brings a world into a working state.
@@ -205,6 +201,11 @@ func (w *World) Init(saveState int) error {
 		saveState: saveState,
 	}
 	w.renderer.Init(w)
+
+	err = precacheEntities(lvl)
+	if err != nil {
+		return fmt.Errorf("failed to precache entities: %v", err)
+	}
 
 	// Load tile the player starts on.
 	w.setScrollPos(w.Level.Player.LevelPos.Mul(level.TileSize)) // Needed so we can set the tile.
