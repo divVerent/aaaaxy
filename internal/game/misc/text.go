@@ -16,6 +16,7 @@ package misc
 
 import (
 	"fmt"
+	"image"
 	"image/color"
 	"log"
 	"strings"
@@ -72,14 +73,19 @@ func (key textCacheKey) load() (*ebiten.Image, error) {
 	}
 	txt := strings.ReplaceAll(key.text, "  ", "\n")
 	bounds := fnt.BoundString(txt)
-	img := ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
+	img := image.NewRGBA( // image.RGBA is ebiten's fast path.
+		image.Rectangle{
+			Min: image.Point{
+				X: 0,
+				Y: 0,
+			},
+			Max: image.Point{
+				X: bounds.Size.DX,
+				Y: bounds.Size.DY,
+			},
+		})
 	fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, fg, bg)
-	// NewImageFromImage forces the text to actually be written to the atlas.
-	// Sadly we can only do that once actually initialized, as it reads from an *ebiten.Image.
-	// If only we could render the text to an image.Image... TBD.
-	// TODO(divVerent): Fix that, and move level precaching into engine.Precache.
 	img2 := ebiten.NewImageFromImage(img)
-	img.Dispose()
 	return img2, nil
 }
 

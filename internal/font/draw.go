@@ -15,11 +15,14 @@
 package font
 
 import (
+	"image"
 	"image/color"
+	"image/draw"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/text"
+	"golang.org/x/image/font"
 	"golang.org/x/image/math/fixed"
 
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -40,8 +43,26 @@ func (f Face) BoundString(str string) m.Rect {
 	}
 }
 
+// drawLine draws one line of text.
+func drawLine(f font.Face, dst draw.Image, line string, pos m.Pos, fg color.Color) {
+	switch dst := dst.(type) {
+	case *ebiten.Image:
+		// Use ebiten's glyph cache.
+		text.Draw(dst, line, f, pos.X, pos.Y, fg)
+	default:
+		// No glyph cache.
+		d := font.Drawer{
+			Dst:  dst,
+			Src:  image.NewUniform(fg),
+			Face: f,
+			Dot:  fixed.P(pos.X, pos.Y),
+		}
+		d.DrawString(line)
+	}
+}
+
 // Draw draws the given text.
-func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, centerX bool, fg, bg color.Color) {
+func (f Face) Draw(dst draw.Image, str string, pos m.Pos, centerX bool, fg, bg color.Color) {
 	// We need to do our own line splitting because
 	// we always want to center and ebiten would left adjust.
 	var totalBounds m.Rect
@@ -59,10 +80,10 @@ func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, centerX bool, fg, b
 		x := pos.X + totalBounds.Origin.X - lineBounds.Origin.X + (totalBounds.Size.DX-lineBounds.Size.DX)/2
 		y := fy.Floor()
 		if _, _, _, a := bg.RGBA(); a != 0 {
-			text.Draw(dst, line, f.Outline, x, y, bg)
+			drawLine(f.Outline, dst, line, m.Pos{X: x, Y: y}, bg)
 		}
 		// Draw the text itself.
-		text.Draw(dst, line, f.Face, x, y, fg)
+		drawLine(f.Face, dst, line, m.Pos{X: x, Y: y}, fg)
 		fy += f.Outline.Metrics().Height + 1 // Line height is 1 pixel above font height.
 	}
 }
