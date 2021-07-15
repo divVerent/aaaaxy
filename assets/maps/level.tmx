@@ -5498,27 +5498,27 @@
     <property name="target" value="=ShepardB =ShepardSequenceB"/>
    </properties>
   </object>
-  <object id="1210" type="SetState" x="4270" y="5808" width="2" height="2">
+  <object id="1210" type="SetState" x="4270" y="5796" width="2" height="2">
    <properties>
     <property name="target" value="=ShepardC# =ShepardSequenceC#"/>
    </properties>
   </object>
-  <object id="1211" type="SetState" x="4288" y="5808" width="2" height="2">
+  <object id="1211" type="SetState" x="4288" y="5796" width="2" height="2">
    <properties>
     <property name="target" value="=ShepardD# =ShepardSequenceD#"/>
    </properties>
   </object>
-  <object id="1212" type="SetState" x="4317" y="5808" width="2" height="2">
+  <object id="1212" type="SetState" x="4317" y="5796" width="2" height="2">
    <properties>
     <property name="target" value="=ShepardF# =ShepardSequenceF#"/>
    </properties>
   </object>
-  <object id="1213" type="SetState" x="4335" y="5808" width="2" height="2">
+  <object id="1213" type="SetState" x="4335" y="5796" width="2" height="2">
    <properties>
     <property name="target" value="=ShepardG# =ShepardSequenceG#"/>
    </properties>
   </object>
-  <object id="1214" type="SetState" x="4353" y="5808" width="2" height="2">
+  <object id="1214" type="SetState" x="4353" y="5796" width="2" height="2">
    <properties>
     <property name="target" value="=ShepardA# =ShepardSequenceA#"/>
    </properties>
@@ -5558,27 +5558,27 @@
     <property name="sound" value="shepard_11.ogg"/>
    </properties>
   </object>
-  <object id="1222" name="ShepardC#" type="SoundTarget" x="4270" y="5804" width="2" height="2">
+  <object id="1222" name="ShepardC#" type="SoundTarget" x="4270" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_01.ogg"/>
    </properties>
   </object>
-  <object id="1223" name="ShepardD#" type="SoundTarget" x="4288" y="5804" width="2" height="2">
+  <object id="1223" name="ShepardD#" type="SoundTarget" x="4288" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_03.ogg"/>
    </properties>
   </object>
-  <object id="1224" name="ShepardF#" type="SoundTarget" x="4317" y="5804" width="2" height="2">
+  <object id="1224" name="ShepardF#" type="SoundTarget" x="4317" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_06.ogg"/>
    </properties>
   </object>
-  <object id="1225" name="ShepardG#" type="SoundTarget" x="4335" y="5804" width="2" height="2">
+  <object id="1225" name="ShepardG#" type="SoundTarget" x="4335" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_08.ogg"/>
    </properties>
   </object>
-  <object id="1226" name="ShepardA#" type="SoundTarget" x="4353" y="5804" width="2" height="2">
+  <object id="1226" name="ShepardA#" type="SoundTarget" x="4353" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_10.ogg"/>
    </properties>
@@ -5635,31 +5635,31 @@
     <property name="target" value="ShepardSequence"/>
    </properties>
   </object>
-  <object id="1236" name="ShepardSequenceC#" type="SequenceTarget" x="4270" y="5799" width="2" height="2">
+  <object id="1236" name="ShepardSequenceC#" type="SequenceTarget" x="4270" y="5787" width="2" height="2">
    <properties>
     <property name="sequence" value="C#"/>
     <property name="target" value="ShepardSequence"/>
    </properties>
   </object>
-  <object id="1237" name="ShepardSequenceD#" type="SequenceTarget" x="4288" y="5799" width="2" height="2">
+  <object id="1237" name="ShepardSequenceD#" type="SequenceTarget" x="4288" y="5787" width="2" height="2">
    <properties>
     <property name="sequence" value="D#"/>
     <property name="target" value="ShepardSequence"/>
    </properties>
   </object>
-  <object id="1238" name="ShepardSequenceF#" type="SequenceTarget" x="4317" y="5799" width="2" height="2">
+  <object id="1238" name="ShepardSequenceF#" type="SequenceTarget" x="4317" y="5787" width="2" height="2">
    <properties>
     <property name="sequence" value="F#"/>
     <property name="target" value="ShepardSequence"/>
    </properties>
   </object>
-  <object id="1239" name="ShepardSequenceG#" type="SequenceTarget" x="4335" y="5799" width="2" height="2">
+  <object id="1239" name="ShepardSequenceG#" type="SequenceTarget" x="4335" y="5787" width="2" height="2">
    <properties>
     <property name="sequence" value="G#"/>
     <property name="target" value="ShepardSequence"/>
    </properties>
   </object>
-  <object id="1240" name="ShepardSequenceA#" type="SequenceTarget" x="4353" y="5799" width="2" height="2">
+  <object id="1240" name="ShepardSequenceA#" type="SequenceTarget" x="4353" y="5787" width="2" height="2">
    <properties>
     <property name="sequence" value="A#"/>
     <property name="target" value="ShepardSequence"/>
