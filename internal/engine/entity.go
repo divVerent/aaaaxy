@@ -81,6 +81,12 @@ type EntityImpl interface {
 	Touch(other *Entity)
 }
 
+// Some entities fulfill PrecacheImpl. These will get precached.
+type Precacher interface {
+	// Precache gets called during level loading to preload anything the entity may need.
+	Precache(s *level.Spawnable) error
+}
+
 // entityTypes is a helper map to know how to spawn an entity.
 var entityTypes = map[string]EntityImpl{}
 
@@ -93,6 +99,27 @@ func RegisterEntityType(t EntityImpl) {
 	}
 	entityTypes[typeName] = t
 	log.Printf("Registered entity type %q", typeName)
+}
+
+// Precache all entities.
+func precacheEntities(lvl *level.Level) error {
+	var err error
+	lvl.ForEachTile(func(pos m.Pos, t *level.LevelTile) {
+		for _, s := range t.Tile.Spawnables {
+			if err != nil {
+				break
+			}
+			eTmpl := entityTypes[s.EntityType]
+			if eTmpl == nil {
+				err = fmt.Errorf("unknown entity type %q", s.EntityType)
+				break
+			}
+			if precacher, ok := eTmpl.(Precacher); ok {
+				err = precacher.Precache(s)
+			}
+		}
+	})
+	return err
 }
 
 // Spawn turns a Spawnable into an Entity.

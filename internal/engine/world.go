@@ -164,13 +164,29 @@ func (w *World) clearEntities() {
 	})
 }
 
-// Init brings a world into a working state.
-// Can be called more than once to reset _everything_.
-func (w *World) Init(saveState int) error {
+func loadLevel() (*level.Level, error) {
 	// Load map.
 	lvl, err := level.Load("level")
 	if err != nil {
-		return fmt.Errorf("could not load level: %v", err)
+		return nil, fmt.Errorf("could not load level: %v", err)
+	}
+	return lvl, nil
+}
+
+func Precache() error {
+	lvl, err := loadLevel()
+	if err != nil {
+		return err
+	}
+	return precacheEntities(lvl)
+}
+
+// Init brings a world into a working state.
+// Can be called more than once to reset _everything_.
+func (w *World) Init(saveState int) error {
+	lvl, err := loadLevel()
+	if err != nil {
+		return err
 	}
 
 	// Allow reiniting if already done.

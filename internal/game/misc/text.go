@@ -17,13 +17,20 @@ package misc
 import (
 	"fmt"
 	"image/color"
+	"log"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/level"
+	m "github.com/divVerent/aaaaxy/internal/math"
+)
+
+var (
+	precacheText = flag.Bool("precache_text", true, "preload all text objects at startup (VERY recommended)")
 )
 
 // Text is a simple entity type that renders text.
@@ -32,39 +39,95 @@ type Text struct {
 	Entity *engine.Entity
 }
 
+var _ engine.Precacher = &Text{}
+
+type textCacheKey struct {
+	font   string
+	fg, bg string
+	text   string
+}
+
+var textCache = map[textCacheKey]*ebiten.Image{}
+
+func cacheKey(s *level.Spawnable) textCacheKey {
+	return textCacheKey{
+		font: s.Properties["text_font"],
+		fg:   s.Properties["text_fg"],
+		bg:   s.Properties["text_bg"],
+		text: s.Properties["text"],
+	}
+}
+
+func (key textCacheKey) load() (*ebiten.Image, error) {
+	fnt := font.ByName[key.font]
+	if fnt.Face == nil {
+		return nil, fmt.Errorf("could not find font %q", key.font)
+	}
+	var fg, bg color.NRGBA
+	if _, err := fmt.Sscanf(key.fg, "#%02x%02x%02x%02x", &fg.A, &fg.R, &fg.G, &fg.B); err != nil {
+		return nil, fmt.Errorf("could not decode color %q: %v", key.fg, err)
+	}
+	if _, err := fmt.Sscanf(key.bg, "#%02x%02x%02x%02x", &bg.A, &bg.R, &bg.G, &bg.B); err != nil {
+		return nil, fmt.Errorf("could not decode color %q: %v", key.bg, err)
+	}
+	txt := strings.ReplaceAll(key.text, "  ", "\n")
+	bounds := fnt.BoundString(txt)
+	img := ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
+	fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, fg, bg)
+	return img, nil
+}
+
+func (t *Text) Precache(s *level.Spawnable) error {
+	if !*precacheText {
+		return nil
+	}
+	log.Printf("precaching text for entity %v", s.ID)
+	key := cacheKey(s)
+	if textCache[key] != nil {
+		return nil
+	}
+	img, err := key.load()
+	if err != nil {
+		return fmt.Errorf("could not precache text image for entity %v: %v", s, err)
+	}
+	textCache[key] = img
+	return nil
+}
+
 func (t *Text) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
 	if s.Properties["no_flip"] == "" {
 		s.Properties["no_flip"] = "x"
 	}
+
+	key := cacheKey(s)
+	if *precacheText {
+		e.Image = textCache[key]
+		if e.Image == nil {
+			return fmt.Errorf("could not find precached text image for entity %v", s)
+		}
+	} else {
+		var err error
+		e.Image, err = key.load()
+		if err != nil {
+			return fmt.Errorf("could not render text image for entity %v: %v", s, err)
+		}
+	}
+
 	t.Entity = e
-	fntString := s.Properties["text_font"]
-	fnt := font.ByName[fntString]
-	if fnt.Face == nil {
-		return fmt.Errorf("could not find font %q", fntString)
-	}
-	var fg, bg color.NRGBA
-	fgString := s.Properties["text_fg"]
-	if _, err := fmt.Sscanf(fgString, "#%02x%02x%02x%02x", &fg.A, &fg.R, &fg.G, &fg.B); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", fgString, err)
-	}
-	bgString := s.Properties["text_bg"]
-	if _, err := fmt.Sscanf(bgString, "#%02x%02x%02x%02x", &bg.A, &bg.R, &bg.G, &bg.B); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", bgString, err)
-	}
-	txt := strings.ReplaceAll(s.Properties["text"], "  ", "\n")
-	bounds := fnt.BoundString(txt)
-	e.Image = ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
-	fnt.Draw(e.Image, txt, bounds.Origin.Mul(-1), false, fg, bg)
 	e.ResizeImage = false
+	dx, dy := e.Image.Size()
 	if e.Orientation.Right.DX == 0 {
-		bounds.Size.DX, bounds.Size.DY = bounds.Size.DY, bounds.Size.DX
+		dx, dy = dy, dx
 	}
-	centerOffset := e.Rect.Size.Sub(bounds.Size).Div(2)
+	centerOffset := e.Rect.Size.Sub(m.Delta{DX: dx, DY: dy}).Div(2)
 	e.RenderOffset = e.RenderOffset.Add(centerOffset)
 	return t.SpriteBase.Spawn(w, s, e)
 }
 
 func (t *Text) Despawn() {
+	if *precacheText {
+		return
+	}
 	t.Entity.Image.Dispose()
 	t.Entity.Image = nil
 }

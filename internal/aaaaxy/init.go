@@ -117,6 +117,10 @@ func InitEbiten() error {
 	if err != nil {
 		return fmt.Errorf("could not precache sounds: %v", err)
 	}
+	err = engine.Precache()
+	if err != nil {
+		return fmt.Errorf("could not precache engine: %v", err)
+	}
 	err = noise.Init()
 	if err != nil {
 		return fmt.Errorf("could not initialize noise: %v", err)
