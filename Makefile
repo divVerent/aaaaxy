@@ -31,8 +31,13 @@ LDFLAGS ?= -g0 -s
 INFIX =
 BINARY_ASSETS = $(STATIK_ASSETS)
 else
+ifeq ($(BUILDTYPE),extradebug)
 GOFLAGS ?= -tags ebitensinglethread,ebitendebug
+INFIX = -extradebug
+else
+GOFLAGS ?= -tags ebitensinglethread
 INFIX = -debug
+endif
 BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
 BINARY = aaaaxy$(INFIX)$(SUFFIX)
