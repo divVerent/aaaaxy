@@ -34,7 +34,7 @@ import (
 )
 
 var (
-	pinFontsToCache       = flag.Bool("pin_fonts_to_cache", false, "Pin all fonts to glyph cache.")
+	pinFontsToCache       = flag.Bool("pin_fonts_to_cache", true, "Pin all fonts to glyph cache.")
 	pinFontsToCacheHarder = flag.Bool("pin_fonts_to_cache_harder", false, "Do a dummy draw command to pin fonts to glyph cache harder.")
 	fontThreshold         = flag.Int("font_threshold", 0x5E00, "Threshold for font rendering; lower values are bolder. 0 means antialias as usual; threshold range is 1 to 65535 inclusive.")
 	fontExtraSpacing      = flag.Int("font_extra_spacing", 32, "Additional spacing for fonts in 64th pixels; should help with outline effect.")
