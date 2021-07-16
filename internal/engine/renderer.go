@@ -165,24 +165,26 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 	minZ, maxZ := zBounds(len(r.world.entitiesByZ))
 	for z := minZ; z <= maxZ; z++ {
-		r.world.entitiesByZ[encodeZ(z)].forEach(func(ent *Entity) error {
-			if ent.Image == nil || ent.Alpha == 0 {
+		for _, colormods := range []bool{true, false} {
+			r.world.entitiesByZ[encodeZ(z)].forEach(func(ent *Entity) error {
+				if ent.Image == nil || ent.Alpha == 0 || (ent.ColorAdd != [4]float64{0, 0, 0, 0}) != colormods {
+					return nil
+				}
+				screenPos := ent.Rect.Origin.Add(scrollDelta).Add(ent.RenderOffset)
+				opts := ebiten.DrawImageOptions{
+					CompositeMode: ebiten.CompositeModeSourceOver,
+					Filter:        ebiten.FilterNearest,
+				}
+				w, h := ent.Image.Size()
+				imageSize := m.Delta{DX: w, DY: h}
+				setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation)
+				opts.ColorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.ColorMod[3])
+				opts.ColorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], ent.ColorAdd[3])
+				opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
+				screen.DrawImage(ent.Image, &opts)
 				return nil
-			}
-			screenPos := ent.Rect.Origin.Add(scrollDelta).Add(ent.RenderOffset)
-			opts := ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeSourceOver,
-				Filter:        ebiten.FilterNearest,
-			}
-			w, h := ent.Image.Size()
-			imageSize := m.Delta{DX: w, DY: h}
-			setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation)
-			opts.ColorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.ColorMod[3])
-			opts.ColorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], ent.ColorAdd[3])
-			opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
-			screen.DrawImage(ent.Image, &opts)
-			return nil
-		})
+			})
+		}
 	}
 }
 
