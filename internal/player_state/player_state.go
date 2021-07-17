@@ -158,14 +158,16 @@ type SpeedrunCategories int
 
 const (
 	AnyPercentSpeedrun     SpeedrunCategories = 0x01
-	HundredPercentSpeedrun                    = 0x02
-	AllFlippedSpeedrun                        = 0x04
-	NoEscapeSpeedrun                          = 0x08
-	AllSignsSpeedrun                          = 0x10
+	HundredPercentSpeedrun SpeedrunCategories = 0x02
+	AllFlippedSpeedrun     SpeedrunCategories = 0x04
+	NoEscapeSpeedrun       SpeedrunCategories = 0x08
+	AllSignsSpeedrun       SpeedrunCategories = 0x10
+	AllPathsSpeedrun       SpeedrunCategories = 0x20
+	allCategoriesSpeedrun  SpeedrunCategories = 0x3F
 )
 
 func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
-	cat := AnyPercentSpeedrun | HundredPercentSpeedrun | AllFlippedSpeedrun | NoEscapeSpeedrun | AllSignsSpeedrun
+	cat := allCategoriesSpeedrun
 	if !s.Won() {
 		cat &^= AnyPercentSpeedrun
 	}
@@ -184,6 +186,14 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 			cat &^= HundredPercentSpeedrun
 		case SeenNormal:
 			cat &^= AllFlippedSpeedrun
+		}
+		for _, next := range s.Level.CheckpointLocations.Locs[cp].NextByDir {
+			if next.Forward || next.Optional {
+				continue
+			}
+			if !s.CheckpointsWalked(cp, next.Other) {
+				cat &^= AllPathsSpeedrun
+			}
 		}
 	}
 	if s.Escapes() != 0 {

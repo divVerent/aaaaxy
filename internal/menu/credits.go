@@ -84,6 +84,9 @@ func (s *CreditsScreen) Init(m *Menu) error {
 		if cat&player_state.AllSignsSpeedrun != 0 {
 			s.Lines = append(s.Lines, "All Signs")
 		}
+		if cat&player_state.AllPathsSpeedrun != 0 {
+			s.Lines = append(s.Lines, "All Paths")
+		}
 		s.Lines = append(s.Lines,
 			"",
 			"Thank You!")
