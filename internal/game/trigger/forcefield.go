@@ -18,7 +18,6 @@ import (
 	"fmt"
 	go_image "image"
 	"log"
-	"math"
 	"math/rand"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -179,7 +178,7 @@ func (f *ForceField) Touch(other *engine.Entity) {
 	cc.DX *= (other.Rect.Size.DY + f.Entity.Rect.Size.DY)
 	cc.DY *= (other.Rect.Size.DX + f.Entity.Rect.Size.DX)
 	// Scale to strength.
-	away := cc.MulFloat(forceFieldStrength / math.Sqrt(float64(cc.Length2())))
+	away := cc.WithLength(forceFieldStrength)
 	// Perform the jump.
 	p.SetVelocityForJump(away)
 	f.ShockSound.Play()

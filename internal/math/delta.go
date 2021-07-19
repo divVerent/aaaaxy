@@ -85,6 +85,23 @@ func (d Delta) MulFloat(f float64) Delta {
 	return Delta{DX: Rint(float64(d.DX) * f), DY: Rint(float64(d.DY) * f)}
 }
 
+func (d Delta) WithLength(f float64) Delta {
+	n := math.Sqrt(float64(d.Length2()))
+	if n == 0 {
+		return d
+	}
+	return d.MulFloat(f / n)
+}
+
+func (d Delta) WithMaxLength(f float64) Delta {
+	n2 := float64(d.Length2())
+	if n2 <= f*f {
+		return d
+	}
+	n := math.Sqrt(n2)
+	return d.MulFloat(f / n)
+}
+
 func North() Delta {
 	return Delta{DX: 0, DY: -1}
 }

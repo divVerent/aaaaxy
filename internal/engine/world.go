@@ -19,7 +19,6 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"math"
 	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -495,12 +494,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		w.renderer.visiblePolygon = make([]m.Pos, wantLen)
 	}
 	addTrace := func(rawTarget m.Pos, index int) {
-		delta := rawTarget.Delta(w.scrollPos)
-		targetDist := delta.Length2()
-		if targetDist > maxDist*maxDist {
-			f := float64(maxDist) / math.Sqrt(float64(targetDist))
-			delta = delta.MulFloat(f)
-		}
+		delta := rawTarget.Delta(w.scrollPos).WithMaxLength(float64(maxDist))
 		target := w.scrollPos.Add(delta)
 		trace := w.traceLineAndMark(eye, target, &w.traceLineAndMarkPath)
 		w.renderer.visiblePolygon[index] = trace.EndPos

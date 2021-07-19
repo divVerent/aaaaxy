@@ -16,7 +16,6 @@ package riser
 
 import (
 	"fmt"
-	"math"
 
 	"github.com/divVerent/aaaaxy/internal/animation"
 	"github.com/divVerent/aaaaxy/internal/engine"
@@ -312,7 +311,7 @@ func (r *Riser) Update() {
 					upDown = -upDown
 				}
 				fullDelta = fullDelta.Add(left.Mul(upDown))
-				scaledDelta = fullDelta.MulFloat(RepelSpeed / math.Sqrt(float64(fullDelta.Length2())))
+				scaledDelta = fullDelta.WithLength(RepelSpeed)
 			}
 			r.Velocity = r.Velocity.Add(scaledDelta)
 		}

@@ -86,17 +86,12 @@ func (v *Movable) Update() {
 	}
 	deltaSub := target.Delta(v.Entity.Rect.Origin).Mul(constants.SubPixelScale)
 	deltaSub = deltaSub.Add(m.Delta{DX: constants.SubPixelScale / 2, DY: constants.SubPixelScale / 2}).Sub(v.SubPixel)
-	deltaLen := math.Sqrt(float64(deltaSub.Length2()))
-	if deltaLen == 0 {
+	if deltaSub.IsZero() {
 		v.Physics.Velocity = m.Delta{}
 	} else {
 		curSpeed := math.Sqrt(float64(v.Physics.Velocity.Length2()))
 		wantSpeed := curSpeed + v.Acceleration
-		maxSpeed := deltaLen
-		if wantSpeed > maxSpeed {
-			wantSpeed = maxSpeed
-		}
-		v.Physics.Velocity = deltaSub.MulFloat(wantSpeed / deltaLen)
+		v.Physics.Velocity = deltaSub.WithMaxLength(wantSpeed)
 	}
 
 	// Move.
