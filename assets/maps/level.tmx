@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6579">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6580">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -14074,6 +14074,11 @@
   <object id="6578" type="Sprite" x="4240" y="6080" width="144" height="144">
    <properties>
     <property name="image" value="trololo.png"/>
+   </properties>
+  </object>
+  <object id="6579" type="Sprite" x="720" y="6064" width="128" height="112">
+   <properties>
+    <property name="image" value="bings_house.png"/>
    </properties>
   </object>
  </objectgroup>
