@@ -194,7 +194,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			}
 			otherName := edge.Other
 			edgeSeen := s.Menu.World.PlayerState.CheckpointsWalked(cpName, otherName)
-			farPos := pos.Add(dir.Mul(edgeFarAttachDistance))
+			otherLoc := loc.Locs[otherName]
+			otherPos := otherLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
+			farPos := pos.Add(otherPos.Delta(pos).WithMaxLength(edgeFarAttachDistance))
 			options := &ebiten.DrawTrianglesOptions{
 				CompositeMode: ebiten.CompositeModeSourceOver,
 				Filter:        ebiten.FilterNearest,
@@ -202,8 +204,6 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			geoM := &ebiten.GeoM{}
 			geoM.Scale(0, 0)
 			if edgeSeen {
-				otherLoc := loc.Locs[otherName]
-				otherPos := otherLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
 				color := lineColor
 				if cpName == s.CurrentCP || otherName == s.CurrentCP {
 					color = selectedLineColor
