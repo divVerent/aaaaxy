@@ -21,13 +21,49 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+)
+
+var (
+	checkSprites = flag.Bool("check_sprites", false, "check that all sprites exist at startup (NOT recommended)")
 )
 
 // Sprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
 type Sprite struct {
 	SpriteBase
+}
+
+var _ engine.Precacher = &Sprite{}
+
+func (s *Sprite) Precache(sp *level.Spawnable) error {
+	if !*checkSprites {
+		return nil
+	}
+	directory := sp.Properties["image_dir"]
+	if directory == "" {
+		directory = "sprites"
+	}
+	imgSrc := sp.Properties["image"]
+	_, err := image.Load(directory, imgSrc)
+	if err != nil {
+		return err
+	}
+	imgSrcByOrientation, err := level.ParseImageSrcByOrientation(imgSrc, sp.Properties)
+	if err != nil {
+		return err
+	}
+	for _, thisSrc := range imgSrcByOrientation {
+		if thisSrc == "" {
+			continue
+		}
+		_, err := image.Load(directory, thisSrc)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {

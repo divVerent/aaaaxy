@@ -27,7 +27,7 @@ import (
 // SpriteBase is a base class for sprites.
 // To instantiate it, just set the entity image, then forward to this.
 type SpriteBase struct {
-	ZBase int
+	ZDefault int
 }
 
 func (s *SpriteBase) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -66,7 +66,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 		e.ColorMod[2] = float64(b)/255.0 - e.ColorAdd[2]
 		e.ColorMod[3] = float64(a)/255.0 - e.ColorAdd[3]
 	}
-	z := s.ZBase
+	z := s.ZDefault
 	if sp.Properties["z_index"] != "" {
 		zIndex, err := strconv.Atoi(sp.Properties["z_index"])
 		if err != nil {
@@ -75,7 +75,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 		if zIndex < constants.MinSpriteZ || zIndex > constants.MaxSpriteZ {
 			return fmt.Errorf("z index out of range: got %v, want %v..%v", zIndex, constants.MinSpriteZ, constants.MaxSpriteZ)
 		}
-		z += zIndex
+		z = zIndex
 	}
 	w.SetZIndex(e, z)
 	if sp.Properties["no_transform"] == "true" {

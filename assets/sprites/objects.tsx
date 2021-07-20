@@ -102,16 +102,20 @@
  <tile id="18" type="SwitchableSprite">
   <properties>
    <property name="image_dir" value=""/>
-   <property name="image" value=""/>
+   <property name="image" value="switchblock_off.png"/>
    <property name="invert" type="bool" value="true"/>
+   <property name="solid" type="bool" value="true"/>
+   <property name="no_transform" type="bool" value="true"/>
   </properties>
   <image width="16" height="16" source="switchblock_off.png"/>
  </tile>
  <tile id="19" type="SwitchableSprite">
   <properties>
    <property name="image_dir" value=""/>
-   <property name="image" value=""/>
+   <property name="image" value="switchblock_on.png"/>
    <property name="invert" type="bool" value="false"/>
+   <property name="solid" type="bool" value="true"/>
+   <property name="no_transform" type="bool" value="true"/>
   </properties>
   <image width="16" height="16" source="switchblock_on.png"/>
  </tile>

@@ -29,27 +29,8 @@ type SwitchableSprite struct {
 }
 
 func (s *SwitchableSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
-	// Default sprites for easy mapping and coherence.
-	if sp.Properties["image"] == "" {
-		if sp.Properties["invert"] == "true" { // Default false.
-			// This block shows by default, and thus whenever it is "off".
-			sp.Properties["image"] = "switchblock_off.png"
-		} else {
-			// This block shows only when switched on.
-			sp.Properties["image"] = "switchblock_on.png"
-		}
-		if sp.Properties["solid"] == "" {
-			sp.Properties["solid"] = "true"
-		}
-		if sp.Properties["no_transform"] == "" {
-			sp.Properties["no_transform"] = "true"
-		}
-		// HACK: allow switch blocks use a higher Z by default.
-		if sp.Properties["z_index"] == "" {
-			s.ZBase = constants.SwitchBlockZ
-		}
-	}
-
+	// Hack to have switch blocks above some other stuff.
+	s.Sprite.ZDefault = constants.SwitchBlockZ
 	err := s.Sprite.Spawn(w, sp, e)
 	if err != nil {
 		return err

@@ -116,6 +116,9 @@ func precacheEntities(lvl *level.Level) error {
 			}
 			if precacher, ok := eTmpl.(Precacher); ok {
 				err = precacher.Precache(s)
+				if err != nil {
+					err = fmt.Errorf("failed to precache entity %v: %v", s, err)
+				}
 			}
 		}
 	})
