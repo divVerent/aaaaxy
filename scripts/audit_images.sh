@@ -17,7 +17,7 @@ find . -name \*.png | sort | while read -r file; do
 		-write MPR:orig \
 		-channel RGB -remap scripts/cga_palette.pnm +channel \
 		MPR:orig -alpha set -compose copy-opacity -composite \
-		-channel A -threshold 50% +channel
+		-channel A -threshold 25% +channel
 	f=$(
 		convert \
 			\( "$file" -depth 8 +dither \) \
