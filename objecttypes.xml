@@ -47,6 +47,10 @@
   <property name="text" type="string"/>
   <property name="vvvvvv" type="bool" default="false"/>
  </objecttype>
+ <objecttype name="DelayTarget" color="#000000">
+  <property name="delay" type="string" default="0s"/>
+  <property name="target" type="string"/>
+ </objecttype>
  <objecttype name="DisappearBlock" color="#00aa00"/>
  <objecttype name="ForceField" color="#ff00ff">
   <property name="orientation" type="string"/>
@@ -55,8 +59,7 @@
   <property name="ability" type="string"/>
   <property name="text" type="string"/>
  </objecttype>
- <objecttype name="Goal" color="#ffff00">
- </objecttype>
+ <objecttype name="Goal" color="#ffff00"/>
  <objecttype name="JumpPad" color="#ff00ff">
   <property name="delta" type="string"/>
   <property name="height" type="string"/>
@@ -69,8 +72,8 @@
   <property name="target" type="string"/>
  </objecttype>
  <objecttype name="MovableSprite" color="#ffffff">
-  <property name="alpha" type="string"/>
   <property name="acceleration" type="string"/>
+  <property name="alpha" type="string"/>
   <property name="border_pixels" type="int" default="0"/>
   <property name="delta" type="string"/>
   <property name="image" type="string"/>
@@ -122,6 +125,7 @@
  <objecttype name="QuestionBlock" color="#000000">
   <property name="kaizo" type="bool" default="false"/>
  </objecttype>
+ <objecttype name="RespawnPlayer" color="#ff0000"/>
  <objecttype name="Riser" color="#000080"/>
  <objecttype name="RiserFsck" color="#ffff80"/>
  <objecttype name="SequenceCollector" color="#00ff00">
@@ -143,16 +147,15 @@
  </objecttype>
  <objecttype name="SetStateTarget" color="#ff0000">
   <property name="exclusive_targets" type="string"/>
+  <property name="on_spawn" type="bool" default="false"/>
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
-  <property name="on_spawn" type="bool" default="false"/>
  </objecttype>
  <objecttype name="SoundTarget" color="#0000ff">
   <property name="sound" type="file" default=""/>
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
- <objecttype name="RespawnPlayer" color="#ff0000"/>
  <objecttype name="Sprite" color="#ffffff">
   <property name="alpha" type="string"/>
   <property name="border_pixels" type="int" default="0"/>
@@ -171,6 +174,7 @@
   <property name="solid" type="bool" default="false"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
+ <objecttype name="StopTimerTarget" color="#ff00ff"/>
  <objecttype name="Switch" color="#ff0000">
   <property name="exclusive_targets" type="string"/>
   <property name="invert" type="bool" default="false"/>

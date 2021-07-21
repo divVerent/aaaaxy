@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6652">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6656">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -14328,20 +14328,42 @@
   <object id="6643" name="FinalGoal" type="Goal" x="2048" y="4704" width="32" height="31"/>
   <object id="6644" type="SetState" x="2048" y="4735" width="32" height="1">
    <properties>
-    <property name="target" value="FinalGoal FinalSound FinalFade"/>
+    <property name="target" value="FinalGoal FinalStopTimer FinalSound FinalFade FinalZoomDelay FinalCreditsDelay"/>
    </properties>
   </object>
   <object id="6645" name="FinalSound" type="SoundTarget" x="2048" y="4672" width="32" height="16">
    <properties>
     <property name="sound" value="youre_winner.ogg"/>
-    <property name="state" type="bool" value="false"/>
-    <property name="target" value="FinalCredits"/>
    </properties>
   </object>
-  <object id="6647" name="FinalCredits" type="CreditsTarget" x="2048" y="4656" width="32" height="16"/>
-  <object id="6648" name="FinalFade" type="FadeTarget" x="2048" y="4688" width="32" height="16"/>
+  <object id="6647" name="FinalCredits" type="CreditsTarget" x="2048" y="4592" width="32" height="16"/>
+  <object id="6648" name="FinalFade" type="FadeTarget" x="2048" y="4656" width="32" height="16">
+   <properties>
+    <property name="duration" value="5s"/>
+    <property name="map_to_black" type="color" value="#ffa9a9a9"/>
+    <property name="map_to_white" type="color" value="#ffababab"/>
+   </properties>
+  </object>
   <object id="6649" gid="306" x="6128" y="3488" width="32" height="32"/>
   <object id="6650" gid="306" x="6192" y="3488" width="32" height="32"/>
   <object id="6651" gid="306" x="6256" y="3488" width="32" height="32"/>
+  <object id="6652" name="FinalCreditsDelay" type="DelayTarget" x="2048" y="4608" width="32" height="16">
+   <properties>
+    <property name="delay" value="10s"/>
+    <property name="target" value="FinalCredits"/>
+   </properties>
+  </object>
+  <object id="6653" name="FinalStopTimer" type="StopTimerTarget" x="2048" y="4688" width="32" height="16"/>
+  <object id="6654" name="FinalZoomDelay" type="DelayTarget" x="2048" y="4640" width="32" height="16">
+   <properties>
+    <property name="delay" value="5s"/>
+    <property name="target" value="FinalZoom"/>
+   </properties>
+  </object>
+  <object id="6655" name="FinalZoom" type="ZoomTarget" x="2048" y="4624" width="32" height="16">
+   <properties>
+    <property name="duration" value="5s"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

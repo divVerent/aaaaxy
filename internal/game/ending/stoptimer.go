@@ -12,42 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package target
+package ending
 
 import (
 	"github.com/divVerent/aaaaxy/internal/engine"
-	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/level"
 )
 
-// Goal makes the player move towards it when activated.
-type Goal struct {
-	World  *engine.World
-	Entity *engine.Entity
+// StopTimerTarget makes the player move towards it when activated.
+type StopTimerTarget struct {
+	World *engine.World
 }
 
-func (g *Goal) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
-	g.World = w
-	g.Entity = e
+func (s *StopTimerTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+	s.World = w
 	return nil
 }
 
-func (g *Goal) Despawn() {
-	g.SetState(nil, nil, false)
+func (s *StopTimerTarget) Despawn() {}
+
+func (s *StopTimerTarget) Update() {}
+
+func (s *StopTimerTarget) SetState(originator, predecessor *engine.Entity, state bool) {
+	s.World.TimerStopped = state
 }
 
-func (g *Goal) Update() {}
-
-func (g *Goal) SetState(originator, predecessor *engine.Entity, state bool) {
-	if state {
-		g.World.Player.Impl.(interfaces.SetGoaler).SetGoal(g.Entity)
-	} else {
-		g.World.Player.Impl.(interfaces.SetGoaler).SetGoal(nil)
-	}
-}
-
-func (g *Goal) Touch(other *engine.Entity) {}
+func (s *StopTimerTarget) Touch(other *engine.Entity) {}
 
 func init() {
-	engine.RegisterEntityType(&Goal{})
+	engine.RegisterEntityType(&StopTimerTarget{})
 }

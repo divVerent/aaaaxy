@@ -110,7 +110,7 @@ func (m *Menu) Update() error {
 func (m *Menu) UpdateWorld() error {
 	// Increment the frame counter.
 	// Except when on the credits screen - that time does not count.
-	if _, isCredits := m.Screen.(*CreditsScreen); !isCredits {
+	if !m.World.TimerStopped {
 		m.World.PlayerState.AddFrame()
 	}
 

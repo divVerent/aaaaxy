@@ -19,6 +19,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"math"
 	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -66,6 +67,10 @@ type World struct {
 	// WarpZoneStates is the set of current overrides of warpzone state.
 	// WarpZones can be turned on/off at will, as long as they are offscreen.
 	WarpZoneStates map[string]bool
+	// TimerStopped is set when game time is paused.
+	TimerStopped bool
+	// MaxVisiblePixels is the max amount of pixels displayed from player origin.
+	MaxVisiblePixels int
 
 	// Properties that can in theory be regenerated from the above and thus do not
 	// need serialization support.
@@ -200,8 +205,9 @@ func (w *World) Init(saveState int) error {
 		PlayerState: player_state.PlayerState{
 			Level: lvl,
 		},
-		prevCpID:  level.InvalidEntityID,
-		saveState: saveState,
+		prevCpID:         level.InvalidEntityID,
+		saveState:        saveState,
+		MaxVisiblePixels: math.MaxInt32,
 	}
 	w.renderer.Init(w)
 
@@ -357,6 +363,9 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 
 	// Scroll the player in view right away.
 	w.setScrollPos(w.Player.Impl.(PlayerEntityImpl).LookPos())
+
+	// Start the timer if previously stopped.
+	w.TimerStopped = false
 
 	// Adjust previous scroll position by how much the CP "moved".
 	// That way, respawning right after touching a CP will retain CP-near screen content.
@@ -644,7 +653,11 @@ func (w *World) Update() error {
 
 	// Update visibility and spawn/despawn entities.
 	timing.Section("visibility")
-	w.updateVisibility(playerImpl.EyePos(), w.FramesSinceSpawn*pixelsPerSpawnFrame)
+	pixels := w.FramesSinceSpawn * pixelsPerSpawnFrame
+	if pixels > w.MaxVisiblePixels {
+		pixels = w.MaxVisiblePixels
+	}
+	w.updateVisibility(playerImpl.EyePos(), pixels)
 
 	// Update centerprints.
 	centerprint.Update()

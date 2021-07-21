@@ -16,6 +16,7 @@ package game
 
 import (
 	_ "github.com/divVerent/aaaaxy/internal/game/checkpoint"
+	_ "github.com/divVerent/aaaaxy/internal/game/ending"
 	_ "github.com/divVerent/aaaaxy/internal/game/misc"
 	_ "github.com/divVerent/aaaaxy/internal/game/player"
 	_ "github.com/divVerent/aaaaxy/internal/game/riser"
