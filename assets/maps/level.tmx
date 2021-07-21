@@ -9931,8 +9931,8 @@
     <property name="text" value="Carried enough?"/>
    </properties>
   </object>
-  <object id="4109" gid="307" x="5976" y="3360" width="32" height="32"/>
-  <object id="4110" gid="307" x="5880" y="3360" width="32" height="32"/>
+  <object id="4109" gid="307" x="5976" y="3376" width="32" height="32"/>
+  <object id="4110" gid="307" x="5880" y="3376" width="32" height="32"/>
   <object id="4112" gid="307" x="6064" y="3616" width="32" height="32"/>
   <object id="4113" gid="319" x="6128" y="3352" width="32" height="32"/>
   <object id="4120" gid="302" x="6048" y="3376" width="16" height="16"/>
@@ -11270,7 +11270,7 @@
     <property name="next_right" type="object" value="4995"/>
     <property name="next_up" type="object" value="2301"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="Road Rage"/>
+    <property name="text" value="{{BigCity}} Road Rage"/>
    </properties>
   </object>
   <object id="4937" gid="302" x="4648" y="1136" width="16" height="16"/>
@@ -11327,7 +11327,7 @@
   <object id="4953" gid="312" x="4624" y="1888" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4935"/>
-    <property name="text" value="Welcome to Boston."/>
+    <property name="text" value="Welcome to {{BigCity}}."/>
    </properties>
   </object>
   <object id="4954" gid="341" x="4913" y="2432" width="16" height="32"/>

@@ -23,6 +23,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -152,7 +153,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	selectedLineColor := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	darkLineColor := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
-	cpText := s.Menu.World.Level.Checkpoints[s.CurrentCP].Properties["text"]
+	cpText := fun.FormatText(s.Menu.World.Level.Checkpoints[s.CurrentCP].Properties["text"])
 	seen, total := s.Menu.World.PlayerState.TnihSignsSeen(s.CurrentCP)
 	if total > 0 {
 		cpText += fmt.Sprintf(" (%d/%d)", seen, total)

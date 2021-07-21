@@ -19,6 +19,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/animation"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -83,7 +84,7 @@ func (g *Give) Touch(other *engine.Entity) {
 	if other != g.World.Player {
 		return
 	}
-	g.World.Player.Impl.(interfaces.Abilityer).GiveAbility(g.Ability, g.Text)
+	g.World.Player.Impl.(interfaces.Abilityer).GiveAbility(g.Ability, fun.FormatText(g.Text))
 }
 
 func init() {

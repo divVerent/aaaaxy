@@ -340,6 +340,9 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	// w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
 	w.frameVis ^= level.FrameVis
 
+	// Clear all centerprints.
+	centerprint.Reset()
+
 	// Reset all warpzones.
 	w.WarpZoneStates = map[string]bool{}
 

@@ -298,11 +298,17 @@ func (r *Riser) Update() {
 			left := m.Right().Apply(r.OnGroundVec)
 			var scaledDelta m.Delta
 			if fullDelta.IsZero() {
-				// On full overlap, move one of them _left_ which is the most gameplay friendly direction.
+				// On full overlap, move one of them _left/right_ which is the most gameplay friendly direction.
 				// This will cause the other one to get repelled to the right.
 				// Why not down? Yes, these are easier to grab then,
 				// but it helps more that one can stand between them and push them away from each other.
-				scaledDelta = left.Mul(RepelSpeed)
+				// How to pick left/right deterministically? We want no randomness...
+				// So we pick them alternatingly, so eventually repelling will work.
+				if r.World.PlayerState.Frames()%2 == 0 {
+					scaledDelta = left.Mul(RepelSpeed)
+				} else {
+					scaledDelta = left.Mul(-RepelSpeed)
+				}
 			} else {
 				// Similarly, ensure that the left/right component is at least half the work.
 				// We do this by assuming an increased L/R delta of exactly the value of the U/D delta.

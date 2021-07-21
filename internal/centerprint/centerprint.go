@@ -70,6 +70,10 @@ func BigFont() font.Face {
 	return font.CenterprintBig
 }
 
+func Reset() {
+	centerprints = centerprints[:0]
+}
+
 func New(txt string, imp Importance, pos InitialPosition, face font.Face, color color.Color) *Centerprint {
 	cp := &Centerprint{
 		text:       txt,
