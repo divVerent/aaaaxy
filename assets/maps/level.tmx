@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6628">
+<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6631">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -9866,33 +9866,23 @@
   <object id="4036" gid="319" x="5888" y="3656" width="32" height="32"/>
   <object id="4037" gid="320" x="5952" y="3648" width="32" height="32"/>
   <object id="4038" gid="322" x="5984" y="3600" width="32" height="32"/>
-  <object id="4044" gid="306" x="6128" y="3488" width="32" height="32"/>
-  <object id="4045" gid="304" x="6128" y="3520" width="32" height="32"/>
   <object id="4046" gid="306" x="6160" y="3520" width="32" height="32"/>
-  <object id="4047" gid="306" x="6192" y="3488" width="32" height="32"/>
-  <object id="4048" gid="307" x="6160" y="3488" width="32" height="32"/>
-  <object id="4049" gid="305" x="6192" y="3520" width="32" height="32"/>
-  <object id="4050" gid="304" x="6224" y="3488" width="32" height="32"/>
   <object id="4051" gid="306" x="6224" y="3520" width="32" height="32"/>
-  <object id="4052" gid="304" x="6256" y="3520" width="32" height="32"/>
   <object id="4053" gid="306" x="6096" y="3520" width="32" height="32"/>
-  <object id="4054" gid="307" x="6096" y="3488" width="32" height="32"/>
-  <object id="4055" gid="306" x="6256" y="3488" width="32" height="32"/>
   <object id="4056" gid="301" x="5984" y="3552" width="16" height="16"/>
   <object id="4057" gid="301" x="6000" y="3552" width="16" height="16"/>
   <object id="4058" gid="306" x="6064" y="3656" width="32" height="32"/>
   <object id="4062" gid="301" x="5744" y="3472" width="16" height="16"/>
   <object id="4063" gid="301" x="5760" y="3472" width="16" height="16"/>
-  <object id="4064" gid="320" x="5856" y="3520" width="32" height="32"/>
-  <object id="4065" gid="320" x="5952" y="3520" width="32" height="32"/>
-  <object id="4066" gid="326" x="5776" y="3488" width="32" height="32"/>
-  <object id="4067" gid="326" x="5904" y="3488" width="32" height="32"/>
+  <object id="4064" gid="320" x="5824" y="3504" width="32" height="32"/>
+  <object id="4065" gid="320" x="5952" y="3504" width="32" height="32"/>
+  <object id="4067" gid="326" x="5888" y="3504" width="32" height="32"/>
   <object id="4068" gid="322" x="5984" y="3440" width="32" height="32"/>
   <object id="4069" gid="322" x="5888" y="3440" width="32" height="32"/>
   <object id="4070" gid="322" x="5776" y="3440" width="32" height="32"/>
   <object id="4071" gid="324" x="5936" y="3408" width="32" height="32"/>
   <object id="4072" gid="324" x="5840" y="3408" width="32" height="32"/>
-  <object id="4073" gid="320" x="5744" y="3520" width="32" height="32"/>
+  <object id="4073" gid="320" x="5744" y="3536" width="32" height="32"/>
   <object id="4074" gid="320" x="5744" y="3376" width="32" height="32"/>
   <object id="4077" gid="325" x="6304" y="3344" width="32" height="32"/>
   <object id="4078" gid="325" x="6064" y="3408" width="32" height="32"/>
@@ -9982,16 +9972,12 @@
    </properties>
   </object>
   <object id="4136" gid="10" x="5776" y="3536" width="16" height="16"/>
-  <object id="4137" gid="10" x="5776" y="3520" width="16" height="16"/>
   <object id="4138" gid="10" x="5824" y="3488" width="16" height="16"/>
   <object id="4139" gid="10" x="5840" y="3488" width="16" height="16"/>
-  <object id="4140" gid="10" x="5840" y="3504" width="16" height="16"/>
-  <object id="4141" gid="10" x="5904" y="3520" width="16" height="16"/>
   <object id="4142" gid="10" x="5904" y="3536" width="16" height="16"/>
   <object id="4143" gid="10" x="5888" y="3536" width="16" height="16"/>
   <object id="4144" gid="10" x="5952" y="3488" width="16" height="16"/>
   <object id="4145" gid="10" x="5968" y="3488" width="16" height="16"/>
-  <object id="4146" gid="10" x="5968" y="3504" width="16" height="16"/>
   <object id="4149" gid="58" x="5824" y="3408" width="16" height="16"/>
   <object id="4157" gid="316" x="5776" y="3408" width="208" height="64">
    <properties>
@@ -14286,5 +14272,8 @@
     <property name="image" value="rocket_science.png"/>
    </properties>
   </object>
+  <object id="6628" gid="306" x="6128" y="3488" width="32" height="32"/>
+  <object id="6629" gid="306" x="6192" y="3488" width="32" height="32"/>
+  <object id="6630" gid="306" x="6256" y="3488" width="32" height="32"/>
  </objectgroup>
 </map>
