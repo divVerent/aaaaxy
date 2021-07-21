@@ -53,6 +53,7 @@ type Player struct {
 	Respawning    bool
 	WasOnGround   bool
 	VVVVVV        bool
+	Goal          *engine.Entity
 
 	Anim            animation.State
 	JumpSound       *sound.Sound
@@ -265,11 +266,23 @@ func friction(vel *int, friction int) {
 }
 
 func (p *Player) Update() {
-	p.LookUp = input.Up.Held
-	p.LookDown = input.Down.Held
-	moveLeft := input.Left.Held
-	moveRight := input.Right.Held
-	if input.Jump.Held {
+	var moveLeft, moveRight, jump bool
+	if p.Goal == nil {
+		p.LookUp = input.Up.Held
+		p.LookDown = input.Down.Held
+		moveLeft = input.Left.Held
+		moveRight = input.Right.Held
+		jump = input.Jump.Held
+	} else {
+		// Walk towards goal!
+		p.LookUp = false
+		p.LookDown = false
+		delta := p.Goal.Rect.Center().Delta(p.Entity.Rect.Center())
+		moveLeft = delta.DX < 0
+		moveRight = delta.DX > 0
+		jump = false
+	}
+	if jump {
 		if !p.Jumping && p.AirFrames <= ExtraGroundFrames {
 			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(-JumpVelocity))
 			p.OnGround = false
@@ -413,9 +426,13 @@ func (p *Player) Respawned() {
 	p.Anim.ForceGroup("idle")             // Reset animation.
 	p.Entity.Image = nil                  // Hide player until next Update.
 	p.Entity.Orientation = m.FlipX()      // Default to looking right.
+	p.Goal = nil                          // Normal input.
 }
 
 func (p *Player) ActionPressed() bool {
+	if p.Goal != nil {
+		return false
+	}
 	return input.Action.Held
 }
 
@@ -423,6 +440,10 @@ func (p *Player) SetVelocityForJump(velocity m.Delta) {
 	p.Physics.SetVelocityForJump(velocity)
 	p.JumpingUp = false
 	p.AirFrames = ExtraGroundFrames + 1
+}
+
+func (p *Player) SetGoal(goal *engine.Entity) {
+	p.Goal = goal
 }
 
 func init() {

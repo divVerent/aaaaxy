@@ -55,6 +55,8 @@
   <property name="ability" type="string"/>
   <property name="text" type="string"/>
  </objecttype>
+ <objecttype name="Goal" color="#ffff00">
+ </objecttype>
  <objecttype name="JumpPad" color="#ff00ff">
   <property name="delta" type="string"/>
   <property name="height" type="string"/>
