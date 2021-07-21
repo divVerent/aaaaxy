@@ -47,11 +47,17 @@
   <property name="text" type="string"/>
   <property name="vvvvvv" type="bool" default="false"/>
  </objecttype>
+ <objecttype name="CreditsTarget" color="#ff00ff"/>
  <objecttype name="DelayTarget" color="#000000">
   <property name="delay" type="string" default="0s"/>
   <property name="target" type="string"/>
  </objecttype>
  <objecttype name="DisappearBlock" color="#00aa00"/>
+ <objecttype name="FadeTarget" color="#ff00ff">
+  <property name="duration" type="string" default="0s"/>
+  <property name="map_to_black" type="color" default=""/>
+  <property name="map_to_white" type="color" default=""/>
+ </objecttype>
  <objecttype name="ForceField" color="#ff00ff">
   <property name="orientation" type="string"/>
  </objecttype>
@@ -270,5 +276,8 @@
  <objecttype name="WarpZone" color="#ff0000">
   <property name="invert" type="bool" default="false"/>
   <property name="switchable" type="bool" default="false"/>
+ </objecttype>
+ <objecttype name="ZoomTarget" color="#ff00ff">
+  <property name="duration" type="string" default="0s"/>
  </objecttype>
 </objecttypes>

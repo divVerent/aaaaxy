@@ -14325,7 +14325,7 @@
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="6643" name="FinalGoal" type="Goal" x="2048" y="4704" width="32" height="31"/>
+  <object id="6643" name="FinalGoal" type="Goal" x="2048" y="4592" width="32" height="143"/>
   <object id="6644" type="SetState" x="2048" y="4735" width="32" height="1">
    <properties>
     <property name="target" value="FinalGoal FinalStopTimer FinalSound FinalFade FinalZoomDelay FinalCreditsDelay"/>
