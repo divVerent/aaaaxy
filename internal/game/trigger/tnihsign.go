@@ -23,6 +23,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/centerprint"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/image"
@@ -107,7 +108,7 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 		} else {
 			t.Sound.Play()
 		}
-		t.Centerprint = centerprint.New(t.Text, importance, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 255, B: 85, A: 255})
+		t.Centerprint = centerprint.New(fun.FormatText(t.Text), importance, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 255, B: 85, A: 255})
 		t.PersistentState["seen"] = "true"
 		t.Entity.Image = t.SeenImage
 		mixins.SetStateOfTarget(t.World, other, t.Entity, t.Target, true)

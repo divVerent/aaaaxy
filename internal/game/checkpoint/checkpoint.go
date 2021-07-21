@@ -21,6 +21,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/centerprint"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -103,7 +104,7 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 		return
 	}
 	if !c.DeadEnd {
-		centerprint.New(c.Text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
+		centerprint.New(fun.FormatText(c.Text), centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
 		c.Sound.Play()
 	}
 }

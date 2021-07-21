@@ -26,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
@@ -71,7 +72,7 @@ func (key textCacheKey) load() (*ebiten.Image, error) {
 	if _, err := fmt.Sscanf(key.bg, "#%02x%02x%02x%02x", &bg.A, &bg.R, &bg.G, &bg.B); err != nil {
 		return nil, fmt.Errorf("could not decode color %q: %v", key.bg, err)
 	}
-	txt := strings.ReplaceAll(key.text, "  ", "\n")
+	txt := strings.ReplaceAll(fun.FormatText(key.text), "  ", "\n")
 	bounds := fnt.BoundString(txt)
 	img := image.NewRGBA( // image.RGBA is ebiten's fast path.
 		image.Rectangle{
