@@ -36,8 +36,10 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 func (f *FadeTarget) Despawn() {}
 
 func (f *FadeTarget) Update() {
-	a := 0.5 // Fraction of time passed.
-	f := 1.0 / (1.0 - a)
+	/*
+		a := 0.5 // Fraction of time passed.
+		f := 1.0 / (1.0 - a)
+	*/
 
 	// Find color matrix so that:
 	// - f = 0 maps Color1, Color2, Color3 to themselves, and all other colors to their plane.

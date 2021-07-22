@@ -81,7 +81,11 @@ func (m *Menu) Update() error {
 	}
 
 	timing.Section("global_hotkeys")
-	if input.Exit.JustHit && m.Screen == nil {
+	if m.World.ForceCredits {
+		m.World.ForceCredits = false
+		m.blurFrame = 0
+		return m.SwitchToScreen(&CreditsScreen{Fancy: true})
+	} else if input.Exit.JustHit && m.Screen == nil {
 		music.Switch("")
 		m.World.PlayerState.AddEscape()
 		m.blurFrame = 0

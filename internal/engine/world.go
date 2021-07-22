@@ -71,6 +71,8 @@ type World struct {
 	TimerStopped bool
 	// MaxVisiblePixels is the max amount of pixels displayed from player origin.
 	MaxVisiblePixels int
+	// ForceCredits is set when we want to jump to credits.
+	ForceCredits bool
 
 	// Properties that can in theory be regenerated from the above and thus do not
 	// need serialization support.

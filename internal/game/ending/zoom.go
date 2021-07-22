@@ -15,27 +15,53 @@
 package ending
 
 import (
+	"fmt"
+	"math"
+	"time"
+
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 // ZoomTarget zooms the screen out.
 type ZoomTarget struct {
 	World *engine.World
+
+	Frames int
+	Frame  int
 }
 
 func (z *ZoomTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	z.World = w
-	// Note: duration.
+
+	durationString := sp.Properties["duration"]
+	durationTime, err := time.ParseDuration(durationString)
+	if err != nil {
+		return fmt.Errorf("could not parse duration time: %v", durationString)
+	}
+	z.Frames = int((durationTime*engine.GameTPS + (time.Second / 2)) / time.Second)
+	if z.Frames < 1 {
+		z.Frames = 1
+	}
+
 	return nil
 }
 
 func (z *ZoomTarget) Despawn() {}
 
-func (z *ZoomTarget) Update() {}
+func (z *ZoomTarget) Update() {
+	if z.Frame > 0 {
+		z.Frame--
+		z.World.MaxVisiblePixels = int(math.Sqrt(float64(m.Delta{DX: engine.GameWidth, DY: engine.GameHeight}.Length2())) * float64(z.Frame) / float64(z.Frames))
+	}
+}
 
 func (z *ZoomTarget) SetState(originator, predecessor *engine.Entity, state bool) {
-	// TODO implement.
+	if !state {
+		return
+	}
+	z.Frame = z.Frames
 }
 
 func (z *ZoomTarget) Touch(other *engine.Entity) {}

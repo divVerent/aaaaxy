@@ -34,7 +34,8 @@ func (c *CreditsTarget) Despawn() {}
 func (c *CreditsTarget) Update() {}
 
 func (c *CreditsTarget) SetState(originator, predecessor *engine.Entity, state bool) {
-	// TODO switch to credits.
+	c.World.PlayerState.SetWon()
+	c.World.ForceCredits = true
 }
 
 func (c *CreditsTarget) Touch(other *engine.Entity) {}
