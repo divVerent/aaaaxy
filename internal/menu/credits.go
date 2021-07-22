@@ -43,6 +43,7 @@ type CreditsScreen struct {
 	Lines    []string // Actual lines to display.
 	Frame    int      // Current scroll position.
 	MaxFrame int      // Maximum scroll position.
+	Exits    int      // How often exit was pressed. Need to press 7 times to leave fancy credits.
 }
 
 func (s *CreditsScreen) Init(m *Menu) error {
@@ -98,8 +99,11 @@ func (s *CreditsScreen) Init(m *Menu) error {
 
 func (s *CreditsScreen) Update() error {
 	if s.Fancy {
-		if s.Frame >= s.MaxFrame && input.Exit.JustHit {
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+		if input.Exit.JustHit {
+			s.Exits++
+			if s.Frame >= s.MaxFrame || s.Exits >= 7 {
+				return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+			}
 		}
 	} else {
 		if input.Exit.JustHit {

@@ -78,10 +78,12 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 	f.Base[1] = cA[1]
 	f.Base[2] = cA[2]
 
+	dB := [3]float64{cB[0] - cA[0], cB[1] - cA[1], cB[2] - cA[2]}
+	dC := [3]float64{cC[0] - cA[0], cC[1] - cA[1], cC[2] - cA[2]}
 	var n [3]float64
-	n[0] = cB[1]*cC[2] - cB[2]*cC[1]
-	n[1] = cB[2]*cC[0] - cB[0]*cC[2]
-	n[2] = cB[0]*cC[1] - cB[1]*cC[0]
+	n[0] = dB[1]*dC[2] - dB[2]*dC[1]
+	n[1] = dB[2]*dC[0] - dB[0]*dC[2]
+	n[2] = dB[0]*dC[1] - dB[1]*dC[0]
 	l := math.Sqrt(n[0]*n[0] + n[1]*n[1] + n[2]*n[2])
 	f.Normal[0] = n[0] / l
 	f.Normal[1] = n[1] / l

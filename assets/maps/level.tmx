@@ -14340,9 +14340,9 @@
   <object id="6648" name="FinalFade" type="FadeTarget" x="2076" y="4712" width="4" height="4">
    <properties>
     <property name="duration" value="5s"/>
-    <property name="invariant_color_a" type="color" value="#fffe5555"/>
-    <property name="invariant_color_b" type="color" value="#ffff5455"/>
-    <property name="invariant_color_c" type="color" value="#ffff5554"/>
+    <property name="invariant_color_a" type="color" value="#ff5555ff"/>
+    <property name="invariant_color_b" type="color" value="#ff000000"/>
+    <property name="invariant_color_c" type="color" value="#ffffffff"/>
    </properties>
   </object>
   <object id="6649" gid="306" x="6128" y="3488" width="32" height="32"/>
