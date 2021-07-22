@@ -71,29 +71,48 @@ func (s *CreditsScreen) Init(m *Menu) error {
 			"",
 			"Your Speedrun Categories",
 		)
+		tryNext := ""
+		categories := "Cheat%"
 		if cat&player_state.HundredPercentSpeedrun != 0 {
-			s.Lines = append(s.Lines, "100%")
+			categories = "100%"
 		} else if cat&player_state.AnyPercentSpeedrun != 0 {
-			s.Lines = append(s.Lines, "Any%")
-		}
-		if cat&player_state.AllFlippedSpeedrun != 0 {
-			s.Lines = append(s.Lines, "All Flipped")
-		}
-		if cat&player_state.NoEscapeSpeedrun != 0 {
-			s.Lines = append(s.Lines, "No Escape")
+			categories = "Any%"
+			tryNext = "100%"
 		}
 		if cat&player_state.AllSignsSpeedrun != 0 {
-			s.Lines = append(s.Lines, "All Signs")
+			categories += ", All Signs"
+		} else if tryNext == "" {
+			tryNext = "All Signs"
 		}
 		if cat&player_state.AllPathsSpeedrun != 0 {
-			s.Lines = append(s.Lines, "All Paths")
+			categories += ", All Paths"
+		} else if tryNext == "" {
+			tryNext = "All Paths"
+		}
+		if cat&player_state.AllFlippedSpeedrun != 0 {
+			categories += ", All Flipped"
+		} else if tryNext == "" {
+			tryNext = "All Flipped"
+		}
+		if cat&player_state.NoEscapeSpeedrun != 0 {
+			categories += ", No Escape"
+		} else if tryNext == "" {
+			tryNext = "No Escape"
+		}
+		s.Lines = append(s.Lines,
+			categories)
+		if tryNext != "" {
+			s.Lines = append(s.Lines,
+				"",
+				"Try Next",
+				tryNext)
 		}
 		s.Lines = append(s.Lines,
 			"",
 			"Thank You!")
 	}
 	s.Frame = (-engine.GameHeight - creditsLineHeight) * creditsFrames
-	s.MaxFrame = (creditsLineHeight*len(credits.Lines) - 3*creditsLineHeight/2 - engine.GameHeight/2) * creditsFrames
+	s.MaxFrame = (creditsLineHeight*len(s.Lines) - 3*creditsLineHeight/2 - engine.GameHeight*2/3) * creditsFrames
 	return nil
 }
 
@@ -101,8 +120,10 @@ func (s *CreditsScreen) Update() error {
 	if s.Fancy {
 		if input.Exit.JustHit {
 			s.Exits++
-			if s.Frame >= s.MaxFrame || s.Exits >= 7 {
+			if s.Frame >= s.MaxFrame {
 				return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+			} else if s.Exits >= 6 {
+				s.Frame = s.MaxFrame
 			}
 		}
 	} else {
