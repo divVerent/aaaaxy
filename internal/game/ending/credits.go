@@ -15,6 +15,8 @@
 package ending
 
 import (
+	"log"
+
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
 )
@@ -34,8 +36,15 @@ func (c *CreditsTarget) Despawn() {}
 func (c *CreditsTarget) Update() {}
 
 func (c *CreditsTarget) SetState(originator, predecessor *engine.Entity, state bool) {
-	c.World.PlayerState.SetWon()
+	if !state {
+		return
+	}
 	c.World.ForceCredits = true
+	c.World.PlayerState.SetWon()
+	err := c.World.Save()
+	if err != nil {
+		log.Printf("Could not save game: %v", err)
+	}
 }
 
 func (c *CreditsTarget) Touch(other *engine.Entity) {}

@@ -53,7 +53,7 @@ func (z *ZoomTarget) Despawn() {}
 func (z *ZoomTarget) Update() {
 	if z.Frame > 0 {
 		z.Frame--
-		z.World.MaxVisiblePixels = int(math.Sqrt(float64(m.Delta{DX: engine.GameWidth, DY: engine.GameHeight}.Length2())) * float64(z.Frame) / float64(z.Frames))
+		z.World.MaxVisiblePixels = int(math.Sqrt(float64(m.Delta{DX: engine.GameWidth, DY: engine.GameHeight}.Length2())) * 0.5 * float64(z.Frame) / float64(z.Frames))
 	}
 }
 

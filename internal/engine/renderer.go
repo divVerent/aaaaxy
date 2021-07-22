@@ -158,6 +158,7 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 			Filter:        ebiten.FilterNearest,
 		}
 		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, tile.Orientation)
+		opts.ColorM = r.world.GlobalColorM
 		screen.DrawImage(img, &opts)
 	})
 }
@@ -181,6 +182,7 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 				opts.ColorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.ColorMod[3])
 				opts.ColorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], ent.ColorAdd[3])
 				opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
+				opts.ColorM.Concat(r.world.GlobalColorM)
 				screen.DrawImage(ent.Image, &opts)
 				return nil
 			})

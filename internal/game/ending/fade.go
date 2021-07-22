@@ -15,6 +15,12 @@
 package ending
 
 import (
+	"fmt"
+	"math"
+	"time"
+
+	"github.com/hajimehoshi/ebiten/v2"
+
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
 )
@@ -23,42 +29,99 @@ import (
 type FadeTarget struct {
 	World *engine.World
 
-	Color1, Color2, Color3 [3]float64
+	Frames int
+	Frame  int
+
+	Base   [3]float64
+	Normal [3]float64
 }
 
 func (f *FadeTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	f.World = w
-	// Note: duration, color_1, color_2, color_3.
-	// Precompute from this a base color and the vector to cancel (cross product of color diffs).
+
+	durationString := sp.Properties["duration"]
+	durationTime, err := time.ParseDuration(durationString)
+	if err != nil {
+		return fmt.Errorf("could not parse duration time: %v", durationString)
+	}
+	f.Frames = int((durationTime*engine.GameTPS + (time.Second / 2)) / time.Second)
+	if f.Frames < 1 {
+		f.Frames = 1
+	}
+
+	var cA, cB, cC [3]float64
+
+	var r, g, b, a int
+	colorString := sp.Properties["invariant_color_a"]
+	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+	}
+	cA[0] = float64(r) / 255.0
+	cA[1] = float64(g) / 255.0
+	cA[2] = float64(b) / 255.0
+	colorString = sp.Properties["invariant_color_b"]
+	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+	}
+	cB[0] = float64(r) / 255.0
+	cB[1] = float64(g) / 255.0
+	cB[2] = float64(b) / 255.0
+	colorString = sp.Properties["invariant_color_c"]
+	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+	}
+	cC[0] = float64(r) / 255.0
+	cC[1] = float64(g) / 255.0
+	cC[2] = float64(b) / 255.0
+
+	f.Base[0] = cA[0]
+	f.Base[1] = cA[1]
+	f.Base[2] = cA[2]
+
+	var n [3]float64
+	n[0] = cB[1]*cC[2] - cB[2]*cC[1]
+	n[1] = cB[2]*cC[0] - cB[0]*cC[2]
+	n[2] = cB[0]*cC[1] - cB[1]*cC[0]
+	l := math.Sqrt(n[0]*n[0] + n[1]*n[1] + n[2]*n[2])
+	f.Normal[0] = n[0] / l
+	f.Normal[1] = n[1] / l
+	f.Normal[2] = n[2] / l
+
 	return nil
 }
 
 func (f *FadeTarget) Despawn() {}
 
 func (f *FadeTarget) Update() {
-	/*
-		a := 0.5 // Fraction of time passed.
-		f := 1.0 / (1.0 - a)
-	*/
+	if f.Frame <= 0 {
+		return
+	}
+	f.Frame--
+	normalFactor := float64(f.Frames)/(float64(f.Frame)+0.5) - 1.0 // Avoid division by zero.
 
-	// Find color matrix so that:
-	// - f = 0 maps Color1, Color2, Color3 to themselves, and all other colors to their plane.
-	// - f = 1 is identity.
-	// - Rest follows linearly.
-	// So, form of matrix is:
-	// M(x-A) + A
-	// where
-	// n = normalize((B-A) cross (C-A))
-	//
-	// Mx = x - (1-f)*n*dot(n, x)
-	// M = id - (1-f)*n*n^T
-	// T = A - MA
+	var colorM ebiten.ColorM
+	delta := f.Base
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			isDiag := 0.0
+			if i == j {
+				isDiag = 1.0
+			}
+			e := isDiag + normalFactor*f.Normal[i]*f.Normal[j]
+			colorM.SetElement(i, j, e)
+			delta[i] -= e * f.Base[j]
+		}
+	}
+	colorM.Translate(delta[0], delta[1], delta[2], 0.0)
 
-	// Once we have this, we can make the global ColorM an entity property, collect all entity ColorMs in a prepass, and then apply them to all object and world rendering.
+	f.World.GlobalColorM = colorM
 }
 
 func (f *FadeTarget) SetState(originator, predecessor *engine.Entity, state bool) {
-	// TODO implement.
+	if !state {
+		return
+	}
+	f.Frame = f.Frames
 }
 
 func (f *FadeTarget) Touch(other *engine.Entity) {}

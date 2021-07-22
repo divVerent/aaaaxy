@@ -73,6 +73,8 @@ type World struct {
 	MaxVisiblePixels int
 	// ForceCredits is set when we want to jump to credits.
 	ForceCredits bool
+	// GlobalColorM is a color matrix to apply to everything.
+	GlobalColorM ebiten.ColorM
 
 	// Properties that can in theory be regenerated from the above and thus do not
 	// need serialization support.
@@ -207,9 +209,8 @@ func (w *World) Init(saveState int) error {
 		PlayerState: player_state.PlayerState{
 			Level: lvl,
 		},
-		prevCpID:         level.InvalidEntityID,
-		saveState:        saveState,
-		MaxVisiblePixels: math.MaxInt32,
+		prevCpID:  level.InvalidEntityID,
+		saveState: saveState,
 	}
 	w.renderer.Init(w)
 
@@ -366,8 +367,11 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	// Scroll the player in view right away.
 	w.setScrollPos(w.Player.Impl.(PlayerEntityImpl).LookPos())
 
-	// Start the timer if previously stopped.
+	// Reset the ending stuff.
 	w.TimerStopped = false
+	w.MaxVisiblePixels = math.MaxInt32
+	w.ForceCredits = false
+	w.GlobalColorM = ebiten.ColorM{}
 
 	// Adjust previous scroll position by how much the CP "moved".
 	// That way, respawning right after touching a CP will retain CP-near screen content.
