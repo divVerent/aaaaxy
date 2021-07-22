@@ -14357,7 +14357,7 @@
   <object id="6653" name="FinalStopTimer" type="StopTimerTarget" x="2062" y="4712" width="4" height="4"/>
   <object id="6654" name="FinalZoomDelay" type="DelayTarget" x="2052" y="4712" width="4" height="4">
    <properties>
-    <property name="delay" value="5s"/>
+    <property name="delay" value="5.5s"/>
     <property name="target" value="FinalZoom"/>
    </properties>
   </object>
