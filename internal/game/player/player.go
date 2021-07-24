@@ -36,6 +36,7 @@ import (
 
 var (
 	cheatPlayerAbilities = flag.StringMap("cheat_player_abilities", map[string]string{}, "Override player abilities")
+	cheatInAirJump       = flag.Bool("cheat_in_air_jump", false, "Allow jumping while in air (allows getting anywhere)")
 )
 
 type Player struct {
@@ -283,7 +284,7 @@ func (p *Player) Update() {
 		jump = false
 	}
 	if jump {
-		if !p.Jumping && p.AirFrames <= ExtraGroundFrames {
+		if !p.Jumping && (p.AirFrames <= ExtraGroundFrames || *cheatInAirJump) {
 			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(-JumpVelocity))
 			p.OnGround = false
 			p.AirFrames = ExtraGroundFrames + 1
