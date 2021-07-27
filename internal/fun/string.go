@@ -16,84 +16,17 @@ package fun
 
 import (
 	"bytes"
+	"fmt"
 	"log"
 	"text/template"
 	"time"
 
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/player_state"
 )
 
-var formatTextMap = map[string]interface{}{
-	"BigCity": func() string {
-		// We are guessing a nearby large city with traffic problems by the user's time zone.
-		// Rather inaccurate.
-		// Sourced by searching for "<city> Road Rage" on Google and maximizing result count.
-		// If no road rage found, any larger city will do.
-		_, offset := time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.Local).Zone()
-		switch m.Div(offset, 3600) {
-		case -12:
-			return "Baker Island"
-		case -11:
-			return "Alofi"
-		case -10:
-			return "Honolulu"
-		case -9:
-			return "Anchorage"
-		case -8:
-			return "Vancouver"
-		case -7:
-			return "Edmonton"
-		case -6:
-			return "Chicago"
-		case -5:
-			return "New York"
-		case -4:
-			return "Halifax"
-		case -3:
-			return "Nuuk"
-		case -2:
-			return "Fernando de Noronha"
-		case -1:
-			return "Ponta Delgada"
-		case 0:
-			return "London"
-		case 1:
-			return "Berlin"
-		case 2:
-			return "Tel Aviv"
-		case 3:
-			return "Moscow"
-		case 4:
-			return "Tehran"
-		case 5:
-			return "Turkistan"
-		case 6:
-			return "Bishkek"
-		case 7:
-			return "Hanoi"
-		case 8:
-			return "Beijing"
-		case 9:
-			return "Tokyo"
-		case 10:
-			return "Sydney"
-		case 11:
-			return "Port Moresby"
-		case 12:
-			return "Auckland"
-		case 13:
-			return "Nuku'alofa"
-		case 14:
-			return "Kiritimati"
-		default:
-			// Boston is a great default for a bad place to drive.
-			return "Boston"
-		}
-	},
-}
-
-// FormatText replaces placeholders in the given text.
-func FormatText(s string) string {
+// TryFormatText replaces placeholders in the given text.
+func TryFormatText(ps *player_state.PlayerState, s string) (string, error) {
 	/*
 		// Fast path if the template is trivial.
 		if !strings.Contains(s, "{") {
@@ -101,13 +34,99 @@ func FormatText(s string) string {
 		}
 	*/
 	tmpl := template.New("")
-	tmpl.Funcs(formatTextMap)
+	tmpl.Funcs(map[string]interface{}{
+		"BigCity": func() string {
+			// We are guessing a nearby large city with traffic problems by the user's time zone.
+			// Rather inaccurate.
+			// Sourced by searching for "<city> Road Rage" on Google and maximizing result count.
+			// If no road rage found, any larger city will do.
+			_, offset := time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.Local).Zone()
+			switch m.Div(offset, 3600) {
+			case -12:
+				return "Baker Island"
+			case -11:
+				return "Alofi"
+			case -10:
+				return "Honolulu"
+			case -9:
+				return "Anchorage"
+			case -8:
+				return "Vancouver"
+			case -7:
+				return "Edmonton"
+			case -6:
+				return "Chicago"
+			case -5:
+				return "New York"
+			case -4:
+				return "Halifax"
+			case -3:
+				return "Nuuk"
+			case -2:
+				return "Fernando de Noronha"
+			case -1:
+				return "Ponta Delgada"
+			case 0:
+				return "London"
+			case 1:
+				return "Berlin"
+			case 2:
+				return "Tel Aviv"
+			case 3:
+				return "Moscow"
+			case 4:
+				return "Tehran"
+			case 5:
+				return "Turkistan"
+			case 6:
+				return "Bishkek"
+			case 7:
+				return "Hanoi"
+			case 8:
+				return "Beijing"
+			case 9:
+				return "Tokyo"
+			case 10:
+				return "Sydney"
+			case 11:
+				return "Port Moresby"
+			case 12:
+				return "Auckland"
+			case 13:
+				return "Nuku'alofa"
+			case 14:
+				return "Kiritimati"
+			default:
+				// Boston is a great default for a bad place to drive.
+				return "Boston"
+			}
+		},
+		"GameTime": func() (string, error) {
+			if ps == nil {
+				return "", fmt.Errorf("Cannot use {{GameTime}} in static elements.")
+			}
+			frames := ps.Frames()
+			ss, ms := frames/60, (frames%60)*1000/60
+			mm, ss := ss/60, ss%60
+			hh, mm := mm/60, mm%60
+			return fmt.Sprintf("%d:%02d:%02d.%03d", hh, mm, ss, ms), nil
+		},
+	})
 	_, err := tmpl.Parse(s)
 	if err != nil {
-		log.Printf("Failed to parse text template: %v", s)
-		return s
+		return s, fmt.Errorf("Failed to parse text template: %v", s)
 	}
 	var buf bytes.Buffer
 	err = tmpl.Execute(&buf, nil)
-	return buf.String()
+	return buf.String(), err
+}
+
+// FormatText replaces placeholders in the given text.
+func FormatText(ps *player_state.PlayerState, s string) string {
+	result, err := TryFormatText(ps, s)
+	if err != nil {
+		log.Printf("Failed to execute text template: %v", s)
+		return s
+	}
+	return result
 }

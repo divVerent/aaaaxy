@@ -84,7 +84,7 @@ func (g *Give) Touch(other *engine.Entity) {
 	if other != g.World.Player {
 		return
 	}
-	g.World.Player.Impl.(interfaces.Abilityer).GiveAbility(g.Ability, fun.FormatText(g.Text))
+	g.World.Player.Impl.(interfaces.Abilityer).GiveAbility(g.Ability, fun.FormatText(&g.World.PlayerState, g.Text))
 }
 
 func init() {

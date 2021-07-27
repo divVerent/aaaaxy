@@ -29,6 +29,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/player_state"
 )
 
 var (
@@ -60,7 +61,7 @@ func cacheKey(s *level.Spawnable) textCacheKey {
 	}
 }
 
-func (key textCacheKey) load() (*ebiten.Image, error) {
+func (key textCacheKey) load(ps *player_state.PlayerState) (*ebiten.Image, error) {
 	fnt := font.ByName[key.font]
 	if fnt.Face == nil {
 		return nil, fmt.Errorf("could not find font %q", key.font)
@@ -72,7 +73,16 @@ func (key textCacheKey) load() (*ebiten.Image, error) {
 	if _, err := fmt.Sscanf(key.bg, "#%02x%02x%02x%02x", &bg.A, &bg.R, &bg.G, &bg.B); err != nil {
 		return nil, fmt.Errorf("could not decode color %q: %v", key.bg, err)
 	}
-	txt := strings.ReplaceAll(fun.FormatText(key.text), "  ", "\n")
+	txt, err := fun.TryFormatText(ps, key.text)
+	if err != nil {
+		if ps == nil {
+			// On template execution failure, we do not fail precaching.
+			// However later rendering may fail too then.
+			return nil, nil
+		}
+		return nil, err
+	}
+	txt = strings.ReplaceAll(txt, "  ", "\n")
 	bounds := fnt.BoundString(txt)
 	img := image.NewRGBA( // image.RGBA is ebiten's fast path.
 		image.Rectangle{
@@ -99,7 +109,7 @@ func (t *Text) Precache(s *level.Spawnable) error {
 	if textCache[key] != nil {
 		return nil
 	}
-	img, err := key.load()
+	img, err := key.load(nil)
 	if err != nil {
 		return fmt.Errorf("could not precache text image for entity %v: %v", s, err)
 	}
@@ -114,13 +124,15 @@ func (t *Text) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) erro
 
 	key := cacheKey(s)
 	if *precacheText {
-		e.Image = textCache[key]
-		if e.Image == nil {
+		var found bool
+		e.Image, found = textCache[key]
+		if !found {
 			return fmt.Errorf("could not find precached text image for entity %v", s)
 		}
-	} else {
+	}
+	if e.Image == nil {
 		var err error
-		e.Image, err = key.load()
+		e.Image, err = key.load(&w.PlayerState)
 		if err != nil {
 			return fmt.Errorf("could not render text image for entity %v: %v", s, err)
 		}

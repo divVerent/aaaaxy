@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6660">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6663">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -742,7 +742,7 @@
     <property name="text" value="The Hub"/>
    </properties>
   </object>
-  <object id="100" type="Sprite" x="3920" y="5104" width="192" height="112">
+  <object id="100" type="Sprite" x="3920" y="5088" width="192" height="112">
    <properties>
     <property name="image" value="logo.png"/>
     <property name="no_flip" value="x"/>
@@ -6691,7 +6691,7 @@
     <property name="text" value="The Anti-Hub"/>
    </properties>
   </object>
-  <object id="1714" type="Sprite" x="4240" y="1648" width="192" height="112">
+  <object id="1714" type="Sprite" x="4240" y="1632" width="192" height="112">
    <properties>
     <property name="image" value="antilogo.png"/>
     <property name="no_flip" value="x"/>
@@ -14514,6 +14514,30 @@
    <properties>
     <property name="delay" value="10s"/>
     <property name="target" value="NeverAnOption"/>
+   </properties>
+  </object>
+  <object id="6660" type="Text" x="4272" y="1744" width="128" height="16">
+   <properties>
+    <property name="text" value="{{GameTime}}"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="Regular"/>
+   </properties>
+  </object>
+  <object id="6661" type="Text" x="3952" y="5200" width="128" height="16">
+   <properties>
+    <property name="text" value="{{GameTime}}"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="Regular"/>
+   </properties>
+  </object>
+  <object id="6662" type="Text" x="6576" y="384" width="128" height="16">
+   <properties>
+    <property name="text" value="{{GameTime}}"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="Regular"/>
    </properties>
   </object>
  </objectgroup>

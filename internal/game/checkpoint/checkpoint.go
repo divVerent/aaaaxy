@@ -104,7 +104,7 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 		return
 	}
 	if !c.DeadEnd {
-		centerprint.New(fun.FormatText(c.Text), centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
+		centerprint.New(fun.FormatText(&c.World.PlayerState, c.Text), centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 255, G: 255, B: 255, A: 255}).SetFadeOut(true)
 		c.Sound.Play()
 	}
 }
