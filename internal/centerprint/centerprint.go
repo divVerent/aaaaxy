@@ -17,15 +17,12 @@ package centerprint
 import (
 	"image/color"
 	"log"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/font"
 	m "github.com/divVerent/aaaaxy/internal/math"
-)
-
-const (
-	alphaFrames = 120
 )
 
 type Centerprint struct {
@@ -37,10 +34,11 @@ type Centerprint struct {
 	face       font.Face
 	pos        InitialPosition
 
-	alphaFrame int
-	scrollPos  int
-	fadeOut    bool
-	active     bool
+	alphaFrames int
+	alphaFrame  int
+	scrollPos   int
+	fadeOut     bool
+	active      bool
 }
 
 var (
@@ -74,16 +72,21 @@ func Reset() {
 	centerprints = centerprints[:0]
 }
 
-func New(txt string, imp Importance, pos InitialPosition, face font.Face, color color.Color) *Centerprint {
+func New(txt string, imp Importance, pos InitialPosition, face font.Face, color color.Color, fadeTime time.Duration) *Centerprint {
+	frames := int(fadeTime * 60 / time.Second)
+	if frames < 1 {
+		frames = 1
+	}
 	cp := &Centerprint{
-		text:       txt,
-		color:      color,
-		waitScroll: imp == Important,
-		waitFade:   true,
-		face:       face,
-		pos:        pos,
-		alphaFrame: 1,
-		active:     true,
+		text:        txt,
+		color:       color,
+		waitScroll:  imp == Important,
+		waitFade:    true,
+		face:        face,
+		pos:         pos,
+		alphaFrame:  1,
+		alphaFrames: frames,
+		active:      true,
 	}
 	cp.bounds = cp.face.BoundString(txt)
 	if pos == Middle {
@@ -123,7 +126,7 @@ func (cp *Centerprint) update() bool {
 	}
 	if cp.waitFade || cp.waitScroll || !cp.fadeOut {
 		if cp.scrollPos > 0 {
-			if cp.alphaFrame < alphaFrames {
+			if cp.alphaFrame < cp.alphaFrames {
 				cp.alphaFrame++
 			} else {
 				cp.waitFade = false
@@ -142,7 +145,7 @@ func (cp *Centerprint) update() bool {
 }
 
 func (cp *Centerprint) draw(screen *ebiten.Image) {
-	a := float64(cp.alphaFrame) / alphaFrames
+	a := float64(cp.alphaFrame) / float64(cp.alphaFrames)
 	if a == 0 {
 		return
 	}

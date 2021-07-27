@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"image/color"
 	"strings"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -108,7 +109,7 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 		} else {
 			t.Sound.Play()
 		}
-		t.Centerprint = centerprint.New(fun.FormatText(&t.World.PlayerState, t.Text), importance, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 255, B: 85, A: 255})
+		t.Centerprint = centerprint.New(fun.FormatText(&t.World.PlayerState, t.Text), importance, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 255, B: 85, A: 255}, 2*time.Second)
 		t.PersistentState["seen"] = "true"
 		t.Entity.Image = t.SeenImage
 		mixins.SetStateOfTarget(t.World, other, t.Entity, t.Target, true)

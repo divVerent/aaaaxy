@@ -19,6 +19,7 @@ import (
 	"image/color"
 	"log"
 	"math"
+	"time"
 
 	"github.com/divVerent/aaaaxy/internal/animation"
 	"github.com/divVerent/aaaaxy/internal/centerprint"
@@ -171,7 +172,7 @@ func (p *Player) GiveAbility(name, text string) {
 		return
 	}
 
-	centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 190, G: 0, B: 0, A: 255}).SetFadeOut(true)
+	centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 190, G: 0, B: 0, A: 255}, time.Second).SetFadeOut(true)
 	p.GotAbilitySound.Play()
 }
 
