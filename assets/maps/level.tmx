@@ -7571,7 +7571,7 @@
     <property name="target" value="Xyzzy"/>
    </properties>
   </object>
-  <object id="2323" name="Xyzzy" type="SwitchableSprite" gid="26" x="960" y="120" width="16" height="48">
+  <object id="2323" name="Xyzzy" type="SwitchableSprite" gid="26" x="960" y="126" width="16" height="36">
    <properties>
     <property name="invert" type="bool" value="true"/>
    </properties>
@@ -10029,7 +10029,7 @@
   <object id="4103" gid="323" x="6192" y="3424" width="32" height="32"/>
   <object id="4104" gid="325" x="6064" y="3568" width="32" height="32"/>
   <object id="4106" gid="313" x="6288" y="3408" width="16" height="16"/>
-  <object id="4107" name="moved_enough" type="Checkpoint" x="7568" y="7008" width="48" height="16">
+  <object id="4107" name="moved_enough" type="Checkpoint" x="7568" y="6992" width="48" height="32">
    <properties>
     <property name="music" value="Pressure.ogg"/>
     <property name="next_left" type="object" value="1793"/>
