@@ -14516,27 +14516,27 @@
     <property name="target" value="NeverAnOption"/>
    </properties>
   </object>
-  <object id="6660" type="Text" x="4272" y="1744" width="128" height="16">
+  <object id="6660" type="Text" x="4288" y="1744" width="96" height="16">
    <properties>
     <property name="text" value="{{GameTime}}"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#ffaaaaaa"/>
+    <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="6661" type="Text" x="3952" y="5200" width="128" height="16">
+  <object id="6661" type="Text" x="3968" y="5200" width="96" height="16">
    <properties>
     <property name="text" value="{{GameTime}}"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#ffaaaaaa"/>
+    <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="6662" type="Text" x="6576" y="384" width="128" height="16">
+  <object id="6662" type="Text" x="6592" y="384" width="96" height="16">
    <properties>
     <property name="text" value="{{GameTime}}"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#ffaaaaaa"/>
+    <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
