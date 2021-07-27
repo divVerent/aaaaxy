@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6658">
+<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6660">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -602,6 +602,7 @@
   <object id="49" gid="312" x="4608" y="4256" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="53"/>
+    <property name="target" value="NeverAnOptionTimer"/>
     <property name="text" value="Failure was never an option."/>
    </properties>
   </object>
@@ -14502,6 +14503,17 @@
   <object id="6657" type="SwitchMusic" x="6944" y="384" width="16" height="64">
    <properties>
     <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
+   </properties>
+  </object>
+  <object id="6658" name="NeverAnOption" type="SwitchableSprite" x="4640" y="4144" width="112" height="112">
+   <properties>
+    <property name="image" value="never_an_option.png"/>
+   </properties>
+  </object>
+  <object id="6659" name="NeverAnOptionTimer" type="DelayTarget" x="4624" y="4256" width="16" height="16">
+   <properties>
+    <property name="delay" value="10s"/>
+    <property name="target" value="NeverAnOption"/>
    </properties>
   </object>
  </objectgroup>
