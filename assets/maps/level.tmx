@@ -14501,7 +14501,7 @@
   <object id="6656" type="SwitchMusic" x="5712" y="816" width="16" height="64"/>
   <object id="6657" type="SwitchMusic" x="6944" y="384" width="16" height="64">
    <properties>
-    <property name="music" type="file" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
+    <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
    </properties>
   </object>
  </objectgroup>
