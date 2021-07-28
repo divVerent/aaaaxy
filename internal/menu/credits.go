@@ -22,6 +22,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/credits"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -73,31 +74,35 @@ func (s *CreditsScreen) Init(m *Menu) error {
 		)
 		tryNext := ""
 		categories := "Cheat%"
-		if cat&player_state.HundredPercentSpeedrun != 0 {
-			categories = "100%"
-		} else if cat&player_state.AnyPercentSpeedrun != 0 {
-			categories = "Any%"
-			tryNext = "100%"
-		}
-		if cat&player_state.AllSignsSpeedrun != 0 {
-			categories += ", All Notes"
-		} else if tryNext == "" {
-			tryNext = "All Notes"
-		}
-		if cat&player_state.AllPathsSpeedrun != 0 {
-			categories += ", All Paths"
-		} else if tryNext == "" {
-			tryNext = "All Paths"
-		}
-		if cat&player_state.AllFlippedSpeedrun != 0 {
-			categories += ", All Flipped"
-		} else if tryNext == "" {
-			tryNext = "All Flipped"
-		}
-		if cat&player_state.NoEscapeSpeedrun != 0 {
-			categories += ", No Escape"
-		} else if tryNext == "" {
-			tryNext = "No Escape"
+		if flag.Cheating() {
+			tryNext = "Without Cheating Of Course"
+		} else {
+			if cat&player_state.HundredPercentSpeedrun != 0 {
+				categories = "100%"
+			} else if cat&player_state.AnyPercentSpeedrun != 0 {
+				categories = "Any%"
+				tryNext = "100%"
+			}
+			if cat&player_state.AllSignsSpeedrun != 0 {
+				categories += ", All Notes"
+			} else if tryNext == "" {
+				tryNext = "All Notes"
+			}
+			if cat&player_state.AllPathsSpeedrun != 0 {
+				categories += ", All Paths"
+			} else if tryNext == "" {
+				tryNext = "All Paths"
+			}
+			if cat&player_state.AllFlippedSpeedrun != 0 {
+				categories += ", All Flipped"
+			} else if tryNext == "" {
+				tryNext = "All Flipped"
+			}
+			if cat&player_state.NoEscapeSpeedrun != 0 {
+				categories += ", No Escape"
+			} else if tryNext == "" {
+				tryNext = "No Escape"
+			}
 		}
 		s.Lines = append(s.Lines,
 			categories)
