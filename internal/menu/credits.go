@@ -80,9 +80,9 @@ func (s *CreditsScreen) Init(m *Menu) error {
 			tryNext = "100%"
 		}
 		if cat&player_state.AllSignsSpeedrun != 0 {
-			categories += ", All Signs"
+			categories += ", All Notes"
 		} else if tryNext == "" {
-			tryNext = "All Signs"
+			tryNext = "All Notes"
 		}
 		if cat&player_state.AllPathsSpeedrun != 0 {
 			categories += ", All Paths"
@@ -112,7 +112,7 @@ func (s *CreditsScreen) Init(m *Menu) error {
 			"Thank You!")
 	}
 	s.Frame = (-engine.GameHeight - creditsLineHeight) * creditsFrames
-	s.MaxFrame = (creditsLineHeight*len(s.Lines) - 3*creditsLineHeight/2 - engine.GameHeight*2/3) * creditsFrames
+	s.MaxFrame = (creditsLineHeight*len(s.Lines) - 3*creditsLineHeight/2 - engine.GameHeight*7/8) * creditsFrames
 	return nil
 }
 
