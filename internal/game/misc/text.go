@@ -39,7 +39,12 @@ var (
 // Text is a simple entity type that renders text.
 type Text struct {
 	SpriteBase
+
+	World  *engine.World
 	Entity *engine.Entity
+
+	Key     textCacheKey
+	MyImage bool
 }
 
 var _ engine.Precacher = &Text{}
@@ -122,38 +127,54 @@ func (t *Text) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) erro
 		s.Properties["no_flip"] = "x"
 	}
 
-	key := cacheKey(s)
-	if *precacheText {
-		var found bool
-		e.Image, found = textCache[key]
-		if !found {
-			return fmt.Errorf("could not find precached text image for entity %v", s)
-		}
-	}
-	if e.Image == nil {
-		var err error
-		e.Image, err = key.load(&w.PlayerState)
-		if err != nil {
-			return fmt.Errorf("could not render text image for entity %v: %v", s, err)
-		}
+	t.World = w
+	t.Entity = e
+
+	t.Key = cacheKey(s)
+	err := t.updateText()
+	if err != nil {
+		return err
 	}
 
-	t.Entity = e
 	e.ResizeImage = false
-	dx, dy := e.Image.Size()
-	if e.Orientation.Right.DX == 0 {
-		dx, dy = dy, dx
-	}
-	centerOffset := e.Rect.Size.Sub(m.Delta{DX: dx, DY: dy}).Div(2)
-	e.RenderOffset = e.RenderOffset.Add(centerOffset)
+
 	return t.SpriteBase.Spawn(w, s, e)
 }
 
-func (t *Text) Despawn() {
-	if *precacheText {
-		return
+func (t *Text) updateText() error {
+	if t.MyImage {
+		t.Entity.Image.Dispose()
 	}
-	t.Entity.Image.Dispose()
+	t.Entity.Image = nil
+	if *precacheText {
+		var found bool
+		t.Entity.Image, found = textCache[t.Key]
+		t.MyImage = false
+		if !found {
+			return fmt.Errorf("could not find precached text image for entity %v", t.Key)
+		}
+	}
+	if t.Entity.Image == nil {
+		var err error
+		t.Entity.Image, err = t.Key.load(&t.World.PlayerState)
+		t.MyImage = true
+		if err != nil {
+			return fmt.Errorf("could not render text image for entity %v: %v", t.Key, err)
+		}
+	}
+	dx, dy := t.Entity.Image.Size()
+	if t.Entity.Orientation.Right.DX == 0 {
+		dx, dy = dy, dx
+	}
+	centerOffset := t.Entity.Rect.Size.Sub(m.Delta{DX: dx, DY: dy}).Div(2)
+	t.Entity.RenderOffset = centerOffset
+	return nil
+}
+
+func (t *Text) Despawn() {
+	if t.MyImage {
+		t.Entity.Image.Dispose()
+	}
 	t.Entity.Image = nil
 }
 

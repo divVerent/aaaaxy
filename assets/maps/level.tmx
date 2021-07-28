@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6673">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6678">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -14501,23 +14501,7 @@
     <property name="target" value="NeverAnOption"/>
    </properties>
   </object>
-  <object id="6660" type="Text" x="4288" y="1744" width="96" height="16">
-   <properties>
-    <property name="text" value="{{GameTime}}"/>
-    <property name="text_bg" type="color" value="#ffaaaaaa"/>
-    <property name="text_fg" type="color" value="#ff000000"/>
-    <property name="text_font" value="Regular"/>
-   </properties>
-  </object>
-  <object id="6661" type="Text" x="3968" y="5200" width="96" height="16">
-   <properties>
-    <property name="text" value="{{GameTime}}"/>
-    <property name="text_bg" type="color" value="#ffaaaaaa"/>
-    <property name="text_fg" type="color" value="#ff000000"/>
-    <property name="text_font" value="Regular"/>
-   </properties>
-  </object>
-  <object id="6662" type="Text" x="6592" y="384" width="96" height="16">
+  <object id="6661" name="HubTimer" type="SwitchableText" x="3968" y="5200" width="96" height="16">
    <properties>
     <property name="text" value="{{GameTime}}"/>
     <property name="text_bg" type="color" value="#ffaaaaaa"/>
@@ -14544,5 +14528,39 @@
   <object id="6670" gid="305" x="3760" y="4912" width="32" height="32"/>
   <object id="6671" name="NoEscapeWarp" gid="297" x="3760" y="4960" width="32" height="16"/>
   <object id="6672" name="NoEscapeWarp" gid="295" x="3760" y="5152" width="32" height="16"/>
+  <object id="6673" type="SetState" x="4160" y="5104" width="16" height="32">
+   <properties>
+    <property name="send_every_frame" type="bool" value="true"/>
+    <property name="target" value="HubTimer"/>
+   </properties>
+  </object>
+  <object id="6674" name="HubTimer" type="SwitchableText" x="4288" y="1744" width="96" height="16">
+   <properties>
+    <property name="text" value="{{GameTime}}"/>
+    <property name="text_bg" type="color" value="#ffaaaaaa"/>
+    <property name="text_fg" type="color" value="#ff000000"/>
+    <property name="text_font" value="Regular"/>
+   </properties>
+  </object>
+  <object id="6675" type="SetState" x="4176" y="1648" width="16" height="32">
+   <properties>
+    <property name="send_every_frame" type="bool" value="true"/>
+    <property name="target" value="HubTimer"/>
+   </properties>
+  </object>
+  <object id="6676" name="HubTimer" type="SwitchableText" x="6592" y="384" width="96" height="16">
+   <properties>
+    <property name="text" value="{{GameTime}}"/>
+    <property name="text_bg" type="color" value="#ffaaaaaa"/>
+    <property name="text_fg" type="color" value="#ff000000"/>
+    <property name="text_font" value="Regular"/>
+   </properties>
+  </object>
+  <object id="6677" type="SetState" x="6544" y="384" width="16" height="64">
+   <properties>
+    <property name="send_every_frame" type="bool" value="true"/>
+    <property name="target" value="HubTimer"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

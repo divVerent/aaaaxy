@@ -41,6 +41,13 @@ func (s *SwitchableText) Update() {
 	s.Fadable.Update()
 }
 
+func (s *SwitchableText) SetState(originator, predecessor *engine.Entity, state bool) {
+	if state {
+		s.Text.updateText()
+	}
+	s.Fadable.SetState(originator, predecessor, state)
+}
+
 func init() {
 	engine.RegisterEntityType(&SwitchableText{})
 }
