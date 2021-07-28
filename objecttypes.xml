@@ -137,7 +137,9 @@
   <property name="kaizo" type="bool" default="false"/>
  </objecttype>
  <objecttype name="RespawnPlayer" color="#ff0000"/>
- <objecttype name="Riser" color="#000080"/>
+ <objecttype name="Riser" color="#000080">
+  <property name="flipped" type="bool" default="false"/>
+ </objecttype>
  <objecttype name="RiserFsck" color="#ffff80"/>
  <objecttype name="SequenceCollector" color="#00ff00">
   <property name="sequence" type="string"/>

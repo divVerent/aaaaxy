@@ -147,6 +147,10 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	r.State = Inactive
 	r.Entity.Orientation = m.Identity()
 
+	if s.Properties["flipped"] == "true" {
+		r.OnGroundVec = r.OnGroundVec.Mul(-1)
+	}
+
 	err := r.Anim.Init(sprite, map[string]*animation.Group{
 		"inactive": {
 			Frames:        1,
