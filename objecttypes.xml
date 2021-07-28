@@ -75,6 +75,7 @@
  </objecttype>
  <objecttype name="LogicalGate" color="#000000">
   <property name="count_required" type="int" default="1"/>
+  <property name="ignore_off" type="bool" default="false"/>
   <property name="invert" type="bool" default="false"/>
   <property name="target" type="string"/>
  </objecttype>
@@ -128,6 +129,9 @@
  </objecttype>
  <objecttype name="OneWay" color="#0000ff">
   <property name="orientation" type="string"/>
+ </objecttype>
+ <objecttype name="PrintToConsoleTarget" color="#000000">
+  <property name="text" type="string" default=""/>
  </objecttype>
  <objecttype name="QuestionBlock" color="#000000">
   <property name="kaizo" type="bool" default="false"/>

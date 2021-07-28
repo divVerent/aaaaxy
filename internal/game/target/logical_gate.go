@@ -30,6 +30,7 @@ type LogicalGate struct {
 	Target        mixins.TargetSelection
 	Invert        bool
 	CountRequired int
+	IgnoreOff     bool
 
 	IncomingState map[engine.EntityIncarnation]struct{}
 	State         bool
@@ -40,8 +41,9 @@ func (g *LogicalGate) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Enti
 	g.World = w
 	g.Entity = e
 	g.Target = mixins.ParseTarget(sp.Properties["target"])
-	g.CountRequired = 1                          // An "or" gate by default.
-	g.Invert = sp.Properties["invert"] == "true" // false by default.
+	g.CountRequired = 1                                 // An "or" gate by default.
+	g.Invert = sp.Properties["invert"] == "true"        // false by default.
+	g.IgnoreOff = sp.Properties["ignore_off"] == "true" // false by default.
 	if countStr := sp.Properties["count_required"]; countStr != "" {
 		_, err := fmt.Sscanf(countStr, "%d", &g.CountRequired)
 		if err != nil {
@@ -68,7 +70,7 @@ func (g *LogicalGate) Touch(other *engine.Entity) {}
 func (g *LogicalGate) SetState(originator, predecessor *engine.Entity, state bool) {
 	if state {
 		g.IncomingState[predecessor.Incarnation] = struct{}{}
-	} else {
+	} else if !g.IgnoreOff {
 		delete(g.IncomingState, predecessor.Incarnation)
 	}
 	g.Originator = originator

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6678">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6684">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -14560,6 +14560,21 @@
    <properties>
     <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="HubTimer"/>
+   </properties>
+  </object>
+  <object id="6678" name="HubTimer" type="PrintToConsoleTarget" x="4144" y="5104" width="16" height="32">
+   <properties>
+    <property name="text" value="Reached The Hub with {{Abilities}} at {{GameTime}}."/>
+   </properties>
+  </object>
+  <object id="6679" name="HubTimer" type="PrintToConsoleTarget" x="4192" y="1648" width="16" height="32">
+   <properties>
+    <property name="text" value="Reached You Only Need One with {{Abilities}} at {{GameTime}}."/>
+   </properties>
+  </object>
+  <object id="6680" name="HubTimer" type="PrintToConsoleTarget" x="6560" y="400" width="16" height="32">
+   <properties>
+    <property name="text" value="Reached The Anti-Hub with {{Abilities}} at {{GameTime}}."/>
    </properties>
   </object>
  </objectgroup>

@@ -23,12 +23,36 @@ import (
 )
 
 var (
-	cheatFullMapNormal  = flag.Bool("cheat_full_map_normal", false, "Show the full map.")
-	cheatFullMapFlipped = flag.Bool("cheat_full_map_flipped", false, "Show the full map.")
+	cheatFullMapNormal   = flag.Bool("cheat_full_map_normal", false, "Show the full map.")
+	cheatFullMapFlipped  = flag.Bool("cheat_full_map_flipped", false, "Show the full map.")
+	cheatPlayerAbilities = flag.StringMap("cheat_player_abilities", map[string]string{}, "Override player abilities")
 )
 
 type PlayerState struct {
 	Level *level.Level
+}
+
+func (s *PlayerState) HasAbility(name string) bool {
+	switch (*cheatPlayerAbilities)[name] {
+	case "true":
+		return true
+	case "false":
+		return false
+	}
+	key := "can_" + name
+	return s.Level.Player.PersistentState[key] == "true"
+}
+
+func (s *PlayerState) GiveAbility(name string) bool {
+	if (*cheatPlayerAbilities)[name] != "" {
+		return false
+	}
+	key := "can_" + name
+	if s.Level.Player.PersistentState[key] == "true" {
+		return false
+	}
+	s.Level.Player.PersistentState[key] = "true"
+	return true
 }
 
 func (s *PlayerState) LastCheckpoint() string {

@@ -36,8 +36,7 @@ import (
 )
 
 var (
-	cheatPlayerAbilities = flag.StringMap("cheat_player_abilities", map[string]string{}, "Override player abilities")
-	cheatInAirJump       = flag.Bool("cheat_in_air_jump", false, "Allow jumping while in air (allows getting anywhere)")
+	cheatInAirJump = flag.Bool("cheat_in_air_jump", false, "Allow jumping while in air (allows getting anywhere)")
 )
 
 type Player struct {
@@ -145,27 +144,14 @@ func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta) {
 }
 
 func (p *Player) HasAbility(name string) bool {
-	switch (*cheatPlayerAbilities)[name] {
-	case "true":
-		return true
-	case "false":
-		return false
-	}
-	key := "can_" + name
-	return p.PersistentState[key] == "true"
+	return p.World.PlayerState.HasAbility(name)
 }
 
 func (p *Player) GiveAbility(name, text string) {
-	if (*cheatPlayerAbilities)[name] != "" {
+	if !p.World.PlayerState.GiveAbility(name) {
 		return
 	}
 
-	key := "can_" + name
-	if p.PersistentState[key] == "true" {
-		return
-	}
-
-	p.PersistentState[key] = "true"
 	err := p.World.Save()
 	if err != nil {
 		log.Printf("Could not save game: %v", err)

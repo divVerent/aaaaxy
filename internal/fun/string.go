@@ -18,6 +18,7 @@ import (
 	"bytes"
 	"fmt"
 	"log"
+	"strings"
 	"text/template"
 	"time"
 
@@ -110,6 +111,34 @@ func TryFormatText(ps *player_state.PlayerState, s string) (string, error) {
 			mm, ss := ss/60, ss%60
 			hh, mm := mm/60, mm%60
 			return fmt.Sprintf("%d:%02d:%02d.%03d", hh, mm, ss, ms), nil
+		},
+		"Abilities": func() (string, error) {
+			if ps == nil {
+				return "", fmt.Errorf("Cannot use {{Abilities}} in static elements.")
+			}
+			abilities := make([]string, 0, 4)
+			if ps.HasAbility("carry") {
+				abilities = append(abilities, "The Gloves")
+			}
+			if ps.HasAbility("control") {
+				abilities = append(abilities, "The Remote")
+			}
+			if ps.HasAbility("push") {
+				abilities = append(abilities, "The Coil")
+			}
+			if ps.HasAbility("stand") {
+				abilities = append(abilities, "The Cleats")
+			}
+			switch len(abilities) {
+			case 0:
+				return "nothing", nil
+			case 1:
+				return abilities[0], nil
+			default:
+				return strings.Join(abilities[:len(abilities)-1], ", ") + " and " + abilities[len(abilities)-1], nil
+			case 4:
+				return "everything", nil
+			}
 		},
 	})
 	_, err := tmpl.Parse(s)
