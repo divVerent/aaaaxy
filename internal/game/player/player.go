@@ -54,6 +54,7 @@ type Player struct {
 	Respawning    bool
 	WasOnGround   bool
 	VVVVVV        bool
+	JustSpawned   bool
 	Goal          *engine.Entity
 
 	Anim            animation.State
@@ -132,7 +133,7 @@ const (
 	AnimGroundSpeed = 20 * constants.SubPixelScale / engine.GameTPS
 )
 
-func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta) {
+func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta, factor float64) {
 	if vvvvvv == p.VVVVVV {
 		return
 	}
@@ -140,7 +141,15 @@ func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta) {
 		p.OnGroundVec = up
 	}
 	p.VVVVVV = vvvvvv
-	p.VVVVVVSound.Play()
+	if !p.JustSpawned {
+		p.VVVVVVSound.Play()
+	}
+	if factor != 1.0 {
+		n := p.OnGroundVec
+		velUp := n.Mul(p.Velocity.Dot(n))
+		velUpScaled := velUp.MulFloat(factor)
+		p.Velocity = p.Velocity.Add(velUpScaled.Sub(velUp))
+	}
 }
 
 func (p *Player) HasAbility(name string) bool {
@@ -254,6 +263,7 @@ func friction(vel *int, friction int) {
 }
 
 func (p *Player) Update() {
+	p.JustSpawned = false
 	var moveLeft, moveRight, jump bool
 	if p.Goal == nil {
 		p.LookUp = input.Up.Held
@@ -415,6 +425,7 @@ func (p *Player) Respawned() {
 	p.Entity.Image = nil                  // Hide player until next Update.
 	p.Entity.Orientation = m.FlipX()      // Default to looking right.
 	p.Goal = nil                          // Normal input.
+	p.JustSpawned = true                  // Just respawned.
 }
 
 func (p *Player) ActionPressed() bool {

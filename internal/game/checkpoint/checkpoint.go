@@ -41,9 +41,10 @@ type Checkpoint struct {
 	Music   string
 	DeadEnd bool
 
-	Flipped  bool
-	Inactive bool
-	VVVVVV   bool
+	Flipped           bool
+	Inactive          bool
+	VVVVVV            bool
+	VVVVVVOnGroundVec m.Delta
 
 	Sound *sound.Sound
 }
@@ -64,6 +65,12 @@ func (c *Checkpoint) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity
 	c.Music = s.Properties["music"]
 	c.DeadEnd = s.Properties["dead_end"] == "true"
 	c.VVVVVV = s.Properties["vvvvvv"] == "true"
+	if onGroundVecStr := s.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
+		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &c.VVVVVVOnGroundVec.DX, &c.VVVVVVOnGroundVec.DY)
+		if err != nil {
+			return fmt.Errorf("invalid vvvvvv_gravity_direction: %v", err)
+		}
+	}
 
 	if c.Entity.Transform == requiredTransform {
 		c.Flipped = false
@@ -91,7 +98,7 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 		return
 	}
 	if c.VVVVVV {
-		c.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(true, m.Delta{})
+		c.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(true, c.VVVVVVOnGroundVec, 1.0)
 	}
 	c.World.PlayerTouchedCheckpoint(c.Entity)
 	// All checkpoints set the "mood".

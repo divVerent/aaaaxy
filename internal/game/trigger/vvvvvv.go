@@ -29,9 +29,11 @@ import (
 type VVVVVV struct {
 	mixins.NonSolidTouchable
 
-	State        bool
-	OnGroundVec  m.Delta
-	ResetGravity bool
+	State                bool
+	VVVVVVOnGroundVec    m.Delta
+	NormalOnGroundVec    m.Delta
+	VVVVVVVelocityFactor float64
+	NormalVelocityFactor float64
 }
 
 func (v *VVVVVV) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -41,11 +43,30 @@ func (v *VVVVVV) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	if err != nil {
 		return fmt.Errorf("could not load vvvvvv image: %v", err)
 	}
-	v.ResetGravity = s.Properties["reset_gravity"] != "false" // Default true.
 	if onGroundVecStr := s.Properties["gravity_direction"]; onGroundVecStr != "" {
-		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &v.OnGroundVec.DX, &v.OnGroundVec.DY)
+		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &v.NormalOnGroundVec.DX, &v.NormalOnGroundVec.DY)
 		if err != nil {
 			return fmt.Errorf("invalid gravity_direction: %v", err)
+		}
+	}
+	if onGroundVecStr := s.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
+		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &v.VVVVVVOnGroundVec.DX, &v.VVVVVVOnGroundVec.DY)
+		if err != nil {
+			return fmt.Errorf("invalid vvvvvv_gravity_direction: %v", err)
+		}
+	}
+	v.NormalVelocityFactor = 1.0
+	if factorStr := s.Properties["velocity_factor"]; factorStr != "" {
+		_, err := fmt.Sscanf(factorStr, "%f", &v.NormalVelocityFactor)
+		if err != nil {
+			return fmt.Errorf("invalid velocity_factor: %v", err)
+		}
+	}
+	v.VVVVVVVelocityFactor = 1.0
+	if factorStr := s.Properties["vvvvvv_velocity_factor"]; factorStr != "" {
+		_, err := fmt.Sscanf(factorStr, "%f", &v.VVVVVVVelocityFactor)
+		if err != nil {
+			return fmt.Errorf("invalid vvvvvv_velocity_factor: %v", err)
 		}
 	}
 	return nil
@@ -62,11 +83,18 @@ func (v *VVVVVV) Touch(other *engine.Entity) {
 		return
 	}
 	side := other.Rect.Center().Delta(v.Entity.Rect.Center()).Dot(v.Entity.Orientation.Right) > 0
-	down := v.OnGroundVec
-	if !side && v.ResetGravity {
-		down = m.Delta{DX: 0, DY: 1}
+	vel := other.Impl.(interfaces.Velocityer).ReadVelocity()
+	velSide := vel.Dot(v.Entity.Orientation.Right) > 0
+	if side != velSide {
+		return
 	}
-	v.World.Player.Impl.(interfaces.VVVVVVer).SetVVVVVV(side, down)
+	down := v.NormalOnGroundVec
+	factor := v.NormalVelocityFactor
+	if side {
+		down = v.VVVVVVOnGroundVec
+		factor = v.VVVVVVVelocityFactor
+	}
+	other.Impl.(interfaces.VVVVVVer).SetVVVVVV(side, down, factor)
 }
 
 func init() {

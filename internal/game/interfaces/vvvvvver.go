@@ -21,5 +21,5 @@ import (
 
 type VVVVVVer interface {
 	engine.EntityImpl
-	SetVVVVVV(vvvvvv bool, down m.Delta)
+	SetVVVVVV(vvvvvv bool, down m.Delta, factor float64)
 }

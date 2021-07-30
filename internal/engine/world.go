@@ -336,7 +336,17 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 
 	// Move the player down as far as possible.
 	if cpSp.Properties["downtrace_on_spawn"] != "false" {
-		trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(m.Delta{DX: 0, DY: 1024}), TraceOptions{
+		var dir m.Delta
+		if onGroundVecStr := cpSp.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
+			_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &dir.DX, &dir.DY)
+			if err != nil {
+				return fmt.Errorf("invalid vvvvvv_gravity_direction: %v", err)
+			}
+		}
+		if dir.IsZero() {
+			dir = m.Delta{DX: 0, DY: 1}
+		}
+		trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(dir.Mul(1024)), TraceOptions{
 			Contents:   level.PlayerSolidContents,
 			NoEntities: true,
 			LoadTiles:  true,
@@ -382,7 +392,7 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 		w.prevCpOrigin = cp.Rect.Origin
 	}
 
-	// Load the configured music.
+	// Initialize whatever the checkpoint wants to do.
 	w.TouchEvent(cp, w.Player)
 
 	// Skip updating.
