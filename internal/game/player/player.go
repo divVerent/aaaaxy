@@ -150,6 +150,7 @@ func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta, factor float64) {
 		velUpScaled := velUp.MulFloat(factor)
 		p.Velocity = p.Velocity.Add(velUpScaled.Sub(velUp))
 	}
+	p.LastGroundPos = p.Entity.Rect.Origin
 }
 
 func (p *Player) HasAbility(name string) bool {
@@ -387,11 +388,19 @@ func (p *Player) Touch(other *engine.Entity) {
 	// Nothing happens; we rather handle this on other's Touch event.
 }
 
+func (p *Player) eyeDY() int {
+	if p.OnGroundVec.DY < 0 {
+		return p.Entity.Rect.Size.DY - 1 - PlayerEyeDY
+	} else {
+		return PlayerEyeDY
+	}
+}
+
 // EyePos returns the position the player eye is at.
 func (p *Player) EyePos() m.Pos {
 	return m.Pos{
 		X: p.Entity.Rect.Origin.X + PlayerEyeDX,
-		Y: p.Entity.Rect.Origin.Y + PlayerEyeDY,
+		Y: p.Entity.Rect.Origin.Y + p.eyeDY(),
 	}
 }
 
@@ -399,7 +408,7 @@ func (p *Player) EyePos() m.Pos {
 func (p *Player) LookPos() m.Pos {
 	focus := m.Pos{
 		X: p.Entity.Rect.Origin.X + PlayerEyeDX,
-		Y: p.LastGroundPos.Y + PlayerEyeDY,
+		Y: p.LastGroundPos.Y + p.eyeDY(),
 	}
 	if p.LookUp {
 		focus.Y -= LookDistance

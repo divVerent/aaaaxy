@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6895">
+<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6899">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -398,7 +398,7 @@
 0,0,40,30,61,61,61,61,61,61,61,61,61,61,56,56,61,61,61,61,61,61,61,61,61,61,40,30,61,61,61,61,61,61,61,61,40,30,64,64,64,64,64,40,30,64,64,64,64,64,64,64,64,40,30,64,64,64,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,74,74,40,30,58,58,58,58,40,30,154,154,40,30,0,0,0,0,40,30,63,63,63,63,63,63,63,63,63,40,30,64,64,64,18,55,56,56,56,56,56,56,56,56,56,56,56,30,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,40,56,30,64,64,64,40,56,56,56,56,56,48,14,64,64,64,64,64,40,30,64,64,64,56,56,56,56,56,56,56,64,64,64,64,40,30,64,56,64,64,64,64,64,64,64,64,56,64,64,64,40,30,64,64,64,64,64,64,56,56,64,64,64,64,64,64,40,30,290,290,290,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,64,64,40,30,
 0,0,40,30,61,61,61,61,61,61,61,61,61,61,56,56,61,61,61,61,61,61,61,61,61,61,40,30,61,61,61,61,61,61,61,61,40,30,64,64,64,64,64,40,48,22,22,20,11,64,64,15,21,55,30,64,64,64,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,61,61,40,30,58,58,58,58,40,30,61,61,40,30,0,0,0,0,40,30,63,63,63,63,63,63,63,63,63,40,48,22,22,22,55,56,56,56,56,56,56,56,56,56,56,56,56,48,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,55,56,48,22,22,22,55,56,56,56,56,56,56,48,22,22,22,22,22,55,30,64,64,56,56,64,64,56,64,64,56,56,64,64,64,40,30,64,56,56,64,64,64,64,64,64,56,56,64,64,64,40,30,64,64,64,64,64,64,64,56,56,64,56,64,64,64,40,30,290,290,290,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,57,57,18,22,22,22,14,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,64,64,40,30,
 0,0,40,30,61,61,61,61,61,61,61,61,61,56,56,56,56,61,61,61,61,61,61,61,61,61,40,30,61,61,61,61,61,61,61,61,40,30,64,64,64,64,64,32,36,36,36,25,64,64,64,64,32,36,25,64,64,64,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,61,61,40,30,58,58,58,58,40,30,61,61,40,30,0,0,0,0,40,48,22,22,22,22,22,22,22,22,22,55,56,56,56,56,56,56,56,52,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,54,30,64,64,56,64,64,64,56,64,64,64,56,56,56,64,40,30,64,64,56,56,56,56,56,56,56,56,64,64,64,64,40,30,64,64,64,64,64,64,64,56,56,56,56,64,64,64,40,30,290,290,290,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,57,57,40,56,56,56,30,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,64,64,40,30,
-0,0,40,30,61,61,61,61,61,61,61,61,61,56,56,56,56,61,61,61,61,61,61,61,61,61,40,30,61,61,61,61,61,61,61,61,40,30,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,61,61,40,30,58,58,58,58,40,30,61,61,40,30,0,0,0,0,40,52,36,36,36,36,36,36,36,36,36,54,56,56,56,56,56,56,52,25,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,87,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,127,64,64,64,64,64,64,64,64,64,64,64,64,40,30,64,64,56,64,64,56,56,56,64,64,56,56,56,64,40,30,64,56,56,64,64,64,64,64,64,56,56,64,64,64,40,30,64,64,64,64,64,56,56,56,56,56,56,64,64,64,40,30,290,290,290,40,48,22,14,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,44,16,16,53,56,56,56,44,16,16,16,11,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,64,64,40,30,
+0,0,40,30,61,61,61,61,61,61,61,61,61,56,56,56,56,61,61,61,61,61,61,61,61,61,40,30,61,61,61,61,61,61,61,61,40,30,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,61,61,40,30,58,58,58,58,40,30,61,61,40,30,0,0,0,0,40,52,36,36,36,36,36,36,36,36,36,54,56,56,56,56,56,56,52,25,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,87,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,127,64,64,64,64,64,64,64,64,64,64,64,64,40,30,64,64,56,64,64,56,56,56,64,64,56,56,56,64,40,30,64,56,56,64,64,64,64,64,64,56,56,64,64,64,40,30,64,64,64,64,64,56,56,56,56,56,56,64,64,64,40,30,290,290,290,40,48,22,14,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,44,16,16,53,56,56,56,44,16,16,11,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,64,64,40,30,
 0,0,40,30,61,61,61,61,61,61,61,61,56,56,61,61,56,56,61,61,61,61,61,61,61,61,40,30,61,61,61,61,61,61,61,61,40,30,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,61,61,40,30,58,58,58,58,40,30,61,61,40,30,0,0,0,0,40,48,22,22,14,60,60,60,18,22,22,55,56,56,56,56,56,52,25,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,87,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,127,64,64,64,64,64,64,64,64,64,64,64,64,40,30,64,64,56,64,64,56,56,56,64,64,56,56,56,64,40,30,64,56,64,64,64,64,64,64,64,64,56,64,64,64,40,30,64,64,64,64,64,64,56,56,56,56,56,64,64,64,40,30,290,290,290,40,56,56,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,57,57,40,56,56,56,30,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,64,64,40,30,
 0,0,40,30,61,61,61,61,61,61,61,61,56,56,61,61,56,56,61,61,61,61,61,61,61,61,40,30,61,61,61,61,61,61,61,61,40,48,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,55,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,61,61,40,30,58,58,58,58,40,30,61,61,40,30,0,0,0,0,40,52,36,36,25,128,128,128,32,36,36,54,56,56,56,56,52,25,58,58,58,58,58,18,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,55,30,64,64,56,64,56,64,64,64,64,64,56,56,56,64,40,30,64,56,64,64,64,64,64,64,64,64,56,64,64,64,40,30,64,64,64,64,64,64,64,56,56,56,56,64,64,64,40,30,290,290,290,40,56,56,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,57,57,32,36,36,36,25,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,64,64,40,30,
 0,0,40,30,61,61,61,61,61,61,61,56,56,61,61,61,61,56,56,61,61,61,61,61,61,61,40,30,61,61,61,61,61,61,61,61,40,52,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,54,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,61,61,40,30,58,58,58,58,40,30,61,61,40,30,0,0,0,0,40,30,64,64,64,64,64,64,64,64,64,40,56,56,56,52,25,58,58,58,58,58,18,51,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,54,30,64,64,56,56,64,64,64,64,64,56,56,64,64,64,40,30,64,64,64,64,64,64,64,64,64,64,64,64,64,64,40,30,64,64,64,64,64,64,64,64,56,56,56,64,64,64,40,30,290,290,290,40,56,56,30,57,57,57,57,18,22,22,14,57,57,57,57,18,22,22,14,57,57,57,57,18,14,57,57,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,64,64,40,30,
@@ -14669,9 +14669,9 @@
   <object id="6759" gid="339" x="6800" y="6112" width="16" height="16"/>
   <object id="6760" gid="339" x="6816" y="6112" width="16" height="16"/>
   <object id="6761" gid="305" x="6864" y="6384" width="32" height="32"/>
-  <object id="6762" name="vacuous_void" type="Checkpoint" x="6752" y="6112" width="32" height="32">
+  <object id="6762" name="vacuous_void" type="Checkpoint" x="6752" y="6112" width="16" height="32">
    <properties>
-    <property name="dead_end" type="bool" value="false"/>
+    <property name="dead_end" type="bool" value="true"/>
     <property name="music" value="Theme Song 8-bit V1.ogg"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Vacuous Void"/>
@@ -14679,18 +14679,18 @@
     <property name="vvvvvv_gravity_direction" value="0 -1"/>
    </properties>
   </object>
-  <object id="6770" gid="339" x="6752" y="6256" width="16" height="16"/>
-  <object id="6771" gid="339" x="6768" y="6256" width="16" height="16"/>
-  <object id="6772" gid="339" x="6784" y="6256" width="16" height="16"/>
-  <object id="6773" gid="337" x="6752" y="6224" width="16" height="16"/>
-  <object id="6774" gid="337" x="6768" y="6224" width="16" height="16"/>
-  <object id="6775" gid="337" x="6784" y="6224" width="16" height="16"/>
-  <object id="6776" type="_TileMod" x="6784" y="6240" width="16" height="16">
+  <object id="6770" gid="339" x="6736" y="6256" width="16" height="16"/>
+  <object id="6771" gid="339" x="6752" y="6256" width="16" height="16"/>
+  <object id="6772" gid="339" x="6768" y="6256" width="16" height="16"/>
+  <object id="6773" gid="337" x="6736" y="6224" width="16" height="16"/>
+  <object id="6774" gid="337" x="6752" y="6224" width="16" height="16"/>
+  <object id="6775" gid="337" x="6768" y="6224" width="16" height="16"/>
+  <object id="6776" type="_TileMod" x="6768" y="6240" width="16" height="16">
    <properties>
     <property name="player_solid" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="6777" gid="336" x="6800" y="6240" width="16" height="16"/>
+  <object id="6777" gid="336" x="6784" y="6240" width="16" height="16"/>
   <object id="6778" gid="302" x="6848" y="6128" width="16" height="16"/>
   <object id="6779" gid="302" x="6848" y="6144" width="16" height="16"/>
   <object id="6780" gid="302" x="6848" y="6160" width="16" height="16"/>
@@ -14706,9 +14706,7 @@
   <object id="6790" gid="302" x="6848" y="6320" width="16" height="16"/>
   <object id="6791" gid="302" x="6848" y="6336" width="16" height="16"/>
   <object id="6792" gid="302" x="6848" y="6352" width="16" height="16"/>
-  <object id="6793" gid="339" x="6736" y="6256" width="16" height="16"/>
-  <object id="6794" gid="337" x="6736" y="6224" width="16" height="16"/>
-  <object id="6795" name="virtual_vandalism" type="Checkpoint" x="6752" y="6352" width="32" height="32">
+  <object id="6795" name="virtual_vandalism" type="Checkpoint" x="6752" y="6352" width="16" height="32">
    <properties>
     <property name="dead_end" type="bool" value="false"/>
     <property name="music" value="Theme Song 8-bit V1.ogg"/>
@@ -14764,437 +14762,440 @@
   </object>
   <object id="6819" name="NotTheGravitronWarp" gid="293" x="7152" y="5472" width="16" height="608"/>
   <object id="6820" name="NotTheGravitronWarp" gid="299" x="6560" y="5472" width="16" height="608"/>
-  <object id="6821" gid="335" x="7136" y="5696" width="16" height="16">
+  <object id="6821" gid="335" x="7136" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6822" gid="333" x="7136" y="5840" width="16" height="16">
+  <object id="6822" gid="333" x="7136" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6823" gid="335" x="7120" y="5696" width="16" height="16">
+  <object id="6823" gid="335" x="7120" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6824" gid="333" x="7120" y="5840" width="16" height="16">
+  <object id="6824" gid="333" x="7120" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6825" gid="335" x="7104" y="5696" width="16" height="16">
+  <object id="6825" gid="335" x="7104" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6826" gid="333" x="7104" y="5840" width="16" height="16">
+  <object id="6826" gid="333" x="7104" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6827" gid="335" x="7088" y="5696" width="16" height="16">
+  <object id="6827" gid="335" x="7088" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6828" gid="333" x="7088" y="5840" width="16" height="16">
+  <object id="6828" gid="333" x="7088" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6829" gid="335" x="7072" y="5696" width="16" height="16">
+  <object id="6829" gid="335" x="7072" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6830" gid="333" x="7072" y="5840" width="16" height="16">
+  <object id="6830" gid="333" x="7072" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6831" gid="335" x="7056" y="5696" width="16" height="16">
+  <object id="6831" gid="335" x="7056" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6832" gid="333" x="7056" y="5840" width="16" height="16">
+  <object id="6832" gid="333" x="7056" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6833" gid="335" x="7040" y="5696" width="16" height="16">
+  <object id="6833" gid="335" x="7040" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6834" gid="333" x="7040" y="5840" width="16" height="16">
+  <object id="6834" gid="333" x="7040" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6835" gid="335" x="7024" y="5696" width="16" height="16">
+  <object id="6835" gid="335" x="7024" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6836" gid="333" x="7024" y="5840" width="16" height="16">
+  <object id="6836" gid="333" x="7024" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6837" gid="335" x="7008" y="5696" width="16" height="16">
+  <object id="6837" gid="335" x="7008" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6838" gid="333" x="7008" y="5840" width="16" height="16">
+  <object id="6838" gid="333" x="7008" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6839" gid="335" x="6992" y="5696" width="16" height="16">
+  <object id="6839" gid="335" x="6992" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6840" gid="333" x="6992" y="5840" width="16" height="16">
+  <object id="6840" gid="333" x="6992" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6841" gid="335" x="6976" y="5696" width="16" height="16">
+  <object id="6841" gid="335" x="6976" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6842" gid="333" x="6976" y="5840" width="16" height="16">
+  <object id="6842" gid="333" x="6976" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6843" gid="335" x="6960" y="5696" width="16" height="16">
+  <object id="6843" gid="335" x="6960" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6844" gid="333" x="6960" y="5840" width="16" height="16">
+  <object id="6844" gid="333" x="6960" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6845" gid="335" x="6944" y="5696" width="16" height="16">
+  <object id="6845" gid="335" x="6944" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6846" gid="333" x="6944" y="5840" width="16" height="16">
+  <object id="6846" gid="333" x="6944" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6847" gid="335" x="6928" y="5696" width="16" height="16">
+  <object id="6847" gid="335" x="6928" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6848" gid="333" x="6928" y="5840" width="16" height="16">
+  <object id="6848" gid="333" x="6928" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6849" gid="335" x="6912" y="5696" width="16" height="16">
+  <object id="6849" gid="335" x="6912" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6850" gid="333" x="6912" y="5840" width="16" height="16">
+  <object id="6850" gid="333" x="6912" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6851" gid="335" x="6896" y="5696" width="16" height="16">
+  <object id="6851" gid="335" x="6896" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6852" gid="333" x="6896" y="5840" width="16" height="16">
+  <object id="6852" gid="333" x="6896" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6853" gid="335" x="6880" y="5696" width="16" height="16">
+  <object id="6853" gid="335" x="6880" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6854" gid="333" x="6880" y="5840" width="16" height="16">
+  <object id="6854" gid="333" x="6880" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6855" gid="335" x="6864" y="5696" width="16" height="16">
+  <object id="6855" gid="335" x="6864" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6856" gid="333" x="6864" y="5840" width="16" height="16">
+  <object id="6856" gid="333" x="6864" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6857" gid="335" x="6848" y="5696" width="16" height="16">
+  <object id="6857" gid="335" x="6848" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6858" gid="333" x="6848" y="5840" width="16" height="16">
+  <object id="6858" gid="333" x="6848" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6859" gid="335" x="6832" y="5696" width="16" height="16">
+  <object id="6859" gid="335" x="6832" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6860" gid="333" x="6832" y="5840" width="16" height="16">
+  <object id="6860" gid="333" x="6832" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6861" gid="335" x="6816" y="5696" width="16" height="16">
+  <object id="6861" gid="335" x="6816" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6862" gid="333" x="6816" y="5840" width="16" height="16">
+  <object id="6862" gid="333" x="6816" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6863" gid="335" x="6800" y="5696" width="16" height="16">
+  <object id="6863" gid="335" x="6800" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6864" gid="333" x="6800" y="5840" width="16" height="16">
+  <object id="6864" gid="333" x="6800" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6865" gid="335" x="6784" y="5696" width="16" height="16">
+  <object id="6865" gid="335" x="6784" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6866" gid="333" x="6784" y="5840" width="16" height="16">
+  <object id="6866" gid="333" x="6784" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6867" gid="335" x="6768" y="5696" width="16" height="16">
+  <object id="6867" gid="335" x="6768" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6868" gid="333" x="6768" y="5840" width="16" height="16">
+  <object id="6868" gid="333" x="6768" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6869" gid="335" x="6752" y="5696" width="16" height="16">
+  <object id="6869" gid="335" x="6752" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6870" gid="333" x="6752" y="5840" width="16" height="16">
+  <object id="6870" gid="333" x="6752" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6871" gid="335" x="6736" y="5696" width="16" height="16">
+  <object id="6871" gid="335" x="6736" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6872" gid="333" x="6736" y="5840" width="16" height="16">
+  <object id="6872" gid="333" x="6736" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6873" gid="335" x="6720" y="5696" width="16" height="16">
+  <object id="6873" gid="335" x="6720" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6874" gid="333" x="6720" y="5840" width="16" height="16">
+  <object id="6874" gid="333" x="6720" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6875" gid="335" x="6704" y="5696" width="16" height="16">
+  <object id="6875" gid="335" x="6704" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6876" gid="333" x="6704" y="5840" width="16" height="16">
+  <object id="6876" gid="333" x="6704" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6877" gid="335" x="6688" y="5696" width="16" height="16">
+  <object id="6877" gid="335" x="6688" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6878" gid="333" x="6688" y="5840" width="16" height="16">
+  <object id="6878" gid="333" x="6688" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6879" gid="335" x="6672" y="5696" width="16" height="16">
+  <object id="6879" gid="335" x="6672" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6880" gid="333" x="6672" y="5840" width="16" height="16">
+  <object id="6880" gid="333" x="6672" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6881" gid="335" x="6656" y="5696" width="16" height="16">
+  <object id="6881" gid="335" x="6656" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6882" gid="333" x="6656" y="5840" width="16" height="16">
+  <object id="6882" gid="333" x="6656" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6883" gid="335" x="6640" y="5696" width="16" height="16">
+  <object id="6883" gid="335" x="6640" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6884" gid="333" x="6640" y="5840" width="16" height="16">
+  <object id="6884" gid="333" x="6640" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6885" gid="335" x="6624" y="5696" width="16" height="16">
+  <object id="6885" gid="335" x="6624" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6886" gid="333" x="6624" y="5840" width="16" height="16">
+  <object id="6886" gid="333" x="6624" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6887" gid="335" x="6608" y="5696" width="16" height="16">
+  <object id="6887" gid="335" x="6608" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6888" gid="333" x="6608" y="5840" width="16" height="16">
+  <object id="6888" gid="333" x="6608" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6889" gid="335" x="6592" y="5696" width="16" height="16">
+  <object id="6889" gid="335" x="6592" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6890" gid="333" x="6592" y="5840" width="16" height="16">
+  <object id="6890" gid="333" x="6592" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6891" gid="335" x="6576" y="5696" width="16" height="16">
+  <object id="6891" gid="335" x="6576" y="5680" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
-  <object id="6892" gid="333" x="6576" y="5840" width="16" height="16">
+  <object id="6892" gid="333" x="6576" y="5856" width="16" height="16">
    <properties>
     <property name="gravity_direction" value="0 -1"/>
-    <property name="velocity_factor" value="0.0"/>
+    <property name="velocity_factor" value="-0.25"/>
    </properties>
   </object>
+  <object id="6895" type="SwitchMusic" x="6832" y="5472" width="64" height="16"/>
+  <object id="6897" gid="337" x="6784" y="6368" width="16" height="16"/>
+  <object id="6898" gid="339" x="6784" y="6112" width="16" height="16"/>
  </objectgroup>
 </map>
