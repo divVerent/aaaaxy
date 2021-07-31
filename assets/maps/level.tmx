@@ -14731,6 +14731,7 @@
   <object id="6811" gid="339" x="6640" y="6112" width="16" height="16"/>
   <object id="6812" name="VacuousVoid" type="SwitchableSprite" gid="16" x="6832" y="5456" width="64" height="16">
    <properties>
+    <property name="fade_time" value="0s"/>
     <property name="invert" type="bool" value="true"/>
    </properties>
   </object>
