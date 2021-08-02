@@ -272,6 +272,10 @@ func (p *Player) Update() {
 		moveLeft = input.Left.Held
 		moveRight = input.Right.Held
 		jump = input.Jump.Held
+		action := input.Action.Held
+		if p.LookUp || p.LookDown || moveLeft || moveRight || jump || action {
+			p.World.TimerStarted = true
+		}
 	} else {
 		// Walk towards goal!
 		p.LookUp = false

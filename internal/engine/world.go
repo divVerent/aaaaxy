@@ -67,6 +67,8 @@ type World struct {
 	// WarpZoneStates is the set of current overrides of warpzone state.
 	// WarpZones can be turned on/off at will, as long as they are offscreen.
 	WarpZoneStates map[string]bool
+	// TimerStarted is set on first input after game launch or reset.
+	TimerStarted bool
 	// TimerStopped is set when game time is paused.
 	TimerStopped bool
 	// MaxVisiblePixels is the max amount of pixels displayed from player origin.

@@ -86,6 +86,7 @@ func (m *Menu) Update() error {
 		m.blurFrame = 0
 		return m.SwitchToScreen(&CreditsScreen{Fancy: true})
 	} else if input.Exit.JustHit && m.Screen == nil {
+		m.World.TimerStarted = true
 		music.Switch("")
 		m.World.PlayerState.AddEscape()
 		m.blurFrame = 0
@@ -114,7 +115,7 @@ func (m *Menu) Update() error {
 func (m *Menu) UpdateWorld() error {
 	// Increment the frame counter.
 	// Except when on the credits screen - that time does not count.
-	if !m.World.TimerStopped {
+	if m.World.TimerStarted && !m.World.TimerStopped {
 		m.World.PlayerState.AddFrame()
 	}
 
@@ -157,6 +158,9 @@ const (
 
 // InitGame is called by menu screens to load/reset the game.
 func (m *Menu) InitGame(f resetFlag) error {
+	// Stop the timer.
+	m.World.TimerStarted = false
+
 	// Initialize the world.
 	err := m.World.Init(*saveState)
 	if err != nil {
@@ -202,6 +206,7 @@ func (m *Menu) SwitchToCheckpoint(cp string) error {
 	if err != nil {
 		return fmt.Errorf("could not respawn player: %v", err)
 	}
+	m.World.TimerStarted = true
 	m.Screen = nil
 	return nil
 }
