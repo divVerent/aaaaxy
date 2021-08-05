@@ -20,8 +20,6 @@ import (
 	"fmt"
 	"io"
 	"time"
-
-	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
 )
 
 type dumper struct {
@@ -45,7 +43,7 @@ func DumpFrame(dumpFile io.Writer, toTime time.Duration) error {
 	if !dumping {
 		return errors.New("DumpFrame called when not dumping")
 	}
-	toSample := int(toTime * time.Duration(ebiaudio.CurrentContext().SampleRate()) / time.Second)
+	toSample := int(toTime * time.Duration(SampleRate()) / time.Second)
 	samples := toSample - sampleIndex
 	sampleIndex = toSample
 	return dumpSamples(dumpFile, samples)
@@ -98,7 +96,7 @@ func (d *dumper) Close() {
 }
 
 func (d *dumper) Current() time.Duration {
-	return time.Duration(d.played) * time.Second / time.Duration(ebiaudio.CurrentContext().SampleRate())
+	return time.Duration(d.played) * time.Second / time.Duration(SampleRate())
 }
 
 func (d *dumper) IsPlaying() bool {

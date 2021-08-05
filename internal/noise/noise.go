@@ -47,7 +47,7 @@ func Init() error {
 		return fmt.Errorf("Could not load stereonoise: %v", err)
 	}
 	defer data.Close()
-	stream, err := vorbis.Decode(audio.CurrentContext(), data)
+	stream, err := vorbis.DecodeWithSampleRate(audiowrap.SampleRate(), data)
 	if err != nil {
 		return fmt.Errorf("Could not start decoding stereonosie: %v", err)
 	}

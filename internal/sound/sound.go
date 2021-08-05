@@ -22,7 +22,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
@@ -67,7 +66,7 @@ func Load(name string) (*Sound, error) {
 		return nil, fmt.Errorf("could not load: %v", err)
 	}
 	defer data.Close()
-	stream, err := vorbis.Decode(audio.CurrentContext(), data)
+	stream, err := vorbis.DecodeWithSampleRate(audiowrap.SampleRate(), data)
 	if err != nil {
 		return nil, fmt.Errorf("could not start decoding: %v", err)
 	}

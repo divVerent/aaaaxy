@@ -46,12 +46,17 @@ func Rate() int {
 }
 
 func Init() error {
-	// TODO(divVerent): Figure out a way to work without a context.
-	// This means we need to be able to decode and resample the wav and ogg files without using the ebiten helpers.
-	// if *audio {
-	ebiaudio.NewContext(*audioRate)
-	// }
+	if *audio {
+		ebiaudio.NewContext(*audioRate)
+	}
 	return nil
+}
+
+func SampleRate() int {
+	if *audio {
+		return ebiaudio.CurrentContext().SampleRate()
+	}
+	return *audioRate
 }
 
 func ebiPlayer(src io.Reader) (*ebiaudio.Player, error) {

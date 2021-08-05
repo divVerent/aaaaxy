@@ -90,7 +90,7 @@ func (t *track) open(cacheName, name string) error {
 			return nil, fmt.Errorf("could not load music %q: %v", name, err)
 		}
 		t.handles = append(t.handles, handle)
-		data, err := vorbis.Decode(audio.CurrentContext(), handle)
+		data, err := vorbis.DecodeWithSampleRate(audiowrap.SampleRate(), handle)
 		if err != nil {
 			return nil, fmt.Errorf("could not start decoding music %q: %v", name, err)
 		}
