@@ -16,9 +16,9 @@ package aaaaxy
 
 import (
 	"fmt"
-	"image/png"
 	"log"
 	"os"
+	"reflect"
 	"strings"
 	"time"
 
@@ -39,9 +39,6 @@ var (
 	dumpFrameCount = 0
 	dumpVideoFile  *os.File
 	dumpAudioFile  *os.File
-	pngEncoder     = png.Encoder{
-		CompressionLevel: png.BestSpeed,
-	}
 )
 
 func initDumping() error {
@@ -69,13 +66,19 @@ func dumping() bool {
 	return dumpAudioFile != nil || dumpVideoFile != nil
 }
 
+func unsafeHackExported(val *reflect.Value) {
+}
+
 func dumpFrame(screen *ebiten.Image) {
 	if !dumping() {
 		return
 	}
 	dumpFrameCount++
 	if dumpVideoFile != nil {
-		err := pngEncoder.Encode(dumpVideoFile, screen)
+		pix, err := dumpPixelsRGBA(screen)
+		if err == nil {
+			_, err = dumpVideoFile.Write(pix)
+		}
 		if err != nil {
 			log.Printf("Failed to encode video - expect corruption: %v", err)
 			dumpVideoFile.Close()
@@ -98,7 +101,7 @@ func ffmpegCommand(audio, video, output string) string {
 	settings := []string{}
 	// Video first, so we can refer to the video stream as [0:v] for sure.
 	if video != "" {
-		inputs = append(inputs, fmt.Sprintf("-f png_pipe -r %d -i '%s'", engine.GameTPS, strings.ReplaceAll(video, "'", "'\\''")))
+		inputs = append(inputs, fmt.Sprintf("-f rawvideo -pixel_format rgba -video_size %dx%d -r %d -i '%s'", engine.GameWidth, engine.GameHeight, engine.GameTPS, strings.ReplaceAll(video, "'", "'\\''")))
 		// Note: the two step upscale simulates the effect of the normal2x shader.
 		// Note: using high quality, fast settings and many keyframes
 		// as the assumption is that the output file will be further edited.
