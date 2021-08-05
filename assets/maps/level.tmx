@@ -15372,12 +15372,13 @@
     <property name="animation_repeat_interval" type="int" value="4"/>
     <property name="fade_despawn" type="bool" value="true"/>
     <property name="fade_on_touch" type="bool" value="true"/>
-    <property name="fade_time" value="0.5s"/>
+    <property name="fade_time" value="2.0s"/>
     <property name="invert" type="bool" value="true"/>
     <property name="render_offset" value="-1 -1"/>
     <property name="respawn_on_touch" type="bool" value="true"/>
     <property name="stop_on_touch" type="bool" value="true"/>
-    <property name="velocity" value="-300 0"/>
+    <property name="time_to_fade" value="1s"/>
+    <property name="velocity" value="-180 0"/>
    </properties>
   </object>
   <object id="7007" type="_TileMod" x="7088" y="6464" width="48" height="16">

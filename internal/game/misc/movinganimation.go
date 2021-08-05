@@ -41,6 +41,7 @@ type MovingAnimation struct {
 	StopOnTouch    bool
 
 	FramesToMove int
+	FramesToFade int
 }
 
 func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -68,6 +69,14 @@ func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.
 		}
 		s.FramesToMove = int((timeToMove*engine.GameTPS + (time.Second / 2)) / time.Second)
 	}
+	timeToFadeString := sp.Properties["time_to_fade"]
+	if timeToFadeString != "" {
+		timeToFade, err := time.ParseDuration(timeToFadeString)
+		if err != nil {
+			return fmt.Errorf("could not parse time to fade: %v", timeToFadeString)
+		}
+		s.FramesToFade = int((timeToFade*engine.GameTPS + (time.Second / 2)) / time.Second)
+	}
 
 	return nil
 }
@@ -77,6 +86,12 @@ func (s *MovingAnimation) Update() {
 		s.FramesToMove--
 	} else {
 		s.Moving.Update()
+	}
+	if s.FramesToFade > 0 {
+		s.FramesToFade--
+		if s.FramesToFade == 0 {
+			s.SetState(s.Entity, s.Entity, s.Invert)
+		}
 	}
 	s.Animation.Update()
 	s.Fadable.Update()
@@ -96,9 +111,9 @@ func (s *MovingAnimation) Touch(other *engine.Entity) {
 		if s.FadeOnTouch {
 			s.SetState(other, s.Entity, s.Invert)
 		}
-	}
-	if s.StopOnTouch {
-		s.Velocity = m.Delta{}
+		if s.StopOnTouch {
+			s.Velocity = m.Delta{}
+		}
 	}
 }
 
