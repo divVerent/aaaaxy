@@ -8,6 +8,7 @@ require (
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210715014612-ab6297867137 // indirect
 	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
+	github.com/google/go-licenses v0.0.0-20210727195037-24e2421190d8 // indirect
 	github.com/hajimehoshi/ebiten/v2 v2.1.3
 	github.com/hajimehoshi/oto v0.7.2 // indirect
 	github.com/kr/text v0.2.0 // indirect

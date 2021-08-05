@@ -15366,10 +15366,10 @@
   <object id="7006" type="MovingAnimation" x="7199" y="6532" width="28" height="9">
    <properties>
     <property name="animation" value="noise"/>
-    <property name="animation_frame_interval" type="int" value="12"/>
+    <property name="animation_frame_interval" type="int" value="14"/>
     <property name="animation_frames" type="int" value="2"/>
     <property name="animation_group" value="idle"/>
-    <property name="animation_repeat_interval" type="int" value="24"/>
+    <property name="animation_repeat_interval" type="int" value="28"/>
     <property name="fade_despawn" type="bool" value="true"/>
     <property name="fade_on_touch" type="bool" value="true"/>
     <property name="fade_time" value="2.0s"/>
