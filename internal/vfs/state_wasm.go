@@ -19,6 +19,7 @@ package vfs
 import (
 	"fmt"
 	"log"
+	"os"
 	"syscall/js"
 )
 
