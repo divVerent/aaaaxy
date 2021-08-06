@@ -1,6 +1,7 @@
 # System properties.
-EXE = $(shell go env GOEXE)
-SUFFIX = -$(shell go env GOOS)-$(shell go env GOARCH)$(EXE)
+GO ?= go
+EXE = $(shell $(GO) env GOEXE)
+SUFFIX = -$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)$(EXE)
 
 # Internal variables.
 PACKAGE = github.com/divVerent/aaaaxy/cmd/aaaaxy
@@ -71,18 +72,18 @@ clean:
 
 .PHONY: vet
 vet:
-	go vet `find ./cmd ./internal -name \*.go -print | sed -e 's,/[^/]*$$,,' | sort -u`
+	$(GO) vet `find ./cmd ./internal -name \*.go -print | sed -e 's,/[^/]*$$,,' | sort -u`
 
 .PHONY: $(STATIK_ASSETS)
 $(STATIK_ASSETS): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
-	GOOS= GOARCH= scripts/statik-vfs.sh $(STATIK_ASSETS_ROOT)
+	GO=$(GO) GOOS= GOARCH= scripts/statik-vfs.sh $(STATIK_ASSETS_ROOT)
 
 $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 	CGO_CPPFLAGS="$(CGO_CPPFLAGS)" \
 	CGO_CFLAGS="$(CGO_CFLAGS)" \
 	CGO_CXXFLAGS="$(CGO_CXXFLAGS)" \
 	CGO_LDFLAGS="$(CGO_LDFLAGS)" \
-	go build -o $(BINARY) $(GOFLAGS) $(PACKAGE)
+	$(GO) build -o $(BINARY) $(GOFLAGS) $(PACKAGE)
 
 assets/generated/image_load_order.txt: assets/tiles assets/sprites $(wildcard third_party/*/assets/sprites)
 	mkdir -p assets/generated
@@ -96,11 +97,11 @@ assets/generated/%.cp.pdf: assets/generated/%.cp.dot
 
 assets/generated/%.cp.dot: assets/maps/%.tmx cmd/dumpcps/main.go
 	mkdir -p assets/generated
-	GOOS= GOARCH= go run $(DUMPCPS) $< > $@
+	GO=$(GO) GOOS= GOARCH= $(GO) run $(DUMPCPS) $< > $@
 
 .PHONY: $(LICENSES_THIRD_PARTY)
 $(LICENSES_THIRD_PARTY):
-	GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
+	GO=$(GO) GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
 
 # Building of release zip files starts here.
 ZIPFILE = aaaaxy.zip
@@ -120,7 +121,7 @@ addrelease: $(BINARY)
 
 .PHONY: webprepare
 webprepare:
-	cp $(shell go env GOROOT)/misc/wasm/wasm_exec.js .
+	cp $(shell $(GO) env GOROOT)/misc/wasm/wasm_exec.js .
 
 .PHONY: addwebstuff
 addwebstuff: webprepare
@@ -131,26 +132,26 @@ allrelease: allreleaseclean
 	$(RM) $(ZIPFILE)
 	$(MAKE) addextras
 	$(MAKE) addlicenses
-	GOOS=linux GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
+	GO=$(GO) GOOS=linux GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
 	# Disabled due to Windows Defender FP:
 	# GOOS=windows GOARCH=386 $(MAKE) release
-	GOOS=windows GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
+	GO=$(GO) GOOS=windows GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
 	# Disabled because build is WAY too slow to be playable.
 	# $(MAKE) BUILDTYPE=release addwebstuff
-	# GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm BUILDTYPE=release addrelease
+	# GO=$(GO) GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm BUILDTYPE=release addrelease
 
 .PHONY: webdebug
 webdebug: webprepare
-	GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm debug
+	GO=$(GO) GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm debug
 
 .PHONY: webrelease
 webrelease: webprepare
-	GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm release
+	GO=$(GO) GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm release
 
 .PHONY: allreleaseclean
 allreleaseclean:
-	GOOS=linux GOARCH=amd64 $(MAKE) clean
-	GOOS=windows GOARCH=amd64 $(MAKE) clean
+	GO=$(GO) GOOS=linux GOARCH=amd64 $(MAKE) clean
+	GO=$(GO) GOOS=windows GOARCH=amd64 $(MAKE) clean
 	$(RM) $(ZIPFILE)
 
 # Helper targets.

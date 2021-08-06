@@ -15,6 +15,8 @@
 
 set -e
 
+: ${GO:=go}
+
 destdir="$1"; shift
 
 root=$PWD
@@ -42,4 +44,4 @@ for sourcedir in assets third_party/*/assets licenses; do
 		logged ln -snf "$root/$sourcedir/$file" "$tmpdir/$prefix$file"
 	done
 done
-logged go run github.com/rakyll/statik -m -f -src "$tmpdir/" -dest "$root/$destdir"
+logged $GO run github.com/rakyll/statik -m -f -src "$tmpdir/" -dest "$root/$destdir"
