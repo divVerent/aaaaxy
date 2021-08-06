@@ -18,6 +18,7 @@ import (
 	"fmt"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -44,6 +45,7 @@ func (r *RespawnPlayer) Spawn(w *engine.World, s *level.Spawnable, e *engine.Ent
 	e.Rect.Origin = e.Rect.Origin.Sub(e.RenderOffset)
 	e.Rect.Size = e.Rect.Size.Add(e.RenderOffset.Mul(2))
 	w.SetSolid(e, true)
+	w.SetZIndex(e, constants.RespawnPlayerZ)
 	return nil
 }
 

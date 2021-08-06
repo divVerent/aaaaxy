@@ -26,4 +26,5 @@ const (
 	PlayerZ         = 5
 	RiserCarriedZ   = 6
 	ForceFieldZ     = 7
+	RespawnPlayerZ  = 7
 )
