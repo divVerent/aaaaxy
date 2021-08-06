@@ -29,6 +29,8 @@ type SequenceTarget struct {
 
 	Target   string
 	Sequence string
+
+	State bool
 }
 
 func (s *SequenceTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -44,6 +46,12 @@ func (s *SequenceTarget) Despawn() {}
 func (s *SequenceTarget) Update() {}
 
 func (s *SequenceTarget) SetState(originator, predecessor *engine.Entity, state bool) {
+	// Only respond to state transitions.
+	if state == s.State {
+		return
+	}
+	s.State = state
+	// Only respond to switching on.
 	if !state {
 		return
 	}
