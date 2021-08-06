@@ -1048,7 +1048,6 @@
   </object>
   <object id="274" type="SetState" x="768" y="6208" width="64" height="32">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="BingPads"/>
    </properties>
@@ -6162,7 +6161,6 @@
   <object id="1435" gid="309" x="4792" y="4032" width="16" height="16"/>
   <object id="1439" gid="308" x="4736" y="3888" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="LeapOfFaithAnyAbility"/>
    </properties>
   </object>
@@ -6296,7 +6294,6 @@
   <object id="1485" gid="320" x="8080" y="7200" width="32" height="32"/>
   <object id="1490" gid="308" x="8128" y="7168" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="LearnToPush"/>
    </properties>
   </object>
@@ -6323,7 +6320,6 @@
   <object id="1499" gid="322" x="928" y="608" width="32" height="32"/>
   <object id="1504" gid="308" x="928" y="592" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="LearnToGrab"/>
    </properties>
   </object>
@@ -6738,7 +6734,6 @@
   <object id="1723" name="ThreePlatformsDarkness" type="SwitchableSprite" gid="56" x="4048" y="1600" width="48" height="480"/>
   <object id="1724" type="SetState" x="4016" y="1600" width="112" height="32">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ThreePlatformsDarkness"/>
    </properties>
   </object>
@@ -6749,7 +6744,6 @@
   <object id="1729" gid="309" x="7600" y="7328" width="16" height="16"/>
   <object id="1732" gid="308" x="7552" y="7264" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!PushToOpen1"/>
@@ -6790,7 +6784,6 @@
   <object id="1753" gid="309" x="7568" y="7216" width="16" height="16"/>
   <object id="1754" gid="308" x="7616" y="7152" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!PushToOpen2"/>
@@ -6800,7 +6793,6 @@
   <object id="1756" name="PushToOpen2" gid="310" x="7584" y="7088" width="16" height="16"/>
   <object id="1758" gid="308" x="7920" y="6896" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="HelloWorld"/>
@@ -6847,7 +6839,6 @@
   <object id="1772" gid="309" x="7472" y="7360" width="16" height="16"/>
   <object id="1773" gid="308" x="7472" y="7328" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="CLOSE_WAIT"/>
@@ -6860,7 +6851,6 @@
   <object id="1779" gid="309" x="7328" y="7072" width="16" height="16"/>
   <object id="1780" gid="308" x="7360" y="7040" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="open"/>
@@ -6873,7 +6863,6 @@
   <object id="1785" gid="309" x="7392" y="7168" width="16" height="16"/>
   <object id="1786" gid="308" x="7424" y="7136" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!openb"/>
@@ -6881,7 +6870,6 @@
   </object>
   <object id="1787" gid="308" x="7328" y="7136" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!opena"/>
@@ -6903,7 +6891,6 @@
   <object id="1794" gid="309" x="7424" y="7264" width="16" height="16"/>
   <object id="1795" gid="308" x="7392" y="7232" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!open2"/>
@@ -6911,7 +6898,6 @@
   </object>
   <object id="1796" gid="308" x="7360" y="7232" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!open1"/>
@@ -7013,7 +6999,6 @@
   <object id="1822" gid="309" x="7200" y="7360" width="16" height="16"/>
   <object id="1823" gid="308" x="7200" y="7296" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="BlockMeIn1"/>
@@ -7022,7 +7007,6 @@
   <object id="1824" gid="309" x="7056" y="7360" width="16" height="16"/>
   <object id="1825" gid="308" x="7056" y="7296" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="BlockMeIn1"/>
@@ -7031,7 +7015,6 @@
   <object id="1830" gid="309" x="7200" y="7104" width="16" height="16"/>
   <object id="1831" gid="308" x="7200" y="7040" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="BlockMeIn2 !BlockMeIn1"/>
@@ -7040,7 +7023,6 @@
   <object id="1832" gid="309" x="7056" y="7104" width="16" height="16"/>
   <object id="1833" gid="308" x="7056" y="7040" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="BlockMeIn2 !BlockMeIn1"/>
@@ -7060,7 +7042,6 @@
   <object id="1849" name="BlockMeIn2" gid="311" x="7168" y="7008" width="16" height="16"/>
   <object id="1854" gid="308" x="7200" y="6896" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="BlockMeIn3 !BlockMeIn2"/>
@@ -7192,7 +7173,6 @@
   <object id="2088" gid="303" x="6528" y="6896" width="16" height="16"/>
   <object id="2089" gid="308" x="6512" y="6912" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="BlockOut"/>
@@ -7414,7 +7394,6 @@
   <object id="2245" name="Leave1" gid="310" x="6368" y="6848" width="16" height="16"/>
   <object id="2246" gid="308" x="6392" y="6816" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!Leave1"/>
@@ -7422,7 +7401,6 @@
   </object>
   <object id="2247" gid="308" x="6344" y="6816" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!Leave1 !Leave2 !Leave0"/>
@@ -7430,7 +7408,6 @@
   </object>
   <object id="2248" gid="308" x="6296" y="6816" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!Leave2 !Leave3"/>
@@ -7438,7 +7415,6 @@
   </object>
   <object id="2249" gid="308" x="6248" y="6816" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!Leave3 !Leave4"/>
@@ -7446,7 +7422,6 @@
   </object>
   <object id="2250" gid="308" x="6200" y="6816" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!Leave4 !Leave5"/>
@@ -7454,7 +7429,6 @@
   </object>
   <object id="2251" gid="308" x="6152" y="6816" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!Leave5 !Leave6"/>
@@ -7517,7 +7491,6 @@
   <object id="2290" gid="309" x="512" y="32" width="16" height="16"/>
   <object id="2291" gid="308" x="520" y="80" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!Grab2"/>
@@ -7525,7 +7498,6 @@
   </object>
   <object id="2293" gid="308" x="568" y="208" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!Grab1"/>
@@ -7581,7 +7553,6 @@
   <object id="2321" gid="303" x="704" y="32" width="16" height="16"/>
   <object id="2322" gid="308" x="736" y="160" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="Xyzzy"/>
@@ -7633,7 +7604,6 @@
   <object id="2338" name="GrabStairs" gid="311" x="1264" y="256" width="16" height="16"/>
   <object id="2339" gid="308" x="1168" y="176" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="GrabStairs"/>
@@ -7680,7 +7650,6 @@
   <object id="2358" gid="303" x="1536" y="240" width="16" height="16"/>
   <object id="2359" gid="308" x="1640" y="32" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!GrabSesame !GrabAntiSesame"/>
@@ -7788,7 +7757,6 @@
   <object id="2617" gid="301" x="2064" y="64" width="16" height="16"/>
   <object id="2618" gid="308" x="2256" y="32" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!GrabSesame2"/>
@@ -7860,7 +7828,6 @@
   </object>
   <object id="2667" gid="308" x="2672" y="288" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!GrabSesame3 !GrabAntiSesame3"/>
@@ -7898,7 +7865,6 @@
   <object id="2680" gid="309" x="2992" y="256" width="16" height="16"/>
   <object id="2682" gid="308" x="2872" y="272" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!RedRoom"/>
@@ -7906,7 +7872,6 @@
   </object>
   <object id="2683" gid="308" x="2952" y="256" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!RedRoom"/>
@@ -7914,7 +7879,6 @@
   </object>
   <object id="2684" gid="308" x="3032" y="240" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!RedRoom"/>
@@ -7922,7 +7886,6 @@
   </object>
   <object id="2686" gid="308" x="2992" y="144" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!RedRoom"/>
@@ -7930,7 +7893,6 @@
   </object>
   <object id="2687" gid="308" x="2912" y="176" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!RedRoom"/>
@@ -7965,7 +7927,6 @@
   </object>
   <object id="2712" gid="308" x="3168" y="48" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="Pink1"/>
@@ -7973,7 +7934,6 @@
   </object>
   <object id="2713" gid="308" x="3120" y="96" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="Pink2"/>
@@ -7981,7 +7941,6 @@
   </object>
   <object id="2714" gid="308" x="3168" y="144" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="Pink3"/>
@@ -7989,7 +7948,6 @@
   </object>
   <object id="2715" gid="308" x="3120" y="192" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="Pink4"/>
@@ -7997,7 +7955,6 @@
   </object>
   <object id="2716" gid="308" x="3168" y="240" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="Pink5"/>
@@ -8017,11 +7974,7 @@
   <object id="2728" name="Pink4" gid="311" x="3120" y="224" width="16" height="16"/>
   <object id="2729" name="Pink5" gid="311" x="3200" y="288" width="16" height="16"/>
   <object id="2730" name="Pink5" gid="311" x="3200" y="304" width="16" height="16"/>
-  <object id="2731" gid="309" x="3168" y="48" width="16" height="16">
-   <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
-   </properties>
-  </object>
+  <object id="2731" gid="309" x="3168" y="48" width="16" height="16"/>
   <object id="2732" gid="309" x="3120" y="96" width="16" height="16"/>
   <object id="2733" gid="309" x="3168" y="144" width="16" height="16"/>
   <object id="2734" gid="309" x="3120" y="192" width="16" height="16"/>
@@ -8055,7 +8008,6 @@
   <object id="2754" name="GrabExit" gid="311" x="7504" y="64" width="16" height="16"/>
   <object id="2755" gid="308" x="7312" y="32" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="GrabExit"/>
@@ -8148,7 +8100,6 @@
   <object id="2820" gid="309" x="4064" y="3808" width="32" height="16"/>
   <object id="2821" gid="308" x="4072" y="3728" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="PushyGrabby"/>
    </properties>
@@ -8156,7 +8107,6 @@
   <object id="2829" name="PushyGrabby" gid="311" x="4016" y="3792" width="16" height="16"/>
   <object id="2830" gid="308" x="3736" y="3648" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="MorePushy"/>
    </properties>
@@ -8190,7 +8140,6 @@
   <object id="2847" name="NotSoSmart" gid="310" x="3760" y="3840" width="16" height="16"/>
   <object id="2848" gid="308" x="3736" y="3744" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!NotSoSmart"/>
@@ -8205,7 +8154,6 @@
   <object id="2863" name="PushyAF4" gid="311" x="3888" y="3632" width="16" height="16"/>
   <object id="2865" gid="308" x="4072" y="3568" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="PushyAF4 PushPushPushAF4"/>
    </properties>
@@ -8235,7 +8183,6 @@
   </object>
   <object id="2902" gid="308" x="3736" y="3504" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="PushPushPush PushPushPushAF4"/>
    </properties>
@@ -8252,7 +8199,6 @@
   <object id="2917" name="PushPushPush" gid="311" x="3776" y="3568" width="16" height="16"/>
   <object id="2918" gid="308" x="4072" y="3472" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="PushyPushyPushy"/>
    </properties>
@@ -8274,7 +8220,6 @@
   <object id="2934" name="PushyPushyPushy" gid="311" x="4016" y="3536" width="16" height="16"/>
   <object id="2935" gid="308" x="3736" y="3408" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="PushingOverIt"/>
    </properties>
@@ -8287,7 +8232,6 @@
   <object id="2942" name="PushingOverIt" gid="311" x="3856" y="3408" width="16" height="16"/>
   <object id="2943" gid="308" x="4072" y="3312" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Enpushed"/>
    </properties>
@@ -8300,7 +8244,6 @@
   <object id="2951" name="Enpushed" gid="311" x="4064" y="3376" width="16" height="16"/>
   <object id="2952" gid="308" x="3736" y="3232" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="PushedEnough"/>
    </properties>
@@ -8403,7 +8346,6 @@
   <object id="3028" name="PushMeNot1a" gid="310" x="3920" y="3056" width="16" height="16"/>
   <object id="3029" gid="308" x="3856" y="3072" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="PushMeNot1a"/>
@@ -8411,7 +8353,6 @@
   </object>
   <object id="3035" gid="308" x="3968" y="2976" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="PushMeNot1b"/>
@@ -8419,7 +8360,6 @@
   </object>
   <object id="3041" gid="308" x="3888" y="2976" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!PushMeNot2a"/>
@@ -8446,7 +8386,6 @@
   <object id="3065" name="PushMeNot2a" gid="310" x="3792" y="2960" width="16" height="16"/>
   <object id="3066" gid="308" x="3792" y="2880" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!PushMeNot2b"/>
@@ -8454,7 +8393,6 @@
   </object>
   <object id="3072" gid="308" x="3968" y="2800" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!PushMeNot3a"/>
@@ -8465,7 +8403,6 @@
   <object id="3081" name="PushMeNot3a" gid="310" x="3904" y="2848" width="16" height="16"/>
   <object id="3083" gid="308" x="3872" y="2800" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!PushMeNot3b !CLogoB"/>
@@ -8506,7 +8443,6 @@
   </object>
   <object id="3110" gid="308" x="3848" y="2656" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="!CLogoR !PushMeNot4a"/>
@@ -8528,7 +8464,6 @@
   <object id="3128" name="PushMeNot4b" gid="311" x="4016" y="2640" width="16" height="16"/>
   <object id="3129" gid="308" x="3832" y="2576" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="PushMeNot4b"/>
@@ -8555,7 +8490,6 @@
   <object id="3146" name="PushMeNot5a" gid="311" x="3744" y="2480" width="16" height="16"/>
   <object id="3150" gid="308" x="3784" y="2576" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="PushMeNot5a"/>
@@ -8563,7 +8497,6 @@
   </object>
   <object id="3151" gid="308" x="3744" y="2352" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="PushMeNot5b"/>
@@ -8582,7 +8515,6 @@
   <object id="3155" gid="309" x="4016" y="2368" width="16" height="16"/>
   <object id="3173" gid="308" x="3768" y="2240" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="PushMeNot6a PushMeNot6a0"/>
@@ -8590,7 +8522,6 @@
   </object>
   <object id="3174" gid="308" x="3976" y="2240" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="PushMeNot6b PushMeNot6b0"/>
@@ -8666,56 +8597,48 @@
   </object>
   <object id="3257" gid="308" x="3056" y="3664" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3258" gid="309" x="3168" y="3664" width="16" height="16"/>
   <object id="3259" gid="308" x="3056" y="3504" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3260" gid="309" x="3168" y="3504" width="16" height="16"/>
   <object id="3261" gid="308" x="3056" y="3344" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3262" gid="309" x="3168" y="3344" width="16" height="16"/>
   <object id="3263" gid="308" x="3056" y="3184" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3264" gid="309" x="3168" y="3184" width="16" height="16"/>
   <object id="3265" gid="308" x="3056" y="3024" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3266" gid="309" x="3168" y="3024" width="16" height="16"/>
   <object id="3267" gid="308" x="3056" y="2864" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3268" gid="309" x="3168" y="2864" width="16" height="16"/>
   <object id="3269" gid="308" x="3056" y="2704" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3270" gid="309" x="3168" y="2704" width="16" height="16"/>
   <object id="3271" gid="308" x="3056" y="2544" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
@@ -8730,49 +8653,41 @@
   <object id="3284" gid="309" x="3568" y="2544" width="16" height="16"/>
   <object id="3287" gid="308" x="3680" y="3664" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3288" gid="308" x="3680" y="3504" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3289" gid="308" x="3680" y="3344" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3290" gid="308" x="3680" y="3184" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3291" gid="308" x="3680" y="3024" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3292" gid="308" x="3680" y="2864" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3293" gid="308" x="3680" y="2704" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
   <object id="3294" gid="308" x="3680" y="2544" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ShinyYetDeadlyCoins"/>
    </properties>
   </object>
@@ -8830,14 +8745,12 @@
   <object id="3367" name="Shiny1" gid="311" x="3392" y="3744" width="16" height="16"/>
   <object id="3369" gid="308" x="3424" y="3664" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny1"/>
    </properties>
   </object>
   <object id="3370" gid="308" x="3312" y="3664" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny1"/>
    </properties>
@@ -8863,14 +8776,12 @@
   <object id="3392" name="ShinyYetDeadlyCoins" gid="310" x="3536" y="3488" width="16" height="16"/>
   <object id="3396" gid="308" x="3424" y="3504" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny2"/>
    </properties>
   </object>
   <object id="3397" gid="308" x="3312" y="3504" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny2"/>
    </properties>
@@ -8927,14 +8838,12 @@
   <object id="3470" name="Shiny3" gid="311" x="3376" y="3344" width="16" height="16"/>
   <object id="3471" gid="308" x="3280" y="3344" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny3"/>
    </properties>
   </object>
   <object id="3472" gid="308" x="3456" y="3344" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny3"/>
    </properties>
@@ -9009,7 +8918,6 @@
   <object id="3574" name="Shiny4" gid="311" x="3536" y="3280" width="16" height="16"/>
   <object id="3576" gid="308" x="3344" y="3232" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny4"/>
    </properties>
@@ -9116,7 +9024,6 @@
   </object>
   <object id="3602" gid="308" x="3392" y="3232" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny4"/>
    </properties>
@@ -9193,14 +9100,12 @@
   <object id="3674" name="ShinyYetDeadlyCoins" gid="310" x="3536" y="2528" width="16" height="16"/>
   <object id="3675" gid="308" x="3200" y="3024" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny5b"/>
    </properties>
   </object>
   <object id="3676" gid="308" x="3536" y="3024" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny5a"/>
    </properties>
@@ -9224,7 +9129,6 @@
   <object id="3694" name="Shiny6" gid="310" x="3392" y="2848" width="16" height="16"/>
   <object id="3695" gid="308" x="3368" y="2864" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny6"/>
    </properties>
@@ -9241,14 +9145,12 @@
   <object id="3707" name="Shiny6" gid="311" x="3456" y="2960" width="16" height="16"/>
   <object id="3708" gid="308" x="3344" y="2704" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny7a"/>
    </properties>
   </object>
   <object id="3709" gid="308" x="3392" y="2704" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny7b"/>
    </properties>
@@ -9277,14 +9179,12 @@
   <object id="3735" name="ShinyYetDeadlyCoins" gid="310" x="3216" y="2640" width="16" height="16"/>
   <object id="3736" gid="308" x="3200" y="2544" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny8b"/>
    </properties>
   </object>
   <object id="3737" gid="308" x="3536" y="2544" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Shiny8a"/>
    </properties>
@@ -9315,7 +9215,6 @@
   <object id="3769" name="Shiny8b" gid="311" x="3264" y="2576" width="16" height="16"/>
   <object id="3771" gid="308" x="3368" y="2208" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="TowerImpossibleWin"/>
    </properties>
@@ -9610,7 +9509,6 @@
   </object>
   <object id="3868" type="Switch" gid="308" x="4560" y="3744" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="Movable"/>
    </properties>
@@ -9619,7 +9517,6 @@
   <object id="3870" gid="309" x="5112" y="3376" width="16" height="16"/>
   <object id="3871" gid="308" x="5136" y="3488" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ButterflyA"/>
    </properties>
@@ -9662,14 +9559,12 @@
   </object>
   <object id="3881" gid="308" x="4976" y="3376" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ButterflyD"/>
    </properties>
   </object>
   <object id="3882" gid="308" x="5008" y="3376" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ButterflyE"/>
    </properties>
@@ -9677,14 +9572,12 @@
   <object id="3883" gid="309" x="4848" y="3536" width="16" height="16"/>
   <object id="3884" gid="308" x="4848" y="3472" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ButterflyC"/>
    </properties>
   </object>
   <object id="3885" gid="308" x="4848" y="3536" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ButterflyB"/>
    </properties>
@@ -9703,28 +9596,24 @@
   <object id="3916" gid="331" x="5277" y="3376" width="3" height="5"/>
   <object id="3917" gid="308" x="5112" y="3376" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ButterflyExit"/>
    </properties>
   </object>
   <object id="3918" gid="308" x="5160" y="3376" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ButterflyExit"/>
    </properties>
   </object>
   <object id="3919" gid="308" x="5208" y="3376" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ButterflyExit"/>
    </properties>
   </object>
   <object id="3920" gid="308" x="5256" y="3376" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ButterflyExit"/>
    </properties>
@@ -10057,7 +9946,6 @@
   <object id="4080" gid="319" x="6304" y="3488" width="32" height="32"/>
   <object id="4093" type="SetState" x="6032" y="3360" width="16" height="271">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="RaaaaceFinish"/>
    </properties>
@@ -10234,121 +10122,101 @@
   <object id="4185" gid="303" x="6192" y="3728" width="16" height="16"/>
   <object id="4186" gid="308" x="6016" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4187" gid="308" x="6032" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4188" gid="308" x="6048" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4189" gid="308" x="6064" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4190" gid="308" x="6080" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4191" gid="308" x="6096" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4192" gid="308" x="6112" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4193" gid="308" x="6128" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4194" gid="308" x="6144" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4195" gid="308" x="6160" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4196" gid="308" x="6208" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4197" gid="308" x="6224" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4198" gid="308" x="6240" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4199" gid="308" x="6256" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4200" gid="308" x="6272" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4203" gid="308" x="6288" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4204" gid="308" x="6304" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4205" gid="308" x="6320" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4206" gid="308" x="6336" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
   <object id="4207" gid="308" x="6352" y="4016" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="TrashTryAgain1 TrashTryAgain2 TrashTryAgain3 TrashWon"/>
    </properties>
   </object>
@@ -10485,7 +10353,6 @@
   <object id="4411" gid="306" x="6368" y="4048" width="32" height="32"/>
   <object id="4412" type="SetState" x="6368" y="4048" width="32" height="32">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="TrashStart"/>
    </properties>
@@ -12001,7 +11868,6 @@
   </object>
   <object id="5168" gid="308" x="5976" y="5840" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GottenItBack"/>
    </properties>
@@ -12076,7 +11942,6 @@
   <object id="5201" name="YThoughStairs" gid="311" x="5824" y="4336" width="16" height="16"/>
   <object id="5202" gid="308" x="5832" y="4224" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="state" type="bool" value="false"/>
     <property name="target" value="YThoughStairs"/>
@@ -12379,14 +12244,12 @@
   <object id="5524" gid="322" x="7760" y="4224" width="32" height="32"/>
   <object id="5525" gid="308" x="7636" y="4160" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="SeviceCounter"/>
    </properties>
   </object>
   <object id="5526" gid="308" x="7596" y="4160" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="SeviceCounter"/>
    </properties>
@@ -12592,42 +12455,36 @@
   <object id="5636" gid="309" x="7504" y="3392" width="16" height="16"/>
   <object id="5638" gid="308" x="7504" y="3248" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="Crumbler =CrumblerSound"/>
    </properties>
   </object>
   <object id="5655" gid="309" x="7504" y="3216" width="16" height="16"/>
   <object id="5656" gid="308" x="7504" y="3072" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="Crumbler =CrumblerSound"/>
    </properties>
   </object>
   <object id="5657" gid="309" x="7504" y="3040" width="16" height="16"/>
   <object id="5658" gid="308" x="7504" y="2896" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="Crumbler =CrumblerSound"/>
    </properties>
   </object>
   <object id="5661" gid="309" x="7760" y="3392" width="16" height="16"/>
   <object id="5662" gid="308" x="7760" y="3248" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="Crumbler =CrumblerSound"/>
    </properties>
   </object>
   <object id="5663" gid="309" x="7760" y="3216" width="16" height="16"/>
   <object id="5664" gid="308" x="7760" y="3072" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="Crumbler =CrumblerSound"/>
    </properties>
   </object>
   <object id="5665" gid="309" x="7760" y="3040" width="16" height="16"/>
   <object id="5666" gid="308" x="7760" y="2896" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="Crumbler =CrumblerSound"/>
    </properties>
   </object>
@@ -12659,14 +12516,12 @@
   <object id="5680" gid="309" x="7504" y="2864" width="16" height="16"/>
   <object id="5681" gid="308" x="7504" y="2720" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="Crumbler =CrumblerSound"/>
    </properties>
   </object>
   <object id="5682" gid="309" x="7760" y="2864" width="16" height="16"/>
   <object id="5683" gid="308" x="7760" y="2720" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="Crumbler =CrumblerSound"/>
    </properties>
   </object>
@@ -13332,7 +13187,6 @@
   <object id="6091" name="ToMegaDoor" gid="293" x="7776" y="2304" width="16" height="64"/>
   <object id="6092" gid="308" x="5760" y="384" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="MegaDoor"/>
    </properties>
@@ -13343,7 +13197,6 @@
   <object id="6096" name="MegaDoor" gid="310" x="5776" y="432" width="16" height="16"/>
   <object id="6097" gid="308" x="6528" y="384" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="MegaDoor"/>
    </properties>
@@ -13612,14 +13465,12 @@
   </object>
   <object id="6172" gid="308" x="7280" y="2112" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmePlat1"/>
    </properties>
   </object>
   <object id="6173" gid="308" x="7160" y="2112" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmePlat2"/>
    </properties>
@@ -13631,7 +13482,6 @@
   <object id="6178" gid="309" x="7160" y="2112" width="16" height="16"/>
   <object id="6183" gid="308" x="7088" y="2272" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmePlat1"/>
    </properties>
@@ -13640,7 +13490,6 @@
   <object id="6185" gid="331" x="7077" y="2272" width="3" height="5"/>
   <object id="6186" gid="308" x="7208" y="2272" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmePlat2"/>
    </properties>
@@ -13667,7 +13516,6 @@
   <object id="6196" gid="338" x="7376" y="2960" width="16" height="16"/>
   <object id="6197" gid="308" x="7184" y="2384" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmeOut"/>
    </properties>
@@ -13709,7 +13557,6 @@
   </object>
   <object id="6214" gid="308" x="6728" y="2640" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmeOutSlammer"/>
    </properties>
@@ -13749,14 +13596,12 @@
   <object id="6224" gid="309" x="6640" y="2480" width="32" height="16"/>
   <object id="6226" gid="308" x="6488" y="2224" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmePlat1"/>
    </properties>
   </object>
   <object id="6229" gid="308" x="6632" y="2320" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmePlat2"/>
    </properties>
@@ -13777,14 +13622,12 @@
   </object>
   <object id="6240" type="SetState" x="6784" y="2192" width="64" height="160">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmePlat1"/>
    </properties>
   </object>
   <object id="6241" gid="308" x="6800" y="2112" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmePlat1"/>
    </properties>
@@ -13793,7 +13636,6 @@
   <object id="6243" gid="331" x="6789" y="2112" width="3" height="5"/>
   <object id="6245" gid="308" x="6680" y="2112" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="GimmePlat2"/>
    </properties>
@@ -13879,7 +13721,6 @@
   <object id="6334" name="ExitPlat" gid="310" x="6680" y="2016" width="16" height="16"/>
   <object id="6335" gid="308" x="6560" y="1968" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="ExitPlat"/>
    </properties>
@@ -14081,7 +13922,6 @@
   <object id="6520" gid="315" x="7152" y="1680" width="16" height="16"/>
   <object id="6521" gid="308" x="7128" y="1632" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="CannotLeave"/>
    </properties>
   </object>
@@ -14094,7 +13934,6 @@
   <object id="6528" gid="301" x="7200" y="1568" width="16" height="16"/>
   <object id="6529" gid="308" x="7272" y="1632" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="CannotLeave"/>
    </properties>
   </object>
@@ -14601,7 +14440,6 @@
   <object id="6672" name="NoEscapeWarp" gid="295" x="3760" y="5152" width="32" height="16"/>
   <object id="6673" type="SetState" x="4160" y="5104" width="16" height="32">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="HubTimer"/>
    </properties>
   </object>
@@ -14615,7 +14453,6 @@
   </object>
   <object id="6675" type="SetState" x="4176" y="1648" width="16" height="32">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="HubTimer"/>
    </properties>
   </object>
@@ -14629,7 +14466,6 @@
   </object>
   <object id="6677" type="SetState" x="6544" y="384" width="16" height="64">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="HubTimer"/>
    </properties>
   </object>
@@ -14790,7 +14626,6 @@
   </object>
   <object id="6814" type="SetState" x="6624" y="6176" width="64" height="32">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="VacuousVoid"/>
    </properties>
   </object>
@@ -16566,7 +16401,6 @@
   <object id="7699" gid="339" x="7456" y="5168" width="16" height="16"/>
   <object id="7702" gid="308" x="7464" y="5888" width="16" height="16">
    <properties>
-    <property name="send_every_frame" type="bool" value="true"/>
     <property name="target" value="ExitVVVVVV"/>
    </properties>
   </object>
