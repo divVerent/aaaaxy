@@ -16,7 +16,6 @@ package target
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/engine"
@@ -32,10 +31,12 @@ type SoundTarget struct {
 
 	Sound  *sound.Sound
 	Player *audiowrap.Player
+	Active bool
 
-	Target     mixins.TargetSelection
-	State      bool
-	Originator *engine.Entity
+	Target      mixins.TargetSelection
+	StopWhenOff bool
+	State       bool
+	Originator  *engine.Entity
 }
 
 func (s *SoundTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -46,6 +47,7 @@ func (s *SoundTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Enti
 	if err != nil {
 		return fmt.Errorf("could not load sound: %v", err)
 	}
+	s.StopWhenOff = sp.Properties["stop_when_off"] == "true" // default false
 	s.Target = mixins.ParseTarget(sp.Properties["target"])
 	s.State = sp.Properties["state"] != "false"
 	return nil
@@ -58,9 +60,8 @@ func (s *SoundTarget) Despawn() {
 }
 
 func (s *SoundTarget) Update() {
-	if s.Player != nil && !s.Player.IsPlaying() {
-		s.Player.Close()
-		s.Player = nil
+	if s.Active && s.Player != nil && !s.Player.IsPlaying() {
+		s.Active = false
 		mixins.SetStateOfTarget(s.World, s.Originator, s.Entity, s.Target, !s.State)
 	}
 }
@@ -69,19 +70,26 @@ func (s *SoundTarget) Touch(other *engine.Entity) {}
 
 func (s *SoundTarget) SetState(originator, predecessor *engine.Entity, state bool) {
 	if state {
-		if s.Player != nil {
-			if s.Player.Current() < 100*time.Millisecond {
-				return
-			}
-			s.Player.Close()
+		if s.Active {
+			return
+			/*
+				if s.Player.Current() < 100*time.Millisecond {
+					return
+				}
+				s.Player.Close()
+			*/
 		}
 		s.Player = s.Sound.Play()
+		s.Active = true
 		s.Originator = originator
 		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, s.State)
 	} else {
 		if s.Player != nil {
-			s.Player.Close()
-			s.Player = nil
+			if s.StopWhenOff {
+				s.Player.Close()
+				s.Player = nil
+			}
+			s.Active = false
 			mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, !s.State)
 		}
 	}

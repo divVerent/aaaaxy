@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7771">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7789">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -5466,61 +5466,73 @@
   <object id="1202" name="ShepardWarp" gid="299" x="4240" y="5616" width="16" height="432"/>
   <object id="1203" type="SetState" x="4263" y="5886" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardC =ShepardSequenceC"/>
    </properties>
   </object>
   <object id="1204" type="SetState" x="4279" y="5886" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardD =ShepardSequenceD"/>
    </properties>
   </object>
   <object id="1205" type="SetState" x="4295" y="5886" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardE =ShepardSequenceE"/>
    </properties>
   </object>
   <object id="1206" type="SetState" x="4311" y="5886" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardF =ShepardSequenceF"/>
    </properties>
   </object>
   <object id="1207" type="SetState" x="4327" y="5886" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardG =ShepardSequenceG"/>
    </properties>
   </object>
   <object id="1208" type="SetState" x="4343" y="5886" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardA =ShepardSequenceA"/>
    </properties>
   </object>
   <object id="1209" type="SetState" x="4359" y="5886" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardB =ShepardSequenceB"/>
    </properties>
   </object>
   <object id="1210" type="SetState" x="4270" y="5796" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardC# =ShepardSequenceC#"/>
    </properties>
   </object>
   <object id="1211" type="SetState" x="4288" y="5796" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardD# =ShepardSequenceD#"/>
    </properties>
   </object>
   <object id="1212" type="SetState" x="4317" y="5796" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardF# =ShepardSequenceF#"/>
    </properties>
   </object>
   <object id="1213" type="SetState" x="4335" y="5796" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardG# =ShepardSequenceG#"/>
    </properties>
   </object>
   <object id="1214" type="SetState" x="4353" y="5796" width="2" height="2">
    <properties>
+    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="=ShepardA# =ShepardSequenceA#"/>
    </properties>
   </object>
@@ -6774,7 +6786,7 @@
     <property name="target" value="NotThatSimpleExit"/>
    </properties>
   </object>
-  <object id="1749" name="NotThatSimpleExit" type="SwitchableSprite" gid="26" x="6336" y="7784" width="16" height="80"/>
+  <object id="1749" name="NotThatSimpleExit" type="SwitchableSprite" gid="26" x="6336" y="7792" width="16" height="64"/>
   <object id="1753" gid="309" x="7568" y="7216" width="16" height="16"/>
   <object id="1754" gid="308" x="7616" y="7152" width="16" height="16">
    <properties>
@@ -7310,62 +7322,62 @@
   <object id="2202" name="BlockOut11" gid="310" x="6352" y="6960" width="16" height="16"/>
   <object id="2203" type="SetState" x="6160" y="7440" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut1 BlockOutSound"/>
+    <property name="target" value="BlockOut1"/>
    </properties>
   </object>
   <object id="2204" type="SetState" x="6160" y="7392" width="32" height="16">
    <properties>
-    <property name="target" value="!BlockOut1 BlockOut2 BlockOutSound"/>
+    <property name="target" value="!BlockOut1 BlockOut2"/>
    </properties>
   </object>
   <object id="2205" type="SetState" x="6160" y="7344" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut1 !BlockOut2 BlockOut3 BlockOutSound"/>
+    <property name="target" value="BlockOut1 !BlockOut2 BlockOut3"/>
    </properties>
   </object>
   <object id="2206" type="SetState" x="6160" y="7296" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut2 !BlockOut3 BlockOut4 BlockOutSound"/>
+    <property name="target" value="BlockOut2 !BlockOut3 BlockOut4"/>
    </properties>
   </object>
   <object id="2207" type="SetState" x="6160" y="7248" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut3 !BlockOut4 BlockOut5 BlockOutSound"/>
+    <property name="target" value="BlockOut3 !BlockOut4 BlockOut5"/>
    </properties>
   </object>
   <object id="2208" type="SetState" x="6160" y="7200" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut4 !BlockOut5 BlockOut6 BlockOutSound"/>
+    <property name="target" value="BlockOut4 !BlockOut5 BlockOut6"/>
    </properties>
   </object>
   <object id="2209" type="SetState" x="6160" y="7152" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut5 !BlockOut6 BlockOut7 BlockOutSound"/>
+    <property name="target" value="BlockOut5 !BlockOut6 BlockOut7"/>
    </properties>
   </object>
   <object id="2210" type="SetState" x="6160" y="7104" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut6 !BlockOut7 BlockOut8 BlockOutSound"/>
+    <property name="target" value="BlockOut6 !BlockOut7 BlockOut8"/>
    </properties>
   </object>
   <object id="2211" type="SetState" x="6160" y="7056" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut7 !BlockOut8 BlockOut9 BlockOutSound"/>
+    <property name="target" value="BlockOut7 !BlockOut8 BlockOut9"/>
    </properties>
   </object>
   <object id="2212" type="SetState" x="6160" y="7008" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut8 !BlockOut9 BlockOut10 BlockOutSound"/>
+    <property name="target" value="BlockOut8 !BlockOut9 BlockOut10"/>
    </properties>
   </object>
   <object id="2213" type="SetState" x="6160" y="6960" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut9 !BlockOut10 BlockOut11 BlockOutSound"/>
+    <property name="target" value="BlockOut9 !BlockOut10 BlockOut11"/>
    </properties>
   </object>
   <object id="2214" type="SetState" x="6160" y="6912" width="32" height="16">
    <properties>
-    <property name="target" value="BlockOut10 !BlockOut11 BlockOutSound"/>
+    <property name="target" value="BlockOut10 !BlockOut11"/>
    </properties>
   </object>
   <object id="2215" gid="306" x="6192" y="7024" width="32" height="32"/>
@@ -7547,22 +7559,22 @@
   <object id="2315" gid="309" x="688" y="176" width="32" height="16"/>
   <object id="2316" type="SetState" x="688" y="48" width="32" height="16">
    <properties>
-    <property name="target" value="GrabPlat4 !GrabPlat2 GrabPlat"/>
+    <property name="target" value="GrabPlat4 !GrabPlat2"/>
    </properties>
   </object>
   <object id="2317" type="SetState" x="688" y="80" width="32" height="16">
    <properties>
-    <property name="target" value="GrabPlat3 !GrabPlat1 GrabPlat"/>
+    <property name="target" value="GrabPlat3 !GrabPlat1"/>
    </properties>
   </object>
   <object id="2318" type="SetState" x="688" y="112" width="32" height="16">
    <properties>
-    <property name="target" value="GrabPlat2 !GrabPlat4 GrabPlat"/>
+    <property name="target" value="GrabPlat2 !GrabPlat4"/>
    </properties>
   </object>
   <object id="2319" type="SetState" x="688" y="144" width="32" height="16">
    <properties>
-    <property name="target" value="GrabPlat1 !GrabPlat3 GrabPlat"/>
+    <property name="target" value="GrabPlat1 !GrabPlat3"/>
    </properties>
   </object>
   <object id="2320" gid="303" x="688" y="32" width="16" height="16"/>
@@ -12294,7 +12306,7 @@
     <property name="text" value="Twice Twice"/>
    </properties>
   </object>
-  <object id="5483" type="SetState" x="7024" y="4816" width="336" height="96">
+  <object id="5483" type="SetState" x="7024" y="4896" width="336" height="16">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="TwiceTwice PlatformSound"/>
@@ -12310,7 +12322,7 @@
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5488" type="SetState" x="7392" y="4816" width="336" height="96">
+  <object id="5488" type="SetState" x="7392" y="4896" width="336" height="16">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="target" value="FriceFriceFriceFrice !SiceSiceSiceSiceSiceSice PlatformSound"/>
@@ -16677,5 +16689,103 @@
     <property name="text_font" value="SmallCaps"/>
    </properties>
   </object>
+  <object id="7771" type="SetState" x="688" y="48" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="GrabPlat"/>
+   </properties>
+  </object>
+  <object id="7772" type="SetState" x="688" y="80" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="GrabPlat"/>
+   </properties>
+  </object>
+  <object id="7773" type="SetState" x="688" y="112" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="GrabPlat"/>
+   </properties>
+  </object>
+  <object id="7774" type="SetState" x="688" y="144" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="GrabPlat"/>
+   </properties>
+  </object>
+  <object id="7775" type="SetState" x="6160" y="6912" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7776" type="SetState" x="6160" y="6960" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7777" type="SetState" x="6160" y="7008" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7778" type="SetState" x="6160" y="7056" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7779" type="SetState" x="6160" y="7104" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7780" type="SetState" x="6160" y="7152" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7781" type="SetState" x="6160" y="7200" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7782" type="SetState" x="6160" y="7248" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7783" type="SetState" x="6160" y="7296" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7784" type="SetState" x="6160" y="7344" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7785" type="SetState" x="6160" y="7392" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7786" type="SetState" x="6160" y="7440" width="32" height="16">
+   <properties>
+    <property name="send_untouch" type="bool" value="true"/>
+    <property name="target" value="BlockOutSound"/>
+   </properties>
+  </object>
+  <object id="7787" name="NotThatSimpleExit" type="SwitchableSprite" gid="38" x="6336" y="7856" width="16" height="16"/>
+  <object id="7788" name="NotThatSimpleExit" type="SwitchableSprite" gid="39" x="6336" y="7776" width="16" height="16"/>
  </objectgroup>
 </map>
