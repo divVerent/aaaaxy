@@ -16619,7 +16619,7 @@
   </object>
   <object id="7770" type="Text" x="7488" y="5216" width="64" height="32">
    <properties>
-    <property name="text" value="Just  kidding."/>
+    <property name="text" value="Just  kiddin'"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
