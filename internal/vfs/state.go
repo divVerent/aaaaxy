@@ -12,14 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package vfs
+// +build wasm
 
-import (
-	"io/ioutil"
-	"log"
-	"os"
-	"path/filepath"
-)
+package vfs
 
 type StateKind int
 
@@ -31,27 +26,3 @@ const (
 	Config StateKind = iota
 	SavedGames
 )
-
-// ReadState loads the given state file and returns its contents.
-func ReadState(kind StateKind, name string) ([]byte, error) {
-	path, err := pathForRead(kind, name)
-	if err != nil {
-		// Remap to os.ErrNotExist so callers can deal with the error on their own.
-		log.Printf("Could not find path for folder%d/%s: %v", kind, name, err)
-		return nil, os.ErrNotExist
-	}
-	return ioutil.ReadFile(path)
-}
-
-// WriteState writes the given state file.
-func WriteState(kind StateKind, name string, data []byte) error {
-	path, err := pathForWrite(kind, name)
-	if err != nil {
-		return err
-	}
-	err = os.MkdirAll(filepath.Dir(path), 0777)
-	if err != nil {
-		return err
-	}
-	return ioutil.WriteFile(path, data, 0666)
-}
