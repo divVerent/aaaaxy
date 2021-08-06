@@ -217,6 +217,16 @@ func (m *Menu) SwitchToScreen(screen MenuScreen) error {
 	return m.Screen.Init(m)
 }
 
+// SaveConfigAndSwitchToScreen is called by menu screens to go to a different menu screen.
+func (m *Menu) SaveConfigAndSwitchToScreen(screen MenuScreen) error {
+	err := engine.SaveConfig()
+	if err != nil {
+		return fmt.Errorf("could not save config: %v", err)
+	}
+	m.Screen = screen
+	return m.Screen.Init(m)
+}
+
 // QuitGame is called by menu screens to end the game.
 func (m *Menu) QuitGame() error {
 	err := m.World.Save()

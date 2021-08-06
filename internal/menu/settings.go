@@ -192,7 +192,7 @@ func (s *SettingsScreen) Update() error {
 	}
 	s.Item = SettingsScreenItem(m.Mod(int(s.Item), int(SettingsCount)))
 	if input.Exit.JustHit {
-		return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+		return s.Menu.ActivateSound(s.Menu.SaveConfigAndSwitchToScreen(&MainScreen{}))
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
@@ -201,9 +201,9 @@ func (s *SettingsScreen) Update() error {
 		case Volume:
 			return s.Menu.ActivateSound(toggleVolume(0))
 		case Reset:
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&ResetScreen{}))
+			return s.Menu.ActivateSound(s.Menu.SaveConfigAndSwitchToScreen(&ResetScreen{}))
 		case Back:
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+			return s.Menu.ActivateSound(s.Menu.SaveConfigAndSwitchToScreen(&MainScreen{}))
 		}
 	}
 	if input.Left.JustHit {
