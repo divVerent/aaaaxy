@@ -37,11 +37,13 @@ type MapScreen struct {
 	CurrentCP  string
 	SortedLocs []string
 
-	cpSprite          *ebiten.Image
-	cpSelectedSprite  *ebiten.Image
-	deadEndSprite     *ebiten.Image
-	cpCheckmarkSprite *ebiten.Image
-	whiteImage        *ebiten.Image
+	cpSprite                *ebiten.Image
+	cpSelectedSprite        *ebiten.Image
+	cpFlippedSprite         *ebiten.Image
+	cpFlippedSelectedSprite *ebiten.Image
+	deadEndSprite           *ebiten.Image
+	cpCheckmarkSprite       *ebiten.Image
+	whiteImage              *ebiten.Image
 }
 
 // TODO: parametrize.
@@ -65,6 +67,14 @@ func (s *MapScreen) Init(m *Menu) error {
 		return err
 	}
 	s.cpSelectedSprite, err = image.Load("sprites", "checkpoint_selected.png")
+	if err != nil {
+		return err
+	}
+	s.cpFlippedSprite, err = image.Load("sprites", "checkpoint_flipped.png")
+	if err != nil {
+		return err
+	}
+	s.cpFlippedSelectedSprite, err = image.Load("sprites", "checkpoint_flipped_selected.png")
 	if err != nil {
 		return err
 	}
@@ -218,13 +228,24 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	// Then draw the CPs.
 	for _, cpName := range s.SortedLocs {
 		cpLoc := loc.Locs[cpName]
-		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
+		var sprite *ebiten.Image
+		switch s.Menu.World.PlayerState.CheckpointSeen(cpName) {
+		case player_state.NotSeen:
 			continue
+		case player_state.SeenNormal:
+			if cpName == s.CurrentCP {
+				sprite = s.cpSelectedSprite
+			} else {
+				sprite = s.cpSprite
+			}
+		case player_state.SeenFlipped:
+			if cpName == s.CurrentCP {
+				sprite = s.cpFlippedSelectedSprite
+			} else {
+				sprite = s.cpFlippedSprite
+			}
 		}
-		sprite := s.cpSprite
-		if cpName == s.CurrentCP {
-			sprite = s.cpSelectedSprite
-		} else if s.Menu.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
+		if s.Menu.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
 			sprite = s.deadEndSprite
 		}
 		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
