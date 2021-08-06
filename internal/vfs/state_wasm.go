@@ -17,10 +17,9 @@
 package vfs
 
 import (
-	"io/ioutil"
+	"fmt"
 	"log"
-	"os"
-	"path/filepath"
+	"syscall/js"
 )
 
 // ReadState loads the given state file and returns its contents.
