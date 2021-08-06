@@ -25,7 +25,7 @@ import (
 
 // ReadState loads the given state file and returns its contents.
 func ReadState(kind StateKind, name string) ([]byte, error) {
-	path := fmt.Sprintf("%d/%d", kind, name)
+	path := fmt.Sprintf("%d/%s", kind, name)
 	state := js.Global().Get("localStorage").Call("getItem", js.ValueOf(path))
 	if state.IsNull() {
 		return nil, os.ErrNotExist
@@ -39,7 +39,7 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 
 // WriteState writes the given state file.
 func WriteState(kind StateKind, name string, data []byte) error {
-	path := fmt.Sprintf("%d/%d", kind, name)
+	path := fmt.Sprintf("%d/%s", kind, name)
 	js.Global().Get("localStorage").Call("setItem", js.ValueOf(path), js.ValueOf(string(data)))
 	return nil
 }
