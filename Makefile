@@ -97,7 +97,7 @@ assets/generated/%.cp.pdf: assets/generated/%.cp.dot
 
 assets/generated/%.cp.dot: assets/maps/%.tmx cmd/dumpcps/main.go
 	mkdir -p assets/generated
-	GO=$(GO) GOOS= GOARCH= $(GO) run $(DUMPCPS) $< > $@
+	GOOS= GOARCH= $(GO) run $(DUMPCPS) $< > $@
 
 .PHONY: $(LICENSES_THIRD_PARTY)
 $(LICENSES_THIRD_PARTY):
