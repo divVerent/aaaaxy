@@ -30,9 +30,6 @@ type Switch struct {
 
 func (s *Switch) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.Entity = e
-	// Switches ALWAYS send every frame.
-	// TODO: replace by making SetState's default this and all other uses explicit.
-	sp.Properties["send_every_frame"] = "true"
 	err := s.SetState.Spawn(w, sp, e)
 	if err != nil {
 		return err
