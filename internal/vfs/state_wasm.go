@@ -33,7 +33,7 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 		log.Printf("Unexpected localStorage type: got %v, want string.", state.Type())
 		return nil, fmt.Errorf("invalid type")
 	}
-	return state.String(), nil
+	return []byte(state.String()), nil
 }
 
 // WriteState writes the given state file.
