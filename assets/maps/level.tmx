@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7789">
+<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7789">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="0"/>
@@ -599,7 +599,7 @@
     <property name="text" value="A short walk can go a long way."/>
    </properties>
   </object>
-  <object id="49" gid="312" x="4608" y="4256" width="32" height="32">
+  <object id="49" gid="312" x="4752" y="4256" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="53"/>
     <property name="target" value="NeverAnOptionTimer"/>
