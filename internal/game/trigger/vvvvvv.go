@@ -22,7 +22,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
-	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 // VVVVVV enables/disables gravity flipping when jumping through.
@@ -30,8 +29,8 @@ type VVVVVV struct {
 	mixins.NonSolidTouchable
 
 	State                bool
-	VVVVVVOnGroundVec    m.Delta
-	NormalOnGroundVec    m.Delta
+	VVVVVVGravityFlip    bool
+	NormalGravityFlip    bool
 	VVVVVVVelocityFactor float64
 	NormalVelocityFactor float64
 }
@@ -43,18 +42,8 @@ func (v *VVVVVV) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	if err != nil {
 		return fmt.Errorf("could not load vvvvvv image: %v", err)
 	}
-	if onGroundVecStr := s.Properties["gravity_direction"]; onGroundVecStr != "" {
-		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &v.NormalOnGroundVec.DX, &v.NormalOnGroundVec.DY)
-		if err != nil {
-			return fmt.Errorf("invalid gravity_direction: %v", err)
-		}
-	}
-	if onGroundVecStr := s.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
-		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &v.VVVVVVOnGroundVec.DX, &v.VVVVVVOnGroundVec.DY)
-		if err != nil {
-			return fmt.Errorf("invalid vvvvvv_gravity_direction: %v", err)
-		}
-	}
+	v.NormalGravityFlip = s.Properties["gravity_flip"] == "true"        // default false
+	v.VVVVVVGravityFlip = s.Properties["vvvvvv_gravity_flip"] == "true" // default false
 	v.NormalVelocityFactor = 1.0
 	if factorStr := s.Properties["velocity_factor"]; factorStr != "" {
 		_, err := fmt.Sscanf(factorStr, "%f", &v.NormalVelocityFactor)
@@ -88,13 +77,17 @@ func (v *VVVVVV) Touch(other *engine.Entity) {
 	if side != velSide {
 		return
 	}
-	down := v.NormalOnGroundVec
+	flip := v.NormalGravityFlip
 	factor := v.NormalVelocityFactor
 	if side {
-		down = v.VVVVVVOnGroundVec
+		flip = v.VVVVVVGravityFlip
 		factor = v.VVVVVVVelocityFactor
 	}
-	other.Impl.(interfaces.VVVVVVer).SetVVVVVV(side, down, factor)
+	onGroundVec := other.Impl.(interfaces.Physics).ReadOnGroundVec()
+	if flip {
+		onGroundVec = onGroundVec.Mul(-1)
+	}
+	other.Impl.(interfaces.VVVVVVer).SetVVVVVV(side, onGroundVec, factor)
 }
 
 func init() {

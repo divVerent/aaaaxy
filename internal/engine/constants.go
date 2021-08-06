@@ -50,7 +50,7 @@ const (
 	frameDarkenAmount = 1.0 / 255.0
 
 	// How much to scroll towards focus point each frame.
-	scrollPerFrame = 0.05
+	scrollPerFrame = 0.1
 	// Minimum distance from screen edge when scrolling.
 	scrollMinDistance = 2 * level.TileSize
 

@@ -356,6 +356,9 @@ func (p *Player) Update() {
 			p.Anim.SetGroup("walk")
 		}
 	} else {
+		if p.VVVVVV {
+			p.LastGroundPos = p.Entity.Rect.Origin
+		}
 		p.Anim.SetGroup("jump")
 	}
 	p.Anim.Update(p.Entity)
