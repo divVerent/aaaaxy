@@ -155,6 +155,8 @@ func (t *Text) updateText() error {
 		}
 	}
 	if t.Entity.Image == nil {
+		// TODO: Instead of drawing like this, can we maybe draw right on the screen image?
+		// Should be faster on lowend Chromebook.
 		var err error
 		t.Entity.Image, err = t.Key.load(&t.World.PlayerState)
 		t.MyImage = true
