@@ -116,13 +116,14 @@ func main() {
 			if _, err := fmt.Sscanf(next, "%d", &nextID); err != nil {
 				log.Fatalf("Could not parse next CP %q -> %q: %v", sp.Properties["name"], next, err)
 			}
+			nextSp := cpMap[nextID]
 			nextVert := vertices[nextID]
 			if nextVert == nil {
 				log.Fatalf("Checkpoint %q doesn't point at a checkpoint but entity %d", sp.Properties["name"], nextID)
 			}
 			distance := 10
-			if sp.Properties["dead_end"] == "true" {
-				distance = 5
+			if nextSp.Properties["dead_end"] == "true" {
+				distance = 15
 			}
 			edge := &Edge{
 				WantDelta: conn.dir.Mul(distance),
