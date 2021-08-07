@@ -212,7 +212,8 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 			cat &^= AllFlippedSpeedrun
 		}
 		for _, next := range s.Level.CheckpointLocations.Locs[cp].NextByDir {
-			if next.Forward || next.Optional {
+			// Note: this skips dead ends; very much intended.
+			if !next.Forward || next.Optional {
 				continue
 			}
 			if !s.CheckpointsWalked(cp, next.Other) {

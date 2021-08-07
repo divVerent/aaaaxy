@@ -33,10 +33,11 @@ import (
 )
 
 type MapScreen struct {
-	Menu       *Menu
-	Level      *level.Level
-	CurrentCP  string
-	SortedLocs []string
+	Menu        *Menu
+	Level       *level.Level
+	CurrentCP   string
+	SortedLocs  []string
+	SortedEdges map[string][]level.CheckpointEdge
 
 	cpSprite                *ebiten.Image
 	cpSelectedSprite        *ebiten.Image
@@ -99,6 +100,21 @@ func (s *MapScreen) Init(m *Menu) error {
 	}
 	// Note: we do not care for the actual order, just that it does not change between frames.
 	sort.Strings(s.SortedLocs)
+	// Now also yield a deterministic edge order.
+	s.SortedEdges = make(map[string][]level.CheckpointEdge, len(s.SortedLocs))
+	loc := s.Menu.World.Level.CheckpointLocations
+	for _, cpName := range s.SortedLocs {
+		cpLoc := loc.Locs[cpName]
+		edges := make([]level.CheckpointEdge, 0, len(cpLoc.NextByDir)+len(cpLoc.NextDeadEnds))
+		for _, edge := range cpLoc.NextByDir {
+			edges = append(edges, edge)
+		}
+		edges = append(edges, cpLoc.NextDeadEnds...)
+		sort.Slice(edges, func(i, j int) bool {
+			return edges[i].Other < edges[j].Other
+		})
+		s.SortedEdges[cpName] = edges
+	}
 
 	return nil
 }
@@ -204,14 +220,13 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		cpPos[cpName] = pos
 	}
 	for _, cpName := range s.SortedLocs {
-		cpLoc := loc.Locs[cpName]
 		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 			continue
 		}
 		pos := cpPos[cpName]
-		for _, dir := range level.AllCheckpointDirs {
-			edge, found := cpLoc.NextByDir[dir]
-			if !found || !edge.Forward || edge.Optional {
+		for _, edge := range s.SortedEdges[cpName] {
+			// We only draw forward non-optional edges; all others are for keyboard navigation only.
+			if !edge.Forward || edge.Optional {
 				continue
 			}
 			otherName := edge.Other

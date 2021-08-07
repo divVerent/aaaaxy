@@ -32,8 +32,9 @@ type (
 		Rect m.Rect
 	}
 	CheckpointLocation struct {
-		MapPos    m.Pos
-		NextByDir map[m.Delta]CheckpointEdge // Note: two sided.
+		MapPos       m.Pos
+		NextByDir    map[m.Delta]CheckpointEdge // Note: two sided.
+		NextDeadEnds []CheckpointEdge
 	}
 	CheckpointEdge struct {
 		Other    string
@@ -183,10 +184,11 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 			// Not a real CP, but the player initial spawn.
 			continue
 		}
-		l := loc.Locs[name]
-		if l == nil {
+		cpLoc := loc.Locs[name]
+		if cpLoc == nil {
 			return nil, fmt.Errorf("could not find checkpoint location for %q in %q", name, filename)
 		}
+		cpDeadEnd := cp.Properties["dead_end"] == "true"
 		for propname, propval := range cp.Properties {
 			if !strings.HasPrefix(propname, "next_") {
 				continue
@@ -199,18 +201,30 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 			if other == "" {
 				return nil, fmt.Errorf("next checkpoint ID for %q property %q in %q is not a checkpoint", name, propname, filename)
 			}
+			otherDeadEnd := l.Checkpoints[other].Properties["dead_end"] == "true"
 			otherLoc := loc.Locs[other]
 			if otherLoc == nil {
 				return nil, fmt.Errorf("next checkpoint %q in %q has no location yet", other, filename)
 			}
 			otherPos := otherLoc.MapPos
-			moveDelta := otherPos.Delta(l.MapPos)
+			moveDelta := otherPos.Delta(cpLoc.MapPos)
 			unstraight := unstraightness(moveDelta)
-			edges = append(edges, edge{
-				a:              name,
-				b:              other,
-				unstraightness: unstraight,
-			})
+			if cpDeadEnd || otherDeadEnd {
+				cpLoc.NextDeadEnds = append(cpLoc.NextDeadEnds, CheckpointEdge{
+					Other:   other,
+					Forward: true,
+				})
+				otherLoc.NextDeadEnds = append(otherLoc.NextDeadEnds, CheckpointEdge{
+					Other:   name,
+					Forward: false,
+				})
+			} else {
+				edges = append(edges, edge{
+					a:              name,
+					b:              other,
+					unstraightness: unstraight,
+				})
+			}
 		}
 	}
 	// Assign all edges to keyboard mapping.
