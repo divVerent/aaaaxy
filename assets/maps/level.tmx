@@ -11406,13 +11406,13 @@
   <object id="4976" gid="341" x="4937" y="1904" width="16" height="32"/>
   <object id="4977" gid="346" x="4936" y="1918" width="6" height="6">
    <properties>
-    <property name="velocity" value="-192 0"/>
+    <property name="velocity" value="-120 0"/>
    </properties>
   </object>
   <object id="4978" gid="341" x="5257" y="2000" width="16" height="32"/>
   <object id="4979" gid="346" x="5256" y="2014" width="6" height="6">
    <properties>
-    <property name="velocity" value="-192 0"/>
+    <property name="velocity" value="-180 0"/>
    </properties>
   </object>
   <object id="4982" gid="304" x="4768" y="2928" width="32" height="32"/>
