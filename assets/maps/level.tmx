@@ -626,6 +626,7 @@
   </object>
   <object id="53" name="leap_of_faith" type="Checkpoint" x="4544" y="3888" width="32" height="176">
    <properties>
+    <property name="hub" type="bool" value="true"/>
     <property name="music" value="retro_chiptune_1.ogg"/>
     <property name="next_left" type="object" value="66"/>
     <property name="next_right" type="object" value="281"/>
@@ -734,6 +735,7 @@
   <object id="98" name="WarpToHub" gid="299" x="3456" y="4880" width="16" height="32"/>
   <object id="99" name="the_hub" type="Checkpoint" x="3872" y="5136" width="288" height="32">
    <properties>
+    <property name="hub" type="bool" value="true"/>
     <property name="music" value=""/>
     <property name="next_down" type="object" value="288"/>
     <property name="next_left" type="object" value="105"/>
@@ -6691,6 +6693,7 @@
   <object id="1712" name="WarpFromThreePlatforms" gid="295" x="976" y="7888" width="48" height="16"/>
   <object id="1713" name="the_antihub" type="Checkpoint" x="4192" y="1680" width="288" height="32">
    <properties>
+    <property name="hub" type="bool" value="true"/>
     <property name="music" value=""/>
     <property name="next_down" type="object" value="3866"/>
     <property name="next_left" type="object" value="2840"/>

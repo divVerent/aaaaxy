@@ -17,6 +17,7 @@ package menu
 import (
 	"fmt"
 	"image/color"
+	"math/rand"
 	"sort"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -192,12 +193,22 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	opts.ColorM.Scale(1.0/3.0, 1.0/3.0, 1.0/3.0, 2.0/3.0)
 	screen.DrawImage(s.whiteImage, &opts)
 	// First draw all edges.
+	cpPos := make(map[string]m.Pos, len(s.SortedLocs))
+	for _, cpName := range s.SortedLocs {
+		cpLoc := loc.Locs[cpName]
+		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
+		if s.Menu.World.Level.Checkpoints[cpName].Properties["hub"] == "true" {
+			pos.X += rand.Intn(3) - 1
+			pos.Y += rand.Intn(3) - 1
+		}
+		cpPos[cpName] = pos
+	}
 	for _, cpName := range s.SortedLocs {
 		cpLoc := loc.Locs[cpName]
 		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 			continue
 		}
-		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
+		pos := cpPos[cpName]
 		for _, dir := range level.AllCheckpointDirs {
 			edge, found := cpLoc.NextByDir[dir]
 			if !found || !edge.Forward || edge.Optional {
@@ -205,8 +216,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			}
 			otherName := edge.Other
 			edgeSeen := s.Menu.World.PlayerState.CheckpointsWalked(cpName, otherName)
-			otherLoc := loc.Locs[otherName]
-			otherPos := otherLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
+			otherPos := cpPos[otherName]
 			farPos := pos.Add(otherPos.Delta(pos).WithMaxLength(edgeFarAttachDistance))
 			options := &ebiten.DrawTrianglesOptions{
 				CompositeMode: ebiten.CompositeModeSourceOver,
@@ -227,7 +237,6 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	}
 	// Then draw the CPs.
 	for _, cpName := range s.SortedLocs {
-		cpLoc := loc.Locs[cpName]
 		var sprite *ebiten.Image
 		switch s.Menu.World.PlayerState.CheckpointSeen(cpName) {
 		case player_state.NotSeen:
@@ -248,7 +257,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		if s.Menu.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
 			sprite = s.deadEndSprite
 		}
-		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
+		pos := cpPos[cpName]
 		opts := ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeSourceOver,
 			Filter:        ebiten.FilterNearest,
@@ -258,7 +267,6 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	}
 	// Finally the checkmarks.
 	for _, cpName := range s.SortedLocs {
-		cpLoc := loc.Locs[cpName]
 		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 			continue
 		}
@@ -266,7 +274,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			continue
 		}
 		sprite := s.cpCheckmarkSprite
-		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
+		pos := cpPos[cpName]
 		opts := ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeSourceOver,
 			Filter:        ebiten.FilterNearest,
