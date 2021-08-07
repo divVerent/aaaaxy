@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7797">
+<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7799">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -14067,7 +14067,7 @@
     <property name="image" value="stereo_madness.png"/>
    </properties>
   </object>
-  <object id="6566" type="Sprite" x="5760" y="112" width="112" height="112">
+  <object id="6566" type="Sprite" x="5760" y="128" width="112" height="112">
    <properties>
     <property name="image" value="huh.png"/>
    </properties>
@@ -16679,5 +16679,7 @@
    </properties>
   </object>
   <object id="7796" gid="323" x="1128" y="288" width="32" height="32"/>
+  <object id="7797" gid="303" x="992" y="192" width="16" height="16"/>
+  <object id="7798" gid="303" x="1008" y="176" width="16" height="16"/>
  </objectgroup>
 </map>
