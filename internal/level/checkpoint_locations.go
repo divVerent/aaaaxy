@@ -45,6 +45,7 @@ type (
 
 type edge struct {
 	a, b           string
+	priority       int
 	unstraightness float64
 }
 
@@ -179,6 +180,7 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 		id2name[cp.ID] = name
 	}
 	edges := []edge{}
+	nodeDegrees := make(map[string]int, len(l.Checkpoints))
 	for name, cp := range l.Checkpoints {
 		if name == "" {
 			// Not a real CP, but the player initial spawn.
@@ -224,6 +226,8 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 					b:              other,
 					unstraightness: unstraight,
 				})
+				nodeDegrees[name] += 1
+				nodeDegrees[other] += 1
 			}
 		}
 	}
@@ -240,8 +244,21 @@ again:
 		loc.NextByDir = map[m.Delta]CheckpointEdge{}
 	}
 	sort.Slice(edges, func(a, b int) bool {
+		dp := edges[a].priority - edges[b].priority
+		if dp != 0 {
+			// Largest priority first.
+			return dp > 0
+		}
+		da := nodeDegrees[edges[a].a] + nodeDegrees[edges[a].b]
+		db := nodeDegrees[edges[b].a] + nodeDegrees[edges[b].b]
+		dd := db - da
+		if dd != 0 {
+			// Largest degrees first.
+			return dd > 0
+		}
 		du := edges[a].unstraightness - edges[b].unstraightness
 		if du != 0 {
+			// Straightest edges first.
 			return du < 0
 		}
 		na := fmt.Sprintf("%v -> %v", edges[a].a, edges[a].b)
@@ -272,9 +289,9 @@ nextEdge:
 			}
 			continue nextEdge
 		}
-		if edge.unstraightness != 0 {
+		if edge.priority < 1 {
 			log.Printf("Prioritizing edge %v...", edge)
-			edge.unstraightness = 0
+			edge.priority += 1
 			goto again
 		}
 		return nil, fmt.Errorf("could not map edge %v to keyboard direction in %q", edge, filename)
