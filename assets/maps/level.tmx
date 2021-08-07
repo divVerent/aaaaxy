@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7789">
+<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7797">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -7623,6 +7623,7 @@
     <property name="Green" type="int" value="0"/>
     <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#ff000000"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="2349" gid="312" x="1168" y="128" width="32" height="32">
@@ -16624,5 +16625,55 @@
   </object>
   <object id="7787" name="NotThatSimpleExit" type="SwitchableSprite" gid="38" x="6336" y="7856" width="16" height="16"/>
   <object id="7788" name="NotThatSimpleExit" type="SwitchableSprite" gid="39" x="6336" y="7776" width="16" height="16"/>
+  <object id="7789" type="Text" x="7152" y="7424" width="64" height="32">
+   <properties>
+    <property name="text" value="Reset"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
+   </properties>
+  </object>
+  <object id="7790" type="Text" x="6536" y="7440" width="64" height="32">
+   <properties>
+    <property name="text" value="Reset"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
+   </properties>
+  </object>
+  <object id="7791" type="Text" x="6936" y="7440" width="64" height="32">
+   <properties>
+    <property name="text" value="Reset"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
+   </properties>
+  </object>
+  <object id="7792" type="Text" x="2832" y="288" width="64" height="16">
+   <properties>
+    <property name="text" value="Reset"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
+   </properties>
+  </object>
+  <object id="7793" type="Text" x="1424" y="48" width="64" height="16">
+   <properties>
+    <property name="text" value="Reset"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
+   </properties>
+  </object>
+  <object id="7794" gid="324" x="1424" y="64" width="32" height="32"/>
+  <object id="7795" type="Text" x="1168" y="296" width="64" height="16">
+   <properties>
+    <property name="text" value="Reset"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
+   </properties>
+  </object>
+  <object id="7796" gid="323" x="1128" y="288" width="32" height="32"/>
  </objectgroup>
 </map>
