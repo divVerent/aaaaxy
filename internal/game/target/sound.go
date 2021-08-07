@@ -61,7 +61,8 @@ func (s *SoundTarget) Despawn() {
 
 func (s *SoundTarget) Update() {
 	if s.Active && s.Player != nil && !s.Player.IsPlaying() {
-		s.Active = false
+		s.Player.Close()
+		s.Player = nil
 		mixins.SetStateOfTarget(s.World, s.Originator, s.Entity, s.Target, !s.State)
 	}
 }
@@ -78,6 +79,9 @@ func (s *SoundTarget) SetState(originator, predecessor *engine.Entity, state boo
 				}
 				s.Player.Close()
 			*/
+		}
+		if s.Player != nil {
+			s.Player.Close()
 		}
 		s.Player = s.Sound.Play()
 		s.Active = true
