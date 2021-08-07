@@ -6734,7 +6734,11 @@
   </object>
   <object id="1720" name="WarpFromThreePlatforms" gid="297" x="4048" y="1872" width="48" height="16"/>
   <object id="1722" gid="305" x="4056" y="1632" width="32" height="32"/>
-  <object id="1723" name="ThreePlatformsDarkness" type="SwitchableSprite" gid="56" x="4048" y="1600" width="48" height="480"/>
+  <object id="1723" name="ThreePlatformsDarkness" type="SwitchableSprite" gid="56" x="4048" y="1600" width="48" height="480">
+   <properties>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
   <object id="1724" type="SetState" x="4016" y="1600" width="112" height="32">
    <properties>
     <property name="target" value="ThreePlatformsDarkness"/>
