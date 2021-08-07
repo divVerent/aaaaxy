@@ -33,7 +33,9 @@ import (
 )
 
 var (
-	precacheText = flag.Bool("precache_text", true, "preload all text objects at startup (VERY recommended)")
+	precacheText            = flag.Bool("precache_text", true, "preload all text objects at startup (VERY recommended)")
+	memImagesForStaticText  = flag.Bool("mem_images_for_static_text", true, "use in-memory images for static text objects (faster startup)")
+	memImagesForDynamicText = flag.Bool("mem_images_for_dynamic_text", false, "use in-memory images for dynamic text objects (seems to update slower in-game)")
 )
 
 // Text is a simple entity type that renders text.
@@ -89,20 +91,30 @@ func (key textCacheKey) load(ps *player_state.PlayerState) (*ebiten.Image, error
 	}
 	txt = strings.ReplaceAll(txt, "  ", "\n")
 	bounds := fnt.BoundString(txt)
-	img := image.NewRGBA( // image.RGBA is ebiten's fast path.
-		image.Rectangle{
-			Min: image.Point{
-				X: 0,
-				Y: 0,
-			},
-			Max: image.Point{
-				X: bounds.Size.DX,
-				Y: bounds.Size.DY,
-			},
-		})
-	fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, fg, bg)
-	img2 := ebiten.NewImageFromImage(img)
-	return img2, nil
+	useMemImages := *memImagesForStaticText
+	if ps != nil {
+		useMemImages = *memImagesForDynamicText
+	}
+	if useMemImages {
+		img := image.NewRGBA( // image.RGBA is ebiten's fast path.
+			image.Rectangle{
+				Min: image.Point{
+					X: 0,
+					Y: 0,
+				},
+				Max: image.Point{
+					X: bounds.Size.DX,
+					Y: bounds.Size.DY,
+				},
+			})
+		fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, fg, bg)
+		img2 := ebiten.NewImageFromImage(img)
+		return img2, nil
+	} else {
+		img := ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
+		fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, fg, bg)
+		return img, nil
+	}
 }
 
 func (t *Text) Precache(s *level.Spawnable) error {
