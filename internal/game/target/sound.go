@@ -84,14 +84,15 @@ func (s *SoundTarget) SetState(originator, predecessor *engine.Entity, state boo
 		s.Originator = originator
 		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, s.State)
 	} else {
-		if s.Player != nil {
-			if s.StopWhenOff {
-				s.Player.Close()
-				s.Player = nil
-			}
-			s.Active = false
-			mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, !s.State)
+		if !s.Active {
+			return
 		}
+		if s.Player != nil && s.StopWhenOff {
+			s.Player.Close()
+			s.Player = nil
+		}
+		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, !s.State)
+		s.Active = false
 	}
 }
 
