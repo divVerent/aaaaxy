@@ -12,11 +12,10 @@ UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
 GENERATED_ASSETS = assets/generated/level.cp.json assets/generated/image_load_order.txt
 EMBEDROOT = internal/vfs/_embedroot
-STATIK_ASSETS_ROOT = internal/assets
-STATIK_ASSETS = $(STATIK_ASSETS_ROOT)/statik/statik.go
 EXTRAFILES = README.md LICENSE CONTRIBUTING.md
 LICENSES_THIRD_PARTY = licenses
 ZIP = 7za -tzip -mx=9 a
+CP = cp --reflink=auto
 
 # Release/debug flags.
 BUILDTYPE = debug
@@ -33,19 +32,6 @@ LDFLAGS ?= -g0 -s
 INFIX =
 BINARY_ASSETS = $(EMBEDROOT)
 else
-ifeq ($(BUILDTYPE),statikrelease)
-ifeq ($(GOARCH),wasm)
-GOFLAGS ?= -tags statik,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
-else
-GOFLAGS ?= -tags statik,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
-endif
-CPPFLAGS ?= -DNDEBUG
-CFLAGS ?= -g0 -O3
-CXXFLAGS ?= -g0 -O3
-LDFLAGS ?= -g0 -s
-INFIX = statik
-BINARY_ASSETS = $(STATIK_ASSETS)
-else
 ifeq ($(BUILDTYPE),extradebug)
 GOFLAGS ?= -tags ebitensinglethread,ebitendebug
 INFIX = -extradebug
@@ -54,7 +40,6 @@ GOFLAGS ?= -tags ebitensinglethread
 INFIX = -debug
 endif
 BINARY_ASSETS = $(GENERATED_ASSETS)
-endif
 endif
 BINARY = aaaaxy$(INFIX)$(SUFFIX)
 
@@ -83,7 +68,7 @@ release:
 
 .PHONY: clean
 clean:
-	$(RM) -r $(BINARY) $(STATIK_ASSETS) $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
+	$(RM) -r $(BINARY) $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
 
 .PHONY: vet
 vet:
@@ -92,11 +77,7 @@ vet:
 .PHONY: $(EMBEDROOT)
 $(EMBEDROOT): $(GENERATED_ASSETS $(LICENSES_THIRD_PARTY)
 	$(RM) -r $(EMBEDROOT)
-	scripts/build-vfs.sh $(EMBEDROOT) cp
-
-.PHONY: $(STATIK_ASSETS)
-$(STATIK_ASSETS): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
-	GO=$(GO) GOOS= GOARCH= scripts/statik-vfs.sh $(STATIK_ASSETS_ROOT)
+	CP="$(CP)" scripts/build-vfs.sh $(EMBEDROOT)
 
 $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 	CGO_CPPFLAGS="$(CGO_CPPFLAGS)" \
@@ -121,7 +102,7 @@ assets/generated/%.cp.dot: assets/maps/%.tmx cmd/dumpcps/main.go
 
 .PHONY: $(LICENSES_THIRD_PARTY)
 $(LICENSES_THIRD_PARTY):
-	GO=$(GO) GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
+	GO="$(GO)" GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
 
 # Building of release zip files starts here.
 ZIPFILE = aaaaxy.zip
@@ -152,26 +133,26 @@ allrelease: allreleaseclean
 	$(RM) $(ZIPFILE)
 	$(MAKE) addextras
 	$(MAKE) addlicenses
-	GO=$(GO) GOOS=linux GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
+	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
 	# Disabled due to Windows Defender FP:
 	# GOOS=windows GOARCH=386 $(MAKE) release
-	GO=$(GO) GOOS=windows GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
+	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
 	# Disabled because build is WAY too slow to be playable.
 	# $(MAKE) BUILDTYPE=release addwebstuff
-	# GO=$(GO) GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm BUILDTYPE=release addrelease
+	# GO="$(GO)" GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm BUILDTYPE=release addrelease
 
 .PHONY: webdebug
 webdebug: webprepare
-	GO=$(GO) GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm debug
+	GO="$(GO)" GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm debug
 
 .PHONY: webrelease
 webrelease: webprepare
-	GO=$(GO) GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm release
+	GO="$(GO)" GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm release
 
 .PHONY: allreleaseclean
 allreleaseclean:
-	GO=$(GO) GOOS=linux GOARCH=amd64 $(MAKE) clean
-	GO=$(GO) GOOS=windows GOARCH=amd64 $(MAKE) clean
+	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) clean
+	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) clean
 	$(RM) $(ZIPFILE)
 
 # Helper targets.

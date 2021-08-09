@@ -13,7 +13,6 @@
 // limitations under the License.
 
 // +build !embed
-// +build !statik
 
 package vfs
 
@@ -48,7 +47,7 @@ func Init() error {
 
 // load loads a file from the VFS.
 func load(vfsPath string) (ReadSeekCloser, error) {
-	// Note: this must be consistent with statik-vfs.sh.
+	// Note: this must be consistent with build-vfs.sh.
 	var err error
 	for _, dir := range localAssetDirs {
 		var r ReadSeekCloser

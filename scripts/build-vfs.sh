@@ -16,9 +16,9 @@
 set -e
 
 : ${GO:=go}
+: ${CP:=cp}
 
 destdir="$1"; shift
-copy_command="$1"; shift
 
 root=$PWD
 destdir=$(realpath "$destdir")
@@ -40,6 +40,6 @@ for sourcedir in assets third_party/*/assets licenses; do
 	logged cd "$root/$sourcedir"
 	find . -name src -prune -or -name editorimgs -prune -or -type f -print | while read -r file; do
 		mkdir -p "$destdir/$prefix${file%/*}"
-		logged $copy_command "$root/$sourcedir/$file" "$destdir/$prefix$file"
+		logged ${CP} "$root/$sourcedir/$file" "$destdir/$prefix$file"
 	done
 done

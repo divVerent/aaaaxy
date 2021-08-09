@@ -14,7 +14,6 @@ require (
 	github.com/kr/pretty v0.3.0 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/rakyll/statik v0.1.7
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
 	golang.org/x/exp v0.0.0-20210729172720-737cce5152fc // indirect
 	golang.org/x/image v0.0.0-20210628002857-a66eb6448b8d
