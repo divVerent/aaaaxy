@@ -28,7 +28,7 @@ logged() {
 	"$@"
 }
 
-for sourcedir in assets third_party/*/assets; do
+for sourcedir in assets third_party/*/assets licenses; do
 	case "$sourcedir" in
 		licenses)
 			prefix=licenses/
