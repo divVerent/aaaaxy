@@ -51,9 +51,42 @@ type track struct {
 }
 
 type musicJson struct {
+	PlayStart  int64   `json:"play_start"`
 	ReplayGain float64 `json:"replay_gain"`
 	LoopStart  int64   `json:"loop_start"`
 	LoopEnd    int64   `json:"loop_end"`
+}
+
+type sampleCutter struct {
+	base io.ReadSeeker
+
+	offset int64
+}
+
+var _ io.ReadSeeker = &sampleCutter{}
+
+func (c *sampleCutter) Read(b []byte) (int, error) {
+	return c.base.Read(b)
+}
+
+func (c *sampleCutter) Seek(offset int64, whence int) (int64, error) {
+	if whence == io.SeekStart {
+		offset += c.offset
+	}
+	o, err := c.base.Seek(offset, whence)
+	return o - c.offset, err
+}
+
+func newSampleCutter(base io.ReadSeeker, offset int64) (*sampleCutter, error) {
+	f := &sampleCutter{
+		base:   base,
+		offset: offset,
+	}
+	_, err := f.Seek(0, io.SeekStart)
+	if err != nil {
+		return nil, fmt.Errorf("could not build sample cutter: %v", err)
+	}
+	return f, nil
 }
 
 func (t *track) open(cacheName, name string) error {
@@ -65,6 +98,7 @@ func (t *track) open(cacheName, name string) error {
 	t.name = cacheName
 
 	config := musicJson{
+		PlayStart:  0,
 		LoopStart:  0,
 		LoopEnd:    -1,
 		ReplayGain: 1,
@@ -98,7 +132,7 @@ func (t *track) open(cacheName, name string) error {
 		if config.LoopEnd >= 0 {
 			loopEnd = config.LoopEnd * bytesPerSample
 		}
-		return audio.NewInfiniteLoopWithIntro(data, config.LoopStart*bytesPerSample, loopEnd), nil
+		return newSampleCutter(audio.NewInfiniteLoopWithIntro(data, config.LoopStart*bytesPerSample, loopEnd), config.PlayStart*bytesPerSample)
 	})
 	if err != nil {
 		t.stop()
