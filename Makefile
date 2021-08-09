@@ -11,6 +11,7 @@ VERSION = github.com/divVerent/aaaaxy/internal/version
 UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
 GENERATED_ASSETS = assets/generated/level.cp.json assets/generated/image_load_order.txt
+EMBEDROOT = internal/vfs/_embedroot
 STATIK_ASSETS_ROOT = internal/assets
 STATIK_ASSETS = $(STATIK_ASSETS_ROOT)/statik/statik.go
 EXTRAFILES = README.md LICENSE CONTRIBUTING.md
@@ -21,6 +22,19 @@ ZIP = 7za -tzip -mx=9 a
 BUILDTYPE = debug
 ifeq ($(BUILDTYPE),release)
 ifeq ($(GOARCH),wasm)
+GOFLAGS ?= -tags embed,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
+else
+GOFLAGS ?= -tags embed,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
+endif
+CPPFLAGS ?= -DNDEBUG
+CFLAGS ?= -g0 -O3
+CXXFLAGS ?= -g0 -O3
+LDFLAGS ?= -g0 -s
+INFIX =
+BINARY_ASSETS = $(EMBEDROOT)
+else
+ifeq ($(BUILDTYPE),statikrelease)
+ifeq ($(GOARCH),wasm)
 GOFLAGS ?= -tags statik,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
 else
 GOFLAGS ?= -tags statik,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
@@ -29,7 +43,7 @@ CPPFLAGS ?= -DNDEBUG
 CFLAGS ?= -g0 -O3
 CXXFLAGS ?= -g0 -O3
 LDFLAGS ?= -g0 -s
-INFIX =
+INFIX = statik
 BINARY_ASSETS = $(STATIK_ASSETS)
 else
 ifeq ($(BUILDTYPE),extradebug)
@@ -40,6 +54,7 @@ GOFLAGS ?= -tags ebitensinglethread
 INFIX = -debug
 endif
 BINARY_ASSETS = $(GENERATED_ASSETS)
+endif
 endif
 BINARY = aaaaxy$(INFIX)$(SUFFIX)
 
@@ -73,6 +88,11 @@ clean:
 .PHONY: vet
 vet:
 	$(GO) vet `find ./cmd ./internal -name \*.go -print | sed -e 's,/[^/]*$$,,' | sort -u`
+
+.PHONY: $(EMBEDROOT)
+$(EMBEDROOT): $(GENERATED_ASSETS $(LICENSES_THIRD_PARTY)
+	$(RM) -r $(EMBEDROOT)
+	scripts/build-vfs.sh $(EMBEDROOT) cp
 
 .PHONY: $(STATIK_ASSETS)
 $(STATIK_ASSETS): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)

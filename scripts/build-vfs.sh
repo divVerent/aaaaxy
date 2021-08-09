@@ -18,16 +18,28 @@ set -e
 : ${GO:=go}
 
 destdir="$1"; shift
+copy_command="$1"; shift
 
 root=$PWD
-
-tmpdir=$(mktemp -d)
-trap 'rm -rf "$tmpdir"' EXIT
+destdir=$(realpath "$destdir")
 
 logged() {
 	printf >&2 '+ %s\n' "$*"
 	"$@"
 }
 
-logged scripts/build-vfs.sh "$tmpdir" 'ln -snf'
-logged $GO run github.com/rakyll/statik -m -f -src "$tmpdir/" -dest "$root/$destdir"
+for sourcedir in assets third_party/*/assets licenses; do
+	case "$sourcedir" in
+		licenses)
+			prefix=licenses/
+			;;
+		*)
+			prefix=
+			;;
+	esac
+	logged cd "$root/$sourcedir"
+	find . -name src -prune -or -name editorimgs -prune -or -type f -print | while read -r file; do
+		mkdir -p "$destdir/$prefix${file%/*}"
+		logged $copy_command "$root/$sourcedir/$file" "$destdir/$prefix$file"
+	done
+done

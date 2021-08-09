@@ -1,6 +1,6 @@
 module github.com/divVerent/aaaaxy
 
-go 1.14
+go 1.16
 
 require (
 	github.com/adrg/xdg v0.3.3
