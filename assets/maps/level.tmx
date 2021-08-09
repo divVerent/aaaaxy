@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7800">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7804">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -7584,7 +7584,7 @@
     <property name="required_orientation" value="ES"/>
    </properties>
   </object>
-  <object id="2326" name="XyzzyCloser" type="SwitchableSprite" gid="26" x="976" y="112" width="16" height="48"/>
+  <object id="2326" name="XyzzyCloser" type="SwitchableSprite" gid="26" x="976" y="128" width="16" height="32"/>
   <object id="2327" type="SetState" x="1024" y="16" width="16" height="144">
    <properties>
     <property name="target" value="XyzzyCloser"/>
@@ -14041,7 +14041,7 @@
     <property name="image" value="silvercity_right.png"/>
    </properties>
   </object>
-  <object id="6560" name="XyzzyCloser" type="SwitchableSprite" gid="48" x="976" y="160" width="16" height="16"/>
+  <object id="6560" name="XyzzyCloser" type="SwitchableSprite" gid="31" x="976" y="160" width="16" height="16"/>
   <object id="6561" type="Sprite" x="640" y="352" width="128" height="32">
    <properties>
     <property name="image" value="can_carry_intro.png"/>
@@ -16412,7 +16412,7 @@
     <property name="target" value="ExitVVVVVV"/>
    </properties>
   </object>
-  <object id="7703" name="ExitVVVVVV" type="SwitchableSprite" gid="36" x="7280" y="5872" width="96" height="16">
+  <object id="7703" name="ExitVVVVVV" type="SwitchableSprite" gid="16" x="7296" y="5872" width="64" height="16">
    <properties>
     <property name="invert" type="bool" value="true"/>
    </properties>
@@ -16685,6 +16685,22 @@
    <properties>
     <property name="opaque" type="bool" value="false"/>
     <property name="solid" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="7800" name="XyzzyCloser" type="SwitchableSprite" gid="28" x="976" y="112" width="16" height="16"/>
+  <object id="7801" name="ExitVVVVVV" type="SwitchableSprite" gid="35" x="7360" y="5872" width="16" height="16">
+   <properties>
+    <property name="invert" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="7802" name="ExitVVVVVV" type="SwitchableSprite" gid="34" x="7280" y="5872" width="16" height="16">
+   <properties>
+    <property name="invert" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="7803" type="Sprite" x="1744" y="4534" width="640" height="360">
+   <properties>
+    <property name="image" value="ending_base.png"/>
    </properties>
   </object>
  </objectgroup>
