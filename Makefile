@@ -75,7 +75,7 @@ vet:
 	$(GO) vet `find ./cmd ./internal -name \*.go -print | sed -e 's,/[^/]*$$,,' | sort -u`
 
 .PHONY: $(EMBEDROOT)
-$(EMBEDROOT): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
+$(EMBEDROOT): $(GENERATED_ASSETS)
 	$(RM) -r $(EMBEDROOT)
 	CP="$(CP)" scripts/build-vfs.sh $(EMBEDROOT)
 
