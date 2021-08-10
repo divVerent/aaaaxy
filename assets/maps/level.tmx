@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7809">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7816">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -14310,12 +14310,12 @@
   </object>
   <object id="6628" type="_TileMod" x="6048" y="960" width="16" height="256">
    <properties>
-    <property name="solid" type="bool" value="true"/>
+    <property name="player_solid" type="bool" value="true"/>
    </properties>
   </object>
   <object id="6629" type="_TileMod" x="6096" y="960" width="16" height="256">
    <properties>
-    <property name="solid" type="bool" value="true"/>
+    <property name="player_solid" type="bool" value="true"/>
    </properties>
   </object>
   <object id="6630" name="LastWarp" gid="297" x="5808" y="1200" width="544" height="16"/>
@@ -14324,22 +14324,22 @@
   <object id="6634" name="ReallyLastWarp" gid="297" x="1024" y="4976" width="672" height="16"/>
   <object id="6635" type="_TileMod" x="1328" y="352" width="16" height="4640">
    <properties>
-    <property name="solid" type="bool" value="true"/>
+    <property name="player_solid" type="bool" value="true"/>
    </properties>
   </object>
   <object id="6636" type="_TileMod" x="1376" y="352" width="16" height="4640">
    <properties>
-    <property name="solid" type="bool" value="true"/>
+    <property name="player_solid" type="bool" value="true"/>
    </properties>
   </object>
   <object id="6637" type="_TileMod" x="2032" y="352" width="16" height="4608">
    <properties>
-    <property name="solid" type="bool" value="true"/>
+    <property name="player_solid" type="bool" value="true"/>
    </properties>
   </object>
   <object id="6638" type="_TileMod" x="2080" y="352" width="16" height="4608">
    <properties>
-    <property name="solid" type="bool" value="true"/>
+    <property name="player_solid" type="bool" value="true"/>
    </properties>
   </object>
   <object id="6639" gid="317" x="1024" y="432" width="672" height="4544">
@@ -14351,8 +14351,8 @@
   </object>
   <object id="6640" gid="317" x="1728" y="368" width="672" height="4592">
    <properties>
-    <property name="map_black_to" type="color" value="#00aaaaaa"/>
-    <property name="map_white_to" type="color" value="#ffaaaaaa"/>
+    <property name="map_black_to" type="color" value="#00ffffff"/>
+    <property name="map_white_to" type="color" value="#ffffffff"/>
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
@@ -14364,7 +14364,7 @@
   <object id="6643" name="FinalGoal" type="Goal" x="2048" y="4704" width="32" height="31"/>
   <object id="6644" type="SetState" x="2048" y="4735" width="32" height="1">
    <properties>
-    <property name="target" value="FinalGoal FinalStopTimer FinalSound FinalFadeDelay FinalZoomDelay FinalCreditsDelay FinalPowerLED"/>
+    <property name="target" value="FinalGoal FinalStopTimer FinalPowerLED FinalLogoDelay FinalSoundDelay FinalFadeDelay FinalZoomDelay FinalCreditsDelay"/>
    </properties>
   </object>
   <object id="6645" name="FinalSound" type="SoundTarget" x="2076" y="4704" width="4" height="4">
@@ -14376,9 +14376,9 @@
   <object id="6648" name="FinalFade" type="FadeTarget" x="2076" y="4712" width="4" height="4">
    <properties>
     <property name="duration" value="5s"/>
-    <property name="invariant_color_a" type="color" value="#ff5555ff"/>
-    <property name="invariant_color_b" type="color" value="#ff00aa00"/>
-    <property name="invariant_color_c" type="color" value="#ffffffff"/>
+    <property name="invariant_color_a" type="color" value="#ff0000aa"/>
+    <property name="invariant_color_b" type="color" value="#ff5555ff"/>
+    <property name="invariant_color_c" type="color" value="#ffaaaaaa"/>
    </properties>
   </object>
   <object id="6649" gid="306" x="6128" y="3488" width="32" height="32"/>
@@ -14399,7 +14399,7 @@
   </object>
   <object id="6655" name="FinalZoom" type="ZoomTarget" x="2048" y="4712" width="4" height="4">
    <properties>
-    <property name="duration" value="6s"/>
+    <property name="duration" value="8.25s"/>
    </properties>
   </object>
   <object id="6656" type="SwitchMusic" x="5712" y="816" width="16" height="64"/>
@@ -16698,10 +16698,11 @@
     <property name="invert" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="7803" type="Sprite" x="1907" y="4540" width="314" height="288">
+  <object id="7803" type="Sprite" x="1907" y="4540" width="314" height="157">
    <properties>
     <property name="image" value="ending_base.png"/>
-    <property name="z_index" type="int" value="0"/>
+    <property name="image_region" value="0 0 314 157"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="7806" name="FinalPowerLED" type="SwitchableSprite" gid="318" x="1908" y="4753" width="16" height="16">
@@ -16709,13 +16710,40 @@
     <property name="fade_time" value="2s"/>
     <property name="map_black_to" type="color" value="#00ffff55"/>
     <property name="map_white_to" type="color" value="#ffffff55"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7808" name="FinalFadeDelay" type="DelayTarget" x="2072" y="4712" width="4" height="4">
    <properties>
     <property name="delay" value="5s"/>
     <property name="target" value="FinalFade"/>
+   </properties>
+  </object>
+  <object id="7809" name="FinalLogo" type="MovableSprite" x="1994" y="4697" width="140" height="88">
+   <properties>
+    <property name="acceleration" value="38.4"/>
+    <property name="delta" value="0 -120"/>
+    <property name="image" value="ending_logo.png"/>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="7812" name="FinalSoundDelay" type="DelayTarget" x="2072" y="4704" width="4" height="4">
+   <properties>
+    <property name="delay" value="4.5s"/>
+    <property name="target" value="FinalSound"/>
+   </properties>
+  </object>
+  <object id="7813" name="FinalLogoDelay" type="DelayTarget" x="2072" y="4720" width="4" height="4">
+   <properties>
+    <property name="delay" value="2s"/>
+    <property name="target" value="FinalLogo"/>
+   </properties>
+  </object>
+  <object id="7815" type="Sprite" x="1907" y="4697" width="314" height="131">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="0 157 314 131"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>

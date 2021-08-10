@@ -101,9 +101,9 @@ func (f *FadeTarget) Update() {
 	}
 	f.Frame--
 	// Fade AWAY from triangle.
-	// normalFactor := float64(f.Frames)/(float64(f.Frame)+0.5) - 1.0 // Avoid division by zero.
+	normalFactor := float64(f.Frames)/(float64(f.Frame)+0.5) - 1.0 // Avoid division by zero.
 	// Fade TO triangle.
-	normalFactor := float64(f.Frame)/float64(f.Frames) - 1.0
+	// normalFactor := float64(f.Frame)/float64(f.Frames) - 1.0
 
 	var colorM ebiten.ColorM
 	delta := f.Base
