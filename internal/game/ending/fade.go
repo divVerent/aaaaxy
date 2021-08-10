@@ -31,6 +31,7 @@ type FadeTarget struct {
 
 	Frames int
 	Frame  int
+	State  bool
 
 	Base   [3]float64
 	Normal [3]float64
@@ -99,7 +100,10 @@ func (f *FadeTarget) Update() {
 		return
 	}
 	f.Frame--
-	normalFactor := float64(f.Frames)/(float64(f.Frame)+0.5) - 1.0 // Avoid division by zero.
+	// Fade AWAY from triangle.
+	// normalFactor := float64(f.Frames)/(float64(f.Frame)+0.5) - 1.0 // Avoid division by zero.
+	// Fade TO triangle.
+	normalFactor := float64(f.Frame)/float64(f.Frames) - 1.0
 
 	var colorM ebiten.ColorM
 	delta := f.Base
@@ -120,10 +124,15 @@ func (f *FadeTarget) Update() {
 }
 
 func (f *FadeTarget) SetState(originator, predecessor *engine.Entity, state bool) {
-	if !state {
+	if state == f.State {
 		return
 	}
-	f.Frame = f.Frames
+	f.State = state
+	if state {
+		f.Frame = f.Frames
+	} else {
+		f.Frame = 0
+	}
 }
 
 func (f *FadeTarget) Touch(other *engine.Entity) {}

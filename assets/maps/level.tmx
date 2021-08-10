@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7804">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7809">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -14364,7 +14364,7 @@
   <object id="6643" name="FinalGoal" type="Goal" x="2048" y="4704" width="32" height="31"/>
   <object id="6644" type="SetState" x="2048" y="4735" width="32" height="1">
    <properties>
-    <property name="target" value="FinalGoal FinalStopTimer FinalSound FinalFade FinalZoomDelay FinalCreditsDelay"/>
+    <property name="target" value="FinalGoal FinalStopTimer FinalSound FinalFadeDelay FinalZoomDelay FinalCreditsDelay FinalPowerLED"/>
    </properties>
   </object>
   <object id="6645" name="FinalSound" type="SoundTarget" x="2076" y="4704" width="4" height="4">
@@ -14377,7 +14377,7 @@
    <properties>
     <property name="duration" value="5s"/>
     <property name="invariant_color_a" type="color" value="#ff5555ff"/>
-    <property name="invariant_color_b" type="color" value="#ff000000"/>
+    <property name="invariant_color_b" type="color" value="#ff00aa00"/>
     <property name="invariant_color_c" type="color" value="#ffffffff"/>
    </properties>
   </object>
@@ -14386,20 +14386,20 @@
   <object id="6651" gid="306" x="6256" y="3488" width="32" height="32"/>
   <object id="6652" name="FinalCreditsDelay" type="DelayTarget" x="2052" y="4704" width="4" height="4">
    <properties>
-    <property name="delay" value="10s"/>
+    <property name="delay" value="15s"/>
     <property name="target" value="FinalCredits"/>
    </properties>
   </object>
   <object id="6653" name="FinalStopTimer" type="StopTimerTarget" x="2062" y="4712" width="4" height="4"/>
   <object id="6654" name="FinalZoomDelay" type="DelayTarget" x="2052" y="4712" width="4" height="4">
    <properties>
-    <property name="delay" value="5.5s"/>
+    <property name="delay" value="10s"/>
     <property name="target" value="FinalZoom"/>
    </properties>
   </object>
   <object id="6655" name="FinalZoom" type="ZoomTarget" x="2048" y="4712" width="4" height="4">
    <properties>
-    <property name="duration" value="5s"/>
+    <property name="duration" value="6s"/>
    </properties>
   </object>
   <object id="6656" type="SwitchMusic" x="5712" y="816" width="16" height="64"/>
@@ -16698,9 +16698,24 @@
     <property name="invert" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="7803" type="Sprite" x="1744" y="4534" width="640" height="360">
+  <object id="7803" type="Sprite" x="1907" y="4540" width="314" height="288">
    <properties>
     <property name="image" value="ending_base.png"/>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="7806" name="FinalPowerLED" type="SwitchableSprite" gid="318" x="1908" y="4753" width="16" height="16">
+   <properties>
+    <property name="fade_time" value="2s"/>
+    <property name="map_black_to" type="color" value="#00ffff55"/>
+    <property name="map_white_to" type="color" value="#ffffff55"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7808" name="FinalFadeDelay" type="DelayTarget" x="2072" y="4712" width="4" height="4">
+   <properties>
+    <property name="delay" value="5s"/>
+    <property name="target" value="FinalFade"/>
    </properties>
   </object>
  </objectgroup>

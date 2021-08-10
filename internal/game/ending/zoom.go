@@ -28,6 +28,7 @@ import (
 type ZoomTarget struct {
 	World *engine.World
 
+	State  bool
 	Frames int
 	Frame  int
 }
@@ -58,10 +59,15 @@ func (z *ZoomTarget) Update() {
 }
 
 func (z *ZoomTarget) SetState(originator, predecessor *engine.Entity, state bool) {
-	if !state {
+	if state == z.State {
 		return
 	}
-	z.Frame = z.Frames
+	z.State = state
+	if state {
+		z.Frame = z.Frames
+	} else {
+		z.Frame = 0
+	}
 }
 
 func (z *ZoomTarget) Touch(other *engine.Entity) {}
