@@ -19,14 +19,47 @@ import (
 )
 
 var (
-	leftKeys       = []ebiten.Key{ebiten.KeyLeft, ebiten.KeyA}
-	rightKeys      = []ebiten.Key{ebiten.KeyRight, ebiten.KeyD}
-	upKeys         = []ebiten.Key{ebiten.KeyUp, ebiten.KeyW}
-	downKeys       = []ebiten.Key{ebiten.KeyDown, ebiten.KeyS}
-	jumpKeys       = []ebiten.Key{ebiten.KeyControl, ebiten.KeySpace, ebiten.KeyX}
-	actionKeys     = []ebiten.Key{ebiten.KeyAlt, ebiten.KeyE, ebiten.KeyZ, ebiten.KeyEnter}
-	exitKeys       = []ebiten.Key{ebiten.KeyEscape}
-	fullscreenKeys = []ebiten.Key{ebiten.KeyF11, ebiten.KeyF}
+	leftKeys = []ebiten.Key{
+		ebiten.KeyLeft, // DOS, NES.
+		ebiten.KeyA,    // FPS.
+		ebiten.KeyH,    // Vi.
+	}
+	rightKeys = []ebiten.Key{
+		ebiten.KeyRight, // DOS, NES.
+		ebiten.KeyD,     // FPS.
+		ebiten.KeyL,     // Vi.
+	}
+	upKeys = []ebiten.Key{
+		ebiten.KeyUp, // DOS, NES.
+		ebiten.KeyW,  // FPS.
+		ebiten.KeyK,  // Vi.
+	}
+	downKeys = []ebiten.Key{
+		ebiten.KeyDown, // DOS, NES.
+		ebiten.KeyS,    // FPS.
+		ebiten.KeyJ,    // Vi.
+	}
+	jumpKeys = []ebiten.Key{
+		ebiten.KeyControl, // DOS.
+		ebiten.KeySpace,   // DOS, FPS, Vi.
+		ebiten.KeyX,       // NES.
+	}
+	actionKeys = []ebiten.Key{
+		ebiten.KeyAlt,   // DOS.
+		ebiten.KeyShift, // DOS, FPS, Vi.
+		ebiten.KeyE,     // FPS.
+		ebiten.KeyZ,     // NES.
+		ebiten.KeyTab,   // FPS, Vi.
+		ebiten.KeyEnter, // Vi.
+	}
+	exitKeys = []ebiten.Key{
+		ebiten.KeyEscape,    // DOS, NES, FPS, Vi.
+		ebiten.KeyBackspace, // Vi.
+	}
+	fullscreenKeys = []ebiten.Key{
+		ebiten.KeyF11, // Common.
+		ebiten.KeyF,   // Common.
+	}
 )
 
 func (i *impulse) keyboardPressed() bool {
