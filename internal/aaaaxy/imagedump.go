@@ -43,7 +43,7 @@ func dumpPixelsRGBA(img *ebiten.Image) ([]byte, error) {
 		// This is unexported, so we can't use it yet. Let's hack it unsafely.
 		flagField, found := reflect.TypeOf(&mipMap).Elem().FieldByName("flag")
 		if !found {
-			return nil, fmt.Errorf("could not hack a reflect.Value exported: field 'flag' not found", mipMap)
+			return nil, fmt.Errorf("could not hack a reflect.Value exported: field 'flag' not found")
 		}
 		flagPtr := unsafe.Pointer(uintptr(unsafe.Pointer(&mipMap)) + flagField.Offset)
 		flag := (*int)(flagPtr)
