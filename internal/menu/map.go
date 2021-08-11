@@ -52,7 +52,7 @@ type MapScreen struct {
 const (
 	firstCP = "leap_of_faith"
 
-	edgeFarAttachDistance = 7
+	edgeFarAttachDistance = 11
 	edgeThickness         = 3
 )
 
@@ -219,34 +219,48 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		}
 		cpPos[cpName] = pos
 	}
-	for _, cpName := range s.SortedLocs {
-		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
-			continue
-		}
-		pos := cpPos[cpName]
-		for _, edge := range s.SortedEdges[cpName] {
-			// We only draw forward non-optional edges; all others are for keyboard navigation only.
-			if !edge.Forward || edge.Optional {
+	for z := 0; z < 3; z++ {
+		for _, cpName := range s.SortedLocs {
+			if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 				continue
 			}
-			otherName := edge.Other
-			edgeSeen := s.Menu.World.PlayerState.CheckpointsWalked(cpName, otherName)
-			otherPos := cpPos[otherName]
-			farPos := pos.Add(otherPos.Delta(pos).WithMaxLength(edgeFarAttachDistance))
-			options := &ebiten.DrawTrianglesOptions{
-				CompositeMode: ebiten.CompositeModeSourceOver,
-				Filter:        ebiten.FilterNearest,
-			}
-			geoM := &ebiten.GeoM{}
-			geoM.Scale(0, 0)
-			if edgeSeen {
-				color := lineColor
-				if cpName == s.CurrentCP || otherName == s.CurrentCP {
-					color = selectedLineColor
+			pos := cpPos[cpName]
+			for _, edge := range s.SortedEdges[cpName] {
+				// We only draw forward non-optional edges; all others are for keyboard navigation only.
+				if !edge.Forward || edge.Optional {
+					continue
 				}
-				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{pos, otherPos}, s.whiteImage, color, geoM, options)
-			} else if s.Menu.World.Level.Checkpoints[edge.Other].Properties["dead_end"] != "true" {
-				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{pos, farPos}, s.whiteImage, darkLineColor, geoM, options)
+				otherName := edge.Other
+				edgeSeen := s.Menu.World.PlayerState.CheckpointsWalked(cpName, otherName)
+				endPos := cpPos[otherName]
+				color := lineColor
+				switch z {
+				case 0:
+					// Selected edge is drawn first so it is clear what overlaps it.
+					if !edgeSeen || !(cpName == s.CurrentCP || otherName == s.CurrentCP) {
+						continue
+					}
+					color = selectedLineColor
+				case 1:
+					// Normal edges are drawn next.
+					if !edgeSeen || (cpName == s.CurrentCP || otherName == s.CurrentCP) {
+						continue
+					}
+				case 2:
+					// Missing edges are drawn last so one can always see them.
+					if edgeSeen {
+						continue
+					}
+					color = darkLineColor
+					endPos = pos.Add(endPos.Delta(pos).WithMaxLength(edgeFarAttachDistance))
+				}
+				options := &ebiten.DrawTrianglesOptions{
+					CompositeMode: ebiten.CompositeModeSourceOver,
+					Filter:        ebiten.FilterNearest,
+				}
+				geoM := &ebiten.GeoM{}
+				geoM.Scale(0, 0)
+				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{pos, endPos}, s.whiteImage, color, geoM, options)
 			}
 		}
 	}

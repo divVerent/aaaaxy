@@ -183,11 +183,12 @@ type SpeedrunCategories int
 const (
 	AnyPercentSpeedrun     SpeedrunCategories = 0x01
 	HundredPercentSpeedrun SpeedrunCategories = 0x02
-	AllFlippedSpeedrun     SpeedrunCategories = 0x04
-	NoEscapeSpeedrun       SpeedrunCategories = 0x08
-	AllSignsSpeedrun       SpeedrunCategories = 0x10
-	AllPathsSpeedrun       SpeedrunCategories = 0x20
-	allCategoriesSpeedrun  SpeedrunCategories = 0x3F
+	AllSignsSpeedrun       SpeedrunCategories = 0x04
+	AllPathsSpeedrun       SpeedrunCategories = 0x08
+	AllFlippedSpeedrun     SpeedrunCategories = 0x10
+	AllSecretsSpeedrun     SpeedrunCategories = 0x20
+	NoEscapeSpeedrun       SpeedrunCategories = 0x40
+	allCategoriesSpeedrun  SpeedrunCategories = 0x7F
 )
 
 func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
@@ -202,7 +203,13 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 			continue
 		}
 		if cpSp.Properties["dead_end"] == "true" {
-			// Dead ends not needed for 100% run. They're covered by all signs runs.
+			// Dead ends not needed for 100%, all paths or all signs run.
+			// However they have their own run category here.
+			for _, sign := range s.Level.TnihSignsByCheckpoint[cp] {
+				if sign.PersistentState["seen"] != "true" {
+					cat &^= AllSecretsSpeedrun
+				}
+			}
 			continue
 		}
 		switch s.CheckpointSeen(cp) {
@@ -220,16 +227,15 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 				cat &^= AllPathsSpeedrun
 			}
 		}
-	}
-	if s.Escapes() != 0 {
-		cat &^= NoEscapeSpeedrun
-	}
-	for _, signs := range s.Level.TnihSignsByCheckpoint {
-		for _, sign := range signs {
+		// Dead ends not needed for all signs run.
+		for _, sign := range s.Level.TnihSignsByCheckpoint[cp] {
 			if sign.PersistentState["seen"] != "true" {
 				cat &^= AllSignsSpeedrun
 			}
 		}
+	}
+	if s.Escapes() != 0 {
+		cat &^= NoEscapeSpeedrun
 	}
 	return cat
 }

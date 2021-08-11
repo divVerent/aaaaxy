@@ -82,6 +82,8 @@ func (s *CreditsScreen) Init(m *Menu) error {
 			} else if cat&player_state.AnyPercentSpeedrun != 0 {
 				categories = "Any%"
 				tryNext = "100%"
+			} else {
+				tryNext = "Any%"
 			}
 			if cat&player_state.AllSignsSpeedrun != 0 {
 				categories += ", All Notes"
@@ -97,6 +99,11 @@ func (s *CreditsScreen) Init(m *Menu) error {
 				categories += ", All Flipped"
 			} else if tryNext == "" {
 				tryNext = "All Flipped"
+			}
+			if cat&player_state.AllSecretsSpeedrun != 0 {
+				categories += ", All Secrets"
+			} else if tryNext == "" {
+				tryNext = "All Secrets"
 			}
 			if cat&player_state.NoEscapeSpeedrun != 0 {
 				categories += ", No Escape"
