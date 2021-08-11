@@ -98,6 +98,22 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 			return fmt.Errorf("invalid no_flip value: got %v, want one of empty, x, y, false", sp.Properties["no_flip"])
 		}
 	}
+
+	// Field contains orientation OF THE PLAYER to make it easier in the map editor.
+	// So it is actually a transform as far as this code is concerned.
+	requiredTransform, err := m.ParseOrientation(s.Properties["required_orientation"])
+	if err != nil {
+		return fmt.Errorf("could not parse required orientation: %v", err)
+	}
+	if s.Entity.Transform == requiredTransform {
+		// Normal.
+	} else if s.Entity.Transform == requiredTransform.Concat(m.FlipX()) {
+		// Normal.
+	} else {
+		// Hide.
+		s.Entity.Alpha = 0.0
+	}
+
 	return nil
 }
 
