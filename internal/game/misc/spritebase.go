@@ -101,17 +101,20 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 
 	// Field contains orientation OF THE PLAYER to make it easier in the map editor.
 	// So it is actually a transform as far as this code is concerned.
-	requiredTransform, err := m.ParseOrientation(s.Properties["required_orientation"])
-	if err != nil {
-		return fmt.Errorf("could not parse required orientation: %v", err)
-	}
-	if s.Entity.Transform == requiredTransform {
-		// Normal.
-	} else if s.Entity.Transform == requiredTransform.Concat(m.FlipX()) {
-		// Normal.
-	} else {
-		// Hide.
-		s.Entity.Alpha = 0.0
+	orientationStr := sp.Properties["required_orientation"]
+	if orientationStr != "" {
+		requiredTransform, err := m.ParseOrientation(orientationStr)
+		if err != nil {
+			return fmt.Errorf("could not parse required orientation: %v", err)
+		}
+		if e.Transform == requiredTransform {
+			// Normal.
+		} else if e.Transform == requiredTransform.Concat(m.FlipX()) {
+			// Normal.
+		} else {
+			// Hide.
+			e.Alpha = 0.0
+		}
 	}
 
 	return nil
