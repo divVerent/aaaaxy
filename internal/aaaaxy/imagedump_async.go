@@ -23,7 +23,7 @@ import (
 )
 
 var (
-	debugThreadedImageDumping = flag.Bool("debug_threaded_image_dumping", false, "do image dumping in a background thread (should be faster, further boosted using -num_offscreen_images)")
+	debugThreadedImageDumping = flag.Bool("debug_threaded_image_dumping", true, "do image dumping in a background thread (should be faster, further boosted using -num_offscreen_images)")
 )
 
 func dumpPixelsRGBA(img *ebiten.Image, cb func(pix []byte, err error)) {
