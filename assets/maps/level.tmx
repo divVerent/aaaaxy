@@ -16803,7 +16803,7 @@
     <property name="required_orientation" value="ES"/>
    </properties>
   </object>
-  <object id="7837" type="Text" x="7152" y="448" width="112" height="32">
+  <object id="7837" type="Text" x="7136" y="880" width="144" height="32">
    <properties>
     <property name="text" value="I hope you got  the small one..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
