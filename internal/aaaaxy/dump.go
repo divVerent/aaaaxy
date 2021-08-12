@@ -20,6 +20,7 @@ import (
 	"os"
 	"reflect"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -47,6 +48,7 @@ const (
 
 var (
 	dumpVideoFrame int64 = 0
+	dumpVideoWg    sync.WaitGroup
 )
 
 func initDumping() error {
@@ -65,7 +67,6 @@ func initDumping() error {
 		if err != nil {
 			return fmt.Errorf("could not initialize video dump: %v", err)
 		}
-		startDumpPixelsRGBA()
 	}
 
 	return nil
@@ -78,15 +79,18 @@ func dumping() bool {
 func unsafeHackExported(val *reflect.Value) {
 }
 
-func dumpFrame(screen *ebiten.Image) {
+func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image) {
 	if !dumping() {
+		to <- screen
 		return
 	}
 	dumpFrameCount++
 	if dumpVideoFile != nil {
 		frame := dumpVideoFrame
 		dumpVideoFrame++
+		dumpVideoWg.Add(1)
 		dumpPixelsRGBA(screen, func(pix []byte, err error) {
+			to <- screen
 			if err == nil {
 				_, err = dumpVideoFile.WriteAt(pix, frame*dumpVideoFrameSize)
 			}
@@ -95,7 +99,10 @@ func dumpFrame(screen *ebiten.Image) {
 				// dumpVideoFile.Close()
 				// dumpVideoFile = nil
 			}
+			dumpVideoWg.Done()
 		})
+	} else {
+		to <- screen
 	}
 	if dumpAudioFile != nil {
 		err := audiowrap.DumpFrame(dumpAudioFile, time.Duration(dumpFrameCount)*time.Second/engine.GameTPS)
@@ -166,7 +173,7 @@ func finishDumping() {
 		dumpAudioFile = nil
 	}
 	if dumpVideoFile != nil {
-		stopDumpPixelsRGBA()
+		dumpVideoWg.Wait()
 		err := dumpVideoFile.Close()
 		if err != nil {
 			log.Printf("Failed to close video - expect corruption: %v", err)

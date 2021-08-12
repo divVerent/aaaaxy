@@ -45,7 +45,7 @@ var (
 type Game struct {
 	Menu menu.Controller
 
-	offScreen         *ebiten.Image
+	offScreens        chan *ebiten.Image
 	linear2xShader    *ebiten.Shader
 	linear2xCRTShader *ebiten.Shader
 }
@@ -85,7 +85,7 @@ func (g *Game) Update() error {
 	return nil
 }
 
-func (g *Game) drawAtGameSize(screen *ebiten.Image) {
+func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image) {
 	timing.Section("fontcache")
 	font.KeepInCache(screen)
 
@@ -96,15 +96,25 @@ func (g *Game) drawAtGameSize(screen *ebiten.Image) {
 	g.Menu.Draw(screen)
 
 	timing.Section("dump")
-	dumpFrame(screen)
+	dumpFrameThenReturnTo(screen, to)
 }
 
 func (g *Game) drawOffscreen() *ebiten.Image {
-	if g.offScreen == nil {
-		g.offScreen = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+	if g.offScreens == nil {
+		n := 1
+		if dumping() {
+			// When dumping, cycle between two offscreen images so we can dump in the background thread.
+			n = 2
+		}
+		g.offScreens = make(chan *ebiten.Image, n)
+		for i := 0; i < n; i++ {
+			g.offScreens <- ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+		}
 	}
-	g.drawAtGameSize(g.offScreen)
-	return g.offScreen
+	offScreen := <-g.offScreens
+	g.drawAtGameSizeThenReturnTo(offScreen, g.offScreens)
+	// Note: following code of the draw code may still use the image, but that's OK as long as drawOffscreen() isn't called again.
+	return offScreen
 }
 
 func (g *Game) setOffscreenGeoM(screen *ebiten.Image, geoM *ebiten.GeoM, w, h int) {
@@ -138,7 +148,19 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 	switch *screenFilter {
 	case "simple":
-		g.drawAtGameSize(screen)
+		if dumping() {
+			// We're dumping, so we NEED an offscreen.
+			// This is actually just like "nearest", except that to ebiten we have a game-sized and not screen-sized screen.
+			// So we can use an identity matrix and need not clear the screen.
+			options := &ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
+				Filter:        ebiten.FilterNearest,
+			}
+			screen.DrawImage(g.drawOffscreen(), options)
+		} else {
+			// It's all sync, so just provide a dummy channel to discard it.
+			g.drawAtGameSizeThenReturnTo(screen, make(chan *ebiten.Image, 1))
+		}
 	case "linear":
 		screen.Clear()
 		options := &ebiten.DrawImageOptions{

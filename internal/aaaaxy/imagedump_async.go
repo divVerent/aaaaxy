@@ -12,28 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// +build !ebitensinglethread
+
 package aaaaxy
 
 import (
-	"image/color"
-
 	"github.com/hajimehoshi/ebiten/v2"
+
+	"github.com/divVerent/aaaaxy/internal/flag"
 )
 
-func getPixelsRGBA(img *ebiten.Image) ([]byte, error) {
-	bounds := img.Bounds()
-	width, height := bounds.Max.X-bounds.Min.X, bounds.Max.Y-bounds.Min.Y
-	pix := make([]byte, 4*width*height)
-	p := 0
-	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
-		for x := bounds.Min.X; x < bounds.Max.X; x++ {
-			c := img.At(x, y).(color.RGBA)
-			pix[p] = c.R
-			pix[p+1] = c.G
-			pix[p+2] = c.B
-			pix[p+3] = c.A
-			p += 4
-		}
+var (
+	debugThreadedImageDumping = flag.Bool("debug_threaded_image_dumping", false, "do image dumping in a background thread (should be faster, further boosted using -num_offscreen_images)")
+)
+
+func dumpPixelsRGBA(img *ebiten.Image, cb func(pix []byte, err error)) {
+	if *debugThreadedImageDumping {
+		go func() {
+			pix, err := getPixelsRGBA(img)
+			cb(pix, err)
+		}()
+	} else {
+		pix, err := getPixelsRGBA(img)
+		cb(pix, err)
 	}
-	return pix, nil
 }
