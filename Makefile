@@ -16,14 +16,15 @@ EXTRAFILES = README.md LICENSE CONTRIBUTING.md
 LICENSES_THIRD_PARTY = licenses
 ZIP = 7za -tzip -mx=9 a
 CP = cp --reflink=auto
+BUILDTAGS = ebitensinglethread
 
 # Release/debug flags.
 BUILDTYPE = debug
 ifeq ($(BUILDTYPE),release)
 ifeq ($(GOARCH),wasm)
-GOFLAGS ?= -tags embed,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
+GOFLAGS ?= -tags aaaxy,embed,$(BUILDTAGS) -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
 else
-GOFLAGS ?= -tags embed,ebitensinglethread -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
+GOFLAGS ?= -tags embed,$(BUILDTAGS) -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
 endif
 CPPFLAGS ?= -DNDEBUG
 CFLAGS ?= -g0 -O3
@@ -33,10 +34,10 @@ INFIX =
 BINARY_ASSETS = $(EMBEDROOT)
 else
 ifeq ($(BUILDTYPE),extradebug)
-GOFLAGS ?= -tags ebitensinglethread,ebitendebug
+GOFLAGS ?= -tags ebitendebug,$(BUILDTAGS)
 INFIX = -extradebug
 else
-GOFLAGS ?= -tags ebitensinglethread
+GOFLAGS ?= -tags $(BUILDTAGS)
 INFIX = -debug
 endif
 BINARY_ASSETS = $(GENERATED_ASSETS)

@@ -41,6 +41,14 @@ var (
 	dumpAudioFile  *os.File
 )
 
+const (
+	dumpVideoFrameSize = engine.GameWidth * engine.GameHeight * 4
+)
+
+var (
+	dumpVideoFrame int64 = 0
+)
+
 func initDumping() error {
 	if *dumpAudio != "" {
 		var err error
@@ -57,6 +65,7 @@ func initDumping() error {
 		if err != nil {
 			return fmt.Errorf("could not initialize video dump: %v", err)
 		}
+		startDumpPixelsRGBA()
 	}
 
 	return nil
@@ -75,15 +84,18 @@ func dumpFrame(screen *ebiten.Image) {
 	}
 	dumpFrameCount++
 	if dumpVideoFile != nil {
-		pix, err := dumpPixelsRGBA(screen)
-		if err == nil {
-			_, err = dumpVideoFile.Write(pix)
-		}
-		if err != nil {
-			log.Printf("Failed to encode video - expect corruption: %v", err)
-			dumpVideoFile.Close()
-			dumpVideoFile = nil
-		}
+		frame := dumpVideoFrame
+		dumpVideoFrame++
+		dumpPixelsRGBA(screen, func(pix []byte, err error) {
+			if err == nil {
+				_, err = dumpVideoFile.WriteAt(pix, frame*dumpVideoFrameSize)
+			}
+			if err != nil {
+				log.Printf("Failed to encode video - expect corruption: %v", err)
+				// dumpVideoFile.Close()
+				// dumpVideoFile = nil
+			}
+		})
 	}
 	if dumpAudioFile != nil {
 		err := audiowrap.DumpFrame(dumpAudioFile, time.Duration(dumpFrameCount)*time.Second/engine.GameTPS)
@@ -154,6 +166,7 @@ func finishDumping() {
 		dumpAudioFile = nil
 	}
 	if dumpVideoFile != nil {
+		stopDumpPixelsRGBA()
 		err := dumpVideoFile.Close()
 		if err != nil {
 			log.Printf("Failed to close video - expect corruption: %v", err)

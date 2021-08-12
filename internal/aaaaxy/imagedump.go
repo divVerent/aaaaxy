@@ -24,14 +24,21 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 )
 
 var (
-	debugDirtyImageDumping = flag.Bool("debug_dirty_image_dumping", false, "use a really dirty hack (ebiten internals) to dump image pixels faster")
+	debugDirtyImageDumping    = flag.Bool("debug_dirty_image_dumping", false, "use a really dirty hack (ebiten internals) to dump image pixels faster")
+	debugThreadedImageDumping = flag.Bool("debug_threaded_image_dumping", false, "use a really dirty hack (ebiten internals) to dump image pixels faster")
 )
 
-func dumpPixelsRGBA(img *ebiten.Image) ([]byte, error) {
+var (
+	dumpPixelsBufferSize = 8
+	dumpPixelsBuffer     chan *ebiten.Image
+)
+
+func getPixelsRGBA(img *ebiten.Image) (pix []byte, err error) {
 	bounds := img.Bounds()
 	width, height := bounds.Max.X-bounds.Min.X, bounds.Max.Y-bounds.Min.Y
 	defer func(t0 time.Time) {
@@ -74,5 +81,41 @@ func dumpPixelsRGBA(img *ebiten.Image) ([]byte, error) {
 			}
 		}
 		return pix, nil
+	}
+}
+
+func startDumpPixelsRGBA() {
+	if !*debugThreadedImageDumping {
+		return
+	}
+	dumpPixelsBuffer = make(chan *ebiten.Image, dumpPixelsBufferSize)
+	for i := 0; i < dumpPixelsBufferSize; i++ {
+		dumpPixelsBuffer <- ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+	}
+}
+
+func dumpPixelsRGBA(img *ebiten.Image, cb func(pix []byte, err error)) {
+	if *debugThreadedImageDumping {
+		dup := <-dumpPixelsBuffer
+		dup.DrawImage(img, &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+		})
+		go func() {
+			pix, err := getPixelsRGBA(dup)
+			dumpPixelsBuffer <- dup
+			cb(pix, err)
+		}()
+	} else {
+		pix, err := getPixelsRGBA(img)
+		cb(pix, err)
+	}
+}
+
+func stopDumpPixelsRGBA() {
+	if !*debugThreadedImageDumping {
+		return
+	}
+	for i := 0; i < dumpPixelsBufferSize; i++ {
+		<-dumpPixelsBuffer
 	}
 }
