@@ -16,7 +16,15 @@ EXTRAFILES = README.md LICENSE CONTRIBUTING.md
 LICENSES_THIRD_PARTY = licenses
 ZIP = 7za -tzip -mx=9 a
 CP = cp --reflink=auto
+
+# Provide a way to build binaries that are faster at image/video dumping.
+# This however makes them slower for normal use, so we're not releasing those.
+FASTER_VIDEO_DUMPING = false
+ifeq ($(FASTER_VIDEO_DUMPING),true)
+BUILDTAGS =
+else
 BUILDTAGS = ebitensinglethread
+endif
 
 # Release/debug flags.
 BUILDTYPE = debug
