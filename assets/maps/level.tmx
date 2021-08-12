@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7837">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7838">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -11919,7 +11919,7 @@
   </object>
   <object id="5187" gid="312" x="5632" y="5872" width="32" height="32">
    <properties>
-    <property name="reached_from" type="object" value="5167"/>
+    <property name="reached_from" type="object" value="5189"/>
     <property name="target" value="EscapeButton"/>
     <property name="text" value="y tho?  Press Escape."/>
    </properties>
@@ -12028,7 +12028,7 @@
   <object id="5256" gid="312" x="6760" y="4912" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5207"/>
-    <property name="text" value="Don't be fooled by appearances."/>
+    <property name="text" value="Don't let appearances fool you."/>
    </properties>
   </object>
   <object id="5257" gid="314" x="6544" y="4848" width="16" height="16"/>
@@ -13616,7 +13616,7 @@
    </properties>
   </object>
   <object id="6230" gid="331" x="6656" y="2320" width="3" height="5"/>
-  <object id="6231" gid="331" x="6620" y="2320" width="3" height="5"/>
+  <object id="6231" gid="331" x="6621" y="2320" width="3" height="5"/>
   <object id="6232" gid="314" x="6832" y="2304" width="16" height="16"/>
   <object id="6233" gid="314" x="6784" y="2256" width="16" height="16"/>
   <object id="6234" gid="314" x="6832" y="2208" width="16" height="16"/>
@@ -13650,7 +13650,7 @@
    </properties>
   </object>
   <object id="6246" gid="331" x="6704" y="2112" width="3" height="5"/>
-  <object id="6247" gid="331" x="6668" y="2112" width="3" height="5"/>
+  <object id="6247" gid="331" x="6669" y="2112" width="3" height="5"/>
   <object id="6248" gid="309" x="6680" y="2112" width="16" height="16"/>
   <object id="6250" gid="317" x="6416" y="2688" width="32" height="32">
    <properties>
@@ -13734,8 +13734,8 @@
     <property name="target" value="ExitPlat"/>
    </properties>
   </object>
-  <object id="6336" gid="331" x="6584" y="1968" width="3" height="5"/>
-  <object id="6337" gid="331" x="6548" y="1968" width="3" height="5"/>
+  <object id="6336" gid="331" x="6592" y="1968" width="3" height="5"/>
+  <object id="6337" gid="331" x="6541" y="1968" width="3" height="5"/>
   <object id="6338" gid="301" x="6416" y="2320" width="16" height="16"/>
   <object id="6341" gid="301" x="6432" y="2320" width="16" height="16"/>
   <object id="6342" gid="301" x="6400" y="2320" width="16" height="16"/>
@@ -14004,7 +14004,7 @@
     <property name="text" value="Platform  is key."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
-    <property name="text_font" value="Regular"/>
+    <property name="text_font" value="SmallCaps"/>
    </properties>
   </object>
   <object id="6541" gid="338" x="7376" y="2128" width="16" height="16"/>
@@ -16801,6 +16801,14 @@
    <properties>
     <property name="dead_end" type="bool" value="true"/>
     <property name="required_orientation" value="ES"/>
+   </properties>
+  </object>
+  <object id="7837" type="Text" x="7152" y="448" width="112" height="32">
+   <properties>
+    <property name="text" value="I hope you got  the small one..."/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
    </properties>
   </object>
  </objectgroup>

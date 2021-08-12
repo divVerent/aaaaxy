@@ -92,15 +92,15 @@ func (s *CreditsScreen) Init(m *Controller) error {
 			} else if tryNext == "" {
 				tryNext = "All Paths"
 			}
-			if cat&player_state.AllFlippedSpeedrun != 0 {
-				categories += ", All Flipped"
-			} else if tryNext == "" {
-				tryNext = "All Flipped"
-			}
 			if cat&player_state.AllSecretsSpeedrun != 0 {
 				categories += ", All Secrets"
 			} else if tryNext == "" {
 				tryNext = "All Secrets"
+			}
+			if cat&player_state.AllFlippedSpeedrun != 0 {
+				categories += ", All Flipped"
+			} else if tryNext == "" {
+				tryNext = "All Flipped"
 			}
 			if cat&player_state.NoEscapeSpeedrun != 0 {
 				categories += ", No Escape"

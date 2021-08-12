@@ -185,8 +185,8 @@ const (
 	HundredPercentSpeedrun SpeedrunCategories = 0x02
 	AllSignsSpeedrun       SpeedrunCategories = 0x04
 	AllPathsSpeedrun       SpeedrunCategories = 0x08
-	AllFlippedSpeedrun     SpeedrunCategories = 0x10
-	AllSecretsSpeedrun     SpeedrunCategories = 0x20
+	AllSecretsSpeedrun     SpeedrunCategories = 0x10
+	AllFlippedSpeedrun     SpeedrunCategories = 0x20
 	NoEscapeSpeedrun       SpeedrunCategories = 0x40
 	allCategoriesSpeedrun  SpeedrunCategories = 0x7F
 )
@@ -216,6 +216,7 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 		case NotSeen:
 			cat &^= HundredPercentSpeedrun
 		case SeenNormal:
+			// Note: this means AllFlipped is possible without 100%. WAI.
 			cat &^= AllFlippedSpeedrun
 		}
 		for _, next := range s.Level.CheckpointLocations.Locs[cp].NextByDir {
@@ -235,6 +236,8 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 		}
 	}
 	if s.Escapes() != 0 {
+		// Note: this is impossible when also having AllSecrets,
+		// as secrets typically cannot be left.
 		cat &^= NoEscapeSpeedrun
 	}
 	return cat
