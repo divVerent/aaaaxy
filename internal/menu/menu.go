@@ -17,14 +17,17 @@ package menu
 import (
 	"errors"
 	"fmt"
+	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	_ "github.com/divVerent/aaaaxy/internal/game" // Load entities.
 	"github.com/divVerent/aaaaxy/internal/input"
+	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/sound"
 	"github.com/divVerent/aaaaxy/internal/timing"
@@ -35,6 +38,7 @@ var RegularTermination = errors.New("exited normally")
 var (
 	saveState = flag.Int("save_state", 0, "number of save state slot")
 	showFps   = flag.Bool("show_fps", false, "show fps counter")
+	showTime  = flag.Bool("show_time", false, "show game time")
 )
 
 const (
@@ -44,12 +48,12 @@ const (
 )
 
 type MenuScreen interface {
-	Init(m *Menu) error
+	Init(m *Controller) error
 	Update() error
 	Draw(screen *ebiten.Image)
 }
 
-type Menu struct {
+type Controller struct {
 	initialized   bool
 	World         engine.World
 	Screen        MenuScreen
@@ -59,38 +63,38 @@ type Menu struct {
 	blurFrame     int
 }
 
-func (m *Menu) Update() error {
+func (c *Controller) Update() error {
 	defer timing.Group()()
 
 	timing.Section("once")
-	if !m.initialized {
-		err := m.InitGame(loadGame)
+	if !c.initialized {
+		err := c.InitGame(loadGame)
 		if err != nil {
 			return err
 		}
-		m.blurImage = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
-		m.moveSound, err = sound.Load("menu_move.ogg")
+		c.blurImage = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+		c.moveSound, err = sound.Load("menu_move.ogg")
 		if err != nil {
 			return err
 		}
-		m.activateSound, err = sound.Load("menu_activate.ogg")
+		c.activateSound, err = sound.Load("menu_activate.ogg")
 		if err != nil {
 			return err
 		}
-		m.initialized = true
+		c.initialized = true
 	}
 
 	timing.Section("global_hotkeys")
-	if m.World.ForceCredits {
-		m.World.ForceCredits = false
-		m.blurFrame = 0
-		return m.SwitchToScreen(&CreditsScreen{Fancy: true})
-	} else if input.Exit.JustHit && m.Screen == nil {
-		m.World.TimerStarted = true
+	if c.World.ForceCredits {
+		c.World.ForceCredits = false
+		c.blurFrame = 0
+		return c.SwitchToScreen(&CreditsScreen{Fancy: true})
+	} else if input.Exit.JustHit && c.Screen == nil {
+		c.World.TimerStarted = true
 		music.Switch("")
-		m.World.PlayerState.AddEscape()
-		m.blurFrame = 0
-		return m.SwitchToScreen(&MainScreen{})
+		c.World.PlayerState.AddEscape()
+		c.blurFrame = 0
+		return c.SwitchToScreen(&MainScreen{})
 	}
 	if input.Fullscreen.JustHit {
 		fs := !ebiten.IsFullscreen()
@@ -99,11 +103,11 @@ func (m *Menu) Update() error {
 	}
 
 	timing.Section("screen")
-	if m.blurFrame < blurFrames {
-		m.blurFrame++
+	if c.blurFrame < blurFrames {
+		c.blurFrame++
 	}
-	if m.Screen != nil {
-		err := m.Screen.Update()
+	if c.Screen != nil {
+		err := c.Screen.Update()
 		if err != nil {
 			return err
 		}
@@ -112,40 +116,50 @@ func (m *Menu) Update() error {
 	return nil
 }
 
-func (m *Menu) UpdateWorld() error {
+func (c *Controller) UpdateWorld() error {
 	// Increment the frame counter.
 	// Except when on the credits screen - that time does not count.
-	if m.World.TimerStarted && !m.World.TimerStopped {
-		m.World.PlayerState.AddFrame()
+	if c.World.TimerStarted && !c.World.TimerStopped {
+		c.World.PlayerState.AddFrame()
 	}
 
-	if m.Screen != nil {
+	if c.Screen != nil {
 		// Game is paused while in menu.
 		return nil
 	}
-	return m.World.Update()
+	return c.World.Update()
 }
 
-func (m *Menu) Draw(screen *ebiten.Image) {
+func (c *Controller) Draw(screen *ebiten.Image) {
 	defer timing.Group()()
 
 	timing.Section("screen")
-	if m.Screen != nil {
-		m.Screen.Draw(screen)
+	if c.Screen != nil {
+		c.Screen.Draw(screen)
 	}
 
 	timing.Section("global_overlays")
 	if *showFps {
 		timing.Section("fps")
-		ebitenutil.DebugPrintAt(screen, fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()), 0, engine.GameHeight-16)
+		font.DebugSmall.Draw(screen,
+			fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
+			m.Pos{X: engine.GameWidth - 48, Y: engine.GameHeight - 4}, true,
+			color.NRGBA{R: 255, G: 255, B: 255, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+	}
+	if *showTime {
+		timing.Section("time")
+		font.DebugSmall.Draw(screen,
+			fmt.Sprintf(fun.FormatText(&c.World.PlayerState, "0{{GameTime}}")),
+			m.Pos{X: 32, Y: engine.GameHeight - 4}, true,
+			color.NRGBA{R: 255, G: 255, B: 255, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
 	}
 }
 
-func (m *Menu) DrawWorld(screen *ebiten.Image) {
-	m.World.Draw(screen)
-	if m.Screen != nil {
+func (c *Controller) DrawWorld(screen *ebiten.Image) {
+	c.World.Draw(screen)
+	if c.Screen != nil {
 		// If a menu screen is active, just draw the previous saved bitmap, but blur it.
-		engine.BlurImage(screen, m.blurImage, screen, blurSize, darkenFactor, 0.0, float64(m.blurFrame)/blurFrames)
+		engine.BlurImage(screen, c.blurImage, screen, blurSize, darkenFactor, 0.0, float64(c.blurFrame)/blurFrames)
 	}
 }
 
@@ -157,32 +171,32 @@ const (
 )
 
 // InitGame is called by menu screens to load/reset the game.
-func (m *Menu) InitGame(f resetFlag) error {
+func (c *Controller) InitGame(f resetFlag) error {
 	// Stop the timer.
-	m.World.TimerStarted = false
+	c.World.TimerStarted = false
 
 	// Initialize the world.
-	err := m.World.Init(*saveState)
+	err := c.World.Init(*saveState)
 	if err != nil {
 		return fmt.Errorf("could not initialize world: %v", err)
 	}
 
 	// Load the saved state.
 	if f == loadGame {
-		err := m.World.Load()
+		err := c.World.Load()
 		if err != nil {
 			return err
 		}
 	}
 
 	// Go to the game screen.
-	m.Screen = nil
+	c.Screen = nil
 	return nil
 }
 
 // SwitchSaveState switches to a given save state.
-func (m *Menu) SwitchSaveState(state int) error {
-	err := m.World.Save()
+func (c *Controller) SwitchSaveState(state int) error {
+	err := c.World.Save()
 	if err != nil {
 		return fmt.Errorf("could not save game: %v", err)
 	}
@@ -191,45 +205,45 @@ func (m *Menu) SwitchSaveState(state int) error {
 	if err != nil {
 		return fmt.Errorf("could not save config: %v", err)
 	}
-	return m.InitGame(loadGame)
+	return c.InitGame(loadGame)
 }
 
 // SwitchToGame switches to a specific checkpoint.
-func (m *Menu) SwitchToGame() error {
-	m.Screen = nil
+func (c *Controller) SwitchToGame() error {
+	c.Screen = nil
 	return nil
 }
 
 // SwitchToCheckpoint switches to a specific checkpoint.
-func (m *Menu) SwitchToCheckpoint(cp string) error {
-	err := m.World.RespawnPlayer(cp)
+func (c *Controller) SwitchToCheckpoint(cp string) error {
+	err := c.World.RespawnPlayer(cp)
 	if err != nil {
 		return fmt.Errorf("could not respawn player: %v", err)
 	}
-	m.World.TimerStarted = true
-	m.Screen = nil
+	c.World.TimerStarted = true
+	c.Screen = nil
 	return nil
 }
 
 // SwitchToScreen is called by menu screens to go to a different menu screen.
-func (m *Menu) SwitchToScreen(screen MenuScreen) error {
-	m.Screen = screen
-	return m.Screen.Init(m)
+func (c *Controller) SwitchToScreen(screen MenuScreen) error {
+	c.Screen = screen
+	return c.Screen.Init(c)
 }
 
 // SaveConfigAndSwitchToScreen is called by menu screens to go to a different menu screen.
-func (m *Menu) SaveConfigAndSwitchToScreen(screen MenuScreen) error {
+func (c *Controller) SaveConfigAndSwitchToScreen(screen MenuScreen) error {
 	err := engine.SaveConfig()
 	if err != nil {
 		return fmt.Errorf("could not save config: %v", err)
 	}
-	m.Screen = screen
-	return m.Screen.Init(m)
+	c.Screen = screen
+	return c.Screen.Init(c)
 }
 
 // QuitGame is called by menu screens to end the game.
-func (m *Menu) QuitGame() error {
-	err := m.World.Save()
+func (c *Controller) QuitGame() error {
+	err := c.World.Save()
 	if err != nil {
 		return fmt.Errorf("could not save game: %v", err)
 	}
@@ -241,17 +255,17 @@ func (m *Menu) QuitGame() error {
 }
 
 // ActivateSound plays the sound effect to activate something.
-func (m *Menu) ActivateSound(err error) error {
+func (c *Controller) ActivateSound(err error) error {
 	if err == nil {
-		m.activateSound.Play()
+		c.activateSound.Play()
 	}
 	return err
 }
 
 // MoveSound plays the sound effect to activate something.
-func (m *Menu) MoveSound(err error) error {
+func (c *Controller) MoveSound(err error) error {
 	if err == nil {
-		m.moveSound.Play()
+		c.moveSound.Play()
 	}
 	return err
 }

@@ -42,38 +42,38 @@ const (
 )
 
 type MainScreen struct {
-	Menu *Menu
-	Item MainScreenItem
+	Controller *Controller
+	Item       MainScreenItem
 }
 
-func (s *MainScreen) Init(m *Menu) error {
-	s.Menu = m
+func (s *MainScreen) Init(m *Controller) error {
+	s.Controller = m
 	return nil
 }
 
 func (s *MainScreen) Update() error {
 	if input.Down.JustHit {
 		s.Item++
-		s.Menu.MoveSound(nil)
+		s.Controller.MoveSound(nil)
 	}
 	if input.Up.JustHit {
 		s.Item--
-		s.Menu.MoveSound(nil)
+		s.Controller.MoveSound(nil)
 	}
 	s.Item = MainScreenItem(m.Mod(int(s.Item), int(MainCount)))
 	if input.Exit.JustHit {
-		return s.Menu.ActivateSound(s.Menu.QuitGame())
+		return s.Controller.ActivateSound(s.Controller.QuitGame())
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
 		case Play:
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MapScreen{}))
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MapScreen{}))
 		case Settings:
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&SettingsScreen{}))
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 		case Credits:
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&CreditsScreen{Fancy: *cheatShowFinalCredits}))
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&CreditsScreen{Fancy: *cheatShowFinalCredits}))
 		case Quit:
-			return s.Menu.ActivateSound(s.Menu.QuitGame())
+			return s.Controller.ActivateSound(s.Controller.QuitGame())
 		}
 	}
 	return nil
@@ -110,7 +110,7 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	font.Menu.Draw(screen, "Quit", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
 
 	// Display stats.
-	frames := s.Menu.World.PlayerState.Frames()
+	frames := s.Controller.World.PlayerState.Frames()
 	ss, ms := frames/60, (frames%60)*1000/60
 	mm, ss := ss/60, ss%60
 	hh, mm := mm/60, mm%60

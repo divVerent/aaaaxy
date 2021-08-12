@@ -24,6 +24,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
@@ -40,30 +41,26 @@ type CreditsScreen struct {
 	// Must be set when creating.
 	Fancy bool // With music, and constant speed - no scrolling. No exiting. Background image not needed - we use last game screen.
 
-	Menu     *Menu
-	Lines    []string // Actual lines to display.
-	Frame    int      // Current scroll position.
-	MaxFrame int      // Maximum scroll position.
-	Exits    int      // How often exit was pressed. Need to press 7 times to leave fancy credits.
+	Controller *Controller
+	Lines      []string // Actual lines to display.
+	Frame      int      // Current scroll position.
+	MaxFrame   int      // Maximum scroll position.
+	Exits      int      // How often exit was pressed. Need to press 7 times to leave fancy credits.
 }
 
-func (s *CreditsScreen) Init(m *Menu) error {
-	s.Menu = m
+func (s *CreditsScreen) Init(m *Controller) error {
+	s.Controller = m
 	s.Lines = append([]string{}, credits.Lines...)
 	s.Lines = append(
 		s.Lines,
 		"",
-		fmt.Sprintf("Level Version: %d", s.Menu.World.Level.SaveGameVersion),
+		fmt.Sprintf("Level Version: %d", s.Controller.World.Level.SaveGameVersion),
 		"Build: "+version.Revision(),
 	)
 	if s.Fancy {
-		music.Switch(s.Menu.World.Level.CreditsMusic)
-		cat := s.Menu.World.PlayerState.SpeedrunCategories()
-		frames := s.Menu.World.PlayerState.Frames()
-		ss, ms := frames/60, (frames%60)*1000/60
-		mm, ss := ss/60, ss%60
-		hh, mm := mm/60, mm%60
-		timeStr := fmt.Sprintf("Time: %d:%02d:%02d.%03d", hh, mm, ss, ms)
+		music.Switch(s.Controller.World.Level.CreditsMusic)
+		cat := s.Controller.World.PlayerState.SpeedrunCategories()
+		timeStr := fun.FormatText(&s.Controller.World.PlayerState, "{{GameTime}}")
 		s.Lines = append(
 			s.Lines,
 			"",
@@ -133,14 +130,14 @@ func (s *CreditsScreen) Update() error {
 		if input.Exit.JustHit {
 			s.Exits++
 			if s.Frame >= s.MaxFrame {
-				return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+				return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 			} else if s.Exits >= 6 {
 				s.Frame = s.MaxFrame
 			}
 		}
 	} else {
 		if input.Exit.JustHit {
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 		}
 		if input.Up.Held {
 			s.Frame -= 5

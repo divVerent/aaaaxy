@@ -43,7 +43,7 @@ var (
 )
 
 type Game struct {
-	Menu menu.Menu
+	Menu menu.Controller
 
 	offScreen         *ebiten.Image
 	linear2xShader    *ebiten.Shader

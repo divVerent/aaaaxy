@@ -38,12 +38,12 @@ const (
 )
 
 type SettingsScreen struct {
-	Menu *Menu
-	Item SettingsScreenItem
+	Controller *Controller
+	Item       SettingsScreenItem
 }
 
-func (s *SettingsScreen) Init(m *Menu) error {
-	s.Menu = m
+func (s *SettingsScreen) Init(m *Controller) error {
+	s.Controller = m
 	return nil
 }
 
@@ -184,42 +184,42 @@ func toggleVolume(delta int) error {
 func (s *SettingsScreen) Update() error {
 	if input.Down.JustHit {
 		s.Item++
-		s.Menu.MoveSound(nil)
+		s.Controller.MoveSound(nil)
 	}
 	if input.Up.JustHit {
 		s.Item--
-		s.Menu.MoveSound(nil)
+		s.Controller.MoveSound(nil)
 	}
 	s.Item = SettingsScreenItem(m.Mod(int(s.Item), int(SettingsCount)))
 	if input.Exit.JustHit {
-		return s.Menu.ActivateSound(s.Menu.SaveConfigAndSwitchToScreen(&MainScreen{}))
+		return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&MainScreen{}))
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
 		case Graphics:
-			return s.Menu.ActivateSound(toggleGraphics(0))
+			return s.Controller.ActivateSound(toggleGraphics(0))
 		case Volume:
-			return s.Menu.ActivateSound(toggleVolume(0))
+			return s.Controller.ActivateSound(toggleVolume(0))
 		case Reset:
-			return s.Menu.ActivateSound(s.Menu.SaveConfigAndSwitchToScreen(&ResetScreen{}))
+			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&ResetScreen{}))
 		case Back:
-			return s.Menu.ActivateSound(s.Menu.SaveConfigAndSwitchToScreen(&MainScreen{}))
+			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&MainScreen{}))
 		}
 	}
 	if input.Left.JustHit {
 		switch s.Item {
 		case Graphics:
-			return s.Menu.ActivateSound(toggleGraphics(-1))
+			return s.Controller.ActivateSound(toggleGraphics(-1))
 		case Volume:
-			return s.Menu.ActivateSound(toggleVolume(-1))
+			return s.Controller.ActivateSound(toggleVolume(-1))
 		}
 	}
 	if input.Right.JustHit {
 		switch s.Item {
 		case Graphics:
-			return s.Menu.ActivateSound(toggleGraphics(+1))
+			return s.Controller.ActivateSound(toggleGraphics(+1))
 		case Volume:
-			return s.Menu.ActivateSound(toggleVolume(+1))
+			return s.Controller.ActivateSound(toggleVolume(+1))
 		}
 	}
 	return nil

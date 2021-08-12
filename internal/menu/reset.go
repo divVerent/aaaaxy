@@ -41,13 +41,13 @@ const (
 const resetFrames = 300
 
 type ResetScreen struct {
-	Menu       *Menu
+	Controller *Controller
 	Item       ResetScreenItem
 	ResetFrame int
 }
 
-func (s *ResetScreen) Init(m *Menu) error {
-	s.Menu = m
+func (s *ResetScreen) Init(m *Controller) error {
+	s.Controller = m
 	return nil
 }
 
@@ -59,29 +59,29 @@ func (s *ResetScreen) Update() error {
 	}
 	if input.Down.JustHit {
 		s.Item++
-		s.Menu.MoveSound(nil)
+		s.Controller.MoveSound(nil)
 	}
 	if input.Up.JustHit {
 		s.Item--
-		s.Menu.MoveSound(nil)
+		s.Controller.MoveSound(nil)
 	}
 	s.Item = ResetScreenItem(m.Mod(int(s.Item), int(ResetCount)))
 	if input.Exit.JustHit {
-		return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&SettingsScreen{}))
+		return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
 		case ResetNothing:
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&SettingsScreen{}))
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 		case ResetConfig:
 			flag.ResetToDefaults()
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&SettingsScreen{}))
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 		case ResetGame:
 			if s.ResetFrame >= resetFrames {
-				return s.Menu.ActivateSound(s.Menu.InitGame(resetGame))
+				return s.Controller.ActivateSound(s.Controller.InitGame(resetGame))
 			}
 		case BackToMain:
-			return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 		}
 	}
 	return nil

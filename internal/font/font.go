@@ -157,8 +157,8 @@ func Init() error {
 		SubPixelsX: 1,
 		SubPixelsY: 1,
 	}))
-	DebugSmall = makeFace(truetype.NewFace(mono, &truetype.Options{
-		Size:       5,
+	DebugSmall = makeFace(truetype.NewFace(regular, &truetype.Options{
+		Size:       9,
 		Hinting:    font.HintingFull,
 		SubPixelsX: 1,
 		SubPixelsY: 1,

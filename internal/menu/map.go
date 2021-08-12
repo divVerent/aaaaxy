@@ -33,7 +33,7 @@ import (
 )
 
 type MapScreen struct {
-	Menu        *Menu
+	Controller  *Controller
 	Level       *level.Level
 	CurrentCP   string
 	SortedLocs  []string
@@ -56,12 +56,12 @@ const (
 	edgeThickness         = 3
 )
 
-func (s *MapScreen) Init(m *Menu) error {
-	s.Menu = m
-	s.CurrentCP = s.Menu.World.PlayerState.LastCheckpoint()
+func (s *MapScreen) Init(m *Controller) error {
+	s.Controller = m
+	s.CurrentCP = s.Controller.World.PlayerState.LastCheckpoint()
 	if s.CurrentCP == "" {
 		// Have no checkpoint yet - start the game right away.
-		return s.Menu.SwitchToGame()
+		return s.Controller.SwitchToGame()
 	}
 	var err error
 	s.cpSprite, err = image.Load("sprites", "checkpoint.png")
@@ -92,7 +92,7 @@ func (s *MapScreen) Init(m *Menu) error {
 	s.whiteImage.Fill(color.Gray{255})
 
 	s.SortedLocs = nil
-	for name := range s.Menu.World.Level.Checkpoints {
+	for name := range s.Controller.World.Level.Checkpoints {
 		if name == "" {
 			continue
 		}
@@ -102,7 +102,7 @@ func (s *MapScreen) Init(m *Menu) error {
 	sort.Strings(s.SortedLocs)
 	// Now also yield a deterministic edge order.
 	s.SortedEdges = make(map[string][]level.CheckpointEdge, len(s.SortedLocs))
-	loc := s.Menu.World.Level.CheckpointLocations
+	loc := s.Controller.World.Level.CheckpointLocations
 	for _, cpName := range s.SortedLocs {
 		cpLoc := loc.Locs[cpName]
 		edges := make([]level.CheckpointEdge, 0, len(cpLoc.NextByDir)+len(cpLoc.NextDeadEnds))
@@ -120,32 +120,32 @@ func (s *MapScreen) Init(m *Menu) error {
 }
 
 func (s *MapScreen) moveBy(d m.Delta) {
-	loc := s.Menu.World.Level.CheckpointLocations
+	loc := s.Controller.World.Level.CheckpointLocations
 	cpLoc := loc.Locs[s.CurrentCP]
 	edge, found := cpLoc.NextByDir[d]
 	if !found {
 		return
 	}
-	edgeSeen := s.Menu.World.PlayerState.CheckpointsWalked(s.CurrentCP, edge.Other)
-	reverseSeen := s.Menu.World.PlayerState.CheckpointsWalked(edge.Other, s.CurrentCP)
+	edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(s.CurrentCP, edge.Other)
+	reverseSeen := s.Controller.World.PlayerState.CheckpointsWalked(edge.Other, s.CurrentCP)
 	if !edgeSeen && !reverseSeen {
 		// Don't know this yet :)
 		return
 	}
-	if s.Menu.World.Level.Checkpoints[edge.Other].Properties["dead_end"] == "true" {
+	if s.Controller.World.Level.Checkpoints[edge.Other].Properties["dead_end"] == "true" {
 		// A dead end!
 		return
 	}
 	s.CurrentCP = edge.Other
-	s.Menu.MoveSound(nil)
+	s.Controller.MoveSound(nil)
 }
 
 func (s *MapScreen) exit() error {
-	if s.CurrentCP != firstCP && s.Menu.World.PlayerState.CheckpointSeen(firstCP) != player_state.NotSeen {
+	if s.CurrentCP != firstCP && s.Controller.World.PlayerState.CheckpointSeen(firstCP) != player_state.NotSeen {
 		s.CurrentCP = firstCP
-		return s.Menu.MoveSound(nil)
+		return s.Controller.MoveSound(nil)
 	}
-	return s.Menu.ActivateSound(s.Menu.SwitchToScreen(&MainScreen{}))
+	return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 }
 
 func (s *MapScreen) Update() error {
@@ -165,7 +165,7 @@ func (s *MapScreen) Update() error {
 		s.moveBy(m.South())
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
-		return s.Menu.ActivateSound(s.Menu.SwitchToCheckpoint(s.CurrentCP))
+		return s.Controller.ActivateSound(s.Controller.SwitchToCheckpoint(s.CurrentCP))
 	}
 	return nil
 }
@@ -180,15 +180,15 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	selectedLineColor := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	darkLineColor := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
-	cpText := fun.FormatText(&s.Menu.World.PlayerState, s.Menu.World.Level.Checkpoints[s.CurrentCP].Properties["text"])
-	seen, total := s.Menu.World.PlayerState.TnihSignsSeen(s.CurrentCP)
+	cpText := fun.FormatText(&s.Controller.World.PlayerState, s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties["text"])
+	seen, total := s.Controller.World.PlayerState.TnihSignsSeen(s.CurrentCP)
 	if total > 0 {
 		cpText += fmt.Sprintf(" (%d/%d)", seen, total)
 	}
 	font.Menu.Draw(screen, cpText, m.Pos{X: x, Y: 7 * h / 8}, true, fgs, bgs)
 
 	// Draw all known checkpoints.
-	loc := s.Menu.World.Level.CheckpointLocations
+	loc := s.Controller.World.Level.CheckpointLocations
 	mapWidth := w
 	mapHeight := h / 2
 	if mapWidth*loc.Rect.Size.DY > mapHeight*loc.Rect.Size.DX {
@@ -213,7 +213,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	for _, cpName := range s.SortedLocs {
 		cpLoc := loc.Locs[cpName]
 		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
-		if s.Menu.World.Level.Checkpoints[cpName].Properties["hub"] == "true" {
+		if s.Controller.World.Level.Checkpoints[cpName].Properties["hub"] == "true" {
 			pos.X += rand.Intn(3) - 1
 			pos.Y += rand.Intn(3) - 1
 		}
@@ -221,7 +221,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	}
 	for z := 0; z < 3; z++ {
 		for _, cpName := range s.SortedLocs {
-			if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
+			if s.Controller.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 				continue
 			}
 			pos := cpPos[cpName]
@@ -231,7 +231,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					continue
 				}
 				otherName := edge.Other
-				edgeSeen := s.Menu.World.PlayerState.CheckpointsWalked(cpName, otherName)
+				edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(cpName, otherName)
 				endPos := cpPos[otherName]
 				color := lineColor
 				switch z {
@@ -267,7 +267,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	// Then draw the CPs.
 	for _, cpName := range s.SortedLocs {
 		var sprite *ebiten.Image
-		switch s.Menu.World.PlayerState.CheckpointSeen(cpName) {
+		switch s.Controller.World.PlayerState.CheckpointSeen(cpName) {
 		case player_state.NotSeen:
 			continue
 		case player_state.SeenNormal:
@@ -283,7 +283,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				sprite = s.cpFlippedSprite
 			}
 		}
-		if s.Menu.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
+		if s.Controller.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
 			sprite = s.deadEndSprite
 		}
 		pos := cpPos[cpName]
@@ -296,10 +296,10 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	}
 	// Finally the checkmarks.
 	for _, cpName := range s.SortedLocs {
-		if s.Menu.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
+		if s.Controller.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
 			continue
 		}
-		if seen, total := s.Menu.World.PlayerState.TnihSignsSeen(cpName); seen < total {
+		if seen, total := s.Controller.World.PlayerState.TnihSignsSeen(cpName); seen < total {
 			continue
 		}
 		sprite := s.cpCheckmarkSprite
