@@ -89,7 +89,7 @@ func (c *Controller) Update() error {
 		c.World.ForceCredits = false
 		c.blurFrame = 0
 		return c.SwitchToScreen(&CreditsScreen{Fancy: true})
-	} else if input.Exit.JustHit && c.Screen == nil {
+	} else if input.Exit.JustHit && c.Screen == nil && !c.World.TimerStopped {
 		c.World.TimerStarted = true
 		music.Switch("")
 		c.World.PlayerState.AddEscape()
