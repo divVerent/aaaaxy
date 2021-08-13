@@ -16,6 +16,7 @@ EXTRAFILES = README.md LICENSE CONTRIBUTING.md
 LICENSES_THIRD_PARTY = licenses
 ZIP = 7za -tzip -mx=9 a
 CP = cp --reflink=auto
+RESOURCE_FILES =
 
 # Provide a way to build binaries that are faster at image/video dumping.
 # This however makes them slower for normal use, so we're not releasing those.
@@ -29,8 +30,8 @@ endif
 # Release/debug flags.
 BUILDTYPE = debug
 ifeq ($(BUILDTYPE),release)
-ifeq ($(GOARCH),wasm)
-GOFLAGS ?= -tags aaaxy,embed,$(BUILDTAGS) -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
+ifeq ($(shell $(GO) env GOARCH),wasm)
+GOFLAGS ?= -tags embed,$(BUILDTAGS) -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
 else
 GOFLAGS ?= -tags embed,$(BUILDTAGS) -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
 endif
@@ -52,8 +53,15 @@ BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
 BINARY = aaaaxy$(INFIX)$(SUFFIX)
 
+# Windows only: include icon.
+ifeq ($(shell $(GO) env GOOS),windows)
+RESOURCE_FILES = cmd/aaaaxy/resources.ico cmd/aaaaxy/resources.manifest cmd/aaaaxy/resources.syso
+BINARY_ASSETS += $(RESOURCE_FILES)
+endif
+
 # Include version.
-GOFLAGS += -ldflags="-X $(VERSION).revision=$(shell git describe --always --dirty --first-parent)"
+REVISION = $(shell git describe --always --dirty --first-parent)
+GOFLAGS += -ldflags="-X $(VERSION).revision=$(REVISION)"
 
 # cgo support.
 CGO_CPPFLAGS ?= $(CPPFLAGS)
@@ -77,7 +85,7 @@ release:
 
 .PHONY: clean
 clean:
-	$(RM) -r $(BINARY) $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
+	$(RM) -r $(BINARY) $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY) $(RESOURCE_FILES)
 
 .PHONY: vet
 vet:
@@ -87,6 +95,26 @@ vet:
 $(EMBEDROOT): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
 	$(RM) -r $(EMBEDROOT)
 	CP="$(CP)" scripts/build-vfs.sh $(EMBEDROOT)
+
+cmd/aaaaxy/resources.manifest: scripts/aaaaxy.exe.manifest.sh
+	$< $(REVISION) > $@
+
+%.syso: %.ico %.manifest
+	GOOS= GOARCH= $(GO) run github.com/akavel/rsrc \
+		-arch $(shell $(GO) env GOARCH) \
+		-ico $*.ico \
+		-manifest $*.manifest \
+		-o $@
+
+cmd/aaaaxy/resources.ico: assets/sprites/riser_small_up_0.png
+	convert \
+		-filter Point \
+		\( $< -geometry 16x16 \) \
+		\( $< -geometry 32x32 \) \
+		\( $< -geometry 48x48 \) \
+		\( $< -geometry 64x64 \) \
+		\( $< -geometry 256x256 \) \
+		$@
 
 $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 	CGO_CPPFLAGS="$(CGO_CPPFLAGS)" \
