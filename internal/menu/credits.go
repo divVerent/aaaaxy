@@ -85,9 +85,8 @@ func (s *CreditsScreen) Init(m *Controller) error {
 			addCategory("Cheat%", true)
 			addCategory("Without Cheating Of Course", false)
 		}
-		if cat&player_state.AnyPercentSpeedrun == 0 {
-			// Should only hit when forcing the credits screen.
-			addCategory("Any%", false)
+		if cat&player_state.HundredPercentSpeedrun == 0 {
+			addCategory("Any%", cat&player_state.AnyPercentSpeedrun != 0)
 		}
 		addCategory("100%", cat&player_state.HundredPercentSpeedrun != 0)
 		addCategory("All Notes", cat&player_state.AllSignsSpeedrun != 0)
