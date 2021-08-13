@@ -17,6 +17,7 @@ package menu
 import (
 	"fmt"
 	"image/color"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -70,46 +71,42 @@ func (s *CreditsScreen) Init(m *Controller) error {
 			"Your Speedrun Categories",
 		)
 		tryNext := ""
-		categories := "Cheat%"
-		if flag.Cheating() {
-			tryNext = "Without Cheating Of Course"
-		} else {
-			if cat&player_state.HundredPercentSpeedrun != 0 {
-				categories = "100%"
-			} else if cat&player_state.AnyPercentSpeedrun != 0 {
-				categories = "Any%"
-				tryNext = "100%"
+		categories := []string{}
+		addCategory := func(cat string, have bool) {
+			if have {
+				categories = append(categories, cat)
 			} else {
-				tryNext = "Any%"
-			}
-			if cat&player_state.AllSignsSpeedrun != 0 {
-				categories += ", All Notes"
-			} else if tryNext == "" {
-				tryNext = "All Notes"
-			}
-			if cat&player_state.AllPathsSpeedrun != 0 {
-				categories += ", All Paths"
-			} else if tryNext == "" {
-				tryNext = "All Paths"
-			}
-			if cat&player_state.AllSecretsSpeedrun != 0 {
-				categories += ", All Secrets"
-			} else if tryNext == "" {
-				tryNext = "All Secrets"
-			}
-			if cat&player_state.AllFlippedSpeedrun != 0 {
-				categories += ", All Flipped"
-			} else if tryNext == "" {
-				tryNext = "All Flipped"
-			}
-			if cat&player_state.NoEscapeSpeedrun != 0 {
-				categories += ", No Escape"
-			} else if tryNext == "" {
-				tryNext = "No Escape"
+				if tryNext == "" {
+					tryNext = cat
+				}
 			}
 		}
-		s.Lines = append(s.Lines,
-			categories)
+		if flag.Cheating() {
+			addCategory("Cheat%", true)
+			addCategory("Without Cheating Of Course", false)
+		}
+		if cat&player_state.AnyPercentSpeedrun == 0 {
+			// Should only hit when forcing the credits screen.
+			addCategory("Any%", false)
+		}
+		addCategory("100%", cat&player_state.HundredPercentSpeedrun != 0)
+		addCategory("All Notes", cat&player_state.AllSignsSpeedrun != 0)
+		addCategory("All Paths", cat&player_state.AllPathsSpeedrun != 0)
+		addCategory("All Secrets", cat&player_state.AllSecretsSpeedrun != 0)
+		addCategory("All Flipped", cat&player_state.AllFlippedSpeedrun != 0)
+		addCategory("No Escape", cat&player_state.NoEscapeSpeedrun != 0)
+		l := len(categories)
+		switch l {
+		case 0:
+			s.Lines = append(s.Lines,
+				"None")
+		case 1:
+			s.Lines = append(s.Lines,
+				categories[0])
+		default:
+			s.Lines = append(s.Lines,
+				strings.Join(categories[0:l-1], ", ")+" and "+categories[l-1])
+		}
 		if tryNext != "" {
 			s.Lines = append(s.Lines,
 				"",
