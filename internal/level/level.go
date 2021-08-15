@@ -525,12 +525,12 @@ func Load(filename string) (*Level, error) {
 		name := cp.Properties["name"]
 		level.TnihSignsByCheckpoint[name] = append(level.TnihSignsByCheckpoint[name], sign)
 	}
-	for name := range level.Checkpoints {
+	for name, cpSp := range level.Checkpoints {
 		if name == "" {
 			// This isn't a real CP.
 			continue
 		}
-		if len(level.TnihSignsByCheckpoint[name]) == 0 {
+		if cpSp.Properties["tnihsign_expected"] != "false" && len(level.TnihSignsByCheckpoint[name]) == 0 {
 			log.Printf("note: checkpoint %v has no TnihSign - intended?", name)
 		}
 	}

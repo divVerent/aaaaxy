@@ -33,6 +33,7 @@
   <property name="render_offset" type="string"/>
   <property name="required_orientation" type="string"/>
   <property name="solid" type="bool" default="false"/>
+  <property name="tnihsign_expected" type="bool" default="true"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="AppearBlock" color="#00aa00"/>
