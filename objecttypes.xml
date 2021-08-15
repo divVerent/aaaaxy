@@ -33,7 +33,6 @@
   <property name="render_offset" type="string"/>
   <property name="required_orientation" type="string"/>
   <property name="solid" type="bool" default="false"/>
-  <property name="tnihsign_expected" type="bool" default="true"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
  <objecttype name="AppearBlock" color="#00aa00"/>
@@ -48,6 +47,7 @@
   <property name="next_up" type="object" default="0"/>
   <property name="required_orientation" type="string"/>
   <property name="text" type="string"/>
+  <property name="tnih_sign_expected" type="bool" default="true"/>
   <property name="vvvvvv" type="bool" default="false"/>
   <property name="vvvvvv_gravity_direction" type="string"/>
  </objecttype>

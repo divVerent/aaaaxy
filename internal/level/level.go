@@ -23,8 +23,13 @@ import (
 	"github.com/fardog/tmx"
 	"github.com/mitchellh/hashstructure/v2"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/vfs"
+)
+
+var (
+	debugCheckTnihSigns = flag.Bool("debug_check_tnih_signs", false, "if set, we verify that all checkpoints have a TnihSign")
 )
 
 // Level is a parsed form of a loaded level.
@@ -530,8 +535,15 @@ func Load(filename string) (*Level, error) {
 			// This isn't a real CP.
 			continue
 		}
-		if cpSp.Properties["tnihsign_expected"] != "false" && len(level.TnihSignsByCheckpoint[name]) == 0 {
-			log.Printf("note: checkpoint %v has no TnihSign - intended?", name)
+		if *debugCheckTnihSigns {
+			got := len(level.TnihSignsByCheckpoint[name]) != 0
+			want := cpSp.Properties["tnih_sign_expected"] != "false" // default true
+			if !got && want {
+				log.Panicf("note: checkpoint %v has no TnihSign - intended?", name)
+			}
+			if got && !want {
+				log.Panicf("note: checkpoint %v unexpectedly has TnihSign - intended?", name)
+			}
 		}
 	}
 	for warpname, warppair := range warpZones {
