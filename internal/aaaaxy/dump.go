@@ -16,7 +16,7 @@ package aaaaxy
 
 import (
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
 	"reflect"
 	"strings"
@@ -95,7 +95,7 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image) {
 				_, err = dumpVideoFile.WriteAt(pix, frame*dumpVideoFrameSize)
 			}
 			if err != nil {
-				log.Printf("Failed to encode video - expect corruption: %v", err)
+				log.Errorf("Failed to encode video - expect corruption: %v", err)
 				// dumpVideoFile.Close()
 				// dumpVideoFile = nil
 			}
@@ -107,7 +107,7 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image) {
 	if dumpAudioFile != nil {
 		err := audiowrap.DumpFrame(dumpAudioFile, time.Duration(dumpFrameCount)*time.Second/engine.GameTPS)
 		if err != nil {
-			log.Printf("Failed to encode audio - expect corruption: %v", err)
+			log.Errorf("Failed to encode audio - expect corruption: %v", err)
 			dumpAudioFile.Close()
 			dumpAudioFile = nil
 		}
@@ -168,7 +168,7 @@ func finishDumping() {
 	if dumpAudioFile != nil {
 		err := dumpAudioFile.Close()
 		if err != nil {
-			log.Printf("Failed to close audio - expect corruption: %v", err)
+			log.Errorf("Failed to close audio - expect corruption: %v", err)
 		}
 		dumpAudioFile = nil
 	}
@@ -176,11 +176,11 @@ func finishDumping() {
 		dumpVideoWg.Wait()
 		err := dumpVideoFile.Close()
 		if err != nil {
-			log.Printf("Failed to close video - expect corruption: %v", err)
+			log.Errorf("Failed to close video - expect corruption: %v", err)
 		}
 		dumpVideoFile = nil
 	}
-	log.Print("Media has been dumped.")
-	log.Print("To convert to something uploadable, run:")
-	log.Print(ffmpegCommand(*dumpAudio, *dumpVideo, "video.mp4"))
+	log.Infof("Media has been dumped.")
+	log.Infof("To convert to something uploadable, run:")
+	log.Infof(ffmpegCommand(*dumpAudio, *dumpVideo, "video.mp4"))
 }

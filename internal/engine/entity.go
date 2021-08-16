@@ -16,7 +16,7 @@ package engine
 
 import (
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"reflect"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -98,7 +98,7 @@ func RegisterEntityType(t EntityImpl) {
 		log.Fatalf("duplicate entity type: %v", typeName)
 	}
 	entityTypes[typeName] = t
-	log.Printf("Registered entity type %q", typeName)
+	log.Debugf("Registered entity type %q", typeName)
 }
 
 // Precache all entities.

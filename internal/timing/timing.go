@@ -16,7 +16,7 @@ package timing
 
 import (
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"sort"
 	"strings"
 	"time"
@@ -162,7 +162,7 @@ func ReportRegularly() {
 				report = append(report, fmt.Sprintf("  %-48s %v", section, entry))
 			}
 			sort.Strings(report)
-			log.Printf("Timing report:\n%v", strings.Join(report, "\n"))
+			log.Infof("Timing report:\n%v", strings.Join(report, "\n"))
 		}
 		restartProfiling()
 		nextReport = now.Add(time.Second)

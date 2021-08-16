@@ -18,8 +18,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"io"
-	"log"
 	"os"
 	"time"
 
@@ -259,7 +259,7 @@ func Switch(name string) {
 	}
 	err := next.open(cacheName, name)
 	if err != nil {
-		log.Printf("could not open music %q: %v", name, err)
+		log.Errorf("could not open music %q: %v", name, err)
 	}
 }
 

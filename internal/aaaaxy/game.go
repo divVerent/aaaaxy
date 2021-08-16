@@ -15,7 +15,7 @@
 package aaaaxy
 
 import (
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 	"math/rand"
 
@@ -174,7 +174,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			var err error
 			g.linear2xShader, err = shader.Load("linear2x.kage", nil)
 			if err != nil {
-				log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load linear2x shader: %v", err)
+				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load linear2x shader: %v", err)
 				*screenFilter = "simple"
 				return
 			}
@@ -195,7 +195,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			var err error
 			g.linear2xCRTShader, err = shader.Load("linear2xcrt.kage", nil)
 			if err != nil {
-				log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load linear2xcrt shader: %v", err)
+				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load linear2xcrt shader: %v", err)
 				*screenFilter = "linear2x"
 				return
 			}
@@ -225,7 +225,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
 		screen.DrawImage(g.drawOffscreen(), options)
 	default:
-		log.Printf("WARNING: unknown screen filter type: %q; reverted to simple", *screenFilter)
+		log.Errorf("WARNING: unknown screen filter type: %q; reverted to simple", *screenFilter)
 		*screenFilter = "simple"
 	}
 

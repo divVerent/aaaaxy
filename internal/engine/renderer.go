@@ -16,8 +16,8 @@ package engine
 
 import (
 	"fmt"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"image/color"
-	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -93,7 +93,7 @@ func (r *renderer) Init(w *World) {
 		var err error
 		r.visibilityMaskShader, err = shader.Load("visibility_mask.kage", nil)
 		if err != nil {
-			log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load visibility mask shader: %v", err)
+			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load visibility mask shader: %v", err)
 			r.visibilityMaskShader = nil
 		}
 	}
@@ -149,7 +149,7 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 		screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
 		img, err := image.Load("tiles", tile.ImageSrc)
 		if err != nil {
-			log.Printf("could not load already cached image %q for tile: %v", tile.ImageSrc, err)
+			log.Errorf("could not load already cached image %q for tile: %v", tile.ImageSrc, err)
 			return
 		}
 		opts := ebiten.DrawImageOptions{

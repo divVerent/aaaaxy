@@ -18,7 +18,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
 	"sort"
 	"strings"
@@ -26,6 +26,7 @@ import (
 
 var (
 	flagSet = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
+	v       = Int("v", 0, "verbose logging level") // Must be declared here to prevent cycle.
 
 	loadConfig = Bool("load_config", true, "enable processing of the configuration file")
 )
@@ -59,7 +60,7 @@ func Set(name string, value interface{}) error {
 func Get(name string) interface{} {
 	f := flagSet.Lookup(name)
 	if f == nil {
-		log.Printf("Queried non-existing flag: %v", name)
+		log.Errorf("Queried non-existing flag: %v", name)
 		return ""
 	}
 	return f.Value.(flag.Getter).Get()
@@ -125,12 +126,15 @@ var defaultUsage func()
 var getConfig func() (*Config, error)
 
 func applyConfig() {
+	// Provide verbose level ASAP.
+	log.V = v
+
 	// Skip config loading if so desired.
 	// This ability is why flag loading is hard;
 	// we need to parse the command line to detect whether we want to load the config,
 	// but then we want the command line to have precedence over the config.
 	if !*loadConfig {
-		log.Printf("config loading was disabled by the command line")
+		log.Infof("config loading was disabled by the command line")
 		return
 	}
 	// Remember which flags have already been set. These will NOT come from the config.
@@ -140,7 +144,7 @@ func applyConfig() {
 	})
 	config, err := getConfig()
 	if err != nil {
-		log.Printf("could not load config: %v", err)
+		log.Errorf("could not load config: %v", err)
 		return
 	}
 	if config == nil {
@@ -154,7 +158,7 @@ func applyConfig() {
 		}
 		err = flagSet.Set(name, value)
 		if err != nil {
-			log.Printf("could not apply config value %q=%q: %v", name, value, err)
+			log.Errorf("could not apply config value %q=%q: %v", name, value, err)
 			continue
 		}
 	}

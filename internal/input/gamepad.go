@@ -17,7 +17,7 @@ package input
 import (
 	"bufio"
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
 	"regexp"
 	"runtime"
@@ -109,7 +109,7 @@ func gamepadUpdate() {
 }
 
 func gamepadRemove(pad ebiten.GamepadID) {
-	log.Printf("Removing gamepad %v", ebiten.GamepadName(pad))
+	log.Infof("Removing gamepad %v", ebiten.GamepadName(pad))
 	for _, i := range impulses {
 		l := len(i.padControls)
 		for j := 0; j < l; j++ {
@@ -149,7 +149,7 @@ func gamepadLoadDatabase() {
 	gamepadDatabase = map[string][][]string{}
 	f, err := vfs.Load("input", "gamecontrollerdb.txt")
 	if err != nil {
-		log.Printf("could not open game controller database: %v", err)
+		log.Errorf("could not open game controller database: %v", err)
 		return
 	}
 	defer f.Close()
@@ -158,7 +158,7 @@ func gamepadLoadDatabase() {
 		gamepadAddLine(scanner.Text())
 	}
 	if err := scanner.Err(); err != nil {
-		log.Printf("could not read game controller database: %v", err)
+		log.Errorf("could not read game controller database: %v", err)
 	}
 }
 
@@ -178,7 +178,7 @@ func gamepadAddLine(line string) {
 }
 
 func gamepadAdd(pad ebiten.GamepadID) {
-	log.Printf("Adding gamepad %v", ebiten.GamepadName(pad))
+	log.Infof("Adding gamepad %v", ebiten.GamepadName(pad))
 	gamepads[pad] = true // Don't try again.
 	type gamepadError struct {
 		name string
@@ -194,10 +194,10 @@ func gamepadAdd(pad ebiten.GamepadID) {
 		return
 	}
 	for _, ge := range errors {
-		log.Printf("Error adding gamepad %v as %v: %v", ebiten.GamepadName(pad), ge.name, ge.err)
+		log.Errorf("Error adding gamepad %v as %v: %v", ebiten.GamepadName(pad), ge.name, ge.err)
 	}
 	if len(errors) == 0 {
-		log.Printf("Error adding gamepad %v: no suitable entry found for %v", ebiten.GamepadName(pad), ebiten.GamepadSDLID(pad))
+		log.Errorf("Error adding gamepad %v: no suitable entry found for %v", ebiten.GamepadName(pad), ebiten.GamepadSDLID(pad))
 	}
 }
 
@@ -216,7 +216,7 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 	for _, def := range config[1:] {
 		match := defRE.FindStringSubmatch(def)
 		if match == nil {
-			log.Printf("Unmatched game pad definition directive: %v", def)
+			log.Errorf("Unmatched game pad definition directive: %v", def)
 			continue
 		}
 		if platform := match[defPlatform]; platform != "" {
@@ -249,7 +249,7 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 		// Ignore.
 		// Where to put fullscreen?
 		default:
-			log.Printf("Unknown assignment in game pad definition directive: %v", def)
+			log.Warningf("Unknown assignment in game pad definition directive: %v", def)
 			continue
 		}
 		switch match[defHalfAxis] {
@@ -264,11 +264,11 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 		if a := match[defAxis]; a != "" {
 			ax, err := strconv.Atoi(a)
 			if err != nil {
-				log.Printf("Could not parse axis %v: %v", a, err)
+				log.Warningf("Could not parse axis %v: %v", a, err)
 				continue
 			}
 			if ax < 0 || ax >= axes {
-				log.Printf("Invalid axis : got %v, want 0 <= ax < %d", ax, axes)
+				log.Warningf("Invalid axis : got %v, want 0 <= ax < %d", ax, axes)
 				continue
 			}
 			if addTo != nil {
@@ -289,11 +289,11 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 		if b := match[defButton]; b != "" {
 			bt, err := strconv.Atoi(b)
 			if err != nil {
-				log.Printf("Could not parse button %v: %v", b, err)
+				log.Warningf("Could not parse button %v: %v", b, err)
 				continue
 			}
 			if bt < 0 || bt >= buttons {
-				log.Printf("Invalid button: got %v, want 0 <= bt < %d", bt, buttons)
+				log.Warningf("Invalid button: got %v, want 0 <= bt < %d", bt, buttons)
 				continue
 			}
 			if addTo != nil {
@@ -306,25 +306,25 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 		if h, b := match[defHat], match[defHatBit]; h != "" {
 			ht, err := strconv.Atoi(h)
 			if err != nil {
-				log.Printf("Could not parse hat %v: %v", b, err)
+				log.Warningf("Could not parse hat %v: %v", b, err)
 				continue
 			}
 			bt, err := strconv.Atoi(b)
 			if err != nil {
-				log.Printf("Could not parse hat bit %v: %v", b, err)
+				log.Warningf("Could not parse hat bit %v: %v", b, err)
 				continue
 			}
 			// Note: ebiten currently doesn't support "hats" in GLFW properly.
 			// However, hat 0 always occupies the last four buttons.
 			if ht != 0 {
-				log.Printf("Sorry, non-zero hat numbers are not supported right now")
+				log.Warningf("Sorry, non-zero hat numbers are not supported right now")
 				continue
 			}
 			vbt := buttons - map[int]int{
 				1: 4, 2: 3, 4: 2, 8: 1,
 			}[bt]
 			if vbt < 0 || vbt >= buttons {
-				log.Printf("Invalid hat button: got %v, want 0 <= vbt < %d", vbt, buttons)
+				log.Warningf("Invalid hat button: got %v, want 0 <= vbt < %d", vbt, buttons)
 				continue
 			}
 			if addTo != nil {
@@ -344,6 +344,6 @@ func gamepadAddWithConfig(pad ebiten.GamepadID, config []string) (string, error)
 	for i, c := range controls {
 		i.padControls = append(i.padControls, c...)
 	}
-	log.Printf("Gamepad configured and found: %v (configured: %v)", ebiten.GamepadName(pad), name)
+	log.Infof("Gamepad configured and found: %v (configured: %v)", ebiten.GamepadName(pad), name)
 	return name, nil
 }

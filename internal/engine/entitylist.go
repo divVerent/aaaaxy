@@ -16,7 +16,7 @@ package engine
 
 import (
 	"errors"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 type listIndex int
@@ -41,7 +41,7 @@ func (l *entityList) verify(step string) {
 	// Uncomment this if you suspect lists may get corrupted.
 	/*
 		if l == nil {
-			log.Panicf("verifying nil list")
+			log.Fatalf("verifying nil list")
 		}
 		for i, e := range l.items {
 			if e == nil {
@@ -49,7 +49,7 @@ func (l *entityList) verify(step string) {
 			}
 			idx := e.indexInListPlusOne[l.index] - 1
 			if idx != i {
-				log.Panicf("%v: corrupted entity list %v: entity %v: got index %v, want %v", step, l.index, e, e.indexInListPlusOne[l.index]-1, i)
+				log.Fatalf("%v: corrupted entity list %v: entity %v: got index %v, want %v", step, l.index, e, e.indexInListPlusOne[l.index]-1, i)
 			}
 		}
 	*/
@@ -58,7 +58,7 @@ func (l *entityList) verify(step string) {
 func (l *entityList) insert(e *Entity) {
 	l.verify("insert pre")
 	if e.indexInListPlusOne[l.index] != 0 {
-		log.Panicf("inserting into the same entity list twice: entity %v, items %v", e, l.index)
+		log.Fatalf("inserting into the same entity list twice: entity %v, items %v", e, l.index)
 	}
 	l.items = append(l.items, e)
 	e.indexInListPlusOne[l.index] = len(l.items)
@@ -69,11 +69,11 @@ func (l *entityList) remove(e *Entity) {
 	l.verify("remove pre")
 	idxPlusOne := e.indexInListPlusOne[l.index]
 	if idxPlusOne == 0 {
-		log.Panicf("removing from an entity list the entity isn't in: entity %v, list %v", e, l.index)
+		log.Fatalf("removing from an entity list the entity isn't in: entity %v, list %v", e, l.index)
 	}
 	idx := idxPlusOne - 1
 	if l.items[idx] != e {
-		log.Panicf("removing from a corrupted entity list %v: entity %v isn't actually at index %v", l.index, e, idx)
+		log.Fatalf("removing from a corrupted entity list %v: entity %v isn't actually at index %v", l.index, e, idx)
 	}
 	l.items[idx] = nil
 	e.indexInListPlusOne[l.index] = 0

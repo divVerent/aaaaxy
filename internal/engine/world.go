@@ -18,7 +18,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 	"os"
 
@@ -119,7 +119,7 @@ func (w *World) tileIndex(pos m.Pos) int {
 	if *debugCheckTileWindowSize {
 		p := w.tilePos(i)
 		if p != pos {
-			log.Panicf("accessed out of range tile: got %v, want near scroll tile %v", pos, w.bottomRightTile)
+			log.Fatalf("accessed out of range tile: got %v, want near scroll tile %v", pos, w.bottomRightTile)
 		}
 	}
 	return i
@@ -519,7 +519,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	wantLen := 2*xLen + 2*yLen
 	if len(w.renderer.visiblePolygon) != wantLen {
 		if w.renderer.visiblePolygon != nil {
-			log.Print("visible polygon size changed - unexpected but harmless; optimize for resizing and remove this check then, I guess")
+			log.Infof("visible polygon size changed - unexpected but harmless; optimize for resizing and remove this check then, I guess: got %v, want %v", len(w.renderer.visiblePolygon), wantLen)
 		}
 		w.renderer.visiblePolygon = make([]m.Pos, wantLen)
 	}
@@ -549,8 +549,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		w.renderer.expandedVisiblePolygon = w.renderer.visiblePolygon
 	}
 	if *debugDumpVisiblePolygon {
-		log.Printf("visible polygon: %v", w.renderer.visiblePolygon)
-		log.Printf("expanded polygon: %v", w.renderer.expandedVisiblePolygon)
+		log.Infof("visible polygon: %v", w.renderer.visiblePolygon)
+		log.Infof("expanded polygon: %v", w.renderer.expandedVisiblePolygon)
 	}
 	// BUG: the above also loads tiles (but doesn't mark) if their path was blocked by an entity.
 	// Workaround: mark them as if they were previous frame's tiles, so they're not a basis for loading and get cleared at the end if needed.
@@ -600,7 +600,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		for _, spawnable := range tile.Spawnables {
 			_, err := w.Spawn(spawnable, pos, tile)
 			if err != nil {
-				log.Printf("Could not spawn entity %v: %v", spawnable, err)
+				log.Errorf("Could not spawn entity %v: %v", spawnable, err)
 			}
 		}
 	})
@@ -681,7 +681,7 @@ func (w *World) Update() error {
 	centerprint.Update()
 
 	if *debugCountTiles {
-		log.Printf("%d tiles set, %d tiles cleared", w.tilesSet, w.tilesCleared)
+		log.Infof("%d tiles set, %d tiles cleared", w.tilesSet, w.tilesCleared)
 	}
 	w.tilesSet, w.tilesCleared = 0, 0
 
@@ -698,7 +698,6 @@ func (w *World) SetWarpZoneState(name string, state bool) {
 // LoadTile loads the next tile into the current world based on a currently
 // known tile and its neighbor. Respects and applies warps.
 func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
-	// log.Printf("LoadTile: %v -> %v (%v)", p, newPos, d)
 	tile := w.Tile(newPos)
 	if tile != nil {
 		if tile.VisibilityFlags&level.FrameVis == w.frameVis && !*debugDetectLoadingConflicts {
@@ -714,11 +713,11 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	}
 	neighborTile := w.Tile(p)
 	if neighborTile == nil {
-		log.Printf("Trying to load with nonexisting neighbor tile at %v", p)
+		log.Errorf("Trying to load with nonexisting neighbor tile at %v", p)
 		return nil // Can't load.
 	}
 	if neighborTile.Contents.Opaque() {
-		log.Printf("Trying to load from an opaque tile at %v", p)
+		log.Errorf("Trying to load from an opaque tile at %v", p)
 		return nil // Can't load.
 	}
 	t := neighborTile.Transform
@@ -726,7 +725,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	newLevelPos := neighborLevelPos.Add(t.Apply(d))
 	newLevelTile := w.Level.Tile(newLevelPos)
 	if newLevelTile == nil {
-		// log.Printf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)", newLevelPos, p, neighborLevelPos, d, t.Apply(d))
+		log.Debugf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)", newLevelPos, p, neighborLevelPos, d, t.Apply(d))
 		newTile := &level.Tile{
 			LevelPos:           newLevelPos,
 			Transform:          t,
@@ -749,14 +748,14 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			}
 		}
 		if warped {
-			log.Printf("More than one active warpzone on %v", newLevelTile)
+			log.Errorf("More than one active warpzone on %v", newLevelTile)
 			return nil // Can't load.
 		}
 		warped = true
 		t = warp.Transform.Concat(t)
 		tile := w.Level.Tile(warp.ToTile)
 		if tile == nil {
-			log.Printf("Nil new tile after warping to %v", warp)
+			log.Errorf("Nil new tile after warping to %v", warp)
 			return nil // Can't load.
 		}
 		newLevelTile = tile
@@ -772,7 +771,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			// Thus it'd be nice to have a better way to detect "bad" stuff.
 			// We only really care about loading conflicts during visibility tracing.
 			// TODO: During expanding it's normal, so detect that situation here.
-			log.Panicf("conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v).",
+			log.Fatalf("conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v).",
 				newPos, tile.LoadedFromNeighbor, tile.LevelPos, p, d, newLevelTile.Tile.LevelPos)
 		}
 	}

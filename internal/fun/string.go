@@ -17,7 +17,7 @@ package fun
 import (
 	"bytes"
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"strings"
 	"text/template"
 	"time"
@@ -154,7 +154,7 @@ func TryFormatText(ps *player_state.PlayerState, s string) (string, error) {
 func FormatText(ps *player_state.PlayerState, s string) string {
 	result, err := TryFormatText(ps, s)
 	if err != nil {
-		log.Printf("Failed to execute text template: %v", s)
+		log.Warningf("Failed to execute text template: %v", s)
 		return s
 	}
 	return result

@@ -15,7 +15,7 @@
 package main
 
 import (
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
 	"runtime"
 	"runtime/pprof"
@@ -36,17 +36,17 @@ func main() {
 	if *cpuprofile != "" {
 		f, err := os.Create(*cpuprofile)
 		if err != nil {
-			log.Fatalf("could not create CPU profile: %v", err)
+			log.Fatalf("Could not create CPU profile: %v", err)
 		}
 		defer f.Close()
 		if err := pprof.StartCPUProfile(f); err != nil {
-			log.Fatalf("could not start CPU profile: %v", err)
+			log.Fatalf("Could not start CPU profile: %v", err)
 		}
 		defer pprof.StopCPUProfile()
 	}
 	err := aaaaxy.InitEbiten()
 	if err != nil {
-		log.Panicf("could not initialize game: %v", err)
+		log.Fatalf("Could not initialize game: %v", err)
 	}
 	game := &aaaaxy.Game{}
 	err = ebiten.RunGame(game)
@@ -54,15 +54,15 @@ func main() {
 	if *memprofile != "" {
 		f, err := os.Create(*memprofile)
 		if err != nil {
-			log.Fatalf("could not create memory profile: %v", err)
+			log.Fatalf("Could not create memory profile: %v", err)
 		}
 		defer f.Close()
 		runtime.GC()
 		if err := pprof.WriteHeapProfile(f); err != nil {
-			log.Fatalf("could not write memory profile: %v", err)
+			log.Fatalf("Could not write memory profile: %v", err)
 		}
 	}
 	if err != nil && err != aaaaxy.RegularTermination {
-		log.Fatal(err)
+		log.Fatalf("Game exited abnormally: %v", err)
 	}
 }

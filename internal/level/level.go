@@ -539,10 +539,10 @@ func Load(filename string) (*Level, error) {
 			got := len(level.TnihSignsByCheckpoint[name]) != 0
 			want := cpSp.Properties["tnih_sign_expected"] != "false" // default true
 			if !got && want {
-				log.Panicf("note: checkpoint %v has no TnihSign - intended?", name)
+				log.Fatalf("note: checkpoint %v has no TnihSign - intended?", name)
 			}
 			if got && !want {
-				log.Panicf("note: checkpoint %v unexpectedly has TnihSign - intended?", name)
+				log.Fatalf("note: checkpoint %v unexpectedly has TnihSign - intended?", name)
 			}
 		}
 	}

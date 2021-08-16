@@ -16,8 +16,8 @@ package audiowrap
 
 import (
 	"bytes"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"io"
-	"log"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
@@ -97,7 +97,7 @@ func NewPlayerFromBytes(src []byte) *Player {
 		return bytes.NewReader(src), nil
 	})
 	if err != nil {
-		log.Panicf("UNREACHABLE CODE: newDumper returned an error despite passed an always-succeed function: %v", err)
+		log.Fatalf("UNREACHABLE CODE: newDumper returned an error despite passed an always-succeed function: %v", err)
 		return nil
 	}
 	ebi := ebiPlayerFromBytes(src)

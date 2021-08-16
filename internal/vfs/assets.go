@@ -15,8 +15,8 @@
 package vfs
 
 import (
+	"github.com/divVerent/aaaaxy/internal/log"
 	"io"
-	"log"
 	"path"
 )
 
@@ -42,13 +42,13 @@ func Canonical(purpose, name string) string {
 
 func Load(purpose string, name string) (ReadSeekCloser, error) {
 	vfsPath := Canonical(purpose, name)
-	log.Printf("loading %v", vfsPath)
+	log.Debugf("loading %v", vfsPath)
 	return load(vfsPath)
 }
 
 // ReadDir lists all files in a directory. Returns their VFS paths!
 func ReadDir(purpose string) ([]string, error) {
 	vfsPath := path.Join("/", path.Base(purpose))
-	log.Printf("listing %v", vfsPath)
+	log.Debugf("listing %v", vfsPath)
 	return readDir(vfsPath)
 }

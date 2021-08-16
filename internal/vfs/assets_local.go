@@ -19,8 +19,8 @@ package vfs
 import (
 	"errors"
 	"fmt"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"io/ioutil"
-	"log"
 	"os"
 	"path"
 	"path/filepath"
@@ -41,7 +41,7 @@ func Init() error {
 	for _, info := range content {
 		localAssetDirs = append(localAssetDirs, filepath.Join("third_party", info.Name(), "assets"))
 	}
-	log.Printf("Local asset search path: %v", localAssetDirs)
+	log.Infof("Local asset search path: %v", localAssetDirs)
 	return nil
 }
 

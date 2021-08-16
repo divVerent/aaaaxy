@@ -83,7 +83,7 @@ func SetStateOfTarget(w *engine.World, originator, predecessor *engine.Entity, t
 			var closest *engine.Entity
 			for _, ent := range w.FindName(target) {
 				if ent == predecessor {
-					log.Panicf("Should this even happen? An entity targeting itself? Name is %v.", target)
+					log.Fatalf("Should this even happen? An entity targeting itself? Name is %v.", target)
 					continue
 				}
 				if closest == nil || closest.Rect.Delta(w.Player.Rect).Norm1() > ent.Rect.Delta(w.Player.Rect).Norm1() {
@@ -99,7 +99,7 @@ func SetStateOfTarget(w *engine.World, originator, predecessor *engine.Entity, t
 			w.SetWarpZoneState(target, thisState)
 			for _, ent := range w.FindName(target) {
 				if ent == predecessor {
-					log.Panicf("Should this even happen? An entity targeting itself? Name is %v.", target)
+					log.Fatalf("Should this even happen? An entity targeting itself? Name is %v.", target)
 					continue
 				}
 				if !SetStateOfEntity(originator, predecessor, ent, thisState) {

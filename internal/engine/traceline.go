@@ -15,7 +15,7 @@
 package engine
 
 import (
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -63,7 +63,7 @@ func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceR
 // traceLine moves from from to to and yields info about where this hit solid etc.
 func traceLine(w *World, from, to m.Pos, o TraceOptions) TraceResult {
 	if o.Contents == level.NoContents {
-		log.Panicf("do not know what to stop at - need to specify Contents in every trace")
+		log.Fatalf("do not know what to stop at - need to specify Contents in every trace")
 	}
 	result := TraceResult{
 		EndPos: to,

@@ -17,8 +17,8 @@
 package vfs
 
 import (
+	"github.com/divVerent/aaaaxy/internal/log"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 )
@@ -28,7 +28,8 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 	path, err := pathForRead(kind, name)
 	if err != nil {
 		// Remap to os.ErrNotExist so callers can deal with the error on their own.
-		log.Printf("Could not find path for folder%d/%s: %v", kind, name, err)
+		// This error is expected on first run, so it's just INFO.
+		log.Infof("Could not find path for folder%d/%s: %v", kind, name, err)
 		return nil, os.ErrNotExist
 	}
 	return ioutil.ReadFile(path)

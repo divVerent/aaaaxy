@@ -15,8 +15,8 @@
 package centerprint
 
 import (
+	"github.com/divVerent/aaaaxy/internal/log"
 	"image/color"
-	"log"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -113,7 +113,7 @@ func (cp *Centerprint) targetPos() int {
 	case Middle:
 		return screenHeight / 3
 	default:
-		log.Panicf("invalid initial position: %v", cp.pos)
+		log.Fatalf("invalid initial position: %v", cp.pos)
 		return 0
 	}
 }

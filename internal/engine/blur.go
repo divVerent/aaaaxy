@@ -16,8 +16,8 @@ package engine
 
 import (
 	"fmt"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"image/color"
-	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -124,7 +124,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken, blurFade fl
 		"Size": fmt.Sprint(size),
 	})
 	if err != nil {
-		log.Printf("BROKEN RENDERER, WILL FALLBACK: could not load blur shader: %v", err)
+		log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load blur shader: %v", err)
 		blurBroken = true
 		blurImageFixedFunction(img, tmp, out, size, scale, darken)
 		return

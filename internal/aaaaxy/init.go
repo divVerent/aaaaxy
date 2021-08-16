@@ -16,7 +16,7 @@ package aaaaxy
 
 import (
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -46,18 +46,18 @@ func LoadConfig() (*flag.Config, error) {
 
 func setWindowSize() {
 	f := *windowScaleFactor
-	log.Printf("Requested window scale factor: %v", f)
+	log.Infof("Requested window scale factor: %v", f)
 	dscale := ebiten.DeviceScaleFactor()
-	log.Printf("Device scale factor: %v", dscale)
+	log.Infof("Device scale factor: %v", dscale)
 	if f <= 0 {
 		screenw, screenh := ebiten.ScreenSizeInFullscreen()
-		log.Printf("Screen size: %vx%v", screenw, screenh)
+		log.Infof("Screen size: %vx%v", screenw, screenh)
 		// Reserve 128 device independent pixels for system controls.
 		maxw, maxh := screenw-128, screenh-128
-		log.Printf("Max size: %vx%v", maxw, maxh)
+		log.Infof("Max size: %vx%v", maxw, maxh)
 		// Compute max scaling factors.
 		maxwf, maxhf := float64(maxw)*dscale/engine.GameWidth, float64(maxh)*dscale/engine.GameHeight
-		log.Printf("Max raw scale factor: %v, %v", maxwf, maxhf)
+		log.Infof("Max raw scale factor: %v, %v", maxwf, maxhf)
 		f = maxwf
 		if maxhf < f {
 			f = maxhf
@@ -66,11 +66,11 @@ func setWindowSize() {
 			f = 1
 		}
 		f = math.Floor(f)
-		log.Printf("Chosen raw scale factor: %v", f)
+		log.Infof("Chosen raw scale factor: %v", f)
 	}
 	f /= dscale
 	w, h := m.Rint(engine.GameWidth*f), m.Rint(engine.GameHeight*f)
-	log.Printf("Chosen window size: %vx%v", w, h)
+	log.Infof("Chosen window size: %vx%v", w, h)
 	ebiten.SetWindowSize(w, h)
 }
 

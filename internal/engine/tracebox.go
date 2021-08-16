@@ -15,7 +15,7 @@
 package engine
 
 import (
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -113,7 +113,7 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 
 func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 	if o.Contents == level.NoContents {
-		log.Panicf("do not know what to stop at - need to specify Contents in every trace")
+		log.Fatalf("do not know what to stop at - need to specify Contents in every trace")
 	}
 	result := TraceResult{
 		EndPos: to,

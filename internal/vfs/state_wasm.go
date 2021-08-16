@@ -18,7 +18,7 @@ package vfs
 
 import (
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
 	"syscall/js"
 )
