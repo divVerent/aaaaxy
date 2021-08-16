@@ -170,8 +170,7 @@ allrelease: allreleaseclean
 	$(MAKE) addextras
 	$(MAKE) addlicenses
 	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
-	# Disabled due to Windows Defender FP:
-	# GOOS=windows GOARCH=386 $(MAKE) release
+	GO="$(GO)" GOOS=windows GOARCH=386 $(MAKE) BUILDTYPE=release addrelease
 	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
 	# Disabled because build is WAY too slow to be playable.
 	# $(MAKE) BUILDTYPE=release addwebstuff
