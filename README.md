@@ -59,7 +59,7 @@ AAAAXY stores saved games in the following location:
 
 Configuration is stored as follows:
 
-  - Windows: `Application Data/AAAAXY`
+  - Windows: `AppData/Local/AAAAXY`
   - Linux: `~/.config/AAAAXY`
 
 It is recommended to back up these files.
