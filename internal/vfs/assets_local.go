@@ -72,7 +72,7 @@ func readDir(vfsPath string) ([]string, error) {
 			continue
 		}
 		for _, info := range content {
-			results = append(results, filepath.Join(vfsPath, info.Name()))
+			results = append(results, path.Join(vfsPath, info.Name()))
 		}
 	}
 	sort.Strings(results)

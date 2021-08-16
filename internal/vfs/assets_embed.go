@@ -19,7 +19,7 @@ package vfs
 import (
 	"embed"
 	"fmt"
-	"path/filepath"
+	"path"
 	"sort"
 )
 
@@ -56,7 +56,7 @@ func readDir(vfsPath string) ([]string, error) {
 	}
 	var results []string
 	for _, info := range content {
-		results = append(results, filepath.Join(vfsPath, info.Name()))
+		results = append(results, path.Join(vfsPath, info.Name()))
 	}
 	sort.Strings(results)
 	return results, nil
