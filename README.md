@@ -50,6 +50,16 @@ You can also immediately compile and run the game using:
 make run
 ```
 
+## Video Recording
+
+To record a video of the game, pass the flags `-dump_video=video.raw
+-dump_audio=audio.raw`. Then play normally. When you then exit the game,
+the console window will show you a FFmpeg command to turn these files
+into a finished video\!
+
+Video recording can be sped up by using `make FASTER_VIDEO_DUMPING=true`
+when compiling.
+
 ## Data Storage
 
 AAAAXY stores saved games in the following location:
