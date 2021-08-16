@@ -15,7 +15,7 @@
 package ending
 
 import (
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -43,7 +43,7 @@ func (c *CreditsTarget) SetState(originator, predecessor *engine.Entity, state b
 	c.World.PlayerState.SetWon()
 	err := c.World.Save()
 	if err != nil {
-		log.Printf("Could not save game: %v", err)
+		log.Errorf("Could not save game: %v", err)
 	}
 }
 

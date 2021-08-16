@@ -16,8 +16,8 @@ package trigger
 
 import (
 	"fmt"
+	"github.com/divVerent/aaaaxy/internal/log"
 	go_image "image"
-	"log"
 	"math/rand"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -171,7 +171,7 @@ func (f *ForceField) Touch(other *engine.Entity) {
 	cc := other.Rect.Center().Delta(f.Entity.Rect.Center())
 	if cc.IsZero() {
 		// Can't jump if overlapping at center. Oops. Shouldn't happen though.
-		log.Printf("Forcefield: refusing to jump player due to full overlap.")
+		log.Errorf("Forcefield: refusing to jump player due to full overlap.")
 		return
 	}
 	// Scale so if touching precisely the corner, it is 45 degrees.

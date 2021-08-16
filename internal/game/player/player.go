@@ -16,8 +16,8 @@ package player
 
 import (
 	"fmt"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"image/color"
-	"log"
 	"math"
 	"time"
 
@@ -164,7 +164,7 @@ func (p *Player) GiveAbility(name, text string) {
 
 	err := p.World.Save()
 	if err != nil {
-		log.Printf("Could not save game: %v", err)
+		log.Errorf("Could not save game: %v", err)
 		return
 	}
 
@@ -245,7 +245,7 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 }
 
 func (p *Player) Despawn() {
-	log.Panic("tried to despawn the player - this should never happen")
+	log.Fatalf("tried to despawn the player - this should never happen")
 }
 
 func accelerate(vel *int, accel, max, dir int) {

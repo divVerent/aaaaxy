@@ -15,7 +15,7 @@
 package mixins
 
 import (
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
@@ -92,7 +92,7 @@ func SetStateOfTarget(w *engine.World, originator, predecessor *engine.Entity, t
 			}
 			if closest != nil {
 				if !SetStateOfEntity(originator, predecessor, closest, state) {
-					log.Printf("Tried to set state of a non-supporting entity: %T, name: %v", closest, target)
+					log.Errorf("Tried to set state of a non-supporting entity: %T, name: %v", closest, target)
 				}
 			}
 		} else {
@@ -103,7 +103,7 @@ func SetStateOfTarget(w *engine.World, originator, predecessor *engine.Entity, t
 					continue
 				}
 				if !SetStateOfEntity(originator, predecessor, ent, thisState) {
-					log.Printf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
+					log.Errorf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
 				}
 			}
 		}

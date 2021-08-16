@@ -16,9 +16,9 @@ package misc
 
 import (
 	"fmt"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"image"
 	"image/color"
-	"log"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -121,7 +121,7 @@ func (t *Text) Precache(s *level.Spawnable) error {
 	if !*precacheText {
 		return nil
 	}
-	log.Printf("precaching text for entity %v", s.ID)
+	log.Debugf("precaching text for entity %v", s.ID)
 	key := cacheKey(s)
 	if textCache[key] != nil {
 		return nil

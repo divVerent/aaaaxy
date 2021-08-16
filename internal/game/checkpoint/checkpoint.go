@@ -16,8 +16,8 @@ package checkpoint
 
 import (
 	"fmt"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"image/color"
-	"log"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/centerprint"
@@ -108,7 +108,7 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 	}
 	err := c.World.Save()
 	if err != nil {
-		log.Printf("Could not save game: %v", err)
+		log.Errorf("Could not save game: %v", err)
 		return
 	}
 	if !c.DeadEnd {

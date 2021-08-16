@@ -15,7 +15,7 @@
 package target
 
 import (
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/fun"
@@ -41,7 +41,7 @@ func (p *PrintToConsoleTarget) Spawn(w *engine.World, sp *level.Spawnable, e *en
 
 func (p *PrintToConsoleTarget) Despawn() {
 	if p.PrevText != "" {
-		log.Print(p.PrevText)
+		log.Infof("%s", p.PrevText)
 	}
 }
 
@@ -50,7 +50,7 @@ func (p *PrintToConsoleTarget) Update() {
 		p.PrintFrames--
 		if p.PrintFrames == 0 {
 			if p.PrevText != "" {
-				log.Print(p.PrevText)
+				log.Infof("%s", p.PrevText)
 			}
 		}
 	}

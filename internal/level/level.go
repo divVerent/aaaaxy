@@ -16,7 +16,7 @@ package level
 
 import (
 	"fmt"
-	"log"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"strconv"
 	"strings"
 
@@ -146,7 +146,7 @@ func (l *Level) LoadGame(save SaveGame) error {
 		return fmt.Errorf("save game does not match level version: got %v, want %v", save.LevelVersion, l.SaveGameVersion)
 	}
 	if save.LevelHash != l.Hash {
-		log.Printf("Save game does not match level hash: got %v, want %v; trying to load anyway", save.LevelHash, l.Hash)
+		log.Warningf("Save game does not match level hash: got %v, want %v; trying to load anyway", save.LevelHash, l.Hash)
 	}
 	loadOne := func(s *Spawnable) {
 		// Do not reallocate the map! Works better with already loaded entities.
@@ -590,7 +590,7 @@ func Load(filename string) (*Level, error) {
 	}
 	level.CheckpointLocations, err = level.LoadCheckpointLocations(filename)
 	if err != nil {
-		log.Printf("could not load checkpoint locations: %v", err)
+		log.Errorf("could not load checkpoint locations: %v", err)
 	}
 	level.Hash, err = hashstructure.Hash(&level, hashstructure.FormatV2, nil)
 	if err != nil {
