@@ -29,25 +29,25 @@ from there\!
 To build the game for yourself, run:
 
 ``` sh
-$ git clone https://github.com/divVerent/aaaaxy
-$ cd aaaaxy
-$ git submodule update --init --remote
-$ make
+git clone https://github.com/divVerent/aaaaxy
+cd aaaaxy
+git submodule update --init --remote
+make
 ```
 
 To update and rebuild, run:
 
 ``` sh
-$ cd aaaaxy
-$ git pull
-$ git submodule update --remote
-$ make
+cd aaaaxy
+git pull
+git submodule update --remote
+make
 ```
 
 You can also immediately compile and run the game using:
 
 ``` sh
-$ make run
+make run
 ```
 
 ## Data Storage
