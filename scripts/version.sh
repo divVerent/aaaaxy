@@ -78,7 +78,18 @@ esac
 
 case "$format" in
 	semver)
-		echo "$major.$minor.$patch$prerelease+$date.$commits.$hash"
+		case "$prerelease" in
+			'')
+				echo "$major.$minor.$patch+$date.$commits.$hash"
+				;;
+			-*)
+				echo "$major.$minor.0$prerelease.$patch+$date.$commits.$hash"
+				;;
+			*)
+				echo >&2 "Internal error - invalid parsed prerelease version: $prerelease."
+				exit 1
+				;;
+		esac
 		;;
 	windows)
 		echo "$major.$minor.$((patch + prerelease_add)).$commits"
