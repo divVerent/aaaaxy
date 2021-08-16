@@ -17,6 +17,9 @@ format=${1:-semver}
 gitdesc=${2:-$(git describe --always --long --match 'v*')}
 commits=${3:-$(git log --oneline | wc -l)}  # Is there a better way?
 
+hash=${gitdesc##*-g}
+date=$(git log -n 1 --pretty=format:%cd --date=format:%Y%m%d "$hash")
+
 case "$gitdesc" in
 	v*.*-*-g*)
 		gitcount=${gitdesc%-g*}
@@ -75,7 +78,7 @@ esac
 
 case "$format" in
 	semver)
-		echo "$major.$minor.$patch$prerelease+$commits"
+		echo "$major.$minor.$patch$prerelease+$date.$commits.$hash"
 		;;
 	windows)
 		echo "$major.$minor.$((patch + prerelease_add)).$commits"
