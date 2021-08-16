@@ -58,14 +58,16 @@ func (a *AppearBlock) Despawn() {}
 
 func (a *AppearBlock) Update() {
 	delta := a.Entity.Rect.Delta(a.World.Player.Rect)
-	if delta.Mul2(AppearYDistance, AppearXDistance).Norm0() <= AppearXDistance*AppearYDistance && delta.Dot(a.World.Player.Impl.(interfaces.Physics).ReadOnGroundVec()) > 0 {
-		if a.AnimFrame < AppearFrames {
-			a.AnimFrame++
-		}
-	} else {
-		if a.AnimFrame > 0 {
-			a.AnimFrame--
-		}
+	actualDistance := delta.Mul2(AppearYDistance, AppearXDistance).Norm0()
+	maxDistance := AppearXDistance * AppearYDistance
+	wantFrame := 0
+	if actualDistance <= maxDistance && delta.Dot(a.World.Player.Impl.(interfaces.Physics).ReadOnGroundVec()) > 0 {
+		wantFrame = AppearFrames * (maxDistance - actualDistance) / maxDistance
+	}
+	if a.AnimFrame < wantFrame {
+		a.AnimFrame++
+	} else if a.AnimFrame > wantFrame {
+		a.AnimFrame--
 	}
 	a.Entity.Alpha = float64(a.AnimFrame) / AppearFrames
 	a.World.MutateContentsBool(a.Entity, level.PlayerSolidContents, a.AnimFrame >= AppearSolidThreshold)
