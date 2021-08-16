@@ -17,6 +17,8 @@ Thus, the version components are incremented as follows:
     existing speedruns.
       - In particular, slowing down a section required for any speedrun
         categories, including 100%, requires a major version bump.
+      - Exception: when some major cheese (grossly unintended skip) is
+        fixed, a minor version bump is sufficient.
   - Minor version must be incremented on changes that likely add faster
     speedruns.
       - In particular, simplifying a section or making it optional
