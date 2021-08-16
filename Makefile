@@ -38,11 +38,7 @@ endif
 CPPFLAGS ?= -DNDEBUG
 CFLAGS ?= -g0 -O3
 CXXFLAGS ?= -g0 -O3
-ifeq ($(shell $(GO) env GOOS),windows)
-LDFLAGS ?= -g0 -s -static-libgcc
-else
 LDFLAGS ?= -g0 -s
-endif
 INFIX =
 BINARY_ASSETS = $(EMBEDROOT)
 else
