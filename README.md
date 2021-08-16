@@ -4,9 +4,12 @@ AAAAXY is a nonlinear puzzle platformer in a geometrically impossible
 world.
 
 Jump and run around, collect notes and find the surprising ending of the
-game\! Fastest completion of the game wins\!
+game\! Fastest completion of the game wins.
 
-Enjoy losing your sense of orientation\!
+Enjoy losing your sense of orientation in this World of Wicked
+Weirdness. Find out what Van Vlijmen will make you do. Pick a path, get
+inside a Klein Bottle, recognize some memes, and by all means: don't
+look up.
 
 ## Input
 
@@ -26,7 +29,8 @@ from there\!
 
 ## Compiling
 
-To build the game for yourself, run:
+To build the game for yourself, install `git`, `golang`, `graphviz`,
+`imagemagick` and `pandoc`, and then run:
 
 ``` sh
 git clone https://github.com/divVerent/aaaaxy

@@ -13604,7 +13604,7 @@
   <object id="6239" gid="312" x="6816" y="2112" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="6119"/>
-    <property name="text" value="You're sitting on a throne of ****s."/>
+    <property name="text" value="You sit on a throne of lies."/>
    </properties>
   </object>
   <object id="6240" type="SetState" x="6784" y="2192" width="64" height="160">
