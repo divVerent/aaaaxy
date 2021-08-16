@@ -60,8 +60,7 @@ BINARY_ASSETS += $(RESOURCE_FILES)
 endif
 
 # Include version.
-REVISION = $(shell git describe --always --dirty --first-parent)
-GOFLAGS += -ldflags="-X $(VERSION).revision=$(REVISION)"
+GOFLAGS += -ldflags="-X $(VERSION).revision=$(shell scripts/version.sh semver)"
 
 # cgo support.
 CGO_CPPFLAGS ?= $(CPPFLAGS)
@@ -97,7 +96,7 @@ $(EMBEDROOT): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
 	CP="$(CP)" scripts/build-vfs.sh $(EMBEDROOT)
 
 cmd/aaaaxy/resources.manifest: scripts/aaaaxy.exe.manifest.sh
-	$< $(REVISION) > $@
+	$< $(shell scripts/version.sh windows) > $@
 
 %.syso: %.ico %.manifest
 	GOOS= GOARCH= $(GO) run github.com/akavel/rsrc \

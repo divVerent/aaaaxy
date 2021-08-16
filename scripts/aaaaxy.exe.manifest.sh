@@ -14,16 +14,7 @@
 # limitations under the License.
 
 version=$1
-case "$version" in
-	v*.*.*-*)
-		version=${version#v}
-		version=${version%-g*}
-		version=$(echo "$version" | tr - .)
-		;;
-	*)
-		version=0.0.0.0
-		;;
-esac
+
 : ${GO:=go}
 case "$($GO env GOARCH)" in
 	386) arch=x86 ;;

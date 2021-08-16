@@ -41,3 +41,15 @@ or `v<major>.<minor>` tag. Binary releases will be tagged
 `r<major>.<minor>.<patch>` or `r<major>.<minor>.0-alpha<patch>`; any
 commit on git counts as a source-only release with a patchlevel and
 needs not be released as a binary.
+
+## Conversion to Windows Version Numbers
+
+The Windows scheme differs a little from semantic versioning by using a
+`major.minor.revision.buildnumber` scheme. We convert as follows:
+
+  - `major` maps to `major`.
+  - `minor` maps to `minor`.
+  - `patch` maps to `revision+N` where N is `0` for alpha, `10000` for
+    beta, `20000` for rc and `30000` for finished versions.
+  - `buildnumber` is always the total number of commits in the
+    repository.
