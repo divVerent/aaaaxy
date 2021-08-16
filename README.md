@@ -11,6 +11,17 @@ Weirdness. Find out what Van Vlijmen will make you do. Pick a path, get
 inside a Klein Bottle, recognize some memes, and by all means: don't
 look up.
 
+## Screenshots
+
+[![shot1](docs/screenshots/shot1.jpg)](docs/screenshots/shot1.png)
+[![shot2](docs/screenshots/shot2.jpg)](docs/screenshots/shot2.png)
+[![shot3](docs/screenshots/shot3.jpg)](docs/screenshots/shot3.png)
+[![shot4](docs/screenshots/shot4.jpg)](docs/screenshots/shot4.png)
+[![shot5](docs/screenshots/shot5.jpg)](docs/screenshots/shot5.png)
+[![shot6](docs/screenshots/shot6.jpg)](docs/screenshots/shot6.png)
+[![shot7](docs/screenshots/shot7.jpg)](docs/screenshots/shot7.png)
+[![shot8](docs/screenshots/shot8.jpg)](docs/screenshots/shot8.png)
+
 ## Input
 
 AAAAXY can be played with a keyboard or any game pad having at least the
