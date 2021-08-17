@@ -48,6 +48,16 @@ type (
 )
 
 var (
+	leftPad   = padControls(nil)
+	rightPad  = padControls(nil)
+	upPad     = padControls(nil)
+	downPad   = padControls(nil)
+	jumpPad   = padControls(nil)
+	actionPad = padControls(nil)
+	exitPad   = padControls(nil)
+)
+
+var (
 	// gamepadPlatform is the current platform name in the same form as gamecontrollerdb.txt uses.
 	gamepadPlatform string
 	// gamepadDatabase is the currently loaded gamepad database, keyed by GUID, each entry being a list of all gamepad definitions for that GUID.

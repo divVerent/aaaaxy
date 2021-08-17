@@ -38,6 +38,75 @@ type (
 )
 
 var (
+	leftPad = padControls{
+		buttons: []ebiten.StandardGamepadButton{
+			ebiten.StandardGamepadButtonLeftLeft,
+		},
+		axes: []ebiten.StandardGamepadAxis{
+			ebiten.StandardGamepadAxisLeftStickHorizontal,
+			ebiten.StandardGamepadAxisRightStickHorizontal,
+		},
+		axisDirection: -1,
+	}
+	rightPad = padControls{
+		buttons: []ebiten.StandardGamepadButton{
+			ebiten.StandardGamepadButtonLeftRight,
+		},
+		axes: []ebiten.StandardGamepadAxis{
+			ebiten.StandardGamepadAxisLeftStickHorizontal,
+			ebiten.StandardGamepadAxisRightStickHorizontal,
+		},
+		axisDirection: +1,
+	}
+	upPad = padControls{
+		buttons: []ebiten.StandardGamepadButton{
+			ebiten.StandardGamepadButtonLeftTop,
+		},
+		axes: []ebiten.StandardGamepadAxis{
+			ebiten.StandardGamepadAxisLeftStickVertical,
+			ebiten.StandardGamepadAxisRightStickVertical,
+		},
+		axisDirection: -1,
+	}
+	downPad = padControls{
+		buttons: []ebiten.StandardGamepadButton{
+			ebiten.StandardGamepadButtonLeftBottom,
+		},
+		axes: []ebiten.StandardGamepadAxis{
+			ebiten.StandardGamepadAxisLeftStickVertical,
+			ebiten.StandardGamepadAxisRightStickVertical,
+		},
+		axisDirection: +1,
+	}
+	jumpPad = padControls{
+		buttons: []ebiten.StandardGamepadButton{
+			ebiten.StandardGamepadButtonRightLeft,
+			ebiten.StandardGamepadButtonRightBottom,
+			ebiten.StandardGamepadButtonFrontBottomRight,
+		},
+	}
+	actionPad = padControls{
+		buttons: []ebiten.StandardGamepadButton{
+			ebiten.StandardGamepadButtonRightTop,
+			ebiten.StandardGamepadButtonRightRight,
+			ebiten.StandardGamepadButtonFrontBottomLeft,
+		},
+	}
+	exitPad = padControls{
+		buttons: []ebiten.StandardGamepadButton{
+			ebiten.StandardGamepadButtonFrontTopLeft,
+			ebiten.StandardGamepadButtonFrontTopRight,
+			ebiten.StandardGamepadButtonCenterLeft,
+			ebiten.StandardGamepadButtonCenterRight,
+			ebiten.StandardGamepadButtonCenterCenter,
+		},
+	}
+
+// Ignore ebiten.StandardGamepadButtonLeftStick.
+// Ignore ebiten.StandardGamepadButtonRightStick.
+)
+
+var (
 	// gamepadInvAxisOnThreshold is 1.0 divided by the variable gamepadAxisOnThreshold. Done to save a division for every axis test.
 	gamepadInvAxisOnThreshold float64
 	// gamepadInvAxisOffThreshold is 1.0 divided by the variable gamepadAxisOffThreshold. Done to save a division for every axis test.
@@ -79,7 +148,7 @@ func gamepadUpdate() {
 			continue
 		}
 		if _, found := rejectedGamepads[p]; !found {
-			log.Warningf("Gamepad %v has no standard layout - cannot use.", ebiten.GamepadName(p))
+			log.Errorf("Gamepad %v has no standard layout - cannot use.", ebiten.GamepadName(p))
 		}
 		rejectedGamepads[p] = struct{}{}
 		// Remove this gamepad from the list.
@@ -90,76 +159,5 @@ func gamepadUpdate() {
 }
 
 func gamepadInit() {
-	Left.padControls = padControls{
-		buttons: []ebiten.StandardGamepadButton{
-			ebiten.StandardGamepadButtonLeftLeft,
-		},
-		axes: []ebiten.StandardGamepadAxis{
-			ebiten.StandardGamepadAxisLeftStickHorizontal,
-			ebiten.StandardGamepadAxisRightStickHorizontal,
-		},
-		axisDirection: -1,
-	}
-	Right.padControls = padControls{
-		buttons: []ebiten.StandardGamepadButton{
-			ebiten.StandardGamepadButtonLeftRight,
-		},
-		axes: []ebiten.StandardGamepadAxis{
-			ebiten.StandardGamepadAxisLeftStickHorizontal,
-			ebiten.StandardGamepadAxisRightStickHorizontal,
-		},
-		axisDirection: +1,
-	}
-	Up.padControls = padControls{
-		buttons: []ebiten.StandardGamepadButton{
-			ebiten.StandardGamepadButtonLeftTop,
-		},
-		axes: []ebiten.StandardGamepadAxis{
-			ebiten.StandardGamepadAxisLeftStickVertical,
-			ebiten.StandardGamepadAxisRightStickVertical,
-		},
-		axisDirection: -1,
-	}
-	Down.padControls = padControls{
-		buttons: []ebiten.StandardGamepadButton{
-			ebiten.StandardGamepadButtonLeftBottom,
-		},
-		axes: []ebiten.StandardGamepadAxis{
-			ebiten.StandardGamepadAxisLeftStickVertical,
-			ebiten.StandardGamepadAxisRightStickVertical,
-		},
-		axisDirection: +1,
-	}
-	Jump.padControls = padControls{
-		buttons: []ebiten.StandardGamepadButton{
-			ebiten.StandardGamepadButtonRightLeft,
-			ebiten.StandardGamepadButtonRightBottom,
-			ebiten.StandardGamepadButtonFrontBottomRight,
-		},
-	}
-	Action.padControls = padControls{
-		buttons: []ebiten.StandardGamepadButton{
-			ebiten.StandardGamepadButtonRightTop,
-			ebiten.StandardGamepadButtonRightRight,
-			ebiten.StandardGamepadButtonFrontBottomLeft,
-		},
-	}
-	Exit.padControls = padControls{
-		buttons: []ebiten.StandardGamepadButton{
-			ebiten.StandardGamepadButtonFrontTopLeft,
-			ebiten.StandardGamepadButtonFrontTopRight,
-			ebiten.StandardGamepadButtonCenterLeft,
-			ebiten.StandardGamepadButtonCenterRight,
-			ebiten.StandardGamepadButtonCenterCenter,
-		},
-	}
-	Fullscreen.padControls = padControls{
-		buttons: []ebiten.StandardGamepadButton{
-			// Not gamepad controlled.
-		},
-	}
-	// Ignore ebiten.StandardGamepadButtonLeftStick.
-	// Ignore ebiten.StandardGamepadButtonRightStick.
-
 	// TODO(divVerent): load mapping overrides once ebiten can do this.
 }

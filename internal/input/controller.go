@@ -28,14 +28,14 @@ type impulse struct {
 }
 
 var (
-	Left       = (&impulse{Name: "Left", keys: leftKeys}).register()
-	Right      = (&impulse{Name: "Right", keys: rightKeys}).register()
-	Up         = (&impulse{Name: "Up", keys: upKeys}).register()
-	Down       = (&impulse{Name: "Down", keys: downKeys}).register()
-	Jump       = (&impulse{Name: "Jump", keys: jumpKeys}).register()
-	Action     = (&impulse{Name: "Action", keys: actionKeys}).register()
-	Exit       = (&impulse{Name: "Exit", keys: exitKeys}).register()
-	Fullscreen = (&impulse{Name: "Fullscreen", keys: fullscreenKeys}).register()
+	Left       = (&impulse{Name: "Left", keys: leftKeys, padControls: leftPad}).register()
+	Right      = (&impulse{Name: "Right", keys: rightKeys, padControls: rightPad}).register()
+	Up         = (&impulse{Name: "Up", keys: upKeys, padControls: upPad}).register()
+	Down       = (&impulse{Name: "Down", keys: downKeys, padControls: downPad}).register()
+	Jump       = (&impulse{Name: "Jump", keys: jumpKeys, padControls: jumpPad}).register()
+	Action     = (&impulse{Name: "Action", keys: actionKeys, padControls: actionPad}).register()
+	Exit       = (&impulse{Name: "Exit", keys: exitKeys, padControls: exitPad}).register()
+	Fullscreen = (&impulse{Name: "Fullscreen", keys: fullscreenKeys /* no padControls */}).register()
 
 	impulses = []*impulse{}
 )
