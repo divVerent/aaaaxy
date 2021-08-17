@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7864">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7868">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -16827,5 +16827,22 @@
    </properties>
   </object>
   <object id="7862" gid="313" x="4464" y="3968" width="16" height="16"/>
+  <object id="7864" name="GeoDashWarp" gid="293" x="4272" y="32" width="16" height="288">
+   <properties>
+    <property name="invert" type="bool" value="true"/>
+    <property name="switchable" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="7865" name="GeoDashWarp" gid="299" x="5472" y="32" width="16" height="288">
+   <properties>
+    <property name="invert" type="bool" value="true"/>
+    <property name="switchable" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="7866" type="SetState" x="6368" y="32" width="16" height="288">
+   <properties>
+    <property name="target" value="GeoDashWarp"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
