@@ -383,7 +383,7 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	w.TimerStopped = false
 	w.MaxVisiblePixels = math.MaxInt32
 	w.ForceCredits = false
-	w.GlobalColorM = ebiten.ColorM{}
+	w.GlobalColorM.Reset()
 
 	// Adjust previous scroll position by how much the CP "moved".
 	// That way, respawning right after touching a CP will retain CP-near screen content.
