@@ -99,6 +99,7 @@ cmd/aaaaxy/resources.manifest: scripts/aaaaxy.exe.manifest.sh
 	$< $(shell scripts/version.sh windows) > $@
 
 %.syso: %.ico %.manifest
+	GOOS= GOARCH= $(GO) get github.com/akavel/rsrc
 	GOOS= GOARCH= $(GO) run github.com/akavel/rsrc \
 		-arch $(shell $(GO) env GOARCH) \
 		-ico $*.ico \
