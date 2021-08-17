@@ -24,7 +24,7 @@ type impulse struct {
 	JustHit bool
 
 	keys        []ebiten.Key
-	padControls []padControl
+	padControls padControls
 }
 
 var (
@@ -61,13 +61,4 @@ func Update() {
 	for _, i := range impulses {
 		i.update()
 	}
-	/*
-		s := ""
-		for _, pad := range ebiten.GamepadIDs() {
-			for axis := 0; axis < ebiten.GamepadAxisNum(pad); axis++ {
-				s += fmt.Sprintf("%d.%d=%f ", pad, axis, ebiten.GamepadAxis(pad, axis))
-			}
-		}
-		log.Print(s)
-	*/
 }

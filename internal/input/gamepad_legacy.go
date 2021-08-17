@@ -44,6 +44,7 @@ type (
 		axis          int
 		button        ebiten.GamepadButton
 	}
+	padControls []padControl
 )
 
 var (
