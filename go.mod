@@ -23,5 +23,3 @@ require (
 
 // Use when playing around with extended/fixed tmx versions.
 // replace github.com/fardog/tmx => github.com/divVerent/tmx v0.0.0-20210504110059-b8d75006ad02
-
-replace github.com/hajimehoshi/ebiten/v2 => /tmp/ebiten
