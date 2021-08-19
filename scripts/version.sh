@@ -15,7 +15,7 @@
 
 format=${1:-semver}
 gitdesc=${2:-$(git describe --always --long --match 'v*')}
-commits=${3:-$(git log --oneline | wc -l)}  # Is there a better way?
+commits=${3:-$(($(git log --oneline | wc -l)))}  # Is there a better way?
 
 hash=${gitdesc##*-g}
 date=$(git log -n 1 --pretty=format:%cd --date=format:%Y%m%d "$hash")
