@@ -24,6 +24,8 @@ find . -name \*.png | sort | while read -r file; do
 		./assets/sprites/clock_*.png) continue ;;
 		./assets/sprites/gradient_*.png) continue ;;
 		./assets/sprites/editorimgs/gradient_*.png) continue ;;
+		# Screenshots etc.
+		./docs/*) continue ;;
 	esac
 	set -- \
 		"$file" -depth 8 +dither \
