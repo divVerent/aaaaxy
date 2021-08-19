@@ -38,6 +38,11 @@ var (
 	Fullscreen = (&impulse{Name: "Fullscreen", keys: fullscreenKeys /* no padControls */}).register()
 
 	impulses = []*impulse{}
+
+	usingGamepad bool
+
+	// Wait for first frame to detect initial gamepad situation.
+	firstUpdate = true
 )
 
 func (i *impulse) register() *impulse {
@@ -46,8 +51,19 @@ func (i *impulse) register() *impulse {
 }
 
 func (i *impulse) update() {
-	held := i.keyboardPressed() || i.gamepadPressed()
-	i.JustHit = held && !i.Held
+	keyboardHeld := i.keyboardPressed()
+	gamepadHeld := i.gamepadPressed()
+	held := keyboardHeld || gamepadHeld
+	if held && !i.Held {
+		i.JustHit = true
+		// Whenever a new key is pressed, update the flag whether we're actually
+		// _using_ the gamepad. Used for some in-game text messages.
+		if keyboardHeld != gamepadHeld {
+			usingGamepad = gamepadHeld
+		}
+	} else {
+		i.JustHit = false
+	}
 	i.Held = held
 }
 
@@ -57,12 +73,17 @@ func Init() error {
 }
 
 func Update() {
-	gamepadUpdate()
+	gamepadScan()
+	if firstUpdate {
+		// At first, assume gamepad whenever one is present.
+		usingGamepad = len(gamepads) > 0
+		firstUpdate = false
+	}
 	for _, i := range impulses {
 		i.update()
 	}
 }
 
 func UsingGamepad() bool {
-	return len(gamepads) > 0
+	return usingGamepad
 }

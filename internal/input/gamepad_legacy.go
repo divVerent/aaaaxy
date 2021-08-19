@@ -103,7 +103,7 @@ func (i *impulse) gamepadPressed() bool {
 	return false
 }
 
-func gamepadUpdate() {
+func gamepadScan() {
 	gamepadInvAxisOnThreshold = 1.0 / *gamepadAxisOnThreshold
 	gamepadInvAxisOffThreshold = 1.0 / *gamepadAxisOffThreshold
 	for pad := range gamepads {

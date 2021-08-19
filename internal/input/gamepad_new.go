@@ -138,7 +138,7 @@ func (i *impulse) gamepadPressed() bool {
 	return false
 }
 
-func gamepadUpdate() {
+func gamepadScan() {
 	gamepads = ebiten.AppendGamepadIDs(gamepads[:0])
 	for i := 0; i < len(gamepads); /* incremented inside */ {
 		p := gamepads[i]
