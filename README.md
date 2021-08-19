@@ -1,15 +1,16 @@
 # AAAAXY
 
-AAAAXY is a nonlinear puzzle platformer in a geometrically impossible
-world.
+AAAAXY is a nonlinear puzzle platformer taking place in non-Euclidean
+geometry.
 
-Jump and run around, collect notes and find the surprising ending of the
-game\! Fastest completion of the game wins.
+Although your general goal is reaching the surprising end of the game,
+you are encouraged to setting your own goals while playing. Exploration
+will be rewarded, and secrets await you\!
 
-Enjoy losing your sense of orientation in this World of Wicked
-Weirdness. Find out what Van Vlijmen will make you do. Pick a path, get
-inside a Klein Bottle, recognize some memes, and by all means: don't
-look up.
+So jump and run around, and enjoy losing your sense of orientation in
+this World of Wicked Weirdness. Find out what Van Vlijmen will make you
+do. Pick a path, get inside a Klein Bottle, recognize some memes, and by
+all means: don't look up.
 
 ## Screenshots
 
@@ -24,11 +25,17 @@ look up.
 
 ## Input
 
-AAAAXY can be played with a keyboard or any game pad having at least the
-NES buttons. The exact controls are to be guessed by the player.
+AAAAXY can be played with a keyboard or any controller good enough for
+playing NES games. While the controls do follow usual standards set by
+two dimensional games of the past, some details are to be guessed by the
+player and experimented with.
 
-If your gamepad is not working, you may need to put its definition in
-the `SDL_GAMECONTROLLERCONFIG` environment variable.
+The game menu can, of course, be reached using the Escape key or the
+Start button.
+
+If your gamepad is not supported yet, you can typically make it work by
+putting its definition in the `SDL_GAMECONTROLLERCONFIG` environment
+variable.
 
 ## Installing
 
@@ -110,7 +117,52 @@ instead, you are experiencing the universal cover of a massively twisted
 space. This is rather similar to seamless portals, but yields stronger
 immersion and is generally an interesting approach I wanted to try out.
 In particular, gravity behaves consistently across portals, and objects
-are entirely glitch-free around them.
+are entirely glitch-free around them. On the other hand, this approach
+can not support multi-player games; a more traditional portal based
+engine would be more appropriate there, where the same object may be
+seen multiple times on the screen. Sadly that approach would appear
+rather confusing in places where this would cause the player themselves
+to show up multiple times at once, which is why I did not go with it.
+
+In 3D games with transparent portals/warpzones, immersion is usually
+achieved by treating each portal as a dynamic texture surface which
+shows a view out of a camera projected to the other side. An open source
+implementation of this can e.g. be found in
+[Xonotic](https://www.xonotic.org). The reason why this works is that
+only those parts of an object are shown that have a line of sight to the
+player - as expected in a first person game. Implementing a third person
+view that way is already a bit more tricky but usually one can work
+around the view origin mismatching but being close to the player origin;
+however what is usually not possible with transparent portals in a
+top-down or other 2D-ish view, as conflicting (e.g. self-overlapping)
+geometry may need to be rendered to the screen at the same time.
+
+There are however two approaches to solve this:
+
+  - Design levels so that conflicting geometry is never on screen.
+      - In other words, when transparently teleporting in order to move
+        the player past a portal, a screen-sized environment of the
+        source position must always match a screen-sized environment of
+        the destination position.
+      - This approach is simple and very immersive and has already been
+        used in the original Super Mario Bros. game on the NES.
+      - It however is not very flexible as any non-Euclidean geometry
+        has to be rather large and behave fully Euclidean on every
+        screen-sized environment around positions the player can visit.
+  - Hide anything that has no line of sight to the player.
+      - This actually matches the approach used in first person 3D games
+      - With this approach, the game needs to be consistent with
+        Euclidean geometry only in small environments around each
+        object.
+          - In this implementation, the consistency requirement is that
+            an 1-tile environment around every portal must match, and
+            that the same "screen tile" cannot be reached by a 1-tile
+            environment around a line of sight through two different
+            sets of portals at the same time.
+          - As this game demonstrates, this can yield rather interesting
+            while still obvious non-Euclidean geometry.
+      - This is the approach has been explored in this game as well -
+        but very likely for the first time in a two dimensional game.
 
 ## License
 
