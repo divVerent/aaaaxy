@@ -62,3 +62,7 @@ func Update() {
 		i.update()
 	}
 }
+
+func UsingGamepad() bool {
+	return len(gamepads) > 0
+}

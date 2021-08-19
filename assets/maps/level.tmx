@@ -991,7 +991,7 @@
    <properties>
     <property name="reached_from" type="object" value="249"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Welcome to the top of the mountain.  If you're alone, all this was just a waste of time.  Press Escape."/>
+    <property name="text" value="Welcome to the top of the mountain.  If you're alone, all this was just a waste of time.  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="245" gid="312" x="896" y="5536" width="32" height="32">
@@ -5797,7 +5797,7 @@
    <properties>
     <property name="reached_from" type="object" value="1284"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="I am so happy to finally be back home.  Press Escape."/>
+    <property name="text" value="I am so happy to finally be back home.  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="1282" name="ShepardDontPunish" gid="297" x="4288" y="6064" width="48" height="16">
@@ -6039,7 +6039,7 @@
    <properties>
     <property name="reached_from" type="object" value="1408"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Curiosity killed the Cat.  Press Escape."/>
+    <property name="text" value="Curiosity killed the Cat.  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="1408" name="curiosity_killed_the_carl" type="Checkpoint" x="64" y="8128" width="352" height="32">
@@ -6113,27 +6113,18 @@
     <property name="text_font" value="Italic"/>
    </properties>
   </object>
-  <object id="1419" name="EscapeButton" type="SwitchableSprite" x="176" y="7984" width="128" height="128">
+  <object id="1419" name="EscapeButton" type="ExitButton" x="176" y="7984" width="128" height="128">
    <properties>
-    <property name="fade_time" value="10s"/>
-    <property name="image" value="esc.png"/>
-    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="1421" name="EscapeButton" type="SwitchableSprite" x="4240" y="6080" width="32" height="32">
+  <object id="1421" name="EscapeButton" type="ExitButton" x="4240" y="6080" width="32" height="32">
    <properties>
-    <property name="fade_time" value="10s"/>
-    <property name="image" value="esc.png"/>
-    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="1422" name="EscapeButton" type="SwitchableSprite" x="504" y="5208" width="128" height="128">
+  <object id="1422" name="EscapeButton" type="ExitButton" x="504" y="5208" width="128" height="128">
    <properties>
-    <property name="fade_time" value="10s"/>
-    <property name="image" value="esc.png"/>
-    <property name="no_flip" value="x"/>
     <property name="orientation" value="WN"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
@@ -9631,11 +9622,8 @@
     <property name="target" value="ButterflyRealExit"/>
    </properties>
   </object>
-  <object id="3924" name="EscapeButton" type="SwitchableSprite" x="5488" y="3520" width="128" height="128">
+  <object id="3924" name="EscapeButton" type="ExitButton" x="5488" y="3520" width="128" height="128">
    <properties>
-    <property name="fade_time" value="10s"/>
-    <property name="image" value="esc.png"/>
-    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -9643,7 +9631,7 @@
    <properties>
     <property name="reached_from" type="object" value="3976"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="If you're only focusing on right now,  you won't have enough for later.  Press Escape."/>
+    <property name="text" value="If you're only focusing on right now,  you won't have enough for later.  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="3927" gid="312" x="5488" y="3392" width="32" height="32">
@@ -10654,11 +10642,8 @@
     <property name="map_white_to" type="color" value="#ff555555"/>
    </properties>
   </object>
-  <object id="4519" name="EscapeButton" type="SwitchableSprite" x="6512" y="3488" width="128" height="128">
+  <object id="4519" name="EscapeButton" type="ExitButton" x="6512" y="3488" width="128" height="128">
    <properties>
-    <property name="fade_time" value="10s"/>
-    <property name="image" value="esc.png"/>
-    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -10666,7 +10651,7 @@
    <properties>
     <property name="reached_from" type="object" value="7836"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Why did you even lie?  Press Escape."/>
+    <property name="text" value="Why did you even lie?  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="4521" name="LToLL" gid="297" x="6240" y="4336" width="32" height="16"/>
@@ -11410,7 +11395,7 @@
    <properties>
     <property name="reached_from" type="object" value="4995"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Crime doesn't pay.  Press Escape."/>
+    <property name="text" value="Crime doesn't pay.  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="4987" gid="341" x="4817" y="2112" width="16" height="32"/>
@@ -11425,11 +11410,8 @@
     <property name="required_orientation" value="ES"/>
    </properties>
   </object>
-  <object id="4996" name="EscapeButton" type="SwitchableSprite" x="5024" y="1968" width="64" height="64">
+  <object id="4996" name="EscapeButton" type="ExitButton" x="5024" y="1968" width="64" height="64">
    <properties>
-    <property name="fade_time" value="10s"/>
-    <property name="image" value="esc.png"/>
-    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -11909,7 +11891,7 @@
    <properties>
     <property name="reached_from" type="object" value="5189"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="y tho?  Press Escape."/>
+    <property name="text" value="y tho?  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="5189" name="y_tho" type="Checkpoint" x="5616" y="5872" width="64" height="32">
@@ -11918,11 +11900,8 @@
     <property name="required_orientation" value="ES"/>
    </properties>
   </object>
-  <object id="5190" name="EscapeButton" type="SwitchableSprite" x="5616" y="5792" width="64" height="64">
+  <object id="5190" name="EscapeButton" type="ExitButton" x="5616" y="5792" width="64" height="64">
    <properties>
-    <property name="fade_time" value="10s"/>
-    <property name="image" value="esc.png"/>
-    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -14602,7 +14581,7 @@
    <properties>
     <property name="reached_from" type="object" value="6762"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="The Enrichment Center regrets to inform you that  the Super Gravitron is currently out of order.  Press Escape."/>
+    <property name="text" value="The Enrichment Center regrets to inform you that  the Super Gravitron is currently out of order.  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="6819" name="NotTheGravitronWarp" gid="293" x="7152" y="5472" width="16" height="608"/>
@@ -16863,7 +16842,7 @@
   </object>
   <object id="7872" type="Text" x="4992" y="4576" width="96" height="32">
    <properties>
-    <property name="text" value="If stuck,  press Escape."/>
+    <property name="text" value="If stuck,  press {{ExitButton}}."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>

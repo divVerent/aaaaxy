@@ -22,6 +22,7 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/player_state"
 )
@@ -139,6 +140,15 @@ func TryFormatText(ps *player_state.PlayerState, s string) (string, error) {
 			case 4:
 				return "everything", nil
 			}
+		},
+		"ExitButton": func() (string, error) {
+			if ps == nil {
+				return "", fmt.Errorf("Cannot use {{ExitButton}} in static elements.")
+			}
+			if input.UsingGamepad() {
+				return "Start", nil
+			}
+			return "Escape", nil
 		},
 	})
 	_, err := tmpl.Parse(s)
