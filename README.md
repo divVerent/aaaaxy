@@ -50,6 +50,8 @@ git submodule update --init --remote
 make
 ```
 
+NOTE: On FreeBSD systems, use `gmake` instead of `make` to compile.
+
 To update and rebuild, run:
 
 ``` sh
