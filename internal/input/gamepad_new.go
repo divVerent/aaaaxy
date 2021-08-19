@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//go:build newgamepad
 // +build newgamepad
 
 package input
@@ -138,7 +139,7 @@ func (i *impulse) gamepadPressed() bool {
 }
 
 func gamepadUpdate() {
-	ebiten.AppendGamepadIDs(gamepads[:0])
+	gamepads = ebiten.AppendGamepadIDs(gamepads[:0])
 	for i := 0; i < len(gamepads); /* incremented inside */ {
 		p := gamepads[i]
 		if ebiten.IsStandardGamepadLayoutAvailable(p) {
