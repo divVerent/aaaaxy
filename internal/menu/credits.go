@@ -93,7 +93,11 @@ func (s *CreditsScreen) Init(m *Controller) error {
 		addCategory("All Paths", cat&player_state.AllPathsSpeedrun != 0)
 		addCategory("All Secrets", cat&player_state.AllSecretsSpeedrun != 0)
 		addCategory("All Flipped", cat&player_state.AllFlippedSpeedrun != 0)
-		addCategory("No Escape", cat&player_state.NoEscapeSpeedrun != 0)
+		noEscape := "No Escape"
+		if input.UsingGamepad() {
+			noEscape = "No Start"
+		}
+		addCategory(noEscape, cat&player_state.NoEscapeSpeedrun != 0)
 		l := len(categories)
 		switch l {
 		case 0:
