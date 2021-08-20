@@ -86,6 +86,13 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image) {
+	sw, sh := screen.Size()
+	if sw != engine.GameWidth || sh != engine.GameHeight {
+		log.Infof("Skipping frame as sizes do not match up: got %vx%v, want %vx%v.",
+			sw, sh, engine.GameWidth, engine.GameHeight)
+		return
+	}
+
 	timing.Section("fontcache")
 	font.KeepInCache(screen)
 

@@ -54,7 +54,6 @@ const (
 	lowGraphics
 	mediumGraphics
 	highGraphics
-	higherGraphics
 	maxGraphics
 	graphicsSettingCount
 )
@@ -63,8 +62,6 @@ func (s graphicsSetting) String() string {
 	switch s {
 	case maxGraphics:
 		return "Max"
-	case higherGraphics:
-		return "Higher"
 	case highGraphics:
 		return "High"
 	case mediumGraphics:
@@ -80,9 +77,6 @@ func (s graphicsSetting) String() string {
 func currentGraphics() graphicsSetting {
 	if flag.Get("screen_filter").(string) == "linear2xcrt" {
 		return maxGraphics
-	}
-	if flag.Get("screen_filter").(string) == "linear2x" {
-		return higherGraphics
 	}
 	if flag.Get("draw_outside").(bool) {
 		return highGraphics
@@ -105,13 +99,6 @@ func (s graphicsSetting) apply() error {
 		flag.Set("expand_using_vertices", true)
 		flag.Set("expand_using_vertices_accurately", true)
 		flag.Set("screen_filter", "linear2xcrt")
-	case higherGraphics:
-		flag.Set("draw_blurs", true)
-		flag.Set("draw_outside", true)
-		flag.Set("draw_visibility_mask", true)
-		flag.Set("expand_using_vertices", true)
-		flag.Set("expand_using_vertices_accurately", true)
-		flag.Set("screen_filter", "linear2x")
 	case highGraphics:
 		flag.Set("draw_blurs", true)
 		flag.Set("draw_outside", true)
