@@ -247,6 +247,8 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 		return engine.GameWidth, engine.GameHeight
 	}
 	d := ebiten.DeviceScaleFactor()
+	// TODO: when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved,
+	// change this back to int(float64(outsideWidth) * d), int(float64(outsideHeight) * d).
 	f := math.Min(
 		math.Min(
 			float64(outsideWidth)*d/engine.GameWidth,
