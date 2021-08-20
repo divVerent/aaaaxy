@@ -241,8 +241,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	if *screenFilter != "simple" {
-		return outsideWidth, outsideHeight
+	if *screenFilter == "simple" {
+		return engine.GameWidth, engine.GameHeight
 	}
-	return engine.GameWidth, engine.GameHeight
+	d := ebiten.DeviceScaleFactor()
+	return int(float64(outsideWidth) * d), int(float64(outsideHeight) * d)
 }
