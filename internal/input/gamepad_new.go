@@ -160,5 +160,11 @@ func gamepadScan() {
 }
 
 func gamepadInit() {
-	// TODO(divVerent): load mapping overrides once ebiten can do this.
+	config := os.Getenv("SDL_GAMECONTROLLERCONFIG")
+	if config != "" {
+		err := ebiten.UpdateStandardGamepadLayoutMappings(config)
+		if err != nil {
+			log.Errorf("Could not add SDL_GAMECONTROLLERCONFIG mappings: %v", err)
+		}
+	}
 }
