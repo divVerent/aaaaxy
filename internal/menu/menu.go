@@ -97,9 +97,7 @@ func (c *Controller) Update() error {
 		return c.SwitchToScreen(&MainScreen{})
 	}
 	if input.Fullscreen.JustHit {
-		fs := !ebiten.IsFullscreen()
-		flag.Set("fullscreen", fs)
-		ebiten.SetFullscreen(fs)
+		c.toggleFullscreen()
 	}
 
 	timing.Section("screen")
@@ -113,6 +111,13 @@ func (c *Controller) Update() error {
 		}
 	}
 
+	return nil
+}
+
+func (c *Controller) toggleFullscreen() error {
+	fs := !ebiten.IsFullscreen()
+	flag.Set("fullscreen", fs)
+	ebiten.SetFullscreen(fs)
 	return nil
 }
 

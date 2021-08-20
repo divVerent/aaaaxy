@@ -30,7 +30,8 @@ import (
 type SettingsScreenItem int
 
 const (
-	Graphics SettingsScreenItem = iota
+	Fullscreen SettingsScreenItem = iota
+	Graphics
 	Volume
 	Reset
 	Back
@@ -196,6 +197,8 @@ func (s *SettingsScreen) Update() error {
 	}
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
+		case Fullscreen:
+			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
 		case Graphics:
 			return s.Controller.ActivateSound(toggleGraphics(0))
 		case Volume:
@@ -208,6 +211,8 @@ func (s *SettingsScreen) Update() error {
 	}
 	if input.Left.JustHit {
 		switch s.Item {
+		case Fullscreen:
+			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
 		case Graphics:
 			return s.Controller.ActivateSound(toggleGraphics(-1))
 		case Volume:
@@ -216,6 +221,8 @@ func (s *SettingsScreen) Update() error {
 	}
 	if input.Right.JustHit {
 		switch s.Item {
+		case Fullscreen:
+			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
 		case Graphics:
 			return s.Controller.ActivateSound(toggleGraphics(+1))
 		case Volume:
@@ -234,23 +241,32 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
 	font.MenuBig.Draw(screen, "Settings", m.Pos{X: x, Y: h / 4}, true, fgs, bgs)
 	fg, bg := fgn, bgn
+	if s.Item == Fullscreen {
+		fg, bg = fgs, bgs
+	}
+	fsText := "Switch to Fullscreen Mode"
+	if ebiten.IsFullscreen() {
+		fsText = "Switch to Windowed Mode"
+	}
+	font.Menu.Draw(screen, fsText, m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	fg, bg = fgn, bgn
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Graphics: %v", currentGraphics()), m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fmt.Sprintf("Graphics: %v", currentGraphics()), m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Volume {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Volume: %v", currentVolume()), m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fmt.Sprintf("Volume: %v", currentVolume()), m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Reset {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Reset", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Back {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Main Menu", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Main Menu", m.Pos{X: x, Y: 29 * h / 32}, true, fg, bg)
 }
