@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7873">
+<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7878">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -16846,6 +16846,18 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
+   </properties>
+  </object>
+  <object id="7873" gid="330" x="5664" y="4480" width="16" height="16"/>
+  <object id="7874" gid="330" x="5648" y="4480" width="16" height="16"/>
+  <object id="7875" gid="330" x="5632" y="4480" width="16" height="16"/>
+  <object id="7876" gid="330" x="5616" y="4480" width="16" height="16"/>
+  <object id="7877" type="Text" x="5616" y="4432" width="64" height="32">
+   <properties>
+    <property name="text" value="Phew?"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
    </properties>
   </object>
  </objectgroup>
