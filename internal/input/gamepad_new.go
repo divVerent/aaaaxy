@@ -12,17 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build newgamepad
-// +build newgamepad
+//go:build !legacygamepad
+// +build !legacygamepad
 
 package input
 
 import (
-	"github.com/divVerent/aaaaxy/internal/log"
+	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 var (
@@ -162,9 +163,13 @@ func gamepadScan() {
 func gamepadInit() {
 	config := os.Getenv("SDL_GAMECONTROLLERCONFIG")
 	if config != "" {
-		err := ebiten.UpdateStandardGamepadLayoutMappings(config)
+		applied, err := ebiten.UpdateStandardGamepadLayoutMappings(config)
 		if err != nil {
 			log.Errorf("Could not add SDL_GAMECONTROLLERCONFIG mappings: %v", err)
+		} else if applied {
+			log.Infof("SDL_GAMECONTROLLERCONFIG applied.")
+		} else {
+			log.Warningf("SDL_GAMECONTROLLERCONFIG set but not used on this platform.")
 		}
 	}
 }
