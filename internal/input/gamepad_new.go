@@ -114,9 +114,11 @@ var (
 	// gamepadInvAxisOffThreshold is 1.0 divided by the variable gamepadAxisOffThreshold. Done to save a division for every axis test.
 	gamepadInvAxisOffThreshold float64
 	// gamepads is the set of currently active gamepads. The boolean value should always be true, except during rescanning, where it's set to false temporarily to detect removed gamepads.
-	gamepads []ebiten.GamepadID
-	// rejectedGamepads is the set of gamepads that have no standard mapping.
-	rejectedGamepads map[ebiten.GamepadID]struct{}
+	gamepads = map[ebiten.GamepadID]struct{}{}
+	// allGamepads is the set of all gamepads, even unsupported ones.
+	allGamepads = map[ebiten.GamepadID]bool{}
+	// allGamepadsList is the list of all gamepads. Global to reduce allocation.
+	allGamepadsList []ebiten.GamepadID
 )
 
 func (i *impulse) gamepadPressed() bool {
@@ -124,7 +126,7 @@ func (i *impulse) gamepadPressed() bool {
 	if i.Held {
 		t = *gamepadAxisOffThreshold
 	}
-	for _, p := range gamepads {
+	for p := range gamepads {
 		for _, b := range i.padControls.buttons {
 			if ebiten.IsStandardGamepadButtonPressed(p, b) {
 				return true
@@ -140,23 +142,32 @@ func (i *impulse) gamepadPressed() bool {
 }
 
 func gamepadScan() {
-	gamepads = ebiten.AppendGamepadIDs(gamepads[:0])
-	for i := 0; i < len(gamepads); /* incremented inside */ {
-		p := gamepads[i]
-		if ebiten.IsStandardGamepadLayoutAvailable(p) {
-			delete(rejectedGamepads, p)
-			// Add this gamepad to the list.
-			i++
+	// List new gamepads.
+	allGamepadsList = ebiten.AppendGamepadIDs(allGamepadsList[:0])
+	// Detect added/removed gamepads.
+	for p := range allGamepads {
+		allGamepads[p] = false
+	}
+	for _, p := range allGamepadsList {
+		_, alreadyThere := allGamepads[p]
+		if alreadyThere {
 			continue
 		}
-		if _, found := rejectedGamepads[p]; !found {
+		log.Infof("Gamepad %v added.", ebiten.GamepadName(p))
+		allGamepads[p] = true
+		if !ebiten.IsStandardGamepadLayoutAvailable(p) {
 			log.Errorf("Gamepad %v has no standard layout - cannot use.", ebiten.GamepadName(p))
 		}
-		rejectedGamepads[p] = struct{}{}
-		// Remove this gamepad from the list.
-		last := len(gamepads) - 1
-		gamepads[i] = gamepads[last]
-		gamepads = gamepads[:last]
+		// A good gamepad! Add it.
+		gamepads[p] = struct{}{}
+	}
+	for p, stillThere := range allGamepads {
+		if stillThere {
+			continue
+		}
+		log.Infof("Gamepad %v removed.", ebiten.GamepadName(p))
+		delete(allGamepads, p)
+		delete(gamepads, p)
 	}
 }
 
