@@ -83,8 +83,6 @@ func InitEbiten() error {
 	ebiten.SetScreenTransparent(false)
 	ebiten.SetVsyncEnabled(*vsync)
 	ebiten.SetWindowDecorated(true)
-	ebiten.SetWindowFloating(false)
-	ebiten.SetWindowPosition(0, 0)
 	ebiten.SetWindowResizable(true)
 	setWindowSize()
 	ebiten.SetWindowTitle("AAAAXY")
