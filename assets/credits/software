@@ -1,13 +1,15 @@
 Software Libraries
 
-xdg
-by Adrian-George Bostan
+Ebiten
+by Hajime Hoshi
 
-go-spew
-by Dave Collins
-
-tmx
-by Nathan Wittstock
+Freetype-Go
+by Jeff R. Allen
+and Maksim Kochkin
+and Michael Fogleman
+and Rémy Oudompheng
+and Roger Peppe
+and Steven Edwards
 
 go-gl/glfw
 by Eric Woroshow
@@ -20,29 +22,17 @@ and Peter Waller
 and Robin Eklind
 and Stephen Gutekanst
 
-Freetype-Go
-by Jeff R. Allen
-and Maksim Kochkin
-and Michael Fogleman
-and Rémy Oudompheng
-and Roger Peppe
-and Steven Edwards
-
-Ebiten
-by Hajime Hoshi
-
-Oto
-by Hajime Hoshi
+hashstructure
+by Mitchell Hashimoto
 
 oggvorbis
 by Johann Freymuth
 
-kr/text
-by Keith Rarick
+Oto
+by Hajime Hoshi
 
-hashstructure
-by Mitchell Hashimoto
+tmx
+by Nathan Wittstock
 
-yaml
-by Kirill Simonov
-and Canonical Ltd
+xdg
+by Adrian-George Bostan
