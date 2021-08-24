@@ -39,8 +39,9 @@ variable.
 
 ## Installing
 
-AAAAXY is released in binary form as a zip file containing
-self-contained executables for each supported platform.
+AAAAXY is released in [binary
+form](https://github.com/divVerent/aaaaxy/releases) as a zip file
+containing self-contained executables for each supported platform.
 
 So just extract the game executable to a convenient place and run it
 from there\!
