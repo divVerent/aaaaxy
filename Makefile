@@ -99,7 +99,7 @@ cmd/aaaaxy/resources.manifest: scripts/aaaaxy.exe.manifest.sh
 	$< $(shell scripts/version.sh windows) > $@
 
 %.syso: %.ico %.manifest
-	GOOS= GOARCH= $(GO) get github.com/akavel/rsrc
+	GOOS= GOARCH= $(GO) install github.com/akavel/rsrc@latest
 	GOOS= GOARCH= $(GO) run github.com/akavel/rsrc \
 		-arch $(shell $(GO) env GOARCH) \
 		-ico $*.ico \
@@ -142,7 +142,7 @@ $(LICENSES_THIRD_PARTY):
 	GO="$(GO)" GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
 
 # Building of release zip files starts here.
-ZIPFILE = aaaaxy.zip
+ZIPFILE = aaaaxy-$(shell scripts/version.sh gittag).zip
 
 .PHONY: addextras
 addextras: $(EXTRAFILES)
