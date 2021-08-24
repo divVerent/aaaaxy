@@ -124,6 +124,9 @@ The default save state can be switched to by passing `-save_state=0`.
 Save states record progress at checkpoints only and the game
 automatically saves when hitting one.
 
+WARNING: Do not edit the save game files. If needed, cheats are provided
+as command line options.
+
 ## Mathematical Notes
 
 This game does not take place in the Euclidean space you're used to -
