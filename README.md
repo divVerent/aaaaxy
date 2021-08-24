@@ -4,8 +4,8 @@ AAAAXY is a nonlinear puzzle platformer taking place in non-Euclidean
 geometry.
 
 Although your general goal is reaching the surprising end of the game,
-you are encouraged to setting your own goals while playing. Exploration
-will be rewarded, and secrets await you\!
+you are encouraged to set your own goals while playing. Exploration will
+be rewarded, and secrets await you\!
 
 So jump and run around, and enjoy losing your sense of orientation in
 this World of Wicked Weirdness. Find out what Van Vlijmen will make you
