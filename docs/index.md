@@ -12,6 +12,11 @@ this World of Wicked Weirdness. Find out what Van Vlijmen will make you
 do. Pick a path, get inside a Klein Bottle, recognize some memes, and by
 all means: don't look up.
 
+## Download now\!
+
+Binaries for Linux and Windows are available here: [binary
+form](https://github.com/divVerent/aaaaxy/releases)
+
 ## Screenshots
 
 [![shot1](screenshots/shot1.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.png)
@@ -22,11 +27,6 @@ all means: don't look up.
 [![shot6](screenshots/shot6.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot6.png)
 [![shot7](screenshots/shot7.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot7.png)
 [![shot8](screenshots/shot8.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.png)
-
-## Download now\!
-
-Binaries for Linux and Windows are available here: [binary
-form](https://github.com/divVerent/aaaaxy/releases)
 
 ## More Information
 
