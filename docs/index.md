@@ -14,8 +14,8 @@ all means: don't look up.
 
 ## Download now\!
 
-Binaries for Linux and Windows are available here: [binary
-form](https://github.com/divVerent/aaaaxy/releases)
+[Download for Linux and Windows on
+x86\_64](https://github.com/divVerent/aaaaxy/releases)
 
 ## Screenshots
 
