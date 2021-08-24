@@ -202,8 +202,8 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 			// Start is not a real CP.
 			continue
 		}
-		if cpSp.Properties["dead_end"] == "true" {
-			// Dead ends not needed for 100%, all paths or all signs run.
+		if cpSp.Properties["secret"] == "true" {
+			// Secrets are not needed for 100%, all paths or all signs run.
 			// However they have their own run category here.
 			for _, sign := range s.Level.TnihSignsByCheckpoint[cp] {
 				if sign.PersistentState["seen"] != "true" {

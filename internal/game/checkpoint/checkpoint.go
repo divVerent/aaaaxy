@@ -37,9 +37,8 @@ type Checkpoint struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	Text    string
-	Music   string
-	DeadEnd bool
+	Text  string
+	Music string
 
 	Flipped           bool
 	Inactive          bool
@@ -63,7 +62,6 @@ func (c *Checkpoint) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity
 
 	c.Text = s.Properties["text"]
 	c.Music = s.Properties["music"]
-	c.DeadEnd = s.Properties["dead_end"] == "true"
 	c.VVVVVV = s.Properties["vvvvvv"] == "true"
 	if onGroundVecStr := s.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
 		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &c.VVVVVVOnGroundVec.DX, &c.VVVVVVOnGroundVec.DY)
@@ -111,7 +109,7 @@ func (c *Checkpoint) Touch(other *engine.Entity) {
 		log.Errorf("Could not save game: %v", err)
 		return
 	}
-	if !c.DeadEnd {
+	if c.Text != "" {
 		centerprint.New(fun.FormatText(&c.World.PlayerState, c.Text), centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 255, G: 255, B: 255, A: 255}, time.Second).SetFadeOut(true)
 		c.Sound.Play()
 	}

@@ -232,8 +232,8 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				}
 				otherName := edge.Other
 				edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(cpName, otherName)
-				// Unseen edges leading to a dead end are only drawn if the game has already been completed.
-				if !edgeSeen && !s.Controller.World.PlayerState.Won() && s.Controller.World.Level.Checkpoints[otherName].Properties["dead_end"] == "true" {
+				// Unseen edges leading to a secret are only drawn if the game has already been completed.
+				if !edgeSeen && !s.Controller.World.PlayerState.Won() && s.Controller.World.Level.Checkpoints[otherName].Properties["secret"] == "true" {
 					continue
 				}
 				endPos := cpPos[otherName]

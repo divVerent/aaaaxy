@@ -46,6 +46,7 @@
   <property name="next_right" type="object" default="0"/>
   <property name="next_up" type="object" default="0"/>
   <property name="required_orientation" type="string"/>
+  <property name="secret" type="bool" default="false"/>
   <property name="text" type="string"/>
   <property name="tnih_sign_expected" type="bool" default="true"/>
   <property name="vvvvvv" type="bool" default="false"/>
