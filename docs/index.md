@@ -17,6 +17,12 @@ all means: don't look up.
 [Download for Linux and Windows on
 x86\_64](https://github.com/divVerent/aaaaxy/releases)
 
+## Further Resources
+
+[Technical Support](https://github.com/divVerent/aaaaxy/issues) |
+[Discussion Forum](https://github.com/divVerent/aaaaxy/discussions) |
+[Pull Requests](https://github.com/divVerent/aaaaxy/pulls)
+
 ## Screenshots
 
 [![shot1](screenshots/shot1.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.png)
