@@ -40,7 +40,7 @@ Version is partially automated using git.
 
 The version is built based on the closest git `v<major>.<minor>-alpha`
 or `v<major>.<minor>` tag. Binary releases will be tagged
-`r<major>.<minor>.<patch>` or `r<major>.<minor>.0-alpha<patch>`; any
+`v<major>.<minor>.<patch>` or `v<major>.<minor>.0-alpha<patch>`; any
 commit on git counts as a source-only release with a patchlevel and
 needs not be released as a binary.
 

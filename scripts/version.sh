@@ -14,7 +14,7 @@
 # limitations under the License.
 
 format=${1:-semver}
-gitdesc=${2:-$(git describe --always --long --match 'v*')}
+gitdesc=${2:-$(git describe --always --long --match 'v*.*' --exclude 'v*.*.*')}
 commits=${3:-$(($(git log --oneline | wc -l)))}  # Is there a better way?
 
 hash=${gitdesc##*-g}
