@@ -32,9 +32,6 @@ func Precache() error {
 	}
 	var lines []string
 	for _, file := range credits {
-		if lines != nil {
-			lines = append(lines, "")
-		}
 		rd, err := vfs.Load("credits", file)
 		if err != nil {
 			return fmt.Errorf("could not load credits: %v", err)
@@ -47,6 +44,10 @@ func Precache() error {
 		}
 		if err = scanner.Err(); err != nil {
 			return fmt.Errorf("could not scan credits from %q: %v", file, err)
+		}
+		// Make sure items are separated by empty lines.
+		if len(lines) > 0 && lines[len(lines)-1] != "" {
+			lines = append(lines, "")
 		}
 	}
 	Lines = lines

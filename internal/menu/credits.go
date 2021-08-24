@@ -54,7 +54,6 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	s.Lines = append([]string{}, credits.Lines...)
 	s.Lines = append(
 		s.Lines,
-		"",
 		fmt.Sprintf("Level Version: %d", s.Controller.World.Level.SaveGameVersion),
 		"Build: "+version.Revision(),
 	)

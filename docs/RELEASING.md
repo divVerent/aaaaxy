@@ -13,6 +13,16 @@ speedrunning leaderboards.
 
 Thus, the version components are incremented as follows:
 
+  - Level version must be incremented on changes that break most save
+    games in ways that are not easy to "repair".
+      - In particular removing or renaming checkpoint internal names
+        causes this; the game will not start if the current checkpoint
+        is not on the map.
+      - However, changing a checkpoint's "text" property is OK and does
+        not require a level version bump.
+      - Generally such changes are strongly discouraged.
+      - This also requires bumping the major version. Set the level
+        version to the new major version then.
   - Major version must be incremented on changes that likely break
     existing speedruns.
       - In particular, slowing down a section required for any speedrun
