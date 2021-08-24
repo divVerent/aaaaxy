@@ -61,9 +61,12 @@ func (s *MainScreen) Update() error {
 		s.Controller.MoveSound(nil)
 	}
 	s.Item = MainScreenItem(m.Mod(int(s.Item), int(MainCount)))
-	if input.Exit.JustHit {
-		return s.Controller.ActivateSound(s.Controller.QuitGame())
-	}
+	/*
+		Don't need this anymore - we have a quit entry.
+		if input.Exit.JustHit {
+			return s.Controller.ActivateSound(s.Controller.QuitGame())
+		}
+	*/
 	if input.Jump.JustHit || input.Action.JustHit {
 		switch s.Item {
 		case Play:
