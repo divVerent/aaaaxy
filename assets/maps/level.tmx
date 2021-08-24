@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.1" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7878">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7880">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -5757,8 +5757,7 @@
   <object id="1251" name="ShepardOpen" type="SoundTarget" x="4288" y="5840" width="16" height="16">
    <properties>
     <property name="sound" value="loom.ogg"/>
-    <property name="state" type="bool" value="false"/>
-    <property name="target" value="ShepardOpenBlocks"/>
+    <property name="target" value="!ShepardOpenBlocks ShepardAnimation"/>
    </properties>
   </object>
   <object id="1266" name="ShepardOpenBlocks" type="SwitchableSprite" gid="16" x="4256" y="5888" width="112" height="16">
@@ -5788,8 +5787,7 @@
   <object id="1280" name="ShepardKhil" type="SoundTarget" x="4336" y="5840" width="16" height="16">
    <properties>
     <property name="sound" value="loom_minor.ogg"/>
-    <property name="state" type="bool" value="false"/>
-    <property name="target" value="ShepardOpenBlocks ShepardDontPunish"/>
+    <property name="target" value="!ShepardOpenBlocks !ShepardDontPunish KhilAnimation"/>
    </properties>
   </object>
   <object id="1281" gid="312" x="4320" y="6128" width="32" height="32">
@@ -16854,6 +16852,30 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
+   </properties>
+  </object>
+  <object id="7878" name="KhilAnimation" type="SwitchableAnimation" x="4240" y="5856" width="144" height="48">
+   <properties>
+    <property name="animation" value="magic"/>
+    <property name="animation_frame_interval" type="int" value="4"/>
+    <property name="animation_frames" type="int" value="8"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+    <property name="fade_time" value="3s"/>
+    <property name="map_black_to" type="color" value="#00aa5500"/>
+    <property name="map_white_to" type="color" value="#ffffff55"/>
+   </properties>
+  </object>
+  <object id="7879" name="ShepardAnimation" type="SwitchableAnimation" x="4256" y="5856" width="48" height="48">
+   <properties>
+    <property name="animation" value="magic"/>
+    <property name="animation_frame_interval" type="int" value="4"/>
+    <property name="animation_frames" type="int" value="8"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+    <property name="fade_time" value="3s"/>
+    <property name="map_black_to" type="color" value="#000000aa"/>
+    <property name="map_white_to" type="color" value="#ffff55ff"/>
    </properties>
   </object>
  </objectgroup>

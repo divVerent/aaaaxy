@@ -224,6 +224,32 @@
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
+ <objecttype name="SwitchableAnimation" color="#ffffff">
+  <property name="alpha" type="string"/>
+  <property name="animation" type="string"/>
+  <property name="animation_frame_interval" type="int" default="0"/>
+  <property name="animation_frames" type="int" default="0"/>
+  <property name="animation_group" type="string"/>
+  <property name="animation_repeat_interval" type="int" default="0"/>
+  <property name="animation_sync_to_music_offset" type="string" default="0s"/>
+  <property name="border_pixels" type="int" default="0"/>
+  <property name="fade_despawn" type="bool" default="false"/>
+  <property name="fade_skip_animation" type="bool" default="true"/>
+  <property name="fade_time" type="string" default="0s"/>
+  <property name="invert" type="bool" default="false"/>
+  <property name="map_black_to" type="color"/>
+  <property name="map_white_to" type="color"/>
+  <property name="no_flip" type="string"/>
+  <property name="no_transform" type="bool" default="false"/>
+  <property name="object_solid" type="bool" default="false"/>
+  <property name="opaque" type="bool" default="false"/>
+  <property name="orientation" type="string"/>
+  <property name="player_solid" type="bool" default="false"/>
+  <property name="render_offset" type="string"/>
+  <property name="required_orientation" type="string"/>
+  <property name="solid" type="bool" default="false"/>
+  <property name="z_index" type="int" default="0"/>
+ </objecttype>
  <objecttype name="SwitchableJumpPad" color="#ff00ff">
   <property name="delta" type="string"/>
   <property name="height" type="string"/>
