@@ -171,8 +171,9 @@ allrelease: allreleaseclean
 	$(MAKE) addextras
 	$(MAKE) addlicenses
 	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
-	GO="$(GO)" GOOS=windows GOARCH=386 $(MAKE) BUILDTYPE=release addrelease
 	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
+	# Disabled because it currently doesn't build (internal error in internal/abi/abi.go).
+	# GO="$(GO)" GOOS=windows GOARCH=386 $(MAKE) BUILDTYPE=release addrelease
 	# Disabled because build is WAY too slow to be playable.
 	# $(MAKE) BUILDTYPE=release addwebstuff
 	# GO="$(GO)" GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm BUILDTYPE=release addrelease

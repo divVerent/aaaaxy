@@ -6,6 +6,12 @@ AAAAXY releases are published in the following places:
 
 TODO(divVerent): add more; provide links.
 
+# Binaries
+
+The official binary release is built using `make allrelease`.
+
+Whenever uploading a build, first push a git tag naming the release.
+
 # Versioning
 
 We follow semantic versioning, but in an adapted form to suppport
