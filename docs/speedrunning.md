@@ -15,9 +15,12 @@ The following run categories exist:
   - All Paths: all connections between regular checkpoints have been
     used by the player during the run in one or the other direction.
   - All Secrets: all notes in secret rooms have been read.
-  - All Flipped; all checkpoints that were seen were last seen in
+  - All Flipped: all checkpoints that were seen were last seen in
     flipped/mirrored state.
   - No Escape: the game menu was never used during the run.
+
+Note that All Secrets and No Escape are mutually exclusive, unless you
+find a glitch I do not know about yet :)
 
 ### Timing
 
