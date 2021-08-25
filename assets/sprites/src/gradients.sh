@@ -19,7 +19,7 @@ convert -size 128x128 radial-gradient:white-black -colorspace sRGB -depth 8 -alp
 
 for i in $(seq 0 7); do
 	convert \
-		\( -size 128x128 xc:black -colorspace gray +noise Random -gaussian-blur 2x2 -level 40%,60% \) \
+		\( -size 128x128 xc:black -colorspace gray -seed "$i" +noise Random -gaussian-blur 2x2 -level 40%,60% \) \
 		\( ../gradient_outside_inside.png -alpha extract \) \
 		-compose CopyOpacity -composite \
 		../magic_idle_$i.png
