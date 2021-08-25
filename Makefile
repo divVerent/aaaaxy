@@ -18,6 +18,9 @@ ZIP = 7za -tzip -mx=9 a
 CP = cp --reflink=auto
 RESOURCE_FILES =
 
+# Output file name when building a release.
+ZIPFILE = aaaaxy.zip
+
 # Provide a way to build binaries that are faster at image/video dumping.
 # This however makes them slower for normal use, so we're not releasing those.
 FASTER_VIDEO_DUMPING = false
@@ -90,11 +93,29 @@ clean:
 vet:
 	$(GO) vet `find ./cmd ./internal -name \*.go -print | sed -e 's,/[^/]*$$,,' | sort -u`
 
-.PHONY: $(EMBEDROOT)
+# The actual build process follows.
+
+# Packing the data files.
+assets/generated/image_load_order.txt: assets/tiles assets/sprites $(wildcard third_party/*/assets/sprites)
+	mkdir -p assets/generated
+	scripts/image_load_order.sh $^ > $@
+
+assets/generated/%.cp.dot: assets/maps/%.tmx cmd/dumpcps/main.go
+	mkdir -p assets/generated
+	GOOS= GOARCH= $(GO) run $(DUMPCPS) $< > $@
+
+assets/generated/%.cp.json: assets/generated/%.cp.dot
+	neato -Tjson $< > $@
+
+.PHONY: $(LICENSES_THIRD_PARTY)
+$(LICENSES_THIRD_PARTY):
+	GO="$(GO)" GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
+
 $(EMBEDROOT): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
 	$(RM) -r $(EMBEDROOT)
 	CP="$(CP)" scripts/build-vfs.sh $(EMBEDROOT)
 
+# Windows-only stuff.
 cmd/aaaaxy/resources.manifest: scripts/aaaaxy.exe.manifest.sh
 	$< $(shell scripts/version.sh windows) > $@
 
@@ -116,6 +137,7 @@ cmd/aaaaxy/resources.ico: assets/sprites/riser_small_up_0.png
 		\( $< -geometry 256x256 \) \
 		$@
 
+# Binary building.
 $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 	CGO_CPPFLAGS="$(CGO_CPPFLAGS)" \
 	CGO_CFLAGS="$(CGO_CFLAGS)" \
@@ -123,26 +145,7 @@ $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 	CGO_LDFLAGS="$(CGO_LDFLAGS)" \
 	$(GO) build -o $(BINARY) $(GOFLAGS) $(PACKAGE)
 
-assets/generated/image_load_order.txt: assets/tiles assets/sprites $(wildcard third_party/*/assets/sprites)
-	mkdir -p assets/generated
-	scripts/image_load_order.sh $^ > $@
-
-assets/generated/%.cp.json: assets/generated/%.cp.dot
-	neato -Tjson $< > $@
-
-assets/generated/%.cp.pdf: assets/generated/%.cp.dot
-	neato -Tpdf $< > $@
-
-assets/generated/%.cp.dot: assets/maps/%.tmx cmd/dumpcps/main.go
-	mkdir -p assets/generated
-	GOOS= GOARCH= $(GO) run $(DUMPCPS) $< > $@
-
-.PHONY: $(LICENSES_THIRD_PARTY)
-$(LICENSES_THIRD_PARTY):
-	GO="$(GO)" GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
-
-# Building of release zip files starts here.
-ZIPFILE = aaaaxy.zip
+# Binary release building.
 
 .PHONY: addextras
 addextras: $(EXTRAFILES)
@@ -192,11 +195,16 @@ allreleaseclean:
 	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) clean
 	$(RM) $(ZIPFILE)
 
+# Debugging.
+assets/generated/%.cp.pdf: assets/generated/%.cp.dot
+	neato -Tpdf $< > $@
+
 # Helper targets.
 .PHONY: run
 run: $(BINARY)
 	EBITEN_INTERNAL_IMAGES_KEY=i EBITEN_SCREENSHOT_KEY=p ./$(BINARY) $(ARGS)
 
+# Prepare git hooks.
 .PHONY: setup-git
 setup-git:
 	git config filter.git-clean-tmx.clean "$$PWD"/scripts/git-clean-tmx.sh

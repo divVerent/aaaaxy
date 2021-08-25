@@ -22,8 +22,7 @@ new=$(sh scripts/version.sh gittag)
 
 echo "Releaseing: $prev -> $new."
 
-make allrelease
-mv aaaaxy.zip "aaaaxy-$new.zip"
+make allrelease ZIPFILE="aaaaxy-$new.zip"
 
 git tag -a "$new" -m "$(
 	echo "Release $new"
