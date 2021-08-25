@@ -23,7 +23,7 @@ find . -name \*.png | sort | while read -r file; do
 		# Intentionally violating.
 		./assets/sprites/clock_*.png) continue ;;
 		./assets/sprites/gradient_*.png) continue ;;
-		./assets/sprites/editorimgs/gradient_*.png) continue ;;
+		./assets/sprites/magic_*.png) continue ;;
 		# Screenshots etc.
 		./docs/*) continue ;;
 	esac
