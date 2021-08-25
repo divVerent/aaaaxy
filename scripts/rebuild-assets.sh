@@ -17,6 +17,9 @@
 #
 # Ideally these assets should move into assets/generated and thus no longer be
 # in the git repo; will be some work to support this in Tiled.
+#
+# Also currently this isn't reproducible - the files differ in some metadata.
+# That needs fixing, too.
 
 set -ex
 
