@@ -63,7 +63,9 @@ func (s *PlayerState) CheckpointsWalked(from, to string) bool {
 	if *cheatFullMapNormal || *cheatFullMapFlipped {
 		return true
 	}
-	return s.Level.Player.PersistentState["checkpoints_walked."+from+"."+to] != ""
+	// CheckpointsWalked is a symmetric relation.
+	return s.Level.Player.PersistentState["checkpoints_walked."+from+"."+to] != "" ||
+		s.Level.Player.PersistentState["checkpoints_walked."+to+"."+from] != ""
 }
 
 type SeenState int
