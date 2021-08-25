@@ -99,7 +99,7 @@ vet:
 # Packing the data files.
 assets/generated/image_load_order.txt: assets/tiles assets/sprites $(wildcard third_party/*/assets/sprites)
 	mkdir -p assets/generated
-	scripts/image_load_order.sh $^ > $@
+	scripts/image-load-order.sh $^ > $@
 
 assets/generated/%.cp.dot: assets/maps/%.tmx cmd/dumpcps/main.go
 	mkdir -p assets/generated

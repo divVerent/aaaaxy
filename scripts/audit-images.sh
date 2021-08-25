@@ -30,7 +30,7 @@ find . -name \*.png | sort | while read -r file; do
 	set -- \
 		"$file" -depth 8 +dither \
 		-write MPR:orig \
-		-channel RGB -remap scripts/cga_palette.pnm +channel \
+		-channel RGB -remap scripts/cga-palette.pnm +channel \
 		MPR:orig -alpha set -compose copy-opacity -composite \
 		-channel A -threshold 25% +channel
 	f=$(
