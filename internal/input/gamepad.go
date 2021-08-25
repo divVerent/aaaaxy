@@ -154,6 +154,7 @@ func gamepadScan() {
 		allGamepads[p] = true
 		if !ebiten.IsStandardGamepadLayoutAvailable(p) {
 			log.Errorf("Gamepad %v has no standard layout - cannot use.", ebiten.GamepadName(p))
+			continue
 		}
 		// A good gamepad! Add it.
 		gamepads[p] = struct{}{}
