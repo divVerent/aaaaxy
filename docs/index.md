@@ -21,7 +21,8 @@ x86\_64](https://github.com/divVerent/aaaaxy/releases)
 
 [Technical Support](https://github.com/divVerent/aaaaxy/issues) |
 [Discussion Forum](https://github.com/divVerent/aaaaxy/discussions) |
-[Pull Requests](https://github.com/divVerent/aaaaxy/pulls)
+[Pull Requests](https://github.com/divVerent/aaaaxy/pulls) |
+[Speedrunning](speedrunning.md)
 
 ## Screenshots
 

@@ -5,6 +5,8 @@
 AAAAXY has integrated speedrun timing support. Your time and run
 category will be shown in the end credits.
 
+### Run Categories
+
 The following run categories exist:
 
   - Any%: every run is Any% (but Any% is not shown if 100% is met too).
@@ -16,3 +18,15 @@ The following run categories exist:
   - All Flipped; all checkpoints that were seen were last seen in
     flipped/mirrored state.
   - No Escape: the game menu was never used during the run.
+
+### Timing
+
+AAAAXY includes an integrated timer with the following rules:
+
+  - Game load time does not count.
+  - Timer starts from first action after game load.
+  - Timer continues ticking while in the menu.
+  - Split times are shown in-game in various places.
+  - Timing ends once input is no longer accepted at the end of the game.
+  - To show a permanent in-game timer, pass `-show_time` as command line
+    argument (optional).
