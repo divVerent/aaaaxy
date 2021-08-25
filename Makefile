@@ -142,7 +142,7 @@ $(LICENSES_THIRD_PARTY):
 	GO="$(GO)" GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
 
 # Building of release zip files starts here.
-ZIPFILE = aaaaxy-$(shell scripts/version.sh gittag).zip
+ZIPFILE = aaaaxy.zip
 
 .PHONY: addextras
 addextras: $(EXTRAFILES)
