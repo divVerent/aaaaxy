@@ -148,6 +148,7 @@ func gamepadScan() {
 	for _, p := range allGamepadsList {
 		_, alreadyThere := allGamepads[p]
 		if alreadyThere {
+			allGamepads[p] = true
 			continue
 		}
 		log.Infof("Gamepad %v added.", ebiten.GamepadName(p))
