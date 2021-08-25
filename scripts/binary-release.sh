@@ -26,12 +26,14 @@ make allrelease
 mv aaaaxy.zip "aaaaxy-$new.zip"
 
 git tag -a "$new" -m "$(
-	echo "Release $new."
+	echo "Release $new"
 	echo
 	echo "Changes since $prev:"
 	git log --format='%w(72,2,4)- %s' "$prev"..
 )" -e
 
 echo "Now run:"
-echo "  git push tag $new"
-echo "Then upload aaaaxy-$new.zip"
+echo "  git push origin tag $new"
+echo "Then create the release on GitHub with the following message:"
+git show "$new"
+echo "In the release, upload aaaaxy-$new.zip"
