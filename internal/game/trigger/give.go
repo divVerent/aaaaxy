@@ -45,7 +45,7 @@ func (g *Give) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) erro
 	g.Ability = s.Properties["ability"]
 	g.Text = s.Properties["text"]
 	err := g.Anim.Init("can_"+g.Ability, map[string]*animation.Group{
-		"default": &animation.Group{
+		"default": {
 			Frames:        30,
 			FrameInterval: 4,
 			NextInterval:  4 * 30,

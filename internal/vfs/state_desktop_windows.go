@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// +build !wasm
-// +build windows
+//go:build !wasm && windows
+// +build !wasm,windows
 
 package vfs
 
