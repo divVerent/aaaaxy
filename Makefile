@@ -35,9 +35,9 @@ endif
 BUILDTYPE = debug
 ifeq ($(BUILDTYPE),release)
 ifeq ($(shell $(GO) env GOARCH),wasm)
-GOFLAGS ?= -tags embed,$(BUILDTAGS) -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
+GOFLAGS ?= -tags "embed,$(BUILDTAGS)" -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
 else
-GOFLAGS ?= -tags embed,$(BUILDTAGS) -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
+GOFLAGS ?= -tags "embed,$(BUILDTAGS)" -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
 endif
 CPPFLAGS ?= -DNDEBUG
 CFLAGS ?= -g0 -O3
@@ -47,10 +47,10 @@ INFIX =
 BINARY_ASSETS = $(EMBEDROOT)
 else
 ifeq ($(BUILDTYPE),extradebug)
-GOFLAGS ?= -tags ebitendebug,$(BUILDTAGS)
+GOFLAGS ?= -tags "ebitendebug,$(BUILDTAGS)"
 INFIX = -extradebug
 else
-GOFLAGS ?= -tags $(BUILDTAGS)
+GOFLAGS ?= -tags "$(BUILDTAGS)"
 INFIX = -debug
 endif
 BINARY_ASSETS = $(GENERATED_ASSETS)
