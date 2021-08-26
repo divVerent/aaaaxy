@@ -50,11 +50,14 @@ type Game struct {
 	offScreens        chan *ebiten.Image
 	linear2xShader    *ebiten.Shader
 	linear2xCRTShader *ebiten.Shader
+	framesToDump      int
 }
 
 var _ ebiten.Game = &Game{}
 
 func (g *Game) Update() error {
+	g.framesToDump++
+
 	timing.ReportRegularly()
 
 	defer timing.Group()()
@@ -105,7 +108,8 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 	g.Menu.Draw(screen)
 
 	timing.Section("dump")
-	dumpFrameThenReturnTo(screen, to)
+	dumpFrameThenReturnTo(screen, to, g.framesToDump)
+	g.framesToDump = 0
 }
 
 func (g *Game) drawOffscreen() *ebiten.Image {
