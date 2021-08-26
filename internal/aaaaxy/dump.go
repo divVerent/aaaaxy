@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
-	"reflect"
 	"strings"
 	"sync"
 	"time"
@@ -32,12 +31,14 @@ import (
 )
 
 var (
-	dumpVideo = flag.String("dump_video", "", "filename prefix to dump game frames to")
-	dumpAudio = flag.String("dump_audio", "", "filename to dump game audio to")
+	dumpVideo           = flag.String("dump_video", "", "filename prefix to dump game frames to")
+	dumpVideoFpsDivisor = flag.Int("dump_video_fps_divisor", 1, "frame rate divisor (try 2 for faster dumping)")
+	dumpAudio           = flag.String("dump_audio", "", "filename to dump game audio to")
+	dumpRealtime        = flag.Bool("dump_realtime", false, "realtime video dumping (EXPERIMENTAL, may drop frames)")
 )
 
 var (
-	dumpFrameCount = 0
+	dumpFrameCount = int64(0)
 	dumpVideoFile  *os.File
 	dumpAudioFile  *os.File
 )
@@ -76,31 +77,46 @@ func dumping() bool {
 	return dumpAudioFile != nil || dumpVideoFile != nil
 }
 
-func unsafeHackExported(val *reflect.Value) {
+func slowDumping() bool {
+	return dumping() && !*dumpRealtime
 }
 
-func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image) {
-	if !dumping() {
+func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames int) {
+	if !dumping() || frames == 0 {
 		to <- screen
 		return
 	}
-	dumpFrameCount++
 	if dumpVideoFile != nil {
-		frame := dumpVideoFrame
-		dumpVideoFrame++
-		dumpVideoWg.Add(1)
-		dumpPixelsRGBA(screen, func(pix []byte, err error) {
+		dumpVideoFrameBegin := dumpFrameCount / int64(*dumpVideoFpsDivisor)
+		dumpFrameCount += int64(frames)
+		dumpVideoFrameEnd := dumpFrameCount / int64(*dumpVideoFpsDivisor)
+		cnt := dumpVideoFrameEnd - dumpVideoFrameBegin
+		if cnt > 0 {
+			if cnt > 1 {
+				log.Infof("video dump: %v frames dropped", cnt-1)
+			}
+			dumpVideoWg.Add(1)
+			dumpPixelsRGBA(screen, func(pix []byte, err error) {
+				to <- screen
+				if err == nil {
+					for i := dumpVideoFrameBegin; i <= dumpVideoFrameEnd; i++ {
+						_, err = dumpVideoFile.WriteAt(pix, i*dumpVideoFrameSize)
+						if err != nil {
+							break
+						}
+					}
+				}
+				if err != nil {
+					log.Errorf("Failed to encode video - expect corruption: %v", err)
+					// dumpVideoFile.Close()
+					// dumpVideoFile = nil
+				}
+				dumpVideoWg.Done()
+			})
+		} else {
+			// log.Infof("video dump: frame skipped")
 			to <- screen
-			if err == nil {
-				_, err = dumpVideoFile.WriteAt(pix, frame*dumpVideoFrameSize)
-			}
-			if err != nil {
-				log.Errorf("Failed to encode video - expect corruption: %v", err)
-				// dumpVideoFile.Close()
-				// dumpVideoFile = nil
-			}
-			dumpVideoWg.Done()
-		})
+		}
 	} else {
 		to <- screen
 	}
@@ -120,7 +136,8 @@ func ffmpegCommand(audio, video, output string) string {
 	settings := []string{}
 	// Video first, so we can refer to the video stream as [0:v] for sure.
 	if video != "" {
-		inputs = append(inputs, fmt.Sprintf("-f rawvideo -pixel_format rgba -video_size %dx%d -r %d -i '%s'", engine.GameWidth, engine.GameHeight, engine.GameTPS, strings.ReplaceAll(video, "'", "'\\''")))
+		fps := float64(engine.GameTPS) / float64(*dumpVideoFpsDivisor)
+		inputs = append(inputs, fmt.Sprintf("-f rawvideo -pixel_format rgba -video_size %dx%d -r %v -i '%s'", engine.GameWidth, engine.GameHeight, fps, strings.ReplaceAll(video, "'", "'\\''")))
 		// Note: the two step upscale simulates the effect of the normal2x shader.
 		// Note: using high quality, fast settings and many keyframes
 		// as the assumption is that the output file will be further edited.
