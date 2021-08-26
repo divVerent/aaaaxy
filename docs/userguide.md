@@ -1,4 +1,4 @@
-# ![AAAAXY](docs/logo.png)
+# ![AAAAXY](logo.png)
 
 ## User Guide
 
