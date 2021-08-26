@@ -12,12 +12,12 @@ this World of Wicked Weirdness. Find out what Van Vlijmen will make you
 do. Pick a path, get inside a Klein Bottle, recognize some memes, and by
 all means: don't look up.
 
-## Download now\!
+### Download now\!
 
 [Download for Linux and Windows on
 x86\_64](https://github.com/divVerent/aaaaxy/releases)
 
-## Further Resources
+### Further Resources
 
 [User Guide](userguide.md) | [Technical
 Support](https://github.com/divVerent/aaaaxy/issues) | [Discussion
@@ -25,7 +25,7 @@ Forum](https://github.com/divVerent/aaaaxy/discussions) | [Pull
 Requests](https://github.com/divVerent/aaaaxy/pulls) |
 [Speedrunning](speedrunning.md)
 
-## Screenshots
+### Screenshots
 
 [![shot1](screenshots/shot1.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.png)
 [![shot2](screenshots/shot2.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot2.png)
@@ -36,7 +36,7 @@ Requests](https://github.com/divVerent/aaaaxy/pulls) |
 [![shot7](screenshots/shot7.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot7.png)
 [![shot8](screenshots/shot8.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.png)
 
-## More Information
+### More Information
 
 Deeper technical information and source code is to be found on the
 [GitHub repository](https://github.com/divVerent/aaaaxy).
