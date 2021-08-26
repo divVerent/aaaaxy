@@ -34,5 +34,5 @@ git tag -a "$new" -m "$(
 echo "Now run:"
 echo "  git push origin tag $new"
 echo "Then create the release on GitHub with the following message:"
-git show "$new"
+git show -s "$new"
 echo "In the release, upload aaaaxy-$new.zip"
