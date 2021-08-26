@@ -130,7 +130,7 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 	}
 }
 
-func ffmpegCommand(audio, video, output string) string {
+func ffmpegCommand(audio, video, output, screenFilter string) string {
 	var pre string
 	inputs := []string{}
 	settings := []string{}
@@ -138,19 +138,13 @@ func ffmpegCommand(audio, video, output string) string {
 	if video != "" {
 		fps := float64(engine.GameTPS) / float64(*dumpVideoFpsDivisor)
 		inputs = append(inputs, fmt.Sprintf("-f rawvideo -pixel_format rgba -video_size %dx%d -r %v -i '%s'", engine.GameWidth, engine.GameHeight, fps, strings.ReplaceAll(video, "'", "'\\''")))
-		// Note: the two step upscale simulates the effect of the normal2x shader.
-		// Note: using high quality, fast settings and many keyframes
-		// as the assumption is that the output file will be further edited.
-		// Note: disabling 8x8 DCT here as some older FFmpeg versions -
-		// or even newer versions with decoding options changed for compatibility,
-		// if the video file has also been losslessly cut -
-		// have trouble decoding that.
-		var filterComplex string
-		switch *screenFilter {
+		var maybeFilterComplex string
+		switch screenFilter {
 		case "linear":
-			filterComplex = "[0:v]premultiply=inplace=1,scale=1920:1080"
+			maybeFilterComplex = " -filter_complex '[0:v]premultiply=inplace=1,scale=1920:1080'"
 		case "linear2x":
-			filterComplex = "[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080"
+			// Note: the two step upscale simulates the effect of the linear2xcrt shader.
+			maybeFilterComplex = " -filter_complex '[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080'"
 		case "linear2xcrt":
 			// For 3x scale, pattern is: 1 (1-2/3*f) 1.
 			// darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
@@ -165,11 +159,19 @@ func ffmpegCommand(audio, video, output string) string {
 				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
-			filterComplex = fmt.Sprintf("[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=3840:2160,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
+			maybeFilterComplex = fmt.Sprintf(" -filter_complex '[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=3840:2160,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f'", crtK1(), crtK2())
 		case "simple", "nearest":
-			filterComplex = "[0:v]premultiply=inplace=1,scale=1920:1080:flags=neighbor"
+			maybeFilterComplex = " -filter_complex '[0:v]premultiply=inplace=1,scale=1920:1080:flags=neighbor'"
+		case "":
+			maybeFilterComplex = ""
 		}
-		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -filter_complex '"+filterComplex+"'")
+		// Note: using high quality, fast settings and many keyframes
+		// as the assumption is that the output file will be further edited.
+		// Note: disabling 8x8 DCT here as some older FFmpeg versions -
+		// or even newer versions with decoding options changed for compatibility,
+		// if the video file has also been losslessly cut -
+		// have trouble decoding that.
+		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60"+maybeFilterComplex)
 	}
 	if audio != "" {
 		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.Rate(), strings.ReplaceAll(audio, "'", "'\\''")))
@@ -198,6 +200,14 @@ func finishDumping() {
 		dumpVideoFile = nil
 	}
 	log.Infof("Media has been dumped.")
-	log.Infof("To convert to something uploadable, run:")
-	log.Infof(ffmpegCommand(*dumpAudio, *dumpVideo, "video.mp4"))
+	log.Infof("To create a preview file (DO NOT UPLOAD):")
+	log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mp4", ""))
+	if *dumpVideo != "" {
+		if *screenFilter != "linear2xcrt" {
+			log.Infof("With current settings (1080p, MEDIUM QUALITY):")
+			log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter))
+		}
+		log.Infof("Preferred for uploading (4K, GOOD QUALITY):")
+		log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt"))
+	}
 }
