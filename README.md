@@ -96,7 +96,8 @@ you then exit the game, the console window will show you a FFmpeg
 command to turn these files into a finished video\!
 
 Video recording can be sped up by using `make FASTER_VIDEO_DUMPING=true`
-when compiling, and by passing `-dump_video_fps_divisor=2`.
+when compiling to enable multithreading, and by passing
+`-dump_video_fps_divisor=2` to limit the video to SFR (30fps).
 
 ## Data Storage
 
