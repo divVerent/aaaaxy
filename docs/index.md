@@ -1,4 +1,4 @@
-# ![AAAAXY](logo.png)
+## ![AAAAXY](logo.png)
 
 AAAAXY is a nonlinear puzzle platformer taking place in non-Euclidean
 geometry.
