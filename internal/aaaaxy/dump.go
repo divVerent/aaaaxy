@@ -31,10 +31,10 @@ import (
 )
 
 var (
-	dumpVideo           = flag.String("dump_video", "", "filename prefix to dump game frames to")
-	dumpVideoFpsDivisor = flag.Int("dump_video_fps_divisor", 1, "frame rate divisor (try 2 for faster dumping)")
-	dumpAudio           = flag.String("dump_audio", "", "filename to dump game audio to")
-	dumpRealtime        = flag.Bool("dump_realtime", false, "realtime video dumping (EXPERIMENTAL, may drop frames)")
+	dumpVideo            = flag.String("dump_video", "", "filename prefix to dump game frames to")
+	dumpVideoFpsDivisor  = flag.Int("dump_video_fps_divisor", 1, "frame rate divisor (try 2 for faster dumping)")
+	dumpAudio            = flag.String("dump_audio", "", "filename to dump game audio to")
+	cheatDumpSlowAndGood = flag.Bool("cheat_dump_slow_and_good", false, "non-realtime video dumping (slows down the game, thus considered a cheat))")
 )
 
 var (
@@ -78,7 +78,7 @@ func dumping() bool {
 }
 
 func slowDumping() bool {
-	return dumping() && !*dumpRealtime
+	return dumping() && *cheatDumpSlowAndGood
 }
 
 func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames int) {
