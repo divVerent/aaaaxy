@@ -1,7 +1,7 @@
 Copyright information:
 
   - Origin: <https://opengameart.org/content/ticking-clock>
-  - Author: bar
+  - Author: bart
   - License: CC0: <https://creativecommons.org/publicdomain/zero/1.0/>
 
 Changes from original (licensed under same terms as the entire project):
