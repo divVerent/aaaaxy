@@ -301,7 +301,7 @@ func (p *Player) Update() {
 		if !p.Jumping && (p.AirFrames <= ExtraGroundFrames || *cheatInAirJump) {
 			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(-JumpVelocity))
 			p.OnGround = false
-			p.AirFrames = ExtraGroundFrames + 1
+			p.AirFrames = ExtraGroundFrames + 2 // Add 1 to be over, and 1 more to assume being over for one frame.
 			p.Jumping = true
 			p.JumpingUp = true
 			if p.VVVVVV {
@@ -390,7 +390,8 @@ func (p *Player) handleTouch(trace engine.TraceResult) {
 	if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
 		p.JumpingUp = false
 	}
-	if p.OnGround && !p.WasOnGround {
+	if p.OnGround && !p.WasOnGround && p.AirFrames > ExtraGroundFrames+1 {
+		// Note: if == ExtraGroundFrames+1, then we just started falling but were instantly stopped. No sound then.
 		p.Anim.SetGroup("land")
 		p.LandSound.Play()
 	}
@@ -414,7 +415,7 @@ func (p *Player) handleTouch(trace engine.TraceResult) {
 	}
 
 	// Update so we can get more deltas.
-	p.WasOnGround = p.OnGround
+	p.WasOnGround = true
 	p.PrevVelocity = p.Velocity
 }
 
@@ -481,7 +482,7 @@ func (p *Player) ActionPressed() bool {
 func (p *Player) SetVelocityForJump(velocity m.Delta) {
 	p.Physics.SetVelocityForJump(velocity)
 	p.JumpingUp = false
-	p.AirFrames = ExtraGroundFrames + 1
+	p.AirFrames = ExtraGroundFrames + 2
 }
 
 func (p *Player) SetGoal(goal *engine.Entity) {
