@@ -15,17 +15,21 @@
 package sound
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"strings"
 
+	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
@@ -34,11 +38,16 @@ var (
 	soundVolume    = flag.Float64("sound_volume", 0.5, "sound volume (0..1)")
 )
 
+const (
+	bytesPerSample = 4
+)
+
 // Sound represents a sound effect.
 type Sound struct {
-	sound        []byte
-	players      []*audiowrap.Player
-	volumeAdjust float64
+	sound              []byte
+	players            []*audiowrap.Player
+	volumeAdjust       float64
+	loopStart, loopEnd int64
 }
 
 // Sounds are preloaded as byte streams.
@@ -49,6 +58,8 @@ var (
 
 type soundJson struct {
 	VolumeAdjust float64 `json:"volume_adjust"`
+	LoopStart    int64   `json:"loop_start"`
+	LoopEnd      int64   `json:"loop_start"`
 }
 
 // Load loads a sound effect.
@@ -76,6 +87,8 @@ func Load(name string) (*Sound, error) {
 	}
 	config := soundJson{
 		VolumeAdjust: 1,
+		LoopStart:    -1,
+		LoopEnd:      -1,
 	}
 	j, err := vfs.Load("sounds", name+".json")
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
@@ -91,6 +104,8 @@ func Load(name string) (*Sound, error) {
 	sound := &Sound{
 		sound:        decoded,
 		volumeAdjust: config.VolumeAdjust,
+		loopStart:    config.LoopStart,
+		loopEnd:      config.LoopEnd,
 	}
 	cache[cacheName] = sound
 	return sound, nil
@@ -98,7 +113,22 @@ func Load(name string) (*Sound, error) {
 
 // Play plays the given sound effect.
 func (s *Sound) Play() *audiowrap.Player {
-	player := audiowrap.NewPlayerFromBytes(s.sound)
+	var player *audiowrap.Player
+	if s.loopStart >= 0 {
+		var err error
+		player, err = audiowrap.NewPlayer(func() (io.Reader, error) {
+			loopEnd := s.loopEnd * bytesPerSample
+			if loopEnd < 0 {
+				loopEnd = int64(len(s.sound))
+			}
+			return audio.NewInfiniteLoopWithIntro(bytes.NewReader(s.sound), s.loopStart*bytesPerSample, loopEnd), nil
+		})
+		if err != nil {
+			log.Fatalf("UNREACHABLE CODE: could not spawn new sound using an always-succeed function: %v", err)
+		}
+	} else {
+		player = audiowrap.NewPlayerFromBytes(s.sound)
+	}
 	player.SetVolume(s.volumeAdjust * *soundVolume)
 	player.Play()
 	return player
