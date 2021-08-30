@@ -15,9 +15,12 @@
 package trigger
 
 import (
+	"fmt"
+
 	"github.com/divVerent/aaaaxy/internal/animation"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
 // Switch overrides the boolean state of a warpzone or entity.
@@ -26,11 +29,14 @@ type Switch struct {
 	Entity    *engine.Entity
 	Anim      animation.State
 	AnimState bool
+
+	SwitchOn, SwitchOff *sound.Sound
 }
 
 func (s *Switch) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	s.Entity = e
-	err := s.SetState.Spawn(w, sp, e)
+	var err error
+	err = s.SetState.Spawn(w, sp, e)
 	if err != nil {
 		return err
 	}
@@ -57,6 +63,16 @@ func (s *Switch) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) e
 	if err != nil {
 		return err
 	}
+
+	s.SwitchOn, err = sound.Load("switch_on.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load switch_on sound: %v", err)
+	}
+	s.SwitchOff, err = sound.Load("switch_off.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load switch_off sound: %v", err)
+	}
+
 	return nil
 }
 
@@ -66,9 +82,11 @@ func (s *Switch) Update() {
 		if s.State {
 			s.Anim.SetGroup("switchon")
 			s.AnimState = true
+			s.SwitchOn.Play()
 		} else if s.SendUntouch {
 			s.Anim.SetGroup("switchoff")
 			s.AnimState = false
+			s.SwitchOff.Play()
 		}
 	}
 	s.Anim.Update(s.Entity)
