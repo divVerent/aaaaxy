@@ -21,6 +21,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
 // RiserFsck is an object that kills Risers when touching them.
@@ -28,6 +29,8 @@ import (
 type RiserFsck struct {
 	mixins.NonSolidTouchable
 	World *engine.World
+
+	Sound *sound.Sound
 }
 
 func (r *RiserFsck) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
@@ -43,15 +46,25 @@ func (r *RiserFsck) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity)
 		return fmt.Errorf("could not load riserfsck sprite: %v", err)
 	}
 
+	r.Sound, err = sound.Load("riserfsck.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load riserfsck sound: %v", err)
+	}
+
 	return nil
 }
 
 func (r *RiserFsck) Despawn() {}
 
 func (r *RiserFsck) Touch(other *engine.Entity) {
-	if _, ok := other.Impl.(*Riser); ok {
-		r.World.Detach(other)
+	if _, ok := other.Impl.(*Riser); !ok {
+		return
 	}
+	if other.Detached() {
+		return
+	}
+	r.World.Detach(other)
+	r.Sound.Play()
 }
 
 func init() {
