@@ -53,15 +53,18 @@ type Player struct {
 	LookDown      bool
 	Respawning    bool
 	WasOnGround   bool
+	PrevVelocity  m.Delta
 	VVVVVV        bool
 	JustSpawned   bool
 	Goal          *engine.Entity
 
-	Anim            animation.State
+	Anim animation.State
+
 	JumpSound       *sound.Sound
 	VVVVVVSound     *sound.Sound
 	LandSound       *sound.Sound
 	HitHeadSound    *sound.Sound
+	HitWallSound    *sound.Sound
 	GotAbilitySound *sound.Sound
 }
 
@@ -116,9 +119,14 @@ const (
 	JumpVelocity = 288 * constants.SubPixelScale / engine.GameTPS
 	MaxSpeed     = 2 * level.TileSize * constants.SubPixelScale
 
+	// Scale noise by speed.
 	NoiseMinSpeed = 384 * constants.SubPixelScale / engine.GameTPS
 	NoiseMaxSpeed = MaxSpeed
 	NoisePower    = 2.0
+
+	// Scale hitwall sound by speed.
+	HitWallMinSpeed = 40 * constants.SubPixelScale / engine.GameTPS
+	HitWallMaxSpeed = 160 * constants.SubPixelScale / engine.GameTPS
 
 	// We want at least 19px high jumps so we can be sure a jump moves at least 2 tiles up.
 	JumpExtraGravity = 72*constants.Gravity/19 - constants.Gravity
@@ -233,6 +241,10 @@ func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) er
 	if err != nil {
 		return fmt.Errorf("could not load hithead sound: %v", err)
 	}
+	p.HitWallSound, err = sound.Load("hitwall.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load hitwall sound: %v", err)
+	}
 	p.GotAbilitySound, err = sound.Load("got_ability.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load got_ability sound: %v", err)
@@ -332,6 +344,7 @@ func (p *Player) Update() {
 
 	// Run physics.
 	p.WasOnGround = p.OnGround
+	p.PrevVelocity = p.Velocity
 	p.Physics.Update() // May call handleTouch.
 
 	if moveLeft && !moveRight {
@@ -381,14 +394,28 @@ func (p *Player) handleTouch(trace engine.TraceResult) {
 		p.Anim.SetGroup("land")
 		p.LandSound.Play()
 	}
-	p.WasOnGround = p.OnGround
 	if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
 		p.Anim.SetGroup("hithead")
 		p.HitHeadSound.Play()
 	}
+	if trace.HitDelta.Dot(p.OnGroundVec) == 0 {
+		dv := p.Velocity.Sub(p.PrevVelocity)
+		speed := dv.Norm1()
+		if speed > HitWallMinSpeed {
+			vol := float64(speed-HitWallMinSpeed) / float64(HitWallMaxSpeed-HitWallMinSpeed)
+			if vol > 1 {
+				vol = 1
+			}
+			p.HitWallSound.PlayAtVolume(vol)
+		}
+	}
 	if trace.HitEntity != nil {
 		p.World.TouchEvent(p.Entity, trace.HitEntity)
 	}
+
+	// Update so we can get more deltas.
+	p.WasOnGround = p.OnGround
+	p.PrevVelocity = p.Velocity
 }
 
 func (p *Player) Touch(other *engine.Entity) {

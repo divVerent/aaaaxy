@@ -111,8 +111,8 @@ func Load(name string) (*Sound, error) {
 	return sound, nil
 }
 
-// Play plays the given sound effect.
-func (s *Sound) Play() *audiowrap.Player {
+// PlayAtVolume plays the given sound effect at the given volume.
+func (s *Sound) PlayAtVolume(vol float64) *audiowrap.Player {
 	var player *audiowrap.Player
 	if s.loopStart >= 0 {
 		var err error
@@ -129,9 +129,14 @@ func (s *Sound) Play() *audiowrap.Player {
 	} else {
 		player = audiowrap.NewPlayerFromBytes(s.sound)
 	}
-	player.SetVolume(s.volumeAdjust * *soundVolume)
+	player.SetVolume(s.volumeAdjust * *soundVolume * vol)
 	player.Play()
 	return player
+}
+
+// Play plays the given sound effect.
+func (s *Sound) Play() *audiowrap.Player {
+	return s.PlayAtVolume(1.0)
 }
 
 func Precache() error {
