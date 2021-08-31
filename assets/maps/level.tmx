@@ -16635,6 +16635,7 @@
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="0 0 314 157"/>
+    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
@@ -16657,6 +16658,7 @@
     <property name="acceleration" value="38.4"/>
     <property name="delta" value="0 -120"/>
     <property name="image" value="ending_logo.png"/>
+    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
@@ -16676,6 +16678,7 @@
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="0 157 314 131"/>
+    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
