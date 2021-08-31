@@ -73,12 +73,6 @@ func (s *SoundTarget) SetState(originator, predecessor *engine.Entity, state boo
 	if state {
 		if s.Active {
 			return
-			/*
-				if s.Player.Current() < 100*time.Millisecond {
-					return
-				}
-				s.Player.Close()
-			*/
 		}
 		if s.Player != nil {
 			s.Player.Close()
