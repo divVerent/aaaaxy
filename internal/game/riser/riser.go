@@ -243,6 +243,9 @@ func (r *Riser) Despawn() {
 func (r *Riser) soundEffect(prev, cur bool, onSound, offSound *sound.GroupedSound) {
 	if cur && !prev {
 		onSound.Play()
+		if !onSound.IsPlaying() {
+			onSound.Reset()
+		}
 	}
 	if !cur && prev {
 		onSound.Close()

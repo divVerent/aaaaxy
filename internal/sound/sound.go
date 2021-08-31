@@ -205,6 +205,11 @@ func (g *GroupedSound) Current() time.Duration {
 	return g.s.groupedPlayer.Current()
 }
 
+// IsPlaying returns whether the sound is currently playing.
+func (g *GroupedSound) IsPlaying() bool {
+	return g.s.groupedPlayer.IsPlaying()
+}
+
 func Precache() error {
 	if !*precacheSounds {
 		return nil
