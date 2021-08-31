@@ -5,7 +5,7 @@ geometry.
 
 Although your general goal is reaching the surprising end of the game,
 you are encouraged to set your own goals while playing. Exploration will
-be rewarded, and secrets await you!
+be rewarded, and secrets await you\!
 
 So jump and run around, and enjoy losing your sense of orientation in
 this World of Wicked Weirdness. Find out what Van Vlijmen will make you
@@ -91,29 +91,29 @@ geometry may need to be rendered to the screen at the same time.
 
 There are however two approaches to solve this:
 
--   Design levels so that conflicting geometry is never on screen.
-    -   In other words, when transparently teleporting in order to move
+  - Design levels so that conflicting geometry is never on screen.
+      - In other words, when transparently teleporting in order to move
         the player past a portal, a screen-sized environment of the
         source position must always match a screen-sized environment of
         the destination position.
-    -   This approach is simple and very immersive and has already been
+      - This approach is simple and very immersive and has already been
         used in the original Super Mario Bros. game on the NES.
-    -   It however is not very flexible as any non-Euclidean geometry
+      - It however is not very flexible as any non-Euclidean geometry
         has to be rather large and behave fully Euclidean on every
         screen-sized environment around positions the player can visit.
--   Hide anything that has no line of sight to the player.
-    -   This actually matches the approach used in first person 3D games
-    -   With this approach, the game needs to be consistent with
+  - Hide anything that has no line of sight to the player.
+      - This actually matches the approach used in first person 3D games
+      - With this approach, the game needs to be consistent with
         Euclidean geometry only in small environments around each
         object.
-        -   In this implementation, the consistency requirement is that
+          - In this implementation, the consistency requirement is that
             an 1-tile environment around every portal must match, and
             that the same "screen tile" cannot be reached by a 1-tile
             environment around a line of sight through two different
             sets of portals at the same time.
-        -   As this game demonstrates, this can yield rather interesting
+          - As this game demonstrates, this can yield rather interesting
             while still obvious non-Euclidean geometry.
-    -   This is the approach has been explored in this game as well -
+      - This is the approach has been explored in this game as well -
         but very likely for the first time in a two dimensional game.
 
 ## License
