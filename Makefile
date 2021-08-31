@@ -37,7 +37,7 @@ ifeq ($(BUILDTYPE),release)
 ifeq ($(shell $(GO) env GOARCH),wasm)
 GOFLAGS ?= -tags "embed,$(BUILDTAGS)" -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
 else
-GOFLAGS ?= -tags "embed,$(BUILDTAGS)" -ldflags=all="-s -w" -gcflags=all="-B -dwarf=false" -trimpath -buildmode=pie
+GOFLAGS ?= -tags "embed,$(BUILDTAGS)" -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath -buildmode=pie
 endif
 CPPFLAGS ?= -DNDEBUG
 CFLAGS ?= -g0 -O3
@@ -159,6 +159,7 @@ webrelease: releaseclean webprepare $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PAR
 allrelease:
 	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
 	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
+	GO="$(GO)" GOOS=windows GOARCH=386 $(MAKE) binrelease BUILDTYPE=release
 
 .PHONY: webdebug
 webdebug: webprepare
