@@ -40,13 +40,6 @@ const (
 	bytesPerSample = 4
 )
 
-type track struct {
-	name       string
-	valid      bool
-	replayGain float64
-	player     *audiowrap.Player
-}
-
 type musicJson struct {
 	PlayStart  int64   `json:"play_start"`
 	ReplayGain float64 `json:"replay_gain"`
@@ -92,14 +85,48 @@ func newSampleCutter(base io.ReadSeeker, offset int64, closer io.Closer) (*sampl
 	return f, nil
 }
 
-func (t *track) open(cacheName, name string) error {
-	t.stop()
-	t.valid = true
-	if cacheName == "" {
-		return nil
-	}
-	t.name = cacheName
+var (
+	currentName string
+	player      *audiowrap.Player
+	active      bool
+)
 
+func Enable() {
+	if !active && player != nil {
+		player.Play()
+	}
+	active = true
+}
+
+// Now returns the current music playback time.
+func Now() time.Duration {
+	if player != nil && player.IsPlaying() {
+		return player.Current()
+	}
+	return 0
+}
+
+// Switch switches from the currently playing music to the given track.
+// Passing an empty string means fading to silence.
+func Switch(name string) {
+	cacheName := vfs.Canonical("music", name)
+	if cacheName == currentName {
+		return
+	}
+
+	// Fade out the current music.
+	if player != nil {
+		player.FadeOutIn(*musicFadeTime)
+		player = nil
+	}
+
+	// If we're playing silence, we're done.
+	if cacheName == "" {
+		return
+	}
+
+	// Now load the new track.
+	currentName = cacheName
 	config := musicJson{
 		PlayStart:  0,
 		LoopStart:  0,
@@ -108,20 +135,18 @@ func (t *track) open(cacheName, name string) error {
 	}
 	j, err := vfs.Load("music", name+".json")
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
-		t.stop()
-		return fmt.Errorf("could not load music json config file for %q: %v", name, err)
+		log.Errorf("could not load music json config file for %q: %v", name, err)
+		return
 	}
 	if j != nil {
 		defer j.Close()
 		err = json.NewDecoder(j).Decode(&config)
 		if err != nil {
-			t.stop()
-			return fmt.Errorf("could not decode music json config file for %q: %v", name, err)
+			log.Errorf("could not decode music json config file for %q: %v", name, err)
+			return
 		}
 	}
-	t.replayGain = config.ReplayGain
-
-	t.player, err = audiowrap.NewPlayer(func() (io.ReadCloser, error) {
+	player, err = audiowrap.NewPlayer(func() (io.ReadCloser, error) {
 		handle, err := vfs.Load("music", name)
 		if err != nil {
 			return nil, fmt.Errorf("could not load music %q: %v", name, err)
@@ -137,79 +162,13 @@ func (t *track) open(cacheName, name string) error {
 		return newSampleCutter(audio.NewInfiniteLoopWithIntro(data, config.LoopStart*bytesPerSample, loopEnd), config.PlayStart*bytesPerSample, handle)
 	})
 	if err != nil {
-		t.stop()
-		return fmt.Errorf("could not start playing music %q: %v", name, err)
-	}
-
-	return nil
-}
-
-func (t *track) play() {
-	if t.player != nil {
-		t.player.SetVolume(*musicVolume * t.replayGain)
-		t.player.Play()
-	}
-}
-
-func (t *track) stop() {
-	if t.player != nil {
-		t.player.FadeOutIn(*musicFadeTime)
-	}
-	t.player = nil
-	t.valid = false
-	t.name = ""
-}
-
-var (
-	current, next track
-	active        bool
-)
-
-func Enable() {
-	active = true
-}
-
-func Update() {
-	if !active {
+		log.Errorf("could not start playing music %q: %v", name, err)
 		return
 	}
-	// Advance track.
-	if next.valid {
-		if current.valid {
-			current.stop()
-		}
-		next.play()
-		current, next = next, current
-	}
-}
 
-// Now returns the current music playback time.
-func Now() time.Duration {
-	if current.valid && current.player != nil && current.player.IsPlaying() {
-		return current.player.Current()
-	}
-	return 0
-}
-
-// Switch switches from the currently playing music to the given track.
-// Passing an empty string means fading to silence.
-func Switch(name string) {
-	cacheName := vfs.Canonical("music", name)
-	if next.valid {
-		if next.name == cacheName {
-			return
-		}
-	} else if current.valid {
-		if current.name == cacheName {
-			return
-		}
-	}
-	if next.player != nil {
-		next.player.CloseInstantly()
-		next.player = nil
-	}
-	err := next.open(cacheName, name)
-	if err != nil {
-		log.Errorf("could not open music %q: %v", name, err)
+	// We have a valid player.
+	player.SetVolume(*musicVolume * config.ReplayGain)
+	if active {
+		player.Play()
 	}
 }

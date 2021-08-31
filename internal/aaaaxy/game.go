@@ -83,9 +83,6 @@ func (g *Game) Update() error {
 	// As the world's Update method may change the sound system info,
 	// run this part last to reduce sound latency.
 
-	timing.Section("music")
-	music.Update()
-
 	timing.Section("noise")
 	noise.Update()
 
