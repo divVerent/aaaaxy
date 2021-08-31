@@ -148,11 +148,6 @@ webprepare:
 releaseclean:
 	$(RM) $(ZIPFILE)
 
-.PHONY: allreleaseclean
-allreleaseclean:
-	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) releaseclean
-	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) releaseclean
-
 .PHONY: binrelease
 binrelease: releaseclean $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
 	$(ZIP) $(ZIPFILE) $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
@@ -161,7 +156,7 @@ binrelease: releaseclean $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
 webrelease: releaseclean webprepare $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
 	$(ZIP) $(ZIPFILE) $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY) aaaaxy$(INFIX).html wasm_exec.js
 .PHONY: allrelease
-allrelease: allreleaseclean
+allrelease:
 	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
 	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
 
