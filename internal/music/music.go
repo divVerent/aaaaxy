@@ -120,13 +120,15 @@ func Switch(name string) {
 		player = nil
 	}
 
+	// Switch to it.
+	currentName = cacheName
+
 	// If we're playing silence, we're done.
 	if cacheName == "" {
 		return
 	}
 
 	// Now load the new track.
-	currentName = cacheName
 	config := musicJson{
 		PlayStart:  0,
 		LoopStart:  0,
