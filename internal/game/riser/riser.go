@@ -16,6 +16,7 @@ package riser
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/divVerent/aaaaxy/internal/animation"
 	"github.com/divVerent/aaaaxy/internal/engine"
@@ -24,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
 type riserState int
@@ -51,6 +53,13 @@ type Riser struct {
 	FadeFrame int
 
 	PlayerOnGroundVec m.Delta
+
+	Carry     *sound.GroupedSound
+	CarryStop *sound.GroupedSound
+	Push      *sound.GroupedSound
+	PushStop  *sound.GroupedSound
+	Rise      *sound.GroupedSound
+	RiseStop  *sound.GroupedSound
 }
 
 const (
@@ -187,10 +196,62 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 		return fmt.Errorf("could not initialize riser animation: %v", err)
 	}
 
+	var snd *sound.Sound
+	snd, err = sound.Load("riser_carry.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load riser_carry sound: %v", err)
+	}
+	r.Carry = snd.Grouped()
+	snd, err = sound.Load("riser_carry_stop.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load riser_carry_stop sound: %v", err)
+	}
+	r.CarryStop = snd.Grouped()
+	snd, err = sound.Load("riser_push.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load riser_push sound: %v", err)
+	}
+	r.Push = snd.Grouped()
+	snd, err = sound.Load("riser_push_stop.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load riser_push_stop sound: %v", err)
+	}
+	r.PushStop = snd.Grouped()
+	snd, err = sound.Load("riser_rise.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load riser_rise sound: %v", err)
+	}
+	r.Rise = snd.Grouped()
+	snd, err = sound.Load("riser_rise_stop.ogg")
+	if err != nil {
+		return fmt.Errorf("could not load riser_rise_stop sound: %v", err)
+	}
+	r.RiseStop = snd.Grouped()
+
 	return nil
 }
 
-func (r *Riser) Despawn() {}
+func (r *Riser) Despawn() {
+	r.Push.Close()
+	r.PushStop.Close()
+	r.Carry.Close()
+	r.CarryStop.Close()
+	r.Rise.Close()
+	r.RiseStop.Close()
+}
+
+func (r *Riser) soundEffect(prev, cur bool, onSound, offSound *sound.GroupedSound) {
+	if cur && !prev {
+		onSound.Play()
+	}
+	if !cur && prev {
+		onSound.Close()
+		offSound.Play()
+		if offSound.Current() >= 100*time.Millisecond {
+			offSound.Reset()
+		}
+	}
+}
 
 func (r *Riser) Update() {
 	playerAbilities := r.World.Player.Impl.(interfaces.Abilityer)
@@ -203,6 +264,8 @@ func (r *Riser) Update() {
 	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
 	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
 	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
+
+	prevState := r.State
 
 	if canCarry && !playerOnMe && actionPressed && (playerDelta.IsZero() || (r.State == GettingCarried && playerDelta.Norm1() <= FollowMaxDistance)) {
 		r.State = GettingCarried
@@ -220,6 +283,9 @@ func (r *Riser) Update() {
 		r.State = Inactive
 	}
 
+	r.soundEffect(prevState == GettingCarried, r.State == GettingCarried, r.Carry, r.CarryStop)
+	r.soundEffect(prevState == MovingLeft || prevState == MovingRight, r.State == MovingLeft || r.State == MovingRight, r.Push, r.PushStop)
+	r.soundEffect(prevState == MovingUp, r.State == MovingUp, r.Rise, r.RiseStop)
 	switch r.State {
 	case Inactive:
 		r.Anim.SetGroup("inactive")

@@ -23,6 +23,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
@@ -143,15 +144,12 @@ func (s *Sound) Play() *audiowrap.Player {
 
 type GroupedSound struct {
 	s           *Sound
+	playing     bool
 	dontGCState dontgc.State
 }
 
 // PlayGrouped starts the given sound effect in a grouped fashion.
-func (s *Sound) PlayGrouped() *GroupedSound {
-	if s.groupedCount == 0 {
-		s.groupedPlayer = s.Play()
-	}
-	s.groupedCount++
+func (s *Sound) Grouped() *GroupedSound {
 	g := &GroupedSound{
 		s: s,
 	}
@@ -159,23 +157,52 @@ func (s *Sound) PlayGrouped() *GroupedSound {
 	return g
 }
 
+// CheckGC checks if GC is currently allowed. Grouped sounds may be GC'd only while not playing.
 func (g *GroupedSound) CheckGC() dontgc.State {
-	if g.s == nil {
+	if !g.playing {
 		return nil
 	}
 	g.Close()
 	return g.dontGCState
 }
 
+// Play starts a grouped sound.
+func (g *GroupedSound) Play() {
+	if g.playing {
+		return
+	}
+	g.playing = true
+	if g.s.groupedCount == 0 {
+		g.s.groupedPlayer = g.s.Play()
+	}
+	g.s.groupedCount++
+}
+
 // Close stops a grouped sound.
 func (g *GroupedSound) Close() {
-	s := g.s
-	g.s = nil
-	s.groupedCount--
-	if s.groupedCount == 0 {
-		s.groupedPlayer.Close()
-		s.groupedPlayer = nil
+	if !g.playing {
+		return
 	}
+	g.playing = false
+	g.s.groupedCount--
+	if g.s.groupedCount == 0 {
+		g.s.groupedPlayer.Close()
+		g.s.groupedPlayer = nil
+	}
+}
+
+// Reset restarts a grouped sound.
+func (g *GroupedSound) Reset() {
+	if !g.playing {
+		return
+	}
+	g.s.groupedPlayer.Close()
+	g.s.groupedPlayer = g.s.Play()
+}
+
+// Current returns the current playback position.
+func (g *GroupedSound) Current() time.Duration {
+	return g.s.groupedPlayer.Current()
 }
 
 func Precache() error {
