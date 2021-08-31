@@ -36,8 +36,9 @@ var (
 )
 
 type Player struct {
-	ebi *ebiaudio.Player
-	dmp *dumper
+	ebi       *ebiaudio.Player
+	ebiCloser io.Closer
+	dmp       *dumper
 
 	// These fields are only really used when -audio=false.
 	accumulatedTime time.Duration
@@ -94,7 +95,7 @@ func ebiPlayer(src io.Reader) (*ebiaudio.Player, error) {
 	return ebiaudio.NewPlayer(ebiaudio.CurrentContext(), src)
 }
 
-func NewPlayer(src func() (io.Reader, error)) (*Player, error) {
+func NewPlayer(src func() (io.ReadCloser, error)) (*Player, error) {
 	dmp, err := newDumper(src)
 	if err != nil {
 		return nil, err
@@ -108,8 +109,9 @@ func NewPlayer(src func() (io.Reader, error)) (*Player, error) {
 		return nil, err
 	}
 	p := &Player{
-		ebi: ebi,
-		dmp: dmp,
+		ebi:       ebi,
+		ebiCloser: srcReader,
+		dmp:       dmp,
 	}
 	p.dontGCState = dontgc.SetUp(p)
 	return p, nil
@@ -131,8 +133,8 @@ func ebiPlayerFromBytes(src []byte) *ebiaudio.Player {
 }
 
 func NewPlayerFromBytes(src []byte) *Player {
-	dmp, err := newDumper(func() (io.Reader, error) {
-		return bytes.NewReader(src), nil
+	dmp, err := newDumper(func() (io.ReadCloser, error) {
+		return io.NopCloser(bytes.NewReader(src)), nil
 	})
 	if err != nil {
 		log.Fatalf("UNREACHABLE CODE: newDumper returned an error despite passed an always-succeed function: %v", err)
@@ -146,13 +148,16 @@ func NewPlayerFromBytes(src []byte) *Player {
 }
 
 func (p *Player) CloseInstantly() error {
+	p.playTime = time.Time{}
 	if p.dmp != nil {
 		p.dmp.Close()
 	}
 	if p.ebi != nil {
 		return p.ebi.Close()
 	}
-	p.playTime = time.Time{}
+	if p.ebiCloser != nil {
+		p.ebiCloser.Close()
+	}
 	return nil
 }
 

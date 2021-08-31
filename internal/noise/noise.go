@@ -55,8 +55,8 @@ func Init() error {
 	if err != nil {
 		return fmt.Errorf("Could not decode stereonoise: %v", err)
 	}
-	noise, err = audiowrap.NewPlayer(func() (io.Reader, error) {
-		return audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded))), nil
+	noise, err = audiowrap.NewPlayer(func() (io.ReadCloser, error) {
+		return io.NopCloser(audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded)))), nil
 	})
 	if err != nil {
 		return fmt.Errorf("could not start playing noise: %v", err)

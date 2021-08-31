@@ -46,7 +46,6 @@ type track struct {
 	name       string
 	valid      bool
 	replayGain float64
-	handles    []vfs.ReadSeekCloser
 	player     *audiowrap.Player
 }
 
@@ -58,7 +57,8 @@ type musicJson struct {
 }
 
 type sampleCutter struct {
-	base io.ReadSeeker
+	base   io.ReadSeeker
+	closer io.Closer
 
 	offset int64
 }
@@ -77,10 +77,15 @@ func (c *sampleCutter) Seek(offset int64, whence int) (int64, error) {
 	return o - c.offset, err
 }
 
-func newSampleCutter(base io.ReadSeeker, offset int64) (*sampleCutter, error) {
+func (c *sampleCutter) Close() error {
+	return c.closer.Close()
+}
+
+func newSampleCutter(base io.ReadSeeker, offset int64, closer io.Closer) (*sampleCutter, error) {
 	f := &sampleCutter{
 		base:   base,
 		offset: offset,
+		closer: closer,
 	}
 	_, err := f.Seek(0, io.SeekStart)
 	if err != nil {
@@ -118,12 +123,11 @@ func (t *track) open(cacheName, name string) error {
 	}
 	t.replayGain = config.ReplayGain
 
-	t.player, err = audiowrap.NewPlayer(func() (io.Reader, error) {
+	t.player, err = audiowrap.NewPlayer(func() (io.ReadCloser, error) {
 		handle, err := vfs.Load("music", name)
 		if err != nil {
 			return nil, fmt.Errorf("could not load music %q: %v", name, err)
 		}
-		t.handles = append(t.handles, handle)
 		data, err := vorbis.DecodeWithSampleRate(audiowrap.SampleRate(), handle)
 		if err != nil {
 			return nil, fmt.Errorf("could not start decoding music %q: %v", name, err)
@@ -132,7 +136,7 @@ func (t *track) open(cacheName, name string) error {
 		if config.LoopEnd >= 0 {
 			loopEnd = config.LoopEnd * bytesPerSample
 		}
-		return newSampleCutter(audio.NewInfiniteLoopWithIntro(data, config.LoopStart*bytesPerSample, loopEnd), config.PlayStart*bytesPerSample)
+		return newSampleCutter(audio.NewInfiniteLoopWithIntro(data, config.LoopStart*bytesPerSample, loopEnd), config.PlayStart*bytesPerSample, handle)
 	})
 	if err != nil {
 		t.stop()
@@ -159,10 +163,6 @@ func (t *track) stop() {
 		t.player.CloseInstantly()
 	}
 	t.player = nil
-	for _, handle := range t.handles {
-		handle.Close()
-	}
-	t.handles = nil
 	t.valid = false
 	t.name = ""
 }
@@ -252,10 +252,6 @@ func Switch(name string) {
 	if next.player != nil {
 		next.player.CloseInstantly()
 		next.player = nil
-		for _, handle := range next.handles {
-			handle.Close()
-		}
-		next.handles = nil
 	}
 	err := next.open(cacheName, name)
 	if err != nil {

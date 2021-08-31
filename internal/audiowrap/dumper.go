@@ -23,7 +23,7 @@ import (
 )
 
 type dumper struct {
-	reader  io.Reader
+	reader  io.ReadCloser
 	volume  float64
 	playing bool
 	played  int
@@ -68,7 +68,7 @@ func dumpSamples(dumpFile io.Writer, samples int) error {
 	return nil
 }
 
-func newDumper(src func() (io.Reader, error)) (*dumper, error) {
+func newDumper(src func() (io.ReadCloser, error)) (*dumper, error) {
 	if !dumping {
 		return nil, nil
 	}
@@ -87,6 +87,7 @@ func newDumper(src func() (io.Reader, error)) (*dumper, error) {
 
 func (d *dumper) Close() {
 	d.playing = false
+	d.reader.Close()
 	for i, snd := range currentSounds {
 		if snd == d {
 			currentSounds = append(currentSounds[:i], currentSounds[(i+1):]...)

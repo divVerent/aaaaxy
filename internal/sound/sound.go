@@ -119,12 +119,12 @@ func (s *Sound) PlayAtVolume(vol float64) *audiowrap.Player {
 	var player *audiowrap.Player
 	if s.loopStart >= 0 {
 		var err error
-		player, err = audiowrap.NewPlayer(func() (io.Reader, error) {
+		player, err = audiowrap.NewPlayer(func() (io.ReadCloser, error) {
 			loopEnd := s.loopEnd * bytesPerSample
 			if loopEnd < 0 {
 				loopEnd = int64(len(s.sound))
 			}
-			return audio.NewInfiniteLoopWithIntro(bytes.NewReader(s.sound), s.loopStart*bytesPerSample, loopEnd), nil
+			return io.NopCloser(audio.NewInfiniteLoopWithIntro(bytes.NewReader(s.sound), s.loopStart*bytesPerSample, loopEnd)), nil
 		})
 		if err != nil {
 			log.Fatalf("UNREACHABLE CODE: could not spawn new sound using an always-succeed function: %v", err)
