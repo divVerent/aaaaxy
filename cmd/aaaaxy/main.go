@@ -15,7 +15,6 @@
 package main
 
 import (
-	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
 	"runtime"
 	"runtime/pprof"
@@ -24,6 +23,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/aaaaxy"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/version"
 )
 

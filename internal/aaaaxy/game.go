@@ -15,7 +15,6 @@
 package aaaaxy
 
 import (
-	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 	"math/rand"
 
@@ -26,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/menu"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/noise"

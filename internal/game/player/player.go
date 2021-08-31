@@ -16,7 +16,6 @@ package player
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"image/color"
 	"math"
 	"time"
@@ -30,6 +29,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/noise"
 	"github.com/divVerent/aaaaxy/internal/sound"

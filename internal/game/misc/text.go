@@ -16,7 +16,6 @@ package misc
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"image"
 	"image/color"
 	"strings"
@@ -28,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/player_state"
 )

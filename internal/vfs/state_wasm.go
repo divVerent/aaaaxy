@@ -19,9 +19,10 @@ package vfs
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
 	"syscall/js"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // ReadState loads the given state file and returns its contents.

@@ -18,10 +18,11 @@
 package vfs
 
 import (
-	"github.com/divVerent/aaaaxy/internal/log"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // ReadState loads the given state file and returns its contents.

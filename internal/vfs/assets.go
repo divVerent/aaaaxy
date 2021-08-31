@@ -15,9 +15,10 @@
 package vfs
 
 import (
-	"github.com/divVerent/aaaaxy/internal/log"
 	"io"
 	"path"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // ReadSeekCloser is a typical file interface.

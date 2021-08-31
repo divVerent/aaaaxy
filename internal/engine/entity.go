@@ -16,12 +16,12 @@ package engine
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"reflect"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 

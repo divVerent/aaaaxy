@@ -16,7 +16,6 @@ package engine
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -27,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/shader"
 )

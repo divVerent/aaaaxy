@@ -18,7 +18,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"io"
 	"os"
 	"time"
@@ -28,6 +27,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 

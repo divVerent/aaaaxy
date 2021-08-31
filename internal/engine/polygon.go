@@ -15,8 +15,9 @@
 package engine
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
 	"image/color"
+
+	"github.com/hajimehoshi/ebiten/v2"
 
 	m "github.com/divVerent/aaaaxy/internal/math"
 )

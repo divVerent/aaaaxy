@@ -17,12 +17,12 @@ package fun
 import (
 	"bytes"
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"strings"
 	"text/template"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/player_state"
 )

@@ -15,10 +15,10 @@
 package engine
 
 import (
-	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 

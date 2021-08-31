@@ -15,11 +15,10 @@
 package target
 
 import (
-	"github.com/divVerent/aaaaxy/internal/log"
-
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // PrintToConsoleTarget prints the given text to console when activated.

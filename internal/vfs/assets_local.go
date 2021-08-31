@@ -20,12 +20,13 @@ package vfs
 import (
 	"errors"
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
 	"sort"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 var (

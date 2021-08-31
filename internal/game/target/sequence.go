@@ -15,11 +15,10 @@
 package target
 
 import (
-	"github.com/divVerent/aaaaxy/internal/log"
-
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // SequenceTarget sends a given string to a SequenceCollector when triggered.

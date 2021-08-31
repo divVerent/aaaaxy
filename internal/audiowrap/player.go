@@ -19,11 +19,12 @@ import (
 	"io"
 	"time"
 
+	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
+
 	"github.com/divVerent/aaaaxy/internal/dontgc"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
-	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
 )
 
 var (

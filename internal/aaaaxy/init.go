@@ -16,7 +16,6 @@ package aaaaxy
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -28,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/noise"
 	"github.com/divVerent/aaaaxy/internal/sound"

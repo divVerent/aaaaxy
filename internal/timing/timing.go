@@ -16,12 +16,12 @@ package timing
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"sort"
 	"strings"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 var (

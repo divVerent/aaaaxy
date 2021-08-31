@@ -17,11 +17,11 @@ package level
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 	"sort"
 	"strings"
 
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )

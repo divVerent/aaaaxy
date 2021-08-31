@@ -15,11 +15,11 @@
 package mixins
 
 import (
-	"github.com/divVerent/aaaaxy/internal/log"
 	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // Settable implements the SetState handler for settable entities.

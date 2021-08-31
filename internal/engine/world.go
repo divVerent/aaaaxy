@@ -18,7 +18,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"math"
 	"os"
 
@@ -27,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/centerprint"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/player_state"
 	"github.com/divVerent/aaaaxy/internal/timing"

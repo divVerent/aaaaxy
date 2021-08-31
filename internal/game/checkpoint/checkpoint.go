@@ -16,7 +16,6 @@ package checkpoint
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"image/color"
 	"time"
 
@@ -26,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/sound"

@@ -16,12 +16,12 @@ package engine
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/shader"
 )
 

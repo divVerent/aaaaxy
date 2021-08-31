@@ -16,7 +16,6 @@ package aaaaxy
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
 	"strings"
 	"sync"
@@ -27,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 

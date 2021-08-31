@@ -16,7 +16,6 @@ package trigger
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	go_image "image"
 	"math/rand"
 
@@ -28,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 

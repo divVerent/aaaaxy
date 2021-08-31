@@ -16,7 +16,6 @@ package level
 
 import (
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"strconv"
 	"strings"
 
@@ -24,6 +23,7 @@ import (
 	"github.com/mitchellh/hashstructure/v2"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
