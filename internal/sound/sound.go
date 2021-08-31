@@ -62,7 +62,7 @@ var (
 type soundJson struct {
 	VolumeAdjust float64 `json:"volume_adjust"`
 	LoopStart    int64   `json:"loop_start"`
-	LoopEnd      int64   `json:"loop_start"`
+	LoopEnd      int64   `json:"loop_end"`
 }
 
 // Load loads a sound effect.

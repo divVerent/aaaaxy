@@ -269,6 +269,7 @@ func (r *Riser) Update() {
 	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
 
 	prevState := r.State
+	prevVelocity := r.Velocity
 
 	if canCarry && !playerOnMe && actionPressed && (playerDelta.IsZero() || (r.State == GettingCarried && playerDelta.Norm1() <= FollowMaxDistance)) {
 		r.State = GettingCarried
@@ -286,9 +287,6 @@ func (r *Riser) Update() {
 		r.State = Inactive
 	}
 
-	r.soundEffect(prevState == GettingCarried, r.State == GettingCarried, r.Carry, r.CarryStop)
-	r.soundEffect(prevState == MovingLeft || prevState == MovingRight, r.State == MovingLeft || r.State == MovingRight, r.Push, r.PushStop)
-	r.soundEffect(prevState == MovingUp, r.State == MovingUp, r.Rise, r.RiseStop)
 	switch r.State {
 	case Inactive:
 		r.Anim.SetGroup("inactive")
@@ -400,6 +398,12 @@ func (r *Riser) Update() {
 	if !r.Velocity.IsZero() {
 		r.Physics.Update() // May call handleTouch.
 	}
+
+	// Carry is a clear state.
+	r.soundEffect(prevState == GettingCarried, r.State == GettingCarried, r.Carry, r.CarryStop)
+	// For push and moving up, decide sound by whether we're actually moving.
+	r.soundEffect(prevVelocity.DX != 0, r.Velocity.DX != 0, r.Push, r.PushStop)
+	r.soundEffect(prevVelocity.DY == UpSpeed || prevVelocity.DY == -UpSpeed, r.Velocity.DY == UpSpeed || r.Velocity.DY == -UpSpeed, r.Rise, r.RiseStop)
 
 	r.Anim.Update(r.Entity)
 
