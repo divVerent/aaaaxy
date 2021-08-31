@@ -156,7 +156,7 @@ func (t *track) setVolume(vol float64) {
 
 func (t *track) stop() {
 	if t.player != nil {
-		t.player.Close()
+		t.player.CloseInstantly()
 	}
 	t.player = nil
 	for _, handle := range t.handles {
@@ -250,7 +250,7 @@ func Switch(name string) {
 		}
 	}
 	if next.player != nil {
-		next.player.Close()
+		next.player.CloseInstantly()
 		next.player = nil
 		for _, handle := range next.handles {
 			handle.Close()

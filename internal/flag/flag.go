@@ -18,10 +18,12 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"os"
 	"sort"
 	"strings"
+	"time"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 var (
@@ -49,6 +51,11 @@ func Int(name string, value int, usage string) *int {
 // String creates a string in our FlagSet.
 func String(name string, value string, usage string) *string {
 	return flagSet.String(name, value, usage)
+}
+
+// Duration creates a Duration in our FlagSet.
+func Duration(name string, value time.Duration, usage string) *time.Duration {
+	return flagSet.Duration(name, value, usage)
 }
 
 // Set overrides a flag value. May be used by the menu.

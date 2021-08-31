@@ -20,15 +20,17 @@ import (
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/dontgc"
+	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
 )
 
 var (
-	audio     = flag.Bool("audio", true, "enable audio")
-	audioRate = flag.Int("audio_rate", 44100, "preferred audio sample rate")
-	volume    = flag.Float64("volume", 1.0, "global volume (0..1)")
+	audio         = flag.Bool("audio", true, "enable audio")
+	audioRate     = flag.Int("audio_rate", 44100, "preferred audio sample rate")
+	volume        = flag.Float64("volume", 1.0, "global volume (0..1)")
+	soundFadeTime = flag.Duration("sound_fade_time", time.Second, "default sound fade time")
 	// TODO: add a way to simulate audio and write to disk, syncing with the frame clock (i.e. each frame renders exactly 1/60 sec of audio).
 	// Also a way to don't actually render audio (but still advance clock) would be nice.
 )
@@ -75,7 +77,7 @@ func Update() {
 		p := fadingPlayers[i]
 		p.fadeFrame--
 		if p.fadeFrame == 0 {
-			p.Close()
+			p.CloseInstantly()
 		}
 		v := p.volume * float64(p.fadeFrame) / float64(p.fadeFrame+1)
 		p.SetVolume(v)
@@ -117,7 +119,7 @@ func (p *Player) CheckGC() dontgc.State {
 	if !p.IsPlaying() {
 		return nil
 	}
-	p.Close()
+	p.CloseInstantly()
 	return p.dontGCState
 }
 
@@ -143,7 +145,7 @@ func NewPlayerFromBytes(src []byte) *Player {
 	}
 }
 
-func (p *Player) Close() error {
+func (p *Player) CloseInstantly() error {
 	if p.dmp != nil {
 		p.dmp.Close()
 	}
@@ -154,7 +156,17 @@ func (p *Player) Close() error {
 	return nil
 }
 
-func (p *Player) FadeOutIn(frames int) {
+func (p *Player) Close() error {
+	if p.volume == 0 || !p.IsPlaying() {
+		p.CloseInstantly()
+	} else {
+		p.FadeOutIn(*soundFadeTime)
+	}
+	return nil
+}
+
+func (p *Player) FadeOutIn(d time.Duration) {
+	frames := int((d*engine.GameTPS + (time.Second / 2)) / time.Second)
 	p.fadeFrame = frames
 	fadingPlayers = append(fadingPlayers, p)
 }
