@@ -16,12 +16,12 @@ package audiowrap
 
 import (
 	"bytes"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"io"
-	"runtime"
 	"time"
 
+	"github.com/divVerent/aaaaxy/internal/dontgc"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
 )
 
@@ -42,7 +42,7 @@ type Player struct {
 	playTime        time.Time
 
 	// Debug info to print if this were to be GC'd while still playing.
-	stackTrace []uintptr
+	dontGCState dontgc.State
 }
 
 func Rate() int {
@@ -83,32 +83,20 @@ func NewPlayer(src func() (io.Reader, error)) (*Player, error) {
 	if err != nil {
 		return nil, err
 	}
-	stackTrace := make([]uintptr, 64)
-	stackLen := runtime.Callers(1, stackTrace)
-	stackTrace = stackTrace[:stackLen]
 	p := &Player{
-		ebi:        ebi,
-		dmp:        dmp,
-		stackTrace: stackTrace,
+		ebi: ebi,
+		dmp: dmp,
 	}
-	runtime.SetFinalizer(p, finalizePlayer)
+	p.dontGCState = dontgc.SetUp(p)
 	return p, nil
 }
 
-func finalizePlayer(p *Player) {
+func (p *Player) CheckGC() dontgc.State {
 	if !p.IsPlaying() {
-		return
-	}
-	log.Errorf("BUG: unbounded playing sound became unreachable and would have played forever if not for GC; created here:")
-	stackTrace := runtime.CallersFrames(p.stackTrace)
-	for {
-		frame, more := stackTrace.Next()
-		log.Errorf("%v @ %v:%v", frame.Function, frame.File, frame.Line)
-		if !more {
-			break
-		}
+		return nil
 	}
 	p.Close()
+	return p.dontGCState
 }
 
 func ebiPlayerFromBytes(src []byte) *ebiaudio.Player {

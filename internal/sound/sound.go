@@ -28,6 +28,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
+	"github.com/divVerent/aaaaxy/internal/dontgc"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/vfs"
@@ -45,7 +46,8 @@ const (
 // Sound represents a sound effect.
 type Sound struct {
 	sound              []byte
-	players            []*audiowrap.Player
+	groupedPlayer      *audiowrap.Player
+	groupedCount       int
 	volumeAdjust       float64
 	loopStart, loopEnd int64
 }
@@ -137,6 +139,43 @@ func (s *Sound) PlayAtVolume(vol float64) *audiowrap.Player {
 // Play plays the given sound effect.
 func (s *Sound) Play() *audiowrap.Player {
 	return s.PlayAtVolume(1.0)
+}
+
+type GroupedSound struct {
+	s           *Sound
+	dontGCState dontgc.State
+}
+
+// PlayGrouped starts the given sound effect in a grouped fashion.
+func (s *Sound) PlayGrouped() *GroupedSound {
+	if s.groupedCount == 0 {
+		s.groupedPlayer = s.Play()
+	}
+	s.groupedCount++
+	g := &GroupedSound{
+		s: s,
+	}
+	g.dontGCState = dontgc.SetUp(g)
+	return g
+}
+
+func (g *GroupedSound) CheckGC() dontgc.State {
+	if g.s == nil {
+		return nil
+	}
+	g.Close()
+	return g.dontGCState
+}
+
+// Close stops a grouped sound.
+func (g *GroupedSound) Close() {
+	s := g.s
+	g.s = nil
+	s.groupedCount--
+	if s.groupedCount == 0 {
+		s.groupedPlayer.Close()
+		s.groupedPlayer = nil
+	}
 }
 
 func Precache() error {
