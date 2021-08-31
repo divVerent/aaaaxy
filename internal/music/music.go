@@ -32,13 +32,11 @@ import (
 )
 
 var (
-	musicVolume = flag.Float64("music_volume", 0.5, "music volume (0..1)")
+	musicVolume   = flag.Float64("music_volume", 0.5, "music volume (0..1)")
+	musicFadeTime = flag.Duration("music_fade_time", time.Second, "music fade time")
 )
 
 const (
-	xFadeFrameOut  = 40
-	xFadeFrameIn   = 20
-	xFadeFrameEnd  = 60
 	bytesPerSample = 4
 )
 
@@ -148,19 +146,14 @@ func (t *track) open(cacheName, name string) error {
 
 func (t *track) play() {
 	if t.player != nil {
+		t.player.SetVolume(*musicVolume * t.replayGain)
 		t.player.Play()
-	}
-}
-
-func (t *track) setVolume(vol float64) {
-	if t.player != nil {
-		t.player.SetVolume(vol * *musicVolume * t.replayGain)
 	}
 }
 
 func (t *track) stop() {
 	if t.player != nil {
-		t.player.CloseInstantly()
+		t.player.FadeOutIn(*musicFadeTime)
 	}
 	t.player = nil
 	t.valid = false
@@ -168,11 +161,8 @@ func (t *track) stop() {
 }
 
 var (
-	current, fadeTo, next track
-	haveNext              bool
-	xFadeFrame            int
-	idleNotifier          chan<- struct{}
-	active                bool
+	current, next track
+	active        bool
 )
 
 func Enable() {
@@ -183,49 +173,18 @@ func Update() {
 	if !active {
 		return
 	}
-	// If idle, initiate fading.
-	if !fadeTo.valid && next.valid {
-		fadeTo, next = next, fadeTo
-		xFadeFrame = 0
-		// Skip right to fade-in if we are currently playing silence.
-		if current.player == nil {
-			xFadeFrame = xFadeFrameIn
-		}
-	}
-	// Nothing to fade?
-	if !fadeTo.valid {
-		if idleNotifier != nil {
-			close(idleNotifier)
-			idleNotifier = nil
-		}
-		return
-	}
-	// Advance.
-	xFadeFrame++
-	if current.valid {
-		if xFadeFrame == xFadeFrameOut {
+	// Advance track.
+	if next.valid {
+		if current.valid {
 			current.stop()
-		} else {
-			current.setVolume(float64(xFadeFrameOut-xFadeFrame) / float64(xFadeFrameOut))
 		}
-	}
-	if fadeTo.valid && xFadeFrame > xFadeFrameIn {
-		fadeTo.setVolume(float64(xFadeFrame-xFadeFrameIn) / float64(xFadeFrameEnd-xFadeFrameIn))
-		if xFadeFrame == xFadeFrameIn+1 {
-			fadeTo.play()
-		}
-	}
-	if xFadeFrame == xFadeFrameEnd {
-		current, fadeTo = fadeTo, current
-		xFadeFrame = 0
+		next.play()
+		current, next = next, current
 	}
 }
 
 // Now returns the current music playback time.
 func Now() time.Duration {
-	if fadeTo.valid && fadeTo.player != nil && fadeTo.player.IsPlaying() {
-		return fadeTo.player.Current()
-	}
 	if current.valid && current.player != nil && current.player.IsPlaying() {
 		return current.player.Current()
 	}
@@ -238,10 +197,6 @@ func Switch(name string) {
 	cacheName := vfs.Canonical("music", name)
 	if next.valid {
 		if next.name == cacheName {
-			return
-		}
-	} else if fadeTo.valid {
-		if fadeTo.name == cacheName {
 			return
 		}
 	} else if current.valid {
@@ -257,12 +212,4 @@ func Switch(name string) {
 	if err != nil {
 		log.Errorf("could not open music %q: %v", name, err)
 	}
-}
-
-// End ends all music playback, then notifies the given channel.
-func End() <-chan struct{} {
-	Switch("")
-	ch := make(chan struct{})
-	idleNotifier = ch
-	return ch
 }
