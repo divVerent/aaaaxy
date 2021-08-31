@@ -22,7 +22,7 @@ new=$(sh scripts/version.sh gittag)
 
 echo "Releaseing: $prev -> $new."
 
-make allrelease ZIPFILE="aaaaxy-$new.zip"
+make allrelease
 
 git tag -a "$new" -m "$(
 	echo "Release $new"
@@ -35,4 +35,4 @@ echo "Now run:"
 echo "  git push origin tag $new"
 echo "Then create the release on GitHub with the following message:"
 git show -s "$new"
-echo "In the release, upload aaaaxy-$new.zip"
+echo "In the release, upload aaaaxy-*-$new.zip"

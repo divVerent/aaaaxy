@@ -20,7 +20,7 @@ CP = cp --reflink=auto
 RESOURCE_FILES =
 
 # Output file name when building a release.
-ZIPFILE = aaaaxy.zip
+ZIPFILE = aaaaxy-$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)-$(shell sh scripts/version.sh gittag).zip
 
 # Provide a way to build binaries that are faster at image/video dumping.
 # This however makes them slower for normal use, so we're not releasing those.
@@ -72,19 +72,11 @@ CGO_CFLAGS ?= $(CFLAGS)
 CGO_CXXFLAGS ?= $(CXXFLAGS)
 CGO_LDFLAGS ?= $(LDFLAGS)
 
+.PHONY: all
+all: bin
+
 .PHONY: bin
 bin: $(BINARY)
-
-.PHONY: all
-all: debug release
-
-.PHONY: debug
-debug:
-	$(MAKE) BUILDTYPE=debug bin
-
-.PHONY: release
-release:
-	$(MAKE) BUILDTYPE=release bin
 
 .PHONY: clean
 clean:
@@ -148,39 +140,30 @@ $(BINARY): $(BINARY_ASSETS) $(SOURCES)
 
 # Binary release building.
 
-.PHONY: addextras
-addextras: $(EXTRAFILES)
-	$(ZIP) $(ZIPFILE) $(EXTRAFILES)
-
-.PHONY: addlicenses
-addlicenses: $(LICENSES_THIRD_PARTY)
-	$(ZIP) $(ZIPFILE) $(LICENSES_THIRD_PARTY)
-
-.PHONY: addrelease
-addrelease: $(BINARY)
-	$(ZIP) $(ZIPFILE) $(BINARY)
-	$(MAKE) clean
-
 .PHONY: webprepare
 webprepare:
 	cp $(shell $(GO) env GOROOT)/misc/wasm/wasm_exec.js .
 
-.PHONY: addwebstuff
-addwebstuff: webprepare
-	$(ZIP) $(ZIPFILE) aaaaxy$(INFIX).html wasm_exec.js
+.PHONY: releaseclean
+releaseclean:
+	$(RM) $(ZIPFILE)
 
+.PHONY: allreleaseclean
+allreleaseclean:
+	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) releaseclean
+	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) releaseclean
+
+.PHONY: binrelease
+binrelease: releaseclean $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
+	$(ZIP) $(ZIPFILE) $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
+
+.PHONY: webrelease
+webrelease: releaseclean webprepare $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
+	$(ZIP) $(ZIPFILE) $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY) aaaaxy$(INFIX).html wasm_exec.js
 .PHONY: allrelease
 allrelease: allreleaseclean
-	$(RM) $(ZIPFILE)
-	$(MAKE) addextras
-	$(MAKE) addlicenses
-	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
-	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) BUILDTYPE=release addrelease
-	# Disabled because it currently doesn't build (internal error in internal/abi/abi.go).
-	# GO="$(GO)" GOOS=windows GOARCH=386 $(MAKE) BUILDTYPE=release addrelease
-	# Disabled because build is WAY too slow to be playable.
-	# $(MAKE) BUILDTYPE=release addwebstuff
-	# GO="$(GO)" GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm BUILDTYPE=release addrelease
+	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
+	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
 
 .PHONY: webdebug
 webdebug: webprepare
@@ -189,12 +172,6 @@ webdebug: webprepare
 .PHONY: webrelease
 webrelease: webprepare
 	GO="$(GO)" GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm release
-
-.PHONY: allreleaseclean
-allreleaseclean:
-	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) clean
-	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) clean
-	$(RM) $(ZIPFILE)
 
 # Debugging.
 assets/generated/%.cp.pdf: assets/generated/%.cp.dot

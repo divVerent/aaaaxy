@@ -4,7 +4,7 @@
 /aaaaxy-linux-*
 /aaaaxy-windows-*
 /aaaaxy.tiled-session
-/aaaaxy.zip
+/aaaaxy-*.zip
 /assets/generated
 /cmd/aaaaxy/resources.*
 /internal/vfs/_embedroot
