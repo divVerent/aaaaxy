@@ -43,7 +43,13 @@ type Player struct {
 
 	// Debug info to print if this were to be GC'd while still playing.
 	dontGCState dontgc.State
+
+	// State for fading out.
+	volume    float64
+	fadeFrame int
 }
+
+var fadingPlayers []*Player
 
 func Rate() int {
 	return *audioRate
@@ -61,6 +67,22 @@ func SampleRate() int {
 		return ebiaudio.CurrentContext().SampleRate()
 	}
 	return *audioRate
+}
+
+func Update() {
+	j := 0
+	for i := 0; i < len(fadingPlayers); i++ {
+		p := fadingPlayers[i]
+		p.fadeFrame--
+		if p.fadeFrame == 0 {
+			p.Close()
+		}
+		v := p.volume * float64(p.fadeFrame) / float64(p.fadeFrame+1)
+		p.SetVolume(v)
+		fadingPlayers[j] = p
+		j++
+	}
+	fadingPlayers = fadingPlayers[:j]
 }
 
 func ebiPlayer(src io.Reader) (*ebiaudio.Player, error) {
@@ -132,6 +154,11 @@ func (p *Player) Close() error {
 	return nil
 }
 
+func (p *Player) FadeOutIn(frames int) {
+	p.fadeFrame = frames
+	fadingPlayers = append(fadingPlayers, p)
+}
+
 func (p *Player) Current() time.Duration {
 	if p.dmp != nil {
 		return p.dmp.Current()
@@ -182,6 +209,7 @@ func (p *Player) Play() {
 }
 
 func (p *Player) SetVolume(vol float64) {
+	p.volume = vol * *volume
 	if p.dmp != nil {
 		p.dmp.SetVolume(vol * *volume)
 	}

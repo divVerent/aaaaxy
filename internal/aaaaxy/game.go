@@ -21,6 +21,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
@@ -81,11 +82,15 @@ func (g *Game) Update() error {
 
 	// As the world's Update method may change the sound system info,
 	// run this part last to reduce sound latency.
+
 	timing.Section("music")
 	music.Update()
 
 	timing.Section("noise")
 	noise.Update()
+
+	timing.Section("audiowrap")
+	audiowrap.Update()
 
 	return nil
 }
