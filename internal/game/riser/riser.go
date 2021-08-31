@@ -402,8 +402,8 @@ func (r *Riser) Update() {
 	// Carry is a clear state.
 	r.soundEffect(prevState == GettingCarried, r.State == GettingCarried, r.Carry, r.CarryStop)
 	// For push and moving up, decide sound by whether we're actually moving.
-	r.soundEffect(prevVelocity.DX != 0, r.Velocity.DX != 0, r.Push, r.PushStop)
-	r.soundEffect(prevVelocity.DY == UpSpeed || prevVelocity.DY == -UpSpeed, r.Velocity.DY == UpSpeed || r.Velocity.DY == -UpSpeed, r.Rise, r.RiseStop)
+	r.soundEffect((prevState == MovingLeft || prevState == MovingRight) && prevVelocity.DX != 0, (r.State == MovingLeft || r.State == MovingRight) && r.Velocity.DX != 0, r.Push, r.PushStop)
+	r.soundEffect(prevState == MovingUp && (prevVelocity.DY == UpSpeed || prevVelocity.DY == -UpSpeed), r.State == MovingUp && (r.Velocity.DY == UpSpeed || r.Velocity.DY == -UpSpeed), r.Rise, r.RiseStop)
 
 	r.Anim.Update(r.Entity)
 
