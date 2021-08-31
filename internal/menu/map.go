@@ -29,7 +29,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
-	"github.com/divVerent/aaaaxy/internal/player_state"
+	"github.com/divVerent/aaaaxy/internal/playerstate"
 )
 
 type MapScreen struct {
@@ -141,7 +141,7 @@ func (s *MapScreen) moveBy(d m.Delta) {
 }
 
 func (s *MapScreen) exit() error {
-	if s.CurrentCP != firstCP && s.Controller.World.PlayerState.CheckpointSeen(firstCP) != player_state.NotSeen {
+	if s.CurrentCP != firstCP && s.Controller.World.PlayerState.CheckpointSeen(firstCP) != playerstate.NotSeen {
 		s.CurrentCP = firstCP
 		return s.Controller.MoveSound(nil)
 	}
@@ -221,7 +221,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	}
 	for z := 0; z < 3; z++ {
 		for _, cpName := range s.SortedLocs {
-			if s.Controller.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
+			if s.Controller.World.PlayerState.CheckpointSeen(cpName) == playerstate.NotSeen {
 				continue
 			}
 			pos := cpPos[cpName]
@@ -272,15 +272,15 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	for _, cpName := range s.SortedLocs {
 		var sprite *ebiten.Image
 		switch s.Controller.World.PlayerState.CheckpointSeen(cpName) {
-		case player_state.NotSeen:
+		case playerstate.NotSeen:
 			continue
-		case player_state.SeenNormal:
+		case playerstate.SeenNormal:
 			if cpName == s.CurrentCP {
 				sprite = s.cpSelectedSprite
 			} else {
 				sprite = s.cpSprite
 			}
-		case player_state.SeenFlipped:
+		case playerstate.SeenFlipped:
 			if cpName == s.CurrentCP {
 				sprite = s.cpFlippedSelectedSprite
 			} else {
@@ -300,7 +300,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	}
 	// Finally the checkmarks.
 	for _, cpName := range s.SortedLocs {
-		if s.Controller.World.PlayerState.CheckpointSeen(cpName) == player_state.NotSeen {
+		if s.Controller.World.PlayerState.CheckpointSeen(cpName) == playerstate.NotSeen {
 			continue
 		}
 		if seen, total := s.Controller.World.PlayerState.TnihSignsSeen(cpName); seen < total {

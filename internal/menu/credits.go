@@ -29,7 +29,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
-	"github.com/divVerent/aaaaxy/internal/player_state"
+	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/version"
 )
 
@@ -84,19 +84,19 @@ func (s *CreditsScreen) Init(m *Controller) error {
 			addCategory("Cheat%", true)
 			addCategory("Without Cheating Of Course", false)
 		}
-		if cat&player_state.HundredPercentSpeedrun == 0 {
-			addCategory("Any%", cat&player_state.AnyPercentSpeedrun != 0)
+		if cat&playerstate.HundredPercentSpeedrun == 0 {
+			addCategory("Any%", cat&playerstate.AnyPercentSpeedrun != 0)
 		}
-		addCategory("100%", cat&player_state.HundredPercentSpeedrun != 0)
-		addCategory("All Notes", cat&player_state.AllSignsSpeedrun != 0)
-		addCategory("All Paths", cat&player_state.AllPathsSpeedrun != 0)
-		addCategory("All Secrets", cat&player_state.AllSecretsSpeedrun != 0)
-		addCategory("All Flipped", cat&player_state.AllFlippedSpeedrun != 0)
+		addCategory("100%", cat&playerstate.HundredPercentSpeedrun != 0)
+		addCategory("All Notes", cat&playerstate.AllSignsSpeedrun != 0)
+		addCategory("All Paths", cat&playerstate.AllPathsSpeedrun != 0)
+		addCategory("All Secrets", cat&playerstate.AllSecretsSpeedrun != 0)
+		addCategory("All Flipped", cat&playerstate.AllFlippedSpeedrun != 0)
 		noEscape := "No Escape"
 		if input.UsingGamepad() {
 			noEscape = "No Start"
 		}
-		addCategory(noEscape, cat&player_state.NoEscapeSpeedrun != 0)
+		addCategory(noEscape, cat&playerstate.NoEscapeSpeedrun != 0)
 		l := len(categories)
 		switch l {
 		case 0:

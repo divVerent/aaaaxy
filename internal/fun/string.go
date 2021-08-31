@@ -24,11 +24,11 @@ import (
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
-	"github.com/divVerent/aaaaxy/internal/player_state"
+	"github.com/divVerent/aaaaxy/internal/playerstate"
 )
 
 // TryFormatText replaces placeholders in the given text.
-func TryFormatText(ps *player_state.PlayerState, s string) (string, error) {
+func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 	/*
 		// Fast path if the template is trivial.
 		if !strings.Contains(s, "{") {
@@ -161,7 +161,7 @@ func TryFormatText(ps *player_state.PlayerState, s string) (string, error) {
 }
 
 // FormatText replaces placeholders in the given text.
-func FormatText(ps *player_state.PlayerState, s string) string {
+func FormatText(ps *playerstate.PlayerState, s string) string {
 	result, err := TryFormatText(ps, s)
 	if err != nil {
 		log.Warningf("Failed to execute text template: %v", s)

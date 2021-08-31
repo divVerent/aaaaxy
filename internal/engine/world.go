@@ -28,7 +28,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
-	"github.com/divVerent/aaaaxy/internal/player_state"
+	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/timing"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
@@ -59,7 +59,7 @@ type World struct {
 	// Player is the player entity.
 	Player *Entity
 	// PlayerState is the managed persistent state of the player.
-	PlayerState player_state.PlayerState
+	PlayerState playerstate.PlayerState
 	// Level is the current tilemap (universal covering with warpZones).
 	Level *level.Level
 	// Frame since last spawn. Used to let the world slowly "fade in".
@@ -208,7 +208,7 @@ func (w *World) Init(saveState int) error {
 		entities:       makeList(allList),
 		opaqueEntities: makeList(opaqueList),
 		Level:          lvl,
-		PlayerState: player_state.PlayerState{
+		PlayerState: playerstate.PlayerState{
 			Level: lvl,
 		},
 		prevCpID:  level.InvalidEntityID,
@@ -275,7 +275,7 @@ func (w *World) Save() error {
 // Spawning at checkpoint "" means the initial player location.
 func (w *World) RespawnPlayer(checkpointName string) error {
 	// Load whether we've seen this checkpoint in flipped state.
-	flipped := w.PlayerState.CheckpointSeen(checkpointName) == player_state.SeenFlipped
+	flipped := w.PlayerState.CheckpointSeen(checkpointName) == playerstate.SeenFlipped
 
 	if *cheatInitialCheckpoint != "" {
 		checkpointName = *cheatInitialCheckpoint

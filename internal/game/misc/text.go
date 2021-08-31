@@ -29,7 +29,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
-	"github.com/divVerent/aaaaxy/internal/player_state"
+	"github.com/divVerent/aaaaxy/internal/playerstate"
 )
 
 var (
@@ -68,7 +68,7 @@ func cacheKey(s *level.Spawnable) textCacheKey {
 	}
 }
 
-func (key textCacheKey) load(ps *player_state.PlayerState) (*ebiten.Image, error) {
+func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error) {
 	fnt := font.ByName[key.font]
 	if fnt.Face == nil {
 		return nil, fmt.Errorf("could not find font %q", key.font)
