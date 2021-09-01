@@ -31,7 +31,7 @@ type RespawnPlayer struct {
 
 // Let's do a somewhat forgiving hitbox.
 const (
-	RespawnHitboxBorder = 5 // Actually only the 6x6 center square of the 16x16 sprite.
+	RespawnHitboxBorder = 4 // Actually only the 8x8 center square of the 16x16 sprite.
 )
 
 func (r *RespawnPlayer) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
