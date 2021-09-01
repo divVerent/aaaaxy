@@ -154,7 +154,7 @@ func (c *Controller) Draw(screen *ebiten.Image) {
 	if *showTime {
 		timing.Section("time")
 		font.DebugSmall.Draw(screen,
-			fmt.Sprintf(fun.FormatText(&c.World.PlayerState, "0{{GameTime}}")),
+			fmt.Sprintf(fun.FormatText(&c.World.PlayerState, "{{GameTime}}")),
 			m.Pos{X: 32, Y: engine.GameHeight - 4}, true,
 			color.NRGBA{R: 255, G: 255, B: 255, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
 	}

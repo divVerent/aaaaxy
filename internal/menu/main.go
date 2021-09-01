@@ -15,7 +15,6 @@
 package menu
 
 import (
-	"fmt"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -23,6 +22,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
@@ -113,11 +113,6 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	font.Menu.Draw(screen, "Quit", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
 
 	// Display stats.
-	frames := s.Controller.World.PlayerState.Frames()
-	ss, ms := frames/60, (frames%60)*1000/60
-	mm, ss := ss/60, ss%60
-	hh, mm := mm/60, mm%60
-	font.MenuSmall.Draw(screen, fmt.Sprintf("Time: %d:%02d:%02d.%03d", hh, mm, ss, ms),
+	font.MenuSmall.Draw(screen, fun.FormatText(&s.Controller.World.PlayerState, "Time: {{GameTime}}"),
 		m.Pos{X: x, Y: 17 * h / 32}, true, fgn, bgn)
-	// TODO: also add
 }
