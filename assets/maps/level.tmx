@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7923">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7938">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -16643,6 +16643,7 @@
     <property name="acceleration" value="38.4"/>
     <property name="delta" value="0 -120"/>
     <property name="image" value="ending_logo.png"/>
+    <property name="no_flip" value="x"/>
     <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
@@ -16658,10 +16659,10 @@
     <property name="target" value="FinalLogo"/>
    </properties>
   </object>
-  <object id="7815" type="Sprite" x="1907" y="4697" width="314" height="131">
+  <object id="7815" type="Sprite" x="1907" y="4702" width="6" height="15">
    <properties>
     <property name="image" value="ending_base.png"/>
-    <property name="image_region" value="0 157 314 131"/>
+    <property name="image_region" value="0 162 6 15"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -16966,5 +16967,92 @@
    </properties>
   </object>
   <object id="7922" gid="320" x="7312" y="6144" width="32" height="32"/>
+  <object id="7923" type="Sprite" x="1907" y="4697" width="314" height="5">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="0 157 314 5"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7924" type="Sprite" x="1907" y="4717" width="314" height="41">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="0 177 314 41"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7925" type="Sprite" x="1907" y="4758" width="221" height="15">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="0 218 221 15"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7926" type="Sprite" x="1907" y="4773" width="314" height="19">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="0 233 314 19"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7927" type="Sprite" x="1907" y="4792" width="40" height="15">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="0 252 40 15"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7928" type="Sprite" x="1907" y="4807" width="314" height="21">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="0 267 314 21"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7929" type="Sprite" x="1913" y="4702" width="15" height="15">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="6 162 15 15"/>
+    <property name="no_flip" value="x"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7931" type="Sprite" x="1928" y="4702" width="293" height="15">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="21 162 293 15"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7932" type="Sprite" x="2128" y="4758" width="31" height="15">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="221 218 31 15"/>
+    <property name="no_flip" value="x"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7933" type="Sprite" x="2159" y="4758" width="62" height="15">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="252 218 62 15"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7934" type="Sprite" x="1947" y="4792" width="15" height="15">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="40 252 15 15"/>
+    <property name="no_flip" value="x"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7937" type="Sprite" x="1962" y="4792" width="259" height="15">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="55 252 259 15"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
