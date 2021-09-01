@@ -14456,7 +14456,7 @@
   <object id="6713" gid="337" x="6672" y="6592" width="16" height="16"/>
   <object id="6714" gid="337" x="6688" y="6592" width="16" height="16"/>
   <object id="6715" gid="309" x="6712" y="6584" width="32" height="16"/>
-  <object id="6716" name="vindication" type="Checkpoint" x="6528" y="6256" width="32" height="32">
+  <object id="6716" name="vindication" type="Checkpoint" x="6528" y="6256" width="48" height="32">
    <properties>
     <property name="music" value="Theme Song 8-bit V1.ogg"/>
     <property name="next_up" type="object" value="6734"/>
