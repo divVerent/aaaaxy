@@ -30,7 +30,7 @@ import (
 var (
 	audio         = flag.Bool("audio", true, "enable audio")
 	audioRate     = flag.Int("audio_rate", 44100, "preferred audio sample rate")
-	volume        = flag.Float64("volume", 1.0, "global volume (0..1)")
+	volume        = flag.Float64("volume", 0.5, "global volume (0..1)")
 	soundFadeTime = flag.Duration("sound_fade_time", time.Second, "default sound fade time")
 	// TODO: add a way to simulate audio and write to disk, syncing with the frame clock (i.e. each frame renders exactly 1/60 sec of audio).
 	// Also a way to don't actually render audio (but still advance clock) would be nice.
