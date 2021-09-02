@@ -15,7 +15,7 @@
 
 set -ex
 
-prev=$(git describe --always --long)
+prev=$(git describe --always --long --match 'v*.*' --exclude 'v*.*.*')
 prev=${prev%-*-g*}
 
 new=$(sh scripts/version.sh gittag)
