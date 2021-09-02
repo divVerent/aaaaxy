@@ -330,11 +330,26 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 		}
 	}
 
+	// Clear all centerprints.
+	centerprint.Reset()
+
+	// Reset the ending stuff.
+	w.TimerStopped = false
+	w.MaxVisiblePixels = math.MaxInt32
+	w.ForceCredits = false
+	w.GlobalColorM.Reset()
+
+	// Reset all warpzones.
+	w.WarpZoneStates = map[string]bool{}
+
 	// Move the player to the center of the checkpoint.
 	w.Player.Rect.Origin = cp.Rect.Origin.Add(cp.Rect.Size.Div(2)).Sub(w.Player.Rect.Size.Div(2))
 
 	// Load all the stuff that the player needs.
 	w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
+
+	// Show the fade in.
+	w.FramesSinceSpawn = 0
 
 	// Move the player down as far as possible.
 	if cpSp.Properties["downtrace_on_spawn"] != "false" {
@@ -361,29 +376,14 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 	// w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
 	w.frameVis ^= level.FrameVis
 
-	// Clear all centerprints.
-	centerprint.Reset()
-
-	// Reset all warpzones.
-	w.WarpZoneStates = map[string]bool{}
-
 	// Make sure respawning always gets back to this CP.
 	w.PlayerState.RecordCheckpoint(checkpointName, flipped)
 
 	// Notify the player, reset animation state.
 	w.Player.Impl.(PlayerEntityImpl).Respawned()
 
-	// Show the fade in.
-	w.FramesSinceSpawn = 0
-
 	// Scroll the player in view right away.
 	w.setScrollPos(w.Player.Impl.(PlayerEntityImpl).LookPos())
-
-	// Reset the ending stuff.
-	w.TimerStopped = false
-	w.MaxVisiblePixels = math.MaxInt32
-	w.ForceCredits = false
-	w.GlobalColorM.Reset()
 
 	// Adjust previous scroll position by how much the CP "moved".
 	// That way, respawning right after touching a CP will retain CP-near screen content.
