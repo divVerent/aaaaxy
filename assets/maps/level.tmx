@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7938">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7943">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -15690,7 +15690,6 @@
   <object id="7262" gid="339" x="7440" y="6144" width="16" height="16"/>
   <object id="7263" gid="339" x="7424" y="6144" width="16" height="16"/>
   <object id="7264" gid="339" x="7408" y="6144" width="16" height="16"/>
-  <object id="7265" gid="339" x="7392" y="6144" width="16" height="16"/>
   <object id="7267" gid="339" x="7360" y="6256" width="16" height="16"/>
   <object id="7269" gid="339" x="7328" y="6080" width="16" height="16"/>
   <object id="7270" gid="339" x="7312" y="6080" width="16" height="16"/>
@@ -17052,6 +17051,15 @@
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="55 252 259 15"/>
     <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7938" gid="336" x="7344" y="6016" width="16" height="16"/>
+  <object id="7939" gid="336" x="7344" y="6032" width="16" height="16"/>
+  <object id="7940" gid="336" x="7344" y="6048" width="16" height="16"/>
+  <object id="7941" gid="336" x="7344" y="6064" width="16" height="16"/>
+  <object id="7942" type="_TileMod" x="7328" y="6064" width="16" height="16">
+   <properties>
+    <property name="player_solid" type="bool" value="false"/>
    </properties>
   </object>
  </objectgroup>
