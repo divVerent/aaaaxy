@@ -218,13 +218,13 @@
   <properties>
    <property name="orientation" value="ES"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/forcefield_v.png"/>
+  <image width="16" height="16" source="editorimgs/forcefield_h.png"/>
  </tile>
  <tile id="36" type="ForceField">
   <properties>
    <property name="orientation" value="SW"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/forcefield_h.png"/>
+  <image width="16" height="16" source="editorimgs/forcefield_v.png"/>
  </tile>
  <tile id="37" type="MovableSprite">
   <properties>
