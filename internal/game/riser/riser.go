@@ -54,12 +54,7 @@ type Riser struct {
 
 	PlayerOnGroundVec m.Delta
 
-	Carry     *sound.GroupedSound
-	CarryStop *sound.GroupedSound
-	Push      *sound.GroupedSound
-	PushStop  *sound.GroupedSound
-	Rise      *sound.GroupedSound
-	RiseStop  *sound.GroupedSound
+	carrySound, pushSound, riseSound riserSound
 }
 
 const (
@@ -196,63 +191,71 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 		return fmt.Errorf("could not initialize riser animation: %v", err)
 	}
 
-	var snd *sound.Sound
-	snd, err = sound.Load("riser_carry.ogg")
+	r.carrySound, err = newRiserSound(1, "riser_carry")
 	if err != nil {
-		return fmt.Errorf("could not load riser_carry sound: %v", err)
+		return err
 	}
-	r.Carry = snd.Grouped()
-	snd, err = sound.Load("riser_carry_stop.ogg")
+	r.pushSound, err = newRiserSound(2, "riser_push")
 	if err != nil {
-		return fmt.Errorf("could not load riser_carry_stop sound: %v", err)
+		return err
 	}
-	r.CarryStop = snd.Grouped()
-	snd, err = sound.Load("riser_push.ogg")
+	r.riseSound, err = newRiserSound(2, "riser_rise")
 	if err != nil {
-		return fmt.Errorf("could not load riser_push sound: %v", err)
+		return err
 	}
-	r.Push = snd.Grouped()
-	snd, err = sound.Load("riser_push_stop.ogg")
-	if err != nil {
-		return fmt.Errorf("could not load riser_push_stop sound: %v", err)
-	}
-	r.PushStop = snd.Grouped()
-	snd, err = sound.Load("riser_rise.ogg")
-	if err != nil {
-		return fmt.Errorf("could not load riser_rise sound: %v", err)
-	}
-	r.Rise = snd.Grouped()
-	snd, err = sound.Load("riser_rise_stop.ogg")
-	if err != nil {
-		return fmt.Errorf("could not load riser_rise_stop sound: %v", err)
-	}
-	r.RiseStop = snd.Grouped()
 
 	return nil
 }
 
 func (r *Riser) Despawn() {
-	r.Push.Close()
-	r.PushStop.Close()
-	r.Carry.Close()
-	r.CarryStop.Close()
-	r.Rise.Close()
-	r.RiseStop.Close()
+	r.pushSound.update(false)
+	r.carrySound.update(false)
+	r.riseSound.update(false)
 }
 
-func (r *Riser) soundEffect(prev, cur bool, onSound, offSound *sound.GroupedSound) {
-	if cur && !prev {
-		onSound.Play()
-		if !onSound.IsPlaying() {
-			onSound.Reset()
-		}
+type riserSound struct {
+	// Constants.
+	minFrames int
+	on, off   *sound.GroupedSound
+
+	// State.
+	counter int
+}
+
+func newRiserSound(minFrames int, name string) (riserSound, error) {
+	onSnd, err := sound.Load(name + ".ogg")
+	if err != nil {
+		return riserSound{}, fmt.Errorf("could not load %v sound: %v", name, err)
 	}
-	if !cur && prev {
-		onSound.Close()
-		offSound.Play()
-		if offSound.Current() >= 100*time.Millisecond {
-			offSound.Reset()
+	offSnd, err := sound.Load(name + "_stop.ogg")
+	if err != nil {
+		return riserSound{}, fmt.Errorf("could not load %v_stop sound: %v", name, err)
+	}
+	return riserSound{
+		minFrames: minFrames,
+		on:        onSnd.Grouped(),
+		off:       offSnd.Grouped(),
+	}, nil
+}
+
+func (s *riserSound) update(cur bool) {
+	if cur {
+		s.counter++
+		if s.counter == s.minFrames {
+			s.on.Play()
+			if !s.on.IsPlaying() {
+				s.on.Reset()
+			}
 		}
+	} else {
+		if s.counter >= s.minFrames {
+			s.on.Close()
+			s.off.Play()
+			if s.off.Current() >= 100*time.Millisecond {
+				s.off.Reset()
+			}
+		}
+		s.counter = 0
 	}
 }
 
@@ -267,9 +270,6 @@ func (r *Riser) Update() {
 	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
 	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
 	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
-
-	prevState := r.State
-	prevVelocity := r.Velocity
 
 	if canCarry && !playerOnMe && actionPressed && (playerDelta.IsZero() || (r.State == GettingCarried && playerDelta.Norm1() <= FollowMaxDistance)) {
 		r.State = GettingCarried
@@ -400,10 +400,10 @@ func (r *Riser) Update() {
 	}
 
 	// Carry is a clear state.
-	r.soundEffect(prevState == GettingCarried, r.State == GettingCarried, r.Carry, r.CarryStop)
+	r.carrySound.update(r.State == GettingCarried)
 	// For push and moving up, decide sound by whether we're actually moving.
-	r.soundEffect((prevState == MovingLeft || prevState == MovingRight) && prevVelocity.DX != 0, (r.State == MovingLeft || r.State == MovingRight) && r.Velocity.DX != 0, r.Push, r.PushStop)
-	r.soundEffect(prevState == MovingUp && (prevVelocity.DY == UpSpeed || prevVelocity.DY == -UpSpeed), r.State == MovingUp && (r.Velocity.DY == UpSpeed || r.Velocity.DY == -UpSpeed), r.Rise, r.RiseStop)
+	r.pushSound.update((r.State == MovingLeft || r.State == MovingRight) && r.Velocity.DX != 0)
+	r.riseSound.update(r.State == MovingUp && (r.Velocity.DY == UpSpeed || r.Velocity.DY == -UpSpeed))
 
 	r.Anim.Update(r.Entity)
 
