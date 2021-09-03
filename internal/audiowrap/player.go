@@ -227,7 +227,7 @@ func (p *Player) Play() {
 }
 
 func (p *Player) SetVolume(vol float64) {
-	p.volume = vol * *volume
+	p.volume = vol
 	if p.dmp != nil {
 		p.dmp.SetVolume(vol * *volume)
 	}
