@@ -21,3 +21,6 @@ require (
 // For debugging:
 // replace github.com/hajimehoshi/ebiten/v2 => /home/rpolzer/src/ebiten
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
+
+// Temporary bugfix for X11 with screen scaling.
+replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.2.0-alpha.11.0.20210903202914-42abdee42613
