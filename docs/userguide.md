@@ -22,8 +22,11 @@ The game menu can, of course, be reached using the Escape key or the
 Start button.
 
 If your gamepad is not supported yet, you can typically make it work by
-putting its definition in the `SDL_GAMECONTROLLERCONFIG` environment
-variable.
+passing its definition in
+[SDL\_GameControllerDB](https://github.com/gabomdq/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt)
+format as `-gamepad_override` flag or `SDL_GAMECONTROLLERCONFIG`
+environment variable. As an extension, multiple gamepad definitions can
+be provided not just separated by newlines but also by semicolons.
 
 ### Settings
 
@@ -31,7 +34,7 @@ Press `Esc` or `Start` to get to the game menu which has settings.
 
 ### Known Issues
 
-  - Especially on laptops with 4K displays connected, graphics
+  - Especially on laptops with 5K displays connected, graphics
     performance may be poor. As a workaround, press `Esc` to switch to
     the game menu, then in the settings switch to a lower graphics
     setting. <https://github.com/hajimehoshi/ebiten/issues/1772> tracks

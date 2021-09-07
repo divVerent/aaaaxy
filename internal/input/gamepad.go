@@ -16,6 +16,7 @@ package input
 
 import (
 	"os"
+	"regexp"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -26,6 +27,7 @@ import (
 var (
 	gamepadAxisOnThreshold  = flag.Float64("gamepad_axis_on_threshold", 0.6, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
 	gamepadAxisOffThreshold = flag.Float64("gamepad_axis_off_threshold", 0.4, "Maximum amount to push the game pad for unregistering an action. Can be zero to accept any movement.")
+	gamepadOverride         = flag.String("gamepad_override", "", "Entries in SDL_GameControllerDB format to add/override gamepad support. Multiple entries are permitted and can be separated by newlines or semicolons. Can also be provided via $SDL_GAMECONTROLLERCONFIG environment variable.")
 )
 
 type (
@@ -171,7 +173,13 @@ func gamepadScan() {
 }
 
 func gamepadInit() {
-	config := os.Getenv("SDL_GAMECONTROLLERCONFIG")
+	// Note: we're also stripping spaces before/after a semicolon
+	// as a user might be putting some given they're usual in English,
+	// yet they're technically invalid in SDL_GameControllerDB format.
+	semiRE := regexp.MustCompile(`\s*;\s*`)
+
+	// Support the environment variable.
+	config := semiRE.ReplaceAllString(os.Getenv("SDL_GAMECONTROLLERCONFIG"), "\n")
 	if config != "" {
 		applied, err := ebiten.UpdateStandardGamepadLayoutMappings(config)
 		if err != nil {
@@ -180,6 +188,19 @@ func gamepadInit() {
 			log.Infof("SDL_GAMECONTROLLERCONFIG applied.")
 		} else {
 			log.Warningf("SDL_GAMECONTROLLERCONFIG set but not used on this platform.")
+		}
+	}
+
+	// Also support the flag. Note that the flag value is saved.
+	config = semiRE.ReplaceAllString(*gamepadOverride, "\n")
+	if config != "" {
+		applied, err := ebiten.UpdateStandardGamepadLayoutMappings(config)
+		if err != nil {
+			log.Errorf("Could not add --gamepad_override mappings: %v", err)
+		} else if applied {
+			log.Infof("--gamepad_override applied.")
+		} else {
+			log.Warningf("--gamepad_override set but not used on this platform.")
 		}
 	}
 }
