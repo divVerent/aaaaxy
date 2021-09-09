@@ -21,6 +21,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
+	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
@@ -67,6 +68,12 @@ func (g *Game) Update() error {
 
 	timing.Section("input")
 	input.Update()
+
+	timing.Section("demo")
+	if demo.Update() {
+		log.Infof("Demo playback ended, exiting.")
+		return RegularTermination
+	}
 
 	timing.Section("menu")
 	err := g.Menu.Update()

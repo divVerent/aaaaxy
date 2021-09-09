@@ -24,6 +24,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
+	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -78,7 +79,7 @@ func dumping() bool {
 }
 
 func slowDumping() bool {
-	return dumping() && *cheatDumpSlowAndGood
+	return dumping() && (*cheatDumpSlowAndGood || demo.Playing())
 }
 
 func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames int) {

@@ -19,6 +19,7 @@ import (
 	"errors"
 	"os"
 
+	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
@@ -42,6 +43,9 @@ func LoadConfig() (*flag.Config, error) {
 
 // SaveConfig writes the current configuration to a file.
 func SaveConfig() error {
+	if demo.Playing() {
+		return nil
+	}
 	config := flag.Marshal()
 	data, err := json.MarshalIndent(config, "", "\t")
 	if err != nil {

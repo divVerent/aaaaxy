@@ -24,6 +24,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/centerprint"
+	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -235,19 +236,31 @@ func (w *World) Init(saveState int) error {
 // Load loads the current savegame.
 // If this fails, the world may be in an undefined state; call w.Init() or w.Load() to resume.
 func (w *World) Load() error {
-	state, err := vfs.ReadState(vfs.SavedGames, fmt.Sprintf("save-%d.json", w.saveState))
-	if err != nil {
+	save, intercepted := demo.InterceptPreLoadGame()
+	if !intercepted {
+		state, err := vfs.ReadState(vfs.SavedGames, fmt.Sprintf("save-%d.json", w.saveState))
 		if errors.Is(err, os.ErrNotExist) {
-			return nil // Not loading anything due to there being no state to load is OK.
+			save = nil // Not loading anything due to there being no state to load is OK.
+		} else if err != nil {
+			return err // Other error.
+		} else {
+			// Normal loading.
+			save = &level.SaveGame{}
+			err = json.Unmarshal(state, save)
+			if err != nil {
+				return err
+			}
 		}
-		return err
 	}
-	save := level.SaveGame{}
-	err = json.Unmarshal(state, &save)
-	if err != nil {
-		return err
+
+	// Make sure that demo playback will also go back to this save.
+	demo.InterceptPostLoadGame(save)
+
+	if save == nil {
+		return nil
 	}
-	err = w.Level.LoadGame(save)
+
+	err := w.Level.LoadGame(save)
 	if err != nil {
 		return err
 	}
@@ -259,6 +272,9 @@ func (w *World) Save() error {
 	save, err := w.Level.SaveGame()
 	if err != nil {
 		return err
+	}
+	if demo.InterceptSaveGame(save) {
+		return nil
 	}
 	state, err := json.MarshalIndent(save, "", "\t")
 	if err != nil {

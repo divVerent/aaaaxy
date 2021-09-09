@@ -105,8 +105,8 @@ type SaveGame struct {
 }
 
 // SaveGame returns the current state as a SaveGame.
-func (l *Level) SaveGame() (SaveGame, error) {
-	save := SaveGame{
+func (l *Level) SaveGame() (*SaveGame, error) {
+	save := &SaveGame{
 		SaveGameData: SaveGameData{
 			State:        map[EntityID]PersistentState{},
 			LevelVersion: l.SaveGameVersion,
@@ -127,14 +127,14 @@ func (l *Level) SaveGame() (SaveGame, error) {
 	var err error
 	save.Hash, err = hashstructure.Hash(save.SaveGameData, hashstructure.FormatV2, nil)
 	if err != nil {
-		return SaveGame{}, err
+		return nil, err
 	}
 	return save, nil
 }
 
 // LoadGame loads the given SaveGame into the map.
 // Note that when this returns an error, the SaveGame might have been partially loaded.
-func (l *Level) LoadGame(save SaveGame) error {
+func (l *Level) LoadGame(save *SaveGame) error {
 	saveHash, err := hashstructure.Hash(save.SaveGameData, hashstructure.FormatV2, nil)
 	if err != nil {
 		return err

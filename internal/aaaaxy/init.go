@@ -22,6 +22,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/credits"
+	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
@@ -127,6 +128,10 @@ func InitEbiten() error {
 	if err != nil {
 		return fmt.Errorf("could not initialize noise: %v", err)
 	}
+	err = demo.Init()
+	if err != nil {
+		return fmt.Errorf("could not initialize demo: %v", err)
+	}
 	err = initDumping()
 	if err != nil {
 		return fmt.Errorf("could not initialize dumping: %v", err)
@@ -143,4 +148,5 @@ func InitEbiten() error {
 
 func BeforeExit() {
 	finishDumping()
+	demo.BeforeExit()
 }

@@ -18,10 +18,14 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
+type ImpulseState struct {
+	Held    bool `json:",omitempty"`
+	JustHit bool `json:",omitempty"`
+}
+
 type impulse struct {
-	Name    string
-	Held    bool
-	JustHit bool
+	ImpulseState
+	Name string
 
 	keys        []ebiten.Key
 	padControls padControls
@@ -86,4 +90,44 @@ func Update() {
 
 func UsingGamepad() bool {
 	return usingGamepad
+}
+
+// Demo code.
+
+type DemoState struct {
+	UsingGamepad bool
+	Left         ImpulseState
+	Right        ImpulseState
+	Up           ImpulseState
+	Down         ImpulseState
+	Jump         ImpulseState
+	Action       ImpulseState
+	Exit         ImpulseState
+}
+
+func LoadFromDemo(state *DemoState) {
+	if state == nil {
+		return
+	}
+	usingGamepad = state.UsingGamepad
+	Left.ImpulseState = state.Left
+	Right.ImpulseState = state.Right
+	Up.ImpulseState = state.Up
+	Down.ImpulseState = state.Down
+	Jump.ImpulseState = state.Jump
+	Action.ImpulseState = state.Action
+	Exit.ImpulseState = state.Exit
+}
+
+func SaveToDemo() *DemoState {
+	return &DemoState{
+		UsingGamepad: usingGamepad,
+		Left:         Left.ImpulseState,
+		Right:        Right.ImpulseState,
+		Up:           Up.ImpulseState,
+		Down:         Down.ImpulseState,
+		Jump:         Jump.ImpulseState,
+		Action:       Action.ImpulseState,
+		Exit:         Exit.ImpulseState,
+	}
 }

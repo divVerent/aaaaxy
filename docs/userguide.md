@@ -54,6 +54,18 @@ Video recording can be sped up by using `make FASTER_VIDEO_DUMPING=true`
 when compiling to enable multithreading, and by passing
 `-dump_video_fps_divisor=2` to limit the video to SFR (30fps).
 
+### Demo Recording
+
+To record a demo of the game, pass the flags `-dump_demo=demo.dem`.
+
+The resulting `demo.dem` file can be played back with only this exact
+same version of the game by passing `-play_demo=demo.dem`; however the
+above section on video recording can be used to turn the demo into a
+video.
+
+Note that demo playback during video recording is never at realtime. You
+don't want any duplicate frames, right?
+
 ### Data Storage
 
 AAAAXY stores saved games in the following location:
