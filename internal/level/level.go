@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/version"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
@@ -93,6 +94,7 @@ type WarpZone struct {
 // SaveGameData is a not-yet-hashed SaveGame.
 type SaveGameData struct {
 	State        map[EntityID]PersistentState
+	GameVersion  string `hash:"-"`
 	LevelVersion int
 	LevelHash    uint64
 }
@@ -106,9 +108,13 @@ type SaveGame struct {
 
 // SaveGame returns the current state as a SaveGame.
 func (l *Level) SaveGame() (*SaveGame, error) {
+	if l.SaveGameVersion != 1 {
+		log.Fatalf("FIXME! On the next SaveGameVersion, please remove the `hash:\"-\" from GameVersion, and then remove this check too!")
+	}
 	save := &SaveGame{
 		SaveGameData: SaveGameData{
 			State:        map[EntityID]PersistentState{},
+			GameVersion:  version.Revision(),
 			LevelVersion: l.SaveGameVersion,
 			LevelHash:    l.Hash,
 		},
@@ -141,6 +147,9 @@ func (l *Level) LoadGame(save *SaveGame) error {
 	}
 	if saveHash != save.Hash {
 		return fmt.Errorf("someone tampered with the save game")
+	}
+	if save.GameVersion != version.Revision() {
+		log.Warningf("save game does not match game version: got %v, want %v", save.GameVersion, version.Revision())
 	}
 	if save.LevelVersion != l.SaveGameVersion {
 		return fmt.Errorf("save game does not match level version: got %v, want %v", save.LevelVersion, l.SaveGameVersion)
