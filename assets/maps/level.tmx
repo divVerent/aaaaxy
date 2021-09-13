@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7943">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7949">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -5929,6 +5929,7 @@
    <properties>
     <property name="image" value="turtle-bw.png"/>
     <property name="image_region" value="0 48 304 208"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="1321" gid="312" x="4928" y="6144" width="32" height="32">
@@ -17062,5 +17063,10 @@
     <property name="player_solid" type="bool" value="false"/>
    </properties>
   </object>
+  <object id="7943" gid="325" x="7440" y="3968" width="32" height="32"/>
+  <object id="7945" gid="326" x="4496" y="1808" width="32" height="32"/>
+  <object id="7946" gid="324" x="4752" y="6176" width="32" height="32"/>
+  <object id="7947" gid="324" x="4848" y="6176" width="32" height="32"/>
+  <object id="7948" gid="324" x="3936" y="6864" width="32" height="32"/>
  </objectgroup>
 </map>
