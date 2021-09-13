@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7949">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7977">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -1029,13 +1029,13 @@
     <property name="text" value="Entering through the front door is boring."/>
    </properties>
   </object>
-  <object id="256" name="BingPads" type="SwitchableJumpPad" x="608" y="6272" width="4" height="4">
+  <object id="256" name="BingPads" type="SwitchableJumpPad" x="607" y="6272" width="8" height="1">
    <properties>
     <property name="delta" value="216 -352"/>
     <property name="height" value="64"/>
    </properties>
   </object>
-  <object id="257" name="BingPads" type="SwitchableJumpPad" x="956" y="6272" width="4" height="4">
+  <object id="257" name="BingPads" type="SwitchableJumpPad" x="953" y="6272" width="8" height="1">
    <properties>
     <property name="delta" value="-120 -352"/>
     <property name="height" value="64"/>
@@ -1053,18 +1053,6 @@
    <properties>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="BingPads"/>
-   </properties>
-  </object>
-  <object id="275" name="BingPads" type="SwitchableSprite" x="608" y="6240" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32d.png"/>
-    <property name="orientation" value="NE"/>
-   </properties>
-  </object>
-  <object id="276" name="BingPads" type="SwitchableSprite" x="928" y="6240" width="32" height="32">
-   <properties>
-    <property name="image" value="arrow32d.png"/>
-    <property name="orientation" value="WN"/>
    </properties>
   </object>
   <object id="277" gid="312" x="752" y="6576" width="32" height="32">
@@ -1113,7 +1101,7 @@
     <property name="text" value="Short Circuited"/>
    </properties>
   </object>
-  <object id="290" type="JumpPad" x="3931" y="6896" width="10" height="16">
+  <object id="290" type="JumpPad" x="3932" y="6896" width="8" height="1">
    <properties>
     <property name="delta" value="0 -1488"/>
     <property name="height" value="0"/>
@@ -1205,37 +1193,37 @@
     <property name="text" value="Behold the cage of health!"/>
    </properties>
   </object>
-  <object id="321" type="JumpPad" x="3952" y="7440" width="31" height="16">
+  <object id="321" type="JumpPad" x="3952" y="7440" width="31" height="1">
    <properties>
     <property name="delta" value="256 -272"/>
     <property name="height" value="40"/>
    </properties>
   </object>
-  <object id="322" type="JumpPad" x="4945" y="7440" width="31" height="16">
+  <object id="322" type="JumpPad" x="4945" y="7440" width="31" height="1">
    <properties>
     <property name="delta" value="-576 -160"/>
     <property name="height" value="40"/>
    </properties>
   </object>
-  <object id="323" type="JumpPad" x="4064" y="7472" width="15" height="16">
+  <object id="323" type="JumpPad" x="4064" y="7472" width="15" height="1">
    <properties>
     <property name="delta" value="784 -14"/>
     <property name="height" value="40"/>
    </properties>
   </object>
-  <object id="324" type="JumpPad" x="4849" y="7472" width="15" height="16">
+  <object id="324" type="JumpPad" x="4849" y="7472" width="15" height="1">
    <properties>
     <property name="delta" value="-784 -14"/>
     <property name="height" value="40"/>
    </properties>
   </object>
-  <object id="326" type="JumpPad" x="4736" y="7600" width="16" height="16">
+  <object id="326" type="JumpPad" x="4736" y="7600" width="16" height="1">
    <properties>
     <property name="delta" value="112 -144"/>
     <property name="height" value="40"/>
    </properties>
   </object>
-  <object id="327" type="JumpPad" x="4176" y="7600" width="16" height="16">
+  <object id="327" type="JumpPad" x="4176" y="7600" width="16" height="1">
    <properties>
     <property name="delta" value="-96 -144"/>
     <property name="height" value="40"/>
@@ -1251,13 +1239,13 @@
     <property name="text" value="Silver City"/>
    </properties>
   </object>
-  <object id="331" type="JumpPad" x="4513" y="7600" width="15" height="16">
+  <object id="331" type="JumpPad" x="4513" y="7600" width="15" height="1">
    <properties>
     <property name="delta" value="-112 -8"/>
     <property name="height" value="304"/>
    </properties>
   </object>
-  <object id="332" type="JumpPad" x="4400" y="7600" width="15" height="16">
+  <object id="332" type="JumpPad" x="4400" y="7600" width="15" height="1">
    <properties>
     <property name="delta" value="112 -8"/>
     <property name="height" value="304"/>
@@ -1373,14 +1361,6 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="397" gid="322" x="4160" y="7568" width="32" height="32"/>
-  <object id="398" gid="320" x="3952" y="7408" width="32" height="32"/>
-  <object id="399" gid="322" x="4512" y="7568" width="32" height="32"/>
-  <object id="400" gid="322" x="4848" y="7440" width="32" height="32"/>
-  <object id="401" gid="320" x="4384" y="7568" width="32" height="32"/>
-  <object id="402" gid="320" x="4736" y="7568" width="32" height="32"/>
-  <object id="403" gid="320" x="4048" y="7440" width="32" height="32"/>
-  <object id="404" gid="322" x="4944" y="7408" width="32" height="32"/>
   <object id="405" gid="322" x="4960" y="4512" width="32" height="32">
    <properties>
     <property name="opaque" type="bool" value="false"/>
@@ -4271,13 +4251,13 @@
     <property name="text" value="Nine Boxes In Sight"/>
    </properties>
   </object>
-  <object id="866" type="JumpPad" x="5744" y="8144" width="32" height="16">
+  <object id="866" type="JumpPad" x="5744" y="8144" width="32" height="1">
    <properties>
     <property name="delta" value="0 -1048"/>
     <property name="height" value="0"/>
    </properties>
   </object>
-  <object id="867" type="JumpPad" x="5392" y="8144" width="32" height="16">
+  <object id="867" type="JumpPad" x="5392" y="8144" width="32" height="1">
    <properties>
     <property name="delta" value="0 -1048"/>
     <property name="height" value="0"/>
@@ -4816,10 +4796,6 @@
   <object id="1021" name="Box8E" gid="299" x="5456" y="7872" width="16" height="160"/>
   <object id="1022" name="Box2W" gid="294" x="5696" y="7168" width="16" height="160"/>
   <object id="1023" name="Box2E" gid="299" x="5456" y="7168" width="16" height="160"/>
-  <object id="1025" gid="324" x="5408" y="8112" width="32" height="32"/>
-  <object id="1026" gid="326" x="5376" y="8112" width="32" height="32"/>
-  <object id="1027" gid="324" x="5760" y="8112" width="32" height="32"/>
-  <object id="1028" gid="326" x="5728" y="8112" width="32" height="32"/>
   <object id="1029" gid="326" x="5056" y="7488" width="32" height="32"/>
   <object id="1030" gid="324" x="5072" y="7088" width="32" height="32"/>
   <object id="1031" gid="305" x="5392" y="7952" width="32" height="32"/>
@@ -5155,13 +5131,12 @@
   </object>
   <object id="1105" name="Track934" gid="297" x="6416" y="7616" width="704" height="16"/>
   <object id="1108" name="Track934" gid="295" x="6416" y="7664" width="704" height="16"/>
-  <object id="1123" type="JumpPad" x="6958" y="8048" width="4" height="16">
+  <object id="1123" type="JumpPad" x="6956" y="8048" width="8" height="1">
    <properties>
     <property name="delta" value="0 -264"/>
     <property name="height" value="8"/>
    </properties>
   </object>
-  <object id="1124" gid="324" x="6960" y="8016" width="32" height="32"/>
   <object id="1126" gid="293" x="8176" y="7056" width="16" height="32"/>
   <object id="1127" gid="299" x="7120" y="7632" width="16" height="32"/>
   <object id="1128" type="Sprite" x="7680" y="7520" width="16" height="16">
@@ -5959,16 +5934,10 @@
   <object id="1340" gid="315" x="4720" y="6144" width="16" height="16"/>
   <object id="1341" gid="315" x="4704" y="6144" width="16" height="16"/>
   <object id="1342" gid="315" x="4688" y="6144" width="16" height="16"/>
-  <object id="1343" type="JumpPad" x="4751" y="6208" width="2" height="16">
+  <object id="1343" type="JumpPad" x="4748" y="6208" width="8" height="1">
    <properties>
     <property name="delta" value="28 -256"/>
     <property name="height" value="0"/>
-   </properties>
-  </object>
-  <object id="1344" type="JumpPad" x="4847" y="6208" width="2" height="16">
-   <properties>
-    <property name="delta" value="-96 0"/>
-    <property name="height" value="64"/>
    </properties>
   </object>
   <object id="1348" type="Sprite" x="4688" y="5952" width="304" height="48">
@@ -8043,8 +8012,6 @@
   <object id="2776" gid="319" x="720" y="8048" width="32" height="32"/>
   <object id="2777" gid="319" x="768" y="8016" width="32" height="32"/>
   <object id="2778" gid="322" x="4416" y="7296" width="32" height="32"/>
-  <object id="2779" gid="322" x="4912" y="7392" width="32" height="32"/>
-  <object id="2780" gid="322" x="4880" y="7376" width="32" height="32"/>
   <object id="2781" gid="323" x="7488" y="7632" width="32" height="32"/>
   <object id="2782" gid="324" x="7696" y="7104" width="32" height="32"/>
   <object id="2783" gid="321" x="7720" y="7200" width="32" height="32"/>
@@ -8460,9 +8427,9 @@
   <object id="3133" gid="309" x="3832" y="2576" width="16" height="16"/>
   <object id="3134" gid="324" x="3744" y="2608" width="32" height="32"/>
   <object id="3135" gid="307" x="4000" y="2544" width="32" height="32"/>
-  <object id="3136" type="JumpPad" x="3728" y="2672" width="16" height="16">
+  <object id="3136" type="JumpPad" x="3732" y="2688" width="8" height="1">
    <properties>
-    <property name="delta" value="0 -160"/>
+    <property name="delta" value="0 -176"/>
     <property name="height" value="0"/>
    </properties>
   </object>
@@ -10923,7 +10890,7 @@
    </properties>
   </object>
   <object id="4633" gid="305" x="4512" y="384" width="32" height="32"/>
-  <object id="4634" type="JumpPad" x="4524" y="1840" width="8" height="16">
+  <object id="4634" type="JumpPad" x="4524" y="1840" width="8" height="1">
    <properties>
     <property name="delta" value="0 -1480"/>
     <property name="height" value="0"/>
@@ -13912,13 +13879,12 @@
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="6534" type="JumpPad" x="7404" y="1936" width="4" height="4">
+  <object id="6534" type="JumpPad" x="7388" y="1936" width="8" height="1">
    <properties>
     <property name="delta" value="-32 -448"/>
     <property name="height" value="0"/>
    </properties>
   </object>
-  <object id="6535" gid="326" x="7376" y="1904" width="32" height="32"/>
   <object id="6536" gid="312" x="7192" y="1504" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="6119"/>
@@ -17063,10 +17029,202 @@
     <property name="player_solid" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="7943" gid="325" x="7440" y="3968" width="32" height="32"/>
-  <object id="7945" gid="326" x="4496" y="1808" width="32" height="32"/>
-  <object id="7946" gid="324" x="4752" y="6176" width="32" height="32"/>
-  <object id="7947" gid="324" x="4848" y="6176" width="32" height="32"/>
-  <object id="7948" gid="324" x="3936" y="6864" width="32" height="32"/>
+  <object id="7949" type="Animation" x="7388" y="1932" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7950" type="Animation" x="7423" y="3996" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7952" type="Animation" x="7457" y="3996" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7954" type="Animation" x="4524" y="1836" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7955" type="Animation" x="3732" y="2684" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7956" type="JumpPad" x="4844" y="6208" width="8" height="1">
+   <properties>
+    <property name="delta" value="-96 0"/>
+    <property name="height" value="64"/>
+   </properties>
+  </object>
+  <object id="7957" type="Animation" x="4748" y="6204" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7958" type="Animation" x="4844" y="6204" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7959" type="Animation" x="6956" y="8044" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7960" type="Animation" x="5392" y="8140" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7961" type="Animation" x="5744" y="8140" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7963" type="Animation" x="3952" y="7436" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7964" type="Animation" x="4944" y="7436" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7967" type="Animation" x="4736" y="7596" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7968" type="Animation" x="4512" y="7596" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7969" type="Animation" x="4400" y="7596" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7970" type="Animation" x="4176" y="7596" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7971" type="Animation" x="4064" y="7468" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7972" type="Animation" x="4848" y="7468" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7973" type="Animation" x="3932" y="6892" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7975" name="BingPads" type="SwitchableAnimation" x="953" y="6268" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="7976" name="BingPads" type="SwitchableAnimation" x="607" y="6268" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
