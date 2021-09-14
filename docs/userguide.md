@@ -34,14 +34,11 @@ Press `Esc` or `Start` to get to the game menu which has settings.
 
 ### Known Issues
 
-  - Especially on laptops with 5K displays connected, graphics
+  - Especially on laptops with 4K displays connected, graphics
     performance may be poor. As a workaround, press `Esc` to switch to
     the game menu, then in the settings switch to a lower graphics
     setting. <https://github.com/hajimehoshi/ebiten/issues/1772> tracks
     a fix for this issue.
-  - On some Linux systems, fullscreen mode uses the wrong scaling
-    factor. As a workaround, press `F` to switch to windowed mode, then
-    maximize the window.
 
 ### Video Recording
 
