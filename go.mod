@@ -6,12 +6,12 @@ require (
 	github.com/adrg/xdg v0.3.4
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
-	github.com/hajimehoshi/ebiten/v2 v2.2.0-alpha.13
+	github.com/hajimehoshi/ebiten/v2 v2.2.0-alpha.14
 	github.com/hajimehoshi/oto/v2 v2.0.0 // indirect
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	golang.org/x/exp v0.0.0-20210908151040-650492aaac73 // indirect
+	golang.org/x/exp v0.0.0-20210910231120-3d0173ecaa1e // indirect
 	golang.org/x/image v0.0.0-20210628002857-a66eb6448b8d
-	golang.org/x/sys v0.0.0-20210908160347-a851e7ddeee0
+	golang.org/x/sys v0.0.0-20210910150752-751e447fb3d0
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
 
@@ -23,4 +23,4 @@ require (
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
 
 // Temporary bugfix for X11 with screen scaling.
-replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.2.0-alpha.11.0.20210908151543-e3ff3040b326
+replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.2.0-alpha.11.0.20210913181546-b74aa4af8070
