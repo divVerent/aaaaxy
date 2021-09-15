@@ -1,6 +1,5 @@
 # System properties.
 GO ?= go
-GO_INSTALL ?= $(GO) install
 EXE = $(shell $(GO) env GOEXE)
 SUFFIX = -$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)$(EXE)
 
@@ -141,7 +140,8 @@ cmd/aaaaxy/resources.manifest: scripts/aaaaxy.exe.manifest.sh
 	$< $(shell scripts/version.sh windows) > $@
 
 %.syso: %.ico %.manifest
-	GOOS= GOARCH= $(GO_INSTALL) github.com/akavel/rsrc@latest
+	GOOS= GOARCH= $(GO) get -d github.com/akavel/rsrc
+	GOOS= GOARCH= $(GO) install github.com/akavel/rsrc
 	GOOS= GOARCH= $(GO) run github.com/akavel/rsrc \
 		-arch $(shell $(GO) env GOARCH) \
 		-ico $*.ico \
