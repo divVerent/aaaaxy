@@ -1,10 +1,12 @@
 *~
+/AAAAXY.app/Contents/MacOS/aaaaxy-*
+/AAAAXY.app/Contents/Resources/icon.icns
+/aaaaxy-*.zip
 /aaaaxy-debug-*
 /aaaaxy-js-*
 /aaaaxy-linux-*
 /aaaaxy-windows-*
 /aaaaxy.tiled-session
-/aaaaxy-*.zip
 /assets/generated
 /cmd/aaaaxy/resources.*
 /internal/vfs/_embedroot

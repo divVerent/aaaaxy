@@ -55,12 +55,24 @@ INFIX = -debug
 endif
 BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
-BINARY = aaaaxy$(INFIX)$(SUFFIX)
+BINARY = $(PREFIX)aaaaxy$(INFIX)$(SUFFIX)
 
 # Windows only: include icon.
 ifeq ($(shell $(GO) env GOOS),windows)
 RESOURCE_FILES = cmd/aaaaxy/resources.ico cmd/aaaaxy/resources.manifest cmd/aaaaxy/resources.syso
 BINARY_ASSETS += $(RESOURCE_FILES)
+endif
+
+# OS X only: app bundle.
+APPBUNDLE = AAAAXY.app
+APPICONS = $(APPBUNDLE)/Contents/Resources/icon.icns
+
+# OS X releases only: app bundle.
+ifeq ($(shell $(GO) env GOOS),darwin)
+ifeq ($(BUILDTYPE),release)
+BINARY_ASSETS += $(APPICONS)
+PREFIX = $(APPBUNDLE)/Contents/MacOS/
+endif
 endif
 
 # Include version.
@@ -71,6 +83,22 @@ CGO_CPPFLAGS ?= $(CPPFLAGS)
 CGO_CFLAGS ?= $(CFLAGS)
 CGO_CXXFLAGS ?= $(CXXFLAGS)
 CGO_LDFLAGS ?= $(LDFLAGS)
+CGO_ENV = \
+	CGO_CPPFLAGS="$(CGO_CPPFLAGS)" \
+	CGO_CFLAGS="$(CGO_CFLAGS)" \
+	CGO_CXXFLAGS="$(CGO_CXXFLAGS)" \
+	CGO_LDFLAGS="$(CGO_LDFLAGS)"
+
+# OS X cross compile support.
+ifeq ($(shell $(GO) env GOOS),darwin)
+ifeq ($(shell uname),Linux)
+CGO_ENV += PATH=$(HOME)/src/osxcross-sdk/bin:$(PATH)
+CGO_ENV += CGO_ENABLED=1
+CGO_ENV += CC=o64-clang
+CGO_ENV += CXX=o64-clang++
+CGO_ENV += MACOSX_DEPLOYMENT_TARGET=10.12
+endif
+endif
 
 .PHONY: all
 all: bin
@@ -130,12 +158,21 @@ cmd/aaaaxy/resources.ico: assets/sprites/riser_small_up_0.png
 		\( $< -geometry 256x256 \) \
 		$@
 
+$(APPICONS): assets/sprites/riser_small_up_0.png
+	for res in 16 32 128 256 512 1024; do \
+		convert $< \
+			-filter Point -geometry $${res}x$${res} \
+			-define png:bit-depth=8 \
+			-define png:color-type=6 \
+			-define png:format=png32 \
+			icns$${res}.png; \
+	done
+	png2icns $@ icns*.png
+	$(RM) icns*.png
+
 # Binary building.
 $(BINARY): $(BINARY_ASSETS) $(SOURCES)
-	CGO_CPPFLAGS="$(CGO_CPPFLAGS)" \
-	CGO_CFLAGS="$(CGO_CFLAGS)" \
-	CGO_CXXFLAGS="$(CGO_CXXFLAGS)" \
-	CGO_LDFLAGS="$(CGO_LDFLAGS)" \
+	$(CGO_ENV) \
 	$(GO) build -o $(BINARY) $(GOFLAGS) $(PACKAGE)
 
 # Binary release building.
@@ -152,6 +189,10 @@ releaseclean:
 binrelease: releaseclean $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
 	$(ZIP) $(ZIPFILE) $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
 
+.PHONY: osxbinrelease
+osxbinrelease: releaseclean $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
+	$(ZIP) $(ZIPFILE) $(APPBUNDLE) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
+
 .PHONY: webbinrelease
 webbinrelease: releaseclean webprepare $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
 	$(ZIP) $(ZIPFILE) $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY) aaaaxy$(INFIX).html wasm_exec.js
@@ -161,6 +202,7 @@ allrelease:
 	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
 	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
 	GO="$(GO)" GOOS=windows GOARCH=386 $(MAKE) binrelease BUILDTYPE=release
+	GO="$(GO)" GOOS=darwin GOARCH=amd64 $(MAKE) osxbinrelease BUILDTYPE=release
 
 .PHONY: webdebug
 webdebug: webprepare
