@@ -1104,7 +1104,7 @@
   </object>
   <object id="290" type="JumpPad" x="3932" y="6896" width="8" height="1">
    <properties>
-    <property name="delta" value="0 -1488"/>
+    <property name="delta" value="0 -1480"/>
     <property name="height" value="0"/>
    </properties>
   </object>
@@ -10893,7 +10893,7 @@
   <object id="4633" gid="305" x="4512" y="384" width="32" height="32"/>
   <object id="4634" type="JumpPad" x="4524" y="1840" width="8" height="1">
    <properties>
-    <property name="delta" value="0 -1480"/>
+    <property name="delta" value="0 -1472"/>
     <property name="height" value="0"/>
    </properties>
   </object>
