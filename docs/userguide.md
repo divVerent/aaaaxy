@@ -53,7 +53,7 @@ when compiling to enable multithreading, and by passing
 
 ### Demo Recording
 
-To record a demo of the game, pass the flags `-dump_demo=demo.dem`.
+To record a demo of the game, pass the flags `-demo_record=demo.dem`.
 
 The resulting `demo.dem` file can be played back with only this exact
 same version of the game by passing `-play_demo=demo.dem`; however the
