@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7978">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7981">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17231,6 +17231,24 @@
    <properties>
     <property name="orientation" value="WN"/>
     <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="7978" name="HubTimer" type="SwitchableText" x="6512" y="6744" width="96" height="16">
+   <properties>
+    <property name="text" value="{{GameTime}}"/>
+    <property name="text_bg" type="color" value="#ffaaaaaa"/>
+    <property name="text_fg" type="color" value="#ff000000"/>
+    <property name="text_font" value="Regular"/>
+   </properties>
+  </object>
+  <object id="7979" type="SetState" x="6592" y="6736" width="16" height="32">
+   <properties>
+    <property name="target" value="HubTimer"/>
+   </properties>
+  </object>
+  <object id="7980" name="HubTimer" type="PrintToConsoleTarget" x="6608" y="6736" width="16" height="32">
+   <properties>
+    <property name="text" value="Reached A New Beginning with {{Abilities}} at {{GameTime}}."/>
    </properties>
   </object>
  </objectgroup>
