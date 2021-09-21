@@ -27,8 +27,10 @@ import (
 	"github.com/divVerent/aaaaxy/internal/fun"
 	_ "github.com/divVerent/aaaaxy/internal/game" // Load entities.
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
+	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/sound"
 	"github.com/divVerent/aaaaxy/internal/timing"
 )
@@ -248,6 +250,8 @@ func (c *Controller) SaveConfigAndSwitchToScreen(screen MenuScreen) error {
 
 // QuitGame is called by menu screens to end the game.
 func (c *Controller) QuitGame() error {
+	categories, _ := (c.World.PlayerState.SpeedrunCategories() | playerstate.AnyPercentSpeedrun).Strings()
+	log.Infof("On track for %v.", categories)
 	err := c.World.Save()
 	if err != nil {
 		return fmt.Errorf("could not save game: %v", err)
