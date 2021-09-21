@@ -16,6 +16,7 @@ package ending
 
 import (
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -23,6 +24,7 @@ import (
 // CreditsTarget shows the credits.
 type CreditsTarget struct {
 	World *engine.World
+	State bool
 }
 
 func (c *CreditsTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -35,6 +37,10 @@ func (c *CreditsTarget) Despawn() {}
 func (c *CreditsTarget) Update() {}
 
 func (c *CreditsTarget) SetState(originator, predecessor *engine.Entity, state bool) {
+	if state == c.State {
+		return
+	}
+	c.State = state
 	if !state {
 		return
 	}
@@ -44,6 +50,9 @@ func (c *CreditsTarget) SetState(originator, predecessor *engine.Entity, state b
 	if err != nil {
 		log.Errorf("Could not save game: %v", err)
 	}
+
+	log.Infof("%v", fun.FormatText(&c.World.PlayerState,
+		"Your time: {{GameTime}}; your speedrun categories: {{SpeedrunCategories}}; try next: {{SpeedrunTryNext}}."))
 }
 
 func (c *CreditsTarget) Touch(other *engine.Entity) {}

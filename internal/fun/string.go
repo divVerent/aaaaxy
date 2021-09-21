@@ -150,6 +150,20 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			}
 			return "Escape", nil
 		},
+		"SpeedrunCategories": func() (string, error) {
+			if ps == nil {
+				return "", fmt.Errorf("Cannot use {{SpeedrunCategories}} in static elements.")
+			}
+			categories, _ := ps.SpeedrunCategories().Strings()
+			return categories, nil
+		},
+		"SpeedrunTryNext": func() (string, error) {
+			if ps == nil {
+				return "", fmt.Errorf("Cannot use {{SpeedrunTryNext}} in static elements.")
+			}
+			_, tryNext := ps.SpeedrunCategories().Strings()
+			return tryNext, nil
+		},
 	})
 	_, err := tmpl.Parse(s)
 	if err != nil {
