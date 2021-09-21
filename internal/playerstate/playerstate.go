@@ -16,8 +16,10 @@ package playerstate
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -192,6 +194,47 @@ const (
 	NoEscapeSpeedrun       SpeedrunCategories = 0x40
 	allCategoriesSpeedrun  SpeedrunCategories = 0x7F
 )
+
+func (c SpeedrunCategories) Strings() (categories string, tryNext string) {
+	tryNext = ""
+	cats := []string{}
+	addCategory := func(cat string, have bool) {
+		if have {
+			cats = append(cats, cat)
+		} else {
+			if tryNext == "" {
+				tryNext = cat
+			}
+		}
+	}
+	if flag.Cheating() {
+		addCategory("Cheat%", true)
+		addCategory("Without Cheating Of Course", false)
+	}
+	if c&HundredPercentSpeedrun == 0 {
+		addCategory("Any%", c&AnyPercentSpeedrun != 0)
+	}
+	addCategory("100%", c&HundredPercentSpeedrun != 0)
+	addCategory("All Notes", c&AllSignsSpeedrun != 0)
+	addCategory("All Paths", c&AllPathsSpeedrun != 0)
+	addCategory("All Secrets", c&AllSecretsSpeedrun != 0)
+	addCategory("All Flipped", c&AllFlippedSpeedrun != 0)
+	noEscape := "No Escape"
+	if input.UsingGamepad() {
+		noEscape = "No Start"
+	}
+	addCategory(noEscape, c&NoEscapeSpeedrun != 0)
+	l := len(cats)
+	switch l {
+	case 0:
+		categories = "None"
+	case 1:
+		categories = cats[0]
+	default:
+		categories = strings.Join(cats[0:l-1], ", ") + " and " + cats[l-1]
+	}
+	return
+}
 
 func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 	cat := allCategoriesSpeedrun

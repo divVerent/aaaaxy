@@ -17,19 +17,16 @@ package menu
 import (
 	"fmt"
 	"image/color"
-	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/credits"
 	"github.com/divVerent/aaaaxy/internal/engine"
-	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
-	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/version"
 )
 
@@ -59,8 +56,8 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	)
 	if s.Fancy {
 		music.Switch(s.Controller.World.Level.CreditsMusic)
-		cat := s.Controller.World.PlayerState.SpeedrunCategories()
 		timeStr := fun.FormatText(&s.Controller.World.PlayerState, "{{GameTime}}")
+		categories, tryNext := s.Controller.World.PlayerState.SpeedrunCategories().Strings()
 		s.Lines = append(
 			s.Lines,
 			"",
@@ -68,47 +65,8 @@ func (s *CreditsScreen) Init(m *Controller) error {
 			timeStr,
 			"",
 			"Your Speedrun Categories",
+			categories,
 		)
-		tryNext := ""
-		categories := []string{}
-		addCategory := func(cat string, have bool) {
-			if have {
-				categories = append(categories, cat)
-			} else {
-				if tryNext == "" {
-					tryNext = cat
-				}
-			}
-		}
-		if flag.Cheating() {
-			addCategory("Cheat%", true)
-			addCategory("Without Cheating Of Course", false)
-		}
-		if cat&playerstate.HundredPercentSpeedrun == 0 {
-			addCategory("Any%", cat&playerstate.AnyPercentSpeedrun != 0)
-		}
-		addCategory("100%", cat&playerstate.HundredPercentSpeedrun != 0)
-		addCategory("All Notes", cat&playerstate.AllSignsSpeedrun != 0)
-		addCategory("All Paths", cat&playerstate.AllPathsSpeedrun != 0)
-		addCategory("All Secrets", cat&playerstate.AllSecretsSpeedrun != 0)
-		addCategory("All Flipped", cat&playerstate.AllFlippedSpeedrun != 0)
-		noEscape := "No Escape"
-		if input.UsingGamepad() {
-			noEscape = "No Start"
-		}
-		addCategory(noEscape, cat&playerstate.NoEscapeSpeedrun != 0)
-		l := len(categories)
-		switch l {
-		case 0:
-			s.Lines = append(s.Lines,
-				"None")
-		case 1:
-			s.Lines = append(s.Lines,
-				categories[0])
-		default:
-			s.Lines = append(s.Lines,
-				strings.Join(categories[0:l-1], ", ")+" and "+categories[l-1])
-		}
 		if tryNext != "" {
 			s.Lines = append(s.Lines,
 				"",
