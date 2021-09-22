@@ -10853,6 +10853,7 @@
     <property name="music" value="Theme Song 8-bit V1.ogg"/>
     <property name="next_up" type="object" value="6716"/>
     <property name="required_orientation" value="WN"/>
+    <property name="secret" type="bool" value="true"/>
     <property name="text" value="deja Vu"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
     <property name="vvvvvv" type="bool" value="true"/>
