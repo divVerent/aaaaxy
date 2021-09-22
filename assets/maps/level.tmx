@@ -16703,13 +16703,13 @@
   <object id="7839" type="SwitchMusic" x="6736" y="560" width="48" height="16"/>
   <object id="7842" type="SwitchMusic" x="7184" y="496" width="48" height="16">
    <properties>
-    <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
+    <property name="music" value="leap.ogg"/>
    </properties>
   </object>
   <object id="7843" type="SwitchMusic" x="7184" y="560" width="48" height="16"/>
   <object id="7844" type="SwitchMusic" x="7184" y="928" width="48" height="16">
    <properties>
-    <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
+    <property name="music" value="leap.ogg"/>
    </properties>
   </object>
   <object id="7845" type="SwitchMusic" x="7184" y="992" width="48" height="16"/>
