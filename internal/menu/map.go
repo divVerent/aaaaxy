@@ -178,6 +178,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	lineColor := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
 	selectedLineColor := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
+	mediumLineColor := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
 	darkLineColor := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := fun.FormatText(&s.Controller.World.PlayerState, s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties["text"])
@@ -255,7 +256,11 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					if edgeSeen {
 						continue
 					}
-					color = darkLineColor
+					if s.Controller.World.PlayerState.CheckpointSeen(otherName) == playerstate.NotSeen {
+						color = darkLineColor
+					} else {
+						color = mediumLineColor
+					}
 					endPos = pos.Add(endPos.Delta(pos).WithMaxLength(edgeFarAttachDistance))
 				}
 				options := &ebiten.DrawTrianglesOptions{
