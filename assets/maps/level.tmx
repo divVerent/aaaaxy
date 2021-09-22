@@ -1064,7 +1064,7 @@
   </object>
   <object id="278" name="BingChimney" gid="297" x="816" y="5984" width="32" height="16"/>
   <object id="279" name="BingChimney" gid="295" x="816" y="6368" width="32" height="16"/>
-  <object id="280" name="leap_of_faith_exit_top" type="Checkpoint" x="4624" y="3792" width="32" height="32">
+  <object id="280" name="leap_of_faith_exit_top" type="Checkpoint" x="4704" y="3760" width="32" height="32">
    <properties>
     <property name="dead_end" type="bool" value="true"/>
     <property name="required_orientation" value="WN"/>
