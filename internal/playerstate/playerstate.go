@@ -192,14 +192,15 @@ const (
 	AllSecretsSpeedrun     SpeedrunCategories = 0x10
 	AllFlippedSpeedrun     SpeedrunCategories = 0x20
 	NoEscapeSpeedrun       SpeedrunCategories = 0x40
+	ImpossibleSpeedrun     SpeedrunCategories = 0x8000
 	allCategoriesSpeedrun  SpeedrunCategories = 0x7F
 )
 
 func (c SpeedrunCategories) Strings() (categories string, tryNext string) {
 	tryNext = ""
 	cats := []string{}
-	addCategory := func(cat string, have bool) {
-		if have {
+	addCategory := func(cat string, what SpeedrunCategories) {
+		if c.ContainAll(what) {
 			cats = append(cats, cat)
 		} else {
 			if tryNext == "" {
@@ -208,22 +209,22 @@ func (c SpeedrunCategories) Strings() (categories string, tryNext string) {
 		}
 	}
 	if flag.Cheating() {
-		addCategory("Cheat%", true)
-		addCategory("Without Cheating Of Course", false)
+		addCategory("Cheat%", 0)
+		addCategory("Without Cheating Of Course", ImpossibleSpeedrun)
 	}
 	if c&HundredPercentSpeedrun == 0 {
-		addCategory("Any%", c&AnyPercentSpeedrun != 0)
+		addCategory("Any%", AnyPercentSpeedrun)
 	}
-	addCategory("100%", c&HundredPercentSpeedrun != 0)
-	addCategory("All Notes", c&AllSignsSpeedrun != 0)
-	addCategory("All Paths", c&AllPathsSpeedrun != 0)
-	addCategory("All Secrets", c&AllSecretsSpeedrun != 0)
-	addCategory("All Flipped", c&AllFlippedSpeedrun != 0)
+	addCategory("100%", HundredPercentSpeedrun)
+	addCategory("All Notes", AllSignsSpeedrun)
+	addCategory("All Paths", AllPathsSpeedrun)
+	addCategory("All Secrets", AllSecretsSpeedrun)
+	addCategory("All Flipped", AllFlippedSpeedrun)
 	noEscape := "No Escape"
 	if input.UsingGamepad() {
 		noEscape = "No Start"
 	}
-	addCategory(noEscape, c&NoEscapeSpeedrun != 0)
+	addCategory(noEscape, NoEscapeSpeedrun)
 	l := len(cats)
 	switch l {
 	case 0:
@@ -234,6 +235,10 @@ func (c SpeedrunCategories) Strings() (categories string, tryNext string) {
 		categories = strings.Join(cats[0:l-1], ", ") + " and " + cats[l-1]
 	}
 	return
+}
+
+func (c SpeedrunCategories) ContainAll(cats SpeedrunCategories) bool {
+	return (c & cats) == cats
 }
 
 func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
