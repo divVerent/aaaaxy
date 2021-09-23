@@ -234,8 +234,14 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				otherName := edge.Other
 				edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(cpName, otherName)
 				// Unseen edges leading to a secret are only drawn if the game has already been completed.
-				if !edgeSeen && !s.Controller.World.PlayerState.Won() && s.Controller.World.Level.Checkpoints[otherName].Properties["secret"] == "true" {
-					continue
+				if !edgeSeen && s.Controller.World.Level.Checkpoints[otherName].Properties["secret"] == "true" {
+					if !s.Controller.World.PlayerState.Won() {
+						continue
+					}
+					// Even if we draw them, make edges pointing at secrets flicker.
+					if rand.Intn(2) == 0 {
+						continue
+					}
 				}
 				endPos := cpPos[otherName]
 				color := lineColor
