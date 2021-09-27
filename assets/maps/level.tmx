@@ -17284,6 +17284,7 @@
   <object id="8004" gid="321" x="5456" y="768" width="32" height="32"/>
   <object id="8007" type="_TileMod" x="6368" y="6480" width="112" height="48">
    <properties>
+    <property name="opaque" type="bool" value="false"/>
     <property name="solid" type="bool" value="false"/>
    </properties>
   </object>
