@@ -25,6 +25,7 @@ zip="aaaaxy-$GOOS-$GOARCH-$(scripts/version.sh gittag).zip"
 exec 3>&1
 exec >&2
 
+make clean
 make BUILDTYPE=release
 
 # Then pack it all together.
@@ -39,5 +40,7 @@ rm -f "$zip"
 	$app \
 	README.md LICENSE CONTRIBUTING.md \
 	licenses
+
+make clean
 
 echo >&3 "$zip"
