@@ -47,7 +47,6 @@ var (
 	actionKeys = []ebiten.Key{
 		ebiten.KeyAlt,   // DOS.
 		ebiten.KeyShift, // DOS, FPS, Vi.
-		ebiten.KeyE,     // FPS.
 		ebiten.KeyZ,     // NES.
 		ebiten.KeyTab,   // FPS, Vi.
 		ebiten.KeyEnter, // Vi.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8005">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8007">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -6242,9 +6242,9 @@
     <property name="text" value="You can now push platforms away!"/>
    </properties>
   </object>
-  <object id="1479" type="Text" x="7872" y="7168" width="64" height="48">
+  <object id="1479" type="Text" x="7840" y="7168" width="128" height="48">
    <properties>
-    <property name="text" value="The Coil  (hold button)"/>
+    <property name="text" value="The Coil  (hold {{ActionButton}})"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6268,9 +6268,9 @@
     <property name="text" value="You can now grab and carry platforms!"/>
    </properties>
   </object>
-  <object id="1494" type="Text" x="672" y="416" width="64" height="48">
+  <object id="1494" type="Text" x="640" y="416" width="128" height="48">
    <properties>
-    <property name="text" value="The Gloves  (hold button)"/>
+    <property name="text" value="The Gloves  (hold {{ActionButton}})"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -9291,9 +9291,9 @@
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="3834" type="Text" x="3312" y="1888" width="64" height="48">
+  <object id="3834" type="Text" x="3280" y="1888" width="128" height="48">
    <properties>
-    <property name="text" value="The Remote  (hold button)"/>
+    <property name="text" value="The Remote  (hold {{ActionButton}})"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>

@@ -150,6 +150,15 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			}
 			return "Escape", nil
 		},
+		"ActionButton": func() (string, error) {
+			if ps == nil {
+				return "", fmt.Errorf("Cannot use {{ActionButton}} in static elements.")
+			}
+			if input.UsingGamepad() {
+				return "B/X", nil
+			}
+			return "Alt/Shift/Z/Tab/Enter", nil
+		},
 		"SpeedrunCategories": func() (string, error) {
 			if ps == nil {
 				return "", fmt.Errorf("Cannot use {{SpeedrunCategories}} in static elements.")
