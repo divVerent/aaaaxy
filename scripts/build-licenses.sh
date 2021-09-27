@@ -21,22 +21,17 @@ set -ex
 export GOOS=
 export GOARCH=
 
-root=$PWD
-destdir="$root"/internal/vfs/_embedroot
+out=$1
 
-rm -rf "$destdir"
-for sourcedir in assets third_party/*/assets licenses; do
-	case "$sourcedir" in
-		licenses)
-			prefix=licenses/
-			;;
-		*)
-			prefix=
-			;;
-	esac
-	cd "$root/$sourcedir"
-	find . -name src -prune -or -name editorimgs -prune -or -type f -print | while read -r file; do
-		mkdir -p "$destdir/$prefix${file%/*}"
-		cp "$root/$sourcedir/$file" "$destdir/$prefix$file"
-	done
+# Note: ignoring errors here, as some golang.org packages
+# do not have a discoverable license file. As they're all under Go's license,
+# that is fine.
+$GO get -d github.com/google/go-licenses
+$GO install github.com/google/go-licenses
+$GO run github.com/google/go-licenses save github.com/divVerent/aaaaxy --save_path=licenses || true
+
+# Add our own third party stuff.
+find third_party -name LICENSE -o -name COPYRIGHT.md | while read -r path; do
+  mkdir -p "licenses/${path%/*}"
+  cp "$path" "licenses/$path"
 done

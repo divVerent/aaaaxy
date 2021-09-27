@@ -21,22 +21,7 @@ set -ex
 export GOOS=
 export GOARCH=
 
-root=$PWD
-destdir="$root"/internal/vfs/_embedroot
-
-rm -rf "$destdir"
-for sourcedir in assets third_party/*/assets licenses; do
-	case "$sourcedir" in
-		licenses)
-			prefix=licenses/
-			;;
-		*)
-			prefix=
-			;;
-	esac
-	cd "$root/$sourcedir"
-	find . -name src -prune -or -name editorimgs -prune -or -type f -print | while read -r file; do
-		mkdir -p "$destdir/$prefix${file%/*}"
-		cp "$root/$sourcedir/$file" "$destdir/$prefix$file"
-	done
-done
+mkdir -p assets/generated
+${GO} run github.com/divVerent/aaaaxy/cmd/dumpcps assets/maps/level.tmx > assets/generated/level.cp.dot
+neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
+scripts/image-load-order.sh assets/tiles assets/sprites third_party/grafxkid_classic_hero_and_baddies_pack/assets/sprites > assets/generated/image_load_order.txt

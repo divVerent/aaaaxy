@@ -18,25 +18,24 @@ set -ex
 : ${GO:=go}
 
 # Run go natively.
+target_arch=$(${GO} env GOARCH)
 export GOOS=
 export GOARCH=
 
-root=$PWD
-destdir="$root"/internal/vfs/_embedroot
+convert \
+	-filter Point \
+	\( assets/sprites/riser_small_up_0.png -geometry 16x16 \) \
+	\( assets/sprites/riser_small_up_0.png -geometry 32x32 \) \
+	\( assets/sprites/riser_small_up_0.png -geometry 48x48 \) \
+	\( assets/sprites/riser_small_up_0.png -geometry 64x64 \) \
+	\( assets/sprites/riser_small_up_0.png -geometry 256x256 \) \
+	aaaaxy.ico
 
-rm -rf "$destdir"
-for sourcedir in assets third_party/*/assets licenses; do
-	case "$sourcedir" in
-		licenses)
-			prefix=licenses/
-			;;
-		*)
-			prefix=
-			;;
-	esac
-	cd "$root/$sourcedir"
-	find . -name src -prune -or -name editorimgs -prune -or -type f -print | while read -r file; do
-		mkdir -p "$destdir/$prefix${file%/*}"
-		cp "$root/$sourcedir/$file" "$destdir/$prefix$file"
-	done
-done
+scripts/aaaaxy.exe.manifest.sh $(scripts/version.sh windows) > aaaaxy.manifest
+${GO} get -d github.com/akavel/rsrc
+${GO} install github.com/akavel/rsrc
+${GO} run github.com/akavel/rsrc \
+	-arch "${target_arch}" \
+	-ico aaaaxy.ico \
+	-manifest aaaaxy.manifest \
+	-o aaaaxy.syso

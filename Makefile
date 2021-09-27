@@ -4,19 +4,20 @@ EXE = $(shell $(GO) env GOEXE)
 SUFFIX = -$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)$(EXE)
 
 # Internal variables.
-PACKAGE = github.com/divVerent/aaaaxy
 DUMPCPS = github.com/divVerent/aaaaxy/cmd/dumpcps
 VERSION = github.com/divVerent/aaaaxy/internal/version
 # TODO glfw is gccgo-built, which still seems to include private paths. Fix.
 UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
-GENERATED_ASSETS = assets/generated/level.cp.json assets/generated/image_load_order.txt
+GENERATED_ASSETS = assets/generated
 EMBEDROOT = internal/vfs/_embedroot
 EXTRAFILES = README.md LICENSE CONTRIBUTING.md
 LICENSES_THIRD_PARTY = licenses
 ZIP = 7za -tzip -mx=9 a
 CP = cp --reflink=auto
 RESOURCE_FILES =
+
+GENERATED_STUFF = $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY) $(RESOURCE_FILES)
 
 # Output file name when building a release.
 ZIPFILE = aaaaxy-$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)-$(shell sh scripts/version.sh gittag).zip
@@ -43,7 +44,7 @@ CFLAGS ?= -g0 -O3
 CXXFLAGS ?= -g0 -O3
 LDFLAGS ?= -g0 -s
 INFIX =
-BINARY_ASSETS = $(EMBEDROOT)
+GENERATED_STUFF += $(EMBEDROOT)
 else
 ifeq ($(BUILDTYPE),extradebug)
 GOFLAGS ?= -tags "ebitendebug,$(BUILDTAGS)"
@@ -52,14 +53,12 @@ else
 GOFLAGS ?= -tags "$(BUILDTAGS)"
 INFIX = -debug
 endif
-BINARY_ASSETS = $(GENERATED_ASSETS)
 endif
 BINARY = $(PREFIX)aaaaxy$(INFIX)$(SUFFIX)
 
 # Windows only: include icon.
 ifeq ($(shell $(GO) env GOOS),windows)
-RESOURCE_FILES = cmd/aaaaxy/resources.ico cmd/aaaaxy/resources.manifest cmd/aaaaxy/resources.syso
-BINARY_ASSETS += $(RESOURCE_FILES)
+RESOURCE_FILES = resources.ico resources.manifest resources.syso
 endif
 
 # OS X only: app bundle.
@@ -69,7 +68,6 @@ APPICONS = $(APPBUNDLE)/Contents/Resources/icon.icns
 # OS X releases only: app bundle.
 ifeq ($(shell $(GO) env GOOS),darwin)
 ifeq ($(BUILDTYPE),release)
-BINARY_ASSETS += $(APPICONS)
 PREFIX = $(APPBUNDLE)/Contents/MacOS/
 endif
 endif
@@ -107,7 +105,7 @@ bin: $(BINARY)
 
 .PHONY: clean
 clean:
-	$(RM) -r $(BINARY) $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY) $(RESOURCE_FILES)
+	$(RM) -r $(BINARY) $(GENERATED_STUFF)
 
 .PHONY: vet
 vet:
@@ -116,64 +114,14 @@ vet:
 # The actual build process follows.
 
 # Packing the data files.
-assets/generated/image_load_order.txt: assets/tiles assets/sprites $(wildcard third_party/*/assets/sprites)
-	mkdir -p assets/generated
-	scripts/image-load-order.sh $^ > $@
-
-assets/generated/%.cp.dot: assets/maps/%.tmx cmd/dumpcps/main.go
-	mkdir -p assets/generated
-	GOOS= GOARCH= $(GO) run $(DUMPCPS) $< > $@
-
-assets/generated/%.cp.json: assets/generated/%.cp.dot
-	neato -Tjson $< > $@
-
-.PHONY: $(LICENSES_THIRD_PARTY)
-$(LICENSES_THIRD_PARTY):
-	GO="$(GO)" GOOS= GOARCH= scripts/collect-licenses.sh $(PACKAGE) $(LICENSES_THIRD_PARTY)
-
-$(EMBEDROOT): $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY)
-	$(RM) -r $(EMBEDROOT)
-	CP="$(CP)" scripts/build-vfs.sh $(EMBEDROOT)
-
-# Windows-only stuff.
-cmd/aaaaxy/resources.manifest: scripts/aaaaxy.exe.manifest.sh
-	$< $(shell scripts/version.sh windows) > $@
-
-%.syso: %.ico %.manifest
-	GOOS= GOARCH= $(GO) get -d github.com/akavel/rsrc
-	GOOS= GOARCH= $(GO) install github.com/akavel/rsrc
-	GOOS= GOARCH= $(GO) run github.com/akavel/rsrc \
-		-arch $(shell $(GO) env GOARCH) \
-		-ico $*.ico \
-		-manifest $*.manifest \
-		-o $@
-
-cmd/aaaaxy/resources.ico: assets/sprites/riser_small_up_0.png
-	convert \
-		-filter Point \
-		\( $< -geometry 16x16 \) \
-		\( $< -geometry 32x32 \) \
-		\( $< -geometry 48x48 \) \
-		\( $< -geometry 64x64 \) \
-		\( $< -geometry 256x256 \) \
-		$@
-
-$(APPICONS): assets/sprites/riser_small_up_0.png
-	for res in 16 32 128 256 512 1024; do \
-		convert $< \
-			-filter Point -geometry $${res}x$${res} \
-			-define png:bit-depth=8 \
-			-define png:color-type=6 \
-			-define png:format=png32 \
-			icns$${res}.png; \
-	done
-	png2icns $@ icns*.png
-	$(RM) icns*.png
+.PHONY: generate
+generate:
+	$(GO) generate $(GOFLAGS)
 
 # Binary building.
-$(BINARY): $(BINARY_ASSETS) $(SOURCES)
+$(BINARY): generate $(SOURCES)
 	$(CGO_ENV) \
-	$(GO) build -o $(BINARY) $(GOFLAGS) $(PACKAGE)
+	$(GO) build -o $(BINARY) $(GOFLAGS)
 
 # Binary release building.
 
