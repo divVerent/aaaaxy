@@ -25,7 +25,7 @@ zip="aaaaxy-$GOOS-$GOARCH-$(scripts/version.sh gittag).zip"
 exec 3>&1
 exec >&2
 
-make
+make BUILDTYPE=release
 
 # Then pack it all together.
 case "$GOOS" in
