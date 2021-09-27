@@ -5947,7 +5947,7 @@
     <property name="image_region" value="0 0 304 48"/>
    </properties>
   </object>
-  <object id="1349" type="SetState" x="5063" y="6050" width="2" height="2">
+  <object id="1349" type="SetState" x="5062" y="6049" width="4" height="4">
    <properties>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="TurtlesOut"/>
