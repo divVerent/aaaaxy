@@ -215,7 +215,7 @@ func (c *Controller) SwitchSaveState(state int) error {
 	return c.InitGame(loadGame)
 }
 
-// SwitchToGame switches to a specific checkpoint.
+// SwitchToGame switches to the game without teleporting.
 func (c *Controller) SwitchToGame() error {
 	c.Screen = nil
 	return nil

@@ -62,9 +62,9 @@ func (s *MainScreen) Update() error {
 	}
 	s.Item = MainScreenItem(m.Mod(int(s.Item), int(MainCount)))
 	/*
-		Don't need this anymore - we have a quit entry.
+		Actually not allowed as it could be used for pausebuffering.
 		if input.Exit.JustHit {
-			return s.Controller.ActivateSound(s.Controller.QuitGame())
+			return s.Controller.ActivateSound(s.Controller.SwitchToGame())
 		}
 	*/
 	if input.Jump.JustHit || input.Action.JustHit {
