@@ -4,7 +4,7 @@ EXE = $(shell $(GO) env GOEXE)
 SUFFIX = -$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)$(EXE)
 
 # Internal variables.
-PACKAGE = github.com/divVerent/aaaaxy/cmd/aaaaxy
+PACKAGE = github.com/divVerent/aaaaxy
 DUMPCPS = github.com/divVerent/aaaaxy/cmd/dumpcps
 VERSION = github.com/divVerent/aaaaxy/internal/version
 # TODO glfw is gccgo-built, which still seems to include private paths. Fix.
