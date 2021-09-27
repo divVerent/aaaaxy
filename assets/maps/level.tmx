@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8008">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8015">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -11514,7 +11514,7 @@
   <object id="5070" gid="324" x="6208" y="5904" width="32" height="32"/>
   <object id="5071" gid="319" x="6256" y="6016" width="32" height="32"/>
   <object id="5072" gid="321" x="6320" y="5952" width="32" height="32"/>
-  <object id="5073" gid="323" x="6256" y="5888" width="32" height="32"/>
+  <object id="5073" gid="323" x="6256" y="5886" width="32" height="32"/>
   <object id="5074" gid="325" x="6192" y="5952" width="32" height="32"/>
   <object id="5075" name="CounterClockwiseR2" gid="299" x="6416" y="5888" width="16" height="160">
    <properties>
@@ -11539,7 +11539,7 @@
   <object id="5083" gid="324" x="6208" y="5680" width="32" height="32"/>
   <object id="5084" gid="319" x="6256" y="5792" width="32" height="32"/>
   <object id="5085" gid="321" x="6320" y="5728" width="32" height="32"/>
-  <object id="5086" gid="323" x="6256" y="5664" width="32" height="32"/>
+  <object id="5086" gid="323" x="6256" y="5663" width="32" height="32"/>
   <object id="5087" gid="325" x="6192" y="5728" width="32" height="32"/>
   <object id="5088" gid="326" x="6208" y="5552" width="32" height="32"/>
   <object id="5089" gid="320" x="6304" y="5552" width="32" height="32"/>
@@ -11724,14 +11724,10 @@
     <property name="target" value="CounterClockwiseL1 !CounterClockwiseL2 !CounterClockwiseL3"/>
    </properties>
   </object>
-  <object id="5139" gid="326" x="6208" y="5328" width="32" height="32"/>
   <object id="5140" gid="320" x="6304" y="5328" width="32" height="32"/>
   <object id="5141" gid="322" x="6304" y="5232" width="32" height="32"/>
-  <object id="5142" gid="324" x="6208" y="5232" width="32" height="32"/>
   <object id="5143" gid="319" x="6256" y="5344" width="32" height="32"/>
   <object id="5144" gid="321" x="6320" y="5280" width="32" height="32"/>
-  <object id="5145" gid="323" x="6256" y="5216" width="32" height="32"/>
-  <object id="5146" gid="325" x="6192" y="5280" width="32" height="32"/>
   <object id="5147" name="CounterClockwiseR3" gid="293" x="6448" y="5200" width="16" height="192">
    <properties>
     <property name="switchable" type="bool" value="true"/>
@@ -17288,5 +17284,12 @@
     <property name="solid" type="bool" value="false"/>
    </properties>
   </object>
+  <object id="8008" gid="321" x="6256" y="5216" width="32" height="32"/>
+  <object id="8009" gid="303" x="6376" y="5752" width="16" height="16"/>
+  <object id="8010" gid="303" x="6376" y="5720" width="16" height="16"/>
+  <object id="8011" gid="303" x="6376" y="5528" width="16" height="16"/>
+  <object id="8012" gid="303" x="6376" y="5496" width="16" height="16"/>
+  <object id="8013" gid="303" x="6376" y="5304" width="16" height="16"/>
+  <object id="8014" gid="303" x="6376" y="5272" width="16" height="16"/>
  </objectgroup>
 </map>
