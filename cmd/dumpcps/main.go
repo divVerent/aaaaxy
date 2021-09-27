@@ -123,7 +123,7 @@ func main() {
 			}
 			distance := 10
 			if nextSp.Properties["dead_end"] == "true" {
-				distance = 15
+				distance = 17
 			}
 			edge := &Edge{
 				WantDelta: conn.dir.Mul(distance),
@@ -154,8 +154,8 @@ func main() {
 	for _, v := range vertices {
 		for _, e := range v.OutEdges {
 			fmt.Printf(`
-					%s -> %s [len=%d];
-				`, v.Name, e.To.Name, e.WantDelta.Norm1())
+					%s -> %s [len=%f];
+				`, v.Name, e.To.Name, e.WantDelta.Length())
 		}
 	}
 	fmt.Print(`
