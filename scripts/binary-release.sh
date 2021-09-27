@@ -25,7 +25,7 @@ echo "Releaseing: $prev -> $new."
 
 GOOS=linux GOARCH=amd64 scripts/binary-release-compile.sh
 GOOS=windows GOARCH=amd64 scripts/binary-release-compile.sh
-GOOS=linux GOARCH=386 scripts/binary-release-compile.sh
+GOOS=windows GOARCH=386 scripts/binary-release-compile.sh
 GOOS=darwin GOARCH=amd64 CGO_ENV="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=o64-clang CXX=o64-clang++ MACOSX_DEPLOYMENT_TARGET=10.12" scripts/binary-release-compile.sh
 
 git tag -a "$new" -m "$(
