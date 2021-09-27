@@ -24,7 +24,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/aaaaxy"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
-	"github.com/divVerent/aaaaxy/internal/version"
 )
 
 var (
@@ -34,7 +33,6 @@ var (
 
 func main() {
 	flag.Parse(aaaaxy.LoadConfig)
-	log.Infof("AAAAXY %v", version.Revision())
 	if *cpuprofile != "" {
 		f, err := os.Create(*cpuprofile)
 		if err != nil {

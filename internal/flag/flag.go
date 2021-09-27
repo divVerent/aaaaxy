@@ -132,7 +132,6 @@ func ResetToDefaults() {
 	})
 }
 
-var defaultUsage func()
 var getConfig func() (*Config, error)
 
 func applyConfig() {

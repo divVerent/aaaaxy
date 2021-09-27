@@ -25,3 +25,4 @@ mkdir -p assets/generated
 ${GO} run github.com/divVerent/aaaaxy/cmd/dumpcps assets/maps/level.tmx > assets/generated/level.cp.dot
 neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
 scripts/image-load-order.sh assets/tiles assets/sprites third_party/grafxkid_classic_hero_and_baddies_pack/assets/sprites > assets/generated/image_load_order.txt
+scripts/version.sh semver > assets/generated/version.txt

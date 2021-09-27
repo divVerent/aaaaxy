@@ -14,7 +14,32 @@
 
 package version
 
+import (
+	"io/ioutil"
+	"strings"
+
+	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/vfs"
+)
+
 var revision string = "unknown"
+
+func Init() error {
+	fh, err := vfs.Load("generated", "version.txt")
+	if err != nil {
+		log.Errorf("Cannot open out my version: %v.", err)
+		return err
+	}
+	defer fh.Close()
+	revStr, err := ioutil.ReadAll(fh)
+	if err != nil {
+		log.Errorf("Cannot read out my version: %v.", err)
+		return err
+	}
+	revision = strings.TrimSpace(string(revStr))
+	log.Infof("AAAAXY %v", revision)
+	return nil
+}
 
 func Revision() string {
 	return revision

@@ -32,6 +32,7 @@ import (
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/noise"
 	"github.com/divVerent/aaaaxy/internal/sound"
+	"github.com/divVerent/aaaaxy/internal/version"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
@@ -95,6 +96,10 @@ func InitEbiten() error {
 	err := vfs.Init()
 	if err != nil {
 		return fmt.Errorf("could not initialize VFS: %v", err)
+	}
+	err = version.Init()
+	if err != nil {
+		return fmt.Errorf("could not initialize version: %v", err)
 	}
 	err = input.Init()
 	if err != nil {

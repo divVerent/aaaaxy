@@ -55,9 +55,6 @@ PREFIX = $(APPBUNDLE)/Contents/MacOS/
 endif
 endif
 
-# Include version.
-GOFLAGS += -ldflags="-X $(VERSION).revision=$(shell scripts/version.sh semver)"
-
 # cgo support.
 CGO_CPPFLAGS ?= $(CPPFLAGS)
 CGO_CFLAGS ?= $(CFLAGS)
