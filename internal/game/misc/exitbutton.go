@@ -33,7 +33,7 @@ func (s *ExitButton) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 	if sp.Properties["no_flip"] == "" {
 		sp.Properties["no_flip"] = "x"
 	}
-	if input.UsingGamepad() {
+	if input.Map().ContainsAny(input.Gamepad) {
 		sp.Properties["image"] = "start.png"
 	} else {
 		sp.Properties["image"] = "esc.png"

@@ -33,7 +33,7 @@ func (s *ActionButton) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Ent
 	if sp.Properties["no_flip"] == "" {
 		sp.Properties["no_flip"] = "x"
 	}
-	if input.UsingGamepad() {
+	if input.Map().ContainsAny(input.Gamepad) {
 		sp.Properties["image"] = "xb.png"
 	} else {
 		sp.Properties["image"] = "altshiftztabenter.png"

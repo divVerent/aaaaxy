@@ -120,7 +120,7 @@ var (
 	allGamepadsList []ebiten.GamepadID
 )
 
-func (i *impulse) gamepadPressed() bool {
+func (i *impulse) gamepadPressed() InputMap {
 	t := *gamepadAxisOnThreshold
 	if i.Held {
 		t = *gamepadAxisOffThreshold
@@ -128,16 +128,16 @@ func (i *impulse) gamepadPressed() bool {
 	for p := range gamepads {
 		for _, b := range i.padControls.buttons {
 			if ebiten.IsStandardGamepadButtonPressed(p, b) {
-				return true
+				return Gamepad
 			}
 		}
 		for _, a := range i.padControls.axes {
 			if ebiten.StandardGamepadAxisValue(p, a)*i.padControls.axisDirection >= t {
-				return true
+				return Gamepad
 			}
 		}
 	}
-	return false
+	return NoInput
 }
 
 func gamepadScan() {

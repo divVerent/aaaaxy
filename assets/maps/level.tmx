@@ -6244,7 +6244,7 @@
   </object>
   <object id="1479" type="Text" x="7808" y="7168" width="192" height="48">
    <properties>
-    <property name="text" value="The Coil  ({{ActionButton}})"/>
+    <property name="text" value="The Coil  (hold {{ActionButton}})"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6270,7 +6270,7 @@
   </object>
   <object id="1494" type="Text" x="608" y="416" width="192" height="48">
    <properties>
-    <property name="text" value="The Gloves  ({{ActionButton}})"/>
+    <property name="text" value="The Gloves  (hold {{ActionButton}})"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -9293,7 +9293,7 @@
   </object>
   <object id="3834" type="Text" x="3248" y="1888" width="192" height="48">
    <properties>
-    <property name="text" value="The Remote  ({{ActionButton}})"/>
+    <property name="text" value="The Remote  (hold {{ActionButton}})"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>

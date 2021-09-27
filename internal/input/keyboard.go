@@ -19,53 +19,54 @@ import (
 )
 
 var (
-	leftKeys = []ebiten.Key{
-		ebiten.KeyLeft, // DOS, NES.
-		ebiten.KeyA,    // FPS.
-		ebiten.KeyH,    // Vi.
+	leftKeys = map[ebiten.Key]InputMap{
+		ebiten.KeyLeft: DOSKeyboard | NESKeyboard,
+		ebiten.KeyA:    FPSKeyboard,
+		ebiten.KeyH:    ViKeyboard,
 	}
-	rightKeys = []ebiten.Key{
-		ebiten.KeyRight, // DOS, NES.
-		ebiten.KeyD,     // FPS.
-		ebiten.KeyL,     // Vi.
+	rightKeys = map[ebiten.Key]InputMap{
+		ebiten.KeyRight: DOSKeyboard | NESKeyboard,
+		ebiten.KeyD:     FPSKeyboard,
+		ebiten.KeyL:     ViKeyboard,
 	}
-	upKeys = []ebiten.Key{
-		ebiten.KeyUp, // DOS, NES.
-		ebiten.KeyW,  // FPS.
-		ebiten.KeyK,  // Vi.
+	upKeys = map[ebiten.Key]InputMap{
+		ebiten.KeyUp: DOSKeyboard | NESKeyboard,
+		ebiten.KeyW:  FPSKeyboard,
+		ebiten.KeyK:  ViKeyboard,
 	}
-	downKeys = []ebiten.Key{
-		ebiten.KeyDown, // DOS, NES.
-		ebiten.KeyS,    // FPS.
-		ebiten.KeyJ,    // Vi.
+	downKeys = map[ebiten.Key]InputMap{
+		ebiten.KeyDown: DOSKeyboard | NESKeyboard,
+		ebiten.KeyS:    FPSKeyboard,
+		ebiten.KeyJ:    ViKeyboard,
 	}
-	jumpKeys = []ebiten.Key{
-		ebiten.KeyControl, // DOS.
-		ebiten.KeySpace,   // DOS, FPS, Vi.
-		ebiten.KeyX,       // NES.
+	jumpKeys = map[ebiten.Key]InputMap{
+		ebiten.KeyControl: DOSKeyboard,
+		ebiten.KeySpace:   DOSKeyboard | FPSKeyboard | ViKeyboard,
+		ebiten.KeyX:       NESKeyboard,
 	}
-	actionKeys = []ebiten.Key{
-		ebiten.KeyAlt,   // DOS.
-		ebiten.KeyShift, // DOS, FPS, Vi.
-		ebiten.KeyZ,     // NES.
-		ebiten.KeyTab,   // FPS, Vi.
-		ebiten.KeyEnter, // Vi.
+	actionKeys = map[ebiten.Key]InputMap{
+		ebiten.KeyAlt:   DOSKeyboard,
+		ebiten.KeyShift: DOSKeyboard | FPSKeyboard | ViKeyboard,
+		ebiten.KeyE:     FPSKeyboard,
+		ebiten.KeyZ:     NESKeyboard,
+		ebiten.KeyTab:   FPSKeyboard | ViKeyboard,
+		ebiten.KeyEnter: ViKeyboard,
 	}
-	exitKeys = []ebiten.Key{
-		ebiten.KeyEscape,    // DOS, NES, FPS, Vi.
-		ebiten.KeyBackspace, // Vi.
+	exitKeys = map[ebiten.Key]InputMap{
+		ebiten.KeyEscape:    DOSKeyboard | NESKeyboard | FPSKeyboard | ViKeyboard,
+		ebiten.KeyBackspace: ViKeyboard,
 	}
-	fullscreenKeys = []ebiten.Key{
-		ebiten.KeyF11, // Common.
-		ebiten.KeyF,   // Common.
+	fullscreenKeys = map[ebiten.Key]InputMap{
+		ebiten.KeyF11: AnyInput,
+		ebiten.KeyF:   AnyInput,
 	}
 )
 
-func (i *impulse) keyboardPressed() bool {
-	for _, k := range i.keys {
+func (i *impulse) keyboardPressed() InputMap {
+	for k, m := range i.keys {
 		if ebiten.IsKeyPressed(k) {
-			return true
+			return m
 		}
 	}
-	return false
+	return NoInput
 }

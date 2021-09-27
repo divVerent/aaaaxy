@@ -145,7 +145,8 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			if ps == nil {
 				return "", fmt.Errorf("Cannot use {{ExitButton}} in static elements.")
 			}
-			if input.UsingGamepad() {
+			i := input.Map()
+			if i.ContainsAny(input.Gamepad) {
 				return "Start", nil
 			}
 			return "Escape", nil
@@ -154,10 +155,23 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			if ps == nil {
 				return "", fmt.Errorf("Cannot use {{ActionButton}} in static elements.")
 			}
-			if input.UsingGamepad() {
+			i := input.Map()
+			if i.ContainsAny(input.Gamepad) {
 				return "B/X", nil
 			}
-			return "Alt/Shift/Z/Tab/Enter", nil
+			if i.ContainsAny(input.DOSKeyboard) {
+				return "Alt/Shift", nil
+			}
+			if i.ContainsAny(input.NESKeyboard) {
+				return "Z", nil
+			}
+			if i.ContainsAny(input.FPSKeyboard) {
+				return "Shift/E/Tab", nil
+			}
+			if i.ContainsAny(input.ViKeyboard) {
+				return "Enter", nil
+			}
+			return "Shift", nil
 		},
 		"SpeedrunCategories": func() (string, error) {
 			if ps == nil {

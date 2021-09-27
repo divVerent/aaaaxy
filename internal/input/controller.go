@@ -23,13 +23,30 @@ type ImpulseState struct {
 	JustHit bool `json:",omitempty"`
 }
 
+type InputMap int
+
+func (i InputMap) ContainsAny(o InputMap) bool {
+	return i&o != 0
+}
+
 type impulse struct {
 	ImpulseState
 	Name string
 
-	keys        []ebiten.Key
+	keys        map[ebiten.Key]InputMap
 	padControls padControls
 }
+
+const (
+	NoInput     InputMap = 0
+	DOSKeyboard InputMap = 1
+	NESKeyboard InputMap = 2
+	FPSKeyboard InputMap = 4
+	ViKeyboard  InputMap = 8
+	AnyKeyboard InputMap = DOSKeyboard | NESKeyboard | FPSKeyboard | ViKeyboard
+	Gamepad     InputMap = 16
+	AnyInput    InputMap = AnyKeyboard | Gamepad
+)
 
 var (
 	Left       = (&impulse{Name: "Left", keys: leftKeys, padControls: leftPad}).register()
@@ -43,7 +60,7 @@ var (
 
 	impulses = []*impulse{}
 
-	usingGamepad bool
+	inputMap InputMap
 
 	// Wait for first frame to detect initial gamepad situation.
 	firstUpdate = true
@@ -57,18 +74,19 @@ func (i *impulse) register() *impulse {
 func (i *impulse) update() {
 	keyboardHeld := i.keyboardPressed()
 	gamepadHeld := i.gamepadPressed()
-	held := keyboardHeld || gamepadHeld
-	if held && !i.Held {
+	held := keyboardHeld | gamepadHeld
+	if held != 0 && !i.Held {
 		i.JustHit = true
 		// Whenever a new key is pressed, update the flag whether we're actually
 		// _using_ the gamepad. Used for some in-game text messages.
-		if keyboardHeld != gamepadHeld {
-			usingGamepad = gamepadHeld
+		inputMap &= held
+		if inputMap == 0 {
+			inputMap = held
 		}
 	} else {
 		i.JustHit = false
 	}
-	i.Held = held
+	i.Held = held != 0
 }
 
 func Init() error {
@@ -80,7 +98,11 @@ func Update() {
 	gamepadScan()
 	if firstUpdate {
 		// At first, assume gamepad whenever one is present.
-		usingGamepad = len(gamepads) > 0
+		if len(gamepads) > 0 {
+			inputMap = Gamepad
+		} else {
+			inputMap = DOSKeyboard
+		}
 		firstUpdate = false
 	}
 	for _, i := range impulses {
@@ -88,28 +110,28 @@ func Update() {
 	}
 }
 
-func UsingGamepad() bool {
-	return usingGamepad
+func Map() InputMap {
+	return inputMap
 }
 
 // Demo code.
 
 type DemoState struct {
-	UsingGamepad bool
-	Left         ImpulseState
-	Right        ImpulseState
-	Up           ImpulseState
-	Down         ImpulseState
-	Jump         ImpulseState
-	Action       ImpulseState
-	Exit         ImpulseState
+	InputMap InputMap
+	Left     ImpulseState
+	Right    ImpulseState
+	Up       ImpulseState
+	Down     ImpulseState
+	Jump     ImpulseState
+	Action   ImpulseState
+	Exit     ImpulseState
 }
 
 func LoadFromDemo(state *DemoState) {
 	if state == nil {
 		return
 	}
-	usingGamepad = state.UsingGamepad
+	inputMap = state.InputMap
 	Left.ImpulseState = state.Left
 	Right.ImpulseState = state.Right
 	Up.ImpulseState = state.Up
@@ -121,13 +143,13 @@ func LoadFromDemo(state *DemoState) {
 
 func SaveToDemo() *DemoState {
 	return &DemoState{
-		UsingGamepad: usingGamepad,
-		Left:         Left.ImpulseState,
-		Right:        Right.ImpulseState,
-		Up:           Up.ImpulseState,
-		Down:         Down.ImpulseState,
-		Jump:         Jump.ImpulseState,
-		Action:       Action.ImpulseState,
-		Exit:         Exit.ImpulseState,
+		InputMap: inputMap,
+		Left:     Left.ImpulseState,
+		Right:    Right.ImpulseState,
+		Up:       Up.ImpulseState,
+		Down:     Down.ImpulseState,
+		Jump:     Jump.ImpulseState,
+		Action:   Action.ImpulseState,
+		Exit:     Exit.ImpulseState,
 	}
 }

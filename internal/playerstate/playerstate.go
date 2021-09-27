@@ -221,7 +221,7 @@ func (c SpeedrunCategories) Strings() (categories string, tryNext string) {
 	addCategory("All Secrets", AllSecretsSpeedrun)
 	addCategory("All Flipped", AllFlippedSpeedrun)
 	noEscape := "No Escape"
-	if input.UsingGamepad() {
+	if input.Map().ContainsAny(input.Gamepad) {
 		noEscape = "No Start"
 	}
 	addCategory(noEscape, NoEscapeSpeedrun)
