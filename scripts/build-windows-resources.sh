@@ -32,8 +32,6 @@ convert \
 	aaaaxy.ico
 
 scripts/aaaaxy.exe.manifest.sh $(scripts/version.sh windows) > aaaaxy.manifest
-${GO} get -d github.com/akavel/rsrc
-${GO} install github.com/akavel/rsrc
 ${GO} run github.com/akavel/rsrc \
 	-arch "${target_arch}" \
 	-ico aaaaxy.ico \

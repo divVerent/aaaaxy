@@ -4,8 +4,10 @@ go 1.16
 
 require (
 	github.com/adrg/xdg v0.3.4
+	github.com/akavel/rsrc v0.10.2
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
+	github.com/google/go-licenses v0.0.0-20210816172045-3099c18c36e1
 	github.com/hajimehoshi/ebiten/v2 v2.2.0-alpha.15.0.20210920154611-f79acf956979
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	golang.org/x/exp v0.0.0-20210916165020-5cb4fee858ee // indirect

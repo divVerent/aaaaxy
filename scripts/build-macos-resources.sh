@@ -29,6 +29,6 @@ for res in 16 32 128 256 512 1024; do
 		-define png:bit-depth=8 \
 		-define png:color-type=6 \
 		-define png:format=png32 \
-		aaaaxy$${res}.png
+		aaaaxy${res}.png
 done
 png2icns AAAAXY.app/Contents/Resources/icon.icns aaaaxy*.png
