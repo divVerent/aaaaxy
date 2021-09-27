@@ -15,22 +15,23 @@
 
 set -ex
 
-GOOS=$(go tool GOOS)
-GOARCH=$(go tool GOARCH)
-GOEXE=$(go tool GOEXE)
+: ${GO:=go}
+
+GOOS=$($GO tool GOOS)
+GOARCH=$($GO tool GOARCH)
+GOEXE=$($GO tool GOEXE)
 zip="aaaaxy-$GOOS-$GOARCH-$(scripts/version.sh gittag).zip"
-binary="aaaaxy-$GOOS-$GOARCH$GOEXE"
 
 exec 3>&1
 exec >&2
 
-make "$binary"
+make
 
 # Then pack it all together.
 case "$GOOS" in
 	darwin) app=AAAAXY.app ;;
-	js) app="$binary aaaaxy.html wasm_exec.js" ;;
-	*) app=$binary ;;
+	js) app="aaaaxy-$GOOS-$GOARCH$GOEXE aaaaxy.html wasm_exec.js" ;;
+	*) app=aaaaxy-$GOOS-$GOARCH$GOEXE ;;
 esac
 
 rm -f "$zip"
