@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package builddeps
 
 // Import some stuff we may need at build time.
 // That way we include it in the repo's go.mod and go.sum file.
