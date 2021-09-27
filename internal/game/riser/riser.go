@@ -208,9 +208,9 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 }
 
 func (r *Riser) Despawn() {
-	r.pushSound.update(false)
-	r.carrySound.update(false)
-	r.riseSound.update(false)
+	r.pushSound.despawn()
+	r.carrySound.despawn()
+	r.riseSound.despawn()
 }
 
 type riserSound struct {
@@ -257,6 +257,12 @@ func (s *riserSound) update(cur bool) {
 		}
 		s.counter = 0
 	}
+}
+
+func (s *riserSound) despawn() {
+	s.on.Close()
+	s.off.Close()
+	s.counter = 0
 }
 
 func (r *Riser) Update() {
