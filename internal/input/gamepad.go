@@ -81,14 +81,14 @@ var (
 	}
 	jumpPad = padControls{
 		buttons: []ebiten.StandardGamepadButton{
-			ebiten.StandardGamepadButtonRightLeft,
 			ebiten.StandardGamepadButtonRightBottom,
+			ebiten.StandardGamepadButtonRightTop,
 			ebiten.StandardGamepadButtonFrontBottomRight,
 		},
 	}
 	actionPad = padControls{
 		buttons: []ebiten.StandardGamepadButton{
-			ebiten.StandardGamepadButtonRightTop,
+			ebiten.StandardGamepadButtonRightLeft,
 			ebiten.StandardGamepadButtonRightRight,
 			ebiten.StandardGamepadButtonFrontBottomLeft,
 		},
