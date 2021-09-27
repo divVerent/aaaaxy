@@ -4,23 +4,12 @@ EXE = $(shell $(GO) env GOEXE)
 SUFFIX = -$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)$(EXE)
 
 # Internal variables.
-DUMPCPS = github.com/divVerent/aaaaxy/cmd/dumpcps
 VERSION = github.com/divVerent/aaaaxy/internal/version
-# TODO glfw is gccgo-built, which still seems to include private paths. Fix.
-UPXFLAGS = -9
 SOURCES = $(shell git ls-files \*.go)
 GENERATED_ASSETS = assets/generated
 EMBEDROOT = internal/vfs/_embedroot
 EXTRAFILES = README.md LICENSE CONTRIBUTING.md
-LICENSES_THIRD_PARTY = licenses
-ZIP = 7za -tzip -mx=9 a
-CP = cp --reflink=auto
-RESOURCE_FILES =
-
-GENERATED_STUFF = $(GENERATED_ASSETS) $(LICENSES_THIRD_PARTY) $(RESOURCE_FILES)
-
-# Output file name when building a release.
-ZIPFILE = aaaaxy-$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)-$(shell sh scripts/version.sh gittag).zip
+GENERATED_STUFF = assets/generated licenses
 
 # Provide a way to build binaries that are faster at image/video dumping.
 # This however makes them slower for normal use, so we're not releasing those.
@@ -56,14 +45,8 @@ endif
 endif
 BINARY = $(PREFIX)aaaaxy$(INFIX)$(SUFFIX)
 
-# Windows only: include icon.
-ifeq ($(shell $(GO) env GOOS),windows)
-RESOURCE_FILES = resources.ico resources.manifest resources.syso
-endif
-
 # OS X only: app bundle.
 APPBUNDLE = AAAAXY.app
-APPICONS = $(APPBUNDLE)/Contents/Resources/icon.icns
 
 # OS X releases only: app bundle.
 ifeq ($(shell $(GO) env GOOS),darwin)
@@ -109,7 +92,7 @@ clean:
 
 .PHONY: vet
 vet:
-	$(GO) vet `find ./cmd ./internal -name \*.go -print | sed -e 's,/[^/]*$$,,' | sort -u`
+	$(GO) vet $(SOURCES)
 
 # The actual build process follows.
 
@@ -120,49 +103,7 @@ generate:
 
 # Binary building.
 $(BINARY): generate $(SOURCES)
-	$(CGO_ENV) \
-	$(GO) build -o $(BINARY) $(GOFLAGS)
-
-# Binary release building.
-
-.PHONY: webprepare
-webprepare:
-	cp $(shell $(GO) env GOROOT)/misc/wasm/wasm_exec.js .
-
-.PHONY: releaseclean
-releaseclean:
-	$(RM) $(ZIPFILE)
-
-.PHONY: binrelease
-binrelease: releaseclean $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
-	$(ZIP) $(ZIPFILE) $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
-
-.PHONY: osxbinrelease
-osxbinrelease: releaseclean $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
-	$(ZIP) $(ZIPFILE) $(APPBUNDLE) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
-
-.PHONY: webbinrelease
-webbinrelease: releaseclean webprepare $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY)
-	$(ZIP) $(ZIPFILE) $(BINARY) $(EXTRAFILES) $(LICENSES_THIRD_PARTY) aaaaxy$(INFIX).html wasm_exec.js
-
-.PHONY: allrelease
-allrelease:
-	GO="$(GO)" GOOS=linux GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
-	GO="$(GO)" GOOS=windows GOARCH=amd64 $(MAKE) binrelease BUILDTYPE=release
-	GO="$(GO)" GOOS=windows GOARCH=386 $(MAKE) binrelease BUILDTYPE=release
-	GO="$(GO)" GOOS=darwin GOARCH=amd64 $(MAKE) osxbinrelease BUILDTYPE=release
-
-.PHONY: webdebug
-webdebug: webprepare
-	GO="$(GO)" GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm debug
-
-.PHONY: webrelease
-webrelease: webprepare
-	GO="$(GO)" GOOS=js GOARCH=wasm $(MAKE) EXE=.wasm release
-
-# Debugging.
-assets/generated/%.cp.pdf: assets/generated/%.cp.dot
-	neato -Tpdf $< > $@
+	$(CGO_ENV) $(GO) build -o $(BINARY) $(GOFLAGS)
 
 # Helper targets.
 .PHONY: run

@@ -23,7 +23,10 @@ new=$(sh scripts/version.sh gittag)
 
 echo "Releaseing: $prev -> $new."
 
-make allrelease
+GOOS=linux GOARCH=amd64 scripts/binary-release-compile.sh
+GOOS=windows GOARCH=amd64 scripts/binary-release-compile.sh
+GOOS=linux GOARCH=386 scripts/binary-release-compile.sh
+GOOS=darwin GOARCH=amd64 scripts/binary-release-compile.sh
 
 git tag -a "$new" -m "$(
 	echo "Release $new"
