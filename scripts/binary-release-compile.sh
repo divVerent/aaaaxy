@@ -17,9 +17,9 @@ set -ex
 
 : ${GO:=go}
 
-GOOS=$($GO tool GOOS)
-GOARCH=$($GO tool GOARCH)
-GOEXE=$($GO tool GOEXE)
+GOOS=$($GO env GOOS)
+GOARCH=$($GO env GOARCH)
+GOEXE=$($GO env GOEXE)
 zip="aaaaxy-$GOOS-$GOARCH-$(scripts/version.sh gittag).zip"
 
 exec 3>&1
