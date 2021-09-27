@@ -32,7 +32,7 @@ endif
 
 # Internal variables.
 SOURCES = $(shell git ls-files \*.go)
-GENERATED_STUFF = assets/generated licenses internal/vfs/_embedroot
+GENERATED_STUFF = aaaaxy.ico aaaaxy.manifest aaaaxy.syso assets/generated/ internal/vfs/_embedroot/ licenses/
 
 # Configure Go.
 GOFLAGS += -tags "$(shell echo $(BUILDTAGS) | tr ' ' ,)"
