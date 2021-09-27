@@ -17,6 +17,6 @@ package main
 // Import some stuff we may need at build time.
 // That way we include it in the repo's go.mod and go.sum file.
 import (
-	_ "github.com/akavel/rsrc"
-	_ "github.com/google/go-licenses"
+	_ "github.com/akavel/rsrc/rsrc"
+	_ "github.com/google/go-licenses/licenses"
 )
