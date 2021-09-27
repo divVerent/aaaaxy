@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7985">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8005">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -11066,7 +11066,7 @@
   <object id="4732" name="driving_you_mad" type="Checkpoint" x="5584" y="1808" width="96" height="32">
    <properties>
     <property name="music" value="boss_battle_3_alternate.ogg"/>
-    <property name="next_up" type="object" value="4935"/>
+    <property name="next_up" type="object" value="7986"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Driving You Mad"/>
    </properties>
@@ -17256,5 +17256,31 @@
   <object id="7982" gid="303" x="4608" y="688" width="16" height="16"/>
   <object id="7983" gid="303" x="6376" y="5944" width="16" height="16"/>
   <object id="7984" gid="303" x="6376" y="5976" width="16" height="16"/>
+  <object id="7985" gid="309" x="5248" y="1808" width="32" height="16"/>
+  <object id="7986" name="higher_higher_higher" type="Checkpoint" x="5200" y="1776" width="128" height="32">
+   <properties>
+    <property name="downtrace_on_spawn" type="bool" value="false"/>
+    <property name="music" value="boss_battle_3_alternate.ogg"/>
+    <property name="next_up" type="object" value="4935"/>
+    <property name="required_orientation" value="ES"/>
+    <property name="text" value="Higher, Higher, Higher!"/>
+   </properties>
+  </object>
+  <object id="7987" gid="312" x="4640" y="1488" width="32" height="32">
+   <properties>
+    <property name="reached_from" type="object" value="7986"/>
+    <property name="text" value="It can be helpful to do two things at the same time."/>
+   </properties>
+  </object>
+  <object id="7995" gid="302" x="5256" y="1680" width="16" height="16"/>
+  <object id="7996" gid="303" x="5424" y="752" width="16" height="16"/>
+  <object id="7997" gid="303" x="5440" y="752" width="16" height="16"/>
+  <object id="7998" gid="303" x="5392" y="752" width="16" height="16"/>
+  <object id="7999" gid="303" x="5408" y="752" width="16" height="16"/>
+  <object id="8000" gid="303" x="5456" y="752" width="16" height="16"/>
+  <object id="8001" gid="303" x="5472" y="752" width="16" height="16"/>
+  <object id="8002" gid="321" x="5392" y="768" width="32" height="32"/>
+  <object id="8003" gid="321" x="5424" y="768" width="32" height="32"/>
+  <object id="8004" gid="321" x="5456" y="768" width="32" height="32"/>
  </objectgroup>
 </map>
