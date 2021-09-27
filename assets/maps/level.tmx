@@ -11487,7 +11487,7 @@
   <object id="5057" gid="312" x="6440" y="6032" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4609"/>
-    <property name="text" value="?eip eht gnirb uoy diD"/>
+    <property name="text" value="Impatience is a major source of despair."/>
    </properties>
   </object>
   <object id="5058" gid="312" x="6440" y="5872" width="32" height="32">
