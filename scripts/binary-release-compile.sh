@@ -73,6 +73,8 @@ case "$GOOS" in
 			-e "$app" \
 			-d packaging/"$app".desktop \
 			-i packaging/"$app".png
+		mkdir -p packaging/AAAAXY.AppDir/usr/share/metainfo
+		cp packaging/io.github.divverent.$app.metainfo.xml packaging/AAAAXY.AppDir/usr/share/metainfo/
 		appimagetool-$(uname -m).AppImage \
 			packaging/AAAAXY.AppDir \
 			"AAAAXY-$arch.AppImage"

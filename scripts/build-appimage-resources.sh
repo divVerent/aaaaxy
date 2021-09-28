@@ -23,3 +23,4 @@ convert assets/sprites/riser_small_up_0.png \
 	-filter Point -geometry 128x128 \
 	packaging/"$binary.png"
 sh scripts/aaaaxy.desktop.sh > packaging/"$binary.desktop"
+sh scripts/io.github.divverent.aaaaxy.metainfo.xml.sh > packaging/io.github.divverent."$binary".metainfo.xml
