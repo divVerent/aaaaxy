@@ -58,6 +58,15 @@ rm -f "$zip"
 
 case "$GOOS" in
 	linux)
+		arch=$GOARCH
+		case "$arch" in
+			amd64)
+				arch=x86_64
+				;;
+			386)
+				arch=x86
+				;;
+		esac
 		rm -rf packaging/AAAAXY.AppDir
 		linuxdeploy-$(uname -m).AppImage \
 			--appdir=packaging/AAAAXY.AppDir \
@@ -66,7 +75,7 @@ case "$GOOS" in
 			-i packaging/"$app".png
 		appimagetool-$(uname -m).AppImage \
 			packaging/AAAAXY.AppDir \
-			"AAAAXY-$GOARCH.AppImage"
+			"AAAAXY-$arch.AppImage"
 		;;
 esac
 
