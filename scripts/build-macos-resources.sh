@@ -15,13 +15,13 @@
 
 set -ex
 
-rm -f aaaaxy*.png
+rm -f packaging/aaaaxy-macos-*.png
 for res in 16 32 128 256 512 1024; do
 	convert assets/sprites/riser_small_up_0.png \
 		-filter Point -geometry ${res}x${res} \
 		-define png:bit-depth=8 \
 		-define png:color-type=6 \
 		-define png:format=png32 \
-		aaaaxy${res}.png
+		packaging/aaaaxy-macos-${res}.png
 done
-png2icns packaging/AAAAXY.app/Contents/Resources/icon.icns aaaaxy*.png
+png2icns packaging/AAAAXY.app/Contents/Resources/icon.icns packaging/aaaaxy-macos-*.png

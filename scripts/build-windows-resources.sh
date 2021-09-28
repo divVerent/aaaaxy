@@ -29,11 +29,11 @@ convert \
 	\( assets/sprites/riser_small_up_0.png -geometry 48x48 \) \
 	\( assets/sprites/riser_small_up_0.png -geometry 64x64 \) \
 	\( assets/sprites/riser_small_up_0.png -geometry 256x256 \) \
-	aaaaxy.ico
+	packaging/aaaaxy.ico
 
-scripts/aaaaxy.exe.manifest.sh $(scripts/version.sh windows) > aaaaxy.manifest
+scripts/aaaaxy.exe.manifest.sh $(scripts/version.sh windows) > packaging/aaaaxy.manifest
 ${GO} run github.com/akavel/rsrc \
 	-arch "${target_arch}" \
-	-ico aaaaxy.ico \
-	-manifest aaaaxy.manifest \
+	-ico packaging/aaaaxy.ico \
+	-manifest packaging/aaaaxy.manifest \
 	-o aaaaxy.syso
