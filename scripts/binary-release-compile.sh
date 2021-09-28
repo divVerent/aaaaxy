@@ -76,6 +76,7 @@ case "$GOOS" in
 		mkdir -p packaging/AAAAXY.AppDir/usr/share/metainfo
 		cp packaging/io.github.divverent.$app.metainfo.xml packaging/AAAAXY.AppDir/usr/share/metainfo/
 		appimagetool-$(uname -m).AppImage \
+			-u "gh-releases-zsync|divVerent|aaaaxy|latest|AAAAXY-$arch.AppImage.zsync" \
 			packaging/AAAAXY.AppDir \
 			"AAAAXY-$arch.AppImage"
 		;;
