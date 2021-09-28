@@ -23,11 +23,10 @@ cat <<EOF
   <summary>A nonlinear puzzle platformer taking place in non-Euclidean geometry.</summary>
   <metadata_license>*** TODO ***</metadata_license>
   <project_license>Apache-2.0</project_license>
-  <recommends>
-    <control>pointing</control>
+  <requires>
     <control>keyboard</control>
     <control>gamepad</control>
-  </recommends>
+  </requires>
   <description>
     <p>
       Although your general goal is reaching the surprising end of the game, you are encouraged to set your own goals while playing. Exploration will be rewarded, and secrets await you!
