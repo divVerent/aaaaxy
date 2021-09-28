@@ -15,13 +15,6 @@
 
 set -ex
 
-: ${GO:=go}
-
-# Run go natively.
-target_arch=$(${GO} env GOARCH)
-export GOOS=
-export GOARCH=
-
 rm -f aaaaxy*.png
 for res in 16 32 128 256 512 1024; do
 	convert assets/sprites/riser_small_up_0.png \
@@ -31,4 +24,4 @@ for res in 16 32 128 256 512 1024; do
 		-define png:format=png32 \
 		aaaaxy${res}.png
 done
-png2icns AAAAXY.app/Contents/Resources/icon.icns aaaaxy*.png
+png2icns packaging/AAAAXY.app/Contents/Resources/icon.icns aaaaxy*.png

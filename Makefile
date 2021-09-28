@@ -8,13 +8,6 @@ EXE = $(shell $(GO) env GOEXE)
 SUFFIX = -$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)$(EXE)
 BINARY = $(PREFIX)aaaaxy$(INFIX)$(SUFFIX)
 
-# OS X releases only: app bundle.
-ifeq ($(shell $(GO) env GOOS),darwin)
-ifeq ($(BUILDTYPE),release)
-PREFIX = AAAAXY.app/Contents/MacOS/
-endif
-endif
-
 ifeq ($(BUILDTYPE),release)
 INFIX =
 BUILDTAGS = embed

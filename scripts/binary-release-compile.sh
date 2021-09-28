@@ -20,26 +20,41 @@ set -ex
 GOOS=$($GO env GOOS)
 GOARCH=$($GO env GOARCH)
 GOEXE=$($GO env GOEXE)
-zip="aaaaxy-$GOOS-$GOARCH-$(scripts/version.sh gittag).zip"
+zip="$PWD/aaaaxy-$GOOS-$GOARCH-$(scripts/version.sh gittag).zip"
 
 exec 3>&1
 exec >&2
 
-make clean
-make BUILDTYPE=release
-
-# Then pack it all together.
 case "$GOOS" in
-	darwin) app=AAAAXY.app ;;
-	js) app="aaaaxy-$GOOS-$GOARCH$GOEXE aaaaxy.html wasm_exec.js" ;;
-	*) app=aaaaxy-$GOOS-$GOARCH$GOEXE ;;
+	darwin)
+		appdir=packaging/
+		app=AAAAXY.app
+		prefix=packaging/AAAAXY.app/Contents/MacOS/
+		;;
+	js)
+		appdir=.
+		app="aaaaxy-$GOOS-$GOARCH$GOEXE aaaaxy.html wasm_exec.js"
+		prefix=
+		;;
+	*)
+		appdir=.
+		app=aaaaxy-$GOOS-$GOARCH$GOEXE
+		prefix=
+		;;
 esac
+
+make clean
+make BUILDTYPE=release PREFIX="$prefix"
 
 rm -f "$zip"
 7za a -tzip -mx=9 "$zip" \
-	$app \
 	README.md LICENSE CONTRIBUTING.md \
 	licenses
+(
+	cd "$appdir"
+	7za a -tzip -mx=9 "$zip" \
+		$app
+)
 
 make clean
 
