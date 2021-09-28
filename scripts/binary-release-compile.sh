@@ -56,6 +56,20 @@ rm -f "$zip"
 		$app
 )
 
+case "$GOOS" in
+	linux)
+		rm -rf packaging/AAAAXY.AppDir
+		linuxdeploy-$(uname -m).AppImage \
+			--appdir=packaging/AAAAXY.AppDir \
+			-e "$app" \
+			-d packaging/"$app".desktop \
+			-i packaging/"$app".png
+		appimagetool-$(uname -m).AppImage \
+			packaging/AAAAXY.AppDir \
+			"AAAAXY-$GOARCH.AppImage"
+		;;
+esac
+
 make clean
 
 echo >&3 "$zip"

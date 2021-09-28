@@ -1,4 +1,5 @@
 *~
+/AAAAXY-*.AppImage
 /aaaaxy*.png
 /aaaaxy-*.zip
 /aaaaxy-debug-*
@@ -12,6 +13,9 @@
 /assets/generated
 /internal/vfs/_embedroot
 /licenses
+/packaging/*.desktop
+/packaging/*.png
+/packaging/AAAAXY.AppDir/
 /packaging/AAAAXY.app/Contents/MacOS/aaaaxy-*
 /packaging/AAAAXY.app/Contents/Resources/icon.icns
 /wasm_exec.js
