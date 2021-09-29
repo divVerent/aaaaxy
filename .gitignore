@@ -1,5 +1,5 @@
 *~
-/AAAAXY-*.AppImage
+/AAAAXY-*.AppImage*
 /aaaaxy-*.zip
 /aaaaxy-debug-*
 /aaaaxy-js-*
@@ -17,4 +17,5 @@
 /packaging/AAAAXY.app/Contents/Resources/icon.icns
 /packaging/aaaaxy.ico
 /packaging/aaaaxy.manifest
+/packaging/io.github.divverent.aaaaxy-*.metainfo.xml
 /wasm_exec.js
