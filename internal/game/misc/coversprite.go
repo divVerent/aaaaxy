@@ -12,20 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package constants
+package misc
 
-const (
-	MinSpriteZ      = -1
-	MaxSpriteZ      = 2
-	OneWayZ         = 3
-	TnihSignZ       = 3
-	AppearBlockZ    = 4
-	DisappearBlockZ = 4
-	SwitchBlockZ    = 4
-	CoverSpriteZ    = 5
-	RiserMovingZ    = 6
-	PlayerZ         = 7
-	RiserCarriedZ   = 8
-	ForceFieldZ     = 9
-	RespawnPlayerZ  = 9
+import (
+	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/game/constants"
+	"github.com/divVerent/aaaaxy/internal/level"
 )
+
+// CoverSprite is a Sprite with a high Z index. Use seldomly!
+type CoverSprite struct {
+	Sprite
+}
+
+func (s *CoverSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+	s.Sprite.ZDefault = constants.CoverSpriteZ
+	return s.Sprite.Spawn(w, sp, e)
+}
+
+func init() {
+	engine.RegisterEntityType(&CoverSprite{})
+}
