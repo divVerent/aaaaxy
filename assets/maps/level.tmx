@@ -6094,9 +6094,9 @@
   <object id="1427" name="StandFailWarp2" gid="297" x="912" y="7008" width="48" height="16"/>
   <object id="1428" name="StandFailWarp1" gid="295" x="992" y="6624" width="48" height="16"/>
   <object id="1429" name="StandFailWarp2" gid="295" x="528" y="6624" width="48" height="16"/>
-  <object id="1430" type="Text" x="752" y="6704" width="64" height="48">
+  <object id="1430" type="Text" x="688" y="6704" width="192" height="48">
    <properties>
-    <property name="text" value="The  Cleats"/>
+    <property name="text" value="The Cleats  Hint: no head bumping!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6230,7 +6230,7 @@
   </object>
   <object id="1479" type="Text" x="7808" y="7168" width="192" height="48">
    <properties>
-    <property name="text" value="The Coil  (hold {{ActionButton}})"/>
+    <property name="text" value="The Coil  (hold {{ActionButton}})  Hint: no littering!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6256,7 +6256,7 @@
   </object>
   <object id="1494" type="Text" x="608" y="416" width="192" height="48">
    <properties>
-    <property name="text" value="The Gloves  (hold {{ActionButton}})"/>
+    <property name="text" value="The Gloves  (hold {{ActionButton}})  Hint: no speeding!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
