@@ -18,9 +18,9 @@
 cat <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.divverent.aaaaxy-$($GO env GOOS)-$($GO env GOARCH)</id>
+  <id>io.github.divverent.aaaaxy_$($GO env GOARCH)</id>
   <name>AAAAXY</name>
-  <summary>A nonlinear puzzle platformer taking place in non-Euclidean geometry.</summary>
+  <summary>A nonlinear puzzle platformer taking place in non-Euclidean geometry</summary>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>Apache-2.0</project_license>
   <requires>
@@ -35,16 +35,22 @@ cat <<EOF
       So jump and run around, and enjoy losing your sense of orientation in this World of Wicked Weirdness. Find out what Van Vlijmen will make you do. Pick a path, get inside a Klein Bottle, recognize some memes, and by all means: don&apos;t look up.
     </p>
   </description>
-  <launchable type="desktop-id">aaaaxy-$($GO env GOOS)-$($GO env GOARCH)</launchable>
+  <launchable type="desktop-id">aaaaxy-$($GO env GOOS)-$($GO env GOARCH).desktop</launchable>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.png</image>
+      <caption>Game Start</caption>
+      <image type="thumbnail" width="320" height="180">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.jpg</image>
+      <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot5.png</image>
+      <caption>Road Rage</caption>
+      <image type="thumbnail" width="320" height="180">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot5.jpg</image>
+      <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot5.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.png</image>
+      <caption>Getting It Back</caption>
+      <image type="thumbnail" width="320" height="180">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.jpg</image>
+      <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.png</image>
     </screenshot>
   </screenshots>
 </component>
