@@ -21,7 +21,7 @@ cat <<EOF
   <id>io.github.divverent.aaaaxy-$($GO env GOOS)-$($GO env GOARCH)</id>
   <name>AAAAXY</name>
   <summary>A nonlinear puzzle platformer taking place in non-Euclidean geometry.</summary>
-  <metadata_license>*** TODO ***</metadata_license>
+  <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>Apache-2.0</project_license>
   <requires>
     <control>keyboard</control>
