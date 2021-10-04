@@ -84,7 +84,6 @@ func InitEbiten() error {
 	ebiten.SetCursorMode(ebiten.CursorModeHidden)
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetInitFocused(true)
-	ebiten.SetRunnableOnUnfocused(false)
 	ebiten.SetScreenClearedEveryFrame(false)
 	ebiten.SetScreenTransparent(false)
 	ebiten.SetVsyncEnabled(*vsync)
@@ -147,6 +146,9 @@ func InitEbiten() error {
 	} else {
 		ebiten.SetMaxTPS(engine.GameTPS)
 	}
+
+	// Pause when unfocused, except when recording demos.
+	ebiten.SetRunnableOnUnfocused(demo.Playing() && dumping())
 
 	return nil
 }
