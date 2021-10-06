@@ -108,6 +108,11 @@ func Update() {
 	for _, i := range impulses {
 		i.update()
 	}
+	easterEggUpdate()
+}
+
+func EasterEggJustHit() bool {
+	return easterEggJustHit
 }
 
 func Map() InputMap {

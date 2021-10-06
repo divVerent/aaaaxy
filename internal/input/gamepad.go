@@ -204,3 +204,19 @@ func gamepadInit() {
 		}
 	}
 }
+
+func gamepadEasterEggKeyState() easterEggKeyState {
+	var state easterEggKeyState
+	for p := range gamepads {
+		if ebiten.IsStandardGamepadButtonPressed(p, ebiten.StandardGamepadButtonRightBottom) {
+			state |= easterEggA
+		}
+		if ebiten.IsStandardGamepadButtonPressed(p, ebiten.StandardGamepadButtonRightLeft) {
+			state |= easterEggX
+		}
+		if ebiten.IsStandardGamepadButtonPressed(p, ebiten.StandardGamepadButtonRightTop) {
+			state |= easterEggY
+		}
+	}
+	return state
+}

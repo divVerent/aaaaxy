@@ -70,3 +70,17 @@ func (i *impulse) keyboardPressed() InputMap {
 	}
 	return NoInput
 }
+
+func keyboardEasterEggKeyState() easterEggKeyState {
+	var state easterEggKeyState
+	if ebiten.IsKeyPressed(ebiten.KeyA) {
+		state |= easterEggA
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyX) {
+		state |= easterEggX
+	}
+	if ebiten.IsKeyPressed(ebiten.KeyY) {
+		state |= easterEggY
+	}
+	return state
+}

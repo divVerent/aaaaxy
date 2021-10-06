@@ -384,6 +384,13 @@ func (p *Player) Update() {
 	} else {
 		p.AirFrames++
 	}
+
+	// Easter egg.
+	// Doing this in player code so it only runs while the game is active.
+	if input.EasterEggJustHit() {
+		centerprint.New("You really thought this would do something?\nWell, fine... use --help to find cheats.", centerprint.Important, centerprint.Top, centerprint.BigFont(), color.NRGBA{R: 85, G: 85, B: 255, A: 255}, 3*time.Second).SetFadeOut(true)
+		p.GotAbilitySound.Play()
+	}
 }
 
 func (p *Player) handleTouch(trace engine.TraceResult) {
