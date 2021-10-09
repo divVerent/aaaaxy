@@ -16,9 +16,9 @@
 version=$1
 
 : ${GO:=go}
-case "$($GO env GOARCH)" in
+arch=$($GO env GOARCH)
+case "$arch" in
 	386) arch=x86 ;;
-	*) arch=$GOARCH ;;
 esac
 cat <<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -31,7 +31,7 @@ convert \
 	\( assets/sprites/riser_small_up_0.png -geometry 256x256 \) \
 	packaging/aaaaxy.ico
 
-scripts/aaaaxy.exe.manifest.sh $(scripts/version.sh windows) > packaging/aaaaxy.manifest
+GOARCH="$target_arch" scripts/aaaaxy.exe.manifest.sh $(scripts/version.sh windows) > packaging/aaaaxy.manifest
 ${GO} run github.com/akavel/rsrc \
 	-arch "${target_arch}" \
 	-ico packaging/aaaaxy.ico \
