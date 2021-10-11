@@ -391,10 +391,12 @@ func (p *Player) Update() {
 	if input.EasterEggJustHit() {
 		p.EasterEggCount++
 		text := "You really thought this would do something?"
+		timeout := time.Second
 		if p.EasterEggCount%4 == 0 {
-			text = "Fine, I give up, have it your way.\nAll cheats are documented in --help.\nThat's all."
+			text = "Fine, I give up, have it your way.\nAll cheats are documented in --help."
+			timeout = 5 * time.Second
 		}
-		centerprint.New(text, centerprint.Important, centerprint.Top, centerprint.BigFont(), color.NRGBA{R: 85, G: 85, B: 255, A: 255}, 3*time.Second).SetFadeOut(true)
+		centerprint.New(text, centerprint.Important, centerprint.Top, centerprint.BigFont(), color.NRGBA{R: 85, G: 85, B: 255, A: 255}, timeout).SetFadeOut(true)
 		p.GotAbilitySound.Play()
 	}
 }
