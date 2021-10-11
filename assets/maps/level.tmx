@@ -1194,13 +1194,13 @@
   </object>
   <object id="323" type="JumpPad" x="4064" y="7472" width="15" height="1">
    <properties>
-    <property name="delta" value="784 -14"/>
+    <property name="delta" value="784 -7"/>
     <property name="height" value="40"/>
    </properties>
   </object>
   <object id="324" type="JumpPad" x="4849" y="7472" width="15" height="1">
    <properties>
-    <property name="delta" value="-784 -14"/>
+    <property name="delta" value="-784 -7"/>
     <property name="height" value="40"/>
    </properties>
   </object>
@@ -1228,13 +1228,13 @@
   </object>
   <object id="331" type="JumpPad" x="4513" y="7600" width="15" height="1">
    <properties>
-    <property name="delta" value="-112 -8"/>
+    <property name="delta" value="-112 0"/>
     <property name="height" value="304"/>
    </properties>
   </object>
   <object id="332" type="JumpPad" x="4400" y="7600" width="15" height="1">
    <properties>
-    <property name="delta" value="112 -8"/>
+    <property name="delta" value="112 0"/>
     <property name="height" value="304"/>
    </properties>
   </object>
@@ -5120,7 +5120,7 @@
   <object id="1108" name="Track934" gid="295" x="6416" y="7664" width="704" height="16"/>
   <object id="1123" type="JumpPad" x="6956" y="8048" width="8" height="1">
    <properties>
-    <property name="delta" value="0 -264"/>
+    <property name="delta" value="0 -256"/>
     <property name="height" value="8"/>
    </properties>
   </object>
