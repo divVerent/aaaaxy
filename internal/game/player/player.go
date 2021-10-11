@@ -45,18 +45,19 @@ type Player struct {
 	Entity          *engine.Entity
 	PersistentState map[string]string
 
-	AirFrames     int // Number of frames since last leaving ground.
-	LastGroundPos m.Pos
-	Jumping       bool
-	JumpingUp     bool
-	LookUp        bool
-	LookDown      bool
-	Respawning    bool
-	WasOnGround   bool
-	PrevVelocity  m.Delta
-	VVVVVV        bool
-	JustSpawned   bool
-	Goal          *engine.Entity
+	AirFrames      int // Number of frames since last leaving ground.
+	LastGroundPos  m.Pos
+	Jumping        bool
+	JumpingUp      bool
+	LookUp         bool
+	LookDown       bool
+	Respawning     bool
+	WasOnGround    bool
+	PrevVelocity   m.Delta
+	VVVVVV         bool
+	JustSpawned    bool
+	Goal           *engine.Entity
+	EasterEggCount int
 
 	Anim animation.State
 
@@ -388,7 +389,12 @@ func (p *Player) Update() {
 	// Easter egg.
 	// Doing this in player code so it only runs while the game is active.
 	if input.EasterEggJustHit() {
-		centerprint.New("You really thought this would do something?\nWell, fine... use --help to find cheats.", centerprint.Important, centerprint.Top, centerprint.BigFont(), color.NRGBA{R: 85, G: 85, B: 255, A: 255}, 3*time.Second).SetFadeOut(true)
+		p.EasterEggCount++
+		text := "You really thought this would do something?"
+		if p.EasterEggCount%4 == 0 {
+			text = "Fine, I give up, have it your way.\nAll cheats are documented in --help.\nThat's all."
+		}
+		centerprint.New(text, centerprint.Important, centerprint.Top, centerprint.BigFont(), color.NRGBA{R: 85, G: 85, B: 255, A: 255}, 3*time.Second).SetFadeOut(true)
 		p.GotAbilitySound.Play()
 	}
 }
