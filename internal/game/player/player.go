@@ -390,13 +390,11 @@ func (p *Player) Update() {
 	// Doing this in player code so it only runs while the game is active.
 	if input.EasterEggJustHit() {
 		p.EasterEggCount++
-		text := "You really thought this would do something?"
-		timeout := time.Second
 		if p.EasterEggCount%4 == 0 {
-			text = "Fine, I give up, have it your way.\nAll cheats are documented in --help."
-			timeout = 5 * time.Second
+			centerprint.New("Fine, I give up, have it your way.\nAll cheats are documented in --help.", centerprint.Important, centerprint.Top, centerprint.BigFont(), color.NRGBA{R: 85, G: 85, B: 255, A: 255}, 5*time.Second).SetFadeOut(true)
+		} else {
+			centerprint.New("You really thought this would do something?", centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 85, G: 255, B: 255, A: 255}, time.Second).SetFadeOut(true)
 		}
-		centerprint.New(text, centerprint.Important, centerprint.Top, centerprint.BigFont(), color.NRGBA{R: 85, G: 85, B: 255, A: 255}, timeout).SetFadeOut(true)
 		p.GotAbilitySound.Play()
 	}
 }
