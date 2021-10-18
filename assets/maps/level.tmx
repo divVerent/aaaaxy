@@ -15159,6 +15159,7 @@
     <property name="fade_on_touch" type="bool" value="true"/>
     <property name="fade_time" value="2.0s"/>
     <property name="invert" type="bool" value="true"/>
+    <property name="no_flip" value="x"/>
     <property name="render_offset" value="-1 -1"/>
     <property name="respawn_on_touch" type="bool" value="true"/>
     <property name="stop_on_touch" type="bool" value="true"/>
