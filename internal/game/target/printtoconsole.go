@@ -41,6 +41,7 @@ func (p *PrintToConsoleTarget) Spawn(w *engine.World, sp *level.Spawnable, e *en
 func (p *PrintToConsoleTarget) Despawn() {
 	if p.PrevText != "" {
 		log.Infof("%s", p.PrevText)
+		p.PrevText = ""
 	}
 }
 
@@ -50,6 +51,7 @@ func (p *PrintToConsoleTarget) Update() {
 		if p.PrintFrames == 0 {
 			if p.PrevText != "" {
 				log.Infof("%s", p.PrevText)
+				p.PrevText = ""
 			}
 		}
 	}
