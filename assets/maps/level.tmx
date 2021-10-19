@@ -17220,12 +17220,12 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="7979" type="SetState" x="6592" y="6736" width="16" height="32">
+  <object id="7979" type="SetState" x="6592" y="6720" width="16" height="64">
    <properties>
     <property name="target" value="HubTimer"/>
    </properties>
   </object>
-  <object id="7980" name="HubTimer" type="PrintToConsoleTarget" x="6608" y="6736" width="16" height="32">
+  <object id="7980" name="HubTimer" type="PrintToConsoleTarget" x="6608" y="6720" width="16" height="64">
    <properties>
     <property name="text" value="Reached A New Beginning with {{Abilities}} at {{GameTime}}."/>
    </properties>
