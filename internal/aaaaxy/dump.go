@@ -100,7 +100,7 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 			dumpPixelsRGBA(screen, func(pix []byte, err error) {
 				to <- screen
 				if err == nil {
-					for i := dumpVideoFrameBegin; i <= dumpVideoFrameEnd; i++ {
+					for i := dumpVideoFrameBegin; i < dumpVideoFrameEnd; i++ {
 						_, err = dumpVideoFile.WriteAt(pix, i*dumpVideoFrameSize)
 						if err != nil {
 							break
