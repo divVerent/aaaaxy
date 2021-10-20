@@ -122,14 +122,15 @@ func Map() InputMap {
 // Demo code.
 
 type DemoState struct {
-	InputMap InputMap
-	Left     ImpulseState
-	Right    ImpulseState
-	Up       ImpulseState
-	Down     ImpulseState
-	Jump     ImpulseState
-	Action   ImpulseState
-	Exit     ImpulseState
+	InputMap         InputMap
+	Left             ImpulseState
+	Right            ImpulseState
+	Up               ImpulseState
+	Down             ImpulseState
+	Jump             ImpulseState
+	Action           ImpulseState
+	Exit             ImpulseState
+	EasterEggJustHit bool
 }
 
 func LoadFromDemo(state *DemoState) {
@@ -144,17 +145,19 @@ func LoadFromDemo(state *DemoState) {
 	Jump.ImpulseState = state.Jump
 	Action.ImpulseState = state.Action
 	Exit.ImpulseState = state.Exit
+	easterEggJustHit = state.EasterEggJustHit
 }
 
 func SaveToDemo() *DemoState {
 	return &DemoState{
-		InputMap: inputMap,
-		Left:     Left.ImpulseState,
-		Right:    Right.ImpulseState,
-		Up:       Up.ImpulseState,
-		Down:     Down.ImpulseState,
-		Jump:     Jump.ImpulseState,
-		Action:   Action.ImpulseState,
-		Exit:     Exit.ImpulseState,
+		InputMap:         inputMap,
+		Left:             Left.ImpulseState,
+		Right:            Right.ImpulseState,
+		Up:               Up.ImpulseState,
+		Down:             Down.ImpulseState,
+		Jump:             Jump.ImpulseState,
+		Action:           Action.ImpulseState,
+		Exit:             Exit.ImpulseState,
+		EasterEggJustHit: easterEggJustHit,
 	}
 }
