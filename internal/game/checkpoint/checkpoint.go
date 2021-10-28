@@ -48,22 +48,22 @@ type Checkpoint struct {
 	Sound *sound.Sound
 }
 
-func (c *Checkpoint) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+func (c *Checkpoint) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	c.NonSolidTouchable.Init(w, e)
 	c.World = w
 	c.Entity = e
 
 	// Field contains orientation OF THE PLAYER to make it easier in the map editor.
 	// So it is actually a transform as far as this code is concerned.
-	requiredTransform, err := m.ParseOrientation(s.Properties["required_orientation"])
+	requiredTransform, err := m.ParseOrientation(sp.Properties["required_orientation"])
 	if err != nil {
 		return fmt.Errorf("could not parse required orientation: %v", err)
 	}
 
-	c.Text = s.Properties["text"]
-	c.Music = s.Properties["music"]
-	c.VVVVVV = s.Properties["vvvvvv"] == "true"
-	if onGroundVecStr := s.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
+	c.Text = sp.Properties["text"]
+	c.Music = sp.Properties["music"]
+	c.VVVVVV = sp.Properties["vvvvvv"] == "true"
+	if onGroundVecStr := sp.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
 		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &c.VVVVVVOnGroundVec.DX, &c.VVVVVVOnGroundVec.DY)
 		if err != nil {
 			return fmt.Errorf("invalid vvvvvv_gravity_direction: %v", err)

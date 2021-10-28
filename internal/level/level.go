@@ -119,14 +119,14 @@ func (l *Level) SaveGame() (*SaveGame, error) {
 			LevelHash:    l.Hash,
 		},
 	}
-	saveOne := func(s *Spawnable) {
-		if len(s.PersistentState) > 0 {
-			save.State[s.ID] = s.PersistentState
+	saveOne := func(sp *Spawnable) {
+		if len(sp.PersistentState) > 0 {
+			save.State[sp.ID] = sp.PersistentState
 		}
 	}
 	l.ForEachTile(func(_ m.Pos, tile *LevelTile) {
-		for _, s := range tile.Tile.Spawnables {
-			saveOne(s)
+		for _, sp := range tile.Tile.Spawnables {
+			saveOne(sp)
 		}
 	})
 	saveOne(l.Player)
@@ -157,18 +157,18 @@ func (l *Level) LoadGame(save *SaveGame) error {
 	if save.LevelHash != l.Hash {
 		log.Warningf("Save game does not match level hash: got %v, want %v; trying to load anyway", save.LevelHash, l.Hash)
 	}
-	loadOne := func(s *Spawnable) {
+	loadOne := func(sp *Spawnable) {
 		// Do not reallocate the map! Works better with already loaded entities.
-		for key := range s.PersistentState {
-			delete(s.PersistentState, key)
+		for key := range sp.PersistentState {
+			delete(sp.PersistentState, key)
 		}
-		for key, value := range save.State[s.ID] {
-			s.PersistentState[key] = value
+		for key, value := range save.State[sp.ID] {
+			sp.PersistentState[key] = value
 		}
 	}
 	l.ForEachTile(func(_ m.Pos, tile *LevelTile) {
-		for _, s := range tile.Tile.Spawnables {
-			loadOne(s)
+		for _, sp := range tile.Tile.Spawnables {
+			loadOne(sp)
 		}
 	})
 	loadOne(l.Player)

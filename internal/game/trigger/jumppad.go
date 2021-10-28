@@ -43,26 +43,26 @@ type JumpPad struct {
 	JumpSound    *sound.Sound
 }
 
-func (j *JumpPad) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+func (j *JumpPad) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	j.NonSolidTouchable.Init(w, e)
 	j.World = w
 	j.Entity = e
 	w.SetOpaque(e, false)
-	w.SetSolid(e, s.Properties["solid"] != "false") // Default true.
+	w.SetSolid(e, sp.Properties["solid"] != "false") // Default true.
 
 	var delta m.Delta
-	_, err := fmt.Sscanf(s.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
+	_, err := fmt.Sscanf(sp.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
 	if err != nil {
 		return fmt.Errorf("failed to parse delta: %v", err)
 	}
 	var relDelta m.Delta
-	_, err = fmt.Sscanf(s.Properties["rel_delta"], "%d %d", &relDelta.DX, &relDelta.DY)
-	if err != nil && s.Properties["rel_delta"] != "" {
+	_, err = fmt.Sscanf(sp.Properties["rel_delta"], "%d %d", &relDelta.DX, &relDelta.DY)
+	if err != nil && sp.Properties["rel_delta"] != "" {
 		return fmt.Errorf("failed to parse absolute delta: %v", err)
 	}
 	// Destination is actually measured from center of trigger; need to transform to worldspace.
 	j.Destination = e.Rect.Center().Add(e.Transform.Inverse().Apply(delta)).Add(relDelta)
-	_, err = fmt.Sscanf(s.Properties["height"], "%d", &j.Height)
+	_, err = fmt.Sscanf(sp.Properties["height"], "%d", &j.Height)
 	if err != nil {
 		return fmt.Errorf("failed to parse height: %v", err)
 	}

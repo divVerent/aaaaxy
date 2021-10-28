@@ -56,18 +56,18 @@ const (
 	tnihHeight = 32
 )
 
-func (t *TnihSign) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+func (t *TnihSign) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	t.NonSolidTouchable.Init(w, e)
 	t.NotifyUntouched = true
 	t.World = w
 	t.Entity = e
-	t.PersistentState = s.PersistentState
+	t.PersistentState = sp.PersistentState
 	var err error
 	t.SeenImage, err = image.Load("sprites", "tnihsign_seen.png")
 	if err != nil {
 		return fmt.Errorf("could not load sign seen sprite: %v", err)
 	}
-	if s.PersistentState["seen"] == "true" {
+	if sp.PersistentState["seen"] == "true" {
 		t.Entity.Image = t.SeenImage
 	} else {
 		t.Entity.Image, err = image.Load("sprites", "tnihsign.png")
@@ -77,16 +77,16 @@ func (t *TnihSign) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) 
 	}
 	t.Entity.Orientation = m.Identity()
 	w.SetZIndex(t.Entity, constants.TnihSignZ)
-	t.Text = strings.ReplaceAll(s.Properties["text"], "  ", "\n")
+	t.Text = strings.ReplaceAll(sp.Properties["text"], "  ", "\n")
 	t.Sound, err = sound.Load("tnihsign.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load tnihsign sound: %v", err)
 	}
-	t.Entity.ResizeImage = s.Properties["resize_image"] == "true"
+	t.Entity.ResizeImage = sp.Properties["resize_image"] == "true"
 	if !t.Entity.ResizeImage {
 		t.Entity.RenderOffset = t.Entity.Rect.Size.Sub(m.Delta{DX: tnihWidth, DY: tnihHeight}).Div(2)
 	}
-	t.Target = mixins.ParseTarget(s.Properties["target"])
+	t.Target = mixins.ParseTarget(sp.Properties["target"])
 	return nil
 }
 

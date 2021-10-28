@@ -46,16 +46,16 @@ const (
 	UsePixels         = 4
 )
 
-func (q *QuestionBlock) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+func (q *QuestionBlock) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	q.World = w
 	q.Entity = e
-	q.PersistentState = s.PersistentState
+	q.PersistentState = sp.PersistentState
 
 	var err error
 	w.SetSolid(e, true)
 	w.SetOpaque(e, false)        // These shadows are annoying.
 	e.Orientation = m.Identity() // Always show upright.
-	q.Kaizo = s.Properties["kaizo"] == "true"
+	q.Kaizo = sp.Properties["kaizo"] == "true"
 	q.Used = q.PersistentState["used"] == "true"
 	q.UsedImage, err = image.Load("sprites", "exclamationblock.png")
 	if err != nil {

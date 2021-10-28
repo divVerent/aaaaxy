@@ -112,7 +112,7 @@ const (
 	RepelSpeed = 15 * constants.SubPixelScale / engine.GameTPS
 )
 
-func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+func (r *Riser) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	r.Physics.Init(w, e, level.ObjectSolidContents, r.handleTouch)
 	r.World = w
 	r.Entity = e
@@ -151,7 +151,7 @@ func (r *Riser) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) err
 	r.State = Inactive
 	r.Entity.Orientation = m.Identity()
 
-	if s.Properties["flipped"] == "true" {
+	if sp.Properties["flipped"] == "true" {
 		r.OnGroundVec = r.OnGroundVec.Mul(-1)
 	}
 

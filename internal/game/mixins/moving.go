@@ -29,9 +29,9 @@ type Moving struct {
 	TouchedSomething bool
 }
 
-func (v *Moving) Init(w *engine.World, s *level.Spawnable, e *engine.Entity, contents level.Contents, handleTouch func(engine.TraceResult)) error {
+func (v *Moving) Init(w *engine.World, sp *level.Spawnable, e *engine.Entity, contents level.Contents, handleTouch func(engine.TraceResult)) error {
 	v.Physics.Init(w, e, contents, handleTouch)
-	if str := s.Properties["velocity"]; str != "" {
+	if str := sp.Properties["velocity"]; str != "" {
 		var dx, dy float64
 		if _, err := fmt.Sscanf(str, "%f %f", &dx, &dy); err != nil {
 			return fmt.Errorf("Failed to parse velocity %q: %v", str, err)

@@ -40,13 +40,13 @@ type Movable struct {
 	AnimDir int
 }
 
-func (v *Movable) Init(w *engine.World, s *level.Spawnable, e *engine.Entity, contents level.Contents) error {
-	v.Settable.Init(s)
+func (v *Movable) Init(w *engine.World, sp *level.Spawnable, e *engine.Entity, contents level.Contents) error {
+	v.Settable.Init(sp)
 
 	v.World = w
 	v.Entity = e
 
-	accelString := s.Properties["acceleration"]
+	accelString := sp.Properties["acceleration"]
 	if accelString != "" {
 		var accel float64
 		_, err := fmt.Sscanf(accelString, "%v", &accel)
@@ -59,7 +59,7 @@ func (v *Movable) Init(w *engine.World, s *level.Spawnable, e *engine.Entity, co
 	}
 
 	var delta m.Delta
-	_, err := fmt.Sscanf(s.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
+	_, err := fmt.Sscanf(sp.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
 	if err != nil {
 		return fmt.Errorf("failed to parse delta: %v", err)
 	}

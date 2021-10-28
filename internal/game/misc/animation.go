@@ -30,33 +30,33 @@ type Animation struct {
 	Anim   animation.State
 }
 
-func (a *Animation) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+func (a *Animation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	a.Entity = e
-	prefix := s.Properties["animation"]
-	groupName := s.Properties["animation_group"]
+	prefix := sp.Properties["animation"]
+	groupName := sp.Properties["animation_group"]
 	group := &animation.Group{
 		NextAnim: groupName,
 	}
-	framesString := s.Properties["animation_frames"]
+	framesString := sp.Properties["animation_frames"]
 	if _, err := fmt.Sscanf(framesString, "%d", &group.Frames); err != nil {
 		return fmt.Errorf("could not decode animation_frames %q: %v", framesString, err)
 	}
-	frameIntervalString := s.Properties["animation_frame_interval"]
+	frameIntervalString := sp.Properties["animation_frame_interval"]
 	if _, err := fmt.Sscanf(frameIntervalString, "%d", &group.FrameInterval); err != nil {
 		return fmt.Errorf("could not decode animation_frame_interval %q: %v", frameIntervalString, err)
 	}
-	repeatIntervalString := s.Properties["animation_repeat_interval"]
+	repeatIntervalString := sp.Properties["animation_repeat_interval"]
 	if _, err := fmt.Sscanf(repeatIntervalString, "%d", &group.NextInterval); err != nil {
 		return fmt.Errorf("could not decode animation_repeat_interval %q: %v", repeatIntervalString, err)
 	}
-	syncToMusicOffsetString := s.Properties["animation_sync_to_music_offset"]
+	syncToMusicOffsetString := sp.Properties["animation_sync_to_music_offset"]
 	if syncToMusicOffsetString != "" {
 		var err error
 		if group.SyncToMusicOffset, err = time.ParseDuration(syncToMusicOffsetString); err != nil {
 			return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %v", syncToMusicOffsetString, err)
 		}
 	}
-	offsetString := s.Properties["render_offset"]
+	offsetString := sp.Properties["render_offset"]
 	if offsetString == "" {
 		e.ResizeImage = true
 	} else {
@@ -64,7 +64,7 @@ func (a *Animation) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity)
 			return fmt.Errorf("could not decode render offset %q: %v", offsetString, err)
 		}
 	}
-	if s := s.Properties["border_pixels"]; s != "" {
+	if s := sp.Properties["border_pixels"]; s != "" {
 		if _, err := fmt.Sscanf(s, "%d", &e.BorderPixels); err != nil {
 			return fmt.Errorf("failed to decode borde pixels %q: %v", s, err)
 		}
@@ -73,7 +73,7 @@ func (a *Animation) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity)
 	if err != nil {
 		return fmt.Errorf("could not initialize animation %v: %v", prefix, err)
 	}
-	return a.SpriteBase.Spawn(w, s, e)
+	return a.SpriteBase.Spawn(w, sp, e)
 }
 
 func (a *Animation) Update() {

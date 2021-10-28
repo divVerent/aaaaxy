@@ -181,11 +181,11 @@ func (p *Player) GiveAbility(name, text string) {
 	p.GotAbilitySound.Play()
 }
 
-func (p *Player) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+func (p *Player) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch)
 	p.World = w
 	p.Entity = e
-	p.PersistentState = s.PersistentState
+	p.PersistentState = sp.PersistentState
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
 	p.Entity.RenderOffset = m.Delta{DX: PlayerOffsetDX, DY: PlayerOffsetDY}
 	p.Entity.BorderPixels = PlayerBorderPixels

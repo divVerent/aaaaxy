@@ -35,24 +35,24 @@ type VVVVVV struct {
 	NormalVelocityFactor float64
 }
 
-func (v *VVVVVV) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+func (v *VVVVVV) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	v.NonSolidTouchable.Init(w, e)
 	var err error
 	e.Image, err = image.Load("sprites", "v.png")
 	if err != nil {
 		return fmt.Errorf("could not load vvvvvv image: %v", err)
 	}
-	v.NormalGravityFlip = s.Properties["gravity_flip"] == "true"        // default false
-	v.VVVVVVGravityFlip = s.Properties["vvvvvv_gravity_flip"] == "true" // default false
+	v.NormalGravityFlip = sp.Properties["gravity_flip"] == "true"        // default false
+	v.VVVVVVGravityFlip = sp.Properties["vvvvvv_gravity_flip"] == "true" // default false
 	v.NormalVelocityFactor = 1.0
-	if factorStr := s.Properties["velocity_factor"]; factorStr != "" {
+	if factorStr := sp.Properties["velocity_factor"]; factorStr != "" {
 		_, err := fmt.Sscanf(factorStr, "%f", &v.NormalVelocityFactor)
 		if err != nil {
 			return fmt.Errorf("invalid velocity_factor: %v", err)
 		}
 	}
 	v.VVVVVVVelocityFactor = 1.0
-	if factorStr := s.Properties["vvvvvv_velocity_factor"]; factorStr != "" {
+	if factorStr := sp.Properties["vvvvvv_velocity_factor"]; factorStr != "" {
 		_, err := fmt.Sscanf(factorStr, "%f", &v.VVVVVVVelocityFactor)
 		if err != nil {
 			return fmt.Errorf("invalid vvvvvv_velocity_factor: %v", err)

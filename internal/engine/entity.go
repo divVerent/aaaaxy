@@ -69,7 +69,7 @@ type EntityImpl interface {
 	// Receiver will be a zero struct of the entity type.
 	// Will usually remember a reference to the World and Entity.
 	// ID, Pos, Size and Orientation of the entity will be preset but may be changed.
-	Spawn(w *World, s *level.Spawnable, e *Entity) error
+	Spawn(w *World, sp *level.Spawnable, e *Entity) error
 
 	// Despawn notifies the entity that it will be deleted.
 	Despawn()
@@ -84,7 +84,7 @@ type EntityImpl interface {
 // Some entities fulfill PrecacheImpl. These will get precached.
 type Precacher interface {
 	// Precache gets called during level loading to preload anything the entity may need.
-	Precache(s *level.Spawnable) error
+	Precache(sp *level.Spawnable) error
 }
 
 // entityTypes is a helper map to know how to spawn an entity.
@@ -105,19 +105,19 @@ func RegisterEntityType(t EntityImpl) {
 func precacheEntities(lvl *level.Level) error {
 	var err error
 	lvl.ForEachTile(func(pos m.Pos, t *level.LevelTile) {
-		for _, s := range t.Tile.Spawnables {
+		for _, sp := range t.Tile.Spawnables {
 			if err != nil {
 				break
 			}
-			eTmpl := entityTypes[s.EntityType]
+			eTmpl := entityTypes[sp.EntityType]
 			if eTmpl == nil {
-				err = fmt.Errorf("unknown entity type %q", s.EntityType)
+				err = fmt.Errorf("unknown entity type %q", sp.EntityType)
 				break
 			}
 			if precacher, ok := eTmpl.(Precacher); ok {
-				err = precacher.Precache(s)
+				err = precacher.Precache(sp)
 				if err != nil {
-					err = fmt.Errorf("failed to precache entity %v: %v", s, err)
+					err = fmt.Errorf("failed to precache entity %v: %v", sp, err)
 				}
 			}
 		}
@@ -126,19 +126,19 @@ func precacheEntities(lvl *level.Level) error {
 }
 
 // Spawn turns a Spawnable into an Entity.
-func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity, error) {
+func (w *World) Spawn(sp *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity, error) {
 	tInv := t.Transform.Inverse()
-	originTilePos := tilePos.Add(tInv.Apply(s.LevelPos.Delta(t.LevelPos)))
+	originTilePos := tilePos.Add(tInv.Apply(sp.LevelPos.Delta(t.LevelPos)))
 	incarnation := EntityIncarnation{
-		ID:      s.ID,
+		ID:      sp.ID,
 		TilePos: originTilePos,
 	}
 	if _, found := w.incarnations[incarnation]; found {
 		return nil, nil
 	}
-	eTmpl := entityTypes[s.EntityType]
+	eTmpl := entityTypes[sp.EntityType]
 	if eTmpl == nil {
-		return nil, fmt.Errorf("unknown entity type %q", s.EntityType)
+		return nil, fmt.Errorf("unknown entity type %q", sp.EntityType)
 	}
 	eImplVal := reflect.New(reflect.TypeOf(eTmpl).Elem())
 	eImplVal.Elem().Set(reflect.ValueOf(eTmpl).Elem())
@@ -146,20 +146,20 @@ func (w *World) Spawn(s *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entity
 	e := &Entity{
 		Incarnation: incarnation,
 		Transform:   t.Transform,
-		name:        s.Properties["name"],
+		name:        sp.Properties["name"],
 		Impl:        eImpl,
 	}
 	pivot2InTile := m.Pos{X: level.TileSize, Y: level.TileSize}
-	e.Rect = tInv.ApplyToRect2(pivot2InTile, s.RectInTile)
+	e.Rect = tInv.ApplyToRect2(pivot2InTile, sp.RectInTile)
 	e.Rect.Origin = originTilePos.Mul(level.TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
-	e.Orientation = tInv.Concat(s.Orientation)
+	e.Orientation = tInv.Concat(sp.Orientation)
 	e.Alpha = 1.0
 	e.ColorMod[0] = 1.0
 	e.ColorMod[1] = 1.0
 	e.ColorMod[2] = 1.0
 	e.ColorMod[3] = 1.0
 	w.link(e)
-	err := eImpl.Spawn(w, s, e)
+	err := eImpl.Spawn(w, sp, e)
 	if err != nil {
 		w.unlink(e)
 		return nil, err

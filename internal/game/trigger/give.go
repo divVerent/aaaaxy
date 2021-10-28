@@ -40,10 +40,10 @@ type Give struct {
 	Anim animation.State
 }
 
-func (g *Give) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
+func (g *Give) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	g.NonSolidTouchable.Init(w, e)
-	g.Ability = s.Properties["ability"]
-	g.Text = s.Properties["text"]
+	g.Ability = sp.Properties["ability"]
+	g.Text = sp.Properties["text"]
 	err := g.Anim.Init("can_"+g.Ability, map[string]*animation.Group{
 		"default": {
 			Frames:        30,

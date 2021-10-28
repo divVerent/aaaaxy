@@ -59,12 +59,12 @@ type textCacheKey struct {
 
 var textCache = map[textCacheKey]*ebiten.Image{}
 
-func cacheKey(s *level.Spawnable) textCacheKey {
+func cacheKey(sp *level.Spawnable) textCacheKey {
 	return textCacheKey{
-		font: s.Properties["text_font"],
-		fg:   s.Properties["text_fg"],
-		bg:   s.Properties["text_bg"],
-		text: s.Properties["text"],
+		font: sp.Properties["text_font"],
+		fg:   sp.Properties["text_fg"],
+		bg:   sp.Properties["text_bg"],
+		text: sp.Properties["text"],
 	}
 }
 
@@ -117,32 +117,32 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 	}
 }
 
-func (t *Text) Precache(s *level.Spawnable) error {
+func (t *Text) Precache(sp *level.Spawnable) error {
 	if !*precacheText {
 		return nil
 	}
-	log.Debugf("precaching text for entity %v", s.ID)
-	key := cacheKey(s)
+	log.Debugf("precaching text for entity %v", sp.ID)
+	key := cacheKey(sp)
 	if textCache[key] != nil {
 		return nil
 	}
 	img, err := key.load(nil)
 	if err != nil {
-		return fmt.Errorf("could not precache text image for entity %v: %v", s, err)
+		return fmt.Errorf("could not precache text image for entity %v: %v", sp, err)
 	}
 	textCache[key] = img
 	return nil
 }
 
-func (t *Text) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) error {
-	if s.Properties["no_flip"] == "" {
-		s.Properties["no_flip"] = "x"
+func (t *Text) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+	if sp.Properties["no_flip"] == "" {
+		sp.Properties["no_flip"] = "x"
 	}
 
 	t.World = w
 	t.Entity = e
 
-	t.Key = cacheKey(s)
+	t.Key = cacheKey(sp)
 	err := t.updateText()
 	if err != nil {
 		return err
@@ -150,7 +150,7 @@ func (t *Text) Spawn(w *engine.World, s *level.Spawnable, e *engine.Entity) erro
 
 	e.ResizeImage = false
 
-	return t.SpriteBase.Spawn(w, s, e)
+	return t.SpriteBase.Spawn(w, sp, e)
 }
 
 func (t *Text) updateText() error {
