@@ -11,17 +11,17 @@ require (
 	github.com/hajimehoshi/ebiten/v2 v2.2.1
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
-	golang.org/x/image v0.0.0-20210628002857-a66eb6448b8d
+	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
 	golang.org/x/sys v0.0.0-20211025201205-69cdffdb9359
 )
 
 require (
 	github.com/dchest/jsmin v0.0.0-20160823214000-faeced883947 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
-	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210727001814-0db043d8d5be // indirect
+	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20211024062804-40e447a793be // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
-	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.2 // indirect
+	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.3 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jezek/xgb v0.0.0-20210312150743-0e0f116e1240 // indirect
 	github.com/jfreymuth/oggvorbis v1.0.3 // indirect
@@ -33,13 +33,13 @@ require (
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/src-d/gcfg v1.4.0 // indirect
 	github.com/xanzy/ssh-agent v0.2.1 // indirect
-	golang.org/x/crypto v0.0.0-20191117063200-497ca9f6d64f // indirect
-	golang.org/x/exp v0.0.0-20190731235908-ec7cb31e5a56 // indirect
-	golang.org/x/mobile v0.0.0-20210902104108-5d9a33257ab5 // indirect
-	golang.org/x/mod v0.4.2 // indirect
-	golang.org/x/net v0.0.0-20210805182204-aaa1db679c0d // indirect
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
+	golang.org/x/exp v0.0.0-20211029153326-98a2daa683e3 // indirect
+	golang.org/x/mobile v0.0.0-20211029123140-7b8bfe09930c // indirect
+	golang.org/x/mod v0.6.0-dev.0.20211013180041-c96bc1413d57 // indirect
+	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/tools v0.1.6 // indirect
+	golang.org/x/tools v0.1.8-0.20211029000441-d6a9af8af023 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	gopkg.in/src-d/go-billy.v4 v4.3.2 // indirect
 	gopkg.in/src-d/go-git.v4 v4.13.1 // indirect
