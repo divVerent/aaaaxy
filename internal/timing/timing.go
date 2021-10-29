@@ -162,7 +162,7 @@ func ReportRegularly() {
 				report = append(report, fmt.Sprintf("  %-48s %v", section, entry))
 			}
 			sort.Strings(report)
-			log.Infof("Timing report:\n%v", strings.Join(report, "\n"))
+			log.Infof("timing report:\n%v", strings.Join(report, "\n"))
 		}
 		restartProfiling()
 		nextReport = now.Add(time.Second)

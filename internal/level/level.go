@@ -155,7 +155,7 @@ func (l *Level) LoadGame(save *SaveGame) error {
 		return fmt.Errorf("save game does not match level version: got %v, want %v", save.LevelVersion, l.SaveGameVersion)
 	}
 	if save.LevelHash != l.Hash {
-		log.Warningf("Save game does not match level hash: got %v, want %v; trying to load anyway", save.LevelHash, l.Hash)
+		log.Warningf("save game does not match level hash: got %v, want %v; trying to load anyway", save.LevelHash, l.Hash)
 	}
 	loadOne := func(sp *Spawnable) {
 		// Do not reallocate the map! Works better with already loaded entities.

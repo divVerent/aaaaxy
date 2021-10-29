@@ -98,7 +98,7 @@ func RegisterEntityType(t EntityImpl) {
 		log.Fatalf("duplicate entity type: %v", typeName)
 	}
 	entityTypes[typeName] = t
-	log.Debugf("Registered entity type %q", typeName)
+	log.Debugf("registered entity type %q", typeName)
 }
 
 // Precache all entities.

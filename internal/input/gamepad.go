@@ -153,10 +153,10 @@ func gamepadScan() {
 			allGamepads[p] = true
 			continue
 		}
-		log.Infof("Gamepad %v added.", ebiten.GamepadName(p))
+		log.Infof("gamepad %v added", ebiten.GamepadName(p))
 		allGamepads[p] = true
 		if !ebiten.IsStandardGamepadLayoutAvailable(p) {
-			log.Errorf("Gamepad %v has no standard layout - cannot use.", ebiten.GamepadName(p))
+			log.Errorf("gamepad %v has no standard layout - cannot use", ebiten.GamepadName(p))
 			continue
 		}
 		// A good gamepad! Add it.
@@ -166,7 +166,7 @@ func gamepadScan() {
 		if stillThere {
 			continue
 		}
-		log.Infof("Gamepad %v removed.", ebiten.GamepadName(p))
+		log.Infof("gamepad %v removed", ebiten.GamepadName(p))
 		delete(allGamepads, p)
 		delete(gamepads, p)
 	}
@@ -183,7 +183,7 @@ func gamepadInit() {
 	if config != "" {
 		applied, err := ebiten.UpdateStandardGamepadLayoutMappings(config)
 		if err != nil {
-			log.Errorf("Could not add SDL_GAMECONTROLLERCONFIG mappings: %v", err)
+			log.Errorf("could not add SDL_GAMECONTROLLERCONFIG mappings: %v", err)
 		} else if applied {
 			log.Infof("SDL_GAMECONTROLLERCONFIG applied.")
 		} else {
@@ -196,7 +196,7 @@ func gamepadInit() {
 	if config != "" {
 		applied, err := ebiten.UpdateStandardGamepadLayoutMappings(config)
 		if err != nil {
-			log.Errorf("Could not add --gamepad_override mappings: %v", err)
+			log.Errorf("could not add --gamepad_override mappings: %v", err)
 		} else if applied {
 			log.Infof("--gamepad_override applied.")
 		} else {

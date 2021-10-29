@@ -83,7 +83,7 @@ func SetStateOfTarget(w *engine.World, originator, predecessor *engine.Entity, t
 			var closest *engine.Entity
 			for _, ent := range w.FindName(target) {
 				if ent == predecessor {
-					log.Fatalf("Should this even happen? An entity targeting itself? Name is %v.", target)
+					log.Fatalf("should this even happen? An entity targeting itself? Name is %v", target)
 					continue
 				}
 				if closest == nil || closest.Rect.Delta(w.Player.Rect).Norm1() > ent.Rect.Delta(w.Player.Rect).Norm1() {
@@ -92,18 +92,18 @@ func SetStateOfTarget(w *engine.World, originator, predecessor *engine.Entity, t
 			}
 			if closest != nil {
 				if !SetStateOfEntity(originator, predecessor, closest, state) {
-					log.Errorf("Tried to set state of a non-supporting entity: %T, name: %v", closest, target)
+					log.Errorf("tried to set state of a non-supporting entity: %T, name: %v", closest, target)
 				}
 			}
 		} else {
 			w.SetWarpZoneState(target, thisState)
 			for _, ent := range w.FindName(target) {
 				if ent == predecessor {
-					log.Fatalf("Should this even happen? An entity targeting itself? Name is %v.", target)
+					log.Fatalf("should this even happen? An entity targeting itself? Name is %v", target)
 					continue
 				}
 				if !SetStateOfEntity(originator, predecessor, ent, thisState) {
-					log.Errorf("Tried to set state of a non-supporting entity: %T, name: %v", ent, target)
+					log.Errorf("tried to set state of a non-supporting entity: %T, name: %v", ent, target)
 				}
 			}
 		}

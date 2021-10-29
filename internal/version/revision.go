@@ -27,13 +27,13 @@ var revision string = "unknown"
 func Init() error {
 	fh, err := vfs.Load("generated", "version.txt")
 	if err != nil {
-		log.Errorf("Cannot open out my version: %v.", err)
+		log.Errorf("cannot open out my version: %v", err)
 		return err
 	}
 	defer fh.Close()
 	revStr, err := ioutil.ReadAll(fh)
 	if err != nil {
-		log.Errorf("Cannot read out my version: %v.", err)
+		log.Errorf("cannot read out my version: %v", err)
 		return err
 	}
 	revision = strings.TrimSpace(string(revStr))

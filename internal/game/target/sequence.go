@@ -57,7 +57,7 @@ func (s *SequenceTarget) SetState(originator, predecessor *engine.Entity, state 
 	for _, ent := range s.World.FindName(s.Target) {
 		collector, ok := ent.Impl.(*SequenceCollector)
 		if !ok {
-			log.Errorf("Target of SequenceTarget is not a SequenceCollector: %T, name: %v", ent, s.Target)
+			log.Errorf("target of SequenceTarget is not a SequenceCollector: %T, name: %v", ent, s.Target)
 		}
 		collector.Append(originator, s.Sequence)
 	}

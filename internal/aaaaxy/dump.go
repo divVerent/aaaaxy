@@ -108,7 +108,7 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 					}
 				}
 				if err != nil {
-					log.Errorf("Failed to encode video - expect corruption: %v", err)
+					log.Errorf("failed to encode video - expect corruption: %v", err)
 					// dumpVideoFile.Close()
 					// dumpVideoFile = nil
 				}
@@ -124,7 +124,7 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 	if dumpAudioFile != nil {
 		err := audiowrap.DumpFrame(dumpAudioFile, time.Duration(dumpFrameCount)*time.Second/engine.GameTPS)
 		if err != nil {
-			log.Errorf("Failed to encode audio - expect corruption: %v", err)
+			log.Errorf("failed to encode audio - expect corruption: %v", err)
 			dumpAudioFile.Close()
 			dumpAudioFile = nil
 		}
@@ -188,7 +188,7 @@ func finishDumping() {
 	if dumpAudioFile != nil {
 		err := dumpAudioFile.Close()
 		if err != nil {
-			log.Errorf("Failed to close audio - expect corruption: %v", err)
+			log.Errorf("failed to close audio - expect corruption: %v", err)
 		}
 		dumpAudioFile = nil
 	}
@@ -196,19 +196,19 @@ func finishDumping() {
 		dumpVideoWg.Wait()
 		err := dumpVideoFile.Close()
 		if err != nil {
-			log.Errorf("Failed to close video - expect corruption: %v", err)
+			log.Errorf("failed to close video - expect corruption: %v", err)
 		}
 		dumpVideoFile = nil
 	}
-	log.Infof("Media has been dumped.")
-	log.Infof("To create a preview file (DO NOT UPLOAD):")
+	log.Infof("media has been dumped")
+	log.Infof("to create a preview file (DO NOT UPLOAD):")
 	log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mp4", ""))
 	if *dumpVideo != "" {
 		if *screenFilter != "linear2xcrt" {
-			log.Infof("With current settings (1080p, MEDIUM QUALITY):")
+			log.Infof("with current settings (1080p, MEDIUM QUALITY):")
 			log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter))
 		}
-		log.Infof("Preferred for uploading (4K, GOOD QUALITY):")
+		log.Infof("preferred for uploading (4K, GOOD QUALITY):")
 		log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt"))
 	}
 }

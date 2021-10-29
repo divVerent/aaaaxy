@@ -48,7 +48,7 @@ func (c *CreditsTarget) SetState(originator, predecessor *engine.Entity, state b
 	c.World.PlayerState.SetWon()
 	err := c.World.Save()
 	if err != nil {
-		log.Errorf("Could not save game: %v", err)
+		log.Errorf("could not save game: %v", err)
 	}
 
 	log.Infof("%v", fun.FormatText(&c.World.PlayerState,

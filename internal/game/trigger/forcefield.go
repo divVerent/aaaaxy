@@ -171,7 +171,7 @@ func (f *ForceField) Touch(other *engine.Entity) {
 	cc := other.Rect.Center().Delta(f.Entity.Rect.Center())
 	if cc.IsZero() {
 		// Can't jump if overlapping at center. Oops. Shouldn't happen though.
-		log.Errorf("Forcefield: refusing to jump player due to full overlap.")
+		log.Errorf("forcefield: refusing to jump player due to full overlap")
 		return
 	}
 	// Scale so if touching precisely the corner, it is 45 degrees.

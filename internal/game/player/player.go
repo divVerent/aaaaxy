@@ -173,7 +173,7 @@ func (p *Player) GiveAbility(name, text string) {
 
 	err := p.World.Save()
 	if err != nil {
-		log.Errorf("Could not save game: %v", err)
+		log.Errorf("could not save game: %v", err)
 		return
 	}
 

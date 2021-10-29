@@ -636,7 +636,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		for _, spawnable := range tile.Spawnables {
 			_, err := w.Spawn(spawnable, pos, tile)
 			if err != nil {
-				log.Errorf("Could not spawn entity %v: %v", spawnable, err)
+				log.Errorf("could not spawn entity %v: %v", spawnable, err)
 			}
 		}
 	})
@@ -749,11 +749,11 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	}
 	neighborTile := w.Tile(p)
 	if neighborTile == nil {
-		log.Errorf("Trying to load with nonexisting neighbor tile at %v", p)
+		log.Errorf("trying to load with nonexisting neighbor tile at %v", p)
 		return nil // Can't load.
 	}
 	if neighborTile.Contents.Opaque() {
-		log.Errorf("Trying to load from an opaque tile at %v", p)
+		log.Errorf("trying to load from an opaque tile at %v", p)
 		return nil // Can't load.
 	}
 	t := neighborTile.Transform
@@ -761,7 +761,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	newLevelPos := neighborLevelPos.Add(t.Apply(d))
 	newLevelTile := w.Level.Tile(newLevelPos)
 	if newLevelTile == nil {
-		log.Debugf("Trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)", newLevelPos, p, neighborLevelPos, d, t.Apply(d))
+		log.Debugf("trying to load nonexisting tile at %v when moving from %v (%v) by %v (%v)", newLevelPos, p, neighborLevelPos, d, t.Apply(d))
 		newTile := &level.Tile{
 			LevelPos:           newLevelPos,
 			Transform:          t,
@@ -784,14 +784,14 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			}
 		}
 		if warped {
-			log.Errorf("More than one active warpzone on %v", newLevelTile)
+			log.Errorf("more than one active warpzone on %v", newLevelTile)
 			return nil // Can't load.
 		}
 		warped = true
 		t = warp.Transform.Concat(t)
 		tile := w.Level.Tile(warp.ToTile)
 		if tile == nil {
-			log.Errorf("Nil new tile after warping to %v", warp)
+			log.Errorf("nil new tile after warping to %v", warp)
 			return nil // Can't load.
 		}
 		newLevelTile = tile
@@ -807,7 +807,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			// Thus it'd be nice to have a better way to detect "bad" stuff.
 			// We only really care about loading conflicts during visibility tracing.
 			// TODO: During expanding it's normal, so detect that situation here.
-			log.Fatalf("conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v).",
+			log.Fatalf("conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v)",
 				newPos, tile.LoadedFromNeighbor, tile.LevelPos, p, d, newLevelTile.Tile.LevelPos)
 		}
 	}

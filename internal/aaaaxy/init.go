@@ -48,35 +48,35 @@ func LoadConfig() (*flag.Config, error) {
 
 func setWindowSize() {
 	logicalF := *windowScaleFactor
-	log.Infof("Requested logical scale factor: %v", logicalF)
+	log.Infof("requested logical scale factor: %v", logicalF)
 	dscale := ebiten.DeviceScaleFactor()
-	log.Infof("Device scale factor: %v", dscale)
+	log.Infof("device scale factor: %v", dscale)
 	var physicalF float64
 	if logicalF <= 0 {
 		screenw, screenh := ebiten.ScreenSizeInFullscreen()
-		log.Infof("Screen size: %vx%v", screenw, screenh)
+		log.Infof("screen size: %vx%v", screenw, screenh)
 		// Reserve 128 device independent pixels for system controls.
 		maxw, maxh := screenw-128, screenh-128
-		log.Infof("Max size: %vx%v", maxw, maxh)
+		log.Infof("max size: %vx%v", maxw, maxh)
 		// Compute max scaling factors.
 		maxwf, maxhf := float64(maxw)*dscale/engine.GameWidth, float64(maxh)*dscale/engine.GameHeight
-		log.Infof("Max physical scale factors: %v, %v", maxwf, maxhf)
+		log.Infof("max physical scale factors: %v, %v", maxwf, maxhf)
 		physicalF = math.Min(maxwf, maxhf)
 	} else {
 		physicalF = logicalF * dscale
 	}
-	log.Infof("Requested physical scale factor: %v", physicalF)
+	log.Infof("requested physical scale factor: %v", physicalF)
 	// Make output pixels an integer multiple of input pixels (looks better).
 	physicalF = math.Floor(physicalF)
 	if physicalF < 1 {
 		physicalF = 1
 	}
-	log.Infof("Chosen physical scale factor: %v", physicalF)
+	log.Infof("chosen physical scale factor: %v", physicalF)
 	// Convert back to logical scale factor as ebiten needs that.
 	logicalF = physicalF / dscale
-	log.Infof("Chosen logical pixel scale factor: %v", logicalF)
+	log.Infof("chosen logical pixel scale factor: %v", logicalF)
 	w, h := m.Rint(engine.GameWidth*logicalF), m.Rint(engine.GameHeight*logicalF)
-	log.Infof("Chosen window size: %vx%v", w, h)
+	log.Infof("chosen window size: %vx%v", w, h)
 	ebiten.SetWindowSize(w, h)
 }
 

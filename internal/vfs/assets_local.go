@@ -43,7 +43,7 @@ func Init() error {
 	for _, info := range content {
 		localAssetDirs = append(localAssetDirs, filepath.Join("third_party", info.Name(), "assets"))
 	}
-	log.Infof("Local asset search path: %v", localAssetDirs)
+	log.Infof("local asset search path: %v", localAssetDirs)
 	return nil
 }
 

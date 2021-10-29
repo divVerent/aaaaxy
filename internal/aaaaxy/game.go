@@ -71,7 +71,7 @@ func (g *Game) Update() error {
 
 	timing.Section("demo")
 	if demo.Update() {
-		log.Infof("Demo playback ended, exiting.")
+		log.Infof("demo playback ended, exiting")
 		return RegularTermination
 	}
 
@@ -102,7 +102,7 @@ func (g *Game) Update() error {
 func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image) {
 	sw, sh := screen.Size()
 	if sw != engine.GameWidth || sh != engine.GameHeight {
-		log.Infof("Skipping frame as sizes do not match up: got %vx%v, want %vx%v.",
+		log.Infof("skipping frame as sizes do not match up: got %vx%v, want %vx%v",
 			sw, sh, engine.GameWidth, engine.GameHeight)
 		return
 	}

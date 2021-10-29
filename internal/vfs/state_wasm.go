@@ -33,7 +33,7 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 		return nil, os.ErrNotExist
 	}
 	if state.Type() != js.TypeString {
-		log.Errorf("Unexpected localStorage type: got %v, want string.", state.Type())
+		log.Errorf("unexpected localStorage type: got %v, want string", state.Type())
 		return nil, fmt.Errorf("invalid type")
 	}
 	return []byte(state.String()), nil
@@ -45,9 +45,9 @@ func MoveAwayState(kind StateKind, name string) error {
 	data, err := ReadState(kind, name)
 	path := fmt.Sprintf("%d/%s", kind, name)
 	if err == nil {
-		log.Errorf("Deleting broken state file %s with content: %s", path, string(data))
+		log.Errorf("deleting broken state file %s with content: %s", path, string(data))
 	} else {
-		log.Errorf("Deleting broken state file %s with errorr: %s", path, err)
+		log.Errorf("deleting broken state file %s with errorr: %s", path, err)
 	}
 	js.Global().Get("localStorage").Call("removeItem", js.ValueOf(path))
 	return nil

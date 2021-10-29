@@ -67,7 +67,7 @@ func Set(name string, value interface{}) error {
 func Get(name string) interface{} {
 	f := flagSet.Lookup(name)
 	if f == nil {
-		log.Errorf("Queried non-existing flag: %v", name)
+		log.Errorf("queried non-existing flag: %v", name)
 		return ""
 	}
 	return f.Value.(flag.Getter).Get()

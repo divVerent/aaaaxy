@@ -115,13 +115,13 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 		// Try some rotation.
 		loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: 1}, m.Delta{DX: -1, DY: d})
 		if err == nil {
-			log.Infof("Note: loading checkpoint locations required rotation by %d 1", d)
+			log.Infof("note: loading checkpoint locations required rotation by %d 1", d)
 			return loc, nil
 		}
 		// Try the opposite.
 		loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: -1}, m.Delta{DX: 1, DY: d})
 		if err == nil {
-			log.Infof("Note: loading checkpoint locations required rotation by %d -1", d)
+			log.Infof("note: loading checkpoint locations required rotation by %d -1", d)
 			return loc, nil
 		}
 	}
@@ -290,7 +290,7 @@ nextEdge:
 			continue nextEdge
 		}
 		if edge.priority < 1 {
-			log.Debugf("Prioritizing edge %v...", edge)
+			log.Debugf("prioritizing edge %v..", edge)
 			edge.priority += 1
 			goto again
 		}

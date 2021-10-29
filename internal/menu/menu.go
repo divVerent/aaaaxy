@@ -251,7 +251,7 @@ func (c *Controller) SaveConfigAndSwitchToScreen(screen MenuScreen) error {
 // QuitGame is called by menu screens to end the game.
 func (c *Controller) QuitGame() error {
 	categories, _ := (c.World.PlayerState.SpeedrunCategories() | playerstate.AnyPercentSpeedrun).Strings()
-	log.Infof("On track for %v.", categories)
+	log.Infof("on track for %v", categories)
 	err := c.World.Save()
 	if err != nil {
 		return fmt.Errorf("could not save game: %v", err)
