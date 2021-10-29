@@ -290,7 +290,7 @@ nextEdge:
 			continue nextEdge
 		}
 		if edge.priority < 1 {
-			log.Debugf("prioritizing edge %v..", edge)
+			log.Debugf("prioritizing edge %v...", edge)
 			edge.priority += 1
 			goto again
 		}

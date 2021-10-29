@@ -232,7 +232,7 @@ func (m *stringMap) Set(s string) error {
 		case 2:
 			m.m[kv[0]] = kv[1]
 		default:
-			return fmt.Errorf("invalid StringMap flag value, got %q, want something of the form key1=value1,key2=value2,..", s)
+			return fmt.Errorf("invalid StringMap flag value, got %q, want something of the form key1=value1,key2=value2,...", s)
 		}
 	}
 	return nil
