@@ -40,7 +40,7 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 
 // MoveAwayState renames a detected-to-be-broken state file so it will not be used again.
 func MoveAwayState(kind StateKind, name string) error {
-	suffix := time.Now().UTC().Format(".2006-01-02T15-04-05-999999999Z")
+	suffix := time.Now().UTC().Format(".2006-01-02T15-04-05Z")
 	oldName, err := pathForRead(kind, name)
 	if err != nil {
 		return err
