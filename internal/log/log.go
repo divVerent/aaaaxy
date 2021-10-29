@@ -19,6 +19,8 @@ import (
 	"log"
 	"os"
 	"runtime/debug"
+
+	"github.com/divVerent/aaaaxy/internal/alert"
 )
 
 var (
@@ -63,6 +65,8 @@ func Errorf(format string, v ...interface{}) {
 
 func Fatalf(format string, v ...interface{}) {
 	debug.PrintStack()
-	log.Output(2, fmt.Sprintf("[FATAL] "+format, v...))
+	msg := fmt.Sprintf(format, v...)
+	log.Output(2, "[FATAL] "+msg)
+	alert.Show(msg)
 	os.Exit(125)
 }

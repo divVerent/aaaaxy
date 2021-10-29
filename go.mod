@@ -10,11 +10,13 @@ require (
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
 	github.com/hajimehoshi/ebiten/v2 v2.2.1
 	github.com/mitchellh/hashstructure/v2 v2.0.2
+	github.com/ncruces/zenity v0.7.12
 	golang.org/x/image v0.0.0-20210628002857-a66eb6448b8d
 	golang.org/x/sys v0.0.0-20211025201205-69cdffdb9359
 )
 
 require (
+	github.com/dchest/jsmin v0.0.0-20160823214000-faeced883947 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210727001814-0db043d8d5be // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
@@ -24,8 +26,10 @@ require (
 	github.com/jezek/xgb v0.0.0-20210312150743-0e0f116e1240 // indirect
 	github.com/jfreymuth/oggvorbis v1.0.3 // indirect
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
+	github.com/josephspurrier/goversioninfo v1.3.0 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
+	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/src-d/gcfg v1.4.0 // indirect
 	github.com/xanzy/ssh-agent v0.2.1 // indirect
