@@ -44,16 +44,16 @@ var (
 func Init() error {
 	data, err := vfs.Load("sounds", "stereonoise.ogg")
 	if err != nil {
-		return fmt.Errorf("Could not load stereonoise: %v", err)
+		return fmt.Errorf("could not load stereonoise: %v", err)
 	}
 	defer data.Close()
 	stream, err := vorbis.DecodeWithSampleRate(audiowrap.SampleRate(), data)
 	if err != nil {
-		return fmt.Errorf("Could not start decoding stereonosie: %v", err)
+		return fmt.Errorf("could not start decoding stereonosie: %v", err)
 	}
 	decoded, err := ioutil.ReadAll(stream)
 	if err != nil {
-		return fmt.Errorf("Could not decode stereonoise: %v", err)
+		return fmt.Errorf("could not decode stereonoise: %v", err)
 	}
 	noise, err = audiowrap.NewPlayer(func() (io.ReadCloser, error) {
 		return io.NopCloser(audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded)))), nil

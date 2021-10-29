@@ -105,7 +105,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"GameTime": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("Cannot use {{GameTime}} in static elements.")
+				return "", fmt.Errorf("cannot use {{GameTime}} in static elements")
 			}
 			frames := ps.Frames()
 			ss, ms := frames/60, (frames%60)*1000/60
@@ -115,7 +115,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"Abilities": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("Cannot use {{Abilities}} in static elements.")
+				return "", fmt.Errorf("cannot use {{Abilities}} in static elements")
 			}
 			abilities := make([]string, 0, 4)
 			if ps.HasAbility("carry") {
@@ -143,7 +143,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"ExitButton": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("Cannot use {{ExitButton}} in static elements.")
+				return "", fmt.Errorf("cannot use {{ExitButton}} in static elements")
 			}
 			i := input.Map()
 			if i.ContainsAny(input.Gamepad) {
@@ -153,7 +153,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"ActionButton": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("Cannot use {{ActionButton}} in static elements.")
+				return "", fmt.Errorf("cannot use {{ActionButton}} in static elements")
 			}
 			i := input.Map()
 			if i.ContainsAny(input.Gamepad) {
@@ -175,14 +175,14 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"SpeedrunCategories": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("Cannot use {{SpeedrunCategories}} in static elements.")
+				return "", fmt.Errorf("cannot use {{SpeedrunCategories}} in static elements")
 			}
 			categories, _ := ps.SpeedrunCategories().Strings()
 			return categories, nil
 		},
 		"SpeedrunTryNext": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("Cannot use {{SpeedrunTryNext}} in static elements.")
+				return "", fmt.Errorf("cannot use {{SpeedrunTryNext}} in static elements")
 			}
 			_, tryNext := ps.SpeedrunCategories().Strings()
 			return tryNext, nil
@@ -190,7 +190,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 	})
 	_, err := tmpl.Parse(s)
 	if err != nil {
-		return s, fmt.Errorf("Failed to parse text template: %v", s)
+		return s, fmt.Errorf("failed to parse text template: %v", s)
 	}
 	var buf bytes.Buffer
 	err = tmpl.Execute(&buf, nil)
