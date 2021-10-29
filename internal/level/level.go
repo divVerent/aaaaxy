@@ -139,7 +139,7 @@ func (l *Level) SaveGame() (*SaveGame, error) {
 }
 
 // LoadGame loads the given SaveGame into the map.
-// Note that when this returns an error, the SaveGame might have been partially loaded.
+// Note that when this returns an error, the SaveGame might have been partially loaded and the world may need to be reset.
 func (l *Level) LoadGame(save *SaveGame) error {
 	saveHash, err := hashstructure.Hash(save.SaveGameData, hashstructure.FormatV2, nil)
 	if err != nil {

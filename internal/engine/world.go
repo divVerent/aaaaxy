@@ -236,20 +236,39 @@ func (w *World) Init(saveState int) error {
 // Load loads the current savegame.
 // If this fails, the world may be in an undefined state; call w.Init() or w.Load() to resume.
 func (w *World) Load() error {
+	saveName := fmt.Sprintf("save-%d.json", w.saveState)
+	err := w.loadUnchecked(saveName)
+	if errors.Is(err, os.ErrNotExist) {
+		// No save game? Just reinit the world.
+		return w.Init(w.saveState)
+	}
+	if err != nil {
+		// Other error? Blow away the save game and reinit the world.
+		if demo.Playing() {
+			return err // No blowing away while playing demos as playing demos should not write.
+		}
+		log.Errorf("moving away save game due to error: %v", err)
+		err = vfs.MoveAwayState(vfs.SavedGames, saveName)
+		if err != nil {
+			return err
+		}
+		return w.Init(w.saveState)
+	}
+	return nil
+}
+
+func (w *World) loadUnchecked(saveName string) error {
 	save, intercepted := demo.InterceptPreLoadGame()
 	if !intercepted {
-		state, err := vfs.ReadState(vfs.SavedGames, fmt.Sprintf("save-%d.json", w.saveState))
-		if errors.Is(err, os.ErrNotExist) {
-			save = nil // Not loading anything due to there being no state to load is OK.
-		} else if err != nil {
-			return err // Other error.
-		} else {
-			// Normal loading.
-			save = &level.SaveGame{}
-			err = json.Unmarshal(state, save)
-			if err != nil {
-				return err
-			}
+		state, err := vfs.ReadState(vfs.SavedGames, saveName)
+		if err != nil {
+			return err
+		}
+		// Normal loading.
+		save = &level.SaveGame{}
+		err = json.Unmarshal(state, save)
+		if err != nil {
+			return err
 		}
 	}
 
@@ -257,7 +276,8 @@ func (w *World) Load() error {
 	demo.InterceptPostLoadGame(save)
 
 	if save == nil {
-		return nil
+		// Nothing to load? Send an error upwards; this will reinit the world.
+		return os.ErrNotExist
 	}
 
 	err := w.Level.LoadGame(save)

@@ -39,6 +39,20 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 	return []byte(state.String()), nil
 }
 
+// MoveAwayState deletes a detected-to-be-broken state file so it will not be used again.
+// It will also be printed to the console for debugging.
+func MoveAwayState(kind StateKind, name string) error {
+	data, err := ReadState(kind, name)
+	path := fmt.Sprintf("%d/%s", kind, name)
+	if err == nil {
+		log.Errorf("Deleting broken state file %s with content: %s", path, string(data))
+	} else {
+		log.Errorf("Deleting broken state file %s with errorr: %s", path, err)
+	}
+	js.Global().Get("localStorage").Call("removeItem", js.ValueOf(path))
+	return nil
+}
+
 // WriteState writes the given state file.
 func WriteState(kind StateKind, name string, data []byte) error {
 	path := fmt.Sprintf("%d/%s", kind, name)

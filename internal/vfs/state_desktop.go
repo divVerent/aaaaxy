@@ -21,6 +21,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -35,6 +36,23 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 		return nil, os.ErrNotExist
 	}
 	return ioutil.ReadFile(path)
+}
+
+// MoveAwayState renames a detected-to-be-broken state file so it will not be used again.
+func MoveAwayState(kind StateKind, name string) error {
+	suffix := time.Now().UTC().Format(".2006-01-02T15-04-05-999999999Z")
+	oldName, err := pathForRead(kind, name)
+	if err != nil {
+		return err
+	}
+	newName := oldName + suffix
+	log.Errorf("Renaming broken state file %s -> %v.", oldName, newName)
+	err = os.Rename(oldName, newName)
+	if err == os.ErrNotExist {
+		// Source file not therre? I guess that is fine too.
+		return nil
+	}
+	return err
 }
 
 // WriteState writes the given state file.

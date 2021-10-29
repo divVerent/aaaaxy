@@ -21,12 +21,23 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 // LoadConfig loads the current configuration.
 func LoadConfig() (*flag.Config, error) {
-	data, err := vfs.ReadState(vfs.Config, "config.json")
+	const name = "config.json"
+	config, err := loadConfigUnchecked(name)
+	if err != nil {
+		log.Errorf("moving away config due to error: %v", err)
+		return nil, vfs.MoveAwayState(vfs.Config, name)
+	}
+	return config, nil
+}
+
+func loadConfigUnchecked(name string) (*flag.Config, error) {
+	data, err := vfs.ReadState(vfs.Config, name)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
 			return nil, nil // Not loading anything due to there being no config to load is OK.
