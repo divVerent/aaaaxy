@@ -230,7 +230,7 @@ func (w *World) Init(saveState int) error {
 	}
 
 	// Respawn the player at the desired start location (includes other startup).
-	return w.RespawnPlayer("")
+	return w.RespawnPlayer("", true)
 }
 
 // Load loads the current savegame.
@@ -284,7 +284,7 @@ func (w *World) loadUnchecked(saveName string) error {
 	if err != nil {
 		return err
 	}
-	return w.RespawnPlayer(w.PlayerState.LastCheckpoint())
+	return w.RespawnPlayer(w.PlayerState.LastCheckpoint(), true)
 }
 
 // Save saves the current savegame.
@@ -309,7 +309,7 @@ func (w *World) Save() error {
 // SpawnPlayer spawns the player in a newly initialized world.
 // As a side effect, it unloads all tiles.
 // Spawning at checkpoint "" means the initial player location.
-func (w *World) RespawnPlayer(checkpointName string) error {
+func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error {
 	// Load whether we've seen this checkpoint in flipped state.
 	flipped := w.PlayerState.CheckpointSeen(checkpointName) == playerstate.SeenFlipped
 
@@ -366,8 +366,11 @@ func (w *World) RespawnPlayer(checkpointName string) error {
 		}
 	}
 
-	// Clear all centerprints.
-	centerprint.Reset()
+	if newGameSection {
+		// Clear all centerprints.
+		// But only when coming from menu, not when respawning/teleporting in game.
+		centerprint.Reset()
+	}
 
 	// Reset the ending stuff.
 	w.TimerStopped = false

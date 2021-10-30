@@ -57,7 +57,7 @@ func (r *RespawnPlayer) Touch(other *engine.Entity) {
 	if other != r.World.Player {
 		return
 	}
-	r.World.RespawnPlayer(r.World.PlayerState.LastCheckpoint())
+	r.World.RespawnPlayer(r.World.PlayerState.LastCheckpoint(), false)
 }
 
 func init() {

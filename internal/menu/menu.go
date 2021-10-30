@@ -223,7 +223,7 @@ func (c *Controller) SwitchToGame() error {
 
 // SwitchToCheckpoint switches to a specific checkpoint.
 func (c *Controller) SwitchToCheckpoint(cp string) error {
-	err := c.World.RespawnPlayer(cp)
+	err := c.World.RespawnPlayer(cp, true)
 	if err != nil {
 		return fmt.Errorf("could not respawn player: %v", err)
 	}
