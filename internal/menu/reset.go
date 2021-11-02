@@ -99,12 +99,12 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 	if s.Item == ResetNothing {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset Nothing", m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Reset Nothing", m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == ResetConfig {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset and Lose Settings", m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Reset and Lose Settings", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
 	var resetText string
 	var dx, dy int
 	if s.ResetFrame >= resetFrames && s.Item == ResetGame {
@@ -123,10 +123,10 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 		dx = rand.Intn(3) - 1
 		dy = rand.Intn(3) - 1
 	}
-	font.Menu.Draw(screen, resetText, m.Pos{X: x + dx, Y: 25*h/32 + dy}, true, fg, bg)
+	font.Menu.Draw(screen, resetText, m.Pos{X: x + dx, Y: 27*h/32 + dy}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == BackToMain {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Main Menu", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Main Menu", m.Pos{X: x, Y: 29 * h / 32}, true, fg, bg)
 }

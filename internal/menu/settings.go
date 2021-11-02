@@ -33,6 +33,7 @@ const (
 	Fullscreen SettingsScreenItem = iota
 	Graphics
 	Volume
+	SaveState
 	Reset
 	Back
 	SettingsCount
@@ -203,6 +204,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(toggleGraphics(0))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(0))
+		case SaveState:
+			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&SaveStateScreen{}))
 		case Reset:
 			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&ResetScreen{}))
 		case Back:
@@ -248,17 +251,22 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	if ebiten.IsFullscreen() {
 		fsText = "Switch to Windowed Mode"
 	}
-	font.Menu.Draw(screen, fsText, m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fsText, m.Pos{X: x, Y: 19 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Graphics: %v", currentGraphics()), m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fmt.Sprintf("Graphics: %v", currentGraphics()), m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Volume {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Volume: %v", currentVolume()), m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fmt.Sprintf("Volume: %v", currentVolume()), m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	fg, bg = fgn, bgn
+	if s.Item == SaveState {
+		fg, bg = fgs, bgs
+	}
+	font.Menu.Draw(screen, "Switch Save State", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Reset {
 		fg, bg = fgs, bgs
