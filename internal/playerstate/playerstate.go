@@ -241,6 +241,20 @@ func (c SpeedrunCategories) ContainAll(cats SpeedrunCategories) bool {
 	return (c & cats) == cats
 }
 
+func (s *PlayerState) Checkpoints() int {
+	cps := 0
+	for cp := range s.Level.Checkpoints {
+		if cp == "" {
+			// Start is not a real CP.
+			continue
+		}
+		if s.CheckpointSeen(cp) != NotSeen {
+			cps++
+		}
+	}
+	return cps
+}
+
 func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 	cat := allCategoriesSpeedrun
 	if !s.Won() {

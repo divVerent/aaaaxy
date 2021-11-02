@@ -107,18 +107,29 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 	font.Menu.Draw(screen, "Reset and Lose Settings", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
 	var resetText string
 	var dx, dy int
+	save := ""
+	switch *saveState {
+	case 0:
+		save = " A"
+	case 1:
+		save = " B"
+	case 2:
+		save = " C"
+	case 3:
+		save = " D"
+	}
 	if s.ResetFrame >= resetFrames && s.Item == ResetGame {
 		fg, bg = color.NRGBA{R: 170, G: 0, B: 0, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 255}
-		resetText = "Reset and Lose SAVED GAME"
+		resetText = fmt.Sprintf("Reset and Lose SAVE STATE%s", save)
 	} else {
 		fg, bg = fgn, bgn
 		if s.Item == ResetGame {
 			fg, bg = color.NRGBA{R: 255, G: 85, B: 85, A: 255}, color.NRGBA{R: 170, G: 0, B: 0, A: 255}
 		}
 		if s.Item == ResetGame {
-			resetText = fmt.Sprintf("Reset and Lose Saved Game (think about it for %d sec)", (resetFrames-s.ResetFrame+engine.GameTPS-1)/engine.GameTPS)
+			resetText = fmt.Sprintf("Reset and Lose Save State%s (think about it for %d sec)", save, (resetFrames-s.ResetFrame+engine.GameTPS-1)/engine.GameTPS)
 		} else {
-			resetText = "Reset and Lose Saved Game"
+			resetText = fmt.Sprintf("Reset and Lose Save State%s", save)
 		}
 		dx = rand.Intn(3) - 1
 		dy = rand.Intn(3) - 1

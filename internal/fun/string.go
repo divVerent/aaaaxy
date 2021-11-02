@@ -113,6 +113,12 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			hh, mm := mm/60, mm%60
 			return fmt.Sprintf("%d:%02d:%02d.%03d", hh, mm, ss, ms), nil
 		},
+		"Checkpoints": func() (string, error) {
+			if ps == nil {
+				return "", fmt.Errorf("cannot use {{GameTime}} in static elements")
+			}
+			return fmt.Sprintf("%d", ps.Checkpoints()), nil
+		},
 		"Abilities": func() (string, error) {
 			if ps == nil {
 				return "", fmt.Errorf("cannot use {{Abilities}} in static elements")

@@ -94,25 +94,25 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	if s.Item == Play {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Play", m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Play", m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Settings {
 		fg, bg = fgs, bgs
 	}
 	// TODO: menu item for signs seen and coins gotten.
-	font.Menu.Draw(screen, "Settings", m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Settings", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Credits {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Credits", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Credits", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Quit {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Quit", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Quit", m.Pos{X: x, Y: 29 * h / 32}, true, fg, bg)
 
 	// Display stats.
-	font.MenuSmall.Draw(screen, fun.FormatText(&s.Controller.World.PlayerState, "Time: {{GameTime}}"),
-		m.Pos{X: x, Y: 17 * h / 32}, true, fgn, bgn)
+	font.MenuSmall.Draw(screen, fun.FormatText(&s.Controller.World.PlayerState, "Score: {{Checkpoints}} | Time: {{GameTime}}"),
+		m.Pos{X: x, Y: 19 * h / 32}, true, fgn, bgn)
 }
