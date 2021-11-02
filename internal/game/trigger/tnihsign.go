@@ -29,6 +29,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
@@ -107,10 +108,15 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 		if t.PersistentState["seen"] == "true" {
 			importance = centerprint.NotImportant
 		} else {
+			t.PersistentState["seen"] = "true"
+			err := t.World.Save()
+			if err != nil {
+				log.Errorf("could not save game: %v", err)
+				return
+			}
 			t.Sound.Play()
 		}
 		t.Centerprint = centerprint.New(fun.FormatText(&t.World.PlayerState, t.Text), importance, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 255, B: 85, A: 255}, 2*time.Second)
-		t.PersistentState["seen"] = "true"
 		t.Entity.Image = t.SeenImage
 		mixins.SetStateOfTarget(t.World, other, t.Entity, t.Target, true)
 	}

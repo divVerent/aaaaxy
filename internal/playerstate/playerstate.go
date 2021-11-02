@@ -241,18 +241,21 @@ func (c SpeedrunCategories) ContainAll(cats SpeedrunCategories) bool {
 	return (c & cats) == cats
 }
 
-func (s *PlayerState) Checkpoints() int {
-	cps := 0
+func (s *PlayerState) Score() int {
+	score := 0
 	for cp := range s.Level.Checkpoints {
 		if cp == "" {
 			// Start is not a real CP.
 			continue
 		}
-		if s.CheckpointSeen(cp) != NotSeen {
-			cps++
+		// Score is just number of TnihSigns seen.
+		for _, sign := range s.Level.TnihSignsByCheckpoint[cp] {
+			if sign.PersistentState["seen"] == "true" {
+				score++
+			}
 		}
 	}
-	return cps
+	return score
 }
 
 func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {

@@ -67,11 +67,11 @@ func saveStateInfo(initLvl *level.Level, idx int) string {
 	ps := &playerstate.PlayerState{
 		Level: initLvl,
 	}
-	format := "{{Checkpoints}}"
+	format := "Score: {{Score}}"
 	if idx == *saveState {
 		format += " (current)"
 	} else {
-		format += " @ {{GameTime}}"
+		format += " | Time: {{GameTime}}"
 	}
 	return fun.FormatText(ps, format)
 }
