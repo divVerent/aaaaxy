@@ -92,7 +92,9 @@ func (c *Config) UnmarshalJSON(data []byte) error {
 // We only write non-default flag values.
 func Marshal() *Config {
 	c := &Config{flags: map[string]string{}}
-	flagSet.Visit(func(f *flag.Flag) {
+	// Note: VisitAll also sees flags that have been modified by code writing to *flag pointers.
+	// Visit would only see flags changed using flag.Set or the command line.
+	flagSet.VisitAll(func(f *flag.Flag) {
 		// Don't save debug or dump flags.
 		if strings.HasPrefix(f.Name, "cheat_") {
 			return
