@@ -66,7 +66,7 @@ clean:
 
 .PHONY: vet
 vet:
-	$(GO) vet $(SOURCES)
+	$(GO) vet
 
 # The actual build process follows.
 
