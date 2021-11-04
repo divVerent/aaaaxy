@@ -33,7 +33,7 @@ GOFLAGS += -tags "$(shell echo $(BUILDTAGS) | tr ' ' ,)"
 # Release/debug flags.
 BUILDTYPE = debug
 ifeq ($(BUILDTYPE),release)
-GOFLAGS += -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
+GOFLAGS += -a -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
 ifneq ($(shell $(GO) env GOARCH),wasm)
 GOFLAGS += -buildmode=pie
 endif
