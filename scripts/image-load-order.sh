@@ -16,6 +16,27 @@
 set -e
 
 root=$PWD
+out=$1; shift
+
+need=false
+for dir in "$@"; do
+	if ! [ "$out" -nt "$dir" ]; then
+		need=true
+		break
+	fi
+	for img in "$dir"/*.png; do
+		if ! [ "$out" -nt "$img" ]; then
+			need=true
+			break
+		fi
+	done
+	if $need; then
+		break
+	fi
+done
+if ! $need; then
+	exit 0
+fi
 
 # Load largest images first to optimize the BSP-based atlas ebiten generates.
 for dir in "$@"; do
@@ -25,4 +46,4 @@ for dir in "$@"; do
 		set -- $(identify -format '%[width] %[height]' "$img")
 		echo "$(($1 * $2)) $1 $2 $vfsimg"
 	done
-done | sort -r -n -k 1,3 -s | cut -d ' ' -f 4
+done | sort -r -n -k 1,3 -s | cut -d ' ' -f 4 > "$out"
