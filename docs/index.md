@@ -14,8 +14,7 @@ all means: don't look up.
 
 ### Download now\!
 
-[Download for Linux and Windows on
-x86\_64](https://github.com/divVerent/aaaaxy/releases)
+[Download for Windows, macOS and Linux](https://github.com/divVerent/aaaaxy/releases/latest)
 
 ### Further Resources
 
