@@ -36,9 +36,9 @@ type SaveStateScreenItem int
 
 const (
 	SaveStateA SaveStateScreenItem = iota
-	SaveStateB
-	SaveStateC
-	SaveStateD
+	SaveState4
+	SaveStateX
+	SaveStateY
 	SaveExit
 	SaveStateCount
 )
@@ -85,18 +85,18 @@ func (s *SaveStateScreen) Init(m *Controller) error {
 
 	s.Controller = m
 	s.Text[0] = "A: " + saveStateInfo(initLvl, 0)
-	s.Text[1] = "B: " + saveStateInfo(initLvl, 1)
-	s.Text[2] = "C: " + saveStateInfo(initLvl, 2)
-	s.Text[3] = "D: " + saveStateInfo(initLvl, 3)
+	s.Text[1] = "4: " + saveStateInfo(initLvl, 1)
+	s.Text[2] = "X: " + saveStateInfo(initLvl, 2)
+	s.Text[3] = "Y: " + saveStateInfo(initLvl, 3)
 	switch *saveState {
 	case 0:
 		s.Item = SaveStateA
 	case 1:
-		s.Item = SaveStateB
+		s.Item = SaveState4
 	case 2:
-		s.Item = SaveStateC
+		s.Item = SaveStateX
 	case 3:
-		s.Item = SaveStateD
+		s.Item = SaveStateY
 	default:
 		s.Item = SaveExit
 		return nil
@@ -121,11 +121,11 @@ func (s *SaveStateScreen) Update() error {
 		switch s.Item {
 		case SaveStateA:
 			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(0))
-		case SaveStateB:
+		case SaveState4:
 			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(1))
-		case SaveStateC:
+		case SaveStateX:
 			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(2))
-		case SaveStateD:
+		case SaveStateY:
 			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(3))
 		case SaveExit:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
@@ -148,17 +148,17 @@ func (s *SaveStateScreen) Draw(screen *ebiten.Image) {
 	}
 	font.Menu.Draw(screen, s.Text[0], m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
-	if s.Item == SaveStateB {
+	if s.Item == SaveState4 {
 		fg, bg = fgs, bgs
 	}
 	font.Menu.Draw(screen, s.Text[1], m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
-	if s.Item == SaveStateC {
+	if s.Item == SaveStateX {
 		fg, bg = fgs, bgs
 	}
 	font.Menu.Draw(screen, s.Text[2], m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
-	if s.Item == SaveStateD {
+	if s.Item == SaveStateY {
 		fg, bg = fgs, bgs
 	}
 	font.Menu.Draw(screen, s.Text[3], m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
