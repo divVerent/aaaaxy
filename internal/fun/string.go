@@ -119,6 +119,12 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			}
 			return fmt.Sprintf("%d", ps.Score()), nil
 		},
+		"SpeedrunCategoriesShort": func() (string, error) {
+			if ps == nil {
+				return "", fmt.Errorf("cannot use {{SpeedrunsShort}} in static elements")
+			}
+			return ps.SpeedrunCategories().DescribeShort(), nil
+		},
 		"Abilities": func() (string, error) {
 			if ps == nil {
 				return "", fmt.Errorf("cannot use {{Abilities}} in static elements")
@@ -183,14 +189,14 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			if ps == nil {
 				return "", fmt.Errorf("cannot use {{SpeedrunCategories}} in static elements")
 			}
-			categories, _ := ps.SpeedrunCategories().Strings()
+			categories, _ := ps.SpeedrunCategories().Describe()
 			return categories, nil
 		},
 		"SpeedrunTryNext": func() (string, error) {
 			if ps == nil {
 				return "", fmt.Errorf("cannot use {{SpeedrunTryNext}} in static elements")
 			}
-			_, tryNext := ps.SpeedrunCategories().Strings()
+			_, tryNext := ps.SpeedrunCategories().Describe()
 			return tryNext, nil
 		},
 	})

@@ -57,7 +57,7 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	if s.Fancy {
 		music.Switch(s.Controller.World.Level.CreditsMusic)
 		timeStr := fun.FormatText(&s.Controller.World.PlayerState, "{{GameTime}}")
-		categories, tryNext := s.Controller.World.PlayerState.SpeedrunCategories().Strings()
+		categories, tryNext := s.Controller.World.PlayerState.SpeedrunCategories().Describe()
 		s.Lines = append(
 			s.Lines,
 			"",

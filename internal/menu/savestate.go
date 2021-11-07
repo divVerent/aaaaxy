@@ -67,7 +67,7 @@ func saveStateInfo(initLvl *level.Level, idx int) string {
 	ps := &playerstate.PlayerState{
 		Level: initLvl,
 	}
-	format := "Score: {{Score}}"
+	format := "Score: {{Score}}{{SpeedrunCategoriesShort}}"
 	if idx == *saveState {
 		format += " (current)"
 	} else {

@@ -113,6 +113,6 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	font.Menu.Draw(screen, "Quit", m.Pos{X: x, Y: 29 * h / 32}, true, fg, bg)
 
 	// Display stats.
-	font.MenuSmall.Draw(screen, fun.FormatText(&s.Controller.World.PlayerState, "Score: {{Score}} | Time: {{GameTime}}"),
+	font.MenuSmall.Draw(screen, fun.FormatText(&s.Controller.World.PlayerState, "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"),
 		m.Pos{X: x, Y: 19 * h / 32}, true, fgn, bgn)
 }

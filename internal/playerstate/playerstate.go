@@ -192,49 +192,121 @@ const (
 	AllSecretsSpeedrun     SpeedrunCategories = 0x10
 	AllFlippedSpeedrun     SpeedrunCategories = 0x20
 	NoEscapeSpeedrun       SpeedrunCategories = 0x40
+	WithoutCheatsSpeedrun  SpeedrunCategories = 0x2000
+	CheatingSpeedrun       SpeedrunCategories = 0x4000
 	ImpossibleSpeedrun     SpeedrunCategories = 0x8000
 	allCategoriesSpeedrun  SpeedrunCategories = 0x7F
 )
 
-func (c SpeedrunCategories) Strings() (categories string, tryNext string) {
-	tryNext = ""
-	cats := []string{}
-	addCategory := func(cat string, what SpeedrunCategories) {
-		if c.ContainAll(what) {
-			cats = append(cats, cat)
+func (c SpeedrunCategories) Name() string {
+	switch c {
+	case AnyPercentSpeedrun:
+		return "Any%"
+	case HundredPercentSpeedrun:
+		return "100%"
+	case AllSignsSpeedrun:
+		return "All Notes"
+	case AllPathsSpeedrun:
+		return "All Paths"
+	case AllSecretsSpeedrun:
+		return "All Secrets"
+	case AllFlippedSpeedrun:
+		return "All Flipped"
+	case NoEscapeSpeedrun:
+		if input.Map().ContainsAny(input.Gamepad) {
+			return "No Start"
 		} else {
-			if tryNext == "" {
+			return "No Escape"
+		}
+	case WithoutCheatsSpeedrun:
+		return "Without Cheating Of Course"
+	case CheatingSpeedrun:
+		return "Cheat%"
+	case ImpossibleSpeedrun:
+		return "Impossible"
+	default:
+		return "???"
+	}
+}
+
+func (c SpeedrunCategories) ShortName() string {
+	switch c {
+	case AnyPercentSpeedrun:
+		return "%"
+	case HundredPercentSpeedrun:
+		return "&"
+	case AllSignsSpeedrun:
+		return "N"
+	case AllPathsSpeedrun:
+		return "P"
+	case AllSecretsSpeedrun:
+		return "S"
+	case AllFlippedSpeedrun:
+		return "F"
+	case NoEscapeSpeedrun:
+		return "E"
+	case WithoutCheatsSpeedrun:
+		return "c"
+	case CheatingSpeedrun:
+		return "C"
+	case ImpossibleSpeedrun:
+		return "!"
+	default:
+		return "?"
+	}
+}
+
+func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, tryNext SpeedrunCategories) {
+	addCategory := func(cat, what SpeedrunCategories) {
+		if c.ContainAll(what) {
+			categories = append(categories, cat)
+		} else {
+			if tryNext == 0 {
 				tryNext = cat
 			}
 		}
 	}
 	if flag.Cheating() {
-		addCategory("Cheat%", 0)
-		addCategory("Without Cheating Of Course", ImpossibleSpeedrun)
+		addCategory(CheatingSpeedrun, 0)
+		addCategory(WithoutCheatsSpeedrun, ImpossibleSpeedrun)
 	}
 	if c&HundredPercentSpeedrun == 0 {
-		addCategory("Any%", AnyPercentSpeedrun)
+		addCategory(AnyPercentSpeedrun, AnyPercentSpeedrun)
 	}
-	addCategory("100%", HundredPercentSpeedrun)
-	addCategory("All Notes", AllSignsSpeedrun)
-	addCategory("All Paths", AllPathsSpeedrun)
-	addCategory("All Secrets", AllSecretsSpeedrun)
-	addCategory("All Flipped", AllFlippedSpeedrun)
-	noEscape := "No Escape"
-	if input.Map().ContainsAny(input.Gamepad) {
-		noEscape = "No Start"
+	addCategory(HundredPercentSpeedrun, HundredPercentSpeedrun)
+	addCategory(AllSignsSpeedrun, AllSignsSpeedrun)
+	addCategory(AllPathsSpeedrun, AllPathsSpeedrun)
+	addCategory(AllSecretsSpeedrun, AllSecretsSpeedrun)
+	addCategory(AllFlippedSpeedrun, AllFlippedSpeedrun)
+	addCategory(NoEscapeSpeedrun, NoEscapeSpeedrun)
+	return categories, tryNext
+}
+
+func (c SpeedrunCategories) Describe() (categories string, tryNext string) {
+	categoryIds, tryNextId := c.describeCommon()
+	categoryNames := make([]string, len(categoryIds))
+	for i, catId := range categoryIds {
+		categoryNames[i] = catId.Name()
 	}
-	addCategory(noEscape, NoEscapeSpeedrun)
-	l := len(cats)
+	l := len(categoryIds)
 	switch l {
 	case 0:
 		categories = "None"
 	case 1:
-		categories = cats[0]
+		categories = categoryNames[0]
 	default:
-		categories = strings.Join(cats[0:l-1], ", ") + " and " + cats[l-1]
+		categories = strings.Join(categoryNames[0:l-1], ", ") + " and " + categoryNames[l-1]
 	}
-	return
+	return categories, tryNextId.Name()
+}
+
+func (c SpeedrunCategories) DescribeShort() string {
+	categoryIds, _ := c.describeCommon()
+	cats := ""
+	for _, catId := range categoryIds {
+		cats += catId.ShortName()
+	}
+	return cats
 }
 
 func (c SpeedrunCategories) ContainAll(cats SpeedrunCategories) bool {
