@@ -26,7 +26,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
-	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/vfs"
@@ -77,13 +76,20 @@ func saveStateInfo(initLvl *level.Level, idx int) string {
 }
 
 func (s *SaveStateScreen) Init(m *Controller) error {
+	s.Controller = m
+
+	// Save the game first so the data shown is always consistent.
+	err := s.Controller.World.Save()
+	if err != nil {
+		return fmt.Errorf("could not save game: %v", err)
+	}
+
 	// TODO: Skip this loading step and have a different way to
 	initLvl, err := level.Load("level")
 	if err != nil {
-		log.Fatalf("could not load level: %v", err)
+		return fmt.Errorf("could not load level: %v", err)
 	}
 
-	s.Controller = m
 	s.Text[0] = "A: " + saveStateInfo(initLvl, 0)
 	s.Text[1] = "4: " + saveStateInfo(initLvl, 1)
 	s.Text[2] = "X: " + saveStateInfo(initLvl, 2)
@@ -99,7 +105,6 @@ func (s *SaveStateScreen) Init(m *Controller) error {
 		s.Item = SaveStateY
 	default:
 		s.Item = SaveExit
-		return nil
 	}
 	return nil
 }
