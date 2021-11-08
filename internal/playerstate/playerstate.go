@@ -185,25 +185,35 @@ func (s *PlayerState) SetWon() {
 type SpeedrunCategories int
 
 const (
+	// Real speedrun categories.
 	AnyPercentSpeedrun     SpeedrunCategories = 0x01
-	HundredPercentSpeedrun SpeedrunCategories = 0x02
+	AllCheckpointsSpeedrun SpeedrunCategories = 0x02
 	AllSignsSpeedrun       SpeedrunCategories = 0x04
 	AllPathsSpeedrun       SpeedrunCategories = 0x08
 	AllSecretsSpeedrun     SpeedrunCategories = 0x10
 	AllFlippedSpeedrun     SpeedrunCategories = 0x20
 	NoEscapeSpeedrun       SpeedrunCategories = 0x40
-	WithoutCheatsSpeedrun  SpeedrunCategories = 0x2000
-	CheatingSpeedrun       SpeedrunCategories = 0x4000
-	ImpossibleSpeedrun     SpeedrunCategories = 0x8000
-	allCategoriesSpeedrun  SpeedrunCategories = 0x7F
+	// Remapping:
+	// AnyPercent AllCheckpoints => Result
+	// false      false          => 0
+	// true       false          => AnyPercent
+	// false      true           => AllCheckpoints
+	// true       true           => HundredPercent
+	RedundantAnyPercentSpeedrun SpeedrunCategories = 0x0800
+	HundredPercentSpeedrun      SpeedrunCategories = 0x1000
+	// The following ones only are used internally when naming.
+	WithoutCheatsSpeedrun SpeedrunCategories = 0x2000
+	CheatingSpeedrun      SpeedrunCategories = 0x4000
+	ImpossibleSpeedrun    SpeedrunCategories = 0x8000
+	allCategoriesSpeedrun SpeedrunCategories = 0x7F
 )
 
 func (c SpeedrunCategories) Name() string {
 	switch c {
 	case AnyPercentSpeedrun:
 		return "Any%"
-	case HundredPercentSpeedrun:
-		return "100%"
+	case AllCheckpointsSpeedrun:
+		return "All Checkpoints"
 	case AllSignsSpeedrun:
 		return "All Notes"
 	case AllPathsSpeedrun:
@@ -218,6 +228,10 @@ func (c SpeedrunCategories) Name() string {
 		} else {
 			return "No Escape"
 		}
+	case RedundantAnyPercentSpeedrun:
+		return ""
+	case HundredPercentSpeedrun:
+		return "100%"
 	case WithoutCheatsSpeedrun:
 		return "Without Cheating Of Course"
 	case CheatingSpeedrun:
@@ -233,8 +247,8 @@ func (c SpeedrunCategories) ShortName() string {
 	switch c {
 	case AnyPercentSpeedrun:
 		return "%"
-	case HundredPercentSpeedrun:
-		return "&"
+	case AllCheckpointsSpeedrun:
+		return "C"
 	case AllSignsSpeedrun:
 		return "N"
 	case AllPathsSpeedrun:
@@ -243,12 +257,16 @@ func (c SpeedrunCategories) ShortName() string {
 		return "S"
 	case AllFlippedSpeedrun:
 		return "F"
+	case RedundantAnyPercentSpeedrun:
+		return ""
+	case HundredPercentSpeedrun:
+		return "&"
 	case NoEscapeSpeedrun:
 		return "E"
 	case WithoutCheatsSpeedrun:
-		return "c"
+		return "" // Never actually appears other than in tryNext.
 	case CheatingSpeedrun:
-		return "C"
+		return "c"
 	case ImpossibleSpeedrun:
 		return "!"
 	default:
@@ -270,10 +288,13 @@ func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, t
 		addCategory(CheatingSpeedrun, 0)
 		addCategory(WithoutCheatsSpeedrun, ImpossibleSpeedrun)
 	}
-	if c&HundredPercentSpeedrun == 0 {
+	if c.ContainAll(AllCheckpointsSpeedrun) {
+		addCategory(RedundantAnyPercentSpeedrun, AnyPercentSpeedrun)
+		addCategory(HundredPercentSpeedrun, AllCheckpointsSpeedrun)
+	} else {
 		addCategory(AnyPercentSpeedrun, AnyPercentSpeedrun)
+		addCategory(AllCheckpointsSpeedrun, AllCheckpointsSpeedrun)
 	}
-	addCategory(HundredPercentSpeedrun, HundredPercentSpeedrun)
 	addCategory(AllSignsSpeedrun, AllSignsSpeedrun)
 	addCategory(AllPathsSpeedrun, AllPathsSpeedrun)
 	addCategory(AllSecretsSpeedrun, AllSecretsSpeedrun)
@@ -284,9 +305,13 @@ func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, t
 
 func (c SpeedrunCategories) Describe() (categories string, tryNext string) {
 	categoryIds, tryNextId := c.describeCommon()
-	categoryNames := make([]string, len(categoryIds))
-	for i, catId := range categoryIds {
-		categoryNames[i] = catId.Name()
+	categoryNames := make([]string, 0, len(categoryIds))
+	for _, catId := range categoryIds {
+		name := catId.Name()
+		if name == "" {
+			continue
+		}
+		categoryNames = append(categoryNames, catId.Name())
 	}
 	l := len(categoryIds)
 	switch l {
@@ -335,7 +360,7 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 	if !s.Won() {
 		cat &^= AnyPercentSpeedrun
 	}
-	cat |= HundredPercentSpeedrun | AllFlippedSpeedrun | AllSignsSpeedrun
+	cat |= AllCheckpointsSpeedrun | AllFlippedSpeedrun | AllSignsSpeedrun
 	for cp, cpSp := range s.Level.Checkpoints {
 		if cp == "" {
 			// Start is not a real CP.
@@ -353,7 +378,7 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 		}
 		switch s.CheckpointSeen(cp) {
 		case NotSeen:
-			cat &^= HundredPercentSpeedrun
+			cat &^= AllCheckpointsSpeedrun
 		case SeenNormal:
 			// Note: this means AllFlipped is possible without 100%. WAI.
 			cat &^= AllFlippedSpeedrun
