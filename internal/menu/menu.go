@@ -203,11 +203,20 @@ func (c *Controller) InitGame(f resetFlag) error {
 
 // SwitchSaveState switches to a given save state.
 func (c *Controller) SwitchSaveState(state int) error {
+	// Save the game first.
+	err := c.World.Save()
+	if err != nil {
+		return fmt.Errorf("could not save game: %v", err)
+	}
+
+	// Now select the new state.
 	*saveState = state
-	err := engine.SaveConfig()
+	err = engine.SaveConfig()
 	if err != nil {
 		return fmt.Errorf("could not save config: %v", err)
 	}
+
+	// And finally restart the game from there.
 	return c.InitGame(loadGame)
 }
 

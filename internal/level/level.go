@@ -138,6 +138,48 @@ func (l *Level) SaveGame() (*SaveGame, error) {
 	return save, nil
 }
 
+// Clone clones the given Level to a new Level struct sharing no persistent state data.
+func (l *Level) Clone() *Level {
+	// First make a shallow copy.
+	out := new(Level)
+	*out = *l
+	// Now "deepen" all that's needed. This means all Spawnable objects.
+	// As they heavily alias each other, keep a map so the aliasing stays intact.
+	clones := map[*Spawnable]*Spawnable{}
+	clone := func(sp *Spawnable) *Spawnable {
+		cloned := clones[sp]
+		if cloned == nil {
+			cloned = sp.Clone()
+			clones[sp] = cloned
+		}
+		return cloned
+	}
+	out.Player = clone(out.Player)
+	out.Checkpoints = make(map[string]*Spawnable, len(l.Checkpoints))
+	for cp, cpSp := range l.Checkpoints {
+		out.Checkpoints[cp] = clone(cpSp)
+	}
+	out.TnihSignsByCheckpoint = make(map[string][]*Spawnable, len(l.TnihSignsByCheckpoint))
+	for cp, signs := range l.TnihSignsByCheckpoint {
+		outSigns := make([]*Spawnable, len(signs))
+		out.TnihSignsByCheckpoint[cp] = outSigns
+		for i, sign := range signs {
+			outSigns[i] = clone(sign)
+		}
+	}
+	out.tiles = make([]LevelTile, len(l.tiles))
+	for i := range l.tiles {
+		tile := &l.tiles[i]
+		outTile := &out.tiles[i]
+		*outTile = *tile
+		outTile.Tile.Spawnables = make([]*Spawnable, len(tile.Tile.Spawnables))
+		for i, sp := range tile.Tile.Spawnables {
+			outTile.Tile.Spawnables[i] = clone(sp)
+		}
+	}
+	return out
+}
+
 // LoadGame loads the given SaveGame into the map.
 // Note that when this returns an error, the SaveGame might have been partially loaded and the world may need to be reset.
 func (l *Level) LoadGame(save *SaveGame) error {
@@ -606,6 +648,20 @@ func Load(filename string) (*Level, error) {
 		return nil, fmt.Errorf("could not hash level: %v", err)
 	}
 	return &level, nil
+}
+
+// VerifyHash returns an error if the level hash changed.
+func (l *Level) VerifyHash() error {
+	lWithoutHash := *l
+	lWithoutHash.Hash = 0
+	hash, err := hashstructure.Hash(&lWithoutHash, hashstructure.FormatV2, nil)
+	if err != nil {
+		return fmt.Errorf("could not hash level: %v", err)
+	}
+	if hash != l.Hash {
+		return fmt.Errorf("level hash mismatch: got %v, want %v", hash, l.Hash)
+	}
+	return nil
 }
 
 // ParseImageSrcByOrientation parses the imgSrcByOrientation map.

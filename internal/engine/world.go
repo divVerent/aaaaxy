@@ -175,13 +175,24 @@ func (w *World) clearEntities() {
 	})
 }
 
+var loadLevelCache *level.Level
+
 func loadLevel() (*level.Level, error) {
-	// Load map.
-	lvl, err := level.Load("level")
-	if err != nil {
-		return nil, fmt.Errorf("could not load level: %v", err)
+	if loadLevelCache == nil {
+		// Load map.
+		lvl, err := level.Load("level")
+		if err != nil {
+			return nil, fmt.Errorf("could not load level: %v", err)
+		}
+		loadLevelCache = lvl
 	}
-	return lvl, nil
+	// Verify that the level hasn't changed.
+	// If this hits when resetting the game, most likely Clone doesn't properly clone some state.
+	err := loadLevelCache.VerifyHash()
+	if err != nil {
+		return nil, err
+	}
+	return loadLevelCache.Clone(), nil
 }
 
 func Precache() error {

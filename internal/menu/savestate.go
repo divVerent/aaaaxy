@@ -48,52 +48,42 @@ type SaveStateScreen struct {
 	Text       [4]string
 }
 
-func saveStateInfo(initLvl *level.Level, idx int) string {
-	saveName := fmt.Sprintf("save-%d.json", idx)
-	state, err := vfs.ReadState(vfs.SavedGames, saveName)
-	if err != nil {
-		return "(empty)"
-	}
-	save := &level.SaveGame{}
-	err = json.Unmarshal(state, save)
-	if err != nil {
-		return "(empty)"
-	}
-	err = initLvl.LoadGame(save)
-	if err != nil {
-		return "(empty)"
-	}
-	ps := &playerstate.PlayerState{
-		Level: initLvl,
-	}
-	format := "Score: {{Score}}{{SpeedrunCategoriesShort}}"
+func (s *SaveStateScreen) saveStateInfo(initLvl *level.Level, idx int) string {
+	var ps *playerstate.PlayerState
 	if idx == *saveState {
-		format += " (current)"
+		ps = &s.Controller.World.PlayerState
 	} else {
-		format += " | Time: {{GameTime}}"
+		saveName := fmt.Sprintf("save-%d.json", idx)
+		state, err := vfs.ReadState(vfs.SavedGames, saveName)
+		if err != nil {
+			return "(empty)"
+		}
+		save := &level.SaveGame{}
+		err = json.Unmarshal(state, save)
+		if err != nil {
+			return "(empty)"
+		}
+		err = initLvl.LoadGame(save)
+		if err != nil {
+			return "(empty)"
+		}
+		ps = &playerstate.PlayerState{
+			Level: initLvl,
+		}
 	}
+	format := "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 	return fun.FormatText(ps, format)
 }
 
 func (s *SaveStateScreen) Init(m *Controller) error {
 	s.Controller = m
 
-	// Save the game first so the data shown is always consistent.
-	err := s.Controller.World.Save()
-	if err != nil {
-		return fmt.Errorf("could not save game: %v", err)
-	}
+	initLvl := s.Controller.World.Level.Clone()
 
-	// TODO: Skip this loading step and have a different way to
-	initLvl, err := level.Load("level")
-	if err != nil {
-		return fmt.Errorf("could not load level: %v", err)
-	}
-
-	s.Text[0] = "A: " + saveStateInfo(initLvl, 0)
-	s.Text[1] = "4: " + saveStateInfo(initLvl, 1)
-	s.Text[2] = "X: " + saveStateInfo(initLvl, 2)
-	s.Text[3] = "Y: " + saveStateInfo(initLvl, 3)
+	s.Text[0] = s.saveStateInfo(initLvl, 0)
+	s.Text[1] = s.saveStateInfo(initLvl, 1)
+	s.Text[2] = s.saveStateInfo(initLvl, 2)
+	s.Text[3] = s.saveStateInfo(initLvl, 3)
 	switch *saveState {
 	case 0:
 		s.Item = SaveStateA
@@ -105,11 +95,17 @@ func (s *SaveStateScreen) Init(m *Controller) error {
 		s.Item = SaveStateY
 	default:
 		s.Item = SaveExit
+		return nil
 	}
 	return nil
 }
 
 func (s *SaveStateScreen) Update() error {
+	// Update so one can always see which save state is current.
+	if *saveState >= 0 && *saveState < 4 {
+		s.Text[*saveState] = s.saveStateInfo(nil, *saveState)
+	}
+
 	if input.Down.JustHit {
 		s.Item++
 		s.Controller.MoveSound(nil)
@@ -151,22 +147,22 @@ func (s *SaveStateScreen) Draw(screen *ebiten.Image) {
 	if s.Item == SaveStateA {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, s.Text[0], m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "A: "+s.Text[0], m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveState4 {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, s.Text[1], m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "4: "+s.Text[1], m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveStateX {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, s.Text[2], m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "X: "+s.Text[2], m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveStateY {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, s.Text[3], m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Y: "+s.Text[3], m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveExit {
 		fg, bg = fgs, bgs

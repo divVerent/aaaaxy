@@ -41,6 +41,18 @@ type Spawnable struct {
 	PersistentState map[string]string `hash:"-"`
 }
 
+func (sp *Spawnable) Clone() *Spawnable {
+	// First make a shallow copy.
+	outSp := new(Spawnable)
+	*outSp = *sp
+	// Now "deepend" all that's needed.
+	outSp.PersistentState = make(map[string]string, len(sp.PersistentState))
+	for k, v := range sp.PersistentState {
+		outSp.PersistentState[k] = v
+	}
+	return outSp
+}
+
 // EntityID represents an unique ID of an entity.
 type EntityID int
 
