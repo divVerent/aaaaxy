@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 var (
@@ -33,16 +34,21 @@ var (
 type frame struct {
 	SaveGame *level.SaveGame `json:",omitempty"`
 	Input    input.DemoState
+
+	// The following data is not actually played back, but compared at playback time.
+	SavedGames []uint64 `json:",omitempty"`
+	PlayerPos  m.Pos
 }
 
 var (
-	demoPlayerFile      *os.File
-	demoPlayer          *json.Decoder
-	demoPlayerSave      *level.SaveGame
-	demoRecorderStarted bool
-	demoRecorderFrame   frame
-	demoRecorderFile    *os.File
-	demoRecorder        *json.Encoder
+	demoPlayerFile       *os.File
+	demoPlayer           *json.Decoder
+	demoPlayerSave       *level.SaveGame
+	demoPlayerSavedGames []uint64
+	demoPlayerPos        m.Pos
+	demoRecorderFrame    frame
+	demoRecorderFile     *os.File
+	demoRecorder         *json.Encoder
 )
 
 func Init() error {
@@ -71,6 +77,9 @@ func Init() error {
 
 func BeforeExit() {
 	if demoPlayer != nil {
+		if demoPlayer.More() {
+			log.Errorf("REGRESSION: game ended but demo would still go on")
+		}
 		err := demoPlayerFile.Close()
 		if err != nil {
 			log.Fatalf("failed to close played demo from %v: %v", *demoPlay, err)
@@ -100,8 +109,18 @@ func Update() bool {
 	return wantQuit
 }
 
+func PostUpdate(playerPos m.Pos) {
+	if demoPlayer != nil {
+		postPlayFrame(playerPos)
+	}
+	if demoRecorder != nil {
+		postRecordFrame(playerPos)
+	}
+}
+
 func playFrame() bool {
 	if !demoPlayer.More() {
+		log.Errorf("REGRESSION: demo ended but game didn't quit")
 		return true
 	}
 	var f frame
@@ -113,30 +132,51 @@ func playFrame() bool {
 		demoPlayerSave = f.SaveGame
 	}
 	input.LoadFromDemo(&f.Input)
+	demoPlayerSavedGames = f.SavedGames
+	demoPlayerPos = f.PlayerPos
 	return false
 }
 
-func recordFrame() {
-	if demoRecorderStarted {
-		// We are recording demo frames one frame late
-		// so that save games loaded during the frame
-		// are provided at frame start.
-		err := demoRecorder.Encode(&demoRecorderFrame)
-		if err != nil {
-			log.Fatalf("could not encode demo frame: %v", err)
-		}
+func postPlayFrame(playerPos m.Pos) {
+	if len(demoPlayerSavedGames) != 0 {
+		log.Errorf("REGRESSION: saved game: got no saves, want %v", demoPlayerSavedGames)
 	}
+	if playerPos != demoPlayerPos {
+		log.Errorf("REGRESSION: player pos: got %v, want %v", playerPos, demoPlayerPos)
+	}
+	demoPlayerSavedGames = nil
+}
+
+func recordFrame() {
 	demoRecorderFrame = frame{
 		Input: *input.SaveToDemo(),
 	}
-	demoRecorderStarted = true
+}
+
+func postRecordFrame(playerPos m.Pos) {
+	demoRecorderFrame.PlayerPos = playerPos
+	err := demoRecorder.Encode(&demoRecorderFrame)
+	if err != nil {
+		log.Fatalf("could not encode demo frame: %v", err)
+	}
 }
 
 func InterceptSaveGame(save *level.SaveGame) bool {
 	// While playing back, we only save to memory to allow later recalling.
 	if demoPlayer != nil {
 		demoPlayerSave = save
+		if len(demoPlayerSavedGames) == 0 {
+			log.Errorf("REGRESSION: saved game: got hash %v, want no saves", save.Hash)
+		} else {
+			if save.Hash != demoPlayerSavedGames[0] {
+				log.Errorf("REGRESSION: saved game: got hash %v, want %v", save.Hash, demoPlayerSavedGames[0])
+			}
+			demoPlayerSavedGames = demoPlayerSavedGames[1:]
+		}
 		return true
+	}
+	if demoRecorder != nil {
+		demoRecorderFrame.SavedGames = append(demoRecorderFrame.SavedGames, save.Hash)
 	}
 	return false
 }

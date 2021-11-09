@@ -69,11 +69,16 @@ func (g *Game) Update() error {
 	timing.Section("input")
 	input.Update()
 
-	timing.Section("demo")
+	timing.Section("demo_pre")
 	if demo.Update() {
 		log.Infof("demo playback ended, exiting")
 		return RegularTermination
 	}
+
+	defer func() {
+		timing.Section("demo_post")
+		demo.PostUpdate(g.Menu.World.Player.Rect.Origin)
+	}()
 
 	timing.Section("menu")
 	err := g.Menu.Update()

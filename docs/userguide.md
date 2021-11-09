@@ -56,7 +56,7 @@ when compiling to enable multithreading, and by passing
 To record a demo of the game, pass the flags `-demo_record=demo.dem`.
 
 The resulting `demo.dem` file can be played back with only this exact
-same version of the game by passing `-play_demo=demo.dem`; however the
+same version of the game by passing `-demo_play=demo.dem`; however the
 above section on video recording can be used to turn the demo into a
 video.
 
