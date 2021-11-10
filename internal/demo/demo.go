@@ -42,14 +42,12 @@ type frame struct {
 }
 
 var (
-	demoPlayerFile       *os.File
-	demoPlayer           *json.Decoder
-	demoPlayerSave       *level.SaveGame
-	demoPlayerSavedGames []uint64
-	demoPlayerPos        m.Pos
-	demoRecorderFrame    frame
-	demoRecorderFile     *os.File
-	demoRecorder         *json.Encoder
+	demoPlayerFile    *os.File
+	demoPlayer        *json.Decoder
+	demoPlayerFrame   frame
+	demoRecorderFrame frame
+	demoRecorderFile  *os.File
+	demoRecorder      *json.Encoder
 )
 
 func Init() error {
@@ -124,28 +122,27 @@ func playFrame() bool {
 		log.Errorf("REGRESSION: demo ended but game didn't quit")
 		return true
 	}
-	var f frame
-	err := demoPlayer.Decode(&f)
+	s := demoPlayerFrame.SaveGame
+	demoPlayerFrame = frame{}
+	err := demoPlayer.Decode(&demoPlayerFrame)
 	if err != nil {
 		log.Fatalf("could not decode demo frame: %v", err)
 	}
-	if f.SaveGame != nil {
-		demoPlayerSave = f.SaveGame
+	// Restore save game, so loading always succeeds even if we've regressed.
+	if demoPlayerFrame.SaveGame == nil {
+		demoPlayerFrame.SaveGame = s
 	}
-	input.LoadFromDemo(&f.Input)
-	demoPlayerSavedGames = f.SavedGames
-	demoPlayerPos = f.PlayerPos
+	input.LoadFromDemo(&demoPlayerFrame.Input)
 	return false
 }
 
 func postPlayFrame(playerPos m.Pos) {
-	if len(demoPlayerSavedGames) != 0 {
-		log.Errorf("REGRESSION: saved game: got no saves, want %v", demoPlayerSavedGames)
+	if len(demoPlayerFrame.SavedGames) != 0 {
+		log.Errorf("REGRESSION: saved game: got no saves, want %v", demoPlayerFrame.SavedGames)
 	}
-	if playerPos != demoPlayerPos {
-		log.Errorf("REGRESSION: player pos: got %v, want %v", playerPos, demoPlayerPos)
+	if playerPos != demoPlayerFrame.PlayerPos {
+		log.Errorf("REGRESSION: player pos: got %v, want %v", playerPos, demoPlayerFrame.PlayerPos)
 	}
-	demoPlayerSavedGames = nil
 }
 
 func recordFrame() {
@@ -165,14 +162,17 @@ func postRecordFrame(playerPos m.Pos) {
 func InterceptSaveGame(save *level.SaveGame) bool {
 	// While playing back, we only save to memory to allow later recalling.
 	if demoPlayer != nil {
-		demoPlayerSave = save
-		if len(demoPlayerSavedGames) == 0 {
+		// Ensure next load event will be handled right according to this save game.
+		// This shoulnd't be needed - InterceptPostLoadGame should have ensured the save game is always updated on every load event.
+		// Still there to have better chance of being in sync during playback with regression.
+		demoPlayerFrame.SaveGame = save
+		if len(demoPlayerFrame.SavedGames) == 0 {
 			log.Errorf("REGRESSION: saved game: got hash %v, want no saves", save.Hash)
 		} else {
-			if save.Hash != demoPlayerSavedGames[0] {
-				log.Errorf("REGRESSION: saved game: got hash %v, want %v", save.Hash, demoPlayerSavedGames[0])
+			if save.Hash != demoPlayerFrame.SavedGames[0] {
+				log.Errorf("REGRESSION: saved game: got hash %v, want %v", save.Hash, demoPlayerFrame.SavedGames[0])
 			}
-			demoPlayerSavedGames = demoPlayerSavedGames[1:]
+			demoPlayerFrame.SavedGames = demoPlayerFrame.SavedGames[1:]
 		}
 		return true
 	}
@@ -185,7 +185,7 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 func InterceptPreLoadGame() (*level.SaveGame, bool) {
 	// While playing back, we always return the last save game from the demo.
 	if demoPlayer != nil {
-		return demoPlayerSave, true
+		return demoPlayerFrame.SaveGame, true
 	}
 	return nil, false
 }
