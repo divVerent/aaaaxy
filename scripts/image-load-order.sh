@@ -39,6 +39,7 @@ if ! $need; then
 fi
 
 # Load largest images first to optimize the BSP-based atlas ebiten generates.
+trap 'rm -f "$out"' EXIT
 for dir in "$@"; do
 	for img in "$dir"/*.png; do
 		vfsimg=${img#third_party/*/}
@@ -47,3 +48,4 @@ for dir in "$@"; do
 		echo "$(($1 * $2)) $1 $2 $vfsimg"
 	done
 done | sort -r -n -k 1,3 -s | cut -d ' ' -f 4 > "$out"
+trap - EXIT

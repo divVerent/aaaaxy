@@ -24,8 +24,10 @@ export GOARCH=
 mkdir -p assets/generated
 
 if ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
+	trap 'rm -f assets/generated/level.cp.json' EXIT
 	${GO} run github.com/divVerent/aaaaxy/cmd/dumpcps assets/maps/level.tmx > assets/generated/level.cp.dot
 	neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
+	trap - EXIT
 fi
 
 scripts/image-load-order.sh assets/generated/image_load_order.txt assets/tiles assets/sprites third_party/grafxkid_classic_hero_and_baddies_pack/assets/sprites
