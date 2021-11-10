@@ -38,7 +38,6 @@ type frame struct {
 	Input    input.DemoState
 
 	// The following data is not actually played back, but compared at playback time.
-	// TODO: On first N regressions (i.e. regression frames where previous frame had no regression yet), dump a screenshot and link to it in stderr?
 	SavedGames []uint64 `json:",omitempty"`
 	PlayerPos  m.Pos
 }
