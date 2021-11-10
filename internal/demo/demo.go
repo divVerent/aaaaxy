@@ -50,6 +50,10 @@ var (
 	demoRecorder      *json.Encoder
 )
 
+func regression(format string, args ...interface{}) {
+	log.Errorf("REGRESSION: "+format, args...)
+}
+
 func Init() error {
 	if *demoPlay != "" {
 		var err error
@@ -77,7 +81,7 @@ func Init() error {
 func BeforeExit() {
 	if demoPlayer != nil {
 		if demoPlayer.More() {
-			log.Errorf("REGRESSION: game ended but demo would still go on")
+			regression("game ended but demo would still go on")
 		}
 		err := demoPlayerFile.Close()
 		if err != nil {
@@ -119,14 +123,14 @@ func PostUpdate(playerPos m.Pos) {
 
 func playFrame() bool {
 	if !demoPlayer.More() {
-		log.Errorf("REGRESSION: demo ended but game didn't quit")
+		regression("demo ended but game didn't quit")
 		return true
 	}
 	s := demoPlayerFrame.SaveGame
 	demoPlayerFrame = frame{}
 	err := demoPlayer.Decode(&demoPlayerFrame)
 	if err != nil {
-		log.Fatalf("could not decode demo frame: %v", err)
+		regression("could not decode demo frame: %v", err)
 	}
 	// Restore save game, so loading always succeeds even if we've regressed.
 	if demoPlayerFrame.SaveGame == nil {
@@ -138,10 +142,10 @@ func playFrame() bool {
 
 func postPlayFrame(playerPos m.Pos) {
 	if len(demoPlayerFrame.SavedGames) != 0 {
-		log.Errorf("REGRESSION: saved game: got no saves, want %v", demoPlayerFrame.SavedGames)
+		regression("saved game: got no saves, want %v", demoPlayerFrame.SavedGames)
 	}
 	if playerPos != demoPlayerFrame.PlayerPos {
-		log.Errorf("REGRESSION: player pos: got %v, want %v", playerPos, demoPlayerFrame.PlayerPos)
+		regression("player pos: got %v, want %v", playerPos, demoPlayerFrame.PlayerPos)
 	}
 }
 
@@ -167,10 +171,10 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 		// Still there to have better chance of being in sync during playback with regression.
 		demoPlayerFrame.SaveGame = save
 		if len(demoPlayerFrame.SavedGames) == 0 {
-			log.Errorf("REGRESSION: saved game: got hash %v, want no saves", save.Hash)
+			regression("saved game: got hash %v, want no saves", save.Hash)
 		} else {
 			if save.Hash != demoPlayerFrame.SavedGames[0] {
-				log.Errorf("REGRESSION: saved game: got hash %v, want %v", save.Hash, demoPlayerFrame.SavedGames[0])
+				regression("saved game: got hash %v, want %v", save.Hash, demoPlayerFrame.SavedGames[0])
 			}
 			demoPlayerFrame.SavedGames = demoPlayerFrame.SavedGames[1:]
 		}
