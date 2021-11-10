@@ -183,17 +183,17 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 		// Still there to have better chance of being in sync during playback with regression.
 		demoPlayerFrame.SaveGame = save
 		if len(demoPlayerFrame.SavedGames) == 0 {
-			regression("saved game: got hash %v, want no saves", save.Hash)
+			regression("saved game: got hash %v, want no saves", save.StateHash)
 		} else {
-			if save.Hash != demoPlayerFrame.SavedGames[0] {
-				regression("saved game: got hash %v, want %v", save.Hash, demoPlayerFrame.SavedGames[0])
+			if save.StateHash != demoPlayerFrame.SavedGames[0] {
+				regression("saved game: got hash %v, want %v", save.StateHash, demoPlayerFrame.SavedGames[0])
 			}
 			demoPlayerFrame.SavedGames = demoPlayerFrame.SavedGames[1:]
 		}
 		return true
 	}
 	if demoRecorder != nil {
-		demoRecorderFrame.SavedGames = append(demoRecorderFrame.SavedGames, save.Hash)
+		demoRecorderFrame.SavedGames = append(demoRecorderFrame.SavedGames, save.StateHash)
 	}
 	return false
 }

@@ -91,28 +91,40 @@ type WarpZone struct {
 	Transform  m.Orientation
 }
 
-// SaveGameData is a not-yet-hashed SaveGame.
-type SaveGameData struct {
-	State        map[EntityID]PersistentState
-	GameVersion  string `hash:"-"`
+// SaveGameDataV1 is a not-yet-hashed SaveGame.
+type SaveGameDataV1 struct {
+	State        map[EntityID]PersistentState `hash:"-"`
+	GameVersion  string
 	LevelVersion int
 	LevelHash    uint64
 }
 
 // SaveGame is the data structure we save game state with.
 // It contains all needed (in addition to loading the level) to reset to the last visited checkpoint.
+// Separate hashes govern the info parts and the state itself so demo regression testing can work across version changes.
 type SaveGame struct {
-	SaveGameData
-	Hash uint64
+	SaveGameDataV1
+	InfoHash  uint64
+	StateHash uint64
+
+	// Legacy hash for v0 save games.
+	Hash uint64 `json:",omitempty"`
+}
+
+// SaveGameData is a not-yet-hashed SaveGame.
+type SaveGameData struct {
+	State        map[EntityID]PersistentState
+	LevelVersion int
+	LevelHash    uint64
 }
 
 // SaveGame returns the current state as a SaveGame.
 func (l *Level) SaveGame() (*SaveGame, error) {
 	if l.SaveGameVersion != 1 {
-		log.Fatalf("FIXME! On the next SaveGameVersion, please remove the `hash:\"-\" from GameVersion, and then remove this check too!")
+		log.Fatalf("FIXME! On the next SaveGameVersion, please remove the SaveGameData v0 support and this check too!")
 	}
 	save := &SaveGame{
-		SaveGameData: SaveGameData{
+		SaveGameDataV1: SaveGameDataV1{
 			State:        map[EntityID]PersistentState{},
 			GameVersion:  version.Revision(),
 			LevelVersion: l.SaveGameVersion,
@@ -131,7 +143,11 @@ func (l *Level) SaveGame() (*SaveGame, error) {
 	})
 	saveOne(l.Player)
 	var err error
-	save.Hash, err = hashstructure.Hash(save.SaveGameData, hashstructure.FormatV2, nil)
+	save.StateHash, err = hashstructure.Hash(save.State, hashstructure.FormatV2, nil)
+	if err != nil {
+		return nil, err
+	}
+	save.InfoHash, err = hashstructure.Hash(save.SaveGameDataV1, hashstructure.FormatV2, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -183,12 +199,34 @@ func (l *Level) Clone() *Level {
 // LoadGame loads the given SaveGame into the map.
 // Note that when this returns an error, the SaveGame might have been partially loaded and the world may need to be reset.
 func (l *Level) LoadGame(save *SaveGame) error {
-	saveHash, err := hashstructure.Hash(save.SaveGameData, hashstructure.FormatV2, nil)
-	if err != nil {
-		return err
-	}
-	if saveHash != save.Hash {
-		return fmt.Errorf("someone tampered with the save game")
+	if save.Hash != 0 && save.InfoHash == 0 && save.StateHash == 0 {
+		saveV0 := &SaveGameData{
+			State:        save.State,
+			LevelVersion: save.LevelVersion,
+			LevelHash:    save.LevelHash,
+		}
+		saveHash, err := hashstructure.Hash(saveV0, hashstructure.FormatV2, nil)
+		if err != nil {
+			return err
+		}
+		if saveHash != save.Hash {
+			return fmt.Errorf("someone tampered with the save game: got %v, want %v", saveHash, save.Hash)
+		}
+	} else {
+		infoHash, err := hashstructure.Hash(save.SaveGameDataV1, hashstructure.FormatV2, nil)
+		if err != nil {
+			return err
+		}
+		if infoHash != save.InfoHash {
+			return fmt.Errorf("someone tampered with the save game info")
+		}
+		stateHash, err := hashstructure.Hash(save.State, hashstructure.FormatV2, nil)
+		if err != nil {
+			return err
+		}
+		if stateHash != save.StateHash {
+			return fmt.Errorf("someone tampered with the save game state")
+		}
 	}
 	if save.GameVersion != version.Revision() {
 		log.Warningf("save game does not match game version: got %v, want %v", save.GameVersion, version.Revision())
