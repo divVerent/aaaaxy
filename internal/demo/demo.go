@@ -31,7 +31,7 @@ import (
 var (
 	demoRecord   = flag.String("demo_record", "", "local file path for demo to record to")
 	demoPlay     = flag.String("demo_play", "", "local file path for demo to play back")
-	demoTimedemo = flag.Bool("demo_timedemo", false, "run demos as fast as possible, only limited by rendering")
+	demoTimedemo = flag.Bool("demo_timedemo", false, "run demos as fast as possible, only limited by rendering; normally you'd want to pass -vsync=false too when using this")
 )
 
 type frame struct {
