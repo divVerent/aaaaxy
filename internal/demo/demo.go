@@ -29,8 +29,9 @@ import (
 )
 
 var (
-	demoRecord = flag.String("demo_record", "", "local file path for demo to record to")
-	demoPlay   = flag.String("demo_play", "", "local file path for demo to play back")
+	demoRecord   = flag.String("demo_record", "", "local file path for demo to record to")
+	demoPlay     = flag.String("demo_play", "", "local file path for demo to play back")
+	demoTimedemo = flag.Bool("demo_timedemo", false, "run demos as fast as possible, only limited by rendering")
 )
 
 type frame struct {
@@ -98,6 +99,10 @@ func BeforeExit() {
 
 func Playing() bool {
 	return demoPlayer != nil
+}
+
+func Timedemo() bool {
+	return Playing() && *demoTimedemo
 }
 
 func Update() bool {

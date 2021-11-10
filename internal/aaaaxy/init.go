@@ -141,7 +141,7 @@ func InitEbiten() error {
 		return fmt.Errorf("could not initialize dumping: %v", err)
 	}
 
-	if slowDumping() || *externalCapture {
+	if slowDumping() || demo.Timedemo() {
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)
 	} else {
 		ebiten.SetMaxTPS(engine.GameTPS)
