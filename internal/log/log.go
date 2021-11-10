@@ -24,8 +24,10 @@ import (
 )
 
 var (
-	defaultV int  = 0
-	V        *int = &defaultV
+	defaultV     int   = 0
+	V            *int  = &defaultV
+	defaultBatch bool  = false
+	Batch        *bool = &defaultBatch
 )
 
 const (
@@ -67,6 +69,8 @@ func Fatalf(format string, v ...interface{}) {
 	debug.PrintStack()
 	msg := fmt.Sprintf(format, v...)
 	log.Output(2, "[FATAL] "+msg)
-	alert.Show(msg)
+	if !*Batch {
+		alert.Show(msg)
+	}
 	os.Exit(125)
 }

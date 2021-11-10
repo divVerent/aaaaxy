@@ -28,7 +28,8 @@ import (
 
 var (
 	flagSet = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
-	v       = Int("v", 0, "verbose logging level") // Must be declared here to prevent cycle.
+	v       = Int("v", 0, "verbose logging level")                // Must be declared here to prevent cycle.
+	batch   = Bool("batch", false, "if set, show no alert boxes") // Must be declared here to prevent cycle.
 
 	loadConfig = Bool("load_config", true, "enable processing of the configuration file")
 )
@@ -139,6 +140,7 @@ var getConfig func() (*Config, error)
 func applyConfig() {
 	// Provide verbose level ASAP.
 	log.V = v
+	log.Batch = batch
 
 	// Skip config loading if so desired.
 	// This ability is why flag loading is hard;

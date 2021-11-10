@@ -121,6 +121,9 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 	timing.Section("menu")
 	g.Menu.Draw(screen)
 
+	timing.Section("demo_postdraw")
+	demo.PostDraw(screen)
+
 	timing.Section("dump")
 	dumpFrameThenReturnTo(screen, to, g.framesToDump)
 	g.framesToDump = 0

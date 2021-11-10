@@ -19,6 +19,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/hajimehoshi/ebiten/v2"
+
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -42,17 +44,14 @@ type frame struct {
 }
 
 var (
-	demoPlayerFile    *os.File
-	demoPlayer        *json.Decoder
-	demoPlayerFrame   frame
-	demoRecorderFrame frame
-	demoRecorderFile  *os.File
-	demoRecorder      *json.Encoder
+	demoPlayerFile     *os.File
+	demoPlayer         *json.Decoder
+	demoPlayerFrame    frame
+	demoPlayerFrameIdx int
+	demoRecorderFrame  frame
+	demoRecorderFile   *os.File
+	demoRecorder       *json.Encoder
 )
-
-func regression(format string, args ...interface{}) {
-	log.Errorf("REGRESSION: "+format, args...)
-}
 
 func Init() error {
 	if *demoPlay != "" {
@@ -87,6 +86,7 @@ func BeforeExit() {
 		if err != nil {
 			log.Fatalf("failed to close played demo from %v: %v", *demoPlay, err)
 		}
+		regressionBeforeExit()
 	}
 	if demoRecorder != nil {
 		recordFrame()
@@ -121,6 +121,12 @@ func PostUpdate(playerPos m.Pos) {
 	}
 }
 
+func PostDraw(screen *ebiten.Image) {
+	if demoPlayer != nil {
+		regressionPostDrawFrame(screen)
+	}
+}
+
 func playFrame() bool {
 	if !demoPlayer.More() {
 		regression("demo ended but game didn't quit")
@@ -147,6 +153,8 @@ func postPlayFrame(playerPos m.Pos) {
 	if playerPos != demoPlayerFrame.PlayerPos {
 		regression("player pos: got %v, want %v", playerPos, demoPlayerFrame.PlayerPos)
 	}
+	regressionPostPlayFrame()
+	demoPlayerFrameIdx++
 }
 
 func recordFrame() {
