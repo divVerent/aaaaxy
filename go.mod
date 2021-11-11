@@ -8,11 +8,11 @@ require (
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.2.1
+	github.com/hajimehoshi/ebiten/v2 v2.2.2
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
 	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
-	golang.org/x/sys v0.0.0-20211102192858-4dd72447c267
+	golang.org/x/sys v0.0.0-20211111213525-f221eed1c01e
 )
 
 require (
@@ -21,7 +21,7 @@ require (
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20211024062804-40e447a793be // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
-	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.3 // indirect
+	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.4 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jezek/xgb v0.0.0-20210312150743-0e0f116e1240 // indirect
 	github.com/jfreymuth/oggvorbis v1.0.3 // indirect
@@ -34,8 +34,8 @@ require (
 	github.com/src-d/gcfg v1.4.0 // indirect
 	github.com/xanzy/ssh-agent v0.2.1 // indirect
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
-	golang.org/x/exp v0.0.0-20211102154824-3b956f2825b8 // indirect
-	golang.org/x/mobile v0.0.0-20211102000317-2ab7fee9df46 // indirect
+	golang.org/x/exp v0.0.0-20211111183329-cb5df436b1a8 // indirect
+	golang.org/x/mobile v0.0.0-20211109191125-d61a72f26a1a // indirect
 	golang.org/x/mod v0.6.0-dev.0.20211013180041-c96bc1413d57 // indirect
 	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
