@@ -27,18 +27,18 @@ END DOWNLOAD LINKS TEMPLATE -->
 
 <!-- BEGIN DOWNLOAD LINKS -->
 
-The current version is v1.0.0-rc.35. Download here:
+The current version is v1.0.0-rc.59. Download here:
 
   - [Windows 64-Bit
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.35/aaaaxy-windows-amd64-v1.0.0-rc.35.zip)
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.59/aaaaxy-windows-amd64-v1.0.0-rc.59.zip)
   - [Windows 32-Bit
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.35/aaaaxy-windows-386-v1.0.0-rc.35.zip)
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.59/aaaaxy-windows-386-v1.0.0-rc.59.zip)
   - [Linux 64-Bit
-    AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.35/AAAAXY-x86_64.AppImage)
+    AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.59/AAAAXY-x86_64.AppImage)
   - [Linux 64-Bit
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.35/aaaaxy-linux-amd64-v1.0.0-rc.35.zip)
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.59/aaaaxy-linux-amd64-v1.0.0-rc.59.zip)
   - [macOS 64-Bit
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.35/aaaaxy-darwin-amd64-v1.0.0-rc.35.zip)
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.0.0-rc.59/aaaaxy-darwin-amd64-v1.0.0-rc.59.zip)
   - [All files and
     releases](https://github.com/divVerent/aaaaxy/releases)
 
