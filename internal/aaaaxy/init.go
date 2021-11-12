@@ -37,9 +37,10 @@ import (
 )
 
 var (
-	vsync             = flag.Bool("vsync", true, "enable waiting for vertical synchronization")
-	fullscreen        = flag.Bool("fullscreen", true, "enable fullscreen mode")
-	windowScaleFactor = flag.Float64("window_scale_factor", 0, "window scale factor in device pixels per game pixel (0 means auto integer scaling)")
+	vsync                 = flag.Bool("vsync", true, "enable waiting for vertical synchronization")
+	fullscreen            = flag.Bool("fullscreen", true, "enable fullscreen mode")
+	windowScaleFactor     = flag.Float64("window_scale_factor", 0, "window scale factor in device pixels per game pixel (0 means auto integer scaling)")
+	runnableWhenUnfocused = flag.Bool("runnable_when_unfocused", false, "keep running the game even when not focused")
 )
 
 func LoadConfig() (*flag.Config, error) {
@@ -148,7 +149,7 @@ func InitEbiten() error {
 	}
 
 	// Pause when unfocused, except when recording demos.
-	ebiten.SetRunnableOnUnfocused(demo.Playing() && dumping())
+	ebiten.SetRunnableOnUnfocused(*runnableWhenUnfocused || (demo.Playing() && dumping()))
 
 	return nil
 }
