@@ -60,6 +60,7 @@ type FadeHandle struct {
 
 var (
 	fadingOutPlayers = map[*Player]struct{}{}
+	fadingInPlayers  = map[*Player]struct{}{}
 )
 
 func Rate() int {
@@ -86,6 +87,14 @@ func Update() {
 		if p.fadeFrame == 0 {
 			p.CloseInstantly()
 			delete(fadingOutPlayers, p)
+		}
+		v := p.volume * float64(p.fadeFrame) / float64(p.fadeFrames)
+		p.setVolume(v)
+	}
+	for p := range fadingInPlayers {
+		p.fadeFrame++
+		if p.fadeFrame == p.fadeFrames {
+			delete(fadingInPlayers, p)
 		}
 		v := p.volume * float64(p.fadeFrame) / float64(p.fadeFrames)
 		p.setVolume(v)
@@ -174,9 +183,22 @@ func (p *Player) Close() error {
 	return nil
 }
 
-func (p *Player) FadeOutIn(d time.Duration) *FadeHandle {
+func toFrames(d time.Duration) int {
 	frames := int((d*engine.GameTPS + (time.Second / 2)) / time.Second)
-	p.fadeFrame = frames
+	if frames < 0 {
+		frames = 0
+	}
+	return frames
+}
+
+func (p *Player) FadeOutIn(d time.Duration) *FadeHandle {
+	frames := toFrames(d)
+	if _, found := fadingInPlayers[p]; found {
+		p.fadeFrame = p.fadeFrame * frames / p.fadeFrames
+		delete(fadingInPlayers, p)
+	} else {
+		p.fadeFrame = frames
+	}
 	p.fadeFrames = frames
 	fadingOutPlayers[p] = struct{}{}
 	return &FadeHandle{
@@ -184,13 +206,17 @@ func (p *Player) FadeOutIn(d time.Duration) *FadeHandle {
 	}
 }
 
-func (f *FadeHandle) Restore() *Player {
-	if _, found := fadingOutPlayers[f.player]; !found {
+func (f *FadeHandle) RestoreIn(d time.Duration) *Player {
+	frames := toFrames(d)
+	p := f.player
+	if _, found := fadingOutPlayers[p]; !found {
 		return nil
 	}
-	f.player.setVolume(f.player.volume)
-	delete(fadingOutPlayers, f.player)
-	return f.player
+	delete(fadingOutPlayers, p)
+	p.fadeFrame = p.fadeFrame * frames / p.fadeFrames
+	p.fadeFrames = frames
+	fadingInPlayers[p] = struct{}{}
+	return p
 }
 
 func (p *Player) Current() time.Duration {
@@ -245,6 +271,7 @@ func (p *Player) Play() {
 func (p *Player) SetVolume(vol float64) {
 	p.volume = vol // For fading.
 	p.setVolume(vol)
+	delete(fadingInPlayers, p)
 }
 
 func (p *Player) setVolume(vol float64) {
