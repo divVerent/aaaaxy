@@ -49,11 +49,18 @@ type Player struct {
 	dontGCState dontgc.State
 
 	// State for fading out.
-	volume    float64
-	fadeFrame int
+	volume     float64
+	fadeFrames int
+	fadeFrame  int
 }
 
-var fadingPlayers []*Player
+type FadeHandle struct {
+	player *Player
+}
+
+var (
+	fadingOutPlayers = map[*Player]struct{}{}
+)
 
 func Rate() int {
 	return *audioRate
@@ -74,19 +81,15 @@ func SampleRate() int {
 }
 
 func Update() {
-	j := 0
-	for i := 0; i < len(fadingPlayers); i++ {
-		p := fadingPlayers[i]
+	for p := range fadingOutPlayers {
 		p.fadeFrame--
 		if p.fadeFrame == 0 {
 			p.CloseInstantly()
+			delete(fadingOutPlayers, p)
 		}
-		v := p.volume * float64(p.fadeFrame) / float64(p.fadeFrame+1)
-		p.SetVolume(v)
-		fadingPlayers[j] = p
-		j++
+		v := p.volume * float64(p.fadeFrame) / float64(p.fadeFrames)
+		p.setVolume(v)
 	}
-	fadingPlayers = fadingPlayers[:j]
 }
 
 func ebiPlayer(src io.Reader) (*ebiaudio.Player, error) {
@@ -171,10 +174,23 @@ func (p *Player) Close() error {
 	return nil
 }
 
-func (p *Player) FadeOutIn(d time.Duration) {
+func (p *Player) FadeOutIn(d time.Duration) *FadeHandle {
 	frames := int((d*engine.GameTPS + (time.Second / 2)) / time.Second)
 	p.fadeFrame = frames
-	fadingPlayers = append(fadingPlayers, p)
+	p.fadeFrames = frames
+	fadingOutPlayers[p] = struct{}{}
+	return &FadeHandle{
+		player: p,
+	}
+}
+
+func (f *FadeHandle) Restore() *Player {
+	if _, found := fadingOutPlayers[f.player]; !found {
+		return nil
+	}
+	f.player.setVolume(f.player.volume)
+	delete(fadingOutPlayers, f.player)
+	return f.player
 }
 
 func (p *Player) Current() time.Duration {
@@ -227,7 +243,11 @@ func (p *Player) Play() {
 }
 
 func (p *Player) SetVolume(vol float64) {
-	p.volume = vol
+	p.volume = vol // For fading.
+	p.setVolume(vol)
+}
+
+func (p *Player) setVolume(vol float64) {
 	if p.dmp != nil {
 		p.dmp.SetVolume(vol * *volume)
 	}

@@ -33,7 +33,7 @@ import (
 
 var (
 	musicVolume   = flag.Float64("music_volume", 0.5, "music volume (0..1)")
-	musicFadeTime = flag.Duration("music_fade_time", time.Second, "music fade time")
+	musicFadeTime = flag.Duration("music_fade_time", 2*time.Second, "music fade time")
 )
 
 const (
@@ -86,8 +86,10 @@ func newSampleCutter(base io.ReadSeeker, offset int64, closer io.Closer) (*sampl
 }
 
 var (
+	prevName    string
 	currentName string
 	player      *audiowrap.Player
+	prevMusic   *audiowrap.FadeHandle
 	active      bool
 )
 
@@ -114,10 +116,22 @@ func Switch(name string) {
 		return
 	}
 
+	// Restore currently fading out track.
+	if cacheName == prevName && prevMusic != nil {
+		restored := prevMusic.Restore()
+		if restored != nil {
+			currentName, player = cacheName, restored
+			prevName, prevMusic = "", nil
+			return
+		}
+	}
+
 	// Fade out the current music.
 	if player != nil {
-		player.FadeOutIn(*musicFadeTime)
+		prevName, prevMusic = currentName, player.FadeOutIn(*musicFadeTime)
 		player = nil
+	} else {
+		prevName, prevMusic = "", nil
 	}
 
 	// Switch to it.
