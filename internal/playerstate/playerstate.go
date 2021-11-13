@@ -313,7 +313,7 @@ func (c SpeedrunCategories) Describe() (categories string, tryNext string) {
 		}
 		categoryNames = append(categoryNames, catId.Name())
 	}
-	l := len(categoryIds)
+	l := len(categoryNames)
 	switch l {
 	case 0:
 		categories = "None"
