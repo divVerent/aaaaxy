@@ -33,7 +33,7 @@ import (
 
 var (
 	musicVolume      = flag.Float64("music_volume", 0.5, "music volume (0..1)")
-	musicFadeTime    = flag.Duration("music_fade_time", 2*time.Second, "music fade time")
+	musicFadeTime    = flag.Duration("music_fade_time", 3*time.Second/2, "music fade time")
 	musicRestoreTime = flag.Duration("music_restore_time", time.Second/2, "music restore time")
 )
 
