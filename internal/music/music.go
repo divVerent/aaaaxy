@@ -117,21 +117,24 @@ func Switch(name string) {
 		return
 	}
 
-	// Restore currently fading out track.
-	if cacheName == prevName && prevMusic != nil {
-		restored := prevMusic.RestoreIn(*musicRestoreTime)
-		if restored != nil {
-			currentName, player = cacheName, restored
-			prevName, prevMusic = "", nil
-			return
-		}
-	}
-
 	// Fade out the current music.
 	if player != nil {
+		// Have a player - so we're switching tracks. Fade out current music.
 		prevName, prevMusic = currentName, player.FadeOutIn(*musicFadeTime)
 		player = nil
 	} else {
+		// Have no player. Then there are two cases.
+		if cacheName == prevName && prevMusic != nil {
+			// Back to last track? See if we can restore it.
+			restored := prevMusic.RestoreIn(*musicRestoreTime)
+			if restored != nil {
+				currentName, player = cacheName, restored
+				prevName, prevMusic = "", nil
+				return
+			}
+		}
+
+		// Otherwise prepare to start playing the new track.
 		prevName, prevMusic = "", nil
 	}
 
