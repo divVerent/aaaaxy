@@ -16,11 +16,21 @@
 set -ex
 
 : ${GO:=go}
+: ${LIPO:=lipo}
 
 GOOS=$($GO env GOOS)
-GOARCH=$($GO env GOARCH)
 GOEXE=$($GO env GOEXE)
-zip="$PWD/aaaaxy-$GOOS-$GOARCH-$(scripts/version.sh gittag).zip"
+
+case "$#" in
+	1)
+		GOARCH_SUFFIX=-$1
+		;;
+	*)
+		GOARCH_SUFFIX=
+		;;
+esac
+
+zip="$PWD/aaaaxy-$GOOS$GOARCH_SUFFIX-$(scripts/version.sh gittag).zip"
 
 exec 3>&1
 exec >&2
@@ -33,18 +43,33 @@ case "$GOOS" in
 		;;
 	js)
 		appdir=.
-		app="aaaaxy-$GOOS-$GOARCH$GOEXE aaaaxy.html wasm_exec.js"
+		app="aaaaxy-$GOOS$GOARCH_SUFFIX$GOEXE aaaaxy.html wasm_exec.js"
 		prefix=
 		;;
 	*)
 		appdir=.
-		app=aaaaxy-$GOOS-$GOARCH$GOEXE
+		app=aaaaxy-$GOOS$GOARCH_SUFFIX$GOEXE
 		prefix=
 		;;
 esac
 
 make clean
-make BUILDTYPE=release PREFIX="$prefix"
+
+if [ -n "$GOARCH_SUFFIX" ]; then
+	eval "export CGO_ENV=\$CGO_ENV_$1"
+	GOARCH=$(GOARCH=$1 $GO env GOARCH) make BUILDTYPE=release PREFIX="$prefix"
+	unset CGO_ENV
+else
+	lipofiles=
+	for arch in "$@"; do
+		eval "export CGO_ENV=\$CGO_ENV_$arch"
+		GOARCH=$(GOARCH=$arch $GO env GOARCH) make BUILDTYPE=release PREFIX="$prefix"
+		unset CGO_ENV
+		lipofiles="$lipofiles ${prefix}aaaaxy-$GOOS-$arch$GOEXE"
+	done
+	$LIPO -create $lipofiles -output "${prefix}aaaaxy-$GOOS"
+	rm -f $lipofiles
+fi
 
 rm -f "$zip"
 7za a -tzip -mx=9 "$zip" \
