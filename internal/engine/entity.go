@@ -87,6 +87,12 @@ type Precacher interface {
 	Precache(sp *level.Spawnable) error
 }
 
+// Some entities get a pre-despawn notification.
+type PreDespawner interface {
+	// PreDespawn gets called when the game enters the menu. After this, either Despawn or Update will happen eventually.
+	PreDespawn()
+}
+
 // entityTypes is a helper map to know how to spawn an entity.
 var entityTypes = map[string]EntityImpl{}
 

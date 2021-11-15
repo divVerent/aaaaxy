@@ -95,6 +95,7 @@ func (c *Controller) Update() error {
 		c.World.TimerStarted = true
 		music.Switch("")
 		c.World.PlayerState.AddEscape()
+		c.World.PreDespawn()
 		c.blurFrame = 0
 		return c.SwitchToScreen(&MainScreen{})
 	}

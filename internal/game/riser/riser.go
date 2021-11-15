@@ -265,6 +265,12 @@ func (s *riserSound) despawn() {
 	s.counter = 0
 }
 
+func (r *Riser) PreDespawn() {
+	r.pushSound.update(false)
+	r.carrySound.update(false)
+	r.riseSound.update(false)
+}
+
 func (r *Riser) Update() {
 	playerAbilities := r.World.Player.Impl.(interfaces.Abilityer)
 	playerButtons := r.World.Player.Impl.(interfaces.ActionPresseder)

@@ -165,6 +165,14 @@ func (w *World) ForEachEntity(f func(e *Entity)) {
 	})
 }
 
+func (w *World) PreDespawn() {
+	w.ForEachEntity(func(e *Entity) {
+		if ed, ok := e.Impl.(PreDespawner); ok {
+			ed.PreDespawn()
+		}
+	})
+}
+
 func (w *World) clearEntities() {
 	w.entities.forEach(func(e *Entity) error {
 		if e != w.Player {
