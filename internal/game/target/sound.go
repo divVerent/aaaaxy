@@ -58,7 +58,7 @@ func (s *SoundTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Enti
 	durationString := sp.Properties["duration"]
 	var soundTime time.Duration
 	if durationString == "" {
-		soundTime = s.Sound.Duration()
+		soundTime = s.Sound.DurationNotForGameplay()
 		if len(s.Target) != 0 {
 			return fmt.Errorf("a sound with target must have a duration - please set %v's duration to about %v", sp.Properties["sound"], soundTime)
 		}
