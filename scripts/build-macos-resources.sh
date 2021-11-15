@@ -25,5 +25,4 @@ for res in 16 32 128 256 512 1024; do
 		packaging/aaaaxy-macos-${res}.png
 done
 png2icns packaging/AAAAXY.app/Contents/Resources/icon.icns packaging/aaaaxy-macos-*.png
-$(scripts/version.sh windows)
 scripts/Info.plist.sh $(scripts/version.sh macos) > packaging/AAAAXY.app/Contents/Info.plist
