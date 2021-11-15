@@ -142,7 +142,7 @@ func (s *Sound) Play() *audiowrap.Player {
 	return s.PlayAtVolume(1.0)
 }
 
-// Duration returns how long a sound takes. As this may depend on hardware, do not use this for gameplay.
+// DurationNotForGameplay returns how long a sound takes. As this may depend on hardware, do not use this for gameplay.
 func (s *Sound) DurationNotForGameplay() time.Duration {
 	if s.loopStart >= 0 {
 		return -1
@@ -209,12 +209,12 @@ func (g *GroupedSound) Reset() {
 	g.s.groupedPlayer = g.s.Play()
 }
 
-// Current returns the current playback position. As this may depend on hardware, do not use this for gameplay.
+// CurrentNotForGameplay returns the current playback position. As this may depend on hardware, do not use this for gameplay.
 func (g *GroupedSound) CurrentNotForGameplay() time.Duration {
 	return g.s.groupedPlayer.Current()
 }
 
-// IsPlaying returns whether the sound is currently playing. As this may depend on hardware, do not use this for gameplay.
+// IsPlayingNotForGameplay returns whether the sound is currently playing. As this may depend on hardware, do not use this for gameplay.
 func (g *GroupedSound) IsPlayingNotForGameplay() bool {
 	return g.s.groupedPlayer.IsPlaying()
 }
