@@ -91,6 +91,20 @@ case "$format" in
 				;;
 		esac
 		;;
+	macos)
+		case "$prerelease" in
+			'')
+				echo "$major.$minor.$patch"
+				;;
+			-*)
+				echo "$major.$minor.0${prerelease#-}$patch"
+				;;
+			*)
+				echo >&2 "Internal error - invalid parsed prerelease version: $prerelease."
+				exit 1
+				;;
+		esac
+		;;
 	windows)
 		echo "$major.$minor.$((patch + prerelease_add)).$commits"
 		;;

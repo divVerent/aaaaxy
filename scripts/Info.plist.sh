@@ -13,17 +13,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -ex
+version=$1
 
-rm -f packaging/aaaaxy-macos-*.png packaging/AAAAXY.app/Contents/Info.plist
-for res in 16 32 128 256 512 1024; do
-	convert assets/sprites/riser_small_up_0.png \
-		-filter Point -geometry ${res}x${res} \
-		-define png:bit-depth=8 \
-		-define png:color-type=6 \
-		-define png:format=png32 \
-		packaging/aaaaxy-macos-${res}.png
-done
-png2icns packaging/AAAAXY.app/Contents/Resources/icon.icns packaging/aaaaxy-macos-*.png
-$(scripts/version.sh windows)
-scripts/Info.plist.sh $(scripts/version.sh macos) > packaging/AAAAXY.app/Contents/Info.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleExecutable</key>
+	<string>aaaaxy-darwin</string>
+	<key>CFBundleIconFile</key>
+	<string>icon.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>io.github.divverent.aaaaxy</string>
+	<key>CFBundleVersion</key>
+	<string>$version</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.13.0</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+</dict>
+</plist>
