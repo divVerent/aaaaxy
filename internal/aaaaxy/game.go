@@ -43,6 +43,7 @@ var (
 	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filter")
 	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filter")
 	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
+	debugEnableDrawing      = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 )
 
 type Game struct {
@@ -174,6 +175,10 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	defer timing.Group()()
 	timing.Section("draw")
 	defer timing.Group()()
+
+	if !*debugEnableDrawing {
+		return
+	}
 
 	switch *screenFilter {
 	case "simple":
