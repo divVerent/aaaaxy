@@ -194,7 +194,14 @@ func toFrames(d time.Duration) int {
 func (p *Player) FadeOutIn(d time.Duration) *FadeHandle {
 	frames := toFrames(d)
 	if _, found := fadingInPlayers[p]; found {
-		p.fadeFrame = p.fadeFrame * frames / p.fadeFrames
+		// ceil-convert the frame number. Then next frame has the lowest possible reduction.
+		p.fadeFrame = (p.fadeFrame*frames + p.fadeFrames - 1) / p.fadeFrames
+		// Need at least frame 1 so next frame is at least 0.
+		// Note: this can only happen if p.fadeFrame was previously 0, which is... odd.
+		// However, it ccan happen when RestoreIn was called the same frame and resulted in a frame number of zero.
+		if p.fadeFrame < 1 {
+			p.fadeFrame = 1
+		}
 		delete(fadingInPlayers, p)
 	} else {
 		p.fadeFrame = frames
@@ -213,7 +220,12 @@ func (f *FadeHandle) RestoreIn(d time.Duration) *Player {
 		return nil
 	}
 	delete(fadingOutPlayers, p)
+	// floor-convert the frame number. Then next frame has the lowest possible increase.
 	p.fadeFrame = p.fadeFrame * frames / p.fadeFrames
+	// Need at most frame frames-1 so next frame is at most frames.
+	if p.fadeFrame > frames-1 {
+		p.fadeFrame = frames - 1
+	}
 	p.fadeFrames = frames
 	fadingInPlayers[p] = struct{}{}
 	return p
