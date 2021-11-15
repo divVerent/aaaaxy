@@ -99,7 +99,7 @@ case "$GOOS" in
 			-d packaging/"$app".desktop \
 			-i packaging/"$app".png
 		mkdir -p packaging/AAAAXY.AppDir/usr/share/metainfo
-		id=io.github.divverent.aaaaxy_${$GOARCH_SUFFIX#-}
+		id=io.github.divverent.aaaaxy_${GOARCH_SUFFIX#-}
 		cp packaging/"$id".metainfo.xml packaging/AAAAXY.AppDir/usr/share/metainfo/
 		appimagetool-$(uname -m).AppImage \
 			-u "gh-releases-zsync|divVerent|aaaaxy|latest|AAAAXY-$arch.AppImage.zsync" \
