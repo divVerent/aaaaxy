@@ -23,6 +23,24 @@ type ImpulseState struct {
 	JustHit bool `json:",omitempty"`
 }
 
+func (i *ImpulseState) Empty() bool {
+	return !i.Held && !i.JustHit
+}
+
+func (i *ImpulseState) OrEmpty() ImpulseState {
+	if i == nil {
+		return ImpulseState{}
+	}
+	return *i
+}
+
+func (i *ImpulseState) UnlessEmpty() *ImpulseState {
+	if i.Empty() {
+		return nil
+	}
+	return i
+}
+
 type InputMap int
 
 func (i InputMap) ContainsAny(o InputMap) bool {
@@ -122,42 +140,42 @@ func Map() InputMap {
 // Demo code.
 
 type DemoState struct {
-	InputMap         InputMap
-	Left             ImpulseState
-	Right            ImpulseState
-	Up               ImpulseState
-	Down             ImpulseState
-	Jump             ImpulseState
-	Action           ImpulseState
-	Exit             ImpulseState
-	EasterEggJustHit bool
+	InputMap         InputMap      `json:",omitempty"`
+	Left             *ImpulseState `json:",omitempty"`
+	Right            *ImpulseState `json:",omitempty"`
+	Up               *ImpulseState `json:",omitempty"`
+	Down             *ImpulseState `json:",omitempty"`
+	Jump             *ImpulseState `json:",omitempty"`
+	Action           *ImpulseState `json:",omitempty"`
+	Exit             *ImpulseState `json:",omitempty"`
+	EasterEggJustHit bool          `json:",omitempty"`
 }
 
 func LoadFromDemo(state *DemoState) {
 	if state == nil {
-		return
+		state = &DemoState{}
 	}
 	inputMap = state.InputMap
-	Left.ImpulseState = state.Left
-	Right.ImpulseState = state.Right
-	Up.ImpulseState = state.Up
-	Down.ImpulseState = state.Down
-	Jump.ImpulseState = state.Jump
-	Action.ImpulseState = state.Action
-	Exit.ImpulseState = state.Exit
+	Left.ImpulseState = state.Left.OrEmpty()
+	Right.ImpulseState = state.Right.OrEmpty()
+	Up.ImpulseState = state.Up.OrEmpty()
+	Down.ImpulseState = state.Down.OrEmpty()
+	Jump.ImpulseState = state.Jump.OrEmpty()
+	Action.ImpulseState = state.Action.OrEmpty()
+	Exit.ImpulseState = state.Exit.OrEmpty()
 	easterEggJustHit = state.EasterEggJustHit
 }
 
 func SaveToDemo() *DemoState {
 	return &DemoState{
 		InputMap:         inputMap,
-		Left:             Left.ImpulseState,
-		Right:            Right.ImpulseState,
-		Up:               Up.ImpulseState,
-		Down:             Down.ImpulseState,
-		Jump:             Jump.ImpulseState,
-		Action:           Action.ImpulseState,
-		Exit:             Exit.ImpulseState,
+		Left:             Left.ImpulseState.UnlessEmpty(),
+		Right:            Right.ImpulseState.UnlessEmpty(),
+		Up:               Up.ImpulseState.UnlessEmpty(),
+		Down:             Down.ImpulseState.UnlessEmpty(),
+		Jump:             Jump.ImpulseState.UnlessEmpty(),
+		Action:           Action.ImpulseState.UnlessEmpty(),
+		Exit:             Exit.ImpulseState.UnlessEmpty(),
 		EasterEggJustHit: easterEggJustHit,
 	}
 }

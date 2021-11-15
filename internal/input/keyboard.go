@@ -50,7 +50,7 @@ var (
 		ebiten.KeyE:     FPSKeyboard,
 		ebiten.KeyZ:     NESKeyboard,
 		ebiten.KeyTab:   FPSKeyboard | ViKeyboard,
-		ebiten.KeyEnter: ViKeyboard,
+		ebiten.KeyEnter: DOSKeyboard | ViKeyboard,
 	}
 	exitKeys = map[ebiten.Key]InputMap{
 		ebiten.KeyEscape:    DOSKeyboard | NESKeyboard | FPSKeyboard | ViKeyboard,

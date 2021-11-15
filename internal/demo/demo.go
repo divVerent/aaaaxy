@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
@@ -35,22 +36,24 @@ var (
 )
 
 type frame struct {
-	SaveGame *level.SaveGame `json:",omitempty"`
-	Input    input.DemoState
+	SaveGame *level.SaveGame  `json:",omitempty"`
+	Input    *input.DemoState `json:",omitempty"`
 
 	// The following data is not actually played back, but compared at playback time.
-	SavedGames []uint64 `json:",omitempty"`
-	PlayerPos  m.Pos
+	SaveGames     []uint64        `json:",omitempty"`
+	FinalSaveGame *level.SaveGame `json:",omitempty"`
+	PlayerPos     *m.Pos          `json:",omitempty"`
 }
 
 var (
-	demoPlayerFile     *os.File
-	demoPlayer         *json.Decoder
-	demoPlayerFrame    frame
-	demoPlayerFrameIdx int
-	demoRecorderFrame  frame
-	demoRecorderFile   *os.File
-	demoRecorder       *json.Encoder
+	demoPlayerFile            *os.File
+	demoPlayer                *json.Decoder
+	demoPlayerFrame           frame
+	demoPlayerFrameIdx        int
+	demoRecorderFrame         frame
+	demoRecorderFile          *os.File
+	demoRecorderFinalSaveGame *level.SaveGame
+	demoRecorder              *json.Encoder
 )
 
 func Init() error {
@@ -79,7 +82,7 @@ func Init() error {
 
 func BeforeExit() {
 	if demoPlayer != nil {
-		if demoPlayer.More() {
+		if playReadFrame() {
 			regression("game ended but demo would still go on")
 		}
 		err := demoPlayerFile.Close()
@@ -89,8 +92,14 @@ func BeforeExit() {
 		regressionBeforeExit()
 	}
 	if demoRecorder != nil {
-		recordFrame()
-		err := demoRecorderFile.Close()
+		demoRecorderFrame = frame{
+			FinalSaveGame: demoRecorderFinalSaveGame,
+		}
+		err := demoRecorder.Encode(&demoRecorderFrame)
+		if err != nil {
+			log.Fatalf("could not encode final demo frame: %v", err)
+		}
+		err = demoRecorderFile.Close()
 		if err != nil {
 			log.Fatalf("failed to save demo to %v: %v", *demoRecord, err)
 		}
@@ -131,31 +140,44 @@ func PostDraw(screen *ebiten.Image) {
 	}
 }
 
+func playReadFrame() bool {
+	s := demoPlayerFrame.SaveGame
+	for demoPlayer.More() {
+		demoPlayerFrame = frame{}
+		err := demoPlayer.Decode(&demoPlayerFrame)
+		if err != nil {
+			regression("could not decode demo frame: %v", err)
+		}
+		if demoPlayerFrame.FinalSaveGame == nil {
+			// Restore save game, so loading always succeeds even if we've regressed.
+			if demoPlayerFrame.SaveGame == nil {
+				demoPlayerFrame.SaveGame = s
+			}
+			return true
+		}
+		diff := cmp.Diff(demoPlayerFrame.FinalSaveGame.State, s.State)
+		if diff != "" {
+			regression("difference in final save state (-want +got):\n%v", diff)
+		}
+	}
+	return false
+}
+
 func playFrame() bool {
-	if !demoPlayer.More() {
+	if !playReadFrame() {
 		regression("demo ended but game didn't quit")
 		return true
 	}
-	s := demoPlayerFrame.SaveGame
-	demoPlayerFrame = frame{}
-	err := demoPlayer.Decode(&demoPlayerFrame)
-	if err != nil {
-		regression("could not decode demo frame: %v", err)
-	}
-	// Restore save game, so loading always succeeds even if we've regressed.
-	if demoPlayerFrame.SaveGame == nil {
-		demoPlayerFrame.SaveGame = s
-	}
-	input.LoadFromDemo(&demoPlayerFrame.Input)
+	input.LoadFromDemo(demoPlayerFrame.Input)
 	return false
 }
 
 func postPlayFrame(playerPos m.Pos) {
-	if len(demoPlayerFrame.SavedGames) != 0 {
-		regression("saved game: got no saves, want %v", demoPlayerFrame.SavedGames)
+	if len(demoPlayerFrame.SaveGames) != 0 {
+		regression("saved game: got no saves, want %v", demoPlayerFrame.SaveGames)
 	}
-	if playerPos != demoPlayerFrame.PlayerPos {
-		regression("player pos: got %v, want %v", playerPos, demoPlayerFrame.PlayerPos)
+	if demoPlayerFrame.PlayerPos != nil && playerPos != *demoPlayerFrame.PlayerPos {
+		regression("player pos: got %v, want %v", playerPos, *demoPlayerFrame.PlayerPos)
 	}
 	regressionPostPlayFrame()
 	demoPlayerFrameIdx++
@@ -163,12 +185,12 @@ func postPlayFrame(playerPos m.Pos) {
 
 func recordFrame() {
 	demoRecorderFrame = frame{
-		Input: *input.SaveToDemo(),
+		Input: input.SaveToDemo(),
 	}
 }
 
 func postRecordFrame(playerPos m.Pos) {
-	demoRecorderFrame.PlayerPos = playerPos
+	demoRecorderFrame.PlayerPos = &playerPos
 	err := demoRecorder.Encode(&demoRecorderFrame)
 	if err != nil {
 		log.Fatalf("could not encode demo frame: %v", err)
@@ -182,18 +204,19 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 		// This shoulnd't be needed - InterceptPostLoadGame should have ensured the save game is always updated on every load event.
 		// Still there to have better chance of being in sync during playback with regression.
 		demoPlayerFrame.SaveGame = save
-		if len(demoPlayerFrame.SavedGames) == 0 {
+		if len(demoPlayerFrame.SaveGames) == 0 {
 			regression("saved game: got hash %v, want no saves", save.StateHash)
 		} else {
-			if save.StateHash != demoPlayerFrame.SavedGames[0] {
-				regression("saved game: got hash %v, want %v", save.StateHash, demoPlayerFrame.SavedGames[0])
+			if save.StateHash != demoPlayerFrame.SaveGames[0] {
+				regression("saved game: got hash %v, want %v", save.StateHash, demoPlayerFrame.SaveGames[0])
 			}
-			demoPlayerFrame.SavedGames = demoPlayerFrame.SavedGames[1:]
+			demoPlayerFrame.SaveGames = demoPlayerFrame.SaveGames[1:]
 		}
 		return true
 	}
 	if demoRecorder != nil {
-		demoRecorderFrame.SavedGames = append(demoRecorderFrame.SavedGames, save.StateHash)
+		demoRecorderFrame.SaveGames = append(demoRecorderFrame.SaveGames, save.StateHash)
+		demoRecorderFinalSaveGame = save
 	}
 	return false
 }
