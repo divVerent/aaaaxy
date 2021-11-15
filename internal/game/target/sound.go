@@ -16,6 +16,7 @@ package target
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/engine"
@@ -31,12 +32,15 @@ type SoundTarget struct {
 
 	Sound  *sound.Sound
 	Player *audiowrap.Player
-	Active bool
 
 	Target      mixins.TargetSelection
 	StopWhenOff bool
 	State       bool
 	Originator  *engine.Entity
+
+	Active bool
+	Frames int
+	Frame  int
 }
 
 func (s *SoundTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
@@ -50,6 +54,21 @@ func (s *SoundTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Enti
 	s.StopWhenOff = sp.Properties["stop_when_off"] == "true" // default false
 	s.Target = mixins.ParseTarget(sp.Properties["target"])
 	s.State = sp.Properties["state"] != "false"
+	s.Frames = -1
+	durationString := sp.Properties["duration"]
+	var soundTime time.Duration
+	if durationString == "" {
+		soundTime = s.Sound.Duration()
+		if len(s.Target) != 0 {
+			return fmt.Errorf("a sound with target must have a duration - please set %v's duration to about %v", sp.Properties["sound"], soundTime)
+		}
+	} else {
+		soundTime, err = time.ParseDuration(durationString)
+		if err != nil {
+			return fmt.Errorf("could not parse sound duration: %v", durationString)
+		}
+	}
+	s.Frames = int((soundTime*engine.GameTPS + (time.Second / 2)) / time.Second)
 	return nil
 }
 
@@ -60,10 +79,12 @@ func (s *SoundTarget) Despawn() {
 }
 
 func (s *SoundTarget) Update() {
-	if s.Active && s.Player != nil && !s.Player.IsPlaying() {
-		s.Player.Close()
-		s.Player = nil
-		mixins.SetStateOfTarget(s.World, s.Originator, s.Entity, s.Target, !s.State)
+	// Game logic.
+	if s.Frame > 0 {
+		s.Frame--
+		if s.Frame == 0 {
+			mixins.SetStateOfTarget(s.World, s.Originator, s.Entity, s.Target, !s.State)
+		}
 	}
 }
 
@@ -71,26 +92,34 @@ func (s *SoundTarget) Touch(other *engine.Entity) {}
 
 func (s *SoundTarget) SetState(originator, predecessor *engine.Entity, state bool) {
 	if state {
+		// Game logic.
 		if s.Active {
 			return
 		}
+		s.Active = true
+		s.Frame = s.Frames
+		s.Originator = originator
+		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, s.State)
+
+		// Sound logic.
 		if s.Player != nil {
 			s.Player.Close()
 		}
 		s.Player = s.Sound.Play()
-		s.Active = true
-		s.Originator = originator
-		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, s.State)
 	} else {
+		// Game logic.
 		if !s.Active {
 			return
 		}
+		s.Active = false
+		s.Frame = 0
+		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, !s.State)
+
+		// Sound logic.
 		if s.Player != nil && s.StopWhenOff {
 			s.Player.Close()
 			s.Player = nil
 		}
-		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, !s.State)
-		s.Active = false
 	}
 }
 

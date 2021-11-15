@@ -175,7 +175,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60"+maybeFilterComplex)
 	}
 	if audio != "" {
-		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.Rate(), strings.ReplaceAll(audio, "'", "'\\''")))
+		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.SampleRate(), strings.ReplaceAll(audio, "'", "'\\''")))
 		settings = append(settings, "-codec:a aac -b:a 128k")
 	}
 	return fmt.Sprintf("%sffmpeg %s %s -vsync vfr %s", pre, strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''"))

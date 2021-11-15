@@ -59,6 +59,9 @@ func SetStateOfEntity(originator, predecessor *engine.Entity, of *engine.Entity,
 type TargetSelection []string
 
 func ParseTarget(target string) TargetSelection {
+	if target == "" {
+		return nil
+	}
 	return TargetSelection(strings.Split(target, " "))
 }
 

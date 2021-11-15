@@ -223,6 +223,7 @@
   <property name="target" type="string"/>
  </objecttype>
  <objecttype name="SoundTarget" color="#0000ff">
+  <property name="duration" type="string" default="0s"/>
   <property name="sound" type="file" default=""/>
   <property name="state" type="bool" default="true"/>
   <property name="stop_when_off" type="bool" default="false"/>
