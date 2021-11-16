@@ -121,7 +121,7 @@ type SaveGameData struct {
 // SaveGame returns the current state as a SaveGame.
 func (l *Level) SaveGame() (*SaveGame, error) {
 	if l.SaveGameVersion != 1 {
-		log.Fatalf("FIXME! On the next SaveGameVersion, please remove the SaveGameData v0 support and this check too!")
+		log.Fatalf("FIXME! On the next SaveGameVersion, please remove the SaveGameData v0 support, make all uint64 hashes `json:\",string\"`, and remove this check too!")
 	}
 	save := &SaveGame{
 		SaveGameDataV1: SaveGameDataV1{
