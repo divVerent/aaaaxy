@@ -18,7 +18,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"math"
 	"sort"
 	"strings"
 
@@ -44,16 +43,38 @@ type (
 	}
 )
 
+type fraction struct {
+	num, denom int
+}
+
+func (a fraction) Less(b fraction) bool {
+	s := 1
+	if a.denom*b.denom < 0 {
+		s = -1
+	}
+	return a.num*b.denom*s < b.num*a.denom*s
+}
+
 type edge struct {
 	a, b           string
 	priority       int
-	unstraightness float64
+	unstraightness fraction
 }
 
-func unstraightness(d m.Delta) float64 {
-	dx := math.Abs(float64(d.DX))
-	dy := math.Abs(float64(d.DY))
-	return math.Min(dx, dy) / math.Max(dx, dy)
+func unstraightness(d m.Delta) fraction {
+	dx := d.DX
+	if dx < 0 {
+		dx = -dx
+	}
+	dy := d.DY
+	if dy < 0 {
+		dy = -dy
+	}
+	if dx < dy {
+		return fraction{dx, dy}
+	} else {
+		return fraction{dy, dx}
+	}
 }
 
 var AllCheckpointDirs = []m.Delta{
@@ -353,7 +374,7 @@ reprioritize:
 		delta0 := lb0.MapPos.Delta(la.MapPos)
 		delta1 := lb1.MapPos.Delta(la.MapPos)
 		// Assign the straighter one to its preferred dir, and the less straight one to the remaining dir.
-		if unstraightness(delta0) < unstraightness(delta1) {
+		if unstraightness(delta0).Less(unstraightness(delta1)) {
 			bestDir, _ := possibleDirs(delta0)
 			if !assignEdge(quad.cp, others[0], bestDir) {
 				collectError("could not fulfill forced first assignment in a quadrant: %v -> %v (%v -> %v)", quad, others, la, lb0)
@@ -379,10 +400,14 @@ reprioritize:
 			// Highest priority first.
 			return dp > 0
 		}
-		du := edges[a].unstraightness - edges[b].unstraightness
-		if du != 0 {
+		ua := edges[a].unstraightness
+		ub := edges[b].unstraightness
+		if ua.Less(ub) {
 			// Straightest edges first.
-			return du < 0
+			return true
+		}
+		if ub.Less(ua) {
+			return false
 		}
 		// Tie breaker.
 		na := fmt.Sprintf("%v -> %v", edges[a].a, edges[a].b)
