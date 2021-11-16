@@ -41,7 +41,7 @@ type Level struct {
 	CheckpointLocations   *CheckpointLocations
 	SaveGameVersion       int
 	CreditsMusic          string
-	Hash                  uint64
+	Hash                  uint64 `hash:"-"`
 
 	tiles []LevelTile
 	width int
@@ -690,9 +690,7 @@ func Load(filename string) (*Level, error) {
 
 // VerifyHash returns an error if the level hash changed.
 func (l *Level) VerifyHash() error {
-	lWithoutHash := *l
-	lWithoutHash.Hash = 0
-	hash, err := hashstructure.Hash(&lWithoutHash, hashstructure.FormatV2, nil)
+	hash, err := hashstructure.Hash(l, hashstructure.FormatV2, nil)
 	if err != nil {
 		return fmt.Errorf("could not hash level: %v", err)
 	}
