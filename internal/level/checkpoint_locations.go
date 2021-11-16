@@ -16,6 +16,7 @@ package level
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"math"
 	"sort"
@@ -106,26 +107,28 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 	if err := json.NewDecoder(r).Decode(&g); err != nil {
 		return nil, fmt.Errorf("could not decode checkpoint locations for %q: %v", filename, err)
 	}
-	loc, err := l.loadCheckpointLocations(filename, g, m.Delta{DX: 1, DY: 0}, m.Delta{DX: 0, DY: 1})
-	if err == nil {
-		return loc, nil
-	}
+	var loc0 *CheckpointLocations
 	err0 := err
-	for d := 16; d > 0; d-- {
-		// Try some rotation.
-		loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: 1}, m.Delta{DX: -1, DY: d})
-		if err == nil {
-			log.Infof("note: loading checkpoint locations required rotation by %d 1", d)
-			return loc, nil
+	tryAtAngle := func(x, y int) {
+		if loc0 != nil {
+			return
 		}
-		// Try the opposite.
-		loc, err = l.loadCheckpointLocations(filename, g, m.Delta{DX: d, DY: -1}, m.Delta{DX: 1, DY: d})
+		loc, err := l.loadCheckpointLocations(filename, g, m.Delta{DX: x, DY: y}, m.Delta{DX: -y, DY: x})
 		if err == nil {
-			log.Infof("note: loading checkpoint locations required rotation by %d -1", d)
-			return loc, nil
+			log.Infof("note: loading checkpoint locations required rotation by 1 0 -> %v %v", x, y)
+			loc0, err0 = loc, nil
 		}
 	}
-	return nil, err0
+	// Try known solution.
+	// tryAtAngle(32, -9, false)
+	// Brute force possible rotations.
+	tryAtAngle(1, 0)
+	b := 32
+	for a := 1; a < b; a++ {
+		tryAtAngle(b, a)
+		tryAtAngle(b, -a)
+	}
+	return loc0, err0
 }
 
 // loadCheckpointLocations loads the checkpoint locations for the given level, possibly with a matrix transform.
@@ -231,114 +234,201 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 			}
 		}
 	}
+
+	// alreadyAssigned returns if edge a -> b already has some assignment.
+	alreadyAssigned := func(a, b string) bool {
+		for _, edge := range loc.Locs[a].NextByDir {
+			if edge.Other == b {
+				return true
+			}
+		}
+		return false
+	}
+
+	// assignEdge creates a required two-sided edge from a to b.
+	assignEdge := func(a, b string, dir m.Delta) bool {
+		la := loc.Locs[a]
+		if _, found := la.NextByDir[dir]; found {
+			return false
+		}
+		lb := loc.Locs[b]
+		revDir := dir.Mul(-1)
+		if _, found := lb.NextByDir[revDir]; found {
+			return false
+		}
+		la.NextByDir[dir] = CheckpointEdge{
+			Other:   b,
+			Forward: true,
+		}
+		lb.NextByDir[revDir] = CheckpointEdge{
+			Other:   a,
+			Forward: false,
+		}
+		return true
+	}
+
+	// assignOptionalEdge assigns the both directions of edge from a to b, but ignores failure.
+	assignOptionalEdge := func(a, b string, dir m.Delta) {
+		la := loc.Locs[a]
+		if _, found := la.NextByDir[dir]; !found {
+			la.NextByDir[dir] = CheckpointEdge{
+				Other:    b,
+				Forward:  true,
+				Optional: true,
+			}
+		}
+		lb := loc.Locs[b]
+		revDir := dir.Mul(-1)
+		if _, found := lb.NextByDir[revDir]; !found {
+			lb.NextByDir[revDir] = CheckpointEdge{
+				Other:    a,
+				Forward:  false,
+				Optional: true,
+			}
+		}
+	}
+
+	// Group by quadrant. Insert perfectly straight edges into both neighboring quadrants.
+	type quadrant struct {
+		cp  string
+		dir m.Delta
+	}
+	quadMap := make(map[quadrant][]string)
+	for _, edge := range edges {
+		la := loc.Locs[edge.a]
+		lb := loc.Locs[edge.b]
+		delta := lb.MapPos.Delta(la.MapPos)
+		maybeAddToQuadrant := func(dir m.Delta) {
+			if delta.DX*dir.DX < 0 {
+				return
+			}
+			if delta.DY*dir.DY < 0 {
+				return
+			}
+			key := quadrant{
+				cp:  edge.a,
+				dir: dir,
+			}
+			quadMap[key] = append(quadMap[key], edge.b)
+			revDir := dir.Mul(-1)
+			key = quadrant{
+				cp:  edge.b,
+				dir: revDir,
+			}
+			quadMap[key] = append(quadMap[key], edge.a)
+		}
+		maybeAddToQuadrant(m.Delta{DX: 1, DY: 1})
+		maybeAddToQuadrant(m.Delta{DX: 1, DY: -1})
+		maybeAddToQuadrant(m.Delta{DX: -1, DY: 1})
+		maybeAddToQuadrant(m.Delta{DX: -1, DY: -1})
+	}
+
+reprioritize:
 	// Assign all edges to keyboard mapping.
-	// Note: there MIGHT be a shorter algorithm for all this, not sure.
-	// Those three separate steps look suspicious.
-	// This one is sure correct though, as whenever we choose the unpreferred direction,
-	// we MUST chose it or we'd fail (so order of assigning the unpreferred ones does not matter).
-	// However, if we assign the unpreferred one once we have to,
-	// this helps choosing the unpreferred one in further assignments, so it is necessary.
-	// Now translate to NextByDir. Successively map the "most straight direction" to the closest remaining available direction.
-again:
+	// Initialize map.
 	for _, loc := range loc.Locs {
 		loc.NextByDir = map[m.Delta]CheckpointEdge{}
 	}
+
+	var errorStrings []string
+	collectError := func(format string, args ...interface{}) {
+		errorStrings = append(errorStrings, fmt.Sprintf(format, args...))
+	}
+
+	// Every quadrant with three edges: GIVE UP.
+	// Every quadrant with two edges: assign right away.
+	for quad, others := range quadMap {
+		if len(others) >= 3 {
+			collectError("three checkpoint edges are in the same quadrant: %v -> %v", quad, others)
+			continue
+		}
+		if len(others) < 2 {
+			// Assign later.
+			continue
+		}
+		// Precisely two others. The assignment is unique and well defined.
+		la := loc.Locs[quad.cp]
+		lb0 := loc.Locs[others[0]]
+		lb1 := loc.Locs[others[1]]
+		delta0 := lb0.MapPos.Delta(la.MapPos)
+		delta1 := lb1.MapPos.Delta(la.MapPos)
+		// Assign the straighter one to its preferred dir, and the less straight one to the remaining dir.
+		if unstraightness(delta0) < unstraightness(delta1) {
+			bestDir, _ := possibleDirs(delta0)
+			if !assignEdge(quad.cp, others[0], bestDir) {
+				collectError("could not fulfill forced first assignment in a quadrant: %v -> %v (%v -> %v)", quad, others, la, lb0)
+			}
+			if !assignEdge(quad.cp, others[1], quad.dir.Sub(bestDir)) {
+				collectError("could not fulfill forced second assignment in a quadrant: %v -> %v (%v -> %v)", quad, others, la, lb1)
+			}
+		} else {
+			bestDir, _ := possibleDirs(delta1)
+			if !assignEdge(quad.cp, others[1], bestDir) {
+				collectError("could not fulfill forced first assignment in a quadrant: %v -> %v (%v -> %v)", quad, others, la, lb1)
+			}
+			if !assignEdge(quad.cp, others[0], quad.dir.Sub(bestDir)) {
+				collectError("could not fulfill forced second assignment in a quadrant: %v -> %v (%v -> %v)", quad, others, la, lb0)
+			}
+		}
+	}
+
+	// Sort edges by unstraightness.
 	sort.Slice(edges, func(a, b int) bool {
 		dp := edges[a].priority - edges[b].priority
 		if dp != 0 {
-			// Largest priority first.
+			// Highest priority first.
 			return dp > 0
-		}
-		da := nodeDegrees[edges[a].a] + nodeDegrees[edges[a].b]
-		db := nodeDegrees[edges[b].a] + nodeDegrees[edges[b].b]
-		dd := db - da
-		if dd != 0 {
-			// Largest degrees first.
-			return dd > 0
 		}
 		du := edges[a].unstraightness - edges[b].unstraightness
 		if du != 0 {
 			// Straightest edges first.
 			return du < 0
 		}
+		// Tie breaker.
 		na := fmt.Sprintf("%v -> %v", edges[a].a, edges[a].b)
 		nb := fmt.Sprintf("%v -> %v", edges[b].a, edges[b].b)
 		return na < nb
 	})
-nextEdge:
+
+	// Assign anything remaining in this preference order.
 	for i := range edges {
 		edge := &edges[i]
-		a := loc.Locs[edge.a]
-		b := loc.Locs[edge.b]
-		delta := b.MapPos.Delta(a.MapPos)
+		if alreadyAssigned(edge.a, edge.b) {
+			continue
+		}
+		// Try assigning the edge to its preferred dir, and if impossible, to its other dir.
+		la := loc.Locs[edge.a]
+		lb := loc.Locs[edge.b]
+		delta := lb.MapPos.Delta(la.MapPos)
 		bestDir, otherDir := possibleDirs(delta)
-		for _, dir := range []m.Delta{bestDir, otherDir} {
-			if _, found := a.NextByDir[dir]; found {
-				continue
-			}
-			if _, found := b.NextByDir[dir.Mul(-1)]; found {
-				continue
-			}
-			a.NextByDir[dir] = CheckpointEdge{
-				Other:   edge.b,
-				Forward: true,
-			}
-			b.NextByDir[dir.Mul(-1)] = CheckpointEdge{
-				Other:   edge.a,
-				Forward: false,
-			}
-			continue nextEdge
-		}
-		if edge.priority < 1 {
-			log.Debugf("prioritizing edge %v...", edge)
-			edge.priority += 1
-			goto again
-		}
-		return nil, fmt.Errorf("could not map edge %v to keyboard direction in %q", edge, filename)
-	}
-	// Now add the preferred direction unidirectionally whereever not there yet.
-	for _, edge := range edges {
-		a := loc.Locs[edge.a]
-		b := loc.Locs[edge.b]
-		delta := b.MapPos.Delta(a.MapPos)
-		dir, _ := possibleDirs(delta)
-		if _, found := a.NextByDir[dir]; !found {
-			a.NextByDir[dir] = CheckpointEdge{
-				Other:    edge.b,
-				Forward:  true,
-				Optional: true,
-			}
-		}
-		if _, found := b.NextByDir[dir.Mul(-1)]; !found {
-			b.NextByDir[dir.Mul(-1)] = CheckpointEdge{
-				Other:    edge.a,
-				Forward:  false,
-				Optional: true,
+
+		if !assignEdge(edge.a, edge.b, bestDir) {
+			if !assignEdge(edge.a, edge.b, otherDir) {
+				if edge.priority < 1 {
+					edge.priority++
+					goto reprioritize
+				}
+				collectError("could not assign edge %v: no remaining assignments", edge)
 			}
 		}
 	}
-	// Now add the unpreferred direction undirectionally whereever not there yet.
+
+	// Finally fill up the keyboard directions.
 	for i := len(edges) - 1; i >= 0; i-- {
 		edge := edges[i]
-		a := loc.Locs[edge.a]
-		b := loc.Locs[edge.b]
-		delta := b.MapPos.Delta(a.MapPos)
-		_, dir := possibleDirs(delta)
-		if _, found := a.NextByDir[dir]; !found {
-			a.NextByDir[dir] = CheckpointEdge{
-				Other:    edge.b,
-				Forward:  true,
-				Optional: true,
-			}
-		}
-		if _, found := b.NextByDir[dir.Mul(-1)]; !found {
-			b.NextByDir[dir.Mul(-1)] = CheckpointEdge{
-				Other:    edge.a,
-				Forward:  false,
-				Optional: true,
-			}
-		}
+		// Try unidirectionally assigning the remaining directions.
+		la := loc.Locs[edge.a]
+		lb := loc.Locs[edge.b]
+		delta := lb.MapPos.Delta(la.MapPos)
+		bestDir, otherDir := possibleDirs(delta)
+		assignOptionalEdge(edge.a, edge.b, bestDir)
+		assignOptionalEdge(edge.a, edge.b, otherDir)
 	}
+
+	if len(errorStrings) != 0 {
+		return nil, errors.New(strings.Join(errorStrings, "; "))
+	}
+
 	return loc, nil
 }
 
