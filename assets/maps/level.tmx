@@ -959,7 +959,7 @@
   <object id="234" name="SphereFourth" gid="295" x="960" y="5056" width="32" height="16"/>
   <object id="235" name="SphereFifth" gid="295" x="1024" y="5056" width="32" height="16"/>
   <object id="236" name="SphereSixth" gid="295" x="1088" y="5056" width="32" height="16"/>
-  <object id="237" name="the_sphere" type="Checkpoint" x="1152" y="5088" width="32" height="32">
+  <object id="237" name="the_sphere" type="Checkpoint" x="1184" y="5088" width="32" height="32">
    <properties>
     <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_down" type="object" value="264"/>
@@ -14304,7 +14304,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="6663" gid="306" x="1152" y="5088" width="32" height="32"/>
+  <object id="6663" gid="306" x="1184" y="5088" width="32" height="32"/>
   <object id="6664" gid="305" x="1216" y="5120" width="32" height="32"/>
   <object id="6665" gid="312" x="3424" y="5136" width="32" height="32">
    <properties>
