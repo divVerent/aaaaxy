@@ -97,36 +97,26 @@ func (s graphicsSetting) apply() error {
 	case maxGraphics:
 		flag.Set("draw_blurs", true)
 		flag.Set("draw_outside", true)
-		flag.Set("draw_visibility_mask", true)
-		flag.Set("expand_using_vertices", true)
 		flag.Set("expand_using_vertices_accurately", true)
-		flag.Set("screen_filter", "linear2xcrt")
+		flag.Set("screen_filter", "linear2xcrt") // <-
 	case highGraphics:
 		flag.Set("draw_blurs", true)
-		flag.Set("draw_outside", true)
-		flag.Set("draw_visibility_mask", true)
-		flag.Set("expand_using_vertices", true)
+		flag.Set("draw_outside", true) // <-
 		flag.Set("expand_using_vertices_accurately", true)
 		flag.Set("screen_filter", "simple")
 	case mediumGraphics:
-		flag.Set("draw_blurs", true)
+		flag.Set("draw_blurs", true) // <-
 		flag.Set("draw_outside", false)
-		flag.Set("draw_visibility_mask", true)
-		flag.Set("expand_using_vertices", true)
 		flag.Set("expand_using_vertices_accurately", true)
 		flag.Set("screen_filter", "simple")
 	case lowGraphics:
 		flag.Set("draw_blurs", false)
 		flag.Set("draw_outside", false)
-		flag.Set("draw_visibility_mask", true)
-		flag.Set("expand_using_vertices", true)
-		flag.Set("expand_using_vertices_accurately", true)
+		flag.Set("expand_using_vertices_accurately", true) // <-
 		flag.Set("screen_filter", "simple")
 	case lowestGraphics:
 		flag.Set("draw_blurs", false)
 		flag.Set("draw_outside", false)
-		flag.Set("draw_visibility_mask", true)
-		flag.Set("expand_using_vertices", true)
 		flag.Set("expand_using_vertices_accurately", false)
 		flag.Set("screen_filter", "simple")
 	}
