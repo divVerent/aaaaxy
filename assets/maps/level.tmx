@@ -6106,8 +6106,8 @@
   </object>
   <object id="1431" gid="309" x="616" y="6912" width="32" height="16"/>
   <object id="1432" gid="309" x="920" y="6912" width="32" height="16"/>
-  <object id="1433" type="SwitchMusic" x="528" y="6688" width="48" height="16"/>
-  <object id="1434" type="SwitchMusic" x="992" y="6688" width="48" height="16"/>
+  <object id="1433" type="SwitchMusic" x="528" y="6736" width="48" height="16"/>
+  <object id="1434" type="SwitchMusic" x="992" y="6736" width="48" height="16"/>
   <object id="1435" gid="309" x="4792" y="4032" width="16" height="16"/>
   <object id="1439" gid="308" x="4736" y="3888" width="16" height="16">
    <properties>
@@ -6239,7 +6239,7 @@
    </properties>
   </object>
   <object id="1481" gid="309" x="8040" y="7376" width="32" height="16"/>
-  <object id="1482" type="SwitchMusic" x="7648" y="7152" width="48" height="16"/>
+  <object id="1482" type="SwitchMusic" x="7648" y="7200" width="48" height="16"/>
   <object id="1483" gid="320" x="8048" y="7328" width="32" height="32"/>
   <object id="1484" gid="320" x="8064" y="7264" width="32" height="32"/>
   <object id="1485" gid="320" x="8080" y="7200" width="32" height="32"/>
@@ -6265,7 +6265,7 @@
    </properties>
   </object>
   <object id="1495" gid="309" x="840" y="624" width="32" height="16"/>
-  <object id="1496" type="SwitchMusic" x="448" y="400" width="48" height="16"/>
+  <object id="1496" type="SwitchMusic" x="448" y="448" width="48" height="16"/>
   <object id="1497" gid="326" x="880" y="640" width="32" height="32"/>
   <object id="1498" gid="320" x="912" y="640" width="32" height="32"/>
   <object id="1499" gid="322" x="928" y="608" width="32" height="32"/>
