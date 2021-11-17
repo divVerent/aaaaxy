@@ -32,7 +32,7 @@ jobs:
       run: 'unzip 100percent.zip'
 
     - name: Test
-      run: 'xvfb-run regression-test-demo.sh linux-amd64 ./aaaaxy-debug-linux-amd64 *.dem'
+      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 ./aaaaxy-debug-linux-amd64 *.dem'
 
     - name: Pack Results
       run: 'zip -9r results.zip *.dem.*'
