@@ -1,0 +1,43 @@
+name: Go 100%
+
+on:
+  release:
+    types: [ created ]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Build
+      run: 'make'
+
+    - name: Fetch Test Cases
+      env:
+        HUNDRED_PERCENT_URL: ${{ secrets.HUNDRED_PERCENT_URL }}
+      run: 'curl -O "$HUNDRED_PERCENT_URL"/100percent.zip'
+
+    - name: Extract Test Cases
+      run: 'unzip 100percent.zip'
+
+    - name: Test
+      run: 'xvfb-run regression-test-demo.sh linux-amd64 ./aaaaxy-debug-linux-amd64 *.dem'
+
+    - name: Pack Results
+      run: 'zip -9r results.zip *.dem.*'
+
+    - name: Archive Results
+      uses: actions/upload-artifact@v2
+      with:
+        name: regression-test-results
+        path: results.zip
