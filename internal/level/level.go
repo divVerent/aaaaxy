@@ -635,7 +635,12 @@ func Load(filename string) (*Level, error) {
 			}
 		}
 	}
-	for warpname, warppair := range warpZones {
+	warpnames := make([]string, 0, len(warpZones))
+	for warpname := range warpZones {
+		warpnames = append(warpnames, warpname)
+	}
+	for _, warpname := range warpnames {
+		warppair := warpZones[warpname]
 		if len(warppair) != 2 {
 			return nil, fmt.Errorf("unpaired WarpZone %q: got %d, want 2", warpname, len(warppair))
 		}
