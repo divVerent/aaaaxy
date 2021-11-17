@@ -16,7 +16,6 @@ package mixins
 
 import (
 	"fmt"
-	"math"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/constants"
@@ -89,7 +88,7 @@ func (v *Movable) Update() {
 	if deltaSub.IsZero() {
 		v.Physics.Velocity = m.Delta{}
 	} else {
-		curSpeed := math.Sqrt(float64(v.Physics.Velocity.Length2()))
+		curSpeed := v.Physics.Velocity.Length()
 		wantSpeed := curSpeed + v.Acceleration
 		v.Physics.Velocity = deltaSub.WithMaxLength(wantSpeed)
 	}

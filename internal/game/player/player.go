@@ -337,7 +337,7 @@ func (p *Player) Update() {
 		// No gravity while we still can jump.
 		p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(constants.Gravity))
 	}
-	speed := math.Sqrt(float64(p.Velocity.Length2()))
+	speed := p.Velocity.Length()
 	if speed > MaxSpeed {
 		p.Velocity = p.Velocity.MulFloat(MaxSpeed / speed)
 		speed = MaxSpeed
