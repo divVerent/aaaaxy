@@ -13,6 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install Dependencies
+      run: "apt-get -y install graphviz"
+
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
