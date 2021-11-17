@@ -83,7 +83,7 @@ rm -f "$zip"
 
 case "$GOOS" in
 	linux)
-		arch=$GOARCH
+		arch=${GOARCH_SUFFIX#-}
 		case "$arch" in
 			amd64)
 				arch=x86_64
@@ -104,7 +104,7 @@ case "$GOOS" in
 		appimagetool-$(uname -m).AppImage \
 			-u "gh-releases-zsync|divVerent|aaaaxy|latest|AAAAXY-$arch.AppImage.zsync" \
 			packaging/AAAAXY.AppDir \
-			"AAAAXY$GOARCH_SUFFIX.AppImage"
+			"AAAAXY-$arch.AppImage"
 		;;
 esac
 
