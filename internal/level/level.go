@@ -690,7 +690,6 @@ func Load(filename string) (*Level, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not hash level: %v", err)
 	}
-	log.Errorf("level hash: %v", level.Hash)
 	return &level, nil
 }
 
