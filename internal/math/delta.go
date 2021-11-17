@@ -53,8 +53,8 @@ func (d Delta) Norm1() int {
 	return norm
 }
 
-func (d Delta) Length2() int {
-	return d.DX*d.DX + d.DY*d.DY
+func (d Delta) Length2() int64 {
+	return int64(d.DX)*int64(d.DX) + int64(d.DY)*int64(d.DY)
 }
 
 func (d Delta) Length() float64 {
