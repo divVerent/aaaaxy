@@ -176,10 +176,10 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	x := w / 2
 	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
-	lineColor := color.NRGBA{R: 255, G: 255, B: 255, A: 255}
-	selectedLineColor := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
-	mediumLineColor := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
-	darkLineColor := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
+	takenRouteColor := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
+	selectedRouteColor := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
+	unseenPathToSeenCPColor := color.NRGBA{R: 255, G: 255, B: 255, A: 255}
+	unseenPathToUnseenCPColor := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := fun.FormatText(&s.Controller.World.PlayerState, s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties["text"])
 	seen, total := s.Controller.World.PlayerState.TnihSignsSeen(s.CurrentCP)
@@ -244,14 +244,14 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					}
 				}
 				endPos := cpPos[otherName]
-				color := lineColor
+				color := takenRouteColor
 				switch z {
 				case 0:
 					// Selected edge is drawn first so it is clear what overlaps it.
 					if !edgeSeen || !(cpName == s.CurrentCP || otherName == s.CurrentCP) {
 						continue
 					}
-					color = selectedLineColor
+					color = selectedRouteColor
 				case 1:
 					// Normal edges are drawn next.
 					if !edgeSeen || (cpName == s.CurrentCP || otherName == s.CurrentCP) {
@@ -263,9 +263,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 						continue
 					}
 					if s.Controller.World.PlayerState.CheckpointSeen(otherName) == playerstate.NotSeen {
-						color = darkLineColor
+						color = unseenPathToUnseenCPColor
 					} else {
-						color = mediumLineColor
+						color = unseenPathToSeenCPColor
 					}
 					endPos = pos.Add(endPos.Delta(pos).WithMaxLengthFixed(m.NewFixed(edgeFarAttachDistance)))
 				}
