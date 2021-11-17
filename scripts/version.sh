@@ -15,20 +15,24 @@
 
 format=${1:-semver}
 gitdesc=${2:-$(git describe --always --long --match 'v*.*' --exclude 'v*.*.*')}
-commits=${3:-$(($(git log --oneline | wc -l)))}  # Is there a better way?
-
-hash=${gitdesc##*-g}
-date=$(git log -n 1 --pretty=format:%cd --date=format:%Y%m%d "$hash")
 
 case "$gitdesc" in
 	v*.*-*-g*)
 		gitcount=${gitdesc%-g*}
 		gitcount=${gitcount##*-}
 		gittag=${gitdesc%-*-g*}
+		commits=${3:-$(($(git log --oneline | wc -l)))}  # Is there a better way?
+		hash=${gitdesc##*-g}
+		date=$(git log -n 1 --pretty=format:%cd --date=format:%Y%m%d "$hash")
 		;;
 	*)
-		echo >&2 "Invalid git describe output: $gitdesc."
-		exit 1
+		echo >&2 "ERROR: Invalid git describe output: $gitdesc."
+		echo >&2 "Assuming you're building from a tarball and building fake version info."
+		gitcount=0
+		gittag=v0.0.0
+		commits=0
+		hash=unknown
+		date=$(date +%Y%m%d)
 		;;
 esac
 
