@@ -16,6 +16,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -97,7 +98,15 @@ func main() {
 			MapPos: sp.LevelPos.Mul(level.TileSize).Add(sp.RectInTile.Center().Delta(m.Pos{})),
 		}
 	}
-	for id, sp := range cpMap {
+	entityIDs := make([]level.EntityID, 0, len(cpMap))
+	for id := range cpMap {
+		entityIDs = append(entityIDs, id)
+	}
+	sort.Slice(entityIDs, func(a, b int) bool {
+		return entityIDs[a] < entityIDs[b]
+	})
+	for _, id := range entityIDs {
+		sp := cpMap[id]
 		v := vertices[id]
 		for _, conn := range []struct {
 			name string
@@ -138,20 +147,23 @@ func main() {
 	fmt.Print(`
 		digraph G {
 			layout = "neato";
+			start = 4;  // Consistent random seed. Decided by fair dice roll.
 			overlap = false;
 			splines = false;
 			maxiter = 131072;
 			epsilon = 0.000001;
 		`)
 	// Emit all nodes.
-	for _, v := range vertices {
+	for _, id := range entityIDs {
+		v := vertices[id]
 		CalcPos(v)
 		fmt.Printf(`
 				%s [width=2.0, height=2.0, fixedsize=true, shape=box, label="%s", pos="%d,%d"];
 			`, v.Name, v.Name, v.MapPos.X, -v.MapPos.Y)
 	}
 	// Emit all edges.
-	for _, v := range vertices {
+	for _, id := range entityIDs {
+		v := vertices[id]
 		for _, e := range v.OutEdges {
 			fmt.Printf(`
 					%s -> %s [len=%f];
