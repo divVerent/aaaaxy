@@ -28,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
+	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -178,7 +179,7 @@ func (f *ForceField) Touch(other *engine.Entity) {
 	cc.DX *= (other.Rect.Size.DY + f.Entity.Rect.Size.DY)
 	cc.DY *= (other.Rect.Size.DX + f.Entity.Rect.Size.DX)
 	// Scale to strength.
-	away := cc.WithLength(forceFieldStrength)
+	away := cc.WithLengthFixed(m.NewFixed(forceFieldStrength))
 	// Perform the jump.
 	p.SetVelocityForJump(away)
 	f.ShockSound.Play()

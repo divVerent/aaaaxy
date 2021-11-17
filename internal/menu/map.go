@@ -267,7 +267,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					} else {
 						color = mediumLineColor
 					}
-					endPos = pos.Add(endPos.Delta(pos).WithMaxLength(edgeFarAttachDistance))
+					endPos = pos.Add(endPos.Delta(pos).WithMaxLengthFixed(m.NewFixed(edgeFarAttachDistance)))
 				}
 				options := &ebiten.DrawTrianglesOptions{
 					CompositeMode: ebiten.CompositeModeSourceOver,

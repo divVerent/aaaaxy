@@ -33,7 +33,7 @@ type Movable struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	Acceleration float64
+	Acceleration m.Fixed
 	From, To     m.Pos
 
 	AnimDir int
@@ -52,9 +52,9 @@ func (v *Movable) Init(w *engine.World, sp *level.Spawnable, e *engine.Entity, c
 		if err != nil {
 			return fmt.Errorf("failed to parse acceleration %q: %v", accelString, err)
 		}
-		v.Acceleration = accel * constants.SubPixelScale / engine.GameTPS / engine.GameTPS
+		v.Acceleration = m.NewFixedFloat64(accel * constants.SubPixelScale / engine.GameTPS / engine.GameTPS)
 	} else {
-		v.Acceleration = constants.Gravity
+		v.Acceleration = m.NewFixed(constants.Gravity)
 	}
 
 	var delta m.Delta
@@ -88,9 +88,9 @@ func (v *Movable) Update() {
 	if deltaSub.IsZero() {
 		v.Physics.Velocity = m.Delta{}
 	} else {
-		curSpeed := v.Physics.Velocity.Length()
+		curSpeed := v.Physics.Velocity.LengthFixed()
 		wantSpeed := curSpeed + v.Acceleration
-		v.Physics.Velocity = deltaSub.WithMaxLength(wantSpeed)
+		v.Physics.Velocity = deltaSub.WithMaxLengthFixed(wantSpeed)
 	}
 
 	// Move.

@@ -321,7 +321,7 @@ func (r *Riser) Update() {
 		pxDelta := r.World.Player.Rect.Center().Delta(r.Entity.Rect.Center())
 		subDelta := playerPhysics.ReadSubPixel().Sub(r.SubPixel)
 		fullDelta := pxDelta.Mul(constants.SubPixelScale).Add(subDelta)
-		r.Velocity = fullDelta.MulFloat(FollowFactor / engine.GameTPS)
+		r.Velocity = fullDelta.MulFixed(m.NewFixedFloat64(FollowFactor / engine.GameTPS))
 
 		if r.PlayerOnGroundVec.IsZero() {
 			// All OK, just need to initialize grabbing.
@@ -400,7 +400,7 @@ func (r *Riser) Update() {
 					upDown = -upDown
 				}
 				fullDelta = fullDelta.Add(left.Mul(upDown))
-				scaledDelta = fullDelta.WithLength(RepelSpeed)
+				scaledDelta = fullDelta.WithLengthFixed(m.NewFixed(RepelSpeed))
 			}
 			r.Velocity = r.Velocity.Add(scaledDelta)
 		}

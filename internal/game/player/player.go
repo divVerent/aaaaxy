@@ -156,7 +156,7 @@ func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta, factor float64) {
 	if factor != 1.0 {
 		n := p.OnGroundVec
 		velUp := n.Mul(p.Velocity.Dot(n))
-		velUpScaled := velUp.MulFloat(factor)
+		velUpScaled := velUp.MulFixed(m.NewFixedFloat64(factor))
 		p.Velocity = p.Velocity.Add(velUpScaled.Sub(velUp))
 	}
 	p.LastGroundPos = p.Entity.Rect.Origin
@@ -337,11 +337,7 @@ func (p *Player) Update() {
 		// No gravity while we still can jump.
 		p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(constants.Gravity))
 	}
-	speed := p.Velocity.Length()
-	if speed > MaxSpeed {
-		p.Velocity = p.Velocity.MulFloat(MaxSpeed / speed)
-		speed = MaxSpeed
-	}
+	p.Velocity = p.Velocity.WithMaxLengthFixed(m.NewFixed(MaxSpeed))
 
 	// Run physics.
 	p.WasOnGround = p.OnGround
@@ -376,6 +372,7 @@ func (p *Player) Update() {
 		p.Anim.SetGroup("jump")
 	}
 	p.Anim.Update(p.Entity)
+	speed := p.Velocity.Length()
 	if speed >= NoiseMinSpeed {
 		amount := math.Pow((speed-NoiseMinSpeed)/(NoiseMaxSpeed-NoiseMinSpeed), NoisePower)
 		noise.Set(amount)

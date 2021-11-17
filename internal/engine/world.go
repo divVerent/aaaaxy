@@ -510,7 +510,7 @@ func (w *World) updateEntities() {
 func (w *World) updateScrollPos(target m.Pos) {
 	// Slowly move towards focus point.
 	targetDelta := target.Delta(w.scrollPos)
-	scrollDelta := targetDelta.MulFloat(scrollPerFrame)
+	scrollDelta := targetDelta.MulFixed(m.NewFixedFloat64(scrollPerFrame))
 	if scrollDelta.DX == 0 {
 		if targetDelta.DX > 0 {
 			scrollDelta.DX = +1
@@ -582,7 +582,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		w.renderer.visiblePolygon = make([]m.Pos, wantLen)
 	}
 	addTrace := func(rawTarget m.Pos, index int) {
-		delta := rawTarget.Delta(w.scrollPos).WithMaxLength(float64(maxDist))
+		delta := rawTarget.Delta(w.scrollPos).WithMaxLengthFixed(m.NewFixed(maxDist))
 		target := w.scrollPos.Add(delta)
 		trace := w.traceLineAndMark(eye, target, &w.traceLineAndMarkPath)
 		w.renderer.visiblePolygon[index] = trace.EndPos

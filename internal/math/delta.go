@@ -61,6 +61,10 @@ func (d Delta) Length() float64 {
 	return math.Sqrt(float64(d.Length2()))
 }
 
+func (d Delta) LengthFixed() Fixed {
+	return NewFixedInt64(d.Length2()).Sqrt()
+}
+
 func (d Delta) Add(d2 Delta) Delta {
 	return Delta{DX: d.DX + d2.DX, DY: d.DY + d2.DY}
 }
@@ -81,25 +85,24 @@ func (d Delta) Div(m int) Delta {
 	return Delta{DX: Div(d.DX, m), DY: Div(d.DY, m)}
 }
 
-func (d Delta) MulFloat(f float64) Delta {
-	return Delta{DX: Rint(float64(d.DX) * f), DY: Rint(float64(d.DY) * f)}
+func (d Delta) MulFixed(f Fixed) Delta {
+	return Delta{DX: NewFixed(d.DX).Mul(f).Rint(), DY: NewFixed(d.DY).Mul(f).Rint()}
 }
 
-func (d Delta) WithLength(f float64) Delta {
-	n := math.Sqrt(float64(d.Length2()))
+func (d Delta) WithLengthFixed(f Fixed) Delta {
+	n := d.LengthFixed()
 	if n == 0 {
 		return d
 	}
-	return d.MulFloat(f / n)
+	return d.MulFixed(f.Div(n))
 }
 
-func (d Delta) WithMaxLength(f float64) Delta {
-	n2 := float64(d.Length2())
-	if n2 <= f*f {
+func (d Delta) WithMaxLengthFixed(f Fixed) Delta {
+	n := d.LengthFixed()
+	if n <= f {
 		return d
 	}
-	n := math.Sqrt(n2)
-	return d.MulFloat(f / n)
+	return d.MulFixed(f.Div(n))
 }
 
 func North() Delta {
