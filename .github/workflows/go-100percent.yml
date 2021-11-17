@@ -34,11 +34,8 @@ jobs:
     - name: Test
       run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 ./aaaaxy-debug-linux-amd64 *.dem'
 
-    - name: Pack Results
-      run: 'zip -9r results.zip *.dem.*'
-
     - name: Archive Results
       uses: actions/upload-artifact@v2
       with:
         name: regression-test-results
-        path: results.zip
+        path: "*.dem.*"
