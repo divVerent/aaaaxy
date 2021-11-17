@@ -81,16 +81,6 @@ func Init() error {
 }
 
 func BeforeExit() {
-	if demoPlayer != nil {
-		if playReadFrame() {
-			regression("game ended but demo would still go on")
-		}
-		err := demoPlayerFile.Close()
-		if err != nil {
-			log.Fatalf("failed to close played demo from %v: %v", *demoPlay, err)
-		}
-		regressionBeforeExit()
-	}
 	if demoRecorder != nil {
 		demoRecorderFrame = frame{
 			FinalSaveGame: demoRecorderFinalSaveGame,
@@ -103,6 +93,16 @@ func BeforeExit() {
 		if err != nil {
 			log.Fatalf("failed to save demo to %v: %v", *demoRecord, err)
 		}
+	}
+	if demoPlayer != nil {
+		if playReadFrame() {
+			regression("game ended but demo would still go on")
+		}
+		err := demoPlayerFile.Close()
+		if err != nil {
+			log.Fatalf("failed to close played demo from %v: %v", *demoPlay, err)
+		}
+		regressionBeforeExit()
 	}
 }
 
