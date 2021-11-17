@@ -28,7 +28,7 @@ binary=$1; shift
 set -x
 
 for demo in "$@"; do
-	if ! $binary \
+	if ! time $binary \
 		-audio=false \
 		-batch \
 		-demo_play="$demo" \
