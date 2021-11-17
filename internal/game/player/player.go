@@ -118,7 +118,7 @@ const (
 	// g = 576
 	// Note: assuming 1px=6cm, this is actually 17.3m/s and 3.5x earth gravity.
 	JumpVelocity = 288 * constants.SubPixelScale / engine.GameTPS
-	MaxSpeed     = 2 * level.TileSize * constants.SubPixelScale
+	MaxSpeed     = 7 * level.TileSize * constants.SubPixelScale / 4
 
 	// Scale noise by speed.
 	NoiseMinSpeed = 384 * constants.SubPixelScale / engine.GameTPS
