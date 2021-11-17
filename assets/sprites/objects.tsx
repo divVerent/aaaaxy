@@ -55,6 +55,7 @@
  <tile id="9" type="Sprite">
   <properties>
    <property name="image_dir" value="sprites"/>
+   <property name="no_transform" type="bool" value="true"/>
    <property name="player_solid" type="bool" value="true"/>
   </properties>
   <image width="16" height="16" source="playerclip.png"/>
@@ -62,6 +63,7 @@
  <tile id="10" type="Sprite">
   <properties>
    <property name="image_dir" value="sprites"/>
+   <property name="no_transform" type="bool" value="true"/>
    <property name="object_solid" type="bool" value="true"/>
   </properties>
   <image width="16" height="16" source="objectclip.png"/>
