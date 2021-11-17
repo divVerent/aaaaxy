@@ -198,6 +198,11 @@ func postRecordFrame(playerPos m.Pos) {
 }
 
 func InterceptSaveGame(save *level.SaveGame) bool {
+	// Always record everything.
+	if demoRecorder != nil {
+		demoRecorderFrame.SaveGames = append(demoRecorderFrame.SaveGames, save.StateHash)
+		demoRecorderFinalSaveGame = save
+	}
 	// While playing back, we only save to memory to allow later recalling.
 	if demoPlayer != nil {
 		// Ensure next load event will be handled right according to this save game.
@@ -213,10 +218,6 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 			demoPlayerFrame.SaveGames = demoPlayerFrame.SaveGames[1:]
 		}
 		return true
-	}
-	if demoRecorder != nil {
-		demoRecorderFrame.SaveGames = append(demoRecorderFrame.SaveGames, save.StateHash)
-		demoRecorderFinalSaveGame = save
 	}
 	return false
 }
