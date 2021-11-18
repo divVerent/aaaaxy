@@ -25,6 +25,7 @@ fi
 tag=$1; shift
 binary=$1; shift
 
+status=0
 for demo in "$@"; do
 	echo >&2 "Running $demo..."
 	t0=$(date +%s)
@@ -48,10 +49,22 @@ for demo in "$@"; do
 		-window_scale_factor=1 \
 		>"$demo.$tag.log" \
 		2>&1; then
-		cat >&2 "$demo.$tag.log"
-		exit 1
+		if grep -q '\[FATAL\] detected .* regressions' "$demo.$tag.log"; then
+			if grep -q 'REGRESSION: difference in final save state' "$demo.$tag.log"; then
+				echo "$demo had a regression that impacted save states; see log and screenshots. Probably reject?"
+				exit 2
+			else
+				echo "$demo had a regression that did not impact save states; see log and screenshots. Maybe accept?"
+				status=1  # Continue ahead anyway, as this may be salvageable.
+			fi
+		else
+			# Other cause of death.
+			echo "$demo had an error; see log."
+			exit 3
+		fi
 	fi
 	t1=$(date +%s)
 	dt=$((t1 - t0))
 	echo "$demo succeeded after $dt seconds."
 done
+exit $status
