@@ -17,51 +17,50 @@ package math
 import (
 	"fmt"
 	"math"
-
-	"golang.org/x/image/math/fixed"
 )
 
-type Fixed fixed.Int52_12
+type fixedUnderlying = int64
+type Fixed fixedUnderlying
+
+const (
+	fixedBits = 12
+	FixedOne Fixed = 1<<fixedBits
+)
 
 func NewFixed(i int) Fixed {
-	return Fixed(i) << 12
+	return Fixed(i) * FixedOne
 }
 
-func NewFixedInt64(i int64) Fixed {
-	return Fixed(i) << 12
+func NewFixedInt64(i fixedUnderlying) Fixed {
+	return Fixed(i) * FixedOne
 }
 
 func NewFixedFloat64(f float64) Fixed {
-	return Fixed(math.RoundToEven(f * 4096.0))
+	return Fixed(math.RoundToEven(f * float64(FixedOne)))
 }
 
 func (f Fixed) Mul(g Fixed) Fixed {
-	return Fixed(fixed.Int52_12(f).Mul(fixed.Int52_12(g)))
+	return g.MulFrac(g, FixedOne)
 }
 
 func (f Fixed) MulFrac(n, d Fixed) Fixed {
-	// TODO:
-	// f64 := int64(f)
-	// n64 := int64(n)
-	// d64 := int64(d)
-	// Compute f * n / d without accuracy loss.
-	return f.Mul(n.Div(d))
+	return Fixed(MulFracInt64(fixedUnderlying(f), fixedUnderlying(n), fixedUnderlying(d)))
 }
 
 func (f Fixed) Div(g Fixed) Fixed {
-	return Fixed((f<<12 + g>>1) / g)
+	return g.MulFrac(FixedOne, g)
 }
 
 func (f Fixed) Rint() int {
-	return int((f + 2048) >> 12)
+	return int((f + FixedOne / 2) >> fixedBits)
 }
 
 func (f Fixed) Float64() float64 {
-	return float64(f) * (1.0 / 4096.0)
+	return float64(f) * (1.0 / float64(FixedOne))
 }
 
 func (f Fixed) String() string {
-	return fmt.Sprintf("%d.0x%03x", int64(f)>>12, int64(f)&0xFFF)
+	return fmt.Sprintf("%d.0x%03x", fixedUnderlying(f>>fixedBits), fixedUnderlying(f&(FixedOne-1)))
 }
 
 func (f Fixed) Sqrt() Fixed {
@@ -80,7 +79,7 @@ func (f Fixed) Sqrt() Fixed {
 
 	// In practice these loops tend to execute only once.
 
-	goal := f << 12
+	goal := f << fixedBits
 	// fixes := 0
 	s := guess
 	for s*s-s >= goal {

@@ -16,6 +16,7 @@ package math
 
 import (
 	"math"
+	"math/bits"
 )
 
 func Mod(a, b int) int {
@@ -34,4 +35,30 @@ func Div(a, b int) int {
 
 func Rint(f float64) int {
 	return int(math.RoundToEven(f))
+}
+
+// MulFracInt64 returns a*b/d rounded to even.
+func MulFracInt64(a, b, d int64) int64 {
+	sign := int64(1)
+	if a < 0 {
+		sign, a = -sign, -a
+	}
+	if b < 0 {
+		sign, b = -sign, -b
+	}
+	if d < 0 {
+		sign, d = -sign, -d
+	}
+	du := uint64(d)
+	ch, cl := bits.Mul64(uint64(a), uint64(b))
+	q, r := bits.Div64(ch, cl, du)
+	rcut := du / 2
+	if q%2 == 0 && du%2 == 0 {
+		// Round to even logic: if result is even and we're at exactly half, don't increment.
+		rcut++
+	}
+	if r >= rcut {
+		q++
+	}
+	return int64(q) * sign
 }
