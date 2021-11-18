@@ -89,8 +89,8 @@ func (d Delta) MulFixed(f Fixed) Delta {
 	return Delta{DX: NewFixed(d.DX).Mul(f).Rint(), DY: NewFixed(d.DY).Mul(f).Rint()}
 }
 
-func (d Delta) MulFracFixed(n, d Fixed) Delta {
-	return Delta{DX: NewFixed(d.DX).MulFrac(n, d).Rint(), DY: NewFixed(d.DY).MulFrac(n, d).Rint()}
+func (d Delta) MulFracFixed(num, denom Fixed) Delta {
+	return Delta{DX: NewFixed(d.DX).MulFrac(num, denom).Rint(), DY: NewFixed(d.DY).MulFrac(num, denom).Rint()}
 }
 
 func (d Delta) WithLengthFixed(f Fixed) Delta {
