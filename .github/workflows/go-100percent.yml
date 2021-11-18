@@ -35,6 +35,7 @@ jobs:
       run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 ./aaaaxy-debug-linux-amd64 *.dem'
 
     - name: Archive Results
+      if: ${{ always() }}
       uses: actions/upload-artifact@v2
       with:
         name: regression-test-results
