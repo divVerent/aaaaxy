@@ -56,6 +56,9 @@ func (p *Physics) Init(w *engine.World, e *engine.Entity, contents level.Content
 
 	// We're tracing, so we need our tiles to be loaded.
 	p.Entity.RequireTiles = true
+
+	// Set initial subpixel to be in the center of the start pixel.
+	p.SubPixel = m.Delta{DX: constants.SubPixelScale / 2, DY: constants.SubPixelScale / 2}
 }
 
 func (p *Physics) Reset() {
