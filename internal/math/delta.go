@@ -89,12 +89,16 @@ func (d Delta) MulFixed(f Fixed) Delta {
 	return Delta{DX: NewFixed(d.DX).Mul(f).Rint(), DY: NewFixed(d.DY).Mul(f).Rint()}
 }
 
+func (d Delta) MulFracFixed(n, d Fixed) Delta {
+	return Delta{DX: NewFixed(d.DX).MulFrac(n, d).Rint(), DY: NewFixed(d.DY).MulFrac(n, d).Rint()}
+}
+
 func (d Delta) WithLengthFixed(f Fixed) Delta {
 	n := d.LengthFixed()
 	if n == 0 {
 		return d
 	}
-	return d.MulFixed(f.Div(n))
+	return d.MulFracFixed(f, n)
 }
 
 func (d Delta) WithMaxLengthFixed(f Fixed) Delta {
@@ -102,7 +106,7 @@ func (d Delta) WithMaxLengthFixed(f Fixed) Delta {
 	if n <= f {
 		return d
 	}
-	return d.MulFixed(f.Div(n))
+	return d.MulFracFixed(f, n)
 }
 
 func North() Delta {

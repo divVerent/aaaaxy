@@ -39,6 +39,15 @@ func (f Fixed) Mul(g Fixed) Fixed {
 	return Fixed(fixed.Int52_12(f).Mul(fixed.Int52_12(g)))
 }
 
+func (f Fixed) MulFrac(n, d Fixed) Fixed {
+	// TODO:
+	// f64 := int64(f)
+	// n64 := int64(n)
+	// d64 := int64(d)
+	// Compute f * n / d without accuracy loss.
+	return f.Mul(n.Div(d))
+}
+
 func (f Fixed) Div(g Fixed) Fixed {
 	return Fixed((f<<12 + g>>1) / g)
 }
