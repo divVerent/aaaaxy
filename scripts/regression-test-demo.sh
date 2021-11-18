@@ -25,10 +25,10 @@ fi
 tag=$1; shift
 binary=$1; shift
 
-set -x
-
 for demo in "$@"; do
-	if ! time $binary \
+	echo >&2 "Running $demo..."
+	t0=$(date +%s)
+	if ! $binary \
 		-audio=false \
 		-batch \
 		-demo_play="$demo" \
@@ -48,7 +48,10 @@ for demo in "$@"; do
 		-window_scale_factor=1 \
 		>"$demo.$tag.log" \
 		2>&1; then
-		cat "$demo.$tag.log"
+		cat >&2 "$demo.$tag.log"
 		exit 1
 	fi
+	t1=$(date +%s)
+	dt=$((t1 - t0))
+	echo "$demo succeeded after $dt seconds."
 done
