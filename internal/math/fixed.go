@@ -17,10 +17,15 @@ package math
 import (
 	"fmt"
 	"math"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 type fixedUnderlying = int64
 type Fixed fixedUnderlying
+
+var _ fmt.Stringer = Fixed(0)
+var _ fmt.Stringer = new(Fixed)
 
 const (
 	fixedBits = 12
@@ -40,7 +45,7 @@ func NewFixedFloat64(f float64) Fixed {
 }
 
 func (f Fixed) Mul(g Fixed) Fixed {
-	return g.MulFrac(g, FixedOne)
+	return f.MulFrac(g, FixedOne)
 }
 
 func (f Fixed) MulFrac(n, d Fixed) Fixed {
@@ -48,11 +53,20 @@ func (f Fixed) MulFrac(n, d Fixed) Fixed {
 }
 
 func (f Fixed) Div(g Fixed) Fixed {
-	return g.MulFrac(FixedOne, g)
+	return f.MulFrac(FixedOne, g)
 }
 
 func (f Fixed) Rint() int {
-	return int((f + FixedOne / 2) >> fixedBits)
+	q := f >> fixedBits
+	r := f & (FixedOne-1)
+	cutoff := FixedOne/2
+	if q % 2 == 0 {
+		cutoff++
+	}
+	if r >= cutoff {
+		q++
+	}
+	return int(q)
 }
 
 func (f Fixed) Float64() float64 {
@@ -64,6 +78,9 @@ func (f Fixed) String() string {
 }
 
 func (f Fixed) Sqrt() Fixed {
+	if f < 0 {
+		log.Fatalf("sqrt of negative number %v", f)
+	}
 	if f == 0 {
 		return 0
 	}
