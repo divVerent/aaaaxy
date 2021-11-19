@@ -1,8 +1,10 @@
-name: Go 100%
+name: 100% Test Run
 
 on:
   release:
     types: [ created ]
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
