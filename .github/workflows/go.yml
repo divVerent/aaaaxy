@@ -24,11 +24,8 @@ jobs:
       with:
         go-version: 1.17
 
-    - name: Build for Windows 32-Bit
-      run: 'env GOOS=windows GOARCH=386 make'
-
-    - name: Build for Windows 64-Bit
-      run: 'env GOOS=windows GOARCH=amd64 make'
-
-    - name: Build for Linux 64-Bit
+    - name: Build
       run: 'make'
+
+    - name: Vet
+      run: 'make vet'
