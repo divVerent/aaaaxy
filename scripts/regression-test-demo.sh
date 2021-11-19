@@ -23,9 +23,13 @@ if [ $# -lt 3 ]; then
 fi
 
 tag=$1; shift
+required_regex=$1; shift
 binary=$1; shift
 
-status=0
+minor_regression=false
+run_broken=false
+run_finished=false
+
 for demo in "$@"; do
 	echo >&2 "Running $demo..."
 	t0=$(date +%s)
@@ -53,19 +57,42 @@ for demo in "$@"; do
 		if grep -q '\[FATAL\] detected .* regressions' "$demo.$tag.log"; then
 			if grep -q 'REGRESSION: difference in final save state' "$demo.$tag.log"; then
 				echo "$demo had a regression that impacted save states; see log and screenshots. Probably reject?"
-				exit 2
+				run_broken=true  # Continue ahead anyway, as it is likely helpful to learn about ALL serious regressions.
 			else
 				echo "$demo had a regression that did not impact save states; see log and screenshots. Maybe accept?"
-				status=1  # Continue ahead anyway, as this may be salvageable.
+				minor_regression=true  # Continue ahead anyway, as this may be salvageable.
 			fi
 		else
 			# Other cause of death.
-			echo "$demo had an error; see log."
-			exit 3
+			echo "$demo had a fatal error; see log."
+			exit 4
 		fi
 	fi
 	t1=$(date +%s)
 	dt=$((t1 - t0))
-	echo "$demo succeeded after $dt seconds."
+	frames=$(wc -l < "$demo")
+	frames=$((frames - 1))  # Deduct the "FinalSaveGame" pseudo-frame at the end.
+	tps=$((frames / dt))
+	echo "$demo finished after $dt seconds ($tps tps)."
+	if grep -q "$required_regex" "$demo.$tag.log"; then
+		run_finished=true
+	fi
 done
-exit $status
+
+if $run_broken; then
+	echo "The run is no longer complete; see above. Some manual fixes required."
+	exit 3
+fi
+
+if ! $run_finished; then
+	echo "The run did not end the intended way; the logs should have contained /$required_regex/. Some manual fixes required."
+	exit 2
+fi
+
+if $minor_regression; then
+	echo "Minor regression but run still succeeds; see above. Demos can be automatically fixed by a play+record cycle if the deltas are OK."
+	exit 1
+fi
+
+echo "Run succeeded."
+exit 0
