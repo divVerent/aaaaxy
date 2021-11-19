@@ -96,7 +96,7 @@ func BeforeExit() {
 	}
 	if demoPlayer != nil {
 		if playReadFrame() {
-			regression("game ended but demo would still go on")
+			regression(highPrio, "game ended but demo would still go on")
 		}
 		err := demoPlayerFile.Close()
 		if err != nil {
@@ -146,7 +146,7 @@ func playReadFrame() bool {
 		demoPlayerFrame = frame{}
 		err := demoPlayer.Decode(&demoPlayerFrame)
 		if err != nil {
-			regression("could not decode demo frame: %v", err)
+			log.Fatalf("could not decode demo frame: %v", err)
 		}
 		if demoPlayerFrame.FinalSaveGame == nil {
 			// Restore save game, so loading always succeeds even if we've regressed.
@@ -157,7 +157,7 @@ func playReadFrame() bool {
 		}
 		diff := cmp.Diff(demoPlayerFrame.FinalSaveGame.State, s.State)
 		if diff != "" {
-			regression("difference in final save state (-want +got):\n%v", diff)
+			regression(highPrio, "difference in final save state (-want +got):\n%v", diff)
 		}
 	}
 	return false
@@ -165,7 +165,7 @@ func playReadFrame() bool {
 
 func playFrame() bool {
 	if !playReadFrame() {
-		regression("demo ended but game didn't quit")
+		regression(highPrio, "demo ended but game didn't quit")
 		return true
 	}
 	input.LoadFromDemo(demoPlayerFrame.Input)
@@ -174,10 +174,17 @@ func playFrame() bool {
 
 func postPlayFrame(playerPos m.Pos) {
 	if len(demoPlayerFrame.SaveGames) != 0 {
-		regression("saved game: got no saves, want %v", demoPlayerFrame.SaveGames)
+		regression(mediumPrio, "saved game: got no saves, want %v", demoPlayerFrame.SaveGames)
 	}
 	if demoPlayerFrame.PlayerPos != nil && playerPos != *demoPlayerFrame.PlayerPos {
-		regression("player pos: got %v, want %v", playerPos, *demoPlayerFrame.PlayerPos)
+		d := playerPos.Delta(*demoPlayerFrame.PlayerPos).Norm1()
+		dlog := 0
+		dpow := 1
+		for d >= dpow {
+			dlog++
+			dpow *= 2
+		}
+		regression(lowPrio.WithParam(dlog), "player pos: got %v, want %v", playerPos, *demoPlayerFrame.PlayerPos)
 	}
 	regressionPostPlayFrame()
 	demoPlayerFrameIdx++
@@ -210,10 +217,10 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 		// Still there to have better chance of being in sync during playback with regression.
 		demoPlayerFrame.SaveGame = save
 		if len(demoPlayerFrame.SaveGames) == 0 {
-			regression("saved game: got hash %v, want no saves", save.StateHash)
+			regression(mediumPrio, "saved game: got hash %v, want no saves", save.StateHash)
 		} else {
 			if save.StateHash != demoPlayerFrame.SaveGames[0] {
-				regression("saved game: got hash %v, want %v", save.StateHash, demoPlayerFrame.SaveGames[0])
+				regression(mediumPrio, "saved game: got hash %v, want %v", save.StateHash, demoPlayerFrame.SaveGames[0])
 			}
 			demoPlayerFrame.SaveGames = demoPlayerFrame.SaveGames[1:]
 		}

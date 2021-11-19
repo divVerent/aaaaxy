@@ -36,28 +36,56 @@ var (
 var (
 	regressionCount           int
 	regressionScreenshotCount int
-	regressionsPrevFrame      bool
+	regressionsPrevFramePrio  prio
+	regressionsThisFramePrio  prio
 	regressionsThisFrame      []string
 	regressionsToDraw         []string
 )
 
-func regression(format string, args ...interface{}) {
+type prio int
+
+const (
+	lowPrio    prio = 1000
+	mediumPrio prio = 2000
+	highPrio   prio = 3000
+)
+
+func (p prio) WithParam(q int) prio {
+	if q < 0 {
+		q = 0
+	}
+	if q > 999 {
+		q = 999
+	}
+	return p + prio(q)
+}
+
+func regression(prio prio, format string, args ...interface{}) {
 	regression := fmt.Sprintf(format, args...)
 	log.Errorf("REGRESSION: %s", regression)
 	regressionsThisFrame = append(regressionsThisFrame, regression)
+	if prio > regressionsThisFramePrio {
+		regressionsThisFramePrio = prio
+	}
 	regressionCount++
 }
 
 func regressionPostPlayFrame() {
 	// Update state.
 	regressions := regressionsThisFrame
-	haveRegressions := len(regressions) > 0
-	hadRegressions := regressionsPrevFrame
-	regressionsPrevFrame = haveRegressions
+	havePrio := regressionsThisFramePrio
+	hadPrio := regressionsPrevFramePrio
+	// HACK: We keep the highest priority within the current regression section.
+	if havePrio == 0 {
+		regressionsPrevFramePrio = 0
+	} else if havePrio > regressionsPrevFramePrio {
+		regressionsPrevFramePrio = havePrio
+	}
 	regressionsThisFrame = nil
+	regressionsThisFramePrio = 0
 
 	// Report this regression?
-	if haveRegressions && !hadRegressions {
+	if havePrio > hadPrio {
 		// Worth reporting, not a dupe from last frame.
 		regressionsToDraw = append(regressionsToDraw, fmt.Sprintf("Frame %d:", demoPlayerFrameIdx))
 		regressionsToDraw = append(regressionsToDraw, regressions...)
