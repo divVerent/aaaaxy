@@ -17,7 +17,6 @@ package math
 import (
 	"fmt"
 	"math"
-	"math/bits"
 
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -50,7 +49,7 @@ func (f Fixed) Mul(g Fixed) Fixed {
 }
 
 func (f Fixed) MulFrac(n, d Fixed) Fixed {
-	return Fixed(MulFracInt64(fixedUnderlying(f), fixedUnderlying(n), fixedUnderlying(d)))
+	return Fixed(mulFracInt64(fixedUnderlying(f), fixedUnderlying(n), fixedUnderlying(d)))
 }
 
 func (f Fixed) Div(g Fixed) Fixed {
@@ -94,23 +93,24 @@ func (f Fixed) Sqrt() Fixed {
 	// Square everything; assumes s-delta >= 0. Thus the check above.
 	//   s^2 - s <= 4096 * f - 1/4 < s^2 + s
 	//   s^2 - s < 4096 * f <= s^2 + s
+	//   (s^2 - s) / 4096 < f <= (s^2 + s) / 4096
 
 	// In practice these loops tend to execute only once.
 
-	goalh, goall := bits.Mul64(uint64(f), 1<<fixedBits)
+	goal := uint64(f)
 	// fixes := 0
 	s := guess
-	for { // s*s+s >= goal
-		sh, sl := bits.Mul64(uint64(s), uint64(s-1))
-		if sh <= goalh && (sh != goalh || sl < goall) {
+	for { // s*s-s >= goal
+		sminus, _ := mulFracModUint64(uint64(s), uint64(s-1), uint64(FixedOne))
+		if sminus < goal {
 			break
 		}
 		s--
 		// fixes++
 	}
 	for { // s*s+s < goal
-		sh, sl := bits.Mul64(uint64(s), uint64(s+1))
-		if sh >= goalh && (sh != goalh || sl >= goall) {
+		splus, _ := mulFracModUint64(uint64(s), uint64(s+1), uint64(FixedOne))
+		if splus >= goal {
 			break
 		}
 		s++

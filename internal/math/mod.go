@@ -37,8 +37,8 @@ func Rint(f float64) int {
 	return int(math.RoundToEven(f))
 }
 
-// MulFracInt64 returns a*b/d rounded to even.
-func MulFracInt64(a, b, d int64) int64 {
+// mulFracInt64 returns a*b/d rounded to even.
+func mulFracInt64(a, b, d int64) int64 {
 	sign := int64(1)
 	if a < 0 {
 		sign, a = -sign, -a
@@ -49,16 +49,25 @@ func MulFracInt64(a, b, d int64) int64 {
 	if d < 0 {
 		sign, d = -sign, -d
 	}
-	du := uint64(d)
-	ch, cl := bits.Mul64(uint64(a), uint64(b))
-	q, r := bits.Div64(ch, cl, du)
-	rcut := du / 2
-	if q%2 == 0 && du%2 == 0 {
-		// Round to even logic: if result is even and we're at exactly half, don't increment.
+	q, r := mulFracModUint64(uint64(a), uint64(b), uint64(d))
+	q = roundToEvenUint64(uint64(d), uint64(q), uint64(r))
+	return int64(q) * sign
+}
+
+// mulFracModUint64 returns a*b/d rounded to even.
+func mulFracModUint64(a, b, d uint64) (uint64, uint64) {
+	ch, cl := bits.Mul64(a, b)
+	return bits.Div64(ch, cl, d)
+}
+
+// roundToEvenUint64 rounds q with remainder r at divisor d towards nearest, and towards even on a tie.
+func roundToEvenUint64(d, q, r uint64) uint64 {
+	rcut := d / 2
+	if q%2 == 0 && d%2 == 0 {
 		rcut++
 	}
 	if r >= rcut {
 		q++
 	}
-	return int64(q) * sign
+	return q
 }
