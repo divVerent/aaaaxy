@@ -39,5 +39,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: regression-test-results
-        path: "*.dem.*.log"
-        path: "*.dem.*.png"
+        path: |
+          *.dem.*.log
+          *.dem.*.png
