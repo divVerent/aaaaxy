@@ -115,9 +115,6 @@ const (
 func (r *Riser) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
 	r.Physics.Init(w, e, level.ObjectSolidContents, r.handleTouch)
 
-	// HACK: make risers move up one pixel next frame right away.
-	r.Physics.SubPixel.DY = 0
-
 	r.World = w
 	r.Entity = e
 
