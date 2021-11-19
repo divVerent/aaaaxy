@@ -34,7 +34,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "Your time: 1:01:56\\.450; your speedrun categories: 100%, All Notes and All Paths" ./aaaaxy-debug-linux-amd64 *.dem'
+      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "Your time: 1:01:56\\.450; your speedrun categories: 100%, All Notes and All Paths;" ./aaaaxy-debug-linux-amd64 *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
