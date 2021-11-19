@@ -33,6 +33,7 @@ for demo in "$@"; do
 		-audio=false \
 		-batch \
 		-demo_play="$demo" \
+		-demo_record="$demo.$tag.actual.dem" \
 		-demo_play_regression_prefix="$demo.$tag" \
 		-demo_timedemo \
 		-draw_blurs=false \

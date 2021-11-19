@@ -100,7 +100,7 @@ func regressionPostDrawFrame(screen *ebiten.Image) {
 	// Actually we could just draw a black rectangle on it with GL_SRC_ALPHA GL_ZERO.
 
 	// Build a file name.
-	name := fmt.Sprintf("%s_%04d.png", *demoPlayRegressionPrefix, regressionScreenshotCount)
+	name := fmt.Sprintf("%s.%04d.png", *demoPlayRegressionPrefix, regressionScreenshotCount)
 	log.Errorf("dumping regression screenshot to %v", name)
 	regressionScreenshotCount++
 	file, err := os.Create(name)
