@@ -28,10 +28,10 @@ jobs:
     - name: Fetch Test Cases
       env:
         HUNDRED_PERCENT_URL: ${{ secrets.HUNDRED_PERCENT_URL }}
-      run: 'curl -O "$HUNDRED_PERCENT_URL"/100percent.zip'
+      run: 'curl -o testcases.zip "$HUNDRED_PERCENT_URL"/100percent-v2.zip'
 
     - name: Extract Test Cases
-      run: 'unzip 100percent.zip'
+      run: 'unzip testcases.zip'
 
     - name: Test
       run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 ./aaaaxy-debug-linux-amd64 *.dem'
