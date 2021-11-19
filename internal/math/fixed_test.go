@@ -2,6 +2,7 @@ package math
 
 import (
 	"fmt"
+	"math"
 	"testing"
 )
 
@@ -115,10 +116,10 @@ func TestFixedDiv(t *testing.T) {
 
 func TestFixedRint(t *testing.T) {
 	for _, tc := range []struct {
-		A Fixed
+		A    Fixed
 		Want int
 	}{
-		{A: NewFixedFloat64(1<<30), Want: 1<<30},
+		{A: NewFixedFloat64(1 << 30), Want: 1 << 30},
 		{A: NewFixedFloat64(0.5), Want: 0},
 		{A: NewFixedFloat64(1.25), Want: 1},
 		{A: NewFixedFloat64(1.5), Want: 2},
@@ -147,10 +148,10 @@ func TestFixedRint(t *testing.T) {
 
 func TestFixedFloat64(t *testing.T) {
 	for _, tc := range []struct {
-		A Fixed
+		A    Fixed
 		Want float64
 	}{
-		{A: NewFixedFloat64(1<<30), Want: 1<<30},
+		{A: NewFixedFloat64(1 << 30), Want: 1 << 30},
 		{A: NewFixedFloat64(0.5), Want: 0.5},
 		{A: NewFixedFloat64(1.25), Want: 1.25},
 		{A: NewFixedFloat64(1.5), Want: 1.5},
@@ -166,12 +167,15 @@ func TestFixedFloat64(t *testing.T) {
 
 func TestFixedSqrt(t *testing.T) {
 	for _, tc := range []struct {
-		A Fixed
+		A    Fixed
 		Want Fixed
 	}{
 		{A: NewFixedFloat64(0), Want: NewFixedFloat64(0)},
-		{A: NewFixedFloat64(1.0 / 4096), Want: NewFixedFloat64(1.0/64)},
+		{A: NewFixedFloat64(1.0 / 4096), Want: NewFixedFloat64(1.0 / 64)},
 		{A: NewFixedFloat64(1), Want: NewFixedFloat64(1)},
+		{A: Fixed(0x7FFFFFFFFA875F8F), Want: 0x2D413CCCFD},
+		{A: Fixed(0x7FFFFFFFFA875F90), Want: 0x2D413CCCFE},
+		{A: Fixed(math.MaxInt64), Want: 0x2D413CCCFE},
 	} {
 		t.Run(fmt.Sprintf("%+v", tc), func(t *testing.T) {
 			got := tc.A.Sqrt()

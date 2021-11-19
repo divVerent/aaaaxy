@@ -17,6 +17,7 @@ package math
 import (
 	"fmt"
 	"math"
+	"math/bits"
 
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -28,8 +29,8 @@ var _ fmt.Stringer = Fixed(0)
 var _ fmt.Stringer = new(Fixed)
 
 const (
-	fixedBits = 12
-	FixedOne Fixed = 1<<fixedBits
+	fixedBits       = 12
+	FixedOne  Fixed = 1 << fixedBits
 )
 
 func NewFixed(i int) Fixed {
@@ -58,9 +59,9 @@ func (f Fixed) Div(g Fixed) Fixed {
 
 func (f Fixed) Rint() int {
 	q := f >> fixedBits
-	r := f & (FixedOne-1)
-	cutoff := FixedOne/2
-	if q % 2 == 0 {
+	r := f & (FixedOne - 1)
+	cutoff := FixedOne / 2
+	if q%2 == 0 {
 		cutoff++
 	}
 	if r >= cutoff {
@@ -96,14 +97,22 @@ func (f Fixed) Sqrt() Fixed {
 
 	// In practice these loops tend to execute only once.
 
-	goal := f << fixedBits
+	goalh, goall := bits.Mul64(uint64(f), 1<<fixedBits)
 	// fixes := 0
 	s := guess
-	for s*s-s >= goal {
+	for { // s*s+s >= goal
+		sh, sl := bits.Mul64(uint64(s), uint64(s-1))
+		if sh <= goalh && (sh != goalh || sl < goall) {
+			break
+		}
 		s--
 		// fixes++
 	}
-	for s*s+s < goal {
+	for { // s*s+s < goal
+		sh, sl := bits.Mul64(uint64(s), uint64(s+1))
+		if sh >= goalh && (sh != goalh || sl >= goall) {
+			break
+		}
 		s++
 		// fixes++
 	}
