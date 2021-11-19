@@ -1,0 +1,120 @@
+name: Any% Multi-Platform Test Run
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [ created ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+
+  test-linux-amd64:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Build
+      run: 'make'
+
+    - name: Fetch Test Cases
+      env:
+        REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent.zip'
+
+    - name: Extract Test Cases
+      run: 'unzip testcases.zip'
+
+    - name: Test
+      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" ./aaaaxy-debug-linux-amd64 *.dem'
+
+    - name: Archive Results
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: regression-test-results-anypercent-linux-amd64
+        path: |
+          *.dem.*.log
+          *.dem.*.png
+
+  test-windows-amd64:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev wine xvfb'
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Build
+      run: 'make'
+
+    - name: Fetch Test Cases
+      env:
+        REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent.zip'
+
+    - name: Extract Test Cases
+      run: 'unzip testcases.zip'
+
+    - name: Test
+      run: 'xvfb-run scripts/regression-test-demo.sh windows-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "wine ./aaaaxy-debug-windows-amd64.exe" *.dem'
+
+    - name: Archive Results
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: regression-test-results-anypercent-windows-amd64
+        path: |
+          *.dem.*.log
+          *.dem.*.png
+
+  test-windows-386:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Build
+      run: 'make'
+
+    - name: Fetch Test Cases
+      env:
+        REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent.zip'
+
+    - name: Extract Test Cases
+      run: 'unzip testcases.zip'
+
+    - name: Test
+      run: 'xvfb-run scripts/regression-test-demo.sh windows-386 "Your time: 0:16:50.666; your speedrun categories: Any%;" "wine ./aaaaxy-debug-windows-386.exe" *.dem'
+
+    - name: Archive Results
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: regression-test-results-anypercent-windows-386
+        path: |
+          *.dem.*.log
+          *.dem.*.png
