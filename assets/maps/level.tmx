@@ -11776,7 +11776,7 @@
   <object id="5163" gid="312" x="6320" y="5120" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4609"/>
-    <property name="text" value="Going in circles can be productive."/>
+    <property name="text" value="Even going in circles you can get somewhere."/>
    </properties>
   </object>
   <object id="5164" name="GoingInWarps" gid="295" x="6000" y="4240" width="64" height="16"/>
