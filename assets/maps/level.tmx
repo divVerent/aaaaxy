@@ -5984,9 +5984,8 @@
     <property name="text" value="Some things you simply can't see right away."/>
    </properties>
   </object>
-  <object id="1373" type="SetStateTarget" x="160" y="80" width="160" height="16">
+  <object id="1373" type="OnSpawn" x="160" y="80" width="160" height="16">
    <properties>
-    <property name="on_spawn" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="LookedUp"/>
    </properties>
