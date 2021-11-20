@@ -17,7 +17,7 @@
 # Hint: run this under Xvfb, Xdummy or similar.
 # TODO: figure out how to get efficient 3D graphics in this (e.g. via Virgil?).
 
-if [ $# -lt 3 ]; then
+if [ $# -lt 4 ]; then
 	echo >&2 "Usage: $0 tag 'binary with flags...' demo1.dem demo2.dem ..."
 	exit 1
 fi
