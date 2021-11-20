@@ -232,7 +232,7 @@
  </objecttype>
  <objecttype name="SpawnCounter" color="#ff0000">
   <property name="divisor" type="int" default=""/>
-  <property name="modulus" type="bool" default=""/>
+  <property name="modulus" type="int" default=""/>
   <property name="state" type="bool" default="true"/>
   <property name="target" type="string"/>
  </objecttype>
