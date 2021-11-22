@@ -13,7 +13,7 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
 	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
-	golang.org/x/sys v0.0.0-20211116061358-0a5406a5449c
+	golang.org/x/sys v0.0.0-20211117180635-dee7805ff2e1
 )
 
 require (
@@ -35,7 +35,7 @@ require (
 	github.com/src-d/gcfg v1.4.0 // indirect
 	github.com/xanzy/ssh-agent v0.2.1 // indirect
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
-	golang.org/x/exp v0.0.0-20211116202431-6936a97b7954 // indirect
+	golang.org/x/exp v0.0.0-20211122174006-ba1b3c356383 // indirect
 	golang.org/x/mobile v0.0.0-20211109191125-d61a72f26a1a // indirect
 	golang.org/x/mod v0.6.0-dev.0.20211013180041-c96bc1413d57 // indirect
 	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
