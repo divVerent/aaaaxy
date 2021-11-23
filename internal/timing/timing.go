@@ -38,11 +38,12 @@ type node struct {
 }
 
 type entry struct {
-	total      time.Duration
-	worstFrame time.Duration
-	thisFrame  time.Duration
-	count      int
-	frames     int
+	total            time.Duration
+	worstFrame       time.Duration
+	thisFrame        time.Duration
+	touchedThisFrame bool
+	count            int
+	frames           int
 }
 
 func (e *entry) String() string {
@@ -129,6 +130,7 @@ func accountCount() {
 func accountTime(now time.Time) {
 	n, e := current()
 	e.thisFrame += now.Sub(n.started)
+	e.touchedThisFrame = true
 }
 
 func Update() {
@@ -141,7 +143,7 @@ func Update() {
 		return
 	}
 	for _, entry := range accumulator {
-		if entry.thisFrame == 0 {
+		if !entry.touchedThisFrame {
 			continue
 		}
 		entry.total += entry.thisFrame
@@ -150,6 +152,7 @@ func Update() {
 		}
 		entry.frames++
 		entry.thisFrame = 0
+		entry.touchedThisFrame = false
 	}
 	now := time.Now()
 	if now.After(nextReport) {
