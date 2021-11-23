@@ -46,7 +46,7 @@ for demo in "$@"; do
 		-draw_visibility_mask=false \
 		-expand_using_vertices_accurately=false \
 		-fullscreen=false \
-		-profiling \
+		-profiling=1m \
 		-runnable_when_unfocused \
 		-screen_filter=simple \
 		-show_fps \
