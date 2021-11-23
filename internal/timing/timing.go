@@ -25,7 +25,7 @@ import (
 )
 
 var (
-	profiling = flag.Bool("profiling", false, "enable simple wall-clock profiling to log messages")
+	profiling = flag.Duration("profiling", 0, "enable simple wall-clock profiling to log messages")
 )
 
 const (
@@ -131,12 +131,12 @@ func accountTime(now time.Time) {
 	e.thisFrame += now.Sub(n.started)
 }
 
-func ReportRegularly() {
-	if *profiling && stack == nil {
+func Update() {
+	if *profiling != 0 && stack == nil {
 		restartProfiling()
 		return
 	}
-	if !*profiling {
+	if *profiling == 0 {
 		stopProfiling()
 		return
 	}
@@ -153,18 +153,24 @@ func ReportRegularly() {
 	}
 	now := time.Now()
 	if now.After(nextReport) {
-		if !nextReport.IsZero() {
-			report := make([]string, 0, len(accumulator))
-			for section, entry := range accumulator {
-				if entry.total < minReportDuration {
-					continue
-				}
-				report = append(report, fmt.Sprintf("  %-48s %v", section, entry))
+		PrintReport()
+		nextReport = now.Add(*profiling)
+	}
+}
+
+func PrintReport() {
+	if *profiling == 0 {
+		return
+	}
+	if !nextReport.IsZero() {
+		report := make([]string, 0, len(accumulator))
+		for section, entry := range accumulator {
+			if entry.total < minReportDuration {
+				continue
 			}
-			sort.Strings(report)
-			log.Infof("timing report:\n%v", strings.Join(report, "\n"))
+			report = append(report, fmt.Sprintf("  %-48s %v", section, entry))
 		}
-		restartProfiling()
-		nextReport = now.Add(time.Second)
+		sort.Strings(report)
+		log.Infof("timing report:\n%v", strings.Join(report, "\n"))
 	}
 }

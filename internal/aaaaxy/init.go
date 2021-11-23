@@ -32,6 +32,7 @@ import (
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/noise"
 	"github.com/divVerent/aaaaxy/internal/sound"
+	"github.com/divVerent/aaaaxy/internal/timing"
 	"github.com/divVerent/aaaaxy/internal/version"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
@@ -155,6 +156,7 @@ func InitEbiten() error {
 }
 
 func BeforeExit() {
+	timing.PrintReport()
 	finishDumping()
 	demo.BeforeExit()
 }

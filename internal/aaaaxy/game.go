@@ -60,7 +60,7 @@ var _ ebiten.Game = &Game{}
 func (g *Game) Update() error {
 	g.framesToDump++
 
-	timing.ReportRegularly()
+	timing.Update()
 
 	defer timing.Group()()
 	timing.Section("update")
