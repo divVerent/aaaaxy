@@ -155,6 +155,7 @@ func Update() {
 	if now.After(nextReport) {
 		PrintReport()
 		nextReport = now.Add(*profiling)
+		restartProfiling()
 	}
 }
 
