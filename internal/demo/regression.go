@@ -147,8 +147,9 @@ func regressionPostDrawFrame(screen *ebiten.Image) {
 	}
 }
 
-func regressionBeforeExit() {
+func regressionBeforeExit() error {
 	if regressionCount != 0 {
-		log.Fatalf("detected %d regressions", regressionCount)
+		return fmt.Errorf("detected %d regressions", regressionCount)
 	}
+	return nil
 }

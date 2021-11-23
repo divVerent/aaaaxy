@@ -155,8 +155,15 @@ func InitEbiten() error {
 	return nil
 }
 
-func BeforeExit() {
+func BeforeExit() error {
 	timing.PrintReport()
-	finishDumping()
-	demo.BeforeExit()
+	err := finishDumping()
+	if err != nil {
+		return fmt.Errorf("could not finish dumping: %v", err)
+	}
+	err = demo.BeforeExit()
+	if err != nil {
+		return fmt.Errorf("could not finalize demo: %v", err)
+	}
+	return nil
 }

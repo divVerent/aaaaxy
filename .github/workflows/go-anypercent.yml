@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  test-linux-amd64:
+  build-linux-amd64:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -26,6 +26,31 @@ jobs:
 
     - name: Build
       run: 'make'
+
+    - name: Archive Binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: aaaaxy-debug-linux-amd64
+        path: |
+          aaaaxy-debug-linux-amd64
+          assets/generated/
+
+  test-linux-amd64:
+    needs: build-linux-amd64
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: 'sudo apt-get update && sudo apt-get -y install xvfb'
+
+    - name: Download Binary
+      uses: actions/download-artifact@v2
+      with:
+        name: aaaaxy-debug-linux-amd64
+
+    - name: Make Binary Executable
+      run: 'chmod +x aaaaxy-debug-linux-amd64'
 
     - name: Fetch Test Cases
       env:
@@ -47,13 +72,13 @@ jobs:
           *.dem.*.log
           *.dem.*.png
 
-  test-windows-amd64:
+  build-windows-amd64:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev wine xvfb'
+      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
 
     - name: Set up Go
       uses: actions/setup-go@v2
@@ -62,6 +87,34 @@ jobs:
 
     - name: Build
       run: 'GOOS=windows GOARCH=amd64 make'
+
+    - name: Archive Binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: aaaaxy-debug-windows-amd64
+        path: |
+          aaaaxy-debug-windows-amd64.exe
+          assets/generated/
+
+  test-windows-amd64:
+    needs: build-windows-amd64
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download Mesa
+      run: 'curl -o mesa3d.7z -L https://github.com/pal1000/mesa-dist-win/releases/download/21.3.0/mesa3d-21.3.0-release-msvc.7z'
+
+    - name: Extract Mesa
+      run: '7z e mesa3d.7z x64/\*.dll'
+
+    - name: Download Binary
+      uses: actions/download-artifact@v2
+      with:
+        name: aaaaxy-debug-windows-amd64
 
     - name: Fetch Test Cases
       env:
@@ -72,7 +125,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh windows-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "wine ./aaaaxy-debug-windows-amd64.exe" *.dem'
+      run: 'bash scripts/regression-test-demo.sh windows-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "./aaaaxy-debug-windows-amd64.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -83,21 +136,19 @@ jobs:
           *.dem.*.log
           *.dem.*.png
 
-  test-windows-386:
+  test-wine-amd64:
+    needs: build-windows-amd64
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
 
     - name: Install Dependencies
-      run: 'sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev wine xvfb'
+      run: 'sudo apt-get update && sudo apt-get -y install wine xvfb'
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
+    - name: Download Binary
+      uses: actions/download-artifact@v2
       with:
-        go-version: 1.17
-
-    - name: Build
-      run: 'GOOS=windows GOARCH=386 make'
+        name: aaaaxy-debug-windows-amd64
 
     - name: Fetch Test Cases
       env:
@@ -108,13 +159,111 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh windows-386 "Your time: 0:16:50.666; your speedrun categories: Any%;" "wine ./aaaaxy-debug-windows-386.exe" *.dem'
+      run: 'xvfb-run scripts/regression-test-demo.sh wine-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "wine ./aaaaxy-debug-windows-amd64.exe" *.dem'
+
+    - name: Archive Results
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: regression-test-results-anypercent-wine-amd64
+        path: |
+          *.dem.*.log
+          *.dem.*.png
+
+  build-windows-386:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Build
+      run: 'GOOS=windows GOARCH=386 make'
+
+    - name: Archive Binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: aaaaxy-debug-windows-386
+        path: |
+          aaaaxy-debug-windows-386.exe
+          assets/generated/
+
+  test-windows-386:
+    needs: build-windows-386
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download Mesa
+      run: 'curl -o mesa3d.7z -L https://github.com/pal1000/mesa-dist-win/releases/download/21.3.0/mesa3d-21.3.0-release-msvc.7z'
+
+    - name: Extract Mesa
+      run: '7z e mesa3d.7z x86/\*.dll'
+
+    - name: Download Binary
+      uses: actions/download-artifact@v2
+      with:
+        name: aaaaxy-debug-windows-386
+
+    - name: Fetch Test Cases
+      env:
+        REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v2.zip'
+
+    - name: Extract Test Cases
+      run: 'unzip testcases.zip'
+
+    - name: Test
+      run: 'bash scripts/regression-test-demo.sh windows-386 "Your time: 0:16:50.666; your speedrun categories: Any%;" "./aaaaxy-debug-windows-386.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
       uses: actions/upload-artifact@v2
       with:
         name: regression-test-results-anypercent-windows-386
+        path: |
+          *.dem.*.log
+          *.dem.*.png
+
+  test-wine-386:
+    needs: build-windows-386
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: 'sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get -y install wine xvfb'
+
+    - name: Download Binary
+      uses: actions/download-artifact@v2
+      with:
+        name: aaaaxy-debug-windows-386
+
+    - name: Fetch Test Cases
+      env:
+        REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v2.zip'
+
+    - name: Extract Test Cases
+      run: 'unzip testcases.zip'
+
+    - name: Test
+      run: 'xvfb-run scripts/regression-test-demo.sh wine-386 "Your time: 0:16:50.666; your speedrun categories: Any%;" "wine ./aaaaxy-debug-windows-386.exe" *.dem'
+
+    - name: Archive Results
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: regression-test-results-anypercent-wine-386
         path: |
           *.dem.*.log
           *.dem.*.png

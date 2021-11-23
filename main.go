@@ -32,6 +32,34 @@ var (
 	debugLogFile    = flag.String("debug_log_file", "", "log file to write all messages to (may be slow)")
 )
 
+func runGame() error {
+	game := &aaaaxy.Game{}
+	if *debugCpuprofile != "" {
+		f, err := os.Create(*debugCpuprofile)
+		if err != nil {
+			log.Fatalf("could not create CPU profile: %v", err)
+		}
+		defer f.Close()
+		if err := pprof.StartCPUProfile(f); err != nil {
+			log.Fatalf("could not start CPU profile: %v", err)
+		}
+		defer pprof.StopCPUProfile()
+	}
+	err := ebiten.RunGame(game)
+	if *debugMemprofile != "" {
+		f, err := os.Create(*debugMemprofile)
+		if err != nil {
+			log.Fatalf("could not create memory profile: %v", err)
+		}
+		defer f.Close()
+		runtime.GC()
+		if err := pprof.WriteHeapProfile(f); err != nil {
+			log.Fatalf("could not write memory profile: %v", err)
+		}
+	}
+	return err
+}
+
 func main() {
 	// Turn all panics into Fatalf for uniform exception handling.
 	defer func() {
@@ -44,37 +72,17 @@ func main() {
 	if *debugLogFile != "" {
 		log.AddLogFile(*debugLogFile)
 	}
-	if *debugCpuprofile != "" {
-		f, err := os.Create(*debugCpuprofile)
-		if err != nil {
-			log.Fatalf("could not create CPU profile: %v", err)
-		}
-		defer f.Close()
-		if err := pprof.StartCPUProfile(f); err != nil {
-			log.Fatalf("could not start CPU profile: %v", err)
-		}
-		defer pprof.StopCPUProfile()
-	}
 	err := aaaaxy.InitEbiten()
 	if err != nil {
 		log.Fatalf("could not initialize game: %v", err)
 	}
-	game := &aaaaxy.Game{}
-	err = ebiten.RunGame(game)
-	aaaaxy.BeforeExit()
-	if *debugMemprofile != "" {
-		f, err := os.Create(*debugMemprofile)
-		if err != nil {
-			log.Fatalf("could not create memory profile: %v", err)
-		}
-		defer f.Close()
-		runtime.GC()
-		if err := pprof.WriteHeapProfile(f); err != nil {
-			log.Fatalf("could not write memory profile: %v", err)
-		}
-	}
+	err = runGame()
+	errbe := aaaaxy.BeforeExit()
 	if err != nil && err != aaaaxy.RegularTermination {
-		log.Fatalf("game exited abnormally: %v", err)
+		log.Fatalf("RunGame exited abnormally: %v", err)
+	}
+	if errbe != nil && errbe != aaaaxy.RegularTermination {
+		log.Fatalf("BeforeExit exited abnormally: %v", err)
 	}
 	log.CloseLogFile()
 }

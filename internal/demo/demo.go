@@ -80,18 +80,18 @@ func Init() error {
 	return nil
 }
 
-func BeforeExit() {
+func BeforeExit() error {
 	if demoRecorder != nil {
 		demoRecorderFrame = frame{
 			FinalSaveGame: demoRecorderFinalSaveGame,
 		}
 		err := demoRecorder.Encode(&demoRecorderFrame)
 		if err != nil {
-			log.Fatalf("could not encode final demo frame: %v", err)
+			return fmt.Errorf("could not encode final demo frame: %v", err)
 		}
 		err = demoRecorderFile.Close()
 		if err != nil {
-			log.Fatalf("failed to save demo to %v: %v", *demoRecord, err)
+			return fmt.Errorf("failed to save demo to %v: %v", *demoRecord, err)
 		}
 	}
 	if demoPlayer != nil {
@@ -100,10 +100,11 @@ func BeforeExit() {
 		}
 		err := demoPlayerFile.Close()
 		if err != nil {
-			log.Fatalf("failed to close played demo from %v: %v", *demoPlay, err)
+			return fmt.Errorf("failed to close played demo from %v: %v", *demoPlay, err)
 		}
 		regressionBeforeExit()
 	}
+	return nil
 }
 
 func Playing() bool {

@@ -181,22 +181,24 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 	return fmt.Sprintf("%sffmpeg %s %s -vsync vfr %s", pre, strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''"))
 }
 
-func finishDumping() {
+func finishDumping() error {
 	if !dumping() {
-		return
+		return nil
+	}
+	if dumpVideoFile != nil {
+		dumpVideoWg.Wait()
 	}
 	if dumpAudioFile != nil {
 		err := dumpAudioFile.Close()
 		if err != nil {
-			log.Errorf("failed to close audio - expect corruption: %v", err)
+			return fmt.Errorf("failed to close audio - expect corruption: %v", err)
 		}
 		dumpAudioFile = nil
 	}
 	if dumpVideoFile != nil {
-		dumpVideoWg.Wait()
 		err := dumpVideoFile.Close()
 		if err != nil {
-			log.Errorf("failed to close video - expect corruption: %v", err)
+			return fmt.Errorf("failed to close video - expect corruption: %v", err)
 		}
 		dumpVideoFile = nil
 	}
@@ -211,4 +213,5 @@ func finishDumping() {
 		log.Infof("preferred for uploading (4K, GOOD QUALITY):")
 		log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt"))
 	}
+	return nil
 }

@@ -29,7 +29,7 @@ case "$gitdesc" in
 		echo >&2 "ERROR: Invalid git describe output: $gitdesc."
 		echo >&2 "Assuming you're building from a tarball and building fake version info."
 		gitcount=0
-		gittag=v0.0.0
+		gittag=v0.0
 		commits=0
 		hash=unknown
 		date=$(date +%Y%m%d)
