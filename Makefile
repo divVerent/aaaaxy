@@ -30,10 +30,22 @@ GENERATED_STUFF = aaaaxy.ico aaaaxy.manifest aaaaxy.syso assets/generated/ inter
 # Configure Go.
 GOFLAGS += -tags "$(shell echo $(BUILDTAGS) | tr ' ' ,)"
 
+# Configure the Go compiler.
+GO_GCFLAGS = -dwarf=false
+GOFLAGS += -gcflags=all="$(GO_GCFLAGS)"
+
+# Configure the Go linker.
+GO_LDFLAGS =
+ifeq ($(shell $(GO) env GOOS),windows)
+GO_LDFLAGS += -H windowsgui
+endif
+GOFLAGS += -ldflags=all="$(GO_LDFLAGS)"
+
 # Release/debug flags.
 BUILDTYPE = debug
 ifeq ($(BUILDTYPE),release)
-GOFLAGS += -a -ldflags=all="-s -w" -gcflags=all="-dwarf=false" -trimpath
+GO_LDFLAGS += -s -w
+GOFLAGS += -a -trimpath
 ifneq ($(shell $(GO) env GOARCH),wasm)
 GOFLAGS += -buildmode=pie
 endif
