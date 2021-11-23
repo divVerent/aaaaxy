@@ -36,6 +36,7 @@ for demo in "$@"; do
 	if ! $binary \
 		-audio=false \
 		-batch \
+		-debug_log_file="$demo.$tag.log" \
 		-demo_play="$demo" \
 		-demo_record="$demo.$tag.actual.dem" \
 		-demo_play_regression_prefix="$demo.$tag" \
@@ -52,8 +53,7 @@ for demo in "$@"; do
 		-show_time \
 		-vsync=false \
 		-window_scale_factor=1 \
-		>"$demo.$tag.log" \
-		2>&1; then
+		; then
 		if grep -q '\[FATAL\] detected .* regressions' "$demo.$tag.log"; then
 			if grep -q 'REGRESSION: difference in final save state' "$demo.$tag.log"; then
 				echo "$demo had a regression that impacted save states; see log and screenshots. Probably reject?"
