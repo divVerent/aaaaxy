@@ -16,6 +16,7 @@ package log
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"runtime/debug"
@@ -69,8 +70,33 @@ func Fatalf(format string, v ...interface{}) {
 	debug.PrintStack()
 	msg := fmt.Sprintf(format, v...)
 	log.Output(2, "[FATAL] "+msg)
+	CloseLogFile()
 	if !*Batch {
 		alert.Show(msg)
 	}
 	os.Exit(125)
+}
+
+var (
+	logFiles []io.Closer
+)
+
+func AddLogFile(file string) {
+	wr, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		Errorf("failed to open log file: %v", err)
+		return
+	}
+	logFiles = append(logFiles, wr)
+	log.SetOutput(io.MultiWriter(log.Writer(), wr))
+}
+
+func CloseLogFile() {
+	for _, wr := range logFiles {
+		err := wr.Close()
+		if err != nil {
+			Errorf("failed to close log file: %v", err)
+		}
+	}
+	logFiles = nil
 }

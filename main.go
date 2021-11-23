@@ -27,14 +27,25 @@ import (
 )
 
 var (
-	cpuprofile = flag.String("debug_cpuprofile", "", "write CPU profile to file")
-	memprofile = flag.String("debug_memprofile", "", "write memory profile to file")
+	debugCpuprofile = flag.String("debug_cpuprofile", "", "write CPU profile to file")
+	debugMemprofile = flag.String("debug_memprofile", "", "write memory profile to file")
+	debugLogFile    = flag.String("debug_log_file", "", "log file to write all messages to (may be slow)")
 )
 
 func main() {
+	// Turn all panics into Fatalf for uniform exception handling.
+	defer func() {
+		if r := recover(); r != nil {
+			log.Fatalf("got panic: %v", r)
+		}
+	}()
+
 	flag.Parse(aaaaxy.LoadConfig)
-	if *cpuprofile != "" {
-		f, err := os.Create(*cpuprofile)
+	if *debugLogFile != "" {
+		log.AddLogFile(*debugLogFile)
+	}
+	if *debugCpuprofile != "" {
+		f, err := os.Create(*debugCpuprofile)
 		if err != nil {
 			log.Fatalf("could not create CPU profile: %v", err)
 		}
@@ -51,8 +62,8 @@ func main() {
 	game := &aaaaxy.Game{}
 	err = ebiten.RunGame(game)
 	aaaaxy.BeforeExit()
-	if *memprofile != "" {
-		f, err := os.Create(*memprofile)
+	if *debugMemprofile != "" {
+		f, err := os.Create(*debugMemprofile)
 		if err != nil {
 			log.Fatalf("could not create memory profile: %v", err)
 		}
@@ -65,4 +76,5 @@ func main() {
 	if err != nil && err != aaaaxy.RegularTermination {
 		log.Fatalf("game exited abnormally: %v", err)
 	}
+	log.CloseLogFile()
 }
