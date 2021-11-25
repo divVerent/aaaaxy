@@ -66,5 +66,7 @@ Requests](https://github.com/divVerent/aaaaxy/pulls) |
 
 ### More Information
 
+See also the game's [itch.io page](https://divVerent.itch.io/aaaaxy).
+
 Deeper technical information and source code is to be found on the
 [GitHub repository](https://github.com/divVerent/aaaaxy).
