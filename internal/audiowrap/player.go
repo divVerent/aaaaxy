@@ -24,6 +24,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/dontgc"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/go117"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
@@ -147,7 +148,7 @@ func ebiPlayerFromBytes(src []byte) *ebiaudio.Player {
 
 func NewPlayerFromBytes(src []byte) *Player {
 	dmp, err := newDumper(func() (io.ReadCloser, error) {
-		return io.NopCloser(bytes.NewReader(src)), nil
+		return go117.NopCloser(bytes.NewReader(src)), nil
 	})
 	if err != nil {
 		log.Fatalf("UNREACHABLE CODE: newDumper returned an error despite passed an always-succeed function: %v", err)
