@@ -241,7 +241,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install Dependencies
-      run: 'sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get -y install wine wine32 libwine:i386 libfaudio0:i386 libglib2.0-0:i386 libgstreamer-plugins-base1.0-0:i386 libgstreamer1.0-0:i386 xvfb'
+      run: 'sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get -y install wine wine32 libwine:i386 libfaudio0:i386 libglib2.0-0:i386 libgstreamer-plugins-base1.0-0:i386 libgstreamer1.0-0:i386 libmount1:i386 libselinux1:i386 xvfb'
 
     - name: Download Binary
       uses: actions/download-artifact@v2
