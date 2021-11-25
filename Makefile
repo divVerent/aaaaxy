@@ -80,6 +80,11 @@ clean:
 vet:
 	$(GO) vet ./...
 
+.PHONY: mod-update
+mod-update:
+	go get -u
+	go mod tidy -compat=1.16 -compat=1.17
+
 # The actual build process follows.
 
 # Packing the data files.
