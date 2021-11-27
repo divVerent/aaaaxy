@@ -64,7 +64,6 @@ func (f *ForceField) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 	w.SetSolid(e, true)
 	w.SetZIndex(e, constants.ForceFieldZ)
 
-	// TODO: change to a dedicated sound.
 	var err error
 	f.ShockSound, err = sound.Load("forcefield.ogg")
 	if err != nil {

@@ -361,7 +361,6 @@ func (r *Riser) Update() {
 	}
 	targetSizeChange := targetSize.Sub(r.Entity.Rect.Size)
 	if r.ModifyHitBoxCentered(targetSizeChange) != targetSizeChange {
-		// TODO(divVerent): Could also track the missing size change instead. That will require hitbox modifying to not always be centered.
 		r.World.Detach(r.Entity)
 	}
 

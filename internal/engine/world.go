@@ -944,7 +944,6 @@ func (w *World) EntityIsAlive(incarnation EntityIncarnation) bool {
 }
 
 func (w *World) FindName(name string) []*Entity {
-	// TODO maybe optimize this too by an intrusive list?
 	var out []*Entity
 	w.entities.forEach(func(ent *Entity) error {
 		if ent.name == name {
@@ -956,7 +955,6 @@ func (w *World) FindName(name string) []*Entity {
 }
 
 func (w *World) FindContents(c level.Contents) []*Entity {
-	// TODO maybe keep such a list for all contents masks?
 	if c == level.OpaqueContents {
 		return w.opaqueEntities.items
 	}

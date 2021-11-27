@@ -99,7 +99,6 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	if s.Item == Settings {
 		fg, bg = fgs, bgs
 	}
-	// TODO: menu item for signs seen and coins gotten.
 	font.Menu.Draw(screen, "Settings", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Credits {

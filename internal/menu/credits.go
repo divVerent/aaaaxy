@@ -128,7 +128,6 @@ func (s *CreditsScreen) Draw(screen *ebiten.Image) {
 		if y < 0 || y >= engine.GameHeight+creditsLineHeight {
 			continue
 		}
-		// TODO fade in/out at screen edge
 		if isTitle {
 			font.MenuBig.Draw(screen, line, m.Pos{X: x, Y: y}, true, fgs, bgs)
 		} else {
