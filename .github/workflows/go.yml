@@ -1,12 +1,10 @@
 name: Go
 
 on:
-  push:
-    branches: [ main ]
-  release:
-    types: [ created ]
   pull_request:
-    branches: [ main ]
+  push:
+  schedule:
+    - cron: '58 12 * * *'
   workflow_dispatch:
 
 jobs:

@@ -1,10 +1,9 @@
 name: 100% Single-Platform Test Run
 
 on:
-  release:
-    types: [ created ]
   pull_request:
-    branches: [ main ]
+  schedule:
+    - cron: '50 23 * * *'
   workflow_dispatch:
 
 jobs:

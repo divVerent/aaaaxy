@@ -1,12 +1,10 @@
 name: Any% Multi-Platform Test Run
 
 on:
-  push:
-    branches: [ main ]
-  release:
-    types: [ created ]
   pull_request:
-    branches: [ main ]
+  push:
+  schedule:
+    - cron: '55 22 * * *'
   workflow_dispatch:
 
 jobs:
