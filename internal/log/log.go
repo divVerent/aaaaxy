@@ -66,6 +66,14 @@ func Errorf(format string, v ...interface{}) {
 	log.Output(2, fmt.Sprintf("[ERROR] "+format, v...))
 }
 
+func TraceErrorf(format string, v ...interface{}) {
+	if *V < errorLevel {
+		return
+	}
+	debug.PrintStack()
+	log.Output(2, fmt.Sprintf("[ERROR] "+format, v...))
+}
+
 func Fatalf(format string, v ...interface{}) {
 	debug.PrintStack()
 	msg := fmt.Sprintf(format, v...)

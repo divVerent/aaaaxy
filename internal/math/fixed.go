@@ -79,7 +79,8 @@ func (f Fixed) String() string {
 
 func (f Fixed) Sqrt() Fixed {
 	if f < 0 {
-		log.Fatalf("sqrt of negative number %v", f)
+		log.TraceErrorf("sqrt of negative number %v", f)
+		return 0
 	}
 	if f == 0 {
 		return 0
@@ -117,7 +118,7 @@ func (f Fixed) Sqrt() Fixed {
 		// fixes++
 	}
 	// if fixes > 16 {
-	// log.Fatalf("too many fixes for Sqrt(%v): %v fixes, guess was %v, result is %v", f, fixes, guess, s)
+	// log.TraceErrorf("too many fixes for Sqrt(%v): %v fixes, guess was %v, result is %v", f, fixes, guess, s)
 	// }
 
 	return s

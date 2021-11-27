@@ -94,7 +94,8 @@ func (s *PlayerState) CheckpointSeen(name string) SeenState {
 	case "Identity":
 		return SeenNormal
 	default:
-		log.Fatalf("invalid checkpoint_seen state: %v", state)
+		log.TraceErrorf("invalid checkpoint_seen state: %v", state)
+		return NotSeen
 	}
 	// Unreachable.
 	return 0
@@ -148,7 +149,8 @@ func (s *PlayerState) Frames() int {
 	if framesStr != "" {
 		_, err := fmt.Sscanf(framesStr, "%d", &frames)
 		if err != nil {
-			log.Fatalf("could not parse frames counter: %v", err)
+			log.Errorf("could not parse frames counter: %v", err)
+			return 60 * 86400 // Takes at least one day.
 		}
 	}
 	return frames
@@ -164,7 +166,8 @@ func (s *PlayerState) Escapes() int {
 	if escapesStr != "" {
 		_, err := fmt.Sscanf(escapesStr, "%d", &escapes)
 		if err != nil {
-			log.Fatalf("could not parse escapes counter: %v", err)
+			log.Errorf("could not parse escapes counter: %v", err)
+			return 60 * 86400 // Takes at least one day.
 		}
 	}
 	return escapes

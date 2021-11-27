@@ -113,8 +113,8 @@ func (cp *Centerprint) targetPos() int {
 	case Middle:
 		return screenHeight / 3
 	default:
-		log.Fatalf("invalid initial position: %v", cp.pos)
-		return 0
+		log.TraceErrorf("invalid initial position: %v", cp.pos)
+		return screenHeight / 3
 	}
 }
 
