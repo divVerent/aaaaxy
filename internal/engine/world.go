@@ -118,9 +118,13 @@ func (w *World) Initialized() bool {
 func (w *World) tileIndex(pos m.Pos) int {
 	i := m.Mod(pos.X, tileWindowWidth) + m.Mod(pos.Y, tileWindowHeight)*tileWindowWidth
 	if *debugCheckTileWindowSize {
+		topLeftTile := w.bottomRightTile.Sub(m.Delta{DX: tileWindowWidth - 1, DY: tileWindowHeight - 1})
+		if pos.X < topLeftTile.X || pos.X > w.bottomRightTile.X || pos.Y < topLeftTile.Y || pos.Y > w.bottomRightTile.Y {
+			log.Fatalf("accessed out of range tile: requested pos %v, want a pos in window [%v, %v]", pos, topLeftTile, w.bottomRightTile)
+		}
 		p := w.tilePos(i)
 		if p != pos {
-			log.Fatalf("accessed out of range tile: got %v, want near scroll tile %v", pos, w.bottomRightTile)
+			log.Fatalf("accessed out of range tile: got actual pos %v, want requested pos %v, near bottom-right scroll tile %v", p, pos, w.bottomRightTile)
 		}
 	}
 	return i

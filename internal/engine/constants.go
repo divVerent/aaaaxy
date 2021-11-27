@@ -58,9 +58,11 @@ const (
 	pixelsPerSpawnFrame = (GameWidth / 2) / 60
 
 	// borderWindowWidth is the maximum amount of pixels loaded outside the screen.
-	borderWindowWidth = GameWidth
+	// Must be at least the largest entity width plus two tiles to cover for misalignment.
+	borderWindowWidth = 1264 + 2*level.TileSize
 	// borderWindowHeight is the maximum amount of pixels loaded outside the screen.
-	borderWindowHeight = GameHeight
+	// Must be at least the largest entity height plus two tiles to cover for misalignment.
+	borderWindowHeight = 6480 + 2*level.TileSize
 
 	// tileWindowWidth is the maximum known width in tiles.
 	tileWindowWidth = (GameWidth+2*borderWindowWidth+level.TileSize-2)/level.TileSize + 1
