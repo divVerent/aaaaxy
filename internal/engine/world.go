@@ -832,9 +832,13 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			// Damn... these loading conflicts are actually normal and happen around all warpzones.
 			// Thus it'd be nice to have a better way to detect "bad" stuff.
 			// We only really care about loading conflicts during visibility tracing.
+			// Even then, it's usually rather harmless and will fix itself when getting closer.
 			// TODO: During expanding it's normal, so detect that situation here.
-			log.Fatalf("conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v)",
+			log.TraceErrorf("conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v)",
 				newPos, tile.LoadedFromNeighbor, tile.LevelPos, p, d, newLevelTile.Tile.LevelPos)
+			// Can't load a new one here; note that if *debugDetectLoadingConflicts isn't set,
+			// this case will never be hit.
+			return tile
 		}
 	}
 	newTile := newLevelTile.Tile
