@@ -18,7 +18,7 @@
 # TODO: figure out how to get efficient 3D graphics in this (e.g. via Virgil?).
 
 if [ $# -lt 4 ]; then
-	echo >&2 "Usage: $0 tag 'binary with flags...' demo1.dem demo2.dem ..."
+	echo >&2 "Usage: $0 tag required_regex 'binary with flags...' demo1.dem demo2.dem ..."
 	exit 1
 fi
 
@@ -36,6 +36,8 @@ for demo in "$@"; do
 	if ! $binary \
 		-audio=false \
 		-batch \
+		-debug_check_tile_window_size \
+		-debug_check_tnih_signs \
 		-debug_log_file="$demo.$tag.log" \
 		-demo_play="$demo" \
 		-demo_record="$demo.$tag.actual.dem" \
