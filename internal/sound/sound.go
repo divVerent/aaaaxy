@@ -118,8 +118,8 @@ func Load(name string) (*Sound, error) {
 // PlayAtVolume plays the given sound effect at the given volume.
 func (s *Sound) PlayAtVolume(vol float64) *audiowrap.Player {
 	var player *audiowrap.Player
+	var err error
 	if s.loopStart >= 0 {
-		var err error
 		player, err = audiowrap.NewPlayer(func() (io.ReadCloser, error) {
 			loopEnd := s.loopEnd * bytesPerSample
 			if loopEnd < 0 {
@@ -127,11 +127,13 @@ func (s *Sound) PlayAtVolume(vol float64) *audiowrap.Player {
 			}
 			return go117.NopCloser(audio.NewInfiniteLoopWithIntro(bytes.NewReader(s.sound), s.loopStart*bytesPerSample, loopEnd)), nil
 		})
-		if err != nil {
-			log.Fatalf("UNREACHABLE CODE: could not spawn new sound using an always-succeed function: %v", err)
-		}
 	} else {
-		player = audiowrap.NewPlayerFromBytes(s.sound)
+		player, err = audiowrap.NewPlayerFromBytes(s.sound)
+	}
+	if err != nil {
+		// No need for fatal - we just play no sound then.
+		log.Errorf("UNREACHABLE CODE: could not spawn new sound using an always-succeed function: %v", err)
+		return audiowrap.NoPlayer()
 	}
 	player.SetVolume(s.volumeAdjust * *soundVolume * vol)
 	player.Play()

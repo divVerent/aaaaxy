@@ -25,7 +25,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/go117"
-	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 var (
@@ -53,6 +52,12 @@ type Player struct {
 	volume     float64
 	fadeFrames int
 	fadeFrame  int
+}
+
+func NoPlayer() *Player {
+	p := &Player{}
+	p.dontGCState = dontgc.SetUp(p)
+	return p
 }
 
 type FadeHandle struct {
@@ -146,19 +151,18 @@ func ebiPlayerFromBytes(src []byte) *ebiaudio.Player {
 	return ebiaudio.NewPlayerFromBytes(ebiaudio.CurrentContext(), src)
 }
 
-func NewPlayerFromBytes(src []byte) *Player {
+func NewPlayerFromBytes(src []byte) (*Player, error) {
 	dmp, err := newDumper(func() (io.ReadCloser, error) {
 		return go117.NopCloser(bytes.NewReader(src)), nil
 	})
 	if err != nil {
-		log.Fatalf("UNREACHABLE CODE: newDumper returned an error despite passed an always-succeed function: %v", err)
-		return nil
+		return nil, err
 	}
 	ebi := ebiPlayerFromBytes(src)
 	return &Player{
 		ebi: ebi,
 		dmp: dmp,
-	}
+	}, nil
 }
 
 func (p *Player) CloseInstantly() error {
