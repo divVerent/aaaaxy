@@ -1,10 +1,8 @@
-name: Go
+name: Go But With Current Dependencies
 
 on:
-  pull_request:
-  push:
   schedule:
-    - cron: '58 12 * * *'
+    - cron: '51 11 * * *'
   workflow_dispatch:
 
 jobs:
@@ -21,6 +19,9 @@ jobs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.17
+
+    - name: Update
+      run: 'make mod-update'
 
     - name: Build
       run: 'make'
