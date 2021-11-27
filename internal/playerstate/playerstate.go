@@ -97,8 +97,6 @@ func (s *PlayerState) CheckpointSeen(name string) SeenState {
 		log.TraceErrorf("invalid checkpoint_seen state: %v", state)
 		return NotSeen
 	}
-	// Unreachable.
-	return 0
 }
 
 func (s *PlayerState) RecordCheckpoint(name string, flipped bool) bool {
