@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8065">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8080">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -720,7 +720,7 @@
   <object id="96" name="WarpToEndlessEight" gid="293" x="5152" y="4640" width="16" height="32"/>
   <object id="97" name="WarpToHub" gid="293" x="4480" y="4640" width="16" height="32"/>
   <object id="98" name="WarpToHub" gid="299" x="3456" y="4880" width="16" height="32"/>
-  <object id="99" name="the_hub" type="Checkpoint" x="3872" y="5136" width="288" height="32">
+  <object id="99" name="the_hub" type="Checkpoint" x="3872" y="5136" width="288" height="80">
    <properties>
     <property name="hub" type="bool" value="true"/>
     <property name="music" value=""/>
@@ -6639,7 +6639,7 @@
   <object id="1707" name="ThreePlatformsDarkness" type="SwitchableSprite" gid="16" x="968" y="8112" width="64" height="16"/>
   <object id="1711" type="SwitchMusic" x="976" y="7984" width="48" height="16"/>
   <object id="1712" name="WarpFromThreePlatforms" gid="295" x="976" y="7888" width="48" height="16"/>
-  <object id="1713" name="the_antihub" type="Checkpoint" x="4192" y="1680" width="288" height="32">
+  <object id="1713" name="the_antihub" type="Checkpoint" x="4192" y="1680" width="288" height="80">
    <properties>
     <property name="hub" type="bool" value="true"/>
     <property name="music" value=""/>
@@ -17417,5 +17417,46 @@
     <property name="target" value="CPIsALie"/>
    </properties>
   </object>
+  <object id="8065" type="SetState" x="3840" y="5264" width="112" height="32">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="the_hub"/>
+   </properties>
+  </object>
+  <object id="8066" type="SetState" x="3920" y="5312" width="192" height="32">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="the_hub"/>
+   </properties>
+  </object>
+  <object id="8067" type="SetState" x="4240" y="1840" width="192" height="32">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="the_antihub"/>
+   </properties>
+  </object>
+  <object id="8068" type="SetState" x="4192" y="1808" width="80" height="32">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="the_antihub"/>
+   </properties>
+  </object>
+  <object id="8073" type="SetState" x="4080" y="5264" width="112" height="32">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="the_hub"/>
+   </properties>
+  </object>
+  <object id="8074" type="SetState" x="4400" y="1808" width="80" height="32">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="the_antihub"/>
+   </properties>
+  </object>
+  <object id="8075" gid="303" x="6720" y="800" width="16" height="16"/>
+  <object id="8076" gid="303" x="6736" y="800" width="16" height="16"/>
+  <object id="8077" gid="303" x="6752" y="800" width="16" height="16"/>
+  <object id="8078" gid="303" x="6768" y="800" width="16" height="16"/>
+  <object id="8079" gid="303" x="6784" y="800" width="16" height="16"/>
  </objectgroup>
 </map>
