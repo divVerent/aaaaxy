@@ -53,8 +53,8 @@ var (
 		ebiten.KeyEnter: DOSKeyboard | ViKeyboard,
 	}
 	exitKeys = map[ebiten.Key]InputMap{
-		ebiten.KeyEscape:    AnyKeyboard,
-		ebiten.KeyBackspace: AnyKeyboard,
+		ebiten.KeyEscape:    AnyKeyboardWithEscape,
+		ebiten.KeyBackspace: AnyKeyboardWithBackspace,
 	}
 	fullscreenKeys = map[ebiten.Key]InputMap{
 		ebiten.KeyF11: AnyInput,
@@ -65,12 +65,6 @@ var (
 func (i *impulse) keyboardPressed() InputMap {
 	for k, m := range i.keys {
 		if ebiten.IsKeyPressed(k) {
-			switch k {
-			case ebiten.KeyEscape:
-				exitKey = Escape
-			case ebiten.KeyBackspace:
-				exitKey = Backspace
-			}
 			return m
 		}
 	}

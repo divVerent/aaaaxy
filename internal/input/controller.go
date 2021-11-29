@@ -58,14 +58,28 @@ type impulse struct {
 }
 
 const (
-	NoInput     InputMap = 0
-	DOSKeyboard InputMap = 1
-	NESKeyboard InputMap = 2
-	FPSKeyboard InputMap = 4
-	ViKeyboard  InputMap = 8
-	AnyKeyboard InputMap = DOSKeyboard | NESKeyboard | FPSKeyboard | ViKeyboard
-	Gamepad     InputMap = 16
-	AnyInput    InputMap = AnyKeyboard | Gamepad
+	NoInput InputMap = 0
+
+	// Allocated input bits.
+	DOSKeyboardWithEscape    InputMap = 1
+	NESKeyboardWithEscape    InputMap = 2
+	FPSKeyboardWithEscape    InputMap = 4
+	ViKeyboardWithEscape     InputMap = 8
+	Gamepad                  InputMap = 16
+	DOSKeyboardWithBackspace InputMap = 32
+	NESKeyboardWithBackspace InputMap = 64
+	FPSKeyboardWithBackspace InputMap = 128
+	ViKeyboardWithBackspace  InputMap = 256
+
+	// Computed helpers values.
+	AnyKeyboardWithEscape    = DOSKeyboardWithEscape | NESKeyboardWithEscape | FPSKeyboardWithEscape | ViKeyboardWithEscape
+	AnyKeyboardWithBackspace = DOSKeyboardWithBackspace | NESKeyboardWithBackspace | FPSKeyboardWithBackspace | ViKeyboardWithBackspace
+	DOSKeyboard              = DOSKeyboardWithEscape | DOSKeyboardWithBackspace
+	NESKeyboard              = NESKeyboardWithEscape | NESKeyboardWithBackspace
+	FPSKeyboard              = FPSKeyboardWithEscape | FPSKeyboardWithBackspace
+	ViKeyboard               = ViKeyboardWithEscape | ViKeyboardWithBackspace
+	AnyKeyboard              = AnyKeyboardWithEscape | AnyKeyboardWithBackspace
+	AnyInput                 = AnyKeyboard | Gamepad
 )
 
 var (
@@ -100,7 +114,7 @@ func (i *impulse) update() {
 		// Whenever a new key is pressed, update the flag whether we're actually
 		// _using_ the gamepad. Used for some in-game text messages.
 		inputMap &= held
-		if inputMap == 0 {
+		if inputMap == NoInput {
 			inputMap = held
 		}
 	} else {
@@ -121,7 +135,7 @@ func Update() {
 		if len(gamepads) > 0 {
 			inputMap = Gamepad
 		} else {
-			inputMap = DOSKeyboard
+			inputMap = AnyKeyboard
 		}
 		firstUpdate = false
 	}
@@ -141,8 +155,6 @@ func Map() InputMap {
 
 type ExitButtonID int
 
-var exitKey = Escape
-
 const (
 	Escape ExitButtonID = iota
 	Backspace
@@ -153,18 +165,20 @@ func ExitButton() ExitButtonID {
 	if inputMap.ContainsAny(Gamepad) {
 		return Start
 	}
-	if runtime.GOOS == "js" {
+	if runtime.GOOS != "js" {
 		// On JS, the Esc key is kinda "reserved" for leaving fullsreeen.
-		return Backspace
+		// Thus we never recommend it, even if the user used it before.
+		if inputMap.ContainsAny(AnyKeyboardWithEscape) {
+			return Escape
+		}
 	}
-	return exitKey
+	return Backspace
 }
 
 // Demo code.
 
 type DemoState struct {
 	InputMap         InputMap      `json:",omitempty"`
-	ExitKey          ExitButtonID  `json:",omitempty"`
 	Left             *ImpulseState `json:",omitempty"`
 	Right            *ImpulseState `json:",omitempty"`
 	Up               *ImpulseState `json:",omitempty"`
@@ -180,7 +194,6 @@ func LoadFromDemo(state *DemoState) {
 		state = &DemoState{}
 	}
 	inputMap = state.InputMap
-	exitKey = state.ExitKey
 	Left.ImpulseState = state.Left.OrEmpty()
 	Right.ImpulseState = state.Right.OrEmpty()
 	Up.ImpulseState = state.Up.OrEmpty()
@@ -194,7 +207,6 @@ func LoadFromDemo(state *DemoState) {
 func SaveToDemo() *DemoState {
 	return &DemoState{
 		InputMap:         inputMap,
-		ExitKey:          exitKey,
 		Left:             Left.ImpulseState.UnlessEmpty(),
 		Right:            Right.ImpulseState.UnlessEmpty(),
 		Up:               Up.ImpulseState.UnlessEmpty(),
