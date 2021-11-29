@@ -19,6 +19,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"runtime"
 	"sort"
 	"strings"
 	"time"
@@ -32,6 +33,24 @@ var (
 	batch      = Bool("batch", false, "if set, show no alert boxes") // Must be declared here to prevent cycle.
 	loadConfig = Bool("load_config", true, "enable processing of the configuration file")
 )
+
+// SystemDefault performs a GOOS/GOARCH dependent value lookup to be used in flag defaults.
+// Map keys shall be */*, GOOS/*, */GOARCH or GOOS/GOARCH.
+func SystemDefault(m map[string]interface{}) interface{} {
+	k := fmt.Sprintf("%v/%v", runtime.GOOS, runtime.GOARCH)
+	if val, found := m[k]; found {
+		return val
+	}
+	k = fmt.Sprintf("%v/*", runtime.GOOS)
+	if val, found := m[k]; found {
+		return val
+	}
+	k = fmt.Sprintf("*/%v", runtime.GOARCH)
+	if val, found := m[k]; found {
+		return val
+	}
+	return m["*/*"]
+}
 
 // Bool creates a bool in our FlagSet.
 func Bool(name string, value bool, usage string) *bool {
@@ -185,8 +204,8 @@ func showUsage() {
 
 // Parse parses the command-line flags, then loads the config object using the provided function.
 // Should be called initially, before loading config.
-func Parse(getDefaults func() (*Config, error)) {
-	getConfig = getDefaults
+func Parse(getSystemDefaults func() (*Config, error)) {
+	getConfig = getSystemDefaults
 	flagSet.Usage = showUsage
 	flagSet.Parse(os.Args[1:])
 	applyConfig()

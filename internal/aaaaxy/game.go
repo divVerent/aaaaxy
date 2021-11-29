@@ -37,7 +37,7 @@ import (
 var RegularTermination = menu.RegularTermination
 
 var (
-	screenFilter = flag.String("screen_filter", "linear2xcrt", "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
+	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]interface{}{"js/*": "simple", "*/*": "linear2xcrt"}).(string), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
 	// TODO(divVerent): Remove this flag when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved.
 	screenFilterMaxScale    = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
 	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filter")

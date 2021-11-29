@@ -39,7 +39,7 @@ var RegularTermination = errors.New("exited normally")
 
 var (
 	saveState = flag.Int("save_state", 0, "number of save state slot")
-	showFps   = flag.Bool("show_fps", false, "show fps counter")
+	showFps   = flag.Bool("show_fps", flag.SystemDefault(map[string]interface{}{"js/*": true, "*/*": false}).(bool), "show fps counter")
 	showTime  = flag.Bool("show_time", false, "show game time")
 )
 

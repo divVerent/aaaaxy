@@ -38,10 +38,10 @@ var (
 	debugShowTransforms           = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
 	cheatShowBboxes               = flag.Bool("cheat_show_bboxes", false, "show the bounding boxes of all entities")
 	debugShowVisiblePolygon       = flag.Bool("debug_show_visible_polygon", false, "show the visibility polygon")
-	drawOutside                   = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
+	drawOutside                   = flag.Bool("draw_outside", flag.SystemDefault(map[string]interface{}{"js/*": false, "*/*": true}).(bool), "draw outside of the visible area; requires draw_visibility_mask")
 	drawVisibilityMask            = flag.Bool("draw_visibility_mask", true, "draw visibility mask (if disabled, all loaded tiles are shown")
 	expandUsingVertices           = flag.Bool("expand_using_vertices", true, "expand using polygon math (simplifies rendering)")
-	expandUsingVerticesAccurately = flag.Bool("expand_using_vertices_accurately", true, "expand using simpler polygon math (just approximate, removes a render pass)")
+	expandUsingVerticesAccurately = flag.Bool("expand_using_vertices_accurately", flag.SystemDefault(map[string]interface{}{"js/*": false, "*/*": true}).(bool), "expand using simpler polygon math (just approximate, removes a render pass)")
 )
 
 type renderer struct {
