@@ -44,6 +44,15 @@ The current version is v1.0.10. Download here:
 
 <!-- END DOWNLOAD LINKS -->
 
+### Try Online\!
+
+There is also a bleeding edge [WebAssembly
+build](https://rm.cloudns.org/aaaaxy/current/aaaaxy.html).
+
+Note that this is very experimental and may be too slow for many
+computers. For full performance, please use the installable builds
+above.
+
 ### Further Resources
 
 [User Guide](userguide.md) | [Technical
