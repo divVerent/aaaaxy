@@ -27,7 +27,7 @@ import (
 var (
 	cheatFullMapNormal   = flag.Bool("cheat_full_map_normal", false, "Show the full map.")
 	cheatFullMapFlipped  = flag.Bool("cheat_full_map_flipped", false, "Show the full map.")
-	cheatPlayerAbilities = flag.StringMap("cheat_player_abilities", map[string]string{}, "Override player abilities")
+	cheatPlayerAbilities = flag.StringBoolMap("cheat_player_abilities", map[string]bool{}, "Override player abilities")
 )
 
 type PlayerState struct {
@@ -35,24 +35,21 @@ type PlayerState struct {
 }
 
 func (s *PlayerState) HasAbility(name string) bool {
-	switch (*cheatPlayerAbilities)[name] {
-	case "true":
-		return true
-	case "false":
-		return false
+	have, found := (*cheatPlayerAbilities)[name]
+	if found {
+		return have
 	}
-	switch (*cheatPlayerAbilities)["all"] {
-	case "true":
-		return true
-	case "false":
-		return false
+	have, found = (*cheatPlayerAbilities)["all"]
+	if found {
+		return have
 	}
 	key := "can_" + name
 	return s.Level.Player.PersistentState[key] == "true"
 }
 
 func (s *PlayerState) GiveAbility(name string) bool {
-	if (*cheatPlayerAbilities)[name] != "" {
+	_, found := (*cheatPlayerAbilities)[name]
+	if found {
 		return false
 	}
 	key := "can_" + name
@@ -291,7 +288,7 @@ func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, t
 			}
 		}
 	}
-	if flag.Cheating() {
+	if is, _ := flag.Cheating(); is {
 		addCategory(CheatingSpeedrun, 0)
 		addCategory(WithoutCheatsSpeedrun, ImpossibleSpeedrun)
 	}

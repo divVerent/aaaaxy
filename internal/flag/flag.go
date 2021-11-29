@@ -116,15 +116,17 @@ func Marshal() *Config {
 	return c
 }
 
-// Cheating returns if any cheats are enabled.
-func Cheating() bool {
+// Cheating returns if any cheats are enabled, and what they are.
+func Cheating() (bool, string) {
 	cheating := false
+	cheats := []string{}
 	flagSet.Visit(func(f *flag.Flag) {
 		if strings.HasPrefix(f.Name, "cheat_") {
 			cheating = true
+			cheats = append(cheats, fmt.Sprintf("--%s=%s", f.Name, f.Value.String()))
 		}
 	})
-	return cheating
+	return cheating, strings.Join(cheats, " ")
 }
 
 // ResetToDefaults returns all flags to their default value.
@@ -195,18 +197,18 @@ func NoConfig() (*Config, error) {
 	return nil, nil
 }
 
-// StringMap is a custom flag type to contain maps from string to string.
-func StringMap(name string, value map[string]string, usage string) *map[string]string {
-	m := stringMap{m: value}
+// StringBoolMap is a custom flag type to contain maps from string to bool.
+func StringBoolMap(name string, value map[string]bool, usage string) *map[string]bool {
+	m := stringBoolMap{m: value}
 	flagSet.Var(&m, name, usage)
 	return &m.m
 }
 
-type stringMap struct {
-	m map[string]string
+type stringBoolMap struct {
+	m map[string]bool
 }
 
-func (m *stringMap) String() string {
+func (m *stringBoolMap) String() string {
 	a := make([]string, 0, len(m.m))
 	for k := range m.m {
 		a = append(a, k)
@@ -219,13 +221,13 @@ func (m *stringMap) String() string {
 		}
 		s += k
 		s += "="
-		s += m.m[k]
+		s += fmt.Sprint(m.m[k])
 	}
 	return s
 }
 
-func (m *stringMap) Set(s string) error {
-	m.m = map[string]string{}
+func (m *stringBoolMap) Set(s string) error {
+	m.m = map[string]bool{}
 	if s == "" {
 		return nil
 	}
@@ -233,7 +235,22 @@ func (m *stringMap) Set(s string) error {
 		kv := strings.SplitN(word, "=", 2)
 		switch len(kv) {
 		case 2:
-			m.m[kv[0]] = kv[1]
+			if kv[1] == "" {
+				delete(m.m, kv[0])
+			} else {
+				var v bool
+				_, err := fmt.Sscanf(kv[1], "%v", &v)
+				if err != nil {
+					return fmt.Errorf("invalid StringBoolMap flag value, got %q, want something of the form key1=true/false,key2=true/false,...", s)
+				}
+				m.m[kv[0]] = v
+			}
+		case 1:
+			if strings.HasPrefix(kv[0], "no") {
+				m.m[kv[0][2:]] = false
+			} else {
+				m.m[kv[0]] = true
+			}
 		default:
 			return fmt.Errorf("invalid StringMap flag value, got %q, want something of the form key1=value1,key2=value2,...", s)
 		}
@@ -241,6 +258,6 @@ func (m *stringMap) Set(s string) error {
 	return nil
 }
 
-func (m *stringMap) Get() interface{} {
+func (m *stringBoolMap) Get() interface{} {
 	return m.m
 }

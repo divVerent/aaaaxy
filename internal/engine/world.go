@@ -323,8 +323,8 @@ func (w *World) Save() error {
 	if err != nil {
 		return err
 	}
-	if flag.Cheating() {
-		return errors.New("not saving, as cheats are enabled")
+	if is, cheats := flag.Cheating(); is {
+		return fmt.Errorf("not saving, as cheats are enabled: %v", cheats)
 	}
 	return vfs.WriteState(vfs.SavedGames, fmt.Sprintf("save-%d.json", w.saveState), state)
 }

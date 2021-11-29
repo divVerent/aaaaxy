@@ -66,7 +66,7 @@ func Init() error {
 		demoPlayer = json.NewDecoder(demoPlayerFile)
 	}
 	if *demoRecord != "" {
-		if flag.Cheating() {
+		if is, _ := flag.Cheating(); is {
 			return fmt.Errorf("cannot record a demo while cheating")
 		}
 		var err error
