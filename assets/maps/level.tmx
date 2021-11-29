@@ -14969,11 +14969,10 @@
     <property name="map_white_to" type="color" value="#00000000"/>
    </properties>
   </object>
-  <object id="6904" name="EscapeButton" type="SwitchableSprite" x="6800" y="5712" width="128" height="128">
+  <object id="6904" name="EscapeButton" type="ExitButton" x="6800" y="5712" width="128" height="128">
    <properties>
-    <property name="fade_time" value="10s"/>
-    <property name="image" value="esc_inv.png"/>
-    <property name="no_flip" value="x"/>
+    <property name="map_black_to" type="color" value="#00ffffff"/>
+    <property name="map_white_to" type="color" value="#ffffffff"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -16768,7 +16767,7 @@
     <property name="target" value="GeoDashWarp"/>
    </properties>
   </object>
-  <object id="7872" type="Text" x="4992" y="4576" width="96" height="32">
+  <object id="7872" type="Text" x="4976" y="4576" width="128" height="32">
    <properties>
     <property name="text" value="If stuck,  press {{ExitButton}}."/>
     <property name="text_bg" type="color" value="#ff000000"/>

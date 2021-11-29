@@ -227,10 +227,13 @@ func (c SpeedrunCategories) Name() string {
 	case AllFlippedSpeedrun:
 		return "All Flipped"
 	case NoEscapeSpeedrun:
-		if input.Map().ContainsAny(input.Gamepad) {
-			return "No Start"
-		} else {
+		switch input.ExitButton() {
+		default: // case input.Escape:
 			return "No Escape"
+		case input.Backspace:
+			return "No Backspace"
+		case input.Start:
+			return "No Start"
 		}
 	case RedundantAnyPercentSpeedrun:
 		return ""

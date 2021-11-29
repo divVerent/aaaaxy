@@ -157,11 +157,14 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			if ps == nil {
 				return "", fmt.Errorf("cannot use {{ExitButton}} in static elements")
 			}
-			i := input.Map()
-			if i.ContainsAny(input.Gamepad) {
+			switch input.ExitButton() {
+			default: // case input.Escape:
+				return "Escape", nil
+			case input.Backspace:
+				return "Backspace", nil
+			case input.Start:
 				return "Start", nil
 			}
-			return "Escape", nil
 		},
 		"ActionButton": func() (string, error) {
 			if ps == nil {

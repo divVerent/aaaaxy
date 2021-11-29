@@ -15,6 +15,8 @@
 package input
 
 import (
+	"runtime"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -137,10 +139,32 @@ func Map() InputMap {
 	return inputMap
 }
 
+type ExitButtonID int
+
+var exitKey = Escape
+
+const (
+	Escape ExitButtonID = iota
+	Backspace
+	Start
+)
+
+func ExitButton() ExitButtonID {
+	if inputMap.ContainsAny(Gamepad) {
+		return Start
+	}
+	if runtime.GOOS == "js" {
+		// On JS, the Esc key is kinda "reserved" for leaving fullsreeen.
+		return Backspace
+	}
+	return exitKey
+}
+
 // Demo code.
 
 type DemoState struct {
 	InputMap         InputMap      `json:",omitempty"`
+	ExitKey          ExitButtonID  `json:",omitempty"`
 	Left             *ImpulseState `json:",omitempty"`
 	Right            *ImpulseState `json:",omitempty"`
 	Up               *ImpulseState `json:",omitempty"`
@@ -156,6 +180,7 @@ func LoadFromDemo(state *DemoState) {
 		state = &DemoState{}
 	}
 	inputMap = state.InputMap
+	exitKey = state.ExitKey
 	Left.ImpulseState = state.Left.OrEmpty()
 	Right.ImpulseState = state.Right.OrEmpty()
 	Up.ImpulseState = state.Up.OrEmpty()
@@ -169,6 +194,7 @@ func LoadFromDemo(state *DemoState) {
 func SaveToDemo() *DemoState {
 	return &DemoState{
 		InputMap:         inputMap,
+		ExitKey:          exitKey,
 		Left:             Left.ImpulseState.UnlessEmpty(),
 		Right:            Right.ImpulseState.UnlessEmpty(),
 		Up:               Up.ImpulseState.UnlessEmpty(),

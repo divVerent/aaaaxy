@@ -33,10 +33,13 @@ func (s *ExitButton) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entit
 	if sp.Properties["no_flip"] == "" {
 		sp.Properties["no_flip"] = "x"
 	}
-	if input.Map().ContainsAny(input.Gamepad) {
-		sp.Properties["image"] = "start.png"
-	} else {
+	switch input.ExitButton() {
+	default: // case input.Escape:
 		sp.Properties["image"] = "esc.png"
+	case input.Backspace:
+		sp.Properties["image"] = "backspace.png"
+	case input.Start:
+		sp.Properties["image"] = "start.png"
 	}
 	s.SwitchableSprite.Spawn(w, sp, e)
 	return nil
