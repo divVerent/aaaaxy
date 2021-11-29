@@ -586,7 +586,7 @@ func Load(filename string) (*Level, error) {
 				// Do not link to tiles.
 				continue
 			}
-			if properties["type"] == "Checkpoint" {
+			if properties["type"] == "Checkpoint" || properties["type"] == "CheckpointTarget" {
 				level.Checkpoints[properties["name"]] = &ent
 				checkpoints[ent.ID] = &ent
 				// These do get linked.
