@@ -21,6 +21,13 @@ set -ex
 GOOS=$($GO env GOOS)
 GOEXE=$($GO env GOEXE)
 
+case "$GOOS" in
+	js)
+		# HACK: Itch and Apache want a .wasm file extension, but GOEXE doesn't actually have that.
+		GOEXE=.wasm
+		;;
+esac
+
 case "$#" in
 	1)
 		GOARCH_SUFFIX=-$1
@@ -43,7 +50,7 @@ case "$GOOS" in
 		;;
 	js)
 		appdir=.
-		app="aaaaxy-$GOOS$GOARCH_SUFFIX$GOEXE aaaaxy.html wasm_exec.js"
+		app="aaaaxy-$GOOS$GOARCH_SUFFIX$GOEXE index.html wasm_exec.js"
 		prefix=
 		;;
 	*)
@@ -70,6 +77,14 @@ else
 	$LIPO -create $lipofiles -output "${prefix}aaaaxy-$GOOS"
 	rm -f $lipofiles
 fi
+
+case "$GOOS" in
+	js)
+		# Pack in a form itch.io can use.
+		cp aaaaxy.html index.html
+		cp "$(GOOS=js GOARCH=wasm go env GOROOT)"/misc/wasm/wasm_exec.js .
+		;;
+esac
 
 rm -f "$zip"
 7za a -tzip -mx=9 "$zip" \
