@@ -4,7 +4,11 @@ FASTER_VIDEO_DUMPING = false
 
 # System properties.
 GO ?= go
+ifeq ($(shell $(GO) env GOARCH),wasm)
+EXE = .wasm
+else
 EXE = $(shell $(GO) env GOEXE)
+endif
 SUFFIX = -$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)$(EXE)
 BINARY = $(PREFIX)aaaaxy$(INFIX)$(SUFFIX)
 
