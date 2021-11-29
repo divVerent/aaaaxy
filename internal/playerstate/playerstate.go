@@ -41,6 +41,12 @@ func (s *PlayerState) HasAbility(name string) bool {
 	case "false":
 		return false
 	}
+	switch (*cheatPlayerAbilities)["all"] {
+	case "true":
+		return true
+	case "false":
+		return false
+	}
 	key := "can_" + name
 	return s.Level.Player.PersistentState[key] == "true"
 }
