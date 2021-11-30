@@ -15,6 +15,11 @@
 //go:build embed
 // +build embed
 
-package main
+package assets
 
-//go:generate scripts/build-licenses.sh
+import (
+	"embed"
+)
+
+//go:embed */[^_]*
+var FS embed.FS

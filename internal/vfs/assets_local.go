@@ -38,9 +38,12 @@ func Init() error {
 	localAssetDirs = []string{"assets"}
 	content, err := ioutil.ReadDir("third_party")
 	if err != nil {
-		return fmt.Errorf("could not find third party directory: %v", err)
+		return fmt.Errorf("could not find local third party directory: %v", err)
 	}
 	for _, info := range content {
+		if !info.IsDir() {
+			continue
+		}
 		localAssetDirs = append(localAssetDirs, filepath.Join("third_party", info.Name(), "assets"))
 	}
 	log.Infof("local asset search path: %v", localAssetDirs)
@@ -49,7 +52,6 @@ func Init() error {
 
 // load loads a file from the VFS.
 func load(vfsPath string) (ReadSeekCloser, error) {
-	// Note: this must be consistent with build-vfs.sh.
 	var err error
 	for _, dir := range localAssetDirs {
 		var r ReadSeekCloser

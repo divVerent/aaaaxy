@@ -19,45 +19,88 @@ package vfs
 
 import (
 	"embed"
+	"errors"
 	"fmt"
+	"io/fs"
+	"os"
 	"path"
 	"sort"
+
+	"github.com/divVerent/aaaaxy/internal/log"
+
+	"github.com/divVerent/aaaaxy/assets"
+	_ "github.com/divVerent/aaaaxy/licenses"
+	"github.com/divVerent/aaaaxy/third_party"
 )
 
-//go:embed _embedroot
-var myfs embed.FS
+type fsRoot struct {
+	fs   *embed.FS
+	root string
+}
+
+var (
+	embeddedAssetDirs []fsRoot
+)
 
 // Init initializes the VFS. Must run after loading the assets.
 func Init() error {
+	embeddedAssetDirs = []fsRoot{{
+		fs:   &assets.FS,
+		root: ".",
+	}}
+	content, err := third_party.FS.ReadDir(".")
+	if err != nil {
+		return fmt.Errorf("could not find embedded third party directory: %v", err)
+	}
+	for _, info := range content {
+		if !info.IsDir() {
+			continue
+		}
+		embeddedAssetDirs = append(embeddedAssetDirs, fsRoot{
+			fs:   &third_party.FS,
+			root: path.Join(info.Name(), "assets"),
+		})
+	}
+	log.Infof("embedded asset search path: %v", embeddedAssetDirs)
 	return nil
 }
 
 // load loads a file from the VFS.
 func load(vfsPath string) (ReadSeekCloser, error) {
-	f, err := myfs.Open("_embedroot" + vfsPath)
-	if err != nil {
-		return nil, fmt.Errorf("could not open embed:%v: %w", vfsPath, err)
-	}
-	rsc, ok := f.(ReadSeekCloser)
-	if !ok {
-		info, err := f.Stat()
-		if err == nil && info.IsDir() {
-			return nil, fmt.Errorf("could not open embed:%v: is a directory", vfsPath)
+	var err error
+	for _, dir := range embeddedAssetDirs {
+		var f fs.File
+		f, err = dir.fs.Open(path.Join(dir.root, vfsPath))
+		if err != nil {
+			continue
 		}
-		return nil, fmt.Errorf("could not open embed:%v: internal error (go:embed doesn't yield ReadSeekCloser)", vfsPath)
+		rsc, ok := f.(ReadSeekCloser)
+		if !ok {
+			info, err := f.Stat()
+			if err == nil && info.IsDir() {
+				return nil, fmt.Errorf("could not open embed:%v: is a directory", vfsPath)
+			}
+			return nil, fmt.Errorf("could not open embed:%v: internal error (go:embed doesn't yield ReadSeekCloser)", vfsPath)
+		}
+		return rsc, nil
 	}
-	return rsc, nil
+	return nil, fmt.Errorf("could not open embed:%v: %w", vfsPath, err)
 }
 
 // readDir lists all files in a directory. Returns their VFS paths!
 func readDir(vfsPath string) ([]string, error) {
-	content, err := myfs.ReadDir("_embedroot" + vfsPath)
-	if err != nil {
-		return nil, fmt.Errorf("could not scan embed:%v: %v", vfsPath, err)
-	}
 	var results []string
-	for _, info := range content {
-		results = append(results, path.Join(vfsPath, info.Name()))
+	for _, dir := range embeddedAssetDirs {
+		content, err := dir.fs.ReadDir(path.Join(dir.root, vfsPath))
+		if err != nil {
+			if !errors.Is(err, os.ErrNotExist) {
+				return nil, fmt.Errorf("could not scan embed:%v:%v: %v", vfsPath, dir, err)
+			}
+			continue
+		}
+		for _, info := range content {
+			results = append(results, path.Join(vfsPath, info.Name()))
+		}
 	}
 	sort.Strings(results)
 	return results, nil

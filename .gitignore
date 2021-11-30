@@ -8,8 +8,7 @@
 /aaaaxy.syso
 /aaaaxy.tiled-session
 /assets/generated
-/internal/vfs/_embedroot
-/licenses
+/licenses/*/
 /packaging/*.desktop
 /packaging/*.png
 /packaging/AAAAXY.AppDir/
