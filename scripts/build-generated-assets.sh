@@ -25,8 +25,11 @@ mkdir -p assets/generated
 
 if ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
 	trap 'rm -f assets/generated/level.cp.json' EXIT
-	${GO} run github.com/divVerent/aaaaxy/cmd/dumpcps assets/maps/level.tmx > assets/generated/level.cp.dot
+	# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
+	${GO} run github.com/divVerent/aaaaxy/cmd/dumpcps |cat> assets/generated/level.cp.dot
+	grep -c . assets/generated/level.cp.dot
 	neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
+	grep -c . assets/generated/level.cp.json
 	trap - EXIT
 fi
 
