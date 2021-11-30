@@ -21,7 +21,7 @@ import (
 	_ "github.com/akavel/rsrc/rsrc"
 
 	// To provide the "go-licenses" tool.
-	_ "github.com/google/go-licenses"
+	_ "github.com/google/go-licenses/licenses"
 	_ "github.com/otiai10/copy"
 	_ "github.com/spf13/cobra"
 )
