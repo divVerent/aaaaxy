@@ -81,19 +81,19 @@
   <properties>
    <property name="orientation" value="NE"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/oneway_n.png"/>
+  <image width="32" height="32" source="_editorimgs/oneway_n.png"/>
  </tile>
  <tile id="14" type="OneWay">
   <properties>
    <property name="orientation" value="WN"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/oneway_w.png"/>
+  <image width="32" height="32" source="_editorimgs/oneway_w.png"/>
  </tile>
  <tile id="15" type="OneWay">
   <properties>
    <property name="orientation" value="SW"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/oneway_s.png"/>
+  <image width="32" height="32" source="_editorimgs/oneway_s.png"/>
  </tile>
  <tile id="16" type="Switch">
   <image width="16" height="16" source="switch_off.png"/>
@@ -128,7 +128,7 @@
   <image width="16" height="16" source="questionblock.png"/>
  </tile>
  <tile id="22" type="QuestionBlock">
-  <image width="16" height="16" source="editorimgs/kaizoblock.png"/>
+  <image width="16" height="16" source="_editorimgs/kaizoblock.png"/>
   <properties>
    <property name="kaizo" type="bool" value="true"/>
   </properties>
@@ -140,19 +140,19 @@
   <properties>
    <property name="image_dir" value=""/>
   </properties>
-  <image width="16" height="16" source="editorimgs/gradient_left_right.png"/>
+  <image width="16" height="16" source="_editorimgs/gradient_left_right.png"/>
  </tile>
  <tile id="25" type="Sprite">
   <properties>
    <property name="image_dir" value=""/>
   </properties>
-  <image width="16" height="16" source="editorimgs/gradient_top_bottom.png"/>
+  <image width="16" height="16" source="_editorimgs/gradient_top_bottom.png"/>
  </tile>
  <tile id="26" type="Sprite">
   <properties>
    <property name="image_dir" value=""/>
   </properties>
-  <image width="16" height="16" source="editorimgs/gradient_outside_inside.png"/>
+  <image width="16" height="16" source="_editorimgs/gradient_outside_inside.png"/>
  </tile>
  <tile id="27" type="Sprite">
   <properties>
@@ -167,7 +167,7 @@
    <property name="image" value="arrow32d.png"/>
    <property name="orientation" value="NE"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/arrow32_ne.png"/>
+  <image width="32" height="32" source="_editorimgs/arrow32_ne.png"/>
  </tile>
  <tile id="29" type="Sprite">
   <properties>
@@ -175,7 +175,7 @@
    <property name="image" value="arrow32s.png"/>
    <property name="orientation" value="NE"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/arrow32_n.png"/>
+  <image width="32" height="32" source="_editorimgs/arrow32_n.png"/>
  </tile>
  <tile id="30" type="Sprite">
   <properties>
@@ -183,7 +183,7 @@
    <property name="image" value="arrow32d.png"/>
    <property name="orientation" value="WN"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/arrow32_nw.png"/>
+  <image width="32" height="32" source="_editorimgs/arrow32_nw.png"/>
  </tile>
  <tile id="31" type="Sprite">
   <properties>
@@ -191,7 +191,7 @@
    <property name="image" value="arrow32s.png"/>
    <property name="orientation" value="WN"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/arrow32_w.png"/>
+  <image width="32" height="32" source="_editorimgs/arrow32_w.png"/>
  </tile>
  <tile id="32" type="Sprite">
   <properties>
@@ -199,7 +199,7 @@
    <property name="image" value="arrow32d.png"/>
    <property name="orientation" value="SW"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/arrow32_sw.png"/>
+  <image width="32" height="32" source="_editorimgs/arrow32_sw.png"/>
  </tile>
  <tile id="33" type="Sprite">
   <properties>
@@ -207,7 +207,7 @@
    <property name="image" value="arrow32s.png"/>
    <property name="orientation" value="SW"/>
   </properties>
-  <image width="32" height="32" source="editorimgs/arrow32_s.png"/>
+  <image width="32" height="32" source="_editorimgs/arrow32_s.png"/>
  </tile>
  <tile id="34" type="Sprite">
   <properties>
@@ -220,13 +220,13 @@
   <properties>
    <property name="orientation" value="ES"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/forcefield_h.png"/>
+  <image width="16" height="16" source="_editorimgs/forcefield_h.png"/>
  </tile>
  <tile id="36" type="ForceField">
   <properties>
    <property name="orientation" value="SW"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/forcefield_v.png"/>
+  <image width="16" height="16" source="_editorimgs/forcefield_v.png"/>
  </tile>
  <tile id="37" type="MovableSprite">
   <properties>
@@ -235,7 +235,7 @@
    <property name="delta" value="0 -64"/>
    <property name="solid" value="true"/>
   </properties>
-  <image width="32" height="64" source="editorimgs/movingdoor.png"/>
+  <image width="32" height="64" source="_editorimgs/movingdoor.png"/>
  </tile>
  <tile id="38" type="DisappearBlock">
   <image width="16" height="16" source="disappearblock.png"/>
@@ -257,19 +257,19 @@
   <properties>
    <property name="orientation" value="NE"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/v_n.png"/>
+  <image width="16" height="16" source="_editorimgs/v_n.png"/>
  </tile>
  <tile id="42" type="VVVVVV">
   <properties>
    <property name="orientation" value="WN"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/v_w.png"/>
+  <image width="16" height="16" source="_editorimgs/v_w.png"/>
  </tile>
  <tile id="43" type="VVVVVV">
   <properties>
    <property name="orientation" value="SW"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/v_s.png"/>
+  <image width="16" height="16" source="_editorimgs/v_s.png"/>
  </tile>
  <tile id="44" type="RespawnPlayer">
   <properties>
@@ -281,19 +281,19 @@
   <properties>
    <property name="orientation" value="NE"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/spike_n.png"/>
+  <image width="16" height="16" source="_editorimgs/spike_n.png"/>
  </tile>
  <tile id="46" type="RespawnPlayer">
   <properties>
    <property name="orientation" value="WN"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/spike_w.png"/>
+  <image width="16" height="16" source="_editorimgs/spike_w.png"/>
  </tile>
  <tile id="47" type="RespawnPlayer">
   <properties>
    <property name="orientation" value="SW"/>
   </properties>
-  <image width="16" height="16" source="editorimgs/spike_s.png"/>
+  <image width="16" height="16" source="_editorimgs/spike_s.png"/>
  </tile>
  <tile id="48" type="MovingAnimation">
   <properties>
@@ -310,7 +310,7 @@
    <property name="render_offset" value="-1 -1"/>
    <property name="solid" value="true"/>
   </properties>
-  <image width="30" height="62" source="editorimgs/car.png"/>
+  <image width="30" height="62" source="_editorimgs/car.png"/>
  </tile>
  <tile id="49" type="Sprite">
   <properties>
@@ -354,7 +354,7 @@
    <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="45 -45"/>
   </properties>
-  <image width="6" height="6" source="editorimgs/bullet8_ne.png"/>
+  <image width="6" height="6" source="_editorimgs/bullet8_ne.png"/>
  </tile>
  <tile id="52" type="MovingAnimation">
   <properties>
@@ -373,7 +373,7 @@
    <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="0 -60"/>
   </properties>
-  <image width="6" height="6" source="editorimgs/bullet8_n.png"/>
+  <image width="6" height="6" source="_editorimgs/bullet8_n.png"/>
  </tile>
  <tile id="53" type="MovingAnimation">
   <properties>
@@ -392,7 +392,7 @@
    <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="-45 -45"/>
   </properties>
-  <image width="6" height="6" source="editorimgs/bullet8_nw.png"/>
+  <image width="6" height="6" source="_editorimgs/bullet8_nw.png"/>
  </tile>
  <tile id="54" type="MovingAnimation">
   <properties>
@@ -411,7 +411,7 @@
    <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="-60 0"/>
   </properties>
-  <image width="6" height="6" source="editorimgs/bullet8_w.png"/>
+  <image width="6" height="6" source="_editorimgs/bullet8_w.png"/>
  </tile>
  <tile id="55" type="MovingAnimation">
   <properties>
@@ -430,7 +430,7 @@
    <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="-45 45"/>
   </properties>
-  <image width="6" height="6" source="editorimgs/bullet8_sw.png"/>
+  <image width="6" height="6" source="_editorimgs/bullet8_sw.png"/>
  </tile>
  <tile id="56" type="MovingAnimation">
   <properties>
@@ -449,7 +449,7 @@
    <property name="stop_on_touch" type="bool" value="true"/>
    <property name="velocity" type="string" value="0 60"/>
   </properties>
-  <image width="6" height="6" source="editorimgs/bullet8_s.png"/>
+  <image width="6" height="6" source="_editorimgs/bullet8_s.png"/>
  </tile>
  <tile id="57" type="MovingAnimation">
   <properties>

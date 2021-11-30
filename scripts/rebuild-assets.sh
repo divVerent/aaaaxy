@@ -23,7 +23,7 @@
 
 set -ex
 
-for src in "$(pwd)"/assets/*/src/*.sh; do
+for src in "$(pwd)"/assets/*/_src/*.sh; do
 	cd "${src%/*}"
 	sh "$src"
 done

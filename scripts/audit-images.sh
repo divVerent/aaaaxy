@@ -17,8 +17,8 @@ find . -name \*.png | sort | while read -r file; do
 	# Exceptions.
 	case "$file" in
 		# Editing only.
-		*/editorimgs/*) continue ;;
-		*/src/*) continue ;;
+		*/_editorimgs/*) continue ;;
+		*/_src/*) continue ;;
 		./assets/sprites/warpzone_*.png) continue ;;
 		# Intentionally violating.
 		./assets/sprites/clock_*.png) continue ;;

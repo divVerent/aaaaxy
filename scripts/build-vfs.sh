@@ -35,8 +35,12 @@ for sourcedir in assets third_party/*/assets licenses; do
 			;;
 	esac
 	cd "$root/$sourcedir"
-	find . -name src -prune -or -name editorimgs -prune -or -type f -print | while read -r file; do
+	find . -name _src -prune -or -name _editorimgs -prune -or -type f -print | while read -r file; do
 		mkdir -p "$destdir/$prefix${file%/*}"
 		cp "$root/$sourcedir/$file" "$destdir/$prefix$file"
 	done
 done
+
+echo "Checkpoints file embedded:"
+cat "$destdir"/generated/level.cp.json
+echo "."
