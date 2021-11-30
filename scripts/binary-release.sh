@@ -49,8 +49,11 @@ VERSION=$new perl -0777 -pi -e '
 	s/(?<=<!-- BEGIN DOWNLOAD LINKS -->\n)(.*)(?=\n<!-- END DOWNLOAD LINKS -->)/$template/gs;
 ' docs/index.md
 
+
 git commit -a -m "$(cat .commitmsg)"
 git tag -a "$new" -m "$(cat .commitmsg)"
+
+set +x
 
 echo "Now run:"
 echo "  git push origin tag $new"
@@ -59,3 +62,7 @@ git show -s "$new"
 echo "In the release, upload aaaaxy-*-$new.zip and AAAAXY-*.AppImage*."
 echo "Once the release is published, finally run:"
 echo "  git push origin main"
+echo "If all this is done, consider also updating the snap:"
+echo "  rm -f *.snap"
+echo "  snap run snapcraft clean && snap run snapcraft"
+echo "  snap upload *.snap"
