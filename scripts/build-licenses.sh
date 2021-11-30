@@ -23,13 +23,23 @@ export GOARCH=
 
 out=$1
 
+rm -rf licenses/software-licenses
+
 # Note: ignoring errors here, as some golang.org packages
 # do not have a discoverable license file. As they're all under Go's license,
 # that is fine.
-$GO run github.com/google/go-licenses save github.com/divVerent/aaaaxy --save_path=licenses || true
+$GO run github.com/google/go-licenses save github.com/divVerent/aaaaxy --force --save_path=licenses/software-licenses || true
+
+# This will fail if go-licenses wrote no output.
+for d in licenses/software-licenses/*/; do
+	[ -d "$d" ]
+done
 
 # Add our own third party stuff.
+rm -rf licenses/asset-licenses
 find third_party -name LICENSE -o -name COPYRIGHT.md | while read -r path; do
-  mkdir -p "licenses/${path%/*}"
-  cp "$path" "licenses/$path"
+  name=${path%/*}
+  name=${name##*/}
+  mkdir -p "licenses/asset-licenses/$name/"
+  cp "$path" "licenses/asset-licenses/$name/"
 done
