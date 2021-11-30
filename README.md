@@ -12,6 +12,11 @@ this World of Wicked Weirdness. Find out what Van Vlijmen will make you
 do. Pick a path, get inside a Klein Bottle, recognize some memes, and by
 all means: don't look up.
 
+[![Get it from the Snap
+Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/aaaaxy)
+
+<iframe frameborder="0" src="https://itch.io/embed/1199736?dark=true" width="552" height="167"><a href="https://divverent.itch.io/aaaaxy">AAAAXY by divVerent</a></iframe>
+
 ## Screenshots
 
 [![shot1](docs/screenshots/shot1.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.png)
