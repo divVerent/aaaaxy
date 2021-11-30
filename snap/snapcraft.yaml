@@ -1,6 +1,5 @@
 name: aaaaxy
 base: core20
-version: git
 summary: A nonlinear puzzle platformer taking place in non-Euclidean geometry.
 description: |
   AAAAXY is a nonlinear puzzle platformer taking place in non-Euclidean
