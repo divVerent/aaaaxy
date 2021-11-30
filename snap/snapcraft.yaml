@@ -15,7 +15,7 @@ description: |
   do. Pick a path, get inside a Klein Bottle, recognize some memes, and by
   all means: don't look up.
 
-grade: devel
+grade: stable
 confinement: strict
 
 architectures:
