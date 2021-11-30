@@ -21,16 +21,23 @@ import (
 	"embed"
 	"errors"
 	"fmt"
+	"io"
 	"io/fs"
 	"os"
 	"path"
 	"sort"
+	"strings"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 
 	"github.com/divVerent/aaaaxy/assets"
-	_ "github.com/divVerent/aaaaxy/licenses"
+	"github.com/divVerent/aaaaxy/licenses"
 	"github.com/divVerent/aaaaxy/third_party"
+)
+
+var (
+	dumpEmbeddedAssets = flag.String("dump_embedded_assets", "", "dump all embedded assets to the given directory instead of running the game")
 )
 
 type fsRoot struct {
@@ -41,6 +48,55 @@ type fsRoot struct {
 var (
 	embeddedAssetDirs []fsRoot
 )
+
+func dumpAssetsFrom(dir fsRoot) error {
+	return fs.WalkDir(dir.fs, dir.root, func(p string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() {
+			return nil
+		}
+		relPath := p
+		if strings.HasPrefix(p, dir.root+"/") {
+			relPath = p[len(dir.root)+1:]
+		}
+		fIn, err := dir.fs.Open(p)
+		if err != nil {
+			return err
+		}
+		defer fIn.Close()
+		out := path.Join(*dumpEmbeddedAssets, relPath)
+		log.Infof("%v => %v", p, out)
+		err = os.MkdirAll(path.Dir(out), 0777)
+		if err != nil {
+			return err
+		}
+		fOut, err := os.Create(out)
+		if err != nil {
+			return err
+		}
+		_, err = io.Copy(fOut, fIn)
+		if err != nil {
+			fOut.Close()
+			return err
+		}
+		return fOut.Close()
+	})
+}
+
+func dumpAssets() error {
+	for _, dir := range embeddedAssetDirs {
+		err := dumpAssetsFrom(dir)
+		if err != nil {
+			return err
+		}
+	}
+	return dumpAssetsFrom(fsRoot{
+		fs:   &licenses.FS,
+		root: ".",
+	})
+}
 
 // Init initializes the VFS. Must run after loading the assets.
 func Init() error {
@@ -62,6 +118,13 @@ func Init() error {
 		})
 	}
 	log.Infof("embedded asset search path: %v", embeddedAssetDirs)
+	if *dumpEmbeddedAssets != "" {
+		err := dumpAssets()
+		if err != nil {
+			return err
+		}
+		return fmt.Errorf("requested an asset dump - not running the game")
+	}
 	return nil
 }
 
