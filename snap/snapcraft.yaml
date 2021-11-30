@@ -21,6 +21,8 @@ confinement: strict
 architectures:
   - build-on: [amd64]
 
+adopt-info: part-aaaaxy
+
 parts:
   desktop-glib-only:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
@@ -48,6 +50,9 @@ parts:
       - alsa-mixin
     plugin: go
     go-channel: stable
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(scripts/version.sh semver)"
     override-build: |
       make BINARY="${SNAPCRAFT_PART_INSTALL}/bin/aaaaxy" BUILDTYPE=release
     source: .
