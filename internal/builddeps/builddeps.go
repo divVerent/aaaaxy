@@ -17,6 +17,11 @@ package builddeps
 // Import some stuff we may need at build time.
 // That way we include it in the repo's go.mod and go.sum file.
 import (
+	// To provide the "rsrc" tool.
 	_ "github.com/akavel/rsrc/rsrc"
-	_ "github.com/google/go-licenses/licenses"
+
+	// To provide the "go-licenses" tool.
+	_ "github.com/google/go-licenses"
+	_ "github.com/otiai10/copy"
+	_ "github.com/spf13/cobra"
 )
