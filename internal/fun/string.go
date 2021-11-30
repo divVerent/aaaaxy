@@ -216,7 +216,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 func FormatText(ps *playerstate.PlayerState, s string) string {
 	result, err := TryFormatText(ps, s)
 	if err != nil {
-		log.Warningf("failed to execute text template: %v", s)
+		log.Warningf("failed to execute text template: %v: %v", s, err)
 		return s
 	}
 	return result
