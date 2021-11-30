@@ -19,7 +19,7 @@ all means: don't look up.
 [![Get it from the Snap
 Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/aaaaxy)
 
-[Or from Itch](https://divverent.itch.io/aaaaxy)
+<iframe frameborder="0" src="https://itch.io/embed/1199736?dark=true" width="552" height="167"><a href="https://divverent.itch.io/aaaaxy">AAAAXY by divVerent</a></iframe>
 
 #### Raw Downloads
 
