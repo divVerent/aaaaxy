@@ -72,16 +72,19 @@ func CalcPos(v *Vertex) {
 }
 
 func main() {
+	log.Infof("initializing VFS...")
 	err := vfs.Init()
 	if err != nil {
 		log.Fatalf("could not initialize VFS: %v", err)
 	}
+	log.Infof("parsing flags...")
 	flag.Parse(flag.NoConfig)
+	log.Infof("loading level...")
 	lvl, err := level.Load("level")
 	if err != nil {
 		log.Fatalf("could not load level: %v", err)
 	}
-	// Gather a checkpoint ID to name map.
+	log.Infof("generating checkpoint ID to name map...")
 	cpMap := map[level.EntityID]*level.Spawnable{}
 	for name, sp := range lvl.Checkpoints {
 		if name == "" {
@@ -90,7 +93,7 @@ func main() {
 		}
 		cpMap[sp.ID] = sp
 	}
-	// Generate all edges and vertices.
+	log.Infof("listing vertices...")
 	vertices := map[level.EntityID]*Vertex{}
 	for id, sp := range cpMap {
 		vertices[id] = &Vertex{
@@ -98,13 +101,16 @@ func main() {
 			MapPos: sp.LevelPos.Mul(level.TileSize).Add(sp.RectInTile.Center().Delta(m.Pos{})),
 		}
 	}
+	log.Infof("listing entity IDs...")
 	entityIDs := make([]level.EntityID, 0, len(cpMap))
 	for id := range cpMap {
 		entityIDs = append(entityIDs, id)
 	}
+	log.Infof("sorting entity IDs...")
 	sort.Slice(entityIDs, func(a, b int) bool {
 		return entityIDs[a] < entityIDs[b]
 	})
+	log.Infof("computing edges...")
 	for _, id := range entityIDs {
 		sp := cpMap[id]
 		v := vertices[id]
@@ -143,8 +149,13 @@ func main() {
 			nextVert.InEdges = append(nextVert.InEdges, edge)
 		}
 	}
-	// Build a .dot input file from all CPs.
-	fmt.Print(`
+	log.Infof("calculating positions...")
+	for _, id := range entityIDs {
+		v := vertices[id]
+		CalcPos(v)
+	}
+	log.Infof("writing header...")
+	_, err = fmt.Print(`
 		digraph G {
 			layout = "neato";
 			start = 4;  // Consistent random seed. Decided by fair dice roll.
@@ -153,24 +164,37 @@ func main() {
 			maxiter = 131072;
 			epsilon = 0.000001;
 		`)
-	// Emit all nodes.
+	if err != nil {
+		log.Fatalf("failed to write to output: %v", err)
+	}
+	log.Infof("writing vertices...")
 	for _, id := range entityIDs {
 		v := vertices[id]
-		CalcPos(v)
-		fmt.Printf(`
+		_, err := fmt.Printf(`
 				%s [width=2.0, height=2.0, fixedsize=true, shape=box, label="%s", pos="%d,%d"];
 			`, v.Name, v.Name, v.MapPos.X, -v.MapPos.Y)
+		if err != nil {
+			log.Fatalf("failed to write to output: %v", err)
+		}
 	}
-	// Emit all edges.
+	log.Infof("writing edges...")
 	for _, id := range entityIDs {
 		v := vertices[id]
 		for _, e := range v.OutEdges {
-			fmt.Printf(`
+			_, err := fmt.Printf(`
 					%s -> %s [len=%f];
 				`, v.Name, e.To.Name, e.WantDelta.Length())
+			if err != nil {
+				log.Fatalf("failed to write to output: %v", err)
+			}
 		}
 	}
-	fmt.Print(`
+	log.Infof("writing footer...")
+	_, err = fmt.Print(`
 		}
 		`)
+	if err != nil {
+		log.Fatalf("failed to write to output: %v", err)
+	}
+	log.Infof("done.")
 }
