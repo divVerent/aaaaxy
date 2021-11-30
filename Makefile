@@ -29,7 +29,7 @@ endif
 
 # Internal variables.
 SOURCES = $(shell git ls-files \*.go)
-GENERATED_STUFF = aaaaxy.ico aaaaxy.manifest aaaaxy.syso assets/generated/ internal/vfs/_embedroot/ licenses/
+GENERATED_STUFF = aaaaxy.ico aaaaxy.manifest aaaaxy.syso assets/generated/ internal/vfs/_embedroot/ licenses/asset-licenses/ licenses/software-licenses/
 
 # Configure Go.
 GOFLAGS += -tags "$(shell echo $(BUILDTAGS) | tr ' ' ,)"
