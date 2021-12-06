@@ -62,19 +62,28 @@ esac
 
 make clean
 
+case "$prefix" in
+	*/*)
+		mkdir -p "${prefix%/*}"
+		;;
+esac
+
 if [ -n "$GOARCH_SUFFIX" ]; then
 	eval "export CGO_ENV=\$CGO_ENV_$1"
-	GOARCH=$(GOARCH=$1 $GO env GOARCH) make BUILDTYPE=release PREFIX="$prefix"
+	binary=${prefix}aaaaxy-$GOOS-$GOARCH_SUFFIX$GOEXE
+	GOARCH=$(GOARCH=$1 $GO env GOARCH) make BUILDTYPE=release BINARY="$binary"
 	unset CGO_ENV
 else
 	lipofiles=
 	for arch in "$@"; do
 		eval "export CGO_ENV=\$CGO_ENV_$arch"
-		GOARCH=$(GOARCH=$arch $GO env GOARCH) make BUILDTYPE=release PREFIX="$prefix"
+		binary=${prefix}aaaaxy-$GOOS-$arch$GOEXE
+		GOARCH=$(GOARCH=$arch $GO env GOARCH) make BUILDTYPE=release BINARY="$binary"
 		unset CGO_ENV
-		lipofiles="$lipofiles ${prefix}aaaaxy-$GOOS-$arch$GOEXE"
+		lipofiles="$lipofiles $binary"
 	done
-	$LIPO -create $lipofiles -output "${prefix}aaaaxy-$GOOS"
+	binary=${prefix}aaaaxy-$GOARCH_SUFFIX$GOEXE
+	$LIPO -create $lipofiles -output "$binary"
 	rm -f $lipofiles
 fi
 

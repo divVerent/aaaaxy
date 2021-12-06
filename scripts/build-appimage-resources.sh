@@ -20,6 +20,8 @@ set -ex
 binary=aaaaxy-$($GO env GOOS)-$($GO env GOARCH)
 id=io.github.divverent.aaaaxy_$($GO env GOARCH)
 
+mkdir -p packaging
+
 cp aaaaxy.png packaging/"$binary.png"
 sh scripts/aaaaxy.desktop.sh > packaging/"$binary.desktop"
 sh scripts/io.github.divverent.aaaaxy.metainfo.xml.sh > packaging/"$id".metainfo.xml

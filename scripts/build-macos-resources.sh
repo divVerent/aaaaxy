@@ -15,6 +15,8 @@
 
 set -ex
 
+mkdir -p packaging
+
 rm -f packaging/aaaaxy-macos-*.png packaging/AAAAXY.app/Contents/Info.plist
 for res in 16 32 128 256 512 1024; do
 	convert assets/sprites/riser_small_up_0.png \

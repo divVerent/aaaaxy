@@ -4,19 +4,11 @@ FASTER_VIDEO_DUMPING = false
 
 # System properties.
 GO ?= go
-ifeq ($(shell $(GO) env GOARCH),wasm)
-EXE = .wasm
-else
-EXE = $(shell $(GO) env GOEXE)
-endif
-SUFFIX = -$(shell $(GO) env GOOS)-$(shell $(GO) env GOARCH)$(EXE)
-BINARY = $(PREFIX)aaaaxy$(INFIX)$(SUFFIX)
+BINARY = aaaaxy$(shell $(GO) env GOEXE)
 
 ifeq ($(BUILDTYPE),release)
-INFIX =
 BUILDTAGS = embed
 else
-INFIX = -debug
 BUILDTAGS =
 endif
 

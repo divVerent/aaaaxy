@@ -9,12 +9,5 @@
 /aaaaxy.tiled-session
 /assets/generated
 /licenses/*/
-/packaging/*.desktop
-/packaging/*.png
-/packaging/AAAAXY.AppDir/
-/packaging/AAAAXY.app/Contents/MacOS/aaaaxy-*
-/packaging/AAAAXY.app/Contents/Resources/icon.icns
-/packaging/aaaaxy.ico
-/packaging/aaaaxy.manifest
-/packaging/io.github.divverent.aaaaxy_*.metainfo.xml
+/packaging/
 /wasm_exec.js

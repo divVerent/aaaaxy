@@ -22,6 +22,8 @@ target_arch=$(${GO} env GOARCH)
 export GOOS=
 export GOARCH=
 
+mkdir -p packaging
+
 convert \
 	-filter Point \
 	\( assets/sprites/riser_small_up_0.png -geometry 16x16 \) \
