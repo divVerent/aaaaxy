@@ -1,10 +1,8 @@
 *~
 /AAAAXY-*.AppImage*
 /aaaaxy-*.zip
-/aaaaxy-debug-*
-/aaaaxy-js-*
-/aaaaxy-linux-*
-/aaaaxy-windows-*
+/aaaaxy
+/aaaaxy.exe
 /aaaaxy.syso
 /aaaaxy.tiled-session
 /assets/generated
