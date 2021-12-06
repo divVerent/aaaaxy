@@ -30,7 +30,7 @@ jobs:
       with:
         name: aaaaxy-debug-linux-amd64
         path: |
-          aaaaxy-debug-linux-amd64
+          aaaaxy
           assets/generated/
 
   test-linux-amd64:
@@ -48,7 +48,7 @@ jobs:
         name: aaaaxy-debug-linux-amd64
 
     - name: Make Binary Executable
-      run: 'chmod +x aaaaxy-debug-linux-amd64'
+      run: 'chmod +x aaaaxy'
 
     - name: Fetch Test Cases
       env:
@@ -59,7 +59,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" ./aaaaxy-debug-linux-amd64 *.dem'
+      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" ./aaaaxy *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -91,7 +91,7 @@ jobs:
       with:
         name: aaaaxy-debug-windows-amd64
         path: |
-          aaaaxy-debug-windows-amd64.exe
+          aaaaxy.exe
           assets/generated/
 
   test-windows-amd64:
@@ -123,7 +123,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'bash scripts/regression-test-demo.sh windows-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "./aaaaxy-debug-windows-amd64.exe" *.dem'
+      run: 'bash scripts/regression-test-demo.sh windows-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -157,7 +157,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh wine-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "wine ./aaaaxy-debug-windows-amd64.exe" *.dem'
+      run: 'xvfb-run scripts/regression-test-demo.sh wine-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "wine ./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -189,7 +189,7 @@ jobs:
       with:
         name: aaaaxy-debug-windows-386
         path: |
-          aaaaxy-debug-windows-386.exe
+          aaaaxy.exe
           assets/generated/
 
   test-windows-386:
@@ -221,7 +221,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'bash scripts/regression-test-demo.sh windows-386 "Your time: 0:16:50.666; your speedrun categories: Any%;" "./aaaaxy-debug-windows-386.exe" *.dem'
+      run: 'bash scripts/regression-test-demo.sh windows-386 "Your time: 0:16:50.666; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
