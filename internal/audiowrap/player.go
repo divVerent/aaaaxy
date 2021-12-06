@@ -169,7 +169,7 @@ func (p *Player) CloseInstantly() error {
 		p.dmp.Close()
 	}
 	if p.ebi != nil {
-		return p.ebi.Close()
+		p.ebi.Close()
 	}
 	if p.ebiCloser != nil {
 		p.ebiCloser.Close()
