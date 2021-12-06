@@ -15,14 +15,12 @@
 
 : ${GO:=go}
 
-cat <<EOF
-[Desktop Entry]
-Name=AAAAXY
-Comment=A nonlinear puzzle platformer taking place in non-Euclidean geometry.
-Exec=aaaaxy-$($GO env GOOS)-$($GO env GOARCH)
-Icon=aaaaxy-$($GO env GOOS)-$($GO env GOARCH)
-Terminal=false
-Type=Application
-Categories=Game;ActionGame;
-StartupNotify=true
-EOF
+# Note: for AppImage we tag the desktop file by the architecture as these are
+# downloaded and installed manually and thus having multiple arch versions
+# active at the same time is conceivable; for FlatPak we don't do this as
+# FlatPak uses a package manager that ensures there is only one arch installed
+# at a time anyway.
+
+sed -e "
+	s,aaaaxy,aaaaxy-$($GO env GOOS)-$($GO env GOARCH),;
+" < aaaaxy.desktop

@@ -15,43 +15,13 @@
 
 : ${GO:=go}
 
-cat <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop-application">
-  <id>io.github.divverent.aaaaxy_$($GO env GOARCH)</id>
-  <name>AAAAXY</name>
-  <summary>A nonlinear puzzle platformer taking place in non-Euclidean geometry</summary>
-  <metadata_license>CC-BY-4.0</metadata_license>
-  <project_license>Apache-2.0</project_license>
-  <requires>
-    <control>keyboard</control>
-    <control>gamepad</control>
-  </requires>
-  <description>
-    <p>
-      Although your general goal is reaching the surprising end of the game, you are encouraged to set your own goals while playing. Exploration will be rewarded, and secrets await you!
-    </p>
-    <p>
-      So jump and run around, and enjoy losing your sense of orientation in this World of Wicked Weirdness. Find out what Van Vlijmen will make you do. Pick a path, get inside a Klein Bottle, recognize some memes, and by all means: don&apos;t look up.
-    </p>
-  </description>
-  <launchable type="desktop-id">aaaaxy-$($GO env GOOS)-$($GO env GOARCH).desktop</launchable>
-  <screenshots>
-    <screenshot type="default">
-      <caption>Game Start</caption>
-      <image type="thumbnail" width="320" height="180">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.jpg</image>
-      <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.png</image>
-    </screenshot>
-    <screenshot>
-      <caption>Road Rage</caption>
-      <image type="thumbnail" width="320" height="180">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot5.jpg</image>
-      <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot5.png</image>
-    </screenshot>
-    <screenshot>
-      <caption>Getting It Back</caption>
-      <image type="thumbnail" width="320" height="180">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.jpg</image>
-      <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.png</image>
-    </screenshot>
-  </screenshots>
-</component>
-EOF
+# Note: for AppImage we tag the metainfo by the architecture as these are
+# downloaded and installed manually and thus having multiple arch versions
+# active at the same time is conceivable; for FlatPak we don't do this as
+# FlatPak uses a package manager that ensures there is only one arch installed
+# at a time anyway.
+
+sed -e "
+	s,io\\.github\\.divverent\\.aaaaxy,io.github.divverent.aaaaxy_$($GO env GOARCH),;
+	s,aaaaxy\\.desktop,aaaaxy-$($GO env GOOS)-$($GO env GOARCH).desktop,;
+" < io.github.divverent.aaaaxy.metainfo.xml

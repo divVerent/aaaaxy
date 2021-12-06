@@ -20,8 +20,6 @@ set -ex
 binary=aaaaxy-$($GO env GOOS)-$($GO env GOARCH)
 id=io.github.divverent.aaaaxy_$($GO env GOARCH)
 
-convert assets/sprites/riser_small_up_0.png \
-	-filter Point -geometry 128x128 \
-	packaging/"$binary.png"
+cp aaaaxy.png packaging/"$binary.png"
 sh scripts/aaaaxy.desktop.sh > packaging/"$binary.desktop"
 sh scripts/io.github.divverent.aaaaxy.metainfo.xml.sh > packaging/"$id".metainfo.xml
