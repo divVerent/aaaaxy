@@ -15,6 +15,8 @@
 
 set -ex
 
+flatpakdir=$1
+
 TAB="	"
 LF="
 "
@@ -23,6 +25,12 @@ rm -rf vendor
 go mod vendor
 
 d=$(mktemp -d)
+
+yml="$flatpakdir/io.github.divverent.aaaaxy.yml"
+
+sed -i -e '1,/# --- GO MODULES START HERE.* ---/!d' "$yml"
+cp vendor/modules.txt "$flatpakdir/modules.txt"
+exec 3>>"$yml"
 
 d0=$PWD
 while read -r command pkg ver _; do
@@ -66,7 +74,7 @@ while read -r command pkg ver _; do
 			version="tag: $ver$LF        commit: $commit"
 			;;
 	esac
-	cat >>"$d0/vendor/modules.yml" <<EOF
+	cat >&3 <<EOF
       - type: git
         url: $url
         $version
@@ -76,4 +84,6 @@ EOF
 	cd "$d0"
 done < "$d0/vendor/modules.txt"
 
-rm -rf "$d"
+exec 3>&-
+
+rm -rf "$d" vendor
