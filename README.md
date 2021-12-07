@@ -15,6 +15,9 @@ all means: don't look up.
 [![Get it from the Snap
 Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/aaaaxy)
 
+[Or from
+Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy)
+
 [Or from Itch](https://divverent.itch.io/aaaaxy)
 
 ## Screenshots
