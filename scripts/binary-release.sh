@@ -45,8 +45,7 @@ VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 	$msg =~ s/\n*<\/li>/<\/li>/g;
 	$msg =~ s/\n/ /g;
 	s/releases\/[^\/<]*<\/url>/releases\/$version<\/url>/g;
-	s/version="[^"]*"/version="$version"/g;
-	s/date="\d\d\d\d-\d\d-\d\d"/date="$date"/g;
+	s/<release version="[^"]*" date="[0-9-]*">/<release version="$version" date="$date">/g;
 	s/<description>.*<\/description>/<description>$msg<\/description>/g;
 ' io.github.divverent.aaaaxy.metainfo.xml
 
