@@ -24,6 +24,7 @@
     </p>
   </description>
   <launchable type="desktop-id">aaaaxy.desktop</launchable>
+  <icon type="cached">aaaaxy.png</icon>
   <screenshots>
     <screenshot type="default">
       <caption>Game Start</caption>
