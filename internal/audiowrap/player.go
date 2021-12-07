@@ -168,13 +168,20 @@ func (p *Player) CloseInstantly() error {
 	if p.dmp != nil {
 		p.dmp.Close()
 	}
+	var err error = nil
 	if p.ebi != nil {
-		p.ebi.Close()
+		err2 := p.ebi.Close()
+		if err == nil {
+			err = err2
+		}
 	}
 	if p.ebiCloser != nil {
-		p.ebiCloser.Close()
+		err2 := p.ebiCloser.Close()
+		if err == nil {
+			err = err2
+		}
 	}
-	return nil
+	return err
 }
 
 func (p *Player) Close() error {
