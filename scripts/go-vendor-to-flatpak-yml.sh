@@ -38,8 +38,8 @@ while read -r command pkg ver _; do
 	suffix=
 	case "$pkg" in
 		*/v?)
+			suffix=/${pkg##*/}
 			pkg=${pkg%/v?}
-			suffix=/${pkg##*/v?}
 			;;
 	esac
 	case "$pkg" in
