@@ -55,15 +55,29 @@ git tag -a "$new" -m "$(cat .commitmsg)"
 
 set +x
 
-echo "Now run:"
-echo "  git push origin tag $new"
-echo "Then create the release on GitHub with the following message:"
-git show -s "$new"
-echo "In the release, upload aaaaxy-*-$new.zip (except for wasm) and"
-echo "AAAAXY-*.AppImage*."
-echo "Once the release is published, finally run:"
-echo "  git push origin main"
-echo "If all this is done, consider also updating the snap:"
-echo "  rm -f *.snap"
-echo "  snap run snapcraft clean && snap run snapcraft && snap run snapcraft upload *.snap"
-echo "Finally, update the URLs and wasm zip on itch.io."
+cat <<EOF
+Now run:
+  git push origin tag $new
+Then create the release on GitHub with the following message:
+EOF
+git show -s $new
+cat <<EOF
+In the release, upload aaaaxy-*-$new.zip (except for wasm) and
+AAAAXY-*.AppImage*.
+Once the release is published, finally run:
+  git push origin main
+If all this is done, consider also updating the snap:
+  rm -f *.snap
+  snap run snapcraft clean && snap run snapcraft && snap run snapcraft upload *.snap
+And the FlatPak:
+  go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
+  cd ../io.github.divverent.aaaaxy
+  vi io.github.divverent.aaaaxy.yml
+  ... update commit and version number ...
+  git commit -a
+  git push origin HEAD:beta
+  ... watch for build progress on https://flathub.org/builds/#/ ...
+  ... test the build ...
+  git push origin HEAD
+Finally, update the URLs and wasm zip on itch.io.
+EOF
