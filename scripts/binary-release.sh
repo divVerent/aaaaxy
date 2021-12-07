@@ -88,8 +88,10 @@ Once the release is published, finally run:
 If all this is done, consider also updating the snap:
   rm -f *.snap
   snap run snapcraft clean && snap run snapcraft && snap run snapcraft upload *.snap
+Then go to https://snapcraft.io/aaaaxy/releases and activate the new build as
+beta, later as stable.
 And the FlatPak:
-  go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
+  scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
   cd ../io.github.divverent.aaaaxy
   vi io.github.divverent.aaaaxy.yml
   ... update commit and version number ...
@@ -100,5 +102,5 @@ And the FlatPak:
   git push origin HEAD
   ... https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy ...
   ... watch, test, publish the build ...
-Finally, update the URLs and wasm zip on itch.io.
+Finally, update the URLs and wasm zip on https://itch.io/game/edit/1199736.
 EOF
