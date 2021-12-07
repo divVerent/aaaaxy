@@ -15,7 +15,7 @@
 
 set -ex
 
-mkdir -p packaging
+mkdir -p packaging/AAAAXY.app/Contents/Resources
 
 rm -f packaging/aaaaxy-macos-*.png packaging/AAAAXY.app/Contents/Info.plist
 for res in 16 32 128 256 512 1024; do
