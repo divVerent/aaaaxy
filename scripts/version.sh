@@ -14,14 +14,30 @@
 # limitations under the License.
 
 format=${1:-semver}
-gitdesc=${2:-$(git describe --always --long --match 'v*.*' --exclude 'v*.*.*')}
+
+# Skip documentation-only commits.
+rev=$(git rev-parse HEAD)
+while :; do
+	if git rev-parse HEAD^2 >/dev/null 2>&1; then
+		# This is a merge commit. Cannot walk up further.
+		break
+	fi
+	parent=$(git rev-parse "$rev"^)
+	if ! git diff --quiet "$parent" HEAD -- . ':!docs'; then
+		# Non-doc changes have been found. Do not walk up further.
+		break
+	fi
+	rev=$parent
+done
+
+gitdesc=${2:-$(git describe --always --long --match 'v*.*' --exclude 'v*.*.*' "$rev")}
 
 case "$gitdesc" in
 	v*.*-*-g*)
 		gitcount=${gitdesc%-g*}
 		gitcount=${gitcount##*-}
 		gittag=${gitdesc%-*-g*}
-		commits=${3:-$(($(git log --oneline | wc -l)))}  # Is there a better way?
+		commits=${3:-$(($(git log --oneline "$rev" | wc -l)))}  # Is there a better way?
 		hash=${gitdesc##*-g}
 		date=$(git log -n 1 --pretty=format:%cd --date=format:%Y%m%d "$hash")
 		;;
