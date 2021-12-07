@@ -5,6 +5,12 @@
   <summary>A nonlinear puzzle platformer taking place in non-Euclidean geometry</summary>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>Apache-2.0</project_license>
+  <url type="homepage">https://divverent.github.io/aaaaxy</url>
+  <url type="bugtracker">https://github.com/divVerent/aaaaxy/issues</url>
+  <categories>
+    <category>Game</category>
+    <category>ActionGame</category>
+  </categories>
   <requires>
     <control>keyboard</control>
     <control>gamepad</control>
@@ -35,4 +41,13 @@
       <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.png</image>
     </screenshot>
   </screenshots>
+  <content_rating type="oars-1.1">
+    <content_attribute id="language-humor">mild</content_attribute>
+  </content_rating>
+  <releases>
+    <release version="latest" date="2021-12-07">
+      <description><p>This is the current stable release on GitHub.</p></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/latest</url>
+    </release>
+  </releases>
 </component>
