@@ -21,15 +21,6 @@ prev=${prev%-*-g*}
 
 new=$(sh scripts/version.sh gittag)
 
-echo "Releasing: $prev -> $new."
-
-GOOS=linux scripts/binary-release-compile.sh amd64
-GOOS=windows scripts/binary-release-compile.sh amd64
-GOOS=windows scripts/binary-release-compile.sh 386
-# Note: sync the MACOSX_DEPLOYMENT_TARGET with current Go requirements and Info.plist.sh.
-GOOS=darwin CGO_ENV_amd64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=o64-clang CXX=o64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" CGO_ENV_arm64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=oa64-clang CXX=oa64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" LIPO="$HOME/src/osxcross-sdk/bin/lipo" scripts/binary-release-compile.sh amd64 arm64
-GOOS=js scripts/binary-release-compile.sh wasm
-
 cat <<EOF >.commitmsg
 Release $new
 
@@ -37,6 +28,33 @@ Changes since $prev:
 $(git log --format='%w(72,2,4)- %s' "$prev"..)
 EOF
 vi .commitmsg
+
+# Update metainfo with current date and version already, and replace the text by a placeholder.
+VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
+	use strict;
+	use warnings;
+	my $version = $ENV{VERSION};
+	my $date = $ENV{DATE};
+	my $msg = $ENV{MSG};
+	$msg =~ s/^Release .*//gm;
+	$msg =~ s/^Changes since .*//gm;
+	$msg =~ s/^  - /<\/li><li>/gm;
+	$msg =~ s/^    //gm;
+	$msg =~ s/^\n*<\/li>/<ul>/s;
+	$msg =~ s/\n*$/<\/li><\/ul>/s;
+	$msg =~ s/\n*<\/li>/<\/li>/g;
+	$msg =~ s/\n/ /g;
+	s/releases\/[^\/<]*<\/url>/releases\/$version<\/url>/g;
+	s/date="\d\d\d\d-\d\d-\d\d"/date="$date"/g;
+	s/<description>.*<\/description>/<description>$msg<\/description>/g;
+' io.github.divverent.aaaaxy.metainfo.xml
+
+GOOS=linux scripts/binary-release-compile.sh amd64
+GOOS=windows scripts/binary-release-compile.sh amd64
+GOOS=windows scripts/binary-release-compile.sh 386
+# Note: sync the MACOSX_DEPLOYMENT_TARGET with current Go requirements and Info.plist.sh.
+GOOS=darwin CGO_ENV_amd64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=o64-clang CXX=o64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" CGO_ENV_arm64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=oa64-clang CXX=oa64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" LIPO="$HOME/src/osxcross-sdk/bin/lipo" scripts/binary-release-compile.sh amd64 arm64
+GOOS=js scripts/binary-release-compile.sh wasm
 
 VERSION=$new perl -0777 -pi -e '
 	use strict;
@@ -49,7 +67,6 @@ VERSION=$new perl -0777 -pi -e '
 	s/(?<=<!-- BEGIN DOWNLOAD LINKS -->\n)(.*)(?=\n<!-- END DOWNLOAD LINKS -->)/$template/gs;
 ' docs/index.md
 
-
 git commit -a -m "$(cat .commitmsg)"
 git tag -a "$new" -m "$(cat .commitmsg)"
 
@@ -59,9 +76,11 @@ cat <<EOF
 Now run:
   git push origin tag $new
 Then create the release on GitHub with the following message:
+
 EOF
-git show -s $new
+cat .commitmsg
 cat <<EOF
+
 In the release, upload aaaaxy-*-$new.zip (except for wasm) and
 AAAAXY-*.AppImage*.
 Once the release is published, finally run:
