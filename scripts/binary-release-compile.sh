@@ -70,7 +70,7 @@ esac
 
 if [ -n "$GOARCH_SUFFIX" ]; then
 	eval "export CGO_ENV=\$CGO_ENV_$1"
-	binary=${prefix}aaaaxy-$GOOS-$GOARCH_SUFFIX$GOEXE
+	binary=${prefix}aaaaxy-$GOOS$GOARCH_SUFFIX$GOEXE
 	GOARCH=$(GOARCH=$1 $GO env GOARCH) make BUILDTYPE=release BINARY="$binary"
 	unset CGO_ENV
 else
@@ -82,7 +82,7 @@ else
 		unset CGO_ENV
 		lipofiles="$lipofiles $binary"
 	done
-	binary=${prefix}aaaaxy-$GOARCH_SUFFIX$GOEXE
+	binary=${prefix}aaaaxy$GOARCH_SUFFIX$GOEXE
 	$LIPO -create $lipofiles -output "$binary"
 	rm -f $lipofiles
 fi
