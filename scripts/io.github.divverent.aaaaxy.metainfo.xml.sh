@@ -23,6 +23,5 @@
 
 sed -e "
 	s,io\\.github\\.divverent\\.aaaaxy,io.github.divverent.aaaaxy_$($GO env GOARCH),;
-	s,aaaaxy\\.png,aaaaxy-$($GO env GOOS)-$($GO env GOARCH).png,;
 	s,aaaaxy\\.desktop,aaaaxy-$($GO env GOOS)-$($GO env GOARCH).desktop,;
 " < io.github.divverent.aaaaxy.metainfo.xml
