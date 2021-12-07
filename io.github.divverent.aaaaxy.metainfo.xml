@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="latest" date="2021-12-07">
-      <description><p>This is the current stable release on GitHub.</p></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/latest</url>
+    <release version="v1.0.89" date="2021-12-07">
+      <description><ul><li>Show changelog in AppStream metadata.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.89</url>
     </release>
   </releases>
 </component>
