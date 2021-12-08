@@ -2,15 +2,23 @@
 
 AAAAXY releases are published in the following places:
 
-  - GitHub Releases
-
-TODO(divVerent): add more; provide links.
+  - [GitHub Releases](https://github.com/divVerent/aaaaxy/releases)
+      - [Analytics](https://github.com/divVerent/aaaaxy/graphs/traffic)
+  - AppImage
+      - Primary copy on GitHub Releases; seems mirrored in lots of
+        places.
+  - [Snap](https://snapcraft.io/aaaaxy)
+      - [Analytics](https://snapcraft.io/aaaaxy/metrics)
+  - [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy)
+      - [Analytics](https://klausenbusk.github.io/flathub-stats/#ref=io.github.divverent.aaaaxy&interval=infinity&downloadType=installs%2Bupdates)
+  - [Itch](https://divverent.itch.io/aaaaxy)
+      - [Analytics](https://itch.io/game/summary/1199736)
 
 # Binaries
 
-The official binary release is built using `make allrelease`.
-
-Whenever uploading a build, first push a git tag naming the release.
+The official binary release is built using `scripts/binary-release.sh`.
+This will also print instructions about releasing to AppImage, Snap,
+Flathub and Itch.
 
 # Versioning
 
@@ -35,6 +43,8 @@ Thus, the version components are incremented as follows:
         categories, including 100%, requires a major version bump.
       - Exception: when some major cheese (grossly unintended skip) is
         fixed, a minor version bump is sufficient.
+      - Exception: slowing down "All Secrets" speedruns only requires a
+        minor version bump.
   - Minor version must be incremented on changes that likely add faster
     speedruns.
       - In particular, simplifying a section or making it optional
