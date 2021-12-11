@@ -11469,13 +11469,13 @@
   <object id="5057" gid="312" x="6440" y="6032" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4609"/>
-    <property name="text" value="Impatience is a major source of despair."/>
+    <property name="text" value="Sometimes, the unprepared can't even follow instructions."/>
    </properties>
   </object>
   <object id="5058" gid="312" x="6440" y="5872" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="281"/>
-    <property name="text" value="Did you bring the pie?"/>
+    <property name="text" value="If everything is upside down, nothing is."/>
    </properties>
   </object>
   <object id="5059" name="BackToNewBeginningMirrored" gid="293" x="6512" y="6032" width="16" height="32"/>
