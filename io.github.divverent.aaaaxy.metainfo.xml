@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.0.89" date="2021-12-07">
-      <description><ul><li>Show changelog in AppStream metadata.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.89</url>
+    <release version="v1.0.103" date="2021-12-13">
+      <description><ul><li>Improve TnihSigns in A New Beginning to better lead to the exit.</li><li>Add a hint text in a specific place where one can frustratingly lose a platform to pride.</li><li>Remove a way to accidentally lose the platform in the final gauntlet.</li><li>Make the secret whole section a bit more hidden.</li><li>Update Ebiten and GLFW.</li><li>Add back the gamecontroller mappings database so it is more up to date.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.103</url>
     </release>
   </releases>
 </component>
