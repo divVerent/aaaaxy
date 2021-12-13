@@ -15,6 +15,8 @@
 package input
 
 import (
+	"fmt"
+	"io/ioutil"
 	"os"
 	"regexp"
 
@@ -22,6 +24,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 var (
@@ -172,37 +175,64 @@ func gamepadScan() {
 	}
 }
 
+func applyAndLogGameControllerDb(config string, err error, name string) {
+	if os.IsNotExist(err) {
+		log.Infof("%v not provided - OK", name)
+		return
+	}
+	if err != nil {
+		log.Warningf("could not load %v: %v", name, err)
+		return
+	}
+	if config == "" {
+		log.Infof("%v not provided - OK", name)
+		return
+	}
+	applied, err := ebiten.UpdateStandardGamepadLayoutMappings(config)
+	if err != nil {
+		log.Errorf("could not add %v: %v", name, err)
+	} else if applied {
+		log.Infof("%v applied", name)
+	} else {
+		log.Infof("%v exist but are not used on this platform", name)
+	}
+}
+
+func readBuiltinGamepadMappings() (string, error) {
+	configHandle, err := vfs.Load("input", "gamecontrollerdb.txt")
+	if err != nil {
+		return "", fmt.Errorf("open: %v", err)
+	}
+	defer configHandle.Close()
+	configBytes, err := ioutil.ReadAll(configHandle)
+	if err != nil {
+		return "", fmt.Errorf("read: %v", err)
+	}
+	return string(configBytes), nil
+}
+
 func gamepadInit() {
 	// Note: we're also stripping spaces before/after a semicolon
 	// as a user might be putting some given they're usual in English,
 	// yet they're technically invalid in SDL_GameControllerDB format.
 	semiRE := regexp.MustCompile(`\s*;\s*`)
 
+	// Support an included gamecontrollerdb.txt override.
+	// Doing this because Ebiten's lags behind.
+	mappings, err := readBuiltinGamepadMappings()
+	applyAndLogGameControllerDb(mappings, err, "included gamepad mappings")
+
+	// Support ~/.config/AAAAXY/gamecontrollerdb.txt.
+	configBytes, err := vfs.ReadState(vfs.Config, "gamecontrollerdb.txt")
+	applyAndLogGameControllerDb(string(configBytes), err, "gamepad mappings from gamecontrollerdb.txt")
+
 	// Support the environment variable.
 	config := semiRE.ReplaceAllString(os.Getenv("SDL_GAMECONTROLLERCONFIG"), "\n")
-	if config != "" {
-		applied, err := ebiten.UpdateStandardGamepadLayoutMappings(config)
-		if err != nil {
-			log.Errorf("could not add SDL_GAMECONTROLLERCONFIG mappings: %v", err)
-		} else if applied {
-			log.Infof("SDL_GAMECONTROLLERCONFIG applied.")
-		} else {
-			log.Warningf("SDL_GAMECONTROLLERCONFIG set but not used on this platform.")
-		}
-	}
+	applyAndLogGameControllerDb(config, nil, "gamepad mappings from $SDL_GAMECONTROLLERCONFIG")
 
 	// Also support the flag. Note that the flag value is saved.
 	config = semiRE.ReplaceAllString(*gamepadOverride, "\n")
-	if config != "" {
-		applied, err := ebiten.UpdateStandardGamepadLayoutMappings(config)
-		if err != nil {
-			log.Errorf("could not add --gamepad_override mappings: %v", err)
-		} else if applied {
-			log.Infof("--gamepad_override applied.")
-		} else {
-			log.Warningf("--gamepad_override set but not used on this platform.")
-		}
-	}
+	applyAndLogGameControllerDb(config, nil, "gamepad mappings from --gamepad_override")
 }
 
 func gamepadEasterEggKeyState() easterEggKeyState {

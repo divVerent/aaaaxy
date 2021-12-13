@@ -29,6 +29,9 @@ $(git log --format='%w(72,2,4)- %s' "$prev"..)
 EOF
 vi .commitmsg
 
+# Update gamecontroller mappings.
+git submodule update --remote
+
 # Update metainfo with current date and version already, and replace the text by a placeholder.
 VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 	use strict;

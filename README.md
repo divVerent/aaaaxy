@@ -51,6 +51,7 @@ To build the game for yourself, install `git`, `golang`, `graphviz`,
 ``` sh
 git clone https://github.com/divVerent/aaaaxy
 cd aaaaxy
+git submodule update --init --remote
 make
 ```
 
@@ -61,6 +62,7 @@ To update and rebuild, run:
 ``` sh
 cd aaaaxy
 git pull
+git submodule update --remote
 make
 ```
 
