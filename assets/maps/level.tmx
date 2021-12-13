@@ -11016,10 +11016,10 @@
   </object>
   <object id="4718" name="WalkOfShame3" gid="293" x="5296" y="672" width="16" height="32"/>
   <object id="4719" name="WalkOfShame3" gid="299" x="5552" y="672" width="16" height="32"/>
-  <object id="4720" gid="309" x="5384" y="420" width="32" height="16"/>
-  <object id="4721" gid="309" x="5448" y="424" width="32" height="16"/>
-  <object id="4722" gid="309" x="5512" y="428" width="32" height="16"/>
-  <object id="4723" gid="309" x="5576" y="432" width="32" height="16"/>
+  <object id="4720" gid="309" x="5384" y="421" width="32" height="16"/>
+  <object id="4721" gid="309" x="5448" y="426" width="32" height="16"/>
+  <object id="4722" gid="309" x="5512" y="431" width="32" height="16"/>
+  <object id="4723" gid="309" x="5576" y="436" width="32" height="16"/>
   <object id="4724" gid="316" x="5280" y="352" width="32" height="32">
    <properties>
     <property name="image" value="gradient_left_right.png"/>
