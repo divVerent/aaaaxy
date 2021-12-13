@@ -9,11 +9,11 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/google/go-cmp v0.5.6
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.2.2
+	github.com/hajimehoshi/ebiten/v2 v2.2.3
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
 	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
-	golang.org/x/sys v0.0.0-20211124211545-fe61309f8881
+	golang.org/x/sys v0.0.0-20211210111614-af8b64212486
 )
 
 require (
@@ -47,12 +47,12 @@ require (
 )
 
 require (
-	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20211024062804-40e447a793be // indirect
+	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20211204153444-caad923f49f4 // indirect
 	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.4 // indirect
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
-	golang.org/x/exp v0.0.0-20211129234152-8a230f1f7d7a // indirect
-	golang.org/x/mobile v0.0.0-20211109191125-d61a72f26a1a // indirect
+	golang.org/x/exp v0.0.0-20211210185655-e05463a05a18 // indirect
+	golang.org/x/mobile v0.0.0-20211207041440-4e6c2922fdee // indirect
 )
 
 // Use when playing around with extended/fixed tmx versions.
