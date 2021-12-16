@@ -30,6 +30,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
+	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/timing"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
@@ -207,12 +208,21 @@ func loadLevel() (*level.Level, error) {
 	return loadLevelCache.Clone(), nil
 }
 
-func Precache() error {
-	lvl, err := loadLevel()
-	if err != nil {
+func Precache(s *splash.State) (splash.Status, error) {
+	status, err := s.Enter("level", "failed to precache level", splash.Single(func() error {
+		_, err := loadLevel()
 		return err
+	}))
+	if status != splash.Continue {
+		return status, err
 	}
-	return precacheEntities(lvl)
+	status, err = s.Enter("entities", "failed to precache entities", splash.Single(func() error {
+		return precacheEntities(loadLevelCache)
+	}))
+	if status != splash.Continue {
+		return status, err
+	}
+	return splash.Continue, nil
 }
 
 // Init brings a world into a working state.

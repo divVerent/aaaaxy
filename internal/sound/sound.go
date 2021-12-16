@@ -22,6 +22,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"sort"
 	"strings"
 	"time"
 
@@ -33,6 +34,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/go117"
 	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
@@ -222,23 +224,34 @@ func (g *GroupedSound) IsPlayingNotForGameplay() bool {
 	return g.s.groupedPlayer.IsPlaying()
 }
 
-func Precache() error {
+var (
+	soundsToPrecache []string
+)
+
+func Precache(s *splash.State) (splash.Status, error) {
 	if !*precacheSounds {
-		return nil
+		return splash.Continue, nil
 	}
-	names, err := vfs.ReadDir("sounds")
-	if err != nil {
-		return fmt.Errorf("could not enumerate sounds: %v", err)
+	status, err := s.Enter("enumerating sounds", "could not enumerate sounds", splash.Single(func() error {
+		var err error
+		soundsToPrecache, err = vfs.ReadDir("sounds")
+		sort.Strings(soundsToPrecache)
+		return err
+	}))
+	if status != splash.Continue {
+		return status, err
 	}
-	for _, name := range names {
+	for _, name := range soundsToPrecache {
 		if !strings.HasSuffix(name, ".ogg") {
 			continue
 		}
-		_, err := Load(name)
-		if err != nil {
-			return fmt.Errorf("could not precache %v: %v", name, err)
+		status, err := s.Enter(name, fmt.Sprintf("could not precache %v", name), splash.Single(func() error {
+			_, err := Load(name)
+			return err
+		}))
+		if status != splash.Continue {
+			return status, err
 		}
 	}
-	cacheFrozen = true
-	return nil
+	return splash.Continue, nil
 }

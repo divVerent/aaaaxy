@@ -32,9 +32,12 @@ var (
 	debugLogFile    = flag.String("debug_log_file", "", "log file to write all messages to (may be slow)")
 )
 
-func runGame() error {
-	game := &aaaaxy.Game{}
+func runGame(game *aaaaxy.Game) error {
 	if *debugCpuprofile != "" {
+		err := game.InitFull()
+		if err != nil {
+			log.Fatalf("could not initialize game: %v", err)
+		}
 		f, err := os.Create(*debugCpuprofile)
 		if err != nil {
 			log.Fatalf("could not create CPU profile: %v", err)
@@ -72,12 +75,13 @@ func main() {
 	if *debugLogFile != "" {
 		log.AddLogFile(*debugLogFile)
 	}
-	err := aaaaxy.InitEbiten()
+	game := &aaaaxy.Game{}
+	err := game.InitEbiten()
 	if err != nil {
 		log.Fatalf("could not initialize game: %v", err)
 	}
-	err = runGame()
-	errbe := aaaaxy.BeforeExit()
+	err = runGame(game)
+	errbe := game.BeforeExit()
 	if err != nil && err != aaaaxy.RegularTermination {
 		log.Fatalf("RunGame exited abnormally: %v", err)
 	}

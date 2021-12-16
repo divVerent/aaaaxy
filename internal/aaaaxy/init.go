@@ -15,8 +15,10 @@
 package aaaaxy
 
 import (
+	"encoding/json"
 	"fmt"
 	"math"
+	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -32,6 +34,7 @@ import (
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/noise"
 	"github.com/divVerent/aaaaxy/internal/sound"
+	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/timing"
 	"github.com/divVerent/aaaaxy/internal/version"
 	"github.com/divVerent/aaaaxy/internal/vfs"
@@ -42,6 +45,8 @@ var (
 	fullscreen            = flag.Bool("fullscreen", true, "enable fullscreen mode")
 	windowScaleFactor     = flag.Float64("window_scale_factor", 0, "window scale factor in device pixels per game pixel (0 means auto integer scaling)")
 	runnableWhenUnfocused = flag.Bool("runnable_when_unfocused", flag.SystemDefault(map[string]interface{}{"js/*": true, "*/*": false}).(bool), "keep running the game even when not focused")
+	dumpLoadingFractions  = flag.String("dump_loading_fractions", "", "file name to dump actual loading fractions to")
+	debugJustInit         = flag.Bool("debug_just_init", false, "just init everything, then quit right away")
 )
 
 func LoadConfig() (*flag.Config, error) {
@@ -82,7 +87,7 @@ func setWindowSize() {
 	ebiten.SetWindowSize(w, h)
 }
 
-func InitEbiten() error {
+func (g *Game) InitEbiten() error {
 	ebiten.SetCursorMode(ebiten.CursorModeHidden)
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetInitFocused(true)
@@ -94,6 +99,7 @@ func InitEbiten() error {
 	setWindowSize()
 	ebiten.SetWindowTitle("AAAAXY")
 
+	// Initialize some stuff that is needed early.
 	err := vfs.Init()
 	if err != nil {
 		return fmt.Errorf("could not initialize VFS: %v", err)
@@ -101,38 +107,6 @@ func InitEbiten() error {
 	err = version.Init()
 	if err != nil {
 		return fmt.Errorf("could not initialize version: %v", err)
-	}
-	err = input.Init()
-	if err != nil {
-		return fmt.Errorf("could not initialize input: %v", err)
-	}
-	err = font.Init()
-	if err != nil {
-		return fmt.Errorf("could not initialize fonts: %v", err)
-	}
-	err = credits.Precache()
-	if err != nil {
-		return fmt.Errorf("could not precache credits: %v", err)
-	}
-	err = image.Precache()
-	if err != nil {
-		return fmt.Errorf("could not precache images: %v", err)
-	}
-	err = audiowrap.Init()
-	if err != nil {
-		return fmt.Errorf("could not initialize audio: %v", err)
-	}
-	err = sound.Precache()
-	if err != nil {
-		return fmt.Errorf("could not precache sounds: %v", err)
-	}
-	err = engine.Precache()
-	if err != nil {
-		return fmt.Errorf("could not precache engine: %v", err)
-	}
-	err = noise.Init()
-	if err != nil {
-		return fmt.Errorf("could not initialize noise: %v", err)
 	}
 	err = demo.Init()
 	if err != nil {
@@ -142,7 +116,12 @@ func InitEbiten() error {
 	if err != nil {
 		return fmt.Errorf("could not initialize dumping: %v", err)
 	}
+	err = font.Init()
+	if err != nil {
+		return fmt.Errorf("could not initialize fonts: %v", err)
+	}
 
+	// When dumping video or benchmarking, do precisely one render frame per update.
 	if slowDumping() || demo.Timedemo() {
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)
 	} else {
@@ -155,7 +134,98 @@ func InitEbiten() error {
 	return nil
 }
 
-func BeforeExit() error {
+type initState struct {
+	splash.State
+	started bool
+	done    bool
+}
+
+func (g *Game) provideLoadingFractions() error {
+	j, err := vfs.Load("splash", "loading_fractions.json")
+	if err != nil {
+		return err
+	}
+	defer j.Close()
+	var m map[string]float64
+	err = json.NewDecoder(j).Decode(&m)
+	if err != nil {
+		return err
+	}
+	g.init.ProvideFractions(m)
+	return nil
+}
+
+func (g *Game) InitStep() error {
+	if !g.init.started {
+		g.init.started = true
+		err := g.provideLoadingFractions()
+		if err != nil {
+			log.Errorf("could not provide loading fractions: %v", err)
+		}
+	}
+	status, err := g.init.Enter("credits", "could not precache credits", splash.Single(credits.Precache))
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("input", "could not initialize input", splash.Single(input.Init))
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("audio", "could not initialize audio", splash.Single(audiowrap.Init))
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("noise", "could not initialize noise", splash.Single(noise.Init))
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("sounds", "could not precache sounds", sound.Precache)
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("images", "could not precache images", splash.Single(image.Precache))
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("engine", "could not precache engine", engine.Precache)
+	if status != splash.Continue {
+		return err
+	}
+	if *dumpLoadingFractions != "" {
+		f, err := os.Create(*dumpLoadingFractions)
+		if err != nil {
+			return fmt.Errorf("could not open loading fractions file: %v", err)
+		}
+		j := json.NewEncoder(f)
+		j.SetIndent("", "\t")
+		err = j.Encode(g.init.ToFractions())
+		if err != nil {
+			return fmt.Errorf("could not encode to loading fractions file: %v", err)
+		}
+		err = f.Close()
+		if err != nil {
+			return fmt.Errorf("could not close loading fractions file: %v", err)
+		}
+	}
+	if *debugJustInit {
+		log.Errorf("requested early termination via --debug_just_init")
+		return RegularTermination
+	}
+	g.init.done = true
+	return nil
+}
+
+func (g *Game) InitFull() error {
+	for !g.init.done {
+		err := g.InitStep()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (g *Game) BeforeExit() error {
 	timing.PrintReport()
 	err := finishDumping()
 	if err != nil {

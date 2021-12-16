@@ -466,20 +466,20 @@ func (p *Player) LookPos() m.Pos {
 
 // Respawned informs the player that the world moved/respawned it.
 func (p *Player) Respawned() {
-	p.Physics.Reset()                     // Stop moving.
-	p.LastGroundPos = p.EyePos()          // Center the camera.
-	p.AirFrames = 0                       // Assume on ground.
-	p.WasOnGround = p.OnGround            // Back to ground.
-	p.Jumping = true                      // Jump key must be hit again.
-	p.VVVVVV = false                      // Normal physics.
-	p.OnGroundVec = m.Delta{DX: 0, DY: 1} // Gravity points down.
-	p.JumpingUp = false                   // Do not assume we're in the first half of a jump (fastfall).
-	p.Respawning = true                   // Block the respawn key until released.
-	p.Anim.ForceGroup("idle")             // Reset animation.
-	p.Entity.Image = nil                  // Hide player until next Update.
-	p.Entity.Orientation = m.FlipX()      // Default to looking right.
-	p.Goal = nil                          // Normal input.
-	p.JustSpawned = true                  // Just respawned.
+	p.Physics.Reset()                      // Stop moving.
+	p.LastGroundPos = p.Entity.Rect.Origin // Center the camera.
+	p.AirFrames = 0                        // Assume on ground.
+	p.WasOnGround = p.OnGround             // Back to ground.
+	p.Jumping = true                       // Jump key must be hit again.
+	p.VVVVVV = false                       // Normal physics.
+	p.OnGroundVec = m.Delta{DX: 0, DY: 1}  // Gravity points down.
+	p.JumpingUp = false                    // Do not assume we're in the first half of a jump (fastfall).
+	p.Respawning = true                    // Block the respawn key until released.
+	p.Anim.ForceGroup("idle")              // Reset animation.
+	p.Entity.Image = nil                   // Hide player until next Update.
+	p.Entity.Orientation = m.FlipX()       // Default to looking right.
+	p.Goal = nil                           // Normal input.
+	p.JustSpawned = true                   // Just respawned.
 }
 
 func (p *Player) ActionPressed() bool {

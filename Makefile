@@ -82,6 +82,10 @@ mod-update:
 	go mod tidy -compat=1.15 -go=1.16
 	go mod tidy -compat=1.15 -go=1.17
 
+.PHONY: loading-fractions-update
+loading-fractions-update: $(BINARY)
+	./$(BINARY) -dump_loading_fractions=assets/splash/loading_fractions.json -debug_just_init -debug_enable_drawing=false -vsync=true
+
 # The actual build process follows.
 
 # Packing the data files.

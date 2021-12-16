@@ -15,6 +15,7 @@
 package aaaaxy
 
 import (
+	"image/color"
 	"math"
 	"math/rand"
 
@@ -27,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
+	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/menu"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/noise"
@@ -49,6 +51,9 @@ var (
 type Game struct {
 	Menu menu.Controller
 
+	init    initState
+	canDraw bool
+
 	offScreens        chan *ebiten.Image
 	linear2xShader    *ebiten.Shader
 	linear2xCRTShader *ebiten.Shader
@@ -58,6 +63,11 @@ type Game struct {
 var _ ebiten.Game = &Game{}
 
 func (g *Game) Update() error {
+	if !g.init.done {
+		return g.InitStep()
+	}
+	g.canDraw = true
+
 	g.framesToDump++
 
 	timing.Update()
@@ -109,11 +119,30 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 	if sw != engine.GameWidth || sh != engine.GameHeight {
 		log.Infof("skipping frame as sizes do not match up: got %vx%v, want %vx%v",
 			sw, sh, engine.GameWidth, engine.GameHeight)
+		to <- screen
 		return
 	}
 
 	timing.Section("fontcache")
 	font.KeepInCache(screen)
+
+	if !g.canDraw {
+		text, fraction := g.init.Current()
+		if text != "" {
+			bg := color.NRGBA{R: 0x00, G: 0x00, B: uint8(m.Rint(0xAA * (1 - fraction))), A: 0xFF}
+			fg := color.NRGBA{R: 0xAA, G: 0xAA, B: 0xAA, A: 0xFF}
+			ol := color.NRGBA{R: 0x00, G: 0x00, B: 0x00, A: 0xFF}
+			screen.Fill(bg)
+			r := font.MenuSmall.BoundString(text)
+			y := m.Rint(float64((engine.GameHeight-r.Size.DY))*(1-fraction)) - r.Origin.Y
+			font.MenuSmall.Draw(screen, text, m.Pos{
+				X: engine.GameWidth / 2,
+				Y: y,
+			}, true, fg, ol)
+		}
+		to <- screen
+		return
+	}
 
 	timing.Section("world")
 	g.Menu.DrawWorld(screen)
@@ -127,6 +156,9 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 	timing.Section("dump")
 	dumpFrameThenReturnTo(screen, to, g.framesToDump)
 	g.framesToDump = 0
+
+	// Once this has run, we can start fading in music.
+	music.Enable()
 }
 
 func (g *Game) drawOffscreen() *ebiten.Image {
@@ -262,9 +294,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		log.Errorf("WARNING: unknown screen filter type: %q; reverted to simple", *screenFilter)
 		*screenFilter = "simple"
 	}
-
-	// Once this has run, we can start fading in music.
-	music.Enable()
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
