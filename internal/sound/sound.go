@@ -245,7 +245,7 @@ func Precache(s *splash.State) (splash.Status, error) {
 		if !strings.HasSuffix(name, ".ogg") {
 			continue
 		}
-		status, err := s.Enter(name, fmt.Sprintf("could not precache %v", name), splash.Single(func() error {
+		status, err := s.Enter("precaching "+name, fmt.Sprintf("could not precache %v", name), splash.Single(func() error {
 			_, err := Load(name)
 			return err
 		}))

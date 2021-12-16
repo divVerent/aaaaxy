@@ -87,7 +87,9 @@ func (g *Game) Update() error {
 
 	defer func() {
 		timing.Section("demo_post")
-		demo.PostUpdate(g.Menu.World.Player.Rect.Origin)
+		if g.Menu.World.Player != nil {
+			demo.PostUpdate(g.Menu.World.Player.Rect.Origin)
+		}
 	}()
 
 	timing.Section("menu")

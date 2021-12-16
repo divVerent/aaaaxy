@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/version"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
@@ -327,7 +328,7 @@ func FetchTileset(ts *tmx.TileSet) error {
 	return nil
 }
 
-func Load(filename string) (*Level, error) {
+func LoadRaw(filename string) (*Level, error) {
 	r, err := vfs.Load("maps", filename+".tmx")
 	if err != nil {
 		return nil, fmt.Errorf("could not open map: %v", err)
@@ -682,15 +683,28 @@ func Load(filename string) (*Level, error) {
 			}
 		}
 	}
-	level.CheckpointLocations, err = level.LoadCheckpointLocations(filename)
-	if err != nil {
-		log.Errorf("could not load checkpoint locations: %v", err)
-	}
-	level.Hash, err = hashstructure.Hash(&level, hashstructure.FormatV2, nil)
-	if err != nil {
-		return nil, fmt.Errorf("could not hash level: %v", err)
-	}
 	return &level, nil
+}
+
+// AddGameplayData adds data to the level that is only needed for gameplay, not for other processing.
+func (l *Level) AddGameplayData(s *splash.State, filename string) (splash.Status, error) {
+	status, err := s.Enter("loading checkpoints", "could not load checkpoint locations", splash.Single(func() error {
+		var err error
+		l.CheckpointLocations, err = l.LoadCheckpointLocations(filename)
+		return err
+	}))
+	if status != splash.Continue {
+		return status, err
+	}
+	status, err = s.Enter("hashing level", "could not hash level", splash.Single(func() error {
+		var err error
+		l.Hash, err = hashstructure.Hash(&l, hashstructure.FormatV2, nil)
+		return err
+	}))
+	if status != splash.Continue {
+		return status, err
+	}
+	return splash.Continue, nil
 }
 
 // VerifyHash returns an error if the level hash changed.
@@ -700,6 +714,7 @@ func (l *Level) VerifyHash() error {
 		return fmt.Errorf("could not hash level: %v", err)
 	}
 	if hash != l.Hash {
+		log.Fatalf("could not verify")
 		return fmt.Errorf("level hash mismatch: got %v, want %v", hash, l.Hash)
 	}
 	return nil

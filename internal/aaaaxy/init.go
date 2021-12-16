@@ -163,31 +163,31 @@ func (g *Game) InitStep() error {
 			log.Errorf("could not provide loading fractions: %v", err)
 		}
 	}
-	status, err := g.init.Enter("credits", "could not precache credits", splash.Single(credits.Precache))
+	status, err := g.init.Enter("precaching credits", "could not precache credits", splash.Single(credits.Precache))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("input", "could not initialize input", splash.Single(input.Init))
+	status, err = g.init.Enter("initializing input", "could not initialize input", splash.Single(input.Init))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("audio", "could not initialize audio", splash.Single(audiowrap.Init))
+	status, err = g.init.Enter("initializing audio", "could not initialize audio", splash.Single(audiowrap.Init))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("noise", "could not initialize noise", splash.Single(noise.Init))
+	status, err = g.init.Enter("initializing noise", "could not initialize noise", splash.Single(noise.Init))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("sounds", "could not precache sounds", sound.Precache)
+	status, err = g.init.Enter("precaching sounds", "could not precache sounds", sound.Precache)
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("images", "could not precache images", splash.Single(image.Precache))
+	status, err = g.init.Enter("precaching images", "could not precache images", splash.Single(image.Precache))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("engine", "could not precache engine", engine.Precache)
+	status, err = g.init.Enter("precaching engine", "could not precache engine", engine.Precache)
 	if status != splash.Continue {
 		return err
 	}

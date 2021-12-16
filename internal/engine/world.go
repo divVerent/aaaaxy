@@ -192,12 +192,7 @@ var loadLevelCache *level.Level
 
 func loadLevel() (*level.Level, error) {
 	if loadLevelCache == nil {
-		// Load map.
-		lvl, err := level.Load("level")
-		if err != nil {
-			return nil, fmt.Errorf("could not load level: %v", err)
-		}
-		loadLevelCache = lvl
+		return nil, fmt.Errorf("trying to load level but nothing has been precached")
 	}
 	// Verify that the level hasn't changed.
 	// If this hits when resetting the game, most likely Clone doesn't properly clone some state.
@@ -208,20 +203,36 @@ func loadLevel() (*level.Level, error) {
 	return loadLevelCache.Clone(), nil
 }
 
+var levelBeingLoaded *level.Level
+
 func Precache(s *splash.State) (splash.Status, error) {
-	status, err := s.Enter("level", "failed to precache level", splash.Single(func() error {
-		_, err := loadLevel()
+	const filename = "level"
+
+	status, err := s.Enter("loading level", "failed to load level", splash.Single(func() error {
+		var err error
+		levelBeingLoaded, err = level.LoadRaw(filename)
 		return err
 	}))
 	if status != splash.Continue {
 		return status, err
 	}
-	status, err = s.Enter("entities", "failed to precache entities", splash.Single(func() error {
-		return precacheEntities(loadLevelCache)
+
+	status, err = s.Enter("preparing level", "failed to prepare level", func(s *splash.State) (splash.Status, error) {
+		return levelBeingLoaded.AddGameplayData(s, filename)
+	})
+	if status != splash.Continue {
+		return status, err
+	}
+
+	status, err = s.Enter("precaching entities", "failed to precache entities", splash.Single(func() error {
+		return precacheEntities(levelBeingLoaded)
 	}))
 	if status != splash.Continue {
 		return status, err
 	}
+
+	loadLevelCache = levelBeingLoaded
+	levelBeingLoaded = nil // After returning Continue, this will never be called again.
 	return splash.Continue, nil
 }
 

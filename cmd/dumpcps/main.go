@@ -80,7 +80,7 @@ func main() {
 	log.Infof("parsing flags...")
 	flag.Parse(flag.NoConfig)
 	log.Infof("loading level...")
-	lvl, err := level.Load("level")
+	lvl, err := level.LoadRaw("level")
 	if err != nil {
 		log.Fatalf("could not load level: %v", err)
 	}
