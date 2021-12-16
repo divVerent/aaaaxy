@@ -328,16 +328,7 @@ func FetchTileset(ts *tmx.TileSet) error {
 	return nil
 }
 
-func LoadRaw(filename string) (*Level, error) {
-	r, err := vfs.Load("maps", filename+".tmx")
-	if err != nil {
-		return nil, fmt.Errorf("could not open map: %v", err)
-	}
-	defer r.Close()
-	t, err := tmx.Decode(r)
-	if err != nil {
-		return nil, fmt.Errorf("invalid map: %v", err)
-	}
+func parseTmx(t *tmx.Map) (*Level, error) {
 	if t.Orientation != "orthogonal" {
 		return nil, fmt.Errorf("unsupported map: got orientation %q, want orthogonal", t.Orientation)
 	}
@@ -686,19 +677,74 @@ func LoadRaw(filename string) (*Level, error) {
 	return &level, nil
 }
 
-// AddGameplayData adds data to the level that is only needed for gameplay, not for other processing.
-func (l *Level) AddGameplayData(s *splash.State, filename string) (splash.Status, error) {
-	status, err := s.Enter("loading checkpoints", "could not load checkpoint locations", splash.Single(func() error {
-		var err error
-		l.CheckpointLocations, err = l.LoadCheckpointLocations(filename)
-		return err
+type Loader struct {
+	filename                string
+	skipCheckpointLocations bool
+
+	level   *Level
+	tmxData *tmx.Map
+}
+
+func NewLoader(filename string) *Loader {
+	return &Loader{filename: filename}
+}
+
+func (l *Loader) SkipCheckpointLocations(s bool) *Loader {
+	l.skipCheckpointLocations = s
+	return l
+}
+
+func (l *Loader) Level() *Level {
+	return l.level
+}
+
+func (l *Loader) Load() (*Level, error) {
+	_, err := splash.RunImmediately("loading level", l.LoadStepwise)
+	return l.level, err
+}
+
+// LoadStepwise loads a level in steps.
+func (l *Loader) LoadStepwise(s *splash.State) (splash.Status, error) {
+	status, err := s.Enter("loading level file", "could not load level file", splash.Single(func() error {
+		r, err := vfs.Load("maps", l.filename+".tmx")
+		if err != nil {
+			return fmt.Errorf("could not open map: %v", err)
+		}
+		defer r.Close()
+		t, err := tmx.Decode(r)
+		if err != nil {
+			return fmt.Errorf("invalid map: %v", err)
+		}
+		l.tmxData = t
+		return nil
 	}))
 	if status != splash.Continue {
 		return status, err
 	}
+	status, err = s.Enter("parsing level data", "could not parse level data", splash.Single(func() error {
+		level, err := parseTmx(l.tmxData)
+		if err != nil {
+			return err
+		}
+		l.level = level
+		return nil
+	}))
+	if status != splash.Continue {
+		return status, err
+	}
+	if !l.skipCheckpointLocations {
+		status, err = s.Enter("loading checkpoints", "could not load checkpoint locations", splash.Single(func() error {
+			var err error
+			l.level.CheckpointLocations, err = l.level.LoadCheckpointLocations(l.filename)
+			return err
+		}))
+		if status != splash.Continue {
+			return status, err
+		}
+	}
 	status, err = s.Enter("hashing level", "could not hash level", splash.Single(func() error {
 		var err error
-		l.Hash, err = hashstructure.Hash(&l, hashstructure.FormatV2, nil)
+		l.level.Hash, err = hashstructure.Hash(l.level, hashstructure.FormatV2, nil)
 		return err
 	}))
 	if status != splash.Continue {

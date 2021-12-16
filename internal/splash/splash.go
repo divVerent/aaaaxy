@@ -59,24 +59,30 @@ func (s *State) ProvideFractions(fractions map[string]float64) {
 	s.knownFractions = fractions
 }
 
+// RunImmediately runs the given status-ish function as a single step.
+// Useful for doing stuff w/o an actual loading screen.
+func RunImmediately(errPrefix string, f func(s *State) (Status, error)) (Status, error) {
+	// Simpler implementation that never updates the loading screen and does all init in one frame.
+	for {
+		status, err := f(nil)
+		if err != nil {
+			return EndFrame, fmt.Errorf("%v: %v", errPrefix, err)
+		}
+		if status == EndFrame {
+			// f did not terminate yet - we need to call it again.
+			continue
+		}
+		return status, nil
+	}
+}
+
 // Enter enters a splash screen section.
 // step must be an unique string identifying what is being loaded.
 // f is allowed to call Enter too, but must return false, nil if its own Enter calls returned false.
 // f must repeat all Enter calls it does, but will never be called again once it returned true.
 func (s *State) Enter(step string, errPrefix string, f func(s *State) (Status, error)) (Status, error) {
-	if !*loadingScreen {
-		// Simpler implementation that never updates the loading screen and does all init in one frame.
-		for {
-			status, err := f(s)
-			if err != nil {
-				return EndFrame, fmt.Errorf("%v: %v", errPrefix, err)
-			}
-			if status == EndFrame {
-				// f did not terminate yet - we need to call it again.
-				continue
-			}
-			return status, nil
-		}
+	if !*loadingScreen || s == nil {
+		return RunImmediately(errPrefix, f)
 	}
 
 	if s.startTimes == nil {

@@ -203,36 +203,23 @@ func loadLevel() (*level.Level, error) {
 	return loadLevelCache.Clone(), nil
 }
 
-var levelBeingLoaded *level.Level
+var levelLoader *level.Loader = level.NewLoader("level")
 
 func Precache(s *splash.State) (splash.Status, error) {
-	const filename = "level"
-
-	status, err := s.Enter("loading level", "failed to load level", splash.Single(func() error {
-		var err error
-		levelBeingLoaded, err = level.LoadRaw(filename)
-		return err
-	}))
-	if status != splash.Continue {
-		return status, err
-	}
-
-	status, err = s.Enter("preparing level", "failed to prepare level", func(s *splash.State) (splash.Status, error) {
-		return levelBeingLoaded.AddGameplayData(s, filename)
-	})
+	status, err := s.Enter("loading level", "failed to load level", levelLoader.LoadStepwise)
 	if status != splash.Continue {
 		return status, err
 	}
 
 	status, err = s.Enter("precaching entities", "failed to precache entities", splash.Single(func() error {
-		return precacheEntities(levelBeingLoaded)
+		return precacheEntities(levelLoader.Level())
 	}))
 	if status != splash.Continue {
 		return status, err
 	}
 
-	loadLevelCache = levelBeingLoaded
-	levelBeingLoaded = nil // After returning Continue, this will never be called again.
+	loadLevelCache = levelLoader.Level()
+	levelLoader = nil // After returning Continue, this will never be called again.
 	return splash.Continue, nil
 }
 
