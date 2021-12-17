@@ -18,7 +18,9 @@ grade: stable
 confinement: strict
 
 architectures:
-  - build-on: [amd64]
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
 
 adopt-info: part-aaaaxy
 
@@ -54,7 +56,7 @@ parts:
       snapcraftctl set-version "$(scripts/version.sh semver)"
     override-build: |
       make BINARY="${SNAPCRAFT_PART_INSTALL}/bin/aaaaxy" BUILDTYPE=release
-    source: .
+    source: https://github.com/divVerent/aaaaxy
     source-type: git
     build-packages:
       - graphviz
