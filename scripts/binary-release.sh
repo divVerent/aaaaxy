@@ -90,7 +90,7 @@ Once the release is published, finally run:
   git push origin main
 If all this is done, consider also updating the snap:
   rm -f *.snap
-  snap run snapcraft remote-build && snap run snapcraft upload *.snap
+  snap run snapcraft clean && snap run snapcraft && snap run snapcraft upload *.snap
 Then go to https://snapcraft.io/aaaaxy/releases and activate the new build as
 beta, later as stable.
 And the FlatPak:
