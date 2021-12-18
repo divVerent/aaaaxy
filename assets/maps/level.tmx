@@ -5995,7 +5995,7 @@
    <properties>
     <property name="reached_from" type="object" value="1408"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Curiosity killed the Cat.  Press {{ExitButton}}."/>
+    <property name="text" value="Curiosity killed the Carl - no, the cat.  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="1408" name="curiosity_killed_the_carl" type="Checkpoint" x="64" y="8128" width="352" height="32">
