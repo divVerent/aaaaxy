@@ -41,6 +41,12 @@ func (a *Animation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity
 	if _, err := fmt.Sscanf(framesString, "%d", &group.Frames); err != nil {
 		return fmt.Errorf("could not decode animation_frames %q: %v", framesString, err)
 	}
+	symmetricString := sp.Properties["animation_symmetric"]
+	if symmetricString != "" {
+		if _, err := fmt.Sscanf(symmetricString, "%t", &group.Symmetric); err != nil {
+			return fmt.Errorf("could not decode animation_symmetric %q: %v", symmetricString, err)
+		}
+	}
 	frameIntervalString := sp.Properties["animation_frame_interval"]
 	if _, err := fmt.Sscanf(frameIntervalString, "%d", &group.FrameInterval); err != nil {
 		return fmt.Errorf("could not decode animation_frame_interval %q: %v", frameIntervalString, err)

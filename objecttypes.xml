@@ -33,6 +33,7 @@
   <property name="animation_frames" type="int" default="0"/>
   <property name="animation_group" type="string"/>
   <property name="animation_repeat_interval" type="int" default="0"/>
+  <property name="animation_symmetric" type="bool" default="false"/>
   <property name="animation_sync_to_music_offset" type="string" default="0s"/>
   <property name="border_pixels" type="int" default="0"/>
   <property name="map_black_to" type="color"/>
@@ -180,6 +181,7 @@
   <property name="animation_frames" type="int" default="0"/>
   <property name="animation_group" type="string"/>
   <property name="animation_repeat_interval" type="int" default="0"/>
+  <property name="animation_symmetric" type="bool" default="false"/>
   <property name="animation_sync_to_music_offset" type="string" default="0s"/>
   <property name="border_pixels" type="int" default="0"/>
   <property name="fade_despawn" type="bool" default="false"/>
@@ -285,6 +287,7 @@
   <property name="animation_frames" type="int" default="0"/>
   <property name="animation_group" type="string"/>
   <property name="animation_repeat_interval" type="int" default="0"/>
+  <property name="animation_symmetric" type="bool" default="false"/>
   <property name="animation_sync_to_music_offset" type="string" default="0s"/>
   <property name="border_pixels" type="int" default="0"/>
   <property name="fade_despawn" type="bool" default="false"/>

@@ -47,6 +47,7 @@ func (g *Give) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) err
 	err := g.Anim.Init("can_"+g.Ability, map[string]*animation.Group{
 		"default": {
 			Frames:        30,
+			Symmetric:     true,
 			FrameInterval: 4,
 			NextInterval:  4 * 30,
 			NextAnim:      "default",

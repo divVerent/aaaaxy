@@ -19,7 +19,7 @@ minwidth=4
 
 images="can_carry can_control can_push can_stand"
 
-for i in $(seq 0 $((steps-1))); do
+for i in $(seq 0 $((steps/2))); do
 	width=$(echo "c(8 * a(1) * $i / $steps) * $size" | bc -l)
 	width=${width%.*}
 	case "$width" in

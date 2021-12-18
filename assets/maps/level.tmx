@@ -4259,7 +4259,8 @@
     <property name="animation_frames" type="int" value="60"/>
     <property name="animation_group" value="top"/>
     <property name="animation_repeat_interval" type="int" value="120"/>
-    <property name="animation_sync_to_music_offset" value="0.16s"/>
+    <property name="animation_symmetric" type="bool" value="true"/>
+    <property name="animation_sync_to_music_offset" value="-0.34s"/>
    </properties>
   </object>
   <object id="874" name="Box9N" gid="293" x="5792" y="6848" width="16" height="160"/>
@@ -13916,7 +13917,7 @@
     <property name="animation_frames" type="int" value="6"/>
     <property name="animation_group" value="bottom"/>
     <property name="animation_repeat_interval" type="int" value="360"/>
-    <property name="animation_sync_to_music_offset" value="-0.34s"/>
+    <property name="animation_sync_to_music_offset" value="0.66s"/>
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>

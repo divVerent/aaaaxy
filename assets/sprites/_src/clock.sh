@@ -13,12 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-for frame in $(seq 0 59); do
+for frame in $(seq 0 30); do
 	a=$(echo "$frame / 60 * 8 * a(1)" | bc -l)
 	# Max angle:
 	# Can move 32 left/right.
 	# Total had length 80.
-	b=$(echo "s($a) * a(32/80)" | bc -l)
+	b=$(echo "c($a) * a(32/80)" | bc -l)
 	s=$(echo "s($b)" | bc -l)
 	c=$(echo "c($b)" | bc -l)
 	out="../clock_top_${frame}.png"

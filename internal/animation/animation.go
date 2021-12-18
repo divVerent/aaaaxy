@@ -28,6 +28,7 @@ import (
 
 type Group struct {
 	Frames            int           // Number of frames of anim.
+	Symmetric         bool          // If true, repeat reversed frames 1..(Frames-2) at end of sequence.
 	FrameInterval     int           // Time till next frame.
 	NextInterval      int           // Time till NextAnim.
 	WaitFinish        bool          // Set if this anim shouldn't be interrupted.
@@ -60,10 +61,16 @@ func (s *State) Init(spritePrefix string, groups map[string]*Group, initialGroup
 				return fmt.Errorf("animation group %q references nonexisting frame group %q", name, group.NextAnim)
 			}
 		}
-		group.Images = make([]*ebiten.Image, group.Frames)
+		images := group.Frames
+		if group.Symmetric {
+			// Even count: 0 1 2 3 -> 0 1 2 3 2 1, so 6 -> 4
+			// Odd count: 0 1 2 3 -> 0 1 2 3 3 2 1, so 7 -> 4
+			images = images/2 + 1
+		}
+		group.Images = make([]*ebiten.Image, images)
 		for i := range group.Images {
 			var spriteName string
-			if group.Frames > 1 {
+			if images > 1 {
 				spriteName = fmt.Sprintf("%s_%s_%d.png", spritePrefix, name, i)
 			} else {
 				spriteName = fmt.Sprintf("%s_%s.png", spritePrefix, name)
@@ -129,5 +136,12 @@ func (s *State) Update(e *engine.Entity) {
 		absFrame := int((music.Now() - s.Group.SyncToMusicOffset) * engine.GameTPS / (time.Second * time.Duration(s.Group.FrameInterval)))
 		frame = m.Mod(absFrame, s.Group.Frames)
 	}
-	e.Image = s.Group.Images[frame]
+	image := frame
+	if s.Group.Symmetric {
+		other := s.Group.Frames - image
+		if other < image {
+			image = other
+		}
+	}
+	e.Image = s.Group.Images[image]
 }
