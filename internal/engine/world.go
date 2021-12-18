@@ -36,12 +36,13 @@ import (
 )
 
 var (
-	debugCountTiles             = flag.Bool("debug_count_tiles", false, "count tiles set/cleared")
-	debugDetectLoadingConflicts = flag.Bool("debug_detect_loading_conflicts", false, "try to detect tile loading conflicts")
-	cheatInitialOrientation     = flag.String("cheat_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
-	cheatInitialCheckpoint      = flag.String("cheat_initial_checkpoint", "", "initial checkpoint")
-	debugDumpVisiblePolygon     = flag.Bool("debug_dump_visible_polygon", false, "dump the visible polygon to the log")
-	debugCheckTileWindowSize    = flag.Bool("debug_check_tile_window_size", false, "if set, we verify that the tile window size is set high enough")
+	debugCountTiles                  = flag.Bool("debug_count_tiles", false, "count tiles set/cleared")
+	debugNeighborLoadingOptimization = flag.Bool("debug_neighbor_loading_optimization", true, "load tiles faster from the same neighbor tile (maybe incorrect, but faster)")
+	debugDetectLoadingConflicts      = flag.Bool("debug_detect_loading_conflicts", false, "try to detect tile loading conflicts")
+	cheatInitialOrientation          = flag.String("cheat_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
+	cheatInitialCheckpoint           = flag.String("cheat_initial_checkpoint", "", "initial checkpoint")
+	debugDumpVisiblePolygon          = flag.Bool("debug_dump_visible_polygon", false, "dump the visible polygon to the log")
+	debugCheckTileWindowSize         = flag.Bool("debug_check_tile_window_size", false, "if set, we verify that the tile window size is set high enough")
 )
 
 // World represents the current game state including its entities.
@@ -69,6 +70,8 @@ type World struct {
 	// WarpZoneStates is the set of current overrides of warpzone state.
 	// WarpZones can be turned on/off at will, as long as they are offscreen.
 	WarpZoneStates map[string]bool
+	// warpzoneStatesChanged is set if warpzone state changed during this frame.
+	warpzoneStatesChanged bool
 	// TimerStarted is set on first input after game launch or reset.
 	TimerStarted bool
 	// TimerStopped is set when game time is paused.
@@ -501,6 +504,7 @@ func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult
 }
 
 func (w *World) updateEntities() {
+	w.warpzoneStatesChanged = false
 	w.respawned = false
 	w.entities.forEach(func(ent *Entity) error {
 		ent.Impl.Update()
@@ -763,6 +767,7 @@ func (w *World) Update() error {
 // This state resets on respawn.
 func (w *World) SetWarpZoneState(name string, state bool) {
 	w.WarpZoneStates[name] = state
+	w.warpzoneStatesChanged = true
 }
 
 // LoadTile loads the next tile into the current world based on a currently
@@ -775,8 +780,9 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			return tile
 		}
 		// From now on we know it doesn't have the same FrameVis.
-		if tile.LoadedFromNeighbor == p {
+		if *debugNeighborLoadingOptimization && !w.warpzoneStatesChanged && tile.LoadedFromNeighbor == p {
 			// Loading from same neighbor as before is OK.
+			// Note: this is INCORRECT if during the last frame, a warpzone changed status.
 			tile.VisibilityFlags = w.frameVis
 			return tile
 		}
