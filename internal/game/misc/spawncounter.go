@@ -27,21 +27,12 @@ import (
 type SpawnCounter struct{}
 
 func (s *SpawnCounter) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
-	target := mixins.ParseTarget(sp.Properties["target"])
 	state := sp.Properties["state"] != "false"
-	divisorStr := sp.Properties["divisor"]
-	divisor, err := strconv.Atoi(divisorStr)
-	if err != nil {
-		return fmt.Errorf("could not decode divisor %q: %v", divisorStr, err)
-	}
-	modulusStr := sp.Properties["modulus"]
-	modulus, err := strconv.Atoi(modulusStr)
-	if err != nil {
-		return fmt.Errorf("could not decode modulus %q: %v", modulusStr, err)
-	}
+
 	count := 0
 	countStr := sp.PersistentState["count"]
 	if countStr != "" {
+		var err error
 		count, err = strconv.Atoi(countStr)
 		if err != nil {
 			return fmt.Errorf("could not decode count %q: %v", countStr, err)
@@ -49,9 +40,31 @@ func (s *SpawnCounter) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Ent
 	}
 	count++
 	sp.PersistentState["count"] = fmt.Sprint(count)
-	if count%divisor == modulus {
-		mixins.SetStateOfTarget(w, e, e, target, state)
+
+	for i := 1; ; i++ {
+		suffix := ""
+		if i > 1 {
+			suffix = fmt.Sprint(i)
+		}
+		divisorStr := sp.Properties["divisor"+suffix]
+		if divisorStr == "" {
+			break
+		}
+		divisor, err := strconv.Atoi(divisorStr)
+		if err != nil {
+			return fmt.Errorf("could not decode divisor%s %q: %v", suffix, divisorStr, err)
+		}
+		modulusStr := sp.Properties["modulus"+suffix]
+		modulus, err := strconv.Atoi(modulusStr)
+		if err != nil {
+			return fmt.Errorf("could not decode modulus%s %q: %v", suffix, modulusStr, err)
+		}
+		target := mixins.ParseTarget(sp.Properties["target"+suffix])
+		if count%divisor == modulus {
+			mixins.SetStateOfTarget(w, e, e, target, state)
+		}
 	}
+
 	return nil
 }
 

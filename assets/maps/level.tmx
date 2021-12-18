@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8085">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8088">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17412,9 +17412,15 @@
   </object>
   <object id="8061" type="SpawnCounter" x="6448" y="5952" width="64" height="32">
    <properties>
-    <property name="divisor" type="int" value="4"/>
-    <property name="modulus" type="int" value="0"/>
-    <property name="target" value="CPIsALie"/>
+    <property name="divisor" type="int" value="11"/>
+    <property name="divisor2" type="int" value="11"/>
+    <property name="divisor3" type="int" value="11"/>
+    <property name="modulus" type="int" value="4"/>
+    <property name="modulus2" type="int" value="8"/>
+    <property name="modulus3" type="int" value="0"/>
+    <property name="target" value="CPIsALie !NeedAPlatform"/>
+    <property name="target2" value="CPIsALie !NeedAPlatform"/>
+    <property name="target3" value="NeedAPlatform !CPIsALie"/>
    </properties>
   </object>
   <object id="8065" type="SetState" x="3840" y="5264" width="112" height="32">
@@ -17486,6 +17492,13 @@
   <object id="8084" type="_TileMod" x="576" y="7248" width="16" height="32">
    <properties>
     <property name="opaque" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="8086" name="NeedAPlatform" type="SwitchableSprite" x="6432" y="5936" width="64" height="64">
+   <properties>
+    <property name="fade_time" value="5s"/>
+    <property name="image" value="need_a_platform.png"/>
+    <property name="no_transform" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
