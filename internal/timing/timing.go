@@ -172,7 +172,7 @@ func PrintReport() {
 			if entry.total < minReportDuration {
 				continue
 			}
-			report = append(report, fmt.Sprintf("  %-48s %v", section, entry))
+			report = append(report, fmt.Sprintf("%-48s %v", section, entry))
 		}
 		sort.Strings(report)
 		log.Infof("timing report:\n%v", strings.Join(report, "\n"))

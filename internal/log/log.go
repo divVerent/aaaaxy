@@ -19,6 +19,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"regexp"
 	"runtime/debug"
 
 	"github.com/divVerent/aaaaxy/internal/alert"
@@ -38,32 +39,44 @@ const (
 	errorLevel   = -2
 )
 
+// Do not allow exploiting log parsers or the terminal. #log4j
+var (
+	newlineRE          = regexp.MustCompile(`\n`)
+	newlineReplacement = "\n\t"
+	specialRE          = regexp.MustCompile(`[\000-\010\013-\037\177]`) // Special chars except for \n (\012) and \t (\011).
+	specialReplacement = "?"
+)
+
+func logSprintf(format string, v ...interface{}) string {
+	return specialRE.ReplaceAllLiteralString(newlineRE.ReplaceAllLiteralString(fmt.Sprintf(format, v...), newlineReplacement), specialReplacement)
+}
+
 func Debugf(format string, v ...interface{}) {
 	if *V < debugLevel {
 		return
 	}
-	log.Output(2, fmt.Sprintf("[DEBUG] "+format, v...))
+	log.Output(2, logSprintf("[DEBUG] "+format, v...))
 }
 
 func Infof(format string, v ...interface{}) {
 	if *V < infoLevel {
 		return
 	}
-	log.Output(2, fmt.Sprintf("[INFO] "+format, v...))
+	log.Output(2, logSprintf("[INFO] "+format, v...))
 }
 
 func Warningf(format string, v ...interface{}) {
 	if *V < warningLevel {
 		return
 	}
-	log.Output(2, fmt.Sprintf("[WARNING] "+format, v...))
+	log.Output(2, logSprintf("[WARNING] "+format, v...))
 }
 
 func Errorf(format string, v ...interface{}) {
 	if *V < errorLevel {
 		return
 	}
-	log.Output(2, fmt.Sprintf("[ERROR] "+format, v...))
+	log.Output(2, logSprintf("[ERROR] "+format, v...))
 }
 
 func TraceErrorf(format string, v ...interface{}) {
@@ -71,12 +84,12 @@ func TraceErrorf(format string, v ...interface{}) {
 		return
 	}
 	debug.PrintStack()
-	log.Output(2, fmt.Sprintf("[ERROR] "+format, v...))
+	log.Output(2, logSprintf("[ERROR] "+format, v...))
 }
 
 func Fatalf(format string, v ...interface{}) {
 	debug.PrintStack()
-	msg := fmt.Sprintf(format, v...)
+	msg := logSprintf(format, v...)
 	log.Output(2, "[FATAL] "+msg)
 	CloseLogFile()
 	if !*Batch {
