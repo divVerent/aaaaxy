@@ -21,6 +21,7 @@ import (
 	"os"
 	"regexp"
 	"runtime/debug"
+	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/alert"
 )
@@ -41,14 +42,22 @@ const (
 
 // Do not allow exploiting log parsers or the terminal. #log4j
 var (
-	newlineRE          = regexp.MustCompile(`\n`)
+	newline            = "\n"
 	newlineReplacement = "\n\t"
-	specialRE          = regexp.MustCompile(`[\000-\010\013-\037\177]`) // Special chars except for \n (\012) and \t (\011).
+	// Note: explicitly allow the special Unicode characters that we actually use.
+	// Do not allow anything else, as it could be nasty stuff like overrides or invisible stuff.
+	specialRE          = regexp.MustCompile(`[^\n\t\040-\176µτπö¾©]|\\`)
 	specialReplacement = "?"
 )
 
 func logSprintf(format string, v ...interface{}) string {
-	return specialRE.ReplaceAllLiteralString(newlineRE.ReplaceAllLiteralString(fmt.Sprintf(format, v...), newlineReplacement), specialReplacement)
+	return specialRE.ReplaceAllStringFunc(strings.ReplaceAll(fmt.Sprintf(format, v...), newline, newlineReplacement), func(s string) string {
+		repl := ""
+		for _, ch := range []byte(s) {
+			repl += fmt.Sprintf("\\%03o", ch)
+		}
+		return repl
+	})
 }
 
 func Debugf(format string, v ...interface{}) {
