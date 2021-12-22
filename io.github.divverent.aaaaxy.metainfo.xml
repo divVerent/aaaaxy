@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.0.112" date="2021-12-16">
-      <description><ul><li>Add a loading screen.</li><li>Fix a likely place where one can accidentally lose a platform in Little Big Platforms.</li><li>Make The Wide Gap it substantially easier to not lose in the third room.</li><li>Make regression tests report errors again.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.112</url>
+    <release version="v1.0.126" date="2021-12-22">
+      <description><ul><li>Make the jump sound less loud compared to the others.</li><li>Add a second hint to The One Way Round.</li><li>Sightly better note in Don't Look Up.</li><li>Properly turn off music in the AntiHub tunnel.</li><li>Fix some visual glitches in The Tower Of Impossible.</li><li>Fix a small render glitch in Little Big Platforms.</li><li>Reduce wastage in sprites atlas, and loading time.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.126</url>
     </release>
   </releases>
 </component>
