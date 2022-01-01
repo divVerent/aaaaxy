@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8091">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8093">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17261,7 +17261,7 @@
   <object id="8002" gid="321" x="5392" y="768" width="32" height="32"/>
   <object id="8003" gid="321" x="5424" y="768" width="32" height="32"/>
   <object id="8004" gid="321" x="5456" y="768" width="32" height="32"/>
-  <object id="8007" type="_TileMod" x="6448" y="6432" width="32" height="96">
+  <object id="8007" type="_TileMod" x="6448" y="6432" width="32" height="80">
    <properties>
     <property name="opaque" type="bool" value="false"/>
     <property name="solid" type="bool" value="false"/>
@@ -17292,11 +17292,11 @@
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="8023" gid="330" x="6448" y="6512" width="16" height="16"/>
-  <object id="8024" gid="330" x="6464" y="6512" width="16" height="16"/>
-  <object id="8031" gid="315" x="6448" y="6512" width="16" height="16"/>
-  <object id="8032" gid="315" x="6464" y="6512" width="16" height="16"/>
-  <object id="8034" type="CoverSprite" gid="36" x="6448" y="6512" width="32" height="16">
+  <object id="8023" gid="330" x="6368" y="6512" width="16" height="16"/>
+  <object id="8024" gid="330" x="6384" y="6512" width="16" height="16"/>
+  <object id="8031" gid="315" x="6368" y="6512" width="16" height="16"/>
+  <object id="8032" gid="315" x="6384" y="6512" width="16" height="16"/>
+  <object id="8034" type="CoverSprite" gid="36" x="6368" y="6512" width="32" height="16">
    <properties>
     <property name="opaque" type="bool" value="false"/>
     <property name="solid" type="bool" value="false"/>
@@ -17472,7 +17472,7 @@
     <property name="text_font" value="SmallCaps"/>
    </properties>
   </object>
-  <object id="8081" type="_TileMod" x="6432" y="6464" width="16" height="48">
+  <object id="8081" type="_TileMod" x="6352" y="6464" width="16" height="48">
    <properties>
     <property name="opaque" type="bool" value="false"/>
     <property name="solid" type="bool" value="true"/>
@@ -17504,5 +17504,11 @@
   <object id="8088" gid="304" x="7552" y="288" width="32" height="32"/>
   <object id="8089" type="SwitchMusic" x="7600" y="288" width="32" height="32"/>
   <object id="8090" type="SwitchMusic" x="6096" y="6864" width="32" height="32"/>
+  <object id="8091" type="_TileMod" x="6368" y="6464" width="80" height="48">
+   <properties>
+    <property name="opaque" type="bool" value="false"/>
+    <property name="solid" type="bool" value="false"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
