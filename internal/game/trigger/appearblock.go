@@ -39,7 +39,7 @@ const (
 	AppearSolidThreshold = 12
 )
 
-func (a *AppearBlock) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (a *AppearBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	a.World = w
 	a.Entity = e
 

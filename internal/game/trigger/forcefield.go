@@ -56,7 +56,7 @@ const (
 	ffAlphaMax         = 1.0
 )
 
-func (f *ForceField) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (f *ForceField) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	f.NonSolidTouchable.Init(w, e)
 	f.World = w
 	f.Entity = e

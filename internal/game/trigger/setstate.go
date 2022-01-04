@@ -38,7 +38,7 @@ type SetState struct {
 	Originator *engine.Entity
 }
 
-func (s *SetState) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SetState) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
 	s.NonSolidTouchable.Init(w, e)

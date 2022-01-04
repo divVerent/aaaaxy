@@ -40,7 +40,7 @@ type Give struct {
 	Anim animation.State
 }
 
-func (g *Give) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (g *Give) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	g.NonSolidTouchable.Init(w, e)
 	g.Ability = sp.Properties["ability"]
 	g.Text = sp.Properties["text"]

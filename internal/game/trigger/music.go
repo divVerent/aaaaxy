@@ -27,7 +27,7 @@ type SwitchMusic struct {
 	target.SwitchMusicTarget
 }
 
-func (s *SwitchMusic) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SwitchMusic) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.NonSolidTouchable.Init(w, e)
 	return s.SwitchMusicTarget.Spawn(w, sp, e)
 }

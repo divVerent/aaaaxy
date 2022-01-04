@@ -30,7 +30,7 @@ type Animation struct {
 	Anim   animation.State
 }
 
-func (a *Animation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (a *Animation) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	a.Entity = e
 	prefix := sp.Properties["animation"]
 	groupName := sp.Properties["animation_group"]

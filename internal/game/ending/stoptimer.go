@@ -24,7 +24,7 @@ type StopTimerTarget struct {
 	World *engine.World
 }
 
-func (s *StopTimerTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *StopTimerTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	return nil
 }

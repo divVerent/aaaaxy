@@ -30,7 +30,7 @@ type SpriteBase struct {
 	ZDefault int
 }
 
-func (s *SpriteBase) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	w.SetSolid(e, sp.Properties["solid"] == "true")
 	w.SetOpaque(e, sp.Properties["opaque"] == "true")
 	if s := sp.Properties["player_solid"]; s != "" {

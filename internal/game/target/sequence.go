@@ -32,7 +32,7 @@ type SequenceTarget struct {
 	State bool
 }
 
-func (s *SequenceTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SequenceTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
 	s.Target = sp.Properties["target"]
@@ -77,7 +77,7 @@ type SequenceCollector struct {
 	Current string
 }
 
-func (s *SequenceCollector) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SequenceCollector) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
 	s.Sequence = sp.Properties["sequence"]

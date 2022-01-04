@@ -37,7 +37,7 @@ type FadeTarget struct {
 	Normal [3]float64
 }
 
-func (f *FadeTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	f.World = w
 
 	durationString := sp.Properties["duration"]

@@ -29,7 +29,7 @@ type SwitchableJumpPad struct {
 	JumpPad
 }
 
-func (j *SwitchableJumpPad) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (j *SwitchableJumpPad) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	j.Settable.Init(sp)
 	return j.JumpPad.Spawn(w, sp, e)
 }

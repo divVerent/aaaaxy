@@ -44,7 +44,7 @@ type Fadable struct {
 	AnimFrame int
 }
 
-func (f *Fadable) Init(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (f *Fadable) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	f.Settable.Init(sp)
 
 	f.World = w

@@ -26,7 +26,7 @@ import (
 // SpawnCounter triggers a target if it's been spawned a certain amount of times.
 type SpawnCounter struct{}
 
-func (s *SpawnCounter) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SpawnCounter) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	state := sp.Properties["state"] != "false"
 
 	count := 0

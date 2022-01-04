@@ -27,7 +27,7 @@ type CreditsTarget struct {
 	State bool
 }
 
-func (c *CreditsTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (c *CreditsTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	c.World = w
 	return nil
 }

@@ -46,7 +46,7 @@ const (
 	UsePixels         = 4
 )
 
-func (q *QuestionBlock) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (q *QuestionBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	q.World = w
 	q.Entity = e
 	q.PersistentState = sp.PersistentState

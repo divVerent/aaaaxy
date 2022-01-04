@@ -33,7 +33,7 @@ type RiserFsck struct {
 	Sound *sound.Sound
 }
 
-func (r *RiserFsck) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (r *RiserFsck) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	r.World = w
 
 	err := r.NonSolidTouchable.Init(w, e)

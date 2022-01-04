@@ -37,7 +37,7 @@ type LogicalGate struct {
 	Originator    *engine.Entity
 }
 
-func (g *LogicalGate) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (g *LogicalGate) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	g.World = w
 	g.Entity = e
 	g.Target = mixins.ParseTarget(sp.Properties["target"])

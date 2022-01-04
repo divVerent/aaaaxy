@@ -112,7 +112,7 @@ const (
 	RepelSpeed = 15 * constants.SubPixelScale / engine.GameTPS
 )
 
-func (r *Riser) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	r.Physics.Init(w, e, level.ObjectSolidContents, r.handleTouch)
 
 	r.World = w

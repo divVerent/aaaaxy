@@ -27,7 +27,7 @@ type MovableSprite struct {
 	mixins.Movable
 }
 
-func (s *MovableSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *MovableSprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	err := s.Sprite.Spawn(w, sp, e)
 	if err != nil {
 		return err

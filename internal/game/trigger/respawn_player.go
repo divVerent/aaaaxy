@@ -34,7 +34,7 @@ const (
 	RespawnHitboxBorder = 4 // Actually only the 8x8 center square of the 16x16 sprite.
 )
 
-func (r *RespawnPlayer) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (r *RespawnPlayer) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	r.World = w
 	var err error
 	e.Image, err = image.Load("sprites", "spike.png")

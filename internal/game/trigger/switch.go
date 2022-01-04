@@ -33,7 +33,7 @@ type Switch struct {
 	SwitchOn, SwitchOff *sound.Sound
 }
 
-func (s *Switch) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *Switch) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.Entity = e
 	var err error
 	err = s.SetState.Spawn(w, sp, e)

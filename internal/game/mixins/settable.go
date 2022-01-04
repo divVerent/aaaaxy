@@ -39,7 +39,7 @@ func (s *Settable) SetState(originator, predecessor *engine.Entity, state bool) 
 }
 
 // Init initializes the initial state of the entity.
-func (s *Settable) Init(sp *level.Spawnable) error {
+func (s *Settable) Init(sp *level.SpawnableProps) error {
 	s.Invert = sp.Properties["invert"] == "true" // Default false.
 	s.State = s.Invert
 	return nil

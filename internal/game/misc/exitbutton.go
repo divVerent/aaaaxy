@@ -25,7 +25,7 @@ type ExitButton struct {
 	SwitchableSprite
 }
 
-func (s *ExitButton) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *ExitButton) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	// Just a normal sprite.
 	if sp.Properties["fade_time"] == "" {
 		sp.Properties["fade_time"] = "10s"

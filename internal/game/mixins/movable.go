@@ -39,7 +39,7 @@ type Movable struct {
 	AnimDir int
 }
 
-func (v *Movable) Init(w *engine.World, sp *level.Spawnable, e *engine.Entity, contents level.Contents) error {
+func (v *Movable) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Entity, contents level.Contents) error {
 	v.Settable.Init(sp)
 
 	v.World = w

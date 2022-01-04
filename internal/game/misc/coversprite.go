@@ -25,7 +25,7 @@ type CoverSprite struct {
 	Sprite
 }
 
-func (s *CoverSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *CoverSprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.Sprite.ZDefault = constants.CoverSpriteZ
 	return s.Sprite.Spawn(w, sp, e)
 }

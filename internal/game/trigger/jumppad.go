@@ -43,7 +43,7 @@ type JumpPad struct {
 	JumpSound    *sound.Sound
 }
 
-func (j *JumpPad) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (j *JumpPad) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	j.NonSolidTouchable.Init(w, e)
 	j.World = w
 	j.Entity = e
