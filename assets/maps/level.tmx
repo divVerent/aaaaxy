@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8096">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8097">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17512,17 +17512,17 @@
     <property name="solid" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="8093" name="Shruggie" type="MovableSprite" x="6368" y="6542" width="112" height="32">
+  <object id="8093" name="Shruggie" type="MovableSprite" x="6368" y="6535" width="112" height="32">
    <properties>
-    <property name="delta" value="0 4"/>
-    <property name="image" value="shruggie.png"/>
+    <property name="delta" value="0 2"/>
+    <property name="image" value="shruggie_shoulders.png"/>
     <property name="orientation" value="WN"/>
     <property name="required_orientation" value="WN"/>
    </properties>
   </object>
   <object id="8094" name="ShruggieDelay" type="DelayTarget" x="6352" y="6544" width="16" height="16">
    <properties>
-    <property name="delay" value="0.2s"/>
+    <property name="delay" value="0.5s"/>
     <property name="target" value="!ShruggieDelay Shruggie"/>
    </properties>
   </object>
@@ -17531,6 +17531,13 @@
     <property name="divisor" type="int" value="1"/>
     <property name="modulus" type="int" value="0"/>
     <property name="target" value="ShruggieDelay"/>
+   </properties>
+  </object>
+  <object id="8096" type="Sprite" x="6368" y="6536" width="112" height="32">
+   <properties>
+    <property name="image" value="shruggie_body.png"/>
+    <property name="orientation" value="WN"/>
+    <property name="required_orientation" value="WN"/>
    </properties>
   </object>
  </objectgroup>
