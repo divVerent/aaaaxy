@@ -81,7 +81,6 @@ func Init() error {
 }
 
 func BeforeExit() error {
-	var err error
 	if demoRecorder != nil {
 		demoRecorderFrame = frame{
 			FinalSaveGame: demoRecorderFinalSaveGame,
@@ -104,8 +103,11 @@ func BeforeExit() error {
 			return fmt.Errorf("failed to close played demo from %v: %v", *demoPlay, err)
 		}
 		err = regressionBeforeExit()
+		if err != nil {
+			return fmt.Errorf("regression test failed from %v: %v", *demoPlay, err)
+		}
 	}
-	return err
+	return nil
 }
 
 func Playing() bool {
