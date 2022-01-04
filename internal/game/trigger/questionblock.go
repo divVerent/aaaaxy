@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
@@ -126,6 +127,27 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 	q.UsedImage = nil
 	q.World.SetSolid(q.Entity, true)
 	q.Sound.Play()
+	_, err := q.World.SpawnDetached(&level.SpawnableProps{
+		EntityType:  "MovingAnimation",
+		Orientation: m.Identity(),
+		Properties: map[string]string{
+			"animation":                 "questionblock",
+			"animation_frame_interval":  "2",
+			"animation_frames":          "8",
+			"animation_group":           "hit",
+			"animation_repeat_interval": "16",
+			"fade_despawn":              "true",
+			"fade_time":                 "0s",
+			"invert":                    "true",
+			"no_transform":              "true",
+			"time_to_fade":              "0.25s",
+			"velocity":                  "0 -64", // 16px in 1/4 sec.
+		},
+		PersistentState: level.PersistentState{},
+	}, q.Entity.Rect.Add(m.Delta{DX: 0, DY: -8}), q.Entity.Orientation, q.Entity)
+	if err != nil {
+		log.Errorf("could not spawn question block effect: %v", err)
+	}
 }
 
 func init() {
