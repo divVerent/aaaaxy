@@ -17516,6 +17516,7 @@
    <properties>
     <property name="delta" value="0 2"/>
     <property name="image" value="shruggie_shoulders.png"/>
+    <property name="no_flip" value="x"/>
     <property name="orientation" value="WN"/>
     <property name="required_orientation" value="WN"/>
    </properties>
@@ -17536,6 +17537,7 @@
   <object id="8096" type="Sprite" x="6368" y="6536" width="112" height="32">
    <properties>
     <property name="image" value="shruggie_body.png"/>
+    <property name="no_flip" value="x"/>
     <property name="orientation" value="WN"/>
     <property name="required_orientation" value="WN"/>
    </properties>
