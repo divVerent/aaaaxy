@@ -86,7 +86,7 @@ func main() {
 		log.Fatalf("RunGame exited abnormally: %v", err)
 	}
 	if errbe != nil && errbe != aaaaxy.RegularTermination {
-		log.Fatalf("BeforeExit exited abnormally: %v", err)
+		log.Fatalf("BeforeExit exited abnormally: %v", errbe)
 	}
 	log.CloseLogFile()
 }
