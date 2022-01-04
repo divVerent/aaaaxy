@@ -56,7 +56,7 @@ for demo in "$@"; do
 		-vsync=false \
 		-window_scale_factor=1 \
 		; then
-		if grep -q '\[FATAL\] detected .* regressions' "$demo.$tag.log"; then
+		if grep -q 'regression test failed from' "$demo.$tag.log"; then
 			if grep -q 'REGRESSION: difference in final save state' "$demo.$tag.log"; then
 				echo "$demo had a regression that impacted save states; see log and screenshots. Probably reject?"
 				run_broken=true  # Continue ahead anyway, as it is likely helpful to learn about ALL serious regressions.
