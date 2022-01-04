@@ -203,10 +203,6 @@
   <property name="velocity" type="string" default="0 0"/>
   <property name="z_index" type="int" default="0"/>
  </objecttype>
- <objecttype name="OnSpawn" color="#ff0000">
-  <property name="state" type="bool" default="true"/>
-  <property name="target" type="string"/>
- </objecttype>
  <objecttype name="OneWay" color="#0000ff">
   <property name="orientation" type="string"/>
  </objecttype>

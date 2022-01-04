@@ -18,8 +18,13 @@ import (
 	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
+)
+
+var (
+	debugSetState = flag.Bool("debug_set_state", false, "log all state changes of entities")
 )
 
 // Settable implements the SetState handler for settable entities.
@@ -65,10 +70,23 @@ func ParseTarget(target string) TargetSelection {
 	return TargetSelection(strings.Split(target, " "))
 }
 
+var setStateDepth = 0
+
 // SetStateOfTarget toggles the state of all entities of the given target name to the given state.
 // Includes WarpZones too.
 // Excludes the given entity (should be the caller).
 func SetStateOfTarget(w *engine.World, originator, predecessor *engine.Entity, targets TargetSelection, state bool) {
+	if setStateDepth >= 16 {
+		log.Errorf("likely endless SetState recursion involving %v, %v, %v", originator.Incarnation, predecessor.Incarnation, targets)
+		return
+	}
+	setStateDepth++
+	defer func() {
+		setStateDepth--
+	}()
+	if *debugSetState {
+		log.Infof("SetStateOfTarget(world, %v, %v, %v, %v)", originator.Incarnation, predecessor.Incarnation, targets, state)
+	}
 	for _, target := range targets {
 		if target == "" {
 			continue
@@ -85,10 +103,6 @@ func SetStateOfTarget(w *engine.World, originator, predecessor *engine.Entity, t
 			target = target[1:]
 			var closest *engine.Entity
 			for _, ent := range w.FindName(target) {
-				if ent == predecessor {
-					log.Errorf("should this even happen? An entity targeting itself? Name is %v", target)
-					continue
-				}
 				if closest == nil || closest.Rect.Delta(w.Player.Rect).Norm1() > ent.Rect.Delta(w.Player.Rect).Norm1() {
 					closest = ent
 				}
@@ -101,10 +115,6 @@ func SetStateOfTarget(w *engine.World, originator, predecessor *engine.Entity, t
 		} else {
 			w.SetWarpZoneState(target, thisState)
 			for _, ent := range w.FindName(target) {
-				if ent == predecessor {
-					log.Errorf("should this even happen? An entity targeting itself? Name is %v", target)
-					continue
-				}
 				if !SetStateOfEntity(originator, predecessor, ent, thisState) {
 					log.Errorf("tried to set state of a non-supporting entity: %T, name: %v", ent, target)
 				}
