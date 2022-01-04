@@ -29,7 +29,7 @@ type Moving struct {
 	TouchedSomething bool
 }
 
-func (v *Moving) Init(w *engine.World, sp *level.Spawnable, e *engine.Entity, contents level.Contents, handleTouch func(engine.TraceResult)) error {
+func (v *Moving) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Entity, contents level.Contents, handleTouch func(engine.TraceResult)) error {
 	v.Physics.Init(w, e, contents, handleTouch)
 	if str := sp.Properties["velocity"]; str != "" {
 		var dx, dy float64

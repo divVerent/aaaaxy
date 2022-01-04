@@ -25,7 +25,7 @@ type SwitchMusicTarget struct {
 	Music string
 }
 
-func (s *SwitchMusicTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SwitchMusicTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.Music = sp.Properties["music"]
 	return nil
 }

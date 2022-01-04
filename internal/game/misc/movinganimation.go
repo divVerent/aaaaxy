@@ -44,7 +44,7 @@ type MovingAnimation struct {
 	FramesToFade int
 }
 
-func (s *MovingAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *MovingAnimation) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
 	err := s.Animation.Spawn(w, sp, e)

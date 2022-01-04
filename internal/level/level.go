@@ -555,17 +555,19 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				continue
 			}
 			ent := Spawnable{
-				ID:         EntityID(o.ObjectID),
-				EntityType: properties["type"],
-				LevelPos:   startTile,
+				ID:       EntityID(o.ObjectID),
+				LevelPos: startTile,
 				RectInTile: m.Rect{
 					Origin: entRect.Origin.Sub(
 						startTile.Mul(TileSize).Delta(m.Pos{})),
 					Size: entRect.Size,
 				},
-				Orientation:     orientation,
-				Properties:      properties,
-				PersistentState: PersistentState{},
+				SpawnableProps: SpawnableProps{
+					EntityType:      properties["type"],
+					Orientation:     orientation,
+					Properties:      properties,
+					PersistentState: PersistentState{},
+				},
 			}
 			if properties["type"] == "_TileMod" {
 				level.applyTileMod(startTile, endTile, properties)

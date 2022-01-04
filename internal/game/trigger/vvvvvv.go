@@ -35,7 +35,7 @@ type VVVVVV struct {
 	NormalVelocityFactor float64
 }
 
-func (v *VVVVVV) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (v *VVVVVV) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	v.NonSolidTouchable.Init(w, e)
 	var err error
 	e.Image, err = image.Load("sprites", "v.png")

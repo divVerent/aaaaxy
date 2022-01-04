@@ -60,6 +60,14 @@ func RectFromPoints(a, b Pos) Rect {
 	return r
 }
 
+// Add creates a new rectangle moved by the given delta.
+func (r Rect) Add(d Delta) Rect {
+	return Rect{
+		Origin: r.Origin.Add(d),
+		Size:   r.Size,
+	}
+}
+
 // OppositeCorner returns the coordinate of the opposite corner of the rectangle. Only correct on normalized rectangles.
 func (r Rect) OppositeCorner() Pos {
 	return r.Origin.Add(r.Size).Sub(Delta{DX: 1, DY: 1})

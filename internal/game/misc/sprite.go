@@ -37,7 +37,7 @@ type Sprite struct {
 
 var _ engine.Precacher = &Sprite{}
 
-func (s *Sprite) Precache(sp *level.Spawnable) error {
+func (s *Sprite) Precache(id level.EntityID, sp *level.SpawnableProps) error {
 	if !*checkSprites {
 		return nil
 	}
@@ -66,7 +66,7 @@ func (s *Sprite) Precache(sp *level.Spawnable) error {
 	return nil
 }
 
-func (s *Sprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	directory := sp.Properties["image_dir"]
 	if directory == "" {
 		directory = "sprites"

@@ -32,7 +32,7 @@ type ZoomTarget struct {
 	Frame  int
 }
 
-func (z *ZoomTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (z *ZoomTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	z.World = w
 
 	durationString := sp.Properties["duration"]

@@ -43,7 +43,7 @@ type SoundTarget struct {
 	Frame  int
 }
 
-func (s *SoundTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SoundTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
 	var err error

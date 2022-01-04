@@ -29,7 +29,7 @@ type SetStateTarget struct {
 	State  bool
 }
 
-func (s *SetStateTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SetStateTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
 	s.Target = mixins.ParseTarget(sp.Properties["target"])

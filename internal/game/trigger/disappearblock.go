@@ -37,7 +37,7 @@ const (
 	DisappearSolidThreshold = 1
 )
 
-func (a *DisappearBlock) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (a *DisappearBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	a.World = w
 	a.Entity = e
 

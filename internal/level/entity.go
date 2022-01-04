@@ -22,16 +22,12 @@ import (
 // save games.
 type PersistentState map[string]string
 
-// A Spawnable is a blueprint to create an Entity.
-type Spawnable struct {
-	ID EntityID
-
+// A SpawnableProps is a blueprint to create an Entity but without its position.
+type SpawnableProps struct {
 	// Type.
 	EntityType string
 
-	// Location.
-	LevelPos    m.Pos
-	RectInTile  m.Rect
+	// Orientation.
 	Orientation m.Orientation
 
 	// Other properties.
@@ -39,6 +35,18 @@ type Spawnable struct {
 
 	// Persistent entity state, if any, shall be kept in this map.
 	PersistentState map[string]string `hash:"-"`
+}
+
+// A Spawnable is a blueprint to create an Entity in a level.
+type Spawnable struct {
+	SpawnableProps
+
+	// The ID of the entity in the map.
+	ID EntityID
+
+	// Location.
+	LevelPos   m.Pos
+	RectInTile m.Rect
 }
 
 func (sp *Spawnable) Clone() *Spawnable {

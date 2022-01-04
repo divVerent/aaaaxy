@@ -26,7 +26,7 @@ type Goal struct {
 	Entity *engine.Entity
 }
 
-func (g *Goal) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (g *Goal) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	g.World = w
 	g.Entity = e
 	return nil

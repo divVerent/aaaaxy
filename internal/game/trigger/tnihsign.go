@@ -57,7 +57,7 @@ const (
 	tnihHeight = 32
 )
 
-func (t *TnihSign) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	t.NonSolidTouchable.Init(w, e)
 	t.NotifyUntouched = true
 	t.World = w

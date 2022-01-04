@@ -59,7 +59,7 @@ type textCacheKey struct {
 
 var textCache = map[textCacheKey]*ebiten.Image{}
 
-func cacheKey(sp *level.Spawnable) textCacheKey {
+func cacheKey(sp *level.SpawnableProps) textCacheKey {
 	return textCacheKey{
 		font: sp.Properties["text_font"],
 		fg:   sp.Properties["text_fg"],
@@ -117,11 +117,11 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 	}
 }
 
-func (t *Text) Precache(sp *level.Spawnable) error {
+func (t *Text) Precache(id level.EntityID, sp *level.SpawnableProps) error {
 	if !*precacheText {
 		return nil
 	}
-	log.Debugf("precaching text for entity %v", sp.ID)
+	log.Debugf("precaching text for entity %v", id)
 	key := cacheKey(sp)
 	if textCache[key] != nil {
 		return nil
@@ -134,7 +134,7 @@ func (t *Text) Precache(sp *level.Spawnable) error {
 	return nil
 }
 
-func (t *Text) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (t *Text) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	if sp.Properties["no_flip"] == "" {
 		sp.Properties["no_flip"] = "x"
 	}

@@ -27,7 +27,7 @@ type SwitchableAnimation struct {
 	mixins.Fadable
 }
 
-func (s *SwitchableAnimation) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SwitchableAnimation) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	err := s.Animation.Spawn(w, sp, e)
 	if err != nil {
 		return err

@@ -69,7 +69,7 @@ type EntityImpl interface {
 	// Receiver will be a zero struct of the entity type.
 	// Will usually remember a reference to the World and Entity.
 	// ID, Pos, Size and Orientation of the entity will be preset but may be changed.
-	Spawn(w *World, sp *level.Spawnable, e *Entity) error
+	Spawn(w *World, sp *level.SpawnableProps, e *Entity) error
 
 	// Despawn notifies the entity that it will be deleted.
 	Despawn()
@@ -84,7 +84,7 @@ type EntityImpl interface {
 // Some entities fulfill PrecacheImpl. These will get precached.
 type Precacher interface {
 	// Precache gets called during level loading to preload anything the entity may need.
-	Precache(sp *level.Spawnable) error
+	Precache(id level.EntityID, sp *level.SpawnableProps) error
 }
 
 // Some entities get a pre-despawn notification.
@@ -121,7 +121,7 @@ func precacheEntities(lvl *level.Level) error {
 				break
 			}
 			if precacher, ok := eTmpl.(Precacher); ok {
-				err = precacher.Precache(sp)
+				err = precacher.Precache(sp.ID, &sp.SpawnableProps)
 				if err != nil {
 					err = fmt.Errorf("failed to precache entity %v: %v", sp, err)
 				}
@@ -129,6 +129,39 @@ func precacheEntities(lvl *level.Level) error {
 		}
 	})
 	return err
+}
+
+// spawnAt spawns a given entity at a given location.
+// Still need to provide a Spawnable. Transform should be the transform of the origin entity or tile.
+func (w *World) spawnAt(sp *level.SpawnableProps, rect m.Rect, transform, tInv m.Orientation, incarnation EntityIncarnation) (*Entity, error) {
+	eTmpl := entityTypes[sp.EntityType]
+	if eTmpl == nil {
+		return nil, fmt.Errorf("unknown entity type %q", sp.EntityType)
+	}
+	eImplVal := reflect.New(reflect.TypeOf(eTmpl).Elem())
+	eImplVal.Elem().Set(reflect.ValueOf(eTmpl).Elem())
+	eImpl := eImplVal.Interface().(EntityImpl)
+	e := &Entity{
+		Incarnation: incarnation,
+		Transform:   transform,
+		name:        sp.Properties["name"],
+		Impl:        eImpl,
+		Rect:        rect,
+		Orientation: tInv.Concat(sp.Orientation),
+	}
+	e.Alpha = 1.0
+	e.ColorMod[0] = 1.0
+	e.ColorMod[1] = 1.0
+	e.ColorMod[2] = 1.0
+	e.ColorMod[3] = 1.0
+	w.link(e)
+	// TODO: pass SpawnableProps along by changing the interface.
+	err := eImpl.Spawn(w, sp, e)
+	if err != nil {
+		w.unlink(e)
+		return nil, err
+	}
+	return e, nil
 }
 
 // Spawn turns a Spawnable into an Entity.
@@ -142,35 +175,19 @@ func (w *World) Spawn(sp *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entit
 	if _, found := w.incarnations[incarnation]; found {
 		return nil, nil
 	}
-	eTmpl := entityTypes[sp.EntityType]
-	if eTmpl == nil {
-		return nil, fmt.Errorf("unknown entity type %q", sp.EntityType)
-	}
-	eImplVal := reflect.New(reflect.TypeOf(eTmpl).Elem())
-	eImplVal.Elem().Set(reflect.ValueOf(eTmpl).Elem())
-	eImpl := eImplVal.Interface().(EntityImpl)
-	e := &Entity{
-		Incarnation: incarnation,
-		Transform:   t.Transform,
-		name:        sp.Properties["name"],
-		Impl:        eImpl,
-	}
 	pivot2InTile := m.Pos{X: level.TileSize, Y: level.TileSize}
-	e.Rect = tInv.ApplyToRect2(pivot2InTile, sp.RectInTile)
-	e.Rect.Origin = originTilePos.Mul(level.TileSize).Add(e.Rect.Origin.Delta(m.Pos{}))
-	e.Orientation = tInv.Concat(sp.Orientation)
-	e.Alpha = 1.0
-	e.ColorMod[0] = 1.0
-	e.ColorMod[1] = 1.0
-	e.ColorMod[2] = 1.0
-	e.ColorMod[3] = 1.0
-	w.link(e)
-	err := eImpl.Spawn(w, sp, e)
-	if err != nil {
-		w.unlink(e)
-		return nil, err
-	}
-	return e, nil
+	rect := tInv.ApplyToRect2(pivot2InTile, sp.RectInTile)
+	rect.Origin = originTilePos.Mul(level.TileSize).Add(rect.Origin.Delta(m.Pos{}))
+	return w.spawnAt(&sp.SpawnableProps, rect, t.Transform, tInv, incarnation)
+}
+
+// SpawnDetached spawns a detached new entity.
+// Note that it will inherit the spawning entity's transform; sp.Orientation should be set to the same as the transform if one wants to undo that.
+func (w *World) SpawnDetached(sp *level.SpawnableProps, rect m.Rect, orientation m.Orientation, by *Entity) (*Entity, error) {
+	return w.spawnAt(sp, rect, by.Transform, by.Transform.Inverse(), EntityIncarnation{
+		ID:      level.InvalidEntityID,
+		TilePos: by.Incarnation.TilePos,
+	})
 }
 
 func (w *World) Despawn(e *Entity) {

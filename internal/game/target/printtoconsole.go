@@ -32,7 +32,7 @@ type PrintToConsoleTarget struct {
 	PrevText    string
 }
 
-func (p *PrintToConsoleTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (p *PrintToConsoleTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	p.World = w
 	p.Text = sp.Properties["text"]
 	return nil

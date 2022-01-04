@@ -42,7 +42,7 @@ type DelayTarget struct {
 	Originator *engine.Entity
 }
 
-func (d *DelayTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (d *DelayTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	d.World = w
 	d.Entity = e
 

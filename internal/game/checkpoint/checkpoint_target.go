@@ -46,7 +46,7 @@ type CheckpointTarget struct {
 	Sound *sound.Sound
 }
 
-func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	c.World = w
 	c.Entity = e
 

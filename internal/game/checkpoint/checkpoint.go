@@ -26,7 +26,7 @@ type Checkpoint struct {
 	CheckpointTarget
 }
 
-func (c *Checkpoint) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (c *Checkpoint) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	c.NonSolidTouchable.Init(w, e)
 	return c.CheckpointTarget.Spawn(w, sp, e)
 }

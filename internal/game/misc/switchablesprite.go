@@ -28,7 +28,7 @@ type SwitchableSprite struct {
 	mixins.Fadable
 }
 
-func (s *SwitchableSprite) Spawn(w *engine.World, sp *level.Spawnable, e *engine.Entity) error {
+func (s *SwitchableSprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	// Hack to have switch blocks above some other stuff.
 	s.Sprite.ZDefault = constants.SwitchBlockZ
 	err := s.Sprite.Spawn(w, sp, e)
