@@ -74,6 +74,10 @@ func Rate() int {
 func Init() error {
 	if *audio {
 		ebiaudio.NewContext(*audioRate)
+
+		// Workaround: for some reason playing the first sound can incur significant delay.
+		// So let's do this at the start.
+		ebiaudio.NewPlayerFromBytes(ebiaudio.CurrentContext(), []byte{}).Play()
 	}
 	return nil
 }
