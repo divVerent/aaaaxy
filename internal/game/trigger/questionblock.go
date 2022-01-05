@@ -141,10 +141,10 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 			"invert":                    "true",
 			"no_transform":              "true",
 			"time_to_fade":              "0.25s",
-			"velocity":                  "0 -64", // 16px in 1/4 sec.
+			"velocity":                  "0 -32", // 8px in 1/4 sec.
 		},
 		PersistentState: level.PersistentState{},
-	}, q.Entity.Rect.Add(m.Delta{DX: 0, DY: -8}), q.Entity.Orientation, q.Entity)
+	}, q.Entity.Rect.Add(m.Delta{DX: 0, DY: -12}), q.Entity.Orientation, q.Entity)
 	if err != nil {
 		log.Errorf("could not spawn question block effect: %v", err)
 	}
