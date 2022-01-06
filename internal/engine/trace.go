@@ -360,7 +360,7 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 
 	// Move the closest hit to the start.
 	// Yes, this may be more expensive, but it makes the game usually more deterministic regarding touch event ordering.
-	sort.SliceStable(hits, func(i, j int) bool {
+	sort.Slice(hits, func(i, j int) bool {
 		return hits[i].score.CompareFine(hits[j].score) < 0
 	})
 
