@@ -16,6 +16,7 @@ package engine
 
 import (
 	"errors"
+	"sort"
 
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -50,48 +51,44 @@ type TraceResult struct {
 	// HitTilePos m.Pos
 	// // HitTile is the tile that stopped the trace, if any.
 	// HitTile *level.Tile
-	// HitEntity is the closest entity that stopped the trace, if any.
-	HitEntity *Entity
 	// HitEntities are all the entities that stopped the trace simultaneously, if any.
+	// They are sorted in decreasing order of closeness to the player; be aware that some code will only consider the first member.
 	HitEntities []*Entity
 	// // HitFogOfWar is set if the trace ended by hitting an unloaded tile.
 	// HitFogOfWar bool
-	// Score is a number used to decide which of multiple traces to keep.
-	// Typically related to the trace distance and which entity was hit if any.
-	Score TraceScore
 }
 
 // TraceScore is a scoring value of a trace.
-type TraceScore struct {
+type traceScore struct {
 	// TraceDistance is the length of the trace.
-	TraceDistance int
+	traceDistance int
 	// EntityZ is the Z index of the entity hit.
-	EntityZ int
+	entityZ int
 	// EntityDistance is the distance between entity centers of the traces.
 	// This is used as a tie breaker.
-	EntityDistance int
+	entityDistance int
 }
 
 // CompareCoarse returns <0 if s < 0, >0 if s > 0, 0 otherwise.
-func (s TraceScore) CompareCoarse(o TraceScore) int {
+func (s traceScore) CompareCoarse(o traceScore) int {
 	// Prefer lower TraceDistance.
-	return s.TraceDistance - o.TraceDistance
+	return s.traceDistance - o.traceDistance
 }
 
 // CompareFine returns <0 if s < 0, >0 if s > 0, 0 otherwise, assuming CompareCoarse was 0.
-func (s TraceScore) CompareFine(o TraceScore) int {
+func (s traceScore) CompareFine(o traceScore) int {
 	// Prefer lower TraceDistance.
-	d := s.TraceDistance - o.TraceDistance
+	d := s.traceDistance - o.traceDistance
 	if d != 0 {
 		return d
 	}
 	// Prefer higher EntityZ.
-	d = o.EntityZ - s.EntityZ
+	d = o.entityZ - s.entityZ
 	if d != 0 {
 		return d
 	}
 	// Prefer lower EntityDistance.
-	return s.EntityDistance - o.EntityDistance
+	return s.entityDistance - o.entityDistance
 }
 
 // A normalizedLine represents a line to trace on.
@@ -312,60 +309,91 @@ func (l *normalizedLine) traceEntity(ent *Entity, enlarge m.Delta, maxBorder int
 	return false, m.Pos{}, m.Delta{}
 }
 
+type traceHit struct {
+	endPos    m.Pos
+	hitDelta  m.Delta
+	hitEntity *Entity
+	score     traceScore
+}
+
 // traceEntities clips the given trace against all entities.
 // l must have been initialized to hit the current EndPos anywhere on its path.
 func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta, maxBorder int, result *TraceResult) {
+	worldDist := result.EndPos.Delta(l.Origin).Norm1()
+
 	// Clip the trace to first entity hit.
 	ents := w.FindContents(o.Contents)
+
+	var hits []traceHit
+
 	for _, ent := range ents {
 		if ent == o.IgnoreEnt {
 			continue
 		}
 		if hit, endPos, delta := l.traceEntity(ent, enlarge, maxBorder); hit {
-			score := TraceScore{
-				TraceDistance: endPos.Delta(l.Origin).Norm1(),
+			dist := endPos.Delta(l.Origin).Norm1()
+			if dist > worldDist {
+				continue
+			}
+			score := traceScore{
+				traceDistance: dist,
 			}
 			if o.ForEnt != nil {
-				score.EntityDistance = ent.Rect.Center().Delta(o.ForEnt.Rect.Center()).Norm1()
-				score.EntityZ = ent.ZIndex()
+				score.entityDistance = ent.Rect.Center().Delta(o.ForEnt.Rect.Center()).Norm1()
+				score.entityZ = ent.ZIndex()
 			}
-
-			cmp := score.CompareCoarse(result.Score)
-			if cmp > 0 {
-				continue
-			}
-			if cmp < 0 {
-				result.HitEntities = result.HitEntities[:0]
-			}
-			result.HitEntities = append(result.HitEntities, ent)
-
-			if cmp == 0 {
-				cmp = score.CompareFine(result.Score)
-			}
-			if cmp > 0 {
-				continue
-			}
-			if cmp < 0 {
-				result.EndPos = endPos
-				result.HitDelta = delta
-				result.HitEntity = ent
-				result.Score = score
-			}
-		}
-	}
-	if len(result.HitEntities) != 0 {
-		endTile := result.EndPos.Div(level.TileSize)
-		if o.PathOut != nil {
-			for i, pos := range *o.PathOut {
-				if pos == endTile {
-					*o.PathOut = (*o.PathOut)[:(i + 1)]
+			if len(hits) != 0 {
+				cmp := score.CompareCoarse(hits[0].score)
+				if cmp > 0 {
+					continue
+				}
+				if cmp < 0 {
+					hits = hits[:0]
 				}
 			}
+			hits = append(hits, traceHit{
+				endPos:    endPos,
+				hitDelta:  delta,
+				hitEntity: ent,
+				score:     score,
+			})
 		}
-		// result.HitTilePos = m.Pos{}
-		// result.HitTile = nil
-		// result.HitFogOfWar = false
 	}
+
+	if len(hits) == 0 {
+		return
+	}
+
+	// Move the closest hit to the start.
+	// Yes, this may be more expensive, but it makes the game usually more deterministic regarding touch event ordering.
+	sort.SliceStable(hits, func(i, j int) bool {
+		return hits[i].score.CompareFine(hits[j].score) < 0
+	})
+
+	// Return all trace hits.
+	result.HitEntities = make([]*Entity, len(hits))
+	for i, hit := range hits {
+		result.HitEntities[i] = hit.hitEntity
+	}
+
+	// Return the closest hit properties.
+	result.EndPos = hits[0].endPos
+	result.HitDelta = hits[0].hitDelta
+
+	// Return the end tile.
+	endTile := result.EndPos.Div(level.TileSize)
+	if o.PathOut != nil {
+		for i, pos := range *o.PathOut {
+			if pos == endTile {
+				*o.PathOut = (*o.PathOut)[:(i + 1)]
+			}
+		}
+	}
+
+	// Fields that no longer exist:
+	// result.HitTilePos = m.Pos{}
+	// result.HitTile = nil
+	// result.HitFogOfWar = false
 }
 
 // traceLineBox checks if from..to intersects with box, and if so, returns the pixel right before the intersection.
