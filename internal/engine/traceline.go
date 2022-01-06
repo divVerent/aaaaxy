@@ -15,6 +15,8 @@
 package engine
 
 import (
+	"math"
+
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -52,6 +54,10 @@ func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceR
 		}
 		return nil
 	})
+	result.Score = TraceScore{
+		TraceDistance: result.EndPos.Delta(l.Origin).Norm1(),
+		EntityZ:       math.MinInt32, // Not an entity.
+	}
 }
 
 // traceLine moves from from to to and yields info about where this hit solid etc.
