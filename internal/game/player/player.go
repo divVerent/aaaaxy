@@ -420,9 +420,7 @@ func (p *Player) handleTouch(trace engine.TraceResult) {
 			p.HitWallSound.PlayAtVolume(vol)
 		}
 	}
-	if trace.HitEntity != nil {
-		p.World.TouchEvent(p.Entity, trace.HitEntity)
-	}
+	p.World.TouchEvent(p.Entity, trace.HitEntities)
 
 	// Update so we can get more deltas.
 	p.WasOnGround = true

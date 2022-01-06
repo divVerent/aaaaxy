@@ -50,8 +50,10 @@ type TraceResult struct {
 	// HitTilePos m.Pos
 	// // HitTile is the tile that stopped the trace, if any.
 	// HitTile *level.Tile
-	// HitEntity is the entity that stopped the trace, if any.
+	// HitEntity is the closest entity that stopped the trace, if any.
 	HitEntity *Entity
+	// HitEntities are all the entities that stopped the trace simultaneously, if any.
+	HitEntities []*Entity
 	// // HitFogOfWar is set if the trace ended by hitting an unloaded tile.
 	// HitFogOfWar bool
 	// Score is a number used to decide which of multiple traces to keep.
@@ -70,24 +72,26 @@ type TraceScore struct {
 	EntityDistance int
 }
 
-// Less returns whether this score is smaller than the other.
-func (s TraceScore) Less(o TraceScore) bool {
+// CompareCoarse returns <0 if s < 0, >0 if s > 0, 0 otherwise.
+func (s TraceScore) CompareCoarse(o TraceScore) int {
 	// Prefer lower TraceDistance.
-	if s.TraceDistance < o.TraceDistance {
-		return true
-	}
-	if s.TraceDistance > o.TraceDistance {
-		return false
+	return s.TraceDistance - o.TraceDistance
+}
+
+// CompareFine returns <0 if s < 0, >0 if s > 0, 0 otherwise, assuming CompareCoarse was 0.
+func (s TraceScore) CompareFine(o TraceScore) int {
+	// Prefer lower TraceDistance.
+	d := s.TraceDistance - o.TraceDistance
+	if d != 0 {
+		return d
 	}
 	// Prefer higher EntityZ.
-	if s.EntityZ < o.EntityZ {
-		return false
-	}
-	if s.EntityZ > o.EntityZ {
-		return true
+	d = o.EntityZ - s.EntityZ
+	if d != 0 {
+		return d
 	}
 	// Prefer lower EntityDistance.
-	return s.EntityDistance < o.EntityDistance
+	return s.EntityDistance - o.EntityDistance
 }
 
 // A normalizedLine represents a line to trace on.
@@ -325,7 +329,23 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 				score.EntityDistance = ent.Rect.Center().Delta(o.ForEnt.Rect.Center()).Norm1()
 				score.EntityZ = ent.ZIndex()
 			}
-			if score.Less(result.Score) {
+
+			cmp := score.CompareCoarse(result.Score)
+			if cmp > 0 {
+				continue
+			}
+			if cmp < 0 {
+				result.HitEntities = result.HitEntities[:0]
+			}
+			result.HitEntities = append(result.HitEntities, ent)
+
+			if cmp == 0 {
+				cmp = score.CompareFine(result.Score)
+			}
+			if cmp > 0 {
+				continue
+			}
+			if cmp < 0 {
 				result.EndPos = endPos
 				result.HitDelta = delta
 				result.HitEntity = ent
@@ -333,7 +353,7 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 			}
 		}
 	}
-	if result.HitEntity != nil {
+	if len(result.HitEntities) != 0 {
 		endTile := result.EndPos.Div(level.TileSize)
 		if o.PathOut != nil {
 			for i, pos := range *o.PathOut {

@@ -118,7 +118,7 @@ func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 	result := TraceResult{
 		EndPos: to,
 		// HitTile:     nil,
-		// HitEntity:   nil,
+		// HitEntities: nil,
 		// HitFogOfWar: false,
 	}
 

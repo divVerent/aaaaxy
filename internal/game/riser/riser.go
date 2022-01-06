@@ -442,9 +442,7 @@ func (r *Riser) Update() {
 
 func (r *Riser) handleTouch(trace engine.TraceResult) {
 	// Risers can touch stuff. Gonna use this for switches.
-	if trace.HitEntity != nil {
-		r.World.TouchEvent(r.Entity, trace.HitEntity)
-	}
+	r.World.TouchEvent(r.Entity, trace.HitEntities)
 }
 
 func (r *Riser) Touch(other *engine.Entity) {

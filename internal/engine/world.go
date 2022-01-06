@@ -467,7 +467,7 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	}
 
 	// Initialize whatever the checkpoint wants to do.
-	w.TouchEvent(cp, w.Player)
+	w.TouchEvent(cp, []*Entity{w.Player})
 
 	// Skip updating.
 	w.respawned = true
@@ -475,12 +475,21 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 }
 
 // TouchEvent notifies both entities that they touched the other.
-func (w *World) TouchEvent(a *Entity, b *Entity) {
-	if a != nil {
-		a.Impl.Touch(b)
+// nil entities will be skipped as LHS of touches, and if bs is empty, it's
+// treated as touching a nil (which inidcates touching world).
+func (w *World) TouchEvent(a *Entity, bs []*Entity) {
+	for _, b := range bs {
+		if a != nil {
+			a.Impl.Touch(b)
+		}
+		if b != nil {
+			b.Impl.Touch(a)
+		}
 	}
-	if b != nil {
-		b.Impl.Touch(a)
+	if len(bs) == 0 {
+		if a != nil {
+			a.Impl.Touch(nil)
+		}
 	}
 }
 
