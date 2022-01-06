@@ -107,7 +107,7 @@ func main() {
 		entityIDs = append(entityIDs, id)
 	}
 	log.Infof("sorting entity IDs...")
-	sort.Slice(entityIDs, func(a, b int) bool {
+	sort.SliceStable(entityIDs, func(a, b int) bool {
 		return entityIDs[a] < entityIDs[b]
 	})
 	log.Infof("computing edges...")
