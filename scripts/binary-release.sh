@@ -88,9 +88,9 @@ In the release, upload aaaaxy-*-$new.zip (except for wasm) and
 AAAAXY-*.AppImage*.
 Once the release is published, finally run:
   git push origin main
-Then update the snap at https://snapcraft.io/aaaaxy/builds by setting the
-current one to beta, test it, and then release the one that just started
-building to both (they will differ only in gamepad definitions).
+Then update the snap at https://snapcraft.io/aaaaxy/builds by testing the
+current one on edge, waiting for the updated one on edge, testing that one too,
+then releasing it to stable.
 And the FlatPak:
   scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
   cd ../io.github.divverent.aaaaxy
