@@ -319,6 +319,8 @@ type traceHit struct {
 // traceEntities clips the given trace against all entities.
 // l must have been initialized to hit the current EndPos anywhere on its path.
 func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta, maxBorder int, result *TraceResult) {
+	worldDist := result.EndPos.Delta(l.Origin).Norm1()
+
 	// Clip the trace to first entity hit.
 	ents := w.FindContents(o.Contents)
 
@@ -329,8 +331,12 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 			continue
 		}
 		if hit, endPos, delta := l.traceEntity(ent, enlarge, maxBorder); hit {
+			dist := endPos.Delta(l.Origin).Norm1()
+			if dist > worldDist {
+				continue
+			}
 			score := traceScore{
-				traceDistance: endPos.Delta(l.Origin).Norm1(),
+				traceDistance: dist,
 			}
 			if o.ForEnt != nil {
 				score.entityDistance = ent.Rect.Center().Delta(o.ForEnt.Rect.Center()).Norm1()
