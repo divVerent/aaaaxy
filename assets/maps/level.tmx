@@ -8380,6 +8380,7 @@
   <object id="3109" name="GrabPlat" type="SoundTarget" x="688" y="160" width="32" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="3110" gid="308" x="3848" y="2656" width="16" height="16">
@@ -8512,6 +8513,7 @@
   <object id="3219" name="BlockOutSound" type="SoundTarget" x="6192" y="6912" width="16" height="544">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="3222" gid="306" x="3824" y="2128" width="32" height="32"/>
@@ -12223,31 +12225,37 @@
   <object id="5539" name="PlatformSound" type="SoundTarget" x="7184" y="4880" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="5540" name="PlatformSound" type="SoundTarget" x="7552" y="4880" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="5541" name="PlatformSound" type="SoundTarget" x="7744" y="4184" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="5542" name="PlatformSound" type="SoundTarget" x="6928" y="5288" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="5543" name="PlatformSound" type="SoundTarget" x="6928" y="5224" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="5544" name="PlatformSound" type="SoundTarget" x="6928" y="5160" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="5545" gid="312" x="7544" y="4256" width="32" height="32">
@@ -13054,41 +13062,49 @@
   <object id="6075" name="CrumblerSound" type="SoundTarget" x="7536" y="3248" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="6076" name="CrumblerSound" type="SoundTarget" x="7728" y="3248" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="6077" name="CrumblerSound" type="SoundTarget" x="7728" y="3072" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="6078" name="CrumblerSound" type="SoundTarget" x="7536" y="3072" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="6079" name="CrumblerSound" type="SoundTarget" x="7728" y="2896" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="6080" name="CrumblerSound" type="SoundTarget" x="7536" y="2896" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="6081" name="CrumblerSound" type="SoundTarget" x="7536" y="2720" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="6082" name="CrumblerSound" type="SoundTarget" x="7728" y="2720" width="16" height="16">
    <properties>
     <property name="sound" value="timedplatform.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="6083" name="SkiDyverRetry2a" gid="293" x="7776" y="2512" width="16" height="32"/>

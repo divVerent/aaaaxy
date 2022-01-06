@@ -25,6 +25,17 @@ import (
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
+type visual int
+
+const (
+	noVisual visual = iota
+	fadeInVisual
+)
+
+const (
+	fadeInStrength = 0.125
+)
+
 // SoundTarget just changes the music track to the given one.
 type SoundTarget struct {
 	World  *engine.World
@@ -37,6 +48,7 @@ type SoundTarget struct {
 	StopWhenOff bool
 	State       bool
 	Originator  *engine.Entity
+	Visual      visual
 
 	Active bool
 	Frames int
@@ -55,6 +67,14 @@ func (s *SoundTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine
 	s.Target = mixins.ParseTarget(sp.Properties["target"])
 	s.State = sp.Properties["state"] != "false"
 	s.Frames = -1
+	switch sp.Properties["visual"] {
+	case "":
+		s.Visual = noVisual
+	case "fade_in":
+		s.Visual = fadeInVisual
+	default:
+		return fmt.Errorf("could not parse sound visual: %v", sp.Properties["visual"])
+	}
 	durationString := sp.Properties["duration"]
 	var soundTime time.Duration
 	if durationString == "" {
@@ -81,6 +101,11 @@ func (s *SoundTarget) Despawn() {
 func (s *SoundTarget) Update() {
 	// Game logic.
 	if s.Frame > 0 {
+		switch s.Visual {
+		case fadeInVisual:
+			f := 1.0 - fadeInStrength*float64(s.Frame)/float64(s.Frames)
+			s.World.GlobalColorM.Scale(f, f, f, 1.0)
+		}
 		s.Frame--
 		if s.Frame == 0 {
 			mixins.SetStateOfTarget(s.World, s.Originator, s.Entity, s.Target, !s.State)

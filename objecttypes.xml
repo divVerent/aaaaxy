@@ -243,6 +243,7 @@
   <property name="state" type="bool" default="true"/>
   <property name="stop_when_off" type="bool" default="false"/>
   <property name="target" type="string"/>
+  <property name="visual" type="string"/>
  </objecttype>
  <objecttype name="SpawnCounter" color="#ff0000">
   <property name="divisor" type="int" default=""/>

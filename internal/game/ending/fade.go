@@ -119,8 +119,12 @@ func (f *FadeTarget) Update() {
 		}
 	}
 	colorM.Translate(delta[0], delta[1], delta[2], 0.0)
+	f.World.GlobalColorM.Concat(colorM)
 
-	f.World.GlobalColorM = colorM
+	if f.Frame == 0 {
+		// Keep showing this effect when at the end.
+		f.Frame = 1
+	}
 }
 
 func (f *FadeTarget) SetState(originator, predecessor *engine.Entity, state bool) {

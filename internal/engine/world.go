@@ -80,7 +80,7 @@ type World struct {
 	MaxVisiblePixels int
 	// ForceCredits is set when we want to jump to credits.
 	ForceCredits bool
-	// GlobalColorM is a color matrix to apply to everything.
+	// GlobalColorM is a color matrix to apply to everything. Reset on every frame.
 	GlobalColorM ebiten.ColorM
 
 	// Properties that can in theory be regenerated from the above and thus do not
@@ -410,7 +410,6 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	w.TimerStopped = false
 	w.MaxVisiblePixels = math.MaxInt32
 	w.ForceCredits = false
-	w.GlobalColorM.Reset()
 
 	// Reset all warpzones.
 	w.WarpZoneStates = map[string]bool{}
@@ -504,8 +503,11 @@ func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult
 }
 
 func (w *World) updateEntities() {
+	// Entities may update these.
 	w.warpzoneStatesChanged = false
 	w.respawned = false
+	w.GlobalColorM.Reset()
+
 	w.entities.forEach(func(ent *Entity) error {
 		ent.Impl.Update()
 		if w.respawned {
@@ -515,6 +517,8 @@ func (w *World) updateEntities() {
 		}
 		return nil
 	})
+
+	// Clean up newly spawned or despawned stuff.
 	w.entities.compact()
 	for i := range w.entitiesByZ {
 		w.entitiesByZ[i].compact()
