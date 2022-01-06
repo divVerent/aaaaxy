@@ -15,8 +15,6 @@
 package engine
 
 import (
-	"math"
-
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -105,10 +103,6 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 		}
 		return nil
 	})
-	result.Score = TraceScore{
-		TraceDistance: result.EndPos.Delta(l.Origin).Norm1(),
-		EntityZ:       math.MinInt32, // Not an entity.
-	}
 }
 
 func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
