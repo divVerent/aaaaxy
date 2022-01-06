@@ -88,6 +88,10 @@ func (p *Physics) tryMove(move m.Delta) (m.Delta, bool) {
 		}
 		return m.Delta{DX: 0, DY: 0}, groundChecked
 	}
+	var hitEntity *engine.Entity
+	if len(trace.HitEntities) != 0 {
+		hitEntity = trace.HitEntities[0]
+	}
 	if trace.HitDelta.DX != 0 {
 		// An X hit. Just adjust X subpixel to be as close to the hit as possible.
 		if p.SubPixel.DX > constants.SubPixelScale-1 {
@@ -103,7 +107,7 @@ func (p *Physics) tryMove(move m.Delta) (m.Delta, bool) {
 
 		// Just in case we have left/right gravity... (not yet).
 		if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
-			p.OnGround, p.GroundEntity, groundChecked = true, trace.HitEntity, true
+			p.OnGround, p.GroundEntity, groundChecked = true, hitEntity, true
 		} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
 			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 		}
@@ -123,7 +127,7 @@ func (p *Physics) tryMove(move m.Delta) (m.Delta, bool) {
 		p.Entity.Rect.Origin = trace.EndPos
 
 		if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
-			p.OnGround, p.GroundEntity, groundChecked = true, trace.HitEntity, true
+			p.OnGround, p.GroundEntity, groundChecked = true, hitEntity, true
 		} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
 			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 		}
@@ -157,7 +161,11 @@ func (p *Physics) Update() {
 			p.OnGround, p.GroundEntity = false, nil
 		} else {
 			// p.OnGround = true // Always has been.
-			p.GroundEntity = trace.HitEntity
+			var hitEntity *engine.Entity
+			if len(trace.HitEntities) != 0 {
+				hitEntity = trace.HitEntities[0]
+			}
+			p.GroundEntity = hitEntity
 			p.handleTouchFunc(trace)
 		}
 	}
