@@ -394,7 +394,7 @@ reprioritize:
 	}
 
 	// Sort edges by unstraightness.
-	sort.Slice(edges, func(a, b int) bool {
+	sort.SliceStable(edges, func(a, b int) bool {
 		dp := edges[a].priority - edges[b].priority
 		if dp != 0 {
 			// Highest priority first.
