@@ -19,9 +19,9 @@ version=$1; shift
 
 set -ex
 
-../butler/butler push aaaaxy-linux-amd64-"$version".zip divVerent/aaaaxy:linux-amd64
-../butler/butler push AAAAXY-x86_64.AppImage divVerent/aaaaxy:linux-amd64-appimage
-../butler/butler push aaaaxy-windows-amd64-"$version".zip divVerent/aaaaxy:windows-amd64
-../butler/butler push aaaaxy-windows-386-"$version".zip divVerent/aaaaxy:windows-386
-../butler/butler push aaaaxy-darwin-"$version".zip divVerent/aaaaxy:mac
-../butler/butler push aaaaxy-js-wasm-"$version".zip divVerent/aaaaxy:js-wasm
+../butler/butler push --userversion="$version" aaaaxy-linux-amd64-"$version".zip divVerent/aaaaxy:linux-amd64
+../butler/butler push --userversion="$version" AAAAXY-x86_64.AppImage divVerent/aaaaxy:linux-amd64-appimage
+../butler/butler push --userversion="$version" aaaaxy-windows-amd64-"$version".zip divVerent/aaaaxy:windows-amd64
+../butler/butler push --userversion="$version" aaaaxy-windows-386-"$version".zip divVerent/aaaaxy:windows-386
+../butler/butler push --userversion="$version" aaaaxy-darwin-"$version".zip divVerent/aaaaxy:mac
+../butler/butler push --userversion="$version" aaaaxy-js-wasm-"$version".zip divVerent/aaaaxy:js-wasm
