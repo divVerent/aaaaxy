@@ -72,21 +72,16 @@ type traceScore struct {
 // CompareCoarse returns <0 if s < 0, >0 if s > 0, 0 otherwise.
 func (s traceScore) CompareCoarse(o traceScore) int {
 	// Prefer lower TraceDistance.
-	return s.traceDistance - o.traceDistance
-}
-
-// CompareFine returns <0 if s < 0, >0 if s > 0, 0 otherwise, assuming CompareCoarse was 0.
-func (s traceScore) CompareFine(o traceScore) int {
-	// Prefer lower TraceDistance.
 	d := s.traceDistance - o.traceDistance
 	if d != 0 {
 		return d
 	}
 	// Prefer higher EntityZ.
-	d = o.entityZ - s.entityZ
-	if d != 0 {
-		return d
-	}
+	return o.entityZ - s.entityZ
+}
+
+// CompareFine returns <0 if s < 0, >0 if s > 0, 0 otherwise, assuming CompareCoarse was 0.
+func (s traceScore) CompareFine(o traceScore) int {
 	// Prefer lower EntityDistance.
 	return s.entityDistance - o.entityDistance
 }
@@ -337,10 +332,10 @@ func (l *normalizedLine) traceEntities(w *World, o TraceOptions, enlarge m.Delta
 			}
 			score := traceScore{
 				traceDistance: dist,
+				entityZ:       ent.ZIndex(),
 			}
 			if o.ForEnt != nil {
 				score.entityDistance = ent.Rect.Center().Delta(o.ForEnt.Rect.Center()).Norm1()
-				score.entityZ = ent.ZIndex()
 			}
 			if len(hits) != 0 {
 				cmp := score.CompareCoarse(hits[0].score)
