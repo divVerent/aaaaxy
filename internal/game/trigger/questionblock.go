@@ -95,12 +95,12 @@ func (q *QuestionBlock) Update() {
 		if q.UseAnimFrame < UseFramesPerPixel*UsePixels {
 			q.UseAnimFrame++
 			if q.UseAnimFrame%UseFramesPerPixel == 0 {
-				q.Entity.Rect.Origin.Y--
+				q.Entity.RenderOffset.DY--
 			}
 		} else if q.UseAnimFrame < 2*UseFramesPerPixel*UsePixels {
 			q.UseAnimFrame++
 			if q.UseAnimFrame%UseFramesPerPixel == 0 {
-				q.Entity.Rect.Origin.Y++
+				q.Entity.RenderOffset.DY++
 			}
 		}
 		return
@@ -127,6 +127,14 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 	q.UsedImage = nil
 	q.World.SetSolid(q.Entity, true)
 	q.Sound.Play()
+
+	// Draw an effect.
+	effect := q.Entity.Rect.Add(m.Delta{DX: 0, DY: -12})
+	trace := q.World.TraceBox(q.Entity.Rect, effect.Origin, engine.TraceOptions{
+		Contents: level.ObjectSolidContents,
+		ForEnt:   q.Entity,
+	})
+	effect.Origin = trace.EndPos
 	_, err := q.World.SpawnDetached(&level.SpawnableProps{
 		EntityType:  "MovingAnimation",
 		Orientation: m.Identity(),
@@ -141,10 +149,10 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 			"invert":                    "true",
 			"no_transform":              "true",
 			"time_to_fade":              "0.25s",
-			"velocity":                  "0 -32", // 8px in 1/4 sec.
+			"velocity":                  "0 -16", // 4px in 1/4 sec.
 		},
 		PersistentState: level.PersistentState{},
-	}, q.Entity.Rect.Add(m.Delta{DX: 0, DY: -12}), q.Entity.Orientation, q.Entity)
+	}, effect, q.Entity.Orientation, q.Entity)
 	if err != nil {
 		log.Errorf("could not spawn question block effect: %v", err)
 	}
