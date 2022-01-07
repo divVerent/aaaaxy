@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.0.140" date="2022-01-04">
-      <description><ul><li>Add a shruggie to a certain dead end; replace OnSpawn by SpawnCounter.</li><li>Make questionblocks show an "effect" when activated.</li><li>Initialize audio earlier to prevent pause on first sound.</li><li>Display the correct error if BeforeExit fails.</li><li>Newer glfw and oto.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.140</url>
+    <release version="v1.0.162" date="2022-01-07">
+      <description><ul><li>Accessibility: add a visual effect to the timedplatform sound.</li><li>Code: minor module update.</li><li>Code: allow tracing to hit multiple entities at once; this allows hitting two questionblocks at once. No real gameplay impact, just nicer.</li><li>Level: add a hint to the end of Van Vlijmen, including a tiny optional puzzle there.</li><li>Level: make the shruggie a bit nicer looking.</li><li>Web: default to medium graphics; fps are still OK with that.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.162</url>
     </release>
   </releases>
 </component>
