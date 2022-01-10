@@ -32,9 +32,9 @@ const (
 	// numSweepTraces is the number of sweep operations we need.
 	numSweepTraces = 2 * (GameWidth + GameHeight) / sweepStep
 	// expandSize is the amount of pixels to expand the visible area by.
-	expandSize = 6
+	expandSize = 7
 	// blurSize is the amount of pixels to blur the visible area by.
-	blurSize = 6
+	blurSize = 5
 	// expandTiles is the number of tiles beyond tiles hit by a trace that may need to be displayed.
 	// As map design may need to take this into account, try to keep it at 1.
 	expandTiles = (expandSize + blurSize + sweepStep + level.TileSize - 1) / level.TileSize

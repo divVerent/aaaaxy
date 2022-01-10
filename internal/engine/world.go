@@ -1002,3 +1002,7 @@ func (w *World) FindContents(c level.Contents) []*Entity {
 	})
 	return out
 }
+
+func (w *World) ScrollPos() m.Pos {
+	return w.scrollPos
+}

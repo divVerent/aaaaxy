@@ -15,6 +15,7 @@
 package aaaaxy
 
 import (
+	"fmt"
 	"image/color"
 	"math"
 	"math/rand"
@@ -39,12 +40,14 @@ import (
 var RegularTermination = menu.RegularTermination
 
 var (
-	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]interface{}{"js/*": "simple", "*/*": "linear2xcrt"}).(string), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt', 'linear2xcrtega' and 'nearest'")
+	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]interface{}{"js/*": "simple", "*/*": "linear2xcrt"}).(string), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
 	// TODO(divVerent): Remove this flag when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved.
 	screenFilterMaxScale    = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
 	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
 	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
 	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
+	palette                 = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to 'mono', 'cga40l', 'cga40h', 'cga41l', 'cga41h', 'cga5l', 'cga5h', 'ega', 'vga' or 'none'")
+	paletteBayerSize        = flag.Int("palette_bayer_size", 4, "bayer dither pattern size (really should be a power of two)")
 	debugEnableDrawing      = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 )
 
@@ -54,11 +57,18 @@ type Game struct {
 	init    initState
 	canDraw bool
 
-	offScreens           chan *ebiten.Image
-	linear2xShader       *ebiten.Shader
-	linear2xCRTShader    *ebiten.Shader
-	linear2xCRTEGAShader *ebiten.Shader
-	framesToDump         int
+	offScreens        chan *ebiten.Image
+	linear2xShader    *ebiten.Shader
+	linear2xCRTShader *ebiten.Shader
+
+	paletteOffscreen *ebiten.Image
+	paletteShader    *ebiten.Shader
+	paletteSize      int
+	paletteBayerSize int
+	paletteMinDelta  float64
+	paletteBayers    []float32
+
+	framesToDump int
 }
 
 var _ ebiten.Game = &Game{}
@@ -117,17 +127,102 @@ func (g *Game) Update() error {
 	return nil
 }
 
+func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
+	// This is an extra pass so it can still run at low-res.
+	pal := palettes[*palette]
+
+	if pal == nil {
+		// No palette.
+		return screen, func() {}
+	}
+
+	// Shaders depend on Bayer pattern size, and this should usually not change at runtime.
+	bayerSize := *paletteBayerSize
+
+	if g.paletteShader == nil || pal.size != g.paletteSize || bayerSize != g.paletteBayerSize {
+		var err error
+		g.paletteShader, err = shader.Load("bayer.kage", map[string]string{
+			"BayerSize":  fmt.Sprint(*paletteBayerSize),
+			"ColorCount": fmt.Sprint(pal.size),
+		})
+		if err != nil {
+			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for %d colors: %v", pal.size, err)
+			*palette = "none"
+			return screen, func() {}
+		}
+		g.paletteSize = pal.size
+		g.paletteBayerSize = bayerSize
+		g.paletteBayers = nil
+	}
+
+	if g.paletteOffscreen == nil {
+		g.paletteOffscreen = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+	}
+
+	return g.paletteOffscreen, func() {
+		if g.paletteBayers == nil || bayerSize != g.paletteBayerSize || pal.minDelta != g.paletteMinDelta {
+			bayerSizeSquare := bayerSize * bayerSize
+			bayerBits := math.Ilogb(float64(bayerSize-1)) + 1
+			bayerSizeCeil := 1 << bayerBits
+			bayerSizeCeilSquare := bayerSizeCeil * bayerSizeCeil
+			bayerScale := pal.minDelta / float64(bayerSizeCeilSquare)
+			bayerOffset := float64(bayerSizeCeilSquare-1) / 2.0
+			g.paletteBayers = make([]float32, bayerSizeSquare)
+			for i := range g.paletteBayers {
+				x := i % bayerSize
+				y := i / bayerSize
+				z := x ^ y
+				b := 0
+				for bit := 1; bit < bayerSize; bit *= 2 {
+					b *= 4
+					if y&bit != 0 {
+						b += 1
+					}
+					if z&bit != 0 {
+						b += 2
+					}
+				}
+				g.paletteBayers[i] = float32((float64(b) - bayerOffset) * bayerScale)
+			}
+			g.paletteBayerSize = bayerSize
+			g.paletteMinDelta = pal.minDelta
+		}
+		scroll := g.Menu.World.ScrollPos()
+		options := &ebiten.DrawRectShaderOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Images: [4]*ebiten.Image{
+				g.paletteOffscreen,
+				nil,
+				nil,
+				nil,
+			},
+			Uniforms: map[string]interface{}{
+				"Colors": pal.colors,
+				"Bayers": g.paletteBayers,
+				"Offset": []float32{
+					float32(scroll.X),
+					float32(scroll.Y),
+				},
+			},
+		}
+		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.paletteShader, options)
+	}
+}
+
 func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image) {
-	sw, sh := screen.Size()
+	drawDest, finishDrawing := g.palettePrepare(screen)
+
+	sw, sh := drawDest.Size()
 	if sw != engine.GameWidth || sh != engine.GameHeight {
 		log.Infof("skipping frame as sizes do not match up: got %vx%v, want %vx%v",
 			sw, sh, engine.GameWidth, engine.GameHeight)
+		finishDrawing()
 		to <- screen
 		return
 	}
 
 	timing.Section("fontcache")
-	font.KeepInCache(screen)
+	font.KeepInCache(drawDest)
 
 	if !g.canDraw {
 		text, fraction := g.init.Current()
@@ -135,28 +230,30 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 			bg := color.NRGBA{R: 0x00, G: 0x00, B: uint8(m.Rint(0xAA * (1 - fraction))), A: 0xFF}
 			fg := color.NRGBA{R: 0xAA, G: 0xAA, B: 0xAA, A: 0xFF}
 			ol := color.NRGBA{R: 0x00, G: 0x00, B: 0x00, A: 0xFF}
-			screen.Fill(bg)
+			drawDest.Fill(bg)
 			r := font.MenuSmall.BoundString(text)
 			y := m.Rint(float64((engine.GameHeight-r.Size.DY))*(1-fraction)) - r.Origin.Y
-			font.MenuSmall.Draw(screen, text, m.Pos{
+			font.MenuSmall.Draw(drawDest, text, m.Pos{
 				X: engine.GameWidth / 2,
 				Y: y,
 			}, true, fg, ol)
 		}
+		finishDrawing()
 		to <- screen
 		return
 	}
 
 	timing.Section("world")
-	g.Menu.DrawWorld(screen)
+	g.Menu.DrawWorld(drawDest)
 
 	timing.Section("menu")
-	g.Menu.Draw(screen)
+	g.Menu.Draw(drawDest)
 
 	timing.Section("demo_postdraw")
-	demo.PostDraw(screen)
+	demo.PostDraw(drawDest)
 
 	timing.Section("dump")
+	finishDrawing()
 	dumpFrameThenReturnTo(screen, to, g.framesToDump)
 	g.framesToDump = 0
 
@@ -215,21 +312,24 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		return
 	}
 
+	if !dumping() && *screenFilter == "simple" && *palette == "none" {
+		// No offscreen needed. Just render.
+		g.drawAtGameSizeThenReturnTo(screen, make(chan *ebiten.Image, 1))
+		return
+	}
+
+	srcImage := g.drawOffscreen()
+
 	switch *screenFilter {
 	case "simple":
-		if dumping() {
-			// We're dumping, so we NEED an offscreen.
-			// This is actually just like "nearest", except that to ebiten we have a game-sized and not screen-sized screen.
-			// So we can use an identity matrix and need not clear the screen.
-			options := &ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeCopy,
-				Filter:        ebiten.FilterNearest,
-			}
-			screen.DrawImage(g.drawOffscreen(), options)
-		} else {
-			// It's all sync, so just provide a dummy channel to discard it.
-			g.drawAtGameSizeThenReturnTo(screen, make(chan *ebiten.Image, 1))
+		// We're dumping, so we NEED an offscreen.
+		// This is actually just like "nearest", except that to ebiten we have a game-sized and not screen-sized screen.
+		// So we can use an identity matrix and need not clear the screen.
+		options := &ebiten.DrawImageOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Filter:        ebiten.FilterNearest,
 		}
+		screen.DrawImage(srcImage, options)
 	case "linear":
 		screen.Clear()
 		options := &ebiten.DrawImageOptions{
@@ -237,7 +337,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			Filter:        ebiten.FilterLinear,
 		}
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
-		screen.DrawImage(g.drawOffscreen(), options)
+		screen.DrawImage(srcImage, options)
 	case "linear2x":
 		if g.linear2xShader == nil {
 			var err error
@@ -251,7 +351,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Images: [4]*ebiten.Image{
-				g.drawOffscreen(),
+				srcImage,
 				nil,
 				nil,
 				nil,
@@ -272,7 +372,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Images: [4]*ebiten.Image{
-				g.drawOffscreen(),
+				srcImage,
 				nil,
 				nil,
 				nil,
@@ -285,32 +385,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		}
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xCRTShader, options)
-	case "linear2xcrtega":
-		if g.linear2xCRTEGAShader == nil {
-			var err error
-			g.linear2xCRTEGAShader, err = shader.Load("linear2xcrtega.kage", nil)
-			if err != nil {
-				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load linear2xcrtega shader: %v", err)
-				*screenFilter = "linear2xcrt"
-				return
-			}
-		}
-		options := &ebiten.DrawRectShaderOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
-			Images: [4]*ebiten.Image{
-				g.drawOffscreen(),
-				nil,
-				nil,
-				nil,
-			},
-			Uniforms: map[string]interface{}{
-				"ScanLineEffect": float32(*screenFilterScanLines * 2.0),
-				"CRTK1":          float32(crtK1()),
-				"CRTK2":          float32(crtK2()),
-			},
-		}
-		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
-		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xCRTEGAShader, options)
 	case "nearest":
 		screen.Clear()
 		options := &ebiten.DrawImageOptions{
@@ -318,7 +392,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			Filter:        ebiten.FilterNearest,
 		}
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
-		screen.DrawImage(g.drawOffscreen(), options)
+		screen.DrawImage(srcImage, options)
 	default:
 		log.Errorf("WARNING: unknown screen filter type: %q; reverted to simple", *screenFilter)
 		*screenFilter = "simple"

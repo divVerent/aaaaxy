@@ -139,13 +139,14 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 	if video != "" {
 		fps := float64(engine.GameTPS) / float64(*dumpVideoFpsDivisor)
 		inputs = append(inputs, fmt.Sprintf("-f rawvideo -pixel_format rgba -video_size %dx%d -r %v -i '%s'", engine.GameWidth, engine.GameHeight, fps, strings.ReplaceAll(video, "'", "'\\''")))
-		var maybeFilterComplex string
+		filterComplex := "[0:v]premultiply=inplace=1,format=gbrp[lowres]; "
 		switch screenFilter {
 		case "linear":
-			maybeFilterComplex = " -filter_complex '[0:v]premultiply=inplace=1,scale=1920:1080'"
-		case "linear2x":
+			filterComplex += "[lowres]scale=1920:1080"
+		case "simple", "linear2x":
 			// Note: the two step upscale simulates the effect of the linear2xcrt shader.
-			maybeFilterComplex = " -filter_complex '[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=1920:1080'"
+			// "simple" does the same as "linear2x" if the screen res is exactly 1080p.
+			filterComplex += "[lowres]scale=1280:720:flags=neighbor,scale=1920:1080"
 		case "linear2xcrt":
 			// For 3x scale, pattern is: 1 (1-2/3*f) 1.
 			// darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
@@ -153,30 +154,18 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 			// Then second scale is to 1920:1080.
 			// But for the lens correction, we gotta do better.
 			// For 6x scale, pattern is: (1-5/6*f) (1-3/6*f) (1-1/6*f) (1-1/6*f) (1-3/6*f) (1-5/6*f).
-			pre = fmt.Sprintf("echo 'P2 1 6 255 %d %d %d %d %d %d' | convert -size 3840:2160 TILE:PNM:- scanlines.png; ",
+			pre += fmt.Sprintf("echo 'P2 1 6 255 %d %d %d %d %d %d' | convert -size 3840:2160 TILE:PNM:- scanlines.png; ",
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
-			maybeFilterComplex = fmt.Sprintf(" -filter_complex '[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,format=gbrp,scale=3840:2160[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f'", crtK1(), crtK2())
-		case "linear2xcrtega":
-			// See above.
-			// In addition, we add the EGA palette.
-			pre = fmt.Sprintf("echo 'P2 1 6 255 %d %d %d %d %d %d' | convert -size 3840:2160 TILE:PNM:- scanlines.png; ",
-				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
-			pre += "echo 'P3 1 16 255 0 0 0 0 0 170 0 170 0 0 170 170 170 0 0 170 0 170 170 85 0 170 170 170 85 85 85 85 85 255 85 255 85 85 255 255 255 85 85 255 85 255 255 255 85 255 255 255' | convert PNM:- egapalette.png; "
-			maybeFilterComplex = fmt.Sprintf(" -filter_complex '[0:v]premultiply=inplace=1[rgb]; movie=egapalette.png,scale=16:16:flags=neighbor[ega]; [rgb][ega]paletteuse=dither=bayer:bayer_scale=1,scale=1280:720:flags=neighbor,format=gbrp,scale=3840:2160[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f'", crtK1(), crtK2())
-		case "simple", "nearest":
-			maybeFilterComplex = " -filter_complex '[0:v]premultiply=inplace=1,scale=1920:1080:flags=neighbor'"
+			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
+		case "nearest":
+			filterComplex += "[lowres]scale=1920:1080:flags=neighbor"
 		case "":
-			maybeFilterComplex = ""
+			filterComplex += "[lowres]copy"
 		}
 		// Note: using high quality, fast settings and many keyframes
 		// as the assumption is that the output file will be further edited.
@@ -184,7 +173,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 		// or even newer versions with decoding options changed for compatibility,
 		// if the video file has also been losslessly cut -
 		// have trouble decoding that.
-		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60"+maybeFilterComplex)
+		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -filter_complex '"+filterComplex+"'")
 	}
 	if audio != "" {
 		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.SampleRate(), strings.ReplaceAll(audio, "'", "'\\''")))
