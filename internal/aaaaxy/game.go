@@ -39,11 +39,11 @@ import (
 var RegularTermination = menu.RegularTermination
 
 var (
-	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]interface{}{"js/*": "simple", "*/*": "linear2xcrt"}).(string), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
+	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]interface{}{"js/*": "simple", "*/*": "linear2xcrt"}).(string), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt', 'linear2xcrtega' and 'nearest'")
 	// TODO(divVerent): Remove this flag when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved.
 	screenFilterMaxScale    = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
-	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filter")
-	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filter")
+	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
+	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
 	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 	debugEnableDrawing      = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 )
@@ -54,10 +54,11 @@ type Game struct {
 	init    initState
 	canDraw bool
 
-	offScreens        chan *ebiten.Image
-	linear2xShader    *ebiten.Shader
-	linear2xCRTShader *ebiten.Shader
-	framesToDump      int
+	offScreens           chan *ebiten.Image
+	linear2xShader       *ebiten.Shader
+	linear2xCRTShader    *ebiten.Shader
+	linear2xCRTEGAShader *ebiten.Shader
+	framesToDump         int
 }
 
 var _ ebiten.Game = &Game{}
@@ -284,6 +285,32 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		}
 		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xCRTShader, options)
+	case "linear2xcrtega":
+		if g.linear2xCRTEGAShader == nil {
+			var err error
+			g.linear2xCRTEGAShader, err = shader.Load("linear2xcrtega.kage", nil)
+			if err != nil {
+				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load linear2xcrtega shader: %v", err)
+				*screenFilter = "linear2xcrt"
+				return
+			}
+		}
+		options := &ebiten.DrawRectShaderOptions{
+			CompositeMode: ebiten.CompositeModeCopy,
+			Images: [4]*ebiten.Image{
+				g.drawOffscreen(),
+				nil,
+				nil,
+				nil,
+			},
+			Uniforms: map[string]interface{}{
+				"ScanLineEffect": float32(*screenFilterScanLines * 2.0),
+				"CRTK1":          float32(crtK1()),
+				"CRTK2":          float32(crtK2()),
+			},
+		}
+		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
+		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xCRTEGAShader, options)
 	case "nearest":
 		screen.Clear()
 		options := &ebiten.DrawImageOptions{
