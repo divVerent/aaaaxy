@@ -160,7 +160,19 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
-			maybeFilterComplex = fmt.Sprintf(" -filter_complex '[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,scale=3840:2160,format=gbrp[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f'", crtK1(), crtK2())
+			maybeFilterComplex = fmt.Sprintf(" -filter_complex '[0:v]premultiply=inplace=1,scale=1280:720:flags=neighbor,format=gbrp,scale=3840:2160[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f'", crtK1(), crtK2())
+		case "linear2xcrtega":
+			// See above.
+			// In addition, we add the EGA palette.
+			pre = fmt.Sprintf("echo 'P2 1 6 255 %d %d %d %d %d %d' | convert -size 3840:2160 TILE:PNM:- scanlines.png; ",
+				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
+				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
+			pre += "echo 'P3 1 16 255 0 0 0 0 0 170 0 170 0 0 170 170 170 0 0 170 0 170 170 85 0 170 170 170 85 85 85 85 85 255 85 255 85 85 255 255 255 85 85 255 85 255 255 255 85 255 255 255' | convert PNM:- egapalette.png; "
+			maybeFilterComplex = fmt.Sprintf(" -filter_complex '[0:v]premultiply=inplace=1[rgb]; movie=egapalette.png,scale=16:16:flags=neighbor[ega]; [rgb][ega]paletteuse=dither=bayer:bayer_scale=1,scale=1280:720:flags=neighbor,format=gbrp,scale=3840:2160[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f'", crtK1(), crtK2())
 		case "simple", "nearest":
 			maybeFilterComplex = " -filter_complex '[0:v]premultiply=inplace=1,scale=1920:1080:flags=neighbor'"
 		case "":
