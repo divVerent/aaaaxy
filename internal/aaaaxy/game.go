@@ -200,8 +200,8 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 				"Colors": pal.colors,
 				"Bayers": g.paletteBayers,
 				"Offset": []float32{
-					float32(scroll.X),
-					float32(scroll.Y),
+					float32(m.Mod(scroll.X, bayerSize)),
+					float32(m.Mod(scroll.Y, bayerSize)),
 				},
 			},
 		}
