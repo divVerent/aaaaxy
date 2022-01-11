@@ -133,11 +133,16 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 
 	if pal == nil {
 		// No palette.
+		*palette = "none"
 		return screen, func() {}
 	}
 
 	// Shaders depend on Bayer pattern size, and this should usually not change at runtime.
 	bayerSize := *paletteBayerSize
+	if bayerSize < 1 {
+		*paletteBayerSize = 1
+		bayerSize = 1
+	}
 
 	if g.paletteShader == nil || pal.size != g.paletteSize || bayerSize != g.paletteBayerSize {
 		var err error
@@ -162,7 +167,10 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	return g.paletteOffscreen, func() {
 		if g.paletteBayers == nil || bayerSize != g.paletteBayerSize || pal.minDelta != g.paletteMinDelta {
 			bayerSizeSquare := bayerSize * bayerSize
-			bayerBits := math.Ilogb(float64(bayerSize-1)) + 1
+			bayerBits := 0
+			if bayerSize > 1 {
+				bayerBits = math.Ilogb(float64(bayerSize-1)) + 1
+			}
 			bayerSizeCeil := 1 << bayerBits
 			bayerSizeCeilSquare := bayerSizeCeil * bayerSizeCeil
 			bayerScale := pal.minDelta / float64(bayerSizeCeilSquare)
