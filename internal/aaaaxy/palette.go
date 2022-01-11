@@ -24,8 +24,7 @@ type palData struct {
 	minDelta float64
 }
 
-func newPalData(c []float32) *palData {
-	minDelta := float64(2.0)
+func newPalData(minDelta float64, c []float32) *palData {
 	n := len(c) / 3
 	for i := 0; i < n; i++ {
 		if i >= 16 {
@@ -40,9 +39,11 @@ func newPalData(c []float32) *palData {
 					delta = d
 				}
 			}
-			if delta > 0 && delta < minDelta {
-				minDelta = delta
-			}
+			/*
+				if delta < minDelta-0.001 {
+					log.Warningf("likely color confusion: %d %d -> %v < %v", i, j, delta, minDelta)
+				}
+			*/
 		}
 	}
 	return &palData{
@@ -54,13 +55,13 @@ func newPalData(c []float32) *palData {
 
 var palettes = map[string]*palData{
 	// Monochrome.
-	"mono": newPalData([]float32{
+	"mono": newPalData(1, []float32{
 		0, 0, 0,
 		1, 1, 1,
 	}),
 
 	// The original IBM CGA palette.
-	"cga40l": newPalData([]float32{
+	"cga40l": newPalData(2/3.0, []float32{
 		0, 0, 0,
 		0, 2 / 3.0, 0,
 		2 / 3.0, 0, 0,
@@ -68,15 +69,36 @@ var palettes = map[string]*palData{
 	}),
 
 	// The original IBM CGA palette at high intensity.
-	"cga40h": newPalData([]float32{
+	"cga40h": newPalData(2/3.0, []float32{
 		0, 0, 0,
 		1 / 3.0, 1, 1 / 3.0,
 		1, 1 / 3.0, 1 / 3.0,
 		1, 1, 1 / 3.0,
 	}),
 
+	// The original IBM CGA palette on NTSC.
+	// curl https://upload.wikimedia.org/wikipedia/commons/7/7c/CGA_CompVsRGB_320p0.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ print $1 "/255.0, " $2 "/255.0, " $3 "/255.0,"; }'
+	"cga40n": newPalData(1/3.0, []float32{
+		0 / 255.0, 0 / 255.0, 0 / 255.0,
+		0 / 255.0, 113 / 255.0, 209 / 255.0,
+		0 / 255.0, 25 / 255.0, 172 / 255.0,
+		0 / 255.0, 113 / 255.0, 241 / 255.0,
+		149 / 255.0, 79 / 255.0, 0 / 255.0,
+		109 / 255.0, 212 / 255.0, 65 / 255.0,
+		162 / 255.0, 123 / 255.0, 28 / 255.0,
+		116 / 255.0, 212 / 255.0, 97 / 255.0,
+		184 / 255.0, 33 / 255.0, 0 / 255.0,
+		144 / 255.0, 166 / 255.0, 156 / 255.0,
+		197 / 255.0, 78 / 255.0, 118 / 255.0,
+		151 / 255.0, 166 / 255.0, 187 / 255.0,
+		243 / 255.0, 104 / 255.0, 0 / 255.0,
+		203 / 255.0, 237 / 255.0, 38 / 255.0,
+		255 / 255.0, 149 / 255.0, 1 / 255.0,
+		210 / 255.0, 237 / 255.0, 70 / 255.0,
+	}),
+
 	// The alternate IBM CGA palette.
-	"cga41l": newPalData([]float32{
+	"cga41l": newPalData(2/3.0, []float32{
 		0, 0, 0,
 		0, 2 / 3.0, 2 / 3.0,
 		2 / 3.0, 0, 2 / 3.0,
@@ -84,15 +106,36 @@ var palettes = map[string]*palData{
 	}),
 
 	// The alternate IBM CGA palette at high intensity.
-	"cga41h": newPalData([]float32{
+	"cga41h": newPalData(2/3.0, []float32{
 		0, 0, 0,
 		1 / 3.0, 1, 1,
 		1, 1 / 3.0, 1,
 		1, 1, 1,
 	}),
 
+	// The alternate IBM CGA palette on NTSC.
+	// curl https://upload.wikimedia.org/wikipedia/commons/c/c5/CGA_CompVsRGB_320p1.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ print $1 "/255.0, " $2 "/255.0, " $3 "/255.0,"; }'
+	"cga41n": newPalData(1/3.0, []float32{
+		0 / 255.0, 0 / 255.0, 0 / 255.0,
+		0 / 255.0, 154 / 255.0, 255 / 255.0,
+		0 / 255.0, 66 / 255.0, 255 / 255.0,
+		0 / 255.0, 144 / 255.0, 255 / 255.0,
+		170 / 255.0, 76 / 255.0, 0 / 255.0,
+		132 / 255.0, 250 / 255.0, 210 / 255.0,
+		185 / 255.0, 162 / 255.0, 173 / 255.0,
+		150 / 255.0, 240 / 255.0, 255 / 255.0,
+		205 / 255.0, 31 / 255.0, 0 / 255.0,
+		167 / 255.0, 205 / 255.0, 255 / 255.0,
+		220 / 255.0, 117 / 255.0, 255 / 255.0,
+		185 / 255.0, 195 / 255.0, 255 / 255.0,
+		255 / 255.0, 92 / 255.0, 0 / 255.0,
+		237 / 255.0, 255 / 255.0, 204 / 255.0,
+		255 / 255.0, 178 / 255.0, 166 / 255.0,
+		255 / 255.0, 255 / 255.0, 255 / 255.0,
+	}),
+
 	// The "monochrome" IBM CGA palette.
-	"cga5l": newPalData([]float32{
+	"cga5l": newPalData(2/3.0, []float32{
 		0, 0, 0,
 		0, 2 / 3.0, 2 / 3.0,
 		2 / 3.0, 0, 0,
@@ -100,7 +143,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The "monochrome" IBM CGA palette at high intensity.
-	"cga5h": newPalData([]float32{
+	"cga5h": newPalData(2/3.0, []float32{
 		0, 0, 0,
 		1 / 3.0, 1, 1,
 		1, 1 / 3.0, 1 / 3.0,
@@ -108,7 +151,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The original IBM EGA palette.
-	"ega": newPalData([]float32{
+	"ega": newPalData(1/3.0, []float32{
 		0, 0, 0,
 		0, 0, 2 / 3.0,
 		0, 2 / 3.0, 0,
@@ -128,7 +171,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The original IBM VGA palette.
-	"vga": newPalData([]float32{
+	"vga": newPalData(5/63.0, []float32{
 		0, 0, 0,
 		0, 0, 2 / 3.0,
 		0, 2 / 3.0, 0,
@@ -145,7 +188,7 @@ var palettes = map[string]*palData{
 		1, 1 / 3.0, 1,
 		1, 1, 1 / 3.0,
 		1, 1, 1,
-		0, 0, 0,
+		// 0, 0, 0,                          // Redundant with color 0.
 		5 / 63.0, 5 / 63.0, 5 / 63.0,
 		8 / 63.0, 8 / 63.0, 8 / 63.0,
 		11 / 63.0, 11 / 63.0, 11 / 63.0,
@@ -155,12 +198,12 @@ var palettes = map[string]*palData{
 		// 8 / 21.0, 8 / 21.0, 8 / 21.0,     // Too close to color 8.
 		4 / 9.0, 4 / 9.0, 4 / 9.0,
 		32 / 63.0, 32 / 63.0, 32 / 63.0,
-		// 4 / 7.0, 4 / 7.0, 4 / 7.0,       // Too close to color 7.
-		// 40 / 63.0, 40 / 63.0, 40 / 63.0, // Too close to color 7.
-		// 5 / 7.0, 5 / 7.0, 5 / 7.0,       // Too close to color 7.
+		// 4 / 7.0, 4 / 7.0, 4 / 7.0,        // Too close to color 7.
+		// 40 / 63.0, 40 / 63.0, 40 / 63.0,  // Too close to color 7.
+		// 5 / 7.0, 5 / 7.0, 5 / 7.0,        // Too close to color 7.
 		50 / 63.0, 50 / 63.0, 50 / 63.0,
 		8 / 9.0, 8 / 9.0, 8 / 9.0,
-		1, 1, 1,
+		// 1, 1, 1,                          // Redundant with color 15.
 		0, 0, 1,
 		16 / 63.0, 0, 1,
 		31 / 63.0, 0, 1,
