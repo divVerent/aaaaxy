@@ -1300,14 +1300,13 @@
     <property name="text" value="What's broken is in need of repair."/>
    </properties>
   </object>
-  <object id="386" gid="313" x="4048" y="7520" width="16" height="16"/>
-  <object id="387" gid="315" x="4080" y="7600" width="16" height="16"/>
-  <object id="388" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4032" y="7600" width="16" height="16"/>
-  <object id="389" type="SetState" x="4048" y="7536" width="16" height="16">
+  <object id="386" gid="313" x="4048" y="7520" width="16" height="16">
    <properties>
     <property name="target" value="SilverCityAppearGap"/>
    </properties>
   </object>
+  <object id="387" gid="315" x="4080" y="7600" width="16" height="16"/>
+  <object id="388" name="SilverCityAppearGap" type="SwitchableSprite" gid="10" x="4032" y="7600" width="16" height="16"/>
   <object id="390" type="SwitchMusic" x="3920" y="7248" width="208" height="32">
    <properties>
     <property name="music" value="Next to You.ogg"/>
