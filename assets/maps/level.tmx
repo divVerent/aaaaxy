@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8113">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8115">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17583,5 +17583,18 @@
   <object id="8110" gid="330" x="7328" y="5488" width="16" height="16"/>
   <object id="8111" gid="10" x="5968" y="3600" width="16" height="16"/>
   <object id="8112" gid="10" x="5968" y="3616" width="16" height="16"/>
+  <object id="8113" gid="314" x="4608" y="3936" width="16" height="16">
+   <properties>
+    <property name="target" value="TheSecondKaizo"/>
+   </properties>
+  </object>
+  <object id="8114" name="TheSecondKaizo" type="SwitchableText" x="4576" y="3904" width="80" height="16">
+   <properties>
+    <property name="text" value="Mwahaha!"/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="SmallCaps"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
