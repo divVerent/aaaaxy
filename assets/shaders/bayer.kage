@@ -22,17 +22,6 @@ var (
 	Offset    vec2
 )
 
-func diff(a, b vec3) float {
-	d := a - b
-	/*
-		// Redmean color difference.
-		r_ := (a.r + b.r) * (0.5 * 255.0 / 256.0)
-		return dot(vec3(2 + r_, 4, 3 - r_), d * d)
-	*/
-	// Brightness difference.
-	return dot(vec3(0.3, 0.59, 0.11), d*d)
-}
-
 func bayerM(srcOrigin, srcImageSize, coord vec2) float {
 	p := srcImageSize*(coord-srcOrigin) + Offset
 	mPos := mod(floor(p), PARAMS["BayerSize"])
