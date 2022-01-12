@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.0.162" date="2022-01-07">
-      <description><ul><li>Accessibility: add a visual effect to the timedplatform sound.</li><li>Code: minor module update.</li><li>Code: allow tracing to hit multiple entities at once; this allows hitting two questionblocks at once. No real gameplay impact, just nicer.</li><li>Level: add a hint to the end of Van Vlijmen, including a tiny optional puzzle there.</li><li>Level: make the shruggie a bit nicer looking.</li><li>Web: default to medium graphics; fps are still OK with that.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.162</url>
+    <release version="v1.0.183" date="2022-01-12">
+      <description><ul><li>Allow questionblocks to send trigger events.</li><li>Add a second kaizo block to the start (no impact to expected run times).</li><li>Fix minor render glitch in Kaaaart Race.</li><li>Now with palette rendering (enabled via -palette=ega). More palettes exist.</li><li>Minor module update.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.183</url>
     </release>
   </releases>
 </component>
