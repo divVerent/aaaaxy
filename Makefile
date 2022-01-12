@@ -28,27 +28,27 @@ SOURCES = $(shell git ls-files \*.go)
 GENERATED_STUFF = aaaaxy.ico aaaaxy.manifest aaaaxy.syso assets/generated/ internal/vfs/_embedroot/ licenses/asset-licenses/ licenses/software-licenses/
 
 # Configure Go.
-GOFLAGS += -tags "$(shell echo $(BUILDTAGS) | tr ' ' ,)"
+GO_FLAGS += -tags=$(shell echo $(BUILDTAGS) | tr ' ' ,)
 
 # Configure the Go compiler.
 GO_GCFLAGS = -dwarf=false
-GOFLAGS += -gcflags=all="$(GO_GCFLAGS)"
+GO_FLAGS += $(patsubst %,-gcflags=all=%,$(GO_GCFLAGS))
 
 # Configure the Go linker.
 GO_LDFLAGS =
 ifeq ($(shell $(GO) env GOOS),windows)
 GO_LDFLAGS += -H windowsgui
 endif
-GOFLAGS += -ldflags=all="$(GO_LDFLAGS)"
+GO_FLAGS += $(patsubst %,-ldflags=all=%,$(GO_LDFLAGS))
 
 # Release/debug flags.
 BUILDTYPE = debug
 
 ifeq ($(BUILDTYPE),release)
 GO_LDFLAGS += -s -w
-GOFLAGS += -a -trimpath
+GO_FLAGS += -a -trimpath
 ifneq ($(shell $(GO) env GOARCH),wasm)
-GOFLAGS += -buildmode=pie
+GO_FLAGS += -buildmode=pie
 endif
 CPPFLAGS ?= -DNDEBUG
 CFLAGS ?= -g0 -O3
@@ -96,11 +96,11 @@ loading-fractions-update: $(BINARY)
 # Packing the data files.
 .PHONY: generate
 generate:
-	$(GO) generate $(GOFLAGS)
+	$(GO) generate $(GO_FLAGS)
 
 # Binary building.
 $(BINARY): generate $(SOURCES)
-	$(CGO_ENV) $(GO) build -o $(BINARY) $(GOFLAGS)
+	$(CGO_ENV) $(GO) build -o $(BINARY) $(GO_FLAGS)
 
 # Helper targets.
 .PHONY: run
