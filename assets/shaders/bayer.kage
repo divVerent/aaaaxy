@@ -16,24 +16,25 @@
 package main
 
 var (
-	Colors [PARAMS["ColorCount"]]vec3
-	Bayers [PARAMS["BayerSize"]*PARAMS["BayerSize"]]float
-	Offset vec2
+	Bayers    [PARAMS["BayerSize"] * PARAMS["BayerSize"]]float
+	LUTSize   float
+	LUTPerRow float
+	Offset    vec2
 )
 
 func diff(a, b vec3) float {
 	d := a - b
 	/*
-	// Redmean color difference.
-	r_ := (a.r + b.r) * (0.5 * 255.0 / 256.0)
-	return dot(vec3(2 + r_, 4, 3 - r_), d * d)
+		// Redmean color difference.
+		r_ := (a.r + b.r) * (0.5 * 255.0 / 256.0)
+		return dot(vec3(2 + r_, 4, 3 - r_), d * d)
 	*/
 	// Brightness difference.
-	return dot(vec3(0.3, 0.59, 0.11), d * d)
+	return dot(vec3(0.3, 0.59, 0.11), d*d)
 }
 
 func bayerM(srcOrigin, srcImageSize, coord vec2) float {
-	p := srcImageSize * (coord - srcOrigin) + Offset
+	p := srcImageSize*(coord-srcOrigin) + Offset
 	mPos := mod(floor(p), PARAMS["BayerSize"])
 	mPosInt := int(mPos.x + PARAMS["BayerSize"]*mPos.y)
 	return Bayers[mPosInt]
@@ -41,19 +42,13 @@ func bayerM(srcOrigin, srcImageSize, coord vec2) float {
 
 func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {
 	p := imageSrc0At(coord).rgb + bayerM(srcOrigin, srcImageSize, coord)
-
-	best := Colors[0]
-	bestScore := diff(p, best)
-	for i := 1; i < PARAMS["ColorCount"]; i++ {
-		this := Colors[i]
-		score := diff(p, this)
-		if score < bestScore {
-			best = this
-			bestScore = score
-		}
-	}
-
-	return vec4(best, 1)
+	p = clamp(floor(p * LUTSize), 0, LUTSize - 1)
+	pixel := vec2(
+		mod(p.b, LUTPerRow)*LUTSize+p.r,
+		floor(p.b/LUTPerRow)*LUTSize+p.g,
+	)
+	pixelCoord := srcOrigin + pixel/srcImageSize
+	return imageSrc1At(pixelCoord)
 }
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {

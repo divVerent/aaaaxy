@@ -19,6 +19,10 @@ ifeq ($(FASTER_VIDEO_DUMPING),false)
 BUILDTAGS += ebitensinglethread
 endif
 
+ifeq ($(BUILDTYPE),extradebug)
+BUILDTAGS += ebitendebug
+endif
+
 # Internal variables.
 SOURCES = $(shell git ls-files \*.go)
 GENERATED_STUFF = aaaaxy.ico aaaaxy.manifest aaaaxy.syso assets/generated/ internal/vfs/_embedroot/ licenses/asset-licenses/ licenses/software-licenses/
@@ -39,6 +43,7 @@ GOFLAGS += -ldflags=all="$(GO_LDFLAGS)"
 
 # Release/debug flags.
 BUILDTYPE = debug
+
 ifeq ($(BUILDTYPE),release)
 GO_LDFLAGS += -s -w
 GOFLAGS += -a -trimpath

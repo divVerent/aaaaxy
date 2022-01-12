@@ -61,12 +61,16 @@ type Game struct {
 	linear2xShader    *ebiten.Shader
 	linear2xCRTShader *ebiten.Shader
 
-	paletteOffscreen *ebiten.Image
-	paletteShader    *ebiten.Shader
-	paletteSize      int
+	// Copies of parameters so we know when to update.
+	palette          *palData
 	paletteBayerSize int
-	paletteMinDelta  float64
-	paletteBayers    []float32
+
+	paletteOffscreen *ebiten.Image  // Never updates.
+	paletteLUT       *ebiten.Image  // Updates when palette changes.
+	paletteLUTSize   int            // Updates when palette changes.
+	paletteLUTPerRow int            // Updates when palette changes.
+	paletteBayers    []float32      // Updates when palette or paletteBayerSize change.
+	paletteShader    *ebiten.Shader // Updates when paletteBayerSize changes.
 
 	framesToDump int
 }
@@ -144,69 +148,77 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 		bayerSize = 1
 	}
 
-	if g.paletteShader == nil || pal.size != g.paletteSize || bayerSize != g.paletteBayerSize {
+	// Need images?
+	if g.paletteLUT == nil {
+		g.paletteLUT = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+	}
+	if g.paletteOffscreen == nil {
+		g.paletteOffscreen = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+	}
+
+	// Need a new shader?
+	if g.paletteShader == nil || bayerSize != g.paletteBayerSize {
 		var err error
 		g.paletteShader, err = shader.Load("bayer.kage", map[string]string{
-			"BayerSize":  fmt.Sprint(*paletteBayerSize),
-			"ColorCount": fmt.Sprint(pal.size),
+			"BayerSize": fmt.Sprint(*paletteBayerSize),
 		})
 		if err != nil {
 			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for %d colors: %v", pal.size, err)
 			*palette = "none"
 			return screen, func() {}
 		}
-		g.paletteSize = pal.size
 		g.paletteBayerSize = bayerSize
-		g.paletteBayers = nil
+		g.palette = nil
 	}
 
-	if g.paletteOffscreen == nil {
-		g.paletteOffscreen = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+	// Need a LUT?
+	if g.palette != pal {
+		g.paletteLUTSize, g.paletteLUTPerRow = pal.toLUT(g.paletteLUT)
+		g.palette = pal
+
+		// New palette also needs new Bayer pattern.
+		bayerSizeSquare := bayerSize * bayerSize
+		bayerBits := 0
+		if bayerSize > 1 {
+			bayerBits = math.Ilogb(float64(bayerSize-1)) + 1
+		}
+		bayerSizeCeil := 1 << bayerBits
+		bayerSizeCeilSquare := bayerSizeCeil * bayerSizeCeil
+		bayerScale := pal.minDelta / float64(bayerSizeCeilSquare)
+		bayerOffset := float64(bayerSizeCeilSquare-1) / 2.0
+		g.paletteBayers = make([]float32, bayerSizeSquare)
+		for i := range g.paletteBayers {
+			x := i % bayerSize
+			y := i / bayerSize
+			z := x ^ y
+			b := 0
+			for bit := 1; bit < bayerSize; bit *= 2 {
+				b *= 4
+				if y&bit != 0 {
+					b += 1
+				}
+				if z&bit != 0 {
+					b += 2
+				}
+			}
+			g.paletteBayers[i] = float32((float64(b) - bayerOffset) * bayerScale)
+		}
 	}
 
 	return g.paletteOffscreen, func() {
-		if g.paletteBayers == nil || bayerSize != g.paletteBayerSize || pal.minDelta != g.paletteMinDelta {
-			bayerSizeSquare := bayerSize * bayerSize
-			bayerBits := 0
-			if bayerSize > 1 {
-				bayerBits = math.Ilogb(float64(bayerSize-1)) + 1
-			}
-			bayerSizeCeil := 1 << bayerBits
-			bayerSizeCeilSquare := bayerSizeCeil * bayerSizeCeil
-			bayerScale := pal.minDelta / float64(bayerSizeCeilSquare)
-			bayerOffset := float64(bayerSizeCeilSquare-1) / 2.0
-			g.paletteBayers = make([]float32, bayerSizeSquare)
-			for i := range g.paletteBayers {
-				x := i % bayerSize
-				y := i / bayerSize
-				z := x ^ y
-				b := 0
-				for bit := 1; bit < bayerSize; bit *= 2 {
-					b *= 4
-					if y&bit != 0 {
-						b += 1
-					}
-					if z&bit != 0 {
-						b += 2
-					}
-				}
-				g.paletteBayers[i] = float32((float64(b) - bayerOffset) * bayerScale)
-			}
-			g.paletteBayerSize = bayerSize
-			g.paletteMinDelta = pal.minDelta
-		}
 		scroll := g.Menu.World.ScrollPos()
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Images: [4]*ebiten.Image{
 				g.paletteOffscreen,
-				nil,
+				g.paletteLUT,
 				nil,
 				nil,
 			},
 			Uniforms: map[string]interface{}{
-				"Colors": pal.colors,
-				"Bayers": g.paletteBayers,
+				"Bayers":    g.paletteBayers,
+				"LUTSize":   float32(g.paletteLUTSize),
+				"LUTPerRow": float32(g.paletteLUTPerRow),
 				"Offset": []float32{
 					float32(m.Mod(scroll.X, bayerSize)),
 					float32(m.Mod(scroll.Y, bayerSize)),
