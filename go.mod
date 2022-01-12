@@ -13,7 +13,7 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
 	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
-	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e
+	golang.org/x/sys v0.0.0-20220111092808-5a964db01320
 )
 
 require (
@@ -52,7 +52,7 @@ require (
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
 	golang.org/x/exp v0.0.0-20220104160115-025e73f80486 // indirect
-	golang.org/x/mobile v0.0.0-20220104184238-4a8be17bd2e3 // indirect
+	golang.org/x/mobile v0.0.0-20220112015953-858099ff7816 // indirect
 )
 
 // Use when playing around with extended/fixed tmx versions.
