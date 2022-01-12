@@ -19,6 +19,7 @@ import (
 	"io/ioutil"
 	"os"
 	"regexp"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -188,10 +189,21 @@ func applyAndLogGameControllerDb(config string, err error, name string) {
 		log.Infof("%v not provided - OK", name)
 		return
 	}
-	applied, err := ebiten.UpdateStandardGamepadLayoutMappings(config)
-	if err != nil {
-		log.Errorf("could not add %v: %v", name, err)
-	} else if applied {
+	anyApplied := false
+	anyError := false
+	for line, entry := range strings.Split(config, "\n") {
+		applied, err := ebiten.UpdateStandardGamepadLayoutMappings(entry)
+		if err != nil {
+			log.Errorf("could not add %v line %v: %v", name, line+1, err)
+			anyError = true
+		}
+		if applied {
+			anyApplied = true
+		}
+	}
+	if anyError {
+		// Already logged something, no need to log more.
+	} else if anyApplied {
 		log.Infof("%v applied", name)
 	} else {
 		log.Infof("%v exist but are not used on this platform", name)
