@@ -211,6 +211,7 @@
  </objecttype>
  <objecttype name="QuestionBlock" color="#000000">
   <property name="kaizo" type="bool" default="false"/>
+  <property name="target" type="string"/>
  </objecttype>
  <objecttype name="RespawnPlayer" color="#ff0000"/>
  <objecttype name="Riser" color="#000080">

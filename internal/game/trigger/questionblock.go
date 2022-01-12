@@ -21,6 +21,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
+	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -34,7 +35,9 @@ type QuestionBlock struct {
 	Entity          *engine.Entity
 	PersistentState map[string]string
 
-	Kaizo        bool
+	Kaizo  bool
+	Target mixins.TargetSelection
+
 	Used         bool
 	UsedImage    *ebiten.Image
 	UseAnimFrame int
@@ -57,6 +60,7 @@ func (q *QuestionBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 	w.SetOpaque(e, false)        // These shadows are annoying.
 	e.Orientation = m.Identity() // Always show upright.
 	q.Kaizo = sp.Properties["kaizo"] == "true"
+	q.Target = mixins.ParseTarget(sp.Properties["target"])
 	q.Used = q.PersistentState["used"] == "true"
 	q.UsedImage, err = image.Load("sprites", "exclamationblock.png")
 	if err != nil {
@@ -115,10 +119,14 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 	if other != q.World.Player {
 		return
 	}
-	if q.Used {
+	if !q.isAbove(other) {
 		return
 	}
-	if !q.isAbove(other) {
+
+	// Send a message. Always do this, even if the block was already used.
+	mixins.SetStateOfTarget(q.World, other, q.Entity, q.Target, true)
+
+	if q.Used {
 		return
 	}
 	q.Used = true
