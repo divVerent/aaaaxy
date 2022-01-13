@@ -17,10 +17,12 @@ package aaaaxy
 import (
 	"image/color"
 	"math"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 var (
@@ -79,6 +81,10 @@ func (p *palData) lookupNearest(c rgb) int {
 }
 
 func (p *palData) toLUT(img *ebiten.Image) (int, int) {
+	defer func(t0 time.Time) {
+		dt := time.Since(t0)
+		log.Infof("building palette LUT took %v", dt)
+	}(time.Now())
 	bounds := img.Bounds()
 	ox := bounds.Min.X
 	oy := bounds.Min.Y
