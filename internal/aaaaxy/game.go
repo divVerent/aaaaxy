@@ -156,8 +156,16 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 		g.paletteOffscreen = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
 	}
 
+	// Bayer pattern changed?
+	if bayerSize != g.paletteBayerSize {
+		if g.paletteShader != nil {
+			g.paletteShader.Dispose()
+		}
+		g.paletteShader = nil
+	}
+
 	// Need a new shader?
-	if g.paletteShader == nil || bayerSize != g.paletteBayerSize {
+	if g.paletteShader == nil {
 		var err error
 		g.paletteShader, err = shader.Load("bayer.kage", map[string]string{
 			"BayerSize": fmt.Sprint(*paletteBayerSize),

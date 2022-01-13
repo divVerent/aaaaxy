@@ -20,16 +20,33 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	m "github.com/divVerent/aaaaxy/internal/math"
+)
+
+var (
+	paletteColordist = flag.String("palette_colordist", "redmean", "color distance function to use; one of 'weighted', 'redmean'")
 )
 
 type rgb [3]float32
 
 func (c rgb) diff(other rgb) float32 {
-	dr := c[0] - other[0]
-	dg := c[1] - other[1]
-	db := c[2] - other[2]
-	return 0.3*dr*dr + 0.59*dg*dg + 0.11*db*db
+	switch *paletteColordist {
+	case "weighted":
+		dr := c[0] - other[0]
+		dg := c[1] - other[1]
+		db := c[2] - other[2]
+		return 0.3*dr*dr + 0.59*dg*dg + 0.11*db*db
+	case "redmean":
+		dr := c[0] - other[0]
+		dg := c[1] - other[1]
+		db := c[2] - other[2]
+		rr := (c[0] + other[0]) / 2 * 255.0 / 256.0 // Some inaccuracy to match Wikipedia.
+		return (2+rr)*dr*dr + 4*dg*dg + (3-rr)*db*db
+	default:
+		*paletteColordist = "redmean"
+		return c.diff(other)
+	}
 }
 
 func (c rgb) toColor() color.Color {
