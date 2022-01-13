@@ -150,6 +150,27 @@ var palettes = map[string]*palData{
 		1, 1, 1,
 	}),
 
+	// The palette one gets when using the CGA monochrome mode on NTSC while forcing the colorburst signal.
+	// curl https://upload.wikimedia.org/wikipedia/commons/f/fb/CGA_CompVsRGB_640.png | convert PNG:- -crop 100x360+1000+20 -compress none PNM:- | tail -n +4 | uniq | awk '{ print $1 "/255.0, " $2 "/255.0, " $3 "/255.0,"; }' > /tmp/c
+	"cga6n": newPalData(1/3.0, []float32{
+		0 / 255.0, 0 / 255.0, 0 / 255.0,
+		0 / 255.0, 110 / 255.0, 49 / 255.0,
+		49 / 255.0, 9 / 255.0, 255 / 255.0,
+		0 / 255.0, 138 / 255.0, 255 / 255.0,
+		167 / 255.0, 0 / 255.0, 49 / 255.0,
+		118 / 255.0, 118 / 255.0, 118 / 255.0,
+		236 / 255.0, 17 / 255.0, 255 / 255.0,
+		187 / 255.0, 146 / 255.0, 255 / 255.0,
+		49 / 255.0, 90 / 255.0, 0 / 255.0,
+		0 / 255.0, 219 / 255.0, 0 / 255.0,
+		118 / 255.0, 118 / 255.0, 118 / 255.0,
+		69 / 255.0, 247 / 255.0, 187 / 255.0,
+		236 / 255.0, 99 / 255.0, 0 / 255.0,
+		187 / 255.0, 228 / 255.0, 0 / 255.0,
+		255 / 255.0, 127 / 255.0, 187 / 255.0,
+		255 / 255.0, 255 / 255.0, 255 / 255.0,
+	}),
+
 	// The original IBM EGA palette.
 	"ega": newPalData(1/3.0, []float32{
 		0, 0, 0,
