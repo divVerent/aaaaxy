@@ -46,7 +46,7 @@
   </content_rating>
   <releases>
     <release version="v1.0.187" date="2022-01-12">
-      <description><ul><li>Skip gamecontrollerdb.txt lines with syntax errors. Works around https://github.com/gabomdq/SDL_GameControllerDB/issues/538</li><li>Do not use the variable name GOFLAGS in the Makefile. Simplifies building by distros.</li></ul></description>
+      <description><ul><li>Skip gamecontrollerdb.txt lines with syntax errors. Works around gabomdq/SDL_GameControllerDB#538.</li><li>Do not use the variable name GOFLAGS in the Makefile. Simplifies building by distros.</li></ul></description>
       <url>https://github.com/divVerent/aaaaxy/releases/v1.0.187</url>
     </release>
   </releases>
