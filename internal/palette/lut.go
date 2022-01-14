@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package aaaaxy
+package palette
 
 import (
 	"image/color"
@@ -59,7 +59,7 @@ func (c rgb) toColor() color.Color {
 	}
 }
 
-func (p *palData) lookup(i int) rgb {
+func (p *Palette) lookup(i int) rgb {
 	u := p.colors[i]
 	return rgb{
 		uint8(u >> 16),
@@ -68,7 +68,7 @@ func (p *palData) lookup(i int) rgb {
 	}
 }
 
-func (p *palData) lookupNearest(c rgb) int {
+func (p *Palette) lookupNearest(c rgb) int {
 	bestI := 0
 	bestS := c.diff(p.lookup(0))
 	for i := 1; i < p.size; i++ {
@@ -80,7 +80,7 @@ func (p *palData) lookupNearest(c rgb) int {
 	return bestI
 }
 
-func (p *palData) toLUT(img *ebiten.Image) (int, int) {
+func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	defer func(t0 time.Time) {
 		dt := time.Since(t0)
 		log.Infof("building palette LUT took %v", dt)

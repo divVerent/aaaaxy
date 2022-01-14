@@ -12,45 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package aaaaxy
+package palette
 
-import (
-	"sort"
-	"strings"
-)
-
-type palData struct {
-	size     int
-	colors   []uint32
-	minDelta float64
-}
-
-func newPalData(minDelta float64, c []uint32) *palData {
-	return &palData{
-		size:     len(c),
-		colors:   c,
-		minDelta: minDelta,
-	}
-}
-
-func paletteNames() string {
-	l := make([]string, 0, len(palettes))
-	for p := range palettes {
-		l = append(l, p)
-	}
-	sort.Strings(l)
-	return "'" + strings.Join(l, "', '") + "'"
-}
-
-var palettes = map[string]*palData{
+// data contains all palettes by name.
+var data = map[string]*Palette{
 	// Monochrome.
-	"mono": newPalData(1, []uint32{
+	"mono": newPalette(1, []uint32{
 		0x000000,
 		0xFFFFFF,
 	}),
 
 	// The original IBM CGA palette.
-	"cga40l": newPalData(2/3.0, []uint32{
+	"cga40l": newPalette(2/3.0, []uint32{
 		0x000000,
 		0x00AA00,
 		0xAA0000,
@@ -58,7 +31,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The original IBM CGA palette at high intensity.
-	"cga40h": newPalData(2/3.0, []uint32{
+	"cga40h": newPalette(2/3.0, []uint32{
 		0x000000,
 		0x55FF55,
 		0xFF5555,
@@ -67,7 +40,7 @@ var palettes = map[string]*palData{
 
 	// The original IBM CGA palette on NTSC.
 	// curl https://upload.wikimedia.org/wikipedia/commons/7/7c/CGA_CompVsRGB_320p0.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	"cga40n": newPalData(1/3.0, []uint32{
+	"cga40n": newPalette(1/3.0, []uint32{
 		0x000000,
 		0x0071D1,
 		0x0019AC,
@@ -87,7 +60,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The alternate IBM CGA palette.
-	"cga41l": newPalData(2/3.0, []uint32{
+	"cga41l": newPalette(2/3.0, []uint32{
 		0x000000,
 		0x00AAAA,
 		0xAA00AA,
@@ -95,7 +68,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The alternate IBM CGA palette at high intensity.
-	"cga41h": newPalData(2/3.0, []uint32{
+	"cga41h": newPalette(2/3.0, []uint32{
 		0x000000,
 		0x55FFFF,
 		0xFF55FF,
@@ -104,7 +77,7 @@ var palettes = map[string]*palData{
 
 	// The alternate IBM CGA palette on NTSC.
 	// curl https://upload.wikimedia.org/wikipedia/commons/c/c5/CGA_CompVsRGB_320p1.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	"cga41n": newPalData(1/3.0, []uint32{
+	"cga41n": newPalette(1/3.0, []uint32{
 		0x000000,
 		0x009AFF,
 		0x0042FF,
@@ -124,7 +97,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The "monochrome" IBM CGA palette.
-	"cga5l": newPalData(2/3.0, []uint32{
+	"cga5l": newPalette(2/3.0, []uint32{
 		0x000000,
 		0x00AAAA,
 		0xAA0000,
@@ -132,7 +105,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The "monochrome" IBM CGA palette at high intensity.
-	"cga5h": newPalData(2/3.0, []uint32{
+	"cga5h": newPalette(2/3.0, []uint32{
 		0x000000,
 		0x55FFFF,
 		0xFF5555,
@@ -141,7 +114,7 @@ var palettes = map[string]*palData{
 
 	// The palette one gets when using the CGA monochrome mode on NTSC while forcing the colorburst signal.
 	// curl https://upload.wikimedia.org/wikipedia/commons/f/fb/CGA_CompVsRGB_640.png | convert PNG:- -crop 100x360+1000+20 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	"cga6n": newPalData(1/3.0, []uint32{
+	"cga6n": newPalette(1/3.0, []uint32{
 		0x000000,
 		0x006E31,
 		0x3109FF,
@@ -161,7 +134,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The original IBM EGA palette.
-	"ega": newPalData(1/3.0, []uint32{
+	"ega": newPalette(1/3.0, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -181,7 +154,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// The original IBM VGA palette.
-	"vga": newPalData(5/63.0, []uint32{
+	"vga": newPalette(5/63.0, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -441,7 +414,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// Quake's palette. Has been put in the public domain by John Carmack.
-	"quake": newPalData(1/17.0, []uint32{
+	"quake": newPalette(1/17.0, []uint32{
 		0x000000,
 		0x0F0F0F,
 		0x1F1F1F,
@@ -700,7 +673,7 @@ var palettes = map[string]*palData{
 		0x9F5B53,
 	}),
 
-	"nes": newPalData(1/5.0, []uint32{
+	"nes": newPalette(1/5.0, []uint32{
 		0x000000,
 		0x343500,
 		0x571D00,
@@ -758,7 +731,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// Web safe 216 colors palette, actually a 6x6x6 color cube.
-	"web": newPalData(1/5.0, []uint32{
+	"web": newPalette(1/5.0, []uint32{
 		0x000000,
 		0x000033,
 		0x000066,
@@ -978,7 +951,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// 2x2x2 color cube. Just eight pure colors.
-	"2x2x2": newPalData(1, []uint32{
+	"2x2x2": newPalette(1, []uint32{
 		0x000000,
 		0x0000FF,
 		0x00FF00,
@@ -990,7 +963,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// 4x4x4 color cube. For those who just like the dither.
-	"4x4x4": newPalData(1/3.0, []uint32{
+	"4x4x4": newPalette(1/3.0, []uint32{
 		0x000000,
 		0x000055,
 		0x0000AA,
@@ -1058,7 +1031,7 @@ var palettes = map[string]*palData{
 	}),
 
 	// 7x7x4 color "cube". Cleanest colors at 256c. Doesn't do blue gradients.
-	"7x7x4": newPalData(1/6.0, []uint32{
+	"7x7x4": newPalette(1/6.0, []uint32{
 		0x000000,
 		0x000055,
 		0x0000AA,

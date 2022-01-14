@@ -33,6 +33,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/menu"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/noise"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/shader"
 	"github.com/divVerent/aaaaxy/internal/timing"
 )
@@ -46,7 +47,7 @@ var (
 	screenFilterScanLines    = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
 	screenFilterCRTStrength  = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
 	screenFilterJitter       = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
-	palette                  = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+paletteNames()+" or 'none'")
+	paletteFlag              = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
 	paletteBayerSize         = flag.Int("palette_bayer_size", 4, "bayer dither pattern size (really should be a power of two)")
 	paletteBayerWorldAligned = flag.Bool("palette_bayer_world_aligned", true, "align bayer dither pattern to world as opposed to screen")
 	debugEnableDrawing       = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
@@ -63,7 +64,7 @@ type Game struct {
 	linear2xCRTShader *ebiten.Shader
 
 	// Copies of parameters so we know when to update.
-	palette          *palData
+	palette          *palette.Palette
 	paletteBayerSize int
 
 	paletteOffscreen *ebiten.Image  // Never updates.
@@ -134,11 +135,11 @@ func (g *Game) Update() error {
 
 func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	// This is an extra pass so it can still run at low-res.
-	pal := palettes[*palette]
+	pal := palette.ByName(*paletteFlag)
 
 	if pal == nil {
 		// No palette.
-		*palette = "none"
+		*paletteFlag = "none"
 		return screen, func() {}
 	}
 
@@ -172,8 +173,8 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 			"BayerSize": fmt.Sprint(*paletteBayerSize),
 		})
 		if err != nil {
-			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for %d colors: %v", pal.size, err)
-			*palette = "none"
+			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for Bayer size %d: %v", *paletteBayerSize, err)
+			*paletteFlag = "none"
 			return screen, func() {}
 		}
 		g.paletteBayerSize = bayerSize
@@ -182,7 +183,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 
 	// Need a LUT?
 	if g.palette != pal {
-		g.paletteLUTSize, g.paletteLUTPerRow = pal.toLUT(g.paletteLUT)
+		g.paletteLUTSize, g.paletteLUTPerRow = pal.ToLUT(g.paletteLUT)
 		g.palette = pal
 
 		// New palette also needs new Bayer pattern.
@@ -193,7 +194,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 		}
 		bayerSizeCeil := 1 << bayerBits
 		bayerSizeCeilSquare := bayerSizeCeil * bayerSizeCeil
-		bayerScale := pal.minDelta / float64(bayerSizeCeilSquare)
+		bayerScale := pal.BayerScale() / float64(bayerSizeCeilSquare)
 		bayerOffset := float64(bayerSizeCeilSquare-1) / 2.0
 		g.paletteBayers = make([]float32, bayerSizeSquare)
 		for i := range g.paletteBayers {
@@ -346,7 +347,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		return
 	}
 
-	if !dumping() && *screenFilter == "simple" && *palette == "none" {
+	if !dumping() && *screenFilter == "simple" && *paletteFlag == "none" {
 		// No offscreen needed. Just render.
 		g.drawAtGameSizeThenReturnTo(screen, make(chan *ebiten.Image, 1))
 		return
