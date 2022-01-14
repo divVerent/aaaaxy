@@ -73,19 +73,19 @@ func CalcPos(v *Vertex) {
 }
 
 func main() {
-	log.Infof("initializing VFS...")
+	log.Debugf("initializing VFS...")
 	err := vfs.Init()
 	if err != nil {
 		log.Fatalf("could not initialize VFS: %v", err)
 	}
-	log.Infof("parsing flags...")
+	log.Debugf("parsing flags...")
 	flag.Parse(flag.NoConfig)
-	log.Infof("loading level...")
+	log.Debugf("loading level...")
 	lvl, err := level.NewLoader("level").SkipCheckpointLocations(true).Load()
 	if err != nil {
 		log.Fatalf("could not load level: %v", err)
 	}
-	log.Infof("generating checkpoint ID to name map...")
+	log.Debugf("generating checkpoint ID to name map...")
 	cpMap := map[level.EntityID]*level.Spawnable{}
 	for name, sp := range lvl.Checkpoints {
 		if name == "" {
@@ -94,7 +94,7 @@ func main() {
 		}
 		cpMap[sp.ID] = sp
 	}
-	log.Infof("listing vertices...")
+	log.Debugf("listing vertices...")
 	vertices := map[level.EntityID]*Vertex{}
 	for id, sp := range cpMap {
 		vertices[id] = &Vertex{
@@ -102,16 +102,16 @@ func main() {
 			MapPos: sp.LevelPos.Mul(level.TileSize).Add(sp.RectInTile.Center().Delta(m.Pos{})),
 		}
 	}
-	log.Infof("listing entity IDs...")
+	log.Debugf("listing entity IDs...")
 	entityIDs := make([]level.EntityID, 0, len(cpMap))
 	for id := range cpMap {
 		entityIDs = append(entityIDs, id)
 	}
-	log.Infof("sorting entity IDs...")
+	log.Debugf("sorting entity IDs...")
 	sort.SliceStable(entityIDs, func(a, b int) bool {
 		return entityIDs[a] < entityIDs[b]
 	})
-	log.Infof("computing edges...")
+	log.Debugf("computing edges...")
 	for _, id := range entityIDs {
 		sp := cpMap[id]
 		v := vertices[id]
@@ -150,12 +150,12 @@ func main() {
 			nextVert.InEdges = append(nextVert.InEdges, edge)
 		}
 	}
-	log.Infof("calculating positions...")
+	log.Debugf("calculating positions...")
 	for _, id := range entityIDs {
 		v := vertices[id]
 		CalcPos(v)
 	}
-	log.Infof("writing header...")
+	log.Debugf("writing header...")
 	_, err = fmt.Print(`
 		digraph G {
 			layout = "neato";
@@ -168,7 +168,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to write to output: %v", err)
 	}
-	log.Infof("writing vertices...")
+	log.Debugf("writing vertices...")
 	for _, id := range entityIDs {
 		v := vertices[id]
 		nameReadable := strings.ReplaceAll(v.Name, "_", "_\\n")
@@ -179,7 +179,7 @@ func main() {
 			log.Fatalf("failed to write to output: %v", err)
 		}
 	}
-	log.Infof("writing edges...")
+	log.Debugf("writing edges...")
 	for _, id := range entityIDs {
 		v := vertices[id]
 		for _, e := range v.OutEdges {
@@ -191,12 +191,12 @@ func main() {
 			}
 		}
 	}
-	log.Infof("writing footer...")
+	log.Debugf("writing footer...")
 	_, err = fmt.Print(`
 		}
 		`)
 	if err != nil {
 		log.Fatalf("failed to write to output: %v", err)
 	}
-	log.Infof("done.")
+	log.Debugf("done.")
 }

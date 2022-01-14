@@ -46,7 +46,7 @@ func Init() error {
 		}
 		localAssetDirs = append(localAssetDirs, filepath.Join("third_party", info.Name(), "assets"))
 	}
-	log.Infof("local asset search path: %v", localAssetDirs)
+	log.Debugf("local asset search path: %v", localAssetDirs)
 	return nil
 }
 

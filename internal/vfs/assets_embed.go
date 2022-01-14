@@ -120,7 +120,7 @@ func Init() error {
 		})
 		roots = append(roots, root)
 	}
-	log.Infof("embedded asset search path: %v", roots)
+	log.Debugf("embedded asset search path: %v", roots)
 	if *dumpEmbeddedAssets != "" {
 		err := dumpAssets()
 		if err != nil {
