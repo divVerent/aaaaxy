@@ -108,16 +108,19 @@ func Init() error {
 	if err != nil {
 		return fmt.Errorf("could not find embedded third party directory: %v", err)
 	}
+	roots := []string{}
 	for _, info := range content {
 		if !info.IsDir() {
 			continue
 		}
+		root := path.Join(info.Name(), "assets")
 		embeddedAssetDirs = append(embeddedAssetDirs, fsRoot{
 			fs:   &third_party.FS,
-			root: path.Join(info.Name(), "assets"),
+			root: root,
 		})
+		roots = append(roots, root)
 	}
-	log.Infof("embedded asset search path: %v", embeddedAssetDirs)
+	log.Infof("embedded asset search path: %v", roots)
 	if *dumpEmbeddedAssets != "" {
 		err := dumpAssets()
 		if err != nil {
