@@ -42,13 +42,14 @@ var RegularTermination = menu.RegularTermination
 var (
 	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]interface{}{"js/*": "simple", "*/*": "linear2xcrt"}).(string), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
 	// TODO(divVerent): Remove this flag when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved.
-	screenFilterMaxScale    = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
-	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
-	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
-	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
-	palette                 = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to 'mono', 'cga40l', 'cga40h', 'cga40n', 'cga41l', 'cga41h', 'cga41n', 'cga5l', 'cga5h', 'cga6n', 'ega', 'vga', 'quake', 'web', '2x2x2', '4x4x4', '7x7x4' or 'none'")
-	paletteBayerSize        = flag.Int("palette_bayer_size", 4, "bayer dither pattern size (really should be a power of two)")
-	debugEnableDrawing      = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
+	screenFilterMaxScale     = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
+	screenFilterScanLines    = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
+	screenFilterCRTStrength  = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
+	screenFilterJitter       = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
+	palette                  = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to 'mono', 'cga40l', 'cga40h', 'cga40n', 'cga41l', 'cga41h', 'cga41n', 'cga5l', 'cga5h', 'cga6n', 'ega', 'vga', 'quake', 'web', '2x2x2', '4x4x4', '7x7x4' or 'none'")
+	paletteBayerSize         = flag.Int("palette_bayer_size", 4, "bayer dither pattern size (really should be a power of two)")
+	paletteBayerWorldAligned = flag.Bool("palette_bayer_world_aligned", true, "align bayer dither pattern to world as opposed to screen")
+	debugEnableDrawing       = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 )
 
 type Game struct {
@@ -215,6 +216,11 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 
 	return g.paletteOffscreen, func() {
 		scroll := g.Menu.World.ScrollPos()
+		var scrollX, scrollY int
+		if *paletteBayerWorldAligned {
+			scrollX = m.Mod(scroll.X, bayerSize)
+			scrollY = m.Mod(scroll.Y, bayerSize)
+		}
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Images: [4]*ebiten.Image{
@@ -228,8 +234,8 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 				"LUTSize":   float32(g.paletteLUTSize),
 				"LUTPerRow": float32(g.paletteLUTPerRow),
 				"Offset": []float32{
-					float32(m.Mod(scroll.X, bayerSize)),
-					float32(m.Mod(scroll.Y, bayerSize)),
+					float32(scrollX),
+					float32(scrollY),
 				},
 			},
 		}
