@@ -46,7 +46,7 @@ var (
 	screenFilterScanLines    = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
 	screenFilterCRTStrength  = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
 	screenFilterJitter       = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
-	palette                  = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to 'mono', 'cga40l', 'cga40h', 'cga40n', 'cga41l', 'cga41h', 'cga41n', 'cga5l', 'cga5h', 'cga6n', 'ega', 'vga', 'quake', 'web', '2x2x2', '4x4x4', '7x7x4' or 'none'")
+	palette                  = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+paletteNames()+" or 'none'")
 	paletteBayerSize         = flag.Int("palette_bayer_size", 4, "bayer dither pattern size (really should be a power of two)")
 	paletteBayerWorldAligned = flag.Bool("palette_bayer_world_aligned", true, "align bayer dither pattern to world as opposed to screen")
 	debugEnableDrawing       = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")

@@ -14,6 +14,11 @@
 
 package aaaaxy
 
+import (
+	"sort"
+	"strings"
+)
+
 type palData struct {
 	size     int
 	colors   []uint32
@@ -26,6 +31,15 @@ func newPalData(minDelta float64, c []uint32) *palData {
 		colors:   c,
 		minDelta: minDelta,
 	}
+}
+
+func paletteNames() string {
+	l := make([]string, 0, len(palettes))
+	for p := range palettes {
+		l = append(l, p)
+	}
+	sort.Strings(l)
+	return "'" + strings.Join(l, "', '") + "'"
 }
 
 var palettes = map[string]*palData{
@@ -684,6 +698,63 @@ var palettes = map[string]*palData{
 		0xFFF7C7,
 		0xFFFFFF,
 		0x9F5B53,
+	}),
+
+	"nes": newPalData(1/5.0, []uint32{
+		0x000000,
+		0x343500,
+		0x571D00,
+		0x6C0700,
+		0x0C4900,
+		0x004F08,
+		0x005200,
+		0x6C6E00,
+		0x6E0040,
+		0x5C007E,
+		0x00404E,
+		0x4F4F4F,
+		0x666666,
+		0xB53220,
+		0x994F00,
+		0xB81E7C,
+		0x0D9400,
+		0x388700,
+		0x009032,
+		0x5DE530,
+		0xBDBF00,
+		0xEB9F23,
+		0x89D900,
+		0xFE8270,
+		0x002A88,
+		0x1412A8,
+		0x3B00A4,
+		0x007C8E,
+		0x7627FF,
+		0x155FDA,
+		0x4240FE,
+		0xA11BCD,
+		0xFE6ECD,
+		0xC777FE,
+		0xF36AFE,
+		0x45E182,
+		0x64B0FE,
+		0x48CEDF,
+		0xAEAEAE,
+		0xB8B8B8,
+		0xBEF5AB,
+		0xD0F097,
+		0xE5E695,
+		0xF7D9A6,
+		0x9390FE,
+		0xB4F3CD,
+		0xB5ECF3,
+		0xFECDC6,
+		0xD4D3FE,
+		0xFEC5EB,
+		0xE9C8FE,
+		0xFBC3FE,
+		0xC1E0FE,
+		0xFEFEFE,
 	}),
 
 	// Web safe 216 colors palette, actually a 6x6x6 color cube.
