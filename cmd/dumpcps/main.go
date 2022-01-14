@@ -17,6 +17,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -170,9 +171,10 @@ func main() {
 	log.Infof("writing vertices...")
 	for _, id := range entityIDs {
 		v := vertices[id]
+		nameReadable := strings.ReplaceAll(v.Name, "_", "_\\n")
 		_, err := fmt.Printf(`
 				%s [width=2.0, height=2.0, fixedsize=true, shape=box, label="%s", pos="%d,%d"];
-			`, v.Name, v.Name, v.MapPos.X, -v.MapPos.Y)
+			`, v.Name, nameReadable, v.MapPos.X, -v.MapPos.Y)
 		if err != nil {
 			log.Fatalf("failed to write to output: %v", err)
 		}
