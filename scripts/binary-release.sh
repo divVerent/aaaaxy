@@ -103,6 +103,11 @@ And the FlatPak:
   ... publish, test ...
   ... https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy ...
   ... publish ...
+And the PKGBUILD:
+  edit PKGBUILD and .SRCINFO
+  reset pkgrel to 1
+  set pkgver to ${new#v}
+  git push
 Finally, run
   scripts/itch-upload.sh $new
 and post on https://itch.io/dashboard/game/1199736/devlog
