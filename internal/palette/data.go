@@ -730,6 +730,26 @@ var data = map[string]*Palette{
 		0xFEFEFE,
 	}),
 
+	// C64 palette.
+	"c64": newPalette(1/4.0, []uint32{
+		0x000000,
+		0x40318D,
+		0x505050,
+		0x55A049,
+		0x574200,
+		0x67B6BD,
+		0x7869C4,
+		0x787878,
+		0x883932,
+		0x8B3F96,
+		0x8B5429,
+		0x94E089,
+		0x9F9F9F,
+		0xB86962,
+		0xBFCE72,
+		0xFFFFFF,
+	}),
+
 	// Web safe 216 colors palette, actually a 6x6x6 color cube.
 	"web": newPalette(1/5.0, []uint32{
 		0x000000,
