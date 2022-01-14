@@ -71,7 +71,7 @@ type Game struct {
 	paletteLUT       *ebiten.Image  // Updates when palette changes.
 	paletteLUTSize   int            // Updates when palette changes.
 	paletteLUTPerRow int            // Updates when palette changes.
-	paletteBayers    []float32      // Updates when palette or paletteBayerSize change.
+	paletteBayern    []float32      // Updates when palette or paletteBayerSize change.
 	paletteShader    *ebiten.Shader // Updates when paletteBayerSize changes.
 
 	framesToDump int
@@ -184,35 +184,8 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	// Need a LUT?
 	if g.palette != pal {
 		g.paletteLUTSize, g.paletteLUTPerRow = pal.ToLUT(g.paletteLUT)
+		g.paletteBayern = pal.BayerPattern(g.paletteBayerSize)
 		g.palette = pal
-
-		// New palette also needs new Bayer pattern.
-		bayerSizeSquare := bayerSize * bayerSize
-		bayerBits := 0
-		if bayerSize > 1 {
-			bayerBits = math.Ilogb(float64(bayerSize-1)) + 1
-		}
-		bayerSizeCeil := 1 << bayerBits
-		bayerSizeCeilSquare := bayerSizeCeil * bayerSizeCeil
-		bayerScale := pal.BayerScale() / float64(bayerSizeCeilSquare)
-		bayerOffset := float64(bayerSizeCeilSquare-1) / 2.0
-		g.paletteBayers = make([]float32, bayerSizeSquare)
-		for i := range g.paletteBayers {
-			x := i % bayerSize
-			y := i / bayerSize
-			z := x ^ y
-			b := 0
-			for bit := 1; bit < bayerSize; bit *= 2 {
-				b *= 4
-				if y&bit != 0 {
-					b += 1
-				}
-				if z&bit != 0 {
-					b += 2
-				}
-			}
-			g.paletteBayers[i] = float32((float64(b) - bayerOffset) * bayerScale)
-		}
 	}
 
 	return g.paletteOffscreen, func() {
@@ -231,7 +204,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 				nil,
 			},
 			Uniforms: map[string]interface{}{
-				"Bayers":    g.paletteBayers,
+				"Bayern":    g.paletteBayern,
 				"LUTSize":   float32(g.paletteLUTSize),
 				"LUTPerRow": float32(g.paletteLUTPerRow),
 				"Offset": []float32{

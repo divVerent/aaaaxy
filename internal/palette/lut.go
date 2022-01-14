@@ -119,3 +119,35 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	}
 	return lutSize, perRow
 }
+
+// BayerPattern computes the Bayer pattern for this palette.
+func (p *Palette) BayerPattern(size int) []float32 {
+	// New palette also needs new Bayer pattern.
+	sizeSquare := size * size
+	bits := 0
+	if size > 1 {
+		bits = math.Ilogb(float64(size-1)) + 1
+	}
+	sizeCeil := 1 << bits
+	sizeCeilSquare := sizeCeil * sizeCeil
+	scale := p.bayerScale / float64(sizeCeilSquare)
+	offset := float64(sizeCeilSquare-1) / 2.0
+	bayern := make([]float32, sizeSquare)
+	for i := range bayern {
+		x := i % size
+		y := i / size
+		z := x ^ y
+		b := 0
+		for bit := 1; bit < size; bit *= 2 {
+			b *= 4
+			if y&bit != 0 {
+				b += 1
+			}
+			if z&bit != 0 {
+				b += 2
+			}
+		}
+		bayern[i] = float32((float64(b) - offset) * scale)
+	}
+	return bayern
+}
