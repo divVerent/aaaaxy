@@ -116,6 +116,7 @@ case "$GOOS" in
 				arch=x86
 				;;
 		esac
+		scripts/build-appimage-resources.sh
 		rm -rf packaging/AAAAXY.AppDir
 		linuxdeploy-$(uname -m).AppImage \
 			--appdir=packaging/AAAAXY.AppDir \
