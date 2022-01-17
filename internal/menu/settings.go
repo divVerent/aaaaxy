@@ -53,7 +53,8 @@ func (s *SettingsScreen) Init(m *Controller) error {
 type graphicsSetting int
 
 const (
-	cgaGraphics graphicsSetting = iota
+	herculesGraphics graphicsSetting = iota
+	cgaGraphics
 	egaGraphics
 	vgaGraphics
 	svgaGraphics
@@ -62,6 +63,8 @@ const (
 
 func (s graphicsSetting) String() string {
 	switch s {
+	case herculesGraphics:
+		return "Hercules" // Mostly Hercules, that is (2 more scan lines; who cares).
 	case cgaGraphics:
 		return "CGA" // Actually, it takes four CGA cards (or two Tandy) to render 640x360 in 4 colors.
 	case egaGraphics:
@@ -76,6 +79,8 @@ func (s graphicsSetting) String() string {
 
 func currentGraphics() graphicsSetting {
 	switch flag.Get("palette").(string) {
+	case "mono":
+		return herculesGraphics
 	case "cga41h":
 		return cgaGraphics
 	case "ega":
@@ -90,6 +95,8 @@ func currentGraphics() graphicsSetting {
 
 func (s graphicsSetting) apply() error {
 	switch s {
+	case herculesGraphics:
+		flag.Set("palette", "mono")
 	case cgaGraphics:
 		flag.Set("palette", "cga41h")
 	case egaGraphics:
