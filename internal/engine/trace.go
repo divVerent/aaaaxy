@@ -406,10 +406,6 @@ func traceLineBox(i, j, i0, j0, i1, j1 int) (bool, int, int, int, int) {
 		return false, 0, 0, 0, 0
 	}
 
-	// TODO: some of the cases here may be redundant.
-	// Do we really need four hit cases?
-	// Maybe it's enough to just have the j0<=j00<=j1 and the i0<=i00<=i1 case?
-
 	// Formula is: y(x) = x * j / i.
 	// Pixels hit by x are thus: round(y(x-0.5)), round(y(x+0.5)).
 	// Do we hit at i0?
@@ -418,20 +414,12 @@ func traceLineBox(i, j, i0, j0, i1, j1 int) (bool, int, int, int, int) {
 	if i200 < 0 {
 		i200 = 0
 	}
-	i201 := 2*i0 + 1
-	if i201 > 2*i {
-		i201 = 2 * i
-	}
 	j00 := (j*i200 + i) / (2 * i)
-	j01 := (j*i201 + i) / (2 * i)
-	// Better to make this a range?
+	// If the collision happens in i direction, it must be when entering a column, not when leaving it.
+	// Note that the collision may still happen in the same column but in j direction.
 	if j00 >= j0 && j00 <= j1 {
 		// Return the last pixel before hit.
 		return true, i0 - 1, j00, 1, 0
-	}
-	if j01 >= j0 && j01 <= j1 {
-		// Return the last pixel before.
-		return true, i0, j01 - 1, 0, 1
 	}
 
 	if j == 0 {
@@ -447,23 +435,13 @@ func traceLineBox(i, j, i0, j0, i1, j1 int) (bool, int, int, int, int) {
 	if j200 < 0 {
 		j200 = 0
 	}
-	j201 := 2*j0 + 1
-	if j201 > 2*j {
-		j201 = 2 * j
-	}
 	i00 := (i*j200 + j - 1) / (2 * j) // Fulfills "translating to j01 yields j0" and is min.
-	i01 := (i*j201 + j - 1) / (2 * j) // Fulfills "translating to j00 yields j0" and is max.
 
 	// Compare ranges.
+	// If the collision happens in j direction, it must be when entering a column.
+	// If the collision happens later in i direction, the code above should have already caught it.
 	if i00 >= i0 && i00 <= i1 {
 		return true, i00, j0 - 1, 0, 1
-	}
-	iHit := i0
-	if iHit < i00+1 {
-		iHit = i00 + 1
-	}
-	if iHit <= i01 && iHit <= i1 {
-		return true, iHit - 1, j0, 1, 0
 	}
 
 	// No hit.
