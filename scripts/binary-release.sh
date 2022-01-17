@@ -107,6 +107,7 @@ And the FlatPak:
 And the PKGBUILD:
   cd ../aur-aaaaxy
   sed -i -e 's/\\(pkgver *= *\\).*/\\1${new#v}/; s/\\(pkgrel *= *\\).*/\\11/;' PKGBUILD .SRCINFO
+  sudo /root/archlinux/archlinux-testing-build-aaaaxy.sh
   git commit -a
   git push
 Finally, run
