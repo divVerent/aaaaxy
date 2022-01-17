@@ -72,6 +72,7 @@ VERSION=$new perl -0777 -pi -e '
 
 git commit -a -m "$(cat .commitmsg)"
 git tag -a "$new" -m "$(cat .commitmsg)"
+newrev=$(git rev-parse HEAD)
 
 set +x
 
@@ -94,8 +95,8 @@ then releasing it to stable.
 And the FlatPak:
   scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
   cd ../io.github.divverent.aaaaxy
-  vi io.github.divverent.aaaaxy.yml
-  ... update commit and version number ...
+  sed -i -e '/--- TAG GOES HERE ---/,+1 s/: .*/: $new/' io.github.divverent.aaaaxy.yml
+  sed -i -e '/--- REV GOES HERE ---/,+1 s/: .*/: $newrev/' io.github.divverent.aaaaxy.yml
   git commit -a
   git push origin HEAD:beta
   git push origin HEAD
@@ -104,9 +105,9 @@ And the FlatPak:
   ... https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy ...
   ... publish ...
 And the PKGBUILD:
-  edit PKGBUILD and .SRCINFO
-  reset pkgrel to 1
-  set pkgver to ${new#v}
+  cd ../aur-aaaaxy
+  sed -i -e 's/\\(pkgver *= *\\).*/\\1${new#v}/; s/\\(pkgrel *= *\\).*/\\11/;' PKGBUILD .SRCINFO
+  git commit -a
   git push
 Finally, run
   scripts/itch-upload.sh $new
