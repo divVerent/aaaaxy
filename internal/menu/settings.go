@@ -32,6 +32,7 @@ type SettingsScreenItem int
 const (
 	Fullscreen SettingsScreenItem = iota
 	Graphics
+	Quality
 	Volume
 	SaveState
 	Reset
@@ -52,73 +53,51 @@ func (s *SettingsScreen) Init(m *Controller) error {
 type graphicsSetting int
 
 const (
-	lowestGraphics graphicsSetting = iota
-	lowGraphics
-	mediumGraphics
-	highGraphics
-	maxGraphics
+	cgaGraphics graphicsSetting = iota
+	egaGraphics
+	vgaGraphics
+	svgaGraphics
 	graphicsSettingCount
 )
 
 func (s graphicsSetting) String() string {
 	switch s {
-	case maxGraphics:
-		return "Max"
-	case highGraphics:
-		return "High"
-	case mediumGraphics:
-		return "Medium"
-	case lowGraphics:
-		return "Low"
-	case lowestGraphics:
-		return "Lowest"
+	case cgaGraphics:
+		return "CGA" // Actually, it takes four CGA cards (or two Tandy) to render 640x360 in 4 colors.
+	case egaGraphics:
+		return "EGA" // Mostly EGA, that is (10 more scan lines; this probably can be hacked on real EGA though).
+	case vgaGraphics:
+		return "VGA"
+	case svgaGraphics:
+		return "SVGA"
 	}
 	return "???"
 }
 
 func currentGraphics() graphicsSetting {
-	if flag.Get("screen_filter").(string) == "linear2xcrt" {
-		return maxGraphics
+	switch flag.Get("palette").(string) {
+	case "cga41h":
+		return cgaGraphics
+	case "ega":
+		return egaGraphics
+	case "vga":
+		return vgaGraphics
+	case "none":
+		return svgaGraphics
 	}
-	if flag.Get("draw_outside").(bool) {
-		return highGraphics
-	}
-	if flag.Get("draw_blurs").(bool) {
-		return mediumGraphics
-	}
-	if flag.Get("expand_using_vertices_accurately").(bool) {
-		return lowGraphics
-	}
-	return lowestGraphics
+	return svgaGraphics
 }
 
 func (s graphicsSetting) apply() error {
 	switch s {
-	case maxGraphics:
-		flag.Set("draw_blurs", true)
-		flag.Set("draw_outside", true)
-		flag.Set("expand_using_vertices_accurately", true)
-		flag.Set("screen_filter", "linear2xcrt") // <-
-	case highGraphics:
-		flag.Set("draw_blurs", true)
-		flag.Set("draw_outside", true) // <-
-		flag.Set("expand_using_vertices_accurately", true)
-		flag.Set("screen_filter", "simple")
-	case mediumGraphics:
-		flag.Set("draw_blurs", true) // <-
-		flag.Set("draw_outside", false)
-		flag.Set("expand_using_vertices_accurately", true)
-		flag.Set("screen_filter", "simple")
-	case lowGraphics:
-		flag.Set("draw_blurs", false)
-		flag.Set("draw_outside", false)
-		flag.Set("expand_using_vertices_accurately", true) // <-
-		flag.Set("screen_filter", "simple")
-	case lowestGraphics:
-		flag.Set("draw_blurs", false)
-		flag.Set("draw_outside", false)
-		flag.Set("expand_using_vertices_accurately", false)
-		flag.Set("screen_filter", "simple")
+	case cgaGraphics:
+		flag.Set("palette", "cga41h")
+	case egaGraphics:
+		flag.Set("palette", "ega")
+	case vgaGraphics:
+		flag.Set("palette", "vga")
+	case svgaGraphics:
+		flag.Set("palette", "none")
 	}
 	return nil
 }
@@ -138,6 +117,102 @@ func toggleGraphics(delta int) error {
 	case +1:
 		g++
 		if g >= graphicsSettingCount {
+			g--
+		}
+	}
+	g.apply()
+	return nil
+}
+
+type qualitySetting int
+
+const (
+	lowestQuality qualitySetting = iota
+	lowQuality
+	mediumQuality
+	highQuality
+	maxQuality
+	qualitySettingCount
+)
+
+func (s qualitySetting) String() string {
+	switch s {
+	case maxQuality:
+		return "Max"
+	case highQuality:
+		return "High"
+	case mediumQuality:
+		return "Medium"
+	case lowQuality:
+		return "Low"
+	case lowestQuality:
+		return "Lowest"
+	}
+	return "???"
+}
+
+func currentQuality() qualitySetting {
+	if flag.Get("screen_filter").(string) == "linear2xcrt" {
+		return maxQuality
+	}
+	if flag.Get("draw_outside").(bool) {
+		return highQuality
+	}
+	if flag.Get("draw_blurs").(bool) {
+		return mediumQuality
+	}
+	if flag.Get("expand_using_vertices_accurately").(bool) {
+		return lowQuality
+	}
+	return lowestQuality
+}
+
+func (s qualitySetting) apply() error {
+	switch s {
+	case maxQuality:
+		flag.Set("draw_blurs", true)
+		flag.Set("draw_outside", true)
+		flag.Set("expand_using_vertices_accurately", true)
+		flag.Set("screen_filter", "linear2xcrt") // <-
+	case highQuality:
+		flag.Set("draw_blurs", true)
+		flag.Set("draw_outside", true) // <-
+		flag.Set("expand_using_vertices_accurately", true)
+		flag.Set("screen_filter", "simple")
+	case mediumQuality:
+		flag.Set("draw_blurs", true) // <-
+		flag.Set("draw_outside", false)
+		flag.Set("expand_using_vertices_accurately", true)
+		flag.Set("screen_filter", "simple")
+	case lowQuality:
+		flag.Set("draw_blurs", false)
+		flag.Set("draw_outside", false)
+		flag.Set("expand_using_vertices_accurately", true) // <-
+		flag.Set("screen_filter", "simple")
+	case lowestQuality:
+		flag.Set("draw_blurs", false)
+		flag.Set("draw_outside", false)
+		flag.Set("expand_using_vertices_accurately", false)
+		flag.Set("screen_filter", "simple")
+	}
+	return nil
+}
+
+func toggleQuality(delta int) error {
+	g := currentQuality()
+	switch delta {
+	case 0:
+		g++
+		if g >= qualitySettingCount {
+			g = 0
+		}
+	case -1:
+		if g > 0 {
+			g--
+		}
+	case +1:
+		g++
+		if g >= qualitySettingCount {
 			g--
 		}
 	}
@@ -192,6 +267,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
 		case Graphics:
 			return s.Controller.ActivateSound(toggleGraphics(0))
+		case Quality:
+			return s.Controller.ActivateSound(toggleQuality(0))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(0))
 		case SaveState:
@@ -208,6 +285,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
 		case Graphics:
 			return s.Controller.ActivateSound(toggleGraphics(-1))
+		case Quality:
+			return s.Controller.ActivateSound(toggleQuality(-1))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(-1))
 		}
@@ -218,6 +297,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
 		case Graphics:
 			return s.Controller.ActivateSound(toggleGraphics(+1))
+		case Quality:
+			return s.Controller.ActivateSound(toggleQuality(+1))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(+1))
 		}
@@ -241,12 +322,17 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	if ebiten.IsFullscreen() {
 		fsText = "Switch to Windowed Mode"
 	}
-	font.Menu.Draw(screen, fsText, m.Pos{X: x, Y: 19 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fsText, m.Pos{X: x, Y: 17 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Graphics: %v", currentGraphics()), m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fmt.Sprintf("Graphics: %v", currentGraphics()), m.Pos{X: x, Y: 19 * h / 32}, true, fg, bg)
+	fg, bg = fgn, bgn
+	if s.Item == Quality {
+		fg, bg = fgs, bgs
+	}
+	font.Menu.Draw(screen, fmt.Sprintf("Quality: %v", currentQuality()), m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Volume {
 		fg, bg = fgs, bgs
