@@ -29,21 +29,21 @@ var (
 	paletteColordist = flag.String("palette_colordist", "redmean", "color distance function to use; one of 'weighted', 'redmean'")
 )
 
-type rgb [3]uint8
+type rgb [3]float64 // Actually integers from 0 to 255, but storing as float64 allows fastest math.
 
 func (c rgb) diff(other rgb) float64 {
 	switch *paletteColordist {
 	case "weighted":
-		dr := float64(c[0]) - float64(other[0])
-		dg := float64(c[1]) - float64(other[1])
-		db := float64(c[2]) - float64(other[2])
+		dr := c[0] - other[0]
+		dg := c[1] - other[1]
+		db := c[2] - other[2]
 		return 0.3*dr*dr + 0.59*dg*dg + 0.11*db*db
 	case "redmean":
-		dr := float64(c[0]) - float64(other[0])
-		dg := float64(c[1]) - float64(other[1])
-		db := float64(c[2]) - float64(other[2])
-		rr := (float64(c[0]) + float64(other[0])) / 2
-		return (2+rr/256)*dr*dr + 4*dg*dg + (2+(255-rr)/256)*db*db
+		dr := c[0] - other[0]
+		dg := c[1] - other[1]
+		db := c[2] - other[2]
+		rr := (c[0] + other[0]) / 2
+		return (2+rr)*dr*dr + 4*dg*dg + (2+255/256.0-rr)*db*db
 	default:
 		*paletteColordist = "redmean"
 		return c.diff(other)
@@ -52,9 +52,9 @@ func (c rgb) diff(other rgb) float64 {
 
 func (c rgb) toColor() color.Color {
 	return color.NRGBA{
-		R: uint8(c[0]),
-		G: uint8(c[1]),
-		B: uint8(c[2]),
+		R: uint8(c[0]*255 + 0.5),
+		G: uint8(c[1]*255 + 0.5),
+		B: uint8(c[2]*255 + 0.5),
 		A: 255,
 	}
 }
@@ -62,9 +62,9 @@ func (c rgb) toColor() color.Color {
 func (p *Palette) lookup(i int) rgb {
 	u := p.colors[i]
 	return rgb{
-		uint8(u >> 16),
-		uint8((u >> 8) & 0xFF),
-		uint8(u & 0xFF),
+		float64(u>>16) / 255,
+		float64((u>>8)&0xFF) / 255,
+		float64(u&0xFF) / 255,
 	}
 }
 
@@ -107,9 +107,9 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 				x := ox + (b%perRow)*lutSize + r
 				y := oy + (b/perRow)*lutSize + g
 				c := rgb{
-					uint8(255*(float64(r)+0.5)/float64(lutSize) + 0.5),
-					uint8(255*(float64(g)+0.5)/float64(lutSize) + 0.5),
-					uint8(255*(float64(b)+0.5)/float64(lutSize) + 0.5),
+					(float64(r) + 0.5) / float64(lutSize),
+					(float64(g) + 0.5) / float64(lutSize),
+					(float64(b) + 0.5) / float64(lutSize),
 				}
 				i := p.lookupNearest(c)
 				cNew := p.lookup(i)
