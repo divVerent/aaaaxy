@@ -15,8 +15,10 @@
 package palette
 
 import (
+	"image"
 	"image/color"
 	"math"
+	"sync"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -50,7 +52,7 @@ func (c rgb) diff(other rgb) float64 {
 	}
 }
 
-func (c rgb) toColor() color.Color {
+func (c rgb) toColor() color.NRGBA {
 	return color.NRGBA{
 		R: uint8(c[0]*255 + 0.5),
 		G: uint8(c[1]*255 + 0.5),
@@ -94,33 +96,54 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	w := bounds.Max.X - bounds.Min.X
 	h := bounds.Max.Y - bounds.Min.Y
 	lutSize := int(math.Cbrt(float64(w) * float64(h)))
-	var perRow int
+	var perRow, heightNeeded, widthNeeded int
 	for {
 		perRow = w / lutSize
+		widthNeeded = perRow * lutSize
 		rows := (lutSize + perRow - 1) / perRow
-		heightNeeded := rows * lutSize
+		heightNeeded = rows * lutSize
 		if heightNeeded <= h {
 			break
 		}
 		lutSize--
 	}
-	i := 0
-	for r := 0; r < lutSize; r++ {
-		for g := 0; g < lutSize; g++ {
-			for b := 0; b < lutSize; b++ {
-				x := ox + (b%perRow)*lutSize + r
-				y := oy + (b/perRow)*lutSize + g
-				c := rgb{
-					(float64(r) + 0.5) / float64(lutSize),
-					(float64(g) + 0.5) / float64(lutSize),
-					(float64(b) + 0.5) / float64(lutSize),
-				}
-				i = p.lookupNearest(c, i)
-				cNew := p.lookup(i)
-				img.Set(x, y, cNew.toColor())
-			}
-		}
+	// Note: creating a temp image, and copying to that, so this does not invoke
+	// thread synchronization as writing to an ebiten.Image would.
+	rect := image.Rectangle{
+		Min: image.Point{
+			X: 0,
+			Y: 0,
+		},
+		Max: image.Point{
+			X: widthNeeded,
+			Y: heightNeeded,
+		},
 	}
+	tmp := image.NewNRGBA(rect)
+	var wg sync.WaitGroup
+	for r := 0; r < lutSize; r++ {
+		wg.Add(1)
+		go func(r int) {
+			i := 0
+			for g := 0; g < lutSize; g++ {
+				for b := 0; b < lutSize; b++ {
+					x := ox + (b%perRow)*lutSize + r
+					y := oy + (b/perRow)*lutSize + g
+					c := rgb{
+						(float64(r) + 0.5) / float64(lutSize),
+						(float64(g) + 0.5) / float64(lutSize),
+						(float64(b) + 0.5) / float64(lutSize),
+					}
+					i = p.lookupNearest(c, i)
+					cNew := p.lookup(i)
+					tmp.SetNRGBA(x, y, cNew.toColor())
+				}
+			}
+			wg.Done()
+		}(r)
+	}
+	wg.Wait()
+	img.SubImage(rect).(*ebiten.Image).ReplacePixels(tmp.Pix)
 	return lutSize, perRow
 }
 
