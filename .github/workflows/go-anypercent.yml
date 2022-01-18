@@ -63,7 +63,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" ./aaaaxy *.dem'
+      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" ./aaaaxy *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -131,7 +131,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'bash scripts/regression-test-demo.sh windows-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
+      run: 'bash scripts/regression-test-demo.sh windows-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -167,7 +167,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh wine-amd64 "Your time: 0:16:50.666; your speedrun categories: Any%;" "wine ./aaaaxy.exe" *.dem'
+      run: 'xvfb-run scripts/regression-test-demo.sh wine-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" "wine ./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -235,7 +235,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'bash scripts/regression-test-demo.sh windows-386 "Your time: 0:16:50.666; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
+      run: 'bash scripts/regression-test-demo.sh windows-386 "Your time: 0:17:42.850; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
