@@ -15,6 +15,7 @@
 package palette
 
 import (
+	"fmt"
 	"image"
 	"image/color"
 	"math"
@@ -32,6 +33,11 @@ var (
 )
 
 type rgb [3]float64 // Actually integers from 0 to 255, but storing as float64 allows fastest math.
+
+func (c rgb) String() string {
+	n := c.toColor()
+	return fmt.Sprintf("#%02x%02x%02x", n.R, n.G, n.B)
+}
 
 func (c rgb) diff(other rgb) float64 {
 	switch *paletteColordist {
