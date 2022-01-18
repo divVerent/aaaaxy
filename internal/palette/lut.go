@@ -140,21 +140,66 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	}
 	wg.Wait()
 	img.SubImage(rect).(*ebiten.Image).ReplacePixels(tmp.Pix)
+
 	return lutSize, perRow
 }
 
-// BayerPattern computes the Bayer pattern for this palette.
-func (p *Palette) BayerPattern(size int) []float32 {
-	// New palette also needs new Bayer pattern.
-	sizeSquare := size * size
+func sizeBayer(size int, bayerScale float64) (sizeSquare, sizeCeilSquare int, scale, offset float64) {
+	sizeSquare = size * size
 	bits := 0
 	if size > 1 {
 		bits = math.Ilogb(float64(size-1)) + 1
 	}
 	sizeCeil := 1 << bits
-	sizeCeilSquare := sizeCeil * sizeCeil
-	scale := p.bayerScale / float64(sizeCeilSquare)
-	offset := float64(sizeCeilSquare-1) / 2.0
+	sizeCeilSquare = sizeCeil * sizeCeil
+	scale = bayerScale / float64(sizeCeilSquare)
+	offset = float64(sizeCeilSquare-1) / 2.0
+	return
+}
+
+func clamp(a, mi, ma float64) float64 {
+	if a < mi {
+		return mi
+	}
+	if a > ma {
+		return ma
+	}
+	return a
+}
+
+func (p *Palette) CheckProtectedColors(base *Palette, lutSize, bayerSize int) {
+	defer func(t0 time.Time) {
+		dt := time.Since(t0)
+		log.Infof("checking palette LUT took %v", dt)
+	}(time.Now())
+	_, sizeCeilSquare, scale, offset := sizeBayer(bayerSize, p.bayerScale)
+	for ref := 0; ref < base.size; ref++ {
+		cRef := base.lookup(ref)
+		for b := 0; b < sizeCeilSquare; b++ {
+			shift := (float64(b) - offset) * scale
+			cLuttered := rgb{
+				clamp(math.Floor((cRef[0]+shift)*float64(lutSize)), 0, float64(lutSize-1)),
+				clamp(math.Floor((cRef[1]+shift)*float64(lutSize)), 0, float64(lutSize-1)),
+				clamp(math.Floor((cRef[2]+shift)*float64(lutSize)), 0, float64(lutSize-1)),
+			}
+			cShifted := rgb{
+				(cLuttered[0] + 0.5) / float64(lutSize),
+				(cLuttered[1] + 0.5) / float64(lutSize),
+				(cLuttered[2] + 0.5) / float64(lutSize),
+			}
+			j := p.lookupNearest(cShifted)
+			cNew := p.lookup(j)
+			if cNew != cRef {
+				log.Warningf("protected color got broken: %v (%v) + %v = %v -> %v (%v)",
+					cRef, ref, shift, cShifted, cNew, j)
+			}
+		}
+	}
+}
+
+// BayerPattern computes the Bayer pattern for this palette.
+func (p *Palette) BayerPattern(size int) []float32 {
+	sizeSquare, _, scale, offset := sizeBayer(size, p.bayerScale)
 	bayern := make([]float32, sizeSquare)
 	for i := range bayern {
 		x := i % size
