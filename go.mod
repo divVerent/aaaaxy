@@ -9,11 +9,11 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/google/go-cmp v0.5.6
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.2.3
+	github.com/hajimehoshi/ebiten/v2 v2.2.4
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
 	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
-	golang.org/x/sys v0.0.0-20220111092808-5a964db01320
+	golang.org/x/sys v0.0.0-20220114195835-da31bd327af9
 )
 
 require (
@@ -51,7 +51,7 @@ require (
 	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.5 // indirect
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
-	golang.org/x/exp v0.0.0-20220104160115-025e73f80486 // indirect
+	golang.org/x/exp v0.0.0-20220114162006-9d54fb35363c // indirect
 	golang.org/x/mobile v0.0.0-20220112015953-858099ff7816 // indirect
 )
 
