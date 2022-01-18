@@ -36,7 +36,7 @@ type rgb [3]float64 // Actually integers from 0 to 255, but storing as float64 a
 
 func (c rgb) String() string {
 	n := c.toColor()
-	return fmt.Sprintf("#%02x%02x%02x", n.R, n.G, n.B)
+	return fmt.Sprintf("#%02X%02X%02X", n.R, n.G, n.B)
 }
 
 func (c rgb) diff(other rgb) float64 {
