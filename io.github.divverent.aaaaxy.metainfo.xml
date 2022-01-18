@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.0.187" date="2022-01-12">
-      <description><ul><li>Skip gamecontrollerdb.txt lines with syntax errors. Works around gabomdq/SDL_GameControllerDB#538.</li><li>Do not use the variable name GOFLAGS in the Makefile. Simplifies building by distros.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.0.187</url>
+    <release version="v1.1.6" date="2022-01-18">
+      <description><ul><li>Level: fix a tiny render glitch in The Torus.</li><li>Level: make the Kaizo jump both easier and harder at the same time; allows slightly faster runs.</li><li>Level: in Kaizo, update the year in the note :)</li><li>Level: patch up the hole in Kaaaart Race.</li><li>Menu: add setting entry for palettes.</li><li>Engine: simplify collision code by removing some redundant stuff. Maybe slightly faster.</li><li>Engine: turn off some particularly spammy log messages by default.</li><li>Engine: update Ebiten to 2.2.4; fixes performance loss on macOS and a crash on web.</li><li>Renderer: improve palette color matching.</li><li>Build: remove some spammy warnings.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.6</url>
     </release>
   </releases>
 </component>
