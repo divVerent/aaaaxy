@@ -68,10 +68,13 @@ func (p *Palette) lookup(i int) rgb {
 	}
 }
 
-func (p *Palette) lookupNearest(c rgb) int {
-	bestI := 0
-	bestS := c.diff(p.lookup(0))
-	for i := 1; i < p.size; i++ {
+// lookupNearest returns the palette color nearest to c.
+// hint should be the palette index of a "nearby" color, if possible.
+// Providing this helps branch prediction a LOT (on my computer, 770ms -> 440ms for the VGA palette).
+func (p *Palette) lookupNearest(c rgb, hint int) int {
+	bestI := hint
+	bestS := c.diff(p.lookup(hint))
+	for i := 0; i < p.size; i++ {
 		s := c.diff(p.lookup(i))
 		if s < bestS {
 			bestI, bestS = i, s
@@ -101,6 +104,7 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 		}
 		lutSize--
 	}
+	i := 0
 	for r := 0; r < lutSize; r++ {
 		for g := 0; g < lutSize; g++ {
 			for b := 0; b < lutSize; b++ {
@@ -111,7 +115,7 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 					(float64(g) + 0.5) / float64(lutSize),
 					(float64(b) + 0.5) / float64(lutSize),
 				}
-				i := p.lookupNearest(c)
+				i = p.lookupNearest(c, i)
 				cNew := p.lookup(i)
 				img.Set(x, y, cNew.toColor())
 			}
