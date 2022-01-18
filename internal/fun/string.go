@@ -37,6 +37,9 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 	*/
 	tmpl := template.New("")
 	tmpl.Funcs(map[string]interface{}{
+		"Year": func() string {
+			return time.Now().Format("2006")
+		},
 		"BigCity": func() string {
 			// We are guessing a nearby large city with traffic problems by the user's time zone.
 			// Rather inaccurate.

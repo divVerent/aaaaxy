@@ -9787,13 +9787,13 @@
   <object id="3989" gid="303" x="5600" y="3440" width="16" height="16"/>
   <object id="3990" gid="303" x="5616" y="3440" width="16" height="16"/>
   <object id="3991" gid="303" x="5632" y="3440" width="16" height="16"/>
-  <object id="3992" gid="312" x="5616" y="3456" width="32" height="32">
+  <object id="3992" gid="312" x="5600" y="3456" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="3977"/>
-    <property name="text" value="Missing a shelljump in 2021?"/>
+    <property name="text" value="Missing a shelljump in {{Year}}?"/>
    </properties>
   </object>
-  <object id="4002" name="KaizoFail" type="SwitchableSprite" gid="323" x="5584" y="3456" width="32" height="32"/>
+  <object id="4002" name="KaizoFail" type="SwitchableSprite" gid="323" x="5552" y="3456" width="32" height="32"/>
   <object id="4004" gid="303" x="5616" y="3344" width="16" height="16"/>
   <object id="4005" gid="303" x="5632" y="3344" width="16" height="16"/>
   <object id="4006" gid="303" x="5600" y="3344" width="16" height="16"/>
