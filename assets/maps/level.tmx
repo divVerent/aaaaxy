@@ -17401,8 +17401,8 @@
     <property name="text" value="Stepping away from the problem can help resolve it."/>
    </properties>
   </object>
-  <object id="8058" gid="306" x="3232" y="5216" width="32" height="32"/>
-  <object id="8059" gid="306" x="3232" y="5280" width="32" height="32"/>
+  <object id="8058" gid="306" x="3264" y="5216" width="32" height="32"/>
+  <object id="8059" gid="306" x="3264" y="5280" width="32" height="32"/>
   <object id="8060" name="CPIsALie" type="SwitchableSprite" x="6432" y="5936" width="64" height="64">
    <properties>
     <property name="fade_time" value="5s"/>
