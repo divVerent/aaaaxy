@@ -121,26 +121,25 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	}
 	tmp := image.NewNRGBA(rect)
 	var wg sync.WaitGroup
-	for r := 0; r < lutSize; r++ {
+	for y := 0; y < heightNeeded; y++ {
 		wg.Add(1)
-		go func(r int) {
+		go func(y int) {
+			g := y % lutSize
+			gFloat := (float64(g) + 0.5) / float64(lutSize)
+			bY := (y / lutSize) * perRow
 			i := 0
-			for g := 0; g < lutSize; g++ {
-				for b := 0; b < lutSize; b++ {
-					x := ox + (b%perRow)*lutSize + r
-					y := oy + (b/perRow)*lutSize + g
-					c := rgb{
-						(float64(r) + 0.5) / float64(lutSize),
-						(float64(g) + 0.5) / float64(lutSize),
-						(float64(b) + 0.5) / float64(lutSize),
-					}
-					i = p.lookupNearest(c, i)
-					cNew := p.lookup(i)
-					tmp.SetNRGBA(x, y, cNew.toColor())
-				}
+			for x := 0; x < widthNeeded; x++ {
+				r := x % lutSize
+				rFloat := (float64(r) + 0.5) / float64(lutSize)
+				b := bY + x/lutSize
+				bFloat := (float64(b) + 0.5) / float64(lutSize)
+				c := rgb{rFloat, gFloat, bFloat}
+				i = p.lookupNearest(c, i)
+				cNew := p.lookup(i)
+				tmp.SetNRGBA(x+ox, y+oy, cNew.toColor())
 			}
 			wg.Done()
-		}(r)
+		}(y)
 	}
 	wg.Wait()
 	img.SubImage(rect).(*ebiten.Image).ReplacePixels(tmp.Pix)
