@@ -153,6 +153,26 @@ var data = map[string]*Palette{
 		0xFFFFFF,
 	}),
 
+	// EGA but only the colors 0 to 7.
+	"egalow": newPalette(1/3.0, []uint32{
+		0x000000,
+		0x0000AA,
+		0x00AA00,
+		0x00AAAA,
+		0xAA0000,
+		0xAA00AA,
+		0xAA5500,
+		0xAAAAAA,
+	}),
+
+	// EGA but only the grey tones.
+	"egamono": newPalette(1/3.0, []uint32{
+		0x000000,
+		0xAAAAAA,
+		0x555555,
+		0xFFFFFF,
+	}),
+
 	// The original IBM VGA palette, with colors too close to EGA colors commented out.
 	"vga": newPalette(1/6.0, []uint32{
 		0x000000,
