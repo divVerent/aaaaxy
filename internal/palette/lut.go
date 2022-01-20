@@ -23,13 +23,14 @@ import (
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/lucasb-eyer/go-colorful"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 var (
-	paletteColordist = flag.String("palette_colordist", "redmean", "color distance function to use; one of 'weighted', 'redmean'")
+	paletteColordist = flag.String("palette_colordist", "redmean", "color distance function to use; one of 'weighted', 'redmean', 'cielab', 'cieluv'")
 )
 
 type rgb [3]float64 // Range is from 0 to 1 in sRGB color space.
@@ -52,6 +53,10 @@ func (c rgb) diff(other rgb) float64 {
 		db := c[2] - other[2]
 		rr := (c[0] + other[0]) / 2
 		return (2+rr)*dr*dr + 4*dg*dg + (2+255/256.0-rr)*db*db
+	case "cielab":
+		return c.toColorful().DistanceLab(other.toColorful())
+	case "cieluv":
+		return c.toColorful().DistanceLuv(other.toColorful())
 	default:
 		*paletteColordist = "redmean"
 		return c.diff(other)
@@ -64,6 +69,14 @@ func (c rgb) toNRGBA() color.NRGBA {
 		G: uint8(c[1]*255 + 0.5),
 		B: uint8(c[2]*255 + 0.5),
 		A: 255,
+	}
+}
+
+func (c rgb) toColorful() colorful.Color {
+	return colorful.Color{
+		R: c[0],
+		G: c[1],
+		B: c[2],
 	}
 }
 
