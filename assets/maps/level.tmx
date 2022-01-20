@@ -17593,7 +17593,7 @@
   </object>
   <object id="8118" type="JumpPad" x="4192" y="3840" width="304" height="1">
    <properties>
-    <property name="delta" value="0 -128"/>
+    <property name="delta" value="0 -192"/>
     <property name="height" value="0"/>
    </properties>
   </object>
