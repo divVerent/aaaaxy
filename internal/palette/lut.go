@@ -32,10 +32,10 @@ var (
 	paletteColordist = flag.String("palette_colordist", "redmean", "color distance function to use; one of 'weighted', 'redmean'")
 )
 
-type rgb [3]float64 // Actually integers from 0 to 255, but storing as float64 allows fastest math.
+type rgb [3]float64 // Range is from 0 to 1 in sRGB color space.
 
 func (c rgb) String() string {
-	n := c.toColor()
+	n := c.toNRGBA()
 	return fmt.Sprintf("#%02X%02X%02X", n.R, n.G, n.B)
 }
 
@@ -58,7 +58,7 @@ func (c rgb) diff(other rgb) float64 {
 	}
 }
 
-func (c rgb) toColor() color.NRGBA {
+func (c rgb) toNRGBA() color.NRGBA {
 	return color.NRGBA{
 		R: uint8(c[0]*255 + 0.5),
 		G: uint8(c[1]*255 + 0.5),
@@ -139,7 +139,7 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 				c := rgb{rFloat, gFloat, bFloat}
 				i := p.lookupNearest(c)
 				cNew := p.lookup(i)
-				tmp.SetNRGBA(x+ox, y+oy, cNew.toColor())
+				tmp.SetNRGBA(x+ox, y+oy, cNew.toNRGBA())
 			}
 			wg.Done()
 		}(y)
