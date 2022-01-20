@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8160">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8162">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17593,7 +17593,7 @@
   </object>
   <object id="8118" type="JumpPad" x="4192" y="3840" width="304" height="1">
    <properties>
-    <property name="delta" value="0 -192"/>
+    <property name="delta" value="0 -144"/>
     <property name="height" value="0"/>
    </properties>
   </object>
@@ -17710,5 +17710,21 @@
   <object id="8157" gid="303" x="4208" y="3744" width="16" height="16"/>
   <object id="8158" gid="303" x="4192" y="3744" width="16" height="16"/>
   <object id="8159" gid="303" x="4480" y="3744" width="16" height="16"/>
+  <object id="8160" type="JumpPad" x="4496" y="3809" width="1" height="31">
+   <properties>
+    <property name="delta" value="-288 0"/>
+    <property name="height" value="128"/>
+   </properties>
+  </object>
+  <object id="8161" type="Animation" x="4492" y="3808" width="5" height="32">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+    <property name="orientation" value="SE"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
