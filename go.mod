@@ -7,9 +7,10 @@ require (
 	github.com/akavel/rsrc v0.10.2
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
-	github.com/google/go-cmp v0.5.6
+	github.com/google/go-cmp v0.5.7
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
 	github.com/hajimehoshi/ebiten/v2 v2.2.4
+	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
 	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
@@ -28,7 +29,6 @@ require (
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
 	github.com/josephspurrier/goversioninfo v1.4.0 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd // indirect
-	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
