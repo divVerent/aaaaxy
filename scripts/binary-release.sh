@@ -112,5 +112,6 @@ And the PKGBUILD:
   git push
 Finally, run
   scripts/itch-upload.sh $new
-and post on https://itch.io/dashboard/game/1199736/devlog
+and post on https://itch.io/dashboard/game/1199736/devlog, and also upload on
+  https://gamejolt.com/dashboard/games/682854/packages
 EOF

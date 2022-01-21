@@ -24,6 +24,8 @@ Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy)
 
 <iframe frameborder="0" src="https://itch.io/embed/1199736?dark=true" width="552" height="167"><a href="https://divverent.itch.io/aaaaxy">AAAAXY by divVerent</a></iframe>
 
+<iframe src="https://widgets.gamejolt.com/package/v1?key=QeYBbCEb" frameborder="0" width="500" height="245"></iframe>
+
 #### Raw Downloads
 
 <!-- BEGIN DOWNLOAD LINKS TEMPLATE
