@@ -11,6 +11,7 @@ AAAAXY releases are published in the following places:
       - [Analytics](https://snapcraft.io/aaaaxy/metrics)
   - [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy)
       - [Analytics](https://klausenbusk.github.io/flathub-stats/#ref=io.github.divverent.aaaaxy&interval=infinity&downloadType=installs%2Bupdates)
+      - To see active users per release, run `scripts/flathub-stats.sh`.
   - [Itch](https://divverent.itch.io/aaaaxy)
       - [Analytics](https://itch.io/game/summary/1199736)
 
