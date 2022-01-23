@@ -19,7 +19,7 @@
 rm -f stats.csv
 
 days_back=90
-days_refetch=2
+days_nocache=2
 id=io.github.divverent.aaaaxy
 cache=$HOME/.cache/AAAAXY/flathub-stats
 
@@ -33,12 +33,15 @@ mkdir -p "$cache"
 	for i in $(seq 0 $days_back); do
 		date=$(date +%Y-%m-%d -d"$i days ago")
 		urldate=$(echo "$date" | tr - /)
-		if [ $i -lt $days_refetch ] || ! [ -s "$cache/$date.json" ]; then
+		if [ -s "$cache/$date.json" ]; then
+			cat "$cache/$date.json"
+		elif [ $i -lt $days_nocache ]; then
+			curl "https://flathub.org/stats/$urldate.json"
+		else
 			trap 'rm -f "$cache/$date.json"' EXIT
-			curl -o "$cache/$date.json" "https://flathub.org/stats/$urldate.json"
+			curl "https://flathub.org/stats/$urldate.json" | tee "$cache/$date.json"
 			trap - EXIT
-		fi
-		DATE=$date jq --raw-output '.refs["'"$id"'"] | [(0, 1) as $i | [(keys | .[]) as $key | .[$key][$i]] | add] | [$ENV["DATE"], "S", .[0] - .[1], .[1]] | @csv' "$cache/$date.json"
+		fi | DATE=$date jq --raw-output '.refs["'"$id"'"] | [(0, 1) as $i | [(keys | .[]) as $key | .[$key][$i]] | add] | [$ENV["DATE"], "S", .[0] - .[1], .[1]] | @csv'
 	done
 } | sort | tr -d '"' | {
 	started=false
