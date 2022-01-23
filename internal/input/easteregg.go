@@ -156,7 +156,7 @@ func easterEggButtonState() easterEggKeyState {
 }
 
 func easterEggUpdate() {
-	gamepadState := keyboardEasterEggKeyState() | gamepadEasterEggKeyState() | easterEggButtonState()
+	gamepadState := gamepadEasterEggKeyState()
 	state := keyboardEasterEggKeyState() | gamepadState | easterEggButtonState()
 	easterEgg.update(state)
 	snesEasterEgg.update(gamepadState) // Only allow reversing on gamepads as this is literal.
