@@ -394,6 +394,12 @@ func (p *Player) Update() {
 		}
 		p.GotAbilitySound.Play()
 	}
+
+	// Konami code. Grants 30 lives. Too bad this game does not use lives :)
+	if input.KonamiCodeJustHit() {
+		centerprint.New("You now have 30 lives. Enjoy!", centerprint.Important, centerprint.Top, centerprint.BigFont(), color.NRGBA{R: 255, G: 85, B: 255, A: 255}, 5*time.Second).SetFadeOut(true)
+		p.GotAbilitySound.Play()
+	}
 }
 
 func (p *Player) handleTouch(trace engine.TraceResult) {

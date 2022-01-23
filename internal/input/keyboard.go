@@ -76,6 +76,9 @@ func keyboardEasterEggKeyState() easterEggKeyState {
 	if ebiten.IsKeyPressed(ebiten.KeyA) {
 		state |= easterEggA
 	}
+	if ebiten.IsKeyPressed(ebiten.KeyB) {
+		state |= easterEggB
+	}
 	if ebiten.IsKeyPressed(ebiten.KeyX) {
 		state |= easterEggX
 	}

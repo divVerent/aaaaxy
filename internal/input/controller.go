@@ -146,7 +146,11 @@ func Update() {
 }
 
 func EasterEggJustHit() bool {
-	return easterEggJustHit
+	return easterEgg.justHit || snesEasterEgg.justHit
+}
+
+func KonamiCodeJustHit() bool {
+	return konamiCode.justHit || snesKonamiCode.justHit
 }
 
 func Map() InputMap {
@@ -178,15 +182,16 @@ func ExitButton() ExitButtonID {
 // Demo code.
 
 type DemoState struct {
-	InputMap         InputMap      `json:",omitempty"`
-	Left             *ImpulseState `json:",omitempty"`
-	Right            *ImpulseState `json:",omitempty"`
-	Up               *ImpulseState `json:",omitempty"`
-	Down             *ImpulseState `json:",omitempty"`
-	Jump             *ImpulseState `json:",omitempty"`
-	Action           *ImpulseState `json:",omitempty"`
-	Exit             *ImpulseState `json:",omitempty"`
-	EasterEggJustHit bool          `json:",omitempty"`
+	InputMap          InputMap      `json:",omitempty"`
+	Left              *ImpulseState `json:",omitempty"`
+	Right             *ImpulseState `json:",omitempty"`
+	Up                *ImpulseState `json:",omitempty"`
+	Down              *ImpulseState `json:",omitempty"`
+	Jump              *ImpulseState `json:",omitempty"`
+	Action            *ImpulseState `json:",omitempty"`
+	Exit              *ImpulseState `json:",omitempty"`
+	EasterEggJustHit  bool          `json:",omitempty"`
+	KonamiCodeJustHit bool          `json:",omitempty"`
 }
 
 func LoadFromDemo(state *DemoState) {
@@ -201,19 +206,23 @@ func LoadFromDemo(state *DemoState) {
 	Jump.ImpulseState = state.Jump.OrEmpty()
 	Action.ImpulseState = state.Action.OrEmpty()
 	Exit.ImpulseState = state.Exit.OrEmpty()
-	easterEggJustHit = state.EasterEggJustHit
+	easterEgg.justHit = state.EasterEggJustHit
+	snesEasterEgg.justHit = state.EasterEggJustHit
+	konamiCode.justHit = state.KonamiCodeJustHit
+	snesKonamiCode.justHit = state.KonamiCodeJustHit
 }
 
 func SaveToDemo() *DemoState {
 	return &DemoState{
-		InputMap:         inputMap,
-		Left:             Left.ImpulseState.UnlessEmpty(),
-		Right:            Right.ImpulseState.UnlessEmpty(),
-		Up:               Up.ImpulseState.UnlessEmpty(),
-		Down:             Down.ImpulseState.UnlessEmpty(),
-		Jump:             Jump.ImpulseState.UnlessEmpty(),
-		Action:           Action.ImpulseState.UnlessEmpty(),
-		Exit:             Exit.ImpulseState.UnlessEmpty(),
-		EasterEggJustHit: easterEggJustHit,
+		InputMap:          inputMap,
+		Left:              Left.ImpulseState.UnlessEmpty(),
+		Right:             Right.ImpulseState.UnlessEmpty(),
+		Up:                Up.ImpulseState.UnlessEmpty(),
+		Down:              Down.ImpulseState.UnlessEmpty(),
+		Jump:              Jump.ImpulseState.UnlessEmpty(),
+		Action:            Action.ImpulseState.UnlessEmpty(),
+		Exit:              Exit.ImpulseState.UnlessEmpty(),
+		EasterEggJustHit:  EasterEggJustHit(),
+		KonamiCodeJustHit: KonamiCodeJustHit(),
 	}
 }
