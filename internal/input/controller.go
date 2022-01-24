@@ -150,7 +150,7 @@ func EasterEggJustHit() bool {
 }
 
 func KonamiCodeJustHit() bool {
-	return konamiCode.justHit || snesKonamiCode.justHit
+	return konamiCode.justHit || snesKonamiCode.justHit || kbdKonamiCode.justHit
 }
 
 func Map() InputMap {
@@ -210,6 +210,7 @@ func LoadFromDemo(state *DemoState) {
 	snesEasterEgg.justHit = state.EasterEggJustHit
 	konamiCode.justHit = state.KonamiCodeJustHit
 	snesKonamiCode.justHit = state.KonamiCodeJustHit
+	kbdKonamiCode.justHit = state.KonamiCodeJustHit
 }
 
 func SaveToDemo() *DemoState {

@@ -104,8 +104,8 @@ var (
 			easterEggRight,
 			easterEggLeft,
 			easterEggRight,
-			easterEggAction,
 			easterEggJump,
+			easterEggAction,
 		)}
 	snesKonamiCode = easterEggState{
 		mask: easterEggUp | easterEggDown | easterEggLeft | easterEggRight | easterEggJump | easterEggAction,
@@ -118,8 +118,22 @@ var (
 			easterEggRight,
 			easterEggLeft,
 			easterEggRight,
-			easterEggJump,
 			easterEggAction,
+			easterEggJump,
+		)}
+	kbdKonamiCode = easterEggState{
+		mask: easterEggUp | easterEggDown | easterEggLeft | easterEggRight | easterEggA | easterEggB,
+		sequence: sequence.New(
+			easterEggUp,
+			easterEggUp,
+			easterEggDown,
+			easterEggDown,
+			easterEggLeft, // Can't be WASD.
+			easterEggRight,
+			easterEggLeft, // Can't be WASD.
+			easterEggRight,
+			easterEggA|easterEggLeft, // Must be keyboard.
+			easterEggB,               // Must be keyboard.
 		)}
 )
 
@@ -148,9 +162,13 @@ func easterEggButtonState() int {
 
 func easterEggUpdate() {
 	gamepadState := gamepadEasterEggKeyState()
-	state := keyboardEasterEggKeyState() | gamepadState | easterEggButtonState()
+	keyboardState := keyboardEasterEggKeyState()
+	buttonState := easterEggButtonState()
+	kbdState := keyboardState | buttonState
+	state := kbdState | gamepadState
 	easterEgg.update(state)
 	snesEasterEgg.update(gamepadState) // Only allow reversing on gamepads as this is literal.
 	konamiCode.update(state)
-	snesKonamiCode.update(state) // Allow reversing the actions on keyboard too.
+	snesKonamiCode.update(state)   // Allow reversing the actions on keyboard too.
+	kbdKonamiCode.update(kbdState) // Use letter keys. Makes no sense for gamepad.
 }
