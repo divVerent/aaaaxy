@@ -21,11 +21,13 @@ type Sequence struct {
 }
 
 func New(want ...int) *Sequence {
-	return &Sequence{
+	s := &Sequence{
 		want:  want,
 		got:   make([]int, len(want)),
 		shift: 0,
 	}
+	s.Reset()
+	return s
 }
 
 func (s *Sequence) Add(what int) {
@@ -34,8 +36,9 @@ func (s *Sequence) Add(what int) {
 }
 
 func (s *Sequence) Reset() {
+	s.shift = 0
 	for i := range s.got {
-		s.got[i] = 0
+		s.got[i] = -1
 	}
 }
 

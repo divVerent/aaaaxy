@@ -19,6 +19,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/sequence"
 )
 
 // SequenceTarget sends a given string to a SequenceCollector when triggered.
@@ -27,7 +28,7 @@ type SequenceTarget struct {
 	Entity *engine.Entity
 
 	Target   string
-	Sequence string
+	Sequence []rune
 
 	State bool
 }
@@ -36,7 +37,7 @@ func (s *SequenceTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *eng
 	s.World = w
 	s.Entity = e
 	s.Target = sp.Properties["target"]
-	s.Sequence = sp.Properties["sequence"]
+	s.Sequence = []rune(sp.Properties["sequence"])
 	return nil
 }
 
@@ -70,17 +71,24 @@ type SequenceCollector struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	Sequence string
+	Sequence *sequence.Sequence
 	Target   mixins.TargetSelection
 	State    bool
 
-	Current string
+	Matched bool
 }
 
 func (s *SequenceCollector) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
-	s.Sequence = sp.Properties["sequence"]
+
+	seq := []rune(sp.Properties["sequence"])
+	seqI := make([]int, len(seq))
+	for i, r := range seq {
+		seqI[i] = int(r)
+	}
+	s.Sequence = sequence.New(seqI...)
+
 	s.Target = mixins.ParseTarget(sp.Properties["target"])
 	s.State = sp.Properties["state"] != "false"
 	return nil
@@ -90,16 +98,15 @@ func (s *SequenceCollector) Despawn() {}
 
 func (s *SequenceCollector) Update() {}
 
-func (s *SequenceCollector) Append(originator *engine.Entity, str string) {
-	matched := s.Current == s.Sequence
-	s.Current += str
-	if len(s.Current) > len(s.Sequence) {
-		s.Current = s.Current[len(s.Current)-len(s.Sequence):]
+func (s *SequenceCollector) Append(originator *engine.Entity, seq []rune) {
+	for _, r := range seq {
+		s.Sequence.Add(int(r))
 	}
-	matches := s.Current == s.Sequence
-	if matches && !matched {
+	matches := s.Sequence.Match()
+	if matches && !s.Matched {
 		mixins.SetStateOfTarget(s.World, originator, s.Entity, s.Target, true)
 	}
+	s.Matched = matches
 }
 
 func (s *SequenceCollector) Touch(other *engine.Entity) {}
