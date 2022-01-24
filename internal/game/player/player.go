@@ -389,10 +389,11 @@ func (p *Player) Update() {
 		p.EasterEggCount++
 		if p.EasterEggCount%4 == 0 {
 			centerprint.New("Fine, I give up, have it your way.\nAll cheats are documented in --help.", centerprint.Important, centerprint.Top, centerprint.BigFont(), color.NRGBA{R: 85, G: 85, B: 255, A: 255}, 5*time.Second).SetFadeOut(true)
+			p.GotAbilitySound.Play()
 		} else {
 			centerprint.New("You really thought this would do something?", centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 85, G: 255, B: 255, A: 255}, time.Second).SetFadeOut(true)
+			// No sound. We really want to do nothing here.
 		}
-		p.GotAbilitySound.Play()
 	}
 
 	// Konami code. Grants 30 lives. Too bad this game does not use lives :)
