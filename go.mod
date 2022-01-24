@@ -52,7 +52,7 @@ require (
 	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.5 // indirect
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
-	golang.org/x/exp v0.0.0-20220114162006-9d54fb35363c // indirect
+	golang.org/x/exp v0.0.0-20220121174013-7b334a16533f // indirect
 	golang.org/x/mobile v0.0.0-20220112015953-858099ff7816 // indirect
 )
 
