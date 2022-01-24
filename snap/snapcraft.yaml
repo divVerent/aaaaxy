@@ -99,5 +99,6 @@ apps:
     command: bin/aaaaxy
     plugs:
       - audio-playback
+      - joystick
       - opengl
       - x11
