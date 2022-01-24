@@ -14,50 +14,47 @@
 
 package input
 
-type easterEggKeyState int
+import (
+	"github.com/divVerent/aaaaxy/internal/sequence"
+)
 
 const (
-	easterEggA      easterEggKeyState = 1
-	easterEggB      easterEggKeyState = 2
-	easterEggX      easterEggKeyState = 4
-	easterEggY      easterEggKeyState = 8
-	easterEggLeft   easterEggKeyState = 16
-	easterEggRight  easterEggKeyState = 32
-	easterEggUp     easterEggKeyState = 64
-	easterEggDown   easterEggKeyState = 128
-	easterEggJump   easterEggKeyState = 256
-	easterEggAction easterEggKeyState = 512
+	easterEggA      = 1
+	easterEggB      = 2
+	easterEggX      = 4
+	easterEggY      = 8
+	easterEggLeft   = 16
+	easterEggRight  = 32
+	easterEggUp     = 64
+	easterEggDown   = 128
+	easterEggJump   = 256
+	easterEggAction = 512
 )
 
 type easterEggState struct {
-	mask          easterEggKeyState
-	sequence      []easterEggKeyState
-	sequencePos   int               // Last pos we _have_.
-	sequenceFrame int               // Frames since last bump.
-	justHit       bool              // If it was just activated this frame.
-	prevState     easterEggKeyState // Previous key state.
+	mask          int
+	sequence      *sequence.Sequence
+	sequenceFrame int  // Frames since last key.
+	justHit       bool // If it was just activated this frame.
+	prevState     int  // Previous key state.
 }
 
-const easterEggSequenceMaxFrames = 180 // 3 seconds should be enough to enter that.
+const easterEggSequenceMaxFrames = 60 // At most one sec between key presses.
 
-func (s *easterEggState) update(state easterEggKeyState) {
-	// TODO: unify state machine with internal/game/target/sequence?
+func (s *easterEggState) update(state int) {
 	s.justHit = false
 
 	presses := (state & ^s.prevState) & s.mask
 	s.prevState = state
 
-	// Count frames since start of sequence.
-	if s.sequencePos == 0 {
-		// Reset timer if at start.
+	// Count frames since last key.
+	s.sequenceFrame++
+
+	// Too long ago = reset.
+	if s.sequenceFrame > easterEggSequenceMaxFrames {
+		s.sequence.Reset()
 		s.sequenceFrame = 0
-	} else {
-		s.sequenceFrame++
-		// Too long ago = reset.
-		if s.sequenceFrame > easterEggSequenceMaxFrames {
-			s.sequencePos = 0
-			return
-		}
+		return
 	}
 
 	// Nothing pressed = no change.
@@ -65,46 +62,40 @@ func (s *easterEggState) update(state easterEggKeyState) {
 		return
 	}
 
-	// Wrong key = reset.
-	if presses != s.sequence[s.sequencePos] {
-		s.sequencePos = 0
-		return
-	}
+	// Reset time since last key.
+	s.sequenceFrame = 0
 
-	// Advance.
-	s.sequencePos++
+	// Add the byte to the sequence.
+	s.sequence.Add(presses)
 
-	// End of sequence = good.
-	if s.sequencePos == len(s.sequence) {
-		s.justHit = true
-		s.sequencePos = 0
-	}
+	// Check if it is hit.
+	s.justHit = s.sequence.Match()
 }
 
 var (
 	easterEgg = easterEggState{
 		mask: easterEggA | easterEggB | easterEggX | easterEggY,
-		sequence: []easterEggKeyState{
+		sequence: sequence.New(
 			easterEggA,
 			easterEggA,
 			easterEggA,
 			easterEggA,
 			easterEggX,
 			easterEggY,
-		}}
+		)}
 	snesEasterEgg = easterEggState{
 		mask: easterEggA | easterEggB | easterEggX | easterEggY,
-		sequence: []easterEggKeyState{
+		sequence: sequence.New(
 			easterEggB,
 			easterEggB,
 			easterEggB,
 			easterEggB,
 			easterEggY,
 			easterEggX,
-		}}
+		)}
 	konamiCode = easterEggState{
 		mask: easterEggUp | easterEggDown | easterEggLeft | easterEggRight | easterEggJump | easterEggAction,
-		sequence: []easterEggKeyState{
+		sequence: sequence.New(
 			easterEggUp,
 			easterEggUp,
 			easterEggDown,
@@ -115,10 +106,10 @@ var (
 			easterEggRight,
 			easterEggAction,
 			easterEggJump,
-		}}
+		)}
 	snesKonamiCode = easterEggState{
 		mask: easterEggUp | easterEggDown | easterEggLeft | easterEggRight | easterEggJump | easterEggAction,
-		sequence: []easterEggKeyState{
+		sequence: sequence.New(
 			easterEggUp,
 			easterEggUp,
 			easterEggDown,
@@ -129,11 +120,11 @@ var (
 			easterEggRight,
 			easterEggJump,
 			easterEggAction,
-		}}
+		)}
 )
 
-func easterEggButtonState() easterEggKeyState {
-	var s easterEggKeyState
+func easterEggButtonState() int {
+	s := 0
 	if Left.Held {
 		s |= easterEggLeft
 	}

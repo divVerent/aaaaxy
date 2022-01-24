@@ -247,8 +247,8 @@ func gamepadInit() {
 	applyAndLogGameControllerDb(config, nil, "gamepad mappings from --gamepad_override")
 }
 
-func gamepadEasterEggKeyState() easterEggKeyState {
-	var state easterEggKeyState
+func gamepadEasterEggKeyState() int {
+	state := 0
 	for p := range gamepads {
 		if ebiten.IsStandardGamepadButtonPressed(p, ebiten.StandardGamepadButtonRightBottom) {
 			state |= easterEggA

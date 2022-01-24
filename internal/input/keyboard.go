@@ -71,8 +71,8 @@ func (i *impulse) keyboardPressed() InputMap {
 	return NoInput
 }
 
-func keyboardEasterEggKeyState() easterEggKeyState {
-	var state easterEggKeyState
+func keyboardEasterEggKeyState() int {
+	state := 0
 	if ebiten.IsKeyPressed(ebiten.KeyA) {
 		state |= easterEggA
 	}
