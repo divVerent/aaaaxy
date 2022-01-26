@@ -76,7 +76,7 @@ if [ -d .git ] && [ x"$AAAAXY_BUILD_USE_VERSION_FILE" != x'true' ]; then
 			exit 1
 			;;
 	esac
-else if [ -f .lastreleaseversion ]; then
+elif [ -f .lastreleaseversion ]; then
 	# Re-import from a semver string.
 	# Used for packaging source code.
 	save_IFS=$IFS
