@@ -23,7 +23,7 @@ while :; do
 		break
 	fi
 	parent=$(git rev-parse "$rev"^)
-	if ! git diff --quiet "$parent" HEAD -- . ':!docs' ':!io.github.divverent.aaaaxy.metainfo.xml' ':!third_party/SDL_GameControllerDB/assets/input'; then
+	if ! git diff --quiet "$parent" HEAD -- . ':!docs' ':!io.github.divverent.aaaaxy.metainfo.xml' ':!third_party/SDL_GameControllerDB/assets/input' ':!.gitmoduleversions'; then
 		# Non-doc changes have been found. Do not walk up further.
 		break
 	fi
