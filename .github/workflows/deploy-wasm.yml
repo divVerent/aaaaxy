@@ -23,7 +23,7 @@ jobs:
         go-version: 1.17
 
     - name: Build
-      run: 'GOOS=js GOARCH=wasm make BUILDTYPE=release BINARY=aaaaxy-js-wasm.wasm'
+      run: 'GOOS=js GOARCH=wasm AAAAXY_BUILD_USE_VERSION_FILE=true make BUILDTYPE=release BINARY=aaaaxy-js-wasm.wasm'
 
     - name: Steal/acquire wasm_exec.js
       run: 'cp -v "$(GOOS=js GOARCH=wasm go env GOROOT)/misc/wasm/wasm_exec.js" .'

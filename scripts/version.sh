@@ -15,7 +15,7 @@
 
 format=${1:-semver}
 
-if [ -d .git ]; then
+if [ -d .git ] && [ x"$AAAAXY_BUILD_USE_VERSION_FILE" != x'true' ]; then
 	# Skip documentation-only commits.
 	rev=$(git rev-parse HEAD)
 	while :; do
