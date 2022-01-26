@@ -15,7 +15,7 @@
 
 format=${1:-semver}
 
-if [ -z "$AAAAXY_VERSION" ]; then
+if [ -d .git ]; then
 	# Skip documentation-only commits.
 	rev=$(git rev-parse HEAD)
 	while :; do
@@ -44,7 +44,7 @@ if [ -z "$AAAAXY_VERSION" ]; then
 			;;
 		*)
 			echo >&2 "ERROR: Invalid git describe output: $gitdesc."
-			echo >&2 "If you are building from a tarball, set AAAAXY_VERSION to the contents of the file .lastreleaseversion."
+			echo >&2 "You may provide the version in a file called .lastreleaseversion.".
 			exit 1
 			;;
 	esac
@@ -76,12 +76,12 @@ if [ -z "$AAAAXY_VERSION" ]; then
 			exit 1
 			;;
 	esac
-else
+else if [ -f .lastreleaseversion ]; then
 	# Re-import from a semver string.
 	# Used for packaging source code.
 	save_IFS=$IFS
 	IFS='+.'
-	set -- $AAAAXY_VERSION
+	set -- $(cat .lastreleaseversion)
 	IFS=$save_IFS
 	case "$#" in
 		6)
@@ -103,10 +103,15 @@ else
 			hash=$7
 			;;
 		*)
-			echo >&2 "Internal error - failed to parse semver: $AAAAXY_VERSION."
+			echo >&2 "Internal error - failed to parse .lastreleaseversion file."
 			exit 1
 			;;
 	esac
+	echo >&2 "NOTE: version imported from .lastreleaseversion file."
+	echo >&2 "NOTE: when building from a git clone, this message should not show up."
+else
+	echo >&2 "This script must be called from the root of the AAAAXY source code."
+	exit 1
 fi
 
 # Set of variables here:

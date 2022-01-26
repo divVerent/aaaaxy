@@ -60,6 +60,10 @@ VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 	s/<description>.*<\/description>/<description>$msg<\/description>/g;
 ' io.github.divverent.aaaaxy.metainfo.xml
 
+# Also pack the SDL game controller DB at the exact version used for the
+# release. Used for compiling from source tarballs.
+7za -tzip -mx=9 sdl-gamecontrollerdb-for-aaaaxy-$new.zip third_party/SDL_GameControllerDB/assets/input/*
+
 GOOS=linux scripts/binary-release-compile.sh amd64
 GOOS=windows scripts/binary-release-compile.sh amd64
 GOOS=windows scripts/binary-release-compile.sh 386
@@ -94,7 +98,7 @@ cat .commitmsg
 cat <<EOF
 
 In the release, upload aaaaxy-*-$new.zip (except for wasm) and
-AAAAXY-*.AppImage*.
+AAAAXY-*.AppImage* as well as sdl-gamecontrollerdb-for-aaaaxy-$new.zip.
 Once the release is published, finally run:
   git push origin main
 Then update the snap at https://snapcraft.io/aaaaxy/builds by testing the
