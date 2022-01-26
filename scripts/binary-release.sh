@@ -36,6 +36,10 @@ git submodule update --remote
 # contains the exact submodule version info.
 git submodule > .gitmoduleversions
 
+# Also store the current semver in the checkout. Used for compiling from
+# source tarballs.
+sh scripts/version.sh semver > .lastreleaseversion
+
 # Update metainfo with current date and version already, and replace the text by a placeholder.
 VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 	use strict;
