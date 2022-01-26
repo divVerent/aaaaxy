@@ -44,7 +44,8 @@ if [ -d .git ] && [ x"$AAAAXY_BUILD_USE_VERSION_FILE" != x'true' ]; then
 			;;
 		*)
 			echo >&2 "ERROR: Invalid git describe output: $gitdesc."
-			echo >&2 "You may provide the version in a file called .lastreleaseversion.".
+			echo >&2 "You may provide the version in a file called .lastreleaseversion"
+			echo >&2 "and then set AAAAXY_BUILD_USE_VERSION_FILE=true."
 			exit 1
 			;;
 	esac
