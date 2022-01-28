@@ -24,11 +24,20 @@ import (
 
 func Show(msg string) {
 	err := zenity.Error(msg, zenity.Title("AAAAXY - Error"))
-	if err != nil {
-		err = exec.Command("gxmessage", "-center", "-title", "AAAAXY - Error", " "+msg).Run()
+	if err == zenity.ErrCanceled {
+		// Dialog closed, that's OK.
+		return
 	}
-	if err != nil {
-		err = exec.Command("xmessage", "-center", "-title", "AAAAXY - Error", " "+msg).Run()
+	err = exec.Command("gxmessage", "-center", "-title", "AAAAXY - Error", " "+msg).Run()
+	if status, ok := err.(*exec.ExitError); ok && status.ExitCode() == 1 {
+		// Dialog closed, that's OK.
+		return
 	}
-	// No further fallback - we already wrote the fatal error to stderr anyway.
+	err = exec.Command("xmessage", "-center", "-title", "AAAAXY - Error", " "+msg).Run()
+	if status, ok := err.(*exec.ExitError); ok && status.ExitCode() == 1 {
+		// Dialog closed, that's OK.
+		return
+	}
+	// No further fallbacks; eventually all we can do is to log to stderr,
+	// which we've already done before calling Show.
 }
