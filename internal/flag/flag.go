@@ -127,6 +127,9 @@ func Marshal() *Config {
 		if strings.HasPrefix(f.Name, "demo_") {
 			return
 		}
+		if f.Name == "batch" {
+			return
+		}
 		if f.Value.String() == f.DefValue {
 			return
 		}
