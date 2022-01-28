@@ -16,7 +16,6 @@ package ending
 
 import (
 	"fmt"
-	"math"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -33,8 +32,7 @@ type FadeTarget struct {
 	Frame  int
 	State  bool
 
-	Base   [3]float64
-	Normal [3]float64
+	ColorM ebiten.ColorM
 }
 
 func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
@@ -50,45 +48,91 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		f.Frames = 1
 	}
 
-	var cA, cB, cC [3]float64
+	// We want a color matrix that maps A1 to A'1, B1 to B'1, C1 to C'1, D1 to D'1.
+	// So we build two color matrices - fromM maps a pentahedron to 0 A0 B0 C0 D0, toM maps the same pentahedron to 0 A' B' C' D'.
+	// Then toM * fromM^-1 will be what we need.
+	var fromM, toM ebiten.ColorM
 
 	var r, g, b, a int
-	colorString := sp.Properties["invariant_color_a"]
+	colorString := sp.Properties["from_color_a"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
 		return fmt.Errorf("could not decode color %q: %v", colorString, err)
 	}
-	cA[0] = float64(r) / 255.0
-	cA[1] = float64(g) / 255.0
-	cA[2] = float64(b) / 255.0
-	colorString = sp.Properties["invariant_color_b"]
+	fromM.SetElement(0, 0, float64(r)/255.0)
+	fromM.SetElement(1, 0, float64(g)/255.0)
+	fromM.SetElement(2, 0, float64(b)/255.0)
+	fromM.SetElement(3, 0, 1.0)
+	colorString = sp.Properties["from_color_b"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
 		return fmt.Errorf("could not decode color %q: %v", colorString, err)
 	}
-	cB[0] = float64(r) / 255.0
-	cB[1] = float64(g) / 255.0
-	cB[2] = float64(b) / 255.0
-	colorString = sp.Properties["invariant_color_c"]
+	fromM.SetElement(0, 1, float64(r)/255.0)
+	fromM.SetElement(1, 1, float64(g)/255.0)
+	fromM.SetElement(2, 1, float64(b)/255.0)
+	fromM.SetElement(3, 1, 1.0)
+	colorString = sp.Properties["from_color_c"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
 		return fmt.Errorf("could not decode color %q: %v", colorString, err)
 	}
-	cC[0] = float64(r) / 255.0
-	cC[1] = float64(g) / 255.0
-	cC[2] = float64(b) / 255.0
+	fromM.SetElement(0, 2, float64(r)/255.0)
+	fromM.SetElement(1, 2, float64(g)/255.0)
+	fromM.SetElement(2, 2, float64(b)/255.0)
+	fromM.SetElement(3, 2, 1.0)
+	colorString = sp.Properties["from_color_d"]
+	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+	}
+	fromM.SetElement(0, 3, float64(r)/255.0)
+	fromM.SetElement(1, 3, float64(g)/255.0)
+	fromM.SetElement(2, 3, float64(b)/255.0)
+	fromM.SetElement(3, 3, 1.0)
+	// In addition, add another row to keep the alpha channel invariant.
+	fromM.SetElement(0, 4, float64(r)/255.0)
+	fromM.SetElement(1, 4, float64(g)/255.0)
+	fromM.SetElement(2, 4, float64(b)/255.0)
+	fromM.SetElement(3, 4, 0.0)
 
-	f.Base[0] = cA[0]
-	f.Base[1] = cA[1]
-	f.Base[2] = cA[2]
+	colorString = sp.Properties["to_color_a"]
+	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+	}
+	toM.SetElement(0, 0, float64(r)/255.0)
+	toM.SetElement(1, 0, float64(g)/255.0)
+	toM.SetElement(2, 0, float64(b)/255.0)
+	toM.SetElement(3, 0, 1.0)
+	colorString = sp.Properties["to_color_b"]
+	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+	}
+	toM.SetElement(0, 1, float64(r)/255.0)
+	toM.SetElement(1, 1, float64(g)/255.0)
+	toM.SetElement(2, 1, float64(b)/255.0)
+	toM.SetElement(3, 1, 1.0)
+	colorString = sp.Properties["to_color_c"]
+	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+	}
+	toM.SetElement(0, 2, float64(r)/255.0)
+	toM.SetElement(1, 2, float64(g)/255.0)
+	toM.SetElement(2, 2, float64(b)/255.0)
+	toM.SetElement(3, 2, 1.0)
+	colorString = sp.Properties["to_color_d"]
+	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+	}
+	toM.SetElement(0, 3, float64(r)/255.0)
+	toM.SetElement(1, 3, float64(g)/255.0)
+	toM.SetElement(2, 3, float64(b)/255.0)
+	toM.SetElement(3, 3, 1.0)
+	// In addition, add another row to keep the alpha channel invariant.
+	toM.SetElement(0, 4, float64(r)/255.0)
+	toM.SetElement(1, 4, float64(g)/255.0)
+	toM.SetElement(2, 4, float64(b)/255.0)
+	toM.SetElement(3, 4, 0.0)
 
-	dB := [3]float64{cB[0] - cA[0], cB[1] - cA[1], cB[2] - cA[2]}
-	dC := [3]float64{cC[0] - cA[0], cC[1] - cA[1], cC[2] - cA[2]}
-	var n [3]float64
-	n[0] = dB[1]*dC[2] - dB[2]*dC[1]
-	n[1] = dB[2]*dC[0] - dB[0]*dC[2]
-	n[2] = dB[0]*dC[1] - dB[1]*dC[0]
-	l := math.Sqrt(n[0]*n[0] + n[1]*n[1] + n[2]*n[2])
-	f.Normal[0] = n[0] / l
-	f.Normal[1] = n[1] / l
-	f.Normal[2] = n[2] / l
+	f.ColorM = fromM
+	f.ColorM.Invert()
+	f.ColorM.Concat(toM)
 
 	return nil
 }
@@ -100,25 +144,20 @@ func (f *FadeTarget) Update() {
 		return
 	}
 	f.Frame--
-	// Fade AWAY from triangle.
-	normalFactor := float64(f.Frames)/(float64(f.Frame)+0.5) - 1.0 // Avoid division by zero.
-	// Fade TO triangle.
-	// normalFactor := float64(f.Frame)/float64(f.Frames) - 1.0
 
+	factor := 1.0 - float64(f.Frame)/float64(f.Frames) // Is 1.0 in the last execution.
+
+	// Linearly interpolate the matrix.
 	var colorM ebiten.ColorM
-	delta := f.Base
 	for i := 0; i < 3; i++ {
-		for j := 0; j < 3; j++ {
-			isDiag := 0.0
+		for j := 0; j < 4; j++ {
+			identity := 0.0
 			if i == j {
-				isDiag = 1.0
+				identity = 1.0
 			}
-			e := isDiag + normalFactor*f.Normal[i]*f.Normal[j]
-			colorM.SetElement(i, j, e)
-			delta[i] -= e * f.Base[j]
+			colorM.SetElement(i, j, f.ColorM.Element(i, j)*factor+identity*(1.0-factor))
 		}
 	}
-	colorM.Translate(delta[0], delta[1], delta[2], 0.0)
 	f.World.GlobalColorM.Concat(colorM)
 
 	if f.Frame == 0 {

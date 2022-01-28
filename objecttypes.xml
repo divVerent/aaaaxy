@@ -128,9 +128,14 @@
  </objecttype>
  <objecttype name="FadeTarget" color="#ff00ff">
   <property name="duration" type="string" default="0s"/>
-  <property name="invariant_color_a" type="color" default=""/>
-  <property name="invariant_color_b" type="color" default=""/>
-  <property name="invariant_color_c" type="color" default=""/>
+  <property name="from_color_a" type="color" default=""/>
+  <property name="from_color_b" type="color" default=""/>
+  <property name="from_color_c" type="color" default=""/>
+  <property name="from_color_d" type="color" default=""/>
+  <property name="to_color_a" type="color" default=""/>
+  <property name="to_color_b" type="color" default=""/>
+  <property name="to_color_c" type="color" default=""/>
+  <property name="to_color_d" type="color" default=""/>
  </objecttype>
  <objecttype name="ForceField" color="#ff00ff">
   <property name="orientation" type="string"/>
