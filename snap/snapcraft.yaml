@@ -73,6 +73,7 @@ parts:
       - libxxf86vm-dev
       - pkgconf
     stage-packages:
+      - gxmessage
       - libasound2
       - libasound2-plugins
       - libgl1
@@ -83,7 +84,6 @@ parts:
       - libxau6
       - libxcb1
       - libxdmcp6
-      - zenity
 
 layout:
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
