@@ -19,8 +19,16 @@ package alert
 
 import (
 	"github.com/ncruces/zenity"
+	"os/exec"
 )
 
 func Show(msg string) {
-	zenity.Error(msg, zenity.Title("AAAAXY - Error"))
+	err := zenity.Error(msg, zenity.Title("AAAAXY - Error"))
+	if err != nil {
+		err = exec.Command("gxmessage", "-center", "-title", "AAAAXY - Error", " "+msg).Run()
+	}
+	if err != nil {
+		err = exec.Command("xmessage", "-center", "-title", "AAAAXY - Error", " "+msg).Run()
+	}
+	// No further fallback - we already wrote the fatal error to stderr anyway.
 }
