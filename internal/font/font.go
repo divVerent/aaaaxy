@@ -58,6 +58,7 @@ func makeFace(f font.Face) Face {
 }
 
 // cacheChars are all characters the game uses. ASCII plus all Unicode our map file contains.
+// NOT including stuff from the credits.
 var cacheChars = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©"
 
 // We always keep the game character set in cache.
