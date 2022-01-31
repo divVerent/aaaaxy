@@ -80,6 +80,45 @@ type Game struct {
 
 var _ ebiten.Game = &Game{}
 
+func (g *Game) updateFrame() error {
+	timing.Section("input")
+	input.Update()
+
+	timing.Section("demo_pre")
+	if demo.Update() {
+		log.Infof("demo playback ended, exiting")
+		return RegularTermination
+	}
+
+	defer func() {
+		timing.Section("demo_post")
+		if g.Menu.World.Player != nil {
+			demo.PostUpdate(g.Menu.World.Player.Rect.Origin)
+		}
+	}()
+
+	timing.Section("menu")
+	err := g.Menu.Update()
+	if err != nil {
+		return err
+	}
+
+	timing.Section("world")
+	err = g.Menu.UpdateWorld()
+	if err != nil {
+		return err
+	}
+
+	// As the world's Update method may change the sound system info,
+	// run this part last to reduce sound latency.
+
+	timing.Section("noise")
+	noise.Update()
+
+	timing.Section("audiowrap")
+	audiowrap.Update()
+}
+
 func (g *Game) Update() error {
 	if !g.init.done {
 		return g.InitStep()
@@ -96,42 +135,7 @@ func (g *Game) Update() error {
 	defer timing.Group()()
 
 	for frame := 0; frame < *fpsDivisor; frame++ {
-		timing.Section("input")
-		input.Update()
-
-		timing.Section("demo_pre")
-		if demo.Update() {
-			log.Infof("demo playback ended, exiting")
-			return RegularTermination
-		}
-
-		defer func() {
-			timing.Section("demo_post")
-			if g.Menu.World.Player != nil {
-				demo.PostUpdate(g.Menu.World.Player.Rect.Origin)
-			}
-		}()
-
-		timing.Section("menu")
-		err := g.Menu.Update()
-		if err != nil {
-			return err
-		}
-
-		timing.Section("world")
-		err = g.Menu.UpdateWorld()
-		if err != nil {
-			return err
-		}
-
-		// As the world's Update method may change the sound system info,
-		// run this part last to reduce sound latency.
-
-		timing.Section("noise")
-		noise.Update()
-
-		timing.Section("audiowrap")
-		audiowrap.Update()
+		g.updateFrame()
 	}
 
 	return nil
