@@ -38,8 +38,15 @@ case "$mode" in
 	replace_start)
 		newsave=$(cat)
 		while read -r l; do
-			echo "$l" | NEWSAVE=$newsave json_xs -t json -e '$_->{SaveGame} = decode_json $ENV{NEWSAVE} if exists $_->{SaveGame}'
-			echo
+			case "$l" in
+				*\"SaveGame\":*)
+					echo "$l" | NEWSAVE=$newsave json_xs -t json -e '$_->{SaveGame} = decode_json $ENV{NEWSAVE} if exists $_->{SaveGame}'
+					echo
+					;;
+				*)
+					echo "$l"
+					;;
+			esac
 		done < "$demo"
 		;;
 	*)
