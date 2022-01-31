@@ -448,5 +448,9 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 		// as secrets typically cannot be left.
 		cat &^= NoEscapeSpeedrun
 	}
+	if s.Teleports() != 0 {
+		// Note: this can in theory be combined with AllSecrets.
+		cat &^= NoTeleportsSpeedrun
+	}
 	return cat
 }
