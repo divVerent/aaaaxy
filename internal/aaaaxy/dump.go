@@ -137,7 +137,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 	settings := []string{}
 	// Video first, so we can refer to the video stream as [0:v] for sure.
 	if video != "" {
-		fps := float64(engine.GameTPS) / float64(*dumpVideoFpsDivisor)
+		fps := float64(engine.GameTPS) / (float64(*fpsDivisor) * float64(*dumpVideoFpsDivisor))
 		inputs = append(inputs, fmt.Sprintf("-f rawvideo -pixel_format rgba -video_size %dx%d -r %v -i '%s'", engine.GameWidth, engine.GameHeight, fps, strings.ReplaceAll(video, "'", "'\\''")))
 		filterComplex := "[0:v]premultiply=inplace=1,format=gbrp[lowres]; "
 		switch screenFilter {

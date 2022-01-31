@@ -47,6 +47,7 @@ var (
 	runnableWhenUnfocused = flag.Bool("runnable_when_unfocused", flag.SystemDefault(map[string]interface{}{"js/*": true, "*/*": false}).(bool), "keep running the game even when not focused")
 	dumpLoadingFractions  = flag.String("dump_loading_fractions", "", "file name to dump actual loading fractions to")
 	debugJustInit         = flag.Bool("debug_just_init", false, "just init everything, then quit right away")
+	fpsDivisor            = flag.Int("fps_divisor", 1, "framerate divisor (use on very low systems, but this may make the game unwinnable or harder as it restricts input; must be a divisor of "+fmt.Sprint(engine.GameTPS))
 )
 
 func LoadConfig() (*flag.Config, error) {
@@ -88,6 +89,11 @@ func setWindowSize() {
 }
 
 func (g *Game) InitEbiten() error {
+	// Ensure fps divisor is valid. We can only do integer TPS.
+	if *fpsDivisor < 1 || engine.GameTPS%*fpsDivisor != 0 {
+		*fpsDivisor = 1
+	}
+
 	ebiten.SetCursorMode(ebiten.CursorModeHidden)
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetInitFocused(true)
@@ -125,7 +131,7 @@ func (g *Game) InitEbiten() error {
 	if slowDumping() || demo.Timedemo() {
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)
 	} else {
-		ebiten.SetMaxTPS(engine.GameTPS)
+		ebiten.SetMaxTPS(engine.GameTPS / *fpsDivisor)
 	}
 
 	// Pause when unfocused, except when recording demos.
