@@ -35,8 +35,15 @@ case "$mode" in
 		rm -f "$a" "$b"
 		exit "$status"
 		;;
+	replace_start)
+		newsave=$(cat)
+		while read -r l; do
+			echo "$l" | NEWSAVE=$newsave json_xs -e '$_->{SaveGame} = decode_json $ENV{NEWSAVE} if exists $_->{SaveGame}'
+		done < "$demo"
+		;;
 	*)
 		echo >&2 "Usage: $0 {start|end|diff} filename.dem"
+		echo >&2 "       $0 {replace_start} filename.dem < savegame.sav > newfilename.dem"
 		exit 1
 		;;
 esac
