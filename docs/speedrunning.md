@@ -11,10 +11,10 @@ The following run categories exist:
 
   - Any%: every run is Any% (but Any% is not shown if 100% is met too).
   - 100%: all regular checkpoints have been hit.
-  - All Notes: all notes have been read.
+  - All Notes: all notes have been read. Required an almost 100% run.
   - All Paths: all connections between the visited checkpoints have been
     used by the player during the run in one or the other direction.
-  - All Secrets: all notes in secret rooms have been read.
+  - All Secrets: all notes in all secret rooms have been read.
   - All Flipped: all checkpoints that were seen were last seen in
     flipped/mirrored state.
   - No Teleports: the checkpoint map was never used to teleport to a
