@@ -249,6 +249,7 @@ func (w *World) Init(saveState int) error {
 		prevCpID:  level.InvalidEntityID,
 		saveState: saveState,
 	}
+	w.PlayerState.Init()
 	w.renderer.Init(w)
 
 	// Load tile the player starts on.
@@ -318,6 +319,7 @@ func (w *World) loadUnchecked(saveName string) error {
 	if err != nil {
 		return err
 	}
+	w.PlayerState.Init()
 	return w.RespawnPlayer(w.PlayerState.LastCheckpoint(), true)
 }
 

@@ -34,6 +34,14 @@ type PlayerState struct {
 	Level *level.Level
 }
 
+// Init must be called when Level got externally changed, e.g. by loading world or a save state.
+func (s *PlayerState) Init() {
+	_, haveTeleports := s.Level.Player.PersistentState["teleports"]
+	if !haveTeleports {
+		s.Level.Player.PersistentState["teleports"] = fmt.Sprint(s.Escapes())
+	}
+}
+
 func (s *PlayerState) HasAbility(name string) bool {
 	have, found := (*cheatPlayerAbilities)[name]
 	if found {
@@ -176,6 +184,23 @@ func (s *PlayerState) Escapes() int {
 
 func (s *PlayerState) AddEscape() {
 	s.Level.Player.PersistentState["escapes"] = fmt.Sprint(s.Escapes() + 1)
+}
+
+func (s *PlayerState) Teleports() int {
+	teleportsStr := s.Level.Player.PersistentState["teleports"]
+	var teleports int
+	if teleportsStr != "" {
+		_, err := fmt.Sscanf(teleportsStr, "%d", &teleports)
+		if err != nil {
+			log.Errorf("could not parse teleports counter: %v", err)
+			return 60 * 86400 // Takes at least one day.
+		}
+	}
+	return teleports
+}
+
+func (s *PlayerState) AddTeleport() {
+	s.Level.Player.PersistentState["teleports"] = fmt.Sprint(s.Teleports() + 1)
 }
 
 func (s *PlayerState) Won() bool {
