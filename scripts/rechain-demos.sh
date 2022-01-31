@@ -30,12 +30,21 @@ for demo in "$@"; do
 	./aaaaxy \
 		-audio=false \
 		-batch \
-		-debug_enable_drawing=false \
 		-demo_play="$demo.replaced.dem" \
 		-demo_record="$demo.rechained.dem" \
 		-demo_timedemo \
+		-draw_blurs=false \
+		-draw_outside=false \
+		-draw_visibility_mask=false \
+		-expand_using_vertices_accurately=false \
+		-fps_divisor=15 \
 		-fullscreen=false \
+		-profiling=1m \
 		-runnable_when_unfocused \
+		--screen_filter=simple \
+		-show_fps \
+		-show_time \
+		-vsync=false \
 		-window_scale_factor=1 || true
 	save=$(scripts/demo-to-savegame.sh end "$demo.rechained.dem")
 	[ -n "$save" ]
