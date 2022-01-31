@@ -234,11 +234,11 @@ const (
 	// true       false          => AnyPercent
 	// false      true           => AllCheckpoints
 	// true       true           => HundredPercent
-	HundredPercentSpeedrun SpeedrunCategories = 0x1000
+	hundredPercentSpeedrun SpeedrunCategories = 0x1000
 	// The following ones only are used internally when naming.
-	WithoutCheatsSpeedrun SpeedrunCategories = 0x2000
-	CheatingSpeedrun      SpeedrunCategories = 0x4000
-	ImpossibleSpeedrun    SpeedrunCategories = 0x8000
+	withoutCheatsSpeedrun SpeedrunCategories = 0x2000
+	cheatingSpeedrun      SpeedrunCategories = 0x4000
+	impossibleSpeedrun    SpeedrunCategories = 0x8000
 	allCategoriesSpeedrun SpeedrunCategories = 0xFF
 )
 
@@ -267,13 +267,13 @@ func (c SpeedrunCategories) Name() string {
 		case input.Start:
 			return "No Start"
 		}
-	case HundredPercentSpeedrun:
+	case hundredPercentSpeedrun:
 		return "100%"
-	case WithoutCheatsSpeedrun:
+	case withoutCheatsSpeedrun:
 		return "Without Cheating Of Course"
-	case CheatingSpeedrun:
+	case cheatingSpeedrun:
 		return "Cheat%"
-	case ImpossibleSpeedrun:
+	case impossibleSpeedrun:
 		return "Impossible"
 	default:
 		return "???"
@@ -294,17 +294,17 @@ func (c SpeedrunCategories) ShortName() string {
 		return "S"
 	case AllFlippedSpeedrun:
 		return "F"
-	case HundredPercentSpeedrun:
+	case hundredPercentSpeedrun:
 		return "&"
 	case NoTeleportsSpeedrun:
 		return "T"
 	case NoEscapeSpeedrun:
 		return "E"
-	case WithoutCheatsSpeedrun:
+	case withoutCheatsSpeedrun:
 		return "" // Never actually appears other than in tryNext.
-	case CheatingSpeedrun:
+	case cheatingSpeedrun:
 		return "c"
-	case ImpossibleSpeedrun:
+	case impossibleSpeedrun:
 		return "!"
 	default:
 		return "?"
@@ -322,10 +322,10 @@ func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, t
 		}
 	}
 	if is, _ := flag.Cheating(); is {
-		addCategory(CheatingSpeedrun, 0)
-		addCategory(WithoutCheatsSpeedrun, ImpossibleSpeedrun)
+		addCategory(cheatingSpeedrun, 0)
+		addCategory(withoutCheatsSpeedrun, impossibleSpeedrun)
 	} else if c.ContainAll(AllCheckpointsSpeedrun) {
-		addCategory(HundredPercentSpeedrun, AllCheckpointsSpeedrun /* always true */)
+		addCategory(hundredPercentSpeedrun, AllCheckpointsSpeedrun /* always true */)
 	} else {
 		addCategory(AnyPercentSpeedrun, AnyPercentSpeedrun)
 		addCategory(AllCheckpointsSpeedrun, AllCheckpointsSpeedrun /* always false */)
