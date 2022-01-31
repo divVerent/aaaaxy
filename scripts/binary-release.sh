@@ -62,7 +62,7 @@ VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 
 # Also pack the SDL game controller DB at the exact version used for the
 # release. Used for compiling from source tarballs.
-7za -tzip -mx=9 sdl-gamecontrollerdb-for-aaaaxy-$new.zip third_party/SDL_GameControllerDB/assets/input/*
+7za a -tzip -mx=9 sdl-gamecontrollerdb-for-aaaaxy-$new.zip third_party/SDL_GameControllerDB/assets/input/*
 
 GOOS=linux scripts/binary-release-compile.sh amd64
 GOOS=windows scripts/binary-release-compile.sh amd64
