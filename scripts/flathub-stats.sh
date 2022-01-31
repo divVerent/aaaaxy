@@ -62,7 +62,7 @@ mkdir -p "$cache"
 			echo "6 $release_date $release_updates"
 			echo "6 $release_enddate $release_updates"
 			releade_middate=$(date +'%Y-%m-%d' -d@$((($(date +%s -d"$release_date") + $(date +%s -d"$release_enddate")) / 2)))
-			release_str=$(echo "$release" | sed -e 's,+,\\n+,g')
+			release_str=$(echo "$release" | sed -e 's,+,\\\\n+,g')
 			echo "8 $releade_middate $release_updates \"$release_str\""
 		fi
 	}
