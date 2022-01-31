@@ -18,7 +18,7 @@
 # passed the regression test other than for savegame differences that do not
 # impact gameplay at all.
 
-set -ex
+set -e
 
 save=
 for demo in "$@"; do
@@ -27,6 +27,7 @@ for demo in "$@"; do
 	else
 		cp "$demo" "$demo.replaced.dem"
 	fi
+	echo >&2 "Running $demo..."
 	./aaaaxy \
 		-audio=false \
 		-batch \

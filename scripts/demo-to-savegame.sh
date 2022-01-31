@@ -35,6 +35,36 @@ case "$mode" in
 		rm -f "$a" "$b"
 		exit "$status"
 		;;
+	diff_start)
+		a=$(mktemp)
+		b=$(mktemp)
+		"$0" start "$demo" > "$a"
+		"$0" start "$3" > "$b"
+		diff -u "$a" "$b"
+		status=$?
+		rm -f "$a" "$b"
+		exit "$status"
+		;;
+	diff_end)
+		a=$(mktemp)
+		b=$(mktemp)
+		"$0" end "$demo" > "$a"
+		"$0" end "$3" > "$b"
+		diff -u "$a" "$b"
+		status=$?
+		rm -f "$a" "$b"
+		exit "$status"
+		;;
+	diff_seq)
+		a=$(mktemp)
+		b=$(mktemp)
+		"$0" end   "$demo" > "$a"
+		"$0" start "$3" > "$b"
+		diff -u "$a" "$b"
+		status=$?
+		rm -f "$a" "$b"
+		exit "$status"
+		;;
 	replace_start)
 		newsave=$(cat)
 		while read -r l; do
