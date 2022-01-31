@@ -239,7 +239,7 @@ const (
 	WithoutCheatsSpeedrun SpeedrunCategories = 0x2000
 	CheatingSpeedrun      SpeedrunCategories = 0x4000
 	ImpossibleSpeedrun    SpeedrunCategories = 0x8000
-	allCategoriesSpeedrun SpeedrunCategories = 0x7F
+	allCategoriesSpeedrun SpeedrunCategories = 0xFF
 )
 
 func (c SpeedrunCategories) Name() string {
