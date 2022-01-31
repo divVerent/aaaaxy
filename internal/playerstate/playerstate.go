@@ -324,20 +324,17 @@ func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, t
 	if is, _ := flag.Cheating(); is {
 		addCategory(CheatingSpeedrun, 0)
 		addCategory(WithoutCheatsSpeedrun, ImpossibleSpeedrun)
-	}
-	if c.ContainAll(AllCheckpointsSpeedrun) {
-		addCategory(HundredPercentSpeedrun, AllCheckpointsSpeedrun)
+	} else if c.ContainAll(AllCheckpointsSpeedrun) {
+		addCategory(HundredPercentSpeedrun, AllCheckpointsSpeedrun /* always true */)
 	} else {
 		addCategory(AnyPercentSpeedrun, AnyPercentSpeedrun)
-		addCategory(AllCheckpointsSpeedrun, AllCheckpointsSpeedrun)
+		addCategory(AllCheckpointsSpeedrun, AllCheckpointsSpeedrun /* always false */)
 	}
 	addCategory(AllSignsSpeedrun, AllSignsSpeedrun)
 	addCategory(AllPathsSpeedrun, AllPathsSpeedrun)
 	addCategory(AllSecretsSpeedrun, AllSecretsSpeedrun)
 	addCategory(AllFlippedSpeedrun, AllFlippedSpeedrun)
-	if !c.ContainAll(NoEscapeSpeedrun) {
-		addCategory(NoTeleportsSpeedrun, NoTeleportsSpeedrun)
-	}
+	addCategory(NoTeleportsSpeedrun, NoTeleportsSpeedrun)
 	addCategory(NoEscapeSpeedrun, NoEscapeSpeedrun)
 	return categories, tryNext
 }
@@ -422,21 +419,28 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 			// Note: this means AllFlipped is possible without 100%. WAI.
 			cat &^= AllFlippedSpeedrun
 		}
-		for _, next := range s.Level.CheckpointLocations.Locs[cp].NextByDir {
-			// Skip non-forward edges.
-			if !next.Forward || next.Optional {
-				continue
-			}
-			// Skip secrets.
-			nextCpSp := s.Level.Checkpoints[next.Other]
-			if nextCpSp.Properties["secret"] == "true" {
-				continue
-			}
-			if !s.CheckpointsWalked(cp, next.Other) {
-				cat &^= AllPathsSpeedrun
+		if s.CheckpointSeen(cp) != NotSeen {
+			for _, next := range s.Level.CheckpointLocations.Locs[cp].NextByDir {
+				// Skip non-forward edges.
+				if !next.Forward || next.Optional {
+					continue
+				}
+				// Skip secrets.
+				nextCpSp := s.Level.Checkpoints[next.Other]
+				if nextCpSp.Properties["secret"] == "true" {
+					continue
+				}
+				// Only if the other CP was actually hit.
+				// (i.e. Any% All Paths means all paths between the CPs actually
+				//  hit, and 100% All Paths means really all paths)
+				if s.CheckpointSeen(next.Other) == NotSeen {
+					continue
+				}
+				if !s.CheckpointsWalked(cp, next.Other) {
+					cat &^= AllPathsSpeedrun
+				}
 			}
 		}
-		// Dead ends not needed for all signs run.
 		for _, sign := range s.Level.TnihSignsByCheckpoint[cp] {
 			if sign.PersistentState["seen"] != "true" {
 				cat &^= AllSignsSpeedrun
