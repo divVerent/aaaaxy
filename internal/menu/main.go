@@ -20,15 +20,10 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
-	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
-)
-
-var (
-	cheatShowFinalCredits = flag.Bool("cheat_show_final_credits", false, "show the final credits screen for testing")
 )
 
 type MainScreenItem int
@@ -74,7 +69,7 @@ func (s *MainScreen) Update() error {
 		case Settings:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 		case Credits:
-			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&CreditsScreen{Fancy: *cheatShowFinalCredits}))
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&CreditsScreen{Fancy: false}))
 		case Quit:
 			return s.Controller.ActivateSound(s.Controller.QuitGame())
 		}

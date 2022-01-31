@@ -17,17 +17,25 @@ package menu
 import (
 	"fmt"
 	"image/color"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/credits"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
+	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/version"
+)
+
+var (
+	cheatShowFinalCredits               = flag.Bool("cheat_show_final_credits", false, "show the final credits screen for testing")
+	cheatFinalCreditsSpeedrunCategories = flag.Int("cheat_final_credits_speedrun_categories", -1, "speedrun categories to show for testing")
 )
 
 const (
@@ -47,6 +55,9 @@ type CreditsScreen struct {
 }
 
 func (s *CreditsScreen) Init(m *Controller) error {
+	if *cheatShowFinalCredits {
+		s.Fancy = true
+	}
 	s.Controller = m
 	s.Lines = append([]string{}, credits.Lines...)
 	s.Lines = append(
@@ -57,7 +68,18 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	if s.Fancy {
 		music.Switch(s.Controller.World.Level.CreditsMusic)
 		timeStr := fun.FormatText(&s.Controller.World.PlayerState, "{{GameTime}}")
-		categories, tryNext := s.Controller.World.PlayerState.SpeedrunCategories().Describe()
+		cats := s.Controller.World.PlayerState.SpeedrunCategories()
+		if *cheatFinalCreditsSpeedrunCategories >= 0 {
+			cats = playerstate.SpeedrunCategories(*cheatFinalCreditsSpeedrunCategories)
+		}
+		categories, tryNext := cats.Describe()
+		phrases := strings.Split(categories, ", ")
+		categories1, categories2 := categories, ""
+		if len(phrases) >= 3 {
+			half := len(phrases)/2 + 1 // 3 -> 2|1, 4 -> 3|1, 5 -> 3|2, ...
+			categories1 = strings.Join(phrases[:half], ", ") + ", "
+			categories2 = strings.Join(phrases[half:], ", ")
+		}
 		s.Lines = append(
 			s.Lines,
 			"",
@@ -65,8 +87,12 @@ func (s *CreditsScreen) Init(m *Controller) error {
 			timeStr,
 			"",
 			"Your Speedrun Categories",
-			categories,
+			categories1,
 		)
+		if categories2 != "" {
+			s.Lines = append(s.Lines,
+				categories2)
+		}
 		if tryNext != "" {
 			s.Lines = append(s.Lines,
 				"",
@@ -78,7 +104,7 @@ func (s *CreditsScreen) Init(m *Controller) error {
 			"Thank You!")
 	}
 	s.Frame = (-engine.GameHeight - creditsLineHeight) * creditsFrames
-	s.MaxFrame = (creditsLineHeight*len(s.Lines) - 3*creditsLineHeight/2 - engine.GameHeight*7/8) * creditsFrames
+	s.MaxFrame = (creditsLineHeight*len(s.Lines) - 0*creditsLineHeight - engine.GameHeight) * creditsFrames
 	return nil
 }
 
