@@ -222,7 +222,8 @@ const (
 	AllSecretsSpeedrun     SpeedrunCategories = 0x10
 	AllFlippedSpeedrun     SpeedrunCategories = 0x20
 	NoEscapeSpeedrun       SpeedrunCategories = 0x40
-	// Remapping:
+	NoTeleportsSpeedrun    SpeedrunCategories = 0x80
+	// Remapping (reason: one can have all CPs but not Any%, i.e. won the game yet):
 	// AnyPercent AllCheckpoints => Result
 	// false      false          => 0
 	// true       false          => AnyPercent
@@ -251,6 +252,8 @@ func (c SpeedrunCategories) Name() string {
 		return "All Secrets"
 	case AllFlippedSpeedrun:
 		return "All Flipped"
+	case NoTeleportsSpeedrun:
+		return "No Teleports"
 	case NoEscapeSpeedrun:
 		switch input.ExitButton() {
 		default: // case input.Escape:
@@ -293,6 +296,8 @@ func (c SpeedrunCategories) ShortName() string {
 		return ""
 	case HundredPercentSpeedrun:
 		return "&"
+	case NoTeleportSpeedrun:
+		return "T"
 	case NoEscapeSpeedrun:
 		return "E"
 	case WithoutCheatsSpeedrun:
@@ -331,6 +336,9 @@ func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, t
 	addCategory(AllPathsSpeedrun, AllPathsSpeedrun)
 	addCategory(AllSecretsSpeedrun, AllSecretsSpeedrun)
 	addCategory(AllFlippedSpeedrun, AllFlippedSpeedrun)
+	if !c.ContainAll(NoEscapeSpeedrun) {
+		addCategory(NoTeleportsSpeedrun, NoEscapeSpeedrun)
+	}
 	addCategory(NoEscapeSpeedrun, NoEscapeSpeedrun)
 	return categories, tryNext
 }
