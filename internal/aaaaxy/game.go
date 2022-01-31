@@ -117,6 +117,8 @@ func (g *Game) updateFrame() error {
 
 	timing.Section("audiowrap")
 	audiowrap.Update()
+
+	return nil
 }
 
 func (g *Game) Update() error {
@@ -135,7 +137,9 @@ func (g *Game) Update() error {
 	defer timing.Group()()
 
 	for frame := 0; frame < *fpsDivisor; frame++ {
-		g.updateFrame()
+		if err := g.updateFrame(); err != nil {
+			return err
+		}
 	}
 
 	return nil
