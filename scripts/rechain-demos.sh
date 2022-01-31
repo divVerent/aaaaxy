@@ -36,6 +36,7 @@ for demo in "$@"; do
 		-demo_timedemo \
 		-fullscreen=false \
 		-runnable_when_unfocused \
-		-window_scale_factor=1
+		-window_scale_factor=1 || true
 	save=$(scripts/demo-to-savegame.sh end "$demo.rechained.dem")
+	[ -n "$save" ]
 done
