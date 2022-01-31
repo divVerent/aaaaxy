@@ -336,7 +336,7 @@ func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, t
 	addCategory(AllSecretsSpeedrun, AllSecretsSpeedrun)
 	addCategory(AllFlippedSpeedrun, AllFlippedSpeedrun)
 	if !c.ContainAll(NoEscapeSpeedrun) {
-		addCategory(NoTeleportsSpeedrun, NoEscapeSpeedrun)
+		addCategory(NoTeleportsSpeedrun, NoTeleportsSpeedrun)
 	}
 	addCategory(NoEscapeSpeedrun, NoEscapeSpeedrun)
 	return categories, tryNext
