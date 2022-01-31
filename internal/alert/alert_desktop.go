@@ -24,16 +24,25 @@ import (
 
 func Show(msg string) {
 	err := zenity.Error(msg, zenity.Title("AAAAXY - Error"))
+	if err == nil {
+		return
+	}
 	if err == zenity.ErrCanceled {
 		// Dialog closed, that's OK.
 		return
 	}
 	err = exec.Command("gxmessage", "-center", "-title", "AAAAXY - Error", " "+msg).Run()
+	if err == nil {
+		return
+	}
 	if status, ok := err.(*exec.ExitError); ok && status.ExitCode() == 1 {
 		// Dialog closed, that's OK.
 		return
 	}
 	err = exec.Command("xmessage", "-center", "-title", "AAAAXY - Error", " "+msg).Run()
+	if err == nil {
+		return
+	}
 	if status, ok := err.(*exec.ExitError); ok && status.ExitCode() == 1 {
 		// Dialog closed, that's OK.
 		return
