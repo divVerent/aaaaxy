@@ -229,8 +229,7 @@ const (
 	// true       false          => AnyPercent
 	// false      true           => AllCheckpoints
 	// true       true           => HundredPercent
-	RedundantAnyPercentSpeedrun SpeedrunCategories = 0x0800
-	HundredPercentSpeedrun      SpeedrunCategories = 0x1000
+	HundredPercentSpeedrun SpeedrunCategories = 0x1000
 	// The following ones only are used internally when naming.
 	WithoutCheatsSpeedrun SpeedrunCategories = 0x2000
 	CheatingSpeedrun      SpeedrunCategories = 0x4000
@@ -263,8 +262,6 @@ func (c SpeedrunCategories) Name() string {
 		case input.Start:
 			return "No Start"
 		}
-	case RedundantAnyPercentSpeedrun:
-		return ""
 	case HundredPercentSpeedrun:
 		return "100%"
 	case WithoutCheatsSpeedrun:
@@ -292,8 +289,6 @@ func (c SpeedrunCategories) ShortName() string {
 		return "S"
 	case AllFlippedSpeedrun:
 		return "F"
-	case RedundantAnyPercentSpeedrun:
-		return ""
 	case HundredPercentSpeedrun:
 		return "&"
 	case NoTeleportSpeedrun:
@@ -326,7 +321,6 @@ func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, t
 		addCategory(WithoutCheatsSpeedrun, ImpossibleSpeedrun)
 	}
 	if c.ContainAll(AllCheckpointsSpeedrun) {
-		addCategory(RedundantAnyPercentSpeedrun, AnyPercentSpeedrun)
 		addCategory(HundredPercentSpeedrun, AllCheckpointsSpeedrun)
 	} else {
 		addCategory(AnyPercentSpeedrun, AnyPercentSpeedrun)
