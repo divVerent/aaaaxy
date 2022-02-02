@@ -92,9 +92,13 @@ func (c *Controller) Update() error {
 		c.blurFrame = 0
 		return c.SwitchToScreen(&CreditsScreen{Fancy: true})
 	} else if input.Exit.JustHit && c.Screen == nil && !c.World.TimerStopped {
-		c.World.TimerStarted = true
+		if c.World.PlayerState.LastCheckpoint() != "" || c.World.PlayerState.Frames() > 0 {
+			c.World.TimerStarted = true
+		}
 		music.Switch("")
-		c.World.PlayerState.AddEscape()
+		if c.World.TimerStarted {
+			c.World.PlayerState.AddEscape()
+		}
 		c.World.PreDespawn()
 		c.blurFrame = 0
 		return c.SwitchToScreen(&MainScreen{})
