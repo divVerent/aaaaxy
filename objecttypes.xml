@@ -234,6 +234,7 @@
  </objecttype>
  <objecttype name="SetState" color="#ff0000">
   <property name="player_only" type="bool" default="false"/>
+  <property name="required_orientation" type="string"/>
   <property name="send_once" type="bool" default="false"/>
   <property name="send_untouch" type="bool" default="false"/>
   <property name="state" type="bool" default="true"/>
@@ -388,6 +389,7 @@
  </objecttype>
  <objecttype name="TnihSign" color="#ffff00">
   <property name="reached_from" type="object" default="0"/>
+  <property name="required_orientation" type="string"/>
   <property name="resize_image" type="bool" default="false"/>
   <property name="target" type="string"/>
   <property name="text" type="string"/>

@@ -88,6 +88,25 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 		t.Entity.RenderOffset = t.Entity.Rect.Size.Sub(m.Delta{DX: tnihWidth, DY: tnihHeight}).Div(2)
 	}
 	t.Target = mixins.ParseTarget(sp.Properties["target"])
+
+	// Field contains orientation OF THE PLAYER to make it easier in the map editor.
+	// So it is actually a transform as far as this code is concerned.
+	orientationStr := sp.Properties["required_orientation"]
+	if orientationStr != "" {
+		requiredTransform, err := m.ParseOrientation(orientationStr)
+		if err != nil {
+			return fmt.Errorf("could not parse required orientation: %v", err)
+		}
+		if e.Transform == requiredTransform {
+			// Normal.
+		} else if e.Transform == requiredTransform.Concat(m.FlipX()) {
+			// Normal.
+		} else {
+			// Hide.
+			e.Alpha = 0.0
+		}
+	}
+
 	return nil
 }
 
@@ -98,6 +117,10 @@ func (t *TnihSign) Despawn() {
 }
 
 func (t *TnihSign) Touch(other *engine.Entity) {
+	if t.Entity.Alpha == 0 {
+		// Not visible, not active!
+		return
+	}
 	if other != t.World.Player {
 		return
 	}

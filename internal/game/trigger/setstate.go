@@ -15,10 +15,13 @@
 package trigger
 
 import (
+	"fmt"
+
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/game/target"
 	"github.com/divVerent/aaaaxy/internal/level"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 // SetState overrides the boolean state of a warpzone or entity.
@@ -49,6 +52,23 @@ func (s *SetState) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	s.SendUntouch = sp.Properties["send_untouch"] == "true"
 	s.SendOnce = sp.Properties["send_once"] == "true"
 	s.PlayerOnly = sp.Properties["player_only"] == "true"
+
+	orientationStr := sp.Properties["required_orientation"]
+	if orientationStr != "" {
+		requiredTransform, err := m.ParseOrientation(orientationStr)
+		if err != nil {
+			return fmt.Errorf("could not parse required orientation: %v", err)
+		}
+		if e.Transform == requiredTransform {
+			// Normal.
+		} else if e.Transform == requiredTransform.Concat(m.FlipX()) {
+			// Normal.
+		} else {
+			// Disable.
+			s.Target = nil
+		}
+	}
+
 	return nil
 }
 
