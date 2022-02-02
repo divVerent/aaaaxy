@@ -17733,17 +17733,17 @@
     <property name="orientation" value="SE"/>
    </properties>
   </object>
-  <object id="8163" gid="310" x="4688" y="3776" width="16" height="16">
+  <object id="8163" name="ViewTheEndingOrNotBecauseNothingPointsAtThis" gid="310" x="4688" y="3776" width="16" height="16">
    <properties>
     <property name="required_orientation" value="WN"/>
    </properties>
   </object>
-  <object id="8164" gid="310" x="4688" y="3792" width="16" height="16">
+  <object id="8164" name="ViewTheEndingOrNotBecauseNothingPointsAtThis" gid="310" x="4688" y="3792" width="16" height="16">
    <properties>
     <property name="required_orientation" value="WN"/>
    </properties>
   </object>
-  <object id="8165" gid="310" x="4688" y="3808" width="16" height="16">
+  <object id="8165" name="ViewTheEndingOrNotBecauseNothingPointsAtThis" gid="310" x="4688" y="3808" width="16" height="16">
    <properties>
     <property name="required_orientation" value="WN"/>
    </properties>
@@ -17763,7 +17763,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="8169" gid="310" x="4688" y="3824" width="16" height="16">
+  <object id="8169" name="ViewTheEndingOrNotBecauseNothingPointsAtThis" gid="310" x="4688" y="3824" width="16" height="16">
    <properties>
     <property name="required_orientation" value="WN"/>
    </properties>
