@@ -117,11 +117,11 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 	case 0:
 		save = " A"
 	case 1:
-		save = " B"
+		save = " 4"
 	case 2:
-		save = " C"
+		save = " X"
 	case 3:
-		save = " D"
+		save = " Y"
 	}
 	if s.ResetFrame >= resetFrames && s.Item == ResetGame {
 		fg, bg = color.NRGBA{R: 170, G: 0, B: 0, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 255}
