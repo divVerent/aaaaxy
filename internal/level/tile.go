@@ -27,6 +27,7 @@ const (
 	PlayerSolidContents Contents = 2
 	ObjectSolidContents Contents = 4
 	SolidContents       Contents = PlayerSolidContents | ObjectSolidContents
+	AllContents         Contents = OpaqueContents | SolidContents
 )
 
 func (c Contents) Empty() bool {

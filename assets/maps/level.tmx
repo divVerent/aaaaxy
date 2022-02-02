@@ -17733,10 +17733,22 @@
     <property name="orientation" value="SE"/>
    </properties>
   </object>
-  <object id="8163" gid="310" x="4688" y="3776" width="16" height="16"/>
-  <object id="8164" gid="310" x="4688" y="3792" width="16" height="16"/>
-  <object id="8165" gid="310" x="4688" y="3808" width="16" height="16"/>
-  <object id="8166" name="ViewTheEndingWN" gid="300" x="4656" y="3776" width="16" height="64">
+  <object id="8163" gid="310" x="4688" y="3776" width="16" height="16">
+   <properties>
+    <property name="required_orientation" value="WN"/>
+   </properties>
+  </object>
+  <object id="8164" gid="310" x="4688" y="3792" width="16" height="16">
+   <properties>
+    <property name="required_orientation" value="WN"/>
+   </properties>
+  </object>
+  <object id="8165" gid="310" x="4688" y="3808" width="16" height="16">
+   <properties>
+    <property name="required_orientation" value="WN"/>
+   </properties>
+  </object>
+  <object id="8166" name="ViewTheEnding" gid="300" x="4656" y="3776" width="16" height="64">
    <properties>
     <property name="switchable" type="bool" value="true"/>
    </properties>
@@ -17751,57 +17763,41 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="8168" name="ViewTheEndingES" gid="293" x="6448" y="816" width="16" height="64">
+  <object id="8169" gid="310" x="4688" y="3824" width="16" height="16">
    <properties>
-    <property name="switchable" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="8169" gid="310" x="4688" y="3824" width="16" height="16"/>
-  <object id="8171" type="Text" x="4672" y="3776" width="16" height="64">
-   <properties>
-    <property name="orientation" value="ES"/>
-    <property name="required_orientation" value="ES"/>
-    <property name="text" value="E  X  I  T"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
-    <property name="text_font" value="Regular"/>
-   </properties>
-  </object>
-  <object id="8172" name="ViewTheEndingES" gid="299" x="4656" y="3776" width="16" height="64">
-   <properties>
-    <property name="switchable" type="bool" value="true"/>
+    <property name="required_orientation" value="WN"/>
    </properties>
   </object>
   <object id="8173" type="SetState" x="4800" y="3840" width="32" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="required_orientation" value="ES"/>
-    <property name="target" value="ViewTheEndingES !ViewTheEndingWN"/>
+    <property name="target" value="!ViewTheEnding"/>
    </properties>
   </object>
   <object id="8174" type="SetState" x="4800" y="3840" width="32" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="required_orientation" value="WN"/>
-    <property name="target" value="!ViewTheEndingES ViewTheEndingWN"/>
+    <property name="target" value="ViewTheEnding"/>
    </properties>
   </object>
   <object id="8175" type="SetState" x="4800" y="3840" width="32" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="required_orientation" value="SW"/>
-    <property name="target" value="!ViewTheEndingES !ViewTheEndingWN"/>
+    <property name="target" value="!ViewTheEnding"/>
    </properties>
   </object>
   <object id="8176" type="SetState" x="4800" y="3840" width="32" height="32">
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="required_orientation" value="NE"/>
-    <property name="target" value="!ViewTheEndingES !ViewTheEndingWN"/>
+    <property name="target" value="!ViewTheEnding"/>
    </properties>
   </object>
   <object id="8177" gid="319" x="4624" y="3792" width="32" height="32"/>
-  <object id="8178" name="ViewTheEndingWN" gid="293" x="6448" y="816" width="16" height="64">
+  <object id="8178" name="ViewTheEnding" gid="293" x="6448" y="816" width="16" height="64">
    <properties>
     <property name="switchable" type="bool" value="true"/>
    </properties>
@@ -17809,7 +17805,7 @@
   <object id="8179" type="SetState" x="5712" y="816" width="16" height="64">
    <properties>
     <property name="player_only" type="bool" value="true"/>
-    <property name="target" value="!ViewTheEndingES ViewTheEndingWN"/>
+    <property name="target" value="ViewTheEnding"/>
    </properties>
   </object>
   <object id="8182" type="Sprite" x="6000" y="688" width="160" height="64">

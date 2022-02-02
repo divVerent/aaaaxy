@@ -113,6 +113,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		} else {
 			// Hide.
 			e.Alpha = 0.0
+			w.MutateContentsBool(e, level.AllContents, false)
 		}
 	}
 
