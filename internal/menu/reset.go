@@ -41,9 +41,10 @@ const (
 const resetFrames = 300
 
 type ResetScreen struct {
-	Controller *Controller
-	Item       ResetScreenItem
-	ResetFrame int
+	Controller                 *Controller
+	Item                       ResetScreenItem
+	ResetFrame                 int
+	WaitForKeyReleaseThenReset bool
 }
 
 func (s *ResetScreen) Init(m *Controller) error {
@@ -52,11 +53,6 @@ func (s *ResetScreen) Init(m *Controller) error {
 }
 
 func (s *ResetScreen) Update() error {
-	if s.Item == ResetGame {
-		s.ResetFrame++
-	} else {
-		s.ResetFrame = 0
-	}
 	if input.Down.JustHit {
 		s.Item++
 		s.Controller.MoveSound(nil)
@@ -66,6 +62,12 @@ func (s *ResetScreen) Update() error {
 		s.Controller.MoveSound(nil)
 	}
 	s.Item = ResetScreenItem(m.Mod(int(s.Item), int(ResetCount)))
+	if s.Item == ResetGame {
+		s.ResetFrame++
+	} else {
+		s.ResetFrame = 0
+		s.WaitForKeyReleaseThenReset = false
+	}
 	if input.Exit.JustHit {
 		return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 	}
@@ -78,11 +80,14 @@ func (s *ResetScreen) Update() error {
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 		case ResetGame:
 			if s.ResetFrame >= resetFrames {
-				return s.Controller.ActivateSound(s.Controller.InitGame(resetGame))
+				s.WaitForKeyReleaseThenReset = true
 			}
 		case BackToMain:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 		}
+	}
+	if s.WaitForKeyReleaseThenReset && !input.Jump.Held && !input.Action.Held {
+		return s.Controller.ActivateSound(s.Controller.InitGame(resetGame))
 	}
 	return nil
 }
@@ -125,9 +130,11 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 		fg, bg = fgn, bgn
 		if s.Item == ResetGame {
 			fg, bg = color.NRGBA{R: 255, G: 85, B: 85, A: 255}, color.NRGBA{R: 170, G: 0, B: 0, A: 255}
-		}
-		if s.Item == ResetGame {
-			resetText = fmt.Sprintf("Reset and Lose Save State%s (think about it for %d sec)", save, (resetFrames-s.ResetFrame+engine.GameTPS-1)/engine.GameTPS)
+			if s.WaitForKeyReleaseThenReset {
+				resetText = fmt.Sprintf("Reset and Lose Save State%s (just release buttons)", save)
+			} else {
+				resetText = fmt.Sprintf("Reset and Lose Save State%s (think about it for %d sec)", save, (resetFrames-s.ResetFrame+engine.GameTPS-1)/engine.GameTPS)
+			}
 		} else {
 			resetText = fmt.Sprintf("Reset and Lose Save State%s", save)
 		}
