@@ -335,7 +335,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		return
 	}
 
-	if !dumping() && *screenFilter == "simple" && *paletteFlag == "none" {
+	if !dumping() && *screenFilter == "simple" {
 		// No offscreen needed. Just render.
 		g.drawAtGameSizeThenReturnTo(screen, make(chan *ebiten.Image, 1))
 		return
