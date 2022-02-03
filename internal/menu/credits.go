@@ -109,8 +109,12 @@ func (s *CreditsScreen) Init(m *Controller) error {
 }
 
 func (s *CreditsScreen) Update() error {
+	exit := input.Exit.JustHit
+	if _, clicked := input.ClickPos(); clicked {
+		exit = true
+	}
 	if s.Fancy {
-		if input.Exit.JustHit {
+		if exit {
 			s.Exits++
 			if s.Frame >= s.MaxFrame {
 				return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
@@ -119,7 +123,7 @@ func (s *CreditsScreen) Update() error {
 			}
 		}
 	} else {
-		if input.Exit.JustHit {
+		if exit {
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 		}
 		if input.Up.Held {
