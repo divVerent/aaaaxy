@@ -128,7 +128,9 @@ func (i *impulse) update() {
 			inputMap = held
 		}
 		// Hide mouse pointer if using another input device in the menu.
-		mouseCancel()
+		if mouseHeld == NoInput {
+			mouseCancel()
+		}
 	} else {
 		i.JustHit = false
 	}
