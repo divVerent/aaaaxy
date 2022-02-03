@@ -22,12 +22,14 @@ import (
 
 const (
 	mouseHoverFrames = 5 * 60
+	mouseBlockFrames = 60
 )
 
 var (
 	mousePos        m.Pos
 	mousePrevPos    m.Pos
 	mouseHoverFrame int
+	mouseBlockFrame int
 	mouseClicking   bool
 	mouseVisible    bool = true
 	mouseWantClicks bool
@@ -54,6 +56,11 @@ func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 	}
 	mousePrevPos = mousePos
 
+	if mouseBlockFrame > 0 {
+		mouseBlockFrame--
+		mouseHoverFrame = 0
+	}
+
 	if mouseHoverFrame > 0 {
 		mouseHoverFrame--
 		hoverPos = &mousePos
@@ -62,6 +69,7 @@ func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) {
 		mouseClicking = true
 	} else if mouseClicking {
+		// Click on release.
 		mouseClicking = false
 		clickPos = &mousePrevPos
 	}
@@ -73,4 +81,15 @@ func mouseSetWantClicks(want bool) {
 
 func mouseCancel() {
 	mouseHoverFrame = 0
+	mouseBlockFrame = mouseBlockFrames
+}
+
+func (i *impulse) mousePressed() InputMap {
+	if !i.mouseControl {
+		return 0
+	}
+	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonRight) {
+		return AnyInput
+	}
+	return 0
 }

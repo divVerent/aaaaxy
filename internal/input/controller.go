@@ -55,8 +55,9 @@ type impulse struct {
 	ImpulseState
 	Name string
 
-	keys        map[ebiten.Key]InputMap
-	padControls padControls
+	keys         map[ebiten.Key]InputMap
+	padControls  padControls
+	mouseControl bool
 }
 
 const (
@@ -91,7 +92,7 @@ var (
 	Down       = (&impulse{Name: "Down", keys: downKeys, padControls: downPad}).register()
 	Jump       = (&impulse{Name: "Jump", keys: jumpKeys, padControls: jumpPad}).register()
 	Action     = (&impulse{Name: "Action", keys: actionKeys, padControls: actionPad}).register()
-	Exit       = (&impulse{Name: "Exit", keys: exitKeys, padControls: exitPad}).register()
+	Exit       = (&impulse{Name: "Exit", keys: exitKeys, padControls: exitPad, mouseControl: true}).register()
 	Fullscreen = (&impulse{Name: "Fullscreen", keys: fullscreenKeys /* no padControls */}).register()
 
 	impulses = []*impulse{}
@@ -116,8 +117,9 @@ func (i *impulse) register() *impulse {
 func (i *impulse) update() {
 	keyboardHeld := i.keyboardPressed()
 	gamepadHeld := i.gamepadPressed()
-	held := keyboardHeld | gamepadHeld
-	if held != 0 && !i.Held {
+	mouseHeld := i.mousePressed()
+	held := keyboardHeld | gamepadHeld | mouseHeld
+	if held != NoInput && !i.Held {
 		i.JustHit = true
 		// Whenever a new key is pressed, update the flag whether we're actually
 		// _using_ the gamepad. Used for some in-game text messages.
@@ -130,7 +132,7 @@ func (i *impulse) update() {
 	} else {
 		i.JustHit = false
 	}
-	i.Held = held != 0
+	i.Held = held != NoInput
 }
 
 func Init() error {
@@ -207,6 +209,10 @@ func ClickPos() (m.Pos, bool) {
 		return m.Pos{}, false
 	}
 	return *clickPos, true
+}
+
+func CancelHover() {
+	mouseCancel()
 }
 
 type MouseStatus int

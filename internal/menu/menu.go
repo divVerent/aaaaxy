@@ -84,6 +84,7 @@ func (c *Controller) Update() error {
 		if err != nil {
 			return err
 		}
+		input.CancelHover()
 		c.initialized = true
 	}
 
@@ -129,6 +130,7 @@ func (c *Controller) toggleFullscreen() error {
 	fs := !ebiten.IsFullscreen()
 	flag.Set("fullscreen", fs)
 	ebiten.SetFullscreen(fs)
+	input.CancelHover() // Fullscreen toggle changes mouse position; ignore hover events for that.
 	return nil
 }
 
