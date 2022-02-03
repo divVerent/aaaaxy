@@ -25,6 +25,7 @@ const (
 )
 
 var (
+	mousePos        m.Pos
 	mousePrevPos    m.Pos
 	mouseHoverFrame int
 	mouseClicking   bool
@@ -33,22 +34,22 @@ var (
 
 func mouseUpdate() {
 	x, y := ebiten.CursorPosition()
-	pos := m.Pos{X: x, Y: y}
-	if pos != mousePrevPos {
+	mousePos = m.Pos{X: x, Y: y}
+	if mousePos != mousePrevPos {
 		mouseHoverFrame = mouseHoverFrames
 	}
-	mousePrevPos = pos
+	mousePrevPos = mousePos
 
 	if mouseHoverFrame > 0 {
 		mouseHoverFrame--
-		hoverPos = &pos
+		hoverPos = &mousePos
 	}
 
 	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) {
 		mouseClicking = true
 	} else if mouseClicking {
 		mouseClicking = false
-		clickPos = &pos
+		clickPos = &mousePrevPos
 	}
 }
 

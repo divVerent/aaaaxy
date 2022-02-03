@@ -193,6 +193,20 @@ func ExitButton() ExitButtonID {
 	return Backspace
 }
 
+func HoverPos() (m.Pos, bool) {
+	if hoverPos == nil {
+		return m.Pos{}, false
+	}
+	return *hoverPos, true
+}
+
+func ClickPos() (m.Pos, bool) {
+	if clickPos == nil {
+		return m.Pos{}, false
+	}
+	return *clickPos, true
+}
+
 // Demo code.
 
 type DemoState struct {
