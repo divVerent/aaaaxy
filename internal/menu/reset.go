@@ -31,7 +31,7 @@ import (
 type ResetScreenItem int
 
 const (
-	ResetNothing ResetScreenItem = iota
+	ResetNothing = iota
 	ResetConfig
 	ResetGame
 	BackToMain
@@ -53,6 +53,7 @@ func (s *ResetScreen) Init(m *Controller) error {
 }
 
 func (s *ResetScreen) Update() error {
+	clicked := s.Controller.QueryMouseItem(&s.Item, ResetCount)
 	if input.Down.JustHit {
 		s.Item++
 		s.Controller.MoveSound(nil)
@@ -71,7 +72,7 @@ func (s *ResetScreen) Update() error {
 	if input.Exit.JustHit {
 		return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 	}
-	if input.Jump.JustHit || input.Action.JustHit {
+	if input.Jump.JustHit || input.Action.JustHit || clicked {
 		switch s.Item {
 		case ResetNothing:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
@@ -93,23 +94,21 @@ func (s *ResetScreen) Update() error {
 }
 
 func (s *ResetScreen) Draw(screen *ebiten.Image) {
-	h := engine.GameHeight
-	x := engine.GameWidth / 2
 	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	fgn := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
 	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
-	font.MenuBig.Draw(screen, "Reset", m.Pos{X: x, Y: h / 4}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, "Reset", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == ResetNothing {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset Nothing", m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Reset Nothing", m.Pos{X: CenterX, Y: ItemBaselineY(ResetNothing, ResetCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == ResetConfig {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset and Lose Settings", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Reset and Lose Settings", m.Pos{X: CenterX, Y: ItemBaselineY(ResetConfig, ResetCount)}, true, fg, bg)
 	var resetText string
 	var dx, dy int
 	save := ""
@@ -141,10 +140,10 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 		dx = rand.Intn(3) - 1
 		dy = rand.Intn(3) - 1
 	}
-	font.Menu.Draw(screen, resetText, m.Pos{X: x + dx, Y: 27*h/32 + dy}, true, fg, bg)
+	font.Menu.Draw(screen, resetText, m.Pos{X: CenterX + dx, Y: ItemBaselineY(ResetGame, ResetCount) + dy}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == BackToMain {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Main Menu", m.Pos{X: x, Y: 29 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Main Menu", m.Pos{X: CenterX, Y: ItemBaselineY(BackToMain, ResetCount)}, true, fg, bg)
 }

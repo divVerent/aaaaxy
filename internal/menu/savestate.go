@@ -21,7 +21,6 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
@@ -34,7 +33,7 @@ import (
 type SaveStateScreenItem int
 
 const (
-	SaveStateA SaveStateScreenItem = iota
+	SaveStateA = iota
 	SaveState4
 	SaveStateX
 	SaveStateY
@@ -101,6 +100,8 @@ func (s *SaveStateScreen) Init(m *Controller) error {
 }
 
 func (s *SaveStateScreen) Update() error {
+	clicked := s.Controller.QueryMouseItem(&s.Item, SaveStateCount)
+
 	// Update so one can always see which save state is current.
 	if *saveState >= 0 && *saveState < 4 {
 		s.Text[*saveState] = s.saveStateInfo(nil, *saveState)
@@ -118,7 +119,7 @@ func (s *SaveStateScreen) Update() error {
 	if input.Exit.JustHit {
 		return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 	}
-	if input.Jump.JustHit || input.Action.JustHit {
+	if input.Jump.JustHit || input.Action.JustHit || clicked {
 		switch s.Item {
 		case SaveStateA:
 			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(0))
@@ -136,36 +137,34 @@ func (s *SaveStateScreen) Update() error {
 }
 
 func (s *SaveStateScreen) Draw(screen *ebiten.Image) {
-	h := engine.GameHeight
-	x := engine.GameWidth / 2
 	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	fgn := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
 	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
-	font.MenuBig.Draw(screen, "Switch Save State", m.Pos{X: x, Y: h / 4}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, "Switch Save State", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == SaveStateA {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "A: "+s.Text[0], m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "A: "+s.Text[0], m.Pos{X: CenterX, Y: ItemBaselineY(SaveStateA, SaveStateCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveState4 {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "4: "+s.Text[1], m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "4: "+s.Text[1], m.Pos{X: CenterX, Y: ItemBaselineY(SaveState4, SaveStateCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveStateX {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "X: "+s.Text[2], m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "X: "+s.Text[2], m.Pos{X: CenterX, Y: ItemBaselineY(SaveStateX, SaveStateCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveStateY {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Y: "+s.Text[3], m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Y: "+s.Text[3], m.Pos{X: CenterX, Y: ItemBaselineY(SaveStateY, SaveStateCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveExit {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Main Menu", m.Pos{X: x, Y: 29 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Main Menu", m.Pos{X: CenterX, Y: ItemBaselineY(SaveExit, SaveStateCount)}, true, fg, bg)
 }
