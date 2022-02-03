@@ -18,6 +18,7 @@ import (
 	"errors"
 	"fmt"
 	"image/color"
+	"reflect"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -295,4 +296,22 @@ func (c *Controller) MoveSound(err error) error {
 		c.moveSound.Play()
 	}
 	return err
+}
+
+func (c *Controller) QueryMouseItem(item interface{}) input.MouseStatus {
+	mousePos, mouseState := input.Mouse()
+	if mouseState == input.NoMouse {
+		return input.NoMouse
+	}
+	if idx, ok := ItemClicked(mousePos, MainCount); ok {
+		v := reflect.ValueOf(item).Elem()
+		prev := v.Int()
+		if int64(idx) == prev {
+			return mouseState
+		}
+		v.SetInt(int64(idx))
+		c.MoveSound(nil)
+		return mouseState
+	}
+	return input.NoMouse
 }

@@ -33,7 +33,7 @@ var (
 	mouseWantClicks bool
 )
 
-func mouseUpdate() {
+func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 	wantVisible := mouseWantClicks && mouseHoverFrame > 0
 	if wantVisible != mouseVisible {
 		mouseVisible = wantVisible
@@ -45,7 +45,10 @@ func mouseUpdate() {
 	}
 
 	x, y := ebiten.CursorPosition()
+	x = (x*gameWidth + screenWidth/2) / screenWidth
+	y = (y*gameHeight + screenHeight/2) / screenHeight
 	mousePos = m.Pos{X: x, Y: y}
+
 	if mousePos != mousePrevPos {
 		mouseHoverFrame = mouseHoverFrames
 	}

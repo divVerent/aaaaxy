@@ -19,7 +19,6 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
@@ -29,7 +28,7 @@ import (
 type MainScreenItem int
 
 const (
-	Play MainScreenItem = iota
+	Play = iota
 	Settings
 	Credits
 	Quit
@@ -47,6 +46,7 @@ func (s *MainScreen) Init(m *Controller) error {
 }
 
 func (s *MainScreen) Update() error {
+	mouseStatus := s.Controller.QueryMouseItem(&s.Item)
 	if input.Down.JustHit {
 		s.Item++
 		s.Controller.MoveSound(nil)
@@ -56,13 +56,14 @@ func (s *MainScreen) Update() error {
 		s.Controller.MoveSound(nil)
 	}
 	s.Item = MainScreenItem(m.Mod(int(s.Item), int(MainCount)))
+
 	/*
 		Actually not allowed as it could be used for pausebuffering.
 		if input.Exit.JustHit {
 			return s.Controller.ActivateSound(s.Controller.SwitchToGame())
 		}
 	*/
-	if input.Jump.JustHit || input.Action.JustHit {
+	if input.Jump.JustHit || input.Action.JustHit || mouseStatus == input.ClickingMouse {
 		switch s.Item {
 		case Play:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MapScreen{}))
@@ -78,35 +79,33 @@ func (s *MainScreen) Update() error {
 }
 
 func (s *MainScreen) Draw(screen *ebiten.Image) {
-	h := engine.GameHeight
-	x := engine.GameWidth / 2
 	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	fgn := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
 	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
-	font.MenuBig.Draw(screen, "AAAAXY", m.Pos{X: x, Y: h / 4}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, "AAAAXY", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == Play {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Play", m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Play", m.Pos{X: CenterX, Y: ItemBaselineY(Play, MainCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Settings {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Settings", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Settings", m.Pos{X: CenterX, Y: ItemBaselineY(Settings, MainCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Credits {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Credits", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Credits", m.Pos{X: CenterX, Y: ItemBaselineY(Credits, MainCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Quit {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Quit", m.Pos{X: x, Y: 29 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Quit", m.Pos{X: CenterX, Y: ItemBaselineY(Quit, MainCount)}, true, fg, bg)
 
 	// Display stats.
 	font.MenuSmall.Draw(screen, fun.FormatText(&s.Controller.World.PlayerState, "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"),
-		m.Pos{X: x, Y: 19 * h / 32}, true, fgn, bgn)
+		m.Pos{X: CenterX, Y: ItemBaselineY(-2, MainCount)}, true, fgn, bgn)
 }

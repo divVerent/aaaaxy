@@ -60,6 +60,10 @@ type Game struct {
 	init    initState
 	canDraw bool
 
+	// screenWidth and screenHeight are updated by Layout().
+	screenWidth  int
+	screenHeight int
+
 	offScreens        chan *ebiten.Image
 	linear2xShader    *ebiten.Shader
 	linear2xCRTShader *ebiten.Shader
@@ -82,7 +86,7 @@ var _ ebiten.Game = &Game{}
 
 func (g *Game) updateFrame() error {
 	timing.Section("input")
-	input.Update()
+	input.Update(g.screenWidth, g.screenHeight, engine.GameWidth, engine.GameHeight)
 
 	timing.Section("demo_pre")
 	if demo.Update() {
@@ -422,7 +426,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 }
 
-func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
+func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
 	if *screenFilter == "simple" {
 		return engine.GameWidth, engine.GameHeight
 	}
@@ -434,5 +438,7 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 			float64(outsideWidth)*d/engine.GameWidth,
 			float64(outsideHeight)*d/engine.GameHeight),
 		*screenFilterMaxScale)
-	return int(engine.GameWidth * f), int(engine.GameHeight * f)
+	g.screenWidth = int(engine.GameWidth * f)
+	g.screenHeight = int(engine.GameHeight * f)
+	return g.screenWidth, g.screenHeight
 }

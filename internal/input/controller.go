@@ -138,7 +138,7 @@ func Init() error {
 	return nil
 }
 
-func Update() {
+func Update(screenWidth, screenHeight, gameWidth, gameHeight int) {
 	gamepadScan()
 	if firstUpdate {
 		// At first, assume gamepad whenever one is present.
@@ -153,7 +153,7 @@ func Update() {
 		i.update()
 	}
 	clickPos, hoverPos = nil, nil
-	mouseUpdate()
+	mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight)
 	easterEggUpdate()
 }
 
@@ -207,6 +207,24 @@ func ClickPos() (m.Pos, bool) {
 		return m.Pos{}, false
 	}
 	return *clickPos, true
+}
+
+type MouseStatus int
+
+const (
+	NoMouse MouseStatus = iota
+	HoveringMouse
+	ClickingMouse
+)
+
+func Mouse() (m.Pos, MouseStatus) {
+	if clickPos != nil {
+		return *clickPos, ClickingMouse
+	}
+	if hoverPos != nil {
+		return *hoverPos, HoveringMouse
+	}
+	return m.Pos{}, NoMouse
 }
 
 // Demo code.
