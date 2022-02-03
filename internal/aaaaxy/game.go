@@ -57,8 +57,9 @@ var (
 type Game struct {
 	Menu menu.Controller
 
-	init    initState
-	canDraw bool
+	init      initState
+	canUpdate bool
+	canDraw   bool
 
 	// screenWidth and screenHeight are updated by Layout().
 	screenWidth  int
@@ -126,6 +127,10 @@ func (g *Game) updateFrame() error {
 }
 
 func (g *Game) Update() error {
+	if !g.canUpdate {
+		return nil
+	}
+
 	if !g.init.done {
 		return g.InitStep()
 	}
@@ -428,17 +433,20 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
 	if *screenFilter == "simple" {
-		return engine.GameWidth, engine.GameHeight
+		g.screenWidth = engine.GameWidth
+		g.screenHeight = engine.GameHeight
+	} else {
+		d := ebiten.DeviceScaleFactor()
+		// TODO: when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved,
+		// change this back to int(float64(outsideWidth) * d), int(float64(outsideHeight) * d).
+		f := math.Min(
+			math.Min(
+				float64(outsideWidth)*d/engine.GameWidth,
+				float64(outsideHeight)*d/engine.GameHeight),
+			*screenFilterMaxScale)
+		g.screenWidth = int(engine.GameWidth * f)
+		g.screenHeight = int(engine.GameHeight * f)
 	}
-	d := ebiten.DeviceScaleFactor()
-	// TODO: when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved,
-	// change this back to int(float64(outsideWidth) * d), int(float64(outsideHeight) * d).
-	f := math.Min(
-		math.Min(
-			float64(outsideWidth)*d/engine.GameWidth,
-			float64(outsideHeight)*d/engine.GameHeight),
-		*screenFilterMaxScale)
-	g.screenWidth = int(engine.GameWidth * f)
-	g.screenHeight = int(engine.GameHeight * f)
+	g.canUpdate = true
 	return g.screenWidth, g.screenHeight
 }
