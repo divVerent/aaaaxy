@@ -94,7 +94,6 @@ func (g *Game) InitEbiten() error {
 		*fpsDivisor = 1
 	}
 
-	ebiten.SetCursorMode(ebiten.CursorModeHidden)
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetInitFocused(true)
 	ebiten.SetScreenClearedEveryFrame(false)

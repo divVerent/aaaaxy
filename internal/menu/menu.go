@@ -112,10 +112,13 @@ func (c *Controller) Update() error {
 		c.blurFrame++
 	}
 	if c.Screen != nil {
+		input.SetWantClicks(true)
 		err := c.Screen.Update()
 		if err != nil {
 			return err
 		}
+	} else {
+		input.SetWantClicks(false)
 	}
 
 	return nil

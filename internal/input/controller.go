@@ -18,6 +18,8 @@ import (
 	"runtime"
 
 	"github.com/hajimehoshi/ebiten/v2"
+
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 type ImpulseState struct {
@@ -98,6 +100,12 @@ var (
 
 	// Wait for first frame to detect initial gamepad situation.
 	firstUpdate = true
+
+	// Current mouse/finger hover pos, if any.
+	hoverPos *m.Pos
+
+	// Last mouse/finger click/release pos, if any.
+	clickPos *m.Pos
 )
 
 func (i *impulse) register() *impulse {
@@ -142,7 +150,13 @@ func Update() {
 	for _, i := range impulses {
 		i.update()
 	}
+	clickPos, hoverPos = nil, nil
+	mouseUpdate()
 	easterEggUpdate()
+}
+
+func SetWantClicks(want bool) {
+	mouseSetWantClicks(want)
 }
 
 func EasterEggJustHit() bool {
@@ -190,6 +204,8 @@ type DemoState struct {
 	Jump              *ImpulseState `json:",omitempty"`
 	Action            *ImpulseState `json:",omitempty"`
 	Exit              *ImpulseState `json:",omitempty"`
+	HoverPos          *m.Pos        `json:",omitempty"`
+	ClickPos          *m.Pos        `json:",omitempty"`
 	EasterEggJustHit  bool          `json:",omitempty"`
 	KonamiCodeJustHit bool          `json:",omitempty"`
 }
@@ -206,6 +222,8 @@ func LoadFromDemo(state *DemoState) {
 	Jump.ImpulseState = state.Jump.OrEmpty()
 	Action.ImpulseState = state.Action.OrEmpty()
 	Exit.ImpulseState = state.Exit.OrEmpty()
+	hoverPos = state.HoverPos
+	clickPos = state.ClickPos
 	easterEgg.justHit = state.EasterEggJustHit
 	snesEasterEgg.justHit = state.EasterEggJustHit
 	konamiCode.justHit = state.KonamiCodeJustHit
@@ -223,6 +241,8 @@ func SaveToDemo() *DemoState {
 		Jump:              Jump.ImpulseState.UnlessEmpty(),
 		Action:            Action.ImpulseState.UnlessEmpty(),
 		Exit:              Exit.ImpulseState.UnlessEmpty(),
+		HoverPos:          hoverPos,
+		ClickPos:          clickPos,
 		EasterEggJustHit:  EasterEggJustHit(),
 		KonamiCodeJustHit: KonamiCodeJustHit(),
 	}
