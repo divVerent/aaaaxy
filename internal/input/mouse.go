@@ -29,10 +29,21 @@ var (
 	mousePrevPos    m.Pos
 	mouseHoverFrame int
 	mouseClicking   bool
-	mouseWantClicks bool = true
+	mouseVisible    bool = true
+	mouseWantClicks bool
 )
 
 func mouseUpdate() {
+	wantVisible := mouseWantClicks && mouseHoverFrame > 0
+	if wantVisible != mouseVisible {
+		mouseVisible = wantVisible
+		if wantVisible {
+			ebiten.SetCursorMode(ebiten.CursorModeVisible)
+		} else {
+			ebiten.SetCursorMode(ebiten.CursorModeHidden)
+		}
+	}
+
 	x, y := ebiten.CursorPosition()
 	mousePos = m.Pos{X: x, Y: y}
 	if mousePos != mousePrevPos {
@@ -54,13 +65,9 @@ func mouseUpdate() {
 }
 
 func mouseSetWantClicks(want bool) {
-	if want == mouseWantClicks {
-		return
-	}
 	mouseWantClicks = want
-	if want {
-		ebiten.SetCursorMode(ebiten.CursorModeVisible)
-	} else {
-		ebiten.SetCursorMode(ebiten.CursorModeHidden)
-	}
+}
+
+func mouseCancel() {
+	mouseHoverFrame = 0
 }
