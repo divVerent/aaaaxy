@@ -597,7 +597,7 @@
     <property name="reached_from" type="object" value="280"/>
     <property name="required_orientation" value="WN"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Exploring new opportunities will often pay off.  Press {{ExitButton}}."/>
+    <property name="text" value="Don't children like to say, &quot;Are we there yet?&quot;  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="51" gid="312" x="8128" y="6832" width="32" height="32">
