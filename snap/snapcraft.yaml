@@ -74,15 +74,9 @@ parts:
       - pkgconf
     stage-packages:
       - libasound2
-      - libasound2-plugins
       - libgl1
-      - libglu1-mesa
-      - libglvnd0
-      - libglx0
       - libx11-6
       - libxau6
-      - libxcb1
-      - libxdmcp6
 
 layout:
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
