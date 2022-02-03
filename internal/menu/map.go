@@ -38,6 +38,8 @@ type MapScreen struct {
 	CurrentCP   string
 	SortedLocs  []string
 	SortedEdges map[string][]level.CheckpointEdge
+	CPPos       map[string]m.Pos
+	MapRect     m.Rect
 
 	cpSprite                *ebiten.Image
 	cpSelectedSprite        *ebiten.Image
@@ -54,10 +56,11 @@ const (
 
 	edgeFarAttachDistance = 7
 	edgeThickness         = 3
+	mouseDistance         = 7
 )
 
-func (s *MapScreen) Init(m *Controller) error {
-	s.Controller = m
+func (s *MapScreen) Init(c *Controller) error {
+	s.Controller = c
 	s.CurrentCP = s.Controller.World.PlayerState.LastCheckpoint()
 	if s.CurrentCP == "" {
 		// Have no checkpoint yet - start the game right away.
@@ -116,6 +119,25 @@ func (s *MapScreen) Init(m *Controller) error {
 		s.SortedEdges[cpName] = edges
 	}
 
+	mapWidth := engine.GameWidth
+	mapHeight := engine.GameHeight / 2
+	if mapWidth*loc.Rect.Size.DY > mapHeight*loc.Rect.Size.DX {
+		mapWidth = mapHeight * loc.Rect.Size.DX / loc.Rect.Size.DY
+	} else {
+		mapHeight = mapWidth * loc.Rect.Size.DY / loc.Rect.Size.DX
+	}
+	s.MapRect = m.Rect{
+		Origin: m.Pos{X: (engine.GameWidth - mapWidth) / 2, Y: (engine.GameHeight - mapHeight) / 2},
+		Size:   m.Delta{DX: mapWidth, DY: mapHeight},
+	}
+
+	s.CPPos = make(map[string]m.Pos, len(s.SortedLocs))
+	for _, cpName := range s.SortedLocs {
+		cpLoc := loc.Locs[cpName]
+		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, s.MapRect)
+		s.CPPos[cpName] = pos
+	}
+
 	return nil
 }
 
@@ -127,8 +149,7 @@ func (s *MapScreen) moveBy(d m.Delta) {
 		return
 	}
 	edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(s.CurrentCP, edge.Other)
-	reverseSeen := s.Controller.World.PlayerState.CheckpointsWalked(edge.Other, s.CurrentCP)
-	if !edgeSeen && !reverseSeen {
+	if !edgeSeen {
 		// Don't know this yet :)
 		return
 	}
@@ -140,6 +161,39 @@ func (s *MapScreen) moveBy(d m.Delta) {
 	s.Controller.MoveSound(nil)
 }
 
+func (s *MapScreen) moveTo(pos m.Pos) bool {
+	hitCP := ""
+	for _, cpName := range s.SortedLocs {
+		if s.Controller.World.PlayerState.CheckpointSeen(cpName) == playerstate.NotSeen {
+			// Don't know this yet :)
+			continue
+		}
+		if s.Controller.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
+			// A dead end!
+			continue
+		}
+		cpPos := s.CPPos[cpName]
+		d := cpPos.Delta(pos).Length2()
+		if d < mouseDistance*mouseDistance {
+			if hitCP != "" {
+				return false // Not unique.
+			}
+			hitCP = cpName
+		}
+		cpName = cpName
+	}
+	if hitCP == "" {
+		return false // Nothing hit.
+	}
+	if hitCP == s.CurrentCP {
+		// No change.
+		return true
+	}
+	s.CurrentCP = hitCP
+	s.Controller.MoveSound(nil)
+	return true
+}
+
 func (s *MapScreen) exit() error {
 	if s.CurrentCP != firstCP && s.Controller.World.PlayerState.CheckpointSeen(firstCP) != playerstate.NotSeen {
 		s.CurrentCP = firstCP
@@ -149,6 +203,11 @@ func (s *MapScreen) exit() error {
 }
 
 func (s *MapScreen) Update() error {
+	mousePos, mouseState := input.Mouse()
+	clicked := false
+	if mouseState != input.NoMouse {
+		clicked = s.moveTo(mousePos)
+	}
 	if input.Exit.JustHit {
 		return s.exit()
 	}
@@ -164,7 +223,7 @@ func (s *MapScreen) Update() error {
 	if input.Down.JustHit {
 		s.moveBy(m.South())
 	}
-	if input.Jump.JustHit || input.Action.JustHit {
+	if input.Jump.JustHit || input.Action.JustHit || (clicked && mouseState == input.ClickingMouse) {
 		return s.Controller.ActivateSound(s.Controller.SwitchToCheckpoint(s.CurrentCP))
 	}
 	return nil
@@ -189,31 +248,17 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	font.Menu.Draw(screen, cpText, m.Pos{X: x, Y: 7 * h / 8}, true, fgs, bgs)
 
 	// Draw all known checkpoints.
-	loc := s.Controller.World.Level.CheckpointLocations
-	mapWidth := w
-	mapHeight := h / 2
-	if mapWidth*loc.Rect.Size.DY > mapHeight*loc.Rect.Size.DX {
-		mapWidth = mapHeight * loc.Rect.Size.DX / loc.Rect.Size.DY
-	} else {
-		mapHeight = mapWidth * loc.Rect.Size.DY / loc.Rect.Size.DX
-	}
-	mapRect := m.Rect{
-		Origin: m.Pos{X: (w - mapWidth) / 2, Y: (h - mapHeight) / 2},
-		Size:   m.Delta{DX: mapWidth, DY: mapHeight},
-	}
 	opts := ebiten.DrawImageOptions{
 		CompositeMode: ebiten.CompositeModeSourceOver,
 		Filter:        ebiten.FilterNearest,
 	}
-	opts.GeoM.Scale(float64(mapRect.Size.DX+24), float64(mapRect.Size.DY+24))
-	opts.GeoM.Translate(float64(mapRect.Origin.X-12), float64(mapRect.Origin.Y-12))
+	opts.GeoM.Scale(float64(s.MapRect.Size.DX+24), float64(s.MapRect.Size.DY+24))
+	opts.GeoM.Translate(float64(s.MapRect.Origin.X-12), float64(s.MapRect.Origin.Y-12))
 	opts.ColorM.Scale(1.0/3.0, 1.0/3.0, 1.0/3.0, 2.0/3.0)
 	screen.DrawImage(s.whiteImage, &opts)
 	// First draw all edges.
 	cpPos := make(map[string]m.Pos, len(s.SortedLocs))
-	for _, cpName := range s.SortedLocs {
-		cpLoc := loc.Locs[cpName]
-		pos := cpLoc.MapPos.FromRectToRect(loc.Rect, mapRect)
+	for cpName, pos := range s.CPPos {
 		if s.Controller.World.Level.Checkpoints[cpName].Properties["hub"] == "true" {
 			pos.X += rand.Intn(3) - 1
 			pos.Y += rand.Intn(3) - 1
