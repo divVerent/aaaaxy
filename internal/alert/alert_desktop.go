@@ -31,6 +31,14 @@ func Show(msg string) {
 		// Dialog closed, that's OK.
 		return
 	}
+	err = exec.Command("yad", "--center", "--image=error", "--button=OK", "--title=AAAAXY - Error", "--text="+msg).Run()
+	if err == nil {
+		return
+	}
+	if status, ok := err.(*exec.ExitError); ok && status.ExitCode() == 252 {
+		// Dialog closed, that's OK.
+		return
+	}
 	err = exec.Command("gxmessage", "-center", "-title", "AAAAXY - Error", " "+msg).Run()
 	if err == nil {
 		return

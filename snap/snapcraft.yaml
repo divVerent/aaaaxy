@@ -73,7 +73,6 @@ parts:
       - libxxf86vm-dev
       - pkgconf
     stage-packages:
-      - gxmessage
       - libasound2
       - libasound2-plugins
       - libgl1
