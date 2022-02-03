@@ -20,7 +20,6 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
@@ -30,7 +29,7 @@ import (
 type SettingsScreenItem int
 
 const (
-	Fullscreen SettingsScreenItem = iota
+	Fullscreen = iota
 	Graphics
 	Quality
 	Volume
@@ -256,6 +255,7 @@ func toggleVolume(delta int) error {
 }
 
 func (s *SettingsScreen) Update() error {
+	clicked := s.Controller.QueryMouseItem(&s.Item, SettingsCount)
 	if input.Down.JustHit {
 		s.Item++
 		s.Controller.MoveSound(nil)
@@ -268,7 +268,7 @@ func (s *SettingsScreen) Update() error {
 	if input.Exit.JustHit {
 		return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&MainScreen{}))
 	}
-	if input.Jump.JustHit || input.Action.JustHit {
+	if input.Jump.JustHit || input.Action.JustHit || clicked {
 		switch s.Item {
 		case Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
@@ -314,13 +314,11 @@ func (s *SettingsScreen) Update() error {
 }
 
 func (s *SettingsScreen) Draw(screen *ebiten.Image) {
-	h := engine.GameHeight
-	x := engine.GameWidth / 2
 	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
 	fgn := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
 	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
-	font.MenuBig.Draw(screen, "Settings", m.Pos{X: x, Y: h / 4}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, "Settings", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == Fullscreen {
 		fg, bg = fgs, bgs
@@ -329,35 +327,35 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	if ebiten.IsFullscreen() {
 		fsText = "Switch to Windowed Mode"
 	}
-	font.Menu.Draw(screen, fsText, m.Pos{X: x, Y: 17 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fsText, m.Pos{X: CenterX, Y: ItemBaselineY(Fullscreen, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Graphics: %v", currentGraphics()), m.Pos{X: x, Y: 19 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fmt.Sprintf("Graphics: %v", currentGraphics()), m.Pos{X: CenterX, Y: ItemBaselineY(Graphics, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Quality {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Quality: %v", currentQuality()), m.Pos{X: x, Y: 21 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fmt.Sprintf("Quality: %v", currentQuality()), m.Pos{X: CenterX, Y: ItemBaselineY(Quality, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Volume {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Volume: %v", currentVolume()), m.Pos{X: x, Y: 23 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, fmt.Sprintf("Volume: %v", currentVolume()), m.Pos{X: CenterX, Y: ItemBaselineY(Volume, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveState {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Switch Save State", m.Pos{X: x, Y: 25 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Switch Save State", m.Pos{X: CenterX, Y: ItemBaselineY(SaveState, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Reset {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset", m.Pos{X: x, Y: 27 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Reset", m.Pos{X: CenterX, Y: ItemBaselineY(Reset, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Back {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Main Menu", m.Pos{X: x, Y: 29 * h / 32}, true, fg, bg)
+	font.Menu.Draw(screen, "Main Menu", m.Pos{X: CenterX, Y: ItemBaselineY(Back, SettingsCount)}, true, fg, bg)
 }

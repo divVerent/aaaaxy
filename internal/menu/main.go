@@ -46,7 +46,7 @@ func (s *MainScreen) Init(m *Controller) error {
 }
 
 func (s *MainScreen) Update() error {
-	mouseStatus := s.Controller.QueryMouseItem(&s.Item)
+	clicked := s.Controller.QueryMouseItem(&s.Item, MainCount)
 	if input.Down.JustHit {
 		s.Item++
 		s.Controller.MoveSound(nil)
@@ -63,7 +63,7 @@ func (s *MainScreen) Update() error {
 			return s.Controller.ActivateSound(s.Controller.SwitchToGame())
 		}
 	*/
-	if input.Jump.JustHit || input.Action.JustHit || mouseStatus == input.ClickingMouse {
+	if input.Jump.JustHit || input.Action.JustHit || clicked {
 		switch s.Item {
 		case Play:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MapScreen{}))

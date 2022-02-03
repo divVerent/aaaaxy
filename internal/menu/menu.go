@@ -298,20 +298,20 @@ func (c *Controller) MoveSound(err error) error {
 	return err
 }
 
-func (c *Controller) QueryMouseItem(item interface{}) input.MouseStatus {
+func (c *Controller) QueryMouseItem(item interface{}, count int) bool {
 	mousePos, mouseState := input.Mouse()
 	if mouseState == input.NoMouse {
-		return input.NoMouse
+		return false
 	}
-	if idx, ok := ItemClicked(mousePos, MainCount); ok {
+	if idx, ok := ItemClicked(mousePos, count); ok {
 		v := reflect.ValueOf(item).Elem()
 		prev := v.Int()
 		if int64(idx) == prev {
-			return mouseState
+			return mouseState == input.ClickingMouse
 		}
 		v.SetInt(int64(idx))
 		c.MoveSound(nil)
-		return mouseState
+		return mouseState == input.ClickingMouse
 	}
-	return input.NoMouse
+	return false
 }
