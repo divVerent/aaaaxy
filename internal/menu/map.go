@@ -56,7 +56,7 @@ const (
 
 	edgeFarAttachDistance = 7
 	edgeThickness         = 3
-	mouseDistance         = 7
+	mouseDistance         = 16
 )
 
 func (s *MapScreen) Init(c *Controller) error {
@@ -163,6 +163,7 @@ func (s *MapScreen) moveBy(d m.Delta) {
 
 func (s *MapScreen) moveTo(pos m.Pos) bool {
 	hitCP := ""
+	hitD := int64(mouseDistance * mouseDistance)
 	for _, cpName := range s.SortedLocs {
 		if s.Controller.World.PlayerState.CheckpointSeen(cpName) == playerstate.NotSeen {
 			// Don't know this yet :)
@@ -174,13 +175,10 @@ func (s *MapScreen) moveTo(pos m.Pos) bool {
 		}
 		cpPos := s.CPPos[cpName]
 		d := cpPos.Delta(pos).Length2()
-		if d < mouseDistance*mouseDistance {
-			if hitCP != "" {
-				return false // Not unique.
-			}
+		if d < hitD {
 			hitCP = cpName
+			hitD = d
 		}
-		cpName = cpName
 	}
 	if hitCP == "" {
 		return false // Nothing hit.
