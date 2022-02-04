@@ -113,7 +113,7 @@ func initDumpingLate() error {
 		if err != nil {
 			return err
 		}
-		dumpMediaCmd := exec.Command("sh", "-c", cmdLine)
+		dumpMediaCmd := exec.Command(cmdLine[0], cmdLine[1:]...)
 		dumpMediaCmd.Stdout = os.Stdout
 		dumpMediaCmd.Stderr = os.Stderr
 		err = dumpMediaCmd.Start()
@@ -182,13 +182,13 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 	}
 }
 
-func ffmpegCommand(audio, video, output, screenFilter string) (string, error) {
+func ffmpegCommand(audio, video, output, screenFilter string) ([]string, error) {
 	inputs := []string{}
-	settings := []string{}
+	settings := []string{"-vsync", "vfr", "-y"}
 	// Video first, so we can refer to the video stream as [0:v] for sure.
 	if video != "" {
 		fps := float64(engine.GameTPS) / (float64(*fpsDivisor) * float64(*dumpVideoFpsDivisor))
-		inputs = append(inputs, fmt.Sprintf("-f rawvideo -pixel_format rgba -video_size %dx%d -r %v -i '%s'", engine.GameWidth, engine.GameHeight, fps, strings.ReplaceAll(video, "'", "'\\''")))
+		inputs = append(inputs, "-f", "rawvideo", "-pixel_format", "rgba", "-video_size", fmt.Sprintf("%dx%d", engine.GameWidth, engine.GameHeight), "-r", fmt.Sprint(fps), "-i", video)
 		filterComplex := "[0:v]premultiply=inplace=1,format=gbrp[lowres]; "
 		switch screenFilter {
 		case "linear":
@@ -213,16 +213,16 @@ func ffmpegCommand(audio, video, output, screenFilter string) (string, error) {
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
 			tempFile, err := ioutil.TempFile("", "aaaaxy-*")
 			if err != nil {
-				return "", err
+				return nil, err
 			}
 			atexit.Delete(tempFile.Name())
 			_, err = tempFile.Write([]byte(pnm))
 			if err != nil {
-				return "", err
+				return nil, err
 			}
 			err = tempFile.Close()
 			if err != nil {
-				return "", err
+				return nil, err
 			}
 			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; movie=filename=%v:loop=360,tile=1x360,scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", tempFile.Name(), crtK1(), crtK2())
 		case "nearest":
@@ -236,13 +236,25 @@ func ffmpegCommand(audio, video, output, screenFilter string) (string, error) {
 		// or even newer versions with decoding options changed for compatibility,
 		// if the video file has also been losslessly cut -
 		// have trouble decoding that.
-		settings = append(settings, "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60 -filter_complex '"+filterComplex+"'")
+		settings = append(settings, "-codec:v", "libx264", "-profile:v", "high444", "-preset:v", "fast", "-crf:v", "10", "-8x8dct:v", "0", "-keyint_min", "10", "-g", "60", "-filter_complex", filterComplex)
 	}
 	if audio != "" {
-		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.SampleRate(), strings.ReplaceAll(audio, "'", "'\\''")))
-		settings = append(settings, "-codec:a aac -b:a 128k")
+		inputs = append(inputs, "-f", "s16le", "-ac", "2", "-ar", fmt.Sprint(audiowrap.SampleRate()), "-i", audio)
+		settings = append(settings, "-codec:a", "aac", "-b:a", "128k")
 	}
-	return fmt.Sprintf("ffmpeg %s %s -vsync vfr -y %s", strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''")), nil
+	cmd := []string{"ffmpeg"}
+	cmd = append(cmd, inputs...)
+	cmd = append(cmd, settings...)
+	cmd = append(cmd, output)
+	return cmd, nil
+}
+
+func printCommand(cmd []string) string {
+	r := []string{}
+	for _, arg := range cmd {
+		r = append(r, "'"+strings.ReplaceAll(arg, "'", "'\\''")+"'")
+	}
+	return strings.Join(r, " ")
 }
 
 func finishDumping() error {
@@ -278,7 +290,7 @@ func finishDumping() error {
 	if err != nil {
 		return err
 	}
-	log.Infof("  %v", cmd)
+	log.Infof("  %v", printCommand(cmd))
 	if *dumpVideo != "" {
 		if *screenFilter != "linear2xcrt" {
 			log.Infof("with current settings (1080p, MEDIUM QUALITY):")
@@ -286,14 +298,14 @@ func finishDumping() error {
 			if err != nil {
 				return err
 			}
-			log.Infof("  %v", cmd)
+			log.Infof("  %v", printCommand(cmd))
 		}
 		log.Infof("preferred for uploading (4K, GOOD QUALITY):")
 		cmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt")
 		if err != nil {
 			return err
 		}
-		log.Infof("  %v", cmd)
+		log.Infof("  %v", printCommand(cmd))
 	}
 	return nil
 }
