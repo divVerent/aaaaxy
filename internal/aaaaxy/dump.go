@@ -109,7 +109,7 @@ func initDumpingEarly() error {
 
 func initDumpingLate() error {
 	if *dumpMedia != "" {
-		cmdLine, err := ffmpegCommand(dumpAudioPipe.Path(), dumpVideoPipe.Path(), "video-medium.mp4", *screenFilter)
+		cmdLine, err := ffmpegCommand(dumpAudioPipe.Path(), dumpVideoPipe.Path(), *dumpMedia, *screenFilter)
 		if err != nil {
 			return err
 		}

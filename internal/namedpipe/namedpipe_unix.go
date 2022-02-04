@@ -82,7 +82,7 @@ func (f *Fifo) runInternal() error {
 	for {
 		data, ok := <-f.buf
 		if !ok {
-			return nil
+			break
 		}
 		_, err = pipe.Write(data)
 		if err != nil {
