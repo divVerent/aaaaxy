@@ -112,15 +112,13 @@ func (s *CreditsScreen) Update() error {
 	exit := input.Exit.JustHit
 	up := input.Up.Held
 	down := input.Down.Held
-	if _, clicked := input.ClickPos(); clicked {
-		exit = true
-	}
-	if pos, moving := input.HoverPos(); moving {
-		if pos.Y < engine.GameHeight/4 {
+	if pos, status := input.Mouse(); status != input.NoMouse {
+		if s.Fancy && pos.Y < engine.GameHeight/4 {
 			up = true
-		}
-		if pos.Y > 3*engine.GameHeight/4 {
+		} else if s.Fancy && pos.Y > 3*engine.GameHeight/4 {
 			down = true
+		} else if status == input.ClickingMouse {
+			exit = true
 		}
 	}
 	if s.Fancy {
