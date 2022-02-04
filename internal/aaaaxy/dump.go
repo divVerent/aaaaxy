@@ -29,12 +29,14 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/namedpipe"
 )
 
 var (
 	dumpVideo            = flag.String("dump_video", "", "filename prefix to dump game frames to")
 	dumpVideoFpsDivisor  = flag.Int("dump_video_fps_divisor", 1, "frame rate divisor (try 2 for faster dumping)")
 	dumpAudio            = flag.String("dump_audio", "", "filename to dump game audio to")
+	dumpMedia            = flag.String("dump_media", "", "filename to dump game media to; exclusive with dump_video and dump_audio")
 	cheatDumpSlowAndGood = flag.Bool("cheat_dump_slow_and_good", false, "non-realtime video dumping (slows down the game, thus considered a cheat))")
 )
 
@@ -42,6 +44,9 @@ var (
 	dumpFrameCount = int64(0)
 	dumpVideoFile  *os.File
 	dumpAudioFile  *os.File
+	dumpVideoPipe  *namedpipe.Fifo
+	dumpAudioPipe  *namedpipe.Fifo
+	dumpMediaCmd   *exec.Cmd
 )
 
 const (
@@ -54,6 +59,27 @@ var (
 )
 
 func initDumping() error {
+	if *dumpMedia != "" {
+		dumpAudioPipe, err := namedpipe.New(64, 4*96000)
+		if err != nil {
+			return fmt.Errorf("could not create audio pipe: %v", err)
+		}
+		dumpVideoPipe, err := namedpipe.New(64, dumpVideoFrameSize)
+		if err != nil {
+			return fmt.Errorf("could not create video pipe: %v", err)
+		}
+		*dumpAudio = dumpAudioPipe.Path()
+		*dumpVideo = dumpVideoPipe.Path()
+		cmdLine := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter)
+		dumpMediaCmd := exec.Command("sh", "-c", cmdLine)
+		dumpMediaCmd.Stdout = os.Stdout
+		dumpMediaCmd.Stderr = os.Stderr
+		err := dumpMediaCmd.Start()
+		if err != nil {
+			return fmt.Errorf("could not launch FFmpeg: %v", err)
+		}
+	}
+
 	if *dumpAudio != "" {
 		var err error
 		dumpAudioFile, err = os.Create(*dumpAudio)
@@ -202,6 +228,9 @@ func finishDumping() error {
 			return fmt.Errorf("failed to close video - expect corruption: %v", err)
 		}
 		dumpVideoFile = nil
+	}
+	if dumpMediaCmd != nil {
+		err := dumpMediaCmd.
 	}
 	log.Infof("media has been dumped")
 	log.Infof("to create a preview file (DO NOT UPLOAD):")
