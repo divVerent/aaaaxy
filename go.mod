@@ -18,6 +18,7 @@ require (
 )
 
 require (
+	github.com/Microsoft/go-winio v0.5.1 // indirect
 	github.com/dchest/jsmin v0.0.0-20160823214000-faeced883947 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect

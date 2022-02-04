@@ -18,9 +18,11 @@
 package namedpipe
 
 import (
-	"math/random"
+	"fmt"
+	"math/rand"
+	"net"
 
-	"github.com/microsoft/go-winio"
+	"github.com/Microsoft/go-winio"
 )
 
 type Fifo struct {
@@ -31,12 +33,12 @@ type Fifo struct {
 }
 
 func New(bufCount, bufSize int) (*Fifo, error) {
-	tmpPath := fmt.Sprintf("\\\\.\\pipe\\aaaaxy-%d", random.Int63())
+	tmpPath := fmt.Sprintf("\\\\.\\pipe\\aaaaxy-%d", rand.Int63())
 	listener, err := winio.ListenPipe(tmpPath, &winio.PipeConfig{
 		SecurityDescriptor: "",
 		MessageMode:        false,
-		InputBufferSize:    bufSize,
-		OutputBufferSize:   bufSize,
+		InputBufferSize:    int32(bufSize),
+		OutputBufferSize:   int32(bufSize),
 	})
 	if err != nil {
 		return nil, err
@@ -47,7 +49,7 @@ func New(bufCount, bufSize int) (*Fifo, error) {
 		buf:      make(chan []byte, bufCount),
 		done:     make(chan error),
 	}
-	return f
+	return f, nil
 }
 
 func (f *Fifo) Path() string {
@@ -79,6 +81,7 @@ func (f *Fifo) runInternal() error {
 	if err != nil {
 		return err
 	}
+	f.listener = nil
 	for {
 		data, ok := <-f.buf
 		if !ok {

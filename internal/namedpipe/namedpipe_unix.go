@@ -79,9 +79,6 @@ func (f *Fifo) runInternal() error {
 	if err != nil {
 		return err
 	}
-	if err != nil {
-		return err
-	}
 	for {
 		data, ok := <-f.buf
 		if !ok {
