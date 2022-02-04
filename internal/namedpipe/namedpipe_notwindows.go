@@ -22,12 +22,15 @@ import (
 	"os"
 	"path/filepath"
 	"syscall"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 type Fifo struct {
-	path string
-	buf  chan []byte
-	done chan error
+	parent string
+	path   string
+	buf    chan []byte
+	done   chan error
 }
 
 func New(bufCount, _ int) (*Fifo, error) {
@@ -41,9 +44,10 @@ func New(bufCount, _ int) (*Fifo, error) {
 		return nil, err
 	}
 	f := &Fifo{
-		path: tmpPath,
-		buf:  make(chan []byte, bufCount),
-		done: make(chan error),
+		parent: tmpDir,
+		path:   tmpPath,
+		buf:    make(chan []byte, bufCount),
+		done:   make(chan error),
 	}
 	go f.run()
 	return f, nil
@@ -70,11 +74,13 @@ func (f *Fifo) run() {
 }
 
 func (f *Fifo) runInternal() error {
+	log.Infof("connecting to %v", f.path)
 	pipe, err := os.OpenFile(f.path, os.O_WRONLY, 0600)
+	log.Infof("connected to %v", f.path)
 	if err != nil {
 		return err
 	}
-	err = os.Remove(f.path)
+	err = os.RemoveAll(f.parent)
 	if err != nil {
 		return err
 	}

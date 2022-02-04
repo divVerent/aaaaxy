@@ -71,16 +71,18 @@ func initDumpingEarly() error {
 		if *dumpVideo != "" || *dumpAudio != "" {
 			return fmt.Errorf("-dump_media is mutually exclusive with -dump_video/-dump_audio")
 		}
-		dumpAudioPipe, err := namedpipe.New(64, 4*96000)
+		var err error
+		dumpAudioPipe, err = namedpipe.New(300, 4*96000)
 		if err != nil {
 			return fmt.Errorf("could not create audio pipe: %v", err)
 		}
-		dumpVideoPipe, err := namedpipe.New(64, dumpVideoFrameSize)
+		dumpVideoPipe, err = namedpipe.New(300, dumpVideoFrameSize)
 		if err != nil {
 			return fmt.Errorf("could not create video pipe: %v", err)
 		}
 		dumpAudioFile = namedpipe.NewWriteCloserAt(dumpAudioPipe)
 		dumpVideoFile = namedpipe.NewWriteCloserAt(dumpVideoPipe)
+		audiowrap.InitDumping()
 	}
 
 	if *dumpAudio != "" {
@@ -105,7 +107,7 @@ func initDumpingEarly() error {
 
 func initDumpingLate() error {
 	if *dumpMedia != "" {
-		cmdLine := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter)
+		cmdLine := ffmpegCommand(dumpAudioPipe.Path(), dumpVideoPipe.Path(), "video-medium.mp4", *screenFilter)
 		dumpMediaCmd := exec.Command("sh", "-c", cmdLine)
 		dumpMediaCmd.Stdout = os.Stdout
 		dumpMediaCmd.Stderr = os.Stderr
@@ -223,7 +225,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.SampleRate(), strings.ReplaceAll(audio, "'", "'\\''")))
 		settings = append(settings, "-codec:a aac -b:a 128k")
 	}
-	return fmt.Sprintf("%sffmpeg %s %s -vsync vfr %s", pre, strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''"))
+	return fmt.Sprintf("%sffmpeg %s %s -vsync vfr -y %s", pre, strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''"))
 }
 
 func finishDumping() error {
