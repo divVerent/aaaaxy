@@ -117,9 +117,9 @@ func (g *Game) InitEbiten() error {
 	if err != nil {
 		return fmt.Errorf("could not initialize demo: %v", err)
 	}
-	err = initDumping()
+	err = initDumpingEarly()
 	if err != nil {
-		return fmt.Errorf("could not initialize dumping: %v", err)
+		return fmt.Errorf("could not preinitialize dumping: %v", err)
 	}
 	err = font.Init()
 	if err != nil {
@@ -193,6 +193,10 @@ func (g *Game) InitStep() error {
 		return err
 	}
 	status, err = g.init.Enter("precaching engine", "could not precache engine", engine.Precache)
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("initializing dumping", "could not initialize dumping", splash.Single(initDumpingLate))
 	if status != splash.Continue {
 		return err
 	}

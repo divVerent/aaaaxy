@@ -16,7 +16,9 @@ package aaaaxy
 
 import (
 	"fmt"
+	"io"
 	"os"
+	"os/exec"
 	"strings"
 	"sync"
 	"time"
@@ -40,10 +42,16 @@ var (
 	cheatDumpSlowAndGood = flag.Bool("cheat_dump_slow_and_good", false, "non-realtime video dumping (slows down the game, thus considered a cheat))")
 )
 
+type WriteCloserAt interface {
+	io.Writer
+	io.WriterAt
+	io.Closer
+}
+
 var (
 	dumpFrameCount = int64(0)
-	dumpVideoFile  *os.File
-	dumpAudioFile  *os.File
+	dumpVideoFile  WriteCloserAt
+	dumpAudioFile  WriteCloserAt
 	dumpVideoPipe  *namedpipe.Fifo
 	dumpAudioPipe  *namedpipe.Fifo
 	dumpMediaCmd   *exec.Cmd
@@ -58,8 +66,11 @@ var (
 	dumpVideoWg    sync.WaitGroup
 )
 
-func initDumping() error {
+func initDumpingEarly() error {
 	if *dumpMedia != "" {
+		if *dumpVideo != "" || *dumpAudio != "" {
+			return fmt.Errorf("-dump_media is mutually exclusive with -dump_video/-dump_audio")
+		}
 		dumpAudioPipe, err := namedpipe.New(64, 4*96000)
 		if err != nil {
 			return fmt.Errorf("could not create audio pipe: %v", err)
@@ -68,16 +79,8 @@ func initDumping() error {
 		if err != nil {
 			return fmt.Errorf("could not create video pipe: %v", err)
 		}
-		*dumpAudio = dumpAudioPipe.Path()
-		*dumpVideo = dumpVideoPipe.Path()
-		cmdLine := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter)
-		dumpMediaCmd := exec.Command("sh", "-c", cmdLine)
-		dumpMediaCmd.Stdout = os.Stdout
-		dumpMediaCmd.Stderr = os.Stderr
-		err := dumpMediaCmd.Start()
-		if err != nil {
-			return fmt.Errorf("could not launch FFmpeg: %v", err)
-		}
+		dumpAudioFile = namedpipe.NewWriteCloserAt(dumpAudioPipe)
+		dumpVideoFile = namedpipe.NewWriteCloserAt(dumpVideoPipe)
 	}
 
 	if *dumpAudio != "" {
@@ -94,6 +97,21 @@ func initDumping() error {
 		dumpVideoFile, err = os.Create(*dumpVideo)
 		if err != nil {
 			return fmt.Errorf("could not initialize video dump: %v", err)
+		}
+	}
+
+	return nil
+}
+
+func initDumpingLate() error {
+	if *dumpMedia != "" {
+		cmdLine := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter)
+		dumpMediaCmd := exec.Command("sh", "-c", cmdLine)
+		dumpMediaCmd.Stdout = os.Stdout
+		dumpMediaCmd.Stderr = os.Stderr
+		err := dumpMediaCmd.Start()
+		if err != nil {
+			return fmt.Errorf("could not launch FFmpeg: %v", err)
 		}
 	}
 
@@ -230,7 +248,10 @@ func finishDumping() error {
 		dumpVideoFile = nil
 	}
 	if dumpMediaCmd != nil {
-		err := dumpMediaCmd.
+		err := dumpMediaCmd.Wait()
+		if err != nil {
+			return fmt.Errorf("failed to close FFmpeg - expect corruption: %v", err)
+		}
 	}
 	log.Infof("media has been dumped")
 	log.Infof("to create a preview file (DO NOT UPLOAD):")

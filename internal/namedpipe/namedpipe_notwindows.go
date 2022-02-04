@@ -20,6 +20,8 @@ package namedpipe
 import (
 	"io/ioutil"
 	"os"
+	"path/filepath"
+	"syscall"
 )
 
 type Fifo struct {
@@ -40,11 +42,11 @@ func New(bufCount, _ int) (*Fifo, error) {
 	}
 	f := &Fifo{
 		path: tmpPath,
-		buf:  make(chan []byte, bufSize),
+		buf:  make(chan []byte, bufCount),
 		done: make(chan error),
 	}
 	go f.run()
-	return f
+	return f, nil
 }
 
 func (f *Fifo) Path() string {
