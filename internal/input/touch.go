@@ -24,7 +24,7 @@ import (
 
 var (
 	touch      = flag.Bool("touch", true, "enable touch input")
-	touchForce = flag.Bool("touch_force", false, "always show touch controls")
+	touchForce = flag.Bool("touch_force", flag.SystemDefault(map[string]interface{}{"js/*": true, "*/*": false}).(bool), "always show touch controls")
 )
 
 var (
@@ -34,7 +34,7 @@ var (
 	upTouch     = m.Rect{Origin: m.Pos{X: 16, Y: 264}, Size: m.Delta{DX: 32, DY: 32}}
 	jumpTouch   = m.Rect{Origin: m.Pos{X: 608, Y: 328}, Size: m.Delta{DX: 32, DY: 32}}
 	actionTouch = m.Rect{Origin: m.Pos{X: 576, Y: 328}, Size: m.Delta{DX: 32, DY: 32}}
-	exitTouch   = m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 32, DY: 64}}
+	exitTouch   = m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 64, DY: 32}}
 )
 
 const (

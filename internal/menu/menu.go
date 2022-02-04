@@ -17,19 +17,15 @@ package menu
 import (
 	"errors"
 	"fmt"
-	"image/color"
 	"reflect"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/font"
-	"github.com/divVerent/aaaaxy/internal/fun"
 	_ "github.com/divVerent/aaaaxy/internal/game" // Load entities.
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
-	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/sound"
@@ -40,8 +36,6 @@ var RegularTermination = errors.New("exited normally")
 
 var (
 	saveState = flag.Int("save_state", 0, "number of save state slot")
-	showFps   = flag.Bool("show_fps", flag.SystemDefault(map[string]interface{}{"js/*": true, "*/*": false}).(bool), "show fps counter")
-	showTime  = flag.Bool("show_time", false, "show game time")
 )
 
 const (
@@ -154,22 +148,6 @@ func (c *Controller) Draw(screen *ebiten.Image) {
 	timing.Section("screen")
 	if c.Screen != nil {
 		c.Screen.Draw(screen)
-	}
-
-	timing.Section("global_overlays")
-	if *showFps {
-		timing.Section("fps")
-		font.DebugSmall.Draw(screen,
-			fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
-			m.Pos{X: engine.GameWidth - 48, Y: engine.GameHeight - 4}, true,
-			color.NRGBA{R: 255, G: 255, B: 255, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
-	}
-	if *showTime {
-		timing.Section("time")
-		font.DebugSmall.Draw(screen,
-			fmt.Sprintf(fun.FormatText(&c.World.PlayerState, "{{GameTime}}")),
-			m.Pos{X: 32, Y: engine.GameHeight - 4}, true,
-			color.NRGBA{R: 255, G: 255, B: 255, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
 	}
 }
 

@@ -27,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -52,6 +53,8 @@ var (
 	paletteBayerWorldAligned = flag.Bool("palette_bayer_world_aligned", true, "align bayer dither pattern to world as opposed to screen")
 	paletteCheckEGAColors    = flag.Bool("palette_check_ega_colors", false, "report if any EGA colors would get dithered by the current palette (normal for CGA and mono)")
 	debugEnableDrawing       = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
+	showFPS                  = flag.Bool("show_fps", false, "show fps counter")
+	showTime                 = flag.Bool("show_time", false, "show game time")
 )
 
 type Game struct {
@@ -283,6 +286,22 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 
 	timing.Section("input")
 	input.Draw(drawDest)
+
+	timing.Section("global_overlays")
+	if *showFPS {
+		timing.Section("fps")
+		font.DebugSmall.Draw(drawDest,
+			fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
+			m.Pos{X: engine.GameWidth - 48, Y: engine.GameHeight - 4}, true,
+			color.NRGBA{R: 255, G: 255, B: 255, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+	}
+	if *showTime {
+		timing.Section("time")
+		font.DebugSmall.Draw(drawDest,
+			fmt.Sprintf(fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}")),
+			m.Pos{X: 32, Y: engine.GameHeight - 4}, true,
+			color.NRGBA{R: 255, G: 255, B: 255, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+	}
 
 	timing.Section("demo_postdraw")
 	demo.PostDraw(drawDest)
