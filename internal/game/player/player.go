@@ -36,7 +36,7 @@ import (
 )
 
 var (
-	cheatInAirJump = flag.Bool("cheat_in_air_jump", false, "Allow jumping while in air (allows getting anywhere)")
+	cheatInAirJump = flag.Bool("cheat_in_air_jump", false, "allow jumping while in air (allows getting anywhere)")
 )
 
 type Player struct {

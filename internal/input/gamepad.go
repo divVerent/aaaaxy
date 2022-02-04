@@ -29,9 +29,10 @@ import (
 )
 
 var (
-	gamepadAxisOnThreshold  = flag.Float64("gamepad_axis_on_threshold", 0.6, "Minimum amount to push the game pad for registering an action. Can be zero to accept any movement.")
-	gamepadAxisOffThreshold = flag.Float64("gamepad_axis_off_threshold", 0.4, "Maximum amount to push the game pad for unregistering an action. Can be zero to accept any movement.")
-	gamepadOverride         = flag.String("gamepad_override", "", "Entries in SDL_GameControllerDB format to add/override gamepad support. Multiple entries are permitted and can be separated by newlines or semicolons. Can also be provided via $SDL_GAMECONTROLLERCONFIG environment variable.")
+	gamepad                 = flag.Bool("gamepad", true, "enable gamepad input")
+	gamepadAxisOnThreshold  = flag.Float64("gamepad_axis_on_threshold", 0.6, "minimum amount to push the game pad for registering an action; can be zero to accept any movement")
+	gamepadAxisOffThreshold = flag.Float64("gamepad_axis_off_threshold", 0.4, "maximum amount to push the game pad for unregistering an action; can be zero to accept any movement")
+	gamepadOverride         = flag.String("gamepad_override", "", "entries in SDL_GameControllerDB format to add/override gamepad support; multiple entries are permitted and can be separated by newlines or semicolons; can also be provided via $SDL_GAMECONTROLLERCONFIG environment variable")
 )
 
 type (
@@ -145,6 +146,13 @@ func (i *impulse) gamepadPressed() InputMap {
 }
 
 func gamepadScan() {
+	if !*gamepad {
+		for p := range gamepads {
+			delete(gamepads, p)
+		}
+		return
+	}
+
 	// List new gamepads.
 	allGamepadsList = ebiten.AppendGamepadIDs(allGamepadsList[:0])
 	// Detect added/removed gamepads.

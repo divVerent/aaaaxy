@@ -25,9 +25,9 @@ import (
 )
 
 var (
-	cheatFullMapNormal   = flag.Bool("cheat_full_map_normal", false, "Show the full map.")
-	cheatFullMapFlipped  = flag.Bool("cheat_full_map_flipped", false, "Show the full map.")
-	cheatPlayerAbilities = flag.StringBoolMap("cheat_player_abilities", map[string]bool{}, "Override player abilities")
+	cheatFullMapNormal   = flag.Bool("cheat_full_map_normal", false, "show the full map")
+	cheatFullMapFlipped  = flag.Bool("cheat_full_map_flipped", false, "show the full map")
+	cheatPlayerAbilities = flag.StringBoolMap("cheat_player_abilities", map[string]bool{}, "override player abilities")
 )
 
 type PlayerState struct {

@@ -17,7 +17,12 @@ package input
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	m "github.com/divVerent/aaaaxy/internal/math"
+)
+
+var (
+	mouse = flag.Bool("mouse", true, "enable mouse input")
 )
 
 const (
@@ -36,7 +41,7 @@ var (
 )
 
 func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
-	wantVisible := mouseWantClicks && mouseHoverFrame > 0
+	wantVisible := *mouse && mouseWantClicks && mouseHoverFrame > 0
 	if wantVisible != mouseVisible {
 		mouseVisible = wantVisible
 		if wantVisible {
@@ -44,6 +49,10 @@ func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 		} else {
 			ebiten.SetCursorMode(ebiten.CursorModeHidden)
 		}
+	}
+
+	if !*mouse {
+		return
 	}
 
 	x, y := ebiten.CursorPosition()
