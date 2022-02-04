@@ -22,11 +22,13 @@ import (
 )
 
 var (
-	touch = flag.Bool("touch", true, "enable touch input")
+	touch      = flag.Bool("touch", true, "enable touch input")
+	touchForce = flag.Bool("touch_force", false, "always show touch controls")
 )
 
 const (
-	touchMaxFrames = 30
+	touchClickMaxFrames = 30
+	touchPadFrames      = 300
 )
 
 type touchInfo struct {
@@ -40,6 +42,7 @@ var (
 	touches       map[ebiten.TouchID]*touchInfo
 	touchIDs      []ebiten.TouchID
 	touchHoverPos m.Pos
+	touchPadFrame int
 )
 
 func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
@@ -53,6 +56,9 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 	if len(touchIDs) > 0 {
 		// Either support touch OR mouse. This prevents duplicate click events.
 		mouseCancel()
+		touchPadFrame = touchPadFrames
+	} else if touchPadFrame > 0 {
+		touchPadFrame--
 	}
 	for _, id := range touchIDs {
 		t, found := touches[id]
@@ -67,7 +73,7 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 	hoverCnt := 0
 	for id, t := range touches {
 		if !t.hit {
-			if t.frames < touchMaxFrames {
+			if t.frames < touchClickMaxFrames {
 				clickPos = &t.pos
 			}
 			delete(touches, id)
@@ -77,7 +83,7 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 		x = (x*gameWidth + screenWidth/2) / screenWidth
 		y = (y*gameHeight + screenHeight/2) / screenHeight
 		t.pos = m.Pos{X: x, Y: y}
-		if t.frames < touchMaxFrames {
+		if t.frames < touchClickMaxFrames {
 			hoverAcc = hoverAcc.Add(t.pos.Delta(m.Pos{}))
 			hoverCnt++
 		}
@@ -107,5 +113,18 @@ func (i *impulse) touchPressed() InputMap {
 	return 0
 }
 
-// TODO(divVerent): Implement a way to draw the gamepad.
-// Should look similar to NES pad.
+func touchDraw(screen *ebiten.Image) {
+	if !touchWantPad {
+		return
+	}
+	if !*touchForce && touchPadFrame > 0 {
+		return
+	}
+	for _, i := range impulses {
+		if i.touchRect.Size.IsZero() {
+			continue
+		}
+		// TODO(divVerent): Draw it.
+		// Should look similar to NES pad.
+	}
+}

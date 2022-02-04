@@ -298,3 +298,7 @@ func SaveToDemo() *DemoState {
 		KonamiCodeJustHit: KonamiCodeJustHit(),
 	}
 }
+
+func Draw(screen *ebiten.Image) {
+	touchDraw(screen)
+}

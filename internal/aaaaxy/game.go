@@ -281,6 +281,9 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 	timing.Section("menu")
 	g.Menu.Draw(drawDest)
 
+	timing.Section("input")
+	input.Draw(drawDest)
+
 	timing.Section("demo_postdraw")
 	demo.PostDraw(drawDest)
 
