@@ -109,7 +109,7 @@ func initDumpingEarly() error {
 
 func initDumpingLate() error {
 	if *dumpMedia != "" {
-		cmdLine, err := ffmpegCommand(dumpAudioPipe.Path(), dumpVideoPipe.Path(), *dumpMedia, *screenFilter)
+		cmdLine, _, err := ffmpegCommand(dumpAudioPipe.Path(), dumpVideoPipe.Path(), *dumpMedia, *screenFilter)
 		if err != nil {
 			return err
 		}
@@ -182,7 +182,8 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 	}
 }
 
-func ffmpegCommand(audio, video, output, screenFilter string) ([]string, error) {
+func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string, error) {
+	precmd := ""
 	inputs := []string{}
 	settings := []string{"-vsync", "vfr", "-y"}
 	// Video first, so we can refer to the video stream as [0:v] for sure.
@@ -213,17 +214,18 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, error) 
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
 			tempFile, err := ioutil.TempFile("", "aaaaxy-*")
 			if err != nil {
-				return nil, err
+				return nil, "", err
 			}
 			atexit.Delete(tempFile.Name())
 			_, err = tempFile.Write([]byte(pnm))
 			if err != nil {
-				return nil, err
+				return nil, "", err
 			}
 			err = tempFile.Close()
 			if err != nil {
-				return nil, err
+				return nil, "", err
 			}
+			precmd = fmt.Sprintf("{ echo '%s'; echo '%s'; } > '%s'; ", pnm[:2], pnm[3:], tempFile.Name())
 			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; movie=filename=%v:loop=360,tile=1x360,scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", tempFile.Name(), crtK1(), crtK2())
 		case "nearest":
 			filterComplex += "[lowres]scale=1920:1080:flags=neighbor"
@@ -246,7 +248,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, error) 
 	cmd = append(cmd, inputs...)
 	cmd = append(cmd, settings...)
 	cmd = append(cmd, output)
-	return cmd, nil
+	return cmd, precmd, nil
 }
 
 func printCommand(cmd []string) string {
@@ -286,26 +288,26 @@ func finishDumping() error {
 	}
 	log.Infof("media has been dumped")
 	log.Infof("to create a preview file (DO NOT UPLOAD):")
-	cmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mp4", "")
+	cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mp4", "")
 	if err != nil {
 		return err
 	}
-	log.Infof("  %v", printCommand(cmd))
+	log.Infof("  %v%v", precmd, printCommand(cmd))
 	if *dumpVideo != "" {
 		if *screenFilter != "linear2xcrt" {
 			log.Infof("with current settings (1080p, MEDIUM QUALITY):")
-			cmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter)
+			cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter)
 			if err != nil {
 				return err
 			}
-			log.Infof("  %v", printCommand(cmd))
+			log.Infof("  %v%v", precmd, printCommand(cmd))
 		}
 		log.Infof("preferred for uploading (4K, GOOD QUALITY):")
-		cmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt")
+		cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt")
 		if err != nil {
 			return err
 		}
-		log.Infof("  %v", printCommand(cmd))
+		log.Infof("  %v%v", precmd, printCommand(cmd))
 	}
 	return nil
 }
