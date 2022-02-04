@@ -59,6 +59,7 @@ type impulse struct {
 	padControls  padControls
 	mouseControl bool
 	touchRect    m.Rect
+	touchImage   *ebiten.Image
 }
 
 const (
@@ -88,13 +89,13 @@ const (
 )
 
 var (
-	Left       = (&impulse{Name: "Left", keys: leftKeys, padControls: leftPad}).register()
-	Right      = (&impulse{Name: "Right", keys: rightKeys, padControls: rightPad}).register()
-	Up         = (&impulse{Name: "Up", keys: upKeys, padControls: upPad}).register()
-	Down       = (&impulse{Name: "Down", keys: downKeys, padControls: downPad}).register()
-	Jump       = (&impulse{Name: "Jump", keys: jumpKeys, padControls: jumpPad}).register()
-	Action     = (&impulse{Name: "Action", keys: actionKeys, padControls: actionPad}).register()
-	Exit       = (&impulse{Name: "Exit", keys: exitKeys, padControls: exitPad, mouseControl: true}).register()
+	Left       = (&impulse{Name: "Left", keys: leftKeys, padControls: leftPad, touchRect: leftTouch}).register()
+	Right      = (&impulse{Name: "Right", keys: rightKeys, padControls: rightPad, touchRect: rightTouch}).register()
+	Up         = (&impulse{Name: "Up", keys: upKeys, padControls: upPad, touchRect: upTouch}).register()
+	Down       = (&impulse{Name: "Down", keys: downKeys, padControls: downPad, touchRect: downTouch}).register()
+	Jump       = (&impulse{Name: "Jump", keys: jumpKeys, padControls: jumpPad, touchRect: jumpTouch}).register()
+	Action     = (&impulse{Name: "Action", keys: actionKeys, padControls: actionPad, touchRect: actionTouch}).register()
+	Exit       = (&impulse{Name: "Exit", keys: exitKeys, padControls: exitPad, mouseControl: true, touchRect: exitTouch}).register()
 	Fullscreen = (&impulse{Name: "Fullscreen", keys: fullscreenKeys /* no padControls */}).register()
 
 	impulses = []*impulse{}
@@ -142,7 +143,7 @@ func (i *impulse) update() {
 
 func Init() error {
 	gamepadInit()
-	return nil
+	return touchInit()
 }
 
 func Update(screenWidth, screenHeight, gameWidth, gameHeight int) {

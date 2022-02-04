@@ -172,10 +172,6 @@ func (g *Game) InitStep() error {
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("initializing input", "could not initialize input", splash.Single(input.Init))
-	if status != splash.Continue {
-		return err
-	}
 	status, err = g.init.Enter("initializing audio", "could not initialize audio", splash.Single(audiowrap.Init))
 	if status != splash.Continue {
 		return err
@@ -189,6 +185,10 @@ func (g *Game) InitStep() error {
 		return err
 	}
 	status, err = g.init.Enter("precaching images", "could not precache images", splash.Single(image.Precache))
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("initializing input", "could not initialize input", splash.Single(input.Init))
 	if status != splash.Continue {
 		return err
 	}
