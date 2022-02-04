@@ -24,7 +24,7 @@ import (
 
 var (
 	touch      = flag.Bool("touch", true, "enable touch input")
-	touchForce = flag.Bool("touch_force", flag.SystemDefault(map[string]interface{}{"js/*": true, "*/*": false}).(bool), "always show touch controls")
+	touchForce = flag.Bool("touch_force", false, "always show touch controls")
 )
 
 var (
