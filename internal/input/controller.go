@@ -73,6 +73,7 @@ const (
 	NESKeyboardWithBackspace InputMap = 64
 	FPSKeyboardWithBackspace InputMap = 128
 	ViKeyboardWithBackspace  InputMap = 256
+	Touchscreen              InputMap = 512
 
 	// Computed helpers values.
 	AnyKeyboardWithEscape    = DOSKeyboardWithEscape | NESKeyboardWithEscape | FPSKeyboardWithEscape | ViKeyboardWithEscape
@@ -82,7 +83,7 @@ const (
 	FPSKeyboard              = FPSKeyboardWithEscape | FPSKeyboardWithBackspace
 	ViKeyboard               = ViKeyboardWithEscape | ViKeyboardWithBackspace
 	AnyKeyboard              = AnyKeyboardWithEscape | AnyKeyboardWithBackspace
-	AnyInput                 = AnyKeyboard | Gamepad
+	AnyInput                 = AnyKeyboard | Gamepad | Touchscreen
 )
 
 var (

@@ -27,7 +27,7 @@ var (
 
 const (
 	mouseHoverFrames = 5 * 60
-	mouseBlockFrames = 60
+	mouseBlockFrames = 30
 )
 
 var (
@@ -68,6 +68,8 @@ func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 	if mouseBlockFrame > 0 {
 		mouseBlockFrame--
 		mouseHoverFrame = 0
+		mouseClicking = false
+		return
 	}
 
 	if mouseHoverFrame > 0 {
