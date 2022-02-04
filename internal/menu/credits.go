@@ -110,8 +110,18 @@ func (s *CreditsScreen) Init(m *Controller) error {
 
 func (s *CreditsScreen) Update() error {
 	exit := input.Exit.JustHit
+	up := input.Up.Held
+	down := input.Down.Held
 	if _, clicked := input.ClickPos(); clicked {
 		exit = true
+	}
+	if pos, moving := input.HoverPos(); moving {
+		if pos.Y < engine.GameHeight/4 {
+			up = true
+		}
+		if pos.Y > 3*engine.GameHeight/4 {
+			down = true
+		}
 	}
 	if s.Fancy {
 		if exit {
@@ -126,10 +136,10 @@ func (s *CreditsScreen) Update() error {
 		if exit {
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 		}
-		if input.Up.Held {
+		if up {
 			s.Frame -= 5
 		}
-		if input.Down.Held {
+		if down {
 			s.Frame += 5
 		}
 	}
