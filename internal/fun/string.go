@@ -177,6 +177,9 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			if i.ContainsAny(input.Gamepad) {
 				return "B/X", nil
 			}
+			if i.ContainsAny(input.Touchscreen) {
+				return "B", nil
+			}
 			if i.ContainsAny(input.DOSKeyboard) {
 				return "Alt/Shift", nil
 			}

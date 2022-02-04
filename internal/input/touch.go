@@ -96,9 +96,16 @@ func (i *impulse) touchPressed() InputMap {
 	if !touchWantPad {
 		return 0
 	}
-	// TODO(divVerent): Implement.
-	// Also, find a way to draw the gamepad.
-	// Should look similar to NES pad.
-	// return Touchscreen
+	if i.touchRect.Size.IsZero() {
+		return 0
+	}
+	for _, t := range touches {
+		if i.touchRect.DeltaPos(t.pos).IsZero() {
+			return Touchscreen
+		}
+	}
 	return 0
 }
+
+// TODO(divVerent): Implement a way to draw the gamepad.
+// Should look similar to NES pad.

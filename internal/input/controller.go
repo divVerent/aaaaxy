@@ -58,6 +58,7 @@ type impulse struct {
 	keys         map[ebiten.Key]InputMap
 	padControls  padControls
 	mouseControl bool
+	touchRect    m.Rect
 }
 
 const (
@@ -187,11 +188,15 @@ const (
 	Escape ExitButtonID = iota
 	Backspace
 	Start
+	Back
 )
 
 func ExitButton() ExitButtonID {
 	if inputMap.ContainsAny(Gamepad) {
 		return Start
+	}
+	if inputMap.ContainsAny(Touchscreen) {
+		return Back
 	}
 	if runtime.GOOS != "js" {
 		// On JS, the Esc key is kinda "reserved" for leaving fullsreeen.

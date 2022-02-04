@@ -36,7 +36,7 @@ func (s *ExitButton) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	switch input.ExitButton() {
 	default: // case input.Escape:
 		sp.Properties["image"] = "esc.png"
-	case input.Backspace:
+	case input.Backspace, input.Back:
 		sp.Properties["image"] = "backspace.png"
 	case input.Start:
 		sp.Properties["image"] = "start.png"

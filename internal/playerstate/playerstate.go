@@ -266,6 +266,8 @@ func (c SpeedrunCategories) Name() string {
 			return "No Backspace"
 		case input.Start:
 			return "No Start"
+		case input.Back:
+			return "No Back"
 		}
 	case hundredPercentSpeedrun:
 		return "100%"
