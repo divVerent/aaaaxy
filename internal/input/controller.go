@@ -117,8 +117,9 @@ func (i *impulse) register() *impulse {
 func (i *impulse) update() {
 	keyboardHeld := i.keyboardPressed()
 	gamepadHeld := i.gamepadPressed()
+	touchHeld := i.touchPressed()
 	mouseHeld := i.mousePressed()
-	held := keyboardHeld | gamepadHeld | mouseHeld
+	held := keyboardHeld | gamepadHeld | touchHeld | mouseHeld
 	if held != NoInput && !i.Held {
 		i.JustHit = true
 		// Whenever a new key is pressed, update the flag whether we're actually
@@ -158,11 +159,13 @@ func Update(screenWidth, screenHeight, gameWidth, gameHeight int) {
 	}
 	clickPos, hoverPos = nil, nil
 	mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight)
+	touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight)
 	easterEggUpdate()
 }
 
 func SetWantClicks(want bool) {
 	mouseSetWantClicks(want)
+	touchSetWantPad(!want)
 }
 
 func EasterEggJustHit() bool {
