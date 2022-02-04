@@ -24,6 +24,7 @@ import (
 	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/alert"
+	"github.com/divVerent/aaaaxy/internal/atexit"
 )
 
 var (
@@ -104,6 +105,7 @@ func Fatalf(format string, v ...interface{}) {
 	if !*Batch {
 		alert.Show(msg)
 	}
+	atexit.Finish()
 	os.Exit(125)
 }
 

@@ -17,6 +17,7 @@ package aaaaxy
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
@@ -25,6 +26,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/atexit"
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/engine"
@@ -72,11 +74,11 @@ func initDumpingEarly() error {
 			return fmt.Errorf("-dump_media is mutually exclusive with -dump_video/-dump_audio")
 		}
 		var err error
-		dumpAudioPipe, err = namedpipe.New(300, 4*96000)
+		dumpAudioPipe, err = namedpipe.New(120, 4*96000)
 		if err != nil {
 			return fmt.Errorf("could not create audio pipe: %v", err)
 		}
-		dumpVideoPipe, err = namedpipe.New(300, dumpVideoFrameSize)
+		dumpVideoPipe, err = namedpipe.New(120, dumpVideoFrameSize)
 		if err != nil {
 			return fmt.Errorf("could not create video pipe: %v", err)
 		}
@@ -107,11 +109,14 @@ func initDumpingEarly() error {
 
 func initDumpingLate() error {
 	if *dumpMedia != "" {
-		cmdLine := ffmpegCommand(dumpAudioPipe.Path(), dumpVideoPipe.Path(), "video-medium.mp4", *screenFilter)
+		cmdLine, err := ffmpegCommand(dumpAudioPipe.Path(), dumpVideoPipe.Path(), "video-medium.mp4", *screenFilter)
+		if err != nil {
+			return err
+		}
 		dumpMediaCmd := exec.Command("sh", "-c", cmdLine)
 		dumpMediaCmd.Stdout = os.Stdout
 		dumpMediaCmd.Stderr = os.Stderr
-		err := dumpMediaCmd.Start()
+		err = dumpMediaCmd.Start()
 		if err != nil {
 			return fmt.Errorf("could not launch FFmpeg: %v", err)
 		}
@@ -177,8 +182,7 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 	}
 }
 
-func ffmpegCommand(audio, video, output, screenFilter string) string {
-	var pre string
+func ffmpegCommand(audio, video, output, screenFilter string) (string, error) {
 	inputs := []string{}
 	settings := []string{}
 	// Video first, so we can refer to the video stream as [0:v] for sure.
@@ -196,18 +200,31 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 		case "linear2xcrt":
 			// For 3x scale, pattern is: 1 (1-2/3*f) 1.
 			// darkened := m.Rint(255 * (1.0 - 2.0/3.0**screenFilterScanLines))
-			// pre = fmt.Sprintf("echo 'P2 1 3 255 %d 255 %d' | convert -size 1920x1080 TILE:PNM:- scanlines.png; ", darkened, darkened)
+			// pnm := fmt.Sprintf("P2 1 3 255 %d 255 %d", darkened, darkened)
 			// Then second scale is to 1920:1080.
 			// But for the lens correction, we gotta do better.
 			// For 6x scale, pattern is: (1-5/6*f) (1-3/6*f) (1-1/6*f) (1-1/6*f) (1-3/6*f) (1-5/6*f).
-			pre += fmt.Sprintf("echo 'P2 1 6 255 %d %d %d %d %d %d' | convert -size 3840:2160 TILE:PNM:- scanlines.png; ",
+			pnm := fmt.Sprintf("P2\n1 6 255 %d %d %d %d %d %d",
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
-			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; movie=scanlines.png,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
+			tempFile, err := ioutil.TempFile("", "aaaaxy-*")
+			if err != nil {
+				return "", err
+			}
+			atexit.Delete(tempFile.Name())
+			_, err = tempFile.Write([]byte(pnm))
+			if err != nil {
+				return "", err
+			}
+			err = tempFile.Close()
+			if err != nil {
+				return "", err
+			}
+			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; movie=filename=%v:loop=360,tile=1x360,scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", tempFile.Name(), crtK1(), crtK2())
 		case "nearest":
 			filterComplex += "[lowres]scale=1920:1080:flags=neighbor"
 		case "":
@@ -225,7 +242,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) string {
 		inputs = append(inputs, fmt.Sprintf("-f s16le -ac 2 -ar %d  -i '%s'", audiowrap.SampleRate(), strings.ReplaceAll(audio, "'", "'\\''")))
 		settings = append(settings, "-codec:a aac -b:a 128k")
 	}
-	return fmt.Sprintf("%sffmpeg %s %s -vsync vfr -y %s", pre, strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''"))
+	return fmt.Sprintf("ffmpeg %s %s -vsync vfr -y %s", strings.Join(inputs, " "), strings.Join(settings, " "), strings.ReplaceAll(output, "'", "'\\''")), nil
 }
 
 func finishDumping() error {
@@ -257,14 +274,26 @@ func finishDumping() error {
 	}
 	log.Infof("media has been dumped")
 	log.Infof("to create a preview file (DO NOT UPLOAD):")
-	log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mp4", ""))
+	cmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mp4", "")
+	if err != nil {
+		return err
+	}
+	log.Infof("  %v", cmd)
 	if *dumpVideo != "" {
 		if *screenFilter != "linear2xcrt" {
 			log.Infof("with current settings (1080p, MEDIUM QUALITY):")
-			log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter))
+			cmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter)
+			if err != nil {
+				return err
+			}
+			log.Infof("  %v", cmd)
 		}
 		log.Infof("preferred for uploading (4K, GOOD QUALITY):")
-		log.Infof("  " + ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt"))
+		cmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt")
+		if err != nil {
+			return err
+		}
+		log.Infof("  %v", cmd)
 	}
 	return nil
 }

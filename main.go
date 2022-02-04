@@ -22,6 +22,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/aaaaxy"
+	"github.com/divVerent/aaaaxy/internal/atexit"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -89,4 +90,5 @@ func main() {
 		log.Fatalf("BeforeExit exited abnormally: %v", errbe)
 	}
 	log.CloseLogFile()
+	atexit.Finish()
 }

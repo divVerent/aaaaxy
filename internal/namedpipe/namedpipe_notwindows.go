@@ -23,7 +23,7 @@ import (
 	"path/filepath"
 	"syscall"
 
-	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/atexit"
 )
 
 type Fifo struct {
@@ -38,6 +38,7 @@ func New(bufCount, _ int) (*Fifo, error) {
 	if err != nil {
 		return nil, err
 	}
+	atexit.Delete(tmpDir)
 	tmpPath := filepath.Join(tmpDir, "pipe")
 	err = syscall.Mkfifo(tmpPath, 0600)
 	if err != nil {
@@ -74,13 +75,10 @@ func (f *Fifo) run() {
 }
 
 func (f *Fifo) runInternal() error {
-	log.Infof("connecting to %v", f.path)
 	pipe, err := os.OpenFile(f.path, os.O_WRONLY, 0600)
-	log.Infof("connected to %v", f.path)
 	if err != nil {
 		return err
 	}
-	err = os.RemoveAll(f.parent)
 	if err != nil {
 		return err
 	}
