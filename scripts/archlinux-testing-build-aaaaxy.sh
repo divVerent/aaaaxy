@@ -16,20 +16,22 @@
 # A script I run on my machine to test the Arch Linux PKGBUILD before
 # committing. Not expected to work anywhere else.
 
-mkdir /root/archlinux/root.x86_64/aur-aaaaxy
-umount /root/archlinux/root.x86_64
-mount --bind /root/archlinux/root.x86_64 /root/archlinux/root.x86_64
-umount /root/archlinux/root.x86_64/aur-aaaaxy
-mount --bind /home/rpolzer/src/aur-aaaaxy /root/archlinux/root.x86_64/aur-aaaaxy
-/root/archlinux/root.x86_64/bin/arch-chroot /root/archlinux/root.x86_64  \
-	pacman -Syu alsa-lib hicolor-icon-theme libglvnd libx11 git go graphviz imagemagick libxcursor libxinerama libxi libxrandr
+set -ex
+
+umount /root/archlinux/root.x86_64 || true
+mount --bind /root/archlinux/root.x86_64 /root/archlinux/root.x86_64 || true
+rsync -vaSHPAX /home/rpolzer/src/aur-aaaaxy/. /root/archlinux/root.x86_64/aur-aaaaxy
+/root/archlinux/root.x86_64/bin/arch-chroot /root/archlinux/root.x86_64 pacman -Syu pacman-contrib
+/root/archlinux/root.x86_64/bin/arch-chroot /root/archlinux/root.x86_64 chown -R builder /aur-aaaaxy
 /root/archlinux/root.x86_64/bin/arch-chroot /root/archlinux/root.x86_64 \
 	su builder -c '
-		set -ex
-		rm -rf /tmp/aur-aaaaxy;
-		cp -rv /aur-aaaaxy /tmp/aur-aaaaxy;
-		cd /tmp/aur-aaaaxy;
-		makepkg;
+		set -ex;
+		cd /aur-aaaaxy;
+		updpkgsums;
+		makepkg --syncdeps;
+		makepkg --printsrcinfo > .SRCINFO;
 		namcap PKGBUILD;
 		namcap *.pkg.*;
 	'
+cat /root/archlinux/root.x86_64/aur-aaaaxy/PKGBUILD > /home/rpolzer/src/aur-aaaaxy/PKGBUILD
+cat /root/archlinux/root.x86_64/aur-aaaaxy/.SRCINFO > /home/rpolzer/src/aur-aaaaxy/.SRCINFO
