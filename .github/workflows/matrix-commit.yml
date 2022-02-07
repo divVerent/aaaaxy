@@ -1,4 +1,4 @@
-# .github/workflows/matrix-commit.yml
+# Post commit on Matrix.
 on:
   push:
     branches:
