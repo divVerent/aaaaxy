@@ -266,19 +266,31 @@ func finishDumping() error {
 	if dumpVideoFile != nil {
 		dumpVideoWg.Wait()
 	}
+	// Closing audio and video file concurrently, which helps in case they're pipes, as it's unclear in which state FFmpeg tries to read them.
+	var wg sync.WaitGroup
+	var videoErr, audioErr error
 	if dumpAudioFile != nil {
-		err := dumpAudioFile.Close()
-		if err != nil {
-			return fmt.Errorf("failed to close audio - expect corruption: %v", err)
-		}
-		dumpAudioFile = nil
+		wg.Add(1)
+		go func() {
+			audioErr = dumpAudioFile.Close()
+			dumpAudioFile = nil
+			wg.Done()
+		}()
 	}
 	if dumpVideoFile != nil {
-		err := dumpVideoFile.Close()
-		if err != nil {
-			return fmt.Errorf("failed to close video - expect corruption: %v", err)
-		}
-		dumpVideoFile = nil
+		wg.Add(1)
+		go func() {
+			videoErr = dumpVideoFile.Close()
+			dumpVideoFile = nil
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+	if audioErr != nil {
+		return fmt.Errorf("failed to close audio - expect corruption: %v", audioErr)
+	}
+	if videoErr != nil {
+		return fmt.Errorf("failed to close video - expect corruption: %v", videoErr)
 	}
 	if dumpMediaCmd != nil {
 		err := dumpMediaCmd.Wait()
