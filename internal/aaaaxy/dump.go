@@ -299,13 +299,13 @@ func finishDumping() error {
 		}
 	}
 	log.Infof("media has been dumped")
-	log.Infof("to create a preview file (DO NOT UPLOAD):")
-	cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mp4", "")
-	if err != nil {
-		return err
-	}
-	log.Infof("  %v%v", precmd, printCommand(cmd))
-	if *dumpVideo != "" {
+	if *dumpAudio != "" || *dumpVideo != "" {
+		log.Infof("to create a preview file (DO NOT UPLOAD):")
+		cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mp4", "")
+		if err != nil {
+			return err
+		}
+		log.Infof("  %v%v", precmd, printCommand(cmd))
 		if *screenFilter != "linear2xcrt" {
 			log.Infof("with current settings (1080p, MEDIUM QUALITY):")
 			cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter)
@@ -315,7 +315,7 @@ func finishDumping() error {
 			log.Infof("  %v%v", precmd, printCommand(cmd))
 		}
 		log.Infof("preferred for uploading (4K, GOOD QUALITY):")
-		cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt")
+		cmd, precmd, err = ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt")
 		if err != nil {
 			return err
 		}
