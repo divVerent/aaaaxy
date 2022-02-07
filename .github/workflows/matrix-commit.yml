@@ -20,6 +20,5 @@ jobs:
         homeserver: ${{ secrets.BOT_HOMESERVER }}
         username: ${{ secrets.BOT_USERNAME }}
         access_token: ${{ secrets.BOT_ACCESS_TOKEN }}
-
         room_id: ${{ secrets.ROOM_ID }}
         message: "#### New Commit:"
