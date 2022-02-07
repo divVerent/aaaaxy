@@ -74,20 +74,26 @@ func (f *Fifo) run() {
 	close(f.done)
 }
 
-func (f *Fifo) runInternal() error {
-	pipe, err := os.OpenFile(f.path, os.O_WRONLY, 0600)
+func (f *Fifo) runInternal() (err error) {
+	var pipe *os.File
+	pipe, err = os.OpenFile(f.path, os.O_WRONLY, 0600)
 	if err != nil {
 		return err
 	}
+	defer func() {
+		errC := pipe.Close()
+		if err == nil {
+			err = errC
+		}
+	}()
 	for {
 		data, ok := <-f.buf
 		if !ok {
-			break
+			return nil
 		}
 		_, err = pipe.Write(data)
 		if err != nil {
 			return err
 		}
 	}
-	return pipe.Close()
 }

@@ -72,11 +72,18 @@ func (f *Fifo) run() {
 	close(f.done)
 }
 
-func (f *Fifo) runInternal() error {
-	pipe, err := f.listener.Accept()
+func (f *Fifo) runInternal() (err error) {
+	var pipe net.Conn
+	pipe, err = f.listener.Accept()
 	if err != nil {
 		return err
 	}
+	defer func() {
+		errC := pipe.Close()
+		if err == nil {
+			err = errC
+		}
+	}()
 	err = f.listener.Close()
 	if err != nil {
 		return err
