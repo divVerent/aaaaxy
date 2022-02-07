@@ -90,7 +90,7 @@ var _ ebiten.Game = &Game{}
 
 func (g *Game) updateFrame() error {
 	timing.Section("input")
-	input.Update(g.screenWidth, g.screenHeight, engine.GameWidth, engine.GameHeight)
+	input.Update(g.screenWidth, g.screenHeight, engine.GameWidth, engine.GameHeight, crtK1(), crtK2())
 
 	timing.Section("demo_pre")
 	if demo.Update() {
@@ -350,10 +350,16 @@ func (g *Game) setOffscreenGeoM(screen *ebiten.Image, geoM *ebiten.GeoM, w, h in
 
 // First two terms of the Taylor expansion of asin(strength*x)/strength.
 func crtK1() float64 {
+	if *screenFilter != "linear2xcrt" {
+		return 0
+	}
 	return 1.0 / 6.0 * math.Pow(*screenFilterCRTStrength, 2)
 }
 
 func crtK2() float64 {
+	if *screenFilter != "linear2xcrt" {
+		return 0
+	}
 	return 3.0 / 40.0 * math.Pow(*screenFilterCRTStrength, 4)
 }
 

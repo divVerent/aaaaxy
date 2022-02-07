@@ -56,7 +56,7 @@ var (
 	touchPadFrame int
 )
 
-func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
+func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 float64) {
 	if !*touch {
 		return
 	}
@@ -91,7 +91,7 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 			continue
 		}
 		x, y := ebiten.TouchPosition(id)
-		t.pos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, x, y)
+		t.pos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, x, y)
 		if t.frames < touchClickMaxFrames {
 			hoverAcc = hoverAcc.Add(t.pos.Delta(m.Pos{}))
 			hoverCnt++
