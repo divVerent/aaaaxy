@@ -161,7 +161,7 @@ func touchDraw(screen *ebiten.Image) {
 	if !touchWantPad {
 		return
 	}
-	if !*touchForce && touchPadFrame > 0 {
+	if !*touchForce && touchPadFrame <= 0 {
 		return
 	}
 	for _, i := range impulses {
