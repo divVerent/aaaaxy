@@ -32,8 +32,8 @@ type Fifo struct {
 	done     chan error
 }
 
-func New(bufCount, bufSize int) (*Fifo, error) {
-	tmpPath := fmt.Sprintf("\\\\.\\pipe\\aaaaxy-%d", rand.Int63())
+func New(name string, bufCount, bufSize int) (*Fifo, error) {
+	tmpPath := fmt.Sprintf("\\\\.\\pipe\\%s-%d", name, rand.Int63())
 	listener, err := winio.ListenPipe(tmpPath, &winio.PipeConfig{
 		SecurityDescriptor: "",
 		MessageMode:        false,

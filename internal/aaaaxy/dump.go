@@ -74,11 +74,11 @@ func initDumpingEarly() error {
 			return fmt.Errorf("-dump_media is mutually exclusive with -dump_video/-dump_audio")
 		}
 		var err error
-		dumpAudioPipe, err = namedpipe.New(120, 4*96000)
+		dumpAudioPipe, err = namedpipe.New("aaaaxy-audio", 120, 4*96000)
 		if err != nil {
 			return fmt.Errorf("could not create audio pipe: %v", err)
 		}
-		dumpVideoPipe, err = namedpipe.New(120, dumpVideoFrameSize)
+		dumpVideoPipe, err = namedpipe.New("aaaaxy-video", 120, dumpVideoFrameSize)
 		if err != nil {
 			return fmt.Errorf("could not create video pipe: %v", err)
 		}

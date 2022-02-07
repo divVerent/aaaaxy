@@ -33,8 +33,8 @@ type Fifo struct {
 	done   chan error
 }
 
-func New(bufCount, _ int) (*Fifo, error) {
-	tmpDir, err := ioutil.TempDir("", "aaaaxy-*")
+func New(name string, bufCount, _ int) (*Fifo, error) {
+	tmpDir, err := ioutil.TempDir("", name+"-*")
 	if err != nil {
 		return nil, err
 	}
