@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.1.66" date="2022-01-31">
-      <description><ul><li>Engine: add a feature to skip render frames, allowing to run at 30fps, 20fps and 15fps. Note that this may slow down possible runs as input is only polled once per frame.</li><li>Game: make the ending sequence look MUCH better in EGA/VGA palettes.</li><li>Game: add a "no teleport" speedrun category that is easier than "no escape".</li><li>Packaging: include more data in source tarballs to allow building from those, not git.</li><li>Snap: replace zenity by gxmessage. Makes the snap smaller and removes regular vulnerability notifications due to Zenity including a web browser.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.66</url>
+    <release version="v1.1.112" date="2022-02-07">
+      <description><ul><li>Game: fixed the logic that after 100% reveals secrets.</li><li>Game: relaxed All Paths to only consider paths between visited CPs.</li><li>Level: foreshadow the ending very close to the start :)</li><li>Level: reworded the TnihSign near the "exit".</li><li>Engine: added mouse input for menu and map.</li><li>Engine: added touch input, but not properly tested yet. Probably subject to change.</li><li>Engine: fix accidentally showing error dialogs three times.</li><li>Menu: fix savestate names in reset menu.</li><li>Snap: use yad for showing errors.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.112</url>
     </release>
   </releases>
 </component>
