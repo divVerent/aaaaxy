@@ -15,13 +15,33 @@
 package input
 
 import (
+	"math"
+
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 func pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 float64, x, y int) m.Pos {
-	// TODO: in CRT shader mode, also apply the CRT coordinate transform.
+	inX := float64(x)*float64(gameWidth)/float64(screenWidth) + 0.5
+	inY := float64(y)*float64(gameHeight)/float64(screenHeight) + 0.5
+
+	// Straight ported from linear2xcrt.kage.
+	// Assume srcImageSize is 1:1 -> "square pixels".
+	srcImageSizeSrcSizeLen := math.Hypot(float64(gameWidth), float64(gameHeight))
+	mapVecX := 1 / (0.5 * srcImageSizeSrcSizeLen)
+	mapVecY := 1 / (0.5 * srcImageSizeSrcSizeLen)
+	srcMidX := float64(gameWidth) / 2
+	srcMidY := float64(gameHeight) / 2
+	inRelX := (inX - srcMidX) * mapVecX
+	inRelY := (inY - srcMidY) * mapVecY
+	inLen := math.Hypot(inRelX, inRelY)
+	inLen2 := inLen * inLen
+	outFac := 1.0 + inLen2*(crtK1+inLen2*crtK2)
+	outRelX := inRelX * outFac
+	outRelY := inRelY * outFac
+	outX := srcMidX + outRelX/mapVecX
+	outY := srcMidY + outRelY/mapVecY
 	return m.Pos{
-		X: (x*gameWidth + screenWidth/2) / screenWidth,
-		Y: (y*gameHeight + screenHeight/2) / screenHeight,
+		X: m.Rint(outX),
+		Y: m.Rint(outY),
 	}
 }
