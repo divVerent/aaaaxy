@@ -56,9 +56,7 @@ func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int) {
 	}
 
 	x, y := ebiten.CursorPosition()
-	x = (x*gameWidth + screenWidth/2) / screenWidth
-	y = (y*gameHeight + screenHeight/2) / screenHeight
-	mousePos = m.Pos{X: x, Y: y}
+	mousePos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, x, y)
 
 	if mousePos != mousePrevPos {
 		mouseHoverFrame = mouseHoverFrames
