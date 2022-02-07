@@ -1,4 +1,5 @@
-# Post commit on Matrix.
+name: Post commit on Matrix
+
 on:
   push:
     branches:
