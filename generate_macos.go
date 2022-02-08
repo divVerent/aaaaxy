@@ -17,4 +17,4 @@
 
 package main
 
-//go:generate scripts/build-macos-resources.sh
+//go:generate sh scripts/build-macos-resources.sh

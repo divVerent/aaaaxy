@@ -17,4 +17,4 @@
 
 package main
 
-//go:generate scripts/build-licenses.sh
+//go:generate sh scripts/build-licenses.sh

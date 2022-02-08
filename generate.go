@@ -14,4 +14,4 @@
 
 package main
 
-//go:generate scripts/build-generated-assets.sh
+//go:generate sh scripts/build-generated-assets.sh

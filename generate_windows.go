@@ -17,4 +17,4 @@
 
 package main
 
-//go:generate scripts/build-windows-resources.sh
+//go:generate sh scripts/build-windows-resources.sh
