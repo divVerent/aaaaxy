@@ -226,7 +226,8 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 				return nil, "", err
 			}
 			precmd = fmt.Sprintf("{ echo '%s'; echo '%s'; } > '%s'; ", pnm[:2], pnm[3:], tempFile.Name())
-			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; movie=filename=%v:loop=360,tile=1x360,scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", tempFile.Name(), crtK1(), crtK2())
+			inputs = append(inputs, "-f", "pgm_pipe", "-stream_loop", "360", "-i", tempFile.Name())
+			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; [1:v]tile=1x360,scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
 		case "nearest":
 			filterComplex += "[lowres]scale=1920:1080:flags=neighbor"
 		case "":
