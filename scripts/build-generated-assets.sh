@@ -33,7 +33,7 @@ if [ x"$AAAAXY_GENERATE_ASSETS" != x'false' ]; then
 		grep -c . assets/generated/level.cp.json
 		trap - EXIT
 	fi
-	diff -u assets/_saved/level.cp.json assets/generated/level.cp.json
+	diff -bu assets/_saved/level.cp.json assets/generated/level.cp.json
 
 	scripts/image-load-order.sh assets/generated/image_load_order.txt assets/tiles assets/sprites third_party/grafxkid_classic_hero_and_baddies_pack/assets/sprites
 	diff -u assets/_saved/image_load_order.txt assets/generated/image_load_order.txt
