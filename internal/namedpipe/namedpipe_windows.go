@@ -76,10 +76,12 @@ func (f *Fifo) run() {
 }
 
 func (f *Fifo) runInternal() (err error) {
+	// NOTE: there is a race condition here; before Accept() is called, the pipe
+	// is not usable, but Accept() never returns before actually having a
+	// connection. Lucky we have lots of initialization between creating the
+	// pipe and actually launching FFmpeg.
 	var pipe net.Conn
-	log.Infof("namedpipe: accept %v", f.path)
 	pipe, err = f.listener.Accept()
-	log.Infof("namedpipe: accept %v -> ", f.path, err)
 	if err != nil {
 		return err
 	}
