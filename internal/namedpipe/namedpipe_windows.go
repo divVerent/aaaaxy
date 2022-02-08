@@ -23,6 +23,8 @@ import (
 	"net"
 
 	"github.com/Microsoft/go-winio"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 type Fifo struct {
@@ -74,7 +76,9 @@ func (f *Fifo) run() {
 
 func (f *Fifo) runInternal() (err error) {
 	var pipe net.Conn
+	log.Infof("namedpipe: accept %v", f.path)
 	pipe, err = f.listener.Accept()
+	log.Infof("namedpipe: accept %v -> ", f.path, err)
 	if err != nil {
 		return err
 	}
