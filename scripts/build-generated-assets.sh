@@ -23,16 +23,22 @@ export GOARCH=
 
 mkdir -p assets/generated
 
-if ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
-	trap 'rm -f assets/generated/level.cp.json' EXIT
-	# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
-	${GO} run github.com/divVerent/aaaaxy/cmd/dumpcps |cat> assets/generated/level.cp.dot
-	grep -c . assets/generated/level.cp.dot
-	neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
-	grep -c . assets/generated/level.cp.json
-	trap - EXIT
-fi
+if [ x"$AAAAXY_GENERATE_ASSETS" != x'false' ]; then
+	if ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
+		trap 'rm -f assets/generated/level.cp.json' EXIT
+		# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
+		${GO} run github.com/divVerent/aaaaxy/cmd/dumpcps |cat> assets/generated/level.cp.dot
+		grep -c . assets/generated/level.cp.dot
+		neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
+		grep -c . assets/generated/level.cp.json
+		trap - EXIT
+	fi
+	diff -u assets/_saved/level.cp.json assets/generated/level.cp.json
 
-scripts/image-load-order.sh assets/generated/image_load_order.txt assets/tiles assets/sprites third_party/grafxkid_classic_hero_and_baddies_pack/assets/sprites
+	scripts/image-load-order.sh assets/generated/image_load_order.txt assets/tiles assets/sprites third_party/grafxkid_classic_hero_and_baddies_pack/assets/sprites
+	diff -u assets/_saved/image_load_order.txt assets/generated/image_load_order.txt
+else
+	cp assets/_saved/* assets/generated/
+fi
 
 scripts/version.sh semver > assets/generated/version.txt
