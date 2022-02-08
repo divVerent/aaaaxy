@@ -25,7 +25,7 @@ type Fifo struct {
 	nothing bool
 }
 
-func New(bufCount, _ int) (*Fifo, error) {
+func New(name string, bufCount, bufSize int) (*Fifo, error) {
 	return nil, fmt.Errorf("named pipes are not supported on this OS")
 }
 
