@@ -2,8 +2,7 @@ name: Post commit on Matrix
 
 on:
   push:
-    branches:
-      - master
+    branches: [main]
   workflow_dispatch:
 
 jobs:
