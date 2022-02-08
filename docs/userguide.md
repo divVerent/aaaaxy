@@ -42,20 +42,6 @@ Press `Esc` or `Start` to get to the game menu which has settings.
 
 ### Video Recording
 
-#### To MP4
-
-To prepare for recording videos, make sure the `ffmpeg` command is
-available and in the current search path. On Windows, just [download
-it](https://ffmpeg.org/download.html) and place `ffmpeg.exe` right next
-to `aaaaxy.exe`.
-
-To then record a video of the game, first record a demo (see below), and
-then un the game again, passing the flags `-dump_media=video.mp4
--demo_play=demo.dem`. This will save a video of the gameplay under
-`video.mp4`.
-
-#### Via Raw Files
-
 To record a video of the game, pass the flags `-dump_video=video.raw
 -dump_audio=audio.raw`. Then play normally (game may be slower). When
 you then exit the game, the console window will show you a FFmpeg
