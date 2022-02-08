@@ -23,8 +23,6 @@ import (
 	"net"
 
 	"github.com/Microsoft/go-winio"
-
-	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 type Fifo struct {
