@@ -51,6 +51,7 @@ func New(name string, bufCount, bufSize int) (*Fifo, error) {
 		buf:      make(chan []byte, bufCount),
 		done:     make(chan error),
 	}
+	go f.run()
 	return f, nil
 }
 
@@ -87,11 +88,11 @@ func (f *Fifo) runInternal() (err error) {
 		if err == nil {
 			err = errC
 		}
-		errL := f.listener.Close()
-		if err != nil {
-			err = errL
-		}
 	}()
+	err = f.listener.Close()
+	if err != nil {
+		return err
+	}
 	f.listener = nil
 	for {
 		data, ok := <-f.buf
