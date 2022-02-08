@@ -37,11 +37,14 @@ import (
 )
 
 var (
-	dumpVideo            = flag.String("dump_video", "", "filename prefix to dump game frames to")
-	dumpVideoFpsDivisor  = flag.Int("dump_video_fps_divisor", 1, "frame rate divisor (try 2 for faster dumping)")
-	dumpAudio            = flag.String("dump_audio", "", "filename to dump game audio to")
-	dumpMedia            = flag.String("dump_media", "", "filename to dump game media to; exclusive with dump_video and dump_audio")
-	cheatDumpSlowAndGood = flag.Bool("cheat_dump_slow_and_good", false, "non-realtime video dumping (slows down the game, thus considered a cheat))")
+	dumpVideo               = flag.String("dump_video", "", "filename prefix to dump game frames to")
+	dumpVideoFpsDivisor     = flag.Int("dump_video_fps_divisor", 1, "frame rate divisor (try 2 for faster dumping)")
+	dumpAudio               = flag.String("dump_audio", "", "filename to dump game audio to")
+	dumpMedia               = flag.String("dump_media", "", "filename to dump game media to; exclusive with dump_video and dump_audio")
+	dumpVideoCodecSettings  = flag.String("dump_video_codec_settings", "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60", "FFmpeg settings for video encoding")
+	dumpAudioCodecSettings  = flag.String("dump_audio_codec_settings", "-codec:a aac -b:a 128k", "FFmpeg settings for audio encoding")
+	dumpMediaFormatSettings = flag.String("dump_media_format_settings", "-vsync vfr", "FFmpeg flags for muxing")
+	cheatDumpSlowAndGood    = flag.Bool("cheat_dump_slow_and_good", false, "non-realtime video dumping (slows down the game, thus considered a cheat))")
 )
 
 type WriteCloserAt interface {
@@ -185,7 +188,7 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string, error) {
 	precmd := ""
 	inputs := []string{}
-	settings := []string{"-vsync", "vfr", "-y"}
+	settings := []string{"-y"}
 	// Video first, so we can refer to the video stream as [0:v] for sure.
 	if video != "" {
 		fps := float64(engine.GameTPS) / (float64(*fpsDivisor) * float64(*dumpVideoFpsDivisor))
@@ -239,11 +242,19 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 		// or even newer versions with decoding options changed for compatibility,
 		// if the video file has also been losslessly cut -
 		// have trouble decoding that.
-		settings = append(settings, "-codec:v", "libx264", "-profile:v", "high444", "-preset:v", "fast", "-crf:v", "10", "-8x8dct:v", "0", "-keyint_min", "10", "-g", "60", "-filter_complex", filterComplex)
+		if *dumpVideoCodecSettings != "" {
+			settings = append(settings, strings.Split(*dumpVideoCodecSettings, " ")...)
+		}
+		settings = append(settings, "-filter_complex", filterComplex)
 	}
 	if audio != "" {
 		inputs = append(inputs, "-f", "s16le", "-ac", "2", "-ar", fmt.Sprint(audiowrap.SampleRate()), "-i", audio)
-		settings = append(settings, "-codec:a", "aac", "-b:a", "128k")
+		if *dumpAudioCodecSettings != "" {
+			settings = append(settings, strings.Split(*dumpAudioCodecSettings, " ")...)
+		}
+	}
+	if *dumpMediaFormatSettings != "" {
+		settings = append(settings, strings.Split(*dumpMediaFormatSettings, " ")...)
 	}
 	cmd := []string{"ffmpeg"}
 	cmd = append(cmd, inputs...)
