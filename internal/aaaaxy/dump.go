@@ -41,7 +41,7 @@ var (
 	dumpVideoFpsDivisor     = flag.Int("dump_video_fps_divisor", 1, "frame rate divisor (try 2 for faster dumping)")
 	dumpAudio               = flag.String("dump_audio", "", "filename to dump game audio to")
 	dumpMedia               = flag.String("dump_media", "", "filename to dump game media to; exclusive with dump_video and dump_audio")
-	dumpVideoCodecSettings  = flag.String("dump_video_codec_settings", "-codec:v libx264 -profile:v high444 -preset:v fast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60", "FFmpeg settings for video encoding")
+	dumpVideoCodecSettings  = flag.String("dump_video_codec_settings", "-codec:v libx264 -profile:v high444 -preset:v veryfast -crf:v 10 -8x8dct:v 0 -keyint_min 10 -g 60", "FFmpeg settings for video encoding")
 	dumpAudioCodecSettings  = flag.String("dump_audio_codec_settings", "-codec:a aac -b:a 128k", "FFmpeg settings for audio encoding")
 	dumpMediaFormatSettings = flag.String("dump_media_format_settings", "-vsync vfr", "FFmpeg flags for muxing")
 	cheatDumpSlowAndGood    = flag.Bool("cheat_dump_slow_and_good", false, "non-realtime video dumping (slows down the game, thus considered a cheat))")
