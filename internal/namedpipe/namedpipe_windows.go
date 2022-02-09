@@ -59,7 +59,15 @@ func (f *Fifo) Path() string {
 
 func (f *Fifo) Write(p []byte) (int, error) {
 	f.buf <- p
-	return len(p), nil
+	select {
+	case f.buf <- p:
+		return len(p), nil
+	case err := <-f.done:
+		if err == nil {
+			return 0, fmt.Errorf("named pipe %v already closed", f.path)
+		}
+		return 0, err
+	}
 }
 
 func (f *Fifo) Close() error {

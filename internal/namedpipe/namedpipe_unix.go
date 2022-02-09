@@ -18,12 +18,11 @@
 package namedpipe
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"syscall"
-
-	"github.com/divVerent/aaaaxy/internal/atexit"
 )
 
 type Fifo struct {
@@ -38,7 +37,6 @@ func New(name string, bufCount, _ int) (*Fifo, error) {
 	if err != nil {
 		return nil, err
 	}
-	atexit.Delete(tmpDir)
 	tmpPath := filepath.Join(tmpDir, "pipe")
 	err = syscall.Mkfifo(tmpPath, 0600)
 	if err != nil {
@@ -60,7 +58,15 @@ func (f *Fifo) Path() string {
 
 func (f *Fifo) Write(p []byte) (int, error) {
 	f.buf <- p
-	return len(p), nil
+	select {
+	case f.buf <- p:
+		return len(p), nil
+	case err := <-f.done:
+		if err == nil {
+			return 0, fmt.Errorf("named pipe %v already closed", f.path)
+		}
+		return 0, err
+	}
 }
 
 func (f *Fifo) Close() error {
@@ -86,6 +92,10 @@ func (f *Fifo) runInternal() (err error) {
 			err = errC
 		}
 	}()
+	err = os.RemoveAll(f.parent)
+	if err != nil {
+		return err
+	}
 	for {
 		data, ok := <-f.buf
 		if !ok {
