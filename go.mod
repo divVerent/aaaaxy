@@ -49,7 +49,7 @@ require (
 
 require (
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20211213063430-748e38ca8aec // indirect
-	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.5 // indirect
+	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.5.0.20220211052843-539b6322111a // indirect
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
 	golang.org/x/exp v0.0.0-20220126164734-073fb1339172 // indirect
@@ -62,6 +62,3 @@ require (
 // For debugging:
 // replace github.com/hajimehoshi/ebiten/v2 => /home/rpolzer/src/ebiten
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
-
-// Required until next Ebiten release.
-replace github.com/hajimehoshi/oto/v2 => github.com/hajimehoshi/oto/v2 v2.1.0-alpha.5.0.20220211052843-539b6322111a

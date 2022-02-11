@@ -144,6 +144,7 @@ github.com/hajimehoshi/file2byteslice v0.0.0-20210813153925-5340248a8f41/go.mod 
 github.com/hajimehoshi/go-mp3 v0.3.2/go.mod h1:qMJj/CSDxx6CGHiZeCgbiq2DSUkbK0UbtXShQcnfyMM=
 github.com/hajimehoshi/oto v0.6.1 h1:7cJz/zRQV4aJvMSSRqzN2TImoVVMpE0BCY4nrNJaDOM=
 github.com/hajimehoshi/oto v0.6.1/go.mod h1:0QXGEkbuJRohbJaxr7ZQSxnju7hEhseiPx2hrh6raOI=
+github.com/hajimehoshi/oto/v2 v2.1.0-alpha.2/go.mod h1:rUKQmwMkqmRxe+IAof9+tuYA2ofm8cAWXFmSfzDN8vQ=
 github.com/hajimehoshi/oto/v2 v2.1.0-alpha.5.0.20220211052843-539b6322111a h1:aZVJsSRD4WR4XnB7GOFXc09Ak71mijjr2DRd0CN5/us=
 github.com/hajimehoshi/oto/v2 v2.1.0-alpha.5.0.20220211052843-539b6322111a/go.mod h1:rUKQmwMkqmRxe+IAof9+tuYA2ofm8cAWXFmSfzDN8vQ=
 github.com/hashicorp/consul/api v1.3.0/go.mod h1:MmDNSzIMUjNpY/mQ398R4bk2FnqQLoPndWW5VkKPlCE=
