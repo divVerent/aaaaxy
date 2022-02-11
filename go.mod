@@ -3,6 +3,7 @@ module github.com/divVerent/aaaaxy
 go 1.17
 
 require (
+	github.com/Microsoft/go-winio v0.5.1
 	github.com/adrg/xdg v0.4.0
 	github.com/akavel/rsrc v0.10.2
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
@@ -18,7 +19,6 @@ require (
 )
 
 require (
-	github.com/Microsoft/go-winio v0.5.1 // indirect
 	github.com/dchest/jsmin v0.0.0-20160823214000-faeced883947 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
@@ -63,3 +63,6 @@ require (
 // For debugging:
 // replace github.com/hajimehoshi/ebiten/v2 => /home/rpolzer/src/ebiten
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
+
+// Temp fix for https://github.com/divVerent/aaaaxy/issues/17
+replace github.com/hajimehoshi/oto/v2 => github.com/divVerent/oto/v2 v2.1.0-alpha.5.0.20220211001951-5ce11e5fb33f
