@@ -15,7 +15,7 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
 	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
-	golang.org/x/sys v0.0.0-20220114195835-da31bd327af9
+	golang.org/x/sys v0.0.0-20220209214540-3681064d5158
 )
 
 require (
@@ -31,7 +31,6 @@ require (
 	github.com/josephspurrier/goversioninfo v1.4.0 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
@@ -64,5 +63,5 @@ require (
 // replace github.com/hajimehoshi/ebiten/v2 => /home/rpolzer/src/ebiten
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
 
-// Temp fix for https://github.com/divVerent/aaaaxy/issues/17
-replace github.com/hajimehoshi/oto/v2 => github.com/divVerent/oto/v2 v2.1.0-alpha.5.0.20220211001951-5ce11e5fb33f
+// Required until next Ebiten release.
+replace github.com/hajimehoshi/oto/v2 => github.com/hajimehoshi/oto/v2 v2.1.0-alpha.5.0.20220211052843-539b6322111a

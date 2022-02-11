@@ -83,9 +83,10 @@ vet:
 
 .PHONY: mod-update
 mod-update:
-	go get -u
-	go mod tidy -compat=1.15 -go=1.16
-	go mod tidy -compat=1.15 -go=1.17
+	$(GO) get -u
+	$(GO) get golang.org/x/exp/shiny@none
+	$(GO) mod tidy -compat=1.15 -go=1.16
+	$(GO) mod tidy -compat=1.15 -go=1.17
 
 .PHONY: loading-fractions-update
 loading-fractions-update: $(BINARY)
