@@ -25,12 +25,11 @@ import (
 )
 
 func knownFolder(kind StateKind) (string, error) {
-	token := windows.GetCurrentProcessToken()
 	switch kind {
 	case Config:
-		return token.KnownFolderPath(windows.FOLDERID_LocalAppData, windows.KF_FLAG_CREATE)
+		return windows.KnownFolderPath(windows.FOLDERID_LocalAppData, windows.KF_FLAG_CREATE)
 	case SavedGames:
-		return token.KnownFolderPath(windows.FOLDERID_SavedGames, windows.KF_FLAG_CREATE)
+		return windows.KnownFolderPath(windows.FOLDERID_SavedGames, windows.KF_FLAG_CREATE)
 	default:
 		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
 	}
