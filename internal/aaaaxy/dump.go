@@ -208,29 +208,36 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 			// Then second scale is to 1920:1080.
 			// But for the lens correction, we gotta do better.
 			// For 6x scale, pattern is: (1-5/6*f) (1-3/6*f) (1-1/6*f) (1-1/6*f) (1-3/6*f) (1-5/6*f).
-			pnm := fmt.Sprintf("P2\n1 6 255 %d %d %d %d %d %d",
+			pnmHeader := []byte("P2\n1 2160 255\n")
+			pnmLine := []byte(fmt.Sprintf("%d %d %d %d %d %d\n",
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)))
+				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines))))
 			tempFile, err := ioutil.TempFile("", "aaaaxy-*")
 			if err != nil {
 				return nil, "", err
 			}
 			atexit.Delete(tempFile.Name())
-			_, err = tempFile.Write([]byte(pnm))
+			_, err = tempFile.Write(pnmHeader)
 			if err != nil {
 				return nil, "", err
+			}
+			for range make([]struct{}, 360) {
+				_, err = tempFile.Write(pnmLine)
+				if err != nil {
+					return nil, "", err
+				}
 			}
 			err = tempFile.Close()
 			if err != nil {
 				return nil, "", err
 			}
-			precmd = fmt.Sprintf("{ echo '%s'; echo '%s'; } > '%s'; ", pnm[:2], pnm[3:], tempFile.Name())
-			inputs = append(inputs, "-f", "pgm_pipe", "-stream_loop", "360", "-i", tempFile.Name())
-			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; [1:v]tile=1x360,scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
+			precmd = fmt.Sprintf("{ echo '%s'; echo '%s'; for i in `seq 1 360`; do echo '%s'; done } > '%s'; ", pnmHeader[:2], pnmHeader[3:], pnmLine, tempFile.Name())
+			inputs = append(inputs, "-f", "pgm_pipe", "-i", tempFile.Name())
+			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; [1:v]scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
 		case "nearest":
 			filterComplex += "[lowres]scale=1920:1080:flags=neighbor"
 		case "":
