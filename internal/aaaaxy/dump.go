@@ -156,9 +156,10 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 		to <- screen
 		return
 	}
+	prevFrameCount := dumpFrameCount
 	dumpFrameCount += int64(frames)
 	if dumpVideoFile != nil {
-		dumpVideoFrameBegin := dumpFrameCount / int64(*dumpVideoFpsDivisor)
+		dumpVideoFrameBegin := prevFrameCount / int64(*dumpVideoFpsDivisor)
 		dumpVideoFrameEnd := dumpFrameCount / int64(*dumpVideoFpsDivisor)
 		cnt := dumpVideoFrameEnd - dumpVideoFrameBegin
 		if cnt > 0 {
