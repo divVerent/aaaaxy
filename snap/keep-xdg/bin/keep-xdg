@@ -14,10 +14,16 @@
 # limitations under the License.
 
 # Script to ensure savegames are not lost on updates.
+#
+# We put the snap standard location - where savegames MAYBE are kept - in the
+# list of dirs so that the game will read from there but write to the new
+# location.
 
+export XDG_CONFIG_DIRS=$XDG_CONFIG_HOME${XDG_CONFIG_DIRS:+:$XDG_CONFIG_DIRS}
 export XDG_CONFIG_HOME=$SNAP_USER_COMMON/.config
 echo >&2 "Config is stored in $XDG_CONFIG_HOME/AAAAXY/."
 
+export XDG_DATA_DIRS=$XDG_DATA_HOME${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}
 export XDG_DATA_HOME=$SNAP_USER_COMMON/.local/share
 echo >&2 "Savegames are stored in $XDG_DATA_HOME/AAAAXY/."
 

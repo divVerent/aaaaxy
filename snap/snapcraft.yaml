@@ -53,7 +53,7 @@ parts:
       - desktop-glib-only
     plugin: dump
     source: .
-    source-subdir: keep-xdg
+    source-subdir: snap/keep-xdg
 
   part-aaaaxy:
     after:
