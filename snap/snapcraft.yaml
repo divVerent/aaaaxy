@@ -48,10 +48,18 @@ parts:
       - libasound2-plugins
       - yad
 
+  keep-xdg:
+    after:
+      - desktop-glib-only
+    plugin: dump
+    source: .
+    source-subdir: keep-xdg
+
   part-aaaaxy:
     after:
       - desktop-glib-only
       - alsa-mixin
+      - keep-xdg
     plugin: go
     go-channel: stable
     override-pull: |
@@ -93,7 +101,7 @@ apps:
       # Support XDG variables.
       - bin/desktop-launch
       # Keep config and savegames across updates.
-      - env XDG_CONFIG_HOME=$SNAP_USER_COMMON/.config XDG_DATA_HOME=$SNAP_USER_COMMON/.local/share
+      - bin/keep-xdg
       # Support ALSA.
       - snap/command-chain/alsa-launch
     command: bin/aaaaxy
