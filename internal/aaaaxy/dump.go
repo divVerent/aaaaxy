@@ -224,7 +224,8 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 			// Then second scale is to 1920:1080.
 			// But for the lens correction, we gotta do better.
 			// For 6x scale, pattern is: (1-5/6*f) (1-3/6*f) (1-1/6*f) (1-1/6*f) (1-3/6*f) (1-5/6*f).
-			pnmHeader := []byte("P2\n1 2160 255\n")
+			pnmHeader1 := []byte("P2\n")
+			pnmHeader2 := []byte("1 2160 255\n")
 			pnmLine := []byte(fmt.Sprintf("%d %d %d %d %d %d\n",
 				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
@@ -237,7 +238,11 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 				return nil, "", err
 			}
 			atexit.Delete(tempFile.Name())
-			_, err = tempFile.Write(pnmHeader)
+			_, err = tempFile.Write(pnmHeader1)
+			if err != nil {
+				return nil, "", err
+			}
+			_, err = tempFile.Write(pnmHeader2)
 			if err != nil {
 				return nil, "", err
 			}
@@ -251,7 +256,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 			if err != nil {
 				return nil, "", err
 			}
-			precmd = fmt.Sprintf("{ echo '%s'; echo '%s'; for i in `seq 1 360`; do echo '%s'; done } > '%s'; ", pnmHeader[:2], pnmHeader[3:len(pnmHeader)-1], pnmLine[:len(pnmLine)-1], tempFile.Name())
+			precmd = fmt.Sprintf("{ echo '%s'; echo '%s'; for i in `seq 1 360`; do echo '%s'; done } > '%s'; ", pnmHeader1[:len(pnmHeader1)-1], pnmHeader2[:len(pnmHeader2)-1], pnmLine[:len(pnmLine)-1], tempFile.Name())
 			inputs = append(inputs, "-f", "pgm_pipe", "-i", tempFile.Name())
 			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; [1:v]scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
 		case "nearest":
