@@ -251,7 +251,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 			if err != nil {
 				return nil, "", err
 			}
-			precmd = fmt.Sprintf("{ echo '%s'; echo '%s'; for i in `seq 1 360`; do echo '%s'; done } > '%s'; ", pnmHeader[:2], pnmHeader[3:], pnmLine, tempFile.Name())
+			precmd = fmt.Sprintf("{ echo '%s'; echo '%s'; for i in `seq 1 360`; do echo '%s'; done } > '%s'; ", pnmHeader[:2], pnmHeader[3:len(pnmHeader)-1], pnmLine[:len(pnmLine)-1], tempFile.Name())
 			inputs = append(inputs, "-f", "pgm_pipe", "-i", tempFile.Name())
 			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; [1:v]scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
 		case "nearest":
@@ -336,21 +336,21 @@ func finishDumping() error {
 	log.Infof("media has been dumped")
 	if *dumpAudio != "" || *dumpVideo != "" {
 		log.Infof("to create a preview file (DO NOT UPLOAD):")
-		cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mp4", "")
+		cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-preview.mkv", "")
 		if err != nil {
 			return err
 		}
 		log.Infof("  %v%v", precmd, printCommand(cmd))
 		if *screenFilter != "linear2xcrt" {
 			log.Infof("with current settings (1080p, MEDIUM QUALITY):")
-			cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mp4", *screenFilter)
+			cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mkv", *screenFilter)
 			if err != nil {
 				return err
 			}
 			log.Infof("  %v%v", precmd, printCommand(cmd))
 		}
 		log.Infof("preferred for uploading (4K, GOOD QUALITY):")
-		cmd, precmd, err = ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mp4", "linear2xcrt")
+		cmd, precmd, err = ffmpegCommand(*dumpAudio, *dumpVideo, "video-high.mkv", "linear2xcrt")
 		if err != nil {
 			return err
 		}
