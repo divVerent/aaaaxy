@@ -90,7 +90,11 @@ environment:
 apps:
   aaaaxy:
     command-chain:
+      # Support XDG variables.
       - bin/desktop-launch
+      # Keep config and savegames across updates.
+      - env XDG_CONFIG_HOME=$SNAP_USER_COMMON/.config XDG_DATA_HOME=$SNAP_USER_COMMON/.local/share
+      # Support ALSA.
       - snap/command-chain/alsa-launch
     command: bin/aaaaxy
     plugs:
