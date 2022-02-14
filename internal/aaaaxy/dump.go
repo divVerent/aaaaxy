@@ -41,8 +41,8 @@ var (
 	dumpVideoFpsDivisor     = flag.Int("dump_video_fps_divisor", 1, "frame rate divisor (try 2 for faster dumping)")
 	dumpAudio               = flag.String("dump_audio", "", "filename to dump game audio to")
 	dumpMedia               = flag.String("dump_media", "", "filename to dump game media to; exclusive with dump_video and dump_audio; when not changing any dump_*_settings, this should have a .mkv, .mov, .avi or .nut extension")
-	dumpVideoCodecSettings  = flag.String("dump_video_codec_settings", "-codec:v mjpeg -q:v 4", "FFmpeg settings for video encoding")
-	dumpAudioCodecSettings  = flag.String("dump_audio_codec_settings", "-codec:a pcm_s16le", "FFmpeg settings for audio encoding")
+	dumpVideoCodecSettings  = flag.String("dump_video_codec_settings", "-codec:v mjpeg -q:v 4", "FFmpeg settings for video encoding; set to \"\" to disable the video stream for -dump_media")
+	dumpAudioCodecSettings  = flag.String("dump_audio_codec_settings", "-codec:a pcm_s16le", "FFmpeg settings for audio encoding; set to \"\" to disable the audio stream for -dump_media")
 	dumpMediaFormatSettings = flag.String("dump_media_format_settings", "-vsync vfr", "FFmpeg flags for muxing")
 	cheatDumpSlowAndGood    = flag.Bool("cheat_dump_slow_and_good", false, "non-realtime video dumping (slows down the game, thus considered a cheat))")
 )
@@ -76,18 +76,25 @@ func initDumpingEarly() error {
 		if *dumpVideo != "" || *dumpAudio != "" {
 			return fmt.Errorf("-dump_media is mutually exclusive with -dump_video/-dump_audio")
 		}
+		if *dumpAudioCodecSettings == "" && *dumpVideoCodecSettings == "" {
+			return fmt.Errorf("not both of -dump_audio_codec_settings and -dump_video_codec_settings may be empty - we need at least one stream")
+		}
 		var err error
-		dumpAudioPipe, err = namedpipe.New("aaaaxy-audio", 120, 4*96000)
-		if err != nil {
-			return fmt.Errorf("could not create audio pipe: %v", err)
+		if *dumpAudioCodecSettings != "" {
+			dumpAudioPipe, err = namedpipe.New("aaaaxy-audio", 120, 4*96000)
+			if err != nil {
+				return fmt.Errorf("could not create audio pipe: %v", err)
+			}
+			dumpAudioFile = namedpipe.NewWriteCloserAt(dumpAudioPipe)
+			audiowrap.InitDumping()
 		}
-		dumpVideoPipe, err = namedpipe.New("aaaaxy-video", 120, dumpVideoFrameSize)
-		if err != nil {
-			return fmt.Errorf("could not create video pipe: %v", err)
+		if *dumpVideoCodecSettings != "" {
+			dumpVideoPipe, err = namedpipe.New("aaaaxy-video", 120, dumpVideoFrameSize)
+			if err != nil {
+				return fmt.Errorf("could not create video pipe: %v", err)
+			}
+			dumpVideoFile = namedpipe.NewWriteCloserAt(dumpVideoPipe)
 		}
-		dumpAudioFile = namedpipe.NewWriteCloserAt(dumpAudioPipe)
-		dumpVideoFile = namedpipe.NewWriteCloserAt(dumpVideoPipe)
-		audiowrap.InitDumping()
 	}
 
 	if *dumpAudio != "" {
@@ -112,7 +119,15 @@ func initDumpingEarly() error {
 
 func initDumpingLate() error {
 	if *dumpMedia != "" {
-		cmdLine, _, err := ffmpegCommand(dumpAudioPipe.Path(), dumpVideoPipe.Path(), *dumpMedia, *screenFilter)
+		audioPath := ""
+		if dumpAudioPipe != nil {
+			audioPath = dumpAudioPipe.Path()
+		}
+		videoPath := ""
+		if dumpVideoPipe != nil {
+			videoPath = dumpVideoPipe.Path()
+		}
+		cmdLine, _, err := ffmpegCommand(audioPath, videoPath, *dumpMedia, *screenFilter)
 		if err != nil {
 			return err
 		}
@@ -141,9 +156,9 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 		to <- screen
 		return
 	}
+	dumpFrameCount += int64(frames)
 	if dumpVideoFile != nil {
 		dumpVideoFrameBegin := dumpFrameCount / int64(*dumpVideoFpsDivisor)
-		dumpFrameCount += int64(frames)
 		dumpVideoFrameEnd := dumpFrameCount / int64(*dumpVideoFpsDivisor)
 		cnt := dumpVideoFrameEnd - dumpVideoFrameBegin
 		if cnt > 0 {
