@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.1.112" date="2022-02-07">
-      <description><ul><li>Game: fixed the logic that after 100% reveals secrets.</li><li>Game: relaxed All Paths to only consider paths between visited CPs.</li><li>Level: foreshadow the ending very close to the start :)</li><li>Level: reworded the TnihSign near the "exit".</li><li>Engine: added mouse input for menu and map.</li><li>Engine: added touch input, but not properly tested yet. Probably subject to change.</li><li>Engine: fix accidentally showing error dialogs three times.</li><li>Menu: fix savestate names in reset menu.</li><li>Snap: use yad for showing errors.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.112</url>
+    <release version="v1.1.166" date="2022-02-14">
+      <description><ul><li>Level: de-cheese the "hello world" secret.</li><li>Engine: update modules.</li><li>Engine: fix Oto crash on 32-Bit Windows 7. Fixes #17.</li><li>Engine: fix savegames on Windows 7.</li><li>Engine: change FFmpeg-based media dumping default to MJPEG with PCM audio.</li><li>Engine: add a media dumping mode that does not use an uncompressed video temp file.</li><li>Build: allow skipping assets rebuild with AAAAXY_GENERATE_ASSETS=false.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.166</url>
     </release>
   </releases>
 </component>
