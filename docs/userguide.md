@@ -81,27 +81,21 @@ don't want any duplicate frames, right?
 
 AAAAXY stores saved games in the following location:
 
-  - Windows: `Saved Games/AAAAXY`
-  - Linux: `~/.local/share/AAAAXY`
-
-Configuration is stored as follows:
-
-  - Windows: `AppData/Local/AAAAXY`
-  - Linux: `~/.config/AAAAXY`
+| Operating System |                     Save Games                      |                            Configuration                             |
+| :--------------: | :-------------------------------------------------: | :------------------------------------------------------------------: |
+|  Linux AppImage  |               `~/.local/share/AAAAXY`               |                          `~/.config/AAAAXY`                          |
+|  Linux FlatPak   | `~/.var/app/io.github.divverent.aaaaxy/data/AAAAXY` |        `~/.var/app/io.github.divverent.aaaaxy/config/AAAAXY`         |
+|    Linux Snap    |     `~/snap/aaaaxy/common/.local/share/AAAAXY`      |                `~/snap/aaaaxy/common/.config/AAAAXY`                 |
+|   Linux native   |               `~/.local/share/AAAAXY`               |                          `~/.config/AAAAXY`                          |
+|     Windows      |                `Saved Games/AAAAXY`                 |                        `AppData/Local/AAAAXY`                        |
+|       Wine       |  `~/.wine/drive_c/users/$USER/Saved Games/AAAAXY`   | `~/.wine/drive_c/users/$USER/Local Settings/Application Data/AAAAXY` |
+|      macOS       |                         ...                         |                                 ...                                  |
 
 It is recommended to back up these files.
 
-### Save States
-
-TODO(divVerent): Fix.
-
-At the moment there is no menu to select save states; to play a
-particular save state, please run the game binary with a command line
-argument such as `-save_state=1` to select the save state with index 1.
-The default save state can be switched to by passing `-save_state=0`.
-
-Save states record progress at checkpoints only and the game
-automatically saves when hitting one.
-
 WARNING: Do not edit the save game files. If needed, cheats are provided
 as command line options.
+
+### Save States
+
+Save states can be switched in `Settings` / `Switch Save State`.
