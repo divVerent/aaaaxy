@@ -81,15 +81,15 @@ don't want any duplicate frames, right?
 
 AAAAXY stores saved games in the following location:
 
-| Operating System |                     Save Games                      |                            Configuration                             |
-| :--------------: | :-------------------------------------------------: | :------------------------------------------------------------------: |
-|  Linux AppImage  |               `~/.local/share/AAAAXY`               |                          `~/.config/AAAAXY`                          |
-|  Linux FlatPak   | `~/.var/app/io.github.divverent.aaaaxy/data/AAAAXY` |        `~/.var/app/io.github.divverent.aaaaxy/config/AAAAXY`         |
-|    Linux Snap    |     `~/snap/aaaaxy/common/.local/share/AAAAXY`      |                `~/snap/aaaaxy/common/.config/AAAAXY`                 |
-|   Linux native   |               `~/.local/share/AAAAXY`               |                          `~/.config/AAAAXY`                          |
-|     Windows      |                `Saved Games/AAAAXY`                 |                        `AppData/Local/AAAAXY`                        |
-|       Wine       |  `~/.wine/drive_c/users/$USER/Saved Games/AAAAXY`   | `~/.wine/drive_c/users/$USER/Local Settings/Application Data/AAAAXY` |
-|      macOS       |                         ...                         |                                 ...                                  |
+| Operating System |                                               Save Games<br>Configuration                                                |
+| :--------------: | :----------------------------------------------------------------------------------------------------------------------: |
+|  Linux AppImage  |                                      `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`                                       |
+|  Linux FlatPak   |       `~/.var/app/io.github.divverent.aaaaxy/data/AAAAXY`<br>`~/.var/app/io.github.divverent.aaaaxy/config/AAAAXY`       |
+|    Linux Snap    |                   `~/snap/aaaaxy/common/.local/share/AAAAXY`<br>`~/snap/aaaaxy/common/.config/AAAAXY`                    |
+|   Linux native   |                                      `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`                                       |
+|     Windows      |                  `C:\Users\%USERNAME%\Saved Games\AAAAXY`<br>`C:\Users\%USERNAME%\AppData\Local\AAAAXY`                  |
+|       Wine       | `~/.wine/drive_c/users/$USER/Saved Games/AAAAXY`<br>`~/.wine/drive_c/users/$USER/Local Settings/Application Data/AAAAXY` |
+|      macOS       |                         `~/Library/Application Support/AAAAXY`<br>`~/Library/Preferences/AAAAXY`                         |
 
 It is recommended to back up these files.
 
