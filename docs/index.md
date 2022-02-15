@@ -69,12 +69,13 @@ above.
 
 ### Further Resources
 
-[User Guide](userguide.md) | [Technical
-Support](https://github.com/divVerent/aaaaxy/issues) | [Discussion
-Forum](https://github.com/divVerent/aaaaxy/discussions) |
-[Chat](https://matrix.to/#/#aaaaxy:matrix.org) | [Pull
-Requests](https://github.com/divVerent/aaaaxy/pulls) |
-[Speedrunning](speedrunning.md) | [Music](music.md)
+  - [User Guide](userguide.md)
+  - [Technical Support](https://github.com/divVerent/aaaaxy/issues)
+  - [Discussion Forum](https://github.com/divVerent/aaaaxy/discussions)
+  - [Chat](https://matrix.to/#/#aaaaxy:matrix.org)
+  - [Pull Requests](https://github.com/divVerent/aaaaxy/pulls)
+  - [Speedrunning](speedrunning.md)
+  - [Music](music.md)
 
 ### Screenshots
 
