@@ -45,6 +45,7 @@ var (
 	dumpAudioCodecSettings  = flag.String("dump_audio_codec_settings", "-codec:a pcm_s16le", "FFmpeg settings for audio encoding; set to \"\" to disable the audio stream for -dump_media")
 	dumpMediaFormatSettings = flag.String("dump_media_format_settings", "-vsync vfr", "FFmpeg flags for muxing")
 	cheatDumpSlowAndGood    = flag.Bool("cheat_dump_slow_and_good", false, "non-realtime video dumping (slows down the game, thus considered a cheat))")
+	dumpMediaFrameTimeout   = flag.Duration("dump_media_frame_timeout", 15*time.Second, "maximum processing time per frame; after this time it is assumed that ffmpeg died and dumping ends")
 )
 
 type WriteCloserAt interface {
@@ -81,7 +82,7 @@ func initDumpingEarly() error {
 		}
 		var err error
 		if *dumpAudioCodecSettings != "" {
-			dumpAudioPipe, err = namedpipe.New("aaaaxy-audio", 120, 4*96000)
+			dumpAudioPipe, err = namedpipe.New("aaaaxy-audio", 120, 4*96000, *dumpMediaFrameTimeout)
 			if err != nil {
 				return fmt.Errorf("could not create audio pipe: %v", err)
 			}
@@ -89,7 +90,7 @@ func initDumpingEarly() error {
 			audiowrap.InitDumping()
 		}
 		if *dumpVideoCodecSettings != "" {
-			dumpVideoPipe, err = namedpipe.New("aaaaxy-video", 120, dumpVideoFrameSize)
+			dumpVideoPipe, err = namedpipe.New("aaaaxy-video", 120, dumpVideoFrameSize, *dumpMediaFrameTimeout)
 			if err != nil {
 				return fmt.Errorf("could not create video pipe: %v", err)
 			}

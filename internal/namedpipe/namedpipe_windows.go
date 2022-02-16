@@ -19,20 +19,21 @@ package namedpipe
 
 import (
 	"fmt"
+	"io"
 	"math/rand"
 	"net"
+	"time"
 
 	"github.com/Microsoft/go-winio"
 )
 
 type Fifo struct {
-	path     string
+	fifoBase
+
 	listener net.Listener
-	buf      chan []byte
-	done     chan error
 }
 
-func New(name string, bufCount, bufSize int) (*Fifo, error) {
+func New(name string, bufCount, bufSize int, timeout time.Duration) (*Fifo, error) {
 	tmpPath := fmt.Sprintf("\\\\.\\pipe\\%s-%d", name, rand.Int63())
 	listener, err := winio.ListenPipe(tmpPath, &winio.PipeConfig{
 		SecurityDescriptor: "",
@@ -44,73 +45,25 @@ func New(name string, bufCount, bufSize int) (*Fifo, error) {
 		return nil, err
 	}
 	f := &Fifo{
-		path:     tmpPath,
 		listener: listener,
-		buf:      make(chan []byte, bufCount),
-		done:     make(chan error),
 	}
-	go f.run()
+	f.start(tmpPath, bufCount, timeout, f.accept)
 	return f, nil
 }
 
-func (f *Fifo) Path() string {
-	return f.path
-}
-
-func (f *Fifo) Write(p []byte) (int, error) {
-	f.buf <- p
-	select {
-	case f.buf <- p:
-		return len(p), nil
-	case err := <-f.done:
-		if err == nil {
-			return 0, fmt.Errorf("named pipe %v already closed", f.path)
-		}
-		return 0, err
-	}
-}
-
-func (f *Fifo) Close() error {
-	close(f.buf)
-	return <-f.done
-}
-
-func (f *Fifo) run() {
-	err := f.runInternal()
-	f.done <- err
-	close(f.done)
-}
-
-func (f *Fifo) runInternal() (err error) {
+func (f *Fifo) accept() (io.WriteCloser, error) {
 	// NOTE: there is a race condition here; before Accept() is called, the pipe
 	// is not usable, but Accept() never returns before actually having a
 	// connection. Lucky we have lots of initialization between creating the
 	// pipe and actually launching FFmpeg.
-	var pipe net.Conn
-	pipe, err = f.listener.Accept()
+	pipe, err := f.listener.Accept()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	defer func() {
-		errC := pipe.Close()
-		if err == nil {
-			err = errC
-		}
-	}()
 	err = f.listener.Close()
 	if err != nil {
-		return err
+		_ = pipe.Close()
+		return nil, err
 	}
-	f.listener = nil
-	for {
-		data, ok := <-f.buf
-		if !ok {
-			return nil
-		}
-		_, err = pipe.Write(data)
-		if err != nil {
-			return err
-		}
-	}
-	return pipe.Close()
+	return pipe, nil
 }

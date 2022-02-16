@@ -19,13 +19,14 @@ package namedpipe
 
 import (
 	"fmt"
+	"time"
 )
 
 type Fifo struct {
 	nothing bool
 }
 
-func New(name string, bufCount, bufSize int) (*Fifo, error) {
+func New(name string, bufCount, bufSize int, timeout time.Duration) (*Fifo, error) {
 	return nil, fmt.Errorf("named pipes are not supported on this OS")
 }
 
