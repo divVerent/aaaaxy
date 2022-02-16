@@ -15,7 +15,7 @@
 //go:build ebitensinglethread
 // +build ebitensinglethread
 
-package aaaaxy
+package dump
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"

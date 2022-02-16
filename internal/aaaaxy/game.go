@@ -24,6 +24,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/demo"
+	"github.com/divVerent/aaaaxy/internal/dump"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
@@ -308,7 +309,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 
 	timing.Section("dump")
 	finishDrawing()
-	dumpFrameThenReturnTo(screen, to, g.framesToDump)
+	dump.ProcessFrameThenReturnTo(screen, to, g.framesToDump)
 	g.framesToDump = 0
 
 	// Once this has run, we can start fading in music.
@@ -318,7 +319,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 func (g *Game) drawOffscreen() *ebiten.Image {
 	if g.offScreens == nil {
 		n := 1
-		if dumping() {
+		if dump.Active() {
 			// When dumping, cycle between two offscreen images so we can dump in the background thread.
 			n = 2
 		}
@@ -372,7 +373,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		return
 	}
 
-	if !dumping() && *screenFilter == "simple" {
+	if !dump.Active() && *screenFilter == "simple" {
 		// No offscreen needed. Just render.
 		g.drawAtGameSizeThenReturnTo(screen, make(chan *ebiten.Image, 1))
 		return

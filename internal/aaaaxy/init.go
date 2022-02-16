@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/credits"
 	"github.com/divVerent/aaaaxy/internal/demo"
+	"github.com/divVerent/aaaaxy/internal/dump"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
@@ -117,7 +118,13 @@ func (g *Game) InitEbiten() error {
 	if err != nil {
 		return fmt.Errorf("could not initialize demo: %v", err)
 	}
-	err = initDumpingEarly()
+	err = dump.InitEarly(dump.Params{
+		FPSDivisor:            *fpsDivisor,
+		ScreenFilter:          *screenFilter,
+		ScreenFilterScanLines: *screenFilterScanLines,
+		CRTK1:                 crtK1(),
+		CRTK2:                 crtK2(),
+	})
 	if err != nil {
 		return fmt.Errorf("could not preinitialize dumping: %v", err)
 	}
@@ -127,14 +134,14 @@ func (g *Game) InitEbiten() error {
 	}
 
 	// When dumping video or benchmarking, do precisely one render frame per update.
-	if slowDumping() || demo.Timedemo() {
+	if dump.Slow() || demo.Timedemo() {
 		ebiten.SetMaxTPS(ebiten.UncappedTPS)
 	} else {
 		ebiten.SetMaxTPS(engine.GameTPS / *fpsDivisor)
 	}
 
 	// Pause when unfocused, except when recording demos.
-	ebiten.SetRunnableOnUnfocused(*runnableWhenUnfocused || (demo.Playing() && dumping()))
+	ebiten.SetRunnableOnUnfocused(*runnableWhenUnfocused || (demo.Playing() && dump.Active()))
 
 	return nil
 }
@@ -196,7 +203,7 @@ func (g *Game) InitStep() error {
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("initializing dumping", "could not initialize dumping", splash.Single(initDumpingLate))
+	status, err = g.init.Enter("initializing dumping", "could not initialize dumping", splash.Single(dump.InitLate))
 	if status != splash.Continue {
 		return err
 	}
@@ -236,7 +243,7 @@ func (g *Game) InitFull() error {
 
 func (g *Game) BeforeExit() error {
 	timing.PrintReport()
-	err := finishDumping()
+	err := dump.Finish()
 	if err != nil {
 		return fmt.Errorf("could not finish dumping: %v", err)
 	}

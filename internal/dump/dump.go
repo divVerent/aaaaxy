@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package aaaaxy
+package dump
 
 import (
 	"fmt"
@@ -48,6 +48,14 @@ var (
 	dumpMediaFrameTimeout   = flag.Duration("dump_media_frame_timeout", 15*time.Second, "maximum processing time per frame; after this time it is assumed that ffmpeg died and dumping ends")
 )
 
+type Params struct {
+	FPSDivisor            int
+	ScreenFilter          string
+	ScreenFilterScanLines float64
+	CRTK1                 float64
+	CRTK2                 float64
+}
+
 type WriteCloserAt interface {
 	io.Writer
 	io.WriterAt
@@ -55,12 +63,13 @@ type WriteCloserAt interface {
 }
 
 var (
-	dumpFrameCount = int64(0)
-	dumpVideoFile  WriteCloserAt
-	dumpAudioFile  WriteCloserAt
-	dumpVideoPipe  *namedpipe.Fifo
-	dumpAudioPipe  *namedpipe.Fifo
-	dumpMediaCmd   *exec.Cmd
+	frameCount  = int64(0)
+	videoWriter WriteCloserAt
+	audioWriter WriteCloserAt
+	videoPipe   *namedpipe.Fifo
+	audioPipe   *namedpipe.Fifo
+	mediaCmd    *exec.Cmd
+	params      Params
 )
 
 const (
@@ -72,7 +81,9 @@ var (
 	dumpVideoWg    sync.WaitGroup
 )
 
-func initDumpingEarly() error {
+func InitEarly(p Params) error {
+	params = p
+
 	if *dumpMedia != "" {
 		if *dumpVideo != "" || *dumpAudio != "" {
 			return fmt.Errorf("-dump_media is mutually exclusive with -dump_video/-dump_audio")
@@ -82,25 +93,25 @@ func initDumpingEarly() error {
 		}
 		var err error
 		if *dumpAudioCodecSettings != "" {
-			dumpAudioPipe, err = namedpipe.New("aaaaxy-audio", 120, 4*96000, *dumpMediaFrameTimeout)
+			audioPipe, err = namedpipe.New("aaaaxy-audio", 120, 4*96000, *dumpMediaFrameTimeout)
 			if err != nil {
 				return fmt.Errorf("could not create audio pipe: %v", err)
 			}
-			dumpAudioFile = namedpipe.NewWriteCloserAt(dumpAudioPipe)
+			audioWriter = namedpipe.NewWriteCloserAt(audioPipe)
 			audiowrap.InitDumping()
 		}
 		if *dumpVideoCodecSettings != "" {
-			dumpVideoPipe, err = namedpipe.New("aaaaxy-video", 120, dumpVideoFrameSize, *dumpMediaFrameTimeout)
+			videoPipe, err = namedpipe.New("aaaaxy-video", 120, dumpVideoFrameSize, *dumpMediaFrameTimeout)
 			if err != nil {
 				return fmt.Errorf("could not create video pipe: %v", err)
 			}
-			dumpVideoFile = namedpipe.NewWriteCloserAt(dumpVideoPipe)
+			videoWriter = namedpipe.NewWriteCloserAt(videoPipe)
 		}
 	}
 
 	if *dumpAudio != "" {
 		var err error
-		dumpAudioFile, err = os.Create(*dumpAudio)
+		audioWriter, err = os.Create(*dumpAudio)
 		if err != nil {
 			return fmt.Errorf("could not initialize audio dump: %v", err)
 		}
@@ -109,7 +120,7 @@ func initDumpingEarly() error {
 
 	if *dumpVideo != "" {
 		var err error
-		dumpVideoFile, err = os.Create(*dumpVideo)
+		videoWriter, err = os.Create(*dumpVideo)
 		if err != nil {
 			return fmt.Errorf("could not initialize video dump: %v", err)
 		}
@@ -118,24 +129,24 @@ func initDumpingEarly() error {
 	return nil
 }
 
-func initDumpingLate() error {
+func InitLate() error {
 	if *dumpMedia != "" {
 		audioPath := ""
-		if dumpAudioPipe != nil {
-			audioPath = dumpAudioPipe.Path()
+		if audioPipe != nil {
+			audioPath = audioPipe.Path()
 		}
 		videoPath := ""
-		if dumpVideoPipe != nil {
-			videoPath = dumpVideoPipe.Path()
+		if videoPipe != nil {
+			videoPath = videoPipe.Path()
 		}
-		cmdLine, _, err := ffmpegCommand(audioPath, videoPath, *dumpMedia, *screenFilter)
+		cmdLine, _, err := ffmpegCommand(audioPath, videoPath, *dumpMedia, params.ScreenFilter)
 		if err != nil {
 			return err
 		}
-		dumpMediaCmd := exec.Command(cmdLine[0], cmdLine[1:]...)
-		dumpMediaCmd.Stdout = os.Stdout
-		dumpMediaCmd.Stderr = os.Stderr
-		err = dumpMediaCmd.Start()
+		mediaCmd := exec.Command(cmdLine[0], cmdLine[1:]...)
+		mediaCmd.Stdout = os.Stdout
+		mediaCmd.Stderr = os.Stderr
+		err = mediaCmd.Start()
 		if err != nil {
 			return fmt.Errorf("could not launch FFmpeg: %v", err)
 		}
@@ -144,24 +155,24 @@ func initDumpingLate() error {
 	return nil
 }
 
-func dumping() bool {
-	return dumpAudioFile != nil || dumpVideoFile != nil
+func Active() bool {
+	return audioWriter != nil || videoWriter != nil
 }
 
-func slowDumping() bool {
-	return dumping() && (*cheatDumpSlowAndGood || demo.Playing())
+func Slow() bool {
+	return Active() && (*cheatDumpSlowAndGood || demo.Playing())
 }
 
-func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames int) {
-	if !dumping() || frames == 0 {
+func ProcessFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames int) {
+	if !Active() || frames == 0 {
 		to <- screen
 		return
 	}
-	prevFrameCount := dumpFrameCount
-	dumpFrameCount += int64(frames)
-	if dumpVideoFile != nil {
+	prevFrameCount := frameCount
+	frameCount += int64(frames)
+	if videoWriter != nil {
 		dumpVideoFrameBegin := prevFrameCount / int64(*dumpVideoFpsDivisor)
-		dumpVideoFrameEnd := dumpFrameCount / int64(*dumpVideoFpsDivisor)
+		dumpVideoFrameEnd := frameCount / int64(*dumpVideoFpsDivisor)
 		cnt := dumpVideoFrameEnd - dumpVideoFrameBegin
 		if cnt > 0 {
 			if cnt > 1 {
@@ -172,7 +183,7 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 				to <- screen
 				if err == nil {
 					for i := dumpVideoFrameBegin; i < dumpVideoFrameEnd; i++ {
-						_, err = dumpVideoFile.WriteAt(pix, i*dumpVideoFrameSize)
+						_, err = videoWriter.WriteAt(pix, i*dumpVideoFrameSize)
 						if err != nil {
 							break
 						}
@@ -180,8 +191,8 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 				}
 				if err != nil {
 					log.Errorf("failed to encode video - expect corruption: %v", err)
-					// dumpVideoFile.Close()
-					// dumpVideoFile = nil
+					// videoWriter.Close()
+					// videoWriter = nil
 				}
 				dumpVideoWg.Done()
 			})
@@ -192,12 +203,12 @@ func dumpFrameThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image, frames i
 	} else {
 		to <- screen
 	}
-	if dumpAudioFile != nil {
-		err := audiowrap.DumpFrame(dumpAudioFile, time.Duration(dumpFrameCount)*time.Second/engine.GameTPS)
+	if audioWriter != nil {
+		err := audiowrap.DumpFrame(audioWriter, time.Duration(frameCount)*time.Second/engine.GameTPS)
 		if err != nil {
 			log.Errorf("failed to encode audio - expect corruption: %v", err)
-			dumpAudioFile.Close()
-			dumpAudioFile = nil
+			audioWriter.Close()
+			audioWriter = nil
 		}
 	}
 }
@@ -208,7 +219,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 	settings := []string{"-y"}
 	// Video first, so we can refer to the video stream as [0:v] for sure.
 	if video != "" {
-		fps := float64(engine.GameTPS) / (float64(*fpsDivisor) * float64(*dumpVideoFpsDivisor))
+		fps := float64(engine.GameTPS) / (float64(params.FPSDivisor) * float64(*dumpVideoFpsDivisor))
 		inputs = append(inputs, "-f", "rawvideo", "-pixel_format", "rgba", "-video_size", fmt.Sprintf("%dx%d", engine.GameWidth, engine.GameHeight), "-r", fmt.Sprint(fps), "-i", video)
 		filterComplex := "[0:v]premultiply=inplace=1,format=gbrp[lowres]; "
 		switch screenFilter {
@@ -228,12 +239,12 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 			pnmHeader1 := []byte("P2\n")
 			pnmHeader2 := []byte("1 2160 255\n")
 			pnmLine := []byte(fmt.Sprintf("%d %d %d %d %d %d\n",
-				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-1.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-3.0/6.0**screenFilterScanLines)),
-				m.Rint(255*(1.0-5.0/6.0**screenFilterScanLines))))
+				m.Rint(255*(1.0-5.0/6.0*params.ScreenFilterScanLines)),
+				m.Rint(255*(1.0-3.0/6.0*params.ScreenFilterScanLines)),
+				m.Rint(255*(1.0-1.0/6.0*params.ScreenFilterScanLines)),
+				m.Rint(255*(1.0-1.0/6.0*params.ScreenFilterScanLines)),
+				m.Rint(255*(1.0-3.0/6.0*params.ScreenFilterScanLines)),
+				m.Rint(255*(1.0-5.0/6.0*params.ScreenFilterScanLines))))
 			tempFile, err := ioutil.TempFile("", "aaaaxy-*")
 			if err != nil {
 				return nil, "", err
@@ -259,7 +270,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 			}
 			precmd = fmt.Sprintf("{ echo '%s'; echo '%s'; for i in `seq 1 360`; do echo '%s'; done } > '%s'; ", pnmHeader1[:len(pnmHeader1)-1], pnmHeader2[:len(pnmHeader2)-1], pnmLine[:len(pnmLine)-1], tempFile.Name())
 			inputs = append(inputs, "-f", "pgm_pipe", "-i", tempFile.Name())
-			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; [1:v]scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", crtK1(), crtK2())
+			filterComplex += fmt.Sprintf("[lowres]scale=1280:720:flags=neighbor,scale=3840:2160[scaled]; [1:v]scale=3840:2160:flags=neighbor,format=gbrp[scanlines]; [scaled][scanlines]blend=all_mode=multiply,lenscorrection=i=bilinear:k1=%f:k2=%f", params.CRTK1, params.CRTK2)
 		case "nearest":
 			filterComplex += "[lowres]scale=1920:1080:flags=neighbor"
 		case "":
@@ -300,29 +311,29 @@ func printCommand(cmd []string) string {
 	return strings.Join(r, " ")
 }
 
-func finishDumping() error {
-	if !dumping() {
+func Finish() error {
+	if !Active() {
 		return nil
 	}
-	if dumpVideoFile != nil {
+	if videoWriter != nil {
 		dumpVideoWg.Wait()
 	}
 	// Closing audio and video file concurrently, which helps in case they're pipes, as it's unclear in which state FFmpeg tries to read them.
 	var wg sync.WaitGroup
 	var videoErr, audioErr error
-	if dumpAudioFile != nil {
+	if audioWriter != nil {
 		wg.Add(1)
 		go func() {
-			audioErr = dumpAudioFile.Close()
-			dumpAudioFile = nil
+			audioErr = audioWriter.Close()
+			audioWriter = nil
 			wg.Done()
 		}()
 	}
-	if dumpVideoFile != nil {
+	if videoWriter != nil {
 		wg.Add(1)
 		go func() {
-			videoErr = dumpVideoFile.Close()
-			dumpVideoFile = nil
+			videoErr = videoWriter.Close()
+			videoWriter = nil
 			wg.Done()
 		}()
 	}
@@ -333,8 +344,8 @@ func finishDumping() error {
 	if videoErr != nil {
 		return fmt.Errorf("failed to close video - expect corruption: %v", videoErr)
 	}
-	if dumpMediaCmd != nil {
-		err := dumpMediaCmd.Wait()
+	if mediaCmd != nil {
+		err := mediaCmd.Wait()
 		if err != nil {
 			return fmt.Errorf("failed to close FFmpeg - expect corruption: %v", err)
 		}
@@ -347,9 +358,9 @@ func finishDumping() error {
 			return err
 		}
 		log.Infof("  %v%v", precmd, printCommand(cmd))
-		if *screenFilter != "linear2xcrt" {
+		if params.ScreenFilter != "linear2xcrt" {
 			log.Infof("with current settings (1080p, MEDIUM QUALITY):")
-			cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mkv", *screenFilter)
+			cmd, precmd, err := ffmpegCommand(*dumpAudio, *dumpVideo, "video-medium.mkv", params.ScreenFilter)
 			if err != nil {
 				return err
 			}
