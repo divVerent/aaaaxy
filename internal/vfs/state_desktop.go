@@ -26,6 +26,22 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
+func initState() error {
+	path, err := pathForWrite(Config, "*")
+	if err != nil {
+		log.Errorf("configs cannot be written: %v", err)
+	} else {
+		log.Infof("configs will be written to %s", path)
+	}
+	path, err = pathForWrite(SavedGames, "*")
+	if err != nil {
+		log.Errorf("save games cannot be written: %v", err)
+	} else {
+		log.Infof("save games will be written to %s", path)
+	}
+	return nil
+}
+
 // ReadState loads the given state file and returns its contents.
 func ReadState(kind StateKind, name string) ([]byte, error) {
 	path, err := pathForRead(kind, name)

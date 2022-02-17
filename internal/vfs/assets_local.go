@@ -33,8 +33,8 @@ var (
 	localAssetDirs []string
 )
 
-// Init initializes the VFS. Must run after loading the assets.
-func Init() error {
+// initAssets initializes the VFS. Must run after loading the assets.
+func initAssets() error {
 	localAssetDirs = []string{"assets"}
 	content, err := ioutil.ReadDir("third_party")
 	if err != nil {

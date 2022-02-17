@@ -98,8 +98,8 @@ func dumpAssets() error {
 	})
 }
 
-// Init initializes the VFS. Must run after loading the assets.
-func Init() error {
+// initAssets initializes the VFS. Must run after loading the assets.
+func initAssets() error {
 	embeddedAssetDirs = []fsRoot{{
 		fs:   &assets.FS,
 		root: ".",

@@ -178,7 +178,7 @@ func playFrame() bool {
 
 func postPlayFrame(playerPos m.Pos) {
 	if len(demoPlayerFrame.SaveGames) != 0 {
-		regression(mediumPrio, "saved game: got no saves, want %v", demoPlayerFrame.SaveGames)
+		regression(mediumPrio, "save game: got no saves, want %v", demoPlayerFrame.SaveGames)
 	}
 	if demoPlayerFrame.PlayerPos != nil && playerPos != *demoPlayerFrame.PlayerPos {
 		d := playerPos.Delta(*demoPlayerFrame.PlayerPos).Norm1()
@@ -221,10 +221,10 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 		// Still there to have better chance of being in sync during playback with regression.
 		demoPlayerFrame.SaveGame = save
 		if len(demoPlayerFrame.SaveGames) == 0 {
-			regression(mediumPrio, "saved game: got hash %v, want no saves", save.StateHash)
+			regression(mediumPrio, "save game: got hash %v, want no saves", save.StateHash)
 		} else {
 			if save.StateHash != demoPlayerFrame.SaveGames[0] {
-				regression(mediumPrio, "saved game: got hash %v, want %v", save.StateHash, demoPlayerFrame.SaveGames[0])
+				regression(mediumPrio, "save game: got hash %v, want %v", save.StateHash, demoPlayerFrame.SaveGames[0])
 			}
 			demoPlayerFrame.SaveGames = demoPlayerFrame.SaveGames[1:]
 		}

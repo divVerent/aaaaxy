@@ -25,6 +25,12 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
+func initState() error {
+	log.Infof("configs will be written to localStorage['%d/*']", Config)
+	log.Infof("save games will be written to localStorage['%d/*']", SavedGames)
+	return nil
+}
+
 // ReadState loads the given state file and returns its contents.
 func ReadState(kind StateKind, name string) ([]byte, error) {
 	path := fmt.Sprintf("%d/%s", kind, name)
