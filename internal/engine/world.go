@@ -39,7 +39,6 @@ var (
 	debugCountTiles                  = flag.Bool("debug_count_tiles", false, "count tiles set/cleared")
 	debugNeighborLoadingOptimization = flag.Bool("debug_neighbor_loading_optimization", true, "load tiles faster from the same neighbor tile (maybe incorrect, but faster)")
 	debugDetectLoadingConflicts      = flag.Bool("debug_detect_loading_conflicts", false, "try to detect tile loading conflicts")
-	debugDumpVisiblePolygon          = flag.Bool("debug_dump_visible_polygon", false, "dump the visible polygon to the log")
 	debugCheckTileWindowSize         = flag.Bool("debug_check_tile_window_size", false, "if set, we verify that the tile window size is set high enough")
 )
 
@@ -626,10 +625,6 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		}
 	} else {
 		w.renderer.expandedVisiblePolygon = w.renderer.visiblePolygon
-	}
-	if *debugDumpVisiblePolygon {
-		log.Infof("visible polygon: %v", w.renderer.visiblePolygon)
-		log.Infof("expanded polygon: %v", w.renderer.expandedVisiblePolygon)
 	}
 	// BUG: the above also loads tiles (but doesn't mark) if their path was blocked by an entity.
 	// Workaround: mark them as if they were previous frame's tiles, so they're not a basis for loading and get cleared at the end if needed.
