@@ -21,7 +21,12 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/vfs"
+)
+
+var (
+	debugUseShaders = flag.Bool("debug_use_shaders", true, "enable use of custom shaders")
 )
 
 type shaderPath = struct {
@@ -32,6 +37,9 @@ type shaderPath = struct {
 var cache = map[shaderPath]*ebiten.Shader{}
 
 func Load(name string, params map[string]string) (*ebiten.Shader, error) {
+	if !*debugUseShaders {
+		return nil, fmt.Errorf("shader support has been turned off using --debug_use_shaders=false")
+	}
 	cacheName := vfs.Canonical("shaders", name)
 	sp := shaderPath{cacheName, fmt.Sprint(params)}
 	if shader, found := cache[sp]; found {

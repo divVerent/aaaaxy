@@ -89,13 +89,11 @@ func (r *renderer) Init(w *World) {
 	r.offScreenBuffer.Fill(color.Gray{0})
 	r.visibilityMaskImage = ebiten.NewImage(GameWidth, GameHeight)
 
-	if *debugUseShaders {
-		var err error
-		r.visibilityMaskShader, err = shader.Load("visibility_mask.kage", nil)
-		if err != nil {
-			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load visibility mask shader: %v", err)
-			r.visibilityMaskShader = nil
-		}
+	var err error
+	r.visibilityMaskShader, err = shader.Load("visibility_mask.kage", nil)
+	if err != nil {
+		log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load visibility mask shader: %v", err)
+		r.visibilityMaskShader = nil
 	}
 }
 

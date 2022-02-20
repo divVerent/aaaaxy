@@ -26,8 +26,7 @@ import (
 )
 
 var (
-	debugUseShaders = flag.Bool("debug_use_shaders", true, "enable use of custom shaders")
-	drawBlurs       = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
+	drawBlurs = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 )
 
 func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale, darken float64) {
@@ -113,7 +112,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken, blurFade fl
 		}
 		return
 	}
-	if blurBroken || !*debugUseShaders {
+	if blurBroken {
 		blurImageFixedFunction(img, tmp, out, size, scale, darken)
 		return
 	}
