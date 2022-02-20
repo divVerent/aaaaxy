@@ -39,8 +39,6 @@ var (
 	debugCountTiles                  = flag.Bool("debug_count_tiles", false, "count tiles set/cleared")
 	debugNeighborLoadingOptimization = flag.Bool("debug_neighbor_loading_optimization", true, "load tiles faster from the same neighbor tile (maybe incorrect, but faster)")
 	debugDetectLoadingConflicts      = flag.Bool("debug_detect_loading_conflicts", false, "try to detect tile loading conflicts")
-	cheatInitialOrientation          = flag.String("cheat_initial_orientation", "ES", "initial orientation of the game (BREAKS THINGS)")
-	cheatInitialCheckpoint           = flag.String("cheat_initial_checkpoint", "", "initial checkpoint")
 	debugDumpVisiblePolygon          = flag.Bool("debug_dump_visible_polygon", false, "dump the visible polygon to the log")
 	debugCheckTileWindowSize         = flag.Bool("debug_check_tile_window_size", false, "if set, we verify that the tile window size is set high enough")
 )
@@ -349,9 +347,6 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	// Load whether we've seen this checkpoint in flipped state.
 	flipped := w.PlayerState.CheckpointSeen(checkpointName) == playerstate.SeenFlipped
 
-	if *cheatInitialCheckpoint != "" {
-		checkpointName = *cheatInitialCheckpoint
-	}
 	cpSp := w.Level.Checkpoints[checkpointName]
 	if cpSp == nil {
 		return fmt.Errorf("could not spawn player: checkpoint %q not found", checkpointName)
@@ -372,12 +367,7 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 
 	// First spawn the tile on the checkpoint.
 	tile := w.Level.Tile(cpSp.LevelPos).Tile
-	var err error
-	tile.Transform, err = m.ParseOrientation(*cheatInitialOrientation)
-	if err != nil {
-		return fmt.Errorf("could not parse initial orientation: %v", err)
-	}
-	tile.Transform = cpTransform.Concat(tile.Transform)
+	tile.Transform = cpTransform
 	tile.Orientation = tile.Transform.Inverse().Concat(tile.Orientation)
 	tile.ResolveImage()
 
