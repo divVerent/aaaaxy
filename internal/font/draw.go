@@ -88,12 +88,7 @@ func (f Face) Draw(dst draw.Image, str string, pos m.Pos, centerX bool, fg, bg c
 	}
 }
 
-func (f Face) precache(dst *ebiten.Image, chars string) {
-	text.Draw(dst, chars, f.Face, 0, 0, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
-	text.Draw(dst, chars, f.Outline, 0, 0, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
-}
-
-func (f Face) recache(chars string) {
+func (f Face) precache(chars string) {
 	text.CacheGlyphs(f.Face, chars)
 	text.CacheGlyphs(f.Outline, chars)
 }
