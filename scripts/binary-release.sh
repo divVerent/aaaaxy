@@ -15,6 +15,11 @@
 
 set -ex
 
+if git ls-files -dmo | grep -q .; then
+	echo >&2 'Working directory is not clean. Please commit or clean first.'
+	exit 1
+fi
+
 prev=$(git describe --always --long --match 'v*.*' --exclude 'v[0-9].[0-9]' --exclude 'v[0-9].[0-9].0-alpha' --exclude 'v[0-9].[0-9].0-beta' --exclude 'v[0-9].[0-9].0-rc')
 # We want to exclude v*.* and v*.*.0-(alpha/beta).
 prev=${prev%-*-g*}
