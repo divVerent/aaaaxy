@@ -38,7 +38,6 @@ import (
 var (
 	debugCountTiles                  = flag.Bool("debug_count_tiles", false, "count tiles set/cleared")
 	debugNeighborLoadingOptimization = flag.Bool("debug_neighbor_loading_optimization", true, "load tiles faster from the same neighbor tile (maybe incorrect, but faster)")
-	debugDetectLoadingConflicts      = flag.Bool("debug_detect_loading_conflicts", false, "try to detect tile loading conflicts")
 	debugCheckTileWindowSize         = flag.Bool("debug_check_tile_window_size", false, "if set, we verify that the tile window size is set high enough")
 )
 
@@ -775,7 +774,7 @@ func (w *World) SetWarpZoneState(name string, state bool) {
 func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	tile := w.Tile(newPos)
 	if tile != nil {
-		if tile.VisibilityFlags&level.FrameVis == w.frameVis && !*debugDetectLoadingConflicts {
+		if tile.VisibilityFlags&level.FrameVis == w.frameVis {
 			// Already loaded this frame.
 			return tile
 		}
@@ -841,17 +840,6 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			// Same tile as we had before. Can skip the copying.
 			tile.LoadedFromNeighbor = p
 			tile.VisibilityFlags = w.frameVis
-			return tile
-		} else if w.visTracing && tile.VisibilityFlags&level.FrameVis == w.frameVis {
-			// Damn... these loading conflicts are actually normal and happen around all warpzones.
-			// Thus it'd be nice to have a better way to detect "bad" stuff.
-			// We only really care about loading conflicts during visibility tracing.
-			// Even then, it's usually rather harmless and will fix itself when getting closer.
-			// TODO: During expanding it's normal, so detect that situation here.
-			log.TraceErrorf("conflict loading tile at %v: loaded from %v (%v) and %v by %v (%v)",
-				newPos, tile.LoadedFromNeighbor, tile.LevelPos, p, d, newLevelTile.Tile.LevelPos)
-			// Can't load a new one here; note that if *debugDetectLoadingConflicts isn't set,
-			// this case will never be hit.
 			return tile
 		}
 	}
