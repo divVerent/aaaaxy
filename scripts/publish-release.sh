@@ -17,6 +17,7 @@ set -ex
 
 new=$1; shift
 newrev=$1; shift
+dir=$PWD
 
 if [ x"$(git rev-parse "$new"^0)" != x"$newrev" ]; then
 	echo >&2 'Usage: $0 new-version new-git-revision'
@@ -51,6 +52,25 @@ hub release create \
 
 # Mark the release done.
 git push origin main
+
+# Publish it to gh-pages.
+git worktree add /tmp/gh-pages gh-pages
+(
+	cd /tmp/gh-pages
+	VERSION=$new perl -0777 -pi -e '
+		use strict;
+		use warnings;
+		my $version = $ENV{VERSION};
+		/(?<=<!-- BEGIN DOWNLOAD LINKS TEMPLATE\n)(.*)(?=\nEND DOWNLOAD LINKS TEMPLATE -->)/s
+			or die "Template not found.";
+		my $template = $1;
+		$template =~ s/VERSION/$version/g;
+		s/(?<=<!-- BEGIN DOWNLOAD LINKS -->\n)(.*)(?=\n<!-- END DOWNLOAD LINKS -->)/$template/gs;
+	' docs/index.md
+	git commit -a -m "$(cat "$dir"/.commitmsg)"
+	git push origin HEAD
+)
+git worktree remove /tmp/gh-pages
 
 # Snap. Got kicked off by this git push.
 xdg-open https://snapcraft.io/aaaaxy/builds

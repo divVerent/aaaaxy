@@ -76,17 +76,6 @@ GOOS=windows scripts/binary-release-compile.sh 386
 GOOS=darwin CGO_ENV_amd64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=o64-clang CXX=o64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" CGO_ENV_arm64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=oa64-clang CXX=oa64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" LIPO="$HOME/src/osxcross-sdk/bin/lipo" scripts/binary-release-compile.sh amd64 arm64
 GOOS=js scripts/binary-release-compile.sh wasm
 
-VERSION=$new perl -0777 -pi -e '
-	use strict;
-	use warnings;
-	my $version = $ENV{VERSION};
-	/(?<=<!-- BEGIN DOWNLOAD LINKS TEMPLATE\n)(.*)(?=\nEND DOWNLOAD LINKS TEMPLATE -->)/s
-		or die "Template not found.";
-	my $template = $1;
-	$template =~ s/VERSION/$version/g;
-	s/(?<=<!-- BEGIN DOWNLOAD LINKS -->\n)(.*)(?=\n<!-- END DOWNLOAD LINKS -->)/$template/gs;
-' docs/index.md
-
 git commit -a -m "$(cat .commitmsg)"
 git tag -a "$new" -m "$(cat .commitmsg)"
 newrev=$(git rev-parse HEAD)

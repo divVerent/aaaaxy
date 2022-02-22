@@ -1,4 +1,4 @@
-# ![AAAAXY](docs/logo.png)
+# ![AAAAXY](https://divVerent.github.io/aaaaxy/logo.png)
 
 AAAAXY is a nonlinear puzzle platformer taking place in non-Euclidean
 geometry.
@@ -24,21 +24,20 @@ Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy)
 
 ## Screenshots
 
-[![shot1](docs/screenshots/shot1.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.png)
-[![shot2](docs/screenshots/shot2.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot2.png)
-[![shot3](docs/screenshots/shot3.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot3.png)
-[![shot4](docs/screenshots/shot4.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot4.png)
-[![shot5](docs/screenshots/shot5.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot5.png)
-[![shot6](docs/screenshots/shot6.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot6.png)
-[![shot7](docs/screenshots/shot7.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot7.png)
-[![shot8](docs/screenshots/shot8.jpg)](https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.png)
+[![shot1](https://divVerent.github.io/aaaaxy/screenshots/shot1.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot1.png)
+[![shot2](https://divVerent.github.io/aaaaxy/screenshots/shot2.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot2.png)
+[![shot3](https://divVerent.github.io/aaaaxy/screenshots/shot3.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot3.png)
+[![shot4](https://divVerent.github.io/aaaaxy/screenshots/shot4.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot4.png)
+[![shot5](https://divVerent.github.io/aaaaxy/screenshots/shot5.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot5.png)
+[![shot6](https://divVerent.github.io/aaaaxy/screenshots/shot6.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot6.png)
+[![shot7](https://divVerent.github.io/aaaaxy/screenshots/shot7.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot7.png)
+[![shot8](https://divVerent.github.io/aaaaxy/screenshots/shot8.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot8.png)
 
 ## More Resources
 
 This documentation is intended for developers; user-centric
 documentation is available on the [game's
-website](https://divverent.github.io/aaaaxy/) or [in this
-repository](docs/index.md).
+website](https://divverent.github.io/aaaaxy/).
 
 ## Compiling
 
