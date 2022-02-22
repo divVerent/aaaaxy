@@ -1,6 +1,6 @@
 # ![AAAAXY](https://divVerent.github.io/aaaaxy/logo.png)
 
-AAAAXY is a nonlinear puzzle platformer taking place in non-Euclidean
+AAAAXY is a nonlinear 2D puzzle platformer taking place in non-Euclidean
 geometry.
 
 Although your general goal is reaching the surprising end of the game,
