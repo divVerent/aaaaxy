@@ -3,6 +3,7 @@
 /AAAAXY-*.AppImage*
 /aaaaxy
 /aaaaxy-*.zip
+/sdl-gamecontrollerdb-for-aaaaxy-*.zip
 /aaaaxy-js-wasm.wasm
 /aaaaxy-linux-amd64
 /aaaaxy-windows-386.exe
