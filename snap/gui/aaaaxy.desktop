@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=AAAAXY
-Comment=A nonlinear puzzle platformer taking place in non-Euclidean geometry.
-Exec=aaaaxy
-Icon=${SNAP}/meta/gui/aaaaxy.png
-Terminal=false
-Type=Application
-Categories=Game;ActionGame;
-StartupNotify=true
