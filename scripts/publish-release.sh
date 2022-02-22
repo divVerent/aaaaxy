@@ -18,12 +18,12 @@ set -ex
 new=$1; shift
 newrev=$1; shift
 
-if [ x"$(git rev-parse "$new")" != x"$newrev" ]; then
+if [ x"$(git rev-parse "$new"^0)" != x"$newrev" ]; then
 	echo >&2 'Usage: $0 new-version new-git-revision'
 	exit 1
 fi
 
-if [ x"$(git rev-parse "$new")" != x"$(git rev-parse HEAD)" ]; then
+if [ x"$(git rev-parse "$new"^0)" != x"$(git rev-parse HEAD)" ]; then
 	echo >&2 'Must be on the release tag.'
 	exit 1
 fi
@@ -45,7 +45,7 @@ hub release create \
 	-a aaaaxy-windows-amd64-"$new".zip \
 	-a aaaaxy-windows-386-"$new".zip \
 	-a aaaaxy-darwin-"$new".zip \
-	-a sdl-gamecontrollerdb-for-aaaaxy-v1.1.166.zip \
+	-a sdl-gamecontrollerdb-for-aaaaxy-"$new".zip \
 	-m "$(cat .commitmsg)" \
 	"$new"
 
@@ -73,7 +73,7 @@ xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 # Arch Linux.
 (
 	cd ../aur-aaaaxy
-	sed -i -e 's/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;' PKGBUILD
+	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;" PKGBUILD
 	doas /root/archlinux/archlinux-testing-build-aaaaxy.sh
 	git commit -a -m "Release $new."
 	git push
