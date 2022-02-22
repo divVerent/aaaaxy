@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.1.166" date="2022-02-14">
-      <description><ul><li>Level: de-cheese the "hello world" secret.</li><li>Engine: update modules.</li><li>Engine: fix Oto crash on 32-Bit Windows 7. Fixes #17.</li><li>Engine: fix savegames on Windows 7.</li><li>Engine: change FFmpeg-based media dumping default to MJPEG with PCM audio.</li><li>Engine: add a media dumping mode that does not use an uncompressed video temp file.</li><li>Build: allow skipping assets rebuild with AAAAXY_GENERATE_ASSETS=false.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.166</url>
+    <release version="v1.1.189" date="2022-02-22">
+      <description><ul><li>Game: remove initial checkpoint cheat. It was near unusable anyway.</li><li>Engine: factor out common parts of Windows and Unix named pipe impl.</li><li>Engine: factor out media dumping into its own package.</li><li>Engine: fix flag description of --expand_using_vertices_accurately.</li><li>Engine: make -debug_use_shaders=false affect ALL shaders, not just blur and vis mask.</li><li>Engine: print the location of savegames and config in all binaries, not just for the snap.</li><li>Engine: remove -pin_fonts_to_cache_harder - it no longer has any benefit.</li><li>Engine: remove the known broken neighbor conflict check. It was already off.</li><li>Engine: remove visible polygon dumping.</li><li>Engine: update Ebiten to 2.2.5 and Oto to 2.1.0-alpha.6. Fixes maximize button on macOS.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.189</url>
     </release>
   </releases>
 </component>
