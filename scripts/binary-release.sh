@@ -86,44 +86,15 @@ git commit -a -m "$(cat .commitmsg)"
 git tag -a "$new" -m "$(cat .commitmsg)"
 newrev=$(git rev-parse HEAD)
 
+git push origin tag "$new"
+
 set +x
 
 cat <<EOF
-Now run:
-  git push origin tag $new
-Then create the release on GitHub with the following message:
+Please wait for automated tests on
+https://github.com/divVerent/aaaaxy/actions
 
-EOF
-cat .commitmsg
-cat <<EOF
+If these all pass, proceed by running
 
-In the release, upload aaaaxy-*-$new.zip (except for wasm) and
-AAAAXY-*.AppImage* as well as sdl-gamecontrollerdb-for-aaaaxy-$new.zip.
-Once the release is published, finally run:
-  git push origin main
-Then update the snap at https://snapcraft.io/aaaaxy/builds by testing the
-current one on edge, waiting for the updated one on edge, testing that one too,
-then releasing it to stable.
-And the FlatPak:
-  scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
-  cd ../io.github.divverent.aaaaxy
-  sed -i -e '/--- TAG GOES HERE ---/,+1 s/: .*/: $new/' io.github.divverent.aaaaxy.yml
-  sed -i -e '/--- REV GOES HERE ---/,+1 s/: .*/: $newrev/' io.github.divverent.aaaaxy.yml
-  git commit -a
-  git push origin HEAD:beta
-  git push origin HEAD
-  ... https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy~2Fbeta ...
-  ... publish, test ...
-  ... https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy ...
-  ... publish ...
-And the PKGBUILD:
-  cd ../aur-aaaaxy
-  sed -i -e 's/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;' PKGBUILD
-  sudo /root/archlinux/archlinux-testing-build-aaaaxy.sh
-  git commit -a
-  git push
-Finally, run
-  scripts/itch-upload.sh $new
-and post on https://itch.io/dashboard/game/1199736/devlog, and also upload on
-  https://gamejolt.com/dashboard/games/682854/packages
+  scripts/publish-release.sh $new $newrev
 EOF
