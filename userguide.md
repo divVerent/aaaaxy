@@ -90,11 +90,20 @@ Linux native | `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`
 Windows | `C:\Users\%USERNAME%\Saved Games\AAAAXY`<br>`C:\Users\%USERNAME%\AppData\Local\AAAAXY`
 Wine | `~/.wine/drive_c/users/$USER/Saved Games/AAAAXY`<br>`~/.wine/drive_c/users/$USER/Local Settings/Application Data/AAAAXY`
 macOS | `~/Library/Application Support/AAAAXY`<br>`~/Library/Preferences/AAAAXY`
+Web | `localStorage['1/*']`<br>`localStorage['0/*']`
 
 It is recommended to back up these files.
 
 WARNING: Do not edit the save game files. If needed, cheats are provided
 as command line options.
+
+To edit a config setting on the web, paste into the developer console something like:
+
+```
+((k,v)=>{let c=JSON.parse(localStorage['0/config.json']);c[k]=v.toString();localStorage['0/config.json']=JSON.stringify(c);location.reload(false);})('show_fps',true)
+```
+
+To do this on Itch's web player, select the `index.html` subframe that is hosted on `hwcdn.net` first.
 
 ### Save States
 
