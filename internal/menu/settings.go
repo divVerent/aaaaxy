@@ -189,17 +189,17 @@ func (s qualitySetting) apply() error {
 		flag.Set("draw_blurs", true) // <-
 		flag.Set("draw_outside", false)
 		flag.Set("expand_using_vertices_accurately", true)
-		flag.Set("screen_filter", "simple")
+		flag.Set("screen_filter", "simple") // <-
 	case lowQuality:
 		flag.Set("draw_blurs", false)
 		flag.Set("draw_outside", false)
 		flag.Set("expand_using_vertices_accurately", true) // <-
-		flag.Set("screen_filter", "simple")
+		flag.Set("screen_filter", "nearest")
 	case lowestQuality:
 		flag.Set("draw_blurs", false)
 		flag.Set("draw_outside", false)
 		flag.Set("expand_using_vertices_accurately", false)
-		flag.Set("screen_filter", "simple")
+		flag.Set("screen_filter", "nearest")
 	}
 	return nil
 }

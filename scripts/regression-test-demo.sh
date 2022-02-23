@@ -51,7 +51,7 @@ for demo in "$@"; do
 		-fullscreen=false \
 		-profiling=1m \
 		-runnable_when_unfocused \
-		-screen_filter=simple \
+		-screen_filter=nearest \
 		-show_fps \
 		-show_time \
 		-vsync=false \
