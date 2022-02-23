@@ -81,16 +81,12 @@ clean:
 vet:
 	$(GO) vet ./...
 
-.PHONY: mod-tidy
-mod-tidy:
-	$(GO) mod tidy -compat=1.15 -go=1.16
-	$(GO) mod tidy -compat=1.15 -go=1.17
-
 .PHONY: mod-update
 mod-update:
 	$(GO) get -u
 	$(GO) get golang.org/x/exp/shiny@none
-	$(MAKE) mod-tidy
+	$(GO) mod tidy -compat=1.15 -go=1.16
+	$(GO) mod tidy -compat=1.15 -go=1.17
 
 .PHONY: loading-fractions-update
 loading-fractions-update: $(BINARY)
