@@ -39,6 +39,16 @@ This documentation is intended for developers; user-centric
 documentation is available on the [game's
 website](https://divverent.github.io/aaaaxy/).
 
+## Notable Libraries
+
+This game is based on the following libraries:
+
+  - [Ebiten](https://github.com/hajimehoshi/ebiten) for low level
+    graphics and input
+  - [Oto](https://github.com/hajimehoshi/oto) for sound.
+  - [tmx](https://github.com/fardog/tmx) for parsing
+    [Tiled](https://www.mapeditor.org/) tile maps.
+
 ## Compiling
 
 This game has been successfully compiled on Linux, FreeBSD and Windows,
