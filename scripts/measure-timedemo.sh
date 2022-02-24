@@ -13,16 +13,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Simple script to run a benchmark demo.
+# Simple script to run a benchmark demo and measure its times.
 
 if [ $# -lt 2 ]; then
 	echo >&2 "Usage: $0 benchmark.dem binary with flags..."
 	exit 1
 fi
 
-exec "$@" \
-	-batch \
-	-demo_play="$demo" \
-	-demo_timedemo \
-	-runnable_when_unfocused \
-	-vsync=false
+demo=$1; shift
+t_starting=$(date +%s.%N)
+out=$(scripts/run-timedemo.sh "$@" 2>&1 | tee /dev/stderr)
+status=$?
+t_started=$(date +%s.%N -d"$(echo "$out" | awk '/ \[INFO\] game started$/     { print $1, $2 }')")
+t_exiting=$(date +%s.%N -d"$(echo "$out" | awk '/ \[INFO\] exiting normally$/ { print $1, $2 }')")
+t_exited=$(date +%s.%N)
+{
+	echo "$t_started * 1 - $t_starting" | bc
+	echo ,
+	echo "$t_exiting * 1 - $t_started" | bc
+	echo ,
+	echo "$t_exited * 1 - $t_exiting" | bc
+	echo ,
+	echo "$t_exited * 1 - $t_starting" | bc
+} | tr -d '\n'
+exit $status
