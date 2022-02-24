@@ -33,16 +33,15 @@ run_finished=false
 for demo in "$@"; do
 	echo >&2 "Running $demo..."
 	t0=$(date +%s)
-	if ! $binary \
+	if ! scripts/run-timedemo.sh \
+		"$demo" \
+		$binary \
 		-audio=false \
-		-batch \
 		-debug_check_tile_window_size \
 		-debug_check_tnih_signs \
 		-debug_log_file="$demo.$tag.log" \
-		-demo_play="$demo" \
 		-demo_record="$demo.$tag.actual.dem" \
 		-demo_play_regression_prefix="$demo.$tag" \
-		-demo_timedemo \
 		-draw_blurs=false \
 		-draw_outside=false \
 		-draw_visibility_mask=false \
@@ -50,11 +49,9 @@ for demo in "$@"; do
 		-fps_divisor=4 \
 		-fullscreen=false \
 		-profiling=1m \
-		-runnable_when_unfocused \
 		-screen_filter=nearest \
 		-show_fps \
 		-show_time \
-		-vsync=false \
 		-window_scale_factor=1 \
 		; then
 		if grep -q 'regression test failed from' "$demo.$tag.log"; then
