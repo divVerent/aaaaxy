@@ -227,6 +227,7 @@ func (g *Game) InitStep() error {
 		log.Errorf("requested early termination via --debug_just_init")
 		return RegularTermination
 	}
+	log.Infof("game started")
 	g.init.done = true
 	return nil
 }

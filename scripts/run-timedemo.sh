@@ -21,14 +21,26 @@ if [ $# -lt 2 ]; then
 fi
 
 demo=$1; shift
-t0=$(date +%s.%N)
-"$@" \
-	-batch \
-	-demo_play="$demo" \
-	-demo_timedemo \
-	-runnable_when_unfocused \
-	-vsync=false >&2
+t_starting=$(date +%s.%N)
+out=$(
+	"$@" \
+		-batch \
+		-demo_play="$demo" \
+		-demo_timedemo \
+		-runnable_when_unfocused \
+		-vsync=false 2>&1 | tee /dev/stderr
+)
 status=$?
-t=$(date +%s.%N)
-echo "$t - $t0" | bc
+t_started=$(date +%s.%N -d"$(echo "$out" | awk '/ \[INFO\] game started$/     { print $1, $2 }')")
+t_exiting=$(date +%s.%N -d"$(echo "$out" | awk '/ \[INFO\] exiting normally$/ { print $1, $2 }')")
+t_exited=$(date +%s.%N)
+{
+	echo "$t_started * 1 - $t_starting" | bc
+	echo ,
+	echo "$t_exiting * 1 - $t_started" | bc
+	echo ,
+	echo "$t_exited * 1 - $t_exiting" | bc
+	echo ,
+	echo "$t_exited * 1 - $t_starting" | bc
+} | tr -d '\n'
 exit $status

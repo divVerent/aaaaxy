@@ -153,6 +153,11 @@ func (g *Game) Update() error {
 
 	for frame := 0; frame < *fpsDivisor; frame++ {
 		if err := g.updateFrame(); err != nil {
+			if err == RegularTermination {
+				log.Infof("exiting normally")
+			} else {
+				log.Infof("exiting due to: %v", err)
+			}
 			return err
 		}
 	}
