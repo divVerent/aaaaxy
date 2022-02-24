@@ -20,6 +20,8 @@ if [ $# -lt 2 ]; then
 	exit 1
 fi
 
+demo=$1; shift
+
 exec "$@" \
 	-batch \
 	-demo_play="$demo" \

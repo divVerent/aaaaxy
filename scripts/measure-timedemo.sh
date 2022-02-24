@@ -20,7 +20,6 @@ if [ $# -lt 2 ]; then
 	exit 1
 fi
 
-demo=$1; shift
 t_starting=$(date +%s.%N)
 out=$(scripts/run-timedemo.sh "$@" 2>&1 | tee /dev/stderr)
 status=$?
