@@ -31,9 +31,9 @@ run() {
 }
 
 echo "settings,time_sec"
-#run lowest "$@" -palette=none -draw_blurs=false -draw_outside=false -expand_using_vertices_accurately=false -screen_filter=nearest
-#run low    "$@" -palette=none -draw_blurs=false -draw_outside=false -expand_using_vertices_accurately=true  -screen_filter=nearest
-#run medium "$@" -palette=none -draw_blurs=true  -draw_outside=false -expand_using_vertices_accurately=true  -screen_filter=simple
-#run high   "$@" -palette=none -draw_blurs=true  -draw_outside=true  -expand_using_vertices_accurately=true  -screen_filter=simple
+run lowest "$@" -palette=none -draw_blurs=false -draw_outside=false -expand_using_vertices_accurately=false -screen_filter=nearest
+run low    "$@" -palette=none -draw_blurs=false -draw_outside=false -expand_using_vertices_accurately=true  -screen_filter=nearest
+run medium "$@" -palette=none -draw_blurs=true  -draw_outside=false -expand_using_vertices_accurately=true  -screen_filter=simple
+run high   "$@" -palette=none -draw_blurs=true  -draw_outside=true  -expand_using_vertices_accurately=true  -screen_filter=simple
 run max    "$@" -palette=none -draw_blurs=true  -draw_outside=true  -expand_using_vertices_accurately=true  -screen_filter=linear2xcrt
 run ega    "$@" -palette=ega  -draw_blurs=true  -draw_outside=true  -expand_using_vertices_accurately=true  -screen_filter=linear2xcrt
