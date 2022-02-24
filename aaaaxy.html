@@ -6,16 +6,58 @@
   <script>
   // Polyfill
   if (!WebAssembly.instantiateStreaming) {
-  WebAssembly.instantiateStreaming = async (resp, importObject) => {
-    const source = await (await resp).arrayBuffer();
-    return await WebAssembly.instantiate(source, importObject);
-  };
+    WebAssembly.instantiateStreaming = async (resp, importObject) => {
+      const source = await (await resp).arrayBuffer();
+      return await WebAssembly.instantiate(source, importObject);
+    };
   }
 
   const go = new Go();
   WebAssembly.instantiateStreaming(fetch("aaaaxy-js-wasm.wasm"), go.importObject).then(result => {
-  go.run(result.instance);
+    go.run(result.instance);
   });
+
+  // Utility functions for the JS console.
+  function help() {
+    console.info('Functions by AAAAXY:');
+    console.info('  get()["key"];            // views config settings');
+    console.info('  set({key: value, ...});  // changes config settings and restarts');
+    console.info('  getSave(n);              // views a save game');
+    console.info('  setSave(n, saveStr);     // writes a save game');
+  }
+
+  console.info('Welcome to AAAAXY console. Type help(); for more info.');
+
+  function get() {
+    const confStr = localStorage['0/config.json'] || '{}';
+    return JSON.parse(confStr);
+  }
+
+  function set(obj) {
+    const conf = get();
+    for (const [k, v] of Object.entries(obj)) {
+      if (v == null) {
+        delete conf[k];
+      } else {
+        conf[k] = v.toString();
+      }
+    }
+    const confStr = JSON.stringify(conf);
+    localStorage['0/config.json'] = confStr;
+    location.reload(false);
+  }
+
+  function getSave(i) {
+    return localStorage[`1/save-${i}.json`];
+  }
+
+  function setSave(i, save) {
+    if (save == null) {
+      delete localStorage[`1/save-${i}.json`];
+    } else {
+      localStorage[`1/save-${i}.json`] = save;
+    }
+  }
   </script>
   <title></title>
 </head>
