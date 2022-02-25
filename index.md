@@ -12,6 +12,8 @@ this World of Wicked Weirdness. Find out what Van Vlijmen will make you
 do. Pick a path, get inside a Klein Bottle, recognize some memes, and by
 all means: don't look up.
 
+And beware of a minor amount of trolling.
+
 ### Download now\!
 
 #### Stores
