@@ -78,7 +78,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			case 2:
 				return "Tel Aviv"
 			case 3:
-				return "Moscow"
+				return "Istanbul"
 			case 4:
 				return "Tehran"
 			case 5:
