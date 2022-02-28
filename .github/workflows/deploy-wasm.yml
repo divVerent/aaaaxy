@@ -14,9 +14,6 @@ jobs:
       with:
         submodules: true
 
-    - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install graphviz'
-
     - name: Set up Go
       uses: actions/setup-go@v2
       with:

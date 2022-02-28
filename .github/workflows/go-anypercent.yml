@@ -17,7 +17,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
+      run: 'sudo apt-get update && sudo apt-get -y install libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
 
     - name: Set up Go
       uses: actions/setup-go@v2
@@ -82,7 +82,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
+      run: 'sudo apt-get update && sudo apt-get -y install libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
 
     - name: Set up Go
       uses: actions/setup-go@v2
@@ -186,7 +186,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
+      run: 'sudo apt-get update && sudo apt-get -y install libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
 
     - name: Set up Go
       uses: actions/setup-go@v2

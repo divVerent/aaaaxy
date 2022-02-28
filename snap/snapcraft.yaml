@@ -66,12 +66,10 @@ parts:
       snapcraftctl pull
       snapcraftctl set-version "$(scripts/version.sh semver)"
     override-build: |
-      AAAAXY_GENERATE_ASSETS=false make BINARY="${SNAPCRAFT_PART_INSTALL}/bin/aaaaxy" BUILDTYPE=release
+      make BINARY="${SNAPCRAFT_PART_INSTALL}/bin/aaaaxy" BUILDTYPE=release
     source: https://github.com/divVerent/aaaaxy
     source-type: git
     build-packages:
-      - graphviz
-      - imagemagick
       - libasound2-dev
       - libgl-dev
       - libxcursor-dev
