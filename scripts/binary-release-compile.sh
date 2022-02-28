@@ -106,6 +106,9 @@ rm -f "$zip"
 )
 
 case "$GOOS" in
+	darwin)
+		scripts/build-macos-resources.sh
+		;;
 	linux)
 		arch=${GOARCH_SUFFIX#-}
 		case "$arch" in
