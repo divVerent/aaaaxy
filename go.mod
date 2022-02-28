@@ -59,7 +59,7 @@ require (
 
 // Switch to backported speedups to Ebiten 2.2.5.
 // May want to keep backporting until 2.3.0 is out.
-replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.2.0-alpha.11.0.20220224122936-84013fc1661e
+replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.3.0-speedup.2.2.5.1
 
 // Use when playing around with extended/fixed tmx versions.
 // replace github.com/fardog/tmx => github.com/divVerent/tmx v0.0.0-20210504110059-b8d75006ad02
