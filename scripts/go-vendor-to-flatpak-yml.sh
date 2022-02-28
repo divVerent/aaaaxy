@@ -35,6 +35,7 @@ exec 3>>"$yml"
 d0=$PWD
 while read -r command pkg ver _ replacementpkg replacementver; do
 	[ x"$command" = x'#' ] || continue
+	[ x"$ver" != x'=>' ] || continue
 	dir=$pkg
 	if [ -n "$replacementpkg" ]; then
 		pkg=$replacementpkg
@@ -47,6 +48,7 @@ while read -r command pkg ver _ replacementpkg replacementver; do
 		*/v?)
 			suffix=/${pkg##*/}
 			pkg=${pkg%/v?}
+			dir=${dir%/v?}
 			;;
 	esac
 	case "$pkg" in
@@ -85,7 +87,7 @@ while read -r command pkg ver _ replacementpkg replacementver; do
       - type: git
         url: $url
         $version
-        dest: vendor/$pkg$suffix
+        dest: vendor/$dir$suffix
 EOF
 	rm -rf "$d/git"
 	cd "$d0"
