@@ -1,5 +1,10 @@
 name: aaaaxy
+title: AAAAXY
 base: core20
+contact: divVerent@gmail.com
+issues: https://github.com/divVerent/aaaaxy/issues
+source-code: https://github.com/divVerent/aaaaxy
+website: https://divVerent.github.io/aaaaxy
 summary: A nonlinear puzzle platformer taking place in non-Euclidean geometry.
 description: |
   AAAAXY is a nonlinear puzzle platformer taking place in non-Euclidean
@@ -16,9 +21,11 @@ description: |
 
   NOTE: to enable joystick/gamepad support, run:
   sudo snap connect aaaaxy:joystick
-
-grade: stable
+type: app
 confinement: strict
+icon: snap/gui/aaaaxy.png
+license: Apache-2.0
+grade: stable
 
 architectures:
   - build-on: amd64
