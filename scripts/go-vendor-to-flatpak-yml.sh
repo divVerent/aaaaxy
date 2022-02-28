@@ -33,8 +33,15 @@ cp vendor/modules.txt "$flatpakdir/modules.txt"
 exec 3>>"$yml"
 
 d0=$PWD
-while read -r command pkg ver _; do
+while read -r command pkg ver _ replacementpkg replacementver; do
 	[ x"$command" = x'#' ] || continue
+	dir=$pkg
+	if [ -n "$replacementpkg" ]; then
+		pkg=$replacementpkg
+	fi
+	if [ -n "$replacementver" ]; then
+		ver=$replacementver
+	fi
 	suffix=
 	case "$pkg" in
 		*/v?)
