@@ -57,6 +57,7 @@ git push origin main
 git worktree add /tmp/gh-pages gh-pages
 (
 	cd /tmp/gh-pages
+	git reset --hard '@{u}'
 	VERSION=$new perl -0777 -pi -e '
 		use strict;
 		use warnings;
@@ -66,7 +67,7 @@ git worktree add /tmp/gh-pages gh-pages
 		my $template = $1;
 		$template =~ s/VERSION/$version/g;
 		s/(?<=<!-- BEGIN DOWNLOAD LINKS -->\n)(.*)(?=\n<!-- END DOWNLOAD LINKS -->)/$template/gs;
-	' docs/index.md
+	' index.md
 	git commit -a -m "$(cat "$dir"/.commitmsg)"
 	git push origin HEAD
 )

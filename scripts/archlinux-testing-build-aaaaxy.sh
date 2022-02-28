@@ -21,7 +21,7 @@ set -ex
 umount /root/archlinux/root.x86_64 || true
 mount --bind /root/archlinux/root.x86_64 /root/archlinux/root.x86_64 || true
 rsync -vaSHPAX /home/rpolzer/src/aur-aaaaxy/. /root/archlinux/root.x86_64/aur-aaaaxy
-/root/archlinux/root.x86_64/bin/arch-chroot /root/archlinux/root.x86_64 pacman -Syu pacman-contrib
+/root/archlinux/root.x86_64/bin/arch-chroot /root/archlinux/root.x86_64 pacman --noconfirm -Syu pacman-contrib
 /root/archlinux/root.x86_64/bin/arch-chroot /root/archlinux/root.x86_64 chown -R builder /aur-aaaaxy
 /root/archlinux/root.x86_64/bin/arch-chroot /root/archlinux/root.x86_64 \
 	su builder -c '
