@@ -27,18 +27,18 @@
   <screenshots>
     <screenshot type="default">
       <caption>Game Start</caption>
-      <image type="thumbnail" width="320" height="180">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.jpg</image>
-      <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot1.png</image>
+      <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot1.jpg</image>
+      <image type="source" width="2880" height="1620">https://divVerent.github.io/aaaaxy/screenshots/shot1.png</image>
     </screenshot>
     <screenshot>
       <caption>Road Rage</caption>
-      <image type="thumbnail" width="320" height="180">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot5.jpg</image>
-      <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot5.png</image>
+      <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot5.jpg</image>
+      <image type="source" width="2880" height="1620">https://divVerent.github.io/aaaaxy/screenshots/shot5.png</image>
     </screenshot>
     <screenshot>
       <caption>Getting It Back</caption>
-      <image type="thumbnail" width="320" height="180">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.jpg</image>
-      <image type="source" width="2880" height="1620">https://raw.githubusercontent.com/divVerent/aaaaxy/main/docs/screenshots/shot8.png</image>
+      <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot8.jpg</image>
+      <image type="source" width="2880" height="1620">https://divVerent.github.io/aaaaxy/screenshots/shot8.png</image>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1">
