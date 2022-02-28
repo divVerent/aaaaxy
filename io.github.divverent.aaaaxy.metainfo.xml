@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.1.189" date="2022-02-22">
-      <description><ul><li>Game: remove initial checkpoint cheat. It was near unusable anyway.</li><li>Engine: factor out common parts of Windows and Unix named pipe impl.</li><li>Engine: factor out media dumping into its own package.</li><li>Engine: fix flag description of --expand_using_vertices_accurately.</li><li>Engine: make -debug_use_shaders=false affect ALL shaders, not just blur and vis mask.</li><li>Engine: print the location of savegames and config in all binaries, not just for the snap.</li><li>Engine: remove -pin_fonts_to_cache_harder - it no longer has any benefit.</li><li>Engine: remove the known broken neighbor conflict check. It was already off.</li><li>Engine: remove visible polygon dumping.</li><li>Engine: update Ebiten to 2.2.5 and Oto to 2.1.0-alpha.6. Fixes maximize button on macOS.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.189</url>
+    <release version="v1.1.215" date="2022-02-28">
+      <description><ul><li>Game: change "road rage" city name for UTC+3.</li><li>Engine: switch to an Ebiten 2.2.5 with speedups backported. Planning to switch to an Ebiten 2.3.0 pre-release version next week if it proves stable.</li><li>Engine: use nearest filter for lowest and low settings. This is a major FPS boost on low-end Intel graphics.</li><li>Engine: remove build dependency on ImageMagick and Graphviz. The assets are rather stable now, so this is no longer needed.</li><li>Web: add some nice helpers to the JavaScript console.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.215</url>
     </release>
   </releases>
 </component>
