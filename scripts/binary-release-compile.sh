@@ -88,6 +88,9 @@ else
 fi
 
 case "$GOOS" in
+	darwin)
+		scripts/build-macos-resources.sh
+		;;
 	js)
 		# Pack in a form itch.io can use.
 		cp aaaaxy.html index.html
@@ -106,9 +109,6 @@ rm -f "$zip"
 )
 
 case "$GOOS" in
-	darwin)
-		scripts/build-macos-resources.sh
-		;;
 	linux)
 		arch=${GOARCH_SUFFIX#-}
 		case "$arch" in
