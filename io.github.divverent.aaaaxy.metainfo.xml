@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.1.215" date="2022-02-28">
-      <description><ul><li>Game: change "road rage" city name for UTC+3.</li><li>Engine: switch to an Ebiten 2.2.5 with speedups backported. Planning to switch to an Ebiten 2.3.0 pre-release version next week if it proves stable.</li><li>Engine: use nearest filter for lowest and low settings. This is a major FPS boost on low-end Intel graphics.</li><li>Engine: remove build dependency on ImageMagick and Graphviz. The assets are rather stable now, so this is no longer needed.</li><li>Web: add some nice helpers to the JavaScript console.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.215</url>
+    <release version="v1.1.223" date="2022-03-01">
+      <description><ul><li>Make Van Vlijmen accessible again.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.223</url>
     </release>
   </releases>
 </component>
