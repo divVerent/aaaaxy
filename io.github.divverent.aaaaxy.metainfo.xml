@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.1.223" date="2022-03-01">
-      <description><ul><li>Make Van Vlijmen accessible again.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.223</url>
+    <release version="v1.1.225" date="2022-03-01">
+      <description><ul><li>Fix build for macOS.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.225</url>
     </release>
   </releases>
 </component>
