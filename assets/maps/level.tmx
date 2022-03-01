@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8186">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8187">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17827,5 +17827,11 @@
    </properties>
   </object>
   <object id="8185" gid="302" x="7248" y="6992" width="16" height="16"/>
+  <object id="8186" type="_TileMod" x="6368" y="6512" width="32" height="16">
+   <properties>
+    <property name="opaque" type="bool" value="false"/>
+    <property name="solid" type="bool" value="false"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
