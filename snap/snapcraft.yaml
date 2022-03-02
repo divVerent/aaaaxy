@@ -5,10 +5,9 @@ base: core20
 # issues: https://github.com/divVerent/aaaaxy/issues
 # source-code: https://github.com/divVerent/aaaaxy
 # website: https://divVerent.github.io/aaaaxy
-summary: A nonlinear puzzle platformer taking place in non-Euclidean geometry.
+summary: A nonlinear puzzle platformer taking place in impossible spaces.
 description: |
-  AAAAXY is a nonlinear puzzle platformer taking place in non-Euclidean
-  geometry.
+  AAAAXY is a nonlinear puzzle platformer taking place in impossible spaces.
 
   Although your general goal is reaching the surprising end of the game,
   you are encouraged to set your own goals while playing. Exploration will
@@ -18,6 +17,8 @@ description: |
   this World of Wicked Weirdness. Find out what Van Vlijmen will make you
   do. Pick a path, get inside a Klein Bottle, recognize some memes, and by
   all means: don't look up.
+
+  And beware of a minor amount of trolling.
 
   NOTE: to enable joystick/gamepad support, run:
   sudo snap connect aaaaxy:joystick

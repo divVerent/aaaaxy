@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>io.github.divverent.aaaaxy</id>
   <name>AAAAXY</name>
-  <summary>A nonlinear puzzle platformer taking place in non-Euclidean geometry</summary>
+  <summary>A nonlinear puzzle platformer taking place in impossible spaces</summary>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>Apache-2.0</project_license>
   <url type="homepage">https://divverent.github.io/aaaaxy</url>
