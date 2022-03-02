@@ -1,7 +1,7 @@
 # ![AAAAXY](https://divVerent.github.io/aaaaxy/logo.png)
 
-AAAAXY is a nonlinear 2D puzzle platformer taking place in non-Euclidean
-topology.
+AAAAXY is a nonlinear 2D puzzle platformer taking place in impossible
+spaces.
 
 Although your general goal is reaching the surprising end of the game,
 you are encouraged to set your own goals while playing. Exploration will
@@ -131,8 +131,8 @@ There are however two approaches to solve this:
         the destination position.
       - This approach is simple and very immersive and has already been
         used in the original Super Mario Bros. game on the NES.
-      - It however is not very flexible as any non-Euclidean geometry
-        has to be rather large and behave fully Euclidean on every
+      - It however is not very flexible as any impossible geometry has
+        to be rather large and behave fully Euclidean on every
         screen-sized environment around positions the player can visit.
   - Hide anything that has no line of sight to the player.
       - This actually matches the approach used in first person 3D games
