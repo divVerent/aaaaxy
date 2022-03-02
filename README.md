@@ -1,7 +1,7 @@
 # ![AAAAXY](https://divVerent.github.io/aaaaxy/logo.png)
 
 AAAAXY is a nonlinear 2D puzzle platformer taking place in non-Euclidean
-geometry.
+topology.
 
 Although your general goal is reaching the surprising end of the game,
 you are encouraged to set your own goals while playing. Exploration will
@@ -89,15 +89,25 @@ make run
 
 This game does not take place in the Euclidean space you're used to -
 instead, you are experiencing the universal cover of a massively twisted
-space. This is rather similar to seamless portals, but yields stronger
+space, which feels like a space with a locally-Euclidean topology and
+geometry, which however violates some of their axioms globally (e.g. the
+shortest path from one point to another *modulo the equivalence
+relation* is not necessarily a line, and parallels are not always
+unique).
+
+For some added confusion, the space is occasionally reconfigured by
+turning portals on/off at runtime, further violating expectations.
+
+This is rather similar to seamless portals, but yields stronger
 immersion and is generally an interesting approach I wanted to try out.
 In particular, gravity behaves consistently across portals, and objects
-are entirely glitch-free around them. On the other hand, this approach
-can not support multi-player games; a more traditional portal based
-engine would be more appropriate there, where the same object may be
-seen multiple times on the screen. Sadly that approach would appear
-rather confusing in places where this would cause the player themselves
-to show up multiple times at once, which is why I did not go with it.
+are entirely glitch-free around them. The player is only ever visible
+once. On the other hand, this approach can not sensibly support
+multi-player games; a more traditional portal based engine would be more
+appropriate there, where the same object may be seen multiple times on
+the screen. Sadly that approach would appear rather confusing in places
+where this would cause the player themselves to show up multiple times
+at once, which is why I did not go with it.
 
 In 3D games with transparent portals/warpzones, immersion is usually
 achieved by treating each portal as a dynamic texture surface which
@@ -135,7 +145,7 @@ There are however two approaches to solve this:
             environment around a line of sight through two different
             sets of portals at the same time.
           - As this game demonstrates, this can yield rather interesting
-            while still obvious non-Euclidean geometry.
+            while still obvious non-Euclidean topologic properties.
       - This is the approach has been explored in this game as well -
         but very likely for the first time in a two dimensional game.
 
