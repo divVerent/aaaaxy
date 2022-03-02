@@ -14,8 +14,8 @@ require (
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
-	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
-	golang.org/x/sys v0.0.0-20220209214540-3681064d5158
+	golang.org/x/image v0.0.0-20220302094943-723b81ca9867
+	golang.org/x/sys v0.0.0-20220227234510-4e6760a101f9
 )
 
 require (
@@ -54,7 +54,7 @@ require (
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
 	golang.org/x/exp v0.0.0-20220126164734-073fb1339172 // indirect
-	golang.org/x/mobile v0.0.0-20220112015953-858099ff7816 // indirect
+	golang.org/x/mobile v0.0.0-20220224134551-8a0a1e50732f // indirect
 )
 
 // Switch to backported speedups to Ebiten 2.2.5.
