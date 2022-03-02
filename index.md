@@ -1,7 +1,6 @@
 ## ![AAAAXY](logo.png)
 
-AAAAXY is a nonlinear 2D puzzle platformer taking place in non-Euclidean
-geometry.
+AAAAXY is a nonlinear 2D puzzle platformer taking place in impossible spaces.
 
 Although your general goal is reaching the surprising end of the game,
 you are encouraged to set your own goals while playing. Exploration will
