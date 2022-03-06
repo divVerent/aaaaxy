@@ -10,7 +10,7 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/google/go-cmp v0.5.7
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.3.0-alpha.5.0.20220223184627-ea35296be77f
+	github.com/hajimehoshi/ebiten/v2 v2.3.0-alpha.5.0.20220305154044-35f268dfc354
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
@@ -59,7 +59,7 @@ require (
 
 // Switch to backported speedups to Ebiten 2.2.5.
 // May want to keep backporting until 2.3.0 is out.
-replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.3.0-speedup.2.2.5.1
+// replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.3.0-speedup.2.2.5.1
 
 // Use when playing around with extended/fixed tmx versions.
 // replace github.com/fardog/tmx => github.com/divVerent/tmx v0.0.0-20210504110059-b8d75006ad02
