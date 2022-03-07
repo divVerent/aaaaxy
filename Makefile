@@ -94,7 +94,7 @@ mod-update:
 
 .PHONY: assets-update
 assets-update:
-	scripts/build-generated-assets.sh
+	AAAAXY_GENERATE_ASSETS=true AAAAXY_FORCE_GENERATE_ASSETS=true AAAAXY_DIFF_ASSETS=false sh -x scripts/build-generated-assets.sh
 	cp assets/generated/image_load_order.txt assets/_saved/
 	cp assets/generated/level.cp.json        assets/_saved/
 

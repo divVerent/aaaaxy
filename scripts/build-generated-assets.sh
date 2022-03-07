@@ -24,7 +24,7 @@ export GOARCH=
 mkdir -p assets/generated
 
 if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
-	if ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
+	if [ x"$AAAAXY_FORCE_GENERATE_ASSETS" = x'true' ] || ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
 		trap 'rm -f assets/generated/level.cp.json' EXIT
 		# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
 		${GO} run github.com/divVerent/aaaaxy/cmd/dumpcps |cat> assets/generated/level.cp.dot
