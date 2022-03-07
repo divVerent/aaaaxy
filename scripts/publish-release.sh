@@ -43,6 +43,7 @@ fi
 hub release create \
 	-a aaaaxy-linux-amd64-"$new".zip \
 	-a AAAAXY-x86_64.AppImage \
+	-a AAAAXY-x86_64.AppImage.zsync \
 	-a aaaaxy-windows-amd64-"$new".zip \
 	-a aaaaxy-windows-386-"$new".zip \
 	-a aaaaxy-darwin-"$new".zip \
