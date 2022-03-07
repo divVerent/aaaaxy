@@ -21,7 +21,7 @@ cat <<EOF
 <plist version="1.0">
 <dict>
 	<key>CFBundleExecutable</key>
-	<string>aaaaxy-darwin</string>
+	<string>aaaaxy</string>
 	<key>CFBundleIconFile</key>
 	<string>icon.icns</string>
 	<key>CFBundleIdentifier</key>
