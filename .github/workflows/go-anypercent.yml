@@ -269,49 +269,40 @@ jobs:
           aaaaxy
           assets/generated/
 
-# Disabled for now, as there appears to be no 3D graphics on GitHub Actions.
-# test-darwin-amd64:
-#   needs: build-darwin-amd64
-#   runs-on: macos-latest
-#   steps:
-#   - uses: actions/checkout@v2
-#     with:
-#       submodules: true
-#
-#   - name: Install Dependencies
-#     run: 'brew update && brew install mesa'
-#
-#   - name: Download Binary
-#     uses: actions/download-artifact@v2
-#     with:
-#       name: aaaaxy-debug-darwin-amd64
-#
-#   - name: Make Binary Executable
-#     run: 'chmod +x aaaaxy'
-#
-#   - name: Fetch Test Cases
-#     env:
-#       REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
-#     run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v5.zip'
-#
-#   - name: Extract Test Cases
-#     run: 'unzip testcases.zip'
-#
-#   - name: Which Libraries default?
-#     run: 'DYLD_LIBRARY_PATH=/usr/local/opt/mesa/lib:$DYLD_LIBRARY_PATH otool -L ./aaaaxy'
-#
-#   - name: Which Libraries mesa?
-#     run: 'otool -L ./aaaaxy'
-#
-#   - name: Test
-#     run: 'DYLD_LIBRARY_PATH=/usr/local/opt/mesa/lib:$DYLD_LIBRARY_PATH scripts/regression-test-demo.sh darwin-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" ./aaaaxy *.dem'
-#
-#   - name: Archive Results
-#     if: ${{ always() }}
-#     uses: actions/upload-artifact@v2
-#     with:
-#       name: regression-test-results-anypercent-linux-amd64
-#       path: |
-#         *.dem.*.log
-#         *.dem.*.png
-#
+  test-darwin-amd64:
+    needs: build-darwin-amd64
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Download Binary
+      uses: actions/download-artifact@v2
+      with:
+        name: aaaaxy-debug-darwin-amd64
+
+    - name: Make Binary Executable
+      run: 'chmod +x aaaaxy'
+
+    - name: Fetch Test Cases
+      env:
+        REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v5.zip'
+
+    - name: Extract Test Cases
+      run: 'unzip testcases.zip'
+
+    - name: Test
+      # NOTE: When changing the path ./aaaaxy, likely need to also change the CFBundleExecutable in scripts/Info.plist.sh.
+      run: 'scripts/regression-test-demo.sh darwin-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" "scripts/macos_gl_allow_software.sh ./aaaaxy" *.dem'
+
+    - name: Archive Results
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: regression-test-results-anypercent-linux-amd64
+        path: |
+          *.dem.*.log
+          *.dem.*.png
+
