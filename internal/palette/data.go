@@ -1269,4 +1269,11 @@ var data = map[string]*Palette{
 		0xFFFFAA,
 		0xFFFFFF,
 	}),
+
+	// A flag.
+	"ua3": newPalette(0.53, []uint32{
+		0x000000,
+		0x0057B8,
+		0xFFD700,
+	}),
 }
