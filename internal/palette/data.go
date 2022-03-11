@@ -23,7 +23,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM CGA palette.
-	"cga40l": newPalette(2/3.0, []uint32{
+	"cga40l": newPalette(0.53, []uint32{
 		0x000000,
 		0x00AA00,
 		0xAA0000,
@@ -114,7 +114,7 @@ var data = map[string]*Palette{
 
 	// The palette one gets when using the CGA monochrome mode on NTSC while forcing the colorburst signal.
 	// curl https://upload.wikimedia.org/wikipedia/commons/f/fb/CGA_CompVsRGB_640.png | convert PNG:- -crop 100x360+1000+20 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	"cga6n": newPalette(1/3.0, []uint32{
+	"cga6n": newPalette(3/10.0, []uint32{
 		0x000000,
 		0x006E31,
 		0x3109FF,
@@ -1271,7 +1271,7 @@ var data = map[string]*Palette{
 	}),
 
 	// A flag.
-	"ua3": newPalette(3/5.0, []uint32{
+	"ua3": newPalette(0.56, []uint32{
 		0x000000,
 		0x0057B8,
 		0xFFD700,
