@@ -17,7 +17,7 @@ package palette
 // data contains all palettes by name.
 var data = map[string]*Palette{
 	// Monochrome.
-	"mono": newPalette(1, []uint32{
+	"mono": newPalette(0.99, []uint32{
 		0x000000,
 		0xFFFFFF,
 	}),
@@ -60,7 +60,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The alternate IBM CGA palette.
-	"cga41l": newPalette(2/3.0, []uint32{
+	"cga41l": newPalette(0.66, []uint32{
 		0x000000,
 		0x00AAAA,
 		0xAA00AA,
@@ -97,7 +97,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The "monochrome" IBM CGA palette.
-	"cga5l": newPalette(2/3.0, []uint32{
+	"cga5l": newPalette(0.66, []uint32{
 		0x000000,
 		0x00AAAA,
 		0xAA0000,
@@ -114,7 +114,7 @@ var data = map[string]*Palette{
 
 	// The palette one gets when using the CGA monochrome mode on NTSC while forcing the colorburst signal.
 	// curl https://upload.wikimedia.org/wikipedia/commons/f/fb/CGA_CompVsRGB_640.png | convert PNG:- -crop 100x360+1000+20 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	"cga6n": newPalette(3/10.0, []uint32{
+	"cga6n": newPalette(0.29, []uint32{
 		0x000000,
 		0x006E31,
 		0x3109FF,
@@ -134,7 +134,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM EGA palette.
-	"ega": newPalette(1/3.0, []uint32{
+	"ega": newPalette(0.33, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -166,7 +166,7 @@ var data = map[string]*Palette{
 	}),
 
 	// EGA but only the grey tones.
-	"egamono": newPalette(1/3.0, []uint32{
+	"egamono": newPalette(0.33, []uint32{
 		0x000000,
 		0xAAAAAA,
 		0x555555,
@@ -174,7 +174,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM VGA palette, with colors too close to EGA colors commented out.
-	"vga": newPalette(1/6.0, []uint32{
+	"vga": newPalette(0.16, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -434,7 +434,7 @@ var data = map[string]*Palette{
 	}),
 
 	// Quake's palette. Has been put in the public domain by John Carmack.
-	"quake": newPalette(1/17.0, []uint32{
+	"quake": newPalette(0.03, []uint32{
 		0x000000,
 		0x0F0F0F,
 		0x1F1F1F,
@@ -693,7 +693,7 @@ var data = map[string]*Palette{
 		0x9F5B53,
 	}),
 
-	"nes": newPalette(1/5.0, []uint32{
+	"nes": newPalette(0.19, []uint32{
 		0x000000,
 		0x343500,
 		0x571D00,
@@ -771,7 +771,7 @@ var data = map[string]*Palette{
 	}),
 
 	// Web safe 216 colors palette, actually a 6x6x6 color cube.
-	"web": newPalette(1/5.0, []uint32{
+	"web": newPalette(0.19, []uint32{
 		0x000000,
 		0x000033,
 		0x000066,
@@ -991,7 +991,7 @@ var data = map[string]*Palette{
 	}),
 
 	// 2x2x2 color cube. Just eight pure colors.
-	"2x2x2": newPalette(1, []uint32{
+	"2x2x2": newPalette(0.99, []uint32{
 		0x000000,
 		0x0000FF,
 		0x00FF00,
@@ -1003,7 +1003,7 @@ var data = map[string]*Palette{
 	}),
 
 	// 4x4x4 color cube. For those who just like the dither.
-	"4x4x4": newPalette(1/3.0, []uint32{
+	"4x4x4": newPalette(0.33, []uint32{
 		0x000000,
 		0x000055,
 		0x0000AA,
@@ -1071,7 +1071,7 @@ var data = map[string]*Palette{
 	}),
 
 	// 7x7x4 color "cube". Cleanest colors at 256c. Doesn't do blue gradients.
-	"7x7x4": newPalette(1/6.0, []uint32{
+	"7x7x4": newPalette(0.16, []uint32{
 		0x000000,
 		0x000055,
 		0x0000AA,
@@ -1278,9 +1278,25 @@ var data = map[string]*Palette{
 	}),
 
 	// Another flag.
-	"de3": newPalette(0.9, []uint32{
+	"de3": newPalette(0.89, []uint32{
 		0x000000,
 		0xFF0000,
 		0xFFCC00,
+	}),
+
+	// Another flag.
+	"us4": newPalette(0.33, []uint32{
+		0x000000,
+		0xFFFFFF,
+		0xB22234,
+		0x3C3B6E,
+	}),
+
+	// Another flag.
+	"ru4": newPalette(0.49, []uint32{
+		0x000000,
+		0xFFFFFF,
+		0x0032A0,
+		0xDA291C,
 	}),
 }

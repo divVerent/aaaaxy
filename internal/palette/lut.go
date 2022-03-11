@@ -171,7 +171,13 @@ func sizeBayer(size int, bayerScale float64) (sizeSquare, sizeCeilSquare int, sc
 	}
 	sizeCeil := 1 << bits
 	sizeCeilSquare = sizeCeil * sizeCeil
-	scale = bayerScale / float64(sizeCeilSquare)
+	// Map to [0..1] _inclusive_ borders.
+	// Not _perfect_, but way nicer to work with.
+	if bits == 0 {
+		scale = 0 // No dithering.
+	} else {
+		scale = bayerScale / float64(sizeCeilSquare-1)
+	}
 	offset = float64(sizeCeilSquare-1) / 2.0
 	return
 }
