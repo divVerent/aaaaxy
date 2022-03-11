@@ -1276,4 +1276,11 @@ var data = map[string]*Palette{
 		0x0057B8,
 		0xFFD700,
 	}),
+
+	// Another flag.
+	"de3": newPalette(0.9, []uint32{
+		0x000000,
+		0xFF0000,
+		0xFFCC00,
+	}),
 }
