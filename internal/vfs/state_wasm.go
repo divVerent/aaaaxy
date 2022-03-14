@@ -31,10 +31,28 @@ func initState() error {
 	return nil
 }
 
+func protectJS(f func()) (err error) {
+	ok := false
+	defer func() {
+		if !ok {
+			err = fmt.Errorf("caught JS exception: %v", recover())
+		}
+	}()
+	f()
+	ok = true
+	return
+}
+
 // ReadState loads the given state file and returns its contents.
 func ReadState(kind StateKind, name string) ([]byte, error) {
 	path := fmt.Sprintf("%d/%s", kind, name)
-	state := js.Global().Get("localStorage").Call("getItem", js.ValueOf(path))
+	var state js.Value
+	err := protectJS(func() {
+		state = js.Global().Get("localStorage").Call("getItem", js.ValueOf(path))
+	})
+	if err != nil {
+		return nil, err
+	}
 	if state.IsNull() {
 		return nil, os.ErrNotExist
 	}
@@ -55,13 +73,15 @@ func MoveAwayState(kind StateKind, name string) error {
 	} else {
 		log.Errorf("deleting broken state file %s with errorr: %s", path, err)
 	}
-	js.Global().Get("localStorage").Call("removeItem", js.ValueOf(path))
-	return nil
+	return protectJS(func() {
+		js.Global().Get("localStorage").Call("removeItem", js.ValueOf(path))
+	})
 }
 
 // WriteState writes the given state file.
 func WriteState(kind StateKind, name string, data []byte) error {
 	path := fmt.Sprintf("%d/%s", kind, name)
-	js.Global().Get("localStorage").Call("setItem", js.ValueOf(path), js.ValueOf(string(data)))
-	return nil
+	return protectJS(func() {
+		js.Global().Get("localStorage").Call("setItem", js.ValueOf(path), js.ValueOf(string(data)))
+	})
 }
