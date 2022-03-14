@@ -138,6 +138,12 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	}
 	tmp := image.NewNRGBA(rect)
 	var wg sync.WaitGroup
+	// TODO(divVerent): Also compute for each pixel the distance to the next color when adding or subtracting to all of r,g,b.
+	// Use this to compute a dynamic Bayer scale.
+	// At points, Bayer scale should be the MIN of the distances to next colors.
+	// Elsewhere, Bayer scale ideally should be those values interpolated.
+	// What can we practically get?
+	// Store that data in the alpha channel.
 	for y := 0; y < heightNeeded; y++ {
 		wg.Add(1)
 		go func(y int) {
