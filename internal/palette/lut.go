@@ -31,7 +31,7 @@ import (
 )
 
 var (
-	paletteColordist = flag.String("palette_colordist", "redmean", "color distance function to use; one of 'weighted', 'redmean', 'cielab', 'cieluv'")
+	paletteColordist = flag.String("palette_colordist", "weighted", "color distance function to use; one of 'weighted', 'redmean', 'cielab', 'cieluv'")
 )
 
 type rgb [3]float64 // Range is from 0 to 1 in sRGB color space.
@@ -59,7 +59,7 @@ func (c rgb) diff2(other rgb) float64 {
 	case "cieluv":
 		return math.Pow(c.toColorful().DistanceLuv(other.toColorful()), 2)
 	default:
-		*paletteColordist = "redmean"
+		*paletteColordist = "weighted"
 		return c.diff2(other)
 	}
 }
