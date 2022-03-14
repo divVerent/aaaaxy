@@ -41,13 +41,13 @@ The current version is VERSION. Download here:
 END DOWNLOAD LINKS TEMPLATE -->
 
 <!-- BEGIN DOWNLOAD LINKS -->
-The current version is v1.1.234. Download here:
+The current version is v1.1.251. Download here:
 
-  - [Windows x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.1.234/aaaaxy-windows-amd64-v1.1.234.zip)
-  - [Windows x86 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.1.234/aaaaxy-windows-386-v1.1.234.zip)
-  - [Linux x86_64 AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.1.234/AAAAXY-x86_64.AppImage)
-  - [Linux x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.1.234/aaaaxy-linux-amd64-v1.1.234.zip)
-  - [macOS x86_64+M1 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.1.234/aaaaxy-darwin-v1.1.234.zip)
+  - [Windows x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.1.251/aaaaxy-windows-amd64-v1.1.251.zip)
+  - [Windows x86 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.1.251/aaaaxy-windows-386-v1.1.251.zip)
+  - [Linux x86_64 AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.1.251/AAAAXY-x86_64.AppImage)
+  - [Linux x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.1.251/aaaaxy-linux-amd64-v1.1.251.zip)
+  - [macOS x86_64+M1 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.1.251/aaaaxy-darwin-v1.1.251.zip)
   - [All files and releases](https://github.com/divVerent/aaaaxy/releases)
 <!-- END DOWNLOAD LINKS -->
 
