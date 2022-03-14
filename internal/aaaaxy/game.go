@@ -45,16 +45,16 @@ var RegularTermination = menu.RegularTermination
 var (
 	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]interface{}{"js/*": "simple", "*/*": "linear2xcrt"}).(string), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
 	// TODO(divVerent): Remove this flag when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved.
-	screenFilterMaxScale     = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
-	screenFilterScanLines    = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
-	screenFilterCRTStrength  = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
-	screenFilterJitter       = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
-	paletteFlag              = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
-	paletteBayerSize         = flag.Int("palette_bayer_size", 4, "bayer dither pattern size (really should be a power of two)")
-	paletteBayerWorldAligned = flag.Bool("palette_bayer_world_aligned", true, "align bayer dither pattern to world as opposed to screen")
-	debugEnableDrawing       = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
-	showFPS                  = flag.Bool("show_fps", false, "show fps counter")
-	showTime                 = flag.Bool("show_time", false, "show game time")
+	screenFilterMaxScale    = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
+	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
+	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
+	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
+	paletteFlag             = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
+	paletteBayerSize        = flag.Int("palette_bayer_size", 4, "bayer dither pattern size (really should be a power of two); set to 1 to not dither, and to 0 to use random noise instead")
+	paletteWorldAligned     = flag.Bool("palette_world_aligned", true, "align dither pattern to world as opposed to screen")
+	debugEnableDrawing      = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
+	showFPS                 = flag.Bool("show_fps", false, "show fps counter")
+	showTime                = flag.Bool("show_time", false, "show game time")
 )
 
 type Game struct {
@@ -176,9 +176,9 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 
 	// Shaders depend on Bayer pattern size, and this should usually not change at runtime.
 	bayerSize := *paletteBayerSize
-	if bayerSize < 1 {
-		*paletteBayerSize = 1
-		bayerSize = 1
+	if bayerSize < 0 {
+		*paletteBayerSize = 0
+		bayerSize = 0
 	}
 
 	// Need images?
@@ -200,9 +200,13 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	// Need a new shader?
 	if g.paletteShader == nil {
 		var err error
-		g.paletteShader, err = shader.Load("bayer.kage", map[string]string{
-			"BayerSize": fmt.Sprint(*paletteBayerSize),
-		})
+		if bayerSize > 0 {
+			g.paletteShader, err = shader.Load("bayer.kage", map[string]string{
+				"BayerSize": fmt.Sprint(*paletteBayerSize),
+			})
+		} else {
+			g.paletteShader, err = shader.Load("noise.kage", nil)
+		}
 		if err != nil {
 			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for Bayer size %d: %v", *paletteBayerSize, err)
 			*paletteFlag = "none"
@@ -215,16 +219,21 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	// Need a LUT?
 	if g.palette != pal {
 		g.paletteLUTSize, g.paletteLUTPerRow = pal.ToLUT(g.paletteLUT)
-		g.paletteBayern = pal.BayerPattern(g.paletteBayerSize)
+		if bayerSize > 0 {
+			g.paletteBayern = pal.BayerPattern(g.paletteBayerSize)
+		} else {
+			g.paletteBayern = nil
+		}
 		g.palette = pal
 	}
 
 	return g.paletteOffscreen, func() {
-		scroll := g.Menu.World.ScrollPos()
-		var scrollX, scrollY int
-		if *paletteBayerWorldAligned {
-			scrollX = m.Mod(scroll.X, bayerSize)
-			scrollY = m.Mod(scroll.Y, bayerSize)
+		var scroll m.Delta
+		if *paletteWorldAligned {
+			scroll = g.Menu.World.ScrollPos().Delta(m.Pos{})
+			if bayerSize > 0 {
+				scroll = scroll.Mod(bayerSize)
+			}
 		}
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
@@ -235,14 +244,16 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 				nil,
 			},
 			Uniforms: map[string]interface{}{
-				"Bayern":    g.paletteBayern,
 				"LUTSize":   float32(g.paletteLUTSize),
 				"LUTPerRow": float32(g.paletteLUTPerRow),
 				"Offset": []float32{
-					float32(scrollX),
-					float32(scrollY),
+					float32(scroll.DX),
+					float32(scroll.DY),
 				},
 			},
+		}
+		if bayerSize > 0 {
+			options.Uniforms["Bayern"] = g.paletteBayern
 		}
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.paletteShader, options)
 	}

@@ -85,6 +85,10 @@ func (d Delta) Div(m int) Delta {
 	return Delta{DX: Div(d.DX, m), DY: Div(d.DY, m)}
 }
 
+func (d Delta) Mod(m int) Delta {
+	return Delta{DX: Mod(d.DX, m), DY: Mod(d.DY, m)}
+}
+
 func (d Delta) MulFixed(f Fixed) Delta {
 	return Delta{DX: NewFixed(d.DX).Mul(f).Rint(), DY: NewFixed(d.DY).Mul(f).Rint()}
 }
