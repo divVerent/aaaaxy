@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.1.234" date="2022-03-07">
-      <description><ul><li>Game: fix some minor render errors near the end.</li><li>Engine: update to current Ebiten from main. Has some bugfixes for multi-monitor systems.</li><li>Engine: update to current Oto version for somewhat better error handling.</li><li>Engine: update x/image, x/sys, x/mobile.</li><li>Description: use the more correct phase "impossible spaces". Let's see if that is clearer.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.234</url>
+    <release version="v1.1.251" date="2022-03-14">
+      <description><ul><li>Engine: improve palette dithering gradients.</li><li>Engine: new palettes: smb, and some flags.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.251</url>
     </release>
   </releases>
 </component>
