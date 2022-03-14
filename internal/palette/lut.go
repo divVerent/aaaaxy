@@ -47,7 +47,7 @@ func (c rgb) diff2(other rgb) float64 {
 		dr := c[0] - other[0]
 		dg := c[1] - other[1]
 		db := c[2] - other[2]
-		return 0.3*dr*dr + 0.59*dg*dg + 0.11*db*db
+		return 3*dr*dr + 4*dg*dg + 2*db*db
 	case "redmean":
 		dr := c[0] - other[0]
 		dg := c[1] - other[1]
