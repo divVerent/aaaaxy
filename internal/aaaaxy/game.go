@@ -52,7 +52,6 @@ var (
 	paletteFlag              = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
 	paletteBayerSize         = flag.Int("palette_bayer_size", 4, "bayer dither pattern size (really should be a power of two)")
 	paletteBayerWorldAligned = flag.Bool("palette_bayer_world_aligned", true, "align bayer dither pattern to world as opposed to screen")
-	paletteCheckEGAColors    = flag.Bool("palette_check_ega_colors", false, "report if any EGA colors would get dithered by the current palette (normal for CGA and mono)")
 	debugEnableDrawing       = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 	showFPS                  = flag.Bool("show_fps", false, "show fps counter")
 	showTime                 = flag.Bool("show_time", false, "show game time")
@@ -217,9 +216,6 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	if g.palette != pal {
 		g.paletteLUTSize, g.paletteLUTPerRow = pal.ToLUT(g.paletteLUT)
 		g.paletteBayern = pal.BayerPattern(g.paletteBayerSize)
-		if *paletteCheckEGAColors {
-			pal.CheckProtectedColors(palette.ByName("ega"), g.paletteLUTSize, g.paletteBayerSize)
-		}
 		g.palette = pal
 	}
 

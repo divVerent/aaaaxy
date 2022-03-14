@@ -27,6 +27,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
+	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 var (
@@ -40,7 +41,7 @@ func (c rgb) String() string {
 	return fmt.Sprintf("#%02X%02X%02X", n.R, n.G, n.B)
 }
 
-func (c rgb) diff(other rgb) float64 {
+func (c rgb) diff2(other rgb) float64 {
 	switch *paletteColordist {
 	case "weighted":
 		dr := c[0] - other[0]
@@ -54,12 +55,12 @@ func (c rgb) diff(other rgb) float64 {
 		rr := (c[0] + other[0]) / 2
 		return (2+rr)*dr*dr + 4*dg*dg + (2+255/256.0-rr)*db*db
 	case "cielab":
-		return c.toColorful().DistanceLab(other.toColorful())
+		return math.Pow(c.toColorful().DistanceLab(other.toColorful()), 2)
 	case "cieluv":
-		return c.toColorful().DistanceLuv(other.toColorful())
+		return math.Pow(c.toColorful().DistanceLuv(other.toColorful()), 2)
 	default:
 		*paletteColordist = "redmean"
-		return c.diff(other)
+		return c.diff2(other)
 	}
 }
 
@@ -92,9 +93,9 @@ func (p *Palette) lookup(i int) rgb {
 // lookupNearest returns the palette color nearest to c.
 func (p *Palette) lookupNearest(c rgb) int {
 	bestI := 0
-	bestS := c.diff(p.lookup(0))
+	bestS := c.diff2(p.lookup(0))
 	for i := 1; i < p.size; i++ {
-		s := c.diff(p.lookup(i))
+		s := c.diff2(p.lookup(i))
 		if s < bestS {
 			bestI, bestS = i, s
 		}
@@ -108,8 +109,6 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 		log.Infof("building palette LUT took %v", dt)
 	}(time.Now())
 	bounds := img.Bounds()
-	ox := bounds.Min.X
-	oy := bounds.Min.Y
 	w := bounds.Max.X - bounds.Min.X
 	h := bounds.Max.Y - bounds.Min.Y
 	lutSize := int(math.Cbrt(float64(w) * float64(h)))
@@ -124,19 +123,19 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 		}
 		lutSize--
 	}
+
 	// Note: creating a temp image, and copying to that, so this does not invoke
 	// thread synchronization as writing to an ebiten.Image would.
 	rect := image.Rectangle{
-		Min: image.Point{
-			X: 0,
-			Y: 0,
-		},
+		Min: bounds.Min,
 		Max: image.Point{
-			X: widthNeeded,
-			Y: heightNeeded,
+			X: bounds.Min.X + widthNeeded,
+			Y: bounds.Min.Y + heightNeeded,
 		},
 	}
-	tmp := image.NewNRGBA(rect)
+
+	pix := make([]uint8, heightNeeded*widthNeeded*4)
+
 	var wg sync.WaitGroup
 	// TODO(divVerent): Also compute for each pixel the distance to the next color when adding or subtracting to all of r,g,b.
 	// Use this to compute a dynamic Bayer scale.
@@ -158,18 +157,135 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 				c := rgb{rFloat, gFloat, bFloat}
 				i := p.lookupNearest(c)
 				cNew := p.lookup(i)
-				tmp.SetNRGBA(x+ox, y+oy, cNew.toNRGBA())
+				rgba := cNew.toNRGBA()
+				o := (y*widthNeeded + x) * 4
+				pix[o] = rgba.R
+				pix[o+1] = rgba.G
+				pix[o+2] = rgba.B
+				pix[o+3] = 255
 			}
 			wg.Done()
 		}(y)
 	}
 	wg.Wait()
-	img.SubImage(rect).(*ebiten.Image).ReplacePixels(tmp.Pix)
+
+	// For each protected palette index, find its ideal bayer scale.
+	scales := make([]int, p.protected)
+	for i := 0; i < p.protected; i++ {
+		wg.Add(1)
+		go func(i int) {
+			c := p.lookup(i).toNRGBA()
+			scale := 1
+		FoundScale:
+			for scale < 256 {
+				for d := -1; d <= 1; d += 2 {
+					rr := int(c.R) + scale*d
+					gg := int(c.G) + scale*d
+					bb := int(c.B) + scale*d
+					r := rr * lutSize / 255
+					g := gg * lutSize / 255
+					b := bb * lutSize / 255
+					if r < 0 {
+						r = 0
+					}
+					if r >= lutSize {
+						r = lutSize - 1
+					}
+					if g < 0 {
+						g = 0
+					}
+					if g >= lutSize {
+						g = lutSize - 1
+					}
+					if b < 0 {
+						b = 0
+					}
+					if b >= lutSize {
+						b = lutSize - 1
+					}
+					x := r + lutSize*(b%perRow)
+					y := g + lutSize*(b/perRow)
+					o := (y*widthNeeded + x) * 4
+					if pix[o] != c.R || pix[o+1] != c.G || pix[o+2] != c.B {
+						break FoundScale
+					}
+				}
+				scale++
+			}
+			scale--
+			// Make all scales one LUT entry lower.
+			// This fixes pathological gradients due to a roundoff error
+			// in the color right next to a palette color.
+			scale -= (255 + lutSize - 1) / lutSize
+			if scale < 0 {
+				scale = 0
+			}
+			scales[i] = scale
+			wg.Done()
+		}(i)
+	}
+	wg.Wait()
+
+	// Set alpha channel to best Bayer scale for each pixel.
+	for i := 0; i < p.protected; i++ {
+		c := p.lookup(i).toNRGBA()
+		rr := int(c.R)
+		gg := int(c.G)
+		bb := int(c.B)
+		r := rr * lutSize / 255
+		g := gg * lutSize / 255
+		b := bb * lutSize / 255
+		if r >= lutSize {
+			r = lutSize - 1
+		}
+		if g >= lutSize {
+			g = lutSize - 1
+		}
+		if b >= lutSize {
+			b = lutSize - 1
+		}
+		x := r + lutSize*(b%perRow)
+		y := g + lutSize*(b/perRow)
+		o := (y*widthNeeded + x) * 4
+		pix[o+3] = uint8(scales[i])
+	}
+	for y := 0; y < heightNeeded; y++ {
+		wg.Add(1)
+		go func(y int) {
+			g := y % lutSize
+			gFloat := (float64(g) + 0.5) / float64(lutSize)
+			bY := (y / lutSize) * perRow
+			for x := 0; x < widthNeeded; x++ {
+				o := (y*widthNeeded + x) * 4
+				if pix[o+3] != 255 {
+					continue
+				}
+				r := x % lutSize
+				rFloat := (float64(r) + 0.5) / float64(lutSize)
+				b := bY + x/lutSize
+				bFloat := (float64(b) + 0.5) / float64(lutSize)
+				c := rgb{rFloat, gFloat, bFloat}
+				sum, weight := 0.0, 0.0
+				for i, scale := range scales {
+					c2 := p.lookup(i)
+					f := 1 / c.diff2(c2)
+					sum += f * float64(scale)
+					weight += f
+				}
+				scale := m.Rint(sum / weight)
+				pix[o+3] = uint8(scale)
+			}
+			wg.Done()
+		}(y)
+	}
+	wg.Wait()
+
+	img.SubImage(rect).(*ebiten.Image).ReplacePixels(pix)
 
 	return lutSize, perRow
 }
 
-func sizeBayer(size int, bayerScale float64) (sizeSquare, sizeCeilSquare int, scale, offset float64) {
+func sizeBayer(size int) (sizeSquare, sizeCeilSquare int, scale, offset float64) {
 	sizeSquare = size * size
 	bits := 0
 	if size > 1 {
@@ -177,14 +293,12 @@ func sizeBayer(size int, bayerScale float64) (sizeSquare, sizeCeilSquare int, sc
 	}
 	sizeCeil := 1 << bits
 	sizeCeilSquare = sizeCeil * sizeCeil
-	// Map to [0..1] _inclusive_ borders.
+	// Map to [-1..1] _inclusive_ ranges.
 	// Not _perfect_, but way nicer to work with.
-	if bits == 0 {
-		scale = 0 // No dithering.
-	} else {
-		scale = bayerScale / float64(sizeCeilSquare-1)
+	if sizeCeilSquare > 1 {
+		scale = 2.0 / float64(sizeCeilSquare-1)
 	}
-	offset = float64(sizeCeilSquare-1) / 2.0
+	offset = -float64(sizeCeilSquare-1) / 2.0
 	return
 }
 
@@ -198,39 +312,9 @@ func clamp(a, mi, ma float64) float64 {
 	return a
 }
 
-func (p *Palette) CheckProtectedColors(base *Palette, lutSize, bayerSize int) {
-	defer func(t0 time.Time) {
-		dt := time.Since(t0)
-		log.Infof("checking palette LUT took %v", dt)
-	}(time.Now())
-	_, sizeCeilSquare, scale, offset := sizeBayer(bayerSize, p.bayerScale)
-	for ref := 0; ref < base.size; ref++ {
-		cRef := base.lookup(ref)
-		for b := 0; b < sizeCeilSquare; b++ {
-			shift := (float64(b) - offset) * scale
-			cLuttered := rgb{
-				clamp(math.Floor((cRef[0]+shift)*float64(lutSize)), 0, float64(lutSize-1)),
-				clamp(math.Floor((cRef[1]+shift)*float64(lutSize)), 0, float64(lutSize-1)),
-				clamp(math.Floor((cRef[2]+shift)*float64(lutSize)), 0, float64(lutSize-1)),
-			}
-			cShifted := rgb{
-				(cLuttered[0] + 0.5) / float64(lutSize),
-				(cLuttered[1] + 0.5) / float64(lutSize),
-				(cLuttered[2] + 0.5) / float64(lutSize),
-			}
-			j := p.lookupNearest(cShifted)
-			cNew := p.lookup(j)
-			if cNew != cRef {
-				log.Warningf("protected color got broken: %v (%v) + %v = %v -> %v (%v)",
-					cRef, ref, shift, cShifted, cNew, j)
-			}
-		}
-	}
-}
-
 // BayerPattern computes the Bayer pattern for this palette.
 func (p *Palette) BayerPattern(size int) []float32 {
-	sizeSquare, _, scale, offset := sizeBayer(size, p.bayerScale)
+	sizeSquare, _, scale, offset := sizeBayer(size)
 	bayern := make([]float32, sizeSquare)
 	for i := range bayern {
 		x := i % size
@@ -246,7 +330,7 @@ func (p *Palette) BayerPattern(size int) []float32 {
 				b += 2
 			}
 		}
-		bayern[i] = float32((float64(b) - offset) * scale)
+		bayern[i] = float32((float64(b) + offset) * scale)
 	}
 	return bayern
 }

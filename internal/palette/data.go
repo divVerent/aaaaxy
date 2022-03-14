@@ -17,13 +17,13 @@ package palette
 // data contains all palettes by name.
 var data = map[string]*Palette{
 	// Monochrome.
-	"mono": newPalette(0.99, []uint32{
+	"mono": newPalette(0, []uint32{
 		0x000000,
 		0xFFFFFF,
 	}),
 
 	// The original IBM CGA palette.
-	"cga40l": newPalette(0.53, []uint32{
+	"cga40l": newPalette(0, []uint32{
 		0x000000,
 		0x00AA00,
 		0xAA0000,
@@ -31,7 +31,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM CGA palette at high intensity.
-	"cga40h": newPalette(2/3.0, []uint32{
+	"cga40h": newPalette(0, []uint32{
 		0x000000,
 		0x55FF55,
 		0xFF5555,
@@ -40,7 +40,7 @@ var data = map[string]*Palette{
 
 	// The original IBM CGA palette on NTSC.
 	// curl https://upload.wikimedia.org/wikipedia/commons/7/7c/CGA_CompVsRGB_320p0.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	"cga40n": newPalette(1/3.0, []uint32{
+	"cga40n": newPalette(0, []uint32{
 		0x000000,
 		0x0071D1,
 		0x0019AC,
@@ -60,7 +60,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The alternate IBM CGA palette.
-	"cga41l": newPalette(0.66, []uint32{
+	"cga41l": newPalette(0, []uint32{
 		0x000000,
 		0x00AAAA,
 		0xAA00AA,
@@ -68,7 +68,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The alternate IBM CGA palette at high intensity.
-	"cga41h": newPalette(2/3.0, []uint32{
+	"cga41h": newPalette(0, []uint32{
 		0x000000,
 		0x55FFFF,
 		0xFF55FF,
@@ -77,7 +77,7 @@ var data = map[string]*Palette{
 
 	// The alternate IBM CGA palette on NTSC.
 	// curl https://upload.wikimedia.org/wikipedia/commons/c/c5/CGA_CompVsRGB_320p1.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	"cga41n": newPalette(1/3.0, []uint32{
+	"cga41n": newPalette(0, []uint32{
 		0x000000,
 		0x009AFF,
 		0x0042FF,
@@ -97,7 +97,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The "monochrome" IBM CGA palette.
-	"cga5l": newPalette(0.66, []uint32{
+	"cga5l": newPalette(0, []uint32{
 		0x000000,
 		0x00AAAA,
 		0xAA0000,
@@ -105,7 +105,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The "monochrome" IBM CGA palette at high intensity.
-	"cga5h": newPalette(2/3.0, []uint32{
+	"cga5h": newPalette(0, []uint32{
 		0x000000,
 		0x55FFFF,
 		0xFF5555,
@@ -114,7 +114,7 @@ var data = map[string]*Palette{
 
 	// The palette one gets when using the CGA monochrome mode on NTSC while forcing the colorburst signal.
 	// curl https://upload.wikimedia.org/wikipedia/commons/f/fb/CGA_CompVsRGB_640.png | convert PNG:- -crop 100x360+1000+20 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	"cga6n": newPalette(0.29, []uint32{
+	"cga6n": newPalette(0, []uint32{
 		0x000000,
 		0x006E31,
 		0x3109FF,
@@ -134,7 +134,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM EGA palette.
-	"ega": newPalette(0.33, []uint32{
+	"ega": newPalette(0, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -154,7 +154,7 @@ var data = map[string]*Palette{
 	}),
 
 	// EGA but only the colors 0 to 7.
-	"egalow": newPalette(1/3.0, []uint32{
+	"egalow": newPalette(0, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -166,7 +166,7 @@ var data = map[string]*Palette{
 	}),
 
 	// EGA but only the grey tones.
-	"egamono": newPalette(0.33, []uint32{
+	"egamono": newPalette(0, []uint32{
 		0x000000,
 		0xAAAAAA,
 		0x555555,
@@ -174,7 +174,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM VGA palette, with colors too close to EGA colors commented out.
-	"vga": newPalette(0.16, []uint32{
+	"vga": newPalette(16, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -192,20 +192,20 @@ var data = map[string]*Palette{
 		0xFFFF55,
 		0xFFFFFF,
 		// 0x000000,
-		// 0x141414,
-		// 0x202020,
+		0x141414,
+		0x202020,
 		0x2C2C2C,
-		// 0x383838,
-		// 0x444444,
-		// 0x505050,
-		// 0x616161,
-		// 0x717171,
+		0x383838,
+		0x444444,
+		0x505050,
+		0x616161,
+		0x717171,
 		0x818181,
-		// 0x919191,
-		// 0xA1A1A1,
-		// 0xB6B6B6,
-		// 0xCACACA,
-		// 0xE2E2E2,
+		0x919191,
+		0xA1A1A1,
+		0xB6B6B6,
+		0xCACACA,
+		0xE2E2E2,
 		// 0xFFFFFF,
 		0x0000FF,
 		0x4000FF,
@@ -328,29 +328,29 @@ var data = map[string]*Palette{
 		0x385571,
 		0x384471,
 		0x505071,
-		// 0x595071,
-		// 0x615071,
-		// 0x695071,
-		// 0x715071,
-		// 0x715069,
-		// 0x715061,
-		// 0x715059,
+		0x595071,
+		0x615071,
+		0x695071,
+		0x715071,
+		0x715069,
+		0x715061,
+		0x715059,
 		0x715050,
-		// 0x715950,
-		// 0x716150,
-		// 0x716950,
-		// 0x717150,
-		// 0x697150,
-		// 0x617150,
-		// 0x597150,
-		// 0x507150,
-		// 0x507159,
-		// 0x507161,
-		// 0x507169,
-		// 0x507171,
-		// 0x506971,
-		// 0x506171,
-		// 0x505971,
+		0x715950,
+		0x716150,
+		0x716950,
+		0x717150,
+		0x697150,
+		0x617150,
+		0x597150,
+		0x507150,
+		0x507159,
+		0x507161,
+		0x507169,
+		0x507171,
+		0x506971,
+		0x506171,
+		0x505971,
 		0x000040,
 		0x100040,
 		0x200040,
@@ -387,42 +387,42 @@ var data = map[string]*Palette{
 		0x402820,
 		0x403020,
 		0x403820,
-		// 0x404020,
+		0x404020,
 		0x384020,
 		0x304020,
 		0x284020,
 		0x204020,
 		0x204028,
 		0x204030,
-		// 0x204038,
-		// 0x204040,
-		// 0x203840,
+		0x204038,
+		0x204040,
+		0x203840,
 		0x203040,
 		0x202840,
-		// 0x2C2C40,
-		// 0x302C40,
-		// 0x342C40,
-		// 0x3C2C40,
-		// 0x402C40,
-		// 0x402C3C,
-		// 0x402C34,
-		// 0x402C30,
-		// 0x402C2C,
-		// 0x40302C,
-		// 0x40342C,
-		// 0x403C2C,
-		// 0x40402C,
-		// 0x3C402C,
-		// 0x34402C,
-		// 0x30402C,
-		// 0x2C402C,
-		// 0x2C4030,
-		// 0x2C4034,
-		// 0x2C403C,
-		// 0x2C4040,
-		// 0x2C3C40,
-		// 0x2C3440,
-		// 0x2C3040,
+		0x2C2C40,
+		0x302C40,
+		0x342C40,
+		0x3C2C40,
+		0x402C40,
+		0x402C3C,
+		0x402C34,
+		0x402C30,
+		0x402C2C,
+		0x40302C,
+		0x40342C,
+		0x403C2C,
+		0x40402C,
+		0x3C402C,
+		0x34402C,
+		0x30402C,
+		0x2C402C,
+		0x2C4030,
+		0x2C4034,
+		0x2C403C,
+		0x2C4040,
+		0x2C3C40,
+		0x2C3440,
+		0x2C3040,
 		// 0x000000,
 		// 0x000000,
 		// 0x000000,
@@ -434,7 +434,7 @@ var data = map[string]*Palette{
 	}),
 
 	// Quake's palette. Has been put in the public domain by John Carmack.
-	"quake": newPalette(0.03, []uint32{
+	"quake": newPalette(0, []uint32{
 		0x000000,
 		0x0F0F0F,
 		0x1F1F1F,
@@ -693,7 +693,7 @@ var data = map[string]*Palette{
 		0x9F5B53,
 	}),
 
-	"nes": newPalette(0.19, []uint32{
+	"nes": newPalette(0, []uint32{
 		0x000000,
 		0x343500,
 		0x571D00,
@@ -751,7 +751,7 @@ var data = map[string]*Palette{
 	}),
 
 	// C64 palette.
-	"c64": newPalette(1/4.0, []uint32{
+	"c64": newPalette(0, []uint32{
 		0x000000,
 		0x40318D,
 		0x505050,
@@ -771,7 +771,7 @@ var data = map[string]*Palette{
 	}),
 
 	// Web safe 216 colors palette, actually a 6x6x6 color cube.
-	"web": newPalette(0.19, []uint32{
+	"web": newPalette(0, []uint32{
 		0x000000,
 		0x000033,
 		0x000066,
@@ -991,7 +991,7 @@ var data = map[string]*Palette{
 	}),
 
 	// 2x2x2 color cube. Just eight pure colors.
-	"2x2x2": newPalette(0.99, []uint32{
+	"2x2x2": newPalette(0, []uint32{
 		0x000000,
 		0x0000FF,
 		0x00FF00,
@@ -1003,7 +1003,7 @@ var data = map[string]*Palette{
 	}),
 
 	// 4x4x4 color cube. For those who just like the dither.
-	"4x4x4": newPalette(0.33, []uint32{
+	"4x4x4": newPalette(0, []uint32{
 		0x000000,
 		0x000055,
 		0x0000AA,
@@ -1071,7 +1071,7 @@ var data = map[string]*Palette{
 	}),
 
 	// 7x7x4 color "cube". Cleanest colors at 256c. Doesn't do blue gradients.
-	"7x7x4": newPalette(0.16, []uint32{
+	"7x7x4": newPalette(0, []uint32{
 		0x000000,
 		0x000055,
 		0x0000AA,
@@ -1271,21 +1271,21 @@ var data = map[string]*Palette{
 	}),
 
 	// A flag.
-	"ua3": newPalette(0.56, []uint32{
+	"ua3": newPalette(0, []uint32{
 		0x000000,
 		0x0057B8,
 		0xFFD700,
 	}),
 
 	// Another flag.
-	"de3": newPalette(0.89, []uint32{
+	"de3": newPalette(0, []uint32{
 		0x000000,
 		0xFF0000,
 		0xFFCC00,
 	}),
 
 	// Another flag.
-	"us4": newPalette(0.33, []uint32{
+	"us4": newPalette(0, []uint32{
 		0x000000,
 		0xFFFFFF,
 		0xB22234,
@@ -1293,7 +1293,7 @@ var data = map[string]*Palette{
 	}),
 
 	// Another flag.
-	"ru4": newPalette(0.49, []uint32{
+	"ru4": newPalette(0, []uint32{
 		0x000000,
 		0xFFFFFF,
 		0x0032A0,

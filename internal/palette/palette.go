@@ -24,23 +24,21 @@ type Palette struct {
 	// size is the number of colors this palette has. Is > 0 for any valid palette.
 	size int
 
-	// bayerScale is a recommended Bayer pattern scale in the range from 0 to 1.
-	// It should be close to a typical distance between two close colors.
-	bayerScale float64
+	// protected is the number of protected colors. This is used to compute the Bayer pattern size.
+	protected int
 
 	// colors are the palette colors.
 	colors []uint32
 }
 
-func (p *Palette) BayerScale() float64 {
-	return p.bayerScale
-}
-
-func newPalette(bayerScale float64, c []uint32) *Palette {
+func newPalette(protected int, c []uint32) *Palette {
+	if protected <= 0 {
+		protected = len(c)
+	}
 	return &Palette{
-		size:       len(c),
-		colors:     c,
-		bayerScale: bayerScale,
+		size:      len(c),
+		protected: protected,
+		colors:    c,
 	}
 }
 
