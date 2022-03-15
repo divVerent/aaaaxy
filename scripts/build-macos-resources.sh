@@ -15,16 +15,22 @@
 
 set -ex
 
-mkdir -p packaging/AAAAXY.app/Contents/Resources
+rm -rf \
+	packaging/AAAAXY.iconset \
+	packaging/AAAAXY.app/Contents/Resources \
+	packaging/AAAAXY.app/Contents/Info.plist
 
-rm -f packaging/aaaaxy-macos-*.png packaging/AAAAXY.app/Contents/Info.plist
-for res in 16 32 128 256 512 1024; do
+mkdir -p packaging/AAAAXY.app/Contents/Resources
+mkdir -p packaging/AAAAXY.iconset
+
+for res in 16 32 128 256 512; do
 	convert assets/sprites/riser_small_up_0.png \
 		-filter Point -geometry ${res}x${res} \
 		-define png:bit-depth=8 \
 		-define png:color-type=6 \
 		-define png:format=png32 \
-		packaging/aaaaxy-macos-${res}.png
+		packaging/AAAAXY.iconset/icon_${res}x${res}.png
 done
-png2icns packaging/AAAAXY.app/Contents/Resources/icon.icns packaging/aaaaxy-macos-*.png
-scripts/Info.plist.sh $(scripts/version.sh macos) > packaging/AAAAXY.app/Contents/Info.plist
+png2icns packaging/AAAAXY.app/Contents/Resources/icon.icns packaging/AAAAXY.iconset/*.png ||\
+iconutil --convert icns --output packaging/AAAAXY.app/Contents/Resources/icon.icns packaging/AAAAXY.iconset
+scripts/Info.plist.sh $(scripts/version.sh macos) packaging/AAAAXY.app

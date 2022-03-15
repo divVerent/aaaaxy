@@ -27,8 +27,7 @@ git clone https://github.com/Tyilo/insert_dylib || true
 cd insert_dylib/insert_dylib
 clang main.c -o insert_dylib
 cd ../../..
-binary=$1; shift
-new_binary="$binary.inj"
-scripts/insert_dylib/insert_dylib/insert_dylib --all-yes scripts/macos_gl_allow_software.dylib "$binary" "$binary.inj"
 
-exec "$new_binary" "$@"
+for binary in "$@"; do
+	scripts/insert_dylib/insert_dylib/insert_dylib --all-yes --inplace scripts/macos_gl_allow_software.dylib "$binary"
+done

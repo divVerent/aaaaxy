@@ -14,14 +14,26 @@
 # limitations under the License.
 
 version=$1
+app=$2
 
-cat <<EOF
+binary=
+for x in "$app/Contents/MacOS"/*; do
+	[ -f "$x" ] || continue
+	[ -x "$x" ] || continue
+	[ -z "$binary" ] || {
+		echo >&2 'More than one executable found!'
+		exit 1
+	}
+	binary=${x##*/}
+done
+
+cat > "$app/Contents/Info.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>CFBundleExecutable</key>
-	<string>aaaaxy</string>
+	<string>$binary</string>
 	<key>CFBundleIconFile</key>
 	<string>icon.icns</string>
 	<key>CFBundleIdentifier</key>

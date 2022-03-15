@@ -293,9 +293,12 @@ jobs:
     - name: Extract Test Cases
       run: 'unzip testcases.zip'
 
+    - name: Enable Software Rendering
+      run: 'scripts/macos_gl_allow_software.sh ./aaaaxy'
+
     - name: Test
       # NOTE: When changing the path ./aaaaxy, likely need to also change the CFBundleExecutable in scripts/Info.plist.sh.
-      run: 'scripts/regression-test-demo.sh darwin-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" "scripts/macos_gl_allow_software.sh ./aaaaxy" *.dem'
+      run: 'scripts/regression-test-demo.sh darwin-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" ./aaaaxy *.dem'
 
     - name: Archive Results
       if: ${{ always() }}

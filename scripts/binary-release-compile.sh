@@ -21,6 +21,10 @@ set -ex
 GOOS=$($GO env GOOS)
 GOEXE=$($GO env GOEXE)
 
+if [ $# -eq 0 ]; then
+	set -- $($GO env GOARCH)
+fi
+
 case "$GOOS" in
 	js)
 		# HACK: Itch and Apache want a .wasm file extension, but GOEXE doesn't actually have that.
@@ -37,7 +41,16 @@ case "$#" in
 		;;
 esac
 
-zip="$PWD/aaaaxy-$GOOS$GOARCH_SUFFIX-$(scripts/version.sh gittag).zip"
+: ${AAAAXY_ZIPFILE:="aaaaxy-$GOOS$GOARCH_SUFFIX-$(scripts/version.sh gittag).zip"}
+
+# It must be an absolute path as we use "cd" while creating the zip.
+case "$AAAAXY_ZIPFILE" in
+	/*)
+		;;
+	*)
+		AAAAXY_ZIPFILE="$PWD/$AAAAXY_ZIPFILE"
+		;;
+esac
 
 exec 3>&1
 exec >&2
@@ -82,7 +95,7 @@ else
 		unset CGO_ENV
 		lipofiles="$lipofiles $binary"
 	done
-	binary=${prefix}aaaaxy$GOARCH_SUFFIX$GOEXE
+	binary=${prefix}aaaaxy-$GOOS$GOEXE
 	$LIPO -create $lipofiles -output "$binary"
 	rm -f $lipofiles
 fi
@@ -98,13 +111,13 @@ case "$GOOS" in
 		;;
 esac
 
-rm -f "$zip"
-7za a -tzip -mx=9 "$zip" \
+rm -f "$AAAAXY_ZIPFILE"
+7za a -tzip -mx=9 "$AAAAXY_ZIPFILE" \
 	README.md LICENSE CONTRIBUTING.md \
 	licenses
 (
 	cd "$appdir"
-	7za a -tzip -mx=9 "$zip" \
+	7za a -tzip -mx=9 "$AAAAXY_ZIPFILE" \
 		$app
 )
 
@@ -138,4 +151,4 @@ esac
 
 make clean
 
-echo >&3 "$zip"
+echo >&3 "$AAAAXY_ZIPFILE"
