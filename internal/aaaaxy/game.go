@@ -45,17 +45,17 @@ var RegularTermination = menu.RegularTermination
 var (
 	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]interface{}{"js/*": "simple", "*/*": "linear2xcrt"}).(string), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
 	// TODO(divVerent): Remove this flag when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved.
-	screenFilterMaxScale    = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
-	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
-	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
-	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
-	paletteFlag             = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
-	paletteDitherSize       = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
-	paletteDitherMode       = flag.String("palette_dither_mode", "bayer", "dither type (none, bayer, halftone or random)")
-	paletteWorldAligned     = flag.Bool("palette_world_aligned", true, "align dither pattern to world as opposed to screen")
-	debugEnableDrawing      = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
-	showFPS                 = flag.Bool("show_fps", false, "show fps counter")
-	showTime                = flag.Bool("show_time", false, "show game time")
+	screenFilterMaxScale      = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
+	screenFilterScanLines     = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
+	screenFilterCRTStrength   = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
+	screenFilterJitter        = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
+	paletteFlag               = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
+	paletteDitherSize         = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
+	paletteDitherMode         = flag.String("palette_dither_mode", "bayer", "dither type (none, bayer, halftone or random)")
+	paletteDitherWorldAligned = flag.Bool("palette_dither_world_aligned", true, "align dither pattern to world as opposed to screen")
+	debugEnableDrawing        = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
+	showFPS                   = flag.Bool("show_fps", false, "show fps counter")
+	showTime                  = flag.Bool("show_time", false, "show game time")
 )
 
 type ditherMode int
@@ -264,7 +264,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 
 	return g.paletteOffscreen, func() {
 		var scroll m.Delta
-		if *paletteWorldAligned {
+		if *paletteDitherWorldAligned {
 			scroll = g.Menu.World.ScrollPos().Delta(m.Pos{})
 			if ditherSize > 0 {
 				scroll = scroll.Mod(ditherSize)
