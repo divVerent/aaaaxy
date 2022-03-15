@@ -105,6 +105,8 @@ func (c *CheckpointTarget) SetState(originator, predecessor *engine.Entity, stat
 	err := c.World.Save()
 	if err != nil {
 		log.Errorf("could not save game: %v", err)
+		str := fmt.Sprintf("Error:\ncould not save game:\n%v", err)
+		centerprint.New(fun.FormatText(&c.World.PlayerState, str), centerprint.Important, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 85, B: 85, A: 255}, 5*time.Second).SetFadeOut(true)
 		return
 	}
 	if c.Text != "" {
