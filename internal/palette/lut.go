@@ -19,6 +19,7 @@ import (
 	"image"
 	"image/color"
 	"math"
+	"sort"
 	"sync"
 	"time"
 
@@ -285,20 +286,31 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	return lutSize, perRow
 }
 
-func sizeBayer(size int) (sizeSquare, sizeCeilSquare int, scale, offset float64) {
+func sizeBayer(size int) (sizeSquare int, scale, offset float64) {
 	sizeSquare = size * size
 	bits := 0
 	if size > 1 {
 		bits = math.Ilogb(float64(size-1)) + 1
 	}
 	sizeCeil := 1 << bits
-	sizeCeilSquare = sizeCeil * sizeCeil
+	sizeCeilSquare := sizeCeil * sizeCeil
 	// Map to [-1..1] _inclusive_ ranges.
 	// Not _perfect_, but way nicer to work with.
 	if sizeCeilSquare > 1 {
 		scale = 2.0 / float64(sizeCeilSquare-1)
 	}
 	offset = -float64(sizeCeilSquare-1) / 2.0
+	return
+}
+
+func sizeHalftone(size int) (sizeSquare int, scale, offset float64) {
+	sizeSquare = size * size
+	// Map to [-1..1] _inclusive_ ranges.
+	// Not _perfect_, but way nicer to work with.
+	if sizeSquare > 1 {
+		scale = 2.0 / float64(sizeSquare-1)
+	}
+	offset = -float64(sizeSquare-1) / 2.0
 	return
 }
 
@@ -314,7 +326,7 @@ func clamp(a, mi, ma float64) float64 {
 
 // BayerPattern computes the Bayer pattern for this palette.
 func (p *Palette) BayerPattern(size int) []float32 {
-	sizeSquare, _, scale, offset := sizeBayer(size)
+	sizeSquare, scale, offset := sizeBayer(size)
 	bayern := make([]float32, sizeSquare)
 	for i := range bayern {
 		x := i % size
@@ -331,6 +343,32 @@ func (p *Palette) BayerPattern(size int) []float32 {
 			}
 		}
 		bayern[i] = float32((float64(b) + offset) * scale)
+	}
+	return bayern
+}
+
+// HalftonePattern computes the Halftone pattern for this palette.
+func (p *Palette) HalftonePattern(size int) []float32 {
+	sizeSquare, scale, offset := sizeHalftone(size)
+	type index struct {
+		i     int
+		order float64
+	}
+	weighted := make([]index, sizeSquare)
+	cX := float64(size)*0.5 + 0.03
+	cY := float64(size)*0.5 + 0.04
+	for i := range weighted {
+		x := i % size
+		y := i / size
+		d := math.Hypot(float64(x)-cX, float64(y)-cY)
+		weighted[i] = index{i, d}
+	}
+	sort.Slice(weighted, func(i, j int) bool {
+		return weighted[i].order < weighted[j].order
+	})
+	bayern := make([]float32, sizeSquare)
+	for b, idx := range weighted {
+		bayern[idx.i] = float32((float64(b) + offset) * scale)
 	}
 	return bayern
 }

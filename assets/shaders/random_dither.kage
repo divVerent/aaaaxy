@@ -28,7 +28,7 @@ var (
 
 func noiseM(srcOrigin, srcImageSize, coord vec2) float {
 	p := srcImageSize*(coord-srcOrigin) + Offset
-	return fract(tan(length(p))*p.x) * 2 - 1
+	return fract(sin(length(p))*p.x) * 2 - 1
 }
 
 func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {

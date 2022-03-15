@@ -50,11 +50,20 @@ var (
 	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
 	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 	paletteFlag             = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
-	paletteBayerSize        = flag.Int("palette_bayer_size", 4, "bayer dither pattern size (really should be a power of two); set to 1 to not dither, and to 0 to use random noise instead")
+	paletteDitherSize       = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
+	paletteDitherMode       = flag.String("palette_dither_mode", "bayer", "dither type (none, bayer, halftone or random)")
 	paletteWorldAligned     = flag.Bool("palette_world_aligned", true, "align dither pattern to world as opposed to screen")
 	debugEnableDrawing      = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 	showFPS                 = flag.Bool("show_fps", false, "show fps counter")
 	showTime                = flag.Bool("show_time", false, "show game time")
+)
+
+type ditherMode int
+
+const (
+	bayerDither ditherMode = iota
+	halftoneDither
+	randomDither
 )
 
 type Game struct {
@@ -73,15 +82,16 @@ type Game struct {
 	linear2xCRTShader *ebiten.Shader
 
 	// Copies of parameters so we know when to update.
-	palette          *palette.Palette
-	paletteBayerSize int
+	palette           *palette.Palette
+	paletteDitherSize int
+	paletteDitherMode ditherMode
 
 	paletteOffscreen *ebiten.Image  // Never updates.
 	paletteLUT       *ebiten.Image  // Updates when palette changes.
 	paletteLUTSize   int            // Updates when palette changes.
 	paletteLUTPerRow int            // Updates when palette changes.
-	paletteBayern    []float32      // Updates when palette or paletteBayerSize change.
-	paletteShader    *ebiten.Shader // Updates when paletteBayerSize changes.
+	paletteBayern    []float32      // Updates when palette or paletteDitherSize change.
+	paletteShader    *ebiten.Shader // Updates when paletteDitherSize changes.
 
 	framesToDump int
 }
@@ -175,10 +185,30 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	}
 
 	// Shaders depend on Bayer pattern size, and this should usually not change at runtime.
-	bayerSize := *paletteBayerSize
-	if bayerSize < 0 {
-		*paletteBayerSize = 0
-		bayerSize = 0
+	ditherSize := *paletteDitherSize
+	if ditherSize < 2 {
+		*paletteDitherSize = 2
+		ditherSize = 2
+	}
+
+	var ditherMode ditherMode
+	switch *paletteDitherMode {
+	case "none":
+		// No dither is the same as a 1x1 Bayer dither.
+		// That way, we can use the same shader.
+		ditherMode = bayerDither
+		ditherSize = 1
+	case "bayer":
+		ditherMode = bayerDither
+	case "halftone":
+		ditherMode = halftoneDither
+	case "random":
+		ditherMode = randomDither
+		ditherSize = 0
+	default:
+		log.Errorf("unknown dither mode %v, switching to bayer", *paletteDitherMode)
+		*paletteDitherMode = "bayer"
+		ditherMode = bayerDither
 	}
 
 	// Need images?
@@ -190,7 +220,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	}
 
 	// Bayer pattern changed?
-	if bayerSize != g.paletteBayerSize {
+	if ditherSize != g.paletteDitherSize {
 		if g.paletteShader != nil {
 			g.paletteShader.Dispose()
 		}
@@ -200,39 +230,44 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	// Need a new shader?
 	if g.paletteShader == nil {
 		var err error
-		if bayerSize > 0 {
-			g.paletteShader, err = shader.Load("bayer.kage", map[string]string{
-				"BayerSize": fmt.Sprint(*paletteBayerSize),
+		switch ditherMode {
+		case bayerDither, halftoneDither:
+			g.paletteShader, err = shader.Load("ordered_dither.kage", map[string]string{
+				"BayerSize": fmt.Sprint(ditherSize),
 			})
-		} else {
-			g.paletteShader, err = shader.Load("noise.kage", nil)
+		case randomDither:
+			g.paletteShader, err = shader.Load("random_dither.kage", nil)
 		}
 		if err != nil {
-			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for Bayer size %d: %v", *paletteBayerSize, err)
+			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for dither size %d: %v", *paletteDitherSize, err)
 			*paletteFlag = "none"
 			return screen, func() {}
 		}
-		g.paletteBayerSize = bayerSize
+		g.paletteDitherSize = ditherSize
 		g.palette = nil
 	}
 
 	// Need a LUT?
-	if g.palette != pal {
+	if g.palette != pal || g.paletteDitherMode != ditherMode {
 		g.paletteLUTSize, g.paletteLUTPerRow = pal.ToLUT(g.paletteLUT)
-		if bayerSize > 0 {
-			g.paletteBayern = pal.BayerPattern(g.paletteBayerSize)
-		} else {
+		switch ditherMode {
+		case bayerDither:
+			g.paletteBayern = pal.BayerPattern(g.paletteDitherSize)
+		case halftoneDither:
+			g.paletteBayern = pal.HalftonePattern(g.paletteDitherSize)
+		case randomDither:
 			g.paletteBayern = nil
 		}
 		g.palette = pal
+		g.paletteDitherMode = ditherMode
 	}
 
 	return g.paletteOffscreen, func() {
 		var scroll m.Delta
 		if *paletteWorldAligned {
 			scroll = g.Menu.World.ScrollPos().Delta(m.Pos{})
-			if bayerSize > 0 {
-				scroll = scroll.Mod(bayerSize)
+			if ditherSize > 0 {
+				scroll = scroll.Mod(ditherSize)
 			}
 		}
 		options := &ebiten.DrawRectShaderOptions{
@@ -252,7 +287,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 				},
 			},
 		}
-		if bayerSize > 0 {
+		if ditherSize > 0 {
 			options.Uniforms["Bayern"] = g.paletteBayern
 		}
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.paletteShader, options)
