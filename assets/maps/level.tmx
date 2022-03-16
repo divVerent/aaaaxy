@@ -9875,7 +9875,7 @@
   <object id="4097" gid="312" x="6296" y="3656" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4025"/>
-    <property name="text" value="Sometimes all we need is a little pit stop."/>
+    <property name="text" value="Those who haven't learned the trick  must take a little pit stop."/>
    </properties>
   </object>
   <object id="4098" gid="323" x="6288" y="3584" width="32" height="32"/>
