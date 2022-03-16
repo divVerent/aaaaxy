@@ -265,7 +265,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	return g.paletteOffscreen, func() {
 		var scroll m.Delta
 		if *paletteDitherWorldAligned {
-			scroll = g.Menu.World.ScrollPos().Delta(m.Pos{})
+			scroll = g.Menu.World.ScrollPos().Delta(m.Pos{X: engine.GameWidth / 2, Y: engine.GameHeight / 2})
 			if ditherSize > 0 {
 				scroll = scroll.Mod(ditherSize)
 			}

@@ -351,20 +351,43 @@ func (p *Palette) BayerPattern(size int) []float32 {
 func (p *Palette) HalftonePattern(size int) []float32 {
 	sizeSquare, scale, offset := sizeHalftone(size)
 	type index struct {
-		i     int
-		order float64
+		i         int
+		distance2 int
+		angle     float64
 	}
 	weighted := make([]index, sizeSquare)
-	cX := float64(size)*0.5 + 0.03
-	cY := float64(size)*0.5 + 0.04
 	for i := range weighted {
 		x := i % size
 		y := i / size
-		d := math.Hypot(float64(x)-cX, float64(y)-cY)
-		weighted[i] = index{i, d}
+		// Take distance from top left pixel corner.
+		dx := 2*x + 1
+		dy := 2*y + 1
+		if dx > size {
+			dx -= 2 * size
+		}
+		if dy > size {
+			dy -= 2 * size
+		}
+		d := dx*dx + dy*dy
+		// Compute angle as tie breaker.
+		a := math.Atan2(float64(dy), float64(dx))
+		if a < 0 {
+			a += 2 * math.Pi
+		}
+		weighted[i] = index{i, d, a}
 	}
+	// Note: sort in reverse; the innermost pixel thus gets filled first.
 	sort.Slice(weighted, func(i, j int) bool {
-		return weighted[i].order < weighted[j].order
+		do := weighted[i].distance2 - weighted[j].distance2
+		if do != 0 {
+			return do < 0
+		}
+		da := weighted[i].angle - weighted[j].angle
+		if da != 0 {
+			return da < 0
+		}
+		log.Fatalf("unreachable code: same distance and angle should be impossible, but happened at %v and %v", weighted[i].i, weighted[j].i)
+		return false
 	})
 	bayern := make([]float32, sizeSquare)
 	for b, idx := range weighted {
