@@ -1,4 +1,4 @@
-name: macOS App Bundle Test Run
+name: 0% macOS App Bundle Test Run
 
 on:
   pull_request:
