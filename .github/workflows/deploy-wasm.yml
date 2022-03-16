@@ -2,7 +2,7 @@ name: Deploy WebAssembly Build
 
 on:
   push:
-    branches: [main]
+    tags: [v*]
   workflow_dispatch:
 
 jobs:

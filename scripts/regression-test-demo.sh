@@ -32,6 +32,15 @@ run_finished=false
 
 for demo in "$@"; do
 	echo >&2 "Running $demo..."
+	# For running on macOS, the path name needs to be absolute as opening
+	# app bundles does not retain the working directory.
+	case "$demo" in
+		/*)
+			;;
+		*)
+			demo=$PWD/$demo
+			;;
+	esac
 	t0=$(date +%s)
 	if ! scripts/run-timedemo.sh \
 		"$demo" \

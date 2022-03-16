@@ -29,5 +29,5 @@ clang main.c -o insert_dylib
 cd ../../..
 
 for binary in "$@"; do
-	scripts/insert_dylib/insert_dylib/insert_dylib --all-yes --inplace scripts/macos_gl_allow_software.dylib "$binary"
+	scripts/insert_dylib/insert_dylib/insert_dylib --all-yes --inplace "$PWD"/scripts/macos_gl_allow_software.dylib "$binary"
 done

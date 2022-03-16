@@ -2,8 +2,9 @@ name: 100% Single-Platform Test Run
 
 on:
   pull_request:
+  push:
   schedule:
-    - cron: '50 23 * * *'
+    - cron: '29 12 * * *'
   workflow_dispatch:
 
 jobs:

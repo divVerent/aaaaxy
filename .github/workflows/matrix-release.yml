@@ -1,8 +1,8 @@
-name: Post commit on Matrix
+name: Post release on Matrix
 
 on:
   push:
-    branches: [main]
+    tags: [v*]
   workflow_dispatch:
 
 jobs:

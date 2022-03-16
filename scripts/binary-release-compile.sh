@@ -73,10 +73,10 @@ case "$GOOS" in
 		;;
 esac
 
-make clean
-
+# Remove possible leftovers from previous compiles that "make clean" won't get.
 case "$prefix" in
 	*/*)
+		rm -rf "${prefix%/*}"
 		mkdir -p "${prefix%/*}"
 		;;
 esac
@@ -84,14 +84,14 @@ esac
 if [ -n "$GOARCH_SUFFIX" ]; then
 	eval "export CGO_ENV=\$CGO_ENV_$1"
 	binary=${prefix}aaaaxy-$GOOS$GOARCH_SUFFIX$GOEXE
-	GOARCH=$(GOARCH=$1 $GO env GOARCH) make BUILDTYPE=release BINARY="$binary"
+	GOARCH=$(GOARCH=$1 $GO env GOARCH) make BUILDTYPE=release BINARY="$binary" clean all
 	unset CGO_ENV
 else
 	lipofiles=
 	for arch in "$@"; do
 		eval "export CGO_ENV=\$CGO_ENV_$arch"
 		binary=${prefix}aaaaxy-$GOOS-$arch$GOEXE
-		GOARCH=$(GOARCH=$arch $GO env GOARCH) make BUILDTYPE=release BINARY="$binary"
+		GOARCH=$(GOARCH=$arch $GO env GOARCH) make BUILDTYPE=release BINARY="$binary" clean all
 		unset CGO_ENV
 		lipofiles="$lipofiles $binary"
 	done
