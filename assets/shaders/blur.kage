@@ -32,5 +32,5 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 		other += imageSrc0UnsafeAt(clamp(texCoord-d, srcOrigin, srcMax))
 		other += imageSrc0UnsafeAt(clamp(texCoord+d, srcOrigin, srcMax))
 	}
-	return center * CenterScale + other * OtherScale + Add
+	return center*CenterScale + other*OtherScale + Add
 }

@@ -47,7 +47,7 @@ func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {
 	pixel0Coord := srcOrigin + pixel0/srcImageSize
 	scale := imageSrc1UnsafeAt(pixel0Coord).a
 
-	p := p0 + bayerM(srcOrigin, srcImageSize, coord) * scale
+	p := p0 + bayerM(srcOrigin, srcImageSize, coord)*scale
 	pLut := clamp(floor(p*LUTSize), 0, LUTSize-1)
 	pixel := vec2(
 		mod(pLut.b, LUTPerRow)*LUTSize+pLut.r,

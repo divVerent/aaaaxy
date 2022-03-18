@@ -37,7 +37,7 @@ func crtMap(srcOrigin, srcSize, srcImageSize, in vec2) vec2 {
 	inLen2 := inLen * inLen
 	// outLen := inLen * (1.0 + inLen2 * (CRTK1 + inLen2 * CRTK2))
 	// outRel := normalize(inRel) * outLen
-	outFac := 1.0 + inLen2 * (CRTK1 + inLen2 * CRTK2)
+	outFac := 1.0 + inLen2*(CRTK1+inLen2*CRTK2)
 	outRel := inRel * outFac
 	return srcMid + outRel/mapVec
 }
