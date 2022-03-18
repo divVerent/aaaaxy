@@ -38,14 +38,14 @@ func bayerM(srcOrigin, srcImageSize, coord vec2) float {
 }
 
 func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {
-	p0 := imageSrc0At(coord).rgb
+	p0 := imageSrc0UnsafeAt(coord).rgb
 	p0Lut := clamp(floor(p0*LUTSize), 0, LUTSize-1)
 	pixel0 := vec2(
 		mod(p0Lut.b, LUTPerRow)*LUTSize+p0Lut.r,
 		floor(p0Lut.b/LUTPerRow)*LUTSize+p0Lut.g,
 	)
 	pixel0Coord := srcOrigin + pixel0/srcImageSize
-	scale := imageSrc1At(pixel0Coord).a
+	scale := imageSrc1UnsafeAt(pixel0Coord).a
 
 	p := p0 + bayerM(srcOrigin, srcImageSize, coord) * scale
 	pLut := clamp(floor(p*LUTSize), 0, LUTSize-1)
@@ -54,7 +54,7 @@ func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {
 		floor(pLut.b/LUTPerRow)*LUTSize+pLut.g,
 	)
 	pixelCoord := srcOrigin + pixel/srcImageSize
-	return imageSrc1At(pixelCoord)
+	return imageSrc1UnsafeAt(pixelCoord)
 }
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
