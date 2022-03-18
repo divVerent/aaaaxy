@@ -45,12 +45,12 @@ func crtMap(srcOrigin, srcSize, srcImageSize, in vec2) vec2 {
 func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
 
-	// Set up typical linear interpolation.
 	srcImageSize := imageSrcTextureSize()
 
 	// Map texture coordinate to CRT.
 	texCoord := crtMap(srcOrigin, srcSize, srcImageSize, texCoord_)
 
+	// Set up typical linear interpolation.
 	halfTexel := 0.5 / srcImageSize
 	tieBreaker := halfTexel / 256.0
 	topLeft := texCoord - halfTexel + tieBreaker
