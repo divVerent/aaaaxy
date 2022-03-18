@@ -23,7 +23,7 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcMax := srcOrigin + srcSize - srcTexel
 	mask := imageSrc0UnsafeAt(texCoord)
 	curr := imageSrc1UnsafeAt(texCoord)
-	scrolled := clamp(texCoord+Scroll*srcSize, srcOrigin, srcMax)
-	prev := imageSrc2UnsafeAt(scrolled)
+	scrolled := texCoord + Scroll*srcSize
+	prev := imageSrc2At(scrolled)
 	return mix(prev, curr, mask)
 }
