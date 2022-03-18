@@ -370,7 +370,8 @@ func (p *Palette) HalftonePattern(size int) []float32 {
 		}
 		d := dx*dx + dy*dy
 		// Compute angle as tie breaker.
-		a := math.Atan2(float64(dy), float64(dx))
+		// Negate Y to get mathematically positive angles and not clockwise.
+		a := math.Atan2(-float64(dy), float64(dx))
 		if a < 0 {
 			a += 2 * math.Pi
 		}
