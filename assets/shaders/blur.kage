@@ -22,7 +22,8 @@ var Add vec4
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
-	srcMax := srcOrigin + srcSize
+	srcTexel := 1.0 / imageSrcTextureSize()
+	srcMax := srcOrigin + srcSize - srcTexel
 	center := imageSrc0UnsafeAt(texCoord)
 	srcStep := Step * srcSize
 	other := vec4(0.0, 0.0, 0.0, 0.0)
