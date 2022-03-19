@@ -54,7 +54,7 @@ func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {
 		floor(pLut.b/LUTPerRow)*LUTSize+pLut.g,
 	)
 	pixelCoord := srcOrigin + pixel/srcImageSize
-	return imageSrc1UnsafeAt(pixelCoord)
+	return vec4(imageSrc1UnsafeAt(pixelCoord).rgb, 1.0)
 }
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
