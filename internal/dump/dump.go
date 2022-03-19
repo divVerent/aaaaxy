@@ -45,7 +45,7 @@ var (
 	dumpAudioCodecSettings  = flag.String("dump_audio_codec_settings", "-codec:a pcm_s16le", "FFmpeg settings for audio encoding; set to \"\" to disable the audio stream for -dump_media")
 	dumpMediaFormatSettings = flag.String("dump_media_format_settings", "-vsync vfr", "FFmpeg flags for muxing")
 	cheatDumpSlowAndGood    = flag.Bool("cheat_dump_slow_and_good", false, "non-realtime video dumping (slows down the game, thus considered a cheat))")
-	dumpMediaFrameTimeout   = flag.Duration("dump_media_frame_timeout", 15*time.Second, "maximum processing time per frame; after this time it is assumed that ffmpeg died and dumping ends")
+	dumpMediaFrameTimeout   = flag.Duration("dump_media_frame_timeout", 300*time.Second, "maximum processing time per frame; after this time it is assumed that ffmpeg died and dumping ends")
 )
 
 type Params struct {
