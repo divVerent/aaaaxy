@@ -18,9 +18,7 @@ package main
 var Scroll vec2
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
-	srcOrigin, srcSize := imageSrcRegionOnTexture()
-	srcTexel := 1.0 / imageSrcTextureSize()
-	srcMax := srcOrigin + srcSize - srcTexel
+	_, srcSize := imageSrcRegionOnTexture()
 	mask := imageSrc0UnsafeAt(texCoord)
 	curr := imageSrc1UnsafeAt(texCoord)
 	scrolled := texCoord + Scroll*srcSize
