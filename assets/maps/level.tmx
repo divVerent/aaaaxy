@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8188">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8193">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17837,6 +17837,21 @@
    <properties>
     <property name="map_black_to" type="color" value="#80ffff55"/>
     <property name="map_white_to" type="color" value="#ffffff55"/>
+   </properties>
+  </object>
+  <object id="8190" gid="317" x="3344" y="2224" width="64" height="96">
+   <properties>
+    <property name="map_black_to" type="color" value="#ff0000aa"/>
+    <property name="map_white_to" type="color" value="#000000aa"/>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
+  <object id="8191" gid="321" x="3360" y="2256" width="32" height="32"/>
+  <object id="8192" gid="317" x="3344" y="2208" width="64" height="16">
+   <properties>
+    <property name="map_black_to" type="color" value="#ff0000aa"/>
+    <property name="map_white_to" type="color" value="#ff0000aa"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
  </objectgroup>
