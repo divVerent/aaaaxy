@@ -14,14 +14,14 @@ require (
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.12
-	golang.org/x/image v0.0.0-20220302094943-723b81ca9867
-	golang.org/x/sys v0.0.0-20220310020820-b874c991c1a5
+	golang.org/x/image v0.0.0-20220321031419-a8550c1d254a
+	golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8
 )
 
 require (
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
-	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20211213063430-748e38ca8aec // indirect
+	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20220320163800-277f93cfa958 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
 	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.8 // indirect
