@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.1.251" date="2022-03-14">
-      <description><ul><li>Engine: improve palette dithering gradients.</li><li>Engine: new palettes: smb, and some flags.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.251</url>
+    <release version="v1.1.280" date="2022-03-21">
+      <description><ul><li>Level: better hint in Kaaaart Race.</li><li>Level: make clear where the "lap" starts in Kaaaart Race.</li><li>Level: fix another render glitch near the ending.</li><li>Video capture: higher default frame timeout; fixes timeout at end of capture.</li><li>Engine: improve handling of out-of-screen pixels when scrolling/blurring.</li><li>Engine: slightly speed up some shaders.</li><li>Engine: show game save errors when hitting a checkpoint.</li><li>Engine: add more dither modes.</li><li>Engine: minor module update.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.1.280</url>
     </release>
   </releases>
 </component>
