@@ -18,26 +18,6 @@ set -e
 root=$PWD
 out=$1; shift
 
-need=false
-for dir in "$@"; do
-	if ! [ "$out" -nt "$dir" ]; then
-		need=true
-		break
-	fi
-	for img in "$dir"/*.png; do
-		if ! [ "$out" -nt "$img" ]; then
-			need=true
-			break
-		fi
-	done
-	if $need; then
-		break
-	fi
-done
-if ! $need; then
-	exit 0
-fi
-
 # Load largest images first to optimize the BSP-based atlas ebiten generates.
 trap 'rm -f "$out"' EXIT
 for dir in "$@"; do
