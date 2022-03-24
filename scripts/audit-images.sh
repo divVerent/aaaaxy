@@ -26,6 +26,8 @@ find . -name \*.png | sort | while read -r file; do
 		./assets/sprites/magic_*.png) continue ;;
 		# Screenshots etc.
 		./docs/*) continue ;;
+		# SDL.
+		./third_party/SDL_GameControllerDB/*) continue ;;
 	esac
 	set -- \
 		"$file" -depth 8 +dither \
