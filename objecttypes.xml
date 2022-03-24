@@ -142,6 +142,7 @@
   <property name="alpha" type="string"/>
   <property name="border_pixels" type="int" default="0"/>
   <property name="delta" type="string"/>
+  <property name="hit_opaque" type="bool" default="false"/>
   <property name="image" type="string"/>
   <property name="image_dir" type="string"/>
   <property name="image_region" type="string"/>

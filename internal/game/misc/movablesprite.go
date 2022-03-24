@@ -32,7 +32,11 @@ func (s *MovableSprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 	if err != nil {
 		return err
 	}
-	s.Movable.Init(w, sp, e, level.ObjectSolidContents)
+	contents := level.ObjectSolidContents
+	if sp.Properties["hit_opaque"] == "true" {
+		contents = level.OpaqueContents
+	}
+	s.Movable.Init(w, sp, e, contents)
 	return nil
 }
 
