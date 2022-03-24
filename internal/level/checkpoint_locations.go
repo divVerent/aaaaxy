@@ -129,7 +129,7 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 		return nil, fmt.Errorf("could not decode checkpoint locations for %q: %v", filename, err)
 	}
 	var loc0 *CheckpointLocations
-	err0 := err
+	var err0 error
 	tryAtAngle := func(x, y int) {
 		if loc0 != nil {
 			return
@@ -138,6 +138,8 @@ func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, 
 		if err == nil {
 			log.Infof("note: loading checkpoint locations required rotation by 1 0 -> %v %v", x, y)
 			loc0, err0 = loc, nil
+		} else if err0 == nil {
+			err0 = err
 		}
 	}
 	// Try known solution.
