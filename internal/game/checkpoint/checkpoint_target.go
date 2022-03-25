@@ -52,7 +52,7 @@ func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *e
 
 	// Field contains orientation OF THE PLAYER to make it easier in the map editor.
 	// So it is actually a transform as far as this code is concerned.
-	requiredTransform, err := m.ParseOrientation(sp.Properties["required_orientation"])
+	requiredTransforms, err := m.ParseOrientations(sp.Properties["required_orientation"])
 	if err != nil {
 		return fmt.Errorf("could not parse required orientation: %v", err)
 	}
@@ -67,12 +67,17 @@ func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *e
 		}
 	}
 
-	if c.Entity.Transform == requiredTransform {
-		c.Flipped = false
-	} else if c.Entity.Transform == requiredTransform.Concat(m.FlipX()) {
-		c.Flipped = true
-	} else {
-		c.Inactive = true
+	c.Inactive = true
+	for _, requiredTransform := range requiredTransforms {
+		if c.Entity.Transform == requiredTransform {
+			c.Flipped = false
+			c.Inactive = false
+			break
+		} else if c.Entity.Transform == requiredTransform.Concat(m.FlipX()) {
+			c.Flipped = true
+			c.Inactive = false
+			break
+		}
 	}
 
 	c.Sound, err = sound.Load("checkpoint.ogg")

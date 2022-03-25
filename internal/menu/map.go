@@ -237,6 +237,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	selectedRouteColor := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
 	unseenPathToSeenCPColor := color.NRGBA{R: 255, G: 255, B: 255, A: 255}
 	unseenPathToUnseenCPColor := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
+	unseenPathBlinkColor := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := fun.FormatText(&s.Controller.World.PlayerState, s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties["text"])
 	seen, total := s.Controller.World.PlayerState.TnihSignsSeen(s.CurrentCP)
@@ -263,6 +264,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		}
 		cpPos[cpName] = pos
 	}
+	focusMissing := s.Controller.World.PlayerState.SpeedrunCategories().ContainAll(playerstate.AllCheckpointsSpeedrun)
+	revealSecrets := s.Controller.World.PlayerState.SpeedrunCategories().ContainAll(playerstate.AnyPercentSpeedrun | playerstate.AllCheckpointsSpeedrun)
+	focusSecrets := s.Controller.World.PlayerState.SpeedrunCategories().ContainAll(playerstate.AnyPercentSpeedrun | playerstate.AllCheckpointsSpeedrun | playerstate.AllPathsSpeedrun)
 	for z := 0; z < 3; z++ {
 		for _, cpName := range s.SortedLocs {
 			if s.Controller.World.PlayerState.CheckpointSeen(cpName) == playerstate.NotSeen {
@@ -276,15 +280,10 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				}
 				otherName := edge.Other
 				edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(cpName, otherName)
+				isSecret := s.Controller.World.Level.Checkpoints[otherName].Properties["secret"] == "true"
 				// Unseen edges leading to a secret are only drawn if the game has already been completed fully (Any% is not enough).
-				if !edgeSeen && s.Controller.World.Level.Checkpoints[otherName].Properties["secret"] == "true" {
-					if !s.Controller.World.PlayerState.SpeedrunCategories().ContainAll(playerstate.AnyPercentSpeedrun | playerstate.AllCheckpointsSpeedrun) {
-						continue
-					}
-					// Even if we draw them, make edges pointing at secrets flicker.
-					if rand.Intn(2) == 0 {
-						continue
-					}
+				if !edgeSeen && isSecret && !revealSecrets {
+					continue
 				}
 				endPos := cpPos[otherName]
 				color := takenRouteColor
@@ -305,11 +304,30 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					if edgeSeen {
 						continue
 					}
+
 					if s.Controller.World.PlayerState.CheckpointSeen(otherName) == playerstate.NotSeen {
 						color = unseenPathToUnseenCPColor
 					} else {
 						color = unseenPathToSeenCPColor
 					}
+
+					if focusMissing && rand.Intn(2) == 0 {
+						if focusSecrets {
+							// Once all CPs are hit and paths are set, blink secret paths.
+							if isSecret {
+								color = unseenPathBlinkColor
+							}
+						} else if revealSecrets {
+							// Once all CPs are hit, show secret paths and blink missing paths.
+							if !isSecret {
+								color = unseenPathBlinkColor
+							}
+						} else {
+							// By default, hide secret paths and blink missing paths.
+							color = unseenPathBlinkColor
+						}
+					}
+
 					endPos = pos.Add(endPos.Delta(pos).WithMaxLengthFixed(m.NewFixed(edgeFarAttachDistance)))
 				}
 				options := &ebiten.DrawTrianglesOptions{

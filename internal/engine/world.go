@@ -353,11 +353,11 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	cpTransform := m.Identity()
 	cpTransformStr := cpSp.Properties["required_orientation"]
 	if cpTransformStr != "" {
-		var err error
-		cpTransform, err = m.ParseOrientation(cpTransformStr)
+		cpTransforms, err := m.ParseOrientations(cpTransformStr)
 		if err != nil {
 			return fmt.Errorf("could not parse checkpoint orientation: %v", err)
 		}
+		cpTransform = cpTransforms[0]
 	}
 	if flipped {
 		cpTransform = cpTransform.Concat(m.FlipX())

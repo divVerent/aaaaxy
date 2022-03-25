@@ -678,7 +678,7 @@
     <property name="music" value="retro_chiptune_1.ogg"/>
     <property name="next_down" type="object" value="8201"/>
     <property name="next_right" type="object" value="1476"/>
-    <property name="required_orientation" value="ES"/>
+    <property name="required_orientation" value="ES SW"/>
     <property name="text" value="Endless Eight"/>
    </properties>
   </object>
@@ -18039,17 +18039,7 @@
   </object>
   <object id="8224" gid="36" x="4096" y="4720" width="32" height="16">
    <properties>
-    <property name="required_orientation" value="ES"/>
-   </properties>
-  </object>
-  <object id="8225" gid="36" x="4096" y="4720" width="32" height="16">
-   <properties>
-    <property name="required_orientation" value="WN"/>
-   </properties>
-  </object>
-  <object id="8226" gid="36" x="4096" y="4720" width="32" height="16">
-   <properties>
-    <property name="required_orientation" value="NE"/>
+    <property name="required_orientation" value="WN NE ES"/>
    </properties>
   </object>
   <object id="8231" gid="57" x="3630" y="4512" width="35" height="1"/>

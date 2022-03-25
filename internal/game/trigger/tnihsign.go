@@ -93,16 +93,19 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	// So it is actually a transform as far as this code is concerned.
 	orientationStr := sp.Properties["required_orientation"]
 	if orientationStr != "" {
-		requiredTransform, err := m.ParseOrientation(orientationStr)
+		requiredTransforms, err := m.ParseOrientations(orientationStr)
 		if err != nil {
 			return fmt.Errorf("could not parse required orientation: %v", err)
 		}
-		if e.Transform == requiredTransform {
-			// Normal.
-		} else if e.Transform == requiredTransform.Concat(m.FlipX()) {
-			// Normal.
-		} else {
-			// Hide.
+		show := false
+		for _, requiredTransform := range requiredTransforms {
+			if e.Transform == requiredTransform {
+				show = true
+			} else if e.Transform == requiredTransform.Concat(m.FlipX()) {
+				show = true
+			}
+		}
+		if !show {
 			e.Alpha = 0.0
 		}
 	}

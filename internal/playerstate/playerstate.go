@@ -439,6 +439,7 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 					continue
 				}
 				if !s.CheckpointsWalked(cp, next.Other) {
+					// log.Infof("MISSING PATH: %v %v", cp, next.Other)
 					cat &^= AllPathsSpeedrun
 				}
 			}
