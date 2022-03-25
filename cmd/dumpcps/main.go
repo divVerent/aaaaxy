@@ -139,7 +139,7 @@ func main() {
 			}
 			distance := 10
 			if nextSp.Properties["dead_end"] == "true" {
-				distance = 17
+				distance = 15
 			}
 			edge := &Edge{
 				WantDelta: conn.dir.Mul(distance),
@@ -164,6 +164,9 @@ func main() {
 			splines = false;
 			maxiter = 131072;
 			epsilon = 0.000001;
+			// mode = KK;
+			// model = circuit;
+			// model = subset;
 		`)
 	if err != nil {
 		log.Fatalf("failed to write to output: %v", err)

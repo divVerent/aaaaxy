@@ -61,6 +61,7 @@ sprites/magic_idle_5.png
 sprites/magic_idle_6.png
 sprites/magic_idle_7.png
 sprites/start.png
+sprites/weird_star_large.png
 sprites/bings_house.png
 sprites/huh.png
 sprites/moving_furniture.png
@@ -157,6 +158,7 @@ sprites/hub_topology.png
 sprites/need_a_platform.png
 sprites/recycle.png
 sprites/told_you_about_stairs.png
+sprites/weird_star_medium.png
 sprites/shruggie_body.png
 sprites/shruggie_shoulders.png
 sprites/caution.png
@@ -185,6 +187,7 @@ sprites/touch_jump.png
 sprites/touch_left.png
 sprites/touch_right.png
 sprites/touch_up.png
+sprites/weird_star_small.png
 sprites/noisemaker.png
 sprites/dopefish_lives.png
 sprites/door.png

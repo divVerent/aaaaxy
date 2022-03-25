@@ -57,13 +57,13 @@ jobs:
     - name: Fetch Test Cases
       env:
         REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
-      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v5.zip'
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v6.zip'
 
     - name: Extract Test Cases
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" ./aaaaxy *.dem'
+      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" ./aaaaxy *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -125,13 +125,13 @@ jobs:
     - name: Fetch Test Cases
       env:
         REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
-      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v5.zip'
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v6.zip'
 
     - name: Extract Test Cases
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'bash scripts/regression-test-demo.sh windows-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
+      run: 'bash scripts/regression-test-demo.sh windows-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -161,13 +161,13 @@ jobs:
     - name: Fetch Test Cases
       env:
         REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
-      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v5.zip'
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v6.zip'
 
     - name: Extract Test Cases
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh wine-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" "wine ./aaaaxy.exe" *.dem'
+      run: 'xvfb-run scripts/regression-test-demo.sh wine-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" "wine ./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -229,13 +229,13 @@ jobs:
     - name: Fetch Test Cases
       env:
         REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
-      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v5.zip'
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v6.zip'
 
     - name: Extract Test Cases
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'bash scripts/regression-test-demo.sh windows-386 "Your time: 0:17:42.850; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
+      run: 'bash scripts/regression-test-demo.sh windows-386 "your time: 0:18:27.566; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -288,7 +288,7 @@ jobs:
     - name: Fetch Test Cases
       env:
         REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
-      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v5.zip'
+      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v6.zip'
 
     - name: Extract Test Cases
       run: 'unzip testcases.zip'
@@ -298,7 +298,7 @@ jobs:
 
     - name: Test
       # NOTE: When changing the path ./aaaaxy, likely need to also change the CFBundleExecutable in scripts/Info.plist.sh.
-      run: 'scripts/regression-test-demo.sh darwin-amd64 "Your time: 0:17:42.850; your speedrun categories: Any%;" ./aaaaxy *.dem'
+      run: 'scripts/regression-test-demo.sh darwin-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" ./aaaaxy *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
