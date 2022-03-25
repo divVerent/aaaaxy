@@ -54,7 +54,7 @@ type MapScreen struct {
 const (
 	firstCP = "leap_of_faith"
 
-	edgeFarAttachDistance = 7
+	edgeFarAttachDistance = 9
 	edgeThickness         = 3
 	mouseDistance         = 16
 )
