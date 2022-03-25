@@ -40,17 +40,16 @@ var (
 		ebiten.KeyJ:    ViKeyboard,
 	}
 	jumpKeys = map[ebiten.Key]InputMap{
-		ebiten.KeyControl: DOSKeyboard,
-		ebiten.KeySpace:   DOSKeyboard | FPSKeyboard | ViKeyboard,
-		ebiten.KeyX:       NESKeyboard,
+		ebiten.KeySpace: DOSKeyboard | FPSKeyboard | ViKeyboard,
+		ebiten.KeyX:     NESKeyboard,
 	}
 	actionKeys = map[ebiten.Key]InputMap{
-		ebiten.KeyAlt:   DOSKeyboard,
-		ebiten.KeyShift: DOSKeyboard | FPSKeyboard | ViKeyboard,
-		ebiten.KeyE:     FPSKeyboard,
-		ebiten.KeyZ:     NESKeyboard,
-		ebiten.KeyTab:   FPSKeyboard | ViKeyboard,
-		ebiten.KeyEnter: DOSKeyboard | ViKeyboard,
+		ebiten.KeyControl: DOSKeyboard,
+		ebiten.KeyShift:   DOSKeyboard | FPSKeyboard | ViKeyboard,
+		ebiten.KeyE:       FPSKeyboard,
+		ebiten.KeyZ:       NESKeyboard,
+		ebiten.KeyTab:     FPSKeyboard | ViKeyboard,
+		ebiten.KeyEnter:   DOSKeyboard | ViKeyboard,
 	}
 	exitKeys = map[ebiten.Key]InputMap{
 		ebiten.KeyEscape:    AnyKeyboardWithEscape,

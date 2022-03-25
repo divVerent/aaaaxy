@@ -181,7 +181,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 				return "B", nil
 			}
 			if i.ContainsAny(input.DOSKeyboard) {
-				return "Alt/Shift", nil
+				return "Ctrl/Shift", nil
 			}
 			if i.ContainsAny(input.NESKeyboard) {
 				return "Z", nil
