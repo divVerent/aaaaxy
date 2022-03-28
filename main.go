@@ -28,9 +28,10 @@ import (
 )
 
 var (
-	debugCpuprofile = flag.String("debug_cpuprofile", "", "write CPU profile to file")
-	debugMemprofile = flag.String("debug_memprofile", "", "write memory profile to file")
-	debugLogFile    = flag.String("debug_log_file", "", "log file to write all messages to (may be slow)")
+	debugCpuprofile     = flag.String("debug_cpuprofile", "", "write CPU profile to file")
+	debugMemprofile     = flag.String("debug_memprofile", "", "write memory profile to file")
+	debugMemprofileRate = flag.Int("debug_memprofile_rate", runtime.MemProfileRate, "fraction of bytes to be included in -debug_memprofile")
+	debugLogFile        = flag.String("debug_log_file", "", "log file to write all messages to (may be slow)")
 )
 
 func runGame(game *aaaaxy.Game) error {
@@ -73,6 +74,12 @@ func main() {
 	}()
 
 	flag.Parse(aaaaxy.LoadConfig)
+
+	if *debugMemprofile != "" {
+		// Set the memory profile rate as soon as possible.
+		runtime.MemProfileRate = *debugMemprofileRate
+	}
+
 	if *debugLogFile != "" {
 		log.AddLogFile(*debugLogFile)
 	}
