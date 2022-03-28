@@ -43,7 +43,6 @@ var (
 )
 
 func Load(purpose, name string) (*ebiten.Image, error) {
-	name = vfs.Canonical(purpose, name)
 	ip := imagePath{purpose, name}
 	if img, found := cache[ip]; found {
 		return img, nil
@@ -91,7 +90,6 @@ func Precache() error {
 		line := listScanner.Text()
 		purpose := path.Dir(line)
 		name := path.Base(line)
-		name = vfs.Canonical(purpose, name)
 		item := imagePath{Purpose: purpose, Name: name}
 		if _, found := toLoad[item]; found {
 			_, err := Load(item.Purpose, item.Name)

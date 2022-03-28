@@ -40,8 +40,7 @@ func Load(name string, params map[string]string) (*ebiten.Shader, error) {
 	if !*debugUseShaders {
 		return nil, fmt.Errorf("shader support has been turned off using --debug_use_shaders=false")
 	}
-	cacheName := vfs.Canonical("shaders", name)
-	sp := shaderPath{cacheName, fmt.Sprint(params)}
+	sp := shaderPath{name, fmt.Sprint(params)}
 	if shader, found := cache[sp]; found {
 		return shader, nil
 	}

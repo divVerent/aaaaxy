@@ -153,7 +153,7 @@ func load(vfsPath string) (ReadSeekCloser, error) {
 	return nil, fmt.Errorf("could not open embed:%v: %w", vfsPath, err)
 }
 
-// readDir lists all files in a directory. Returns their VFS paths!
+// readDir lists all files in a directory. Returns their VFS names, NOT full paths!
 func readDir(vfsPath string) ([]string, error) {
 	var results []string
 	for _, dir := range embeddedAssetDirs {
@@ -165,7 +165,7 @@ func readDir(vfsPath string) ([]string, error) {
 			continue
 		}
 		for _, info := range content {
-			results = append(results, path.Join(vfsPath, info.Name()))
+			results = append(results, info.Name())
 		}
 	}
 	sort.Strings(results)

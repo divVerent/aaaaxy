@@ -71,8 +71,7 @@ type soundJson struct {
 // Load loads a sound effect.
 // Multiple Load calls to the same sound effect return the same cached instance.
 func Load(name string) (*Sound, error) {
-	cacheName := vfs.Canonical("sounds", name)
-	if sound, found := cache[cacheName]; found {
+	if sound, found := cache[name]; found {
 		return sound, nil
 	}
 	if cacheFrozen {
@@ -113,7 +112,7 @@ func Load(name string) (*Sound, error) {
 		loopStart:    config.LoopStart,
 		loopEnd:      config.LoopEnd,
 	}
-	cache[cacheName] = sound
+	cache[name] = sound
 	return sound, nil
 }
 

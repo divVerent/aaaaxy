@@ -296,7 +296,7 @@ func (l *Level) applyTileMod(startTile, endTile m.Pos, mods map[string]string) {
 
 func FetchTileset(ts *tmx.TileSet) error {
 	if ts.Source != "" {
-		r, err := vfs.Load("", ts.Source)
+		r, err := vfs.LoadPath("tiles", ts.Source)
 		if err != nil {
 			return fmt.Errorf("could not open tileset: %v", err)
 		}

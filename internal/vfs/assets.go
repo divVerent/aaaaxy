@@ -15,8 +15,10 @@
 package vfs
 
 import (
+	"fmt"
 	"io"
 	"path"
+	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -28,28 +30,27 @@ type ReadSeekCloser interface {
 	io.Closer
 }
 
-// Canonical returns the canonical name of the given asset.
-// If Canonical returns the same string, Load will load the same asset.
-func Canonical(purpose, name string) string {
-	if name == "" {
-		return ""
-	}
-	if purpose == "" {
-		purpose = path.Base(path.Dir(name))
+func LoadPath(purpose, name string) (ReadSeekCloser, error) {
+	override := path.Base(path.Dir(name))
+	if override != "" {
+		purpose = override
 	}
 	name = path.Base(name)
-	return path.Join("/", purpose, name)
+	return Load(purpose, name)
 }
 
-func Load(purpose string, name string) (ReadSeekCloser, error) {
-	vfsPath := Canonical(purpose, name)
+func Load(purpose, name string) (ReadSeekCloser, error) {
+	if strings.ContainsRune(name, '/') {
+		log.Fatalf("noncanonical path: %v %v", purpose, name)
+	}
+	vfsPath := fmt.Sprintf("/%s/%s", purpose, name)
 	log.Debugf("loading %v", vfsPath)
 	return load(vfsPath)
 }
 
 // ReadDir lists all files in a directory. Returns their VFS paths!
 func ReadDir(purpose string) ([]string, error) {
-	vfsPath := path.Join("/", path.Base(purpose))
+	vfsPath := fmt.Sprintf("/%s", purpose)
 	log.Debugf("listing %v", vfsPath)
 	return readDir(vfsPath)
 }

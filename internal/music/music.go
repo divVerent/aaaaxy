@@ -112,8 +112,7 @@ func Now() time.Duration {
 // Switch switches from the currently playing music to the given track.
 // Passing an empty string means fading to silence.
 func Switch(name string) {
-	cacheName := vfs.Canonical("music", name)
-	if cacheName == currentName {
+	if name == currentName {
 		return
 	}
 
@@ -124,11 +123,11 @@ func Switch(name string) {
 		player = nil
 	} else {
 		// Have no player. Then there are two cases.
-		if cacheName == prevName && prevMusic != nil {
+		if name == prevName && prevMusic != nil {
 			// Back to last track? See if we can restore it.
 			restored := prevMusic.RestoreIn(*musicRestoreTime)
 			if restored != nil {
-				currentName, player = cacheName, restored
+				currentName, player = name, restored
 				prevName, prevMusic = "", nil
 				return
 			}
@@ -139,10 +138,10 @@ func Switch(name string) {
 	}
 
 	// Switch to it.
-	currentName = cacheName
+	currentName = name
 
 	// If we're playing silence, we're done.
-	if cacheName == "" {
+	if name == "" {
 		return
 	}
 
