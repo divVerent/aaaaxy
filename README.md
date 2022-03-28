@@ -22,8 +22,6 @@ Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy)
 
 [Or from Itch](https://divverent.itch.io/aaaaxy)
 
-[Or from Game Jolt](https://gamejolt.com/games/AAAAXY/682854)
-
 ## Screenshots
 
 [![shot1](https://divVerent.github.io/aaaaxy/screenshots/shot1.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot1.png)
