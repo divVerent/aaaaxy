@@ -7550,7 +7550,7 @@
   <object id="2329" gid="312" x="1120" y="128" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="2325"/>
-    <property name="text" value="A hollow voice says 'fool'."/>
+    <property name="text" value="A hollow voice says 'fool'.  Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="2330" gid="309" x="1072" y="304" width="16" height="16"/>
