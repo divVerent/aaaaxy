@@ -47,6 +47,8 @@ type World struct {
 
 	// tiles are all tiles currently loaded.
 	tiles []*level.Tile
+	// markedTilesBuffer has the same size as tiles and is used when updating visibility.
+	markedTilesBuffer []m.Pos
 	// incarnations are all currently existing entity incarnations.
 	incarnations map[EntityIncarnation]struct{}
 	// entities are all entities currently loaded.
@@ -375,6 +377,7 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	w.clearEntities()
 	w.link(w.Player)
 	w.tiles = make([]*level.Tile, tileWindowWidth*tileWindowHeight)
+	w.markedTilesBuffer = make([]m.Pos, tileWindowWidth*tileWindowHeight)
 	w.setScrollPos(cpSp.LevelPos.Mul(level.TileSize)) // Scroll the tile into view.
 	w.setTile(cpSp.LevelPos, &tile)
 
@@ -637,7 +640,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	// Also mark all neighbors of hit tiles hit (up to expandTiles).
 	// For multiple expansion, need to do this in steps so initially we only base expansion on visible tiles.
 	timing.Section("expand")
-	markedTiles := []m.Pos{}
+	markedTiles := w.markedTilesBuffer[:0]
 	justTraced := w.frameVis | level.TracedVis
 	w.forEachTile(func(tilePos m.Pos, tile *level.Tile) {
 		if tile.VisibilityFlags == justTraced {
@@ -681,7 +684,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	timing.Section("despawn_search")
 	w.entities.forEach(func(ent *Entity) error {
 		tp0, tp1 := tilesBox(ent.Rect)
-		var pos *m.Pos
+		var pos m.Pos
+		havePos := false
 	DESPAWN_SEARCH:
 		for y := tp0.Y; y <= tp1.Y; y++ {
 			for x := tp0.X; x <= tp1.X; x++ {
@@ -691,14 +695,15 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 					continue
 				}
 				if tile.VisibilityFlags&level.FrameVis == w.frameVis {
-					pos = &tp
+					pos = tp
+					havePos = true
 					break DESPAWN_SEARCH
 				}
 			}
 		}
-		if pos != nil {
+		if havePos {
 			if ent.RequireTiles {
-				w.LoadTilesForTileBox(tp0, tp1, *pos)
+				w.LoadTilesForTileBox(tp0, tp1, pos)
 				for y := tp0.Y; y <= tp1.Y; y++ {
 					for x := tp0.X; x <= tp1.X; x++ {
 						tp := m.Pos{X: x, Y: y}
