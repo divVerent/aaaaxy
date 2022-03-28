@@ -10,7 +10,7 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/google/go-cmp v0.5.7
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.3.0-alpha.5.0.20220305154044-35f268dfc354
+	github.com/hajimehoshi/ebiten/v2 v2.3.0-alpha.5.0.20220326164952-2d912a2387d3
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.7.15
@@ -22,9 +22,10 @@ require (
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20220320163800-277f93cfa958 // indirect
+	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
-	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.8 // indirect
+	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.8.0.20220324173401-b1c7eb112a82 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jezek/xgb v1.0.0 // indirect
