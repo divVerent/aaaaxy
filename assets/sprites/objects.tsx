@@ -54,7 +54,7 @@
  </tile>
  <tile id="9" type="Sprite">
   <properties>
-   <property name="image_dir" value="sprites"/>
+   <property name="image_dir" value=""/>
    <property name="no_transform" type="bool" value="true"/>
    <property name="player_solid" type="bool" value="true"/>
   </properties>
@@ -62,7 +62,7 @@
  </tile>
  <tile id="10" type="Sprite">
   <properties>
-   <property name="image_dir" value="sprites"/>
+   <property name="image_dir" value=""/>
    <property name="no_transform" type="bool" value="true"/>
    <property name="object_solid" type="bool" value="true"/>
   </properties>
@@ -139,18 +139,21 @@
  <tile id="24" type="Sprite">
   <properties>
    <property name="image_dir" value=""/>
+   <property name="image" value="gradient_left_right.png"/>
   </properties>
   <image width="16" height="16" source="_editorimgs/gradient_left_right.png"/>
  </tile>
  <tile id="25" type="Sprite">
   <properties>
    <property name="image_dir" value=""/>
+   <property name="image" value="gradient_top_bottom.png"/>
   </properties>
   <image width="16" height="16" source="_editorimgs/gradient_top_bottom.png"/>
  </tile>
  <tile id="26" type="Sprite">
   <properties>
    <property name="image_dir" value=""/>
+   <property name="image" value="gradient_outside_inside.png"/>
   </properties>
   <image width="16" height="16" source="_editorimgs/gradient_outside_inside.png"/>
  </tile>
@@ -242,7 +245,7 @@
  </tile>
  <tile id="39" type="Sprite">
   <properties>
-   <property name="image_dir" value="sprites"/>
+   <property name="image_dir" value=""/>
    <property name="object_solid" type="bool" value="true"/>
   </properties>
   <image width="3" height="5" source="miniobjectclip.png"/>
@@ -314,7 +317,7 @@
  </tile>
  <tile id="49" type="Sprite">
   <properties>
-   <property name="image_dir" value="sprites"/>
+   <property name="image_dir" value=""/>
   </properties>
   <image width="8" height="8" source="police.png"/>
  </tile>

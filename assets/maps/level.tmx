@@ -742,19 +742,19 @@
   <object id="101" type="Sprite" x="3888" y="5232" width="64" height="64">
    <properties>
     <property name="image" value="hub_topology.png"/>
-    <property name="image_dir" value="sprites"/>
+    <property name="no_flip" value="x"/>
    </properties>
   </object>
   <object id="102" type="Sprite" x="3984" y="5232" width="64" height="64">
    <properties>
     <property name="image" value="hub_references.png"/>
-    <property name="image_dir" value="sprites"/>
+    <property name="no_flip" value="x"/>
    </properties>
   </object>
   <object id="103" type="Sprite" x="4080" y="5232" width="64" height="64">
    <properties>
     <property name="image" value="hub_infinity.png"/>
-    <property name="image_dir" value="sprites"/>
+    <property name="no_flip" value="x"/>
    </properties>
   </object>
   <object id="104" gid="313" x="3456" y="5440" width="16" height="16"/>
@@ -6663,19 +6663,19 @@
   <object id="1715" type="Sprite" x="4208" y="1776" width="64" height="64">
    <properties>
     <property name="image" value="antihub_topology.png"/>
-    <property name="image_dir" value="sprites"/>
+    <property name="no_flip" value="x"/>
    </properties>
   </object>
   <object id="1716" type="Sprite" x="4304" y="1776" width="64" height="64">
    <properties>
     <property name="image" value="antihub_references.png"/>
-    <property name="image_dir" value="sprites"/>
+    <property name="no_flip" value="x"/>
    </properties>
   </object>
   <object id="1717" type="Sprite" x="4400" y="1776" width="64" height="64">
    <properties>
     <property name="image" value="antihub_infinity.png"/>
-    <property name="image_dir" value="sprites"/>
+    <property name="no_flip" value="x"/>
    </properties>
   </object>
   <object id="1718" gid="312" x="4320" y="1600" width="32" height="32">
