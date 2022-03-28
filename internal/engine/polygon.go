@@ -37,14 +37,31 @@ func makeVertex(geoM, texM *ebiten.GeoM, p m.Pos, r, g, b, a float32) ebiten.Ver
 	}
 }
 
-// drawAntiPolygonAround draws all pixels except for the ones covered by the polygon.
-// The polygon must have the property that any line from center to a point on an edge is entirely within the polygon.
-// This property is retained during Minkowski expansion.
+var (
+	polyVerts   []ebiten.Vertex
+	polyIndices []uint16
+)
+
+func allocVerts(verts int) []ebiten.Vertex {
+	if cap(polyVerts) < verts {
+		polyVerts = make([]ebiten.Vertex, 2*verts)
+	}
+	return polyVerts[:verts]
+}
+
+func allocIndices(indices int) []uint16 {
+	if cap(polyIndices) < indices {
+		polyIndices = make([]uint16, 2*indices)
+	}
+	return polyIndices[:indices]
+}
+
+// drawPolygonAround draws a filled polygon.
 func drawPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, src *ebiten.Image, color color.Color, geoM, texM ebiten.GeoM, options *ebiten.DrawTrianglesOptions) {
 	rI, gI, bI, aI := color.RGBA()
 	r, g, b, a := float32(rI)/65535.0, float32(gI)/65535.0, float32(bI)/65535.0, float32(aI)/65535.0
-	eVerts := make([]ebiten.Vertex, len(vertices)+1)
-	eIndices := make([]uint16, 3*len(vertices))
+	eVerts := allocVerts(len(vertices) + 1)
+	eIndices := allocIndices(3 * len(vertices))
 	eVerts[0] = makeVertex(&geoM, &texM, center, r, g, b, a)
 	for i, vert := range vertices {
 		eVerts[i+1] = makeVertex(&geoM, &texM, vert, r, g, b, a)
@@ -65,8 +82,8 @@ func drawPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, src *e
 func drawAntiPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, src *ebiten.Image, color color.Color, geoM, texM ebiten.GeoM, options *ebiten.DrawTrianglesOptions) {
 	rI, gI, bI, aI := color.RGBA()
 	r, g, b, a := float32(rI)/65535.0, float32(gI)/65535.0, float32(bI)/65535.0, float32(aI)/65535.0
-	eVerts := make([]ebiten.Vertex, len(vertices)*2)
-	eIndices := make([]uint16, 6*len(vertices))
+	eVerts := allocVerts(len(vertices) * 2)
+	eIndices := allocIndices(6 * len(vertices))
 	c := makeVertex(&geoM, &texM, center, r, g, b, a)
 	for i, vert := range vertices {
 		v := makeVertex(&geoM, &texM, vert, r, g, b, a)
