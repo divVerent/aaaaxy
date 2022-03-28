@@ -25,8 +25,8 @@ func init() {
 	// Turn off DirectX for now, it's not stable in Ebiten yet.
 	// This can be overridden by explicitly setting EBITEN_GRAPHICS_LIBRARY to "auto" or "directx".
 	// TODO(rpolzer): remove when Ebiten 2.3 is released.
-	driver := os.GetEnv("EBITEN_GRAPHICS_LIBRARY")
+	driver := os.Getenv("EBITEN_GRAPHICS_LIBRARY")
 	if driver == "" {
-		os.SetEnv("EBITEN_GRAPHICS_LIBRARY", "opengl")
+		os.Setenv("EBITEN_GRAPHICS_LIBRARY", "opengl")
 	}
 }
