@@ -18,24 +18,14 @@
 package vfs
 
 import (
-	"errors"
 	"fmt"
 	"io/ioutil"
-	"os"
-	"path"
 	"path/filepath"
-	"sort"
-
-	"github.com/divVerent/aaaaxy/internal/log"
 )
 
-var (
-	localAssetDirs []string
-)
-
-// initAssets initializes the VFS. Must run after loading the assets.
+// initAssets initializes the VFS.
 func initAssets() error {
-	localAssetDirs = []string{"assets"}
+	dirs := []string{"assets"}
 	content, err := ioutil.ReadDir("third_party")
 	if err != nil {
 		return fmt.Errorf("could not find local third party directory: %v", err)
@@ -44,41 +34,17 @@ func initAssets() error {
 		if !info.IsDir() {
 			continue
 		}
-		localAssetDirs = append(localAssetDirs, filepath.Join("third_party", info.Name(), "assets"))
+		dirs = append(dirs, filepath.Join("third_party", info.Name(), "assets"))
 	}
-	log.Debugf("local asset search path: %v", localAssetDirs)
-	return nil
+	return initLocalAssets(dirs)
 }
 
 // load loads a file from the VFS.
 func load(vfsPath string) (ReadSeekCloser, error) {
-	var err error
-	for _, dir := range localAssetDirs {
-		var r ReadSeekCloser
-		r, err = os.Open(path.Join(dir, vfsPath))
-		if err != nil {
-			continue
-		}
-		return r, nil
-	}
-	return nil, fmt.Errorf("could not open local:%v: %w", vfsPath, err)
+	return loadLocal(vfsPath)
 }
 
 // readDir lists all files in a directory. Returns their VFS names, NOT full paths!
 func readDir(vfsPath string) ([]string, error) {
-	var results []string
-	for _, dir := range localAssetDirs {
-		content, err := ioutil.ReadDir(path.Join(dir, vfsPath))
-		if err != nil {
-			if !errors.Is(err, os.ErrNotExist) {
-				return nil, fmt.Errorf("could not scan local:%v:%v: %v", vfsPath, dir, err)
-			}
-			continue
-		}
-		for _, info := range content {
-			results = append(results, info.Name())
-		}
-	}
-	sort.Strings(results)
-	return results, nil
+	return readLocalDir(vfsPath)
 }
