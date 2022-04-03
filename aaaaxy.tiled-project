@@ -6,5 +6,5 @@
     "folders": [
         "."
     ],
-    "objectTypesFile": "objecttypes.xml"
+    "objectTypesFile": "assets/objecttypes.xml"
 }
