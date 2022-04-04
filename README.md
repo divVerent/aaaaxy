@@ -83,6 +83,30 @@ You can also immediately compile and run the game using:
 make run
 ```
 
+## Editing
+
+### In a Source Checkout
+
+Use Tiled on the included `aaaaxy.tiled-project`. The map is in
+`assets/maps/level.tmx`.
+
+If checkpoints were changed, run `make assets-update` to regenerate the
+checkpoint map.
+
+`make run` will use the modified data.
+
+### On a Release Binary
+
+Run the game with `-dump_embedded_assets=/path/to/folder/for/editing`.
+Download the `mappingsupport` pack from the release and extract it to
+that same directory. Tell Tiled to use the included \`objecttypes.xml.
+
+Running the game with
+`-cheat_replace_embedded_assets=/path/to/folder/for/editing` will then
+use the modified data.
+
+Changing checkpoints is not supported this way.
+
 ## Mathematical Notes
 
 This game does not take place in the Euclidean space you're used to -
