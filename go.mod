@@ -10,12 +10,12 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/google/go-cmp v0.5.7
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.3.0-alpha.5.0.20220326164952-2d912a2387d3
+	github.com/hajimehoshi/ebiten/v2 v2.3.0-alpha.7.0.20220406024846-ad66c3d90bdc
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/ncruces/zenity v0.7.15
+	github.com/ncruces/zenity v0.8.2
 	golang.org/x/image v0.0.0-20220321031419-a8550c1d254a
-	golang.org/x/sys v0.0.0-20220327210214-530d0810a4d0
+	golang.org/x/sys v0.0.0-20220406163625-3f8b81556e12
 )
 
 require (
@@ -25,7 +25,7 @@ require (
 	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
-	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.8.0.20220324173401-b1c7eb112a82 // indirect
+	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.9 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jezek/xgb v1.0.0 // indirect
@@ -34,6 +34,7 @@ require (
 	github.com/josephspurrier/goversioninfo v1.4.0 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
+	github.com/ncruces/go-strftime v0.1.6 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
@@ -41,10 +42,10 @@ require (
 	github.com/src-d/gcfg v1.4.0 // indirect
 	github.com/xanzy/ssh-agent v0.2.1 // indirect
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
-	golang.org/x/mod v0.6.0-dev.0.20211013180041-c96bc1413d57 // indirect
+	golang.org/x/mod v0.6.0-dev.0.20220106191415-9b9b3d81d5e3 // indirect
 	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/tools v0.1.8-0.20211029000441-d6a9af8af023 // indirect
+	golang.org/x/tools v0.1.10 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	gopkg.in/src-d/go-billy.v4 v4.3.2 // indirect
 	gopkg.in/src-d/go-git.v4 v4.13.1 // indirect
@@ -55,12 +56,12 @@ require (
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
 	golang.org/x/exp v0.0.0-20220126164734-073fb1339172 // indirect
-	golang.org/x/mobile v0.0.0-20220325161704-447654d348e3 // indirect
+	golang.org/x/mobile v0.0.0-20220407111146-e579adbbc4a2 // indirect
 )
 
-// Switch to backported speedups to Ebiten 2.2.5.
+// Switch to backported speedups to Ebiten 2.2.6.
 // May want to keep backporting until 2.3.0 is out.
-// replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.3.0-speedup.2.2.5.1
+// replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.3.0-speedup.2.2.6.1
 
 // Use when playing around with extended/fixed tmx versions.
 // replace github.com/fardog/tmx => github.com/divVerent/tmx v0.0.0-20210504110059-b8d75006ad02
