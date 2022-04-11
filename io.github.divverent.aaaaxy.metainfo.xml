@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.4" date="2022-03-28">
-      <description><ul><li>Level: add a new secret room (thus minor version bump). VERY well hidden though :)</li><li>Level: In Tower of Impossible: make the "impossible button" more conspicuous.</li><li>Engine: reduced runtime memory allocation by 70%.</li><li>Engine: update Ebiten to fix crashes on some laptops where the keyboard was detected as a gamepad with way too many buttons. Do NOT enable DirectX yet - that is for when Ebiten 2.3.0 is out :)</li><li>Engine: do not map the Alt key - this is annoying on Windows. Use Ctrl instead.</li><li>MovableSprite: add hit_opaque property.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.4</url>
+    <release version="v1.2.15" date="2022-04-11">
+      <description><ul><li>Game: first release with some minor official mapping support without recompiling the game.</li><li>Engine: update Ebiten. We're currently tracking main until Ebiten v2.3.0 is out.</li><li>Map: oops, forgot a "press escape" in one of the secret rooms.</li><li>Menu: smaller checkmark so remaining paths are more visible.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.15</url>
     </release>
   </releases>
 </component>
