@@ -105,5 +105,5 @@ xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 scripts/itch-upload.sh "$new"
 xdg-open https://itch.io/dashboard/game/1199736/devlog
 
-# Gamejolt.
-xdg-open https://gamejolt.com/dashboard/games/682854/packages
+# Pling.
+xdg-open https://www.pling.com/p/1758731/edit
