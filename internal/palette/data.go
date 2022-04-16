@@ -173,6 +173,32 @@ var data = map[string]*Palette{
 		0xFFFFFF,
 	}),
 
+	// My favorite ANSI palette variant. Good color contrast.
+	// General rule: greys like EGA, but other colors are all
+	// of form:
+	// - one FF two 00 (color cube corner)
+	// - two 80 one 00 (color cube side midpoint)
+	// - two 80 one FF (color cube side midpoint)
+	// - one 00 two FF (color cube corner)
+	"div0": newPalette(0, []uint32{
+		0x000000,
+		0x0000FF,
+		0x00FF00,
+		0x008080,
+		0xFF0000,
+		0x808000,
+		0x800080,
+		0xAAAAAA,
+		0x555555,
+		0x8080FF,
+		0x80FF80,
+		0x00FFFF,
+		0xFF8080,
+		0xFF00FF,
+		0xFFFF00,
+		0xFFFFFF,
+	}),
+
 	// The original IBM VGA palette, with colors too close to EGA colors commented out.
 	"vga": newPalette(16, []uint32{
 		0x000000,
