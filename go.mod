@@ -10,12 +10,12 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/google/go-cmp v0.5.7
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.3.0-alpha.7.0.20220406024846-ad66c3d90bdc
+	github.com/hajimehoshi/ebiten/v2 v2.3.0-rc.2
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.8.2
-	golang.org/x/image v0.0.0-20220321031419-a8550c1d254a
-	golang.org/x/sys v0.0.0-20220406163625-3f8b81556e12
+	golang.org/x/image v0.0.0-20220413100746-70e8d0d3baa9
+	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad
 )
 
 require (
@@ -25,7 +25,7 @@ require (
 	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
-	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.9 // indirect
+	github.com/hajimehoshi/oto/v2 v2.2.0-alpha.0.20220412120745-f6e9a2704f46 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jezek/xgb v1.0.0 // indirect
@@ -56,7 +56,7 @@ require (
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
 	golang.org/x/exp v0.0.0-20220126164734-073fb1339172 // indirect
-	golang.org/x/mobile v0.0.0-20220407111146-e579adbbc4a2 // indirect
+	golang.org/x/mobile v0.0.0-20220414153400-ce6a79cf6a13 // indirect
 )
 
 // Switch to backported speedups to Ebiten 2.2.6.
