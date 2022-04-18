@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.15" date="2022-04-11">
-      <description><ul><li>Game: first release with some minor official mapping support without recompiling the game.</li><li>Engine: update Ebiten. We're currently tracking main until Ebiten v2.3.0 is out.</li><li>Map: oops, forgot a "press escape" in one of the secret rooms.</li><li>Menu: smaller checkmark so remaining paths are more visible.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.15</url>
+    <release version="v1.2.19" date="2022-04-18">
+      <description><ul><li>Engine: update Ebiten.</li><li>Engine: add my own favorite palette. A variant of EGA that is slightly more colorblind friendly.</li><li>Build script: update on Pling in the future.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.19</url>
     </release>
   </releases>
 </component>
