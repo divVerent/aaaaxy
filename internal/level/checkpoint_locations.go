@@ -269,7 +269,7 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 	}
 
 	// assignEdge creates a required two-sided edge from a to b.
-	assignEdge := func(a, b string, dir m.Delta) bool {
+	assignEdge := func(a, b string, dir m.Delta, forward bool) bool {
 		la := loc.Locs[a]
 		if _, found := la.NextByDir[dir]; found {
 			return false
@@ -281,11 +281,11 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 		}
 		la.NextByDir[dir] = CheckpointEdge{
 			Other:   b,
-			Forward: true,
+			Forward: forward,
 		}
 		lb.NextByDir[revDir] = CheckpointEdge{
 			Other:   a,
-			Forward: false,
+			Forward: !forward,
 		}
 		return true
 	}
@@ -316,7 +316,11 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 		cp  string
 		dir m.Delta
 	}
-	quadMap := make(map[quadrant][]string)
+	type quadEdge struct {
+		other   string
+		forward bool
+	}
+	quadMap := make(map[quadrant][]quadEdge)
 	for _, edge := range edges {
 		la := loc.Locs[edge.a]
 		lb := loc.Locs[edge.b]
@@ -332,13 +336,13 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 				cp:  edge.a,
 				dir: dir,
 			}
-			quadMap[key] = append(quadMap[key], edge.b)
+			quadMap[key] = append(quadMap[key], quadEdge{other: edge.b, forward: true})
 			revDir := dir.Mul(-1)
 			key = quadrant{
 				cp:  edge.b,
 				dir: revDir,
 			}
-			quadMap[key] = append(quadMap[key], edge.a)
+			quadMap[key] = append(quadMap[key], quadEdge{other: edge.a, forward: false})
 		}
 		maybeAddToQuadrant(m.Delta{DX: 1, DY: 1})
 		maybeAddToQuadrant(m.Delta{DX: 1, DY: -1})
@@ -371,25 +375,25 @@ reprioritize:
 		}
 		// Precisely two others. The assignment is unique and well defined.
 		la := loc.Locs[quad.cp]
-		lb0 := loc.Locs[others[0]]
-		lb1 := loc.Locs[others[1]]
+		lb0 := loc.Locs[others[0].other]
+		lb1 := loc.Locs[others[1].other]
 		delta0 := lb0.MapPos.Delta(la.MapPos)
 		delta1 := lb1.MapPos.Delta(la.MapPos)
 		// Assign the straighter one to its preferred dir, and the less straight one to the remaining dir.
 		if unstraightness(delta0).Less(unstraightness(delta1)) {
 			bestDir, _ := possibleDirs(delta0)
-			if !assignEdge(quad.cp, others[0], bestDir) {
+			if !assignEdge(quad.cp, others[0].other, bestDir, others[0].forward) {
 				collectError("could not fulfill forced first assignment in a quadrant: %v -> %v (%v -> %v)", quad, others, la, lb0)
 			}
-			if !assignEdge(quad.cp, others[1], quad.dir.Sub(bestDir)) {
+			if !assignEdge(quad.cp, others[1].other, quad.dir.Sub(bestDir), others[1].forward) {
 				collectError("could not fulfill forced second assignment in a quadrant: %v -> %v (%v -> %v)", quad, others, la, lb1)
 			}
 		} else {
 			bestDir, _ := possibleDirs(delta1)
-			if !assignEdge(quad.cp, others[1], bestDir) {
+			if !assignEdge(quad.cp, others[1].other, bestDir, others[0].forward) {
 				collectError("could not fulfill forced first assignment in a quadrant: %v -> %v (%v -> %v)", quad, others, la, lb1)
 			}
-			if !assignEdge(quad.cp, others[0], quad.dir.Sub(bestDir)) {
+			if !assignEdge(quad.cp, others[0].other, quad.dir.Sub(bestDir), others[1].forward) {
 				collectError("could not fulfill forced second assignment in a quadrant: %v -> %v (%v -> %v)", quad, others, la, lb0)
 			}
 		}
@@ -429,8 +433,8 @@ reprioritize:
 		delta := lb.MapPos.Delta(la.MapPos)
 		bestDir, otherDir := possibleDirs(delta)
 
-		if !assignEdge(edge.a, edge.b, bestDir) {
-			if !assignEdge(edge.a, edge.b, otherDir) {
+		if !assignEdge(edge.a, edge.b, bestDir, true) {
+			if !assignEdge(edge.a, edge.b, otherDir, true) {
 				if edge.priority < 1 {
 					edge.priority++
 					goto reprioritize
