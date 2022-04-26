@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.19" date="2022-04-18">
-      <description><ul><li>Engine: update Ebiten.</li><li>Engine: add my own favorite palette. A variant of EGA that is slightly more colorblind friendly.</li><li>Build script: update on Pling in the future.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.19</url>
+    <release version="v1.2.23" date="2022-04-25">
+      <description><ul><li>Engine: update Ebiten and Oto. Ebiten 2.3.0 is out!</li><li>Menu: fix the forward bit when assigning edges.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.23</url>
     </release>
   </releases>
 </component>
