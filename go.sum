@@ -139,13 +139,13 @@ github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0/go.mod h1:8NvIoxWQoOIhqOTXgf
 github.com/grpc-ecosystem/grpc-gateway v1.9.5/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
 github.com/hajimehoshi/bitmapfont/v2 v2.2.0 h1:E6vzlchynZj6OVohVKFqWkKW348EmDW62K5zPXDi7A8=
 github.com/hajimehoshi/bitmapfont/v2 v2.2.0/go.mod h1:Llj2wTYXMuCTJEw2ATNIO6HbFPOoBYPs08qLdFAxOsQ=
-github.com/hajimehoshi/ebiten/v2 v2.3.0-rc.3 h1:nPGapkgrJS4Aje0qsmbWY4r+OmcUqfLOf47elLA3/e8=
-github.com/hajimehoshi/ebiten/v2 v2.3.0-rc.3/go.mod h1:Utq04tLHimraRJfpdB1dcKXE4RGZXPrYKrsn4Cxn2Mk=
+github.com/hajimehoshi/ebiten/v2 v2.3.0 h1:+mN1o9VWDa/n15CvlTw5bnOkmAriGUTgd7MUc7NZFrw=
+github.com/hajimehoshi/ebiten/v2 v2.3.0/go.mod h1:MSVpCRgFyOsDA2HWNPEiBz7aOjESNulTWwD31Ud9n5c=
 github.com/hajimehoshi/file2byteslice v0.0.0-20210813153925-5340248a8f41/go.mod h1:CqqAHp7Dk/AqQiwuhV1yT2334qbA/tFWQW0MD2dGqUE=
 github.com/hajimehoshi/go-mp3 v0.3.3/go.mod h1:qMJj/CSDxx6CGHiZeCgbiq2DSUkbK0UbtXShQcnfyMM=
 github.com/hajimehoshi/oto v0.6.1 h1:7cJz/zRQV4aJvMSSRqzN2TImoVVMpE0BCY4nrNJaDOM=
 github.com/hajimehoshi/oto v0.6.1/go.mod h1:0QXGEkbuJRohbJaxr7ZQSxnju7hEhseiPx2hrh6raOI=
-github.com/hajimehoshi/oto/v2 v2.1.0-rc.1/go.mod h1:9i0oYbpJ8BhVGkXDKdXKfFthX1JUNfXjeTp944W8TGM=
+github.com/hajimehoshi/oto/v2 v2.1.0/go.mod h1:9i0oYbpJ8BhVGkXDKdXKfFthX1JUNfXjeTp944W8TGM=
 github.com/hajimehoshi/oto/v2 v2.2.0-alpha.1 h1:0eBEq+EGOv4o9U8LD81Qs5pLg0/3X337qKx4DVQlrHQ=
 github.com/hajimehoshi/oto/v2 v2.2.0-alpha.1/go.mod h1:9i0oYbpJ8BhVGkXDKdXKfFthX1JUNfXjeTp944W8TGM=
 github.com/hashicorp/consul/api v1.3.0/go.mod h1:MmDNSzIMUjNpY/mQ398R4bk2FnqQLoPndWW5VkKPlCE=
