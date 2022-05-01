@@ -17905,7 +17905,7 @@
   </object>
   <object id="8206" name="WeirdSpaceDelay" type="DelayTarget" x="3632" y="4544" width="32" height="16">
    <properties>
-    <property name="delay" value="0.44s"/>
+    <property name="delay" value="0.43s"/>
     <property name="target" value="!WeirdSpaceDelay WeirdSpace"/>
    </properties>
   </object>
