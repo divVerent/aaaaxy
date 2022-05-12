@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8246">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8248">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -6152,7 +6152,7 @@
   <object id="1447" name="GotStandWarp2" gid="295" x="912" y="6720" width="48" height="16"/>
   <object id="1450" name="GotStandWarp1" gid="297" x="528" y="6592" width="48" height="16"/>
   <object id="1451" name="GotStandWarp2" gid="297" x="448" y="6592" width="48" height="16"/>
-  <object id="1452" type="Text" x="496" y="6496" width="32" height="16">
+  <object id="1452" type="Text" x="496" y="6112" width="32" height="16">
    <properties>
     <property name="text" value="3..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6160,7 +6160,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1453" type="Text" x="496" y="6240" width="32" height="16">
+  <object id="1453" type="Text" x="496" y="5984" width="32" height="16">
    <properties>
     <property name="text" value="2..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6168,7 +6168,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1454" type="Text" x="496" y="5984" width="32" height="16">
+  <object id="1454" type="Text" x="496" y="5856" width="32" height="16">
    <properties>
     <property name="text" value="1..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -18107,6 +18107,22 @@
    <properties>
     <property name="opaque" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="8246" type="Text" x="496" y="6240" width="32" height="16">
+   <properties>
+    <property name="text" value="4..."/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="Regular"/>
+   </properties>
+  </object>
+  <object id="8247" type="Text" x="496" y="6368" width="32" height="16">
+   <properties>
+    <property name="text" value="5..."/>
+    <property name="text_bg" type="color" value="#ff000000"/>
+    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_font" value="Regular"/>
    </properties>
   </object>
  </objectgroup>
