@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8248">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8250">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17855,15 +17855,9 @@
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="8193" type="_TileMod" x="4096" y="4720" width="32" height="16">
-   <properties>
-    <property name="object_solid" type="bool" value="true"/>
-    <property name="opaque" type="bool" value="false"/>
-    <property name="player_solid" type="bool" value="false"/>
-   </properties>
-  </object>
   <object id="8194" type="_TileMod" x="4128" y="4688" width="16" height="32">
    <properties>
+    <property name="opaque" type="bool" value="true"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
@@ -18037,9 +18031,11 @@
     <property name="image" value="weird_star_large.png"/>
    </properties>
   </object>
-  <object id="8224" gid="36" x="4096" y="4720" width="32" height="16">
+  <object id="8224" gid="56" x="4080" y="4688" width="16" height="32">
    <properties>
+    <property name="opaque" type="bool" value="false"/>
     <property name="required_orientation" value="WN ES"/>
+    <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
   <object id="8231" gid="57" x="3630" y="4512" width="35" height="1"/>
@@ -18123,6 +18119,13 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
+   </properties>
+  </object>
+  <object id="8249" type="_TileMod" x="4096" y="4720" width="32" height="16">
+   <properties>
+    <property name="object_solid" type="bool" value="true"/>
+    <property name="opaque" type="bool" value="false"/>
+    <property name="player_solid" type="bool" value="false"/>
    </properties>
   </object>
  </objectgroup>
