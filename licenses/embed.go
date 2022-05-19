@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build embed
-// +build embed
+//go:build embed && !noembedlicenses
+// +build embed,!noembedlicenses
 
 package licenses
 
