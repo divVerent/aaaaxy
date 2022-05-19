@@ -28,7 +28,7 @@ rm -rf licenses/software-licenses
 # Note: ignoring errors here, as some golang.org packages
 # do not have a discoverable license file. As they're all under Go's license,
 # that is fine.
-$GO run github.com/google/go-licenses save github.com/divVerent/aaaaxy --force --save_path=licenses/software-licenses || true
+$GO run ${GO_FLAGS} github.com/google/go-licenses save github.com/divVerent/aaaaxy --force --save_path=licenses/software-licenses || true
 
 # This will fail if go-licenses wrote no output.
 for d in licenses/software-licenses/*/; do

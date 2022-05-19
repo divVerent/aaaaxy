@@ -27,7 +27,7 @@ if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 	if [ x"$AAAAXY_FORCE_GENERATE_ASSETS" = x'true' ] || ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
 		trap 'rm -f assets/generated/level.cp.json' EXIT
 		# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
-		${GO} run github.com/divVerent/aaaaxy/cmd/dumpcps |cat> assets/generated/level.cp.dot
+		${GO} run ${GO_FLAGS} github.com/divVerent/aaaaxy/cmd/dumpcps |cat> assets/generated/level.cp.dot
 		grep -c . assets/generated/level.cp.dot
 		neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
 		grep -c . assets/generated/level.cp.json
