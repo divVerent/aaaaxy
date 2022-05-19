@@ -121,6 +121,6 @@ run: $(BINARY)
 # Prepare git hooks.
 .PHONY: setup-git
 setup-git:
-	git config filter.git-clean-tmx.clean "$$PWD"/scripts/git-clean-tmx.sh
-	git config filter.git-clean-md.clean "$$PWD"/scripts/git-clean-md.sh
+	git config filter.git-clean-tmx.clean "sh \"$$PWD/scripts/git-clean-tmx.sh\""
+	git config filter.git-clean-md.clean "sh \"$$PWD/scripts/git-clean-md.sh\""
 

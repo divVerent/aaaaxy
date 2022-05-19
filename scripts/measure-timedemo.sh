@@ -21,7 +21,7 @@ if [ $# -lt 2 ]; then
 fi
 
 t_starting=$(date +%s.%N)
-out=$(scripts/run-timedemo.sh "$@" 2>&1 | tee /dev/stderr)
+out=$(sh scripts/run-timedemo.sh "$@" 2>&1 | tee /dev/stderr)
 status=$?
 t_started=$(date +%s.%N -d"$(echo "$out" | awk '/ \[INFO\] game started$/     { print $1, $2 }')")
 t_exiting=$(date +%s.%N -d"$(echo "$out" | awk '/ \[INFO\] exiting normally$/ { print $1, $2 }')")

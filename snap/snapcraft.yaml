@@ -72,7 +72,7 @@ parts:
     go-channel: stable
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version "$(scripts/version.sh semver)"
+      snapcraftctl set-version "$(sh scripts/version.sh semver)"
     override-build: |
       make BINARY="${SNAPCRAFT_PART_INSTALL}/bin/aaaaxy" BUILDTYPE=release
     source: https://github.com/divVerent/aaaaxy

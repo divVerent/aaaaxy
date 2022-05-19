@@ -23,7 +23,7 @@ set -e
 save=
 for demo in "$@"; do
 	if [ -n "$save" ]; then
-		echo "$save" | scripts/demo-to-savegame.sh replace_start "$demo" > "$demo.replaced.dem"
+		echo "$save" | sh scripts/demo-to-savegame.sh replace_start "$demo" > "$demo.replaced.dem"
 	else
 		cp "$demo" "$demo.replaced.dem"
 	fi
@@ -47,6 +47,6 @@ for demo in "$@"; do
 		-show_time \
 		-vsync=false \
 		-window_scale_factor=1 || true
-	save=$(scripts/demo-to-savegame.sh end "$demo.rechained.dem")
+	save=$(sh scripts/demo-to-savegame.sh end "$demo.rechained.dem")
 	[ -n "$save" ]
 done

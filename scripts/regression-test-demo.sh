@@ -44,7 +44,7 @@ for demo in "$@"; do
 	esac
 	t0=$(date +%s)
 	set +e
-	scripts/run-timedemo.sh \
+	sh scripts/run-timedemo.sh \
 		"$demo" \
 		$binary \
 		-audio=false \

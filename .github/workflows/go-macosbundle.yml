@@ -25,28 +25,28 @@ jobs:
         go-version: 1.17
 
     - name: Build Specific
-      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true AAAAXY_ZIPFILE=aaaaxy.zip scripts/binary-release-compile.sh'
+      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true AAAAXY_ZIPFILE=aaaaxy.zip sh scripts/binary-release-compile.sh'
 
     - name: Enable Software Rendering
-      run: 'scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'
+      run: 'sh scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'
 
     - name: Register with LaunchServices
       run: '/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -R -f packaging/AAAAXY.app'
 
     - name: Test
-      run: 'scripts/regression-test-demo.sh darwin-specific "on track for Any%, All Paths and No Teleports" "open -n -W packaging/AAAAXY.app --args" benchmark.dem'
+      run: 'sh scripts/regression-test-demo.sh darwin-specific "on track for Any%, All Paths and No Teleports" "open -n -W packaging/AAAAXY.app --args" benchmark.dem'
 
     - name: Build Universal
-      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true AAAAXY_ZIPFILE=aaaaxy.zip CGO_ENV_amd64="CGO_ENABLED=1 CC=\"clang -arch x86_64\" CXX=\"clang++ -arch x86_64\"" CGO_ENV_arm64="CGO_ENABLED=1 CC=\"clang -arch arm64\" CXX=\"clang++ -arch arm64\"" scripts/binary-release-compile.sh amd64 arm64'
+      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true AAAAXY_ZIPFILE=aaaaxy.zip CGO_ENV_amd64="CGO_ENABLED=1 CC=\"clang -arch x86_64\" CXX=\"clang++ -arch x86_64\"" CGO_ENV_arm64="CGO_ENABLED=1 CC=\"clang -arch arm64\" CXX=\"clang++ -arch arm64\"" sh scripts/binary-release-compile.sh amd64 arm64'
 
     - name: Enable Software Rendering
-      run: 'scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'
+      run: 'sh scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'
 
     - name: Register with LaunchServices
       run: '/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -R -f packaging/AAAAXY.app'
 
     - name: Test
-      run: 'scripts/regression-test-demo.sh darwin-universal "on track for Any%, All Paths and No Teleports" "open -n -W packaging/AAAAXY.app --args" benchmark.dem'
+      run: 'sh scripts/regression-test-demo.sh darwin-universal "on track for Any%, All Paths and No Teleports" "open -n -W packaging/AAAAXY.app --args" benchmark.dem'
 
     - name: Archive Results
       if: ${{ always() }}

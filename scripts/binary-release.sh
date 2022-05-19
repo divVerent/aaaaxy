@@ -75,13 +75,13 @@ VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 	7za a -tzip -mx=9 ../mappingsupport-for-aaaaxy-$new.zip ../LICENSE objecttypes.xml _* */_*
 )
 
-GOOS=linux scripts/binary-release-compile.sh amd64
-GOOS=windows scripts/binary-release-compile.sh amd64
-GOOS=windows scripts/binary-release-compile.sh 386
+GOOS=linux sh scripts/binary-release-compile.sh amd64
+GOOS=windows sh scripts/binary-release-compile.sh amd64
+GOOS=windows sh scripts/binary-release-compile.sh 386
 # Note: sync the MACOSX_DEPLOYMENT_TARGET with current Go requirements and Info.plist.sh.
 # Note: reduce deployment target back to 10.13 when https://github.com/hajimehoshi/ebiten/issues/2095 and/or https://github.com/tpoechtrager/osxcross/issues/346 are fixed.
-GOOS=darwin CGO_ENV_amd64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=o64-clang CXX=o64-clang++ MACOSX_DEPLOYMENT_TARGET=10.14" CGO_ENV_arm64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=oa64-clang CXX=oa64-clang++ MACOSX_DEPLOYMENT_TARGET=10.14" LIPO="$HOME/src/osxcross-sdk/bin/lipo" scripts/binary-release-compile.sh amd64 arm64
-GOOS=js scripts/binary-release-compile.sh wasm
+GOOS=darwin CGO_ENV_amd64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=o64-clang CXX=o64-clang++ MACOSX_DEPLOYMENT_TARGET=10.14" CGO_ENV_arm64="PATH=$HOME/src/osxcross-sdk/bin:$PATH CGO_ENABLED=1 CC=oa64-clang CXX=oa64-clang++ MACOSX_DEPLOYMENT_TARGET=10.14" LIPO="$HOME/src/osxcross-sdk/bin/lipo" sh scripts/binary-release-compile.sh amd64 arm64
+GOOS=js sh scripts/binary-release-compile.sh wasm
 
 git commit -a -m "$(cat .commitmsg)"
 git tag -a "$new" -m "$(cat .commitmsg)"
@@ -97,5 +97,5 @@ https://github.com/divVerent/aaaaxy/actions
 
 If these all pass, proceed by running
 
-  scripts/publish-release.sh $new $newrev
+  sh scripts/publish-release.sh $new $newrev
 EOF

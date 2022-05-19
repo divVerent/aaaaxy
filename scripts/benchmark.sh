@@ -24,7 +24,7 @@ demo=$1
 
 run() {
 	tag=$1; shift
-	time=$(scripts/measure-timedemo.sh "$@" -load_config=false)
+	time=$(sh scripts/measure-timedemo.sh "$@" -load_config=false)
 	if [ $? -eq 0 ]; then
 		echo "$tag,$time"
 	fi

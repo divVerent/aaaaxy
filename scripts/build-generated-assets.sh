@@ -37,7 +37,7 @@ if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 		diff -bu -I'.*"width".*' assets/_saved/level.cp.json assets/generated/level.cp.json
 	fi
 
-	scripts/image-load-order.sh assets/generated/image_load_order.txt assets/tiles assets/sprites third_party/grafxkid_classic_hero_and_baddies_pack/assets/sprites
+	sh scripts/image-load-order.sh assets/generated/image_load_order.txt assets/tiles assets/sprites third_party/grafxkid_classic_hero_and_baddies_pack/assets/sprites
 	if [ x"$AAAAXY_DIFF_ASSETS" != x'false' ]; then
 		diff -u assets/_saved/image_load_order.txt assets/generated/image_load_order.txt
 	fi
@@ -45,4 +45,4 @@ else
 	cp assets/_saved/* assets/generated/
 fi
 
-scripts/version.sh semver > assets/generated/version.txt
+sh scripts/version.sh semver > assets/generated/version.txt

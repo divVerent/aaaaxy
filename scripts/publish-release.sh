@@ -35,7 +35,7 @@ if [ x"$(git symbolic-ref HEAD)" != x'refs/heads/main' ]; then
 fi
 
 if ! [ -f .commitmsg ]; then
-	echo >&2 'scripts/binary-release.sh has to be run first.'
+	echo >&2 'sh scripts/binary-release.sh has to be run first.'
 	exit 1
 fi
 
@@ -78,7 +78,7 @@ git worktree remove /tmp/gh-pages
 xdg-open https://snapcraft.io/aaaaxy/builds
 
 # Flatpak - first push a new build.
-scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
+sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 (
 	cd ../io.github.divverent.aaaaxy
 	sed -i -e "/--- TAG GOES HERE ---/,+1 s/: .*/: $new/" io.github.divverent.aaaaxy.yml
@@ -96,13 +96,13 @@ xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 (
 	cd ../aur-aaaaxy
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;" PKGBUILD
-	doas /root/archlinux/archlinux-testing-build-aaaaxy.sh
+	doas sh /root/archlinux/archlinux-testing-build-aaaaxy.sh
 	git commit -a -m "Release $new."
 	git push
 )
 
 # Itch.
-scripts/itch-upload.sh "$new"
+sh scripts/itch-upload.sh "$new"
 xdg-open https://itch.io/dashboard/game/1199736/devlog
 
 # Pling.

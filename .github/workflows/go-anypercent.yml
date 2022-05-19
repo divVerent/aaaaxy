@@ -63,7 +63,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh linux-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" ./aaaaxy *.dem'
+      run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" ./aaaaxy *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -167,7 +167,7 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Test
-      run: 'xvfb-run scripts/regression-test-demo.sh wine-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" "wine ./aaaaxy.exe" *.dem'
+      run: 'xvfb-run sh scripts/regression-test-demo.sh wine-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" "wine ./aaaaxy.exe" *.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -294,11 +294,11 @@ jobs:
       run: 'unzip testcases.zip'
 
     - name: Enable Software Rendering
-      run: 'scripts/macos_gl_allow_software.sh ./aaaaxy'
+      run: 'sh scripts/macos_gl_allow_software.sh ./aaaaxy'
 
     - name: Test
       # NOTE: When changing the path ./aaaaxy, likely need to also change the CFBundleExecutable in scripts/Info.plist.sh.
-      run: 'scripts/regression-test-demo.sh darwin-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" ./aaaaxy *.dem'
+      run: 'sh scripts/regression-test-demo.sh darwin-amd64 "your time: 0:18:27.566; your speedrun categories: Any%;" ./aaaaxy *.dem'
 
     - name: Archive Results
       if: ${{ always() }}

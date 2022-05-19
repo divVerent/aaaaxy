@@ -41,7 +41,7 @@ case "$#" in
 		;;
 esac
 
-: ${AAAAXY_ZIPFILE:="aaaaxy-$GOOS$GOARCH_SUFFIX-$(scripts/version.sh gittag).zip"}
+: ${AAAAXY_ZIPFILE:="aaaaxy-$GOOS$GOARCH_SUFFIX-$(sh scripts/version.sh gittag).zip"}
 
 # It must be an absolute path as we use "cd" while creating the zip.
 case "$AAAAXY_ZIPFILE" in
@@ -102,7 +102,7 @@ fi
 
 case "$GOOS" in
 	darwin)
-		scripts/build-macos-resources.sh
+		sh scripts/build-macos-resources.sh
 		;;
 	js)
 		# Pack in a form itch.io can use.
@@ -132,7 +132,7 @@ case "$GOOS" in
 				arch=x86
 				;;
 		esac
-		scripts/build-appimage-resources.sh
+		sh scripts/build-appimage-resources.sh
 		rm -rf packaging/AAAAXY.AppDir
 		linuxdeploy-$(uname -m).AppImage \
 			--appdir=packaging/AAAAXY.AppDir \
