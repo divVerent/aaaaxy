@@ -15,6 +15,7 @@
 package main
 
 import (
+	"errors"
 	"os"
 	"runtime"
 	"runtime/pprof"
@@ -23,6 +24,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/aaaaxy"
 	"github.com/divVerent/aaaaxy/internal/atexit"
+	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -66,6 +68,8 @@ func runGame(game *aaaaxy.Game) error {
 }
 
 func main() {
+	defer atexit.Finish()
+
 	// Turn all panics into Fatalf for uniform exception handling.
 	defer func() {
 		if r := recover(); r != nil {
@@ -83,19 +87,28 @@ func main() {
 	if *debugLogFile != "" {
 		log.AddLogFile(*debugLogFile)
 	}
+	defer log.CloseLogFile()
+
 	game := &aaaaxy.Game{}
 	err := game.InitEbiten()
 	if err != nil {
+		if errors.Is(err, exitstatus.RegularTermination) {
+			return
+		}
 		log.Fatalf("could not initialize game: %v", err)
 	}
 	err = runGame(game)
 	errbe := game.BeforeExit()
-	if err != nil && err != aaaaxy.RegularTermination {
+	if err != nil {
+		if errors.Is(err, exitstatus.RegularTermination) {
+			return
+		}
 		log.Fatalf("RunGame exited abnormally: %v", err)
 	}
-	if errbe != nil && errbe != aaaaxy.RegularTermination {
+	if errbe != nil {
+		if errors.Is(errbe, exitstatus.RegularTermination) {
+			return
+		}
 		log.Fatalf("BeforeExit exited abnormally: %v", errbe)
 	}
-	log.CloseLogFile()
-	atexit.Finish()
 }

@@ -27,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/dump"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/image"
@@ -108,7 +109,7 @@ func (g *Game) InitEbiten() error {
 	// Initialize some stuff that is needed early.
 	err := vfs.Init()
 	if err != nil {
-		return fmt.Errorf("could not initialize VFS: %v", err)
+		return fmt.Errorf("could not initialize VFS: %w", err)
 	}
 	err = version.Init()
 	if err != nil {
@@ -225,7 +226,7 @@ func (g *Game) InitStep() error {
 	}
 	if *debugJustInit {
 		log.Errorf("requested early termination via --debug_just_init")
-		return RegularTermination
+		return exitstatus.RegularTermination
 	}
 	log.Infof("game started")
 	g.init.done = true

@@ -28,6 +28,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 
@@ -37,7 +38,7 @@ import (
 )
 
 var (
-	dumpEmbeddedAssets         = flag.String("dump_embedded_assets", "", "dump all embedded assets to the given directory instead of running the game")
+	dumpEmbeddedAssets         = flag.String("dump_embedded_assets", "", "dump all embedded assets and license information to the given directory instead of running the game")
 	cheatReplaceEmbeddedAssets = flag.String("cheat_replace_embedded_assets", "", "if set, embedded assets are skipped and this directory is used as assets root instead")
 )
 
@@ -132,7 +133,8 @@ func initAssets() error {
 		if err != nil {
 			return err
 		}
-		return fmt.Errorf("requested an asset dump - not running the game")
+		log.Infof("requested an asset dump - not running the game")
+		return exitstatus.RegularTermination
 	}
 
 	return nil

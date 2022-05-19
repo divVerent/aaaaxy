@@ -15,13 +15,13 @@
 package menu
 
 import (
-	"errors"
 	"fmt"
 	"reflect"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	_ "github.com/divVerent/aaaaxy/internal/game" // Load entities.
 	"github.com/divVerent/aaaaxy/internal/input"
@@ -31,8 +31,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/sound"
 	"github.com/divVerent/aaaaxy/internal/timing"
 )
-
-var RegularTermination = errors.New("exited normally")
 
 var (
 	saveState = flag.Int("save_state", 0, "number of save state slot")
@@ -259,7 +257,7 @@ func (c *Controller) QuitGame() error {
 	if err != nil {
 		return fmt.Errorf("could not save config: %v", err)
 	}
-	return RegularTermination
+	return exitstatus.RegularTermination
 }
 
 // ActivateSound plays the sound effect to activate something.

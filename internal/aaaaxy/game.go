@@ -15,6 +15,7 @@
 package aaaaxy
 
 import (
+	"errors"
 	"fmt"
 	"image/color"
 	"math"
@@ -26,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/dump"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
@@ -39,8 +41,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/shader"
 	"github.com/divVerent/aaaaxy/internal/timing"
 )
-
-var RegularTermination = menu.RegularTermination
 
 var (
 	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]interface{}{"js/*": "simple", "*/*": "linear2xcrt"}).(string), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
@@ -105,7 +105,7 @@ func (g *Game) updateFrame() error {
 	timing.Section("demo_pre")
 	if demo.Update() {
 		log.Infof("demo playback ended, exiting")
-		return RegularTermination
+		return exitstatus.RegularTermination
 	}
 
 	defer func() {
@@ -162,7 +162,7 @@ func (g *Game) Update() error {
 
 	for frame := 0; frame < *fpsDivisor; frame++ {
 		if err := g.updateFrame(); err != nil {
-			if err == RegularTermination {
+			if errors.Is(err, exitstatus.RegularTermination) {
 				log.Infof("exiting normally")
 			} else {
 				log.Infof("exiting due to: %v", err)
