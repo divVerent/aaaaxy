@@ -39,27 +39,27 @@ func (a *Animation) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.E
 	}
 	framesString := sp.Properties["animation_frames"]
 	if _, err := fmt.Sscanf(framesString, "%d", &group.Frames); err != nil {
-		return fmt.Errorf("could not decode animation_frames %q: %v", framesString, err)
+		return fmt.Errorf("could not decode animation_frames %q: %w", framesString, err)
 	}
 	symmetricString := sp.Properties["animation_symmetric"]
 	if symmetricString != "" {
 		if _, err := fmt.Sscanf(symmetricString, "%t", &group.Symmetric); err != nil {
-			return fmt.Errorf("could not decode animation_symmetric %q: %v", symmetricString, err)
+			return fmt.Errorf("could not decode animation_symmetric %q: %w", symmetricString, err)
 		}
 	}
 	frameIntervalString := sp.Properties["animation_frame_interval"]
 	if _, err := fmt.Sscanf(frameIntervalString, "%d", &group.FrameInterval); err != nil {
-		return fmt.Errorf("could not decode animation_frame_interval %q: %v", frameIntervalString, err)
+		return fmt.Errorf("could not decode animation_frame_interval %q: %w", frameIntervalString, err)
 	}
 	repeatIntervalString := sp.Properties["animation_repeat_interval"]
 	if _, err := fmt.Sscanf(repeatIntervalString, "%d", &group.NextInterval); err != nil {
-		return fmt.Errorf("could not decode animation_repeat_interval %q: %v", repeatIntervalString, err)
+		return fmt.Errorf("could not decode animation_repeat_interval %q: %w", repeatIntervalString, err)
 	}
 	syncToMusicOffsetString := sp.Properties["animation_sync_to_music_offset"]
 	if syncToMusicOffsetString != "" {
 		var err error
 		if group.SyncToMusicOffset, err = time.ParseDuration(syncToMusicOffsetString); err != nil {
-			return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %v", syncToMusicOffsetString, err)
+			return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %w", syncToMusicOffsetString, err)
 		}
 	}
 	offsetString := sp.Properties["render_offset"]
@@ -67,17 +67,17 @@ func (a *Animation) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.E
 		e.ResizeImage = true
 	} else {
 		if _, err := fmt.Sscanf(offsetString, "%d %d", &e.RenderOffset.DX, &e.RenderOffset.DY); err != nil {
-			return fmt.Errorf("could not decode render offset %q: %v", offsetString, err)
+			return fmt.Errorf("could not decode render offset %q: %w", offsetString, err)
 		}
 	}
 	if s := sp.Properties["border_pixels"]; s != "" {
 		if _, err := fmt.Sscanf(s, "%d", &e.BorderPixels); err != nil {
-			return fmt.Errorf("failed to decode borde pixels %q: %v", s, err)
+			return fmt.Errorf("failed to decode borde pixels %q: %w", s, err)
 		}
 	}
 	err := a.Anim.Init(prefix, map[string]*animation.Group{groupName: group}, groupName)
 	if err != nil {
-		return fmt.Errorf("could not initialize animation %v: %v", prefix, err)
+		return fmt.Errorf("could not initialize animation %v: %w", prefix, err)
 	}
 	return a.SpriteBase.Spawn(w, sp, e)
 }

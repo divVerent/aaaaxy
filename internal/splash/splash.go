@@ -66,7 +66,7 @@ func RunImmediately(errPrefix string, f func(s *State) (Status, error)) (Status,
 	for {
 		status, err := f(nil)
 		if err != nil {
-			return EndFrame, fmt.Errorf("%v: %v", errPrefix, err)
+			return EndFrame, fmt.Errorf("%v: %w", errPrefix, err)
 		}
 		if status == EndFrame {
 			// f did not terminate yet - we need to call it again.
@@ -108,7 +108,7 @@ func (s *State) Enter(step string, errPrefix string, f func(s *State) (Status, e
 	}
 	status, err := f(s)
 	if err != nil {
-		return EndFrame, fmt.Errorf("%v: %v", errPrefix, err)
+		return EndFrame, fmt.Errorf("%v: %w", errPrefix, err)
 	}
 	if status == EndFrame {
 		// f did not terminate yet - we need to call it again next frame.

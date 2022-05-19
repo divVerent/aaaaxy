@@ -87,11 +87,11 @@ func BeforeExit() error {
 		}
 		err := demoRecorder.Encode(&demoRecorderFrame)
 		if err != nil {
-			return fmt.Errorf("could not encode final demo frame: %v", err)
+			return fmt.Errorf("could not encode final demo frame: %w", err)
 		}
 		err = demoRecorderFile.Close()
 		if err != nil {
-			return fmt.Errorf("failed to save demo to %v: %v", *demoRecord, err)
+			return fmt.Errorf("failed to save demo to %v: %w", *demoRecord, err)
 		}
 	}
 	if demoPlayer != nil {
@@ -100,11 +100,11 @@ func BeforeExit() error {
 		}
 		err := demoPlayerFile.Close()
 		if err != nil {
-			return fmt.Errorf("failed to close played demo from %v: %v", *demoPlay, err)
+			return fmt.Errorf("failed to close played demo from %v: %w", *demoPlay, err)
 		}
 		err = regressionBeforeExit()
 		if err != nil {
-			return fmt.Errorf("regression test failed from %v: %v", *demoPlay, err)
+			return fmt.Errorf("regression test failed from %v: %w", *demoPlay, err)
 		}
 	}
 	return nil

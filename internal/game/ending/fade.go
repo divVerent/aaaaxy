@@ -41,7 +41,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	durationString := sp.Properties["duration"]
 	durationTime, err := time.ParseDuration(durationString)
 	if err != nil {
-		return fmt.Errorf("could not parse duration time: %v", durationString)
+		return fmt.Errorf("could not parse duration time: %s", durationString)
 	}
 	f.Frames = int((durationTime*engine.GameTPS + (time.Second / 2)) / time.Second)
 	if f.Frames < 1 {
@@ -56,7 +56,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	var r, g, b, a int
 	colorString := sp.Properties["from_color_a"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
 	fromM.SetElement(0, 0, float64(r)/255.0)
 	fromM.SetElement(1, 0, float64(g)/255.0)
@@ -64,7 +64,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(3, 0, 1.0)
 	colorString = sp.Properties["from_color_b"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
 	fromM.SetElement(0, 1, float64(r)/255.0)
 	fromM.SetElement(1, 1, float64(g)/255.0)
@@ -72,7 +72,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(3, 1, 1.0)
 	colorString = sp.Properties["from_color_c"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
 	fromM.SetElement(0, 2, float64(r)/255.0)
 	fromM.SetElement(1, 2, float64(g)/255.0)
@@ -80,7 +80,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(3, 2, 1.0)
 	colorString = sp.Properties["from_color_d"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
 	fromM.SetElement(0, 3, float64(r)/255.0)
 	fromM.SetElement(1, 3, float64(g)/255.0)
@@ -94,7 +94,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 
 	colorString = sp.Properties["to_color_a"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
 	toM.SetElement(0, 0, float64(r)/255.0)
 	toM.SetElement(1, 0, float64(g)/255.0)
@@ -102,7 +102,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	toM.SetElement(3, 0, 1.0)
 	colorString = sp.Properties["to_color_b"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
 	toM.SetElement(0, 1, float64(r)/255.0)
 	toM.SetElement(1, 1, float64(g)/255.0)
@@ -110,7 +110,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	toM.SetElement(3, 1, 1.0)
 	colorString = sp.Properties["to_color_c"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
 	toM.SetElement(0, 2, float64(r)/255.0)
 	toM.SetElement(1, 2, float64(g)/255.0)
@@ -118,7 +118,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	toM.SetElement(3, 2, 1.0)
 	colorString = sp.Properties["to_color_d"]
 	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-		return fmt.Errorf("could not decode color %q: %v", colorString, err)
+		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
 	toM.SetElement(0, 3, float64(r)/255.0)
 	toM.SetElement(1, 3, float64(g)/255.0)

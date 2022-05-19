@@ -50,7 +50,7 @@ func (v *Movable) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 		var accel float64
 		_, err := fmt.Sscanf(accelString, "%v", &accel)
 		if err != nil {
-			return fmt.Errorf("failed to parse acceleration %q: %v", accelString, err)
+			return fmt.Errorf("failed to parse acceleration %q: %w", accelString, err)
 		}
 		v.Acceleration = m.NewFixedFloat64(accel * constants.SubPixelScale / engine.GameTPS / engine.GameTPS)
 	} else {
@@ -60,7 +60,7 @@ func (v *Movable) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	var delta m.Delta
 	_, err := fmt.Sscanf(sp.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
 	if err != nil {
-		return fmt.Errorf("failed to parse delta: %v", err)
+		return fmt.Errorf("failed to parse delta: %w", err)
 	}
 	v.From = e.Rect.Origin
 	v.To = e.Rect.Origin.Add(e.Transform.Inverse().Apply(delta))

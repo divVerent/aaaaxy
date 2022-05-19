@@ -66,14 +66,14 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	var err error
 	t.SeenImage, err = image.Load("sprites", "tnihsign_seen.png")
 	if err != nil {
-		return fmt.Errorf("could not load sign seen sprite: %v", err)
+		return fmt.Errorf("could not load sign seen sprite: %w", err)
 	}
 	if sp.PersistentState["seen"] == "true" {
 		t.Entity.Image = t.SeenImage
 	} else {
 		t.Entity.Image, err = image.Load("sprites", "tnihsign.png")
 		if err != nil {
-			return fmt.Errorf("could not load sign sprite: %v", err)
+			return fmt.Errorf("could not load sign sprite: %w", err)
 		}
 	}
 	t.Entity.Orientation = m.Identity()
@@ -81,7 +81,7 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	t.Text = strings.ReplaceAll(sp.Properties["text"], "  ", "\n")
 	t.Sound, err = sound.Load("tnihsign.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load tnihsign sound: %v", err)
+		return fmt.Errorf("could not load tnihsign sound: %w", err)
 	}
 	t.Entity.ResizeImage = sp.Properties["resize_image"] == "true"
 	if !t.Entity.ResizeImage {
@@ -95,7 +95,7 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	if orientationStr != "" {
 		requiredTransforms, err := m.ParseOrientations(orientationStr)
 		if err != nil {
-			return fmt.Errorf("could not parse required orientation: %v", err)
+			return fmt.Errorf("could not parse required orientation: %w", err)
 		}
 		show := false
 		for _, requiredTransform := range requiredTransforms {

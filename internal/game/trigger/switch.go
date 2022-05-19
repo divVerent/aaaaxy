@@ -66,11 +66,11 @@ func (s *Switch) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 
 	s.SwitchOn, err = sound.Load("switch_on.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load switch_on sound: %v", err)
+		return fmt.Errorf("could not load switch_on sound: %w", err)
 	}
 	s.SwitchOff, err = sound.Load("switch_off.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load switch_off sound: %v", err)
+		return fmt.Errorf("could not load switch_off sound: %w", err)
 	}
 
 	return nil

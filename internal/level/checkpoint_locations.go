@@ -122,11 +122,11 @@ func possibleDirs(d m.Delta) (m.Delta, m.Delta) {
 func (l *Level) LoadCheckpointLocations(filename string) (*CheckpointLocations, error) {
 	r, err := vfs.Load("generated", filename+".cp.json")
 	if err != nil {
-		return nil, fmt.Errorf("could not load checkpoint locations for %q: %v", filename, err)
+		return nil, fmt.Errorf("could not load checkpoint locations for %q: %w", filename, err)
 	}
 	var g JSONCheckpointGraph
 	if err := json.NewDecoder(r).Decode(&g); err != nil {
-		return nil, fmt.Errorf("could not decode checkpoint locations for %q: %v", filename, err)
+		return nil, fmt.Errorf("could not decode checkpoint locations for %q: %w", filename, err)
 	}
 	var loc0 *CheckpointLocations
 	var err0 error
@@ -172,7 +172,7 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 		}
 		rawPos, err := o.MapPos()
 		if err != nil {
-			return nil, fmt.Errorf("could not parse checkpoint location %q for %q in %q: %v", o.Pos, o.Name, filename, err)
+			return nil, fmt.Errorf("could not parse checkpoint location %q for %q in %q: %w", o.Pos, o.Name, filename, err)
 		}
 		pos := m.Pos{
 			X: rawPos.Delta(m.Pos{}).Dot(right),

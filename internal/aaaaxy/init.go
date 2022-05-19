@@ -113,11 +113,11 @@ func (g *Game) InitEbiten() error {
 	}
 	err = version.Init()
 	if err != nil {
-		return fmt.Errorf("could not initialize version: %v", err)
+		return fmt.Errorf("could not initialize version: %w", err)
 	}
 	err = demo.Init()
 	if err != nil {
-		return fmt.Errorf("could not initialize demo: %v", err)
+		return fmt.Errorf("could not initialize demo: %w", err)
 	}
 	err = dump.InitEarly(dump.Params{
 		FPSDivisor:            *fpsDivisor,
@@ -127,11 +127,11 @@ func (g *Game) InitEbiten() error {
 		CRTK2:                 crtK2(),
 	})
 	if err != nil {
-		return fmt.Errorf("could not preinitialize dumping: %v", err)
+		return fmt.Errorf("could not preinitialize dumping: %w", err)
 	}
 	err = font.Init()
 	if err != nil {
-		return fmt.Errorf("could not initialize fonts: %v", err)
+		return fmt.Errorf("could not initialize fonts: %w", err)
 	}
 
 	// When dumping video or benchmarking, do precisely one render frame per update.
@@ -211,17 +211,17 @@ func (g *Game) InitStep() error {
 	if *dumpLoadingFractions != "" {
 		f, err := os.Create(*dumpLoadingFractions)
 		if err != nil {
-			return fmt.Errorf("could not open loading fractions file: %v", err)
+			return fmt.Errorf("could not open loading fractions file: %w", err)
 		}
 		j := json.NewEncoder(f)
 		j.SetIndent("", "\t")
 		err = j.Encode(g.init.ToFractions())
 		if err != nil {
-			return fmt.Errorf("could not encode to loading fractions file: %v", err)
+			return fmt.Errorf("could not encode to loading fractions file: %w", err)
 		}
 		err = f.Close()
 		if err != nil {
-			return fmt.Errorf("could not close loading fractions file: %v", err)
+			return fmt.Errorf("could not close loading fractions file: %w", err)
 		}
 	}
 	if *debugJustInit {
@@ -247,11 +247,11 @@ func (g *Game) BeforeExit() error {
 	timing.PrintReport()
 	err := dump.Finish()
 	if err != nil {
-		return fmt.Errorf("could not finish dumping: %v", err)
+		return fmt.Errorf("could not finish dumping: %w", err)
 	}
 	err = demo.BeforeExit()
 	if err != nil {
-		return fmt.Errorf("could not finalize demo: %v", err)
+		return fmt.Errorf("could not finalize demo: %w", err)
 	}
 	return nil
 }

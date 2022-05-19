@@ -174,7 +174,7 @@ func (c *Controller) InitGame(f resetFlag) error {
 	// Initialize the world.
 	err := c.World.Init(*saveState)
 	if err != nil {
-		return fmt.Errorf("could not initialize world: %v", err)
+		return fmt.Errorf("could not initialize world: %w", err)
 	}
 
 	// Load the saved state.
@@ -195,14 +195,14 @@ func (c *Controller) SwitchSaveState(state int) error {
 	// Save the game first.
 	err := c.World.Save()
 	if err != nil {
-		return fmt.Errorf("could not save game: %v", err)
+		return fmt.Errorf("could not save game: %w", err)
 	}
 
 	// Now select the new state.
 	*saveState = state
 	err = engine.SaveConfig()
 	if err != nil {
-		return fmt.Errorf("could not save config: %v", err)
+		return fmt.Errorf("could not save config: %w", err)
 	}
 
 	// And finally restart the game from there.
@@ -222,7 +222,7 @@ func (c *Controller) SwitchToCheckpoint(cp string) error {
 	}
 	err := c.World.RespawnPlayer(cp, true)
 	if err != nil {
-		return fmt.Errorf("could not respawn player: %v", err)
+		return fmt.Errorf("could not respawn player: %w", err)
 	}
 	c.World.TimerStarted = true
 	c.Screen = nil
@@ -239,7 +239,7 @@ func (c *Controller) SwitchToScreen(screen MenuScreen) error {
 func (c *Controller) SaveConfigAndSwitchToScreen(screen MenuScreen) error {
 	err := engine.SaveConfig()
 	if err != nil {
-		return fmt.Errorf("could not save config: %v", err)
+		return fmt.Errorf("could not save config: %w", err)
 	}
 	c.Screen = screen
 	return c.Screen.Init(c)
@@ -251,11 +251,11 @@ func (c *Controller) QuitGame() error {
 	log.Infof("on track for %v", categories)
 	err := c.World.Save()
 	if err != nil {
-		return fmt.Errorf("could not save game: %v", err)
+		return fmt.Errorf("could not save game: %w", err)
 	}
 	err = engine.SaveConfig()
 	if err != nil {
-		return fmt.Errorf("could not save config: %v", err)
+		return fmt.Errorf("could not save config: %w", err)
 	}
 	return exitstatus.RegularTermination
 }

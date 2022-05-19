@@ -46,12 +46,12 @@ func Load(name string, params map[string]string) (*ebiten.Shader, error) {
 	}
 	data, err := vfs.Load("shaders", name)
 	if err != nil {
-		return nil, fmt.Errorf("could not load: %v", err)
+		return nil, fmt.Errorf("could not load: %w", err)
 	}
 	defer data.Close()
 	shaderCode, err := ioutil.ReadAll(data)
 	if err != nil {
-		return nil, fmt.Errorf("could not read shader %q: %v", name, err)
+		return nil, fmt.Errorf("could not read shader %q: %w", name, err)
 	}
 	// Add some basic templating so we can remove branches from the shaders.
 	// Not using text/template so that shader files can still be processed by gofmt.
@@ -60,7 +60,7 @@ func Load(name string, params map[string]string) (*ebiten.Shader, error) {
 	}
 	shader, err := ebiten.NewShader(shaderCode)
 	if err != nil {
-		return nil, fmt.Errorf("could not compile shader %q: %v", name, err)
+		return nil, fmt.Errorf("could not compile shader %q: %w", name, err)
 	}
 	cache[sp] = shader
 	return shader, nil

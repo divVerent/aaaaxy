@@ -43,13 +43,13 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		var err error
 		e.Alpha, err = strconv.ParseFloat(sp.Properties["alpha"], 64)
 		if err != nil {
-			return fmt.Errorf("could not decode alpha %q: %v", sp.Properties["alpha"], err)
+			return fmt.Errorf("could not decode alpha %q: %w", sp.Properties["alpha"], err)
 		}
 	}
 	if mapBlackToString := sp.Properties["map_black_to"]; mapBlackToString != "" {
 		var r, g, b, a int
 		if _, err := fmt.Sscanf(mapBlackToString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-			return fmt.Errorf("could not decode color %q: %v", mapBlackToString, err)
+			return fmt.Errorf("could not decode color %q: %w", mapBlackToString, err)
 		}
 		e.ColorAdd[0] = float64(r) / 255.0
 		e.ColorAdd[1] = float64(g) / 255.0
@@ -59,7 +59,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	if mapWhiteToString := sp.Properties["map_white_to"]; mapWhiteToString != "" {
 		var r, g, b, a int
 		if _, err := fmt.Sscanf(mapWhiteToString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
-			return fmt.Errorf("could not decode color %q: %v", mapWhiteToString, err)
+			return fmt.Errorf("could not decode color %q: %w", mapWhiteToString, err)
 		}
 		e.ColorMod[0] = float64(r)/255.0 - e.ColorAdd[0]
 		e.ColorMod[1] = float64(g)/255.0 - e.ColorAdd[1]
@@ -70,7 +70,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	if sp.Properties["z_index"] != "" {
 		zIndex, err := strconv.Atoi(sp.Properties["z_index"])
 		if err != nil {
-			return fmt.Errorf("could not decode z index %q: %v", sp.Properties["z_index"], err)
+			return fmt.Errorf("could not decode z index %q: %w", sp.Properties["z_index"], err)
 		}
 		if zIndex < constants.MinSpriteZ || zIndex > constants.MaxSpriteZ {
 			return fmt.Errorf("z index out of range: got %v, want %v..%v", zIndex, constants.MinSpriteZ, constants.MaxSpriteZ)
@@ -104,7 +104,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	if orientationStr != "" {
 		requiredTransforms, err := m.ParseOrientations(orientationStr)
 		if err != nil {
-			return fmt.Errorf("could not parse required orientation: %v", err)
+			return fmt.Errorf("could not parse required orientation: %w", err)
 		}
 		show := false
 		for _, requiredTransform := range requiredTransforms {

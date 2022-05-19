@@ -54,7 +54,7 @@ func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *e
 	// So it is actually a transform as far as this code is concerned.
 	requiredTransforms, err := m.ParseOrientations(sp.Properties["required_orientation"])
 	if err != nil {
-		return fmt.Errorf("could not parse required orientation: %v", err)
+		return fmt.Errorf("could not parse required orientation: %w", err)
 	}
 
 	c.Text = sp.Properties["text"]
@@ -63,7 +63,7 @@ func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *e
 	if onGroundVecStr := sp.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
 		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &c.VVVVVVOnGroundVec.DX, &c.VVVVVVOnGroundVec.DY)
 		if err != nil {
-			return fmt.Errorf("invalid vvvvvv_gravity_direction: %v", err)
+			return fmt.Errorf("invalid vvvvvv_gravity_direction: %w", err)
 		}
 	}
 
@@ -82,7 +82,7 @@ func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *e
 
 	c.Sound, err = sound.Load("checkpoint.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load checkpoint sound: %v", err)
+		return fmt.Errorf("could not load checkpoint sound: %w", err)
 	}
 
 	return nil

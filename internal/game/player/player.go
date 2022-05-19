@@ -223,32 +223,32 @@ func (p *Player) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 			WaitFinish:   true,
 		}}, "idle")
 	if err != nil {
-		return fmt.Errorf("could not initialize player animation: %v", err)
+		return fmt.Errorf("could not initialize player animation: %w", err)
 	}
 
 	p.JumpSound, err = sound.Load("jump.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load jump sound: %v", err)
+		return fmt.Errorf("could not load jump sound: %w", err)
 	}
 	p.VVVVVVSound, err = sound.Load("vvvvvv.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load vvvvvv sound: %v", err)
+		return fmt.Errorf("could not load vvvvvv sound: %w", err)
 	}
 	p.LandSound, err = sound.Load("land.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load land sound: %v", err)
+		return fmt.Errorf("could not load land sound: %w", err)
 	}
 	p.HitHeadSound, err = sound.Load("hithead.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load hithead sound: %v", err)
+		return fmt.Errorf("could not load hithead sound: %w", err)
 	}
 	p.HitWallSound, err = sound.Load("hitwall.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load hitwall sound: %v", err)
+		return fmt.Errorf("could not load hitwall sound: %w", err)
 	}
 	p.GotAbilitySound, err = sound.Load("got_ability.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load got_ability sound: %v", err)
+		return fmt.Errorf("could not load got_ability sound: %w", err)
 	}
 
 	// Reset as if after respawn.

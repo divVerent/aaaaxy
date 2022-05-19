@@ -52,12 +52,12 @@ func Load(purpose, name string) (*ebiten.Image, error) {
 	}
 	data, err := vfs.Load(purpose, name)
 	if err != nil {
-		return nil, fmt.Errorf("could not load: %v", err)
+		return nil, fmt.Errorf("could not load: %w", err)
 	}
 	defer data.Close()
 	img, _, err := image.Decode(data)
 	if err != nil {
-		return nil, fmt.Errorf("could not decode: %v", err)
+		return nil, fmt.Errorf("could not decode: %w", err)
 	}
 	eImg := ebiten.NewImageFromImage(img)
 	cache[ip] = eImg
@@ -72,7 +72,7 @@ func Precache() error {
 	for _, purpose := range []string{"tiles", "sprites"} {
 		names, err := vfs.ReadDir(purpose)
 		if err != nil {
-			return fmt.Errorf("could not enumerate files in %v: %v", purpose, err)
+			return fmt.Errorf("could not enumerate files in %v: %w", purpose, err)
 		}
 		for _, name := range names {
 			if !strings.HasSuffix(name, ".png") {
@@ -83,7 +83,7 @@ func Precache() error {
 	}
 	listFile, err := vfs.Load("generated", "image_load_order.txt")
 	if err != nil {
-		return fmt.Errorf("could query load order: %v", err)
+		return fmt.Errorf("could query load order: %w", err)
 	}
 	listScanner := bufio.NewScanner(listFile)
 	for listScanner.Scan() {
@@ -94,7 +94,7 @@ func Precache() error {
 		if _, found := toLoad[item]; found {
 			_, err := Load(item.Purpose, item.Name)
 			if err != nil {
-				return fmt.Errorf("could not precache %v: %v", item, err)
+				return fmt.Errorf("could not precache %v: %w", item, err)
 			}
 			delete(toLoad, item)
 		} else {

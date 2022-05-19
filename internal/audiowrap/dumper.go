@@ -63,7 +63,7 @@ func dumpSamples(dumpFile io.Writer, samples int) error {
 	err := binary.Write(dumpFile, binary.LittleEndian, buf)
 	if err != nil {
 		dumping = false
-		return fmt.Errorf("cannot dump audio frame: %v", err)
+		return fmt.Errorf("cannot dump audio frame: %w", err)
 	}
 	return nil
 }

@@ -61,7 +61,7 @@ func (s *SoundTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine
 	var err error
 	s.Sound, err = sound.Load(sp.Properties["sound"])
 	if err != nil {
-		return fmt.Errorf("could not load sound: %v", err)
+		return fmt.Errorf("could not load sound: %w", err)
 	}
 	s.StopWhenOff = sp.Properties["stop_when_off"] == "true" // default false
 	s.Target = mixins.ParseTarget(sp.Properties["target"])

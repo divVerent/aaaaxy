@@ -123,7 +123,7 @@ func precacheEntities(lvl *level.Level) error {
 			if precacher, ok := eTmpl.(Precacher); ok {
 				err = precacher.Precache(sp.ID, &sp.SpawnableProps)
 				if err != nil {
-					err = fmt.Errorf("failed to precache entity %v: %v", sp, err)
+					err = fmt.Errorf("failed to precache entity %v: %w", sp, err)
 				}
 			}
 		}

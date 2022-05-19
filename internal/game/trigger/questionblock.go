@@ -79,7 +79,7 @@ func (q *QuestionBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 	}
 	q.Sound, err = sound.Load("questionblock.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load questionblock sound: %v", err)
+		return fmt.Errorf("could not load questionblock sound: %w", err)
 	}
 	return nil
 }

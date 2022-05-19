@@ -85,23 +85,23 @@ func Init() error {
 	// Load the fonts.
 	regular, err := truetype.Parse(goregular.TTF)
 	if err != nil {
-		return fmt.Errorf("could not load goitalic font: %v", err)
+		return fmt.Errorf("could not load goitalic font: %w", err)
 	}
 	italic, err := truetype.Parse(goitalic.TTF)
 	if err != nil {
-		return fmt.Errorf("could not load goitalic font: %v", err)
+		return fmt.Errorf("could not load goitalic font: %w", err)
 	}
 	bold, err := truetype.Parse(gobold.TTF)
 	if err != nil {
-		return fmt.Errorf("could not load gosmallcaps font: %v", err)
+		return fmt.Errorf("could not load gosmallcaps font: %w", err)
 	}
 	mono, err := truetype.Parse(gomono.TTF)
 	if err != nil {
-		return fmt.Errorf("could not load gomono font: %v", err)
+		return fmt.Errorf("could not load gomono font: %w", err)
 	}
 	smallcaps, err := truetype.Parse(gosmallcaps.TTF)
 	if err != nil {
-		return fmt.Errorf("could not load gosmallcaps font: %v", err)
+		return fmt.Errorf("could not load gosmallcaps font: %w", err)
 	}
 
 	ByName["Small"] = makeFace(truetype.NewFace(regular, &truetype.Options{

@@ -54,7 +54,7 @@ func (o *OneWay) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 		},
 	}, "idle")
 	if err != nil {
-		return fmt.Errorf("could not initialize oneway animation: %v", err)
+		return fmt.Errorf("could not initialize oneway animation: %w", err)
 	}
 
 	return nil

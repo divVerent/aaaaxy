@@ -53,7 +53,7 @@ func (g *Give) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity
 			NextAnim:      "default",
 		}}, "default")
 	if err != nil {
-		return fmt.Errorf("could not initialize give animation: %v", err)
+		return fmt.Errorf("could not initialize give animation: %w", err)
 	}
 	return nil
 }

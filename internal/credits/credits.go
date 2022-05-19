@@ -28,13 +28,13 @@ var (
 func Precache() error {
 	credits, err := vfs.ReadDir("credits")
 	if err != nil {
-		return fmt.Errorf("could not list credits: %v", err)
+		return fmt.Errorf("could not list credits: %w", err)
 	}
 	var lines []string
 	for _, file := range credits {
 		rd, err := vfs.Load("credits", file)
 		if err != nil {
-			return fmt.Errorf("could not load credits: %v", err)
+			return fmt.Errorf("could not load credits: %w", err)
 		}
 		defer rd.Close()
 		scanner := bufio.NewScanner(rd)
@@ -43,7 +43,7 @@ func Precache() error {
 			lines = append(lines, scanner.Text())
 		}
 		if err = scanner.Err(); err != nil {
-			return fmt.Errorf("could not scan credits from %q: %v", file, err)
+			return fmt.Errorf("could not scan credits from %q: %w", file, err)
 		}
 		// Make sure items are separated by empty lines.
 		if len(lines) > 0 && lines[len(lines)-1] != "" {

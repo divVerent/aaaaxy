@@ -47,7 +47,7 @@ func (g *LogicalGate) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine
 	if countStr := sp.Properties["count_required"]; countStr != "" {
 		_, err := fmt.Sscanf(countStr, "%d", &g.CountRequired)
 		if err != nil {
-			return fmt.Errorf("failed to parse count_required: got %q, want integer: %v", countStr, err)
+			return fmt.Errorf("failed to parse count_required: got %q, want integer: %w", countStr, err)
 		}
 	}
 	g.IncomingState = map[engine.EntityIncarnation]struct{}{}

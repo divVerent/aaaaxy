@@ -34,7 +34,7 @@ func (v *Moving) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 	if str := sp.Properties["velocity"]; str != "" {
 		var dx, dy float64
 		if _, err := fmt.Sscanf(str, "%f %f", &dx, &dy); err != nil {
-			return fmt.Errorf("failed to parse velocity %q: %v", str, err)
+			return fmt.Errorf("failed to parse velocity %q: %w", str, err)
 		}
 		v.Physics.Velocity = e.Transform.Inverse().Apply(m.Delta{
 			DX: m.Rint(dx * constants.SubPixelScale / engine.GameTPS),

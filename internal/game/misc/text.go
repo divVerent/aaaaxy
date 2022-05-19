@@ -75,10 +75,10 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 	}
 	var fg, bg color.NRGBA
 	if _, err := fmt.Sscanf(key.fg, "#%02x%02x%02x%02x", &fg.A, &fg.R, &fg.G, &fg.B); err != nil {
-		return nil, fmt.Errorf("could not decode color %q: %v", key.fg, err)
+		return nil, fmt.Errorf("could not decode color %q: %w", key.fg, err)
 	}
 	if _, err := fmt.Sscanf(key.bg, "#%02x%02x%02x%02x", &bg.A, &bg.R, &bg.G, &bg.B); err != nil {
-		return nil, fmt.Errorf("could not decode color %q: %v", key.bg, err)
+		return nil, fmt.Errorf("could not decode color %q: %w", key.bg, err)
 	}
 	txt, err := fun.TryFormatText(ps, key.text)
 	if err != nil {
@@ -128,7 +128,7 @@ func (t *Text) Precache(id level.EntityID, sp *level.SpawnableProps) error {
 	}
 	img, err := key.load(nil)
 	if err != nil {
-		return fmt.Errorf("could not precache text image for entity %v: %v", sp, err)
+		return fmt.Errorf("could not precache text image for entity %v: %w", sp, err)
 	}
 	textCache[key] = img
 	return nil
@@ -171,7 +171,7 @@ func (t *Text) updateText() error {
 		t.Entity.Image, err = t.Key.load(&t.World.PlayerState)
 		t.MyImage = true
 		if err != nil {
-			return fmt.Errorf("could not render text image for entity %v: %v", t.Key, err)
+			return fmt.Errorf("could not render text image for entity %v: %w", t.Key, err)
 		}
 	}
 	dx, dy := t.Entity.Image.Size()

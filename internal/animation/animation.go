@@ -78,7 +78,7 @@ func (s *State) Init(spritePrefix string, groups map[string]*Group, initialGroup
 			var err error
 			group.Images[i], err = image.Load("sprites", spriteName)
 			if err != nil {
-				return fmt.Errorf("could not load image %v for group %q: %v", spriteName, name, err)
+				return fmt.Errorf("could not load image %v for group %q: %w", spriteName, name, err)
 			}
 		}
 	}

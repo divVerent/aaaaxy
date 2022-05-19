@@ -40,7 +40,7 @@ func (v *VVVVVV) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	var err error
 	e.Image, err = image.Load("sprites", "v.png")
 	if err != nil {
-		return fmt.Errorf("could not load vvvvvv image: %v", err)
+		return fmt.Errorf("could not load vvvvvv image: %w", err)
 	}
 	v.NormalGravityFlip = sp.Properties["gravity_flip"] == "true"        // default false
 	v.VVVVVVGravityFlip = sp.Properties["vvvvvv_gravity_flip"] == "true" // default false
@@ -48,14 +48,14 @@ func (v *VVVVVV) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	if factorStr := sp.Properties["velocity_factor"]; factorStr != "" {
 		_, err := fmt.Sscanf(factorStr, "%f", &v.NormalVelocityFactor)
 		if err != nil {
-			return fmt.Errorf("invalid velocity_factor: %v", err)
+			return fmt.Errorf("invalid velocity_factor: %w", err)
 		}
 	}
 	v.VVVVVVVelocityFactor = 1.0
 	if factorStr := sp.Properties["vvvvvv_velocity_factor"]; factorStr != "" {
 		_, err := fmt.Sscanf(factorStr, "%f", &v.VVVVVVVelocityFactor)
 		if err != nil {
-			return fmt.Errorf("invalid vvvvvv_velocity_factor: %v", err)
+			return fmt.Errorf("invalid vvvvvv_velocity_factor: %w", err)
 		}
 	}
 	return nil

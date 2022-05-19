@@ -38,7 +38,7 @@ func (z *ZoomTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	durationString := sp.Properties["duration"]
 	durationTime, err := time.ParseDuration(durationString)
 	if err != nil {
-		return fmt.Errorf("could not parse duration time: %v", durationString)
+		return fmt.Errorf("could not parse duration time: %s", durationString)
 	}
 	z.Frames = int((durationTime*engine.GameTPS + (time.Second / 2)) / time.Second)
 	if z.Frames < 1 {

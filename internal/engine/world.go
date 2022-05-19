@@ -259,7 +259,7 @@ func (w *World) Init(saveState int) error {
 	// Create player entity.
 	w.Player, err = w.Spawn(w.Level.Player, w.Level.Player.LevelPos, &tile)
 	if err != nil {
-		return fmt.Errorf("could not spawn player: %v", err)
+		return fmt.Errorf("could not spawn player: %w", err)
 	}
 
 	// Respawn the player at the desired start location (includes other startup).
@@ -335,7 +335,7 @@ func (w *World) Save() error {
 		return err
 	}
 	if is, cheats := flag.Cheating(); is {
-		return fmt.Errorf("not saving, as cheats are enabled: %v", cheats)
+		return fmt.Errorf("not saving, as cheats are enabled: %s", cheats)
 	}
 	return vfs.WriteState(vfs.SavedGames, fmt.Sprintf("save-%d.json", w.saveState), state)
 }
@@ -357,7 +357,7 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	if cpTransformStr != "" {
 		cpTransforms, err := m.ParseOrientations(cpTransformStr)
 		if err != nil {
-			return fmt.Errorf("could not parse checkpoint orientation: %v", err)
+			return fmt.Errorf("could not parse checkpoint orientation: %w", err)
 		}
 		cpTransform = cpTransforms[0]
 	}
@@ -389,7 +389,7 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 		var err error
 		cp, err = w.Spawn(cpSp, cpSp.LevelPos, &tile)
 		if err != nil {
-			return fmt.Errorf("could not spawn checkpoint: %v", err)
+			return fmt.Errorf("could not spawn checkpoint: %w", err)
 		}
 	}
 
@@ -422,7 +422,7 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 		if onGroundVecStr := cpSp.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
 			_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &dir.DX, &dir.DY)
 			if err != nil {
-				return fmt.Errorf("invalid vvvvvv_gravity_direction: %v", err)
+				return fmt.Errorf("invalid vvvvvv_gravity_direction: %w", err)
 			}
 		}
 		if dir.IsZero() {

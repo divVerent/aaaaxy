@@ -35,7 +35,7 @@ func (s *SpawnCounter) Spawn(w *engine.World, sp *level.SpawnableProps, e *engin
 		var err error
 		count, err = strconv.Atoi(countStr)
 		if err != nil {
-			return fmt.Errorf("could not decode count %q: %v", countStr, err)
+			return fmt.Errorf("could not decode count %q: %w", countStr, err)
 		}
 	}
 	count++
@@ -52,12 +52,12 @@ func (s *SpawnCounter) Spawn(w *engine.World, sp *level.SpawnableProps, e *engin
 		}
 		divisor, err := strconv.Atoi(divisorStr)
 		if err != nil {
-			return fmt.Errorf("could not decode divisor%s %q: %v", suffix, divisorStr, err)
+			return fmt.Errorf("could not decode divisor%s %q: %w", suffix, divisorStr, err)
 		}
 		modulusStr := sp.Properties["modulus"+suffix]
 		modulus, err := strconv.Atoi(modulusStr)
 		if err != nil {
-			return fmt.Errorf("could not decode modulus%s %q: %v", suffix, modulusStr, err)
+			return fmt.Errorf("could not decode modulus%s %q: %w", suffix, modulusStr, err)
 		}
 		target := mixins.ParseTarget(sp.Properties["target"+suffix])
 		if count%divisor == modulus {

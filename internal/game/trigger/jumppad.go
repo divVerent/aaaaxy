@@ -53,23 +53,23 @@ func (j *JumpPad) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Ent
 	var delta m.Delta
 	_, err := fmt.Sscanf(sp.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
 	if err != nil {
-		return fmt.Errorf("failed to parse delta: %v", err)
+		return fmt.Errorf("failed to parse delta: %w", err)
 	}
 	var relDelta m.Delta
 	_, err = fmt.Sscanf(sp.Properties["rel_delta"], "%d %d", &relDelta.DX, &relDelta.DY)
 	if err != nil && sp.Properties["rel_delta"] != "" {
-		return fmt.Errorf("failed to parse absolute delta: %v", err)
+		return fmt.Errorf("failed to parse absolute delta: %w", err)
 	}
 	// Destination is actually measured from center of trigger; need to transform to worldspace.
 	j.Destination = e.Rect.Center().Add(e.Transform.Inverse().Apply(delta)).Add(relDelta)
 	_, err = fmt.Sscanf(sp.Properties["height"], "%d", &j.Height)
 	if err != nil {
-		return fmt.Errorf("failed to parse height: %v", err)
+		return fmt.Errorf("failed to parse height: %w", err)
 	}
 
 	j.JumpSound, err = sound.Load("jump.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load jump sound: %v", err)
+		return fmt.Errorf("could not load jump sound: %w", err)
 	}
 
 	return nil

@@ -221,12 +221,12 @@ func applyAndLogGameControllerDb(config string, err error, name string) {
 func readBuiltinGamepadMappings() (string, error) {
 	configHandle, err := vfs.Load("input", "gamecontrollerdb.txt")
 	if err != nil {
-		return "", fmt.Errorf("open: %v", err)
+		return "", fmt.Errorf("open: %w", err)
 	}
 	defer configHandle.Close()
 	configBytes, err := ioutil.ReadAll(configHandle)
 	if err != nil {
-		return "", fmt.Errorf("read: %v", err)
+		return "", fmt.Errorf("read: %w", err)
 	}
 	return string(configBytes), nil
 }

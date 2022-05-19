@@ -38,17 +38,17 @@ func (r *RiserFsck) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.E
 
 	err := r.NonSolidTouchable.Init(w, e)
 	if err != nil {
-		return fmt.Errorf("could not initialize nonsolidtouchbale: %v", err)
+		return fmt.Errorf("could not initialize nonsolidtouchbale: %w", err)
 	}
 
 	e.Image, err = image.Load("sprites", "riserfsck.png")
 	if err != nil {
-		return fmt.Errorf("could not load riserfsck sprite: %v", err)
+		return fmt.Errorf("could not load riserfsck sprite: %w", err)
 	}
 
 	r.Sound, err = sound.Load("riserfsck.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load riserfsck sound: %v", err)
+		return fmt.Errorf("could not load riserfsck sound: %w", err)
 	}
 
 	return nil

@@ -79,16 +79,16 @@ func Load(name string) (*Sound, error) {
 	}
 	data, err := vfs.Load("sounds", name)
 	if err != nil {
-		return nil, fmt.Errorf("could not load: %v", err)
+		return nil, fmt.Errorf("could not load: %w", err)
 	}
 	defer data.Close()
 	stream, err := vorbis.DecodeWithSampleRate(audiowrap.SampleRate(), data)
 	if err != nil {
-		return nil, fmt.Errorf("could not start decoding: %v", err)
+		return nil, fmt.Errorf("could not start decoding: %w", err)
 	}
 	decoded, err := ioutil.ReadAll(stream)
 	if err != nil {
-		return nil, fmt.Errorf("could not decode: %v", err)
+		return nil, fmt.Errorf("could not decode: %w", err)
 	}
 	config := soundJson{
 		VolumeAdjust: 1,
@@ -97,13 +97,13 @@ func Load(name string) (*Sound, error) {
 	}
 	j, err := vfs.Load("sounds", name+".json")
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
-		return nil, fmt.Errorf("could not load sound json config file for %q: %v", name, err)
+		return nil, fmt.Errorf("could not load sound json config file for %q: %w", name, err)
 	}
 	if j != nil {
 		defer j.Close()
 		err = json.NewDecoder(j).Decode(&config)
 		if err != nil {
-			return nil, fmt.Errorf("could not decode sound json config file for %q: %v", name, err)
+			return nil, fmt.Errorf("could not decode sound json config file for %q: %w", name, err)
 		}
 	}
 	sound := &Sound{

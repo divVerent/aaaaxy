@@ -58,7 +58,7 @@ func (f *Fadable) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	if fadeString != "" {
 		animTime, err := time.ParseDuration(fadeString)
 		if err != nil {
-			return fmt.Errorf("could not parse fade time: %v", fadeString)
+			return fmt.Errorf("could not parse fade time: %s", fadeString)
 		}
 		f.FadeFrames = int((animTime*engine.GameTPS + (time.Second / 2)) / time.Second)
 		if f.FadeFrames < 1 {

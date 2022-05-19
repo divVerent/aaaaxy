@@ -86,7 +86,7 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 		e.ResizeImage = true
 	} else {
 		if _, err := fmt.Sscanf(offsetString, "%d %d", &e.RenderOffset.DX, &e.RenderOffset.DY); err != nil {
-			return fmt.Errorf("could not decode render offset %q: %v", offsetString, err)
+			return fmt.Errorf("could not decode render offset %q: %w", offsetString, err)
 		}
 	}
 	subX, subY := 0, 0
@@ -94,7 +94,7 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	regionString := sp.Properties["image_region"]
 	if regionString != "" {
 		if _, err := fmt.Sscanf(regionString, "%d %d %d %d", &subX, &subY, &subW, &subH); err != nil {
-			return fmt.Errorf("could not decode image region %q: %v", regionString, err)
+			return fmt.Errorf("could not decode image region %q: %w", regionString, err)
 		}
 		e.Image = e.Image.SubImage(go_image.Rectangle{
 			Min: go_image.Point{
@@ -109,7 +109,7 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	}
 	if s := sp.Properties["border_pixels"]; s != "" {
 		if _, err := fmt.Sscanf(s, "%d", &e.BorderPixels); err != nil {
-			return fmt.Errorf("failed to decode borde pixels %q: %v", s, err)
+			return fmt.Errorf("failed to decode borde pixels %q: %w", s, err)
 		}
 	}
 	return s.SpriteBase.Spawn(w, sp, e)

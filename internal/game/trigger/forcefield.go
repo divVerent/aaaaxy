@@ -67,12 +67,12 @@ func (f *ForceField) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	var err error
 	f.ShockSound, err = sound.Load("forcefield.ogg")
 	if err != nil {
-		return fmt.Errorf("could not load jump sound: %v", err)
+		return fmt.Errorf("could not load jump sound: %w", err)
 	}
 
 	f.SourceImg, err = image.Load("sprites", "forcefield.png")
 	if err != nil {
-		return fmt.Errorf("failed to load forcefield sprite: %v", err)
+		return fmt.Errorf("failed to load forcefield sprite: %w", err)
 	}
 
 	// Force fields always spawn active.

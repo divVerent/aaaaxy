@@ -49,7 +49,7 @@ func (d *DelayTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine
 	delayString := sp.Properties["delay"]
 	delayTime, err := time.ParseDuration(delayString)
 	if err != nil {
-		return fmt.Errorf("could not parse delay time: %v", delayString)
+		return fmt.Errorf("could not parse delay time: %s", delayString)
 	}
 	d.DelayFrames = int((delayTime*engine.GameTPS + (time.Second / 2)) / time.Second)
 	if d.DelayFrames < 1 {

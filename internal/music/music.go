@@ -81,7 +81,7 @@ func newSampleCutter(base io.ReadSeeker, offset int64, closer io.Closer) (*sampl
 	}
 	_, err := f.Seek(0, io.SeekStart)
 	if err != nil {
-		return nil, fmt.Errorf("could not build sample cutter: %v", err)
+		return nil, fmt.Errorf("could not build sample cutter: %w", err)
 	}
 	return f, nil
 }
@@ -168,11 +168,11 @@ func Switch(name string) {
 	player, err = audiowrap.NewPlayer(func() (io.ReadCloser, error) {
 		handle, err := vfs.Load("music", name)
 		if err != nil {
-			return nil, fmt.Errorf("could not load music %q: %v", name, err)
+			return nil, fmt.Errorf("could not load music %q: %w", name, err)
 		}
 		data, err := vorbis.DecodeWithSampleRate(audiowrap.SampleRate(), handle)
 		if err != nil {
-			return nil, fmt.Errorf("could not start decoding music %q: %v", name, err)
+			return nil, fmt.Errorf("could not start decoding music %q: %w", name, err)
 		}
 		loopEnd := data.Length()
 		if config.LoopEnd >= 0 {

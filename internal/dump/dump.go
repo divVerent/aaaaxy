@@ -95,7 +95,7 @@ func InitEarly(p Params) error {
 		if *dumpAudioCodecSettings != "" {
 			audioPipe, err = namedpipe.New("aaaaxy-audio", 120, 4*96000, *dumpMediaFrameTimeout)
 			if err != nil {
-				return fmt.Errorf("could not create audio pipe: %v", err)
+				return fmt.Errorf("could not create audio pipe: %w", err)
 			}
 			audioWriter = namedpipe.NewWriteCloserAt(audioPipe)
 			audiowrap.InitDumping()
@@ -103,7 +103,7 @@ func InitEarly(p Params) error {
 		if *dumpVideoCodecSettings != "" {
 			videoPipe, err = namedpipe.New("aaaaxy-video", 120, dumpVideoFrameSize, *dumpMediaFrameTimeout)
 			if err != nil {
-				return fmt.Errorf("could not create video pipe: %v", err)
+				return fmt.Errorf("could not create video pipe: %w", err)
 			}
 			videoWriter = namedpipe.NewWriteCloserAt(videoPipe)
 		}
@@ -113,7 +113,7 @@ func InitEarly(p Params) error {
 		var err error
 		audioWriter, err = os.Create(*dumpAudio)
 		if err != nil {
-			return fmt.Errorf("could not initialize audio dump: %v", err)
+			return fmt.Errorf("could not initialize audio dump: %w", err)
 		}
 		audiowrap.InitDumping()
 	}
@@ -122,7 +122,7 @@ func InitEarly(p Params) error {
 		var err error
 		videoWriter, err = os.Create(*dumpVideo)
 		if err != nil {
-			return fmt.Errorf("could not initialize video dump: %v", err)
+			return fmt.Errorf("could not initialize video dump: %w", err)
 		}
 	}
 
@@ -148,7 +148,7 @@ func InitLate() error {
 		mediaCmd.Stderr = os.Stderr
 		err = mediaCmd.Start()
 		if err != nil {
-			return fmt.Errorf("could not launch FFmpeg: %v", err)
+			return fmt.Errorf("could not launch FFmpeg: %w", err)
 		}
 	}
 
@@ -339,15 +339,15 @@ func Finish() error {
 	}
 	wg.Wait()
 	if audioErr != nil {
-		return fmt.Errorf("failed to close audio - expect corruption: %v", audioErr)
+		return fmt.Errorf("failed to close audio - expect corruption: %w", audioErr)
 	}
 	if videoErr != nil {
-		return fmt.Errorf("failed to close video - expect corruption: %v", videoErr)
+		return fmt.Errorf("failed to close video - expect corruption: %w", videoErr)
 	}
 	if mediaCmd != nil {
 		err := mediaCmd.Wait()
 		if err != nil {
-			return fmt.Errorf("failed to close FFmpeg - expect corruption: %v", err)
+			return fmt.Errorf("failed to close FFmpeg - expect corruption: %w", err)
 		}
 	}
 	log.Infof("media has been dumped")

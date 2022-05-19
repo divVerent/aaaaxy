@@ -189,7 +189,7 @@ func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 		},
 	}, "inactive")
 	if err != nil {
-		return fmt.Errorf("could not initialize riser animation: %v", err)
+		return fmt.Errorf("could not initialize riser animation: %w", err)
 	}
 
 	r.carrySound, err = newRiserSound(1, "riser_carry")
@@ -226,11 +226,11 @@ type riserSound struct {
 func newRiserSound(minFrames int, name string) (riserSound, error) {
 	onSnd, err := sound.Load(name + ".ogg")
 	if err != nil {
-		return riserSound{}, fmt.Errorf("could not load %v sound: %v", name, err)
+		return riserSound{}, fmt.Errorf("could not load %v sound: %w", name, err)
 	}
 	offSnd, err := sound.Load(name + "_stop.ogg")
 	if err != nil {
-		return riserSound{}, fmt.Errorf("could not load %v_stop sound: %v", name, err)
+		return riserSound{}, fmt.Errorf("could not load %v_stop sound: %w", name, err)
 	}
 	return riserSound{
 		minFrames: minFrames,

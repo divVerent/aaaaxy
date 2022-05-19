@@ -298,12 +298,12 @@ func FetchTileset(ts *tmx.TileSet) error {
 	if ts.Source != "" {
 		r, err := vfs.LoadPath("tiles", ts.Source)
 		if err != nil {
-			return fmt.Errorf("could not open tileset: %v", err)
+			return fmt.Errorf("could not open tileset: %w", err)
 		}
 		defer r.Close()
 		decoded, err := tmx.DecodeTileset(r)
 		if err != nil {
-			return fmt.Errorf("could not decode tileset: %v", err)
+			return fmt.Errorf("could not decode tileset: %w", err)
 		}
 		decoded.FirstGlobalID = ts.FirstGlobalID
 		decoded.Source = ts.Source
@@ -354,7 +354,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 	for i := range t.TileSets {
 		err := FetchTileset(&t.TileSets[i])
 		if err != nil {
-			return nil, fmt.Errorf("unsupported map: failed to decode tileset %d: %v", i, err)
+			return nil, fmt.Errorf("unsupported map: failed to decode tileset %d: %w", i, err)
 		}
 	}
 	layer := &t.Layers[0]
@@ -370,11 +370,11 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 	// layer.RawData not used.
 	tds, err := layer.TileDefs(t.TileSets)
 	if err != nil {
-		return nil, fmt.Errorf("invalid map layer: %v", err)
+		return nil, fmt.Errorf("invalid map layer: %w", err)
 	}
 	saveGameVersion, err := t.Properties.Int("save_game_version")
 	if err != nil {
-		return nil, fmt.Errorf("unsupported map: could not read save_game_version: %v", err)
+		return nil, fmt.Errorf("unsupported map: could not read save_game_version: %w", err)
 	}
 	var creditsMusic string
 	if prop := t.Properties.WithName("credits_music"); prop != nil {
@@ -433,7 +433,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		imgSrc := td.Tile.Image.Source
 		imgSrcByOrientation, err := ParseImageSrcByOrientation(imgSrc, properties)
 		if err != nil {
-			return nil, fmt.Errorf("invalid map: %v", err)
+			return nil, fmt.Errorf("invalid map: %w", err)
 		}
 		level.setTile(pos, &LevelTile{
 			Tile: Tile{
@@ -537,7 +537,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 			if orientationProp := properties["orientation"]; orientationProp != "" {
 				orientation, err = m.ParseOrientation(orientationProp)
 				if err != nil {
-					return nil, fmt.Errorf("invalid orientation: %v", err)
+					return nil, fmt.Errorf("invalid orientation: %w", err)
 				}
 			}
 			if properties["type"] == "WarpZone" {
@@ -604,7 +604,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 	for _, sign := range tnihSigns {
 		id, err := strconv.Atoi(sign.Properties["reached_from"])
 		if err != nil {
-			return nil, fmt.Errorf("invalid TnihSign: reached_from not set: %v: %v", sign, err)
+			return nil, fmt.Errorf("invalid TnihSign: reached_from not set: %v: %w", sign, err)
 		}
 		cp := checkpoints[EntityID(id)]
 		if cp == nil {
@@ -710,12 +710,12 @@ func (l *Loader) LoadStepwise(s *splash.State) (splash.Status, error) {
 	status, err := s.Enter("loading level file", "could not load level file", splash.Single(func() error {
 		r, err := vfs.Load("maps", l.filename+".tmx")
 		if err != nil {
-			return fmt.Errorf("could not open map: %v", err)
+			return fmt.Errorf("could not open map: %w", err)
 		}
 		defer r.Close()
 		t, err := tmx.Decode(r)
 		if err != nil {
-			return fmt.Errorf("invalid map: %v", err)
+			return fmt.Errorf("invalid map: %w", err)
 		}
 		l.tmxData = t
 		return nil
@@ -759,7 +759,7 @@ func (l *Loader) LoadStepwise(s *splash.State) (splash.Status, error) {
 func (l *Level) VerifyHash() error {
 	hash, err := hashstructure.Hash(l, hashstructure.FormatV2, nil)
 	if err != nil {
-		return fmt.Errorf("could not hash level: %v", err)
+		return fmt.Errorf("could not hash level: %w", err)
 	}
 	if hash != l.Hash {
 		log.Fatalf("could not verify")
@@ -775,7 +775,7 @@ func ParseImageSrcByOrientation(defaultSrc string, properties map[string]string)
 		if oStr := strings.TrimPrefix(propName, "img."); oStr != propName {
 			o, err := m.ParseOrientation(oStr)
 			if err != nil {
-				return nil, fmt.Errorf("could not parse orientation tile: %v", err)
+				return nil, fmt.Errorf("could not parse orientation tile: %w", err)
 			}
 			if o == m.Identity() && propValue != defaultSrc {
 				return nil, fmt.Errorf("unrotated image isn't same as img: got %q, want %q", propValue, defaultSrc)

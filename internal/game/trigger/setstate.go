@@ -57,7 +57,7 @@ func (s *SetState) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	if orientationStr != "" {
 		requiredTransforms, err := m.ParseOrientations(orientationStr)
 		if err != nil {
-			return fmt.Errorf("could not parse required orientation: %v", err)
+			return fmt.Errorf("could not parse required orientation: %w", err)
 		}
 		show := false
 		for _, requiredTransform := range requiredTransforms {
