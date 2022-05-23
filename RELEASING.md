@@ -11,15 +11,16 @@ AAAAXY releases are published in the following places:
       - [Analytics](https://snapcraft.io/aaaaxy/metrics)
   - [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy)
       - [Analytics](https://klausenbusk.github.io/flathub-stats/#ref=io.github.divverent.aaaaxy&interval=infinity&downloadType=installs%2Bupdates)
-      - To see active users per release, run `sh scripts/flathub-stats.sh`.
+      - To see active users per release, run `sh
+        scripts/flathub-stats.sh`.
   - [Itch](https://divverent.itch.io/aaaaxy)
       - [Analytics](https://itch.io/game/summary/1199736)
 
 # Binaries
 
-The official binary release is built using `sh scripts/binary-release.sh`.
-This will also print instructions about releasing to AppImage, Snap,
-Flathub and Itch.
+The official binary release is built using `sh
+scripts/binary-release.sh`. This will also print instructions about
+releasing to AppImage, Snap, Flathub and Itch.
 
 # Versioning
 
