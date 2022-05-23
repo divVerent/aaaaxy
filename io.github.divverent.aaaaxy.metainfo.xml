@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.34" date="2022-05-17">
-      <description><ul><li>Engine: update to Ebiten v2.3.2.</li><li>Engine: require macOS Mojave; can no longer compile for High Sierra due to an osxcross bug with recent Ebiten source.</li><li>Level: make the Weird Space secret slightly more discoverable.</li><li>Level: fix blastoff countdown in Fly High once and for all.</li><li>Level: fix two nonsolid tiles in Stairs to Nowhere.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.34</url>
+    <release version="v1.2.42" date="2022-05-23">
+      <description><ul><li>Engine: minor module update.</li><li>Engine: use proper error wrapping, EXCEPT in vfs code, where we control IsNotExist on our own.</li><li>Engine: do not show an xmessage dialog when using -dump_embedded_assets.</li><li>Build scripts: better FreeBSD support.</li><li>Build scripts: when running shell scripts, always invoke them via "sh".</li><li>Build scripts: allow turning off license text inclusion by passing BUILDTAGS=noembedlicenses.</li><li>Build scripts: respect GO_FLAGS in the go generate-invoked scripts.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.42</url>
     </release>
   </releases>
 </component>
