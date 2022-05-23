@@ -15,13 +15,13 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.8.7
 	golang.org/x/image v0.0.0-20220413100746-70e8d0d3baa9
-	golang.org/x/sys v0.0.0-20220513210249-45d2b4557a2a
+	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a
 )
 
 require (
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
-	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20220514210836-eae9d2d3f5b7 // indirect
+	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20220516021902-eb3e265c7661 // indirect
 	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
@@ -55,7 +55,7 @@ require (
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
 	golang.org/x/exp v0.0.0-20220126164734-073fb1339172 // indirect
-	golang.org/x/mobile v0.0.0-20220504144722-50dca8fc073d // indirect
+	golang.org/x/mobile v0.0.0-20220518205345-8578da9835fd // indirect
 )
 
 // Workaround for osxcross.
