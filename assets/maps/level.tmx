@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8250">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8251">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -649,7 +649,7 @@
    <properties>
     <property name="music" value="retro_chiptune_1.ogg"/>
     <property name="next_left" type="object" value="89"/>
-    <property name="required_orientation" value="SW"/>
+    <property name="required_orientation" value="SW WN ES NE"/>
     <property name="text" value="Stop and Stair"/>
    </properties>
   </object>
@@ -18126,6 +18126,12 @@
     <property name="object_solid" type="bool" value="true"/>
     <property name="opaque" type="bool" value="false"/>
     <property name="player_solid" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="8250" type="SetState" x="3904" y="4128" width="16" height="128">
+   <properties>
+    <property name="required_orientation" value="WN ES NE"/>
+    <property name="target" value="stop_and_stair"/>
    </properties>
   </object>
  </objectgroup>
