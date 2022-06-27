@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8251">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8252">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -17754,14 +17754,14 @@
     <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="8167" type="Text" x="4672" y="3776" width="16" height="64">
+  <object id="8167" type="Text" x="4672" y="3776" width="16" height="48">
    <properties>
     <property name="orientation" value="WN"/>
     <property name="required_orientation" value="WN"/>
     <property name="text" value="E  X  I  T"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
-    <property name="text_font" value="Regular"/>
+    <property name="text_font" value="Small"/>
    </properties>
   </object>
   <object id="8169" name="ViewTheEndingOrNotBecauseNothingPointsAtThis" gid="310" x="4688" y="3824" width="16" height="16">
@@ -18132,6 +18132,14 @@
    <properties>
     <property name="required_orientation" value="WN ES NE"/>
     <property name="target" value="stop_and_stair"/>
+   </properties>
+  </object>
+  <object id="8251" type="Switch" gid="308" x="4672" y="3824" width="16" height="16">
+   <properties>
+    <property name="orientation" value="WN"/>
+    <property name="send_untouch" type="bool" value="false"/>
+    <property name="target" value="ViewTheEndingOrNotOrElse"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
  </objectgroup>
