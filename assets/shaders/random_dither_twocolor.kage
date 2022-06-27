@@ -1,0 +1,120 @@
+// Copyright 2021 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// A simple shader to map to EGA palette.
+package main
+
+var (
+	// LUTSize is the number of color component shades in the LUT.
+	LUTSize float
+
+	// LUTPerRow is the number of LUT squares per row.
+	LUTPerRow float
+
+	// Offset is a pixel offset to apply to the noise pattern.
+	Offset vec2
+)
+
+func noiseM(srcOrigin, srcImageSize, coord vec2) float {
+	p := srcImageSize*(coord-srcOrigin) + Offset
+	return fract((sin(p.x)+cos(length(p)))*p.y)*2 - 1
+}
+
+func nearestColor(srcOrigin, srcImageSize vec2, c vec3) vec3 {
+	cLut := clamp(floor(c*LUTSize), 0, LUTSize-1)
+	pix := vec2(
+		mod(cLut.b, LUTPerRow)*LUTSize+cLut.r,
+		floor(cLut.b/LUTPerRow)*LUTSize+cLut.g,
+	)
+	coord := srcOrigin + pix/srcImageSize
+	return imageSrc1UnsafeAt(coord).rgb
+}
+
+func dotDiff(a, b vec3) float {
+	return dot(a * b, vec3(3.0, 4.0, 2.0))
+}
+
+func colorDiff(a, b vec3) float {
+	// Weighted color difference.
+	d := a - b
+	return dotDiff(d, d)
+}
+
+func score0(a, b vec3) float {
+	return colorDiff(a, b)
+}
+
+func score(a, b, c1, c2 vec3) float {
+	return score0(a, b) + colorDiff(c1, c2)*0.01
+}
+
+func computeF(a, b, c vec3) float {
+	// Find f so that colorDiff(a + f * (b - a), c) is minimal.
+	u := c - a
+	v := b - a
+	// Find f so that colorDiff(f * v - u, 0) is minimal.
+	return dotDiff(u, v) / dotDiff(v, v)
+}
+
+func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {
+	p0 := imageSrc0UnsafeAt(coord).rgb
+
+	c0 := nearestColor(srcOrigin, srcImageSize, p0)
+	bestC1, bestF, bestDist := c0, 0.0, score0(c0, p0)
+	// TODO(divVerent): actually calculate rather than doing this kind of guessing the Bayer way?
+	const n = 63.0
+	const ni = 1.0 / n
+	for bayer := 1.0; bayer < n; bayer++ {
+		f := bayer * ni
+		// Solve:
+		//   c0 * (1 - f) + c1 * f = p0
+		//   c1 = (p0 - c0 * (1 - f)) / f
+		c1_ := (p0 - c0*(1.0-f)) / f
+		c1 := nearestColor(srcOrigin, srcImageSize, c1_)
+		if c1 == c0 {
+			continue
+		}
+		f = computeF(c0, c1, p0)
+		c := mix(c0, c1, f)
+		dist := score(c, p0, c0, c1)
+		if dist < bestDist {
+			bestC1 = c1
+			bestF = f
+			bestDist = dist
+		}
+	}
+
+	// Swap colors if needed.
+	arbitraryFactors := vec3(1.0, 1.618034, 0.618034)
+	if dot(bestC1 - c0, arbitraryFactors) < 0 {
+		h := c0
+		c0 = bestC1
+		bestC1 = h
+		bestF = 1.0 - bestF
+	}
+
+	// Perform the dither.
+	b := noiseM(srcOrigin, srcImageSize, coord)*0.5 + 0.5
+	if b >= bestF {
+		return vec4(c0, 1.0)
+	} else {
+		return vec4(bestC1, 1.0)
+	}
+}
+
+func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
+	srcOrigin, _ := imageSrcRegionOnTexture()
+	srcImageSize := imageSrcTextureSize()
+	return egaAt(srcOrigin, srcImageSize, texCoord)
+}
