@@ -51,7 +51,7 @@ var (
 	screenFilterJitter        = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 	paletteFlag               = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
 	paletteDitherSize         = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
-	paletteDitherMode         = flag.String("palette_dither_mode", "bayer", "dither type (none, bayer, halftone or random)")
+	paletteDitherMode         = flag.String("palette_dither_mode", "bayer", "dither type (none, bayer, halftone, bayer2, halftone2 or random)")
 	paletteDitherWorldAligned = flag.Bool("palette_dither_world_aligned", true, "align dither pattern to world as opposed to screen")
 	debugEnableDrawing        = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 	showFPS                   = flag.Bool("show_fps", false, "show fps counter")
@@ -63,6 +63,8 @@ type ditherMode int
 const (
 	bayerDither ditherMode = iota
 	halftoneDither
+	bayer2Dither
+	halftone2Dither
 	randomDither
 )
 
@@ -202,6 +204,10 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 		ditherMode = bayerDither
 	case "halftone":
 		ditherMode = halftoneDither
+	case "bayer2":
+		ditherMode = bayer2Dither
+	case "halftone2":
+		ditherMode = halftone2Dither
 	case "random":
 		ditherMode = randomDither
 		ditherSize = 0
@@ -235,6 +241,10 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 			g.paletteShader, err = shader.Load("ordered_dither.kage", map[string]string{
 				"BayerSize": fmt.Sprint(ditherSize),
 			})
+		case bayer2Dither, halftone2Dither:
+			g.paletteShader, err = shader.Load("ordered_dither_twocolor.kage", map[string]string{
+				"BayerSize": fmt.Sprint(ditherSize),
+			})
 		case randomDither:
 			g.paletteShader, err = shader.Load("random_dither.kage", nil)
 		}
@@ -251,9 +261,9 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	if g.palette != pal || g.paletteDitherMode != ditherMode {
 		g.paletteLUTSize, g.paletteLUTPerRow = pal.ToLUT(g.paletteLUT)
 		switch ditherMode {
-		case bayerDither:
+		case bayerDither, bayer2Dither:
 			g.paletteBayern = pal.BayerPattern(g.paletteDitherSize)
-		case halftoneDither:
+		case halftoneDither, halftone2Dither:
 			g.paletteBayern = pal.HalftonePattern(g.paletteDitherSize)
 		case randomDither:
 			g.paletteBayern = nil
