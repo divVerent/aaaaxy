@@ -18134,12 +18134,11 @@
     <property name="target" value="stop_and_stair"/>
    </properties>
   </object>
-  <object id="8251" type="Switch" gid="308" x="4672" y="3824" width="16" height="16">
+  <object id="8251" gid="308" x="4672" y="3824" width="16" height="16">
    <properties>
     <property name="orientation" value="WN"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="target" value="ViewTheEndingOrNotOrElse"/>
-    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
  </objectgroup>
