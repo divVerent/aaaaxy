@@ -804,6 +804,14 @@ var data = map[string]*Palette{
 		// TODO(divVerent): also add the object colors?
 	}),
 
+	// Gameboy?
+	"gb": newPalette(4, []uint32{
+		0x081820,
+		0x346856,
+		0x88C070,
+		0xE0F8D0,
+	}),
+
 	// C64 palette.
 	"c64": newPalette(0, []uint32{
 		0x000000,
