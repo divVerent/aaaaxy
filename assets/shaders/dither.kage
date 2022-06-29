@@ -103,15 +103,21 @@ func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
 	const n = 15.0
 	// T["end"]
 	const ni = 1.0 / n
-	for bayer := 1.0; bayer < n; bayer++ {
+	const bmax = 0.5 * n
+	for bayer := 1.0; bayer <= bmax; bayer += 1.0 {
 		f := bayer * ni
+		// NOTE: f > 0.5 is not needed, as that would make c1_ closer to p0 than c0,
+		// which contradicts c0 being the nearest color.
 		// Solve:
 		//   c0 * (1 - f) + c1 * f = p0
 		//   c1 = (p0 - c0 * (1 - f)) / f
-		c1_ := (p0 - c0*(1.0-f)) / f
+		//   c1 = (p0 - c0) / f + c0
+		c1_ := c0 + (p0 - c0) / f
 		c1 := nearestColor(srcOrigin, srcImageSize, c1_).rgb
 		if c1 == c0 {
-			continue
+			// Each step moves c1_ closer to p0.
+			// So once we get the same color once, we'll always get the same color.
+			break
 		}
 		f = computeF(c0, c1, p0)
 		c := mix(c0, c1, f)
