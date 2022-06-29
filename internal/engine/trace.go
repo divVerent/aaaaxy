@@ -93,6 +93,7 @@ func (s traceScore) CompareFine(o traceScore) int {
 //   - i1: MIN(2*i+1, NumSteps)
 //   - j0 := (Height*i0+NumSteps)/(2*NumSteps)
 //   - j1 := (Height*i1+NumSteps)/(2*NumSteps)
+//
 // - Then: j in {j0, j1}.
 type normalizedLine struct {
 	Origin   m.Pos

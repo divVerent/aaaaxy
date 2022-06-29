@@ -70,7 +70,7 @@ const (
 	tileWindowHeight = (GameHeight+2*borderWindowHeight+level.TileSize-2)/level.TileSize + 1
 )
 
-//expandStep is a single expansion step.
+// expandStep is a single expansion step.
 type expandStep struct {
 	from, from2, from3, to m.Delta
 }
