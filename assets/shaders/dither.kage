@@ -16,33 +16,60 @@
 package main
 
 var (
+	// T["if .BayerSize"]
+	// Zieht den Bayern die Farbpaletten aus, Farbpaletten aus, Farbpaletten aus.
+	// Range: -1 to 1 inclusive.
+	Bayern [T[".BayerSize"] * T[".BayerSize"]]float
+	// T["end"]
+
 	// LUTSize is the number of color component shades in the LUT.
 	LUTSize float
 
 	// LUTPerRow is the number of LUT squares per row.
 	LUTPerRow float
 
-	// Offset is a pixel offset to apply to the noise pattern.
+	// Offset is a pixel offset to apply to the Bayer pattern.
 	Offset vec2
 )
 
 func noiseM(srcOrigin, srcImageSize, coord vec2) float {
 	p := srcImageSize*(coord-srcOrigin) + Offset
+
+	// T["if .BayerSize"]
+	mPos := mod(floor(p), T[".BayerSize"])
+	mPosInt := int(mPos.x + T[".BayerSize"]*mPos.y)
+	return Bayern[mPosInt]
+	// T["end"]
+
+	// T["if .RandomDither"]
+	// Looks very random.
 	return fract((sin(p.x)+cos(length(p)))*p.y)*2 - 1
+	// T["end"]
+
+	// T["if .PlasticDither"]
+	// As suggested in The Unreasonable Effectiveness of Quasirandom Sequences (Martin Roberts),
+	// using a simple linear function based on the plastic number, composed with a triangle wave,
+	// gives good results for bias.
+	plastic := 1.32471795724474602596
+	rBias := fract(dot(p, vec2(1.0/plastic, 1.0/plastic/plastic)))
+	return 1.0 - abs(rBias-0.5)*4.0
+	// T["end"]
 }
 
-func nearestColor(srcOrigin, srcImageSize vec2, c vec3) vec3 {
+func nearestColor(srcOrigin, srcImageSize vec2, c vec3) vec4 {
 	cLut := clamp(floor(c*LUTSize), 0, LUTSize-1)
 	pix := vec2(
 		mod(cLut.b, LUTPerRow)*LUTSize+cLut.r,
 		floor(cLut.b/LUTPerRow)*LUTSize+cLut.g,
 	)
 	coord := srcOrigin + pix/srcImageSize
-	return imageSrc1UnsafeAt(coord).rgb
+	return imageSrc1UnsafeAt(coord)
 }
 
+// T["if .TwoColor"]
+
 func dotDiff(a, b vec3) float {
-	return dot(a * b, vec3(3.0, 4.0, 2.0))
+	return dot(a*b, vec3(3.0, 4.0, 2.0))
 }
 
 func colorDiff(a, b vec3) float {
@@ -67,13 +94,14 @@ func computeF(a, b, c vec3) float {
 	return dotDiff(u, v) / dotDiff(v, v)
 }
 
-func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {
-	p0 := imageSrc0UnsafeAt(coord).rgb
-
-	c0 := nearestColor(srcOrigin, srcImageSize, p0)
+func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
+	c0 := nearestColor(srcOrigin, srcImageSize, p0).rgb
 	bestC1, bestF, bestDist := c0, 0.0, score0(c0, p0)
-	// TODO(divVerent): actually calculate rather than doing this kind of guessing the Bayer way?
-	const n = 63.0
+	// T["if .BayerSize"]
+	const n = float(len(Bayern) - 1)
+	// T["else"]
+	const n = 15.0
+	// T["end"]
 	const ni = 1.0 / n
 	for bayer := 1.0; bayer < n; bayer++ {
 		f := bayer * ni
@@ -81,7 +109,7 @@ func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {
 		//   c0 * (1 - f) + c1 * f = p0
 		//   c1 = (p0 - c0 * (1 - f)) / f
 		c1_ := (p0 - c0*(1.0-f)) / f
-		c1 := nearestColor(srcOrigin, srcImageSize, c1_)
+		c1 := nearestColor(srcOrigin, srcImageSize, c1_).rgb
 		if c1 == c0 {
 			continue
 		}
@@ -97,24 +125,40 @@ func egaAt(srcOrigin, srcImageSize, coord vec2) vec4 {
 
 	// Swap colors if needed.
 	arbitraryFactors := vec3(1.0, 1.618034, 0.618034)
-	if dot(bestC1 - c0, arbitraryFactors) < 0 {
+	if dot(bestC1-c0, arbitraryFactors) < 0 {
 		h := c0
 		c0 = bestC1
 		bestC1 = h
 		bestF = 1.0 - bestF
 	}
 
+	// T["if .BayerSize"]
+	// We actually want _nearest_ though, so each Bayer index is responsible for b-0.5*ni to b+0.5*ni.
+	bestF += 0.5 * ni
+	// T["end"]
+
 	// Perform the dither.
 	b := noiseM(srcOrigin, srcImageSize, coord)*0.5 + 0.5
 	if b >= bestF {
-		return vec4(c0, 1.0)
+		return c0
 	} else {
-		return vec4(bestC1, 1.0)
+		return bestC1
 	}
 }
+
+// T["else"]
+
+func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
+	scale := nearestColor(srcOrigin, srcImageSize, p0).a
+	p := p0 + noiseM(srcOrigin, srcImageSize, coord)*scale
+	return nearestColor(srcOrigin, srcImageSize, p).rgb
+}
+
+// T["end"]
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcOrigin, _ := imageSrcRegionOnTexture()
 	srcImageSize := imageSrcTextureSize()
-	return egaAt(srcOrigin, srcImageSize, texCoord)
+	p0 := imageSrc0UnsafeAt(texCoord).rgb
+	return vec4(dither(srcOrigin, srcImageSize, texCoord, p0), 1.0)
 }

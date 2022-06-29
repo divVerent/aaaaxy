@@ -37,7 +37,7 @@ type shaderPath = struct {
 
 var cache = map[shaderPath]*ebiten.Shader{}
 
-func Load(name string, params map[string]string) (*ebiten.Shader, error) {
+func Load(name string, params interface{}) (*ebiten.Shader, error) {
 	if !*debugUseShaders {
 		return nil, fmt.Errorf("shader support has been turned off using --debug_use_shaders=false")
 	}

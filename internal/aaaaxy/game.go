@@ -248,26 +248,25 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	// Need a new shader?
 	if g.paletteShader == nil {
 		var err error
+		params := map[string]interface{}{}
 		switch ditherMode {
 		case bayerDither, halftoneDither:
-			g.paletteShader, err = shader.Load("ordered_dither.kage", map[string]string{
-				"BayerSize": fmt.Sprint(ditherSize),
-				"TwoColor":  "",
-			})
+			params["BayerSize"] = ditherSize
 		case bayer2Dither, halftone2Dither:
-			g.paletteShader, err = shader.Load("ordered_dither.kage", map[string]string{
-				"BayerSize": fmt.Sprint(ditherSize),
-				"TwoColor":  "true",
-			})
+			params["BayerSize"] = ditherSize
+			params["TwoColor"] = true
 		case plasticDither:
-			g.paletteShader, err = shader.Load("plastic_dither.kage", nil)
+			params["PlasticDither"] = true
 		case plastic2Dither:
-			g.paletteShader, err = shader.Load("plastic_dither_twocolor.kage", nil)
+			params["PlasticDither"] = true
+			params["TwoColor"] = true
 		case randomDither:
-			g.paletteShader, err = shader.Load("random_dither.kage", nil)
+			params["RandomDither"] = true
 		case random2Dither:
-			g.paletteShader, err = shader.Load("random_dither_twocolor.kage", nil)
+			params["RandomDither"] = true
+			params["TwoColor"] = true
 		}
+		g.paletteShader, err = shader.Load("dither.kage", params)
 		if err != nil {
 			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for dither size %d: %v", *paletteDitherSize, err)
 			*paletteFlag = "none"
