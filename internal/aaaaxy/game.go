@@ -252,10 +252,12 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 		case bayerDither, halftoneDither:
 			g.paletteShader, err = shader.Load("ordered_dither.kage", map[string]string{
 				"BayerSize": fmt.Sprint(ditherSize),
+				"TwoColor":  "",
 			})
 		case bayer2Dither, halftone2Dither:
-			g.paletteShader, err = shader.Load("ordered_dither_twocolor.kage", map[string]string{
+			g.paletteShader, err = shader.Load("ordered_dither.kage", map[string]string{
 				"BayerSize": fmt.Sprint(ditherSize),
+				"TwoColor":  "true",
 			})
 		case plasticDither:
 			g.paletteShader, err = shader.Load("plastic_dither.kage", nil)
