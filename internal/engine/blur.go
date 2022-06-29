@@ -119,7 +119,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken, blurFade fl
 	// Too bad we can't have integer uniforms, so we need to templatize this
 	// shader instead. Should be faster than having conditionals inside the
 	// shader code.
-	blurShader, err := shader.Load("blur.kage", map[string]string{
+	blurShader, err := shader.Load("blur.kage.tmpl", map[string]string{
 		"Size": fmt.Sprint(size),
 	})
 	if err != nil {

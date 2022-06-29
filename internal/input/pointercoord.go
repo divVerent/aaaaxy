@@ -24,7 +24,7 @@ func pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, 
 	inX := float64(x)*float64(gameWidth)/float64(screenWidth) + 0.5
 	inY := float64(y)*float64(gameHeight)/float64(screenHeight) + 0.5
 
-	// Straight ported from linear2xcrt.kage.
+	// Straight ported from linear2xcrt.kage.tmpl.
 	// Assume srcImageSize is 1:1 -> "square pixels".
 	srcImageSizeSrcSizeLen := math.Hypot(float64(gameWidth), float64(gameHeight))
 	mapVecX := 1 / (0.5 * srcImageSizeSrcSizeLen)

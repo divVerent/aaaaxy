@@ -266,7 +266,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 			params["RandomDither"] = true
 			params["TwoColor"] = true
 		}
-		g.paletteShader, err = shader.Load("dither.kage", params)
+		g.paletteShader, err = shader.Load("dither.kage.tmpl", params)
 		if err != nil {
 			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for dither size %d: %v", *paletteDitherSize, err)
 			*paletteFlag = "none"
@@ -484,7 +484,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	case *screenFilter == "linear2x":
 		if g.linear2xShader == nil {
 			var err error
-			g.linear2xShader, err = shader.Load("linear2xcrt.kage", map[string]interface{}{
+			g.linear2xShader, err = shader.Load("linear2xcrt.kage.tmpl", map[string]interface{}{
 				"CRT": false,
 			})
 			if err != nil {
@@ -507,7 +507,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	case *screenFilter == "linear2xcrt":
 		if g.linear2xCRTShader == nil {
 			var err error
-			g.linear2xCRTShader, err = shader.Load("linear2xcrt.kage", map[string]interface{}{
+			g.linear2xCRTShader, err = shader.Load("linear2xcrt.kage.tmpl", map[string]interface{}{
 				"CRT": true,
 			})
 			if err != nil {
