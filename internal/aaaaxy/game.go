@@ -238,7 +238,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	}
 
 	// Bayer pattern changed?
-	if ditherSize != g.paletteDitherSize {
+	if ditherSize != g.paletteDitherSize || g.paletteDitherMode != ditherMode {
 		if g.paletteShader != nil {
 			g.paletteShader.Dispose()
 		}
@@ -273,11 +273,12 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 			return screen, func() {}
 		}
 		g.paletteDitherSize = ditherSize
+		g.paletteDitherMode = ditherMode
 		g.palette = nil
 	}
 
 	// Need a LUT?
-	if g.palette != pal || g.paletteDitherMode != ditherMode {
+	if g.palette != pal {
 		g.paletteLUTSize, g.paletteLUTPerRow = pal.ToLUT(g.paletteLUT)
 		switch ditherMode {
 		case bayerDither, bayer2Dither:
@@ -288,7 +289,6 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 			g.paletteBayern = nil
 		}
 		g.palette = pal
-		g.paletteDitherMode = ditherMode
 	}
 
 	return g.paletteOffscreen, func() {
@@ -484,7 +484,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	case *screenFilter == "linear2x":
 		if g.linear2xShader == nil {
 			var err error
-			g.linear2xShader, err = shader.Load("linear2x.kage", nil)
+			g.linear2xShader, err = shader.Load("linear2xcrt.kage", map[string]interface{}{
+				"CRT": false,
+			})
 			if err != nil {
 				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load linear2x shader: %v", err)
 				*screenFilter = "simple"
@@ -505,7 +507,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	case *screenFilter == "linear2xcrt":
 		if g.linear2xCRTShader == nil {
 			var err error
-			g.linear2xCRTShader, err = shader.Load("linear2xcrt.kage", nil)
+			g.linear2xCRTShader, err = shader.Load("linear2xcrt.kage", map[string]interface{}{
+				"CRT": true,
+			})
 			if err != nil {
 				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load linear2xcrt shader: %v", err)
 				*screenFilter = "linear2x"

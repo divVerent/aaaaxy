@@ -15,6 +15,8 @@
 // A simple shader to upscale and linearly "interpolate".
 package main
 
+// T["if .CRT"]
+
 // Strength of the scan line effect.
 // Full effect at value of 2.0 (scaled in calling code).
 // As a rule of thumb, below 2x (720px) height, the effect should be left off
@@ -42,25 +44,43 @@ func crtMap(srcOrigin, srcSize, srcImageSize, in vec2) vec2 {
 	return srcMid + outRel/mapVec
 }
 
+// T["end"]
+
 func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
 
 	srcImageSize := imageSrcTextureSize()
+	srcTexel := 1.0 / srcImageSize
 
+	// T["if .CRT"]
 	// Map texture coordinate to CRT.
 	texCoord := crtMap(srcOrigin, srcSize, srcImageSize, texCoord_)
+	// T["else"]
+	texCoord := texCoord_
+	// T["end"]
 
 	// Set up typical linear interpolation.
-	halfTexel := 0.5 / srcImageSize
+	halfTexel := 0.5 * srcTexel
 	tieBreaker := halfTexel / 256.0
+
+	// T["if .CRT"]
+	// Get the four texels, mapping outside to black.
 	topLeft := texCoord - halfTexel + tieBreaker
 	bottomRight := texCoord + halfTexel + tieBreaker
-
-	// Get the four texels (black for outside).
 	a := imageSrc0At(topLeft)
 	b := imageSrc0At(vec2(bottomRight.x, topLeft.y))
 	c := imageSrc0At(vec2(topLeft.x, bottomRight.y))
 	d := imageSrc0At(bottomRight)
+	// T["else"]
+	// Get the four texels, clamping to edge.
+	srcMax := srcOrigin + srcSize - srcTexel
+	topLeft := clamp(texCoord-halfTexel+tieBreaker, srcOrigin, srcMax)
+	bottomRight := clamp(texCoord+halfTexel+tieBreaker, srcOrigin, srcMax)
+	a := imageSrc0UnsafeAt(topLeft)
+	b := imageSrc0UnsafeAt(vec2(bottomRight.x, topLeft.y))
+	c := imageSrc0UnsafeAt(vec2(topLeft.x, bottomRight.y))
+	d := imageSrc0UnsafeAt(bottomRight)
+	// T["end"]
 
 	// Mix them properly.
 	f := fract(topLeft * srcImageSize)
@@ -74,14 +94,18 @@ func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
 	// nearest-scaling to 2x then linear-scaling to 3x.
 	f = clamp(0.5+(f-0.5)*2.0, 0.0, 1.0)
 
+	// T["if .CRT"]
 	// Scan line effect?
 	row := texCoord.y * srcImageSize.y
 	fRow := fract(row)
 	fMask := 1.0 - abs(fRow-0.5)*ScanLineEffect
 	mask := vec4(fMask, fMask, fMask, 1.0)
-	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y) * mask
-
 	// Note: for 1080p (3x resolution), this will map every centeral pixel to full value,
 	// but every other row to 1/3 its value.
 	// We take that into account when generating the ffmpeg command.
+	// T["else"]
+	const mask = 1.0
+	// T["end"]
+
+	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y) * mask
 }
