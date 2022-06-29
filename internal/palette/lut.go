@@ -294,23 +294,19 @@ func sizeBayer(size int) (sizeSquare int, scale, offset float64) {
 	}
 	sizeCeil := 1 << bits
 	sizeCeilSquare := sizeCeil * sizeCeil
-	// Map to [-1..1] _inclusive_ ranges.
+	// Map to [0..1] _exclusive_ ranges.
 	// Not _perfect_, but way nicer to work with.
-	if sizeCeilSquare > 1 {
-		scale = 2.0 / float64(sizeCeilSquare-1)
-	}
-	offset = -float64(sizeCeilSquare-1) / 2.0
+	offset = 0.5 / float64(sizeCeilSquare)
+	scale = 1.0 / float64(sizeCeilSquare)
 	return
 }
 
 func sizeHalftone(size int) (sizeSquare int, scale, offset float64) {
 	sizeSquare = size * size
-	// Map to [-1..1] _inclusive_ ranges.
+	// Map to [0..1] _exclusive_ ranges.
 	// Not _perfect_, but way nicer to work with.
-	if sizeSquare > 1 {
-		scale = 2.0 / float64(sizeSquare-1)
-	}
-	offset = -float64(sizeSquare-1) / 2.0
+	offset = 0.5 / float64(sizeSquare)
+	scale = 1.0 / float64(sizeSquare)
 	return
 }
 

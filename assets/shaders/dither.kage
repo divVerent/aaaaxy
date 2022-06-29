@@ -18,7 +18,7 @@ package main
 var (
 	// T["if .BayerSize"]
 	// Zieht den Bayern die Farbpaletten aus, Farbpaletten aus, Farbpaletten aus.
-	// Range: -1 to 1 inclusive.
+	// Range: 0 to 1 exclusive (e.g. for 4 levels, at 1/8, 3/8, 5/8, 7/8).
 	Bayern [T[".BayerSize"] * T[".BayerSize"]]float
 	// T["end"]
 
@@ -43,7 +43,7 @@ func noiseM(srcOrigin, srcImageSize, coord vec2) float {
 
 	// T["if .RandomDither"]
 	// Looks very random.
-	return fract((sin(p.x)+cos(length(p)))*p.y)*2 - 1
+	return fract((sin(p.x)+cos(length(p)))*p.y)
 	// T["end"]
 
 	// T["if .PlasticDither"]
@@ -52,7 +52,7 @@ func noiseM(srcOrigin, srcImageSize, coord vec2) float {
 	// gives good results for bias.
 	plastic := 1.32471795724474602596
 	rBias := fract(dot(p, vec2(1.0/plastic, 1.0/plastic/plastic)))
-	return 1.0 - abs(rBias-0.5)*4.0
+	return abs(rBias-0.5)*2.0
 	// T["end"]
 }
 
@@ -138,13 +138,8 @@ func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
 		bestF = 1.0 - bestF
 	}
 
-	// T["if .BayerSize"]
-	// We actually want _nearest_ though, so each Bayer index is responsible for b-0.5*ni to b+0.5*ni.
-	bestF += 0.5 * ni
-	// T["end"]
-
 	// Perform the dither.
-	b := noiseM(srcOrigin, srcImageSize, coord)*0.5 + 0.5
+	b := noiseM(srcOrigin, srcImageSize, coord)
 	if b >= bestF {
 		return c0
 	} else {
@@ -156,7 +151,10 @@ func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
 
 func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
 	scale := nearestColor(srcOrigin, srcImageSize, p0).a
-	p := p0 + noiseM(srcOrigin, srcImageSize, coord)*scale
+	f := noiseM(srcOrigin, srcImageSize, coord)
+	// Map to [-1..1].
+	f = 2.0 * f - 1.0
+	p := p0 + f*scale
 	return nearestColor(srcOrigin, srcImageSize, p).rgb
 }
 
