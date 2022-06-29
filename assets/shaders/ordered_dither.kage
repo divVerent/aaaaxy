@@ -18,7 +18,7 @@ package main
 var (
 	// Zieht den Bayern die Farbpaletten aus, Farbpaletten aus, Farbpaletten aus.
 	// Range: -1 to 1 inclusive.
-	Bayern [PARAMS["BayerSize"] * PARAMS["BayerSize"]]float
+	Bayern [T[".BayerSize"] * T[".BayerSize"]]float
 
 	// LUTSize is the number of color component shades in the LUT.
 	LUTSize float
@@ -32,8 +32,8 @@ var (
 
 func bayerM(srcOrigin, srcImageSize, coord vec2) float {
 	p := srcImageSize*(coord-srcOrigin) + Offset
-	mPos := mod(floor(p), PARAMS["BayerSize"])
-	mPosInt := int(mPos.x + PARAMS["BayerSize"]*mPos.y)
+	mPos := mod(floor(p), T[".BayerSize"])
+	mPosInt := int(mPos.x + T[".BayerSize"]*mPos.y)
 	return Bayern[mPosInt]
 }
 

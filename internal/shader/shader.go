@@ -18,6 +18,7 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"text/template"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -53,12 +54,16 @@ func Load(name string, params map[string]string) (*ebiten.Shader, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not read shader %q: %w", name, err)
 	}
-	// Add some basic templating so we can remove branches from the shaders.
-	// Not using text/template so that shader files can still be processed by gofmt.
-	for name, value := range params {
-		shaderCode = bytes.ReplaceAll(shaderCode, []byte("PARAMS[\""+name+"\"]"), []byte("(("+value+"))"))
+	tmpl, err := template.New("name").Delims("T[\"", "\"]").Parse(string(shaderCode))
+	if err != nil {
+		return nil, fmt.Errorf("could not parse shader template %q: %w", name, err)
 	}
-	shader, err := ebiten.NewShader(shaderCode)
+	var buf bytes.Buffer
+	err = tmpl.Execute(&buf, params)
+	if err != nil {
+		return nil, fmt.Errorf("could not execute shader template %q: %w", name, err)
+	}
+	shader, err := ebiten.NewShader(buf.Bytes())
 	if err != nil {
 		return nil, fmt.Errorf("could not compile shader %q: %w", name, err)
 	}

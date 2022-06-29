@@ -27,7 +27,7 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	center := imageSrc0UnsafeAt(texCoord)
 	srcStep := Step * srcSize
 	other := vec4(0.0, 0.0, 0.0, 0.0)
-	for y := 1.0; y <= PARAMS["Size"]; y++ {
+	for y := 1.0; y <= T[".Size"]; y++ {
 		d := y * srcStep
 		other += imageSrc0UnsafeAt(clamp(texCoord-d, srcOrigin, srcMax))
 		other += imageSrc0UnsafeAt(clamp(texCoord+d, srcOrigin, srcMax))
