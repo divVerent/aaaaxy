@@ -28,6 +28,9 @@ var (
 	// LUTPerRow is the number of LUT squares per row.
 	LUTPerRow float
 
+	// LUTHeight is the height of the LUT.
+	LUTHeight float
+
 	// Offset is a pixel offset to apply to the Bayer pattern.
 	Offset vec2
 )
@@ -56,11 +59,11 @@ func noiseM(srcOrigin, srcImageSize, coord vec2) float {
 	// T["end"]
 }
 
-func nearestColor(srcOrigin, srcImageSize vec2, c vec3) vec4 {
+func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i float) vec4 {
 	cLut := clamp(floor(c*LUTSize), 0, LUTSize-1)
 	pix := vec2(
 		mod(cLut.b, LUTPerRow)*LUTSize+cLut.r,
-		floor(cLut.b/LUTPerRow)*LUTSize+cLut.g,
+		floor(cLut.b/LUTPerRow)*LUTSize+cLut.g+i*LUTHeight,
 	)
 	coord := srcOrigin + pix/srcImageSize
 	return imageSrc1UnsafeAt(coord)
@@ -95,67 +98,31 @@ func computeF(a, b, c vec3) float {
 }
 
 func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
-	c0 := nearestColor(srcOrigin, srcImageSize, p0).rgb
-	bestC1, bestF, bestDist := c0, 0.0, score0(c0, p0)
-	// T["if .BayerSize"]
-	const n = float(len(Bayern) - 1)
-	// T["else"]
-	const n = 15.0
-	// T["end"]
-	const ni = 1.0 / n
-	const bmax = 0.5 * n
-	for bayer := 1.0; bayer <= bmax; bayer += 1.0 {
-		f := bayer * ni
-		// NOTE: f > 0.5 is not needed, as that would make c1_ closer to p0 than c0,
-		// which contradicts c0 being the nearest color.
-		// Solve:
-		//   c0 * (1 - f) + c1 * f = p0
-		//   c1 = (p0 - c0 * (1 - f)) / f
-		//   c1 = (p0 - c0) / f + c0
-		c1_ := c0 + (p0-c0)/f
-		c1 := nearestColor(srcOrigin, srcImageSize, c1_).rgb
-		if c1 == c0 {
-			// Each step moves c1_ closer to p0.
-			// So once we get the same color once, we'll always get the same color.
-			break
-		}
-		f = computeF(c0, c1, p0)
-		c := mix(c0, c1, f)
-		dist := score(c, p0, c0, c1)
-		if dist < bestDist {
-			bestC1 = c1
-			bestF = f
-			bestDist = dist
-		}
-	}
+	// Read the colors.
+	c0 := nearestColor(srcOrigin, srcImageSize, p0, 0).rgb
+	c1 := nearestColor(srcOrigin, srcImageSize, p0, 1).rgb
 
-	// Swap colors if needed.
-	arbitraryFactors := vec3(1.0, 1.618034, 0.618034)
-	if dot(bestC1-c0, arbitraryFactors) < 0 {
-		h := c0
-		c0 = bestC1
-		bestC1 = h
-		bestF = 1.0 - bestF
-	}
+	// Compute the fraction;
+	f := computeF(c0, c1, p0)
 
 	// Perform the dither.
 	b := noiseM(srcOrigin, srcImageSize, coord)
-	if b >= bestF {
+	if b >= f {
 		return c0
 	} else {
-		return bestC1
+		return c1
 	}
 }
 
 // T["else"]
 
 func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
-	scale := nearestColor(srcOrigin, srcImageSize, p0).a
+	scale := nearestColor(srcOrigin, srcImageSize, p0, 0).a
 	f := noiseM(srcOrigin, srcImageSize, coord)
 	// Map to [-1..1].
 	f = 2.0*f - 1.0
 	p := p0 + f*scale
-	return nearestColor(srcOrigin, srcImageSize, p).rgb
+	return nearestColor(srcOrigin, srcImageSize, p, 0).rgb
 }
 
 // T["end"]

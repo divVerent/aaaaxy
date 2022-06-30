@@ -95,6 +95,7 @@ type Game struct {
 	paletteLUT       *ebiten.Image  // Updates when palette changes.
 	paletteLUTSize   int            // Updates when palette changes.
 	paletteLUTPerRow int            // Updates when palette changes.
+	paletteLUTHeight int            // Updates when palette changes.
 	paletteBayern    []float32      // Updates when palette or paletteDitherSize change.
 	paletteShader    *ebiten.Shader // Updates when paletteDitherSize changes.
 
@@ -279,7 +280,12 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 
 	// Need a LUT?
 	if g.palette != pal {
-		g.paletteLUTSize, g.paletteLUTPerRow = pal.ToLUT(g.paletteLUT)
+		switch ditherMode {
+		case bayerDither, halftoneDither, randomDither, plasticDither:
+			g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTHeight = pal.ToLUT(1, g.paletteLUT)
+		case bayer2Dither, halftone2Dither, random2Dither, plastic2Dither:
+			g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTHeight = pal.ToLUT(2, g.paletteLUT)
+		}
 		switch ditherMode {
 		case bayerDither, bayer2Dither:
 			g.paletteBayern = pal.BayerPattern(g.paletteDitherSize)
@@ -310,6 +316,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 			Uniforms: map[string]interface{}{
 				"LUTSize":   float32(g.paletteLUTSize),
 				"LUTPerRow": float32(g.paletteLUTPerRow),
+				"LUTHeight": float32(g.paletteLUTHeight),
 				"Offset": []float32{
 					float32(scroll.DX),
 					float32(scroll.DY),

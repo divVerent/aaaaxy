@@ -104,6 +104,12 @@ func (p *Palette) lookupNearest(c rgb) int {
 	return bestI
 }
 
+// lookupNearestTwo returns the pair of distinct palette colors nearest to c.
+func (p *Palette) lookupNearestTwo(c rgb) (int, int) {
+	i := p.lookupNearest(c)
+	return i, (i + 1) % p.size
+}
+
 func computeLUTSize(w, h int) (int, int, int) {
 	size := int(math.Cbrt(float64(w) * float64(h)))
 	var perRow, rowCount int
@@ -270,7 +276,44 @@ func (p *Palette) computeBayerScaleLUT(lutSize, perRow, lutWidth, lutHeight int,
 	wg.Wait()
 }
 
-func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
+func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight int, pix []byte) {
+	// The two LUTs.
+	pixI := pix[:lutWidth*lutHeight*4]
+	pixJ := pix[lutWidth*lutHeight*4:]
+
+	var wg sync.WaitGroup
+	for y := 0; y < lutHeight; y++ {
+		wg.Add(1)
+		go func(y int) {
+			g := y % lutSize
+			gFloat := (float64(g) + 0.5) / float64(lutSize)
+			bY := (y / lutSize) * perRow
+			for x := 0; x < lutWidth; x++ {
+				r := x % lutSize
+				rFloat := (float64(r) + 0.5) / float64(lutSize)
+				b := bY + x/lutSize
+				bFloat := (float64(b) + 0.5) / float64(lutSize)
+				c := rgb{rFloat, gFloat, bFloat}
+				i, j := p.lookupNearestTwo(c)
+				cI, cJ := p.lookup(i), p.lookup(j)
+				rgbaI, rgbaJ := cI.toNRGBA(), cJ.toNRGBA()
+				o := (y*lutWidth + x) * 4
+				pixI[o] = rgbaI.R
+				pixI[o+1] = rgbaI.G
+				pixI[o+2] = rgbaI.B
+				pixI[o+3] = 255
+				pixJ[o] = rgbaJ.R
+				pixJ[o+1] = rgbaJ.G
+				pixJ[o+2] = rgbaJ.B
+				pixJ[o+3] = 255
+			}
+			wg.Done()
+		}(y)
+	}
+	wg.Wait()
+}
+
+func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
 	defer func(t0 time.Time) {
 		dt := time.Since(t0)
 		log.Infof("building palette LUT took %v", dt)
@@ -278,7 +321,6 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	bounds := img.Bounds()
 	w := bounds.Max.X - bounds.Min.X
 	h := bounds.Max.Y - bounds.Min.Y
-	numLUTs := 1 // TODO also allow computing two LUTs for best color _pairs_.
 	lutSize, perRow, rowCount := computeLUTSize(w, h/numLUTs)
 
 	// Note: creating a temp image, and copying to that, so this does not invoke
@@ -287,8 +329,15 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	lutHeight := lutSize * rowCount
 	pix := make([]uint8, lutWidth*lutHeight*numLUTs*4)
 
-	p.computeNearestLUT(lutSize, perRow, lutWidth, lutHeight, pix)
-	p.computeBayerScaleLUT(lutSize, perRow, lutWidth, lutHeight, pix)
+	switch numLUTs {
+	case 1:
+		p.computeNearestLUT(lutSize, perRow, lutWidth, lutHeight, pix)
+		p.computeBayerScaleLUT(lutSize, perRow, lutWidth, lutHeight, pix)
+	case 2:
+		p.computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, pix)
+	default:
+		log.Fatalf("unsupported LUT count: got %v, want 1 or 2", numLUTs)
+	}
 
 	rect := image.Rectangle{
 		Min: bounds.Min,
@@ -299,7 +348,7 @@ func (p *Palette) ToLUT(img *ebiten.Image) (int, int) {
 	}
 	img.SubImage(rect).(*ebiten.Image).ReplacePixels(pix)
 
-	return lutSize, perRow
+	return lutSize, perRow, lutHeight
 }
 
 func sizeBayer(size int) (sizeSquare int, scale, offset float64) {
