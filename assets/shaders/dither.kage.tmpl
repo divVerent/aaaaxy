@@ -28,8 +28,8 @@ var (
 	// LUTPerRow is the number of LUT squares per row.
 	LUTPerRow float
 
-	// LUTHeight is the height of the LUT.
-	LUTHeight float
+	// LUTWidth is the width of the LUT, to be used as a pointer to the second LUT.
+	LUTWidth float
 
 	// Offset is a pixel offset to apply to the Bayer pattern.
 	Offset vec2
@@ -66,11 +66,11 @@ func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i int) vec4 {
 	cb := int(cLut.b)
 	r := int(LUTPerRow)
 	s := int(LUTSize)
-	h := int(LUTHeight)
+	w := int(LUTWidth)
 	cbrd := cb / r
 	cbrr := cb - r*cbrd
-	pixx := cbrr*s + cr
-	pixy := cbrd*s + cg + h*i
+	pixx := cbrr*s + cr + w*i
+	pixy := cbrd*s + cg
 	pix := vec2(pixx, pixy)
 	coord := srcOrigin + pix/srcImageSize
 	return imageSrc1UnsafeAt(coord)
