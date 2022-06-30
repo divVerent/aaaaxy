@@ -33,6 +33,7 @@ import (
 
 var (
 	paletteColordist = flag.String("palette_colordist", "weighted", "color distance function to use; one of 'weighted', 'redmean', 'cielab', 'cieluv'")
+	paletteMaxCycles = flag.Float64("palette_max_cycles", 640*360*128, "maximum number of cycles to spend on palette generation")
 )
 
 type rgb [3]float64 // Range is from 0 to 1 in sRGB color space.
@@ -151,8 +152,12 @@ func (p *Palette) lookupNearestTwo(c rgb) (int, int) {
 	return bestI, bestJ
 }
 
-func computeLUTSize(w, h int) (int, int, int) {
-	size := int(math.Cbrt(float64(w) * float64(h)))
+func computeLUTSize(w, h int, maxEntries float64) (int, int, int) {
+	pixels := float64(w * h)
+	if pixels < maxEntries {
+		maxEntries = pixels
+	}
+	size := int(math.Cbrt(maxEntries))
 	var perRow, rowCount int
 	for size > 0 {
 		perRow = w / size
@@ -364,14 +369,32 @@ func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight int,
 }
 
 func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
+	var lutSize int
 	defer func(t0 time.Time) {
 		dt := time.Since(t0)
-		log.Infof("building palette LUT took %v", dt)
+		log.Infof("building palette LUT of size %d took %v", lutSize, dt)
 	}(time.Now())
 	bounds := img.Bounds()
 	w := bounds.Max.X - bounds.Min.X
 	h := bounds.Max.Y - bounds.Min.Y
-	lutSize, perRow, rowCount := computeLUTSize(w, h/numLUTs)
+
+	var timePerEntry float64
+	switch numLUTs {
+	case 1:
+		// Finding nearest color is brute force, trying every palette index.
+		timePerEntry = float64(p.size)
+	case 2:
+		// Algorithmic steps * measured time fraction.
+		timePerEntry = float64(p.size) * (float64(p.size) - 1) / 2 * 894.803738 / 506.176074
+	default:
+		log.Fatalf("unsupported LUT count: got %v, want 1 or 2", numLUTs)
+	}
+	maxEntries := *paletteMaxCycles / timePerEntry
+	if maxEntries < 8 {
+		maxEntries = 8
+	}
+
+	lutSize, perRow, rowCount := computeLUTSize(w, h/numLUTs, maxEntries)
 
 	// Note: creating a temp image, and copying to that, so this does not invoke
 	// thread synchronization as writing to an ebiten.Image would.
