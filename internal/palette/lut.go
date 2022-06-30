@@ -157,6 +157,10 @@ func (p *Palette) lookupNearestTwo(c rgb) (int, int) {
 	bestI := 0
 	bestJ := 0
 	bestS := math.Inf(+1)
+	// TODO different protect logic: if c is "near" a protected color (i.e. if a protected color maps to c - check at caller and pass in here), force i to be that protected color and j can be any other.
+	// Otherwise, pick at will.
+	// Swap if backwards ordered, though!
+	// That will mean we need to consider all options in the cycle count again, though.
 	nI, _, _ := p.nearestTwoChoices()
 	for i := 0; i < nI; i++ {
 		for j := i + 1; j < p.size; j++ {
