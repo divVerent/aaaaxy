@@ -33,7 +33,7 @@ import (
 
 var (
 	paletteColordist             = flag.String("palette_colordist", "weighted", "color distance function to use; one of 'weighted', 'weightedL', 'rgbL', 'redmean', 'cielab', 'cieluv'")
-	paletteMaxCycles             = flag.Float64("palette_max_cycles", 640*360*128, "maximum number of cycles to spend on palette generation")
+	paletteMaxCycles             = flag.Float64("palette_max_cycles", 640*360*256*4, "maximum number of cycles to spend on palette generation")
 	palettePsychovisualFactor    = flag.Float64("palette_psychovisual_factor", 0.02, "factor by which to include the psychovisual model when generating a two-color palette LUT")
 	palettePsychovisualDampening = flag.Float64("palette_psychovisual_dampening", 0.5, "factor by which to dampen the psychovisual model when mixing evenly")
 )
@@ -43,6 +43,10 @@ type rgb [3]float64 // Range is from 0 to 1 in sRGB color space.
 func (c rgb) String() string {
 	n := c.toNRGBA()
 	return fmt.Sprintf("#%02X%02X%02X", n.R, n.G, n.B)
+}
+
+func (c rgb) equal(other rgb) bool {
+	return c[0] == other[0] && c[1] == other[1] && c[2] == other[2]
 }
 
 func (c rgb) mix(other rgb, f float64) rgb {
@@ -152,35 +156,53 @@ func (p *Palette) nearestTwoChoices() (int, int, int) {
 	return nI, nJMin, nJMax
 }
 
+func (p *Palette) tryColorPair(c rgb, i, j int, bestI, bestJ *int, bestS *float64) {
+	c0 := p.lookup(i)
+	c1 := p.lookup(j)
+	if c0.equal(c1) {
+		return
+	}
+	f := c.computeF(c0, c1)
+	if f < 0 {
+		f = 0
+	}
+	if f > 1 {
+		f = 1
+	}
+	c_ := c0.mix(c1, f)
+	// Including c0.diff2(c1) as per https://bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
+	// We seem to need a lower factor for this game's content though.
+	s := c_.diff2(c) + *palettePsychovisualFactor*c0.diff2(c1)*(1.0-*palettePsychovisualDampening*(1.0-2.0*math.Abs(f-0.5)))
+	if s < *bestS {
+		*bestI, *bestJ, *bestS = i, j, s
+	}
+}
+
 // lookupNearestTwo returns the pair of distinct palette colors nearest to c.
 func (p *Palette) lookupNearestTwo(c rgb) (int, int) {
 	bestI := 0
 	bestJ := 0
 	bestS := math.Inf(+1)
-	// TODO different protect logic: if c is "near" a protected color (i.e. if a protected color maps to c - check at caller and pass in here), force i to be that protected color and j can be any other.
-	// Otherwise, pick at will.
-	// Swap if backwards ordered, though!
-	// That will mean we need to consider all options in the cycle count again, though.
-	nI, _, _ := p.nearestTwoChoices()
-	for i := 0; i < nI; i++ {
+	for i := 0; i < p.size-1; i++ {
 		for j := i + 1; j < p.size; j++ {
-			c0 := p.lookup(i)
-			c1 := p.lookup(j)
-			f := c.computeF(c0, c1)
-			if f < 0 {
-				f = 0
-			}
-			if f > 1 {
-				f = 1
-			}
-			c_ := c0.mix(c1, f)
-			// Including c0.diff2(c1) as per https://bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
-			// We seem to need a lower factor for this game's content though.
-			s := c_.diff2(c) + *palettePsychovisualFactor*c0.diff2(c1)*(1.0-*palettePsychovisualDampening*(1.0-2.0*math.Abs(f-0.5)))
-			if s < bestS {
-				bestI, bestJ, bestS = i, j, s
-			}
+			p.tryColorPair(c, i, j, &bestI, &bestJ, &bestS)
 		}
+	}
+	return bestI, bestJ
+}
+
+// lookupNearestTwo returns the pair of distinct palette colors nearest to c.
+func (p *Palette) lookupNearestWith(c rgb, protected int) (int, int) {
+	bestI := 0
+	bestJ := 0
+	bestS := math.Inf(+1)
+	for i := 0; i < p.size; i++ {
+		if i != protected {
+			p.tryColorPair(c, i, protected, &bestI, &bestJ, &bestS)
+		}
+	}
+	if bestI > bestJ {
+		return bestJ, bestI
 	}
 	return bestI, bestJ
 }
@@ -362,6 +384,37 @@ func (p *Palette) computeBayerScaleLUT(lutSize, perRow, lutWidth, lutHeight, lut
 }
 
 func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, lutStride int, pix []byte) {
+	// TODO different protect logic: if c is "near" a protected color (i.e. if a protected color maps to c - check at caller and pass in here), force i to be that protected color and j can be any other.
+	// Otherwise, pick at will.
+	// Swap if backwards ordered, though!
+	// That will mean we need to consider all options in the cycle count again, though.
+	type slot struct {
+		r, g, b int
+	}
+	protected := make(map[slot]int, p.protected)
+	for i := 0; i < p.protected; i++ {
+		c := p.lookup(i).toNRGBA()
+		rr := int(c.R)
+		gg := int(c.G)
+		bb := int(c.B)
+		// Map to color LUT location.
+		// Remember color LUT locations.
+		// At all matching LUT locations, use lookupNearestOther.
+		r := rr * lutSize / 255
+		g := gg * lutSize / 255
+		b := bb * lutSize / 255
+		if r >= lutSize {
+			r = lutSize - 1
+		}
+		if g >= lutSize {
+			g = lutSize - 1
+		}
+		if b >= lutSize {
+			b = lutSize - 1
+		}
+		protected[slot{r: r, g: g, b: b}] = i
+	}
+
 	lut2 := lutWidth * 4
 
 	var wg sync.WaitGroup
@@ -380,7 +433,12 @@ func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, lut
 				}
 				bFloat := (float64(b) + 0.5) / float64(lutSize)
 				c := rgb{rFloat, gFloat, bFloat}
-				i, j := p.lookupNearestTwo(c)
+				var i, j int
+				if protected, found := protected[slot{r: r, g: g, b: b}]; found {
+					i, j = p.lookupNearestWith(c, protected)
+				} else {
+					i, j = p.lookupNearestTwo(c)
+				}
 				cI, cJ := p.lookup(i), p.lookup(j)
 				rgbaI, rgbaJ := cI.toNRGBA(), cJ.toNRGBA()
 				o := y*lutStride + x*4
@@ -417,8 +475,7 @@ func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
 		timePerEntry = float64(p.size)
 	case 2:
 		// Algorithmic steps * measured time fraction.
-		nI, nJMin, nJMax := p.nearestTwoChoices()
-		timePerEntry = float64(nI) * float64(nJMin+nJMax) / 2 * 156.4 / 87.1
+		timePerEntry = float64(p.size) * float64(p.size-1) / 2 * 156.4 / 87.1
 	default:
 		log.Fatalf("unsupported LUT count: got %v, want 1 or 2", numLUTs)
 	}
