@@ -71,6 +71,20 @@ func (c rgb) diff2(other rgb) float64 {
 		dg := c[1] - other[1]
 		db := c[2] - other[2]
 		return 3*dr*dr + 4*dg*dg + 2*db*db
+	case "weightedL":
+		// Adapted from https: //bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
+		dr := c[0] - other[0]
+		dg := c[1] - other[1]
+		db := c[2] - other[2]
+		dl := 3*dr + 4*dg + 2*db
+		return 3*dr*dr + 4*dg*dg + 2*db*db + 13*dl*dl
+	case "rgbL":
+		// Directly from https: //bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
+		dr := c[0] - other[0]
+		dg := c[1] - other[1]
+		db := c[2] - other[2]
+		dl := 0.299*dr + 0.587*dg + 0.114*db
+		return (0.299*dr*dr+0.587*dg*dg+0.114*db*db)*0.75 + dl*dl
 	case "redmean":
 		dr := c[0] - other[0]
 		dg := c[1] - other[1]
@@ -126,12 +140,23 @@ func (p *Palette) lookupNearest(c rgb) int {
 	return bestI
 }
 
+func (p *Palette) nearestTwoChoices() (int, int, int) {
+	nI := p.protected
+	if nI <= 0 || nI >= p.size {
+		nI = p.size - 1
+	}
+	nJMin := p.size - nI
+	nJMax := p.size - 1
+	return nI, nJMin, nJMax
+}
+
 // lookupNearestTwo returns the pair of distinct palette colors nearest to c.
 func (p *Palette) lookupNearestTwo(c rgb) (int, int) {
 	bestI := 0
 	bestJ := 0
 	bestS := math.Inf(+1)
-	for i := 0; i < p.size-1; i++ {
+	nI, _, _ := p.nearestTwoChoices()
+	for i := 0; i < nI; i++ {
 		for j := i + 1; j < p.size; j++ {
 			c0 := p.lookup(i)
 			c1 := p.lookup(j)
@@ -385,7 +410,8 @@ func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
 		timePerEntry = float64(p.size)
 	case 2:
 		// Algorithmic steps * measured time fraction.
-		timePerEntry = float64(p.size) * (float64(p.size) - 1) / 2 * 894.803738 / 506.176074
+		nI, nJMin, nJMax := p.nearestTwoChoices()
+		timePerEntry = float64(nI) * float64(nJMin+nJMax) / 2 * 156.4 / 87.1
 	default:
 		log.Fatalf("unsupported LUT count: got %v, want 1 or 2", numLUTs)
 	}
