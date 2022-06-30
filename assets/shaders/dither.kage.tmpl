@@ -55,18 +55,23 @@ func noiseM(srcOrigin, srcImageSize, coord vec2) float {
 	// gives good results for bias.
 	plastic := 1.32471795724474602596
 	rBias := fract(dot(p, vec2(1.0/plastic, 1.0/plastic/plastic)))
-	return abs(rBias-0.5) * 2.0
+	return clamp(abs(rBias-0.5) * 2.0, 0, 0.999)  // Exclude the boundary.
 	// T["end"]
 }
 
-func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i float) vec4 {
+func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i int) vec4 {
 	cLut := clamp(floor(c*LUTSize), 0, LUTSize-1)
-	pix := vec2(
-		mod(cLut.b, LUTPerRow)*LUTSize+cLut.r,
-		floor(cLut.b/LUTPerRow)*LUTSize+cLut.g,
-	)
-	pix = clamp(pix, vec2(0), vec2(LUTPerRow*LUTSize-1, LUTHeight-1))
-	pix.y += i * LUTHeight
+	cr := int(cLut.r)
+	cg := int(cLut.g)
+	cb := int(cLut.b)
+	r := int(LUTPerRow)
+	s := int(LUTSize)
+	h := int(LUTHeight)
+	cbrd := cb / r
+	cbrr := cb - r * cbrd
+	pixx := cbrr * s + cr
+	pixy := cbrd * s + cg + h * i
+	pix := vec2(pixx, pixy)
 	coord := srcOrigin + pix/srcImageSize
 	return imageSrc1UnsafeAt(coord)
 }
