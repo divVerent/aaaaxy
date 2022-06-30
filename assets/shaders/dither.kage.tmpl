@@ -77,20 +77,6 @@ func dotDiff(a, b vec3) float {
 	return dot(a*b, vec3(3.0, 4.0, 2.0))
 }
 
-func colorDiff(a, b vec3) float {
-	// Weighted color difference.
-	d := a - b
-	return dotDiff(d, d)
-}
-
-func score0(a, b vec3) float {
-	return colorDiff(a, b)
-}
-
-func score(a, b, c1, c2 vec3) float {
-	return score0(a, b) + colorDiff(c1, c2)*0.01
-}
-
 func computeF(a, b, c vec3) float {
 	if a == b {
 		return 0
