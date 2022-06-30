@@ -32,8 +32,10 @@ import (
 )
 
 var (
-	paletteColordist = flag.String("palette_colordist", "weighted", "color distance function to use; one of 'weighted', 'redmean', 'cielab', 'cieluv'")
-	paletteMaxCycles = flag.Float64("palette_max_cycles", 640*360*128, "maximum number of cycles to spend on palette generation")
+	paletteColordist             = flag.String("palette_colordist", "weighted", "color distance function to use; one of 'weighted', 'redmean', 'cielab', 'cieluv'")
+	paletteMaxCycles             = flag.Float64("palette_max_cycles", 640*360*128, "maximum number of cycles to spend on palette generation")
+	palettePsychovisualFactor    = flag.Float64("palette_psychovisual_factor", 0.02, "factor by which to include the psychovisual model when generating a two-color palette LUT")
+	palettePsychovisualDampening = flag.Float64("palette_psychovisual_dampening", 0.5, "factor by which to dampen the psychovisual model when mixing evenly")
 )
 
 type rgb [3]float64 // Range is from 0 to 1 in sRGB color space.
@@ -180,7 +182,9 @@ func (p *Palette) lookupNearestTwo(c rgb) (int, int) {
 				f = 1
 			}
 			c_ := c0.mix(c1, f)
-			s := c_.diff2(c) + 0.01*c0.diff2(c1)
+			// Including c0.diff2(c1) as per https://bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
+			// We seem to need a lower factor for this game's content though.
+			s := c_.diff2(c) + *palettePsychovisualFactor*c0.diff2(c1)*(1.0-*palettePsychovisualDampening*(1.0-2.0*math.Abs(f-0.5)))
 			if s < bestS {
 				bestI, bestJ, bestS = i, j, s
 			}
