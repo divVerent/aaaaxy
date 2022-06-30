@@ -55,7 +55,7 @@ func noiseM(srcOrigin, srcImageSize, coord vec2) float {
 	// gives good results for bias.
 	plastic := 1.32471795724474602596
 	rBias := fract(dot(p, vec2(1.0/plastic, 1.0/plastic/plastic)))
-	return clamp(abs(rBias-0.5) * 2.0, 0, 0.999)  // Exclude the boundary.
+	return clamp(abs(rBias-0.5)*2.0, 0, 0.999) // Exclude the boundary.
 	// T["end"]
 }
 
@@ -68,9 +68,9 @@ func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i int) vec4 {
 	s := int(LUTSize)
 	h := int(LUTHeight)
 	cbrd := cb / r
-	cbrr := cb - r * cbrd
-	pixx := cbrr * s + cr
-	pixy := cbrd * s + cg + h * i
+	cbrr := cb - r*cbrd
+	pixx := cbrr*s + cr
+	pixy := cbrd*s + cg + h*i
 	pix := vec2(pixx, pixy)
 	coord := srcOrigin + pix/srcImageSize
 	return imageSrc1UnsafeAt(coord)
@@ -78,23 +78,15 @@ func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i int) vec4 {
 
 // T["if .TwoColor"]
 
-func dotDiff(a, b vec3) float {
-	return dot(a*b, vec3(3.0, 4.0, 2.0))
-}
-
 func computeF(a, b, c vec3) float {
 	if a == b {
 		return 0
 	}
-	// Find f so that colorDiff(a + f * (b - a), c) is minimal.
+	// Yes, we could minimize color distance instead,
+	// but this works more regularly on gradients which this game uses a lot.
+	// Taken from https://bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
 	u := c - a
 	v := b - a
-	/*
-		// Colordiff based algorithm:
-		// Find f so that colorDiff(f * v - u, 0) is minimal.
-		return clamp(dotDiff(u, v) / dotDiff(v, v), 0, 1)
-	*/
-	// https://bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
 	num := 0.0
 	denom := 0.0
 	if v.r != 0 {

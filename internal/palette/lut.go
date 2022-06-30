@@ -54,7 +54,9 @@ func (c rgb) mix(other rgb, f float64) rgb {
 }
 
 func (c rgb) computeF(c0, c1 rgb) float64 {
-	// https://bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
+	// Yes, we could minimize color distance instead,
+	// but this works more regularly on gradients which this game uses a lot.
+	// Taken from https://bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
 	ur := c[0] - c0[0]
 	ug := c[1] - c0[1]
 	ub := c[2] - c0[2]
