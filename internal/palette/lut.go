@@ -166,8 +166,8 @@ func computeLUTSize(w, h int, maxEntries float64) (int, int, int) {
 		if heightNeeded <= h {
 			break
 		}
-		// Reduce size until next larger value of perRow.
-		size = w / (perRow + 1)
+		// Can just brute force the best size, we're dealing with low numbers here in the first place.
+		size--
 	}
 	return size, perRow, rowCount
 }
