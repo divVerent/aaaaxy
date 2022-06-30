@@ -52,16 +52,28 @@ func (c rgb) mix(other rgb, f float64) rgb {
 }
 
 func (c rgb) computeF(c0, c1 rgb) float64 {
-	// See computeF in the shader.
+	// https://bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
 	ur := c[0] - c0[0]
 	ug := c[1] - c0[1]
 	ub := c[2] - c0[2]
 	vr := c1[0] - c0[0]
 	vg := c1[1] - c0[1]
 	vb := c1[2] - c0[2]
-	duv := ur*vr*3 + ug*vg*4 + ub*vb*2
-	dvv := vr*vr*3 + vg*vg*4 + vb*vb*2
-	return duv / dvv
+	num := 0.0
+	denom := 0.0
+	if vr != 0 {
+		num += 0.299 * ur / vr
+		denom += 0.299
+	}
+	if vg != 0 {
+		num += 0.587 * ug / vg
+		denom += 0.587
+	}
+	if vb != 0 {
+		num += 0.114 * ub / vb
+		denom += 0.114
+	}
+	return num / denom
 }
 
 func (c rgb) diff2(other rgb) float64 {

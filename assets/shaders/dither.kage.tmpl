@@ -89,8 +89,27 @@ func computeF(a, b, c vec3) float {
 	// Find f so that colorDiff(a + f * (b - a), c) is minimal.
 	u := c - a
 	v := b - a
-	// Find f so that colorDiff(f * v - u, 0) is minimal.
-	return clamp(dotDiff(u, v) / dotDiff(v, v), 0, 1)
+	/*
+		// Colordiff based algorithm:
+		// Find f so that colorDiff(f * v - u, 0) is minimal.
+		return clamp(dotDiff(u, v) / dotDiff(v, v), 0, 1)
+	*/
+	// https://bisqwit.iki.fi/story/howto/dither/jy/#PsychovisualModel
+	num := 0.0
+	denom := 0.0
+	if v.r != 0 {
+		num += 0.299 * u.r / v.r
+		denom += 0.299
+	}
+	if v.g != 0 {
+		num += 0.587 * u.g / v.g
+		denom += 0.587
+	}
+	if v.b != 0 {
+		num += 0.114 * u.b / v.b
+		denom += 0.114
+	}
+	return num / denom
 }
 
 func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
