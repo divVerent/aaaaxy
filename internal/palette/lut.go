@@ -32,7 +32,7 @@ import (
 )
 
 var (
-	paletteColordist             = flag.String("palette_colordist", "weighted", "color distance function to use; one of 'weighted', 'redmean', 'cielab', 'cieluv'")
+	paletteColordist             = flag.String("palette_colordist", "weighted", "color distance function to use; one of 'weighted', 'weightedL', 'rgbL', 'redmean', 'cielab', 'cieluv'")
 	paletteMaxCycles             = flag.Float64("palette_max_cycles", 640*360*128, "maximum number of cycles to spend on palette generation")
 	palettePsychovisualFactor    = flag.Float64("palette_psychovisual_factor", 0.02, "factor by which to include the psychovisual model when generating a two-color palette LUT")
 	palettePsychovisualDampening = flag.Float64("palette_psychovisual_dampening", 0.5, "factor by which to dampen the psychovisual model when mixing evenly")
