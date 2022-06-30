@@ -42,6 +42,27 @@ func (c rgb) String() string {
 	return fmt.Sprintf("#%02X%02X%02X", n.R, n.G, n.B)
 }
 
+func (c rgb) mix(other rgb, f float64) rgb {
+	return rgb{
+		c[0] + (other[0]-c[0])*f,
+		c[1] + (other[1]-c[1])*f,
+		c[2] + (other[2]-c[2])*f,
+	}
+}
+
+func (c rgb) computeF(c0, c1 rgb) float64 {
+	// See computeF in the shader.
+	ur := c[0] - c0[0]
+	ug := c[1] - c0[1]
+	ub := c[2] - c0[2]
+	vr := c1[0] - c0[0]
+	vg := c1[1] - c0[1]
+	vb := c1[2] - c0[2]
+	duv := ur*vr*3 + ug*vg*4 + ub*vb*2
+	dvv := vr*vr*3 + vg*vg*4 + vb*vb*2
+	return duv / dvv
+}
+
 func (c rgb) diff2(other rgb) float64 {
 	switch *paletteColordist {
 	case "weighted":
@@ -106,8 +127,25 @@ func (p *Palette) lookupNearest(c rgb) int {
 
 // lookupNearestTwo returns the pair of distinct palette colors nearest to c.
 func (p *Palette) lookupNearestTwo(c rgb) (int, int) {
-	i := p.lookupNearest(c)
-	return i, (i + 1) % p.size
+	bestI := 0
+	bestJ := 1
+	bestS := math.Inf(+1)
+	for i := 0; i < p.size-1; i++ {
+		for j := i + 1; j < p.size; j++ {
+			c0 := p.lookup(i)
+			c1 := p.lookup(j)
+			f := c.computeF(c0, c1)
+			if f < 0 || f > 1 {
+				continue
+			}
+			c_ := c0.mix(c1, f)
+			s := c_.diff2(c) + 0.01*c0.diff2(c1)
+			if s < bestS {
+				bestI, bestJ, bestS = i, j, s
+			}
+		}
+	}
+	return bestI, bestJ
 }
 
 func computeLUTSize(w, h int) (int, int, int) {
@@ -138,6 +176,9 @@ func (p *Palette) computeNearestLUT(lutSize, perRow, lutWidth, lutHeight int, pi
 				r := x % lutSize
 				rFloat := (float64(r) + 0.5) / float64(lutSize)
 				b := bY + x/lutSize
+				if b >= lutSize {
+					break
+				}
 				bFloat := (float64(b) + 0.5) / float64(lutSize)
 				c := rgb{rFloat, gFloat, bFloat}
 				i := p.lookupNearest(c)
@@ -258,6 +299,9 @@ func (p *Palette) computeBayerScaleLUT(lutSize, perRow, lutWidth, lutHeight int,
 				r := x % lutSize
 				rFloat := (float64(r) + 0.5) / float64(lutSize)
 				b := bY + x/lutSize
+				if b >= lutSize {
+					break
+				}
 				bFloat := (float64(b) + 0.5) / float64(lutSize)
 				c := rgb{rFloat, gFloat, bFloat}
 				sum, weight := 0.0, 0.0
@@ -292,6 +336,9 @@ func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight int,
 				r := x % lutSize
 				rFloat := (float64(r) + 0.5) / float64(lutSize)
 				b := bY + x/lutSize
+				if b >= lutSize {
+					break
+				}
 				bFloat := (float64(b) + 0.5) / float64(lutSize)
 				c := rgb{rFloat, gFloat, bFloat}
 				i, j := p.lookupNearestTwo(c)
@@ -335,6 +382,8 @@ func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
 		p.computeBayerScaleLUT(lutSize, perRow, lutWidth, lutHeight, pix)
 	case 2:
 		p.computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, pix)
+		// p.computeNearestLUT(lutSize, perRow, lutWidth, lutHeight, pix)
+		// p.computeNearestLUT(lutSize, perRow, lutWidth, lutHeight, pix[lutWidth*lutHeight*4:])
 	default:
 		log.Fatalf("unsupported LUT count: got %v, want 1 or 2", numLUTs)
 	}

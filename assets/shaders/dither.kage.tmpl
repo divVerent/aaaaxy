@@ -90,6 +90,9 @@ func score(a, b, c1, c2 vec3) float {
 }
 
 func computeF(a, b, c vec3) float {
+	if a == b {
+		return 0
+	}
 	// Find f so that colorDiff(a + f * (b - a), c) is minimal.
 	u := c - a
 	v := b - a
