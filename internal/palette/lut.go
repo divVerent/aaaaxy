@@ -128,15 +128,18 @@ func (p *Palette) lookupNearest(c rgb) int {
 // lookupNearestTwo returns the pair of distinct palette colors nearest to c.
 func (p *Palette) lookupNearestTwo(c rgb) (int, int) {
 	bestI := 0
-	bestJ := 1
+	bestJ := 0
 	bestS := math.Inf(+1)
 	for i := 0; i < p.size-1; i++ {
 		for j := i + 1; j < p.size; j++ {
 			c0 := p.lookup(i)
 			c1 := p.lookup(j)
 			f := c.computeF(c0, c1)
-			if f < 0 || f > 1 {
-				continue
+			if f < 0 {
+				f = 0
+			}
+			if f > 1 {
+				f = 1
 			}
 			c_ := c0.mix(c1, f)
 			s := c_.diff2(c) + 0.01*c0.diff2(c1)
@@ -382,8 +385,6 @@ func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
 		p.computeBayerScaleLUT(lutSize, perRow, lutWidth, lutHeight, pix)
 	case 2:
 		p.computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, pix)
-		// p.computeNearestLUT(lutSize, perRow, lutWidth, lutHeight, pix)
-		// p.computeNearestLUT(lutSize, perRow, lutWidth, lutHeight, pix[lutWidth*lutHeight*4:])
 	default:
 		log.Fatalf("unsupported LUT count: got %v, want 1 or 2", numLUTs)
 	}

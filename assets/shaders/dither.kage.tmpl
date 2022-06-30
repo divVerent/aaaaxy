@@ -63,8 +63,10 @@ func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i float) vec4 {
 	cLut := clamp(floor(c*LUTSize), 0, LUTSize-1)
 	pix := vec2(
 		mod(cLut.b, LUTPerRow)*LUTSize+cLut.r,
-		floor(cLut.b/LUTPerRow)*LUTSize+cLut.g+i*LUTHeight,
+		floor(cLut.b/LUTPerRow)*LUTSize+cLut.g,
 	)
+	pix = clamp(pix, vec2(0), vec2(LUTPerRow*LUTSize-1, LUTHeight-1))
+	pix.y += i * LUTHeight
 	coord := srcOrigin + pix/srcImageSize
 	return imageSrc1UnsafeAt(coord)
 }
@@ -97,7 +99,7 @@ func computeF(a, b, c vec3) float {
 	u := c - a
 	v := b - a
 	// Find f so that colorDiff(f * v - u, 0) is minimal.
-	return dotDiff(u, v) / dotDiff(v, v)
+	return clamp(dotDiff(u, v) / dotDiff(v, v), 0, 1)
 }
 
 func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
