@@ -51,7 +51,7 @@ var (
 	screenFilterJitter        = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 	paletteFlag               = flag.String("palette", "none", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
 	paletteDitherSize         = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
-	paletteDitherMode         = flag.String("palette_dither_mode", "bayer", "dither type (none, bayer, bayer2, halftone, halftone2, plastic, plastic2, random or random2)")
+	paletteDitherMode         = flag.String("palette_dither_mode", "plastic2", "dither type (none, bayer, bayer2, halftone, halftone2, plastic, plastic2, random or random2)")
 	paletteDitherWorldAligned = flag.Bool("palette_dither_world_aligned", true, "align dither pattern to world as opposed to screen")
 	debugEnableDrawing        = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 	showFPS                   = flag.Bool("show_fps", false, "show fps counter")
