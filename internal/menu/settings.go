@@ -80,7 +80,7 @@ func currentGraphics() graphicsSetting {
 	switch flag.Get("palette").(string) {
 	case "mono":
 		return herculesGraphics
-	case "cga41h":
+	case "cga41l":
 		return cgaGraphics
 	case "ega":
 		return egaGraphics
@@ -97,7 +97,7 @@ func (s graphicsSetting) apply() error {
 	case herculesGraphics:
 		flag.Set("palette", "mono")
 	case cgaGraphics:
-		flag.Set("palette", "cga41h")
+		flag.Set("palette", "cga41l")
 	case egaGraphics:
 		flag.Set("palette", "ega")
 	case vgaGraphics:
