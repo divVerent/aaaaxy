@@ -26,6 +26,10 @@ import (
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
+var (
+	paletteAllowExtra = flag.Bool("palette_allow_extra", false, "allow selecting additional retro palettes in the menu")
+)
+
 type SettingsScreenItem int
 
 const (
@@ -57,7 +61,15 @@ const (
 	egaGraphics
 	vgaGraphics
 	svgaGraphics
-	graphicsSettingCount
+	atariSTGraphics
+	c64Graphics
+	egaLowGraphics
+	gameboyGraphics
+	smbGraphics
+	graphicsSettingsTotalCount
+
+	// Normally only go up to SVGA.
+	graphicsSettingsNormalCount = svgaGraphics + 1
 )
 
 func (s graphicsSetting) String() string {
@@ -72,12 +84,23 @@ func (s graphicsSetting) String() string {
 		return "VGA"
 	case svgaGraphics:
 		return "SVGA"
+	case atariSTGraphics:
+		return "Atari ST"
+	case c64Graphics:
+		return "C64"
+	case egaLowGraphics:
+		return "EGA Low Intensity"
+	case gameboyGraphics:
+		return "Gameboy"
+	case smbGraphics:
+		return "NES (SMB)"
 	}
 	return "???"
 }
 
 func currentGraphics() graphicsSetting {
-	switch flag.Get("palette").(string) {
+	pal := flag.Get("palette").(string)
+	switch pal {
 	case "mono":
 		return herculesGraphics
 	case "cga41l":
@@ -88,6 +111,20 @@ func currentGraphics() graphicsSetting {
 		return vgaGraphics
 	case "none":
 		return svgaGraphics
+	}
+	if *paletteAllowExtra {
+		switch pal {
+		case "atarist":
+			return atariSTGraphics
+		case "c64":
+			return c64Graphics
+		case "egalow":
+			return egaLowGraphics
+		case "gb":
+			return gameboyGraphics
+		case "smb":
+			return smbGraphics
+		}
 	}
 	return svgaGraphics
 }
@@ -104,16 +141,30 @@ func (s graphicsSetting) apply() error {
 		flag.Set("palette", "vga")
 	case svgaGraphics:
 		flag.Set("palette", "none")
+	case atariSTGraphics:
+		flag.Set("palette", "atarist")
+	case c64Graphics:
+		flag.Set("palette", "c64")
+	case egaLowGraphics:
+		flag.Set("palette", "egalow")
+	case gameboyGraphics:
+		flag.Set("palette", "gb")
+	case smbGraphics:
+		flag.Set("palette", "smb")
 	}
 	return nil
 }
 
 func toggleGraphics(delta int) error {
 	g := currentGraphics()
+	count := graphicsSettingsNormalCount
+	if *paletteAllowExtra {
+		count = graphicsSettingsTotalCount
+	}
 	switch delta {
 	case 0:
 		g++
-		if g >= graphicsSettingCount {
+		if g >= count {
 			g = 0
 		}
 	case -1:
@@ -122,7 +173,7 @@ func toggleGraphics(delta int) error {
 		}
 	case +1:
 		g++
-		if g >= graphicsSettingCount {
+		if g >= count {
 			g--
 		}
 	}

@@ -207,7 +207,7 @@ var data = map[string]*Palette{
 
 	// Atari ST palette.
 	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
-	"atari_st": newPalette([]int{15, 0, 12, 10, 9, 1, 4, 2, 7, 8, 11, 3, 13, 5, 14, 6}, []uint32{
+	"atarist": newPalette([]int{15, 0, 12, 10, 9, 1, 4, 2, 7, 8, 11, 3, 13, 5, 14, 6}, []uint32{
 		0xFFFFFF,
 		0x000000,
 		0xFF0000,

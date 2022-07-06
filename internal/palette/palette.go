@@ -158,10 +158,10 @@ func SetCurrent(pal *Palette) bool {
 		if len(current.remap) != len(prevRemap) {
 			return true
 		}
-	}
-	for from, to := range current.remap {
-		if prevTo, found := prevRemap[from]; !found || prevTo != to {
-			return true
+		for from, to := range current.remap {
+			if prevTo, found := prevRemap[from]; !found || prevTo != to {
+				return true
+			}
 		}
 	}
 	return false
