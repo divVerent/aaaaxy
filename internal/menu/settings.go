@@ -66,6 +66,7 @@ const (
 	cgaNTSCGraphics
 	egaLowGraphics
 	gameboyGraphics
+	quakeGraphics
 	smbGraphics
 	graphicsSettingsTotalCount
 
@@ -95,8 +96,10 @@ func (s graphicsSetting) String() string {
 		return "EGA Low Intensity"
 	case gameboyGraphics:
 		return "Gameboy"
+	case quakeGraphics:
+		return "Quake"
 	case smbGraphics:
-		return "NES (SMB)"
+		return "SMB (NES)"
 	}
 	return "???"
 }
@@ -127,6 +130,8 @@ func currentGraphics() graphicsSetting {
 			return egaLowGraphics
 		case "gb":
 			return gameboyGraphics
+		case "quake":
+			return quakeGraphics
 		case "smb":
 			return smbGraphics
 		}
@@ -156,6 +161,8 @@ func (s graphicsSetting) apply() error {
 		flag.Set("palette", "egalow")
 	case gameboyGraphics:
 		flag.Set("palette", "gb")
+	case quakeGraphics:
+		flag.Set("palette", "quake")
 	case smbGraphics:
 		flag.Set("palette", "smb")
 	}

@@ -509,19 +509,32 @@ var data = map[string]*Palette{
 	}),
 
 	// Quake's palette. Has been put in the public domain by John Carmack.
-	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
-	"quake": newPalette(nil, []uint32{
-		0x000000,
+	"quake": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
+		0x000000, // Black.
+		0x2B2BAF, // Blue.
+		0x475B4F, // Green.
+		0x63638B, // Cyan.
+		0x570000, // Red.
+		0x7F4B5F, // Magenta.
+		0x634B1F, // Brown.
+		0x9B9B9B, // Light grey.
+		0x4B4B4B, // Dark grey.
+		0x0000FF, // Light blue.
+		0x6F837B, // Light green.
+		0x8B8BCB, // Light cyan.
+		0x7F0000, // Light red.
+		0xBB739F, // Light magenta.
+		0xFFF31B, // Yellow.
+		0xFFFFFF, // White.
+
 		0x0F0F0F,
 		0x1F1F1F,
 		0x2F2F2F,
 		0x3F3F3F,
-		0x4B4B4B,
 		0x5B5B5B,
 		0x6B6B6B,
 		0x7B7B7B,
 		0x8B8B8B,
-		0x9B9B9B,
 		0xABABAB,
 		0xBBBBBB,
 		0xCBCBCB,
@@ -537,7 +550,6 @@ var data = map[string]*Palette{
 		0x4B371B,
 		0x533B1B,
 		0x5B431F,
-		0x634B1F,
 		0x6B531F,
 		0x73571F,
 		0x7B5F23,
@@ -553,12 +565,10 @@ var data = map[string]*Palette{
 		0x474767,
 		0x4F4F73,
 		0x5B5B7F,
-		0x63638B,
 		0x6B6B97,
 		0x7373A3,
 		0x7B7BAF,
 		0x8383BB,
-		0x8B8BCB,
 		0x000000,
 		0x070700,
 		0x0B0B00,
@@ -585,12 +595,10 @@ var data = map[string]*Palette{
 		0x3F0000,
 		0x470000,
 		0x4F0000,
-		0x570000,
 		0x5F0000,
 		0x670000,
 		0x6F0000,
 		0x770000,
-		0x7F0000,
 		0x131300,
 		0x1B1B00,
 		0x232300,
@@ -622,7 +630,6 @@ var data = map[string]*Palette{
 		0xCF8F2B,
 		0xDFAB27,
 		0xEFCB1F,
-		0xFFF31B,
 		0x0B0700,
 		0x1B1300,
 		0x2B230F,
@@ -655,12 +662,10 @@ var data = map[string]*Palette{
 		0x231313,
 		0x170B0B,
 		0x0F0707,
-		0xBB739F,
 		0xAF6B8F,
 		0xA35F83,
 		0x975777,
 		0x8B4F6B,
-		0x7F4B5F,
 		0x734353,
 		0x6B3B4B,
 		0x5F333F,
@@ -687,12 +692,10 @@ var data = map[string]*Palette{
 		0x271F17,
 		0x1B130F,
 		0x0F0B07,
-		0x6F837B,
 		0x677B6F,
 		0x5F7367,
 		0x576B5F,
 		0x4F6357,
-		0x475B4F,
 		0x3F5347,
 		0x374B3F,
 		0x2F4337,
@@ -719,15 +722,12 @@ var data = map[string]*Palette{
 		0x2B1F00,
 		0x1B0F00,
 		0x0B0700,
-		0x0000FF,
 		0x0B0BEF,
 		0x1313DF,
 		0x1B1BCF,
 		0x2323BF,
-		0x2B2BAF,
 		0x2F2F9F,
 		0x2F2F8F,
-		0x2F2F7F,
 		0x2F2F6F,
 		0x2F2F5F,
 		0x2B2B4F,
@@ -765,7 +765,6 @@ var data = map[string]*Palette{
 		0xFF0000,
 		0xFFF393,
 		0xFFF7C7,
-		0xFFFFFF,
 		0x9F5B53,
 	}),
 
