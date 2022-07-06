@@ -167,8 +167,8 @@ const (
 	resetGame
 )
 
-// InitGame is called by menu screens to load/reset the game.
-func (c *Controller) InitGame(f resetFlag) error {
+// initGame reinitializes just the game.
+func (c *Controller) initGame(f resetFlag) error {
 	// Stop the timer.
 	c.World.TimerStarted = false
 
@@ -184,6 +184,16 @@ func (c *Controller) InitGame(f resetFlag) error {
 		if err != nil {
 			return err
 		}
+	}
+
+	return nil
+}
+
+// InitGame is called by menu screens to load/reset the game.
+func (c *Controller) InitGame(f resetFlag) error {
+	err := c.initGame(f)
+	if err != nil {
+		return err
 	}
 
 	// Go to the game screen.
@@ -297,5 +307,5 @@ func (c *Controller) QueryMouseItem(item interface{}, count int) bool {
 
 func (c *Controller) PaletteChanged() error {
 	// Reinitialize world so palette change applies.
-	return c.InitGame(loadGame)
+	return c.initGame(loadGame)
 }

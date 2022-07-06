@@ -137,15 +137,28 @@ func (p *Palette) ApplyToNRGBA(col color.NRGBA) color.NRGBA {
 	return col
 }
 
+// SetCurrent changes the current palette. Returns whether the remapping table changed.
 func SetCurrent(pal *Palette) bool {
 	if pal == current {
 		return false
+	}
+	var prevRemap map[uint32]uint32
+	if current != nil {
+		prevRemap = current.remap
 	}
 	if pal != nil && len(pal.remap) != 0 {
 		log.Infof("note: remapping %d colors (slow)", len(pal.remap))
 	}
 	current = pal
-	return true
+	if len(current.remap) != len(prevRemap) {
+		return true
+	}
+	for from, to := range current.remap {
+		if prevTo, found := prevRemap[from]; !found || prevTo != to {
+			return true
+		}
+	}
+	return false
 }
 
 func Current() *Palette {
