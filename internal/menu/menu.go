@@ -186,6 +186,9 @@ func (c *Controller) initGame(f resetFlag) error {
 		}
 	}
 
+	// Now we're good.
+	c.needReloadMap = false
+
 	return nil
 }
 
@@ -222,12 +225,24 @@ func (c *Controller) SwitchSaveState(state int) error {
 
 // SwitchToGame switches to the game without teleporting.
 func (c *Controller) SwitchToGame() error {
+	if c.needReloadMap {
+		err := c.initGame(loadGame)
+		if err != nil {
+			return err
+		}
+	}
 	c.Screen = nil
 	return nil
 }
 
 // SwitchToCheckpoint switches to a specific checkpoint.
 func (c *Controller) SwitchToCheckpoint(cp string) error {
+	if c.needReloadMap {
+		err := c.initGame(loadGame)
+		if err != nil {
+			return err
+		}
+	}
 	if cp != c.World.PlayerState.LastCheckpoint() {
 		c.World.PlayerState.AddTeleport()
 	}
@@ -306,6 +321,9 @@ func (c *Controller) QueryMouseItem(item interface{}, count int) bool {
 }
 
 func (c *Controller) PaletteChanged() error {
-	// Reinitialize world so palette change applies.
-	return c.initGame(loadGame)
+	// Reinitialize world when going back to game so palette change applies
+	// fully. While under menu blur, some stuff will be slightly glitchy (e.g.
+	// gradient), but that's better than black screen.
+	c.needReloadMap = true
+	return nil
 }
