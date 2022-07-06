@@ -201,6 +201,26 @@ var data = map[string]*Palette{
 		0xFFFFFF,
 	}),
 
+	// XTerm's ANSI palette.
+	"xterm": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
+		0x000000,
+		0x000080,
+		0x008000,
+		0x008080,
+		0x800000,
+		0x800080,
+		0x808000,
+		0xC0C0C0,
+		0x808080,
+		0x0000FF,
+		0x00FF00,
+		0x00FFFF,
+		0xFF0000,
+		0xFF00FF,
+		0xFFFF00,
+		0xFFFFFF,
+	}),
+
 	// My favorite ANSI palette variant. Good color contrast.
 	// General rule: greys like EGA, but other colors are all
 	// of form:
@@ -246,6 +266,26 @@ var data = map[string]*Palette{
 		0x920092,
 		0xFFFF00,
 		0x929200,
+	}),
+
+	// Macintosh II palette. Lacks dark tones of blue and cyan.
+	"macii": newPalette([]int{15, 14, 12, 13, 5, 9, 11, 10, 2, 4, 6, 7, 8, 0}, []uint32{
+		0xFFFFFF, // White.
+		0xFBF305, // Yellow.
+		0xDD0907, // Light red.
+		0xF20884, // Light magenta.
+		0x4700A5, // Purple. Using as magenta.
+		0x0000D3, // Light blue.
+		0x02ABEA, // Light cyan.
+		0x1FB714, // Light green.
+		0x006412, // Green.
+		0x562C05, // Brown. Using as red.
+		0x90713A, // Tan. Using as brown.
+		0xC0C0C0, // Light grey.
+		0x404040, // Dark grey.
+		0x000000, // Black.
+		0xFF6403, // Orange. Unmapped.
+		0x808080, // Grey. Unmapped.
 	}),
 
 	// The original IBM VGA palette, with colors too close to EGA colors commented out.

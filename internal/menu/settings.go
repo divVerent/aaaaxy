@@ -67,8 +67,10 @@ const (
 	cgaNTSCGraphics
 	egaLowGraphics
 	gameboyGraphics
+	macIIGraphics
 	nesGraphics
 	quakeGraphics
+	xtermGraphics
 	graphicsSettingsTotalCount
 
 	// Normally only go up to SVGA.
@@ -97,10 +99,14 @@ func (s graphicsSetting) String() string {
 		return "EGA Low Intensity"
 	case gameboyGraphics:
 		return "Gameboy"
+	case macIIGraphics:
+		return "Mac II"
 	case nesGraphics:
 		return "NES"
 	case quakeGraphics:
 		return "Quake"
+	case xtermGraphics:
+		return "XTerm"
 	}
 	return "???"
 }
@@ -128,10 +134,14 @@ func currentGraphics() graphicsSetting {
 		return egaLowGraphics
 	case "gb":
 		return gameboyGraphics
+	case "macii":
+		return macIIGraphics
 	case "nes":
 		return nesGraphics
 	case "quake":
 		return quakeGraphics
+	case "xterm":
+		return xtermGraphics
 	}
 	return svgaGraphics
 }
@@ -158,10 +168,14 @@ func (s graphicsSetting) apply() error {
 		flag.Set("palette", "egalow")
 	case gameboyGraphics:
 		flag.Set("palette", "gb")
+	case macIIGraphics:
+		flag.Set("palette", "macii")
 	case nesGraphics:
 		flag.Set("palette", "nes")
 	case quakeGraphics:
 		flag.Set("palette", "quake")
+	case xtermGraphics:
+		flag.Set("palette", "xterm")
 	}
 	return nil
 }
