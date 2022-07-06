@@ -16,7 +16,6 @@ package menu
 
 import (
 	"fmt"
-	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -24,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
 type SettingsScreenItem int
@@ -314,10 +314,10 @@ func (s *SettingsScreen) Update() error {
 }
 
 func (s *SettingsScreen) Draw(screen *ebiten.Image) {
-	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
-	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
-	fgn := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
-	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
+	fgs := palette.NRGBA(255, 255, 85, 255)
+	bgs := palette.NRGBA(0, 0, 0, 255)
+	fgn := palette.NRGBA(170, 170, 170, 255)
+	bgn := palette.NRGBA(85, 85, 85, 255)
 	font.MenuBig.Draw(screen, "Settings", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == Fullscreen {

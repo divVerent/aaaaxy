@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
 type Centerprint struct {
@@ -152,7 +153,7 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 	var alphaM ebiten.ColorM
 	alphaM.Scale(1.0, 1.0, 1.0, a)
 	fg := alphaM.Apply(cp.color)
-	bg := color.NRGBA{R: 0, G: 0, B: 0, A: uint8(a * 255)}
+	bg := palette.NRGBA(0, 0, 0, uint8(a*255))
 	x := screenWidth / 2
 	y := cp.scrollPos - cp.bounds.Size.DY - cp.bounds.Origin.Y
 	cp.face.Draw(screen, cp.text, m.Pos{X: x, Y: y}, true, fg, bg)

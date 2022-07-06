@@ -17,7 +17,6 @@ package aaaaxy
 import (
 	"errors"
 	"fmt"
-	"image/color"
 	"math"
 	"math/rand"
 
@@ -350,9 +349,9 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 	if !g.canDraw {
 		text, fraction := g.init.Current()
 		if text != "" {
-			bg := color.NRGBA{R: 0x00, G: 0x00, B: uint8(m.Rint(0xAA * (1 - fraction))), A: 0xFF}
-			fg := color.NRGBA{R: 0xAA, G: 0xAA, B: 0xAA, A: 0xFF}
-			ol := color.NRGBA{R: 0x00, G: 0x00, B: 0x00, A: 0xFF}
+			bg := palette.NRGBA(0x00, 0x00, 0xAA, uint8(m.Rint(0xFF*(1-fraction))))
+			fg := palette.NRGBA(0xAA, 0xAA, 0xAA, 0xFF)
+			ol := palette.NRGBA(0x00, 0x00, 0x00, 0xFF)
 			drawDest.Fill(bg)
 			r := font.MenuSmall.BoundString(text)
 			y := m.Rint(float64((engine.GameHeight-r.Size.DY))*(1-fraction)) - r.Origin.Y
@@ -381,14 +380,14 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 		font.DebugSmall.Draw(drawDest,
 			fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
 			m.Pos{X: engine.GameWidth - 48, Y: engine.GameHeight - 4}, true,
-			color.NRGBA{R: 255, G: 255, B: 255, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+			palette.NRGBA(255, 255, 255, 255), palette.NRGBA(0, 0, 0, 0))
 	}
 	if *showTime {
 		timing.Section("time")
 		font.DebugSmall.Draw(drawDest,
 			fmt.Sprintf(fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}")),
 			m.Pos{X: 32, Y: engine.GameHeight - 4}, true,
-			color.NRGBA{R: 255, G: 255, B: 255, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+			palette.NRGBA(255, 255, 255, 255), palette.NRGBA(0, 0, 0, 0))
 	}
 
 	timing.Section("demo_postdraw")

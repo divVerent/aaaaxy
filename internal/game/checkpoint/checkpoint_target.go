@@ -16,7 +16,6 @@ package checkpoint
 
 import (
 	"fmt"
-	"image/color"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/centerprint"
@@ -27,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -111,11 +111,11 @@ func (c *CheckpointTarget) SetState(originator, predecessor *engine.Entity, stat
 	if err != nil {
 		log.Errorf("could not save game: %v", err)
 		str := fmt.Sprintf("Error:\ncould not save game:\n%v", err)
-		centerprint.New(fun.FormatText(&c.World.PlayerState, str), centerprint.Important, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 85, B: 85, A: 255}, 5*time.Second).SetFadeOut(true)
+		centerprint.New(fun.FormatText(&c.World.PlayerState, str), centerprint.Important, centerprint.Top, centerprint.NormalFont(), palette.NRGBA(255, 85, 85, 255), 5*time.Second).SetFadeOut(true)
 		return
 	}
 	if c.Text != "" {
-		centerprint.New(fun.FormatText(&c.World.PlayerState, c.Text), centerprint.Important, centerprint.Middle, centerprint.BigFont(), color.NRGBA{R: 255, G: 255, B: 255, A: 255}, time.Second).SetFadeOut(true)
+		centerprint.New(fun.FormatText(&c.World.PlayerState, c.Text), centerprint.Important, centerprint.Middle, centerprint.BigFont(), palette.NRGBA(255, 255, 255, 255), time.Second).SetFadeOut(true)
 		c.Sound.Play()
 	}
 }

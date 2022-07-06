@@ -16,7 +16,6 @@ package menu
 
 import (
 	"fmt"
-	"image/color"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -29,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/version"
 )
@@ -150,10 +150,10 @@ func (s *CreditsScreen) Update() error {
 
 func (s *CreditsScreen) Draw(screen *ebiten.Image) {
 	x := engine.GameWidth / 2
-	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
-	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
-	fgn := color.NRGBA{R: 85, G: 255, B: 255, A: 255}
-	bgn := color.NRGBA{R: 0, G: 0, B: 0, A: 0}
+	fgs := palette.NRGBA(255, 255, 85, 255)
+	bgs := palette.NRGBA(0, 0, 0, 255)
+	fgn := palette.NRGBA(85, 255, 255, 255)
+	bgn := palette.NRGBA(0, 0, 0, 0)
 	nextIsTitle := true
 	for i, line := range s.Lines {
 		if line == "" {

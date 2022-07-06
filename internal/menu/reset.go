@@ -16,7 +16,6 @@ package menu
 
 import (
 	"fmt"
-	"image/color"
 	"math/rand"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -26,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
 type ResetScreenItem int
@@ -94,10 +94,10 @@ func (s *ResetScreen) Update() error {
 }
 
 func (s *ResetScreen) Draw(screen *ebiten.Image) {
-	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
-	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
-	fgn := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
-	bgn := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
+	fgs := palette.NRGBA(255, 255, 85, 255)
+	bgs := palette.NRGBA(0, 0, 0, 255)
+	fgn := palette.NRGBA(170, 170, 170, 255)
+	bgn := palette.NRGBA(85, 85, 85, 255)
 	font.MenuBig.Draw(screen, "Reset", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == ResetNothing {
@@ -123,12 +123,12 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 		save = " Y"
 	}
 	if s.ResetFrame >= resetFrames && s.Item == ResetGame {
-		fg, bg = color.NRGBA{R: 170, G: 0, B: 0, A: 255}, color.NRGBA{R: 0, G: 0, B: 0, A: 255}
+		fg, bg = palette.NRGBA(170, 0, 0, 255), palette.NRGBA(0, 0, 0, 255)
 		resetText = fmt.Sprintf("Reset and Lose SAVE STATE%s", save)
 	} else {
 		fg, bg = fgn, bgn
 		if s.Item == ResetGame {
-			fg, bg = color.NRGBA{R: 255, G: 85, B: 85, A: 255}, color.NRGBA{R: 170, G: 0, B: 0, A: 255}
+			fg, bg = palette.NRGBA(255, 85, 85, 255), palette.NRGBA(170, 0, 0, 255)
 			if s.WaitForKeyReleaseThenReset {
 				resetText = fmt.Sprintf("Reset and Lose Save State%s (just release buttons)", save)
 			} else {

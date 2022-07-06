@@ -29,6 +29,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 )
 
@@ -231,13 +232,13 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	h := engine.GameHeight
 	w := engine.GameWidth
 	x := w / 2
-	fgs := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
-	bgs := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
-	takenRouteColor := color.NRGBA{R: 170, G: 170, B: 170, A: 255}
-	selectedRouteColor := color.NRGBA{R: 255, G: 255, B: 85, A: 255}
-	unseenPathToSeenCPColor := color.NRGBA{R: 255, G: 255, B: 255, A: 255}
-	unseenPathToUnseenCPColor := color.NRGBA{R: 0, G: 0, B: 0, A: 255}
-	unseenPathBlinkColor := color.NRGBA{R: 85, G: 85, B: 85, A: 255}
+	fgs := palette.NRGBA(255, 255, 85, 255)
+	bgs := palette.NRGBA(0, 0, 0, 255)
+	takenRouteColor := palette.NRGBA(170, 170, 170, 255)
+	selectedRouteColor := palette.NRGBA(255, 255, 85, 255)
+	unseenPathToSeenCPColor := palette.NRGBA(255, 255, 255, 255)
+	unseenPathToUnseenCPColor := palette.NRGBA(0, 0, 0, 255)
+	unseenPathBlinkColor := palette.NRGBA(85, 85, 85, 255)
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := fun.FormatText(&s.Controller.World.PlayerState, s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties["text"])
 	seen, total := s.Controller.World.PlayerState.TnihSignsSeen(s.CurrentCP)

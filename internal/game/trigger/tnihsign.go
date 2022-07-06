@@ -16,7 +16,6 @@ package trigger
 
 import (
 	"fmt"
-	"image/color"
 	"strings"
 	"time"
 
@@ -31,6 +30,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -142,7 +142,7 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 			}
 			t.Sound.Play()
 		}
-		t.Centerprint = centerprint.New(fun.FormatText(&t.World.PlayerState, t.Text), importance, centerprint.Top, centerprint.NormalFont(), color.NRGBA{R: 255, G: 255, B: 85, A: 255}, 2*time.Second)
+		t.Centerprint = centerprint.New(fun.FormatText(&t.World.PlayerState, t.Text), importance, centerprint.Top, centerprint.NormalFont(), palette.NRGBA(255, 255, 85, 255), 2*time.Second)
 		t.Entity.Image = t.SeenImage
 		mixins.SetStateOfTarget(t.World, other, t.Entity, t.Target, true)
 	}
