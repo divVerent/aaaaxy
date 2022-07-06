@@ -72,6 +72,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(1, 1, float64(c.G)/255.0)
 	fromM.SetElement(2, 1, float64(c.B)/255.0)
 	fromM.SetElement(3, 1, 1.0)
+	colorString = sp.Properties["from_color_c"]
 	c, err = palette.Parse(colorString)
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
@@ -80,6 +81,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(1, 2, float64(c.G)/255.0)
 	fromM.SetElement(2, 2, float64(c.B)/255.0)
 	fromM.SetElement(3, 2, 1.0)
+	colorString = sp.Properties["from_color_d"]
 	c, err = palette.Parse(colorString)
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
