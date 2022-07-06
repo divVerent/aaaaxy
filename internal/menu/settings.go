@@ -63,6 +63,7 @@ const (
 	svgaGraphics
 	atariSTGraphics
 	c64Graphics
+	cgaNTSCGraphics
 	egaLowGraphics
 	gameboyGraphics
 	smbGraphics
@@ -88,6 +89,8 @@ func (s graphicsSetting) String() string {
 		return "Atari ST"
 	case c64Graphics:
 		return "C64"
+	case cgaNTSCGraphics:
+		return "CGA (NTSC)"
 	case egaLowGraphics:
 		return "EGA Low Intensity"
 	case gameboyGraphics:
@@ -118,6 +121,8 @@ func currentGraphics() graphicsSetting {
 			return atariSTGraphics
 		case "c64":
 			return c64Graphics
+		case "cga40n":
+			return cgaNTSCGraphics
 		case "egalow":
 			return egaLowGraphics
 		case "gb":
@@ -145,6 +150,8 @@ func (s graphicsSetting) apply() error {
 		flag.Set("palette", "atarist")
 	case c64Graphics:
 		flag.Set("palette", "c64")
+	case cgaNTSCGraphics:
+		flag.Set("palette", "cga40n")
 	case egaLowGraphics:
 		flag.Set("palette", "egalow")
 	case gameboyGraphics:

@@ -82,24 +82,24 @@ var data = map[string]*Palette{
 
 	// The original IBM CGA palette on NTSC.
 	// curl https://upload.wikimedia.org/wikipedia/commons/7/7c/CGA_CompVsRGB_320p0.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
-	"cga40n": newPalette(nil, []uint32{
-		0x000000,
-		0x0071D1,
-		0x0019AC,
-		0x0071F1,
-		0x954F00,
-		0x6DD441,
-		0xA27B1C,
-		0x74D461,
-		0xB82100,
-		0x90A69C,
-		0xC54E76,
-		0x97A6BB,
-		0xF36800,
-		0xCBED26,
-		0xFF9501,
-		0xD2ED46,
+	// The EGA mapping here is very approximate as mapping more colors tends to look better even if not very close.
+	"cga40n": newPalette([]int{0, 3, 9, 1, 6, 2, 10, 4, 7, 13, 14, 12}, []uint32{
+		0x000000, // Black.
+		0x0071D1, // Cyan.
+		0x0071F1, // Light blue.
+		0x0019AC, // Blue.
+		0x954F00, // Brown.
+		0x6DD441, // Green.
+		0x74D461, // Light green.
+		0xB82100, // Red.
+		0x90A69C, // Light grey.
+		0xC54E76, // Light magenta.
+		0xD2ED46, // Yellow.
+		0xF36800, // Light red.
+		0x97A6BB, // Other light grey. Unmapped.
+		0xA27B1C, // Light brown. Unmapped.
+		0xCBED26, // Other yellow. Unmapped.
+		0xFF9501, // Orange. Unmapped.
 	}),
 
 	// The alternate IBM CGA palette.
@@ -120,24 +120,24 @@ var data = map[string]*Palette{
 
 	// The alternate IBM CGA palette on NTSC.
 	// curl https://upload.wikimedia.org/wikipedia/commons/c/c5/CGA_CompVsRGB_320p1.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
-	"cga41n": newPalette(nil, []uint32{
-		0x000000,
-		0x009AFF,
-		0x0042FF,
-		0x0090FF,
-		0xAA4C00,
-		0x84FAD2,
-		0xB9A2AD,
-		0x96F0FF,
-		0xCD1F00,
-		0xA7CDFF,
-		0xDC75FF,
-		0xB9C3FF,
-		0xFF5C00,
-		0xEDFFCC,
-		0xFFB2A6,
-		0xFFFFFF,
+	// The EGA mapping here is very approximate as mapping more colors tends to look better even if not very close.
+	"cga41n": newPalette([]int{0, 3, 1, 6, 9, 7, 11, 4, 13, 10, 12, 15}, []uint32{
+		0x000000, // Black.
+		0x009AFF, // Cyan.
+		0x0042FF, // Blue.
+		0xAA4C00, // Brown.
+		0xA7CDFF, // Light blue.
+		0xB9A2AD, // Light grey.
+		0x96F0FF, // Light cyan.
+		0xCD1F00, // Red.
+		0xDC75FF, // Light magenta.
+		0xEDFFCC, // Light green.
+		0xFFB2A6, // Light red.
+		0xFFFFFF, // White.
+		0x0090FF, // Other cyan. Unmapped.
+		0x84FAD2, // Other light cyan. Unmapped.
+		0xB9C3FF, // Other light grey. Unmapped.
+		0xFF5C00, // Orange. Unmapped.
 	}),
 
 	// The "monochrome" IBM CGA palette.
@@ -158,24 +158,24 @@ var data = map[string]*Palette{
 
 	// The palette one gets when using the CGA monochrome mode on NTSC while forcing the colorburst signal.
 	// curl https://upload.wikimedia.org/wikipedia/commons/f/fb/CGA_CompVsRGB_640.png | convert PNG:- -crop 100x360+1000+20 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
-	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
-	"cga6n": newPalette(nil, []uint32{
-		0x000000,
-		0x006E31,
-		0x3109FF,
-		0x008AFF,
-		0xA70031,
-		0x767676,
-		0xEC11FF,
-		0xBB92FF,
-		0x315A00,
-		0x00DB00,
-		0x767676,
-		0x45F7BB,
-		0xEC6300,
-		0xBBE400,
-		0xFF7FBB,
-		0xFFFFFF,
+	// The EGA mapping here is very approximate as mapping more colors tends to look better even if not very close.
+	"cga6n": newPalette([]int{0, 2, 9, 10, 1, 11, 7, 4, 14, 13, 12, 15}, []uint32{
+		0x000000, // Black.
+		0x006E31, // Green.
+		0x008AFF, // Light blue.
+		0x00DB00, // Light green.
+		0x3109FF, // Blue.
+		0x45F7BB, // Light cyan.
+		0x767676, // Light grey.
+		0xA70031, // Red.
+		0xBBE400, // Yellow.
+		0xEC11FF, // Light magenta.
+		0xEC6300, // Light red.
+		0xFFFFFF, // White.
+		0x315A00, // Other green. Unmapped.
+		0xBB92FF, // Pink. Unmapped.
+		0xFF7FBB, // Light pink. Unmapped.
+		// 0x767676, // Other light grey. Redundant.
 	}),
 
 	// The original IBM EGA palette.
