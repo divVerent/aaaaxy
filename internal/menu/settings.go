@@ -26,10 +26,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
-var (
-	paletteAllowExtra = flag.Bool("palette_allow_extra", false, "allow selecting additional retro palettes in the menu")
-)
-
 type SettingsScreenItem int
 
 const (
@@ -44,12 +40,17 @@ const (
 )
 
 type SettingsScreen struct {
-	Controller *Controller
-	Item       SettingsScreenItem
+	Controller           *Controller
+	Item                 SettingsScreenItem
+	PaletteUnlockCounter int
 }
 
 func (s *SettingsScreen) Init(m *Controller) error {
 	s.Controller = m
+	s.PaletteUnlockCounter = 6 // Hit right 7 times to hit advanced palettes.
+	if currentGraphics() >= graphicsSettingsNormalCount {
+		s.PaletteUnlockCounter = 0
+	}
 	return nil
 }
 
@@ -117,24 +118,20 @@ func currentGraphics() graphicsSetting {
 		return vgaGraphics
 	case "none":
 		return svgaGraphics
-	}
-	if *paletteAllowExtra {
-		switch pal {
-		case "atarist":
-			return atariSTGraphics
-		case "c64":
-			return c64Graphics
-		case "cga40n":
-			return cgaNTSCGraphics
-		case "egalow":
-			return egaLowGraphics
-		case "gb":
-			return gameboyGraphics
-		case "nes":
-			return nesGraphics
-		case "quake":
-			return quakeGraphics
-		}
+	case "atarist":
+		return atariSTGraphics
+	case "c64":
+		return c64Graphics
+	case "cga40n":
+		return cgaNTSCGraphics
+	case "egalow":
+		return egaLowGraphics
+	case "gb":
+		return gameboyGraphics
+	case "nes":
+		return nesGraphics
+	case "quake":
+		return quakeGraphics
 	}
 	return svgaGraphics
 }
@@ -169,10 +166,10 @@ func (s graphicsSetting) apply() error {
 	return nil
 }
 
-func toggleGraphics(delta int) error {
+func (s *SettingsScreen) toggleGraphics(delta int) error {
 	g := currentGraphics()
 	count := graphicsSettingsNormalCount
-	if *paletteAllowExtra {
+	if s.PaletteUnlockCounter == 0 {
 		count = graphicsSettingsTotalCount
 	}
 	switch delta {
@@ -188,6 +185,9 @@ func toggleGraphics(delta int) error {
 	case +1:
 		g++
 		if g >= count {
+			if s.PaletteUnlockCounter > 0 {
+				s.PaletteUnlockCounter--
+			}
 			g--
 		}
 	}
@@ -338,7 +338,7 @@ func (s *SettingsScreen) Update() error {
 		case Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
 		case Graphics:
-			return s.Controller.ActivateSound(toggleGraphics(0))
+			return s.Controller.ActivateSound(s.toggleGraphics(0))
 		case Quality:
 			return s.Controller.ActivateSound(toggleQuality(0))
 		case Volume:
@@ -356,7 +356,7 @@ func (s *SettingsScreen) Update() error {
 		case Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
 		case Graphics:
-			return s.Controller.ActivateSound(toggleGraphics(-1))
+			return s.Controller.ActivateSound(s.toggleGraphics(-1))
 		case Quality:
 			return s.Controller.ActivateSound(toggleQuality(-1))
 		case Volume:
@@ -368,7 +368,7 @@ func (s *SettingsScreen) Update() error {
 		case Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
 		case Graphics:
-			return s.Controller.ActivateSound(toggleGraphics(+1))
+			return s.Controller.ActivateSound(s.toggleGraphics(+1))
 		case Quality:
 			return s.Controller.ActivateSound(toggleQuality(+1))
 		case Volume:
