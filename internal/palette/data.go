@@ -199,6 +199,27 @@ var data = map[string]*Palette{
 		0xFFFFFF,
 	}),
 
+	// Atari ST palette.
+	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
+	"atari_st": newPalette(0, []uint32{
+		0xFFFFFF,
+		0x000000,
+		0xFF0000,
+		0x00FF00,
+		0x0000FF,
+		0x000092,
+		0x924900,
+		0x009200,
+		0xB6B6B6,
+		0x494949,
+		0x00FFFF,
+		0x009292,
+		0xFF00FF,
+		0x920092,
+		0xFFFF00,
+		0x929200,
+	}),
+
 	// The original IBM VGA palette, with colors too close to EGA colors commented out.
 	"vga": newPalette(16, []uint32{
 		0x000000,
