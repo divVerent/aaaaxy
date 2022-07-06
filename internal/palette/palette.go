@@ -15,6 +15,7 @@
 package palette
 
 import (
+	"fmt"
 	"image"
 	"image/color"
 	"sort"
@@ -151,4 +152,12 @@ func Current() *Palette {
 
 func NRGBA(r, g, b, a uint8) color.NRGBA {
 	return current.ApplyToNRGBA(color.NRGBA{R: r, G: g, B: b, A: a})
+}
+
+func Parse(s string) (color.NRGBA, error) {
+	var r, g, b, a uint8
+	if _, err := fmt.Sscanf(s, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		return color.NRGBA{}, err
+	}
+	return color.NRGBA{R: r, G: g, B: b, A: a}, nil
 }

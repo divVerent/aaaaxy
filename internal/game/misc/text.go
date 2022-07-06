@@ -17,7 +17,6 @@ package misc
 import (
 	"fmt"
 	"image"
-	"image/color"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -29,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 )
 
@@ -73,11 +73,12 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 	if fnt.Face == nil {
 		return nil, fmt.Errorf("could not find font %q", key.font)
 	}
-	var fg, bg color.NRGBA
-	if _, err := fmt.Sscanf(key.fg, "#%02x%02x%02x%02x", &fg.A, &fg.R, &fg.G, &fg.B); err != nil {
+	fg, err := palette.Parse(key.fg)
+	if err != nil {
 		return nil, fmt.Errorf("could not decode color %q: %w", key.fg, err)
 	}
-	if _, err := fmt.Sscanf(key.bg, "#%02x%02x%02x%02x", &bg.A, &bg.R, &bg.G, &bg.B); err != nil {
+	bg, err := palette.Parse(key.bg)
+	if err != nil {
 		return nil, fmt.Errorf("could not decode color %q: %w", key.bg, err)
 	}
 	txt, err := fun.TryFormatText(ps, key.text)

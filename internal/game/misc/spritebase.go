@@ -22,6 +22,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
 // SpriteBase is a base class for sprites.
@@ -47,24 +48,24 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		}
 	}
 	if mapBlackToString := sp.Properties["map_black_to"]; mapBlackToString != "" {
-		var r, g, b, a int
-		if _, err := fmt.Sscanf(mapBlackToString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		c, err := palette.Parse(mapBlackToString)
+		if err != nil {
 			return fmt.Errorf("could not decode color %q: %w", mapBlackToString, err)
 		}
-		e.ColorAdd[0] = float64(r) / 255.0
-		e.ColorAdd[1] = float64(g) / 255.0
-		e.ColorAdd[2] = float64(b) / 255.0
-		e.ColorAdd[3] = float64(a) / 255.0
+		e.ColorAdd[0] = float64(c.R) / 255.0
+		e.ColorAdd[1] = float64(c.G) / 255.0
+		e.ColorAdd[2] = float64(c.B) / 255.0
+		e.ColorAdd[3] = float64(c.A) / 255.0
 	}
 	if mapWhiteToString := sp.Properties["map_white_to"]; mapWhiteToString != "" {
-		var r, g, b, a int
-		if _, err := fmt.Sscanf(mapWhiteToString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+		c, err := palette.Parse(mapWhiteToString)
+		if err != nil {
 			return fmt.Errorf("could not decode color %q: %w", mapWhiteToString, err)
 		}
-		e.ColorMod[0] = float64(r)/255.0 - e.ColorAdd[0]
-		e.ColorMod[1] = float64(g)/255.0 - e.ColorAdd[1]
-		e.ColorMod[2] = float64(b)/255.0 - e.ColorAdd[2]
-		e.ColorMod[3] = float64(a)/255.0 - e.ColorAdd[3]
+		e.ColorMod[0] = float64(c.R)/255.0 - e.ColorAdd[0]
+		e.ColorMod[1] = float64(c.G)/255.0 - e.ColorAdd[1]
+		e.ColorMod[2] = float64(c.B)/255.0 - e.ColorAdd[2]
+		e.ColorMod[3] = float64(c.A)/255.0 - e.ColorAdd[3]
 	}
 	z := s.ZDefault
 	if sp.Properties["z_index"] != "" {

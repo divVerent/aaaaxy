@@ -22,6 +22,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
 // FadeTarget fades the screen out.
@@ -53,81 +54,86 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	// Then toM * fromM^-1 will be what we need.
 	var fromM, toM ebiten.ColorM
 
-	var r, g, b, a int
 	colorString := sp.Properties["from_color_a"]
-	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+	c, err := palette.Parse(colorString)
+	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
-	fromM.SetElement(0, 0, float64(r)/255.0)
-	fromM.SetElement(1, 0, float64(g)/255.0)
-	fromM.SetElement(2, 0, float64(b)/255.0)
+	fromM.SetElement(0, 0, float64(c.R)/255.0)
+	fromM.SetElement(1, 0, float64(c.G)/255.0)
+	fromM.SetElement(2, 0, float64(c.B)/255.0)
 	fromM.SetElement(3, 0, 1.0)
 	colorString = sp.Properties["from_color_b"]
-	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+	c, err = palette.Parse(colorString)
+	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
-	fromM.SetElement(0, 1, float64(r)/255.0)
-	fromM.SetElement(1, 1, float64(g)/255.0)
-	fromM.SetElement(2, 1, float64(b)/255.0)
+	fromM.SetElement(0, 1, float64(c.R)/255.0)
+	fromM.SetElement(1, 1, float64(c.G)/255.0)
+	fromM.SetElement(2, 1, float64(c.B)/255.0)
 	fromM.SetElement(3, 1, 1.0)
-	colorString = sp.Properties["from_color_c"]
-	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+	c, err = palette.Parse(colorString)
+	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
-	fromM.SetElement(0, 2, float64(r)/255.0)
-	fromM.SetElement(1, 2, float64(g)/255.0)
-	fromM.SetElement(2, 2, float64(b)/255.0)
+	fromM.SetElement(0, 2, float64(c.R)/255.0)
+	fromM.SetElement(1, 2, float64(c.G)/255.0)
+	fromM.SetElement(2, 2, float64(c.B)/255.0)
 	fromM.SetElement(3, 2, 1.0)
-	colorString = sp.Properties["from_color_d"]
-	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+	c, err = palette.Parse(colorString)
+	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
-	fromM.SetElement(0, 3, float64(r)/255.0)
-	fromM.SetElement(1, 3, float64(g)/255.0)
-	fromM.SetElement(2, 3, float64(b)/255.0)
+	fromM.SetElement(0, 3, float64(c.R)/255.0)
+	fromM.SetElement(1, 3, float64(c.G)/255.0)
+	fromM.SetElement(2, 3, float64(c.B)/255.0)
 	fromM.SetElement(3, 3, 1.0)
 	// In addition, add another row to keep the alpha channel invariant.
-	fromM.SetElement(0, 4, float64(r)/255.0)
-	fromM.SetElement(1, 4, float64(g)/255.0)
-	fromM.SetElement(2, 4, float64(b)/255.0)
+	fromM.SetElement(0, 4, float64(c.R)/255.0)
+	fromM.SetElement(1, 4, float64(c.G)/255.0)
+	fromM.SetElement(2, 4, float64(c.B)/255.0)
 	fromM.SetElement(3, 4, 0.0)
 
 	colorString = sp.Properties["to_color_a"]
-	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+	c, err = palette.Parse(colorString)
+	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
-	toM.SetElement(0, 0, float64(r)/255.0)
-	toM.SetElement(1, 0, float64(g)/255.0)
-	toM.SetElement(2, 0, float64(b)/255.0)
+	toM.SetElement(0, 0, float64(c.R)/255.0)
+	toM.SetElement(1, 0, float64(c.G)/255.0)
+	toM.SetElement(2, 0, float64(c.B)/255.0)
 	toM.SetElement(3, 0, 1.0)
 	colorString = sp.Properties["to_color_b"]
-	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+	c, err = palette.Parse(colorString)
+	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
-	toM.SetElement(0, 1, float64(r)/255.0)
-	toM.SetElement(1, 1, float64(g)/255.0)
-	toM.SetElement(2, 1, float64(b)/255.0)
+	toM.SetElement(0, 1, float64(c.R)/255.0)
+	toM.SetElement(1, 1, float64(c.G)/255.0)
+	toM.SetElement(2, 1, float64(c.B)/255.0)
 	toM.SetElement(3, 1, 1.0)
 	colorString = sp.Properties["to_color_c"]
-	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+	c, err = palette.Parse(colorString)
+	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
-	toM.SetElement(0, 2, float64(r)/255.0)
-	toM.SetElement(1, 2, float64(g)/255.0)
-	toM.SetElement(2, 2, float64(b)/255.0)
+	toM.SetElement(0, 2, float64(c.R)/255.0)
+	toM.SetElement(1, 2, float64(c.G)/255.0)
+	toM.SetElement(2, 2, float64(c.B)/255.0)
 	toM.SetElement(3, 2, 1.0)
 	colorString = sp.Properties["to_color_d"]
-	if _, err := fmt.Sscanf(colorString, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
+	c, err = palette.Parse(colorString)
+	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
-	toM.SetElement(0, 3, float64(r)/255.0)
-	toM.SetElement(1, 3, float64(g)/255.0)
-	toM.SetElement(2, 3, float64(b)/255.0)
+	toM.SetElement(0, 3, float64(c.R)/255.0)
+	toM.SetElement(1, 3, float64(c.G)/255.0)
+	toM.SetElement(2, 3, float64(c.B)/255.0)
 	toM.SetElement(3, 3, 1.0)
 	// In addition, add another row to keep the alpha channel invariant.
-	toM.SetElement(0, 4, float64(r)/255.0)
-	toM.SetElement(1, 4, float64(g)/255.0)
-	toM.SetElement(2, 4, float64(b)/255.0)
+	toM.SetElement(0, 4, float64(c.R)/255.0)
+	toM.SetElement(1, 4, float64(c.G)/255.0)
+	toM.SetElement(2, 4, float64(c.B)/255.0)
 	toM.SetElement(3, 4, 0.0)
 
 	f.ColorM = fromM
