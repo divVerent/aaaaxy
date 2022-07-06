@@ -17,13 +17,13 @@ package palette
 // data contains all palettes by name.
 var data = map[string]*Palette{
 	// Monochrome.
-	"mono": newPalette(0, []uint32{
+	"mono": newPalette(2, []uint32{
 		0x000000,
 		0xFFFFFF,
 	}),
 
 	// The original IBM CGA palette.
-	"cga40l": newPalette(0, []uint32{
+	"cga40l": newPalette(4, []uint32{
 		0x000000,
 		0x00AA00,
 		0xAA0000,
@@ -31,7 +31,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM CGA palette at high intensity.
-	"cga40h": newPalette(0, []uint32{
+	"cga40h": newPalette(4, []uint32{
 		0x000000,
 		0x55FF55,
 		0xFF5555,
@@ -60,7 +60,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The alternate IBM CGA palette.
-	"cga41l": newPalette(0, []uint32{
+	"cga41l": newPalette(4, []uint32{
 		0x000000,
 		0x00AAAA,
 		0xAA00AA,
@@ -68,7 +68,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The alternate IBM CGA palette at high intensity.
-	"cga41h": newPalette(0, []uint32{
+	"cga41h": newPalette(4, []uint32{
 		0x000000,
 		0x55FFFF,
 		0xFF55FF,
@@ -97,7 +97,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The "monochrome" IBM CGA palette.
-	"cga5l": newPalette(0, []uint32{
+	"cga5l": newPalette(4, []uint32{
 		0x000000,
 		0x00AAAA,
 		0xAA0000,
@@ -105,7 +105,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The "monochrome" IBM CGA palette at high intensity.
-	"cga5h": newPalette(0, []uint32{
+	"cga5h": newPalette(4, []uint32{
 		0x000000,
 		0x55FFFF,
 		0xFF5555,
@@ -134,7 +134,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM EGA palette.
-	"ega": newPalette(0, []uint32{
+	"ega": newPalette(16, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -154,7 +154,7 @@ var data = map[string]*Palette{
 	}),
 
 	// EGA but only the colors 0 to 7.
-	"egalow": newPalette(0, []uint32{
+	"egalow": newPalette(8, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -166,7 +166,7 @@ var data = map[string]*Palette{
 	}),
 
 	// EGA but only the grey tones.
-	"egamono": newPalette(0, []uint32{
+	"egamono": newPalette(4, []uint32{
 		0x000000,
 		0xAAAAAA,
 		0x555555,
