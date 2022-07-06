@@ -35,6 +35,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/noise"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/sound"
 	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/timing"
@@ -105,6 +106,9 @@ func (g *Game) InitEbiten() error {
 	ebiten.SetWindowResizable(true)
 	setWindowSize()
 	ebiten.SetWindowTitle("AAAAXY")
+
+	// Load images with the right palette from the start.
+	image.SetPalette(palette.ByName(*paletteFlag))
 
 	// Initialize some stuff that is needed early.
 	err := vfs.Init()

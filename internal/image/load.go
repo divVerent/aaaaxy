@@ -25,6 +25,8 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
@@ -38,16 +40,18 @@ type imagePath = struct {
 }
 
 var (
-	cache       = map[imagePath]*ebiten.Image{}
-	cacheFrozen bool
+	cache          = map[imagePath]*ebiten.Image{}
+	cacheFrozen    bool
+	mappingPalette *palette.Palette
 )
 
-func Load(purpose, name string) (*ebiten.Image, error) {
+func load(purpose, name string, force bool) (*ebiten.Image, error) {
 	ip := imagePath{purpose, name}
-	if img, found := cache[ip]; found {
-		return img, nil
+	cachedImg, found := cache[ip]
+	if found && !force {
+		return cachedImg, nil
 	}
-	if cacheFrozen {
+	if cacheFrozen && !found {
 		return nil, fmt.Errorf("image %v was not precached", ip)
 	}
 	data, err := vfs.Load(purpose, name)
@@ -59,9 +63,27 @@ func Load(purpose, name string) (*ebiten.Image, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not decode: %w", err)
 	}
-	eImg := ebiten.NewImageFromImage(img)
-	cache[ip] = eImg
-	return eImg, nil
+	img = mappingPalette.ApplyToImage(img)
+	if found {
+		if rgbaImg, isRGBA := img.(*image.RGBA); isRGBA && img.Bounds() == cachedImg.Bounds() {
+			cachedImg.ReplacePixels(rgbaImg.Pix)
+		} else {
+			log.Infof("reloading image, slow path: not a RGBA image")
+			copyImg := ebiten.NewImageFromImage(rgbaImg)
+			cachedImg.DrawImage(copyImg, &ebiten.DrawImageOptions{
+				CompositeMode: ebiten.CompositeModeCopy,
+			})
+			copyImg.Dispose()
+		}
+	} else {
+		cachedImg = ebiten.NewImageFromImage(img)
+		cache[ip] = cachedImg
+	}
+	return cachedImg, nil
+}
+
+func Load(purpose, name string) (*ebiten.Image, error) {
+	return load(purpose, name, false)
 }
 
 func Precache() error {
@@ -105,5 +127,20 @@ func Precache() error {
 		return fmt.Errorf("could not find precache item for file %v", item)
 	}
 	cacheFrozen = true
+	return nil
+}
+
+func SetPalette(pal *palette.Palette) error {
+	if mappingPalette == pal {
+		return nil
+	}
+	mappingPalette = pal
+	log.Infof("note: remapping %d colors (slow)", pal.RemapCount())
+	for ip := range cache {
+		_, err := load(ip.Purpose, ip.Name, true)
+		if err != nil {
+			return err
+		}
+	}
 	return nil
 }

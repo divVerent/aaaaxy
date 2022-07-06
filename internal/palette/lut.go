@@ -116,6 +116,22 @@ func (c rgb) toNRGBA() color.NRGBA {
 	}
 }
 
+func (c rgb) toRGBA() color.RGBA {
+	return color.RGBA{
+		R: uint8(c[0]*255 + 0.5),
+		G: uint8(c[1]*255 + 0.5),
+		B: uint8(c[2]*255 + 0.5),
+		A: 255,
+	}
+}
+
+func (c rgb) toUint32() uint32 {
+	r := uint32(c[0]*255 + 0.5)
+	g := uint32(c[1]*255 + 0.5)
+	b := uint32(c[2]*255 + 0.5)
+	return (r << 16) | (g << 8) | b
+}
+
 func (c rgb) toColorful() colorful.Color {
 	return colorful.Color{
 		R: c[0],
@@ -124,13 +140,17 @@ func (c rgb) toColorful() colorful.Color {
 	}
 }
 
-func (p *Palette) lookup(i int) rgb {
-	u := p.colors[i]
+func toRGB(u uint32) rgb {
 	return rgb{
 		float64(u>>16) / 255,
 		float64((u>>8)&0xFF) / 255,
 		float64(u&0xFF) / 255,
 	}
+}
+
+func (p *Palette) lookup(i int) rgb {
+	u := p.colors[i]
+	return toRGB(u)
 }
 
 // lookupNearest returns the palette color nearest to c.

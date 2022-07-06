@@ -31,6 +31,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
+	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -183,6 +184,7 @@ func (g *Game) Update() error {
 func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	// This is an extra pass so it can still run at low-res.
 	pal := palette.ByName(*paletteFlag)
+	image.SetPalette(pal)
 
 	if pal == nil {
 		// No palette.
