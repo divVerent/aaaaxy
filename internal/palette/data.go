@@ -60,6 +60,7 @@ var data = map[string]*Palette{
 
 	// The original IBM CGA palette on NTSC.
 	// curl https://upload.wikimedia.org/wikipedia/commons/7/7c/CGA_CompVsRGB_320p0.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
+	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
 	"cga40n": newPalette(nil, []uint32{
 		0x000000,
 		0x0071D1,
@@ -97,6 +98,7 @@ var data = map[string]*Palette{
 
 	// The alternate IBM CGA palette on NTSC.
 	// curl https://upload.wikimedia.org/wikipedia/commons/c/c5/CGA_CompVsRGB_320p1.png | convert PNG:- -crop 100x180+500+10 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
+	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
 	"cga41n": newPalette(nil, []uint32{
 		0x000000,
 		0x009AFF,
@@ -134,6 +136,7 @@ var data = map[string]*Palette{
 
 	// The palette one gets when using the CGA monochrome mode on NTSC while forcing the colorburst signal.
 	// curl https://upload.wikimedia.org/wikipedia/commons/f/fb/CGA_CompVsRGB_640.png | convert PNG:- -crop 100x360+1000+20 -compress none PNM:- | tail -n +4 | uniq | awk '{ printf "0x%02X%02X%02X,\n", $1, $2, $3; }'
+	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
 	"cga6n": newPalette(nil, []uint32{
 		0x000000,
 		0x006E31,
@@ -863,6 +866,7 @@ var data = map[string]*Palette{
 	}),
 
 	// Web safe 216 colors palette, actually a 6x6x6 color cube.
+	// Dither everywhere.
 	"web": newPalette(nil, []uint32{
 		0x000000,
 		0x000033,
@@ -1095,6 +1099,7 @@ var data = map[string]*Palette{
 	}),
 
 	// 4x4x4 color cube. For those who just like the dither.
+	// Dither everywhere.
 	"4x4x4": newPalette(nil, []uint32{
 		0x000000,
 		0x000055,
@@ -1163,6 +1168,7 @@ var data = map[string]*Palette{
 	}),
 
 	// 7x7x4 color "cube". Cleanest colors at 256c. Doesn't do blue gradients.
+	// Dither everywhere.
 	"7x7x4": newPalette(nil, []uint32{
 		0x000000,
 		0x000055,
