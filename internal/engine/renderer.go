@@ -229,22 +229,22 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			midx := float64(screenPos.X) + level.TileSize/2
 			midy := float64(screenPos.Y) + level.TileSize/2
 			dx := tile.Orientation.Apply(m.Delta{DX: 4, DY: 0})
-			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.NRGBA(190, 0, 0, 255))
+			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.EGA(palette.Red, 255))
 			dy := tile.Orientation.Apply(m.Delta{DX: 0, DY: 4})
-			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.NRGBA(0, 190, 0, 255))
+			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.EGA(palette.Green, 255))
 		}
 		if *debugShowTransforms {
 			midx := float64(screenPos.X) + level.TileSize/2
 			midy := float64(screenPos.Y) + level.TileSize/2
 			dx := tile.Transform.Apply(m.Delta{DX: 4, DY: 0})
-			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.NRGBA(190, 0, 0, 255))
+			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.EGA(palette.Red, 255))
 			dy := tile.Transform.Apply(m.Delta{DX: 0, DY: 4})
-			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.NRGBA(0, 190, 0, 255))
+			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.EGA(palette.Green, 255))
 		}
 	})
 	if *cheatShowBboxes {
 		r.world.entities.forEach(func(ent *Entity) error {
-			boxColor := palette.NRGBA(85, 85, 85, 128)
+			boxColor := palette.EGA(palette.DarkGrey, 128)
 			if ent.contents.PlayerSolid() {
 				boxColor.R = 255
 			}
@@ -274,13 +274,13 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 		for i, pos := range r.expandedVisiblePolygon {
 			adjustedPolygon[i] = pos.Add(scrollDelta)
 		}
-		DrawPolyLine(screen, 3, adjustedPolygon, r.whiteImage, palette.NRGBA(190, 0, 0, 255), &texM, &ebiten.DrawTrianglesOptions{})
+		DrawPolyLine(screen, 3, adjustedPolygon, r.whiteImage, palette.EGA(palette.Red, 255), &texM, &ebiten.DrawTrianglesOptions{})
 
 		adjustedPolygon = make([]m.Pos, len(r.visiblePolygon))
 		for i, pos := range r.visiblePolygon {
 			adjustedPolygon[i] = pos.Add(scrollDelta)
 		}
-		DrawPolyLine(screen, 3, adjustedPolygon, r.whiteImage, palette.NRGBA(0, 0, 190, 255), &texM, &ebiten.DrawTrianglesOptions{})
+		DrawPolyLine(screen, 3, adjustedPolygon, r.whiteImage, palette.EGA(palette.Blue, 255), &texM, &ebiten.DrawTrianglesOptions{})
 	}
 }
 

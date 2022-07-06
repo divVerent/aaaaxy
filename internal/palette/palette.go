@@ -143,6 +143,14 @@ func (p *Palette) ApplyToNRGBA(col color.NRGBA) color.NRGBA {
 	return col
 }
 
+// rawEGA gets the named EGA color.
+func (p *Palette) rawEGA(i EGAIndex) uint32 {
+	if p == nil {
+		return egaColors[i]
+	}
+	return p.ega[i]
+}
+
 // SetCurrent changes the current palette. Returns whether the remapping table changed.
 func SetCurrent(pal *Palette) bool {
 	if pal == current {
@@ -177,12 +185,8 @@ func Current() *Palette {
 	return current
 }
 
-func NRGBA(r, g, b, a uint8) color.NRGBA {
-	return current.ApplyToNRGBA(color.NRGBA{R: r, G: g, B: b, A: a})
-}
-
 func EGA(i EGAIndex, a uint8) color.NRGBA {
-	u := current.ega[i]
+	u := current.rawEGA(i)
 	return color.NRGBA{
 		R: uint8(u >> 16),
 		G: uint8((u >> 8) & 0xFF),
@@ -196,5 +200,5 @@ func Parse(s string) (color.NRGBA, error) {
 	if _, err := fmt.Sscanf(s, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
 		return color.NRGBA{}, err
 	}
-	return NRGBA(r, g, b, a), nil
+	return current.ApplyToNRGBA(color.NRGBA{R: r, G: g, B: b, A: a}), nil
 }

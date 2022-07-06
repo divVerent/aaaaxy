@@ -94,10 +94,10 @@ func (s *ResetScreen) Update() error {
 }
 
 func (s *ResetScreen) Draw(screen *ebiten.Image) {
-	fgs := palette.NRGBA(255, 255, 85, 255)
-	bgs := palette.NRGBA(0, 0, 0, 255)
-	fgn := palette.NRGBA(170, 170, 170, 255)
-	bgn := palette.NRGBA(85, 85, 85, 255)
+	fgs := palette.EGA(palette.Yellow, 255)
+	bgs := palette.EGA(palette.Black, 255)
+	fgn := palette.EGA(palette.LightGrey, 255)
+	bgn := palette.EGA(palette.DarkGrey, 255)
 	font.MenuBig.Draw(screen, "Reset", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == ResetNothing {
@@ -123,12 +123,12 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 		save = " Y"
 	}
 	if s.ResetFrame >= resetFrames && s.Item == ResetGame {
-		fg, bg = palette.NRGBA(170, 0, 0, 255), palette.NRGBA(0, 0, 0, 255)
+		fg, bg = palette.EGA(palette.Red, 255), palette.EGA(palette.Black, 255)
 		resetText = fmt.Sprintf("Reset and Lose SAVE STATE%s", save)
 	} else {
 		fg, bg = fgn, bgn
 		if s.Item == ResetGame {
-			fg, bg = palette.NRGBA(255, 85, 85, 255), palette.NRGBA(170, 0, 0, 255)
+			fg, bg = palette.EGA(palette.LightRed, 255), palette.EGA(palette.Red, 255)
 			if s.WaitForKeyReleaseThenReset {
 				resetText = fmt.Sprintf("Reset and Lose Save State%s (just release buttons)", save)
 			} else {

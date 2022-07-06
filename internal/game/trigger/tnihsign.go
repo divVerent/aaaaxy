@@ -142,7 +142,7 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 			}
 			t.Sound.Play()
 		}
-		t.Centerprint = centerprint.New(fun.FormatText(&t.World.PlayerState, t.Text), importance, centerprint.Top, centerprint.NormalFont(), palette.NRGBA(255, 255, 85, 255), 2*time.Second)
+		t.Centerprint = centerprint.New(fun.FormatText(&t.World.PlayerState, t.Text), importance, centerprint.Top, centerprint.NormalFont(), palette.EGA(palette.Yellow, 255), 2*time.Second)
 		t.Entity.Image = t.SeenImage
 		mixins.SetStateOfTarget(t.World, other, t.Entity, t.Target, true)
 	}

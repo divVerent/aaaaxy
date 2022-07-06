@@ -232,13 +232,13 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	h := engine.GameHeight
 	w := engine.GameWidth
 	x := w / 2
-	fgs := palette.NRGBA(255, 255, 85, 255)
-	bgs := palette.NRGBA(0, 0, 0, 255)
-	takenRouteColor := palette.NRGBA(170, 170, 170, 255)
-	selectedRouteColor := palette.NRGBA(255, 255, 85, 255)
-	unseenPathToSeenCPColor := palette.NRGBA(255, 255, 255, 255)
-	unseenPathToUnseenCPColor := palette.NRGBA(0, 0, 0, 255)
-	unseenPathBlinkColor := palette.NRGBA(85, 85, 85, 255)
+	fgs := palette.EGA(palette.Yellow, 255)
+	bgs := palette.EGA(palette.Black, 255)
+	takenRouteColor := palette.EGA(palette.LightGrey, 255)
+	selectedRouteColor := palette.EGA(palette.Yellow, 255)
+	unseenPathToSeenCPColor := palette.EGA(palette.White, 255)
+	unseenPathToUnseenCPColor := palette.EGA(palette.Black, 255)
+	unseenPathBlinkColor := palette.EGA(palette.DarkGrey, 255)
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := fun.FormatText(&s.Controller.World.PlayerState, s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties["text"])
 	seen, total := s.Controller.World.PlayerState.TnihSignsSeen(s.CurrentCP)

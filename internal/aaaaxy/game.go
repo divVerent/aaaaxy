@@ -370,9 +370,9 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 	if !g.canDraw {
 		text, fraction := g.init.Current()
 		if text != "" {
-			bg := palette.NRGBA(0x00, 0x00, 0xAA, uint8(m.Rint(0xFF*(1-fraction))))
-			fg := palette.NRGBA(0xAA, 0xAA, 0xAA, 0xFF)
-			ol := palette.NRGBA(0x00, 0x00, 0x00, 0xFF)
+			bg := palette.EGA(palette.Blue, uint8(m.Rint(255*(1-fraction))))
+			fg := palette.EGA(palette.LightGrey, 255)
+			ol := palette.EGA(palette.Black, 255)
 			drawDest.Fill(bg)
 			r := font.MenuSmall.BoundString(text)
 			y := m.Rint(float64((engine.GameHeight-r.Size.DY))*(1-fraction)) - r.Origin.Y
@@ -401,14 +401,14 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 		font.DebugSmall.Draw(drawDest,
 			fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
 			m.Pos{X: engine.GameWidth - 48, Y: engine.GameHeight - 4}, true,
-			palette.NRGBA(255, 255, 255, 255), palette.NRGBA(0, 0, 0, 0))
+			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 0))
 	}
 	if *showTime {
 		timing.Section("time")
 		font.DebugSmall.Draw(drawDest,
 			fmt.Sprintf(fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}")),
 			m.Pos{X: 32, Y: engine.GameHeight - 4}, true,
-			palette.NRGBA(255, 255, 255, 255), palette.NRGBA(0, 0, 0, 0))
+			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 0))
 	}
 
 	timing.Section("demo_postdraw")

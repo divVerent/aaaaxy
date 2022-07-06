@@ -153,7 +153,7 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 	var alphaM ebiten.ColorM
 	alphaM.Scale(1.0, 1.0, 1.0, a)
 	fg := alphaM.Apply(cp.color)
-	bg := palette.NRGBA(0, 0, 0, uint8(a*255))
+	bg := palette.EGA(palette.Black, uint8(a*255))
 	x := screenWidth / 2
 	y := cp.scrollPos - cp.bounds.Size.DY - cp.bounds.Origin.Y
 	cp.face.Draw(screen, cp.text, m.Pos{X: x, Y: y}, true, fg, bg)

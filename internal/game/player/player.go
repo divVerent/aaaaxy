@@ -177,7 +177,7 @@ func (p *Player) GiveAbility(name, text string) {
 		return
 	}
 
-	centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), palette.NRGBA(190, 0, 0, 255), time.Second).SetFadeOut(true)
+	centerprint.New(text, centerprint.Important, centerprint.Middle, centerprint.BigFont(), palette.EGA(palette.Red, 255), time.Second).SetFadeOut(true)
 	p.GotAbilitySound.Play()
 }
 
@@ -388,17 +388,17 @@ func (p *Player) Update() {
 	if input.EasterEggJustHit() {
 		p.EasterEggCount++
 		if p.EasterEggCount%4 == 0 {
-			centerprint.New("Fine, I give up, have it your way.\nAll cheats are documented in --help.", centerprint.Important, centerprint.Top, centerprint.BigFont(), palette.NRGBA(85, 85, 255, 255), 5*time.Second).SetFadeOut(true)
+			centerprint.New("Fine, I give up, have it your way.\nAll cheats are documented in --help.", centerprint.Important, centerprint.Top, centerprint.BigFont(), palette.EGA(palette.LightBlue, 255), 5*time.Second).SetFadeOut(true)
 			p.GotAbilitySound.Play()
 		} else {
-			centerprint.New("You really thought this would do something?", centerprint.Important, centerprint.Middle, centerprint.BigFont(), palette.NRGBA(85, 255, 255, 255), time.Second).SetFadeOut(true)
+			centerprint.New("You really thought this would do something?", centerprint.Important, centerprint.Middle, centerprint.BigFont(), palette.EGA(palette.LightCyan, 255), time.Second).SetFadeOut(true)
 			// No sound. We really want to do nothing here.
 		}
 	}
 
 	// Konami code. Grants 30 lives. Too bad this game does not use lives :)
 	if input.KonamiCodeJustHit() {
-		centerprint.New("You now have 30 lives. Enjoy!", centerprint.Important, centerprint.Top, centerprint.BigFont(), palette.NRGBA(255, 85, 255, 255), 5*time.Second).SetFadeOut(true)
+		centerprint.New("You now have 30 lives. Enjoy!", centerprint.Important, centerprint.Top, centerprint.BigFont(), palette.EGA(palette.LightMagenta, 255), 5*time.Second).SetFadeOut(true)
 		p.GotAbilitySound.Play()
 	}
 }

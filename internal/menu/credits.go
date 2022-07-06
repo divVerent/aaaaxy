@@ -150,10 +150,10 @@ func (s *CreditsScreen) Update() error {
 
 func (s *CreditsScreen) Draw(screen *ebiten.Image) {
 	x := engine.GameWidth / 2
-	fgs := palette.NRGBA(255, 255, 85, 255)
-	bgs := palette.NRGBA(0, 0, 0, 255)
-	fgn := palette.NRGBA(85, 255, 255, 255)
-	bgn := palette.NRGBA(0, 0, 0, 0)
+	fgs := palette.EGA(palette.Yellow, 255)
+	bgs := palette.EGA(palette.Black, 255)
+	fgn := palette.EGA(palette.LightCyan, 255)
+	bgn := palette.EGA(palette.Black, 0)
 	nextIsTitle := true
 	for i, line := range s.Lines {
 		if line == "" {

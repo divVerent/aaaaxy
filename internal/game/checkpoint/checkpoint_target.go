@@ -111,11 +111,11 @@ func (c *CheckpointTarget) SetState(originator, predecessor *engine.Entity, stat
 	if err != nil {
 		log.Errorf("could not save game: %v", err)
 		str := fmt.Sprintf("Error:\ncould not save game:\n%v", err)
-		centerprint.New(fun.FormatText(&c.World.PlayerState, str), centerprint.Important, centerprint.Top, centerprint.NormalFont(), palette.NRGBA(255, 85, 85, 255), 5*time.Second).SetFadeOut(true)
+		centerprint.New(fun.FormatText(&c.World.PlayerState, str), centerprint.Important, centerprint.Top, centerprint.NormalFont(), palette.EGA(palette.LightRed, 255), 5*time.Second).SetFadeOut(true)
 		return
 	}
 	if c.Text != "" {
-		centerprint.New(fun.FormatText(&c.World.PlayerState, c.Text), centerprint.Important, centerprint.Middle, centerprint.BigFont(), palette.NRGBA(255, 255, 255, 255), time.Second).SetFadeOut(true)
+		centerprint.New(fun.FormatText(&c.World.PlayerState, c.Text), centerprint.Important, centerprint.Middle, centerprint.BigFont(), palette.EGA(palette.White, 255), time.Second).SetFadeOut(true)
 		c.Sound.Play()
 	}
 }

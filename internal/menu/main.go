@@ -78,10 +78,10 @@ func (s *MainScreen) Update() error {
 }
 
 func (s *MainScreen) Draw(screen *ebiten.Image) {
-	fgs := palette.NRGBA(255, 255, 85, 255)
-	bgs := palette.NRGBA(0, 0, 0, 255)
-	fgn := palette.NRGBA(170, 170, 170, 255)
-	bgn := palette.NRGBA(85, 85, 85, 255)
+	fgs := palette.EGA(palette.Yellow, 255)
+	bgs := palette.EGA(palette.Black, 255)
+	fgn := palette.EGA(palette.LightGrey, 255)
+	bgn := palette.EGA(palette.DarkGrey, 255)
 	font.MenuBig.Draw(screen, "AAAAXY", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == Play {
