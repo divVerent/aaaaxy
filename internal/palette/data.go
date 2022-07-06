@@ -484,6 +484,7 @@ var data = map[string]*Palette{
 	}),
 
 	// Quake's palette. Has been put in the public domain by John Carmack.
+	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
 	"quake": newPalette(nil, []uint32{
 		0x000000,
 		0x0F0F0F,
@@ -743,6 +744,7 @@ var data = map[string]*Palette{
 		0x9F5B53,
 	}),
 
+	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
 	"nes": newPalette(nil, []uint32{
 		// 0x00
 		0x59595F,
@@ -815,21 +817,21 @@ var data = map[string]*Palette{
 	}),
 
 	// A wellknown subset of "nes".
-	"smb": newPalette(nil, []uint32{
+	"smb": newPalette([]int{9, 10, 2, 0, 6, 12, 11, 1}, []uint32{
 		// For now, just the BG colors.
-		0x7777FF, // 0x22
-		0x77BB00, // 0x29
-		0x113300, // 0x0A
-		0x080808, // 0x0F
-		0x884400, // 0x17
-		0xEEAAAA, // 0x36
-		0x99CCFF, // 0x31
-		0x0044DD, // 0x11
+		0x7777FF, // 0x22 - cornflower blue
+		0x77BB00, // 0x29 - lawn green
+		0x113300, // 0x0A - dark green
+		0x080808, // 0x0F - black
+		0x884400, // 0x17 - saddle brown
+		0xEEAAAA, // 0x36 - red/rose?
+		0x99CCFF, // 0x31 - cyan?
+		0x0044DD, // 0x11 - blue?
 		// TODO(divVerent): also add the object colors?
 	}),
 
 	// Gameboy?
-	"gb": newPalette(nil, []uint32{
+	"gb": newPalette([]int{0, 8, 7, 15}, []uint32{
 		0x081820,
 		0x346856,
 		0x88C070,
@@ -837,23 +839,27 @@ var data = map[string]*Palette{
 	}),
 
 	// C64 palette.
-	"c64": newPalette(nil, []uint32{
-		0x000000,
-		0x40318D,
-		0x505050,
-		0x55A049,
-		0x574200,
-		0x67B6BD,
-		0x7869C4,
-		0x787878,
-		0x883932,
-		0x8B3F96,
-		0x8B5429,
-		0x94E089,
-		0x9F9F9F,
-		0xB86962,
-		0xBFCE72,
-		0xFFFFFF,
+	// NOT protecting "orange" and one of the greys (listed at the end).
+	// Lacking equivalents of EGA bright cyan and bright pink.
+	// However, as this game uses the bright colors more than the dark colors,
+	// decided to map the bright colors to the C64 colors, noted below.
+	"c64": newPalette([]int{0, 15, 4, 11, 13, 2, 1, 14, 6, 12, 8, 7, 10, 9}, []uint32{
+		0x000000, // Black.
+		0xFFFFFF, // White.
+		0x883932, // Normal red.
+		0x67B6BD, // Normal cyan mapped as bright.
+		0x8B3F96, // Normal pink mapped as bright.
+		0x55A049, // Normal green.
+		0x40318D, // Normal blue.
+		0xBFCE72, // Yellow.
+		0x574200, // Normal brown.
+		0xB86962, // Bright red.
+		0x505050, // Dark grey.
+		0x9F9F9F, // Bright grey.
+		0x94E089, // Bright green.
+		0x7869C4, // Bright blue.
+		0x787878, // 50% grey. Unmapped.
+		0x8B5429, // Orange. Unmapped.
 	}),
 
 	// Web safe 216 colors palette, actually a 6x6x6 color cube.
@@ -1357,21 +1363,21 @@ var data = map[string]*Palette{
 	}),
 
 	// A flag.
-	"ua3": newPalette(nil, []uint32{
+	"ua3": newPalette([]int{0, 9, 14}, []uint32{
 		0x000000,
 		0x0057B8,
 		0xFFD700,
 	}),
 
 	// Another flag.
-	"de3": newPalette(nil, []uint32{
+	"de3": newPalette([]int{0, 12, 14}, []uint32{
 		0x000000,
 		0xFF0000,
 		0xFFCC00,
 	}),
 
 	// Another flag.
-	"us4": newPalette(nil, []uint32{
+	"us4": newPalette([]int{0, 15, 12, 9}, []uint32{
 		0x000000,
 		0xFFFFFF,
 		0xB22234,
@@ -1379,7 +1385,7 @@ var data = map[string]*Palette{
 	}),
 
 	// Another flag.
-	"ru4": newPalette(nil, []uint32{
+	"ru4": newPalette([]int{0, 15, 1, 12}, []uint32{
 		0x000000,
 		0xFFFFFF,
 		0x0032A0,
