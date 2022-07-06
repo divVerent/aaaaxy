@@ -150,8 +150,14 @@ func SetCurrent(pal *Palette) bool {
 		log.Infof("note: remapping %d colors (slow)", len(pal.remap))
 	}
 	current = pal
-	if len(current.remap) != len(prevRemap) {
-		return true
+	if current == nil {
+		if len(prevRemap) != 0 {
+			return true
+		}
+	} else {
+		if len(current.remap) != len(prevRemap) {
+			return true
+		}
 	}
 	for from, to := range current.remap {
 		if prevTo, found := prevRemap[from]; !found || prevTo != to {
@@ -174,5 +180,5 @@ func Parse(s string) (color.NRGBA, error) {
 	if _, err := fmt.Sscanf(s, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
 		return color.NRGBA{}, err
 	}
-	return color.NRGBA{R: r, G: g, B: b, A: a}, nil
+	return NRGBA(r, g, b, a), nil
 }
