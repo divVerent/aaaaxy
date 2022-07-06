@@ -19,6 +19,8 @@ import (
 	"image/color"
 	"sort"
 	"strings"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // Palette encapsulates a color palette.
@@ -39,6 +41,8 @@ type Palette struct {
 	// remap is the color remapping.
 	remap map[uint32]uint32
 }
+
+var current *Palette
 
 func newPalette(egaIndices []int, c []uint32) *Palette {
 	protected := len(egaIndices)
@@ -83,7 +87,7 @@ func ByName(name string) *Palette {
 
 // ApplyToImage applies this palette's associated color remapping to an image.
 func (p *Palette) ApplyToImage(img image.Image) image.Image {
-	if p.remap == nil {
+	if p == nil || p.remap == nil {
 		return img
 	}
 	bounds := img.Bounds()
@@ -100,7 +104,7 @@ func (p *Palette) ApplyToImage(img image.Image) image.Image {
 
 // ApplyToRGBA applies this palette's associated col remapping to a single col.
 func (p *Palette) ApplyToRGBA(col color.RGBA) color.RGBA {
-	if p.remap == nil {
+	if p == nil || p.remap == nil {
 		return col
 	}
 	// Color is premultiplied - can't handle that well.
@@ -118,7 +122,7 @@ func (p *Palette) ApplyToRGBA(col color.RGBA) color.RGBA {
 
 // ApplyToNRGBA applies this palette's associated col remapping to a single col.
 func (p *Palette) ApplyToNRGBA(col color.NRGBA) color.NRGBA {
-	if p.remap == nil {
+	if p == nil || p.remap == nil {
 		return col
 	}
 	// Remap rgb.
@@ -132,6 +136,19 @@ func (p *Palette) ApplyToNRGBA(col color.NRGBA) color.NRGBA {
 	return col
 }
 
-func (p *Palette) RemapCount() int {
-	return len(p.remap)
+func SetCurrent(pal *Palette) bool {
+	if pal == current {
+		return false
+	}
+	log.Infof("note: remapping %d colors (slow)", len(pal.remap))
+	current = pal
+	return true
+}
+
+func Current() *Palette {
+	return current
+}
+
+func NRGBA(r, g, b, a uint8) color.NRGBA {
+	return current.ApplyToNRGBA(color.NRGBA{R: r, G: g, B: b, A: a})
 }

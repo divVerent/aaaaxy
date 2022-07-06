@@ -40,9 +40,8 @@ type imagePath = struct {
 }
 
 var (
-	cache          = map[imagePath]*ebiten.Image{}
-	cacheFrozen    bool
-	mappingPalette *palette.Palette
+	cache       = map[imagePath]*ebiten.Image{}
+	cacheFrozen bool
 )
 
 func load(purpose, name string, force bool) (*ebiten.Image, error) {
@@ -63,7 +62,7 @@ func load(purpose, name string, force bool) (*ebiten.Image, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not decode: %w", err)
 	}
-	img = mappingPalette.ApplyToImage(img)
+	img = palette.Current().ApplyToImage(img)
 	if found {
 		if rgbaImg, isRGBA := img.(*image.RGBA); isRGBA && img.Bounds() == cachedImg.Bounds() {
 			cachedImg.ReplacePixels(rgbaImg.Pix)
@@ -131,11 +130,10 @@ func Precache() error {
 }
 
 func SetPalette(pal *palette.Palette) error {
-	if mappingPalette == pal {
+	changed := palette.SetCurrent(pal)
+	if !changed {
 		return nil
 	}
-	mappingPalette = pal
-	log.Infof("note: remapping %d colors (slow)", pal.RemapCount())
 	for ip := range cache {
 		_, err := load(ip.Purpose, ip.Name, true)
 		if err != nil {
