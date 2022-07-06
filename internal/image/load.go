@@ -20,6 +20,7 @@ import (
 	"image"
 	_ "image/png"
 	"path"
+	"regexp"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -41,6 +42,9 @@ type imagePath = struct {
 var (
 	cache       = map[imagePath]*ebiten.Image{}
 	cacheFrozen bool
+
+	// This should be in sync with exclusions in scripts/audit-images.sh.
+	noPaletteSprites = regexp.MustCompile(`^(?:clock|gradient|magic)_.*`)
 )
 
 func load(purpose, name string, force bool) (*ebiten.Image, error) {
@@ -61,7 +65,15 @@ func load(purpose, name string, force bool) (*ebiten.Image, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not decode: %w", err)
 	}
-	img = palette.Current().ApplyToImage(img)
+	usePalette := true
+	if purpose == "sprites" {
+		if noPaletteSprites.MatchString(name) {
+			usePalette = false
+		}
+	}
+	if usePalette {
+		img = palette.Current().ApplyToImage(img)
+	}
 	eImg := ebiten.NewImageFromImage(img)
 	cache[ip] = eImg
 	return eImg, nil
