@@ -63,13 +63,14 @@ type WriteCloserAt interface {
 }
 
 var (
-	frameCount  = int64(0)
-	videoWriter WriteCloserAt
-	audioWriter WriteCloserAt
-	videoPipe   *namedpipe.Fifo
-	audioPipe   *namedpipe.Fifo
-	mediaCmd    *exec.Cmd
-	params      Params
+	frameCount   = int64(0)
+	videoWriter  WriteCloserAt
+	audioWriter  WriteCloserAt
+	videoPipe    *namedpipe.Fifo
+	audioPipe    *namedpipe.Fifo
+	mediaCmd     *exec.Cmd
+	mediaCmdDone chan struct{}
+	params       Params
 )
 
 const (
@@ -150,6 +151,14 @@ func InitLate() error {
 		if err != nil {
 			return fmt.Errorf("could not launch FFmpeg: %w", err)
 		}
+		mediaCmdDone = make(chan struct{})
+		go func() {
+			err := mediaCmd.Wait()
+			if err != nil {
+				log.Fatalf("FFmpeg died: %v", err)
+			}
+			close(mediaCmdDone)
+		}()
 	}
 
 	return nil
@@ -345,10 +354,9 @@ func Finish() error {
 		return fmt.Errorf("failed to close video - expect corruption: %w", videoErr)
 	}
 	if mediaCmd != nil {
-		err := mediaCmd.Wait()
-		if err != nil {
-			return fmt.Errorf("failed to close FFmpeg - expect corruption: %w", err)
-		}
+		log.Infof("waiting for FFmpeg to exit...")
+		<-mediaCmdDone
+		mediaCmdDone = nil
 	}
 	log.Infof("media has been dumped")
 	if *dumpAudio != "" || *dumpVideo != "" {
