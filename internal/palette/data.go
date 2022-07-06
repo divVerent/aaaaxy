@@ -14,8 +14,30 @@
 
 package palette
 
+type EGAIndex int
+
+const (
+	Black EGAIndex = iota
+	Blue
+	Green
+	Cyan
+	Red
+	Magenta
+	Brown
+	LightGrey
+	DarkGrey
+	LightBlue
+	LightGreen
+	LightCyan
+	LightRed
+	LightMagenta
+	Yellow
+	White
+	EGACount
+)
+
 // egaColors is the set of reference colors.
-var egaColors = []uint32{
+var egaColors = [EGACount]uint32{
 	0x000000,
 	0x0000AA,
 	0x00AA00,
@@ -157,7 +179,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM EGA palette.
-	"ega": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, egaColors),
+	"ega": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, egaColors[:]),
 
 	// EGA but only the colors 0 to 7.
 	"egalow": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7}, []uint32{

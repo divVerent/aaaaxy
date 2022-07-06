@@ -41,6 +41,9 @@ type Palette struct {
 
 	// remap is the color remapping.
 	remap map[uint32]uint32
+
+	// ega is the set of EGA colors after remapping.
+	ega [EGACount]uint32
 }
 
 var current *Palette
@@ -50,12 +53,14 @@ func newPalette(egaIndices []int, c []uint32) *Palette {
 	if protected == 0 {
 		protected = len(c)
 	}
+	ega := egaColors
 	remap := map[uint32]uint32{}
 	for thisIdx, egaIdx := range egaIndices {
 		from := toRGB(egaColors[egaIdx]).toUint32()
 		to := toRGB(c[thisIdx]).toUint32()
 		if from != to {
 			remap[from] = to
+			ega[egaIdx] = to
 		}
 	}
 	if len(remap) == 0 {
@@ -67,6 +72,7 @@ func newPalette(egaIndices []int, c []uint32) *Palette {
 		protected:  protected,
 		colors:     c,
 		remap:      remap,
+		ega:        ega,
 	}
 	return pal
 }
@@ -173,6 +179,16 @@ func Current() *Palette {
 
 func NRGBA(r, g, b, a uint8) color.NRGBA {
 	return current.ApplyToNRGBA(color.NRGBA{R: r, G: g, B: b, A: a})
+}
+
+func EGA(i EGAIndex, a uint8) color.NRGBA {
+	u := current.ega[i]
+	return color.NRGBA{
+		R: uint8(u >> 16),
+		G: uint8((u >> 8) & 0xFF),
+		B: uint8(u & 0xFF),
+		A: a,
+	}
 }
 
 func Parse(s string) (color.NRGBA, error) {
