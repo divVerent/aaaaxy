@@ -30,6 +30,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
+	"github.com/divVerent/aaaaxy/internal/game/misc"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -183,7 +184,21 @@ func (g *Game) Update() error {
 func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	// This is an extra pass so it can still run at low-res.
 	pal := palette.ByName(*paletteFlag)
-	image.SetPalette(pal)
+	if palette.SetCurrent(pal) {
+		err := image.PaletteChanged()
+		if err != nil {
+			log.Fatalf("could not reapply palette to images: %v", err)
+		}
+		misc.ClearPrecache()
+		err = engine.PaletteChanged()
+		if err != nil {
+			log.Fatalf("could not reapply palette to engine: %v", err)
+		}
+		err = g.Menu.PaletteChanged()
+		if err != nil {
+			log.Fatalf("could not reapply palette to menu: %v", err)
+		}
+	}
 
 	if pal == nil {
 		// No palette.

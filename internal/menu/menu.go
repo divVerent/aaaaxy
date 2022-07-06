@@ -56,6 +56,7 @@ type Controller struct {
 	moveSound     *sound.Sound
 	activateSound *sound.Sound
 	blurFrame     int
+	needReloadMap bool
 }
 
 func (c *Controller) Update() error {
@@ -292,4 +293,9 @@ func (c *Controller) QueryMouseItem(item interface{}, count int) bool {
 		return mouseState == input.ClickingMouse
 	}
 	return false
+}
+
+func (c *Controller) PaletteChanged() error {
+	// Reinitialize world so palette change applies.
+	return c.InitGame(loadGame)
 }

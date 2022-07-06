@@ -88,7 +88,7 @@ func ByName(name string) *Palette {
 
 // ApplyToImage applies this palette's associated color remapping to an image.
 func (p *Palette) ApplyToImage(img image.Image) image.Image {
-	if p == nil || p.remap == nil {
+	if p == nil || len(p.remap) == 0 {
 		return img
 	}
 	bounds := img.Bounds()
@@ -105,7 +105,7 @@ func (p *Palette) ApplyToImage(img image.Image) image.Image {
 
 // ApplyToRGBA applies this palette's associated col remapping to a single col.
 func (p *Palette) ApplyToRGBA(col color.RGBA) color.RGBA {
-	if p == nil || p.remap == nil {
+	if p == nil || len(p.remap) == 0 {
 		return col
 	}
 	// Color is premultiplied - can't handle that well.
@@ -123,7 +123,7 @@ func (p *Palette) ApplyToRGBA(col color.RGBA) color.RGBA {
 
 // ApplyToNRGBA applies this palette's associated col remapping to a single col.
 func (p *Palette) ApplyToNRGBA(col color.NRGBA) color.NRGBA {
-	if p == nil || p.remap == nil {
+	if p == nil || len(p.remap) == 0 {
 		return col
 	}
 	// Remap rgb.
@@ -141,7 +141,9 @@ func SetCurrent(pal *Palette) bool {
 	if pal == current {
 		return false
 	}
-	log.Infof("note: remapping %d colors (slow)", len(pal.remap))
+	if pal != nil && len(pal.remap) != 0 {
+		log.Infof("note: remapping %d colors (slow)", len(pal.remap))
+	}
 	current = pal
 	return true
 }

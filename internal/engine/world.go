@@ -224,6 +224,20 @@ func Precache(s *splash.State) (splash.Status, error) {
 	return splash.Continue, nil
 }
 
+func PaletteChanged() error {
+	loaded, err := level.NewLoader("level").Load()
+	if err != nil {
+		return err
+	}
+	err = precacheEntities(loaded)
+	if err != nil {
+		return fmt.Errorf("failed to precache entities: %w", err)
+	}
+	loadLevelCache = loaded
+	// Note: need to reinit world to make this actually take effect.
+	return nil
+}
+
 // Init brings a world into a working state.
 // Can be called more than once to reset _everything_.
 func (w *World) Init(saveState int) error {

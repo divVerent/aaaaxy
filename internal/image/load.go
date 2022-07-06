@@ -25,7 +25,6 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
@@ -63,22 +62,9 @@ func load(purpose, name string, force bool) (*ebiten.Image, error) {
 		return nil, fmt.Errorf("could not decode: %w", err)
 	}
 	img = palette.Current().ApplyToImage(img)
-	if found {
-		if rgbaImg, isRGBA := img.(*image.RGBA); isRGBA && img.Bounds() == cachedImg.Bounds() {
-			cachedImg.ReplacePixels(rgbaImg.Pix)
-		} else {
-			log.Infof("reloading image, slow path: not a RGBA image")
-			copyImg := ebiten.NewImageFromImage(rgbaImg)
-			cachedImg.DrawImage(copyImg, &ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeCopy,
-			})
-			copyImg.Dispose()
-		}
-	} else {
-		cachedImg = ebiten.NewImageFromImage(img)
-		cache[ip] = cachedImg
-	}
-	return cachedImg, nil
+	eImg := ebiten.NewImageFromImage(img)
+	cache[ip] = eImg
+	return eImg, nil
 }
 
 func Load(purpose, name string) (*ebiten.Image, error) {
@@ -129,11 +115,7 @@ func Precache() error {
 	return nil
 }
 
-func SetPalette(pal *palette.Palette) error {
-	changed := palette.SetCurrent(pal)
-	if !changed {
-		return nil
-	}
+func PaletteChanged() error {
 	for ip := range cache {
 		_, err := load(ip.Purpose, ip.Name, true)
 		if err != nil {

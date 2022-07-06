@@ -118,6 +118,13 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 	}
 }
 
+func ClearPrecache() {
+	for _, img := range textCache {
+		img.Dispose()
+	}
+	textCache = map[textCacheKey]*ebiten.Image{}
+}
+
 func (t *Text) Precache(id level.EntityID, sp *level.SpawnableProps) error {
 	if !*precacheText {
 		return nil

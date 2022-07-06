@@ -108,7 +108,7 @@ func (g *Game) InitEbiten() error {
 	ebiten.SetWindowTitle("AAAAXY")
 
 	// Load images with the right palette from the start.
-	image.SetPalette(palette.ByName(*paletteFlag))
+	palette.SetCurrent(palette.ByName(*paletteFlag))
 
 	// Initialize some stuff that is needed early.
 	err := vfs.Init()
