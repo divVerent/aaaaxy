@@ -134,3 +134,19 @@ var nesColors = [64]uint32{
 	0x000000,
 	0x000000,
 }
+
+func colorCube(nr, ng, nb int) []uint32 {
+	mr, mg, mb := nr-1, ng-1, nb-1
+	l := make([]uint32, 0, nr*ng*nb)
+	for r := 0; r <= mr; r++ {
+		for g := 0; g <= mg; g++ {
+			for b := 0; b <= mb; b++ {
+				l = append(l,
+					0x10000*((2*255*uint32(r)+uint32(mr))/(2*uint32(mr)))+
+						0x100*((2*255*uint32(g)+uint32(mg))/(2*uint32(mg)))+
+						((2*255*uint32(b)+uint32(mb))/(2*uint32(mb))))
+			}
+		}
+	}
+	return l
+}
