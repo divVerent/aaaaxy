@@ -29,7 +29,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
-	"github.com/divVerent/aaaaxy/internal/screenshot"
 )
 
 var (
@@ -37,7 +36,6 @@ var (
 	paletteMaxCycles             = flag.Float64("palette_max_cycles", 640*360*256*4, "maximum number of cycles to spend on palette generation")
 	palettePsychovisualFactor    = flag.Float64("palette_psychovisual_factor", 0.02, "factor by which to include the psychovisual model when generating a two-color palette LUT")
 	palettePsychovisualDampening = flag.Float64("palette_psychovisual_dampening", 0.5, "factor by which to dampen the psychovisual model when mixing evenly")
-	dumpPaletteLUTs              = flag.String("dump_palette_luts", "", "file name prefix to dump all palette LUT textures to; the game will then exit")
 )
 
 type rgb [3]float64 // Range is from 0 to 1 in sRGB color space.
@@ -480,7 +478,7 @@ func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, lut
 	wg.Wait()
 }
 
-func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int, maxCycles float64) (*image.NRGBA, int, int, int) {
+func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int) (*image.NRGBA, int, int, int) {
 	var lutSize int
 	defer func(t0 time.Time) {
 		dt := time.Since(t0)
@@ -500,7 +498,7 @@ func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int, maxCycles floa
 	default:
 		log.Fatalf("unsupported LUT count: got %v, want 1 or 2", numLUTs)
 	}
-	maxEntries := maxCycles / timePerEntry
+	maxEntries := *paletteMaxCycles / timePerEntry
 	if maxEntries < 8 {
 		maxEntries = 8
 	}
@@ -540,7 +538,7 @@ func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int, maxCycles floa
 }
 
 func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
-	lut, lutSize, perRow, lutWidth := p.computeLUT(img.Bounds(), numLUTs, *paletteMaxCycles)
+	lut, lutSize, perRow, lutWidth := p.computeLUT(img.Bounds(), numLUTs)
 	img.SubImage(lut.Rect).(*ebiten.Image).ReplacePixels(lut.Pix)
 	return lutSize, perRow, lutWidth
 }
@@ -650,26 +648,4 @@ func (p *Palette) HalftonePattern(size int) []float32 {
 		bayern[idx.i] = float32((float64(b) + offset) * scale)
 	}
 	return bayern
-}
-
-func Init(w, h int) error {
-	if *dumpPaletteLUTs != "" {
-		for name, p := range data {
-			for numLUTs := 1; numLUTs <= 2; numLUTs++ {
-				bounds := image.Rectangle{
-					Min: image.Point{},
-					Max: image.Point{X: w, Y: h},
-				}
-				img, size, perRow, width := p.computeLUT(bounds, numLUTs, math.Inf(+1))
-				name := fmt.Sprintf("%s.%s_%d.png", *dumpPaletteLUTs, name, numLUTs)
-				log.Infof("saving %s (size=%d perRow=%d width=%d)...", name, size, perRow, width)
-				err := screenshot.Write(img, name)
-				if err != nil {
-					return err
-				}
-			}
-		}
-		return fmt.Errorf("palette LUTs dumped")
-	}
-	return nil
 }
