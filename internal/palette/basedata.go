@@ -56,6 +56,14 @@ var egaColors = [EGACount]uint32{
 	0xFFFFFF,
 }
 
+var egaColorsSet = map[uint32]bool{}
+
+func init() {
+	for _, c := range egaColors {
+		egaColorsSet[c] = true
+	}
+}
+
 var nesColors = [64]uint32{
 	// 0x00
 	0x666666,

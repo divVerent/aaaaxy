@@ -19,7 +19,12 @@ import (
 	"image"
 	"image/color"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
+)
+
+var (
+	debugCheckImagePalette = flag.Bool("debug_check_image_palette", false, "log errors if images or object colors mismatch palette colors")
 )
 
 // SetCurrent changes the current palette. Returns whether the remapping table changed.
@@ -57,7 +62,7 @@ func Current() *Palette {
 }
 
 // ApplyToImage applies this palette's associated color remapping to an image.
-func (p *Palette) ApplyToImage(img image.Image) image.Image {
+func (p *Palette) ApplyToImage(img image.Image, name string) image.Image {
 	if p == nil || len(p.remap) == 0 {
 		return img
 	}
@@ -67,14 +72,23 @@ func (p *Palette) ApplyToImage(img image.Image) image.Image {
 		for x := bounds.Min.X; x < bounds.Max.X; x++ {
 			r, g, b, a := img.At(x, y).RGBA()
 			rgba := color.RGBA{R: uint8(r >> 8), G: uint8(g >> 8), B: uint8(b >> 8), A: uint8(a >> 8)}
-			newImg.SetRGBA(x, y, p.ApplyToRGBA(rgba))
+			newImg.SetRGBA(x, y, p.ApplyToRGBA(rgba, name))
 		}
 	}
 	return newImg
 }
 
 // ApplyToRGBA applies this palette's associated col remapping to a single col.
-func (p *Palette) ApplyToRGBA(col color.RGBA) color.RGBA {
+func (p *Palette) ApplyToRGBA(col color.RGBA, name string) color.RGBA {
+	if *debugCheckImagePalette {
+		rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
+		if !egaColorsSet[rgb] {
+			log.Warningf("invalid color in %v: color is not in palette", name)
+		}
+		if col.A != 255 && col.A != 0 {
+			log.Warningf("invalid color in %v: premultiplied color is neither fully opaque nor fully transparent", name)
+		}
+	}
 	if p == nil || len(p.remap) == 0 {
 		return col
 	}
@@ -85,6 +99,9 @@ func (p *Palette) ApplyToRGBA(col color.RGBA) color.RGBA {
 	}
 	// Remap rgb.
 	rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
+	if *debugCheckImagePalette && !egaColorsSet[rgb] {
+		log.Warningf("invalid color in %v: color is not in palette", name)
+	}
 	if rgbM, found := p.remap[rgb]; found {
 		return toRGB(rgbM).toRGBA()
 	}
@@ -92,7 +109,13 @@ func (p *Palette) ApplyToRGBA(col color.RGBA) color.RGBA {
 }
 
 // ApplyToNRGBA applies this palette's associated col remapping to a single col.
-func (p *Palette) ApplyToNRGBA(col color.NRGBA) color.NRGBA {
+func (p *Palette) ApplyToNRGBA(col color.NRGBA, name string) color.NRGBA {
+	if *debugCheckImagePalette {
+		rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
+		if !egaColorsSet[rgb] {
+			log.Warningf("invalid color in %v: color is not in palette", name)
+		}
+	}
 	if p == nil || len(p.remap) == 0 {
 		return col
 	}
@@ -125,10 +148,10 @@ func EGA(i EGAIndex, a uint8) color.NRGBA {
 	}
 }
 
-func Parse(s string) (color.NRGBA, error) {
+func Parse(s string, name string) (color.NRGBA, error) {
 	var r, g, b, a uint8
 	if _, err := fmt.Sscanf(s, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
 		return color.NRGBA{}, err
 	}
-	return current.ApplyToNRGBA(color.NRGBA{R: r, G: g, B: b, A: a}), nil
+	return current.ApplyToNRGBA(color.NRGBA{R: r, G: g, B: b, A: a}, name), nil
 }

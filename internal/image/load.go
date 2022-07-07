@@ -44,7 +44,7 @@ var (
 	cacheFrozen bool
 
 	// This should be in sync with exclusions in scripts/audit-images.sh.
-	noPaletteSprites = regexp.MustCompile(`^(?:clock|gradient|magic)_.*`)
+	noPaletteSprites = regexp.MustCompile(`^(?:warpzone|clock|gradient|magic)_.*`)
 )
 
 func load(purpose, name string, force bool) (*ebiten.Image, error) {
@@ -72,7 +72,7 @@ func load(purpose, name string, force bool) (*ebiten.Image, error) {
 		}
 	}
 	if usePalette {
-		img = palette.Current().ApplyToImage(img)
+		img = palette.Current().ApplyToImage(img, name)
 	}
 	eImg := ebiten.NewImageFromImage(img)
 	cache[ip] = eImg

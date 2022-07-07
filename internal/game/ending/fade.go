@@ -55,7 +55,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	var fromM, toM ebiten.ColorM
 
 	colorString := sp.Properties["from_color_a"]
-	c, err := palette.Parse(colorString)
+	c, err := palette.Parse(colorString, "from_color_a")
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
@@ -64,7 +64,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(2, 0, float64(c.B)/255.0)
 	fromM.SetElement(3, 0, 1.0)
 	colorString = sp.Properties["from_color_b"]
-	c, err = palette.Parse(colorString)
+	c, err = palette.Parse(colorString, "from_color_b")
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
@@ -73,7 +73,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(2, 1, float64(c.B)/255.0)
 	fromM.SetElement(3, 1, 1.0)
 	colorString = sp.Properties["from_color_c"]
-	c, err = palette.Parse(colorString)
+	c, err = palette.Parse(colorString, "from_color_c")
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
@@ -82,7 +82,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(2, 2, float64(c.B)/255.0)
 	fromM.SetElement(3, 2, 1.0)
 	colorString = sp.Properties["from_color_d"]
-	c, err = palette.Parse(colorString)
+	c, err = palette.Parse(colorString, "from_color_d")
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
@@ -97,7 +97,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(3, 4, 0.0)
 
 	colorString = sp.Properties["to_color_a"]
-	c, err = palette.Parse(colorString)
+	c, err = palette.Parse(colorString, "to_color_a")
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
@@ -106,7 +106,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	toM.SetElement(2, 0, float64(c.B)/255.0)
 	toM.SetElement(3, 0, 1.0)
 	colorString = sp.Properties["to_color_b"]
-	c, err = palette.Parse(colorString)
+	c, err = palette.Parse(colorString, "to_color_b")
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
@@ -115,7 +115,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	toM.SetElement(2, 1, float64(c.B)/255.0)
 	toM.SetElement(3, 1, 1.0)
 	colorString = sp.Properties["to_color_c"]
-	c, err = palette.Parse(colorString)
+	c, err = palette.Parse(colorString, "to_color_c")
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}
@@ -124,7 +124,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	toM.SetElement(2, 2, float64(c.B)/255.0)
 	toM.SetElement(3, 2, 1.0)
 	colorString = sp.Properties["to_color_d"]
-	c, err = palette.Parse(colorString)
+	c, err = palette.Parse(colorString, "to_color_d")
 	if err != nil {
 		return fmt.Errorf("could not decode color %q: %w", colorString, err)
 	}

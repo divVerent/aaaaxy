@@ -48,6 +48,7 @@ for demo in "$@"; do
 		"$demo" \
 		$binary \
 		-audio=false \
+		-debug_check_image_palette \
 		-debug_check_tile_window_size \
 		-debug_check_tnih_signs \
 		-debug_log_file="$demo.$tag.log" \

@@ -48,7 +48,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		}
 	}
 	if mapBlackToString := sp.Properties["map_black_to"]; mapBlackToString != "" {
-		c, err := palette.Parse(mapBlackToString)
+		c, err := palette.Parse(mapBlackToString, "map_black_to")
 		if err != nil {
 			return fmt.Errorf("could not decode color %q: %w", mapBlackToString, err)
 		}
@@ -58,7 +58,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		e.ColorAdd[3] = float64(c.A) / 255.0
 	}
 	if mapWhiteToString := sp.Properties["map_white_to"]; mapWhiteToString != "" {
-		c, err := palette.Parse(mapWhiteToString)
+		c, err := palette.Parse(mapWhiteToString, "map_white_to")
 		if err != nil {
 			return fmt.Errorf("could not decode color %q: %w", mapWhiteToString, err)
 		}

@@ -73,11 +73,11 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 	if fnt.Face == nil {
 		return nil, fmt.Errorf("could not find font %q", key.font)
 	}
-	fg, err := palette.Parse(key.fg)
+	fg, err := palette.Parse(key.fg, "text_fg")
 	if err != nil {
 		return nil, fmt.Errorf("could not decode color %q: %w", key.fg, err)
 	}
-	bg, err := palette.Parse(key.bg)
+	bg, err := palette.Parse(key.bg, "text_bg")
 	if err != nil {
 		return nil, fmt.Errorf("could not decode color %q: %w", key.bg, err)
 	}
