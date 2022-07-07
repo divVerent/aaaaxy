@@ -838,6 +838,26 @@ var data = map[string]*Palette{
 		0x8B5429, // Orange. Unmapped.
 	}),
 
+	// Intellivision palette. Very creatively mapped as the missing colors are important for this game.
+	"intellivision": newPalette([]int{0, 1, 4, 6, 2, 3, 14, 15, 7, 11, 12, 8, 13, 9, 10, 5}, []uint32{
+		0x0C0005, // Black.
+		0x002DFF, // Blue.
+		0xFF3E00, // Red.
+		0xC9D464, // Brown.
+		0x00780F, // Green.
+		0x00A720, // Cyan.
+		0xFAEA27, // Yellow.
+		0xFFFCFF, // White.
+		0xA7A8A8, // Light grey.
+		0x5ACBFF, // Light cyan.
+		0xFFA600, // Light red.
+		0x3C5800, // Dark grey.
+		0xFF3276, // Light magenta.
+		0xBD95FF, // Light blue.
+		0x6CCD30, // Light green.
+		0xC81A7D, // Magenta.
+	}),
+
 	// Web safe 216 colors palette, actually a 6x6x6 color cube.
 	// Dither everywhere.
 	"web": newPalette(nil, colorCube(6, 6, 6)),
