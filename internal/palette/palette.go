@@ -48,7 +48,18 @@ type Palette struct {
 
 var current *Palette
 
-func newPalette(egaIndices []int, c []uint32) *Palette {
+func newPalette(egaIndices []int, c0 []uint32) *Palette {
+	// Keep only unique colors beyond egaIndices.
+	h := make(map[uint32]struct{}, len(c0))
+	c := make([]uint32, 0, len(c0))
+	for i, u := range c0 {
+		if _, found := h[u]; found && i >= len(egaIndices) {
+			continue
+		}
+		h[u] = struct{}{}
+		c = append(c, u)
+	}
+
 	protected := len(egaIndices)
 	if protected == 0 {
 		protected = len(c)

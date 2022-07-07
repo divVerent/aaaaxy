@@ -133,7 +133,7 @@ var data = map[string]*Palette{
 		0x315A00, // Other green. Unmapped.
 		0xBB92FF, // Pink. Unmapped.
 		0xFF7FBB, // Light pink. Unmapped.
-		// 0x767676, // Other light grey. Redundant.
+		0x767676, // Other light grey. Redundant.
 	}),
 
 	// The original IBM EGA palette.
@@ -264,7 +264,7 @@ var data = map[string]*Palette{
 		0xFF55FF,
 		0xFFFF55,
 		0xFFFFFF,
-		// 0x000000,
+		0x000000,
 		0x141414,
 		0x202020,
 		0x2C2C2C,
@@ -279,7 +279,7 @@ var data = map[string]*Palette{
 		0xB6B6B6,
 		0xCACACA,
 		0xE2E2E2,
-		// 0xFFFFFF,
+		0xFFFFFF,
 		0x0000FF,
 		0x4000FF,
 		0x7D00FF,
@@ -496,14 +496,14 @@ var data = map[string]*Palette{
 		0x2C3C40,
 		0x2C3440,
 		0x2C3040,
-		// 0x000000,
-		// 0x000000,
-		// 0x000000,
-		// 0x000000,
-		// 0x000000,
-		// 0x000000,
-		// 0x000000,
-		// 0x000000,
+		0x000000,
+		0x000000,
+		0x000000,
+		0x000000,
+		0x000000,
+		0x000000,
+		0x000000,
+		0x000000,
 	}),
 
 	// Quake's palette. Has been put in the public domain by John Carmack.
@@ -766,100 +766,45 @@ var data = map[string]*Palette{
 		0x9F5B53,
 	}),
 
-	// TODO(divVerent): sort the most EGA-ish colors to the start and assign their indexes.
-	"nes": newPalette([]int{9, 10, 2, 0, 6, 12, 11, 1, 15, 3, 4, 5, 7, 8, 13, 14}, []uint32{
-		// Common entries from SMB, commented out below.
-		0x9390FE, // 0x22 - light blue.
-		0x89D900, // 0x29 - light green.
-		0x005200, // 0x0A - green.
-		0x000000, // 0x0F - black.
-		0x994F00, // 0x17 - brown.
-		0xFECDC6, // 0x36 - very light red.
-		0xC1E0FE, // 0x31 - very light cyan.
-		0x155FDA, // 0x11 - blue.
-		0xFEFEFE, // 0x20 - white (e.g. used for text).
-		// Seven more colors to complete the ANSI set, also commented out below.
-		0x007C8E, // 0x1F - cyan.
-		0xB53220, // 0x16 - red.
-		0xA11BCD, // 0x14 - magenta.
-		0xAEAEAE, // 0x10 - light grey.
-		0x666666, // 0x00 - dark grey.
-		0xFE6ECD, // 0x24 - light magenta.
-		0xE5E695, // 0x38 - yellow.
-
-		// 0x00
-		//0x666666,
-		0x002A88,
-		0x1412A8,
-		0x3B00A4,
-		0x5C007E,
-		0x6E0040,
-		0x6C0700,
-		0x571D00,
-		0x343500,
-		0x0C4900,
-		//0x005200,
-		0x004F08,
-		0x00404E,
-		//0x000000,
-		// 0x10
-		//0xAEAEAE,
-		//0x155FDA,
-		0x4240FE,
-		0x7627FF,
-		//0xA11BCD,
-		0xB81E7C,
-		//0xB53220,
-		//0x994F00,
-		0x6C6E00,
-		0x388700,
-		0x0D9400,
-		0x009032,
-		//0x007C8E,
-		// 0x20
-		//0xFEFEFE,
-		0x64B0FE,
-		//0x9390FE,
-		0xC777FE,
-		0xF36AFE,
-		//0xFE6ECD,
-		0xFE8270,
-		0xEB9F23,
-		0xBDBF00,
-		//0x89D900,
-		0x5DE530,
-		0x45E182,
-		0x48CEDF,
-		0x4F4F4F,
-		// 0x31
-		//0xC1E0FE,
-		0xD4D3FE,
-		0xE9C8FE,
-		0xFBC3FE,
-		0xFEC5EB,
-		//0xFECDC6,
-		0xF7D9A6,
-		//0xE5E695,
-		0xD0F097,
-		0xBEF5AB,
-		0xB4F3CD,
-		0xB5ECF3,
-		0xB8B8B8,
+	// A wellknown subset of the NES palette.
+	// In fact, the exact set of colors visible while 1-1 is loaded.
+	// Only colors not mapped: blue, cyan, dark grey, light grey.
+	"smb": newPalette([]int{9, 10, 5, 2, 14, 0, 6, 13, 12, 15, 11, 4}, []uint32{
+		nesColors[0x22], // Light blue.
+		nesColors[0x29], // Light green.
+		nesColors[0x16], // Magenta
+		nesColors[0x1A], // Green.
+		nesColors[0x27], // Yellow.
+		nesColors[0x0F], // Black.
+		nesColors[0x18], // Brown.
+		nesColors[0x36], // Light magenta.
+		nesColors[0x17], // Light red.
+		nesColors[0x30], // White.
+		nesColors[0x21], // Light cyan.
+		nesColors[0x07], // Red.
 	}),
 
-	// A wellknown subset of "nes".
-	"smb": newPalette([]int{9, 10, 2, 0, 6, 12, 11, 1}, []uint32{
-		// For now, just the BG colors.
-		0x9390FE, // 0x22 - light blue.
-		0x89D900, // 0x29 - light green.
-		0x005200, // 0x0A - green.
-		0x000000, // 0x0F - black.
-		0x994F00, // 0x17 - brown.
-		0xFECDC6, // 0x36 - very light red.
-		0xC1E0FE, // 0x31 - very light cyan.
-		0x155FDA, // 0x11 - blue.
-		0xFEFEFE, // 0x20 - white (e.g. used for text).
-	}),
+	// Same as "smb" but with all missing colors added.
+	"nes": newPalette([]int{9, 10, 5, 2, 14, 0, 6, 13, 12, 15, 11, 4, 1, 3, 7, 8}, append([]uint32{
+		nesColors[0x22], // Light blue.
+		nesColors[0x29], // Light green.
+		nesColors[0x16], // Magenta
+		nesColors[0x1A], // Green.
+		nesColors[0x27], // Yellow.
+		nesColors[0x0F], // Black.
+		nesColors[0x18], // Brown.
+		nesColors[0x36], // Light magenta.
+		nesColors[0x17], // Light red.
+		nesColors[0x30], // White.
+		nesColors[0x21], // Light cyan.
+		nesColors[0x07], // Red.
+
+		// Other colors to fill up the ANSI palette.
+		nesColors[0x02], // Blue.
+		nesColors[0x11], // Cyan.
+		nesColors[0x10], // Light grey.
+		nesColors[0x00], // Dark grey.
+	}, nesColors[:]...)),
 
 	// Gameboy?
 	"gb": newPalette([]int{0, 8, 7, 15}, []uint32{
