@@ -7427,20 +7427,20 @@
   </object>
   <object id="2277" gid="318" x="5392" y="6896" width="64" height="64">
    <properties>
-    <property name="map_black_to" type="color" value="#00ff00ff"/>
-    <property name="map_white_to" type="color" value="#ffff00ff"/>
+    <property name="map_black_to" type="string" value="#00ff00ff!"/>
+    <property name="map_white_to" type="string" value="#ffff00ff!"/>
    </properties>
   </object>
   <object id="2278" gid="318" x="5648" y="6896" width="64" height="64">
    <properties>
-    <property name="map_black_to" type="color" value="#0000ffff"/>
-    <property name="map_white_to" type="color" value="#ff00ffff"/>
+    <property name="map_black_to" type="string" value="#0000ffff!"/>
+    <property name="map_white_to" type="string" value="#ff00ffff!"/>
    </properties>
   </object>
   <object id="2279" gid="318" x="5904" y="6896" width="64" height="64">
    <properties>
-    <property name="map_black_to" type="color" value="#00ffff00"/>
-    <property name="map_white_to" type="color" value="#ffffff00"/>
+    <property name="map_black_to" type="string" value="#00ffff00!"/>
+    <property name="map_white_to" type="string" value="#ffffff00!"/>
    </properties>
   </object>
   <object id="2280" name="CanCarryWarp" gid="295" x="528" y="416" width="48" height="16"/>

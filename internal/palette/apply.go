@@ -83,10 +83,10 @@ func (p *Palette) ApplyToRGBA(col color.RGBA, name string) color.RGBA {
 	if *debugCheckImagePalette {
 		rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
 		if !egaColorsSet[rgb] {
-			log.Warningf("invalid color in %v: color is not in palette", name)
+			log.Warningf("invalid color %v in %v: color is not in palette", col, name)
 		}
 		if col.A != 255 && col.A != 0 {
-			log.Warningf("invalid color in %v: premultiplied color is neither fully opaque nor fully transparent", name)
+			log.Warningf("invalid color %v in %v: premultiplied color is neither fully opaque nor fully transparent", col, name)
 		}
 	}
 	if p == nil || len(p.remap) == 0 {
@@ -149,9 +149,22 @@ func EGA(i EGAIndex, a uint8) color.NRGBA {
 }
 
 func Parse(s string, name string) (color.NRGBA, error) {
+	if s == "" {
+		return color.NRGBA{}, fmt.Errorf("no color specified")
+	}
+	// Trailing ! means "do not map according to palette".
+	p := len(s) - 1
+	doApply := s[p] != '!'
+	if !doApply {
+		s = s[:p]
+	}
 	var r, g, b, a uint8
 	if _, err := fmt.Sscanf(s, "#%02x%02x%02x%02x", &a, &r, &g, &b); err != nil {
 		return color.NRGBA{}, err
 	}
-	return current.ApplyToNRGBA(color.NRGBA{R: r, G: g, B: b, A: a}, name), nil
+	c := color.NRGBA{R: r, G: g, B: b, A: a}
+	if doApply {
+		return current.ApplyToNRGBA(c, name), nil
+	}
+	return c, nil
 }
