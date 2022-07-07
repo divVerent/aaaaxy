@@ -480,7 +480,7 @@ func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, lut
 	wg.Wait()
 }
 
-func (p *Palette) AsLUT(bounds image.Rectangle, numLUTs int) (*image.NRGBA, int, int, int) {
+func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int, maxCycles float64) (*image.NRGBA, int, int, int) {
 	var lutSize int
 	defer func(t0 time.Time) {
 		dt := time.Since(t0)
@@ -500,7 +500,7 @@ func (p *Palette) AsLUT(bounds image.Rectangle, numLUTs int) (*image.NRGBA, int,
 	default:
 		log.Fatalf("unsupported LUT count: got %v, want 1 or 2", numLUTs)
 	}
-	maxEntries := *paletteMaxCycles / timePerEntry
+	maxEntries := maxCycles / timePerEntry
 	if maxEntries < 8 {
 		maxEntries = 8
 	}
@@ -540,7 +540,7 @@ func (p *Palette) AsLUT(bounds image.Rectangle, numLUTs int) (*image.NRGBA, int,
 }
 
 func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
-	lut, lutSize, perRow, lutWidth := p.AsLUT(img.Bounds(), numLUTs)
+	lut, lutSize, perRow, lutWidth := p.computeLUT(img.Bounds(), numLUTs, *paletteMaxCycles)
 	img.SubImage(lut.Rect).(*ebiten.Image).ReplacePixels(lut.Pix)
 	return lutSize, perRow, lutWidth
 }
@@ -660,7 +660,7 @@ func Init(w, h int) error {
 					Min: image.Point{},
 					Max: image.Point{X: w, Y: h},
 				}
-				img, size, perRow, width := p.AsLUT(bounds, numLUTs)
+				img, size, perRow, width := p.computeLUT(bounds, numLUTs, math.Inf(+1))
 				name := fmt.Sprintf("%s.%s_%d.png", *dumpPaletteLUTs, name, numLUTs)
 				log.Infof("saving %s (size=%d perRow=%d width=%d)...", name, size, perRow, width)
 				err := screenshot.Write(img, name)
