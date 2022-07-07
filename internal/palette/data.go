@@ -1371,3 +1371,9 @@ var data = map[string]*Palette{
 		0xDA291C,
 	}),
 }
+
+func init() {
+	for name, p := range data {
+		p.name = name
+	}
+}

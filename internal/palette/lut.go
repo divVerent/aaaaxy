@@ -23,7 +23,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/lucasb-eyer/go-colorful"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
@@ -33,7 +32,6 @@ import (
 
 var (
 	paletteColordist             = flag.String("palette_colordist", "weighted", "color distance function to use; one of 'weighted', 'weightedL', 'rgbL', 'redmean', 'cielab', 'cieluv'")
-	paletteMaxCycles             = flag.Float64("palette_max_cycles", 640*360*256*4, "maximum number of cycles to spend on palette generation")
 	palettePsychovisualFactor    = flag.Float64("palette_psychovisual_factor", 0.02, "factor by which to include the psychovisual model when generating a two-color palette LUT")
 	palettePsychovisualDampening = flag.Float64("palette_psychovisual_dampening", 0.5, "factor by which to dampen the psychovisual model when mixing evenly")
 )
@@ -478,7 +476,7 @@ func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, lut
 	wg.Wait()
 }
 
-func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int) (*image.NRGBA, int, int, int) {
+func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int, maxCycles float64) (*image.NRGBA, int, int, int) {
 	var lutSize int
 	defer func(t0 time.Time) {
 		dt := time.Since(t0)
@@ -498,7 +496,7 @@ func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int) (*image.NRGBA,
 	default:
 		log.Fatalf("unsupported LUT count: got %v, want 1 or 2", numLUTs)
 	}
-	maxEntries := *paletteMaxCycles / timePerEntry
+	maxEntries := maxCycles / timePerEntry
 	if maxEntries < 8 {
 		maxEntries = 8
 	}
@@ -535,12 +533,6 @@ func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int) (*image.NRGBA,
 		Stride: lutWidth * numLUTs * 4,
 		Rect:   rect,
 	}, lutSize, perRow, lutWidth
-}
-
-func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
-	lut, lutSize, perRow, lutWidth := p.computeLUT(img.Bounds(), numLUTs)
-	img.SubImage(lut.Rect).(*ebiten.Image).ReplacePixels(lut.Pix)
-	return lutSize, perRow, lutWidth
 }
 
 func sizeBayer(size int) (sizeSquare int, scale, offset float64) {

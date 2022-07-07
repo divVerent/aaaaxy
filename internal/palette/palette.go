@@ -21,6 +21,9 @@ import (
 
 // Palette encapsulates a color palette.
 type Palette struct {
+	// name is the name of the palette.
+	name string
+
 	// size is the number of colors this palette has. Is > 0 for any valid palette.
 	size int
 

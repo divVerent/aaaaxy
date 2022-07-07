@@ -53,7 +53,7 @@ for demo in "$@"; do
 		-debug_check_tnih_signs \
 		-debug_log_file="$demo.$tag.log" \
 		-demo_record="$demo.$tag.actual.dem" \
-		-demo_play_regression_prefix="$demo.$tag" \
+		-demo_play_regression_prefix="$demo.$tag." \
 		-draw_blurs=false \
 		-draw_outside=false \
 		-draw_visibility_mask=false \
