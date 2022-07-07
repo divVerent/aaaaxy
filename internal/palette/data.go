@@ -14,48 +14,6 @@
 
 package palette
 
-type EGAIndex int
-
-const (
-	Black EGAIndex = iota
-	Blue
-	Green
-	Cyan
-	Red
-	Magenta
-	Brown
-	LightGrey
-	DarkGrey
-	LightBlue
-	LightGreen
-	LightCyan
-	LightRed
-	LightMagenta
-	Yellow
-	White
-	EGACount
-)
-
-// egaColors is the set of reference colors.
-var egaColors = [EGACount]uint32{
-	0x000000,
-	0x0000AA,
-	0x00AA00,
-	0x00AAAA,
-	0xAA0000,
-	0xAA00AA,
-	0xAA5500,
-	0xAAAAAA,
-	0x555555,
-	0x5555FF,
-	0x55FF55,
-	0x55FFFF,
-	0xFF5555,
-	0xFF55FF,
-	0xFFFF55,
-	0xFFFFFF,
-}
-
 // data contains all palettes by name.
 var data = map[string]*Palette{
 	// Monochrome.
