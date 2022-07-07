@@ -29,6 +29,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/screenshot"
 )
 
 var (
@@ -36,6 +37,7 @@ var (
 	paletteMaxCycles             = flag.Float64("palette_max_cycles", 640*360*256*4, "maximum number of cycles to spend on palette generation")
 	palettePsychovisualFactor    = flag.Float64("palette_psychovisual_factor", 0.02, "factor by which to include the psychovisual model when generating a two-color palette LUT")
 	palettePsychovisualDampening = flag.Float64("palette_psychovisual_dampening", 0.5, "factor by which to dampen the psychovisual model when mixing evenly")
+	dumpPaletteLUTs              = flag.String("dump_palette_luts", "", "file name prefix to dump all palette LUT textures to; the game will then exit")
 )
 
 type rgb [3]float64 // Range is from 0 to 1 in sRGB color space.
@@ -478,13 +480,12 @@ func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, lut
 	wg.Wait()
 }
 
-func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
+func (p *Palette) AsLUT(bounds image.Rectangle, numLUTs int) (*image.RGBA, int, int, int) {
 	var lutSize int
 	defer func(t0 time.Time) {
 		dt := time.Since(t0)
 		log.Infof("building palette LUT of size %d took %v", lutSize, dt)
 	}(time.Now())
-	bounds := img.Bounds()
 	w := bounds.Max.X - bounds.Min.X
 	h := bounds.Max.Y - bounds.Min.Y
 
@@ -530,8 +531,17 @@ func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
 			Y: bounds.Min.Y + lutHeight,
 		},
 	}
-	img.SubImage(rect).(*ebiten.Image).ReplacePixels(pix)
 
+	return &image.RGBA{
+		Pix:    pix,
+		Stride: lutWidth * numLUTs * 4,
+		Rect:   rect,
+	}, lutSize, perRow, lutWidth
+}
+
+func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
+	lut, lutSize, perRow, lutWidth := p.AsLUT(img.Bounds(), numLUTs)
+	img.SubImage(lut.Rect).(*ebiten.Image).ReplacePixels(lut.Pix)
 	return lutSize, perRow, lutWidth
 }
 
@@ -640,4 +650,26 @@ func (p *Palette) HalftonePattern(size int) []float32 {
 		bayern[idx.i] = float32((float64(b) + offset) * scale)
 	}
 	return bayern
+}
+
+func Init(w, h int) error {
+	if *dumpPaletteLUTs != "" {
+		for name, p := range data {
+			for numLUTs := 1; numLUTs <= 2; numLUTs++ {
+				bounds := image.Rectangle{
+					Min: image.Point{},
+					Max: image.Point{X: w, Y: h},
+				}
+				img, size, perRow, width := p.AsLUT(bounds, numLUTs)
+				name := fmt.Sprintf("%s.%s_%d.png", *dumpPaletteLUTs, name, numLUTs)
+				log.Infof("saving %s (size=%d perRow=%d width=%d)...", name, size, perRow, width)
+				err := screenshot.Write(img, name)
+				if err != nil {
+					return err
+				}
+			}
+		}
+		return fmt.Errorf("palette LUTs dumped")
+	}
+	return nil
 }

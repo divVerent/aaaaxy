@@ -107,9 +107,6 @@ func (g *Game) InitEbiten() error {
 	setWindowSize()
 	ebiten.SetWindowTitle("AAAAXY")
 
-	// Load images with the right palette from the start.
-	palette.SetCurrent(palette.ByName(*paletteFlag))
-
 	// Initialize some stuff that is needed early.
 	err := vfs.Init()
 	if err != nil {
@@ -137,6 +134,13 @@ func (g *Game) InitEbiten() error {
 	if err != nil {
 		return fmt.Errorf("could not initialize fonts: %w", err)
 	}
+	err = palette.Init(engine.GameWidth, engine.GameHeight)
+	if err != nil {
+		return fmt.Errorf("could not initialize palettes: %w", err)
+	}
+
+	// Load images with the right palette from the start.
+	palette.SetCurrent(palette.ByName(*paletteFlag))
 
 	// When dumping video or benchmarking, do precisely one render frame per update.
 	if dump.Slow() || demo.Timedemo() {

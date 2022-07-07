@@ -17,8 +17,6 @@ package demo
 import (
 	"fmt"
 	"image/color"
-	"image/png"
-	"os"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -27,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/screenshot"
 )
 
 var (
@@ -131,19 +130,9 @@ func regressionPostDrawFrame(screen *ebiten.Image) {
 	name := fmt.Sprintf("%s.%04d.png", *demoPlayRegressionPrefix, regressionScreenshotCount)
 	log.Errorf("dumping regression screenshot to %v", name)
 	regressionScreenshotCount++
-	file, err := os.Create(name)
+	err := screenshot.Write(dup, name)
 	if err != nil {
-		log.Fatalf("failed to open regression file %v: %v", name, err)
-	}
-	defer func() {
-		err := file.Close()
-		if err != nil {
-			log.Fatalf("failed to close regression file %v: %v", name, err)
-		}
-	}()
-	err = png.Encode(file, dup)
-	if err != nil {
-		log.Fatalf("failed to write to regression file %v: %v", name, err)
+		log.Fatalf("failed to save regression screenshot: %v", err)
 	}
 }
 
