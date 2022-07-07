@@ -480,7 +480,7 @@ func (p *Palette) computeNearestTwoLUT(lutSize, perRow, lutWidth, lutHeight, lut
 	wg.Wait()
 }
 
-func (p *Palette) AsLUT(bounds image.Rectangle, numLUTs int) (*image.RGBA, int, int, int) {
+func (p *Palette) AsLUT(bounds image.Rectangle, numLUTs int) (*image.NRGBA, int, int, int) {
 	var lutSize int
 	defer func(t0 time.Time) {
 		dt := time.Since(t0)
@@ -532,7 +532,7 @@ func (p *Palette) AsLUT(bounds image.Rectangle, numLUTs int) (*image.RGBA, int, 
 		},
 	}
 
-	return &image.RGBA{
+	return &image.NRGBA{
 		Pix:    pix,
 		Stride: lutWidth * numLUTs * 4,
 		Rect:   rect,
