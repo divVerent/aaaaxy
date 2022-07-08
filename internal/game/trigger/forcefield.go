@@ -165,7 +165,7 @@ func (f *ForceField) Touch(other *engine.Entity) {
 	if prevTouchedFrame > 0 {
 		return
 	}
-	// TODO: compute jump vector.
+	// Compute the jump vector.
 	// Should point away from jumppad, and 45 degrees at the corners.
 	// So, look at center-center vector.
 	cc := other.Rect.Center().Delta(f.Entity.Rect.Center())

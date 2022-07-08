@@ -155,7 +155,6 @@ func (w *World) spawnAt(sp *level.SpawnableProps, rect m.Rect, transform, tInv m
 	e.ColorMod[2] = 1.0
 	e.ColorMod[3] = 1.0
 	w.link(e)
-	// TODO: pass SpawnableProps along by changing the interface.
 	err := eImpl.Spawn(w, sp, e)
 	if err != nil {
 		w.unlink(e)
