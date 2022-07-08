@@ -103,7 +103,6 @@ func (s *State) Enter(step string, errPrefix string, f func(s *State) (Status, e
 			s.curFraction = frac
 		}
 		// Must force a refresh so the new text actually can show.
-		// TODO: only do this when the new step may take long?
 		return EndFrame, nil
 	}
 	status, err := f(s)
