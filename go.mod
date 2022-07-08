@@ -15,7 +15,7 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.8.8
 	golang.org/x/image v0.0.0-20220617043117-41969df76e82
-	golang.org/x/sys v0.0.0-20220704084225-05e143d24a9e
+	golang.org/x/sys v0.0.0-20220708085239-5a0f0661e09d
 )
 
 require (
