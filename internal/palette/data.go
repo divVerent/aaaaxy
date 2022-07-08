@@ -768,8 +768,8 @@ var data = map[string]*Palette{
 
 	// A wellknown subset of the NES palette.
 	// In fact, the exact set of colors visible while 1-1 is loaded.
-	// Only colors not mapped: blue, cyan, dark grey, light grey.
-	"smb": newPalette([]int{9, 10, 5, 2, 14, 0, 6, 13, 12, 15, 11, 4}, []uint32{
+	// Only colors not mapped: blue, cyan, dark grey, light grey and light cyan.
+	"smb": newPalette([]int{9, 10, 5, 2, 14, 0, 6, 13, 12, 15, 4}, []uint32{
 		nesColors[0x22], // Light blue.
 		nesColors[0x29], // Light green.
 		nesColors[0x16], // Magenta
@@ -780,12 +780,12 @@ var data = map[string]*Palette{
 		nesColors[0x36], // Light magenta.
 		nesColors[0x17], // Light red.
 		nesColors[0x30], // White.
-		nesColors[0x21], // Light cyan.
 		nesColors[0x07], // Red.
+		nesColors[0x21], // Light cyan. Not mapped because it's too close to 0x22.
 	}),
 
 	// Same as "smb" but with all missing colors added.
-	"nes": newPalette([]int{9, 10, 5, 2, 14, 0, 6, 13, 12, 15, 11, 4, 1, 3, 7, 8}, append([]uint32{
+	"nes": newPalette([]int{9, 10, 5, 2, 14, 0, 6, 13, 12, 15, 4, 1, 3, 7, 8, 11}, append([]uint32{
 		nesColors[0x22], // Light blue.
 		nesColors[0x29], // Light green.
 		nesColors[0x16], // Magenta
@@ -796,7 +796,6 @@ var data = map[string]*Palette{
 		nesColors[0x36], // Light magenta.
 		nesColors[0x17], // Light red.
 		nesColors[0x30], // White.
-		nesColors[0x21], // Light cyan.
 		nesColors[0x07], // Red.
 
 		// Other colors to fill up the ANSI palette.
@@ -804,6 +803,7 @@ var data = map[string]*Palette{
 		nesColors[0x11], // Cyan.
 		nesColors[0x10], // Light grey.
 		nesColors[0x00], // Dark grey.
+		nesColors[0x31], // Light cyan.
 	}, nesColors[:]...)),
 
 	// Gameboy?

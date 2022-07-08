@@ -23,6 +23,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/screenshot"
@@ -77,7 +78,8 @@ func Init(w, h int) error {
 				}
 			}
 		}
-		return fmt.Errorf("palette LUTs dumped")
+		log.Errorf("requested a palette LUT dump - not running the game")
+		return exitstatus.RegularTermination
 	}
 	return nil
 }

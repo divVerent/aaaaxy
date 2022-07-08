@@ -98,9 +98,14 @@ assets-update:
 	cp assets/generated/image_load_order.txt assets/_saved/
 	cp assets/generated/level.cp.json        assets/_saved/
 
+# These are not in assets-update as graphics are required for these.
 .PHONY: loading-fractions-update
 loading-fractions-update: $(BINARY)
 	./$(BINARY) -dump_loading_fractions=assets/splash/loading_fractions.json -debug_just_init -debug_enable_drawing=false -vsync=true
+
+.PHONY: palette-luts-update
+palette-luts-update: $(BINARY)
+	./$(BINARY) -dump_palette_luts_prefix=assets/palettes/lut_
 
 # The actual build process follows.
 
