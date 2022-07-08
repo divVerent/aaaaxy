@@ -43,15 +43,15 @@ type lutMeta struct {
 
 func Init(w, h int) error {
 	if *dumpPaletteLUTsPrefix != "" {
-		for name, p := range data {
-			for numLUTs := 1; numLUTs <= 2; numLUTs++ {
+		for numLUTs := 1; numLUTs <= 2; numLUTs++ {
+			for name, p := range data {
 				bounds := image.Rectangle{
 					Min: image.Point{},
 					Max: image.Point{X: w, Y: h},
 				}
 				img, size, perRow, width := p.computeLUT(bounds, numLUTs, math.Inf(+1))
 				name := fmt.Sprintf("%s%s_%d.png", *dumpPaletteLUTsPrefix, name, numLUTs)
-				log.Infof("saving %s (size=%d perRow=%d width=%d)...", name, size, perRow, width)
+				log.Infof("saving %s (colors=%d size=%d perRow=%d width=%d)...", name, p.size, size, perRow, width)
 				err := screenshot.Write(img, name)
 				if err != nil {
 					return err

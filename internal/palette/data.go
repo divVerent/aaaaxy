@@ -247,7 +247,7 @@ var data = map[string]*Palette{
 	}),
 
 	// The original IBM VGA palette, with colors too close to EGA colors commented out.
-	"vga": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
+	"vgadefault": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
 		0x000000,
 		0x0000AA,
 		0x00AA00,
@@ -505,6 +505,18 @@ var data = map[string]*Palette{
 		0x000000,
 		0x000000,
 	}),
+
+	// A good custom VGA palette. Has the midpoint of any two EGA colors, and seven points on each gradient of bright colors or black. Uses total 249 colors.
+	"vga": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, rounded(append(append(append(append(
+		[]uint32{},
+		egaColors[:]...),
+		// Midpoint of any two colors.
+		midpoints(egaColors[:], egaColors[:], []uint32{1}, 2)...),
+		// All colors shall fade to black in sixths.
+		midpoints(egaColors[0:1], egaColors[:], []uint32{1, 2, 3, 4, 5}, 6)...),
+		// All bright colors shall fade to each other in sixths.
+		midpoints(egaColors[8:16], egaColors[8:16], []uint32{1, 2, 3, 4, 5}, 6)...),
+		63)),
 
 	// Quake's palette. Has been put in the public domain by John Carmack.
 	"quake": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{

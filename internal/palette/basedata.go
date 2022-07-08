@@ -150,3 +150,41 @@ func colorCube(nr, ng, nb int) []uint32 {
 	}
 	return l
 }
+
+func midpoints(p1, p2, points []uint32, count uint32) []uint32 {
+	out := make([]uint32, 0, len(p1)*len(p2))
+	for _, ci := range p1 {
+		ri := ci >> 16
+		gi := (ci >> 8) & 0xFF
+		bi := ci & 0xFF
+		for _, cj := range p2 {
+			rj := cj >> 16
+			gj := (cj >> 8) & 0xFF
+			bj := cj & 0xFF
+			for _, i := range points {
+				r := (2*(ri*i+rj*(count-i)) + count) / (2 * count)
+				g := (2*(gi*i+gj*(count-i)) + count) / (2 * count)
+				b := (2*(bi*i+bj*(count-i)) + count) / (2 * count)
+				out = append(out, (r<<16)|(g<<8)|b)
+			}
+		}
+	}
+	return out
+}
+
+func rounded(p []uint32, n uint32) []uint32 {
+	out := make([]uint32, 0, len(p))
+	for _, c := range p {
+		r := c >> 16
+		g := (c >> 8) & 0xFF
+		b := c & 0xFF
+		r = (n*r + 127) / 255
+		g = (n*g + 127) / 255
+		b = (n*b + 127) / 255
+		r = (2*255*r + n) / (2 * n)
+		g = (2*255*g + n) / (2 * n)
+		b = (2*255*b + n) / (2 * n)
+		out = append(out, (r<<16)|(g<<8)|b)
+	}
+	return out
+}
