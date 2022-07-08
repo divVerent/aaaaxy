@@ -83,12 +83,12 @@ func dotDiff(a, b vec3) float {
 }
 
 func computeF(a, b, c vec3) float {
-	if a == b {
+	// Find f so that colorDiff(a + f * (b - a), c) is minimal.
+	v := b - a
+	if v.x == 0 && v.y == 0 && v.z == 0 {
 		return 0
 	}
-	// Find f so that colorDiff(a + f * (b - a), c) is minimal.
 	u := c - a
-	v := b - a
 	// Find f so that colorDiff(f * v - u, 0) is minimal.
 	return clamp(dotDiff(u, v) / dotDiff(v, v), 0, 1)
 }
