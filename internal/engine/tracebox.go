@@ -32,14 +32,13 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 	if l.YDir > 0 {
 		adjustment.DY = enlarge.DY
 	}
+
 	// Trace that corner path against the tilemap.
-	// TODO: do this more efficiently than copying the line. We maybe can
-	// even reuse the same adjustment for entity tracing? Or just edit the
-	// l object and reset when done?
-	ll := *l
-	ll.Origin = ll.Origin.Add(adjustment)
-	ll.Target = ll.Target.Add(adjustment)
-	ll.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixelAdj, nextPixelAdj m.Pos) error {
+	prevOrigin := l.Origin
+	prevTarget := l.Target
+	l.Origin = l.Origin.Add(adjustment)
+	l.Target = l.Target.Add(adjustment)
+	l.walkTiles(func(prevTile, nextTile m.Pos, delta m.Delta, prevPixelAdj, nextPixelAdj m.Pos) error {
 		// First, unadjust.
 		prevPixel := prevPixelAdj.Sub(adjustment)
 		nextPixel := nextPixelAdj.Sub(adjustment)
@@ -47,7 +46,6 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 		if nextPixel.X != prevPixel.X {
 			// X move.
 			// Check all newly hit tiles in Y range.
-			// TODO: One of these divisions is redundant. Worth optimizing?
 			top := m.Div(nextPixel.Y, level.TileSize)
 			bottom := m.Div(nextPixel.Y+enlarge.DY, level.TileSize)
 			for y := top; y <= bottom; y++ {
@@ -75,7 +73,6 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 		} else {
 			// Y move.
 			// Check all newly hit tiles in X range.
-			// TODO: One of these divisions is redundant. Worth optimizing?
 			left := m.Div(nextPixel.X, level.TileSize)
 			right := m.Div(nextPixel.X+enlarge.DX, level.TileSize)
 			for x := left; x <= right; x++ {
@@ -103,6 +100,8 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 		}
 		return nil
 	})
+	l.Origin = prevOrigin
+	l.Target = prevTarget
 }
 
 func traceBox(w *World, from m.Rect, to m.Pos, o TraceOptions) TraceResult {
