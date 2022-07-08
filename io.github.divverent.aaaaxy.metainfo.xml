@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.139" date="2022-07-08">
-      <description><ul><li>Use Ebiten v2.3.5.</li><li>Engine: clean up TODOs.</li><li>Engine: massive color palette and dither improvements. Hit right seven times on graphics selection for a surprise!</li><li>Engine: VGA graphics is now default, not SVGA.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.139</url>
+    <release version="v1.2.141" date="2022-07-08">
+      <description><ul><li>Engine: clean up TODOs.</li><li>Engine: massive color palette and dither improvements. Hit right seven times on graphics selection for a surprise!</li><li>Engine: VGA graphics is now default, not SVGA.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.141</url>
     </release>
   </releases>
 </component>
