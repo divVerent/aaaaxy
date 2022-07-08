@@ -36,6 +36,7 @@ import (
 type MapScreen struct {
 	Controller  *Controller
 	Level       *level.Level
+	FirstCP     string
 	CurrentCP   string
 	SortedLocs  []string
 	SortedEdges map[string][]level.CheckpointEdge
@@ -53,8 +54,6 @@ type MapScreen struct {
 
 // TODO: parametrize.
 const (
-	firstCP = "leap_of_faith"
-
 	edgeFarAttachDistance = 9
 	edgeThickness         = 3
 	mouseDistance         = 16
@@ -118,6 +117,12 @@ func (s *MapScreen) Init(c *Controller) error {
 			return edges[i].Other < edges[j].Other
 		})
 		s.SortedEdges[cpName] = edges
+		if s.Controller.World.Level.Checkpoints[cpName].Properties["first"] == "true" {
+			if s.FirstCP != "" {
+				return fmt.Errorf("more than one first checkpoint is not allowed: got %v and %v, want only one", s.FirstCP, cpName)
+			}
+			s.FirstCP = cpName
+		}
 	}
 
 	mapWidth := engine.GameWidth
@@ -194,8 +199,8 @@ func (s *MapScreen) moveTo(pos m.Pos) bool {
 }
 
 func (s *MapScreen) exit() error {
-	if s.CurrentCP != firstCP && s.Controller.World.PlayerState.CheckpointSeen(firstCP) != playerstate.NotSeen {
-		s.CurrentCP = firstCP
+	if s.CurrentCP != s.FirstCP && s.Controller.World.PlayerState.CheckpointSeen(s.FirstCP) != playerstate.NotSeen {
+		s.CurrentCP = s.FirstCP
 		return s.Controller.MoveSound(nil)
 	}
 	return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))

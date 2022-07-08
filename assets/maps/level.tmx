@@ -615,6 +615,7 @@
   <object id="53" name="leap_of_faith" type="Checkpoint" x="4544" y="3888" width="32" height="176">
    <properties>
     <property name="hub" type="bool" value="true"/>
+    <property name="first" type="bool" value="true"/>
     <property name="music" value="retro_chiptune_1.ogg"/>
     <property name="next_left" type="object" value="66"/>
     <property name="next_right" type="object" value="281"/>

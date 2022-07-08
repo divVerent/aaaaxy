@@ -33,6 +33,7 @@
  <objecttype name="Checkpoint" color="#008000">
   <property name="dead_end" type="bool" default="false"/>
   <property name="downtrace_on_spawn" type="bool" default="true"/>
+  <property name="first" type="bool" default="false"/>
   <property name="hub" type="bool" default="false"/>
   <property name="music" type="file" default=""/>
   <property name="next_down" type="object" default="0"/>
@@ -49,6 +50,7 @@
  <objecttype name="CheckpointTarget" color="#008000">
   <property name="dead_end" type="bool" default="false"/>
   <property name="downtrace_on_spawn" type="bool" default="true"/>
+  <property name="first" type="bool" default="false"/>
   <property name="hub" type="bool" default="false"/>
   <property name="music" type="file" default=""/>
   <property name="next_down" type="object" default="0"/>
