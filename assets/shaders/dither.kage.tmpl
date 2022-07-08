@@ -85,6 +85,7 @@ func dotDiff(a, b vec3) float {
 func computeF(a, b, c vec3) float {
 	// Find f so that colorDiff(a + f * (b - a), c) is minimal.
 	v := b - a
+	// TODO(divVerent): make this simply "if v == 0" once c01821c is in released Ebiten.
 	if v.x == 0 && v.y == 0 && v.z == 0 {
 		return 0
 	}
