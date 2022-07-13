@@ -310,7 +310,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 		// - Would remove one render call.
 		// - Wouldn't allow blur though...?
 		// Note: we put the mask on ALL four channels.
-		r.visibilityMaskImage.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+		r.visibilityMaskImage.Clear()
 		drawPolygonAround(r.visibilityMaskImage, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, color.Gray{255}, geoM, texM, &ebiten.DrawTrianglesOptions{})
 
 		e := expandSize

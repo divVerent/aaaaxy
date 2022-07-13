@@ -16,7 +16,6 @@ package engine
 
 import (
 	"fmt"
-	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -43,7 +42,7 @@ func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale, darken
 	opts.ColorM.Scale(1, 1, 1, 0.5)
 	for size > 1 {
 		size /= 2
-		tmp.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+		tmp.Clear()
 		opts.CompositeMode = ebiten.CompositeModeCopy
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(-float64(size), 0)
@@ -57,7 +56,7 @@ func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale, darken
 			opts.ColorM.Scale(1, 1, 1, scale)
 			opts.ColorM.Translate(-darken, -darken, -darken, 0)
 		}
-		out.Fill(color.NRGBA{R: 0, G: 0, B: 0, A: 0})
+		out.Clear()
 		opts.CompositeMode = ebiten.CompositeModeCopy
 		opts.GeoM.Reset()
 		opts.GeoM.Translate(0, -float64(size))
