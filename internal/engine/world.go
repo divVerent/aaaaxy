@@ -777,7 +777,7 @@ func (w *World) Update() error {
 	}
 	w.tilesSet, w.tilesCleared = 0, 0
 
-	w.renderer.needPrevImage = true
+	w.renderer.worldChanged = true
 	return nil
 }
 

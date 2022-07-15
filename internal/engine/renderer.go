@@ -28,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/offscreen"
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/shader"
 )
@@ -54,8 +55,8 @@ type renderer struct {
 	visiblePolygon []m.Pos
 	// expandedVisiblePolygon is the visible polygon, expanded to show some walls.
 	expandedVisiblePolygon []m.Pos
-	// needPrevImage is set whenever the last call was Update.
-	needPrevImage bool
+	// worldChanged is set whenever the last call was Update.
+	worldChanged bool
 
 	// Images retained across frames.
 
@@ -63,8 +64,6 @@ type renderer struct {
 	whiteImage *ebiten.Image
 	// prevImage is the previous screen content.
 	prevImage *ebiten.Image
-	// offScreenBuffer is the previous screen content after masking.
-	offScreenBuffer *ebiten.Image
 	// prevScrollPos is previous frame's scroll pos.
 	prevScrollPos m.Pos
 	// The shader for drawing visibility masks.
@@ -72,8 +71,6 @@ type renderer struct {
 
 	// Temp storage within frames.
 
-	// blurImage is an offscreen image used for blurring.
-	blurImage *ebiten.Image
 	// visibilityMaskImage is an offscreen image used for masking the visible area.
 	visibilityMaskImage *ebiten.Image
 }
@@ -83,12 +80,6 @@ func (r *renderer) Init(w *World) {
 	r.whiteImage = ebiten.NewImage(1, 1)
 	r.whiteImage = ebiten.NewImage(1, 1)
 	r.whiteImage.Fill(color.Gray{255})
-	r.blurImage = ebiten.NewImage(GameWidth, GameHeight)
-	r.prevImage = ebiten.NewImage(GameWidth, GameHeight)
-	r.prevImage.Fill(color.Gray{0})
-	r.offScreenBuffer = ebiten.NewImage(GameWidth, GameHeight)
-	r.offScreenBuffer.Fill(color.Gray{0})
-	r.visibilityMaskImage = ebiten.NewImage(GameWidth, GameHeight)
 
 	var err error
 	r.visibilityMaskShader, err = shader.Load("visibility_mask.kage", nil)
@@ -284,11 +275,11 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 	}
 }
 
-func (r *renderer) rawDrawDest(screen *ebiten.Image) *ebiten.Image {
-	if *drawVisibilityMask && *drawOutside {
-		return r.offScreenBuffer
+func (r *renderer) offscreenDrawDest(screen *ebiten.Image) *ebiten.Image {
+	if *drawVisibilityMask && *drawOutside && r.prevImage != nil {
+		return offscreen.New("OffscreenDrawDest", GameWidth, GameHeight)
 	}
-	return screen
+	return nil
 }
 
 func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m.Delta) {
@@ -303,24 +294,34 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 		return
 	}
 
-	if r.needPrevImage {
+	if r.worldChanged || r.visibilityMaskImage == nil {
 		// Optimization note:
 		// - This isn't optimal. Visibility mask maybe shouldn't even exist?
 		// - If screen were a separate image, we could instead copy image to screen masked by polygon.
 		// - Would remove one render call.
 		// - Wouldn't allow blur though...?
 		// Note: we put the mask on ALL four channels.
-		r.visibilityMaskImage.Clear()
-		drawPolygonAround(r.visibilityMaskImage, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, color.Gray{255}, geoM, texM, &ebiten.DrawTrianglesOptions{})
-
+		if r.visibilityMaskImage != nil {
+			offscreen.Dispose(r.visibilityMaskImage)
+		}
+		r.visibilityMaskImage = offscreen.NewExplicit("VisibilityMask", GameWidth, GameHeight)
+		unblurred := r.visibilityMaskImage
+		if offscreen.AvoidReuse() {
+			unblurred = offscreen.New("VisibilityMaskUnblurred", GameWidth, GameHeight)
+		}
+		unblurred.Clear()
+		drawPolygonAround(unblurred, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, color.Gray{255}, geoM, texM, &ebiten.DrawTrianglesOptions{})
 		e := expandSize
 		if *expandUsingVertices {
 			e = 0
 		}
-		BlurExpandImage(r.visibilityMaskImage, r.blurImage, r.visibilityMaskImage, blurSize, e, 1.0, 0.0)
+		BlurExpandImage("BlurVisibilityMask", unblurred, r.visibilityMaskImage, blurSize, e, 1.0, 0.0)
+		if offscreen.AvoidReuse() {
+			offscreen.Dispose(unblurred)
+		}
 	}
 
-	if *drawOutside {
+	if *drawOutside && r.prevImage != nil {
 		if r.visibilityMaskShader != nil {
 			delta := r.world.scrollPos.Delta(r.prevScrollPos)
 			screen.DrawRectShader(GameWidth, GameHeight, r.visibilityMaskShader, &ebiten.DrawRectShaderOptions{
@@ -377,11 +378,6 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 				Filter:        ebiten.FilterNearest,
 			})
 		}
-		if r.needPrevImage {
-			// Remember last image. Only do this once per update.
-			BlurImage(screen, r.blurImage, r.prevImage, frameBlurSize, frameDarkenAlpha, frameDarkenAmount, 1.0)
-			r.prevScrollPos = r.world.scrollPos
-		}
 	} else {
 		screen.DrawImage(r.visibilityMaskImage, &ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeDestinationIn,
@@ -389,18 +385,35 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 		})
 	}
 
-	r.needPrevImage = false
+	if *drawOutside && r.worldChanged {
+		// Remember last image. Only do this once per update.
+		if r.prevImage != nil {
+			offscreen.Dispose(r.prevImage)
+		}
+		r.prevImage = offscreen.NewExplicit("PrevImage", GameWidth, GameHeight)
+		BlurImage("BlurPrevImage", screen, r.prevImage, frameBlurSize, frameDarkenAlpha, frameDarkenAmount, 1.0)
+		r.prevScrollPos = r.world.scrollPos
+	}
+
+	r.worldChanged = false
 }
 
 func (r *renderer) Draw(screen *ebiten.Image) {
 	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(r.world.scrollPos)
 
-	dest := r.rawDrawDest(screen)
+	off := r.offscreenDrawDest(screen)
+	dest := screen
+	if off != nil {
+		dest = off
+	}
 	dest.Fill(color.Gray{0})
 	r.drawTiles(dest, scrollDelta)
 	r.drawEntities(dest, scrollDelta)
 	if *drawVisibilityMask {
 		r.drawVisibilityMask(screen, dest, scrollDelta)
+	}
+	if off != nil {
+		offscreen.Dispose(off)
 	}
 	centerprint.Draw(screen)
 

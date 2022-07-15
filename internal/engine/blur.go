@@ -21,6 +21,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/offscreen"
 	"github.com/divVerent/aaaaxy/internal/shader"
 )
 
@@ -28,61 +29,91 @@ var (
 	drawBlurs = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 )
 
-func blurImageFixedFunction(img, tmp, out *ebiten.Image, size int, scale, darken float64) {
+func blurPassFixedFunction(img, out *ebiten.Image, mode ebiten.CompositeMode, dx, dy int, scale, darken float64) {
 	opts := ebiten.DrawImageOptions{
-		CompositeMode: ebiten.CompositeModeLighter,
+		CompositeMode: mode,
 		Filter:        ebiten.FilterNearest,
 	}
-	size++
+	opts.ColorM.Scale(1, 1, 1, scale)
+	opts.ColorM.Translate(-darken, -darken, -darken, 0)
+	opts.GeoM.Translate(float64(dx), float64(dy))
+	out.DrawImage(img, &opts)
+}
+
+func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale, darken float64) {
 	// Only power-of-two blurs look good with this approach, so let's scale down the blur as much as needed.
+	size++
 	for size&(size-1) != 0 {
 		size--
 	}
-	src := img
-	opts.ColorM.Scale(1, 1, 1, 0.5)
-	for size > 1 {
-		size /= 2
-		tmp.Clear()
-		opts.CompositeMode = ebiten.CompositeModeCopy
-		opts.GeoM.Reset()
-		opts.GeoM.Translate(-float64(size), 0)
-		tmp.DrawImage(src, &opts)
-		opts.CompositeMode = ebiten.CompositeModeLighter
-		opts.GeoM.Reset()
-		opts.GeoM.Translate(float64(size), 0)
-		tmp.DrawImage(src, &opts)
-		src = out
-		if size <= 1 {
-			opts.ColorM.Scale(1, 1, 1, scale)
-			opts.ColorM.Translate(-darken, -darken, -darken, 0)
+
+	w, h := img.Size()
+
+	if offscreen.AvoidReuse() {
+		src := img // Only in first pass. Otherwise it is a temp image.
+		for size > 1 {
+			size /= 2
+			tmp := offscreen.New(fmt.Sprintf("%s.Horiz.%d", name, size), w, h)
+			blurPassFixedFunction(src, tmp, ebiten.CompositeModeCopy, -size, 0, 0.5, 0)
+			blurPassFixedFunction(src, tmp, ebiten.CompositeModeLighter, size, 0, 0.5, 0)
+			if src != img {
+				// Not first pass.
+				offscreen.Dispose(src)
+			}
+			dst := out
+			dstScale := 0.5
+			dstDarken := 0.0
+			if size > 1 {
+				// Not last pass.
+				dst = offscreen.New(fmt.Sprintf("%s.Vert.%d", name, size), w, h)
+			} else {
+				// Last pass.
+				dstScale *= scale
+				dstDarken = darken
+				dst = out
+			}
+			blurPassFixedFunction(tmp, dst, ebiten.CompositeModeCopy, -size, 0, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, dst, ebiten.CompositeModeLighter, size, 0, dstScale, dstDarken)
+			offscreen.Dispose(tmp)
+			src = dst
 		}
-		out.Clear()
-		opts.CompositeMode = ebiten.CompositeModeCopy
-		opts.GeoM.Reset()
-		opts.GeoM.Translate(0, -float64(size))
-		out.DrawImage(tmp, &opts)
-		opts.CompositeMode = ebiten.CompositeModeLighter
-		opts.GeoM.Reset()
-		opts.GeoM.Translate(0, float64(size))
-		out.DrawImage(tmp, &opts)
+	} else {
+		tmp := offscreen.New(name, w, h)
+		src := img
+		for size > 1 {
+			size /= 2
+			blurPassFixedFunction(src, tmp, ebiten.CompositeModeCopy, -size, 0, 0.5, 0)
+			blurPassFixedFunction(src, tmp, ebiten.CompositeModeLighter, size, 0, 0.5, 0)
+			dstScale := 0.5
+			dstDarken := 0.0
+			if size <= 1 {
+				dstScale *= scale
+				dstDarken = darken
+			}
+			blurPassFixedFunction(tmp, out, ebiten.CompositeModeCopy, -size, 0, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, out, ebiten.CompositeModeLighter, size, 0, dstScale, dstDarken)
+			src = out
+		}
+		offscreen.Dispose(tmp)
 	}
 }
 
-func BlurExpandImage(img, tmp, out *ebiten.Image, blurSize, expandSize int, scale, darken float64) {
+func BlurExpandImage(name string, img, out *ebiten.Image, blurSize, expandSize int, scale, darken float64) {
 	// Blurring and expanding can be done in a single step by doing a regular blur then scaling up at the last step.
 	if !*drawBlurs {
 		blurSize = 0
 	}
 	size := blurSize + expandSize
 	scale *= (2*float64(size) + 1) / (2*float64(blurSize) + 1)
-	BlurImage(img, tmp, out, size, scale, darken, 1.0)
+	BlurImage(name, img, out, size, scale, darken, 1.0)
 }
 
 var (
 	blurBroken = false
 )
 
-func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken, blurFade float64) {
+func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blurFade float64) {
+	w, h := img.Size()
 	scale *= scale * blurFade
 	scale += 1 - blurFade
 	darken *= blurFade
@@ -96,6 +127,8 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken, blurFade fl
 				CompositeMode: ebiten.CompositeModeCopy,
 				Filter:        ebiten.FilterNearest,
 			}
+			tmp := offscreen.New(name, w, h)
+			defer offscreen.Dispose(tmp)
 			tmp.DrawImage(img, options)
 			options.ColorM.Scale(scale, scale, scale, 1.0)
 			options.ColorM.Translate(-darken, -darken, -darken, 0.0)
@@ -112,7 +145,7 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken, blurFade fl
 		return
 	}
 	if blurBroken {
-		blurImageFixedFunction(img, tmp, out, size, scale, darken)
+		blurImageFixedFunction(name, img, out, size, scale, darken)
 		return
 	}
 	// Too bad we can't have integer uniforms, so we need to templatize this
@@ -124,12 +157,13 @@ func BlurImage(img, tmp, out *ebiten.Image, size int, scale, darken, blurFade fl
 	if err != nil {
 		log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load blur shader: %v", err)
 		blurBroken = true
-		blurImageFixedFunction(img, tmp, out, size, scale, darken)
+		blurImageFixedFunction(name, img, out, size, scale, darken)
 		return
 	}
-	w, h := img.Size()
 	centerScale := 1.0 / (2*float64(size)*blurFade + 1)
 	otherScale := blurFade * centerScale
+	tmp := offscreen.New(fmt.Sprintf("%s.Horiz", name), w, h)
+	defer offscreen.Dispose(tmp)
 	tmp.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
 		CompositeMode: ebiten.CompositeModeCopy,
 		Uniforms: map[string]interface{}{

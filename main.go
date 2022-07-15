@@ -89,7 +89,7 @@ func main() {
 	}
 	defer log.CloseLogFile()
 
-	game := &aaaaxy.Game{}
+	game := aaaaxy.NewGame()
 	err := game.InitEbiten()
 	if err != nil {
 		if errors.Is(err, exitstatus.RegularTermination) {

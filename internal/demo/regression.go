@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/offscreen"
 	"github.com/divVerent/aaaaxy/internal/screenshot"
 )
 
@@ -109,7 +110,8 @@ func regressionPostDrawFrame(screen *ebiten.Image) {
 	// Duplicate screen.
 	// This isn't just NewImageFromImage as we want to remove the alpha channel to get a proper screenshot.
 	w, h := screen.Size()
-	dup := ebiten.NewImage(w, h)
+	dup := offscreen.New("RegressionDumpFrame", w, h)
+	defer offscreen.Dispose(dup)
 	dup.Fill(color.Gray{0})
 	dup.DrawImage(screen, &ebiten.DrawImageOptions{
 		CompositeMode: ebiten.CompositeModeSourceOver,

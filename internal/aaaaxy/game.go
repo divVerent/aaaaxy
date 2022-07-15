@@ -17,6 +17,7 @@ package aaaaxy
 import (
 	"errors"
 	"fmt"
+	go_image "image"
 	"math"
 	"math/rand"
 
@@ -38,6 +39,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/menu"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/noise"
+	"github.com/divVerent/aaaaxy/internal/offscreen"
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/shader"
 	"github.com/divVerent/aaaaxy/internal/timing"
@@ -84,7 +86,9 @@ type Game struct {
 	screenWidth  int
 	screenHeight int
 
-	offScreens        chan *ebiten.Image
+	offscreenTokens   chan int
+	offscreenReturns  chan *ebiten.Image
+	offscreenIndexes  map[*ebiten.Image]int
 	linear2xShader    *ebiten.Shader
 	linear2xCRTShader *ebiten.Shader
 
@@ -93,7 +97,6 @@ type Game struct {
 	paletteDitherSize int
 	paletteDitherMode ditherMode
 
-	paletteOffscreen *ebiten.Image  // Never updates.
 	paletteLUT       *ebiten.Image  // Updates when palette changes.
 	paletteLUTSize   int            // Updates when palette changes.
 	paletteLUTPerRow int            // Updates when palette changes.
@@ -105,6 +108,12 @@ type Game struct {
 }
 
 var _ ebiten.Game = &Game{}
+
+func NewGame() *Game {
+	return &Game{
+		offscreenIndexes: map[*ebiten.Image]int{},
+	}
+}
 
 func (g *Game) updateFrame() error {
 	timing.Section("input")
@@ -182,7 +191,7 @@ func (g *Game) Update() error {
 	return nil
 }
 
-func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
+func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*ebiten.Image, func() *ebiten.Image) {
 	// This is an extra pass so it can still run at low-res.
 	pal := palette.ByName(*paletteFlag)
 	if palette.SetCurrent(pal) {
@@ -204,12 +213,14 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	if pal == nil {
 		// No palette.
 		*paletteFlag = "none"
-		return screen, func() {}
+		screen := g.maybeAcquireOffscreen(maybeScreen)
+		return screen, func() *ebiten.Image { return screen }
 	}
 
 	if *paletteRemapOnly {
 		// Color reduction disabled.
-		return screen, func() {}
+		screen := g.maybeAcquireOffscreen(maybeScreen)
+		return screen, func() *ebiten.Image { return screen }
 	}
 
 	// Shaders depend on Bayer pattern size, and this should usually not change at runtime.
@@ -256,9 +267,6 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 	if g.paletteLUT == nil {
 		g.paletteLUT = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
 	}
-	if g.paletteOffscreen == nil {
-		g.paletteOffscreen = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
-	}
 
 	// Bayer pattern changed?
 	if ditherSize != g.paletteDitherSize || g.paletteDitherMode != ditherMode {
@@ -293,7 +301,8 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 		if err != nil {
 			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for dither size %d: %v", *paletteDitherSize, err)
 			*paletteFlag = "none"
-			return screen, func() {}
+			screen := g.maybeAcquireOffscreen(maybeScreen)
+			return screen, func() *ebiten.Image { return screen }
 		}
 		g.paletteDitherSize = ditherSize
 		g.paletteDitherMode = ditherMode
@@ -319,7 +328,12 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 		g.palette = pal
 	}
 
-	return g.paletteOffscreen, func() {
+	paletteOffscreen := tmp
+	if tmp == nil {
+		paletteOffscreen = offscreen.New("PaletteOffscreen", engine.GameWidth, engine.GameHeight)
+	}
+
+	return paletteOffscreen, func() *ebiten.Image {
 		var scroll m.Delta
 		if *paletteDitherWorldAligned {
 			scroll = g.Menu.World.ScrollPos().Delta(m.Pos{X: engine.GameWidth / 2, Y: engine.GameHeight / 2})
@@ -330,7 +344,7 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Images: [4]*ebiten.Image{
-				g.paletteOffscreen,
+				paletteOffscreen,
 				g.paletteLUT,
 				nil,
 				nil,
@@ -348,20 +362,25 @@ func (g *Game) palettePrepare(screen *ebiten.Image) (*ebiten.Image, func()) {
 		if ditherSize > 0 {
 			options.Uniforms["Bayern"] = g.paletteBayern
 		}
+		screen := g.maybeAcquireOffscreen(maybeScreen)
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.paletteShader, options)
+		if tmp == nil {
+			offscreen.Dispose(paletteOffscreen)
+		}
+		return screen
 	}
 }
 
-func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.Image) {
-	drawDest, finishDrawing := g.palettePrepare(screen)
+func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *ebiten.Image, tmp *ebiten.Image) *ebiten.Image {
+	drawDest, finishDrawing := g.palettePrepare(maybeScreen, tmp)
 
 	sw, sh := drawDest.Size()
 	if sw != engine.GameWidth || sh != engine.GameHeight {
 		log.Infof("skipping frame as sizes do not match up: got %vx%v, want %vx%v",
 			sw, sh, engine.GameWidth, engine.GameHeight)
-		finishDrawing()
+		screen := finishDrawing()
 		to <- screen
-		return
+		return screen
 	}
 
 	timing.Section("fontcache")
@@ -381,9 +400,9 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 				Y: y,
 			}, true, fg, ol)
 		}
-		finishDrawing()
+		screen := finishDrawing()
 		to <- screen
-		return
+		return screen
 	}
 
 	timing.Section("world")
@@ -415,30 +434,42 @@ func (g *Game) drawAtGameSizeThenReturnTo(screen *ebiten.Image, to chan *ebiten.
 	demo.PostDraw(drawDest)
 
 	timing.Section("dump")
-	finishDrawing()
+	screen := finishDrawing()
 	dump.ProcessFrameThenReturnTo(screen, to, g.framesToDump)
 	g.framesToDump = 0
 
 	// Once this has run, we can start fading in music.
 	music.Enable()
+
+	return screen
 }
 
-func (g *Game) drawOffscreen() *ebiten.Image {
-	if g.offScreens == nil {
+func (g *Game) maybeAcquireOffscreen(screen *ebiten.Image) *ebiten.Image {
+	if screen != nil {
+		return screen
+	}
+	i := <-g.offscreenTokens
+	offscreen := offscreen.NewExplicit(fmt.Sprintf("Offscreen.%d", i), engine.GameWidth, engine.GameHeight)
+	g.offscreenIndexes[offscreen] = i
+	return offscreen
+}
+
+func (g *Game) drawOffscreen(tmp *ebiten.Image) *ebiten.Image {
+	if g.offscreenTokens == nil {
 		n := 1
 		if dump.Active() {
 			// When dumping, cycle between two offscreen images so we can dump in the background thread.
 			n = 2
 		}
-		g.offScreens = make(chan *ebiten.Image, n)
+		g.offscreenTokens = make(chan int, n)
 		for i := 0; i < n; i++ {
-			g.offScreens <- ebiten.NewImage(engine.GameWidth, engine.GameHeight)
+			g.offscreenTokens <- i
 		}
+		g.offscreenReturns = make(chan *ebiten.Image, n)
 	}
-	offScreen := <-g.offScreens
-	g.drawAtGameSizeThenReturnTo(offScreen, g.offScreens)
+	offscreen := g.drawAtGameSizeThenReturnTo(nil, g.offscreenReturns, tmp)
 	// Note: following code of the draw code may still use the image, but that's OK as long as drawOffscreen() isn't called again.
-	return offScreen
+	return offscreen
 }
 
 func (g *Game) setOffscreenGeoM(screen *ebiten.Image, geoM *ebiten.GeoM, w, h int) {
@@ -480,17 +511,40 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	timing.Section("draw")
 	defer timing.Group()()
 
+DoneDisposing:
+	for {
+		select {
+		case off := <-g.offscreenReturns:
+			offscreen.Dispose(off)
+			g.offscreenTokens <- g.offscreenIndexes[off]
+			delete(g.offscreenIndexes, off)
+		default:
+			break DoneDisposing
+		}
+	}
+	offscreen.Collect()
+
 	if !*debugEnableDrawing {
 		return
 	}
 
 	if !dump.Active() && IsBuiltinFilter() {
 		// No offscreen needed. Just render.
-		g.drawAtGameSizeThenReturnTo(screen, make(chan *ebiten.Image, 1))
+		g.drawAtGameSizeThenReturnTo(screen, make(chan *ebiten.Image, 1), nil)
 		return
 	}
 
-	srcImage := g.drawOffscreen()
+	var tmp *ebiten.Image
+	if !offscreen.AvoidReuse() {
+		w, h := screen.Size()
+		if w >= engine.GameWidth && h >= engine.GameHeight {
+			tmp = screen.SubImage(go_image.Rectangle{
+				Min: go_image.Point{X: 0, Y: 0},
+				Max: go_image.Point{X: engine.GameWidth, Y: engine.GameHeight},
+			}).(*ebiten.Image)
+		}
+	}
+	srcImage := g.drawOffscreen(tmp)
 
 	switch {
 	case IsBuiltinFilter():

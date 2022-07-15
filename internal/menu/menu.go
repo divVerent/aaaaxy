@@ -27,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/music"
+	"github.com/divVerent/aaaaxy/internal/offscreen"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/sound"
 	"github.com/divVerent/aaaaxy/internal/timing"
@@ -52,7 +53,6 @@ type Controller struct {
 	initialized   bool
 	World         engine.World
 	Screen        MenuScreen
-	blurImage     *ebiten.Image
 	moveSound     *sound.Sound
 	activateSound *sound.Sound
 	blurFrame     int
@@ -68,7 +68,6 @@ func (c *Controller) Update() error {
 		if err != nil {
 			return err
 		}
-		c.blurImage = ebiten.NewImage(engine.GameWidth, engine.GameHeight)
 		c.moveSound, err = sound.Load("menu_move.ogg")
 		if err != nil {
 			return err
@@ -151,12 +150,19 @@ func (c *Controller) Draw(screen *ebiten.Image) {
 }
 
 func (c *Controller) DrawWorld(screen *ebiten.Image) {
-	c.World.Draw(screen)
+	dest := screen
+	if offscreen.AvoidReuse() && c.Screen != nil {
+		dest = offscreen.New("GameUnblurred", engine.GameWidth, engine.GameHeight)
+	}
+	c.World.Draw(dest)
 	if c.Screen != nil {
 		// If a menu screen is active, just draw the previous saved bitmap, but blur it.
 		f := float64(c.blurFrame) / blurFrames
 		darken := darkenFactor*f + 1.0*(1-f)
-		engine.BlurImage(screen, c.blurImage, screen, blurSize, darken, 0.0, f)
+		engine.BlurImage("BlurGame", dest, screen, blurSize, darken, 0.0, f)
+		if offscreen.AvoidReuse() {
+			offscreen.Dispose(dest)
+		}
 	}
 }
 
