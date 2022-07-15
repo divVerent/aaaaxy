@@ -47,7 +47,7 @@ func (f Face) BoundString(str string) m.Rect {
 func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color) {
 	switch dst := dst.(type) {
 	case *ebiten.Image:
-		// Use ebiten's glyph cache.
+		// Use Ebitengine's glyph cache.
 		text.Draw(dst, line, f, x, y, fg)
 	default:
 		// No glyph cache.
@@ -64,7 +64,7 @@ func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color
 // Draw draws the given text.
 func (f Face) Draw(dst draw.Image, str string, pos m.Pos, centerX bool, fg, bg color.Color) {
 	// We need to do our own line splitting because
-	// we always want to center and ebiten would left adjust.
+	// we always want to center and Ebitengine would left adjust.
 	var totalBounds m.Rect
 	if !centerX {
 		totalBounds = f.BoundString(str)

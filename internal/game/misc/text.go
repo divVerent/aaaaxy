@@ -97,7 +97,7 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 		useMemImages = *memImagesForDynamicText
 	}
 	if useMemImages {
-		img := image.NewRGBA( // image.RGBA is ebiten's fast path.
+		img := image.NewRGBA( // image.RGBA is Ebitengine's fast path.
 			image.Rectangle{
 				Min: image.Point{
 					X: 0,
@@ -120,6 +120,8 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 
 func ClearPrecache() {
 	/*
+		// Can't dispose them right away, as the images are still referenced.
+		// Instead, the GC will eventually do this.
 		for _, img := range textCache {
 			img.Dispose()
 		}

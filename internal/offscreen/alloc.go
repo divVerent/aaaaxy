@@ -39,7 +39,7 @@ func AvoidReuse() bool {
 }
 
 func id(img *ebiten.Image) (id int64) {
-	// Note: this uses Ebiten internals. This is expected to break on internal API changes.
+	// Note: this uses Ebitengine internals. This is expected to break on internal API changes.
 	// Only used when *debugOffscreen or *debugOffscreenEvents is set.
 	defer func() {
 		r := recover()

@@ -83,7 +83,7 @@ func setWindowSize() {
 		physicalF = 1
 	}
 	log.Infof("chosen physical scale factor: %v", physicalF)
-	// Convert back to logical scale factor as ebiten needs that.
+	// Convert back to logical scale factor as Ebitengine needs that.
 	logicalF = physicalF / dscale
 	log.Infof("chosen logical pixel scale factor: %v", logicalF)
 	w, h := m.Rint(engine.GameWidth*logicalF), m.Rint(engine.GameHeight*logicalF)
@@ -91,7 +91,7 @@ func setWindowSize() {
 	ebiten.SetWindowSize(w, h)
 }
 
-func (g *Game) InitEbiten() error {
+func (g *Game) InitEbitengine() error {
 	// Ensure fps divisor is valid. We can only do integer TPS.
 	if *fpsDivisor < 1 || engine.GameTPS%*fpsDivisor != 0 {
 		*fpsDivisor = 1

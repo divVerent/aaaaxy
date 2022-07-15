@@ -90,7 +90,7 @@ func main() {
 	defer log.CloseLogFile()
 
 	game := aaaaxy.NewGame()
-	err := game.InitEbiten()
+	err := game.InitEbitengine()
 	if err != nil {
 		if errors.Is(err, exitstatus.RegularTermination) {
 			return

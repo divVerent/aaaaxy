@@ -238,7 +238,7 @@ func gamepadInit() {
 	semiRE := regexp.MustCompile(`\s*;\s*`)
 
 	// Support an included gamecontrollerdb.txt override.
-	// Doing this because Ebiten's lags behind.
+	// Doing this because Ebitengine's lags behind.
 	mappings, err := readBuiltinGamepadMappings()
 	applyAndLogGameControllerDb(mappings, err, "included gamepad mappings")
 

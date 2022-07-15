@@ -18,7 +18,7 @@ set -e
 root=$PWD
 out=$1; shift
 
-# Load largest images first to optimize the BSP-based atlas ebiten generates.
+# Load largest images first to optimize the BSP-based atlas Ebitengine generates.
 trap 'rm -f "$out"' EXIT
 for dir in "$@"; do
 	for img in "$dir"/*.png; do

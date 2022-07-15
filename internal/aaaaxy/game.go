@@ -549,7 +549,7 @@ DoneDisposing:
 	switch {
 	case IsBuiltinFilter():
 		// We're dumping, so we NEED an offscreen.
-		// This is actually just like "nearest", except that to ebiten we have a game-sized and not screen-sized screen.
+		// This is actually just like "nearest", except that to Ebitengine we have a game-sized and not screen-sized screen.
 		// So we can use an identity matrix and need not clear the screen.
 		options := &ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
