@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8252">
+<map version="1.5" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8252">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -614,8 +614,8 @@
   </object>
   <object id="53" name="leap_of_faith" type="Checkpoint" x="4544" y="3888" width="32" height="176">
    <properties>
-    <property name="hub" type="bool" value="true"/>
     <property name="first" type="bool" value="true"/>
+    <property name="hub" type="bool" value="true"/>
     <property name="music" value="retro_chiptune_1.ogg"/>
     <property name="next_left" type="object" value="66"/>
     <property name="next_right" type="object" value="281"/>
@@ -7428,20 +7428,20 @@
   </object>
   <object id="2277" gid="318" x="5392" y="6896" width="64" height="64">
    <properties>
-    <property name="map_black_to" type="string" value="#00ff00ff!"/>
-    <property name="map_white_to" type="string" value="#ffff00ff!"/>
+    <property name="map_black_to" value="#00ff00ff!"/>
+    <property name="map_white_to" value="#ffff00ff!"/>
    </properties>
   </object>
   <object id="2278" gid="318" x="5648" y="6896" width="64" height="64">
    <properties>
-    <property name="map_black_to" type="string" value="#0000ffff!"/>
-    <property name="map_white_to" type="string" value="#ff00ffff!"/>
+    <property name="map_black_to" value="#0000ffff!"/>
+    <property name="map_white_to" value="#ff00ffff!"/>
    </properties>
   </object>
   <object id="2279" gid="318" x="5904" y="6896" width="64" height="64">
    <properties>
-    <property name="map_black_to" type="string" value="#00ffff00!"/>
-    <property name="map_white_to" type="string" value="#ffffff00!"/>
+    <property name="map_black_to" value="#00ffff00!"/>
+    <property name="map_white_to" value="#ffffff00!"/>
    </properties>
   </object>
   <object id="2280" name="CanCarryWarp" gid="295" x="528" y="416" width="48" height="16"/>
