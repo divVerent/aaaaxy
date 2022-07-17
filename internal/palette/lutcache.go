@@ -18,12 +18,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"image"
-	"math"
 	"os"
 
-	"github.com/hajimehoshi/ebiten/v2"
-
-	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/screenshot"
@@ -31,8 +27,7 @@ import (
 )
 
 var (
-	dumpPaletteLUTsPrefix = flag.String("dump_palette_luts_prefix", "", "file name prefix to dump all palette LUT textures to; the game will then exit")
-	paletteMaxCycles      = flag.Float64("palette_max_cycles", 640*360*256*4, "maximum number of cycles to spend on palette generation; only applies if there is no cached palette file in the game")
+	paletteMaxCycles = flag.Float64("palette_max_cycles", 640*360*256*4, "maximum number of cycles to spend on palette generation; only applies if there is no cached palette file in the game")
 )
 
 type lutMeta struct {
@@ -41,52 +36,52 @@ type lutMeta struct {
 	Width  int `json:"width"`
 }
 
-func Init(w, h int) error {
-	if *dumpPaletteLUTsPrefix != "" {
-		for numLUTs := 1; numLUTs <= 2; numLUTs++ {
-			for name, p := range data {
-				bounds := image.Rectangle{
-					Min: image.Point{},
-					Max: image.Point{X: w, Y: h},
-				}
-				img, size, perRow, width := p.computeLUT(bounds, numLUTs, math.Inf(+1))
-				name := fmt.Sprintf("%s%s_%d.png", *dumpPaletteLUTsPrefix, name, numLUTs)
-				log.Infof("saving %s (colors=%d size=%d perRow=%d width=%d)...", name, p.size, size, perRow, width)
-				err := screenshot.Write(img, name)
-				if err != nil {
-					return err
-				}
-				meta := lutMeta{
-					Size:   size,
-					PerRow: perRow,
-					Width:  width,
-				}
-				metaName := name + ".json"
-				f, err := os.Create(metaName)
-				if err != nil {
-					return err
-				}
-				j := json.NewEncoder(f)
-				j.SetIndent("", "\t")
-				err = j.Encode(meta)
-				if err != nil {
-					return err
-				}
-				err = f.Close()
-				if err != nil {
-					return err
-				}
+func SaveCachedLUTs(w, h int, dir string) error {
+	for numLUTs := 1; numLUTs <= 2; numLUTs++ {
+		for name, p := range data {
+			bounds := image.Rectangle{
+				Min: image.Point{},
+				Max: image.Point{X: w, Y: h},
+			}
+			img, size, perRow, width := p.computeLUT(bounds, numLUTs, *paletteMaxCycles)
+			name := fmt.Sprintf("%s/lut_%s_%d.png", dir, name, numLUTs)
+			log.Infof("saving %s (colors=%d size=%d perRow=%d width=%d)...", name, p.size, size, perRow, width)
+			err := screenshot.Write(img, name)
+			if err != nil {
+				return err
+			}
+			meta := lutMeta{
+				Size:   size,
+				PerRow: perRow,
+				Width:  width,
+			}
+			metaName := name + ".json"
+			f, err := os.Create(metaName)
+			if err != nil {
+				return err
+			}
+			j := json.NewEncoder(f)
+			j.SetIndent("", "\t")
+			err = j.Encode(meta)
+			if err != nil {
+				return err
+			}
+			err = f.Close()
+			if err != nil {
+				return err
 			}
 		}
-		log.Errorf("requested a palette LUT dump - not running the game")
-		return exitstatus.RegularTermination
 	}
+	return nil
+}
+
+func Init(w, h int) error {
 	return nil
 }
 
 func (p *Palette) loadLUT(numLUTs int) (image.Image, int, int, int, error) {
 	name := fmt.Sprintf("lut_%s_%d.png", p.name, numLUTs)
-	data, err := vfs.Load("palettes", name)
+	data, err := vfs.Load("generated", name)
 	if err != nil {
 		return nil, 0, 0, 0, fmt.Errorf("could not open %v: %w", name, err)
 	}
@@ -97,7 +92,7 @@ func (p *Palette) loadLUT(numLUTs int) (image.Image, int, int, int, error) {
 	}
 	var meta lutMeta
 	metaName := name + ".json"
-	j, err := vfs.Load("palettes", metaName)
+	j, err := vfs.Load("generated", metaName)
 	if err != nil {
 		return nil, 0, 0, 0, fmt.Errorf("could not open %v: %w", metaName, err)
 	}
@@ -109,16 +104,11 @@ func (p *Palette) loadLUT(numLUTs int) (image.Image, int, int, int, error) {
 	return img, meta.Size, meta.PerRow, meta.Width, nil
 }
 
-func (p *Palette) ToLUT(numLUTs int, img *ebiten.Image) (int, int, int) {
+func (p *Palette) ToLUT(bounds image.Rectangle, numLUTs int) (image.Image, int, int, int) {
 	lut, lutSize, perRow, lutWidth, err := p.loadLUT(numLUTs)
 	if err != nil {
 		log.Warningf("cached palette data not found, generating at runtime: %v", err)
-		lut, lutSize, perRow, lutWidth = p.computeLUT(img.Bounds(), numLUTs, *paletteMaxCycles)
+		lut, lutSize, perRow, lutWidth = p.computeLUT(bounds, numLUTs, *paletteMaxCycles)
 	}
-	if nrgba, ok := lut.(*image.NRGBA); ok {
-		img.SubImage(nrgba.Rect).(*ebiten.Image).ReplacePixels(nrgba.Pix)
-	} else {
-		log.Fatalf("expecting a NRGBA LUT, got %T", img)
-	}
-	return lutSize, perRow, lutWidth
+	return lut, lutSize, perRow, lutWidth
 }

@@ -311,11 +311,17 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 
 	// Need a LUT?
 	if g.palette != pal {
+		var lut go_image.Image
 		switch ditherMode {
 		case bayerDither, halftoneDither, randomDither, plasticDither:
-			g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(1, g.paletteLUT)
+			lut, g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(g.paletteLUT.Bounds(), 1)
 		case bayer2Dither, halftone2Dither, random2Dither, plastic2Dither:
-			g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(2, g.paletteLUT)
+			lut, g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(g.paletteLUT.Bounds(), 2)
+		}
+		if nrgba, ok := lut.(*go_image.NRGBA); ok {
+			g.paletteLUT.SubImage(nrgba.Rect).(*ebiten.Image).ReplacePixels(nrgba.Pix)
+		} else {
+			log.Fatalf("palette LUT isn't NRGBA, got %T, please fix game data", lut)
 		}
 		switch ditherMode {
 		case bayerDither, bayer2Dither:

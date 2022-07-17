@@ -41,6 +41,13 @@ if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 	if [ x"$AAAAXY_DIFF_ASSETS" != x'false' ]; then
 		diff -u assets/_saved/image_load_order.txt assets/generated/image_load_order.txt
 	fi
+
+	${GO} run ${GO_FLAGS} github.com/divVerent/aaaaxy/cmd/dumpluts --palette_max_cycles=inf
+	if [ x"$AAAAXY_DIFF_ASSETS" != x'false' ]; then
+		for f in assets/_saved/lut_*.png; do
+			diff "$f" assets/generated/"${f##*/}"
+		done
+	fi
 else
 	cp assets/_saved/* assets/generated/
 fi

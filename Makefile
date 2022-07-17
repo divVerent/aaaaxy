@@ -94,18 +94,21 @@ mod-update:
 
 .PHONY: assets-update
 assets-update:
+	AAAAXY_GENERATE_ASSETS=true AAAAXY_DIFF_ASSETS=false sh -x scripts/build-generated-assets.sh
+	cp assets/generated/image_load_order.txt assets/_saved/
+	cp assets/generated/lut_*.png            assets/_saved/
+
+.PHONY: assets-update-all
+assets-update-all:
 	AAAAXY_GENERATE_ASSETS=true AAAAXY_FORCE_GENERATE_ASSETS=true AAAAXY_DIFF_ASSETS=false sh -x scripts/build-generated-assets.sh
 	cp assets/generated/image_load_order.txt assets/_saved/
 	cp assets/generated/level.cp.json        assets/_saved/
+	cp assets/generated/lut_*.png            assets/_saved/
 
 # These are not in assets-update as graphics are required for these.
 .PHONY: loading-fractions-update
 loading-fractions-update: $(BINARY)
 	./$(BINARY) -dump_loading_fractions=assets/splash/loading_fractions.json -debug_just_init -debug_enable_drawing=false -vsync=true
-
-.PHONY: palette-luts-update
-palette-luts-update: $(BINARY)
-	./$(BINARY) -dump_palette_luts_prefix=assets/palettes/lut_
 
 # The actual build process follows.
 
