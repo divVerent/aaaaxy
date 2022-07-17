@@ -831,8 +831,8 @@ var data = map[string]*Palette{
 	// MSX palette.
 	// See https://www.msx.org/wiki/COLOR%3D.
 	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
-	// Not mapped: dark grey.
-	"msx": newPalette([]int{0, 3, 10, 1, 9, 4, 11, 12, 13, 6, 14, 2, 5, 7, 15}, []uint32{
+	// Not mapped: dark grey, brown.
+	"msx": newPalette([]int{0, 3, 10, 1, 9, 4, 11, 12, 13, 14, 2, 5, 7, 15}, []uint32{
 		0x000000, // Black.
 		0x24DB24, // Cyan (actually green).
 		0x6DFF6D, // Light green.
@@ -842,12 +842,12 @@ var data = map[string]*Palette{
 		0x49DBFF, // Light cyan.
 		0xFF2424, // Light red.
 		0xFF6D6D, // Light pink (actually rose).
-		0xDBDB24, // Brown (actually dark yellow).
-		0xDBDB92, // Yellow.
+		0xDBDB24, // Yellow.
 		0x249224, // Green.
 		0xDB49B6, // Magenta.
 		0xB6B6B6, // Light grey.
 		0xFFFFFF, // White.
+		0xDBDB92, // Even brighter yellow. Unmapped.
 	}),
 
 	// C64 palette.
