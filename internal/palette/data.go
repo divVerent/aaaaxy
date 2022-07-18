@@ -18,6 +18,8 @@ package palette
 var data = map[string]*Palette{
 	// This list should be kept in sync with the list in internal/menu/settings.go.
 
+	// IBM PC graphics adaptors.
+
 	// Monochrome.
 	"mono": newPalette([]int{0, 15}, []uint32{
 		0x000000,
@@ -141,8 +143,6 @@ var data = map[string]*Palette{
 	// The original IBM EGA palette.
 	"ega": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, egaColors[:]),
 
-	// Palettes NOT in the menu follow here.
-
 	// EGA but only the colors 0 to 7.
 	"egalow": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7}, []uint32{
 		0x000000,
@@ -160,102 +160,6 @@ var data = map[string]*Palette{
 		0x000000,
 		0xAAAAAA,
 		0xFFFFFF,
-	}),
-
-	// XTerm's ANSI palette.
-	"xterm": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
-		0x000000,
-		0x000080,
-		0x008000,
-		0x008080,
-		0x800000,
-		0x800080,
-		0x808000,
-		0xC0C0C0,
-		0x808080,
-		0x0000FF,
-		0x00FF00,
-		0x00FFFF,
-		0xFF0000,
-		0xFF00FF,
-		0xFFFF00,
-		0xFFFFFF,
-	}),
-
-	// My favorite ANSI palette variant. Good color contrast.
-	// General rule: greys like EGA, but other colors are all
-	// of form:
-	// - one FF two 00 (color cube corner)
-	// - two 80 one 00 (color cube side midpoint)
-	// - two 80 one FF (color cube side midpoint)
-	// - one 00 two FF (color cube corner)
-	"div0": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
-		0x000000,
-		0x0000FF,
-		0x00FF00,
-		0x008080,
-		0xFF0000,
-		0x800080,
-		0x808000,
-		0xAAAAAA,
-		0x555555,
-		0x8080FF,
-		0x80FF80,
-		0x00FFFF,
-		0xFF8080,
-		0xFF00FF,
-		0xFFFF00,
-		0xFFFFFF,
-	}),
-
-	// Atari ST default palette.
-	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
-	"atarist": newPalette([]int{15, 0, 12, 10, 9, 1, 4, 2, 7, 8, 11, 3, 13, 5, 14, 6}, []uint32{
-		0xFFFFFF,
-		0x000000,
-		0xFF0000,
-		0x00FF00,
-		0x0000FF,
-		0x000092,
-		0x924900,
-		0x009200,
-		0xB6B6B6,
-		0x494949,
-		0x00FFFF,
-		0x009292,
-		0xFF00FF,
-		0x920092,
-		0xFFFF00,
-		0x929200,
-	}),
-
-	// Atari ST 4 colors default palette.
-	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
-	"atarist4": newPalette([]int{15, 0, 12, 10}, []uint32{
-		0xFFFFFF,
-		0x000000,
-		0xFF0000,
-		0x00FF00,
-	}),
-
-	// Macintosh II palette. Lacks dark tones of blue and cyan.
-	"macii": newPalette([]int{15, 14, 12, 13, 5, 9, 11, 10, 2, 4, 6, 7, 8, 0}, []uint32{
-		0xFFFFFF, // White.
-		0xFBF305, // Yellow.
-		0xDD0907, // Light red.
-		0xF20884, // Light magenta.
-		0x4700A5, // Purple. Using as magenta.
-		0x0000D3, // Light blue.
-		0x02ABEA, // Light cyan.
-		0x1FB714, // Light green.
-		0x006412, // Green.
-		0x562C05, // Brown. Using as red.
-		0x90713A, // Tan. Using as brown.
-		0xC0C0C0, // Light grey.
-		0x404040, // Dark grey.
-		0x000000, // Black.
-		0xFF6403, // Orange. Unmapped.
-		0x808080, // Grey. Unmapped.
 	}),
 
 	// The original IBM VGA palette, with colors too close to EGA colors commented out.
@@ -531,6 +435,276 @@ var data = map[string]*Palette{
 		// Also have sixths between light and dark grey.
 		midpoints(egaColors[7:8], egaColors[8:9], []uint32{1, 2, 3, 4, 5}, 6)...),
 		63)),
+
+	// Other home computers.
+
+	// Atari ST default palette.
+	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
+	"atarist": newPalette([]int{15, 0, 12, 10, 9, 1, 4, 2, 7, 8, 11, 3, 13, 5, 14, 6}, []uint32{
+		0xFFFFFF,
+		0x000000,
+		0xFF0000,
+		0x00FF00,
+		0x0000FF,
+		0x000092,
+		0x924900,
+		0x009200,
+		0xB6B6B6,
+		0x494949,
+		0x00FFFF,
+		0x009292,
+		0xFF00FF,
+		0x920092,
+		0xFFFF00,
+		0x929200,
+	}),
+
+	// Atari ST 4 colors default palette.
+	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
+	"atarist4": newPalette([]int{15, 0, 12, 10}, []uint32{
+		0xFFFFFF,
+		0x000000,
+		0xFF0000,
+		0x00FF00,
+	}),
+
+	// C64 palette.
+	// NOT protecting "orange" and one of the greys (listed at the end).
+	// Lacking equivalents of EGA bright cyan and bright pink.
+	// However, as this game uses the bright colors more than the dark colors,
+	// decided to map the bright colors to the C64 colors, noted below.
+	"c64": newPalette([]int{0, 15, 4, 11, 13, 2, 1, 14, 6, 12, 8, 7, 10, 9}, []uint32{
+		0x000000, // Black.
+		0xFFFFFF, // White.
+		0x883932, // Normal red.
+		0x67B6BD, // Normal cyan mapped as bright.
+		0x8B3F96, // Normal pink mapped as bright.
+		0x55A049, // Normal green.
+		0x40318D, // Normal blue.
+		0xBFCE72, // Yellow.
+		0x574200, // Normal brown.
+		0xB86962, // Bright red.
+		0x505050, // Dark grey.
+		0x9F9F9F, // Bright grey.
+		0x94E089, // Bright green.
+		0x7869C4, // Bright blue.
+		0x787878, // 50% grey. Unmapped.
+		0x8B5429, // Orange. Unmapped.
+	}),
+
+	// Macintosh II palette. Lacks dark tones of blue and cyan.
+	"macii": newPalette([]int{15, 14, 12, 13, 5, 9, 11, 10, 2, 4, 6, 7, 8, 0}, []uint32{
+		0xFFFFFF, // White.
+		0xFBF305, // Yellow.
+		0xDD0907, // Light red.
+		0xF20884, // Light magenta.
+		0x4700A5, // Purple. Using as magenta.
+		0x0000D3, // Light blue.
+		0x02ABEA, // Light cyan.
+		0x1FB714, // Light green.
+		0x006412, // Green.
+		0x562C05, // Brown. Using as red.
+		0x90713A, // Tan. Using as brown.
+		0xC0C0C0, // Light grey.
+		0x404040, // Dark grey.
+		0x000000, // Black.
+		0xFF6403, // Orange. Unmapped.
+		0x808080, // Grey. Unmapped.
+	}),
+
+	// MSX palette.
+	// See https://www.msx.org/wiki/COLOR%3D.
+	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
+	// Not mapped: dark grey, brown.
+	"msx": newPalette([]int{0, 3, 10, 1, 9, 4, 11, 12, 13, 14, 2, 5, 7, 15}, []uint32{
+		0x000000, // Black.
+		0x24DB24, // Cyan (actually green).
+		0x6DFF6D, // Light green.
+		0x2424FF, // Blue.
+		0x496DFF, // Light blue.
+		0xB62424, // Red.
+		0x49DBFF, // Light cyan.
+		0xFF2424, // Light red.
+		0xFF6D6D, // Light pink (actually rose).
+		0xDBDB24, // Yellow.
+		0x249224, // Green.
+		0xDB49B6, // Magenta.
+		0xB6B6B6, // Light grey.
+		0xFFFFFF, // White.
+		0xDBDB92, // Even brighter yellow. Unmapped.
+	}),
+
+	// Game consoles.
+
+	// Gameboy?
+	"gb": newPalette([]int{0, 8, 7, 15}, []uint32{
+		0x081820,
+		0x346856,
+		0x88C070,
+		0xE0F8D0,
+	}),
+
+	// Intellivision palette. Very creatively mapped as the missing colors are important for this game.
+	"intellivision": newPalette([]int{0, 1, 4, 6, 2, 3, 14, 15, 7, 11, 12, 8, 13, 9, 10, 5}, []uint32{
+		0x0C0005, // Black.
+		0x002DFF, // Blue.
+		0xFF3E00, // Red.
+		0xC9D464, // Brown.
+		0x00780F, // Green.
+		0x00A720, // Cyan.
+		0xFAEA27, // Yellow.
+		0xFFFCFF, // White.
+		0xA7A8A8, // Light grey.
+		0x5ACBFF, // Light cyan.
+		0xFFA600, // Light red.
+		0x3C5800, // Dark grey.
+		0xFF3276, // Light magenta.
+		0xBD95FF, // Light blue.
+		0x6CCD30, // Light green.
+		0xC81A7D, // Magenta.
+	}),
+
+	// Same as "smb" but with all missing colors added.
+	"nes": newPalette([]int{9, 10, 5, 2, 14, 0, 6, 13, 12, 15, 4, 1, 3, 7, 8, 11}, append([]uint32{
+		nesColors[0x22], // Light blue.
+		nesColors[0x29], // Light green.
+		nesColors[0x16], // Magenta
+		nesColors[0x1A], // Green.
+		nesColors[0x27], // Yellow.
+		nesColors[0x0F], // Black.
+		nesColors[0x18], // Brown.
+		nesColors[0x36], // Light magenta.
+		nesColors[0x17], // Light red.
+		nesColors[0x30], // White.
+		nesColors[0x07], // Red.
+
+		// Other colors to fill up the ANSI palette.
+		nesColors[0x02], // Blue.
+		nesColors[0x11], // Cyan.
+		nesColors[0x10], // Light grey.
+		nesColors[0x00], // Dark grey.
+		nesColors[0x31], // Light cyan.
+	}, nesColors[:]...)),
+
+	// Color cubes.
+
+	// 2x2x2 color cube. Just eight pure colors.
+	// Dither everywhere.
+	"2x2x2": newPalette([]int{0, 9, 10, 11, 12, 13, 14, 15}, colorCube(2, 2, 2)),
+
+	// 3x3x3 color cube, almost a superset of div0.
+	// Almost no dither.
+	// Lacks light grey as only color.
+	"3x3x3": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15}, append([]uint32{
+		0x000000,
+		0x0000FF,
+		0x00FF00,
+		0x008080,
+		0xFF0000,
+		0x800080,
+		0x808000,
+		0x808080,
+		0x8080FF,
+		0x80FF80,
+		0x00FFFF,
+		0xFF8080,
+		0xFF00FF,
+		0xFFFF00,
+		0xFFFFFF,
+	}, colorCube(3, 3, 3)...)),
+
+	// 4x4x4 color cube.
+	// Strict superset of EGA, so not a lot of dither.
+	"4x4x4": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, append(append([]uint32{}, egaColors[:]...), colorCube(4, 4, 4)...)),
+
+	// Web safe 216 colors palette, actually a 6x6x6 color cube.
+	// Dither everywhere.
+	"web": newPalette(nil, colorCube(6, 6, 6)),
+
+	// 7x7x4 color "cube". Cleanest colors at 256c.
+	// Minimal dither.
+	"7x7x4": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, append(append([]uint32{}, egaColors[:]...), colorCube(7, 7, 4)...)),
+
+	// 8x8x4 color "cube". Most colors at 256c, but not clean.
+	// Palette used by Rebounce2.
+	// Dither everywhere.
+	"8x8x4": newPalette([]int{0, 1, 14, 15}, append([]uint32{
+		0x000000,
+		0x0000AA,
+		0xFFFF55,
+		0xFFFFFF,
+	}, colorCube(8, 8, 4)...)),
+
+	// Low color count.
+
+	// Just cyan, magenta, yellow, black and white BG. Like an inkjet.
+	// Dither everywhere.
+	"cmyk": newPalette([]int{0, 11, 13, 14, 15}, []uint32{
+		0x000000,
+		0x00FFFF,
+		0xFF00FF,
+		0xFFFF00,
+		0xFFFFFF,
+	}),
+
+	// Just red, green, blue and black BG. Yes, not even white.
+	// Dither everywhere.
+	"rgb": newPalette([]int{0, 9, 10, 12}, []uint32{
+		0x000000,
+		0x0000FF,
+		0x00FF00,
+		0xFF0000,
+	}),
+
+	// ANSI terminals.
+
+	// My favorite ANSI palette variant. Good color contrast.
+	// General rule: greys like EGA, but other colors are all
+	// of form:
+	// - one FF two 00 (color cube corner)
+	// - two 80 one 00 (color cube side midpoint)
+	// - two 80 one FF (color cube side midpoint)
+	// - one 00 two FF (color cube corner)
+	"div0": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
+		0x000000,
+		0x0000FF,
+		0x00FF00,
+		0x008080,
+		0xFF0000,
+		0x800080,
+		0x808000,
+		0xAAAAAA,
+		0x555555,
+		0x8080FF,
+		0x80FF80,
+		0x00FFFF,
+		0xFF8080,
+		0xFF00FF,
+		0xFFFF00,
+		0xFFFFFF,
+	}),
+
+	// XTerm's ANSI palette.
+	"xterm": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
+		0x000000,
+		0x000080,
+		0x008000,
+		0x008080,
+		0x800000,
+		0x800080,
+		0x808000,
+		0xC0C0C0,
+		0x808080,
+		0x0000FF,
+		0x00FF00,
+		0x00FFFF,
+		0xFF0000,
+		0xFF00FF,
+		0xFFFF00,
+		0xFFFFFF,
+	}),
+
+	// Other games.
 
 	// Quake's palette. Has been put in the public domain by John Carmack.
 	"quake": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
@@ -810,167 +984,7 @@ var data = map[string]*Palette{
 		nesColors[0x21], // Light cyan. Not mapped because it's too close to 0x22.
 	}),
 
-	// Same as "smb" but with all missing colors added.
-	"nes": newPalette([]int{9, 10, 5, 2, 14, 0, 6, 13, 12, 15, 4, 1, 3, 7, 8, 11}, append([]uint32{
-		nesColors[0x22], // Light blue.
-		nesColors[0x29], // Light green.
-		nesColors[0x16], // Magenta
-		nesColors[0x1A], // Green.
-		nesColors[0x27], // Yellow.
-		nesColors[0x0F], // Black.
-		nesColors[0x18], // Brown.
-		nesColors[0x36], // Light magenta.
-		nesColors[0x17], // Light red.
-		nesColors[0x30], // White.
-		nesColors[0x07], // Red.
-
-		// Other colors to fill up the ANSI palette.
-		nesColors[0x02], // Blue.
-		nesColors[0x11], // Cyan.
-		nesColors[0x10], // Light grey.
-		nesColors[0x00], // Dark grey.
-		nesColors[0x31], // Light cyan.
-	}, nesColors[:]...)),
-
-	// Gameboy?
-	"gb": newPalette([]int{0, 8, 7, 15}, []uint32{
-		0x081820,
-		0x346856,
-		0x88C070,
-		0xE0F8D0,
-	}),
-
-	// MSX palette.
-	// See https://www.msx.org/wiki/COLOR%3D.
-	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
-	// Not mapped: dark grey, brown.
-	"msx": newPalette([]int{0, 3, 10, 1, 9, 4, 11, 12, 13, 14, 2, 5, 7, 15}, []uint32{
-		0x000000, // Black.
-		0x24DB24, // Cyan (actually green).
-		0x6DFF6D, // Light green.
-		0x2424FF, // Blue.
-		0x496DFF, // Light blue.
-		0xB62424, // Red.
-		0x49DBFF, // Light cyan.
-		0xFF2424, // Light red.
-		0xFF6D6D, // Light pink (actually rose).
-		0xDBDB24, // Yellow.
-		0x249224, // Green.
-		0xDB49B6, // Magenta.
-		0xB6B6B6, // Light grey.
-		0xFFFFFF, // White.
-		0xDBDB92, // Even brighter yellow. Unmapped.
-	}),
-
-	// C64 palette.
-	// NOT protecting "orange" and one of the greys (listed at the end).
-	// Lacking equivalents of EGA bright cyan and bright pink.
-	// However, as this game uses the bright colors more than the dark colors,
-	// decided to map the bright colors to the C64 colors, noted below.
-	"c64": newPalette([]int{0, 15, 4, 11, 13, 2, 1, 14, 6, 12, 8, 7, 10, 9}, []uint32{
-		0x000000, // Black.
-		0xFFFFFF, // White.
-		0x883932, // Normal red.
-		0x67B6BD, // Normal cyan mapped as bright.
-		0x8B3F96, // Normal pink mapped as bright.
-		0x55A049, // Normal green.
-		0x40318D, // Normal blue.
-		0xBFCE72, // Yellow.
-		0x574200, // Normal brown.
-		0xB86962, // Bright red.
-		0x505050, // Dark grey.
-		0x9F9F9F, // Bright grey.
-		0x94E089, // Bright green.
-		0x7869C4, // Bright blue.
-		0x787878, // 50% grey. Unmapped.
-		0x8B5429, // Orange. Unmapped.
-	}),
-
-	// Intellivision palette. Very creatively mapped as the missing colors are important for this game.
-	"intellivision": newPalette([]int{0, 1, 4, 6, 2, 3, 14, 15, 7, 11, 12, 8, 13, 9, 10, 5}, []uint32{
-		0x0C0005, // Black.
-		0x002DFF, // Blue.
-		0xFF3E00, // Red.
-		0xC9D464, // Brown.
-		0x00780F, // Green.
-		0x00A720, // Cyan.
-		0xFAEA27, // Yellow.
-		0xFFFCFF, // White.
-		0xA7A8A8, // Light grey.
-		0x5ACBFF, // Light cyan.
-		0xFFA600, // Light red.
-		0x3C5800, // Dark grey.
-		0xFF3276, // Light magenta.
-		0xBD95FF, // Light blue.
-		0x6CCD30, // Light green.
-		0xC81A7D, // Magenta.
-	}),
-
-	// Web safe 216 colors palette, actually a 6x6x6 color cube.
-	// Dither everywhere.
-	"web": newPalette(nil, colorCube(6, 6, 6)),
-
-	// Just red, green, blue and black BG. Yes, not even white.
-	// Dither everywhere.
-	"rgb": newPalette([]int{0, 9, 10, 12}, []uint32{
-		0x000000,
-		0x0000FF,
-		0x00FF00,
-		0xFF0000,
-	}),
-
-	// Just cyan, magenta, yellow, black and white BG. Like an inkjet.
-	// Dither everywhere.
-	"cmyk": newPalette([]int{0, 11, 13, 14, 15}, []uint32{
-		0x000000,
-		0x00FFFF,
-		0xFF00FF,
-		0xFFFF00,
-		0xFFFFFF,
-	}),
-
-	// 2x2x2 color cube. Just eight pure colors.
-	// Dither everywhere.
-	"2x2x2": newPalette([]int{0, 9, 10, 11, 12, 13, 14, 15}, colorCube(2, 2, 2)),
-
-	// 3x3x3 color cube, almost a superset of div0.
-	// Almost no dither.
-	// Lacks light grey as only color.
-	"3x3x3": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15}, append([]uint32{
-		0x000000,
-		0x0000FF,
-		0x00FF00,
-		0x008080,
-		0xFF0000,
-		0x800080,
-		0x808000,
-		0x808080,
-		0x8080FF,
-		0x80FF80,
-		0x00FFFF,
-		0xFF8080,
-		0xFF00FF,
-		0xFFFF00,
-		0xFFFFFF,
-	}, colorCube(3, 3, 3)...)),
-
-	// 4x4x4 color cube.
-	// Strict superset of EGA, so not a lot of dither.
-	"4x4x4": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, append(append([]uint32{}, egaColors[:]...), colorCube(4, 4, 4)...)),
-
-	// 7x7x4 color "cube". Cleanest colors at 256c.
-	// Minimal dither.
-	"7x7x4": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, append(append([]uint32{}, egaColors[:]...), colorCube(7, 7, 4)...)),
-
-	// 8x8x4 color "cube". Most colors at 256c, but not clean.
-	// Palette used by Rebounce2.
-	// Dither everywhere.
-	"8x8x4": newPalette([]int{0, 1, 14, 15}, append([]uint32{
-		0x000000,
-		0x0000AA,
-		0xFFFF55,
-		0xFFFFFF,
-	}, colorCube(8, 8, 4)...)),
+	// Country flags.
 
 	// A flag.
 	"ua3": newPalette([]int{0, 9, 14}, []uint32{
