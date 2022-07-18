@@ -181,6 +181,9 @@ func (s *SettingsScreen) toggleGraphics(delta int) error {
 	case -1:
 		if s.CurrentGraphics > 0 {
 			s.CurrentGraphics--
+			for s.CurrentGraphics > 0 && graphicsSettings[s.CurrentGraphics].palette == graphicsSettings[s.CurrentGraphics-1].palette {
+				s.CurrentGraphics--
+			}
 		}
 	case +1:
 		s.CurrentGraphics++
