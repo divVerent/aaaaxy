@@ -16,7 +16,6 @@ package palette
 
 import (
 	"sort"
-	"strings"
 )
 
 // Palette encapsulates a color palette.
@@ -87,13 +86,13 @@ func newPalette(egaIndices []int, c0 []uint32) *Palette {
 }
 
 // Names returns the names of all palettes, in quoted comma separated for, for inclusion in a flag description.
-func Names() string {
+func Names() []string {
 	l := make([]string, 0, len(data))
 	for p := range data {
 		l = append(l, p)
 	}
 	sort.Strings(l)
-	return "'" + strings.Join(l, "', '") + "'"
+	return l
 }
 
 // ByName returns the PalData for the given palette. Do not modify the returned object.

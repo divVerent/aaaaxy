@@ -20,6 +20,7 @@ import (
 	go_image "image"
 	"math"
 	"math/rand"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -52,7 +53,7 @@ var (
 	screenFilterScanLines     = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
 	screenFilterCRTStrength   = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
 	screenFilterJitter        = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
-	paletteFlag               = flag.String("palette", "vga", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
+	paletteFlag               = flag.String("palette", "vga", "render with palette (slow, ugly, fun); can be set to '"+strings.Join(palette.Names(), "', '")+"' or 'none'")
 	paletteRemapOnly          = flag.Bool("palette_remap_only", false, "only apply the palette's color remapping, do not actually reduce color set")
 	paletteRemapColors        = flag.Bool("palette_remap_colors", true, "remap input colors to close palette colors on load (less dither but wrong colors)")
 	paletteDitherSize         = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")

@@ -16,6 +16,8 @@ package palette
 
 // data contains all palettes by name.
 var data = map[string]*Palette{
+	// This list should be kept in sync with the list in internal/menu/settings.go.
+
 	// Monochrome.
 	"mono": newPalette([]int{0, 15}, []uint32{
 		0x000000,
@@ -139,6 +141,8 @@ var data = map[string]*Palette{
 	// The original IBM EGA palette.
 	"ega": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, egaColors[:]),
 
+	// Palettes NOT in the menu follow here.
+
 	// EGA but only the colors 0 to 7.
 	"egalow": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7}, []uint32{
 		0x000000,
@@ -151,11 +155,10 @@ var data = map[string]*Palette{
 		0xAAAAAA,
 	}),
 
-	// EGA but only the grey tones.
-	"egamono": newPalette([]int{0, 7, 8, 15}, []uint32{
+	// EGA on monochrome monitor.
+	"egamono": newPalette([]int{0, 7, 15}, []uint32{
 		0x000000,
 		0xAAAAAA,
-		0x555555,
 		0xFFFFFF,
 	}),
 
@@ -989,14 +992,6 @@ var data = map[string]*Palette{
 		0xFFFFFF,
 		0xB22234,
 		0x3C3B6E,
-	}),
-
-	// Another flag.
-	"ru4": newPalette([]int{0, 15, 1, 12}, []uint32{
-		0x000000,
-		0xFFFFFF,
-		0x0032A0,
-		0xDA291C,
 	}),
 }
 

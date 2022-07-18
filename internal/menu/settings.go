@@ -22,6 +22,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
@@ -40,172 +41,154 @@ const (
 )
 
 type SettingsScreen struct {
-	Controller           *Controller
-	Item                 SettingsScreenItem
-	PaletteUnlockCounter int
+	Controller      *Controller
+	Item            SettingsScreenItem
+	CurrentGraphics graphicsSetting
 }
 
 func (s *SettingsScreen) Init(m *Controller) error {
 	s.Controller = m
-	s.PaletteUnlockCounter = 6 // Hit right 7 times to hit advanced palettes.
-	if currentGraphics() >= graphicsSettingsNormalCount {
-		s.PaletteUnlockCounter = 0
-	}
+	s.CurrentGraphics = currentGraphics()
 	return nil
 }
 
 type graphicsSetting int
 
-const (
-	herculesGraphics graphicsSetting = iota
-	cgaGraphics
-	egaGraphics
-	vgaGraphics
-	svgaGraphics
-	atariSTGraphics
-	c64Graphics
-	cgaNTSCGraphics
-	egaLowGraphics
-	gameboyGraphics
-	macIIGraphics
-	nesGraphics
-	quakeGraphics
-	xtermGraphics
-	graphicsSettingsTotalCount
+type graphicsSettingData struct {
+	palette string
+	name    string
+}
 
-	// Normally only go up to SVGA.
-	graphicsSettingsNormalCount = svgaGraphics + 1
-)
+var graphicsSettings = []graphicsSettingData{
+	{"mono", "Hercules"},
+	{"egamono", "EGA (monochrome)"},
+	{"cga41l", "CGA"},
+	{"ega", "EGA"},
+	{"vga", "VGA"},
+	{"none", "SVGA"},
+	{"none", "SVGA"},
+	{"none", "SVGA"},
+	{"none", "SVGA"},
+	{"none", "SVGA"},
+	{"none", "SVGA"},
+	{"none", "SVGA"},
+	{"atarist", "Atari ST"},
+	{"c64", "C64"},
+	{"cga40n", "CGA (NTSC)"},
+	{"gb", "Gameboy"},
+	{"intellivision", "Intellivision"},
+	{"macii", "Mac II"},
+	{"msx", "MSX"},
+	{"nes", "NES"},
+	{"quake", "Quake"},
+	{"web", "Web"},
+	{"xterm", "XTerm"},
+	{"3x3x3", "3x3x3"},
+	{"4x4x4", "4x4x4"},
+	{"7x7x4", "7x7x4"},
+	{"8x8x4", "8x8x4"},
+	{"8x8x4", "8x8x4"},
+	{"8x8x4", "8x8x4"},
+	{"8x8x4", "8x8x4"},
+	{"8x8x4", "8x8x4"},
+	{"8x8x4", "8x8x4"},
+	{"8x8x4", "8x8x4"},
+	{"ua3", "Ukrainian"},
+}
+
+func init() {
+	// Skip intentionally unused palettes.
+	intentionallyUnused := map[string]bool{
+		// Redundant, do not offer in menu.
+		"cga40h": true,
+		"cga40l": true,
+		"cga41h": true,
+		"cga41n": true,
+		"cga5h":  true,
+		"cga5l":  true,
+		"cga6n":  true,
+		"div0":   true,
+		// Very low quality, do not offer in menu.
+		"2x2x2":      true,
+		"atarist4":   true,
+		"cmyk":       true,
+		"egalow":     true,
+		"rgb":        true,
+		"smb":        true,
+		"vgadefault": true,
+		// Country flags.
+		"de3": true,
+		"us4": true,
+	}
+
+	used := make(map[string]bool, len(graphicsSettings))
+	for _, s := range graphicsSettings {
+		if s.palette == "none" {
+			continue
+		}
+		if intentionallyUnused[s.palette] {
+			log.Fatalf("used intentionally unused graphics setting: %v", s.palette)
+		}
+		used[s.palette] = true
+		if palette.ByName(s.palette) == nil {
+			log.Fatalf("undefined graphics setting: %v", s.palette)
+		}
+	}
+
+	var unused []string
+	for _, name := range palette.Names() {
+		if !used[name] && !intentionallyUnused[name] {
+			unused = append(unused, name)
+		}
+	}
+	if len(unused) != 0 {
+		log.Fatalf("unused palette settings: %v", unused)
+	}
+}
 
 func (s graphicsSetting) String() string {
-	switch s {
-	case herculesGraphics:
-		return "Hercules" // Mostly Hercules, that is (2 more scan lines; who cares).
-	case cgaGraphics:
-		return "CGA" // Actually, it takes four CGA cards (or two Tandy) to render 640x360 in 4 colors.
-	case egaGraphics:
-		return "EGA" // Mostly EGA, that is (10 more scan lines; this probably can be hacked on real EGA though).
-	case vgaGraphics:
-		return "VGA"
-	case svgaGraphics:
-		return "SVGA"
-	case atariSTGraphics:
-		return "Atari ST"
-	case c64Graphics:
-		return "C64"
-	case cgaNTSCGraphics:
-		return "CGA (NTSC)"
-	case egaLowGraphics:
-		return "EGA Low Intensity"
-	case gameboyGraphics:
-		return "Gameboy"
-	case macIIGraphics:
-		return "Mac II"
-	case nesGraphics:
-		return "NES"
-	case quakeGraphics:
-		return "Quake"
-	case xtermGraphics:
-		return "XTerm"
-	}
-	return "???"
+	return graphicsSettings[s].name
 }
 
 func currentGraphics() graphicsSetting {
 	pal := flag.Get("palette").(string)
-	switch pal {
-	case "mono":
-		return herculesGraphics
-	case "cga41l":
-		return cgaGraphics
-	case "ega":
-		return egaGraphics
-	case "vga":
-		return vgaGraphics
-	case "none":
-		return svgaGraphics
-	case "atarist":
-		return atariSTGraphics
-	case "c64":
-		return c64Graphics
-	case "cga40n":
-		return cgaNTSCGraphics
-	case "egalow":
-		return egaLowGraphics
-	case "gb":
-		return gameboyGraphics
-	case "macii":
-		return macIIGraphics
-	case "nes":
-		return nesGraphics
-	case "quake":
-		return quakeGraphics
-	case "xterm":
-		return xtermGraphics
+	for i, s := range graphicsSettings {
+		if s.palette == pal {
+			return graphicsSetting(i)
+		}
 	}
-	return svgaGraphics
+	for i, s := range graphicsSettings {
+		if s.palette == "none" {
+			return graphicsSetting(i)
+		}
+	}
+	return 0
 }
 
 func (s graphicsSetting) apply() error {
-	switch s {
-	case herculesGraphics:
-		flag.Set("palette", "mono")
-	case cgaGraphics:
-		flag.Set("palette", "cga41l")
-	case egaGraphics:
-		flag.Set("palette", "ega")
-	case vgaGraphics:
-		flag.Set("palette", "vga")
-	case svgaGraphics:
-		flag.Set("palette", "none")
-	case atariSTGraphics:
-		flag.Set("palette", "atarist")
-	case c64Graphics:
-		flag.Set("palette", "c64")
-	case cgaNTSCGraphics:
-		flag.Set("palette", "cga40n")
-	case egaLowGraphics:
-		flag.Set("palette", "egalow")
-	case gameboyGraphics:
-		flag.Set("palette", "gb")
-	case macIIGraphics:
-		flag.Set("palette", "macii")
-	case nesGraphics:
-		flag.Set("palette", "nes")
-	case quakeGraphics:
-		flag.Set("palette", "quake")
-	case xtermGraphics:
-		flag.Set("palette", "xterm")
-	}
+	flag.Set("palette", graphicsSettings[s].palette)
 	return nil
 }
 
 func (s *SettingsScreen) toggleGraphics(delta int) error {
-	g := currentGraphics()
-	count := graphicsSettingsNormalCount
-	if s.PaletteUnlockCounter == 0 {
-		count = graphicsSettingsTotalCount
-	}
+	count := graphicsSetting(len(graphicsSettings))
 	switch delta {
 	case 0:
-		g++
-		if g >= count {
-			g = 0
+		s.CurrentGraphics++
+		if s.CurrentGraphics >= count {
+			s.CurrentGraphics = 0
 		}
 	case -1:
-		if g > 0 {
-			g--
+		if s.CurrentGraphics > 0 {
+			s.CurrentGraphics--
 		}
 	case +1:
-		g++
-		if g >= count {
-			if s.PaletteUnlockCounter > 0 {
-				s.PaletteUnlockCounter--
-			}
-			g--
+		s.CurrentGraphics++
+		if s.CurrentGraphics >= count {
+			s.CurrentGraphics--
 		}
 	}
-	g.apply()
+	s.CurrentGraphics.apply()
 	return nil
 }
 
