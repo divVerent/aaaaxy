@@ -39,12 +39,18 @@ type lutMeta struct {
 func SaveCachedLUTs(w, h int, dir string) error {
 	for numLUTs := 1; numLUTs <= 2; numLUTs++ {
 		for name, p := range data {
+			name := fmt.Sprintf("%s/lut_%s_%d.png", dir, name, numLUTs)
+			if _, err := os.Stat(name); err == nil {
+				// File already there. Skip.
+				log.Infof("skipping %s (already there)", name)
+				continue
+			}
+			log.Infof("generating %s...", name)
 			bounds := image.Rectangle{
 				Min: image.Point{},
 				Max: image.Point{X: w, Y: h},
 			}
 			img, size, perRow, width := p.computeLUT(bounds, numLUTs, *paletteMaxCycles)
-			name := fmt.Sprintf("%s/lut_%s_%d.png", dir, name, numLUTs)
 			log.Infof("saving %s (colors=%d size=%d perRow=%d width=%d)...", name, p.size, size, perRow, width)
 			err := screenshot.Write(img, name)
 			if err != nil {

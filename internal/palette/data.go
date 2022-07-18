@@ -205,7 +205,7 @@ var data = map[string]*Palette{
 		0xFFFFFF,
 	}),
 
-	// Atari ST palette.
+	// Atari ST default palette.
 	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
 	"atarist": newPalette([]int{15, 0, 12, 10, 9, 1, 4, 2, 7, 8, 11, 3, 13, 5, 14, 6}, []uint32{
 		0xFFFFFF,
@@ -224,6 +224,15 @@ var data = map[string]*Palette{
 		0x920092,
 		0xFFFF00,
 		0x929200,
+	}),
+
+	// Atari ST 4 colors default palette.
+	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
+	"atarist4": newPalette([]int{15, 0, 12, 10}, []uint32{
+		0xFFFFFF,
+		0x000000,
+		0xFF0000,
+		0x00FF00,
 	}),
 
 	// Macintosh II palette. Lacks dark tones of blue and cyan.
