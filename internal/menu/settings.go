@@ -93,7 +93,7 @@ var graphicsSettings = []graphicsSettingData{
 	{"8x8x4", "8x8x4"},
 	{"8x8x4", "8x8x4"},
 	{"8x8x4", "8x8x4"},
-	{"ua3", "Ukrainian"},
+	{"ua3", "U" + "k" + "r" + "a" + "i" + "n" + "i" + "a" + "n"},
 }
 
 func init() {
