@@ -54,6 +54,7 @@ var (
 	screenFilterJitter        = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 	paletteFlag               = flag.String("palette", "vga", "render with palette (slow, ugly, fun); can be set to "+palette.Names()+" or 'none'")
 	paletteRemapOnly          = flag.Bool("palette_remap_only", false, "only apply the palette's color remapping, do not actually reduce color set")
+	paletteRemapColors        = flag.Bool("palette_remap_colors", true, "remap input colors to close palette colors on load (less dither but wrong colors)")
 	paletteDitherSize         = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
 	paletteDitherMode         = flag.String("palette_dither_mode", "plastic2", "dither type (none, bayer, bayer2, halftone, halftone2, plastic, plastic2, random or random2)")
 	paletteDitherWorldAligned = flag.Bool("palette_dither_world_aligned", true, "align dither pattern to world as opposed to screen")
@@ -194,7 +195,7 @@ func (g *Game) Update() error {
 func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*ebiten.Image, func() *ebiten.Image) {
 	// This is an extra pass so it can still run at low-res.
 	pal := palette.ByName(*paletteFlag)
-	if palette.SetCurrent(pal) {
+	if palette.SetCurrent(pal, *paletteRemapColors) {
 		err := image.PaletteChanged()
 		if err != nil {
 			log.Fatalf("could not reapply palette to images: %v", err)

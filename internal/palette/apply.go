@@ -27,28 +27,37 @@ var (
 	debugCheckImagePalette = flag.Bool("debug_check_image_palette", false, "log errors if images or object colors mismatch palette colors")
 )
 
+var (
+	remapping bool = false
+)
+
 // SetCurrent changes the current palette. Returns whether the remapping table changed.
-func SetCurrent(pal *Palette) bool {
+func SetCurrent(pal *Palette, doRemap bool) bool {
 	if pal == current {
 		return false
 	}
 	var prevRemap map[uint32]uint32
-	if current != nil {
+	if current != nil && remapping {
 		prevRemap = current.remap
 	}
 	if pal != nil && len(pal.remap) != 0 {
 		log.Infof("note: remapping %d colors (slow)", len(pal.remap))
 	}
 	current = pal
+	remapping = doRemap
 	if current == nil {
 		if len(prevRemap) != 0 {
 			return true
 		}
 	} else {
-		if len(current.remap) != len(prevRemap) {
+		var newRemap map[uint32]uint32
+		if doRemap {
+			newRemap = current.remap
+		}
+		if len(newRemap) != len(prevRemap) {
 			return true
 		}
-		for from, to := range current.remap {
+		for from, to := range newRemap {
 			if prevTo, found := prevRemap[from]; !found || prevTo != to {
 				return true
 			}
@@ -63,7 +72,7 @@ func Current() *Palette {
 
 // ApplyToImage applies this palette's associated color remapping to an image.
 func (p *Palette) ApplyToImage(img image.Image, name string) image.Image {
-	if p == nil || len(p.remap) == 0 {
+	if p == nil || len(p.remap) == 0 || !remapping {
 		return img
 	}
 	bounds := img.Bounds()
@@ -89,7 +98,7 @@ func (p *Palette) ApplyToRGBA(col color.RGBA, name string) color.RGBA {
 			log.Warningf("invalid color %v in %v: premultiplied color is neither fully opaque nor fully transparent", col, name)
 		}
 	}
-	if p == nil || len(p.remap) == 0 {
+	if p == nil || len(p.remap) == 0 || !remapping {
 		return col
 	}
 	// Color is premultiplied - can't handle that well.
@@ -116,7 +125,7 @@ func (p *Palette) ApplyToNRGBA(col color.NRGBA, name string) color.NRGBA {
 			log.Warningf("invalid color in %v: color is not in palette", name)
 		}
 	}
-	if p == nil || len(p.remap) == 0 {
+	if p == nil || len(p.remap) == 0 || !remapping {
 		return col
 	}
 	// Remap rgb.
