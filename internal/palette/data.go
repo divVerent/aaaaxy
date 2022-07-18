@@ -907,6 +907,25 @@ var data = map[string]*Palette{
 	// Dither everywhere.
 	"web": newPalette(nil, colorCube(6, 6, 6)),
 
+	// Just red, green, blue and black BG. Yes, not even white.
+	// Dither everywhere.
+	"rgb": newPalette([]int{0, 9, 10, 12}, []uint32{
+		0x000000,
+		0x0000FF,
+		0x00FF00,
+		0xFF0000,
+	}),
+
+	// Just cyan, magenta, yellow, black and white BG. Like an inkjet.
+	// Dither everywhere.
+	"cmyk": newPalette([]int{0, 11, 13, 14, 15}, []uint32{
+		0x000000,
+		0x00FFFF,
+		0xFF00FF,
+		0xFFFF00,
+		0xFFFFFF,
+	}),
+
 	// 2x2x2 color cube. Just eight pure colors.
 	// Dither everywhere.
 	"2x2x2": newPalette([]int{0, 9, 10, 11, 12, 13, 14, 15}, colorCube(2, 2, 2)),
