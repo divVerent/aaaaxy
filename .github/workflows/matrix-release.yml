@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Attach head.
-      run: 'rev=$(git rev-parse HEAD) && git checkout main && git reset --hard "$rev"'
+      run: 'git checkout -B main'
 
     - name: matrix-commit
       uses: krazykirby99999/matrix-commit@v1
