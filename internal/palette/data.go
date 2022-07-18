@@ -930,6 +930,27 @@ var data = map[string]*Palette{
 	// Dither everywhere.
 	"2x2x2": newPalette([]int{0, 9, 10, 11, 12, 13, 14, 15}, colorCube(2, 2, 2)),
 
+	// 3x3x3 color cube, preferring brighter colors.
+	// Almost no dither.
+	// Lacks light grey as only color.
+	"3x3x3": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15}, append([]uint32{
+		0x000000,
+		0x0000FF,
+		0x00FF00,
+		0x00FFFF,
+		0xFF0000,
+		0xFF00FF,
+		0xFF8000, // Brown!
+		0x808080,
+		0x8080FF,
+		0x80FF80,
+		0x80FFFF,
+		0xFF8080,
+		0xFF80FF,
+		0xFFFF80,
+		0xFFFFFF,
+	}, colorCube(3, 3, 3)...)),
+
 	// 4x4x4 color cube.
 	// Strict superset of EGA, so not a lot of dither.
 	"4x4x4": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, append(append([]uint32{}, egaColors[:]...), colorCube(4, 4, 4)...)),
