@@ -14,6 +14,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Attach head.
+      run: 'rev=$(git rev-parse HEAD) && git checkout main && git reset --hard "$rev"'
+
     - name: matrix-commit
       uses: krazykirby99999/matrix-commit@v1
 
@@ -22,4 +25,4 @@ jobs:
         username: ${{ secrets.BOT_USERNAME }}
         access_token: ${{ secrets.BOT_ACCESS_TOKEN }}
         room_id: ${{ secrets.ROOM_ID }}
-        message: "#### New Commit:"
+        message: "#### New Release:"
