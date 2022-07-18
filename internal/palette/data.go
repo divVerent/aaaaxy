@@ -930,24 +930,24 @@ var data = map[string]*Palette{
 	// Dither everywhere.
 	"2x2x2": newPalette([]int{0, 9, 10, 11, 12, 13, 14, 15}, colorCube(2, 2, 2)),
 
-	// 3x3x3 color cube, preferring brighter colors.
+	// 3x3x3 color cube, almost a superset of div0.
 	// Almost no dither.
 	// Lacks light grey as only color.
 	"3x3x3": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15}, append([]uint32{
 		0x000000,
 		0x0000FF,
 		0x00FF00,
-		0x00FFFF,
+		0x008080,
 		0xFF0000,
-		0xFF00FF,
-		0xFF8000, // Brown!
+		0x800080,
+		0x808000,
 		0x808080,
 		0x8080FF,
 		0x80FF80,
-		0x80FFFF,
+		0x00FFFF,
 		0xFF8080,
-		0xFF80FF,
-		0xFFFF80,
+		0xFF00FF,
+		0xFFFF00,
 		0xFFFFFF,
 	}, colorCube(3, 3, 3)...)),
 
