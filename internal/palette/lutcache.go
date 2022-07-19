@@ -40,10 +40,13 @@ func SaveCachedLUTs(w, h int, dir string) error {
 	for numLUTs := 1; numLUTs <= 2; numLUTs++ {
 		for name, p := range data {
 			name := fmt.Sprintf("%s/lut_%s_%d.png", dir, name, numLUTs)
+			metaName := name + ".json"
 			if _, err := os.Stat(name); err == nil {
-				// File already there. Skip.
-				log.Infof("skipping %s (already there)", name)
-				continue
+				if _, err := os.Stat(metaName); err == nil {
+					// File already there. Skip.
+					log.Infof("skipping %s (already there)", name)
+					continue
+				}
 			}
 			log.Infof("generating %s...", name)
 			bounds := image.Rectangle{
@@ -61,7 +64,6 @@ func SaveCachedLUTs(w, h int, dir string) error {
 				PerRow: perRow,
 				Width:  width,
 			}
-			metaName := name + ".json"
 			f, err := os.Create(metaName)
 			if err != nil {
 				return err
