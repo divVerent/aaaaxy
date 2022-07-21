@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.164" date="2022-07-18">
-      <description><ul><li>Dependencies: update to Ebitengine v2.3.6. Fixes input device related crashes.</li><li>Color palettes: improve graphics settings menu; add palette for MSX.</li><li>Engine: add an allocator for offscreen buffers. Saves some VRAM.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.164</url>
+    <release version="v1.2.174" date="2022-07-21">
+      <description><ul><li>Level: The One Way Round: add another room :)</li><li>Level: In places that require an ability, show an ExitButton sprite if the ability is missing.</li><li>Engine: Add some missing palette JSON files, and make sure this does not happen again.</li><li>Menu: Make it easier to revert back to VGA.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.174</url>
     </release>
   </releases>
 </component>
