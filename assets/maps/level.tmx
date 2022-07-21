@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8274">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8278">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -18230,6 +18230,18 @@
     <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#00000000"/>
     <property name="solid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="8274" type="SwitchMusic" x="6240" y="5152" width="64" height="16"/>
+  <object id="8275" type="SwitchMusic" x="6240" y="5200" width="64" height="16">
+   <properties>
+    <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
+   </properties>
+  </object>
+  <object id="8276" type="SwitchMusic" x="6240" y="5024" width="64" height="16"/>
+  <object id="8277" type="SwitchMusic" x="6000" y="4272" width="64" height="16">
+   <properties>
+    <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
    </properties>
   </object>
  </objectgroup>
