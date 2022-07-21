@@ -89,6 +89,7 @@
  </objecttype>
  <objecttype name="DisappearBlock" color="#00aa00"/>
  <objecttype name="ExitButton" color="#ffffff">
+  <property name="ability" type="string"/>
   <property name="alpha" type="string"/>
   <property name="border_pixels" type="int" default="0"/>
   <property name="fade_despawn" type="bool" default="false"/>

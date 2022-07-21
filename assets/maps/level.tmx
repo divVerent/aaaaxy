@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8252">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8262">
  <properties>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -18140,6 +18140,66 @@
     <property name="orientation" value="WN"/>
     <property name="send_untouch" type="bool" value="false"/>
     <property name="target" value="ViewTheEndingOrNotOrElse"/>
+   </properties>
+  </object>
+  <object id="8252" name="EscapeButton" type="ExitButton" x="4576" y="3712" width="64" height="64">
+   <properties>
+    <property name="ability" value="carry"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="8253" type="SetState" x="4496" y="3744" width="64" height="64">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="EscapeButton"/>
+   </properties>
+  </object>
+  <object id="8254" name="EscapeButton" type="ExitButton" x="3880" y="3744" width="64" height="64">
+   <properties>
+    <property name="ability" value="carry push"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="8255" type="SetState" x="3728" y="3760" width="48" height="48">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="EscapeButton"/>
+   </properties>
+  </object>
+  <object id="8256" name="EscapeButton" type="ExitButton" x="4816" y="512" width="64" height="64">
+   <properties>
+    <property name="ability" value="push stand"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="8257" type="SetState" x="4896" y="512" width="16" height="96">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="EscapeButton"/>
+   </properties>
+  </object>
+  <object id="8258" name="EscapeButton" type="ExitButton" x="6720" y="6784" width="64" height="64">
+   <properties>
+    <property name="ability" value="control"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="8259" type="SetState" x="6624" y="6704" width="16" height="96">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="EscapeButton"/>
+   </properties>
+  </object>
+  <object id="8260" name="EscapeButton" type="ExitButton" x="4304" y="3680" width="64" height="64">
+   <properties>
+    <property name="ability" value="stand"/>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="8261" type="SetState" x="4464" y="3680" width="16" height="64">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="EscapeButton"/>
    </properties>
   </object>
  </objectgroup>
