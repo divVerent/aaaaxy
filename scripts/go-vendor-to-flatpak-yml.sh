@@ -74,7 +74,7 @@ while read -r command pkg ver _ replacementpkg replacementver; do
 	git clone "$url" "$d/git"
 	cd "$d/git"
 	case "$pkg":"$ver" in
-		github.com/hajimehoshi/oto/v2:v2.3.0-alpha.4)
+		github.com/hajimehoshi/oto:v2.3.0-alpha.4)
 			# Retracted version.
 			# See https://github.com/hajimehoshi/oto/issues/177.
 			ver=v2.2.0-alpha.4
