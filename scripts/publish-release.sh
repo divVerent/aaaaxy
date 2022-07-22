@@ -51,6 +51,27 @@ hub release create \
 	-m "$(cat .commitmsg)" \
 	"$new"
 
+# Alpine Linux comes first as it has some automated testing.
+(
+	cd ~/src/aports/testing/aaaaxy
+	git checkout master
+	git fetch origin
+	git reset --hard origin/master
+	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=0/;" APKBUILD
+	docker run --mount=type=bind,source=$PWD,target=/aaaaxy alpine:edge /bin/sh -c '
+		set -e
+		apk add alpine-sdk sudo
+		abuild-keygen -i -a -n
+		cd /aaaaxy
+		abuild -F checksum
+		abuild -F -r
+	'
+	git commit -a -m "testing/aaaaxy: upgrade to $new"
+	git push -f divVerent HEAD:aaaaxy
+	# TODO is there a more direct URL to create a MR right away?
+	xdg-open https://gitlab.alpinelinux.org/divVerent/aports/-/tree/aaaaxy
+)
+
 # Mark the release done.
 git push origin main
 
