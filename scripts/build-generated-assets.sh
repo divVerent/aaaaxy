@@ -22,19 +22,22 @@ export GOOS=
 export GOARCH=
 
 mkdir -p assets/generated
+cp assets/_saved/* assets/generated/
 
 if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
-	if [ x"$AAAAXY_FORCE_GENERATE_ASSETS" = x'true' ] || ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
-		trap 'rm -f assets/generated/level.cp.json' EXIT
-		# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
-		${GO} run ${GO_FLAGS} github.com/divVerent/aaaaxy/cmd/dumpcps |cat> assets/generated/level.cp.dot
-		grep -c . assets/generated/level.cp.dot
-		neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
-		grep -c . assets/generated/level.cp.json
-		trap - EXIT
-	fi
-	if [ x"$AAAAXY_DIFF_ASSETS" != x'false' ]; then
-		diff -bu -I'.*"width".*' assets/_saved/level.cp.json assets/generated/level.cp.json
+	if [ x"$AAAAXY_GENERATE_CHECKPOINT_LOCAITONS" = x'true' ]; then
+		if [ x"$AAAAXY_FORCE_GENERATE_ASSETS" = x'true' ] || ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
+			trap 'rm -f assets/generated/level.cp.json' EXIT
+			# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
+			${GO} run ${GO_FLAGS} github.com/divVerent/aaaaxy/cmd/dumpcps |cat> assets/generated/level.cp.dot
+			grep -c . assets/generated/level.cp.dot
+			neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
+			grep -c . assets/generated/level.cp.json
+			trap - EXIT
+		fi
+		if [ x"$AAAAXY_DIFF_ASSETS" != x'false' ]; then
+			diff -bu -I'.*"width".*' assets/_saved/level.cp.json assets/generated/level.cp.json
+		fi
 	fi
 
 	sh scripts/image-load-order.sh assets/generated/image_load_order.txt assets/tiles assets/sprites third_party/grafxkid_classic_hero_and_baddies_pack/assets/sprites
@@ -51,8 +54,6 @@ if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 			diff "$f" assets/generated/"${f##*/}"
 		done
 	fi
-else
-	cp assets/_saved/* assets/generated/
 fi
 
 sh scripts/version.sh semver > assets/generated/version.txt

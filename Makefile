@@ -94,18 +94,13 @@ mod-update:
 
 .PHONY: assets-update
 assets-update:
-	AAAAXY_GENERATE_ASSETS=true AAAAXY_DIFF_ASSETS=false sh -x scripts/build-generated-assets.sh
-	cp assets/generated/image_load_order.txt assets/_saved/
-	cp assets/generated/lut_*.png            assets/_saved/
-	cp assets/generated/lut_*.png.json       assets/_saved/
+	AAAAXY_GENERATE_ASSETS=true AAAAXY_FORCE_GENERATE_ASSETS=true AAAAXY_DIFF_ASSETS=false sh -x scripts/build-generated-assets.sh
+	cp assets/generated/* assets/_saved/
 
 .PHONY: assets-update-all
 assets-update-all:
-	AAAAXY_GENERATE_ASSETS=true AAAAXY_FORCE_GENERATE_ASSETS=true AAAAXY_DIFF_ASSETS=false sh -x scripts/build-generated-assets.sh
-	cp assets/generated/image_load_order.txt assets/_saved/
-	cp assets/generated/level.cp.json        assets/_saved/
-	cp assets/generated/lut_*.png            assets/_saved/
-	cp assets/generated/lut_*.png.json       assets/_saved/
+	AAAAXY_GENERATE_ASSETS=true AAAAXY_GENERATE_CHECKPOINT_LOCATIONS=true AAAAXY_FORCE_GENERATE_ASSETS=true AAAAXY_DIFF_ASSETS=false sh -x scripts/build-generated-assets.sh
+	cp assets/generated/* assets/_saved/
 
 # These are not in assets-update as graphics are required for these.
 .PHONY: loading-fractions-update

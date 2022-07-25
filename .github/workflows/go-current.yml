@@ -29,7 +29,7 @@ jobs:
       run: 'make mod-update'
 
     - name: Build
-      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
+      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true AAAAXY_GENERATE_ASSETS=true AAAAXY_DIFF_ASSETS=true make'
 
     - name: Vet
       run: 'make vet'
