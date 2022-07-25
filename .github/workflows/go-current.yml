@@ -15,7 +15,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
+      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
 
     - name: Set up Go
       uses: actions/setup-go@v2
@@ -33,3 +33,16 @@ jobs:
 
     - name: Vet
       run: 'make vet'
+
+    - name: Test
+      run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "on track for Any%, All Paths and No Teleports" ./aaaaxy benchmark.dem'
+
+    - name: Archive Results
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: regression-test-results-benchmark-linux-amd64
+        path: |
+          *.dem.*.log
+          *.dem.*.png
+
