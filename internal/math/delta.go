@@ -15,6 +15,8 @@
 package math
 
 import (
+	"encoding"
+	"fmt"
 	"math"
 )
 
@@ -22,6 +24,8 @@ import (
 type Delta struct {
 	DX, DY int
 }
+
+var _ encoding.TextMarshaler = Delta{}
 
 func (d Delta) Norm0() int {
 	norm := 0
@@ -131,4 +135,8 @@ func (d Delta) Dot(d2 Delta) int {
 
 func (d Delta) IsZero() bool {
 	return d.DX == 0 && d.DY == 0
+}
+
+func (d Delta) MarshalText() ([]byte, error) {
+	return []byte(fmt.Sprintf("%v,%v", d.DX, d.DY)), nil
 }

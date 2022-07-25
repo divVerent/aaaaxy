@@ -689,8 +689,9 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 }
 
 type Loader struct {
-	filename                string
-	skipCheckpointLocations bool
+	filename                         string
+	skipCheckpointLocations          bool
+	skipComparingCheckpointLocations bool
 
 	level   *Level
 	tmxData *tmx.Map
@@ -702,6 +703,11 @@ func NewLoader(filename string) *Loader {
 
 func (l *Loader) SkipCheckpointLocations(s bool) *Loader {
 	l.skipCheckpointLocations = s
+	return l
+}
+
+func (l *Loader) SkipComparingCheckpointLocations(s bool) *Loader {
+	l.skipComparingCheckpointLocations = s
 	return l
 }
 
@@ -754,8 +760,10 @@ func (l *Loader) LoadStepwise(s *splash.State) (splash.Status, error) {
 			if err != nil {
 				return err
 			}
-			if h != l.level.CheckpointLocationsHash {
-				return fmt.Errorf("checkpoint location hash mismatch: got %v, want %v - may need to update level file?", h, l.level.CheckpointLocationsHash)
+			if !l.skipComparingCheckpointLocations {
+				if h != l.level.CheckpointLocationsHash {
+					return fmt.Errorf("checkpoint location hash mismatch: got %v, want %v - may need to update level file?", h, l.level.CheckpointLocationsHash)
+				}
 			}
 			return nil
 		}))
