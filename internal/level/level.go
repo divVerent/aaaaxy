@@ -36,13 +36,14 @@ var (
 
 // Level is a parsed form of a loaded level.
 type Level struct {
-	Player                *Spawnable
-	Checkpoints           map[string]*Spawnable
-	TnihSignsByCheckpoint map[string][]*Spawnable
-	CheckpointLocations   *CheckpointLocations
-	SaveGameVersion       int
-	CreditsMusic          string
-	Hash                  uint64 `hash:"-"`
+	Player                  *Spawnable
+	Checkpoints             map[string]*Spawnable
+	TnihSignsByCheckpoint   map[string][]*Spawnable
+	CheckpointLocations     *CheckpointLocations
+	CheckpointLocationsHash uint64
+	SaveGameVersion         int
+	CreditsMusic            string
+	Hash                    uint64 `hash:"-"`
 
 	tiles []LevelTile
 	width int
@@ -380,13 +381,21 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 	if prop := t.Properties.WithName("credits_music"); prop != nil {
 		creditsMusic = prop.Value
 	}
+	var checkpointLocationsHash uint64
+	if prop := t.Properties.WithName("checkpoint_locations_hash"); prop != nil {
+		_, err := fmt.Sscanf(prop.Value, "%d", &checkpointLocationsHash)
+		if err != nil {
+			return nil, fmt.Errorf("unsupported map: could not parse checkpoint_locations_hash")
+		}
+	}
 	level := Level{
-		Checkpoints:           map[string]*Spawnable{},
-		TnihSignsByCheckpoint: map[string][]*Spawnable{},
-		SaveGameVersion:       int(saveGameVersion),
-		CreditsMusic:          creditsMusic,
-		tiles:                 make([]LevelTile, layer.Width*layer.Height),
-		width:                 layer.Width,
+		Checkpoints:             map[string]*Spawnable{},
+		TnihSignsByCheckpoint:   map[string][]*Spawnable{},
+		CheckpointLocationsHash: checkpointLocationsHash,
+		SaveGameVersion:         int(saveGameVersion),
+		CreditsMusic:            creditsMusic,
+		tiles:                   make([]LevelTile, layer.Width*layer.Height),
+		width:                   layer.Width,
 	}
 	var tnihSigns []*Spawnable
 	checkpoints := map[EntityID]*Spawnable{}
@@ -738,7 +747,17 @@ func (l *Loader) LoadStepwise(s *splash.State) (splash.Status, error) {
 		status, err = s.Enter("loading checkpoints", "could not load checkpoint locations", splash.Single(func() error {
 			var err error
 			l.level.CheckpointLocations, err = l.level.LoadCheckpointLocations(l.filename)
-			return err
+			if err != nil {
+				return err
+			}
+			h, err := hashstructure.Hash(l.level.CheckpointLocations, hashstructure.FormatV2, nil)
+			if err != nil {
+				return err
+			}
+			if h != l.level.CheckpointLocationsHash {
+				return fmt.Errorf("checkpoint location hash mismatch: got %v, want %v - may need to update level file?", h, l.level.CheckpointLocationsHash)
+			}
+			return nil
 		}))
 		if status != splash.Continue {
 			return status, err
