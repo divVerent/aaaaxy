@@ -51,7 +51,15 @@ if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 	${GO} run ${GO_FLAGS} github.com/divVerent/aaaaxy/cmd/dumpluts --palette_max_cycles=inf
 	if [ x"$AAAAXY_DIFF_ASSETS" != x'false' ]; then
 		for f in assets/_saved/lut_*.png; do
-			diff "$f" assets/generated/"${f##*/}"
+			g=assets/generated/"${f##*/}"
+			result=$(convert "$f" "$g" \
+				-channel RGBA \
+				-metric RMSE -format '%[distortion]' -compare \
+				INFO:)
+			if [ x"$result" -ne x'0' ]; then
+				echo >&2 "$f and $g differ."
+				exit 1
+			fi
 		done
 	fi
 fi
