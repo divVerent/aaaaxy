@@ -15,6 +15,11 @@
 //go:build zip
 // +build zip
 
+// TODO(divVerent): use PathForResource_ofType_ on macOS to find the data file.
+// TODO(divVerent): find a similar way for Android.
+// TODO(divVerent): route local FS access through this too (os.DirFS).
+// TODO(divVerent): then remove the _fs_ infix :)
+
 package vfs
 
 import (
