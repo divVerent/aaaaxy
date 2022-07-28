@@ -1,4 +1,4 @@
-// Copyright 2021 Google LLC
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
-	"os"
 
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -82,7 +81,7 @@ func (s seekingFS) Open(name string) (fs.File, error) {
 
 // initAssetsFS opens the zip file systems.
 func initAssetsFS() ([]fsRoot, error) {
-	zipf, err := os.Open("aaaaxy.dat")
+	zipf, err := openAssetsZip()
 	if err != nil {
 		return nil, fmt.Errorf("could not open aaaaxy.dat: %v", err)
 	}
