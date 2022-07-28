@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build embed
-// +build embed
+//go:build embed || zip
+// +build embed zip
 
 package vfs
 
@@ -38,7 +38,7 @@ var (
 )
 
 type fsRoot struct {
-	fs       fs.ReadDirFS
+	fs       fs.FS
 	root     string
 	toPrefix string
 }
@@ -135,14 +135,14 @@ func load(vfsPath string) (ReadSeekCloser, error) {
 			continue
 		}
 		rsc, ok := f.(ReadSeekCloser)
-		if !ok {
-			info, err := f.Stat()
-			if err == nil && info.IsDir() {
-				return nil, fmt.Errorf("could not open embed:%v: is a directory", vfsPath)
-			}
-			return nil, fmt.Errorf("could not open embed:%v: internal error (go:embed doesn't yield ReadSeekCloser)", vfsPath)
+		if ok {
+			return rsc, nil
 		}
-		return rsc, nil
+		info, err := f.Stat()
+		if err == nil && info.IsDir() {
+			return nil, fmt.Errorf("could not open embed:%v: is a directory", vfsPath)
+		}
+		return nil, fmt.Errorf("could not open embed:%v: internal error (go:embed doesn't yield ReadSeekCloser)", vfsPath)
 	}
 	return nil, fmt.Errorf("could not open embed:%v: %w", vfsPath, err)
 }
@@ -159,7 +159,7 @@ func readDir(vfsPath string) ([]string, error) {
 			continue
 		}
 		relPath := strings.TrimPrefix(vfsPath, dir.toPrefix)
-		content, err := dir.fs.ReadDir(path.Join(dir.root, relPath))
+		content, err := fs.ReadDir(dir.fs, path.Join(dir.root, relPath))
 		if err != nil {
 			if !errors.Is(err, os.ErrNotExist) {
 				return nil, fmt.Errorf("could not scan embed:%v in %v: %v", vfsPath, dir, err)
