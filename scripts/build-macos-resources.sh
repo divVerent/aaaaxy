@@ -34,3 +34,4 @@ done
 png2icns packaging/AAAAXY.app/Contents/Resources/icon.icns packaging/AAAAXY.iconset/*.png ||\
 iconutil --convert icns --output packaging/AAAAXY.app/Contents/Resources/icon.icns packaging/AAAAXY.iconset
 scripts/Info.plist.sh $(scripts/version.sh macos) packaging/AAAAXY.app
+ln -f aaaaxy.dat packaging/AAAAXY.app/Contents/Resources/aaaaxy.dat

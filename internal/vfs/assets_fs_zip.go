@@ -15,9 +15,6 @@
 //go:build zip
 // +build zip
 
-// TODO(divVerent): use PathForResource_ofType_ on macOS to find the data file.
-// TODO(divVerent): find a similar way for Android.
-
 package vfs
 
 import (

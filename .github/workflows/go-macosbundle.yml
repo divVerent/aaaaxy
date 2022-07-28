@@ -33,6 +33,9 @@ jobs:
     - name: Register with LaunchServices
       run: '/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -R -f packaging/AAAAXY.app'
 
+    - name: Clean DAT file
+      run: 'rm aaaaxy.dat'
+
     - name: Test
       run: 'sh scripts/regression-test-demo.sh darwin-specific "on track for Any%, All Paths and No Teleports" "open -n -W packaging/AAAAXY.app --args" benchmark.dem'
 
@@ -44,6 +47,9 @@ jobs:
 
     - name: Register with LaunchServices
       run: '/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -R -f packaging/AAAAXY.app'
+
+    - name: Clean DAT file
+      run: 'rm aaaaxy.dat'
 
     - name: Test
       run: 'sh scripts/regression-test-demo.sh darwin-universal "on track for Any%, All Paths and No Teleports" "open -n -W packaging/AAAAXY.app --args" benchmark.dem'
