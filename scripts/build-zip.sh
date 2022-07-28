@@ -23,12 +23,13 @@ rm -f "$out"
 # Reverse order so just in case, assets override everything else.
 
 cd "$d0"/licenses
-7za a -tzip -mx=9 "$out" [!_]*/[!_]*
+zip -r "$out" [!_]*/[!_]*
 
 for d in "$d0"/third_party/*/assets; do
 	cd "$d"
-	7za a -tzip -mx=9 "$out" [!_]*/[!_]*
+	zip -r "$out" [!_]*/[!_]*
 done
 
 cd "$d0"/assets
-7za a -tzip -mx=9 "$out" [!_]*/[!_]*
+zip -r "$out" [!_]*/[!_]*
+advzip -z -4 "$out"

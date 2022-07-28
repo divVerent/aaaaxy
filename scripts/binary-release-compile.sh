@@ -112,14 +112,15 @@ case "$GOOS" in
 esac
 
 rm -f "$AAAAXY_ZIPFILE"
-7za a -tzip -mx=9 "$AAAAXY_ZIPFILE" \
+zip -r "$AAAAXY_ZIPFILE" \
 	README.md LICENSE CONTRIBUTING.md \
 	licenses
 (
 	cd "$appdir"
-	7za a -tzip -mx=9 "$AAAAXY_ZIPFILE" \
+	zip -r "$AAAAXY_ZIPFILE" \
 		$app
 )
+advzip -z -4 "$AAAAXY_ZIPFILE"
 
 case "$GOOS" in
 	linux)

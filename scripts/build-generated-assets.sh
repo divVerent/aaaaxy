@@ -56,7 +56,7 @@ if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 				-channel RGBA \
 				-metric RMSE -format '%[distortion]' -compare \
 				INFO:)
-			if [ x"$result" -ne x'0' ]; then
+			if [ x"$result" != x'0' ]; then
 				echo >&2 "$f and $g differ."
 				exit 1
 			fi

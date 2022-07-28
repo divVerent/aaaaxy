@@ -67,12 +67,14 @@ VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 
 # Also pack the SDL game controller DB at the exact version used for the
 # release. Used for compiling from source tarballs.
-7za a -tzip -mx=9 sdl-gamecontrollerdb-for-aaaaxy-$new.zip third_party/SDL_GameControllerDB/assets/input/*
+zip -r sdl-gamecontrollerdb-for-aaaaxy-$new.zip third_party/SDL_GameControllerDB/assets/input/*
+advzip -z -4 sdl-gamecontrollerdb-for-aaaaxy-$new.zip
 
 # Also pack the files that do NOT get embedded into a mapping pack.
 (
 	cd assets/
-	7za a -tzip -mx=9 ../mappingsupport-for-aaaaxy-$new.zip ../LICENSE objecttypes.xml _* */_*
+	zip -r ../mappingsupport-for-aaaaxy-$new.zip ../LICENSE objecttypes.xml _* */_*
+	advzip -z -4 ../mappingsupport-for-aaaaxy-$new.zip
 )
 
 GOOS=linux sh scripts/binary-release-compile.sh amd64
