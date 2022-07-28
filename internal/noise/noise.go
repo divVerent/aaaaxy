@@ -25,7 +25,6 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/go117"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
@@ -57,7 +56,7 @@ func Init() error {
 		return fmt.Errorf("could not decode stereonoise: %w", err)
 	}
 	noise, err = audiowrap.NewPlayer(func() (io.ReadCloser, error) {
-		return go117.NopCloser(audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded)))), nil
+		return io.NopCloser(audio.NewInfiniteLoop(bytes.NewReader(decoded), int64(len(decoded)))), nil
 	})
 	if err != nil {
 		return fmt.Errorf("could not start playing noise: %w", err)

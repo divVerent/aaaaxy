@@ -24,7 +24,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/dontgc"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/go117"
 )
 
 var (
@@ -155,7 +154,7 @@ func ebiPlayerFromBytes(src []byte) *ebiaudio.Player {
 
 func NewPlayerFromBytes(src []byte) (*Player, error) {
 	dmp, err := newDumper(func() (io.ReadCloser, error) {
-		return go117.NopCloser(bytes.NewReader(src)), nil
+		return io.NopCloser(bytes.NewReader(src)), nil
 	})
 	if err != nil {
 		return nil, err

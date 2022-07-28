@@ -32,7 +32,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/dontgc"
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/go117"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/vfs"
@@ -126,7 +125,7 @@ func (s *Sound) PlayAtVolume(vol float64) *audiowrap.Player {
 			if loopEnd < 0 {
 				loopEnd = int64(len(s.sound))
 			}
-			return go117.NopCloser(audio.NewInfiniteLoopWithIntro(bytes.NewReader(s.sound), s.loopStart*bytesPerSample, loopEnd)), nil
+			return io.NopCloser(audio.NewInfiniteLoopWithIntro(bytes.NewReader(s.sound), s.loopStart*bytesPerSample, loopEnd)), nil
 		})
 	} else {
 		player, err = audiowrap.NewPlayerFromBytes(s.sound)
