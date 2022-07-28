@@ -7,6 +7,7 @@ GO ?= go
 BINARY = aaaaxy$(shell $(GO) env GOEXE)
 
 ifeq ($(BUILDTYPE),release)
+# TODO: make zip work for macOS, and use it here.
 BUILDTAGS = embed
 else
 BUILDTAGS =
