@@ -54,7 +54,7 @@ require (
 
 require (
 	github.com/otiai10/copy v1.6.0
-	github.com/spf13/cobra v1.1.3
+	github.com/spf13/cobra v0.0.5
 	golang.org/x/exp v0.0.0-20220126164734-073fb1339172 // indirect
 )
 
