@@ -55,7 +55,7 @@ type touchInfo struct {
 
 var (
 	touchWantPad  bool
-	touches       map[ebiten.TouchID]*touchInfo
+	touches       = map[ebiten.TouchID]*touchInfo{}
 	touchIDs      []ebiten.TouchID
 	touchHoverPos m.Pos
 	touchPadFrame int
