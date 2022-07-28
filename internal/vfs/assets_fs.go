@@ -18,7 +18,6 @@
 package vfs
 
 import (
-	"embed"
 	"errors"
 	"fmt"
 	"io"
@@ -31,10 +30,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
-
-	"github.com/divVerent/aaaaxy/assets"
-	"github.com/divVerent/aaaaxy/licenses"
-	"github.com/divVerent/aaaaxy/third_party"
 )
 
 var (
@@ -43,8 +38,9 @@ var (
 )
 
 type fsRoot struct {
-	fs   *embed.FS
-	root string
+	fs       fs.ReadDirFS
+	root     string
+	toPrefix string
 }
 
 var (
@@ -68,7 +64,7 @@ func dumpAssetsFrom(dir fsRoot) error {
 			return err
 		}
 		defer fIn.Close()
-		out := path.Join(*dumpEmbeddedAssets, relPath)
+		out := path.Join(*dumpEmbeddedAssets, dir.toPrefix+relPath)
 		log.Infof("%v => %v", p, out)
 		err = os.MkdirAll(path.Dir(out), 0777)
 		if err != nil {
@@ -94,10 +90,7 @@ func dumpAssets() error {
 			return err
 		}
 	}
-	return dumpAssetsFrom(fsRoot{
-		fs:   &licenses.FS,
-		root: ".",
-	})
+	return nil
 }
 
 // initAssets initializes the VFS. Must run after loading the assets.
@@ -106,27 +99,11 @@ func initAssets() error {
 		return initLocalAssets([]string{*cheatReplaceEmbeddedAssets})
 	}
 
-	embeddedAssetDirs = []fsRoot{{
-		fs:   &assets.FS,
-		root: ".",
-	}}
-	content, err := third_party.FS.ReadDir(".")
+	var err error
+	embeddedAssetDirs, err = initAssetsFS()
 	if err != nil {
-		return fmt.Errorf("could not find embedded third party directory: %v", err)
+		return err
 	}
-	roots := []string{}
-	for _, info := range content {
-		if !info.IsDir() {
-			continue
-		}
-		root := path.Join(info.Name(), "assets")
-		embeddedAssetDirs = append(embeddedAssetDirs, fsRoot{
-			fs:   &third_party.FS,
-			root: root,
-		})
-		roots = append(roots, root)
-	}
-	log.Debugf("embedded asset search path: %v", roots)
 
 	if *dumpEmbeddedAssets != "" {
 		err := dumpAssets()
@@ -148,8 +125,12 @@ func load(vfsPath string) (ReadSeekCloser, error) {
 
 	var err error
 	for _, dir := range embeddedAssetDirs {
+		if !strings.HasPrefix(vfsPath, dir.toPrefix) {
+			continue
+		}
+		relPath := strings.TrimPrefix(vfsPath, dir.toPrefix)
 		var f fs.File
-		f, err = dir.fs.Open(path.Join(dir.root, vfsPath))
+		f, err = dir.fs.Open(path.Join(dir.root, relPath))
 		if err != nil {
 			continue
 		}
@@ -174,15 +155,19 @@ func readDir(vfsPath string) ([]string, error) {
 
 	var results []string
 	for _, dir := range embeddedAssetDirs {
-		content, err := dir.fs.ReadDir(path.Join(dir.root, vfsPath))
+		if !strings.HasPrefix(vfsPath, dir.toPrefix) {
+			continue
+		}
+		relPath := strings.TrimPrefix(vfsPath, dir.toPrefix)
+		content, err := dir.fs.ReadDir(path.Join(dir.root, relPath))
 		if err != nil {
 			if !errors.Is(err, os.ErrNotExist) {
-				return nil, fmt.Errorf("could not scan embed:%v:%v: %v", vfsPath, dir, err)
+				return nil, fmt.Errorf("could not scan embed:%v in %v: %v", vfsPath, dir, err)
 			}
 			continue
 		}
 		for _, info := range content {
-			results = append(results, info.Name())
+			results = append(results, dir.toPrefix+info.Name())
 		}
 	}
 	sort.Strings(results)
