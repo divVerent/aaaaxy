@@ -18,33 +18,38 @@
 package vfs
 
 import (
+	"os"
+
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
 )
 
 // initAssets initializes the VFS.
-func initAssets() error {
-	dirs := []string{"assets"}
+func initAssetsFS() ([]fsRoot, error) {
+	dirs := []fsRoot{
+		{
+			name:     "local:" + "assets",
+			filesys:  os.DirFS("assets"),
+			root:     ".",
+			toPrefix: "",
+		},
+	}
 	content, err := ioutil.ReadDir("third_party")
 	if err != nil {
-		return fmt.Errorf("could not find local third party directory: %v", err)
+		return nil, fmt.Errorf("could not find local third party directory: %v", err)
 	}
 	for _, info := range content {
 		if !info.IsDir() {
 			continue
 		}
-		dirs = append(dirs, filepath.Join("third_party", info.Name(), "assets"))
+		path := filepath.Join("third_party", info.Name(), "assets")
+		dirs = append(dirs, fsRoot{
+			name:     "local:" + path,
+			filesys:  os.DirFS(path),
+			root:     ".",
+			toPrefix: "",
+		})
 	}
-	return initLocalAssets(dirs)
-}
-
-// load loads a file from the VFS.
-func load(vfsPath string) (ReadSeekCloser, error) {
-	return loadLocal(vfsPath)
-}
-
-// readDir lists all files in a directory. Returns their VFS names, NOT full paths!
-func readDir(vfsPath string) ([]string, error) {
-	return readLocalDir(vfsPath)
+	return dirs, nil
 }

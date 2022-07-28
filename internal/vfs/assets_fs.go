@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build embed || zip
-// +build embed zip
-
 package vfs
 
 import (
@@ -38,17 +35,22 @@ var (
 )
 
 type fsRoot struct {
-	fs       fs.FS
+	name     string
+	filesys  fs.FS
 	root     string
 	toPrefix string
 }
 
+func (f fsRoot) String() string {
+	return fmt.Sprintf("%v(%v->%v)", f.name, f.root, f.toPrefix)
+}
+
 var (
-	embeddedAssetDirs []fsRoot
+	assetDirs []fsRoot
 )
 
 func dumpAssetsFrom(dir fsRoot) error {
-	return fs.WalkDir(dir.fs, dir.root, func(p string, d fs.DirEntry, err error) error {
+	return fs.WalkDir(dir.filesys, dir.root, func(p string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
@@ -59,7 +61,7 @@ func dumpAssetsFrom(dir fsRoot) error {
 		if strings.HasPrefix(p, dir.root+"/") {
 			relPath = p[len(dir.root)+1:]
 		}
-		fIn, err := dir.fs.Open(p)
+		fIn, err := dir.filesys.Open(p)
 		if err != nil {
 			return err
 		}
@@ -84,7 +86,7 @@ func dumpAssetsFrom(dir fsRoot) error {
 }
 
 func dumpAssets() error {
-	for _, dir := range embeddedAssetDirs {
+	for _, dir := range assetDirs {
 		err := dumpAssetsFrom(dir)
 		if err != nil {
 			return err
@@ -95,15 +97,24 @@ func dumpAssets() error {
 
 // initAssets initializes the VFS. Must run after loading the assets.
 func initAssets() error {
-	if *cheatReplaceEmbeddedAssets != "" {
-		return initLocalAssets([]string{*cheatReplaceEmbeddedAssets})
+	if *cheatReplaceEmbeddedAssets == "" {
+		var err error
+		assetDirs, err = initAssetsFS()
+		if err != nil {
+			return err
+		}
+	} else {
+		assetDirs = []fsRoot{
+			{
+				name:     "replace",
+				filesys:  os.DirFS(*cheatReplaceEmbeddedAssets),
+				root:     "/",
+				toPrefix: "",
+			},
+		}
 	}
 
-	var err error
-	embeddedAssetDirs, err = initAssetsFS()
-	if err != nil {
-		return err
-	}
+	log.Infof("asset search path: %v", assetDirs)
 
 	if *dumpEmbeddedAssets != "" {
 		err := dumpAssets()
@@ -119,18 +130,14 @@ func initAssets() error {
 
 // load loads a file from the VFS.
 func load(vfsPath string) (ReadSeekCloser, error) {
-	if *cheatReplaceEmbeddedAssets != "" {
-		return loadLocal(vfsPath)
-	}
-
 	var err error
-	for _, dir := range embeddedAssetDirs {
+	for _, dir := range assetDirs {
 		if !strings.HasPrefix(vfsPath, dir.toPrefix) {
 			continue
 		}
 		relPath := strings.TrimPrefix(vfsPath, dir.toPrefix)
 		var f fs.File
-		f, err = dir.fs.Open(path.Join(dir.root, relPath))
+		f, err = dir.filesys.Open(path.Join(dir.root, relPath))
 		if err != nil {
 			continue
 		}
@@ -140,29 +147,25 @@ func load(vfsPath string) (ReadSeekCloser, error) {
 		}
 		info, err := f.Stat()
 		if err == nil && info.IsDir() {
-			return nil, fmt.Errorf("could not open embed:%v: is a directory", vfsPath)
+			return nil, fmt.Errorf("could not open %v: is a directory", vfsPath)
 		}
-		return nil, fmt.Errorf("could not open embed:%v: internal error (go:embed doesn't yield ReadSeekCloser)", vfsPath)
+		return nil, fmt.Errorf("could not open %v: internal error (go:embed doesn't yield ReadSeekCloser)", vfsPath)
 	}
-	return nil, fmt.Errorf("could not open embed:%v: %w", vfsPath, err)
+	return nil, fmt.Errorf("could not open %v: %w", vfsPath, err)
 }
 
 // readDir lists all files in a directory. Returns their VFS names, NOT full paths!
 func readDir(vfsPath string) ([]string, error) {
-	if *cheatReplaceEmbeddedAssets != "" {
-		return readLocalDir(vfsPath)
-	}
-
 	var results []string
-	for _, dir := range embeddedAssetDirs {
+	for _, dir := range assetDirs {
 		if !strings.HasPrefix(vfsPath, dir.toPrefix) {
 			continue
 		}
 		relPath := strings.TrimPrefix(vfsPath, dir.toPrefix)
-		content, err := fs.ReadDir(dir.fs, path.Join(dir.root, relPath))
+		content, err := fs.ReadDir(dir.filesys, path.Join(dir.root, relPath))
 		if err != nil {
 			if !errors.Is(err, os.ErrNotExist) {
-				return nil, fmt.Errorf("could not scan embed:%v in %v: %v", vfsPath, dir, err)
+				return nil, fmt.Errorf("could not scan %v in %v: %v", vfsPath, dir, err)
 			}
 			continue
 		}

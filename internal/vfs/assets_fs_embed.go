@@ -21,8 +21,6 @@ import (
 	"fmt"
 	"path"
 
-	"github.com/divVerent/aaaaxy/internal/log"
-
 	"github.com/divVerent/aaaaxy/assets"
 	"github.com/divVerent/aaaaxy/licenses"
 	"github.com/divVerent/aaaaxy/third_party"
@@ -32,7 +30,8 @@ import (
 func initAssetsFS() ([]fsRoot, error) {
 	dirs := []fsRoot{
 		{
-			fs:       &assets.FS,
+			name:     "embed:assets",
+			filesys:  &assets.FS,
 			root:     ".",
 			toPrefix: "",
 		},
@@ -48,17 +47,18 @@ func initAssetsFS() ([]fsRoot, error) {
 		}
 		root := path.Join(info.Name(), "assets")
 		dirs = append(dirs, fsRoot{
-			fs:       &third_party.FS,
+			name:     "embed:third_party/" + root,
+			filesys:  &third_party.FS,
 			root:     root,
 			toPrefix: "",
 		})
 		roots = append(roots, root)
 	}
 	dirs = append(dirs, fsRoot{
-		fs:       &licenses.FS,
+		name:     "embed:licenses",
+		filesys:  &licenses.FS,
 		root:     ".",
 		toPrefix: "licenses/",
 	})
-	log.Debugf("embedded asset search path: %v", roots)
 	return dirs, nil
 }

@@ -17,8 +17,6 @@
 
 // TODO(divVerent): use PathForResource_ofType_ on macOS to find the data file.
 // TODO(divVerent): find a similar way for Android.
-// TODO(divVerent): route local FS access through this too (os.DirFS).
-// TODO(divVerent): then remove the _fs_ infix :)
 
 package vfs
 
@@ -96,9 +94,9 @@ func initAssetsFS() ([]fsRoot, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not parse aaaaxy.dat: %v", err)
 	}
-	log.Debugf("zip asset search path: aaaaxy.dat")
 	return []fsRoot{{
-		fs:       seekingFS{zip},
+		name:     "dat:aaaaxy.dat",
+		filesys:  seekingFS{zip},
 		root:     ".",
 		toPrefix: "",
 	}}, nil
