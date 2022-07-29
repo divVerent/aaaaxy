@@ -32,6 +32,7 @@ var (
 	V            *int  = &defaultV
 	defaultBatch bool  = false
 	Batch        *bool = &defaultBatch
+	usePanic     bool  = false
 )
 
 const (
@@ -106,7 +107,14 @@ func Fatalf(format string, v ...interface{}) {
 		alert.Show(msg)
 	}
 	atexit.Finish()
+	if usePanic {
+		panic(msg)
+	}
 	os.Exit(125)
+}
+
+func UsePanic(u bool) {
+	usePanic = u
 }
 
 var (

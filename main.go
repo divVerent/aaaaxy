@@ -71,9 +71,10 @@ func main() {
 	defer atexit.Finish()
 
 	// Turn all panics into Fatalf for uniform exception handling.
+	ok := false
 	defer func() {
-		if r := recover(); r != nil {
-			log.Fatalf("got panic: %v", r)
+		if !ok {
+			log.Fatalf("got panic: %v", recover())
 		}
 	}()
 
@@ -93,12 +94,15 @@ func main() {
 	err := game.InitEbitengine()
 	if err != nil {
 		if errors.Is(err, exitstatus.RegularTermination) {
+			ok = true
 			return
 		}
 		log.Fatalf("could not initialize game: %v", err)
 	}
 	err = runGame(game)
 	errbe := game.BeforeExit()
+	// From here on, nothing can panic.
+	ok = true
 	if err != nil {
 		if errors.Is(err, exitstatus.RegularTermination) {
 			return
