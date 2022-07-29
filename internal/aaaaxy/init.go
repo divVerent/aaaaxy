@@ -106,11 +106,6 @@ func (g *Game) InitEbitengine() error {
 // and may take place in the first frame
 // if there is no way to run this before the main loop (e.g. on mobile).
 func (g *Game) InitEarly() error {
-	if g.init.early {
-		return nil
-	}
-	g.init.early = true
-
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetScreenClearedEveryFrame(false)
 	ebiten.SetVsyncEnabled(*vsync)
@@ -171,7 +166,6 @@ func (g *Game) InitEarly() error {
 
 type initState struct {
 	splash.State
-	early   bool
 	started bool
 	done    bool
 }
