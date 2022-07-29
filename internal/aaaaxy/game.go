@@ -107,6 +107,8 @@ type Game struct {
 	paletteShader    *ebiten.Shader // Updates when paletteDitherSize changes.
 
 	framesToDump int
+
+	quitHandler func(error)
 }
 
 var _ ebiten.Game = &Game{}
@@ -158,7 +160,7 @@ func (g *Game) updateFrame() error {
 	return nil
 }
 
-func (g *Game) Update() error {
+func (g *Game) update() error {
 	ebiten.SetScreenFilterEnabled(*screenFilter != "nearest")
 
 	if !g.canUpdate {
@@ -191,6 +193,18 @@ func (g *Game) Update() error {
 	}
 
 	return nil
+}
+
+func (g *Game) Update() error {
+	err := g.update()
+	if err != nil && g.quitHandler != nil {
+		g.quitHandler(err)
+	}
+	return err
+}
+
+func (g *Game) SetQuitHandler(quitHandler func(error)) {
+	g.quitHandler = quitHandler
 }
 
 func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*ebiten.Image, func() *ebiten.Image) {
