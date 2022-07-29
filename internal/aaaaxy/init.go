@@ -91,21 +91,35 @@ func setWindowSize() {
 	ebiten.SetWindowSize(w, h)
 }
 
+// NOTE: This function only runs on desktop systems.
+// On mobile, we instead run InitEarly only.
 func (g *Game) InitEbitengine() error {
+	ebiten.SetInitFocused(true)
+	ebiten.SetScreenTransparent(false)
+	ebiten.SetWindowDecorated(true)
+	ebiten.SetWindowResizable(true)
+	setWindowSize()
+	return g.InitEarly()
+}
+
+// InitEarly is the beginning of our initialization,
+// and may take place in the first frame
+// if there is no way to run this before the main loop (e.g. on mobile).
+func (g *Game) InitEarly() error {
+	if g.init.early {
+		return nil
+	}
+	g.init.early = true
+
+	ebiten.SetFullscreen(*fullscreen)
+	ebiten.SetScreenClearedEveryFrame(false)
+	ebiten.SetVsyncEnabled(*vsync)
+	ebiten.SetWindowTitle("AAAAXY")
+
 	// Ensure fps divisor is valid. We can only do integer TPS.
 	if *fpsDivisor < 1 || engine.GameTPS%*fpsDivisor != 0 {
 		*fpsDivisor = 1
 	}
-
-	ebiten.SetFullscreen(*fullscreen)
-	ebiten.SetInitFocused(true)
-	ebiten.SetScreenClearedEveryFrame(false)
-	ebiten.SetScreenTransparent(false)
-	ebiten.SetVsyncEnabled(*vsync)
-	ebiten.SetWindowDecorated(true)
-	ebiten.SetWindowResizable(true)
-	setWindowSize()
-	ebiten.SetWindowTitle("AAAAXY")
 
 	// Initialize some stuff that is needed early.
 	err := vfs.Init()
@@ -157,6 +171,7 @@ func (g *Game) InitEbitengine() error {
 
 type initState struct {
 	splash.State
+	early   bool
 	started bool
 	done    bool
 }
@@ -179,7 +194,11 @@ func (g *Game) provideLoadingFractions() error {
 func (g *Game) InitStep() error {
 	if !g.init.started {
 		g.init.started = true
-		err := g.provideLoadingFractions()
+		err := g.InitEarly()
+		if err != nil {
+			log.Errorf("could not initialize early: %v", err)
+		}
+		err = g.provideLoadingFractions()
 		if err != nil {
 			log.Errorf("could not provide loading fractions: %v", err)
 		}
