@@ -188,11 +188,7 @@ func (g *Game) provideLoadingFractions() error {
 func (g *Game) InitStep() error {
 	if !g.init.started {
 		g.init.started = true
-		err := g.InitEarly()
-		if err != nil {
-			log.Errorf("could not initialize early: %v", err)
-		}
-		err = g.provideLoadingFractions()
+		err := g.provideLoadingFractions()
 		if err != nil {
 			log.Errorf("could not provide loading fractions: %v", err)
 		}
