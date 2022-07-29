@@ -170,7 +170,10 @@ func readDir(vfsPath string) ([]string, error) {
 			continue
 		}
 		for _, info := range content {
-			results = append(results, dir.toPrefix+info.Name())
+			if info.IsDir() {
+				continue
+			}
+			results = append(results, info.Name())
 		}
 	}
 	sort.Strings(results)

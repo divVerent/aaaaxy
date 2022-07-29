@@ -17,40 +17,63 @@ package credits
 import (
 	"bufio"
 	"fmt"
+	"regexp"
 
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 var (
-	Lines []string
+	Lines    []string
+	Licenses []string
+
+	wordWrapRE = regexp.MustCompile(`(?:^\s*|\b)\S.{1,80}(?:\b|$)|^$`)
 )
 
-func Precache() error {
-	credits, err := vfs.ReadDir("credits")
+func concatenateLines(dir string) ([]string, error) {
+	files, err := vfs.ReadDir(dir)
 	if err != nil {
-		return fmt.Errorf("could not list credits: %w", err)
+		return nil, fmt.Errorf("could not list files in %v: %w", dir, err)
 	}
 	var lines []string
-	for _, file := range credits {
-		rd, err := vfs.Load("credits", file)
+	for _, file := range files {
+		rd, err := vfs.Load(dir, file)
 		if err != nil {
-			return fmt.Errorf("could not load credits: %w", err)
+			return nil, fmt.Errorf("could not load file %v in %v: %w", file, dir, err)
 		}
 		defer rd.Close()
 		scanner := bufio.NewScanner(rd)
 		scanner.Split(bufio.ScanLines)
 		for scanner.Scan() {
-			lines = append(lines, scanner.Text())
+			lines = append(lines, wordWrapRE.FindAllString(scanner.Text(), -1)...)
 		}
 		if err = scanner.Err(); err != nil {
-			return fmt.Errorf("could not scan credits from %q: %w", file, err)
+			return nil, fmt.Errorf("could not scan file %v in %v: %w", file, dir, err)
 		}
 		// Make sure items are separated by empty lines.
 		if len(lines) > 0 && lines[len(lines)-1] != "" {
 			lines = append(lines, "")
 		}
 	}
-	Lines = lines
+	return lines, nil
+}
 
+func loadCredits() ([]string, error) {
+	return concatenateLines("credits")
+}
+
+func loadLicenses() ([]string, error) {
+	return concatenateLines("licenses")
+}
+
+func Precache() error {
+	var err error
+	Lines, err = loadCredits()
+	if err != nil {
+		return err
+	}
+	Licenses, err = loadLicenses()
+	if err != nil {
+		return err
+	}
 	return nil
 }

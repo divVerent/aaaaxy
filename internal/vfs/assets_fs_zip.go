@@ -94,6 +94,6 @@ func initAssetsFS() ([]fsRoot, error) {
 		name:     "dat:aaaaxy.dat",
 		filesys:  seekingFS{zip},
 		root:     ".",
-		toPrefix: "",
+		toPrefix: "/",
 	}}, nil
 }

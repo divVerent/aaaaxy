@@ -41,6 +41,7 @@ var (
 const (
 	creditsLineHeight = 24
 	creditsFrames     = 3
+	creditsStep       = 3
 )
 
 type CreditsScreen struct {
@@ -49,8 +50,8 @@ type CreditsScreen struct {
 
 	Controller *Controller
 	Lines      []string // Actual lines to display.
-	Frame      int      // Current scroll position.
-	MaxFrame   int      // Maximum scroll position.
+	Frame      int      // Subpixel accumulator.
+	ScrollPos  int      // Current scroll position.
 	Exits      int      // How often exit was pressed. Need to press 7 times to leave fancy credits.
 }
 
@@ -59,7 +60,14 @@ func (s *CreditsScreen) Init(m *Controller) error {
 		s.Fancy = true
 	}
 	s.Controller = m
-	s.Lines = append([]string{}, credits.Lines...)
+	s.Lines = nil
+	if len(credits.Licenses) != 0 {
+		s.Lines = append(s.Lines,
+			"For Software Licenses",
+			"press right",
+			"")
+	}
+	s.Lines = append(s.Lines, credits.Lines...)
 	s.Lines = append(
 		s.Lines,
 		fmt.Sprintf("Level Version: %d", s.Controller.World.Level.SaveGameVersion),
@@ -103,8 +111,7 @@ func (s *CreditsScreen) Init(m *Controller) error {
 			"",
 			"Thank You!")
 	}
-	s.Frame = (-engine.GameHeight - creditsLineHeight) * creditsFrames
-	s.MaxFrame = (creditsLineHeight*len(s.Lines) - 0*creditsLineHeight - engine.GameHeight) * creditsFrames
+	s.ScrollPos = textScreenScrollInPos(s.Lines, creditsLineHeight)
 	return nil
 }
 
@@ -112,7 +119,7 @@ func (s *CreditsScreen) Update() error {
 	exit := input.Exit.JustHit || input.Left.JustHit
 	up := input.Up.Held
 	down := input.Down.Held
-	credits := input.Right.JustHit
+	licenses := input.Right.JustHit
 	if pos, status := input.Mouse(); status != input.NoMouse {
 		if pos.Y < engine.GameHeight/3 {
 			up = true
@@ -120,7 +127,7 @@ func (s *CreditsScreen) Update() error {
 			down = true
 		} else if status == input.ClickingMouse {
 			if pos.X > 2*engine.GameWidth/3 {
-				credits = true
+				licenses = true
 			} else {
 				exit = true
 			}
@@ -129,56 +136,49 @@ func (s *CreditsScreen) Update() error {
 	if s.Fancy {
 		if exit {
 			s.Exits++
-			if s.Frame >= s.MaxFrame {
+			if textScreenAdjustScrollDown(s.Lines, s.ScrollPos, 1, creditsLineHeight) == s.ScrollPos {
 				return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 			} else if s.Exits >= 6 {
-				s.Frame = s.MaxFrame
+				s.ScrollPos = textScreenEndPos(s.Lines, creditsLineHeight)
 			}
 		}
 	} else {
 		if exit {
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 		}
-		if credits {
-			// TODO switch to credits dialog.
-			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
+		if licenses {
+			if len(credits.Licenses) == 0 {
+				// Source checkout - no license info.
+				return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
+			} else {
+				return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&LicensesScreen{}))
+			}
 		}
 		if up {
-			s.Frame -= 5
+			s.ScrollPos = textScreenAdjustScrollUp(s.Lines, s.ScrollPos, creditsStep, creditsLineHeight)
+			s.Frame = 0
 		}
 		if down {
-			s.Frame += 5
+			s.ScrollPos = textScreenAdjustScrollDown(s.Lines, s.ScrollPos, creditsStep, creditsLineHeight)
+			s.Frame = 0
 		}
 	}
 	s.Frame++
-	if s.Frame > s.MaxFrame {
-		s.Frame = s.MaxFrame
+	if s.Frame >= creditsFrames {
+		s.ScrollPos = textScreenAdjustScrollDown(s.Lines, s.ScrollPos, 1, creditsLineHeight)
+		s.Frame = 0
 	}
 	return nil
 }
 
 func (s *CreditsScreen) Draw(screen *ebiten.Image) {
-	x := engine.GameWidth / 2
 	fgs := palette.EGA(palette.Yellow, 255)
 	bgs := palette.EGA(palette.Black, 255)
 	fgn := palette.EGA(palette.LightCyan, 255)
 	bgn := palette.EGA(palette.Black, 0)
-	nextIsTitle := true
-	for i, line := range s.Lines {
-		if line == "" {
-			nextIsTitle = true
-			continue
-		}
-		isTitle := nextIsTitle
-		nextIsTitle = false
-		y := creditsLineHeight*i - s.Frame/creditsFrames
-		if y < 0 || y >= engine.GameHeight+creditsLineHeight {
-			continue
-		}
-		if isTitle {
-			font.MenuBig.Draw(screen, line, m.Pos{X: x, Y: y}, true, fgs, bgs)
-		} else {
-			font.Menu.Draw(screen, line, m.Pos{X: x, Y: y}, true, fgn, bgn)
-		}
+	pos := m.Pos{
+		X: engine.GameWidth / 2,
+		Y: s.ScrollPos,
 	}
+	renderTextScreen(screen, font.MenuBig, font.Menu, s.Lines, pos, true, creditsLineHeight, fgs, bgs, fgn, bgn)
 }

@@ -134,6 +134,12 @@ func Init() error {
 		SubPixelsX: 1,
 		SubPixelsY: 1,
 	}))
+	ByName["MonoSmall"] = makeFace(truetype.NewFace(mono, &truetype.Options{
+		Size:       10,
+		Hinting:    font.HintingFull,
+		SubPixelsX: 1,
+		SubPixelsY: 1,
+	}))
 	ByName["SmallCaps"] = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
 		Size:       14,
 		Hinting:    font.HintingFull,

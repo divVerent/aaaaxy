@@ -32,7 +32,7 @@ func initAssetsFS() ([]fsRoot, error) {
 			name:     "local:" + "assets",
 			filesys:  os.DirFS("assets"),
 			root:     ".",
-			toPrefix: "",
+			toPrefix: "/",
 		},
 	}
 	content, err := ioutil.ReadDir("third_party")
@@ -48,8 +48,10 @@ func initAssetsFS() ([]fsRoot, error) {
 			name:     "local:" + path,
 			filesys:  os.DirFS(path),
 			root:     ".",
-			toPrefix: "",
+			toPrefix: "/",
 		})
 	}
+	// This VFS does not support license info - which is fine as you have the
+	// source and all licenses on your drive already.
 	return dirs, nil
 }

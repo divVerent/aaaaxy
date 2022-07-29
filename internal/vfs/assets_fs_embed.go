@@ -33,7 +33,7 @@ func initAssetsFS() ([]fsRoot, error) {
 			name:     "embed:assets",
 			filesys:  &assets.FS,
 			root:     ".",
-			toPrefix: "",
+			toPrefix: "/",
 		},
 	}
 	content, err := third_party.FS.ReadDir(".")
@@ -50,7 +50,7 @@ func initAssetsFS() ([]fsRoot, error) {
 			name:     "embed:third_party/" + root,
 			filesys:  &third_party.FS,
 			root:     root,
-			toPrefix: "",
+			toPrefix: "/",
 		})
 		roots = append(roots, root)
 	}
@@ -58,7 +58,7 @@ func initAssetsFS() ([]fsRoot, error) {
 		name:     "embed:licenses",
 		filesys:  &licenses.FS,
 		root:     ".",
-		toPrefix: "licenses/",
+		toPrefix: "/licenses/",
 	})
 	return dirs, nil
 }
