@@ -109,16 +109,21 @@ func (s *CreditsScreen) Init(m *Controller) error {
 }
 
 func (s *CreditsScreen) Update() error {
-	exit := input.Exit.JustHit
+	exit := input.Exit.JustHit || input.Left.JustHit
 	up := input.Up.Held
 	down := input.Down.Held
+	credits := input.Right.JustHit
 	if pos, status := input.Mouse(); status != input.NoMouse {
-		if s.Fancy && pos.Y < engine.GameHeight/4 {
+		if pos.Y < engine.GameHeight/3 {
 			up = true
-		} else if s.Fancy && pos.Y > 3*engine.GameHeight/4 {
+		} else if pos.Y > 2*engine.GameHeight/3 {
 			down = true
 		} else if status == input.ClickingMouse {
-			exit = true
+			if pos.X > 2*engine.GameWidth/3 {
+				credits = true
+			} else {
+				exit = true
+			}
 		}
 	}
 	if s.Fancy {
@@ -132,6 +137,10 @@ func (s *CreditsScreen) Update() error {
 		}
 	} else {
 		if exit {
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
+		}
+		if credits {
+			// TODO switch to credits dialog.
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 		}
 		if up {
