@@ -37,8 +37,8 @@ var (
 	rightTouch  = m.Rect{Origin: m.Pos{X: 64, Y: 232}, Size: m.Delta{DX: 64, DY: 64}}
 	downTouch   = m.Rect{Origin: m.Pos{X: 32, Y: 296}, Size: m.Delta{DX: 64, DY: 64}}
 	upTouch     = m.Rect{Origin: m.Pos{X: 32, Y: 168}, Size: m.Delta{DX: 64, DY: 64}}
-	jumpTouch   = m.Rect{Origin: m.Pos{X: 576, Y: 296}, Size: m.Delta{DX: 64, DY: 64}}
-	actionTouch = m.Rect{Origin: m.Pos{X: 448, Y: 296}, Size: m.Delta{DX: 64, DY: 64}}
+	jumpTouch   = m.Rect{Origin: m.Pos{X: 512, Y: 232}, Size: m.Delta{DX: 128, DY: 128}}
+	actionTouch = m.Rect{Origin: m.Pos{X: 512, Y: 104}, Size: m.Delta{DX: 128, DY: 128}}
 	exitTouch   = m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 128, DY: 64}}
 )
 
