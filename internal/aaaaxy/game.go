@@ -410,11 +410,11 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 
 	if !g.canDraw {
 		text, fraction := g.init.Current()
-		if text != "" {
-			bg := palette.EGA(palette.Blue, uint8(m.Rint(255*(1-fraction))))
-			fg := palette.EGA(palette.LightGrey, 255)
-			ol := palette.EGA(palette.Black, 255)
-			drawDest.Fill(bg)
+		bg := palette.EGA(palette.Blue, uint8(m.Rint(255*(1-fraction))))
+		fg := palette.EGA(palette.LightGrey, 255)
+		ol := palette.EGA(palette.Black, 255)
+		drawDest.Fill(bg)
+		if font.MenuSmall.Face != nil && text != "" {
 			r := font.MenuSmall.BoundString(text)
 			y := m.Rint(float64((engine.GameHeight-r.Size.DY))*(1-fraction)) - r.Origin.Y
 			font.MenuSmall.Draw(drawDest, text, m.Pos{
