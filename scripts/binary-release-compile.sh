@@ -15,6 +15,7 @@
 
 set -ex
 
+: ${ADVZIP:=advzip -4}
 : ${GO:=go}
 : ${LIPO:=lipo}
 
@@ -120,7 +121,7 @@ zip -r "$AAAAXY_ZIPFILE" \
 	zip -r "$AAAAXY_ZIPFILE" \
 		$app
 )
-advzip -z -4 "$AAAAXY_ZIPFILE"
+$ADVZIP -z "$AAAAXY_ZIPFILE"
 
 case "$GOOS" in
 	linux)

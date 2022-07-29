@@ -18,6 +18,8 @@ set -ex
 d0=$PWD
 out=$PWD/aaaaxy.dat
 
+: ${ADVZIP:=advzip -4}
+
 rm -f "$out"
 
 # Reverse order so just in case, assets override everything else.
@@ -32,4 +34,4 @@ done
 
 cd "$d0"/assets
 zip -r "$out" [!_]*/[!_]*
-advzip -z -4 "$out"
+$ADVZIP -z "$out"
