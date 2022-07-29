@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build !wasm && windows
-// +build !wasm,windows
+//go:build !wasm && !windows && !android
+// +build !wasm,!windows,!android
 
 package vfs
 
@@ -21,32 +21,27 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"golang.org/x/sys/windows"
+	"github.com/adrg/xdg"
 )
 
-func knownFolder(kind StateKind) (string, error) {
+func pathForRead(kind StateKind, name string) (string, error) {
 	switch kind {
 	case Config:
-		return windows.KnownFolderPath(windows.FOLDERID_LocalAppData, windows.KF_FLAG_CREATE)
+		return xdg.SearchConfigFile(filepath.Join(gameName, name))
 	case SavedGames:
-		return windows.KnownFolderPath(windows.FOLDERID_SavedGames, windows.KF_FLAG_CREATE)
+		return xdg.SearchDataFile(filepath.Join(gameName, name))
 	default:
 		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
 	}
 }
 
-func pathForRead(kind StateKind, name string) (string, error) {
-	root, err := knownFolder(kind)
-	if err != nil {
-		return "", err
-	}
-	return filepath.Join(root, gameName, name), nil
-}
-
 func pathForWrite(kind StateKind, name string) (string, error) {
-	root, err := knownFolder(kind)
-	if err != nil {
-		return "", err
+	switch kind {
+	case Config:
+		return xdg.ConfigFile(filepath.Join(gameName, name))
+	case SavedGames:
+		return xdg.DataFile(filepath.Join(gameName, name))
+	default:
+		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
 	}
-	return filepath.Join(root, gameName, name), nil
 }
