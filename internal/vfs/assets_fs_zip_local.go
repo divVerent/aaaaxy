@@ -18,10 +18,9 @@
 package vfs
 
 import (
-	"io"
 	"os"
 )
 
-func openAssetsZip() (*os.File, err) {
+func openAssetsZip() (*os.File, error) {
 	return os.Open("aaaaxy.dat")
 }

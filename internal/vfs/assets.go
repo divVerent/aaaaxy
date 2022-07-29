@@ -50,7 +50,7 @@ func Load(purpose, name string) (ReadSeekCloser, error) {
 
 // ReadDir lists all files in a directory. Returns their VFS paths!
 func ReadDir(purpose string) ([]string, error) {
-	vfsPath := fmt.Sprintf("/%s", purpose)
+	vfsPath := fmt.Sprintf("/%s/", purpose)
 	log.Debugf("listing %v", vfsPath)
 	return readDir(vfsPath)
 }
