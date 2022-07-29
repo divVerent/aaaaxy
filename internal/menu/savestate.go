@@ -119,7 +119,7 @@ func (s *SaveStateScreen) Update() error {
 	if input.Exit.JustHit {
 		return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 	}
-	if input.Jump.JustHit || input.Action.JustHit || clicked {
+	if input.Jump.JustHit || input.Action.JustHit || clicked != NotClicked {
 		switch s.Item {
 		case SaveStateA:
 			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(0))

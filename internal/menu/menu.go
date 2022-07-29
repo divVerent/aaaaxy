@@ -308,22 +308,23 @@ func (c *Controller) MoveSound(err error) error {
 	return err
 }
 
-func (c *Controller) QueryMouseItem(item interface{}, count int) bool {
+func (c *Controller) QueryMouseItem(item interface{}, count int) Direction {
 	mousePos, mouseState := input.Mouse()
 	if mouseState == input.NoMouse {
-		return false
+		return NotClicked
 	}
-	if idx, ok := ItemClicked(mousePos, count); ok {
+	if idx, dir := ItemClicked(mousePos, count); dir != NotClicked {
 		v := reflect.ValueOf(item).Elem()
 		prev := v.Int()
-		if int64(idx) == prev {
-			return mouseState == input.ClickingMouse
+		if int64(idx) != prev {
+			v.SetInt(int64(idx))
+			c.MoveSound(nil)
 		}
-		v.SetInt(int64(idx))
-		c.MoveSound(nil)
-		return mouseState == input.ClickingMouse
+		if mouseState == input.ClickingMouse {
+			return dir
+		}
 	}
-	return false
+	return NotClicked
 }
 
 func (c *Controller) PaletteChanged() error {

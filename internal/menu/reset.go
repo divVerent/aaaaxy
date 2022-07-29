@@ -72,7 +72,7 @@ func (s *ResetScreen) Update() error {
 	if input.Exit.JustHit {
 		return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 	}
-	if input.Jump.JustHit || input.Action.JustHit || clicked {
+	if input.Jump.JustHit || input.Action.JustHit || clicked != NotClicked {
 		switch s.Item {
 		case ResetNothing:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))

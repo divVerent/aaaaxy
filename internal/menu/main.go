@@ -62,7 +62,7 @@ func (s *MainScreen) Update() error {
 			return s.Controller.ActivateSound(s.Controller.SwitchToGame())
 		}
 	*/
-	if input.Jump.JustHit || input.Action.JustHit || clicked {
+	if input.Jump.JustHit || input.Action.JustHit || clicked != NotClicked {
 		switch s.Item {
 		case Play:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MapScreen{}))

@@ -333,7 +333,7 @@ func (s *SettingsScreen) Update() error {
 	if input.Exit.JustHit {
 		return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&MainScreen{}))
 	}
-	if input.Jump.JustHit || input.Action.JustHit || clicked {
+	if input.Jump.JustHit || input.Action.JustHit || clicked == CenterClicked {
 		switch s.Item {
 		case Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
@@ -351,7 +351,7 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&MainScreen{}))
 		}
 	}
-	if input.Left.JustHit {
+	if input.Left.JustHit || clicked == LeftClicked {
 		switch s.Item {
 		case Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
@@ -363,7 +363,7 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(toggleVolume(-1))
 		}
 	}
-	if input.Right.JustHit {
+	if input.Right.JustHit || clicked == RightClicked {
 		switch s.Item {
 		case Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())

@@ -22,14 +22,23 @@ import (
 const CenterX = engine.GameWidth / 2
 const HeaderY = engine.GameHeight / 4
 
+type Direction int
+
+const (
+	NotClicked Direction = iota
+	LeftClicked
+	CenterClicked
+	RightClicked
+)
+
 func ItemBaselineY(i, n int) int {
 	return engine.GameHeight * (31 - 2*(n-i)) / 32
 }
 
-func ItemClicked(pos m.Pos, n int) (int, bool) {
+func ItemClicked(pos m.Pos, n int) (int, Direction) {
 	// Clicked far at side?
 	if pos.X < engine.GameWidth/8 || pos.X > 7*engine.GameWidth/8 {
-		return -1, false
+		return -1, NotClicked
 	}
 
 	// Adjust for baseline.
@@ -38,9 +47,15 @@ func ItemClicked(pos m.Pos, n int) (int, bool) {
 	// Map to index.
 	i := n - (31-y*32/engine.GameHeight)/2
 	if i >= 0 && i < n {
-		return i, true
+		dir := CenterClicked
+		if pos.X < engine.GameWidth/3 {
+			dir = LeftClicked
+		} else if pos.X > 2*engine.GameWidth/3 {
+			dir = RightClicked
+		}
+		return i, dir
 	}
 
 	// Outside.
-	return -1, false
+	return -1, NotClicked
 }

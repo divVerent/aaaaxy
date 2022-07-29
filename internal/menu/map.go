@@ -212,7 +212,7 @@ func (s *MapScreen) Update() error {
 	if mouseState != input.NoMouse {
 		clicked = s.moveTo(mousePos)
 	}
-	if input.Exit.JustHit {
+	if input.Exit.JustHit || (!clicked && mouseState == input.ClickingMouse) {
 		return s.exit()
 	}
 	if input.Left.JustHit {
