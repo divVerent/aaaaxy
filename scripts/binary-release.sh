@@ -89,7 +89,7 @@ GOOS=js sh scripts/binary-release-compile.sh wasm
 git commit -a -m "$(cat .commitmsg)"
 git tag -a "$new" -m "$(cat .commitmsg)"
 newrev=$(git rev-parse HEAD)
-git push -f origin HEAD: binary-release-test
+git push -f origin HEAD:binary-release-test
 
 set +x
 
