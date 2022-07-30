@@ -67,8 +67,3 @@ find third_party -name COPYRIGHT.md | while read -r path; do
 	} > "licenses/$cleanname-COPYRIGHT.txt"
 	cp "$path/LICENSE" "licenses/$cleanname-LICENSE.txt"
 done
-
-# TODO: change structure as follows:
-#   licenses/item.txt         - contains just the name of the item, plus extra info
-#   licenses/item-LICENSE.txt - contains the license
-# That would be something we can easily display in a license dialog.
