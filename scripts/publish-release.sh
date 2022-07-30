@@ -39,6 +39,9 @@ if ! [ -f .commitmsg ]; then
 	exit 1
 fi
 
+# First send the new tag to GitHub.
+git push origin tag "$new"
+
 # Upload the binaries to GitHub.
 hub release create \
 	-a aaaaxy-linux-amd64-"$new".zip \
