@@ -24,8 +24,7 @@ rm -f "$out"
 
 # Reverse order so just in case, assets override everything else.
 
-cd "$d0"/licenses
-zip -r "$out" [!_]*/[!_]*
+zip -r "$out" licenses/*.txt
 
 for d in "$d0"/third_party/*/assets; do
 	cd "$d"

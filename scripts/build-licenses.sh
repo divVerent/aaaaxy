@@ -23,7 +23,7 @@ export GOARCH=
 
 out=$1
 
-rm -rf licenses/software-licenses
+rm -rf licenses/*.txt
 
 # Note: ignoring errors here, as some golang.org packages
 # do not have a discoverable license file. As they're all under Go's license,
@@ -35,11 +35,40 @@ for d in licenses/software-licenses/*/; do
 	[ -d "$d" ]
 done
 
+# Translate to a single directory.
+find licenses/software-licenses -type f | while read -r path; do
+	file=${path##*/}
+	path=${path%/*}
+	name=${path#licenses/software-licenses/}
+	case "$name" in
+		github.com/divVerent/aaaaxy)
+			cleanname="aaaaxy"
+			;;
+		*)
+			cleanname=software-$(echo -n "$name" | tr -c '0-9A-Za-z-' '_')
+			;;
+	esac
+	echo "$name:" > "licenses/$cleanname-COPYRIGHT.txt"
+	mv "$path/$file" "licenses/$cleanname-$file.txt"
+done
+
+rm -rf licenses/software-licenses
+
 # Add our own third party stuff.
 rm -rf licenses/asset-licenses
-find third_party -name LICENSE -o -name COPYRIGHT.md | while read -r path; do
-  name=${path%/*}
-  name=${name##*/}
-  mkdir -p "licenses/asset-licenses/$name/"
-  cp "$path" "licenses/asset-licenses/$name/"
+find third_party -name COPYRIGHT.md | while read -r path; do
+	path=${path%/*}
+	name=${path##*/}
+	cleanname=asset-$(echo -n "$name" | tr -c '0-9A-Za-z-' '_')
+	{
+		echo "$name:"
+		echo
+		cat "$path/COPYRIGHT.md"
+	} > "licenses/$cleanname-COPYRIGHT.txt"
+	cp "$path/LICENSE" "licenses/$cleanname-LICENSE.txt"
 done
+
+# TODO: change structure as follows:
+#   licenses/item.txt         - contains just the name of the item, plus extra info
+#   licenses/item-LICENSE.txt - contains the license
+# That would be something we can easily display in a license dialog.
