@@ -7,13 +7,13 @@ GO ?= go
 BINARY = aaaaxy$(shell $(GO) env GOEXE)
 
 ifeq ($(BUILDTYPE),release)
-ifeq ($(shell $(GO) env GOOS),darwin)
-# Do not duplicate content in fat binaries.
+ISRELEASE = true
+BUILDTAGS = embed
+else ifeq ($(BUILDTYPE),ziprelease)
+ISRELEASE = true
 BUILDTAGS = zip
 else
-BUILDTAGS = embed
-endif
-else
+ISRELEASE = false
 BUILDTAGS =
 endif
 
@@ -46,10 +46,7 @@ GO_LDFLAGS += -H=windowsgui
 endif
 GO_FLAGS += $(patsubst %,-ldflags=all=%,$(GO_LDFLAGS))
 
-# Release/debug flags.
-BUILDTYPE = debug
-
-ifeq ($(BUILDTYPE),release)
+ifeq ($(ISRELEASE),true)
 GO_LDFLAGS += -s -w
 GO_FLAGS += -a -trimpath
 ifneq ($(shell $(GO) env GOARCH),wasm)

@@ -61,16 +61,19 @@ case "$GOOS" in
 		appdir=packaging/
 		app=AAAAXY.app
 		prefix=packaging/AAAAXY.app/Contents/MacOS/
+		buildtype=ziprelease
 		;;
 	js)
 		appdir=.
 		app="aaaaxy-$GOOS$GOARCH_SUFFIX$GOEXE index.html wasm_exec.js"
 		prefix=
+		buildtype=release
 		;;
 	*)
 		appdir=.
 		app=aaaaxy-$GOOS$GOARCH_SUFFIX$GOEXE
 		prefix=
+		buildtype=release
 		;;
 esac
 
@@ -85,14 +88,14 @@ esac
 if [ -n "$GOARCH_SUFFIX" ]; then
 	eval "export CGO_ENV=\$CGO_ENV_$1"
 	binary=${prefix}aaaaxy-$GOOS$GOARCH_SUFFIX$GOEXE
-	GOARCH=$(GOARCH=$1 $GO env GOARCH) make BUILDTYPE=release BINARY="$binary" clean all
+	GOARCH=$(GOARCH=$1 $GO env GOARCH) make BUILDTYPE=$buildtype BINARY="$binary" clean all
 	unset CGO_ENV
 else
 	lipofiles=
 	for arch in "$@"; do
 		eval "export CGO_ENV=\$CGO_ENV_$arch"
 		binary=${prefix}aaaaxy-$GOOS-$arch$GOEXE
-		GOARCH=$(GOARCH=$arch $GO env GOARCH) make BUILDTYPE=release BINARY="$binary" clean all
+		GOARCH=$(GOARCH=$arch $GO env GOARCH) make BUILDTYPE=$buildtype BINARY="$binary" clean all
 		unset CGO_ENV
 		lipofiles="$lipofiles $binary"
 	done
