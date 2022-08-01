@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.174" date="2022-07-21">
-      <description><ul><li>Level: The One Way Round: add another room :)</li><li>Level: In places that require an ability, show an ExitButton sprite if the ability is missing.</li><li>Engine: Add some missing palette JSON files, and make sure this does not happen again.</li><li>Menu: Make it easier to revert back to VGA.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.174</url>
+    <release version="v1.2.217" date="2022-08-01">
+      <description><ul><li>Menu: can now display the asset and software licenses.</li><li>Release building: now 800KiB smaller releases, thanks to advancecomp.</li><li>Release building: no longer include data twice on macOS releases, saving >20 MiB.</li><li>Engine: major improvements to touch handling; working on an Android release (not ready yet).</li><li>Engine: update Ebitengine to v2.3.7.</li><li>Game: very minor map change near The One Way Round.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.217</url>
     </release>
   </releases>
 </component>
