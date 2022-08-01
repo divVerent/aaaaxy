@@ -85,3 +85,8 @@ See also the game's [itch.io page](https://divVerent.itch.io/aaaaxy).
 
 Deeper technical information and source code is to be found on the
 [GitHub repository](https://github.com/divVerent/aaaaxy).
+
+### Privacy
+
+For information about this game's data collection and handling,
+[see here](privacy.md).
