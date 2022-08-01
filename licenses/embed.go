@@ -21,5 +21,5 @@ import (
 	"embed"
 )
 
-//go:embed [^_]*/[^_]*
+//go:embed *.txt
 var FS embed.FS
