@@ -191,7 +191,12 @@ case "$format" in
 		;;
 	android)
 		# Building an Android version code out of the semver, similar to Windows binary versions.
-		echo "$((major * 100000000 + minor * 1000000 + patch + prerelease_add))"
+		case "$major.$minor" in
+			1.2)
+				extra=1000
+				;;
+		esac
+		echo "$((major * 100000000 + minor * 1000000 + patch + prerelease_add + extra))"
 		;;
 	*)
 		echo >&2 "Unknown version type: $format."
