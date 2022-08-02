@@ -27,6 +27,12 @@ import (
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
+var offerFullscreen = flag.SystemDefault(map[string]interface{}{
+	"android/*": false,
+	"ios/*":     false,
+	"*/*":       true,
+}).(bool)
+
 type SettingsScreenItem int
 
 const (
@@ -320,7 +326,14 @@ func toggleVolume(delta int) error {
 }
 
 func (s *SettingsScreen) Update() error {
-	clicked := s.Controller.QueryMouseItem(&s.Item, SettingsCount)
+	var clicked Direction
+	if offerFullscreen {
+		clicked = s.Controller.QueryMouseItem(&s.Item, SettingsCount)
+	} else {
+		s.Item--
+		clicked = s.Controller.QueryMouseItem(&s.Item, SettingsCount-1)
+		s.Item++
+	}
 	if input.Down.JustHit {
 		s.Item++
 		s.Controller.MoveSound(nil)
@@ -329,7 +342,11 @@ func (s *SettingsScreen) Update() error {
 		s.Item--
 		s.Controller.MoveSound(nil)
 	}
-	s.Item = SettingsScreenItem(m.Mod(int(s.Item), int(SettingsCount)))
+	if offerFullscreen {
+		s.Item = SettingsScreenItem(m.Mod(int(s.Item), int(SettingsCount)))
+	} else {
+		s.Item = SettingsScreenItem(m.Mod(int(s.Item-1), int(SettingsCount-1)) + 1)
+	}
 	if input.Exit.JustHit {
 		return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&MainScreen{}))
 	}
@@ -384,16 +401,18 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	fgn := palette.EGA(palette.LightGrey, 255)
 	bgn := palette.EGA(palette.DarkGrey, 255)
 	font.MenuBig.Draw(screen, "Settings", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
+	if offerFullscreen {
+		fg, bg := fgn, bgn
+		if s.Item == Fullscreen {
+			fg, bg = fgs, bgs
+		}
+		fsText := "Switch to Fullscreen Mode"
+		if ebiten.IsFullscreen() {
+			fsText = "Switch to Windowed Mode"
+		}
+		font.Menu.Draw(screen, fsText, m.Pos{X: CenterX, Y: ItemBaselineY(Fullscreen, SettingsCount)}, true, fg, bg)
+	}
 	fg, bg := fgn, bgn
-	if s.Item == Fullscreen {
-		fg, bg = fgs, bgs
-	}
-	fsText := "Switch to Fullscreen Mode"
-	if ebiten.IsFullscreen() {
-		fsText = "Switch to Windowed Mode"
-	}
-	font.Menu.Draw(screen, fsText, m.Pos{X: CenterX, Y: ItemBaselineY(Fullscreen, SettingsCount)}, true, fg, bg)
-	fg, bg = fgn, bgn
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs
 	}
