@@ -27,7 +27,7 @@ var (
 	touchForce = flag.Bool("touch_force", flag.SystemDefault(map[string]interface{}{
 		"android/*": true,
 		"ios/*":     true,
-		"js/*":      false, // TODO(divVerent): Figure out why they fail, and once solved, enable.
+		"js/*":      true,
 		"*/*":       false,
 	}).(bool), "always show touch controls")
 )
