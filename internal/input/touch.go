@@ -97,10 +97,8 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 		}
 		x, y := ebiten.TouchPosition(id)
 		t.pos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, x, y)
-		if t.frames < touchClickMaxFrames {
-			hoverAcc = hoverAcc.Add(t.pos.Delta(m.Pos{}))
-			hoverCnt++
-		}
+		hoverAcc = hoverAcc.Add(t.pos.Delta(m.Pos{}))
+		hoverCnt++
 	}
 	if hoverCnt > 0 {
 		touchHoverPos = hoverAcc.Add(m.Delta{DX: hoverCnt / 2, DY: hoverCnt / 2}).Div(hoverCnt)
