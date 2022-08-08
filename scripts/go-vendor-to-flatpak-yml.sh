@@ -80,17 +80,14 @@ while read -r command pkg ver _ replacementpkg replacementver; do
 			ver=v2.2.0-alpha.4
 			;;
 	esac
-	case "$ver" in
-		*-*-*)
-			tag=
-			commit=$(git rev-parse "${ver##*-}")
-			version="commit: $commit"
-			;;
-		*)
-			commit=$(git rev-parse "$ver")
-			version="tag: $ver$LF        commit: $commit"
-			;;
-	esac
+	if git rev-parse "$ver" >/dev/null 2>&1; then
+		commit=$(git rev-parse "$ver")
+		version="tag: $ver$LF        commit: $commit"
+	else
+		tag=
+		commit=$(git rev-parse "${ver##*-}")
+		version="commit: $commit"
+	fi
 	cat >&3 <<EOF
       - type: git
         url: $url
