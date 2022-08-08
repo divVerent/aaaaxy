@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.217" date="2022-08-01">
-      <description><ul><li>Menu: can now display the asset and software licenses.</li><li>Release building: now 800KiB smaller releases, thanks to advancecomp.</li><li>Release building: no longer include data twice on macOS releases, saving >20 MiB.</li><li>Engine: major improvements to touch handling; working on an Android release (not ready yet).</li><li>Engine: update Ebitengine to v2.3.7.</li><li>Game: very minor map change near The One Way Round.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.217</url>
+    <release version="v1.2.229" date="2022-08-08">
+      <description><ul><li>Engine: fix multitouch support.</li><li>Engine: minor module update: glfw, sys.</li><li>Engine: show touch controls on web version again.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.229</url>
     </release>
   </releases>
 </component>
