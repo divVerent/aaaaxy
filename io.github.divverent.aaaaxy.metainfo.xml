@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.229" date="2022-08-08">
-      <description><ul><li>Engine: fix multitouch support.</li><li>Engine: minor module update: glfw, sys.</li><li>Engine: show touch controls on web version again.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.229</url>
+    <release version="v1.2.233" date="2022-08-09">
+      <description><ul><li>Rebuild for Snap.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.233</url>
     </release>
   </releases>
 </component>
