@@ -11,8 +11,9 @@ android {
         minSdk 21
         targetSdk 32
         def rootDir = new File("${project.rootDir}/../..")
-        versionCode "scripts/version.sh android".execute(null, rootDir).text.trim().toInteger()
-        versionName "scripts/version.sh semver".execute(null, rootDir).text.trim()
+        def prefix = aaaaxy_build_use_version_file ? 'env AAAAXY_BUILD_USE_VERSION_FILE=true ' : ''
+        versionCode "${prefix}scripts/version.sh android".execute(null, rootDir).text.trim().toInteger()
+        versionName "${prefix}scripts/version.sh semver".execute(null, rootDir).text.trim()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
