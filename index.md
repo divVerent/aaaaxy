@@ -39,13 +39,13 @@ The current version is VERSION. Download here:
 END DOWNLOAD LINKS TEMPLATE -->
 
 <!-- BEGIN DOWNLOAD LINKS -->
-The current version is v1.2.233. Download here:
+The current version is v1.2.235. Download here:
 
-  - [Windows x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.233/aaaaxy-windows-amd64-v1.2.233.zip)
-  - [Windows x86 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.233/aaaaxy-windows-386-v1.2.233.zip)
-  - [Linux x86_64 AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.2.233/AAAAXY-x86_64.AppImage)
-  - [Linux x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.233/aaaaxy-linux-amd64-v1.2.233.zip)
-  - [macOS x86_64+M1 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.233/aaaaxy-darwin-v1.2.233.zip)
+  - [Windows x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.235/aaaaxy-windows-amd64-v1.2.235.zip)
+  - [Windows x86 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.235/aaaaxy-windows-386-v1.2.235.zip)
+  - [Linux x86_64 AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.2.235/AAAAXY-x86_64.AppImage)
+  - [Linux x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.235/aaaaxy-linux-amd64-v1.2.235.zip)
+  - [macOS x86_64+M1 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.235/aaaaxy-darwin-v1.2.235.zip)
   - [All files and releases](https://github.com/divVerent/aaaaxy/releases)
 <!-- END DOWNLOAD LINKS -->
 
