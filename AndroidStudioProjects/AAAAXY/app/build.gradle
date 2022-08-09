@@ -36,8 +36,58 @@ android {
     }
 }
 
-dependencies {
+task goGenerate(type: Exec) {
+    environment 'CGO_CPPFLAGS', '-DNDEBUG'
+    environment 'CGO_CFLAGS', '-g0 -O3'
+    environment 'CGO_CXXFLAGS', '-g0 -O3'
+    environment 'CGO_LDFLAGS', '-g0 -O3'
+    environment 'GOOS', 'android'
+    commandLine 'go', 'generate', '-tags', 'zip', '../../..'
+}
 
+task prepareLibsDir(type: Exec) {
+    commandLine 'mkdir', '-p', 'libs'
+}
+
+task ebitenMobile(type: Exec) {
+    dependsOn prepareLibsDir
+    dependsOn goGenerate
+    environment 'CGO_CPPFLAGS', '-DNDEBUG'
+    environment 'CGO_CFLAGS', '-g0 -O3'
+    environment 'CGO_CXXFLAGS', '-g0 -O3'
+    environment 'CGO_LDFLAGS', '-g0 -O3'
+    commandLine 'go', 'run', 'github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile', 'bind',
+        '-target', 'android',
+        '-javapkg', 'io.github.divverent.aaaaxy',
+        '-o', 'libs/aaaaxy.aar',
+        '-androidapi', '21',
+        '-tags', 'zip',
+        '-gcflags=all=-dwarf=false',
+        '-ldflags=all=-s',
+        '-ldflags=all=-w',
+        '-a',
+        '-trimpath',
+        'github.com/divVerent/aaaaxy/AndroidStudioProjects/AAAAXY/app/src/main/go/aaaaxy'
+}
+
+task prepareAssetsDir(type: Exec) {
+    commandLine 'mkdir', '-p', 'src/main/assets'
+}
+
+task getAssets(type: Exec) {
+    dependsOn prepareAssetsDir
+    dependsOn goGenerate
+    commandLine 'cp', '--reflink=auto', '../../../aaaaxy.dat', 'src/main/assets/aaaaxy.dat'
+}
+
+tasks.whenTaskAdded { theTask ->
+    if (theTask.name.equals("compileReleaseJavaWithJavac") || theTask.name.equals("compileDebugJavaWithJavac")) {
+        theTask.dependsOn ebitenMobile
+        theTask.dependsOn getAssets
+    }
+}
+
+dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation files('libs/aaaaxy.aar')
