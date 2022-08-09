@@ -42,6 +42,9 @@ task goGenerate(type: Exec) {
     environment 'CGO_CXXFLAGS', '-g0 -O3'
     environment 'CGO_LDFLAGS', '-g0 -O3'
     environment 'GOOS', 'android'
+    if (aaaaxy_build_use_version_file) {
+        environment 'AAAAXY_BUILD_USE_VERSION_FILE', 'true'
+    }
     commandLine 'go', 'generate', '-tags', 'zip', '../../..'
 }
 
