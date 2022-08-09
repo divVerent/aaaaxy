@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.233" date="2022-08-09">
-      <description><ul><li>Rebuild for Snap.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.233</url>
+    <release version="v1.2.235" date="2022-08-09">
+      <description><ul><li>Also export a version code for Android builds.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.235</url>
     </release>
   </releases>
 </component>
