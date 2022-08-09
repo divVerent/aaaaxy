@@ -1,0 +1,7 @@
+Although your general goal is reaching the surprising end of the game, you are encouraged to set your own goals while playing. Exploration will be rewarded, and secrets await you!
+
+So jump and run around, and enjoy losing your sense of orientation in this World of Wicked Weirdness. Find out what Van Vlijmen will make you do. Pick a path, get inside a Klein Bottle, recognize some memes, and by all means: don't look up.
+
+And beware of a minor amount of trolling.
+
+This game is licensed under the Apache 2.0 License. It is written in Go, using the Ebitengine game library. More info, source code and versions for Windows, Linux and macOS are available at https://divVerent.github.io/aaaaxy/
