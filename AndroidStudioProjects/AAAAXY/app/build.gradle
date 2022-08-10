@@ -12,7 +12,7 @@ android {
         minSdk 30  // For now, restrict to newest 50% of devices.
         targetSdk 32
         def rootDir = new File("${project.rootDir}/../..")
-        def prefix = aaaaxy_build_use_version_file ? 'env AAAAXY_BUILD_USE_VERSION_FILE=true ' : ''
+        def prefix = aaaaxy_build_use_version_file == 'true' ? 'env AAAAXY_BUILD_USE_VERSION_FILE=true ' : ''
         versionCode "${prefix}scripts/version.sh android".execute(null, rootDir).text.trim().toInteger()
         versionName "${prefix}scripts/version.sh semver".execute(null, rootDir).text.trim()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -44,7 +44,7 @@ task goGenerate(type: Exec) {
     environment 'CGO_CXXFLAGS', '-g0 -O3'
     environment 'CGO_LDFLAGS', '-g0 -O3'
     environment 'GOOS', 'android'
-    if (aaaaxy_build_use_version_file) {
+    if (aaaaxy_build_use_version_file == 'true') {
         environment 'AAAAXY_BUILD_USE_VERSION_FILE', 'true'
     }
     commandLine 'go', 'generate', '-tags', 'zip', '../../..'
