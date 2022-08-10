@@ -167,6 +167,8 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 				return "Backspace", nil
 			case input.Start:
 				return "Start", nil
+			case input.Back:
+				return "Back", nil
 			}
 		},
 		"ActionButton": func() (string, error) {
