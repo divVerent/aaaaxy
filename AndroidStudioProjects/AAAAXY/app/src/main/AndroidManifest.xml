@@ -34,5 +34,6 @@
 	<uses-feature android:name="android.hardware.gamepad" android:required="false" />
 	<uses-feature android:name="android.hardware.touchscreen" android:required="false" />
 	<uses-feature android:name="android.hardware.type.pc" android:required="false" />
-	<uses-feature android:glEsVersion="0x00020000" android:required="true" />
+	<!-- Actually only GLES 2.0 is required, but stating a higher requirement to exclude low-end devices. -->
+	<uses-feature android:glEsVersion="0x00030001" android:required="true" />
 </manifest>
