@@ -32,14 +32,40 @@ var (
 	}).(bool), "always show touch controls")
 )
 
+type touchRects struct {
+	touch m.Rect
+	draw  m.Rect
+}
+
 var (
-	leftTouch   = m.Rect{Origin: m.Pos{X: 0, Y: 232}, Size: m.Delta{DX: 64, DY: 64}}
-	rightTouch  = m.Rect{Origin: m.Pos{X: 64, Y: 232}, Size: m.Delta{DX: 64, DY: 64}}
-	downTouch   = m.Rect{Origin: m.Pos{X: 32, Y: 296}, Size: m.Delta{DX: 64, DY: 64}}
-	upTouch     = m.Rect{Origin: m.Pos{X: 32, Y: 168}, Size: m.Delta{DX: 64, DY: 64}}
-	jumpTouch   = m.Rect{Origin: m.Pos{X: 512, Y: 232}, Size: m.Delta{DX: 128, DY: 128}}
-	actionTouch = m.Rect{Origin: m.Pos{X: 512, Y: 104}, Size: m.Delta{DX: 128, DY: 128}}
-	exitTouch   = m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 128, DY: 64}}
+	leftTouch = touchRects{
+		touch: m.Rect{Origin: m.Pos{X: 0, Y: 232}, Size: m.Delta{DX: 64, DY: 64}},
+		draw:  m.Rect{Origin: m.Pos{X: 0, Y: 232}, Size: m.Delta{DX: 64, DY: 64}},
+	}
+	rightTouch = touchRects{
+		touch: m.Rect{Origin: m.Pos{X: 64, Y: 232}, Size: m.Delta{DX: 64, DY: 64}},
+		draw:  m.Rect{Origin: m.Pos{X: 64, Y: 232}, Size: m.Delta{DX: 64, DY: 64}},
+	}
+	downTouch = touchRects{
+		touch: m.Rect{Origin: m.Pos{X: 0, Y: 296}, Size: m.Delta{DX: 128, DY: 64}},
+		draw:  m.Rect{Origin: m.Pos{X: 32, Y: 296}, Size: m.Delta{DX: 64, DY: 64}},
+	}
+	upTouch = touchRects{
+		touch: m.Rect{Origin: m.Pos{X: 0, Y: 168}, Size: m.Delta{DX: 128, DY: 64}},
+		draw:  m.Rect{Origin: m.Pos{X: 32, Y: 168}, Size: m.Delta{DX: 64, DY: 64}},
+	}
+	jumpTouch = touchRects{
+		touch: m.Rect{Origin: m.Pos{X: 512, Y: 232}, Size: m.Delta{DX: 128, DY: 128}},
+		draw:  m.Rect{Origin: m.Pos{X: 576, Y: 296}, Size: m.Delta{DX: 64, DY: 64}},
+	}
+	actionTouch = touchRects{
+		touch: m.Rect{Origin: m.Pos{X: 512, Y: 40}, Size: m.Delta{DX: 128, DY: 192}},
+		draw:  m.Rect{Origin: m.Pos{X: 576, Y: 104}, Size: m.Delta{DX: 64, DY: 64}},
+	}
+	exitTouch = touchRects{
+		touch: m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 128, DY: 64}},
+		draw:  m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 128, DY: 64}},
+	}
 )
 
 const (
@@ -114,11 +140,11 @@ func (i *impulse) touchPressed() InputMap {
 	if !touchWantPad {
 		return 0
 	}
-	if i.touchRect.Size.IsZero() {
+	if i.touchRects.touch.Size.IsZero() {
 		return 0
 	}
 	for _, t := range touches {
-		if i.touchRect.DeltaPos(t.pos).IsZero() {
+		if i.touchRects.touch.DeltaPos(t.pos).IsZero() {
 			return Touchscreen
 		}
 	}
@@ -166,7 +192,7 @@ func touchDraw(screen *ebiten.Image) {
 		return
 	}
 	for _, i := range impulses {
-		if i.touchRect.Size.IsZero() {
+		if i.touchRects.draw.Size.IsZero() {
 			continue
 		}
 		img := i.touchImage
@@ -179,9 +205,9 @@ func touchDraw(screen *ebiten.Image) {
 		}
 		w, h := img.Size()
 		options.GeoM.Scale(
-			float64(i.touchRect.Size.DX)/float64(w),
-			float64(i.touchRect.Size.DY)/float64(h))
-		options.GeoM.Translate(float64(i.touchRect.Origin.X), float64(i.touchRect.Origin.Y))
+			float64(i.touchRects.draw.Size.DX)/float64(w),
+			float64(i.touchRects.draw.Size.DY)/float64(h))
+		options.GeoM.Translate(float64(i.touchRects.draw.Origin.X), float64(i.touchRects.draw.Origin.Y))
 		if i.Held {
 			options.ColorM.Scale(-1, -1, -1, 1)
 			options.ColorM.Translate(1, 1, 1, 0)
