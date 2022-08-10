@@ -38,7 +38,7 @@ static void quitGame(uintptr_t java_vm, uintptr_t jni_env) {
 	JavaVM *vm = (JavaVM *) java_vm;
 	JNIEnv *env = (JNIEnv *) jni_env;
 	const jclass main_activity =
-		(*env)->FindClass(env, "io/divverent/github/aaaaxy/MainActivity");
+		(*env)->FindClass(env, "io/github/divverent/aaaaxy/MainActivity");
 	(*env)->CallStaticVoidMethod(env,
 		main_activity,
 		(*env)->GetMethodID(env, main_activity, "quitGame", "()V"));
