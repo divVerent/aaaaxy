@@ -49,4 +49,9 @@ public class MainActivity extends AppCompatActivity {
 		super.onResume();
 		this.getEbitenView().resumeGame();
 	}
+
+	@Override
+	public void onBackPressed() {
+		Aaaaxy.backPressed();
+	}
 }

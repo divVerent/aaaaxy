@@ -22,6 +22,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/aaaaxy"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
@@ -102,4 +103,9 @@ func SetFilesDir(dir string) {
 // Doing it this way as I can't seem to figure how how to call a Java method from Go.
 func WaitQuit() {
 	<-g.running
+}
+
+// BackPressed notifies the game that the back button has been pressed.
+func BackPressed() {
+	input.ExitPressed()
 }

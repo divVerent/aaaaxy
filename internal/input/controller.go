@@ -55,11 +55,12 @@ type impulse struct {
 	ImpulseState
 	Name string
 
-	keys         map[ebiten.Key]InputMap
-	padControls  padControls
-	mouseControl bool
-	touchRect    m.Rect
-	touchImage   *ebiten.Image
+	keys              map[ebiten.Key]InputMap
+	padControls       padControls
+	mouseControl      bool
+	touchRect         m.Rect
+	touchImage        *ebiten.Image
+	externallyPressed bool
 }
 
 const (
@@ -110,6 +111,9 @@ var (
 
 	// Last mouse/finger click/release pos, if any.
 	clickPos *m.Pos
+
+	// Force back button pressed for next frame.
+	backPressed bool
 )
 
 func (i *impulse) register() *impulse {
@@ -118,27 +122,31 @@ func (i *impulse) register() *impulse {
 }
 
 func (i *impulse) update() {
-	keyboardHeld := i.keyboardPressed()
-	gamepadHeld := i.gamepadPressed()
-	touchHeld := i.touchPressed()
-	mouseHeld := i.mousePressed()
-	held := keyboardHeld | gamepadHeld | touchHeld | mouseHeld
-	if held != NoInput && !i.Held {
+	keyboardHolders := i.keyboardPressed()
+	gamepadHolders := i.gamepadPressed()
+	touchHolders := i.touchPressed()
+	mouseHolders := i.mousePressed()
+	holders := keyboardHolders | gamepadHolders | touchHolders | mouseHolders
+	held := holders != NoInput || i.externallyPressed
+	if held && !i.Held {
 		i.JustHit = true
 		// Whenever a new key is pressed, update the flag whether we're actually
 		// _using_ the gamepad. Used for some in-game text messages.
-		inputMap &= held
+		if holders != NoInput {
+			inputMap &= holders
+		}
 		if inputMap == NoInput {
-			inputMap = held
+			inputMap = holders
 		}
 		// Hide mouse pointer if using another input device in the menu.
-		if mouseHeld == NoInput {
+		if mouseHolders == NoInput {
 			mouseCancel()
 		}
 	} else {
 		i.JustHit = false
 	}
-	i.Held = held != NoInput
+	i.Held = held
+	i.externallyPressed = false
 }
 
 func Init() error {
@@ -302,4 +310,8 @@ func SaveToDemo() *DemoState {
 
 func Draw(screen *ebiten.Image) {
 	touchDraw(screen)
+}
+
+func ExitPressed() {
+	Exit.externallyPressed = true
 }
