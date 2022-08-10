@@ -61,7 +61,7 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	}
 	s.Controller = m
 	s.Lines = nil
-	if len(credits.Licenses) != 0 {
+	if len(credits.Licenses) != 0 && !s.Fancy {
 		s.Lines = append(s.Lines,
 			"For Software Licenses",
 			"press right",
