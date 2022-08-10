@@ -16,6 +16,7 @@ package aaaaxy
 
 import (
 	"fmt"
+	"golang.org/x/mobile/app"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/mobile"
@@ -27,9 +28,34 @@ import (
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
+/*
+#include <jni.h>
+
+static void quitGame(uintptr_t java_vm, uintptr_t jni_env) {
+	JavaVM *vm = (JavaVM *) java_vm;
+	JNIEnv *env = (JNIEnv *) jni_env;
+	const jclass main_activity =
+		(*env)->FindClass(env, "io/divverent/github/aaaaxy/MainActivity");
+	(*env)->CallStaticVoidMethod(env,
+		main_activity,
+		(*env)->GetMethodID(env, main_activity, "quitGame", "()V"));
+	(*env)->DeleteLocalRef(env, main_activity);
+}
+*/
+import "C"
+
+func quitGame() {
+	err := app.RunOnJVM(func(vm, env, _ uintptr) error {
+		C.quitGame(C.uintptr_t(vm), C.uintptr_t(env))
+		return nil
+	})
+	if err != nil {
+		log.Fatalf("failed to quitGame: %v", err)
+	}
+}
+
 type game struct {
-	game    *aaaaxy.Game
-	running chan struct{}
+	game *aaaaxy.Game
 
 	inited  bool
 	drawErr error
@@ -42,7 +68,8 @@ func (g *game) Update() (err error) {
 			err = fmt.Errorf("caught panic during update: %v", recover())
 		}
 		if err != nil {
-			close(g.running)
+			quitGame()
+			return
 		}
 	}()
 	if g.drawErr != nil {
@@ -84,8 +111,7 @@ var (
 func init() {
 	log.UsePanic(true)
 	g = &game{
-		game:    aaaaxy.NewGame(),
-		running: make(chan struct{}),
+		game: aaaaxy.NewGame(),
 	}
 	mobile.SetGame(g)
 }
@@ -96,13 +122,6 @@ func SetFilesDir(dir string) {
 	// Only now we can actually load the config.
 	// Sorry, some of the stuff SetGame does couldn't use flags then.
 	flag.Parse(aaaaxy.LoadConfig)
-}
-
-// WaitQuit waits till the user selects to quit the game.
-//
-// Doing it this way as I can't seem to figure how how to call a Java method from Go.
-func WaitQuit() {
-	<-g.running
 }
 
 // BackPressed notifies the game that the back button has been pressed.
