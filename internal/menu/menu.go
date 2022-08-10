@@ -81,6 +81,8 @@ func (c *Controller) Update() error {
 	}
 
 	timing.Section("global_hotkeys")
+
+	input.SetHideControls(c.World.TimerStopped)
 	if c.World.ForceCredits {
 		c.World.ForceCredits = false
 		c.blurFrame = 0

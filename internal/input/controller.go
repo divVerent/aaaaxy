@@ -179,6 +179,10 @@ func SetWantClicks(want bool) {
 	touchSetWantPad(!want)
 }
 
+func SetHideControls(want bool) {
+	touchSetHidePad(want)
+}
+
 func EasterEggJustHit() bool {
 	return easterEgg.justHit || snesEasterEgg.justHit
 }

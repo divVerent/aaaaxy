@@ -81,6 +81,7 @@ type touchInfo struct {
 
 var (
 	touchWantPad  bool
+	touchHidePad  bool
 	touches       = map[ebiten.TouchID]*touchInfo{}
 	touchIDs      []ebiten.TouchID
 	touchHoverPos m.Pos
@@ -136,6 +137,10 @@ func touchSetWantPad(want bool) {
 	touchWantPad = want
 }
 
+func touchSetHidePad(want bool) {
+	touchHidePad = want
+}
+
 func (i *impulse) touchPressed() InputMap {
 	if !touchWantPad {
 		return 0
@@ -185,7 +190,7 @@ func touchInit() error {
 }
 
 func touchDraw(screen *ebiten.Image) {
-	if !touchWantPad {
+	if !touchWantPad || touchHidePad {
 		return
 	}
 	if !*touchForce && touchPadFrame <= 0 {
