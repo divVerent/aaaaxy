@@ -13,9 +13,16 @@
 		tools:targetApi="32">
 		<activity
 			android:name=".MainActivity"
-			android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+			android:configChanges="density|fontScale|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
 			android:exported="true"
-			android:screenOrientation="landscape"
+			android:hardwareAccelerated="true"
+			android:immersive="true"
+			android:launchMode="singleInstance"
+			android:maxRecents="1"
+			android:resizeableActivity="false"
+			android:screenOrientation="userLandscape"
+			android:stateNotNeeded="true"
+			android:windowSoftInputMode="stateAlwaysHidden"
 			tools:ignore="LockedOrientationActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
