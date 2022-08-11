@@ -14,15 +14,18 @@ import io.github.divverent.aaaaxy.aaaaxy.EbitenView;
 
 public class MainActivity extends AppCompatActivity {
 	private WindowInsetsControllerCompat insetsController;
-	private static MainActivity self = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		self = this;
 		super.onCreate(savedInstanceState);
 		Seq.setContext(getApplicationContext());
 		File dir = getExternalFilesDir(null);
 		Aaaaxy.setFilesDir(dir.getAbsolutePath());
+		new Thread(() -> {
+			Aaaaxy.waitQuit();
+			finishAndRemoveTask();
+			System.exit(0);
+		}).start();
 		setContentView(R.layout.activity_main);
 		insetsController = new WindowInsetsControllerCompat(
 			getWindow(), getWindow().getDecorView());
@@ -50,10 +53,5 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public void onBackPressed() {
 		Aaaaxy.backPressed();
-	}
-
-	public static void quitGame() {
-		self.finishAndRemoveTask();
-		System.exit(0);
 	}
 }
