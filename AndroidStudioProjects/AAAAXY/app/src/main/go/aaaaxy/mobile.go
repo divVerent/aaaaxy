@@ -41,7 +41,7 @@ static void quitGame(uintptr_t java_vm, uintptr_t jni_env) {
 		(*env)->FindClass(env, "io/github/divverent/aaaaxy/MainActivity");
 	(*env)->CallStaticVoidMethod(env,
 		main_activity,
-		(*env)->GetStaticMethodID(env, main_activity, "quitGame", "()V"));
+		(*env)->GetMethodID(env, main_activity, "quitGame", "()V"));
 	(*env)->DeleteLocalRef(env, main_activity);
 }
 */
