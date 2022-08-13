@@ -30,12 +30,26 @@ import (
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
+// A Quitter is used to exit the game. The Quit() method will be implemented by MainActivity in Java.
+type Quitter interface {
+	Quit()
+}
+
 type game struct {
-	game    *aaaaxy.Game
-	running chan struct{}
+	game *aaaaxy.Game
 
 	inited  bool
 	drawErr error
+}
+
+var (
+	g       *game
+	quitter Quitter
+)
+
+// SetQuitter receives an object that can quit the game.
+func SetQuitter(q Quitter) {
+	quitter = q
 }
 
 func (g *game) Update() (err error) {
@@ -45,7 +59,7 @@ func (g *game) Update() (err error) {
 			err = fmt.Errorf("caught panic during update: %v", recover())
 		}
 		if err != nil {
-			close(g.running)
+			quitter.Quit()
 		}
 	}()
 	if g.drawErr != nil {
@@ -80,15 +94,10 @@ func (g *game) Layout(outsideWidth, outsideHeight int) (int, int) {
 	return g.game.Layout(outsideWidth, outsideHeight)
 }
 
-var (
-	g *game
-)
-
 func init() {
 	log.UsePanic(true)
 	g = &game{
-		game:    aaaaxy.NewGame(),
-		running: make(chan struct{}),
+		game: aaaaxy.NewGame(),
 	}
 	mobile.SetGame(g)
 }
@@ -99,13 +108,6 @@ func SetFilesDir(dir string) {
 	// Only now we can actually load the config.
 	// Sorry, some of the stuff SetGame does couldn't use flags then.
 	flag.Parse(aaaaxy.LoadConfig)
-}
-
-// WaitQuit waits till the user selects to quit the game.
-//
-// Doing it this way as I can't seem to figure how how to call a Java method from Go.
-func WaitQuit() {
-	<-g.running
 }
 
 // BackPressed notifies the game that the back button has been pressed.

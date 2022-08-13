@@ -11,8 +11,9 @@ import java.lang.Thread;
 import go.Seq;
 import io.github.divverent.aaaaxy.aaaaxy.Aaaaxy;
 import io.github.divverent.aaaaxy.aaaaxy.EbitenView;
+import io.github.divverent.aaaaxy.aaaaxy.Quitter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Quitter {
 	private WindowInsetsControllerCompat insetsController;
 
 	@Override
@@ -21,11 +22,7 @@ public class MainActivity extends AppCompatActivity {
 		Seq.setContext(getApplicationContext());
 		File dir = getExternalFilesDir(null);
 		Aaaaxy.setFilesDir(dir.getAbsolutePath());
-		new Thread(() -> {
-			Aaaaxy.waitQuit();
-			finishAndRemoveTask();
-			System.exit(0);
-		}).start();
+		Aaaaxy.setQuitter(this);
 		setContentView(R.layout.activity_main);
 		insetsController = new WindowInsetsControllerCompat(
 			getWindow(), getWindow().getDecorView());
@@ -53,5 +50,10 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public void onBackPressed() {
 		Aaaaxy.backPressed();
+	}
+
+	public void quit() {
+		finishAndRemoveTask();
+		System.exit(0);
 	}
 }
