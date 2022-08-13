@@ -13,10 +13,10 @@ require (
 	github.com/hajimehoshi/ebiten/v2 v2.3.7
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/ncruces/zenity v0.8.10
+	github.com/ncruces/zenity v0.9.0
 	golang.org/x/image v0.0.0-20220722155232-062f8c9fd539
 	golang.org/x/mobile v0.0.0-20220722155234-aaac322e2105
-	golang.org/x/sys v0.0.0-20220808155132-1c4a2a72c664
+	golang.org/x/sys v0.0.0-20220811171246-fbc7d0a398ab
 )
 
 require (
