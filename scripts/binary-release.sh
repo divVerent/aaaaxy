@@ -22,9 +22,11 @@ if git ls-files -dmo | grep -q .; then
 	exit 1
 fi
 
-prev=$(git describe --always --long --match 'v*.*' --exclude 'v[0-9].[0-9]' --exclude 'v[0-9].[0-9].0-alpha' --exclude 'v[0-9].[0-9].0-beta' --exclude 'v[0-9].[0-9].0-rc')
-# We want to exclude v*.* and v*.*.0-(alpha/beta).
-prev=${prev%-*-g*}
+if [ -z "$prev" ]; then
+	prev=$(git describe --always --long --match 'v*.*' --exclude 'v[0-9].[0-9]' --exclude 'v[0-9].[0-9].0-alpha' --exclude 'v[0-9].[0-9].0-beta' --exclude 'v[0-9].[0-9].0-rc')
+	# We want to exclude v*.* and v*.*.0-(alpha/beta).
+	prev=${prev%-*-g*}
+fi
 
 new=$(sh scripts/version.sh gittag)
 
