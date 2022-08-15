@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.238" date="2022-08-09">
-      <description><ul><li>More gradle support.</li><li>To help F-Droid, add support for using a version file when compiling for Android.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.238</url>
+    <release version="v1.2.265" date="2022-08-15">
+      <description><ul><li>Engine: fixed touch screen support.</li><li>Game: now with Android support!</li><li>Menu: show software licenses.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.265</url>
     </release>
   </releases>
 </component>
