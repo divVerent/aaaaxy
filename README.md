@@ -22,6 +22,12 @@ Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy)
 
 [Or from Itch](https://divverent.itch.io/aaaaxy)
 
+[Or from
+F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/)
+
+[Or from Google
+Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy)
+
 ## Screenshots
 
 [![shot1](https://divVerent.github.io/aaaaxy/screenshots/shot1.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot1.png)
