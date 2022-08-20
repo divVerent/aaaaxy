@@ -108,7 +108,15 @@ is hosted on `hwcdn.net` first.
 
 On Android, the file path above can only be reached via `adb` (USB
 Debugging). However, Android One backup of the savegames is enabled in
-the app.
+the app. For example, to manually backup the primary save slot, run from
+an USB-connected PC:
+
+    adb pull /sdcard/Android/data/io.github.divVerent.aaaaxy/files/save/save-0.json aaaaxy-save-0.json
+
+Similarly, to restore it, first launch the AAAAXY app, quit it again,
+and then run:
+
+    adb push aaaaxy-save-0.json /sdcard/Android/data/io.github.divVerent.aaaaxy/files/save/save-0.json
 
 ### Save States
 
