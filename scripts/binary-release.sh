@@ -71,7 +71,10 @@ VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 ' io.github.divverent.aaaaxy.metainfo.xml
 
 # Provide changelog for Android.
-tail -n +3 .commitmsg > fastlane/metadata/android/en-US/changelogs/"$(sh scripts/version.sh android)".txt
+mkdir -p fastlane/metadata/android/en-US/changelogs
+log=fastlane/metadata/android/en-US/changelogs/"$(sh scripts/version.sh android)".txt
+tail -n +3 .commitmsg > "$log"
+git add "$log"
 
 # Also pack the SDL game controller DB at the exact version used for the
 # release. Used for compiling from source tarballs.
