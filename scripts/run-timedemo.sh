@@ -23,6 +23,7 @@ fi
 demo=$1; shift
 
 exec "$@" \
+	-auto_adjust_quality=false \
 	-batch \
 	-demo_play="$demo" \
 	-demo_timedemo \

@@ -117,6 +117,8 @@ func (c *Controller) Update() error {
 		input.SetWantClicks(false)
 	}
 
+	performQualityAdjustment()
+
 	return nil
 }
 
