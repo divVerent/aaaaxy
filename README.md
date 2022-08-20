@@ -14,13 +14,14 @@ all means: don't look up.
 
 And beware of a minor amount of trolling.
 
-Download from the [Snap Store](https://snapcraft.io/aaaaxy),
+Download from
+[F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/),
 [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy),
-[Itch](https://divverent.itch.io/aaaaxy), [Google
-Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy)
-or, of course, [GitHub](https://github.com/divVerent/aaaaxy/releases).
-
-<!-- [F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/) -->
+[Google
+Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy),
+[Itch](https://divverent.itch.io/aaaaxy), the [Snap
+Store](https://snapcraft.io/aaaaxy), or, of course, here from
+[GitHub](https://github.com/divVerent/aaaaxy/releases).
 
 ## Screenshots
 

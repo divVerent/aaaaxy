@@ -70,6 +70,9 @@ VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 	s/<description>.*<\/description>/<description>$msg<\/description>/g;
 ' io.github.divverent.aaaaxy.metainfo.xml
 
+# Provide changelog for Android.
+tail -n +3 .commitmsg > fastlane/metadata/android/en-US/changelogs/"$(sh scripts/version.sh android)".txt
+
 # Also pack the SDL game controller DB at the exact version used for the
 # release. Used for compiling from source tarballs.
 zip -r sdl-gamecontrollerdb-for-aaaaxy-$new.zip third_party/SDL_GameControllerDB/assets/input/*
@@ -88,6 +91,10 @@ GOOS=windows sh scripts/binary-release-compile.sh 386
 # Note: sync the MACOSX_DEPLOYMENT_TARGET with current Go requirements and Info.plist.sh.
 GOOS=darwin CGO_ENV_amd64="PATH=$HOME/src/osxcross/target/bin:$PATH CGO_ENABLED=1 CC=o64-clang CXX=o64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" CGO_ENV_arm64="PATH=$HOME/src/osxcross/target/bin:$PATH CGO_ENABLED=1 CC=oa64-clang CXX=oa64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" LIPO="$HOME/src/osxcross/target/bin/lipo" sh scripts/binary-release-compile.sh amd64 arm64
 GOOS=js sh scripts/binary-release-compile.sh wasm
+(
+	cd AndroidStudioProjects/AAAAXY/
+	./gradlew bundleRelease
+)
 
 git commit -a -m "$(cat .commitmsg)"
 git tag -a "$new" -m "$(cat .commitmsg)"
