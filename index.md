@@ -14,10 +14,6 @@ all means: don't look up.
 
 And beware of a minor amount of trolling.
 
-### Download now\!
-
-#### Convenient Downloads
-
 Download from the [Snap Store](https://snapcraft.io/aaaaxy),
 [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy),
 [Itch](https://divverent.itch.io/aaaaxy) or [Google
@@ -25,7 +21,7 @@ Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy).
 
 <!-- [F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/) -->
 
-#### Direct Downloads
+### Direct Downloads
 
 <!-- BEGIN DOWNLOAD LINKS TEMPLATE
 The current version is VERSION. Download here:
