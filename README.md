@@ -14,8 +14,7 @@ all means: don't look up.
 
 And beware of a minor amount of trolling.
 
-Download from the [Snap
-Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)\](<https://snapcraft.io/aaaaxy>),
+Download from the [Snap Store](https://snapcraft.io/aaaaxy),
 [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy),
 [Itch](https://divverent.itch.io/aaaaxy), [Google
 Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy)
