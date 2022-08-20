@@ -81,32 +81,34 @@ don't want any duplicate frames, right?
 
 AAAAXY stores saved games in the following location:
 
-Operating System | Save Games<br>Configuration
-:-:|:-:
-Android | `/sdcard/Android/data/io.github.divVerent.aaaaxy/files/save`<br>`/sdcard/Android/data/io.github.divVerent.aaaaxy/files/config`
-Linux AppImage | `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`
-Linux FlatPak | `~/.var/app/io.github.divverent.aaaaxy/data/AAAAXY`<br>`~/.var/app/io.github.divverent.aaaaxy/config/AAAAXY`
-Linux Snap |  `~/snap/aaaaxy/common/.local/share/AAAAXY`<br>`~/snap/aaaaxy/common/.config/AAAAXY`
-Linux native | `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`
-macOS | `~/Library/Application Support/AAAAXY`<br>`~/Library/Preferences/AAAAXY`
-Web | `getSave(n)`<br>`get()`
-Windows | `C:\Users\%USERNAME%\Saved Games\AAAAXY`<br>`C:\Users\%USERNAME%\AppData\Local\AAAAXY`
-Wine | `~/.wine/drive_c/users/$USER/Saved Games/AAAAXY`<br>`~/.wine/drive_c/users/$USER/Local Settings/Application Data/AAAAXY`
+| Operating System |                                                  Save Games<br>Configuration                                                   |
+| :--------------: | :----------------------------------------------------------------------------------------------------------------------------: |
+|     Android      | `/sdcard/Android/data/io.github.divVerent.aaaaxy/files/save`<br>`/sdcard/Android/data/io.github.divVerent.aaaaxy/files/config` |
+|  Linux AppImage  |                                         `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`                                          |
+|  Linux FlatPak   |          `~/.var/app/io.github.divverent.aaaaxy/data/AAAAXY`<br>`~/.var/app/io.github.divverent.aaaaxy/config/AAAAXY`          |
+|    Linux Snap    |                      `~/snap/aaaaxy/common/.local/share/AAAAXY`<br>`~/snap/aaaaxy/common/.config/AAAAXY`                       |
+|   Linux native   |                                         `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`                                          |
+|      macOS       |                            `~/Library/Application Support/AAAAXY`<br>`~/Library/Preferences/AAAAXY`                            |
+|       Web        |                                                    `getSave(n)`<br>`get()`                                                     |
+|     Windows      |                     `C:\Users\%USERNAME%\Saved Games\AAAAXY`<br>`C:\Users\%USERNAME%\AppData\Local\AAAAXY`                     |
+|       Wine       |    `~/.wine/drive_c/users/$USER/Saved Games/AAAAXY`<br>`~/.wine/drive_c/users/$USER/Local Settings/Application Data/AAAAXY`    |
 
 It is recommended to back up these files.
 
 WARNING: Do not edit the save game files. If needed, cheats are provided
 as command line options.
 
-To edit a config setting on the web, type into the developer console something like:
+To edit a config setting on the web, type into the developer console
+something like:
 
-```
-setConf({show_fps: true, vsync: false});
-```
+    setConf({show_fps: true, vsync: false});
 
-To do this on Itch's web player, select the `index.html` subframe that is hosted on `hwcdn.net` first.
+To do this on Itch's web player, select the `index.html` subframe that
+is hosted on `hwcdn.net` first.
 
-On Android, the file path above can only be reached via `adb` (USB Debugging). However, Android One backup of the savegames is enabled in the app.
+On Android, the file path above can only be reached via `adb` (USB
+Debugging). However, Android One backup of the savegames is enabled in
+the app.
 
 ### Save States
 
