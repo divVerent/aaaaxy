@@ -97,7 +97,7 @@ func (g *Game) InitEbitengine() error {
 	ebiten.SetInitFocused(true)
 	ebiten.SetScreenTransparent(false)
 	ebiten.SetWindowDecorated(true)
-	ebiten.SetWindowResizable(true)
+	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
 	setWindowSize()
 	return g.InitEarly()
 }
@@ -108,7 +108,11 @@ func (g *Game) InitEbitengine() error {
 func (g *Game) InitEarly() error {
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetScreenClearedEveryFrame(false)
-	ebiten.SetVsyncEnabled(*vsync)
+	if *vsync {
+		ebiten.SetFPSMode(ebiten.FPSModeVsyncOn)
+	} else {
+		ebiten.SetFPSMode(ebiten.FPSModeVsyncOffMaximum)
+	}
 	ebiten.SetWindowTitle("AAAAXY")
 
 	// Ensure fps divisor is valid. We can only do integer TPS.
@@ -153,7 +157,7 @@ func (g *Game) InitEarly() error {
 
 	// When dumping video or benchmarking, do precisely one render frame per update.
 	if dump.Slow() || demo.Timedemo() {
-		ebiten.SetMaxTPS(ebiten.UncappedTPS)
+		ebiten.SetMaxTPS(ebiten.SyncWithFPS)
 	} else {
 		ebiten.SetMaxTPS(engine.GameTPS / *fpsDivisor)
 	}
