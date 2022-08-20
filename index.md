@@ -1,6 +1,7 @@
 ## ![AAAAXY](logo.png)
 
-AAAAXY is a nonlinear 2D puzzle platformer taking place in impossible spaces.
+AAAAXY is a nonlinear 2D puzzle platformer taking place in impossible
+spaces.
 
 Although your general goal is reaching the surprising end of the game,
 you are encouraged to set your own goals while playing. Exploration will
@@ -15,17 +16,16 @@ And beware of a minor amount of trolling.
 
 ### Download now\!
 
-#### Stores
+#### Convenient Downloads
 
-[![Get it from the Snap
-Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/aaaaxy)
+Download from the [Snap Store](https://snapcraft.io/aaaaxy),
+[Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy),
+[Itch](https://divverent.itch.io/aaaaxy) or [Google
+Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy).
 
-[Or from
-Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy)
+<!-- [F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/) -->
 
-<iframe frameborder="0" src="https://itch.io/embed/1199736?dark=true" width="552" height="167"><a href="https://divverent.itch.io/aaaaxy">AAAAXY by divVerent</a></iframe>
-
-#### Raw Downloads
+#### Direct Downloads
 
 <!-- BEGIN DOWNLOAD LINKS TEMPLATE
 The current version is VERSION. Download here:
@@ -39,14 +39,22 @@ The current version is VERSION. Download here:
 END DOWNLOAD LINKS TEMPLATE -->
 
 <!-- BEGIN DOWNLOAD LINKS -->
+
 The current version is v1.2.265. Download here:
 
-  - [Windows x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-windows-amd64-v1.2.265.zip)
-  - [Windows x86 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-windows-386-v1.2.265.zip)
-  - [Linux x86_64 AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/AAAAXY-x86_64.AppImage)
-  - [Linux x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-linux-amd64-v1.2.265.zip)
-  - [macOS x86_64+M1 ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-darwin-v1.2.265.zip)
-  - [All files and releases](https://github.com/divVerent/aaaaxy/releases)
+  - [Windows x86\_64
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-windows-amd64-v1.2.265.zip)
+  - [Windows x86
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-windows-386-v1.2.265.zip)
+  - [Linux x86\_64
+    AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/AAAAXY-x86_64.AppImage)
+  - [Linux x86\_64
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-linux-amd64-v1.2.265.zip)
+  - [macOS x86\_64+M1
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-darwin-v1.2.265.zip)
+  - [All files and
+    releases](https://github.com/divVerent/aaaaxy/releases)
+
 <!-- END DOWNLOAD LINKS -->
 
 ### Try Online\!
@@ -60,13 +68,13 @@ above.
 
 ### Further Resources
 
-* [User Guide](userguide.md)
-* [Technical Support](https://github.com/divVerent/aaaaxy/issues)
-* [Discussion Forum](https://github.com/divVerent/aaaaxy/discussions)
-* [Chat](https://matrix.to/#/#aaaaxy:matrix.org)
-* [Pull Requests](https://github.com/divVerent/aaaaxy/pulls)
-* [Speedrunning](speedrunning.md)
-* [Music](music.md)
+  - [User Guide](userguide.md)
+  - [Technical Support](https://github.com/divVerent/aaaaxy/issues)
+  - [Discussion Forum](https://github.com/divVerent/aaaaxy/discussions)
+  - [Chat](https://matrix.to/#/#aaaaxy:matrix.org)
+  - [Pull Requests](https://github.com/divVerent/aaaaxy/pulls)
+  - [Speedrunning](speedrunning.md)
+  - [Music](music.md)
 
 ### Screenshots
 
@@ -88,5 +96,5 @@ Deeper technical information and source code is to be found on the
 
 ### Privacy
 
-For information about this game's data collection and handling,
-[see here](privacy.md).
+For information about this game's data collection and handling, [see
+here](privacy.md).
