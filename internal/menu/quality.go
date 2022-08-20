@@ -19,6 +19,8 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/demo"
+	"github.com/divVerent/aaaaxy/internal/dump"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -133,14 +135,14 @@ var (
 )
 
 func performQualityAdjustment() {
-	if !*autoAdjustQuality {
-		return
-	}
-	if !ebiten.IsFocused() {
+	// Don't auto adjust if disabled, dumping, benchmarking or not having focus.
+	if !*autoAdjustQuality || dump.Active() || demo.Timedemo() || !ebiten.IsFocused() {
 		totalQualityFrames = 0
 		goodQualityFrames = 0
 		return
 	}
+
+	// Check if downgrade is needed.
 	totalQualityFrames++
 	if ebiten.CurrentFPS() >= minFPS {
 		goodQualityFrames++
@@ -148,16 +150,20 @@ func performQualityAdjustment() {
 	if totalQualityFrames < measureQualityFrames {
 		return
 	}
-	if goodQualityFrames < minGoodQualityFrames {
-		g := currentActualQuality()
-		if g == lowestQuality {
-			log.Warningf("couldn't even get good framerate at quality %v - giving up", g)
-		} else {
-			log.Warningf("didn't get good framerate at quality %v - moving to %v", g, g-1)
-			g--
-			g.applyActual()
-		}
-	}
+	ok := goodQualityFrames >= minGoodQualityFrames
 	totalQualityFrames = 0
 	goodQualityFrames = 0
+	if ok {
+		return
+	}
+
+	// Downgrade quality.
+	g := currentActualQuality()
+	if g == lowestQuality {
+		log.Warningf("couldn't even get good framerate at quality %v - cannot downgrade further", g)
+	} else {
+		log.Warningf("didn't get good framerate at quality %v - moving to %v", g, g-1)
+		g--
+		g.applyActual()
+	}
 }
