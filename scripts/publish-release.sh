@@ -72,7 +72,7 @@ hub release create \
 	git commit -a -m "testing/aaaaxy: upgrade to $new"
 	git push -f divVerent HEAD:aaaaxy
 	# TODO is there a more direct URL to create a MR right away?
-	xdg-open https://gitlab.alpinelinux.org/divVerent/aports/-/tree/aaaaxy
+	xdg-open 'https://gitlab.alpinelinux.org/divVerent/aports/-/merge_requests/new?merge_request%5Bsource_branch%5D=aaaaxy'
 )
 
 # Mark the release done.
@@ -120,6 +120,7 @@ xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 (
 	cd ../aur-aaaaxy
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;" PKGBUILD
+	# TODO move to Docker so we need no root password here.
 	doas sh /root/archlinux/archlinux-testing-build-aaaaxy.sh
 	git commit -a -m "Release $new."
 	git push
