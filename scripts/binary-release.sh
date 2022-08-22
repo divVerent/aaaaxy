@@ -73,7 +73,7 @@ VERSION=$new DATE=$(date +%Y-%m-%d) MSG=$(cat .commitmsg) perl -0777 -pi -e '
 # Provide changelog for Android.
 mkdir -p fastlane/metadata/android/en-US/changelogs
 log=fastlane/metadata/android/en-US/changelogs/"$(sh scripts/version.sh android)".txt
-tail -n +3 .commitmsg > "$log"
+tail -n +4 .commitmsg > "$log"
 git add "$log"
 
 # Also pack the SDL game controller DB at the exact version used for the
@@ -96,6 +96,7 @@ GOOS=darwin CGO_ENV_amd64="PATH=$HOME/src/osxcross/target/bin:$PATH CGO_ENABLED=
 GOOS=js sh scripts/binary-release-compile.sh wasm
 (
 	cd AndroidStudioProjects/AAAAXY/
+	export ANDROID_HOME=$HOME/Android/Sdk
 	./gradlew bundleRelease
 )
 
