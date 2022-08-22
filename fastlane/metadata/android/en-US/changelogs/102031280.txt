@@ -1,0 +1,2 @@
+  - Engine: automatically manage graphics settings.
+  - Engine: fix some uses of deprecated Ebitengine APIs.

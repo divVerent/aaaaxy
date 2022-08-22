@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.265" date="2022-08-15">
-      <description><ul><li>Engine: fixed touch screen support.</li><li>Game: now with Android support!</li><li>Menu: show software licenses.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.265</url>
+    <release version="v1.2.280" date="2022-08-22">
+      <description><ul><li>Engine: automatically manage graphics settings.</li><li>Engine: fix some uses of deprecated Ebitengine APIs.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.280</url>
     </release>
   </releases>
 </component>
