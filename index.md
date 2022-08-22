@@ -37,18 +37,18 @@ END DOWNLOAD LINKS TEMPLATE -->
 
 <!-- BEGIN DOWNLOAD LINKS -->
 
-The current version is v1.2.265. Download here:
+The current version is v1.2.280. Download here:
 
   - [Windows x86\_64
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-windows-amd64-v1.2.265.zip)
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.280/aaaaxy-windows-amd64-v1.2.280.zip)
   - [Windows x86
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-windows-386-v1.2.265.zip)
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.280/aaaaxy-windows-386-v1.2.280.zip)
   - [Linux x86\_64
-    AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/AAAAXY-x86_64.AppImage)
+    AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.2.280/AAAAXY-x86_64.AppImage)
   - [Linux x86\_64
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-linux-amd64-v1.2.265.zip)
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.280/aaaaxy-linux-amd64-v1.2.280.zip)
   - [macOS x86\_64+M1
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.265/aaaaxy-darwin-v1.2.265.zip)
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.2.280/aaaaxy-darwin-v1.2.280.zip)
   - [All files and
     releases](https://github.com/divVerent/aaaaxy/releases)
 
