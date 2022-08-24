@@ -89,6 +89,8 @@ var graphicsSettings = []graphicsSettingData{
 	{"quake", "Quake"},
 	{"web", "Web"},
 	{"xterm", "XTerm"},
+	{"egagray", "EGA (grayscale)"},
+	{"vgagray", "VGA (grayscale)"},
 	{"3x3x3", "3x3x3"},
 	{"4x4x4", "4x4x4"},
 	{"7x7x4", "7x7x4"},
