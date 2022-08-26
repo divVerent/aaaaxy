@@ -129,6 +129,20 @@ func drawAntiPolygonAround(dst *ebiten.Image, center m.Pos, vertices []m.Pos, sr
 	dst.DrawTriangles(eVerts, eIndices, src, options)
 }
 
+// expandSimpleFrac is the fraction of pixels to move. Should be odd so m.Div() is symmetric.
+const expandSimpleFrac = 5
+
+func expandSimpleCoord(x, x0, shift int) int {
+	d := m.Div(x-x0, expandSimpleFrac)
+	if d > shift {
+		return x + shift
+	}
+	if d < -shift {
+		return x - shift
+	}
+	return x + d
+}
+
 // expandSimple expands the given polygon IN PLACE (i.e. clobbers polygon).
 func expandSimple(center m.Pos, polygon []m.Pos, shift int) []m.Pos {
 	for i, v1 := range polygon {
@@ -136,8 +150,14 @@ func expandSimple(center m.Pos, polygon []m.Pos, shift int) []m.Pos {
 		// Unlike correct polygon expansion perpendicular to sides,
 		// this way ensures that we never include more than distance shift from the polugon.
 		// However this is just approximate and causes artifacts when close to a wall.
-		d := v1.Delta(center)
-		polygon[i] = v1.Add(d.WithLengthFixed(m.NewFixed(shift)))
+		// Also, it is not _quite_ away from the center (doing this approximate method for better symmetry),
+		// so the resulting polygon may not be QUITE correct for drawAntiPolygonAround,
+		// however the error is small enough to not matter.
+		polygon[i].X = expandSimpleCoord(v1.X, center.X, shift)
+		polygon[i].Y = expandSimpleCoord(v1.Y, center.Y, shift)
+		// More accurate but asymmetric and bad farther from the player:
+		// d := v1.Delta(center)
+		// polygon[i] = v1.Add(d.WithLengthFixed(m.NewFixed(shift)))
 	}
 	return polygon
 }
