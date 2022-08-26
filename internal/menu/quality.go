@@ -85,7 +85,7 @@ func currentActualQuality() qualitySetting {
 func (s qualitySetting) apply() error {
 	if s == autoQuality {
 		*autoAdjustQuality = true
-		return nil
+		return maxQuality.applyActual()
 	}
 	*autoAdjustQuality = false
 	return s.applyActual()
