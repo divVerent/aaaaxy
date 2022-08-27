@@ -61,7 +61,7 @@ hub release create \
 	git fetch origin
 	git reset --hard origin/master
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=0/;" APKBUILD
-	docker run --rm --mount=type=bind,source=$PWD,target=/aaaaxy alpine:edge /bin/sh -c '
+	podman run --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:edge /bin/sh -c '
 		set -e
 		apk add alpine-sdk sudo
 		abuild-keygen -i -a -n
@@ -120,19 +120,22 @@ xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 (
 	cd ../aur-aaaaxy
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;" PKGBUILD
-	docker run --rm --mount=type=bind,source=$PWD,target=/aaaaxy archlinux:latest /bin/sh -c '
+	podman run --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/archlinux:latest /bin/sh -c '
 		set -e
 		pacman --noconfirm -Syu base-devel namcap pacman-contrib sudo
-		cd /aaaaxy
 		useradd -m builder
+		cp -Rv /aaaaxy /aaaaxy.rw
+		chown -R builder:builder /aaaaxy.rw
 		echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 		su builder -c "
+			cd /aaaaxy.rw
 			set -e
 			makepkg -f --noconfirm --syncdeps
 			makepkg --printsrcinfo > .SRCINFO
 			namcap PKGBUILD
 			namcap *.pkg.*
 		"
+		cat /aaaaxy.rw/.SRCINFO > /aaaaxy/.SRCINFO
 	'
 	git commit -a -m "Release $new."
 	git push
