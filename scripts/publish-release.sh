@@ -120,8 +120,20 @@ xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 (
 	cd ../aur-aaaaxy
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;" PKGBUILD
-	# TODO move to Docker so we need no root password here.
-	doas sh /root/archlinux/archlinux-testing-build-aaaaxy.sh
+	docker run --mount=type=bind,source=$PWD,target=/aaaaxy archlinux:latest /bin/sh -c '
+		set -e
+		pacman --noconfirm -Syu base-devel namcap pacman-contrib sudo
+		cd /aaaaxy
+		useradd -m builder
+		echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
+		su builder -c "
+			set -e
+			makepkg -f --noconfirm --syncdeps
+			makepkg --printsrcinfo > .SRCINFO
+			namcap PKGBUILD
+			namcap *.pkg.*
+		"
+	'
 	git commit -a -m "Release $new."
 	git push
 )
