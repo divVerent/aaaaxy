@@ -4,6 +4,8 @@ Springe und laufe herum, und verliere deinen Orientierungssinn in dieser "World 
 
 Vorsicht: es wird getrollt.
 
+Erwartungsgemäß wird ein neuer Spieler das Ende in ca. 4-6 Stunden erreichen; das Spiel kann aber in etwa einer Stunde komplett durchgespielt werden, und das Ende selbst lässt sich in ca. 15 Minuten finden.
+
 Hinweis: das Spiel selbst ist zur Zeit nur auf Englisch verfügbar, geringe Sprachkenntnisse genügen aber bereits.
 
 Dieses Spiel ist unter der Apache 2.0-Lizenz erhältlich. Es wurde in Go geschrieben mit Hilfe von Ebitengine. Weitere Informationen, Quellcode und Versionen für Windows, Linux und macOS sind verfügbar auf https://divVerent.github.io/aaaaxy/

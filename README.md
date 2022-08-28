@@ -14,6 +14,10 @@ all means: don't look up.
 
 And beware of a minor amount of trolling.
 
+To reach the end, a new player will take about 4 to 6 hours, a full
+playthrough can be finished in about 1 hour and the end can be reached
+in about 15 minutes.
+
 Download from
 [F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/),
 [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy),

@@ -4,4 +4,6 @@ So jump and run around, and enjoy losing your sense of orientation in this World
 
 And beware of a minor amount of trolling.
 
+To reach the end, a new player will take about 4 to 6 hours, a full playthrough can be finished in about 1 hour and the end can be reached in about 15 minutes.
+
 This game is licensed under the Apache 2.0 License. It is written in Go, using the Ebitengine game library. More info, source code and versions for Windows, Linux and macOS are available at https://divVerent.github.io/aaaaxy/
