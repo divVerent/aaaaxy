@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8278">
  <properties>
-  <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
+  <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
   <property name="save_game_version" type="int" value="1"/>
  </properties>
  <tileset firstgid="1" source="../tiles/tiles.tsx"/>
@@ -1061,7 +1061,7 @@
     <property name="secret" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="281" name="a_new_beginning" type="Checkpoint" x="6368" y="6560" width="112" height="208">
+  <object id="281" name="a_new_beginning" type="Checkpoint" x="6384" y="6560" width="80" height="208">
    <properties>
     <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
     <property name="next_down" type="object" value="4597"/>
