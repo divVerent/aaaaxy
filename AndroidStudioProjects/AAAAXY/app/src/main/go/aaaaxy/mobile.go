@@ -71,6 +71,7 @@ func (g *game) Update() (err error) {
 	}
 	if err == nil {
 		err = g.game.Update()
+		// TODO: call BeforeExit?
 	}
 	ok = true
 	return err

@@ -103,16 +103,10 @@ func main() {
 	errbe := game.BeforeExit()
 	// From here on, nothing can panic.
 	ok = true
-	if err != nil {
-		if errors.Is(err, exitstatus.RegularTermination) {
-			return
-		}
+	if err != nil && !errors.Is(err, exitstatus.RegularTermination) {
 		log.Fatalf("RunGame exited abnormally: %v", err)
 	}
-	if errbe != nil {
-		if errors.Is(errbe, exitstatus.RegularTermination) {
-			return
-		}
+	if errbe != nil && !errors.Is(errbe, exitstatus.RegularTermination) {
 		log.Fatalf("BeforeExit exited abnormally: %v", errbe)
 	}
 }
