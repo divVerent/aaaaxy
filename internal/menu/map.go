@@ -294,8 +294,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				if !edgeSeen && isSecret && !revealSecrets {
 					continue
 				}
+				startPos := pos
 				endPos := cpPos[otherName]
-				var pos2, endPos2 m.Pos
+				var startPos2, endPos2 m.Pos
 				color := takenRouteColor
 				switch z {
 				case 0:
@@ -316,7 +317,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					}
 
 					otherSeen := s.Controller.World.PlayerState.CheckpointSeen(otherName) != playerstate.NotSeen
-					if otherSeen {
+					if cpName == s.CurrentCP || otherName == s.CurrentCP {
+						color = selectedRouteColor
+					} else if otherSeen {
 						color = unseenPathToSeenCPColor
 					} else {
 						color = unseenPathToUnseenCPColor
@@ -339,22 +342,25 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 						}
 					}
 
-					dp := endPos.Delta(pos)
+					dp := endPos.Delta(startPos)
 					section := m.NewFixed(edgeFarAttachDistance)
 					length := dp.LengthFixed()
-					if length < section {
-						// Leave endPos as is. We would make it longer.
-					} else if otherSeen {
-						// Animate missing paths when the other side is seen to indicate direction.
-						a := m.NewFixed(s.WalkFrame).Mul(m.NewFixedFloat64(walkSpeed)).Mod(length)
-						b := (a + section).Mod(length)
-						if a < b {
-							pos, endPos = pos.Add(dp.WithLengthFixed(a)), pos.Add(dp.WithLengthFixed(b))
+					if otherSeen {
+						if length < section {
+							// Leave endPos as is. We would make it longer.
 						} else {
-							pos2, endPos2 = pos.Add(dp.WithLengthFixed(a)), endPos
-							pos, endPos = pos, pos.Add(dp.WithLengthFixed(b))
+							// Animate missing paths when the other side is seen to indicate direction.
+							a := m.NewFixed(s.WalkFrame).Mul(m.NewFixedFloat64(walkSpeed)).Mod(length)
+							b := (a + section).Mod(length)
+							if a < b {
+								startPos, endPos = pos.Add(dp.WithLengthFixed(a)), pos.Add(dp.WithLengthFixed(b))
+							} else {
+								startPos2, endPos2 = pos.Add(dp.WithLengthFixed(a)), endPos
+								startPos, endPos = pos, pos.Add(dp.WithLengthFixed(b))
+							}
 						}
 					} else {
+						// Don't reveal actual CP location.
 						pos, endPos = pos, pos.Add(dp.WithLengthFixed(section))
 					}
 				}
@@ -364,9 +370,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				}
 				geoM := &ebiten.GeoM{}
 				geoM.Scale(0, 0)
-				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{pos, endPos}, s.whiteImage, color, geoM, options)
-				if pos2 != endPos2 {
-					engine.DrawPolyLine(screen, edgeThickness, []m.Pos{pos2, endPos2}, s.whiteImage, color, geoM, options)
+				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{startPos, endPos}, s.whiteImage, color, geoM, options)
+				if startPos2 != endPos2 {
+					engine.DrawPolyLine(screen, edgeThickness, []m.Pos{startPos2, endPos2}, s.whiteImage, color, geoM, options)
 				}
 			}
 		}
