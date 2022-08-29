@@ -128,13 +128,15 @@ xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 		chown -R builder:builder /aaaaxy.rw
 		echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 		su builder -c "
-			cd /aaaaxy.rw
 			set -e
+			cd /aaaaxy.rw
+			updpkgsums
 			makepkg -f --noconfirm --syncdeps
 			makepkg --printsrcinfo > .SRCINFO
 			namcap PKGBUILD
 			namcap *.pkg.*
 		"
+		cat /aaaaxy.rw/PKGBUILD > /aaaaxy/PKGBUILD
 		cat /aaaaxy.rw/.SRCINFO > /aaaaxy/.SRCINFO
 	'
 	git commit -a -m "Release $new."
