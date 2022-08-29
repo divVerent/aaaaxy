@@ -18,12 +18,14 @@
 package aaaaxy
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/mobile"
 
 	"github.com/divVerent/aaaaxy/internal/aaaaxy"
+	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
