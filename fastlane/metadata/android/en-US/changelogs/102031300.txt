@@ -1,0 +1,5 @@
+  - Engine: at lowest quality settings, cause less artifacts.
+  - Engine: fix exit code for regression test demos.
+  - Engine: new palettes: VGA and EGA greyscale palettes.
+  - Level: make the A New Beginning checkpoint smaller to fix a missing path.
+  - Menu: setting to auto quality also restores all graphics settings.

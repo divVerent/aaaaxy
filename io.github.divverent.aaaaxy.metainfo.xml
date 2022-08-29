@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.280" date="2022-08-22">
-      <description><ul><li>Engine: automatically manage graphics settings.</li><li>Engine: fix some uses of deprecated Ebitengine APIs.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.280</url>
+    <release version="v1.2.300" date="2022-08-29">
+      <description><ul><li>Engine: at lowest quality settings, cause less artifacts.</li><li>Engine: fix exit code for regression test demos.</li><li>Engine: new palettes: VGA and EGA greyscale palettes.</li><li>Level: make the A New Beginning checkpoint smaller to fix a missing path.</li><li>Menu: setting to auto quality also restores all graphics settings.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.300</url>
     </release>
   </releases>
 </component>
