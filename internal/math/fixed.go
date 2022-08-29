@@ -56,6 +56,10 @@ func (f Fixed) Div(g Fixed) Fixed {
 	return f.MulFrac(FixedOne, g)
 }
 
+func (f Fixed) Mod(g Fixed) Fixed {
+	return Fixed(Mod64(fixedUnderlying(f), fixedUnderlying(g)))
+}
+
 func (f Fixed) Rint() int {
 	q := f >> fixedBits
 	r := f & (FixedOne - 1)

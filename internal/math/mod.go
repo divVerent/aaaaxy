@@ -26,7 +26,21 @@ func Mod(a, b int) int {
 	return a % b
 }
 
+func Mod64(a, b int64) int64 {
+	if a < 0 {
+		return b - 1 - ^a%b
+	}
+	return a % b
+}
+
 func Div(a, b int) int {
+	if a < 0 {
+		return ^(^a / b)
+	}
+	return a / b
+}
+
+func Div64(a, b int64) int64 {
 	if a < 0 {
 		return ^(^a / b)
 	}

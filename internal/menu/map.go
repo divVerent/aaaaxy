@@ -42,6 +42,7 @@ type MapScreen struct {
 	SortedEdges map[string][]level.CheckpointEdge
 	CPPos       map[string]m.Pos
 	MapRect     m.Rect
+	WalkFrame   int
 
 	cpSprite                *ebiten.Image
 	cpSelectedSprite        *ebiten.Image
@@ -57,6 +58,7 @@ const (
 	edgeFarAttachDistance = 9
 	edgeThickness         = 3
 	mouseDistance         = 16
+	walkSpeed             = 0.2
 )
 
 func (s *MapScreen) Init(c *Controller) error {
@@ -207,6 +209,7 @@ func (s *MapScreen) exit() error {
 }
 
 func (s *MapScreen) Update() error {
+	s.WalkFrame++
 	mousePos, mouseState := input.Mouse()
 	clicked := false
 	if mouseState != input.NoMouse {
@@ -292,6 +295,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					continue
 				}
 				endPos := cpPos[otherName]
+				var pos2, endPos2 m.Pos
 				color := takenRouteColor
 				switch z {
 				case 0:
@@ -311,10 +315,11 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 						continue
 					}
 
-					if s.Controller.World.PlayerState.CheckpointSeen(otherName) == playerstate.NotSeen {
-						color = unseenPathToUnseenCPColor
-					} else {
+					otherSeen := s.Controller.World.PlayerState.CheckpointSeen(otherName) != playerstate.NotSeen
+					if otherSeen {
 						color = unseenPathToSeenCPColor
+					} else {
+						color = unseenPathToUnseenCPColor
 					}
 
 					if focusMissing && rand.Intn(2) == 0 {
@@ -334,7 +339,24 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 						}
 					}
 
-					endPos = pos.Add(endPos.Delta(pos).WithMaxLengthFixed(m.NewFixed(edgeFarAttachDistance)))
+					dp := endPos.Delta(pos)
+					section := m.NewFixed(edgeFarAttachDistance)
+					length := dp.LengthFixed()
+					if length < section {
+						// Leave endPos as is. We would make it longer.
+					} else if otherSeen {
+						// Animate missing paths when the other side is seen to indicate direction.
+						a := m.NewFixed(s.WalkFrame).Mul(m.NewFixedFloat64(walkSpeed)).Mod(length)
+						b := (a + section).Mod(length)
+						if a < b {
+							pos, endPos = pos.Add(dp.WithLengthFixed(a)), pos.Add(dp.WithLengthFixed(b))
+						} else {
+							pos2, endPos2 = pos.Add(dp.WithLengthFixed(a)), endPos
+							pos, endPos = pos, pos.Add(dp.WithLengthFixed(b))
+						}
+					} else {
+						pos, endPos = pos, pos.Add(dp.WithLengthFixed(section))
+					}
 				}
 				options := &ebiten.DrawTrianglesOptions{
 					CompositeMode: ebiten.CompositeModeSourceOver,
@@ -343,6 +365,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				geoM := &ebiten.GeoM{}
 				geoM.Scale(0, 0)
 				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{pos, endPos}, s.whiteImage, color, geoM, options)
+				if pos2 != endPos2 {
+					engine.DrawPolyLine(screen, edgeThickness, []m.Pos{pos2, endPos2}, s.whiteImage, color, geoM, options)
+				}
 			}
 		}
 	}
