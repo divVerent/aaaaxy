@@ -130,3 +130,8 @@ setup-git:
 	git config filter.git-clean-tmx.clean "sh \"$$PWD/scripts/git-clean-tmx.sh\""
 	git config filter.git-clean-md.clean "sh \"$$PWD/scripts/git-clean-md.sh\""
 
+.PHONY: dangerous-clean-git
+dangerous-clean-git:
+	git reset --hard
+	git clean -xdf
+	git submodule update
