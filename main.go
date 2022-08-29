@@ -106,7 +106,7 @@ func main() {
 	if err != nil && !errors.Is(err, exitstatus.RegularTermination) {
 		log.Fatalf("RunGame exited abnormally: %v", err)
 	}
-	if errbe != nil && !errors.Is(errbe, exitstatus.RegularTermination) {
+	if errbe != nil {
 		log.Fatalf("BeforeExit exited abnormally: %v", errbe)
 	}
 }
