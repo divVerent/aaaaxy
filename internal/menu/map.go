@@ -55,10 +55,11 @@ type MapScreen struct {
 
 // TODO: parametrize.
 const (
-	edgeFarAttachDistance = 9
-	edgeThickness         = 3
-	mouseDistance         = 16
-	walkSpeed             = 0.2
+	edgeNearAttachDistance = 3
+	edgeFarAttachDistance  = 9
+	edgeThickness          = 3
+	mouseDistance          = 16
+	walkSpeed              = 0.2
 )
 
 func (s *MapScreen) Init(c *Controller) error {
@@ -340,14 +341,15 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					}
 
 					dp := endPos.Delta(pos)
-					section := m.NewFixed(edgeFarAttachDistance)
+					far := m.NewFixed(edgeFarAttachDistance)
 					length := dp.LengthFixed()
-					if length < section {
+					if length < far {
 						// Leave endPos as is. We would make it longer.
 					} else if otherSeen {
 						// Animate missing paths when the other side is seen to indicate direction.
-						a := m.NewFixed(s.WalkFrame).Mul(m.NewFixedFloat64(walkSpeed)).Mod(length)
-						b := (a + section).Mod(length)
+						near := m.NewFixed(edgeNearAttachDistance)
+						a := m.NewFixed(s.WalkFrame).Mul(m.NewFixedFloat64(walkSpeed)).Mod(length-2*near) + near
+						b := (a + far - near).Mod(length-2*near) + near
 						if a < b {
 							pos, endPos = pos.Add(dp.WithLengthFixed(a)), pos.Add(dp.WithLengthFixed(b))
 						} else {
@@ -355,7 +357,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 							pos, endPos = pos, pos.Add(dp.WithLengthFixed(b))
 						}
 					} else {
-						pos, endPos = pos, pos.Add(dp.WithLengthFixed(section))
+						pos, endPos = pos, pos.Add(dp.WithLengthFixed(far))
 					}
 				}
 				options := &ebiten.DrawTrianglesOptions{
