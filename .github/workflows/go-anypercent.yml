@@ -111,12 +111,6 @@ jobs:
       with:
         submodules: true
 
-    - name: Download Mesa
-      run: 'curl -o mesa3d.7z -L https://github.com/pal1000/mesa-dist-win/releases/download/21.3.0/mesa3d-21.3.0-release-msvc.7z'
-
-    - name: Extract Mesa
-      run: '7z e mesa3d.7z x64/\*.dll'
-
     - name: Download Binary
       uses: actions/download-artifact@v2
       with:
@@ -214,12 +208,6 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: true
-
-    - name: Download Mesa
-      run: 'curl -o mesa3d.7z -L https://github.com/pal1000/mesa-dist-win/releases/download/21.3.0/mesa3d-21.3.0-release-msvc.7z'
-
-    - name: Extract Mesa
-      run: '7z e mesa3d.7z x86/\*.dll'
 
     - name: Download Binary
       uses: actions/download-artifact@v2
