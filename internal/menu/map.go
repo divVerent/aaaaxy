@@ -361,7 +361,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 						}
 					} else {
 						// Don't reveal actual CP location.
-						pos, endPos = pos, pos.Add(dp.WithLengthFixed(section))
+						endPos = pos.Add(dp.WithLengthFixed(section))
 					}
 				}
 				options := &ebiten.DrawTrianglesOptions{
