@@ -45,7 +45,7 @@ type Player struct {
 	Entity          *engine.Entity
 	PersistentState map[string]string
 
-	AirFrames      int // Number of frames since last leaving ground.
+	CoyoteFrames   int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
 	LastGroundPos  m.Pos
 	Jumping        bool
 	JumpingUp      bool
@@ -133,10 +133,10 @@ const (
 	JumpExtraGravity = 72*constants.Gravity/19 - constants.Gravity
 
 	// Number of frames to allow jumping after leaving ground. This is an extra 1/30 sec.
-	// 7 allows reliable walking over 2 tile gaps.
-	// 1 allows reliable walking over 1 tile gaps.
-	// 0 allows some walking over 1 tile gaps.
-	ExtraGroundFrames = 4
+	// 8 allows reliable walking over 2 tile gaps.
+	// 2 allows reliable walking over 1 tile gaps.
+	// 1 allows some walking over 1 tile gaps.
+	ExtraGroundFrames = 5
 
 	// Animation tuning.
 	AnimGroundSpeed = 20 * constants.SubPixelScale / engine.GameTPS
@@ -299,10 +299,10 @@ func (p *Player) Update() {
 		jump = false
 	}
 	if jump {
-		if !p.Jumping && (p.AirFrames <= ExtraGroundFrames || *cheatInAirJump) {
+		if !p.Jumping && (p.CoyoteFrames > 0 || *cheatInAirJump) {
 			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(-JumpVelocity))
 			p.OnGround = false
-			p.AirFrames = ExtraGroundFrames + 2 // Add 1 to be over, and 1 more to assume being over for one frame.
+			p.CoyoteFrames = -1
 			p.Jumping = true
 			p.JumpingUp = true
 			if p.VVVVVV {
@@ -333,7 +333,7 @@ func (p *Player) Update() {
 			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(JumpExtraGravity))
 		}
 	}
-	if p.AirFrames > ExtraGroundFrames {
+	if p.CoyoteFrames <= 0 {
 		// No gravity while we still can jump.
 		p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(constants.Gravity))
 	}
@@ -378,9 +378,9 @@ func (p *Player) Update() {
 		noise.Set(amount)
 	}
 	if p.OnGround {
-		p.AirFrames = 0
-	} else {
-		p.AirFrames++
+		p.CoyoteFrames = ExtraGroundFrames
+	} else if p.CoyoteFrames >= 0 {
+		p.CoyoteFrames--
 	}
 
 	// Easter egg.
@@ -407,8 +407,7 @@ func (p *Player) handleTouch(trace engine.TraceResult) {
 	if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
 		p.JumpingUp = false
 	}
-	if p.OnGround && !p.WasOnGround && p.AirFrames > ExtraGroundFrames+1 {
-		// Note: if == ExtraGroundFrames+1, then we just started falling but were instantly stopped. No sound then.
+	if p.OnGround && !p.WasOnGround && p.CoyoteFrames < 0 {
 		p.Anim.SetGroup("land")
 		p.LandSound.Play()
 	}
@@ -473,7 +472,7 @@ func (p *Player) LookPos() m.Pos {
 func (p *Player) Respawned() {
 	p.Physics.Reset()                      // Stop moving.
 	p.LastGroundPos = p.Entity.Rect.Origin // Center the camera.
-	p.AirFrames = 0                        // Assume on ground.
+	p.CoyoteFrames = ExtraGroundFrames     // Assume on ground.
 	p.WasOnGround = p.OnGround             // Back to ground.
 	p.Jumping = true                       // Jump key must be hit again.
 	p.VVVVVV = false                       // Normal physics.
@@ -497,7 +496,7 @@ func (p *Player) ActionPressed() bool {
 func (p *Player) SetVelocityForJump(velocity m.Delta) {
 	p.Physics.SetVelocityForJump(velocity)
 	p.JumpingUp = false
-	p.AirFrames = ExtraGroundFrames + 2
+	p.CoyoteFrames = -1
 }
 
 func (p *Player) SetGoal(goal *engine.Entity) {
