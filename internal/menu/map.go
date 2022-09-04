@@ -51,6 +51,8 @@ type MapScreen struct {
 	deadEndSprite           *ebiten.Image
 	cpCheckmarkSprite       *ebiten.Image
 	whiteImage              *ebiten.Image
+
+	nameHovered bool
 }
 
 // TODO: parametrize.
@@ -59,6 +61,7 @@ const (
 	edgeThickness         = 3
 	mouseDistance         = 16
 	walkSpeed             = 0.2
+	mapBorder             = 12
 )
 
 func (s *MapScreen) Init(c *Controller) error {
@@ -188,9 +191,16 @@ func (s *MapScreen) moveTo(pos m.Pos) bool {
 			hitD = d
 		}
 	}
+	if hitCP == "" && pos.Y > s.MapRect.OppositeCorner().Y+mapBorder {
+		// TODO: this may be an off-by-one error?
+		s.nameHovered = true
+		return true
+	}
 	if hitCP == "" {
+		s.nameHovered = false
 		return false // Nothing hit.
 	}
+	s.nameHovered = true
 	if hitCP == s.CurrentCP {
 		// No change.
 		return true
@@ -212,7 +222,9 @@ func (s *MapScreen) Update() error {
 	s.WalkFrame++
 	mousePos, mouseState := input.Mouse()
 	clicked := false
-	if mouseState != input.NoMouse {
+	if mouseState == input.NoMouse {
+		s.nameHovered = false
+	} else {
 		clicked = s.moveTo(mousePos)
 	}
 	if input.Exit.JustHit || (!clicked && mouseState == input.ClickingMouse) {
@@ -240,6 +252,8 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	h := engine.GameHeight
 	w := engine.GameWidth
 	x := w / 2
+	fgn := palette.EGA(palette.LightGrey, 255)
+	bgn := palette.EGA(palette.DarkGrey, 255)
 	fgs := palette.EGA(palette.Yellow, 255)
 	bgs := palette.EGA(palette.Black, 255)
 	takenRouteColor := palette.EGA(palette.LightGrey, 255)
@@ -253,15 +267,19 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	if total > 0 {
 		cpText += fmt.Sprintf(" (%d/%d)", seen, total)
 	}
-	font.Menu.Draw(screen, cpText, m.Pos{X: x, Y: 7 * h / 8}, true, fgs, bgs)
+	fg, bg := fgn, bgn
+	if s.nameHovered {
+		fg, bg = fgs, bgs
+	}
+	font.Menu.Draw(screen, cpText, m.Pos{X: x, Y: 7 * h / 8}, true, fg, bg)
 
 	// Draw all known checkpoints.
 	opts := ebiten.DrawImageOptions{
 		CompositeMode: ebiten.CompositeModeSourceOver,
 		Filter:        ebiten.FilterNearest,
 	}
-	opts.GeoM.Scale(float64(s.MapRect.Size.DX+24), float64(s.MapRect.Size.DY+24))
-	opts.GeoM.Translate(float64(s.MapRect.Origin.X-12), float64(s.MapRect.Origin.Y-12))
+	opts.GeoM.Scale(float64(s.MapRect.Size.DX+2*mapBorder), float64(s.MapRect.Size.DY+2*mapBorder))
+	opts.GeoM.Translate(float64(s.MapRect.Origin.X-mapBorder), float64(s.MapRect.Origin.Y-mapBorder))
 	opts.ColorM.Scale(1.0/3.0, 1.0/3.0, 1.0/3.0, 2.0/3.0)
 	screen.DrawImage(s.whiteImage, &opts)
 	// First draw all edges.
