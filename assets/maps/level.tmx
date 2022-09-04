@@ -6232,7 +6232,7 @@
   <object id="1478" type="Give" x="7872" y="7232" width="64" height="64">
    <properties>
     <property name="ability" value="push"/>
-    <property name="text" value="You can now push platforms away!"/>
+    <property name="text" value="You can now push them away!"/>
    </properties>
   </object>
   <object id="1479" type="Text" x="7808" y="7168" width="192" height="48">
@@ -6258,7 +6258,7 @@
   <object id="1493" type="Give" x="672" y="480" width="64" height="64">
    <properties>
     <property name="ability" value="carry"/>
-    <property name="text" value="You can now grab and carry platforms!"/>
+    <property name="text" value="You can now grab and carry them!"/>
    </properties>
   </object>
   <object id="1494" type="Text" x="608" y="416" width="192" height="48">
