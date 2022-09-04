@@ -187,6 +187,30 @@ func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 			NextInterval:  32,
 			NextAnim:      "up",
 		},
+		"idlestand": {
+			Frames:        1,
+			FrameInterval: 16,
+			NextInterval:  16,
+			NextAnim:      "idlestand",
+		},
+		"leftstand": {
+			Frames:        2,
+			FrameInterval: 16,
+			NextInterval:  32,
+			NextAnim:      "leftstand",
+		},
+		"rightstand": {
+			Frames:        2,
+			FrameInterval: 16,
+			NextInterval:  32,
+			NextAnim:      "rightstand",
+		},
+		"upstand": {
+			Frames:        2,
+			FrameInterval: 16,
+			NextInterval:  32,
+			NextAnim:      "upstand",
+		},
 	}, "inactive")
 	if err != nil {
 		return fmt.Errorf("could not initialize riser animation: %w", err)
@@ -300,24 +324,29 @@ func (r *Riser) Update() {
 		r.State = Inactive
 	}
 
+	suffix := ""
+	if canStand {
+		suffix = "stand"
+	}
+
 	switch r.State {
 	case Inactive:
 		r.Anim.SetGroup("inactive")
 		r.Velocity = m.Delta{}
 	case IdlingUp:
-		r.Anim.SetGroup("idle")
+		r.Anim.SetGroup("idle" + suffix)
 		r.Velocity = r.OnGroundVec.Mul(-IdleSpeed)
 	case MovingUp:
-		r.Anim.SetGroup("up")
+		r.Anim.SetGroup("up" + suffix)
 		r.Velocity = r.OnGroundVec.Mul(-UpSpeed)
 	case MovingLeft:
-		r.Anim.SetGroup("left")
+		r.Anim.SetGroup("left" + suffix)
 		r.Velocity = r.OnGroundVec.Mul(-IdleSpeed).Add(m.Delta{DX: -SideSpeed, DY: 0})
 	case MovingRight:
-		r.Anim.SetGroup("right")
+		r.Anim.SetGroup("right" + suffix)
 		r.Velocity = r.OnGroundVec.Mul(-IdleSpeed).Add(m.Delta{DX: SideSpeed, DY: 0})
 	case GettingCarried:
-		r.Anim.SetGroup("idle")
+		r.Anim.SetGroup("idle" + suffix)
 		// r.Velocity = playerPhysics.ReadVelocity() // Hacky carry physics; good enough?
 		pxDelta := r.World.Player.Rect.Center().Delta(r.Entity.Rect.Center())
 		subDelta := playerPhysics.ReadSubPixel().Sub(r.SubPixel)
