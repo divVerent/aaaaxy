@@ -282,6 +282,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	opts.GeoM.Translate(float64(s.MapRect.Origin.X-mapBorder), float64(s.MapRect.Origin.Y-mapBorder))
 	opts.ColorM.Scale(1.0/3.0, 1.0/3.0, 1.0/3.0, 2.0/3.0)
 	screen.DrawImage(s.whiteImage, &opts)
+
 	// First draw all edges.
 	cpPos := make(map[string]m.Pos, len(s.SortedLocs))
 	for cpName, pos := range s.CPPos {
