@@ -747,6 +747,10 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	})
 }
 
+func (w *World) AssumeChanged() {
+	w.renderer.worldChanged = true
+}
+
 func (w *World) Update() error {
 	defer timing.Group()()
 	w.FramesSinceSpawn++
@@ -777,7 +781,7 @@ func (w *World) Update() error {
 	}
 	w.tilesSet, w.tilesCleared = 0, 0
 
-	w.renderer.worldChanged = true
+	w.AssumeChanged()
 	return nil
 }
 

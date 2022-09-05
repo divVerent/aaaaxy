@@ -107,6 +107,7 @@ func (c *Controller) Update() error {
 	if c.Screen != nil {
 		if c.blurFrame < blurFrames {
 			c.blurFrame++
+			c.World.AssumeChanged()
 		}
 		input.SetWantClicks(true)
 		err := c.Screen.Update()
