@@ -162,7 +162,12 @@ func (c *Controller) DrawWorld(screen *ebiten.Image) {
 		dest = offscreen.New("GameUnblurred", engine.GameWidth, engine.GameHeight)
 	}
 
-	c.World.Draw(dest, f)
+	// Disable rotozoom effect if not having a CP yet.
+	fWorld := f
+	if c.World.PlayerState.LastCheckpoint() == "" {
+		fWorld = 0
+	}
+	c.World.Draw(dest, fWorld)
 
 	if f != 0 {
 		// If a menu screen is active, just draw the previous saved bitmap, but blur it.
