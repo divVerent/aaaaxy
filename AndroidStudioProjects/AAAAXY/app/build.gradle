@@ -8,8 +8,8 @@ android {
 
     defaultConfig {
         applicationId 'io.github.divverent.aaaaxy'
-        // minSdk 21
-        minSdk 30  // For now, restrict to newest 50% of devices.
+        // minSdk 21  // What actually is required.
+        minSdk 29  // For now, restrict to newer devices.
         targetSdk 32
         def rootDir = new File("${project.rootDir}/../..")
         def prefix = aaaaxy_build_use_version_file == 'true' ? 'env AAAAXY_BUILD_USE_VERSION_FILE=true ' : ''
