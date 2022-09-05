@@ -198,47 +198,49 @@ jobs:
           aaaaxy.exe
           assets/generated/
 
-  test-windows-386:
-    needs: build-windows-386
-    runs-on: windows-latest
-    defaults:
-      run:
-        shell: bash
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: true
+# Disabled due to https://github.com/hajimehoshi/ebiten/issues/2302
+#
+# test-windows-386:
+#   needs: build-windows-386
+#   runs-on: windows-latest
+#   defaults:
+#     run:
+#       shell: bash
+#   steps:
+#   - uses: actions/checkout@v2
+#     with:
+#       submodules: true
 
-    - name: Download Mesa
-      run: 'curl -o mesa3d.7z -L https://github.com/pal1000/mesa-dist-win/releases/download/21.3.0/mesa3d-21.3.0-release-msvc.7z'
+#   - name: Download Mesa
+#     run: 'curl -o mesa3d.7z -L https://github.com/pal1000/mesa-dist-win/releases/download/21.3.0/mesa3d-21.3.0-release-msvc.7z'
 
-    - name: Extract Mesa
-      run: '7z e mesa3d.7z x86/\*.dll'
+#   - name: Extract Mesa
+#     run: '7z e mesa3d.7z x86/\*.dll'
 
-    - name: Download Binary
-      uses: actions/download-artifact@v2
-      with:
-        name: aaaaxy-debug-windows-386
+#   - name: Download Binary
+#     uses: actions/download-artifact@v2
+#     with:
+#       name: aaaaxy-debug-windows-386
 
-    - name: Fetch Test Cases
-      env:
-        REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
-      run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v7.zip'
+#   - name: Fetch Test Cases
+#     env:
+#       REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
+#     run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/anypercent-v7.zip'
 
-    - name: Extract Test Cases
-      run: 'unzip testcases.zip'
+#   - name: Extract Test Cases
+#     run: 'unzip testcases.zip'
 
-    - name: Test
-      run: 'bash scripts/regression-test-demo.sh windows-386 "your time: 0:18:27.566; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
+#   - name: Test
+#     run: 'bash scripts/regression-test-demo.sh windows-386 "your time: 0:18:27.566; your speedrun categories: Any%;" "./aaaaxy.exe" *.dem'
 
-    - name: Archive Results
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: regression-test-results-anypercent-windows-386
-        path: |
-          *.dem.*.log
-          *.dem.*.png
+#   - name: Archive Results
+#     if: ${{ always() }}
+#     uses: actions/upload-artifact@v2
+#     with:
+#       name: regression-test-results-anypercent-windows-386
+#       path: |
+#         *.dem.*.log
+#         *.dem.*.png
 
   build-darwin-amd64:
     runs-on: macos-latest
