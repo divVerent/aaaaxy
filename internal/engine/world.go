@@ -921,8 +921,8 @@ func (w *World) TraceBox(from m.Rect, to m.Pos, o TraceOptions) TraceResult {
 	return traceBox(w, from, to, o)
 }
 
-func (w *World) Draw(screen *ebiten.Image) {
-	w.renderer.Draw(screen)
+func (w *World) Draw(screen *ebiten.Image, blurFactor float64) {
+	w.renderer.Draw(screen, blurFactor)
 }
 
 func encodeZ(z int) int {

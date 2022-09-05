@@ -17,6 +17,7 @@ package engine
 import (
 	"fmt"
 	"image/color"
+	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -89,7 +90,7 @@ func (r *renderer) Init(w *World) {
 	}
 }
 
-func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta, orientation m.Orientation) {
+func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta, orientation m.Orientation, sizeFactor, angle float64) {
 	// Note: the logic here is rather inefficient but easy to verify.
 	// If this turns out to be performance relevant, let's optimize.
 
@@ -129,6 +130,16 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta
 	// Step 5: translate the image to the intended position.
 	geoM.Translate(float64(rectR.Origin.X-rectIRS.Origin.X),
 		float64(rectR.Origin.Y-rectIRS.Origin.Y))
+
+	// Step 6: if needed, rotozoom the image around its center.
+	if sizeFactor != 1.0 || angle != 0.0 {
+		centerX := float64(rectR.Size.DX)*0.5 + float64(rectR.Origin.X)
+		centerY := float64(rectR.Size.DY)*0.5 + float64(rectR.Origin.Y)
+		geoM.Translate(-centerX, -centerY)
+		geoM.Rotate(angle)
+		geoM.Scale(sizeFactor, sizeFactor)
+		geoM.Translate(centerX, centerY)
+	}
 }
 
 func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
@@ -147,13 +158,13 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 			CompositeMode: ebiten.CompositeModeSourceOver,
 			Filter:        ebiten.FilterNearest,
 		}
-		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, tile.Orientation)
+		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, tile.Orientation, 1.0, 0.0)
 		opts.ColorM = r.world.GlobalColorM
 		screen.DrawImage(img, &opts)
 	})
 }
 
-func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
+func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurFactor float64) {
 	minZ, maxZ := zBounds(len(r.world.entitiesByZ))
 	for z := minZ; z <= maxZ; z++ {
 		for _, colormods := range []bool{true, false} {
@@ -168,10 +179,19 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta) {
 				}
 				w, h := ent.Image.Size()
 				imageSize := m.Delta{DX: w, DY: h}
-				setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation)
+				sizeFactor := 1.0
+				angle := 0.0
+				alphaFactor := 1.0
+				if ent == r.world.Player {
+					// Rotozoom the player when entering the menu.
+					sizeFactor = 1.0 + 3.0*blurFactor
+					angle = blurFactor * 2 * math.Pi
+					alphaFactor = 1.0 - blurFactor
+				}
+				setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation, sizeFactor, angle)
 				opts.ColorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.ColorMod[3])
 				opts.ColorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], ent.ColorAdd[3])
-				opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha)
+				opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha*alphaFactor)
 				opts.ColorM.Concat(r.world.GlobalColorM)
 				screen.DrawImage(ent.Image, &opts)
 				return nil
@@ -398,7 +418,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 	r.worldChanged = false
 }
 
-func (r *renderer) Draw(screen *ebiten.Image) {
+func (r *renderer) Draw(screen *ebiten.Image, blurFactor float64) {
 	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(r.world.scrollPos)
 
 	off := r.offscreenDrawDest(screen)
@@ -408,7 +428,7 @@ func (r *renderer) Draw(screen *ebiten.Image) {
 	}
 	dest.Fill(color.Gray{0})
 	r.drawTiles(dest, scrollDelta)
-	r.drawEntities(dest, scrollDelta)
+	r.drawEntities(dest, scrollDelta, blurFactor)
 	if *drawVisibilityMask {
 		r.drawVisibilityMask(screen, dest, scrollDelta)
 	}

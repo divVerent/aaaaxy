@@ -104,16 +104,17 @@ func (c *Controller) Update() error {
 	}
 
 	timing.Section("screen")
-	if c.blurFrame < blurFrames {
-		c.blurFrame++
-	}
 	if c.Screen != nil {
+		if c.blurFrame < blurFrames {
+			c.blurFrame++
+		}
 		input.SetWantClicks(true)
 		err := c.Screen.Update()
 		if err != nil {
 			return err
 		}
 	} else {
+		c.blurFrame = 0
 		input.SetWantClicks(false)
 	}
 
@@ -154,14 +155,17 @@ func (c *Controller) Draw(screen *ebiten.Image) {
 }
 
 func (c *Controller) DrawWorld(screen *ebiten.Image) {
+	f := float64(c.blurFrame) / blurFrames
+
 	dest := screen
-	if offscreen.AvoidReuse() && c.Screen != nil {
+	if offscreen.AvoidReuse() && f != 0 {
 		dest = offscreen.New("GameUnblurred", engine.GameWidth, engine.GameHeight)
 	}
-	c.World.Draw(dest)
-	if c.Screen != nil {
+
+	c.World.Draw(dest, f)
+
+	if f != 0 {
 		// If a menu screen is active, just draw the previous saved bitmap, but blur it.
-		f := float64(c.blurFrame) / blurFrames
 		darken := darkenFactor*f + 1.0*(1-f)
 		engine.BlurImage("BlurGame", dest, screen, blurSize, darken, 0.0, f)
 		if offscreen.AvoidReuse() {
