@@ -1,0 +1,8 @@
+  - Engine: fix rounding of mouse or touch coordinates.
+  - Engine: update to Ebitengine v2.4.1.
+  - Engine: use DirectX by default on Windows now.
+  - Game: don't call them "platforms" before one can stand on them; also make them look different.
+  - Menu: add an animation for indicating the direction of a missing path.
+  - Menu: more friendly checkpoint menu: allow touching the map name to enter a CP too.
+  - Menu: rotozoom the player when entering the menu; brings across the message that entering the menu is "destructive".
+  - Mobile: require Android 10 now, no longer Android 11.
