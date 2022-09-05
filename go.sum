@@ -23,6 +23,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f h1:OGqDDftRTwrvUoL6pOG7rYTmWsTCvyEWFsMjg+HcOaA=
 github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f/go.mod h1:Dv9D0NUlAsaQcGQZa5kc5mqR9ua72SmA8VXi4cd+cBw=
+github.com/divVerent/ebiten/v2 v2.4.1-with-eperm-fix h1:mxUd5hsATxJOxuo6IkngDNAr+4HJ8tWQZtM8k5F3af4=
+github.com/divVerent/ebiten/v2 v2.4.1-with-eperm-fix/go.mod h1:z9L4JZ3XHQqvCuVuAQ1qTByIV2YHGS1w6keUSVC9NDA=
 github.com/ebitengine/purego v0.0.0-20220816145426-8dbe340b03f1/go.mod h1:Eh8I3yvknDYZeCuXH9kRNaPuHEwvXDCk378o9xszmHg=
 github.com/ebitengine/purego v0.0.0-20220905075623-aeed57cda744 h1:A8UnJ/5OKzki4HBDwoRQz7I6sxKsokpMXcGh+fUxpfc=
 github.com/ebitengine/purego v0.0.0-20220905075623-aeed57cda744/go.mod h1:Eh8I3yvknDYZeCuXH9kRNaPuHEwvXDCk378o9xszmHg=
@@ -51,8 +53,6 @@ github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 h1:TJsAqW
 github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148/go.mod h1:rq9F0RSpNKlrefnf6ZYMHKUnEJBCNzf6AcCXMYBeYvE=
 github.com/hajimehoshi/bitmapfont/v2 v2.2.1 h1:y7zcy02/UgO24IL3COqYtrRZzhRucNBtmCo/SNU648k=
 github.com/hajimehoshi/bitmapfont/v2 v2.2.1/go.mod h1:wjrYAy8vKgj9JsFgnYAOK346/uvE22TlmqouzdnYIs0=
-github.com/hajimehoshi/ebiten/v2 v2.4.1 h1:K5lpuDGbmvMi9VtqhSq08JB7SBzgQqApNrzvd0HK/NU=
-github.com/hajimehoshi/ebiten/v2 v2.4.1/go.mod h1:z9L4JZ3XHQqvCuVuAQ1qTByIV2YHGS1w6keUSVC9NDA=
 github.com/hajimehoshi/file2byteslice v0.0.0-20210813153925-5340248a8f41/go.mod h1:CqqAHp7Dk/AqQiwuhV1yT2334qbA/tFWQW0MD2dGqUE=
 github.com/hajimehoshi/file2byteslice v1.0.0 h1:ljd5KTennqyJ4vG9i/5jS8MD1prof97vlH5JOdtw3WU=
 github.com/hajimehoshi/file2byteslice v1.0.0/go.mod h1:CqqAHp7Dk/AqQiwuhV1yT2334qbA/tFWQW0MD2dGqUE=

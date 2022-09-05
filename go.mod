@@ -58,7 +58,7 @@ require (
 )
 
 // Workaround for osxcross.
-// replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.2.0-alpha.11.0.20220903120301-89e42830679e
+replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.4.1-with-eperm-fix
 
 // Use when playing around with extended/fixed tmx versions.
 // replace github.com/fardog/tmx => github.com/divVerent/tmx v0.0.0-20210504110059-b8d75006ad02
