@@ -31,7 +31,12 @@
 		</activity>
 	</application>
 	<uses-feature android:name="android.hardware.faketouch" />
+	<!--
+	Gamepad support currently broken:
+	https://github.com/hajimehoshi/ebiten/issues/2309
+
 	<uses-feature android:name="android.hardware.gamepad" android:required="false" />
+	-->
 	<uses-feature android:name="android.hardware.touchscreen" android:required="false" />
 	<uses-feature android:name="android.hardware.type.pc" android:required="false" />
 	<!-- Actually only GLES 2.0 is required, but stating a higher requirement to exclude low-end devices. -->
