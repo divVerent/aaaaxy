@@ -132,11 +132,17 @@ func (i *impulse) gamepadPressed() InputMap {
 	}
 	for p := range gamepads {
 		for _, b := range i.padControls.buttons {
+			if ignoredGamepadButtons[b] {
+				continue
+			}
 			if ebiten.IsStandardGamepadButtonPressed(p, b) {
 				return Gamepad
 			}
 		}
 		for _, a := range i.padControls.axes {
+			if ignoredGamepadAxes[a] {
+				continue
+			}
 			if ebiten.StandardGamepadAxisValue(p, a)*i.padControls.axisDirection >= t {
 				return Gamepad
 			}
