@@ -56,7 +56,7 @@ hub release create \
 
 # Alpine Linux comes first as it has some automated testing.
 (
-	cd ~/src/aports/testing/aaaaxy
+	cd ~/src/aports/community/aaaaxy
 	git checkout master
 	git fetch origin
 	git reset --hard origin/master
