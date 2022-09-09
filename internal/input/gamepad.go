@@ -171,10 +171,10 @@ func gamepadScan() {
 			allGamepads[p] = true
 			continue
 		}
-		log.Infof("gamepad %v added", ebiten.GamepadName(p))
+		log.Infof("gamepad %v (%v) added", ebiten.GamepadName(p), ebiten.GamepadSDLID(p))
 		allGamepads[p] = true
 		if !ebiten.IsStandardGamepadLayoutAvailable(p) {
-			log.Errorf("gamepad %v has no standard layout - cannot use", ebiten.GamepadName(p))
+			log.Errorf("gamepad %v (%v) has no standard layout - cannot use", ebiten.GamepadName(p), ebiten.GamepadSDLID(p))
 			continue
 		}
 		// A good gamepad! Add it.
@@ -184,7 +184,7 @@ func gamepadScan() {
 		if stillThere {
 			continue
 		}
-		log.Infof("gamepad %v removed", ebiten.GamepadName(p))
+		log.Infof("gamepad %v (%v) removed", ebiten.GamepadName(p), ebiten.GamepadSDLID(p))
 		delete(allGamepads, p)
 		delete(gamepads, p)
 	}
