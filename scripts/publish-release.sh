@@ -69,7 +69,7 @@ hub release create \
 		abuild -F checksum
 		abuild -F -r
 	'
-	git commit -a -m "testing/aaaaxy: upgrade to $new"
+	git commit -a -m "community/aaaaxy: upgrade to $new"
 	git push -f divVerent HEAD:aaaaxy
 	# TODO is there a more direct URL to create a MR right away?
 	xdg-open 'https://gitlab.alpinelinux.org/divVerent/aports/-/merge_requests/new?merge_request%5Bsource_branch%5D=aaaaxy'
