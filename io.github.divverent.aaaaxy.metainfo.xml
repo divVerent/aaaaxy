@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.321" date="2022-09-05">
-      <description><ul><li>Engine: fix rounding of mouse or touch coordinates.</li><li>Engine: update to Ebitengine v2.4.1.</li><li>Engine: use DirectX by default on Windows now.</li><li>Game: don't call them "platforms" before one can stand on them; also make them look different.</li><li>Menu: add an animation for indicating the direction of a missing path.</li><li>Menu: more friendly checkpoint menu: allow touching the map name to enter a CP too.</li><li>Menu: rotozoom the player when entering the menu; brings across the message that entering the menu is "destructive".</li><li>Mobile: require Android 10 now, no longer Android 11.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.321</url>
+    <release version="v1.2.331" date="2022-09-12">
+      <description><ul><li>Disable the gamepad feature from the Android manifest due to missing standard layout support.</li><li>Engine: ignore EPERM when opening gamepads.</li><li>Engine: log the gamepad SDLID so mappings are easier to update.</li><li>Engine: on Android, ignore AXIS_RX, AXIS_RY, AXIS_Z, AXIS_RZ.</li><li>Engine: update modules.</li><li>Game: update the blur image of the world while fading to the menu and rotozooming the player.</li><li>Snap: fix running with AMD GPUs.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.331</url>
     </release>
   </releases>
 </component>

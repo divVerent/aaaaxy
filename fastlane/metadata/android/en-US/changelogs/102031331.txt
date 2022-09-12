@@ -1,0 +1,7 @@
+  - Disable the gamepad feature from the Android manifest due to missing standard layout support.
+  - Engine: ignore EPERM when opening gamepads.
+  - Engine: log the gamepad SDLID so mappings are easier to update.
+  - Engine: on Android, ignore AXIS_RX, AXIS_RY, AXIS_Z, AXIS_RZ.
+  - Engine: update modules.
+  - Game: update the blur image of the world while fading to the menu and rotozooming the player.
+  - Snap: fix running with AMD GPUs.
