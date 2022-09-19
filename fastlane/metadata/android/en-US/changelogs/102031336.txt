@@ -1,0 +1,2 @@
+  - Engine: fix handling of gamepads that represent a D-pad as two axes.
+  - Engine: update Ebitengine to v2.4.3. Fixes headset plugging issues on Windows.
