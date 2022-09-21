@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8279">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8289">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -10210,61 +10210,101 @@
   <object id="4285" gid="302" x="6032" y="4128" width="16" height="16"/>
   <object id="4286" gid="302" x="6032" y="4144" width="16" height="16"/>
   <object id="4290" gid="302" x="6032" y="4160" width="16" height="16"/>
-  <object id="4291" gid="302" x="6032" y="4176" width="16" height="16"/>
+  <object id="4291" gid="302" x="6032" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4296" gid="302" x="6064" y="4096" width="16" height="16"/>
   <object id="4297" gid="302" x="6064" y="4112" width="16" height="16"/>
   <object id="4298" gid="302" x="6064" y="4128" width="16" height="16"/>
   <object id="4299" gid="302" x="6064" y="4144" width="16" height="16"/>
   <object id="4303" gid="302" x="6064" y="4160" width="16" height="16"/>
-  <object id="4304" gid="302" x="6064" y="4176" width="16" height="16"/>
+  <object id="4304" gid="302" x="6064" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4309" gid="302" x="6096" y="4096" width="16" height="16"/>
   <object id="4310" gid="302" x="6096" y="4112" width="16" height="16"/>
   <object id="4311" gid="302" x="6096" y="4128" width="16" height="16"/>
   <object id="4312" gid="302" x="6096" y="4144" width="16" height="16"/>
   <object id="4316" gid="302" x="6096" y="4160" width="16" height="16"/>
-  <object id="4317" gid="302" x="6096" y="4176" width="16" height="16"/>
+  <object id="4317" gid="302" x="6096" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4322" gid="302" x="6128" y="4096" width="16" height="16"/>
   <object id="4323" gid="302" x="6128" y="4112" width="16" height="16"/>
   <object id="4324" gid="302" x="6128" y="4128" width="16" height="16"/>
   <object id="4325" gid="302" x="6128" y="4144" width="16" height="16"/>
   <object id="4329" gid="302" x="6128" y="4160" width="16" height="16"/>
-  <object id="4330" gid="302" x="6128" y="4176" width="16" height="16"/>
+  <object id="4330" gid="302" x="6128" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4335" gid="302" x="6160" y="4096" width="16" height="16"/>
   <object id="4336" gid="302" x="6160" y="4112" width="16" height="16"/>
   <object id="4337" gid="302" x="6160" y="4128" width="16" height="16"/>
   <object id="4338" gid="302" x="6160" y="4144" width="16" height="16"/>
   <object id="4342" gid="302" x="6160" y="4160" width="16" height="16"/>
-  <object id="4343" gid="302" x="6160" y="4176" width="16" height="16"/>
+  <object id="4343" gid="302" x="6160" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4348" gid="302" x="6208" y="4096" width="16" height="16"/>
   <object id="4349" gid="302" x="6208" y="4112" width="16" height="16"/>
   <object id="4350" gid="302" x="6208" y="4128" width="16" height="16"/>
   <object id="4351" gid="302" x="6208" y="4144" width="16" height="16"/>
   <object id="4355" gid="302" x="6208" y="4160" width="16" height="16"/>
-  <object id="4356" gid="302" x="6208" y="4176" width="16" height="16"/>
+  <object id="4356" gid="302" x="6208" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4361" gid="302" x="6240" y="4096" width="16" height="16"/>
   <object id="4362" gid="302" x="6240" y="4112" width="16" height="16"/>
   <object id="4363" gid="302" x="6240" y="4128" width="16" height="16"/>
   <object id="4364" gid="302" x="6240" y="4144" width="16" height="16"/>
   <object id="4368" gid="302" x="6240" y="4160" width="16" height="16"/>
-  <object id="4369" gid="302" x="6240" y="4176" width="16" height="16"/>
+  <object id="4369" gid="302" x="6240" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4374" gid="302" x="6272" y="4096" width="16" height="16"/>
   <object id="4375" gid="302" x="6272" y="4112" width="16" height="16"/>
   <object id="4376" gid="302" x="6272" y="4128" width="16" height="16"/>
   <object id="4377" gid="302" x="6272" y="4144" width="16" height="16"/>
   <object id="4381" gid="302" x="6272" y="4160" width="16" height="16"/>
-  <object id="4382" gid="302" x="6272" y="4176" width="16" height="16"/>
+  <object id="4382" gid="302" x="6272" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4387" gid="302" x="6304" y="4096" width="16" height="16"/>
   <object id="4388" gid="302" x="6304" y="4112" width="16" height="16"/>
   <object id="4389" gid="302" x="6304" y="4128" width="16" height="16"/>
   <object id="4390" gid="302" x="6304" y="4144" width="16" height="16"/>
   <object id="4394" gid="302" x="6304" y="4160" width="16" height="16"/>
-  <object id="4395" gid="302" x="6304" y="4176" width="16" height="16"/>
+  <object id="4395" gid="302" x="6304" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4400" gid="302" x="6336" y="4096" width="16" height="16"/>
   <object id="4401" gid="302" x="6336" y="4112" width="16" height="16"/>
   <object id="4402" gid="302" x="6336" y="4128" width="16" height="16"/>
   <object id="4403" gid="302" x="6336" y="4144" width="16" height="16"/>
   <object id="4407" gid="302" x="6336" y="4160" width="16" height="16"/>
-  <object id="4408" gid="302" x="6336" y="4176" width="16" height="16"/>
+  <object id="4408" gid="302" x="6336" y="4176" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4409" name="traaaash" type="Checkpoint" x="6368" y="4048" width="32" height="32">
    <properties>
     <property name="music" value="mythica.ogg"/>
@@ -18250,5 +18290,15 @@
     <property name="target" value="a_new_beginning"/>
    </properties>
   </object>
+  <object id="8279" gid="303" x="6032" y="4176" width="16" height="16"/>
+  <object id="8280" gid="303" x="6064" y="4176" width="16" height="16"/>
+  <object id="8281" gid="303" x="6096" y="4176" width="16" height="16"/>
+  <object id="8282" gid="303" x="6128" y="4176" width="16" height="16"/>
+  <object id="8283" gid="303" x="6160" y="4176" width="16" height="16"/>
+  <object id="8284" gid="303" x="6208" y="4176" width="16" height="16"/>
+  <object id="8285" gid="303" x="6240" y="4176" width="16" height="16"/>
+  <object id="8286" gid="303" x="6272" y="4176" width="16" height="16"/>
+  <object id="8287" gid="303" x="6304" y="4176" width="16" height="16"/>
+  <object id="8288" gid="303" x="6336" y="4176" width="16" height="16"/>
  </objectgroup>
 </map>
