@@ -65,6 +65,7 @@
    <property name="image_dir" value=""/>
    <property name="no_transform" type="bool" value="true"/>
    <property name="object_solid" type="bool" value="true"/>
+   <property name="spawn_tiles_growth" type="string" value="1 1"/>
   </properties>
   <image width="16" height="16" source="objectclip.png"/>
  </tile>

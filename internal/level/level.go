@@ -540,8 +540,18 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 					DY: int(o.Height),
 				},
 			}
+			var spawnTilesGrowth m.Delta
+			if s, found := properties["spawn_tiles_growth"]; found {
+				_, err := fmt.Sscanf(s, "%d %d", &spawnTilesGrowth.DX, &spawnTilesGrowth.DY)
+				if err != nil {
+					return nil, fmt.Errorf("failed to parse spawn_tiles_growth: %w", err)
+				}
+			}
 			startTile := entRect.Origin.Div(TileSize)
 			endTile := entRect.OppositeCorner().Div(TileSize)
+			spawnRect := entRect.Grow(spawnTilesGrowth)
+			spawnStartTile := spawnRect.Origin.Div(TileSize)
+			spawnEndTile := spawnRect.OppositeCorner().Div(TileSize)
 			orientation := m.Identity()
 			if orientationProp := properties["orientation"]; orientationProp != "" {
 				orientation, err = m.ParseOrientation(orientationProp)
@@ -572,10 +582,11 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 					Size: entRect.Size,
 				},
 				SpawnableProps: SpawnableProps{
-					EntityType:      properties["type"],
-					Orientation:     orientation,
-					Properties:      properties,
-					PersistentState: PersistentState{},
+					EntityType:       properties["type"],
+					Orientation:      orientation,
+					Properties:       properties,
+					PersistentState:  PersistentState{},
+					SpawnTilesGrowth: spawnTilesGrowth,
 				},
 			}
 			if properties["type"] == "_TileMod" {
@@ -598,8 +609,8 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				tnihSigns = append(tnihSigns, &ent)
 				// These do get linked.
 			}
-			for y := startTile.Y; y <= endTile.Y; y++ {
-				for x := startTile.X; x <= endTile.X; x++ {
+			for y := spawnStartTile.Y; y <= spawnEndTile.Y; y++ {
+				for x := spawnStartTile.X; x <= spawnEndTile.X; x++ {
 					pos := m.Pos{X: x, Y: y}
 					levelTile := level.Tile(pos)
 					if levelTile == nil {

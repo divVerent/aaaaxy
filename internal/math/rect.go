@@ -68,6 +68,14 @@ func (r Rect) Add(d Delta) Rect {
 	}
 }
 
+// Grow creates a new rectangle grown by the given delta.
+func (r Rect) Grow(d Delta) Rect {
+	return Rect{
+		Origin: r.Origin.Sub(d),
+		Size:   r.Size.Add(d.Mul(2)),
+	}
+}
+
 // OppositeCorner returns the coordinate of the opposite corner of the rectangle. Only correct on normalized rectangles.
 func (r Rect) OppositeCorner() Pos {
 	return r.Origin.Add(r.Size).Sub(Delta{DX: 1, DY: 1})

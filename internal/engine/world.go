@@ -697,7 +697,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 
 	timing.Section("despawn_search")
 	w.entities.forEach(func(ent *Entity) error {
-		tp0, tp1 := tilesBox(ent.Rect)
+		tp0, tp1 := tilesBox(ent.Rect.Grow(ent.SpawnTilesGrowth))
 		var pos m.Pos
 		havePos := false
 	DESPAWN_SEARCH:

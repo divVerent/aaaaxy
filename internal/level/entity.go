@@ -35,6 +35,10 @@ type SpawnableProps struct {
 
 	// Persistent entity state, if any, shall be kept in this map.
 	PersistentState map[string]string `hash:"-"`
+
+	// SpawnTilesGrowth is how much extra pixels around the entity to consider
+	// for spawning.
+	SpawnTilesGrowth m.Delta
 }
 
 // A Spawnable is a blueprint to create an Entity in a level.

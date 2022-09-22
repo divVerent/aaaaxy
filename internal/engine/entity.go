@@ -27,7 +27,9 @@ import (
 
 // An Entity is an object that exists in the game.
 type Entity struct {
-	Incarnation EntityIncarnation
+	// Info needed for management.
+	Incarnation      EntityIncarnation
+	SpawnTilesGrowth m.Delta
 
 	// Info needed for gameplay.
 	contents     level.Contents
@@ -142,12 +144,13 @@ func (w *World) spawnAt(sp *level.SpawnableProps, rect m.Rect, transform, tInv m
 	eImplVal.Elem().Set(reflect.ValueOf(eTmpl).Elem())
 	eImpl := eImplVal.Interface().(EntityImpl)
 	e := &Entity{
-		Incarnation: incarnation,
-		Transform:   transform,
-		name:        sp.Properties["name"],
-		Impl:        eImpl,
-		Rect:        rect,
-		Orientation: tInv.Concat(sp.Orientation),
+		Incarnation:      incarnation,
+		Transform:        transform,
+		name:             sp.Properties["name"],
+		Impl:             eImpl,
+		Rect:             rect,
+		Orientation:      tInv.Concat(sp.Orientation),
+		SpawnTilesGrowth: sp.SpawnTilesGrowth,
 	}
 	e.Alpha = 1.0
 	e.ColorMod[0] = 1.0
