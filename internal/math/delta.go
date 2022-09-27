@@ -18,6 +18,7 @@ import (
 	"encoding"
 	"fmt"
 	"math"
+	"strconv"
 )
 
 // Delta represents a move between two pixel positions.
@@ -138,5 +139,30 @@ func (d Delta) IsZero() bool {
 }
 
 func (d Delta) MarshalText() ([]byte, error) {
-	return []byte(fmt.Sprintf("%v,%v", d.DX, d.DY)), nil
+	// Used by dumpcplocs only.
+	return []byte(d.String()), nil
+}
+
+func (d Delta) String() string {
+	return fmt.Sprintf("%d %d", d.DX, d.DY)
+}
+
+func (d *Delta) Scan(state fmt.ScanState, verb rune) error {
+	sx, err := state.Token(true, nil)
+	if err != nil {
+		return err
+	}
+	d.DX, err = strconv.Atoi(string(sx))
+	if err != nil {
+		return err
+	}
+	sy, err := state.Token(true, nil)
+	if err != nil {
+		return err
+	}
+	d.DY, err = strconv.Atoi(string(sy))
+	if err != nil {
+		return err
+	}
+	return nil
 }

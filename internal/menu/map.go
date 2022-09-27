@@ -31,6 +31,7 @@ import (
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 type MapScreen struct {
@@ -99,6 +100,8 @@ func (s *MapScreen) Init(c *Controller) error {
 	s.whiteImage = ebiten.NewImage(1, 1)
 	s.whiteImage.Fill(color.Gray{255})
 
+	var parseErr error
+
 	s.SortedLocs = nil
 	for name := range s.Controller.World.Level.Checkpoints {
 		if name == "" {
@@ -122,7 +125,7 @@ func (s *MapScreen) Init(c *Controller) error {
 			return edges[i].Other < edges[j].Other
 		})
 		s.SortedEdges[cpName] = edges
-		if s.Controller.World.Level.Checkpoints[cpName].Properties["first"] == "true" {
+		if propmap.ValueOrP(s.Controller.World.Level.Checkpoints[cpName].Properties, "first", false, &parseErr) {
 			if s.FirstCP != "" {
 				return fmt.Errorf("more than one first checkpoint is not allowed: got %v and %v, want only one", s.FirstCP, cpName)
 			}
@@ -149,7 +152,7 @@ func (s *MapScreen) Init(c *Controller) error {
 		s.CPPos[cpName] = pos
 	}
 
-	return nil
+	return parseErr
 }
 
 func (s *MapScreen) moveBy(d m.Delta) {
@@ -164,7 +167,7 @@ func (s *MapScreen) moveBy(d m.Delta) {
 		// Don't know this yet :)
 		return
 	}
-	if s.Controller.World.Level.Checkpoints[edge.Other].Properties["dead_end"] == "true" {
+	if propmap.ValueOrP(s.Controller.World.Level.Checkpoints[edge.Other].Properties, "dead_end", false, nil) {
 		// A dead end!
 		return
 	}
@@ -180,7 +183,7 @@ func (s *MapScreen) moveTo(pos m.Pos) bool {
 			// Don't know this yet :)
 			continue
 		}
-		if s.Controller.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
+		if propmap.ValueOrP(s.Controller.World.Level.Checkpoints[cpName].Properties, "dead_end", false, nil) {
 			// A dead end!
 			continue
 		}
@@ -262,7 +265,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	unseenPathToUnseenCPColor := palette.EGA(palette.Black, 255)
 	unseenPathBlinkColor := palette.EGA(palette.DarkGrey, 255)
 	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
-	cpText := fun.FormatText(&s.Controller.World.PlayerState, s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties["text"])
+	cpText := fun.FormatText(&s.Controller.World.PlayerState, propmap.ValueP(s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties, "text", "", nil))
 	seen, total := s.Controller.World.PlayerState.TnihSignsSeen(s.CurrentCP)
 	if total > 0 {
 		cpText += fmt.Sprintf(" (%d/%d)", seen, total)
@@ -286,7 +289,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	// First draw all edges.
 	cpPos := make(map[string]m.Pos, len(s.SortedLocs))
 	for cpName, pos := range s.CPPos {
-		if s.Controller.World.Level.Checkpoints[cpName].Properties["hub"] == "true" {
+		if propmap.ValueOrP(s.Controller.World.Level.Checkpoints[cpName].Properties, "hub", false, nil) {
 			pos.X += rand.Intn(3) - 1
 			pos.Y += rand.Intn(3) - 1
 		}
@@ -308,7 +311,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				}
 				otherName := edge.Other
 				edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(cpName, otherName)
-				isSecret := s.Controller.World.Level.Checkpoints[otherName].Properties["secret"] == "true"
+				isSecret := propmap.ValueOrP(s.Controller.World.Level.Checkpoints[otherName].Properties, "secret", false, nil)
 				// Unseen edges leading to a secret are only drawn if the game has already been completed fully (Any% is not enough).
 				if !edgeSeen && isSecret && !revealSecrets {
 					continue
@@ -415,7 +418,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				sprite = s.cpFlippedSprite
 			}
 		}
-		if s.Controller.World.Level.Checkpoints[cpName].Properties["dead_end"] == "true" {
+		if propmap.ValueOrP(s.Controller.World.Level.Checkpoints[cpName].Properties, "dead_end", false, nil) {
 			sprite = s.deadEndSprite
 		}
 		pos := cpPos[cpName]

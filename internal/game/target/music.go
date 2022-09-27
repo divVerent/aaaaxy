@@ -18,6 +18,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/music"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // SwitchMusicTarget just changes the music track to the given one.
@@ -26,7 +27,7 @@ type SwitchMusicTarget struct {
 }
 
 func (s *SwitchMusicTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
-	s.Music = sp.Properties["music"]
+	s.Music = propmap.StringOr(sp.Properties, "music", "")
 	return nil
 }
 

@@ -18,6 +18,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // MovableSprite is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -33,11 +34,12 @@ func (s *MovableSprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 		return err
 	}
 	contents := level.ObjectSolidContents
-	if sp.Properties["hit_opaque"] == "true" {
+	var parseErr error
+	if propmap.ValueOrP(sp.Properties, "hit_opaque", false, &parseErr) {
 		contents = level.OpaqueContents
 	}
 	s.Movable.Init(w, sp, e, contents)
-	return nil
+	return parseErr
 }
 
 func (s *MovableSprite) Update() {

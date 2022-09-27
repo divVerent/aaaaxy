@@ -16,13 +16,13 @@ package misc
 
 import (
 	"fmt"
-	"strconv"
+	"image/color"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
-	"github.com/divVerent/aaaaxy/internal/palette"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // SpriteBase is a base class for sprites.
@@ -32,54 +32,32 @@ type SpriteBase struct {
 }
 
 func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
-	w.SetSolid(e, sp.Properties["solid"] == "true")
-	w.SetOpaque(e, sp.Properties["opaque"] == "true")
-	if s := sp.Properties["player_solid"]; s != "" {
+	var parseErr error
+	w.SetSolid(e, propmap.ValueOrP(sp.Properties, "solid", false, &parseErr))
+	w.SetOpaque(e, propmap.ValueOrP(sp.Properties, "opaque", false, &parseErr))
+	if s := propmap.StringOr(sp.Properties, "player_solid", ""); s != "" {
 		w.MutateContentsBool(e, level.PlayerSolidContents, s == "true")
 	}
-	if s := sp.Properties["object_solid"]; s != "" {
+	if s := propmap.StringOr(sp.Properties, "object_solid", ""); s != "" {
 		w.MutateContentsBool(e, level.ObjectSolidContents, s == "true")
 	}
-	if sp.Properties["alpha"] != "" {
-		var err error
-		e.Alpha, err = strconv.ParseFloat(sp.Properties["alpha"], 64)
-		if err != nil {
-			return fmt.Errorf("could not decode alpha %q: %w", sp.Properties["alpha"], err)
-		}
-	}
-	if mapBlackToString := sp.Properties["map_black_to"]; mapBlackToString != "" {
-		c, err := palette.Parse(mapBlackToString, "map_black_to")
-		if err != nil {
-			return fmt.Errorf("could not decode color %q: %w", mapBlackToString, err)
-		}
-		e.ColorAdd[0] = float64(c.R) / 255.0
-		e.ColorAdd[1] = float64(c.G) / 255.0
-		e.ColorAdd[2] = float64(c.B) / 255.0
-		e.ColorAdd[3] = float64(c.A) / 255.0
-	}
-	if mapWhiteToString := sp.Properties["map_white_to"]; mapWhiteToString != "" {
-		c, err := palette.Parse(mapWhiteToString, "map_white_to")
-		if err != nil {
-			return fmt.Errorf("could not decode color %q: %w", mapWhiteToString, err)
-		}
-		e.ColorMod[0] = float64(c.R)/255.0 - e.ColorAdd[0]
-		e.ColorMod[1] = float64(c.G)/255.0 - e.ColorAdd[1]
-		e.ColorMod[2] = float64(c.B)/255.0 - e.ColorAdd[2]
-		e.ColorMod[3] = float64(c.A)/255.0 - e.ColorAdd[3]
-	}
-	z := s.ZDefault
-	if sp.Properties["z_index"] != "" {
-		zIndex, err := strconv.Atoi(sp.Properties["z_index"])
-		if err != nil {
-			return fmt.Errorf("could not decode z index %q: %w", sp.Properties["z_index"], err)
-		}
-		if zIndex < constants.MinSpriteZ || zIndex > constants.MaxSpriteZ {
-			return fmt.Errorf("z index out of range: got %v, want %v..%v", zIndex, constants.MinSpriteZ, constants.MaxSpriteZ)
-		}
-		z = zIndex
+	e.Alpha = propmap.ValueOrP(sp.Properties, "alpha", 1.0, &parseErr)
+	mapBlackTo := propmap.ValueOrP(sp.Properties, "map_black_to", color.NRGBA{R: 0, G: 0, B: 0, A: 0}, &parseErr)
+	e.ColorAdd[0] = float64(mapBlackTo.R) / 255.0
+	e.ColorAdd[1] = float64(mapBlackTo.G) / 255.0
+	e.ColorAdd[2] = float64(mapBlackTo.B) / 255.0
+	e.ColorAdd[3] = float64(mapBlackTo.A) / 255.0
+	mapWhiteTo := propmap.ValueOrP(sp.Properties, "map_white_to", color.NRGBA{R: 255, G: 255, B: 255, A: 255}, &parseErr)
+	e.ColorMod[0] = float64(mapWhiteTo.R)/255.0 - e.ColorAdd[0]
+	e.ColorMod[1] = float64(mapWhiteTo.G)/255.0 - e.ColorAdd[1]
+	e.ColorMod[2] = float64(mapWhiteTo.B)/255.0 - e.ColorAdd[2]
+	e.ColorMod[3] = float64(mapWhiteTo.A)/255.0 - e.ColorAdd[3]
+	z := propmap.ValueOrP(sp.Properties, "z_index", s.ZDefault, &parseErr)
+	if z != s.ZDefault && (z < constants.MinSpriteZ || z > constants.MaxSpriteZ) {
+		return fmt.Errorf("z index out of range: got %v, want %v..%v", z, constants.MinSpriteZ, constants.MaxSpriteZ)
 	}
 	w.SetZIndex(e, z)
-	if sp.Properties["no_transform"] == "true" {
+	if propmap.ValueOrP(sp.Properties, "no_transform", false, &parseErr) {
 		// Undo transform of orientation by tile.
 		e.Orientation = sp.Orientation
 	}
@@ -87,7 +65,8 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		// e.Orientation: in-editor transform. Applied first.
 		// Normally the formula is e.Transform.Inverse().Concat(e.Orientation).
 		// This flips the view on the _image_ X axis.
-		switch sp.Properties["no_flip"] {
+		flip := propmap.StringOr(sp.Properties, "no_flip", "")
+		switch flip {
 		case "x":
 			e.Orientation = e.Orientation.Concat(m.FlipX())
 		case "y":
@@ -95,18 +74,14 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		case "", "false":
 			// Nothing to do.
 		default:
-			return fmt.Errorf("invalid no_flip value: got %v, want one of empty, x, y, false", sp.Properties["no_flip"])
+			return fmt.Errorf("invalid no_flip value: got %v, want one of empty, x, y, false", flip)
 		}
 	}
 
 	// Field contains orientation OF THE PLAYER to make it easier in the map editor.
 	// So it is actually a transform as far as this code is concerned.
-	orientationStr := sp.Properties["required_orientation"]
-	if orientationStr != "" {
-		requiredTransforms, err := m.ParseOrientations(orientationStr)
-		if err != nil {
-			return fmt.Errorf("could not parse required orientation: %w", err)
-		}
+	requiredTransforms := propmap.ValueOrP(sp.Properties, "required_orientation", m.Orientations{}, &parseErr)
+	if len(requiredTransforms) != 0 {
 		show := false
 		for _, requiredTransform := range requiredTransforms {
 			if e.Transform == requiredTransform {
@@ -122,7 +97,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		}
 	}
 
-	return nil
+	return parseErr
 }
 
 // The other methods to reduce code duplication in implementors.

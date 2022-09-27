@@ -15,13 +15,13 @@
 package misc
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // MovingAnimation is a simple entity type that moves in a specified direction.
@@ -58,27 +58,16 @@ func (s *MovingAnimation) Spawn(w *engine.World, sp *level.SpawnableProps, e *en
 		return err
 	}
 	s.NonSolidTouchable.Init(w, e)
-	s.FadeOnTouch = sp.Properties["fade_on_touch"] == "true"
-	s.RespawnOnTouch = sp.Properties["respawn_on_touch"] == "true"
-	s.StopOnTouch = sp.Properties["stop_on_touch"] == "true"
-	timeToMoveString := sp.Properties["time_to_move"]
-	if timeToMoveString != "" {
-		timeToMove, err := time.ParseDuration(timeToMoveString)
-		if err != nil {
-			return fmt.Errorf("could not parse time to move: %v", timeToMoveString)
-		}
-		s.FramesToMove = int((timeToMove*engine.GameTPS + (time.Second / 2)) / time.Second)
-	}
-	timeToFadeString := sp.Properties["time_to_fade"]
-	if timeToFadeString != "" {
-		timeToFade, err := time.ParseDuration(timeToFadeString)
-		if err != nil {
-			return fmt.Errorf("could not parse time to fade: %v", timeToFadeString)
-		}
-		s.FramesToFade = int((timeToFade*engine.GameTPS + (time.Second / 2)) / time.Second)
-	}
+	var parseErr error
+	s.FadeOnTouch = propmap.ValueOrP(sp.Properties, "fade_on_touch", false, &parseErr)
+	s.RespawnOnTouch = propmap.ValueOrP(sp.Properties, "respawn_on_touch", false, &parseErr)
+	s.StopOnTouch = propmap.ValueOrP(sp.Properties, "stop_on_touch", false, &parseErr)
+	timeToMove := propmap.ValueOrP(sp.Properties, "time_to_move", time.Duration(0), &parseErr)
+	s.FramesToMove = int((timeToMove*engine.GameTPS + (time.Second / 2)) / time.Second)
+	timeToFade := propmap.ValueOrP(sp.Properties, "time_to_fade", time.Duration(0), &parseErr)
+	s.FramesToFade = int((timeToFade*engine.GameTPS + (time.Second / 2)) / time.Second)
 
-	return nil
+	return parseErr
 }
 
 func (s *MovingAnimation) Update() {

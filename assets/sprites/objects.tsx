@@ -54,7 +54,7 @@
  </tile>
  <tile id="9" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="no_transform" type="bool" value="true"/>
    <property name="player_solid" type="bool" value="true"/>
   </properties>
@@ -62,7 +62,7 @@
  </tile>
  <tile id="10" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="no_transform" type="bool" value="true"/>
    <property name="object_solid" type="bool" value="true"/>
    <property name="spawn_tiles_growth" type="string" value="1 1"/>
@@ -104,7 +104,7 @@
  </tile>
  <tile id="18" type="SwitchableSprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="switchblock_off.png"/>
    <property name="invert" type="bool" value="true"/>
    <property name="solid" type="bool" value="true"/>
@@ -114,7 +114,7 @@
  </tile>
  <tile id="19" type="SwitchableSprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="switchblock_on.png"/>
    <property name="invert" type="bool" value="false"/>
    <property name="solid" type="bool" value="true"/>
@@ -139,35 +139,35 @@
  </tile>
  <tile id="24" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="gradient_left_right.png"/>
   </properties>
   <image width="16" height="16" source="_editorimgs/gradient_left_right.png"/>
  </tile>
  <tile id="25" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="gradient_top_bottom.png"/>
   </properties>
   <image width="16" height="16" source="_editorimgs/gradient_top_bottom.png"/>
  </tile>
  <tile id="26" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="gradient_outside_inside.png"/>
   </properties>
   <image width="16" height="16" source="_editorimgs/gradient_outside_inside.png"/>
  </tile>
  <tile id="27" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="orientation" value="ES"/>
   </properties>
   <image width="32" height="32" source="arrow32s.png"/>
  </tile>
  <tile id="28" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="arrow32d.png"/>
    <property name="orientation" value="NE"/>
   </properties>
@@ -175,7 +175,7 @@
  </tile>
  <tile id="29" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="arrow32s.png"/>
    <property name="orientation" value="NE"/>
   </properties>
@@ -183,7 +183,7 @@
  </tile>
  <tile id="30" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="arrow32d.png"/>
    <property name="orientation" value="WN"/>
   </properties>
@@ -191,7 +191,7 @@
  </tile>
  <tile id="31" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="arrow32s.png"/>
    <property name="orientation" value="WN"/>
   </properties>
@@ -199,7 +199,7 @@
  </tile>
  <tile id="32" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="arrow32d.png"/>
    <property name="orientation" value="SW"/>
   </properties>
@@ -207,7 +207,7 @@
  </tile>
  <tile id="33" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="arrow32s.png"/>
    <property name="orientation" value="SW"/>
   </properties>
@@ -215,7 +215,7 @@
  </tile>
  <tile id="34" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="orientation" value="ES"/>
   </properties>
   <image width="32" height="32" source="arrow32d.png"/>
@@ -234,7 +234,7 @@
  </tile>
  <tile id="37" type="MovableSprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="image" value="movingdoor.png"/>
    <property name="delta" value="0 -64"/>
    <property name="solid" value="true"/>
@@ -246,7 +246,7 @@
  </tile>
  <tile id="39" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
    <property name="object_solid" type="bool" value="true"/>
   </properties>
   <image width="3" height="5" source="miniobjectclip.png"/>
@@ -318,7 +318,7 @@
  </tile>
  <tile id="49" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
   </properties>
   <image width="8" height="8" source="police.png"/>
  </tile>
@@ -476,7 +476,7 @@
  </tile>
  <tile id="58" type="Sprite">
   <properties>
-   <property name="image_dir" value=""/>
+   <property name="image_dir" value="sprites"/>
   </properties>
   <image width="16" height="16" source="flag.png"/>
  </tile>

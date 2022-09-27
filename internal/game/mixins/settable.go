@@ -21,6 +21,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 var (
@@ -40,9 +41,10 @@ func (s *Settable) SetState(originator, predecessor *engine.Entity, state bool) 
 
 // Init initializes the initial state of the entity.
 func (s *Settable) Init(sp *level.SpawnableProps) error {
-	s.Invert = sp.Properties["invert"] == "true" // Default false.
+	var parseErr error
+	s.Invert = propmap.ValueOrP(sp.Properties, "invert", false, &parseErr)
 	s.State = s.Invert
-	return nil
+	return parseErr
 }
 
 // stateSetter is an entity that contains this mixin.

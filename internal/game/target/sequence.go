@@ -19,6 +19,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sequence"
 )
 
@@ -36,9 +37,10 @@ type SequenceTarget struct {
 func (s *SequenceTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
-	s.Target = sp.Properties["target"]
-	s.Sequence = []rune(sp.Properties["sequence"])
-	return nil
+	var parseErr error
+	s.Target = propmap.ValueP(sp.Properties, "target", "", &parseErr)
+	s.Sequence = []rune(propmap.ValueP(sp.Properties, "sequence", "", &parseErr))
+	return parseErr
 }
 
 func (s *SequenceTarget) Despawn() {}
@@ -82,16 +84,17 @@ func (s *SequenceCollector) Spawn(w *engine.World, sp *level.SpawnableProps, e *
 	s.World = w
 	s.Entity = e
 
-	seq := []rune(sp.Properties["sequence"])
+	var parseErr error
+	seq := []rune(propmap.ValueP(sp.Properties, "sequence", "", &parseErr))
 	seqI := make([]int, len(seq))
 	for i, r := range seq {
 		seqI[i] = int(r)
 	}
 	s.Sequence = sequence.New(seqI...)
 
-	s.Target = mixins.ParseTarget(sp.Properties["target"])
-	s.State = sp.Properties["state"] != "false"
-	return nil
+	s.Target = mixins.ParseTarget(propmap.ValueP(sp.Properties, "target", "", &parseErr))
+	s.State = propmap.ValueOrP(sp.Properties, "state", true, &parseErr)
+	return parseErr
 }
 
 func (s *SequenceCollector) Despawn() {}

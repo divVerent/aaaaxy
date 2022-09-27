@@ -17,6 +17,7 @@ package misc
 import (
 	"fmt"
 	"image"
+	"image/color"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -28,8 +29,8 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
-	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 var (
@@ -53,7 +54,7 @@ var _ engine.Precacher = &Text{}
 
 type textCacheKey struct {
 	font   string
-	fg, bg string
+	fg, bg color.NRGBA
 	text   string
 }
 
@@ -61,10 +62,10 @@ var textCache = map[textCacheKey]*ebiten.Image{}
 
 func cacheKey(sp *level.SpawnableProps) textCacheKey {
 	return textCacheKey{
-		font: sp.Properties["text_font"],
-		fg:   sp.Properties["text_fg"],
-		bg:   sp.Properties["text_bg"],
-		text: sp.Properties["text"],
+		font: propmap.ValueP(sp.Properties, "text_font", "", nil),
+		fg:   propmap.ValueP(sp.Properties, "text_fg", color.NRGBA{}, nil),
+		bg:   propmap.ValueP(sp.Properties, "text_bg", color.NRGBA{}, nil),
+		text: propmap.ValueP(sp.Properties, "text", "", nil),
 	}
 }
 
@@ -72,14 +73,6 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 	fnt := font.ByName[key.font]
 	if fnt.Face == nil {
 		return nil, fmt.Errorf("could not find font %q", key.font)
-	}
-	fg, err := palette.Parse(key.fg, "text_fg")
-	if err != nil {
-		return nil, fmt.Errorf("could not decode color %q: %w", key.fg, err)
-	}
-	bg, err := palette.Parse(key.bg, "text_bg")
-	if err != nil {
-		return nil, fmt.Errorf("could not decode color %q: %w", key.bg, err)
 	}
 	txt, err := fun.TryFormatText(ps, key.text)
 	if err != nil {
@@ -108,12 +101,12 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 					Y: bounds.Size.DY,
 				},
 			})
-		fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, fg, bg)
+		fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, key.fg, key.bg)
 		img2 := ebiten.NewImageFromImage(img)
 		return img2, nil
 	} else {
 		img := ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
-		fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, fg, bg)
+		fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, key.fg, key.bg)
 		return img, nil
 	}
 }
@@ -147,9 +140,7 @@ func (t *Text) Precache(id level.EntityID, sp *level.SpawnableProps) error {
 }
 
 func (t *Text) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
-	if sp.Properties["no_flip"] == "" {
-		sp.Properties["no_flip"] = "x"
-	}
+	propmap.SetDefault(sp.Properties, "no_flip", "x")
 
 	t.World = w
 	t.Entity = e

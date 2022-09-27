@@ -15,12 +15,12 @@
 package ending
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // ZoomTarget zooms the screen out.
@@ -35,17 +35,15 @@ type ZoomTarget struct {
 func (z *ZoomTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	z.World = w
 
-	durationString := sp.Properties["duration"]
-	durationTime, err := time.ParseDuration(durationString)
-	if err != nil {
-		return fmt.Errorf("could not parse duration time: %s", durationString)
-	}
+	var parseErr error
+
+	durationTime := propmap.ValueOrP(sp.Properties, "duration", time.Second, &parseErr)
 	z.Frames = int((durationTime*engine.GameTPS + (time.Second / 2)) / time.Second)
 	if z.Frames < 1 {
 		z.Frames = 1
 	}
 
-	return nil
+	return parseErr
 }
 
 func (z *ZoomTarget) Despawn() {}

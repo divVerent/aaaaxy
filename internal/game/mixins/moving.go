@@ -21,6 +21,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // Moving is a physics object with initial velocity. That's all.
@@ -31,7 +32,8 @@ type Moving struct {
 
 func (v *Moving) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Entity, contents level.Contents, handleTouch func(engine.TraceResult)) error {
 	v.Physics.Init(w, e, contents, handleTouch)
-	if str := sp.Properties["velocity"]; str != "" {
+	if str := propmap.StringOr(sp.Properties, "velocity", ""); str != "" {
+		// Special parsing case, not needed to generalize.
 		var dx, dy float64
 		if _, err := fmt.Sscanf(str, "%f %f", &dx, &dy); err != nil {
 			return fmt.Errorf("failed to parse velocity %q: %w", str, err)

@@ -23,6 +23,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
@@ -207,6 +208,7 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 	}
 	edges := []edge{}
 	nodeDegrees := make(map[string]int, len(l.Checkpoints))
+	var parseErr error
 	for name, cp := range l.Checkpoints {
 		if name == "" {
 			// Not a real CP, but the player initial spawn.
@@ -216,7 +218,7 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 		if cpLoc == nil {
 			return nil, fmt.Errorf("could not find checkpoint location for %q in %q", name, filename)
 		}
-		cpDeadEnd := cp.Properties["dead_end"] == "true"
+		cpDeadEnd := propmap.ValueOrP(cp.Properties, "dead_end", false, &parseErr)
 		for propname, propval := range cp.Properties {
 			if !strings.HasPrefix(propname, "next_") {
 				continue
@@ -229,7 +231,7 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 			if other == "" {
 				return nil, fmt.Errorf("next checkpoint ID for %q property %q in %q is not a checkpoint", name, propname, filename)
 			}
-			otherDeadEnd := l.Checkpoints[other].Properties["dead_end"] == "true"
+			otherDeadEnd := propmap.ValueOrP(l.Checkpoints[other].Properties, "dead_end", false, &parseErr)
 			otherLoc := loc.Locs[other]
 			if otherLoc == nil {
 				return nil, fmt.Errorf("next checkpoint %q in %q has no location yet", other, filename)
@@ -256,6 +258,9 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 				nodeDegrees[other] += 1
 			}
 		}
+	}
+	if parseErr != nil {
+		return nil, parseErr
 	}
 
 	// alreadyAssigned returns if edge a -> b already has some assignment.

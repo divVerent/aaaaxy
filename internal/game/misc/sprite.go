@@ -24,6 +24,8 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 var (
@@ -41,11 +43,9 @@ func (s *Sprite) Precache(id level.EntityID, sp *level.SpawnableProps) error {
 	if !*checkSprites {
 		return nil
 	}
-	directory := sp.Properties["image_dir"]
-	if directory == "" {
-		directory = "sprites"
-	}
-	imgSrc := sp.Properties["image"]
+	var parseErr error
+	directory := propmap.StringOr(sp.Properties, "image_dir", "sprites")
+	imgSrc := propmap.ValueP(sp.Properties, "image", "", &parseErr)
 	_, err := image.Load(directory, imgSrc)
 	if err != nil {
 		return err
@@ -63,15 +63,13 @@ func (s *Sprite) Precache(id level.EntityID, sp *level.SpawnableProps) error {
 			return err
 		}
 	}
-	return nil
+	return parseErr
 }
 
 func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
-	directory := sp.Properties["image_dir"]
-	if directory == "" {
-		directory = "sprites"
-	}
-	imgSrc := sp.Properties["image"]
+	var parseErr error
+	directory := propmap.StringOr(sp.Properties, "image_dir", "sprites")
+	imgSrc := propmap.ValueP(sp.Properties, "image", "", &parseErr)
 	imgSrcByOrientation, err := level.ParseImageSrcByOrientation(imgSrc, sp.Properties)
 	if err != nil {
 		return err
@@ -81,17 +79,14 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	if err != nil {
 		return err
 	}
-	offsetString := sp.Properties["render_offset"]
-	if offsetString == "" {
+	e.RenderOffset = propmap.ValueOrP(sp.Properties, "render_offset", m.Delta{}, &parseErr)
+	if e.RenderOffset.IsZero() {
 		e.ResizeImage = true
-	} else {
-		if _, err := fmt.Sscanf(offsetString, "%d %d", &e.RenderOffset.DX, &e.RenderOffset.DY); err != nil {
-			return fmt.Errorf("could not decode render offset %q: %w", offsetString, err)
-		}
 	}
 	subX, subY := 0, 0
 	subW, subH := e.Image.Size()
-	regionString := sp.Properties["image_region"]
+	// This pattern is very specific - just have it here and not clutter the generic parser with it.
+	regionString := propmap.StringOr(sp.Properties, "image_region", "")
 	if regionString != "" {
 		if _, err := fmt.Sscanf(regionString, "%d %d %d %d", &subX, &subY, &subW, &subH); err != nil {
 			return fmt.Errorf("could not decode image region %q: %w", regionString, err)
@@ -107,12 +102,12 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 			},
 		}).(*ebiten.Image)
 	}
-	if s := sp.Properties["border_pixels"]; s != "" {
-		if _, err := fmt.Sscanf(s, "%d", &e.BorderPixels); err != nil {
-			return fmt.Errorf("failed to decode borde pixels %q: %w", s, err)
-		}
+	e.BorderPixels = propmap.ValueOrP(sp.Properties, "border_pixels", 0, &parseErr)
+	err = s.SpriteBase.Spawn(w, sp, e)
+	if err != nil {
+		return err
 	}
-	return s.SpriteBase.Spawn(w, sp, e)
+	return parseErr
 }
 
 func init() {

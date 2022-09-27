@@ -174,7 +174,7 @@ func (p *Palette) nearestTwoChoices() (int, int, int) {
 	return nI, nJMin, nJMax
 }
 
-func (p *Palette) tryColorPair(c rgb, i, j int, bestI, bestJ *int, bestS *float64) {
+func (p *Palette) tryValuePair(c rgb, i, j int, bestI, bestJ *int, bestS *float64) {
 	c0 := p.lookup(i)
 	c1 := p.lookup(j)
 	if c0.equal(c1) {
@@ -203,7 +203,7 @@ func (p *Palette) lookupNearestTwo(c rgb) (int, int) {
 	bestS := math.Inf(+1)
 	for i := 0; i < p.size-1; i++ {
 		for j := i + 1; j < p.size; j++ {
-			p.tryColorPair(c, i, j, &bestI, &bestJ, &bestS)
+			p.tryValuePair(c, i, j, &bestI, &bestJ, &bestS)
 		}
 	}
 	return bestI, bestJ
@@ -216,7 +216,7 @@ func (p *Palette) lookupNearestWith(c rgb, protected int) (int, int) {
 	bestS := math.Inf(+1)
 	for i := 0; i < p.size; i++ {
 		if i != protected {
-			p.tryColorPair(c, i, protected, &bestI, &bestJ, &bestS)
+			p.tryValuePair(c, i, protected, &bestI, &bestJ, &bestS)
 		}
 	}
 	if bestI > bestJ {

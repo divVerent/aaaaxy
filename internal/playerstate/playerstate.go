@@ -15,13 +15,13 @@
 package playerstate
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 var (
@@ -41,9 +41,9 @@ func (s *PlayerState) Init() {
 	}
 	// If he savegame has no teleports info, use the escapes counter.
 	// Also ensure all new savegames have the teleports counter to not double apply this.
-	_, haveTeleports := s.Level.Player.PersistentState["teleports"]
-	if !haveTeleports {
-		s.Level.Player.PersistentState["teleports"] = fmt.Sprint(s.Escapes())
+	teleports := propmap.ValueOrP(s.Level.Player.PersistentState, "teleports", -1, nil)
+	if teleports < 0 {
+		propmap.Set(s.Level.Player.PersistentState, "teleports", s.Escapes())
 	}
 }
 
@@ -57,7 +57,7 @@ func (s *PlayerState) HasAbility(name string) bool {
 		return have
 	}
 	key := "can_" + name
-	return s.Level.Player.PersistentState[key] == "true"
+	return propmap.ValueOrP(s.Level.Player.PersistentState, key, false, nil)
 }
 
 func (s *PlayerState) GiveAbility(name string) bool {
@@ -66,15 +66,15 @@ func (s *PlayerState) GiveAbility(name string) bool {
 		return false
 	}
 	key := "can_" + name
-	if s.Level.Player.PersistentState[key] == "true" {
+	if propmap.ValueOrP(s.Level.Player.PersistentState, key, false, nil) {
 		return false
 	}
-	s.Level.Player.PersistentState[key] = "true"
+	propmap.Set(s.Level.Player.PersistentState, key, true)
 	return true
 }
 
 func (s *PlayerState) LastCheckpoint() string {
-	return s.Level.Player.PersistentState["last_checkpoint"]
+	return propmap.StringOr(s.Level.Player.PersistentState, "last_checkpoint", "")
 }
 
 func (s *PlayerState) CheckpointsWalked(from, to string) bool {
@@ -82,8 +82,8 @@ func (s *PlayerState) CheckpointsWalked(from, to string) bool {
 		return true
 	}
 	// CheckpointsWalked is a symmetric relation.
-	return s.Level.Player.PersistentState["checkpoints_walked."+from+"."+to] != "" ||
-		s.Level.Player.PersistentState["checkpoints_walked."+to+"."+from] != ""
+	return propmap.StringOr(s.Level.Player.PersistentState, "checkpoints_walked."+from+"."+to, "") != "" ||
+		propmap.StringOr(s.Level.Player.PersistentState, "checkpoints_walked."+to+"."+from, "") != ""
 }
 
 type SeenState int
@@ -101,7 +101,7 @@ func (s *PlayerState) CheckpointSeen(name string) SeenState {
 	if *cheatFullMapFlipped {
 		return SeenFlipped
 	}
-	state := s.Level.Player.PersistentState["checkpoint_seen."+name]
+	state := propmap.StringOr(s.Level.Player.PersistentState, "checkpoint_seen."+name, "")
 	switch state {
 	case "":
 		return NotSeen
@@ -121,13 +121,13 @@ func (s *PlayerState) RecordCheckpoint(name string, flipped bool) bool {
 		flip = "FlipX"
 	}
 	updated := false
-	if s.Level.Player.PersistentState["checkpoint_seen."+name] != flip {
-		s.Level.Player.PersistentState["checkpoint_seen."+name] = flip
+	if propmap.StringOr(s.Level.Player.PersistentState, "checkpoint_seen."+name, "") != flip {
+		propmap.Set(s.Level.Player.PersistentState, "checkpoint_seen."+name, flip)
 		updated = true
 	}
-	if s.Level.Checkpoints[name].Properties["dead_end"] != "true" {
-		if s.Level.Player.PersistentState["last_checkpoint"] != name {
-			s.Level.Player.PersistentState["last_checkpoint"] = name
+	if !propmap.ValueOrP(s.Level.Checkpoints[name].Properties, "dead_end", false, nil) {
+		if propmap.StringOr(s.Level.Player.PersistentState, "last_checkpoint", "") != name {
+			propmap.Set(s.Level.Player.PersistentState, "last_checkpoint", name)
 			updated = true
 		}
 	}
@@ -135,11 +135,11 @@ func (s *PlayerState) RecordCheckpoint(name string, flipped bool) bool {
 }
 
 func (s *PlayerState) RecordCheckpointEdge(name string, flipped bool) bool {
-	from := s.Level.Player.PersistentState["last_checkpoint"]
+	from := propmap.StringOr(s.Level.Player.PersistentState, "last_checkpoint", "")
 	updated := s.RecordCheckpoint(name, flipped)
 	if from != name {
-		if s.Level.Player.PersistentState["checkpoints_walked."+from+"."+name] != "true" {
-			s.Level.Player.PersistentState["checkpoints_walked."+from+"."+name] = "true"
+		if !propmap.ValueOrP(s.Level.Player.PersistentState, "checkpoints_walked."+from+"."+name, false, nil) {
+			propmap.Set(s.Level.Player.PersistentState, "checkpoints_walked."+from+"."+name, true)
 			updated = true
 		}
 	}
@@ -150,7 +150,7 @@ func (s *PlayerState) TnihSignsSeen(name string) (seen, total int) {
 	seen, total = 0, 0
 	for _, sign := range s.Level.TnihSignsByCheckpoint[name] {
 		total++
-		if sign.PersistentState["seen"] == "true" {
+		if propmap.ValueOrP(sign.PersistentState, "seen", false, nil) {
 			seen++
 		}
 	}
@@ -158,62 +158,50 @@ func (s *PlayerState) TnihSignsSeen(name string) (seen, total int) {
 }
 
 func (s *PlayerState) Frames() int {
-	framesStr := s.Level.Player.PersistentState["frames"]
-	var frames int
-	if framesStr != "" {
-		_, err := fmt.Sscanf(framesStr, "%d", &frames)
-		if err != nil {
-			log.Errorf("could not parse frames counter: %v", err)
-			return 60 * 86400 // Takes at least one day.
-		}
+	frames, err := propmap.ValueOr(s.Level.Player.PersistentState, "frames", 0)
+	if err != nil {
+		log.Errorf("could not parse frames counter: %v", err)
+		return 60 * 86400 // Takes at least one day.
 	}
 	return frames
 }
 
 func (s *PlayerState) AddFrame() {
-	s.Level.Player.PersistentState["frames"] = fmt.Sprint(s.Frames() + 1)
+	propmap.Set(s.Level.Player.PersistentState, "frames", s.Frames()+1)
 }
 
 func (s *PlayerState) Escapes() int {
-	escapesStr := s.Level.Player.PersistentState["escapes"]
-	var escapes int
-	if escapesStr != "" {
-		_, err := fmt.Sscanf(escapesStr, "%d", &escapes)
-		if err != nil {
-			log.Errorf("could not parse escapes counter: %v", err)
-			return 60 * 86400 // Takes at least one day.
-		}
+	escapes, err := propmap.ValueOr(s.Level.Player.PersistentState, "escapes", 0)
+	if err != nil {
+		log.Errorf("could not parse escapes counter: %v", err)
+		return 60 * 86400 // Takes at least one day.
 	}
 	return escapes
 }
 
 func (s *PlayerState) AddEscape() {
-	s.Level.Player.PersistentState["escapes"] = fmt.Sprint(s.Escapes() + 1)
+	propmap.Set(s.Level.Player.PersistentState, "escapes", s.Escapes()+1)
 }
 
 func (s *PlayerState) Teleports() int {
-	teleportsStr := s.Level.Player.PersistentState["teleports"]
-	var teleports int
-	if teleportsStr != "" {
-		_, err := fmt.Sscanf(teleportsStr, "%d", &teleports)
-		if err != nil {
-			log.Errorf("could not parse teleports counter: %v", err)
-			return 60 * 86400 // Takes at least one day.
-		}
+	teleports, err := propmap.ValueOr(s.Level.Player.PersistentState, "teleports", 0)
+	if err != nil {
+		log.Errorf("could not parse teleports counter: %v", err)
+		return 60 * 86400 // Takes at least one day.
 	}
 	return teleports
 }
 
 func (s *PlayerState) AddTeleport() {
-	s.Level.Player.PersistentState["teleports"] = fmt.Sprint(s.Teleports() + 1)
+	propmap.Set(s.Level.Player.PersistentState, "teleports", s.Teleports()+1)
 }
 
 func (s *PlayerState) Won() bool {
-	return s.Level.Player.PersistentState["won"] == "true"
+	return propmap.ValueOrP(s.Level.Player.PersistentState, "won", false, nil)
 }
 
 func (s *PlayerState) SetWon() {
-	s.Level.Player.PersistentState["won"] = "true"
+	propmap.Set(s.Level.Player.PersistentState, "won", true)
 }
 
 type SpeedrunCategories int
@@ -385,7 +373,7 @@ func (s *PlayerState) Score() int {
 		}
 		// Score is just number of TnihSigns seen.
 		for _, sign := range s.Level.TnihSignsByCheckpoint[cp] {
-			if sign.PersistentState["seen"] == "true" {
+			if propmap.ValueOrP(sign.PersistentState, "seen", false, nil) {
 				score++
 			}
 		}
@@ -404,11 +392,11 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 			// Start is not a real CP.
 			continue
 		}
-		if cpSp.Properties["secret"] == "true" {
+		if propmap.ValueOrP(cpSp.Properties, "secret", false, nil) {
 			// Secrets are not needed for 100%, all paths or all signs run.
 			// However they have their own run category here.
 			for _, sign := range s.Level.TnihSignsByCheckpoint[cp] {
-				if sign.PersistentState["seen"] != "true" {
+				if !propmap.ValueOrP(sign.PersistentState, "seen", false, nil) {
 					cat &^= AllSecretsSpeedrun
 				}
 			}
@@ -429,7 +417,7 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 				}
 				// Skip secrets.
 				nextCpSp := s.Level.Checkpoints[next.Other]
-				if nextCpSp.Properties["secret"] == "true" {
+				if propmap.ValueOrP(nextCpSp.Properties, "secret", false, nil) {
 					continue
 				}
 				// Only if the other CP was actually hit.
@@ -445,7 +433,7 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 			}
 		}
 		for _, sign := range s.Level.TnihSignsByCheckpoint[cp] {
-			if sign.PersistentState["seen"] != "true" {
+			if !propmap.ValueOrP(sign.PersistentState, "seen", false, nil) {
 				cat &^= AllSignsSpeedrun
 			}
 		}

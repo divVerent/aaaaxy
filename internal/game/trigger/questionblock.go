@@ -26,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -55,13 +56,14 @@ func (q *QuestionBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 	q.Entity = e
 	q.PersistentState = sp.PersistentState
 
+	var parseErr error
 	var err error
 	w.SetSolid(e, true)
 	w.SetOpaque(e, false)        // These shadows are annoying.
 	e.Orientation = m.Identity() // Always show upright.
-	q.Kaizo = sp.Properties["kaizo"] == "true"
-	q.Target = mixins.ParseTarget(sp.Properties["target"])
-	q.Used = q.PersistentState["used"] == "true"
+	q.Kaizo = propmap.ValueOrP(sp.Properties, "kaizo", false, &parseErr)
+	q.Target = mixins.ParseTarget(propmap.StringOr(sp.Properties, "target", ""))
+	q.Used = propmap.ValueOrP(q.PersistentState, "used", false, &parseErr)
 	q.UsedImage, err = image.Load("sprites", "exclamationblock.png")
 	if err != nil {
 		return err
@@ -81,7 +83,7 @@ func (q *QuestionBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 	if err != nil {
 		return fmt.Errorf("could not load questionblock sound: %w", err)
 	}
-	return nil
+	return parseErr
 }
 
 func (q *QuestionBlock) Despawn() {}
@@ -130,7 +132,7 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 		return
 	}
 	q.Used = true
-	q.PersistentState["used"] = "true"
+	propmap.Set(q.PersistentState, "used", true)
 	q.Entity.Image = q.UsedImage
 	q.UsedImage = nil
 	q.World.SetSolid(q.Entity, true)

@@ -15,14 +15,14 @@
 package ending
 
 import (
-	"fmt"
+	"image/color"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
-	"github.com/divVerent/aaaaxy/internal/palette"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // FadeTarget fades the screen out.
@@ -39,11 +39,9 @@ type FadeTarget struct {
 func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	f.World = w
 
-	durationString := sp.Properties["duration"]
-	durationTime, err := time.ParseDuration(durationString)
-	if err != nil {
-		return fmt.Errorf("could not parse duration time: %s", durationString)
-	}
+	var parseErr error
+
+	durationTime := propmap.ValueOrP(sp.Properties, "duration", time.Second, &parseErr)
 	f.Frames = int((durationTime*engine.GameTPS + (time.Second / 2)) / time.Second)
 	if f.Frames < 1 {
 		f.Frames = 1
@@ -54,38 +52,22 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	// Then toM * fromM^-1 will be what we need.
 	var fromM, toM ebiten.ColorM
 
-	colorString := sp.Properties["from_color_a"]
-	c, err := palette.Parse(colorString, "from_color_a")
-	if err != nil {
-		return fmt.Errorf("could not decode color %q: %w", colorString, err)
-	}
+	c := propmap.ValueP(sp.Properties, "from_color_a", color.NRGBA{}, &parseErr)
 	fromM.SetElement(0, 0, float64(c.R)/255.0)
 	fromM.SetElement(1, 0, float64(c.G)/255.0)
 	fromM.SetElement(2, 0, float64(c.B)/255.0)
 	fromM.SetElement(3, 0, 1.0)
-	colorString = sp.Properties["from_color_b"]
-	c, err = palette.Parse(colorString, "from_color_b")
-	if err != nil {
-		return fmt.Errorf("could not decode color %q: %w", colorString, err)
-	}
+	c = propmap.ValueP(sp.Properties, "from_color_b", color.NRGBA{}, &parseErr)
 	fromM.SetElement(0, 1, float64(c.R)/255.0)
 	fromM.SetElement(1, 1, float64(c.G)/255.0)
 	fromM.SetElement(2, 1, float64(c.B)/255.0)
 	fromM.SetElement(3, 1, 1.0)
-	colorString = sp.Properties["from_color_c"]
-	c, err = palette.Parse(colorString, "from_color_c")
-	if err != nil {
-		return fmt.Errorf("could not decode color %q: %w", colorString, err)
-	}
+	c = propmap.ValueP(sp.Properties, "from_color_c", color.NRGBA{}, &parseErr)
 	fromM.SetElement(0, 2, float64(c.R)/255.0)
 	fromM.SetElement(1, 2, float64(c.G)/255.0)
 	fromM.SetElement(2, 2, float64(c.B)/255.0)
 	fromM.SetElement(3, 2, 1.0)
-	colorString = sp.Properties["from_color_d"]
-	c, err = palette.Parse(colorString, "from_color_d")
-	if err != nil {
-		return fmt.Errorf("could not decode color %q: %w", colorString, err)
-	}
+	c = propmap.ValueP(sp.Properties, "from_color_d", color.NRGBA{}, &parseErr)
 	fromM.SetElement(0, 3, float64(c.R)/255.0)
 	fromM.SetElement(1, 3, float64(c.G)/255.0)
 	fromM.SetElement(2, 3, float64(c.B)/255.0)
@@ -96,38 +78,22 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	fromM.SetElement(2, 4, float64(c.B)/255.0)
 	fromM.SetElement(3, 4, 0.0)
 
-	colorString = sp.Properties["to_color_a"]
-	c, err = palette.Parse(colorString, "to_color_a")
-	if err != nil {
-		return fmt.Errorf("could not decode color %q: %w", colorString, err)
-	}
+	c = propmap.ValueP(sp.Properties, "to_color_a", color.NRGBA{}, &parseErr)
 	toM.SetElement(0, 0, float64(c.R)/255.0)
 	toM.SetElement(1, 0, float64(c.G)/255.0)
 	toM.SetElement(2, 0, float64(c.B)/255.0)
 	toM.SetElement(3, 0, 1.0)
-	colorString = sp.Properties["to_color_b"]
-	c, err = palette.Parse(colorString, "to_color_b")
-	if err != nil {
-		return fmt.Errorf("could not decode color %q: %w", colorString, err)
-	}
+	c = propmap.ValueP(sp.Properties, "to_color_b", color.NRGBA{}, &parseErr)
 	toM.SetElement(0, 1, float64(c.R)/255.0)
 	toM.SetElement(1, 1, float64(c.G)/255.0)
 	toM.SetElement(2, 1, float64(c.B)/255.0)
 	toM.SetElement(3, 1, 1.0)
-	colorString = sp.Properties["to_color_c"]
-	c, err = palette.Parse(colorString, "to_color_c")
-	if err != nil {
-		return fmt.Errorf("could not decode color %q: %w", colorString, err)
-	}
+	c = propmap.ValueP(sp.Properties, "to_color_c", color.NRGBA{}, &parseErr)
 	toM.SetElement(0, 2, float64(c.R)/255.0)
 	toM.SetElement(1, 2, float64(c.G)/255.0)
 	toM.SetElement(2, 2, float64(c.B)/255.0)
 	toM.SetElement(3, 2, 1.0)
-	colorString = sp.Properties["to_color_d"]
-	c, err = palette.Parse(colorString, "to_color_d")
-	if err != nil {
-		return fmt.Errorf("could not decode color %q: %w", colorString, err)
-	}
+	c = propmap.ValueP(sp.Properties, "to_color_d", color.NRGBA{}, &parseErr)
 	toM.SetElement(0, 3, float64(c.R)/255.0)
 	toM.SetElement(1, 3, float64(c.G)/255.0)
 	toM.SetElement(2, 3, float64(c.B)/255.0)
@@ -137,6 +103,11 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	toM.SetElement(1, 4, float64(c.G)/255.0)
 	toM.SetElement(2, 4, float64(c.B)/255.0)
 	toM.SetElement(3, 4, 0.0)
+
+	// Do not try inverting if parsing failed.
+	if parseErr != nil {
+		return parseErr
+	}
 
 	f.ColorM = fromM
 	f.ColorM.Invert()

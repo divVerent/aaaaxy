@@ -16,11 +16,12 @@ package level
 
 import (
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // PersistentState is how entities retain values across loading/unloading and in
 // save games.
-type PersistentState map[string]string
+type PersistentState = propmap.Map
 
 // A SpawnableProps is a blueprint to create an Entity but without its position.
 type SpawnableProps struct {
@@ -31,10 +32,10 @@ type SpawnableProps struct {
 	Orientation m.Orientation
 
 	// Other properties.
-	Properties map[string]string
+	Properties propmap.Map
 
 	// Persistent entity state, if any, shall be kept in this map.
-	PersistentState map[string]string `hash:"-"`
+	PersistentState PersistentState `hash:"-"`
 
 	// SpawnTilesGrowth is how much extra pixels around the entity to consider
 	// for spawning.
@@ -58,7 +59,7 @@ func (sp *Spawnable) Clone() *Spawnable {
 	outSp := new(Spawnable)
 	*outSp = *sp
 	// Now "deepend" all that's needed.
-	outSp.PersistentState = make(map[string]string, len(sp.PersistentState))
+	outSp.PersistentState = make(PersistentState, len(sp.PersistentState))
 	for k, v := range sp.PersistentState {
 		outSp.PersistentState[k] = v
 	}

@@ -27,6 +27,7 @@ import (
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/palette"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -50,22 +51,16 @@ func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *e
 	c.World = w
 	c.Entity = e
 
+	var parseErr error
+
 	// Field contains orientation OF THE PLAYER to make it easier in the map editor.
 	// So it is actually a transform as far as this code is concerned.
-	requiredTransforms, err := m.ParseOrientations(sp.Properties["required_orientation"])
-	if err != nil {
-		return fmt.Errorf("could not parse required orientation: %w", err)
-	}
+	requiredTransforms := propmap.ValueP(sp.Properties, "required_orientation", m.Orientations{}, &parseErr)
 
-	c.Text = sp.Properties["text"]
-	c.Music = sp.Properties["music"]
-	c.VVVVVV = sp.Properties["vvvvvv"] == "true"
-	if onGroundVecStr := sp.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
-		_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &c.VVVVVVOnGroundVec.DX, &c.VVVVVVOnGroundVec.DY)
-		if err != nil {
-			return fmt.Errorf("invalid vvvvvv_gravity_direction: %w", err)
-		}
-	}
+	c.Text = propmap.StringOr(sp.Properties, "text", "")
+	c.Music = propmap.StringOr(sp.Properties, "music", "")
+	c.VVVVVV = propmap.ValueOrP(sp.Properties, "vvvvvv", false, &parseErr)
+	c.VVVVVVOnGroundVec = propmap.ValueOrP(sp.Properties, "vvvvvv_gravity_direction", m.Delta{}, &parseErr)
 
 	c.Inactive = true
 	for _, requiredTransform := range requiredTransforms {
@@ -80,12 +75,13 @@ func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *e
 		}
 	}
 
+	var err error
 	c.Sound, err = sound.Load("checkpoint.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load checkpoint sound: %w", err)
 	}
 
-	return nil
+	return parseErr
 }
 
 func (c *CheckpointTarget) Despawn() {}

@@ -18,6 +18,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // SetStateTarget overrides the boolean state of a warpzone or entity.
@@ -32,9 +33,10 @@ type SetStateTarget struct {
 func (s *SetStateTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
-	s.Target = mixins.ParseTarget(sp.Properties["target"])
-	s.State = sp.Properties["state"] != "false"
-	return nil
+	var parseErr error
+	s.Target = mixins.ParseTarget(propmap.ValueP(sp.Properties, "target", "", &parseErr))
+	s.State = propmap.ValueOrP(sp.Properties, "state", true, &parseErr)
+	return parseErr
 }
 
 func (s *SetStateTarget) Despawn() {}

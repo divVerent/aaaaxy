@@ -16,56 +16,41 @@ package misc
 
 import (
 	"fmt"
-	"strconv"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // SpawnCounter triggers a target if it's been spawned a certain amount of times.
 type SpawnCounter struct{}
 
 func (s *SpawnCounter) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
-	state := sp.Properties["state"] != "false"
+	var parseErr error
+	state := propmap.ValueOrP(sp.Properties, "state", true, &parseErr)
 
-	count := 0
-	countStr := sp.PersistentState["count"]
-	if countStr != "" {
-		var err error
-		count, err = strconv.Atoi(countStr)
-		if err != nil {
-			return fmt.Errorf("could not decode count %q: %w", countStr, err)
-		}
-	}
+	count := propmap.ValueOrP(sp.PersistentState, "count", 0, &parseErr)
 	count++
-	sp.PersistentState["count"] = fmt.Sprint(count)
+	propmap.Set(sp.PersistentState, "count", count)
 
 	for i := 1; ; i++ {
 		suffix := ""
 		if i > 1 {
 			suffix = fmt.Sprint(i)
 		}
-		divisorStr := sp.Properties["divisor"+suffix]
-		if divisorStr == "" {
+		divisor := propmap.ValueOrP(sp.Properties, "divisor"+suffix, -1, &parseErr)
+		if divisor < 0 {
 			break
 		}
-		divisor, err := strconv.Atoi(divisorStr)
-		if err != nil {
-			return fmt.Errorf("could not decode divisor%s %q: %w", suffix, divisorStr, err)
-		}
-		modulusStr := sp.Properties["modulus"+suffix]
-		modulus, err := strconv.Atoi(modulusStr)
-		if err != nil {
-			return fmt.Errorf("could not decode modulus%s %q: %w", suffix, modulusStr, err)
-		}
-		target := mixins.ParseTarget(sp.Properties["target"+suffix])
+		modulus := propmap.ValueP(sp.Properties, "modulus"+suffix, 0, &parseErr)
+		target := mixins.ParseTarget(propmap.ValueP(sp.Properties, "target"+suffix, "", &parseErr))
 		if count%divisor == modulus {
 			mixins.SetStateOfTarget(w, e, e, target, state)
 		}
 	}
 
-	return nil
+	return parseErr
 }
 
 func (s *SpawnCounter) Despawn() {}

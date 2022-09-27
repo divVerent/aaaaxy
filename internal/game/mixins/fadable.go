@@ -15,11 +15,11 @@
 package mixins
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 const (
@@ -54,30 +54,23 @@ func (f *Fadable) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	f.Alpha = f.Entity.Alpha
 	f.Contents = f.Entity.Contents()
 
-	fadeString := sp.Properties["fade_time"]
-	if fadeString != "" {
-		animTime, err := time.ParseDuration(fadeString)
-		if err != nil {
-			return fmt.Errorf("could not parse fade time: %s", fadeString)
-		}
-		f.FadeFrames = int((animTime*engine.GameTPS + (time.Second / 2)) / time.Second)
-		if f.FadeFrames < 1 {
-			f.FadeFrames = 1
-		}
-	} else {
-		f.FadeFrames = defaultFadeFrames
+	var parseErr error
+	animTime := propmap.ValueOrP(sp.Properties, "fade_time", time.Duration(defaultFadeFrames*time.Second/engine.GameTPS), &parseErr)
+	f.FadeFrames = int((animTime*engine.GameTPS + (time.Second / 2)) / time.Second)
+	if f.FadeFrames < 1 {
+		f.FadeFrames = 1
 	}
-	f.FadeDespawn = sp.Properties["fade_despawn"] == "true" // default false
+	f.FadeDespawn = propmap.ValueOrP(sp.Properties, "fade_despawn", false, &parseErr)
 
 	// Skip the animation on initial load.
-	if f.Settable.State && sp.Properties["fade_skip_animation"] != "false" { // default true
+	if f.Settable.State && propmap.ValueOrP(sp.Properties, "fade_skip_animation", true, &parseErr) {
 		f.AnimFrame = f.FadeFrames
 	} else {
 		f.AnimFrame = 0
 	}
 	f.Update()
 
-	return nil
+	return parseErr
 }
 
 func (f *Fadable) SetState(originator, predecessor *engine.Entity, state bool) {

@@ -15,11 +15,10 @@
 package target
 
 import (
-	"fmt"
-
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // LogicalGate sends a signal along if ANY incoming target triggers.
@@ -40,18 +39,13 @@ type LogicalGate struct {
 func (g *LogicalGate) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	g.World = w
 	g.Entity = e
-	g.Target = mixins.ParseTarget(sp.Properties["target"])
-	g.CountRequired = 1                                 // An "or" gate by default.
-	g.Invert = sp.Properties["invert"] == "true"        // false by default.
-	g.IgnoreOff = sp.Properties["ignore_off"] == "true" // false by default.
-	if countStr := sp.Properties["count_required"]; countStr != "" {
-		_, err := fmt.Sscanf(countStr, "%d", &g.CountRequired)
-		if err != nil {
-			return fmt.Errorf("failed to parse count_required: got %q, want integer: %w", countStr, err)
-		}
-	}
+	var parseErr error
+	g.Target = mixins.ParseTarget(propmap.ValueP(sp.Properties, "target", "", &parseErr))
+	g.Invert = propmap.ValueOrP(sp.Properties, "invert", false, &parseErr)
+	g.IgnoreOff = propmap.ValueOrP(sp.Properties, "ignore_off", false, &parseErr)
+	g.CountRequired = propmap.ValueOrP(sp.Properties, "count_required", 1, &parseErr)
 	g.IncomingState = map[engine.EntityIncarnation]struct{}{}
-	return nil
+	return parseErr
 }
 
 func (g *LogicalGate) Despawn() {}

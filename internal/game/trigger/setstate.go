@@ -15,13 +15,12 @@
 package trigger
 
 import (
-	"fmt"
-
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/game/target"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // SetState overrides the boolean state of a warpzone or entity.
@@ -49,16 +48,13 @@ func (s *SetState) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	if err != nil {
 		return err
 	}
-	s.SendUntouch = sp.Properties["send_untouch"] == "true"
-	s.SendOnce = sp.Properties["send_once"] == "true"
-	s.PlayerOnly = sp.Properties["player_only"] == "true"
+	var parseErr error
+	s.SendUntouch = propmap.ValueOrP(sp.Properties, "send_untouch", false, &parseErr)
+	s.SendOnce = propmap.ValueOrP(sp.Properties, "send_once", false, &parseErr)
+	s.PlayerOnly = propmap.ValueOrP(sp.Properties, "player_only", false, &parseErr)
 
-	orientationStr := sp.Properties["required_orientation"]
-	if orientationStr != "" {
-		requiredTransforms, err := m.ParseOrientations(orientationStr)
-		if err != nil {
-			return fmt.Errorf("could not parse required orientation: %w", err)
-		}
+	requiredTransforms := propmap.ValueOrP(sp.Properties, "required_orientation", m.Orientations{}, &parseErr)
+	if len(requiredTransforms) != 0 {
 		show := false
 		for _, requiredTransform := range requiredTransforms {
 			if e.Transform == requiredTransform {
@@ -73,7 +69,7 @@ func (s *SetState) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 		}
 	}
 
-	return nil
+	return parseErr
 }
 
 func (s *SetState) Despawn() {}

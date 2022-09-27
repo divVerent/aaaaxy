@@ -15,12 +15,12 @@
 package target
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 type delayEvent struct {
@@ -46,18 +46,15 @@ func (d *DelayTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine
 	d.World = w
 	d.Entity = e
 
-	delayString := sp.Properties["delay"]
-	delayTime, err := time.ParseDuration(delayString)
-	if err != nil {
-		return fmt.Errorf("could not parse delay time: %s", delayString)
-	}
+	var parseErr error
+	delayTime := propmap.ValueOrP(sp.Properties, "delay", time.Duration(0), &parseErr)
 	d.DelayFrames = int((delayTime*engine.GameTPS + (time.Second / 2)) / time.Second)
 	if d.DelayFrames < 1 {
 		d.DelayFrames = 1
 	}
 
-	d.Target = mixins.ParseTarget(sp.Properties["target"])
-	return nil
+	d.Target = mixins.ParseTarget(propmap.ValueP(sp.Properties, "target", "", &parseErr))
+	return parseErr
 }
 
 func (d *DelayTarget) Despawn() {}

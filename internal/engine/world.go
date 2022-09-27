@@ -30,6 +30,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/timing"
 	"github.com/divVerent/aaaaxy/internal/vfs"
@@ -367,7 +368,7 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	}
 
 	cpTransform := m.Identity()
-	cpTransformStr := cpSp.Properties["required_orientation"]
+	cpTransformStr := propmap.StringOr(cpSp.Properties, "required_orientation", "")
 	if cpTransformStr != "" {
 		cpTransforms, err := m.ParseOrientations(cpTransformStr)
 		if err != nil {
@@ -431,16 +432,11 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	w.FramesSinceSpawn = 0
 
 	// Move the player down as far as possible.
-	if cpSp.Properties["downtrace_on_spawn"] != "false" {
-		var dir m.Delta
-		if onGroundVecStr := cpSp.Properties["vvvvvv_gravity_direction"]; onGroundVecStr != "" {
-			_, err := fmt.Sscanf(onGroundVecStr, "%d %d", &dir.DX, &dir.DY)
-			if err != nil {
-				return fmt.Errorf("invalid vvvvvv_gravity_direction: %w", err)
-			}
-		}
+	var parseErr error
+	if propmap.ValueOrP(cpSp.Properties, "downtrace_on_spawn", true, &parseErr) {
+		dir := propmap.ValueOrP(cpSp.Properties, "vvvvvv_gravity_direction", m.Delta{}, &parseErr)
 		if dir.IsZero() {
-			dir = m.Delta{DX: 0, DY: 1}
+			dir.DY = 1
 		}
 		trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(dir.Mul(1024)), TraceOptions{
 			Contents:   level.PlayerSolidContents,
@@ -478,7 +474,7 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 
 	// Skip updating.
 	w.respawned = true
-	return nil
+	return parseErr
 }
 
 // TouchEvent notifies both entities that they touched the other.

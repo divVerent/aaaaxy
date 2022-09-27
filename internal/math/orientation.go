@@ -17,6 +17,7 @@ package math
 import (
 	"fmt"
 	"strings"
+	"unicode"
 )
 
 // Orientation represents a transformation matrix, written as a right and a down vector.
@@ -116,7 +117,20 @@ func ParseOrientation(s string) (Orientation, error) {
 	}
 }
 
-func ParseOrientations(s string) ([]Orientation, error) {
+type Orientations []Orientation
+
+var AllOrientations = Orientations{
+	Orientation{Right: East(), Down: North()},
+	Orientation{Right: East(), Down: South()},
+	Orientation{Right: North(), Down: East()},
+	Orientation{Right: North(), Down: West()},
+	Orientation{Right: South(), Down: East()},
+	Orientation{Right: South(), Down: West()},
+	Orientation{Right: West(), Down: North()},
+	Orientation{Right: West(), Down: South()},
+}
+
+func ParseOrientations(s string) (Orientations, error) {
 	orientations := strings.Split(s, " ")
 	if len(orientations) == 0 {
 		return nil, fmt.Errorf("unsupported orientation list: empty")
@@ -134,4 +148,55 @@ func ParseOrientations(s string) ([]Orientation, error) {
 
 func (o Orientation) Determinant() int {
 	return o.Right.DX*o.Down.DY - o.Right.DY*o.Down.DX
+}
+
+func (o Orientation) String() string {
+	switch o {
+	case Orientation{Right: East(), Down: North()}:
+		return "EN"
+	case Orientation{Right: East(), Down: South()}:
+		return "ES"
+	case Orientation{Right: North(), Down: East()}:
+		return "NE"
+	case Orientation{Right: North(), Down: West()}:
+		return "NW"
+	case Orientation{Right: South(), Down: East()}:
+		return "SE"
+	case Orientation{Right: South(), Down: West()}:
+		return "SW"
+	case Orientation{Right: West(), Down: North()}:
+		return "WN"
+	case Orientation{Right: West(), Down: South()}:
+		return "WS"
+	default:
+		return fmt.Sprintf("Orientation{Right: %v, Down: %v}", o.Right, o.Down)
+	}
+}
+
+func (o *Orientation) Scan(state fmt.ScanState, verb rune) error {
+	so, err := state.Token(true, nil)
+	if err != nil {
+		return err
+	}
+	*o, err = ParseOrientation(string(so))
+	return err
+}
+
+func (o Orientations) String() string {
+	out := make([]string, 0, len(o))
+	for _, o1 := range o {
+		out = append(out, o1.String())
+	}
+	return strings.Join(out, " ")
+}
+
+func (o *Orientations) Scan(state fmt.ScanState, verb rune) error {
+	so, err := state.Token(true, func(c rune) bool {
+		return unicode.IsSpace(c) || unicode.IsUpper(c)
+	})
+	if err != nil {
+		return err
+	}
+	*o, err = ParseOrientations(string(so))
+	return err
 }

@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 const (
@@ -42,8 +43,9 @@ type Give struct {
 
 func (g *Give) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	g.NonSolidTouchable.Init(w, e)
-	g.Ability = sp.Properties["ability"]
-	g.Text = sp.Properties["text"]
+	var parseErr error
+	g.Ability = propmap.ValueP(sp.Properties, "ability", "", &parseErr)
+	g.Text = propmap.ValueP(sp.Properties, "text", "", &parseErr)
 	err := g.Anim.Init("can_"+g.Ability, map[string]*animation.Group{
 		"default": {
 			Frames:        30,
@@ -55,7 +57,7 @@ func (g *Give) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity
 	if err != nil {
 		return fmt.Errorf("could not initialize give animation: %w", err)
 	}
-	return nil
+	return parseErr
 }
 
 func (g *Give) Despawn() {}

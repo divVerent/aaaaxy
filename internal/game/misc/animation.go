@@ -21,6 +21,8 @@ import (
 	"github.com/divVerent/aaaaxy/internal/animation"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
+	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // Animation is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -32,54 +34,31 @@ type Animation struct {
 
 func (a *Animation) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	a.Entity = e
-	prefix := sp.Properties["animation"]
-	groupName := sp.Properties["animation_group"]
+	var parseErr error
+	prefix := propmap.ValueP(sp.Properties, "animation", "", &parseErr)
+	groupName := propmap.ValueP(sp.Properties, "animation_group", "", &parseErr)
 	group := &animation.Group{
 		NextAnim: groupName,
 	}
-	framesString := sp.Properties["animation_frames"]
-	if _, err := fmt.Sscanf(framesString, "%d", &group.Frames); err != nil {
-		return fmt.Errorf("could not decode animation_frames %q: %w", framesString, err)
-	}
-	symmetricString := sp.Properties["animation_symmetric"]
-	if symmetricString != "" {
-		if _, err := fmt.Sscanf(symmetricString, "%t", &group.Symmetric); err != nil {
-			return fmt.Errorf("could not decode animation_symmetric %q: %w", symmetricString, err)
-		}
-	}
-	frameIntervalString := sp.Properties["animation_frame_interval"]
-	if _, err := fmt.Sscanf(frameIntervalString, "%d", &group.FrameInterval); err != nil {
-		return fmt.Errorf("could not decode animation_frame_interval %q: %w", frameIntervalString, err)
-	}
-	repeatIntervalString := sp.Properties["animation_repeat_interval"]
-	if _, err := fmt.Sscanf(repeatIntervalString, "%d", &group.NextInterval); err != nil {
-		return fmt.Errorf("could not decode animation_repeat_interval %q: %w", repeatIntervalString, err)
-	}
-	syncToMusicOffsetString := sp.Properties["animation_sync_to_music_offset"]
-	if syncToMusicOffsetString != "" {
-		var err error
-		if group.SyncToMusicOffset, err = time.ParseDuration(syncToMusicOffsetString); err != nil {
-			return fmt.Errorf("could not decode animation_sync_to_music_offset %q: %w", syncToMusicOffsetString, err)
-		}
-	}
-	offsetString := sp.Properties["render_offset"]
-	if offsetString == "" {
+	group.Frames = propmap.ValueP(sp.Properties, "animation_frames", 0, &parseErr)
+	group.Symmetric = propmap.ValueOrP(sp.Properties, "animation_symmetric", false, &parseErr)
+	group.FrameInterval = propmap.ValueP(sp.Properties, "animation_frame_interval", 0, &parseErr)
+	group.NextInterval = propmap.ValueP(sp.Properties, "animation_repeat_interval", 0, &parseErr)
+	group.SyncToMusicOffset = propmap.ValueOrP(sp.Properties, "animation_sync_to_music_offset", time.Duration(0), &parseErr)
+	e.RenderOffset = propmap.ValueOrP(sp.Properties, "render_offset", m.Delta{}, &parseErr)
+	if e.RenderOffset.IsZero() {
 		e.ResizeImage = true
-	} else {
-		if _, err := fmt.Sscanf(offsetString, "%d %d", &e.RenderOffset.DX, &e.RenderOffset.DY); err != nil {
-			return fmt.Errorf("could not decode render offset %q: %w", offsetString, err)
-		}
 	}
-	if s := sp.Properties["border_pixels"]; s != "" {
-		if _, err := fmt.Sscanf(s, "%d", &e.BorderPixels); err != nil {
-			return fmt.Errorf("failed to decode borde pixels %q: %w", s, err)
-		}
-	}
+	e.BorderPixels = propmap.ValueOrP(sp.Properties, "border_pixels", 0, &parseErr)
 	err := a.Anim.Init(prefix, map[string]*animation.Group{groupName: group}, groupName)
 	if err != nil {
 		return fmt.Errorf("could not initialize animation %v: %w", prefix, err)
 	}
-	return a.SpriteBase.Spawn(w, sp, e)
+	err = a.SpriteBase.Spawn(w, sp, e)
+	if err != nil {
+		return err
+	}
+	return parseErr
 }
 
 func (a *Animation) Update() {

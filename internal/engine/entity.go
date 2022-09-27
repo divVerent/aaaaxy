@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // An Entity is an object that exists in the game.
@@ -146,7 +147,7 @@ func (w *World) spawnAt(sp *level.SpawnableProps, rect m.Rect, transform, tInv m
 	e := &Entity{
 		Incarnation:      incarnation,
 		Transform:        transform,
-		name:             sp.Properties["name"],
+		name:             propmap.StringOr(sp.Properties, "name", ""),
 		Impl:             eImpl,
 		Rect:             rect,
 		Orientation:      tInv.Concat(sp.Orientation),

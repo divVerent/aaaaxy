@@ -31,6 +31,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -68,7 +69,8 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	if err != nil {
 		return fmt.Errorf("could not load sign seen sprite: %w", err)
 	}
-	if sp.PersistentState["seen"] == "true" {
+	var parseErr error
+	if propmap.ValueOrP(sp.PersistentState, "seen", false, &parseErr) {
 		t.Entity.Image = t.SeenImage
 	} else {
 		t.Entity.Image, err = image.Load("sprites", "tnihsign.png")
@@ -78,25 +80,21 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	}
 	t.Entity.Orientation = m.Identity()
 	w.SetZIndex(t.Entity, constants.TnihSignZ)
-	t.Text = strings.ReplaceAll(sp.Properties["text"], "  ", "\n")
+	t.Text = strings.ReplaceAll(propmap.ValueP(sp.Properties, "text", "", &parseErr), "  ", "\n")
 	t.Sound, err = sound.Load("tnihsign.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load tnihsign sound: %w", err)
 	}
-	t.Entity.ResizeImage = sp.Properties["resize_image"] == "true"
+	t.Entity.ResizeImage = propmap.ValueOrP(sp.Properties, "resize_image", false, &parseErr)
 	if !t.Entity.ResizeImage {
 		t.Entity.RenderOffset = t.Entity.Rect.Size.Sub(m.Delta{DX: tnihWidth, DY: tnihHeight}).Div(2)
 	}
-	t.Target = mixins.ParseTarget(sp.Properties["target"])
+	t.Target = mixins.ParseTarget(propmap.StringOr(sp.Properties, "target", ""))
 
 	// Field contains orientation OF THE PLAYER to make it easier in the map editor.
 	// So it is actually a transform as far as this code is concerned.
-	orientationStr := sp.Properties["required_orientation"]
-	if orientationStr != "" {
-		requiredTransforms, err := m.ParseOrientations(orientationStr)
-		if err != nil {
-			return fmt.Errorf("could not parse required orientation: %w", err)
-		}
+	requiredTransforms := propmap.ValueOrP(sp.Properties, "required_orientation", m.Orientations{}, nil)
+	if len(requiredTransforms) != 0 {
 		show := false
 		for _, requiredTransform := range requiredTransforms {
 			if e.Transform == requiredTransform {
@@ -110,7 +108,7 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 		}
 	}
 
-	return nil
+	return parseErr
 }
 
 func (t *TnihSign) Despawn() {
@@ -131,10 +129,10 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 		t.Centerprint.SetFadeOut(false)
 	} else {
 		importance := centerprint.Important
-		if t.PersistentState["seen"] == "true" {
+		if propmap.ValueOrP(t.PersistentState, "seen", false, nil) {
 			importance = centerprint.NotImportant
 		} else {
-			t.PersistentState["seen"] = "true"
+			propmap.Set(t.PersistentState, "seen", true)
 			err := t.World.Save()
 			if err != nil {
 				log.Errorf("could not save game: %v", err)

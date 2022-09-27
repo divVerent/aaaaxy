@@ -15,12 +15,11 @@
 package mixins
 
 import (
-	"fmt"
-
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // Movable a mixin to make an object move back/forth when toggled.
@@ -45,23 +44,15 @@ func (v *Movable) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	v.World = w
 	v.Entity = e
 
-	accelString := sp.Properties["acceleration"]
-	if accelString != "" {
-		var accel float64
-		_, err := fmt.Sscanf(accelString, "%v", &accel)
-		if err != nil {
-			return fmt.Errorf("failed to parse acceleration %q: %w", accelString, err)
-		}
+	var parseErr error
+	accel := propmap.ValueOrP(sp.Properties, "acceleration", 0.0, &parseErr)
+	if accel != 0 {
 		v.Acceleration = m.NewFixedFloat64(accel * constants.SubPixelScale / engine.GameTPS / engine.GameTPS)
 	} else {
 		v.Acceleration = m.NewFixed(constants.Gravity)
 	}
 
-	var delta m.Delta
-	_, err := fmt.Sscanf(sp.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
-	if err != nil {
-		return fmt.Errorf("failed to parse delta: %w", err)
-	}
+	delta := propmap.ValueP(sp.Properties, "delta", m.Delta{}, &parseErr)
 	v.From = e.Rect.Origin
 	v.To = e.Rect.Origin.Add(e.Transform.Inverse().Apply(delta))
 
@@ -72,7 +63,7 @@ func (v *Movable) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 
 	v.Physics.Init(w, e, contents, func(trace engine.TraceResult) {})
 
-	return nil
+	return parseErr
 }
 
 func (v *Movable) Update() {

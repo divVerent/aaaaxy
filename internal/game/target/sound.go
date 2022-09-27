@@ -22,6 +22,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -58,38 +59,34 @@ type SoundTarget struct {
 func (s *SoundTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	s.World = w
 	s.Entity = e
+	var parseErr error
 	var err error
-	s.Sound, err = sound.Load(sp.Properties["sound"])
+	s.Sound, err = sound.Load(propmap.ValueP(sp.Properties, "sound", "", &parseErr))
 	if err != nil {
 		return fmt.Errorf("could not load sound: %w", err)
 	}
-	s.StopWhenOff = sp.Properties["stop_when_off"] == "true" // default false
-	s.Target = mixins.ParseTarget(sp.Properties["target"])
-	s.State = sp.Properties["state"] != "false"
+	s.StopWhenOff = propmap.ValueOrP(sp.Properties, "stop_when_off", false, &parseErr) // default false
+	s.Target = mixins.ParseTarget(propmap.StringOr(sp.Properties, "target", ""))
+	s.State = propmap.ValueOrP(sp.Properties, "state", true, &parseErr)
 	s.Frames = -1
-	switch sp.Properties["visual"] {
+	visual := propmap.StringOr(sp.Properties, "visual", "")
+	switch visual {
 	case "":
 		s.Visual = noVisual
 	case "fade_in":
 		s.Visual = fadeInVisual
 	default:
-		return fmt.Errorf("could not parse sound visual: %v", sp.Properties["visual"])
+		return fmt.Errorf("could not parse sound visual: %v", visual)
 	}
-	durationString := sp.Properties["duration"]
-	var soundTime time.Duration
-	if durationString == "" {
+	soundTime := propmap.ValueOrP(sp.Properties, "duration", time.Duration(0), &parseErr)
+	if soundTime == 0 {
 		soundTime = s.Sound.DurationNotForGameplay()
 		if len(s.Target) != 0 {
-			return fmt.Errorf("a sound with target must have a duration - please set %v's duration to about %v", sp.Properties["sound"], soundTime)
-		}
-	} else {
-		soundTime, err = time.ParseDuration(durationString)
-		if err != nil {
-			return fmt.Errorf("could not parse sound duration: %v", durationString)
+			return fmt.Errorf("a sound with target must have a duration - please set %v's duration to about %v", e.Name(), soundTime)
 		}
 	}
 	s.Frames = int((soundTime*engine.GameTPS + (time.Second / 2)) / time.Second)
-	return nil
+	return parseErr
 }
 
 func (s *SoundTarget) Despawn() {

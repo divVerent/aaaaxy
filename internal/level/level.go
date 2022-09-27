@@ -16,8 +16,6 @@ package level
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
 
 	"github.com/fardog/tmx"
 	"github.com/mitchellh/hashstructure/v2"
@@ -25,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/version"
 	"github.com/divVerent/aaaaxy/internal/vfs"
@@ -244,8 +243,9 @@ func (l *Level) LoadGame(save *SaveGame) error {
 		for key := range sp.PersistentState {
 			delete(sp.PersistentState, key)
 		}
+		// Due to aliasing, we can't just do sp.PersistentState = save.State[sp.ID].
 		for key, value := range save.State[sp.ID] {
-			sp.PersistentState[key] = value
+			propmap.Set(sp.PersistentState, key, value)
 		}
 	}
 	l.ForEachTile(func(_ m.Pos, tile *LevelTile) {
@@ -257,27 +257,27 @@ func (l *Level) LoadGame(save *SaveGame) error {
 	return nil
 }
 
-func (l *Level) applyTileMod(startTile, endTile m.Pos, mods map[string]string) {
+func (l *Level) applyTileMod(startTile, endTile m.Pos, mods propmap.Map) {
 	var add, remove Contents
-	switch mods["object_solid"] {
+	switch propmap.StringOr(mods, "object_solid", "") {
 	case "true":
 		add |= ObjectSolidContents
 	case "false":
 		remove |= ObjectSolidContents
 	}
-	switch mods["opaque"] {
+	switch propmap.StringOr(mods, "opaque", "") {
 	case "true":
 		add |= OpaqueContents
 	case "false":
 		remove |= OpaqueContents
 	}
-	switch mods["player_solid"] {
+	switch propmap.StringOr(mods, "player_solid", "") {
 	case "true":
 		add |= PlayerSolidContents
 	case "false":
 		remove |= PlayerSolidContents
 	}
-	switch mods["solid"] {
+	switch propmap.StringOr(mods, "solid", "") {
 	case "true":
 		add |= SolidContents
 	case "false":
@@ -397,6 +397,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		tiles:                   make([]LevelTile, layer.Width*layer.Height),
 		width:                   layer.Width,
 	}
+	var parseErr error
 	var tnihSigns []*Spawnable
 	checkpoints := map[EntityID]*Spawnable{}
 	for i, td := range tds {
@@ -427,16 +428,16 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		if td.DiagonallyFlipped {
 			orientation = m.FlipD().Concat(orientation)
 		}
-		properties := map[string]string{}
+		properties := propmap.Map{}
 		for i := range td.Tile.Properties {
 			prop := &td.Tile.Properties[i]
-			properties[prop.Name] = prop.Value
+			propmap.Set(properties, prop.Name, prop.Value)
 		}
 		var contents Contents
-		if properties["solid"] != "false" {
+		if propmap.ValueOrP(properties, "solid", true, &parseErr) {
 			contents |= SolidContents
 		}
-		if properties["opaque"] != "false" {
+		if propmap.ValueOrP(properties, "opaque", true, &parseErr) {
 			contents |= OpaqueContents
 		}
 		imgSrc := td.Tile.Image.Source
@@ -478,9 +479,9 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		for j := range og.Objects {
 			o := &og.Objects[j]
 			// o.ObjectID used later.
-			properties := map[string]string{}
+			properties := propmap.Map{}
 			if o.Name != "" {
-				properties["name"] = o.Name
+				propmap.Set(properties, "name", o.Name)
 			}
 			// o.X, o.Y, o.Width, o.Height used later.
 			if o.Rotation != 0 {
@@ -499,15 +500,15 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 					return nil, fmt.Errorf("unsupported map: object %v references nonexisting tile %d", o.ObjectID, o.GlobalID)
 				}
 				if tile.Type == "" {
-					properties["type"] = "Sprite"
+					propmap.Set(properties, "type", "Sprite")
 				} else {
-					properties["type"] = tile.Type
+					propmap.Set(properties, "type", tile.Type)
 				}
-				properties["image_dir"] = "tiles"
-				properties["image"] = tile.Image.Source
+				propmap.Set(properties, "image_dir", "tiles")
+				propmap.Set(properties, "image", tile.Image.Source)
 				for k := range tile.Properties {
 					prop := &tile.Properties[k]
-					properties[prop.Name] = prop.Value
+					propmap.Set(properties, prop.Name, prop.Value)
 				}
 			}
 			// o.Visible not used (we allow it though as it may help in the editor).
@@ -518,16 +519,16 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				return nil, fmt.Errorf("unsupported map: object %v has polylines", o.ObjectID)
 			}
 			if o.Image.Source != "" {
-				properties["type"] = "Sprite"
-				properties["image_dir"] = "sprites"
-				properties["image"] = o.Image.Source
+				propmap.Set(properties, "type", "Sprite")
+				propmap.Set(properties, "image_dir", "sprites")
+				propmap.Set(properties, "image", o.Image.Source)
 			}
 			if o.Type != "" {
-				properties["type"] = o.Type
+				propmap.Set(properties, "type", o.Type)
 			}
 			for k := range o.Properties {
 				prop := &o.Properties[k]
-				properties[prop.Name] = prop.Value
+				propmap.Set(properties, prop.Name, prop.Value)
 			}
 			// o.RawExtra not used.
 			entRect := m.Rect{
@@ -540,30 +541,21 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 					DY: int(o.Height),
 				},
 			}
-			var spawnTilesGrowth m.Delta
-			if s, found := properties["spawn_tiles_growth"]; found {
-				_, err := fmt.Sscanf(s, "%d %d", &spawnTilesGrowth.DX, &spawnTilesGrowth.DY)
-				if err != nil {
-					return nil, fmt.Errorf("failed to parse spawn_tiles_growth: %w", err)
-				}
-			}
+			objType := properties["type"]
+			delete(properties, "type")
+			propmap.DebugSetType(properties, objType)
+			spawnTilesGrowth := propmap.ValueOrP(properties, "spawn_tiles_growth", m.Delta{}, &parseErr)
 			startTile := entRect.Origin.Div(TileSize)
 			endTile := entRect.OppositeCorner().Div(TileSize)
 			spawnRect := entRect.Grow(spawnTilesGrowth)
 			spawnStartTile := spawnRect.Origin.Div(TileSize)
 			spawnEndTile := spawnRect.OppositeCorner().Div(TileSize)
-			orientation := m.Identity()
-			if orientationProp := properties["orientation"]; orientationProp != "" {
-				orientation, err = m.ParseOrientation(orientationProp)
-				if err != nil {
-					return nil, fmt.Errorf("invalid orientation: %w", err)
-				}
-			}
-			if properties["type"] == "WarpZone" {
+			orientation := propmap.ValueOrP(properties, "orientation", m.Identity(), &parseErr)
+			if objType == "WarpZone" {
 				// WarpZones must be paired by name.
-				name := properties["name"]
-				invert := properties["invert"] == "true"         // Default false.
-				switchable := properties["switchable"] == "true" // Default false.
+				name := propmap.ValueP(properties, "name", "", &parseErr)
+				invert := propmap.ValueOrP(properties, "invert", false, &parseErr)
+				switchable := propmap.ValueOrP(properties, "switchable", false, &parseErr)
 				warpZones[name] = append(warpZones[name], &RawWarpZone{
 					StartTile:   startTile,
 					EndTile:     endTile,
@@ -582,30 +574,30 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 					Size: entRect.Size,
 				},
 				SpawnableProps: SpawnableProps{
-					EntityType:       properties["type"],
+					EntityType:       objType,
 					Orientation:      orientation,
 					Properties:       properties,
 					PersistentState:  PersistentState{},
 					SpawnTilesGrowth: spawnTilesGrowth,
 				},
 			}
-			if properties["type"] == "_TileMod" {
+			if objType == "_TileMod" {
 				level.applyTileMod(startTile, endTile, properties)
 				// Do not link to tiles.
 				continue
 			}
-			if properties["type"] == "Player" {
+			if objType == "Player" {
 				level.Player = &ent
 				level.Checkpoints[""] = &ent
 				// Do not link to tiles.
 				continue
 			}
-			if properties["type"] == "Checkpoint" || properties["type"] == "CheckpointTarget" {
-				level.Checkpoints[properties["name"]] = &ent
+			if objType == "Checkpoint" || objType == "CheckpointTarget" {
+				level.Checkpoints[propmap.ValueP(properties, "name", "", &parseErr)] = &ent
 				checkpoints[ent.ID] = &ent
 				// These do get linked.
 			}
-			if properties["type"] == "TnihSign" {
+			if objType == "TnihSign" {
 				tnihSigns = append(tnihSigns, &ent)
 				// These do get linked.
 			}
@@ -622,15 +614,12 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		}
 	}
 	for _, sign := range tnihSigns {
-		id, err := strconv.Atoi(sign.Properties["reached_from"])
-		if err != nil {
-			return nil, fmt.Errorf("invalid TnihSign: reached_from not set: %v: %w", sign, err)
-		}
+		id := propmap.ValueP(sign.Properties, "reached_from", 0, &parseErr)
 		cp := checkpoints[EntityID(id)]
 		if cp == nil {
 			return nil, fmt.Errorf("invalid TnihSign: checkpoint ID %v not found", id)
 		}
-		name := cp.Properties["name"]
+		name := propmap.ValueP(cp.Properties, "name", "", &parseErr)
 		level.TnihSignsByCheckpoint[name] = append(level.TnihSignsByCheckpoint[name], sign)
 	}
 	for name, cpSp := range level.Checkpoints {
@@ -640,14 +629,17 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		}
 		if *debugCheckTnihSigns {
 			got := len(level.TnihSignsByCheckpoint[name]) != 0
-			want := cpSp.Properties["tnih_sign_expected"] != "false" // default true
+			want := propmap.ValueOrP(cpSp.Properties, "tnih_sign_expected", true, &parseErr)
 			if !got && want {
-				log.Fatalf("note: checkpoint %v has no TnihSign - intended?", name)
+				return nil, fmt.Errorf("note: checkpoint %v has no TnihSign - intended?", name)
 			}
 			if got && !want {
-				log.Fatalf("note: checkpoint %v unexpectedly has TnihSign - intended?", name)
+				return nil, fmt.Errorf("note: checkpoint %v unexpectedly has TnihSign - intended?", name)
 			}
 		}
+	}
+	if parseErr != nil {
+		return nil, parseErr
 	}
 	warpnames := make([]string, 0, len(warpZones))
 	for warpname := range warpZones {
@@ -809,17 +801,15 @@ func (l *Level) VerifyHash() error {
 // ParseImageSrcByOrientation parses the imgSrcByOrientation map.
 func ParseImageSrcByOrientation(defaultSrc string, properties map[string]string) (map[m.Orientation]string, error) {
 	imgSrcByOrientation := map[m.Orientation]string{}
-	for propName, propValue := range properties {
-		if oStr := strings.TrimPrefix(propName, "img."); oStr != propName {
-			o, err := m.ParseOrientation(oStr)
-			if err != nil {
-				return nil, fmt.Errorf("could not parse orientation tile: %w", err)
-			}
-			if o == m.Identity() && propValue != defaultSrc {
-				return nil, fmt.Errorf("unrotated image isn't same as img: got %q, want %q", propValue, defaultSrc)
-			}
-			imgSrcByOrientation[o] = propValue
+	for _, o := range m.AllOrientations {
+		src := propmap.StringOr(properties, fmt.Sprintf("img.%v", o), "")
+		if src == "" || src == defaultSrc {
+			continue
 		}
+		if o == m.Identity() {
+			return nil, fmt.Errorf("unrotated image isn't same as img: got %q, want %q", src, defaultSrc)
+		}
+		imgSrcByOrientation[o] = src
 	}
 	return imgSrcByOrientation, nil
 }

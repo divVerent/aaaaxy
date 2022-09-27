@@ -24,6 +24,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -48,31 +49,23 @@ func (j *JumpPad) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Ent
 	j.World = w
 	j.Entity = e
 	w.SetOpaque(e, false)
-	w.SetSolid(e, sp.Properties["solid"] != "false") // Default true.
 
-	var delta m.Delta
-	_, err := fmt.Sscanf(sp.Properties["delta"], "%d %d", &delta.DX, &delta.DY)
-	if err != nil {
-		return fmt.Errorf("failed to parse delta: %w", err)
-	}
-	var relDelta m.Delta
-	_, err = fmt.Sscanf(sp.Properties["rel_delta"], "%d %d", &relDelta.DX, &relDelta.DY)
-	if err != nil && sp.Properties["rel_delta"] != "" {
-		return fmt.Errorf("failed to parse absolute delta: %w", err)
-	}
+	var parseErr error
+	w.SetSolid(e, propmap.ValueOrP(sp.Properties, "solid", true, &parseErr)) // Default true.
+
+	delta := propmap.ValueP(sp.Properties, "delta", m.Delta{}, &parseErr)
+	relDelta := propmap.ValueOrP(sp.Properties, "rel_delta", m.Delta{}, &parseErr)
 	// Destination is actually measured from center of trigger; need to transform to worldspace.
 	j.Destination = e.Rect.Center().Add(e.Transform.Inverse().Apply(delta)).Add(relDelta)
-	_, err = fmt.Sscanf(sp.Properties["height"], "%d", &j.Height)
-	if err != nil {
-		return fmt.Errorf("failed to parse height: %w", err)
-	}
+	j.Height = propmap.ValueP(sp.Properties, "height", 0, &parseErr)
 
+	var err error
 	j.JumpSound, err = sound.Load("jump.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load jump sound: %w", err)
 	}
 
-	return nil
+	return parseErr
 }
 
 func (j *JumpPad) Despawn() {}

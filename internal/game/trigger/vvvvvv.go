@@ -22,6 +22,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // VVVVVV enables/disables gravity flipping when jumping through.
@@ -42,23 +43,12 @@ func (v *VVVVVV) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	if err != nil {
 		return fmt.Errorf("could not load vvvvvv image: %w", err)
 	}
-	v.NormalGravityFlip = sp.Properties["gravity_flip"] == "true"        // default false
-	v.VVVVVVGravityFlip = sp.Properties["vvvvvv_gravity_flip"] == "true" // default false
-	v.NormalVelocityFactor = 1.0
-	if factorStr := sp.Properties["velocity_factor"]; factorStr != "" {
-		_, err := fmt.Sscanf(factorStr, "%f", &v.NormalVelocityFactor)
-		if err != nil {
-			return fmt.Errorf("invalid velocity_factor: %w", err)
-		}
-	}
-	v.VVVVVVVelocityFactor = 1.0
-	if factorStr := sp.Properties["vvvvvv_velocity_factor"]; factorStr != "" {
-		_, err := fmt.Sscanf(factorStr, "%f", &v.VVVVVVVelocityFactor)
-		if err != nil {
-			return fmt.Errorf("invalid vvvvvv_velocity_factor: %w", err)
-		}
-	}
-	return nil
+	var parseErr error
+	v.NormalGravityFlip = propmap.ValueOrP(sp.Properties, "gravity_flip", false, &parseErr)        // default false
+	v.VVVVVVGravityFlip = propmap.ValueOrP(sp.Properties, "vvvvvv_gravity_flip", false, &parseErr) // default false
+	v.NormalVelocityFactor = propmap.ValueOrP(sp.Properties, "velocity_factor", 1.0, &parseErr)
+	v.VVVVVVVelocityFactor = propmap.ValueOrP(sp.Properties, "vvvvvv_velocity_factor", 1.0, &parseErr)
+	return parseErr
 }
 
 func (v *VVVVVV) Despawn() {}

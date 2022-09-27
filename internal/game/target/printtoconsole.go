@@ -19,6 +19,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
 // PrintToConsoleTarget prints the given text to console when activated.
@@ -34,8 +35,9 @@ type PrintToConsoleTarget struct {
 
 func (p *PrintToConsoleTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	p.World = w
-	p.Text = sp.Properties["text"]
-	return nil
+	var parseErr error
+	p.Text = propmap.ValueP(sp.Properties, "text", "", &parseErr)
+	return parseErr
 }
 
 func (p *PrintToConsoleTarget) Despawn() {

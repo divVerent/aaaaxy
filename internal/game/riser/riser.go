@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -152,7 +153,8 @@ func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 	r.State = Inactive
 	r.Entity.Orientation = m.Identity()
 
-	if sp.Properties["flipped"] == "true" {
+	var parseErr error
+	if propmap.ValueOrP(sp.Properties, "flipped", false, &parseErr) {
 		r.OnGroundVec = r.OnGroundVec.Mul(-1)
 	}
 
@@ -229,7 +231,7 @@ func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 		return err
 	}
 
-	return nil
+	return parseErr
 }
 
 func (r *Riser) Despawn() {

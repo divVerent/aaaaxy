@@ -5128,8 +5128,8 @@
     <property name="height" value="8"/>
    </properties>
   </object>
-  <object id="1126" gid="293" x="8176" y="7056" width="16" height="32"/>
-  <object id="1127" gid="299" x="7120" y="7632" width="16" height="32"/>
+  <object id="1126" name="HogwartsWarp" gid="293" x="8176" y="7056" width="16" height="32"/>
+  <object id="1127" name="HogwartsWarp" gid="299" x="7120" y="7632" width="16" height="32"/>
   <object id="1128" type="Sprite" x="7680" y="7520" width="16" height="16">
    <properties>
     <property name="image" value="glass.png"/>
