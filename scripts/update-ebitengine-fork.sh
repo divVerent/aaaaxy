@@ -13,7 +13,7 @@ git checkout refs/tags/"$version"
 cps=
 for cp in $cherrypicks; do
 	rev0=$(git rev-parse HEAD)
-	git cherry-pick --allow-empty "$cp"
+	git cherry-pick --allow-empty "$cp" || true
 	rev=$(git rev-parse HEAD)
 	if [ x"$rev" != x"$rev0" ]; then
 		cps="$cps"-and-"$cp"
