@@ -1,0 +1,2 @@
+  - Engine: update Ebitengine to v2.4.5. Fixes some crashes.
+  - Game: taking Out The Trash: prevent messup when player holds push while entering.

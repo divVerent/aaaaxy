@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.336" date="2022-09-19">
-      <description><ul><li>Engine: fix handling of gamepads that represent a D-pad as two axes.</li><li>Engine: update Ebitengine to v2.4.3. Fixes headset plugging issues on Windows.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.336</url>
+    <release version="v1.2.342" date="2022-09-26">
+      <description><ul><li>Engine: update Ebitengine to v2.4.5. Fixes some crashes.</li><li>Game: taking Out The Trash: prevent messup when player holds push while entering.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.342</url>
     </release>
   </releases>
 </component>
