@@ -34,7 +34,7 @@ import (
 type QuestionBlock struct {
 	World           *engine.World
 	Entity          *engine.Entity
-	PersistentState map[string]string
+	PersistentState propmap.Map
 
 	Kaizo  bool
 	Target mixins.TargetSelection
@@ -145,23 +145,23 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 		ForEnt:   q.Entity,
 	})
 	effect.Origin = trace.EndPos
+	properties := propmap.New()
+	propmap.Set(properties, "animation", "questionblock")
+	propmap.Set(properties, "animation_frame_interval", "2")
+	propmap.Set(properties, "animation_frames", "8")
+	propmap.Set(properties, "animation_group", "hit")
+	propmap.Set(properties, "animation_repeat_interval", "16")
+	propmap.Set(properties, "fade_despawn", "true")
+	propmap.Set(properties, "fade_time", "0s")
+	propmap.Set(properties, "invert", "true")
+	propmap.Set(properties, "no_transform", "true")
+	propmap.Set(properties, "time_to_fade", "0.25s")
+	propmap.Set(properties, "velocity", "0 -16") // 4px in 1/4 sec.
 	_, err := q.World.SpawnDetached(&level.SpawnableProps{
-		EntityType:  "MovingAnimation",
-		Orientation: m.Identity(),
-		Properties: map[string]string{
-			"animation":                 "questionblock",
-			"animation_frame_interval":  "2",
-			"animation_frames":          "8",
-			"animation_group":           "hit",
-			"animation_repeat_interval": "16",
-			"fade_despawn":              "true",
-			"fade_time":                 "0s",
-			"invert":                    "true",
-			"no_transform":              "true",
-			"time_to_fade":              "0.25s",
-			"velocity":                  "0 -16", // 4px in 1/4 sec.
-		},
-		PersistentState: level.PersistentState{},
+		EntityType:      "MovingAnimation",
+		Orientation:     m.Identity(),
+		Properties:      properties,
+		PersistentState: propmap.New(),
 	}, effect, q.Entity.Orientation, q.Entity)
 	if err != nil {
 		log.Errorf("could not spawn question block effect: %v", err)

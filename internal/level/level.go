@@ -133,7 +133,7 @@ func (l *Level) SaveGame() (*SaveGame, error) {
 		},
 	}
 	saveOne := func(sp *Spawnable) {
-		if len(sp.PersistentState) > 0 {
+		if !propmap.Empty(sp.PersistentState) {
 			save.State[sp.ID] = sp.PersistentState
 		}
 	}
@@ -240,13 +240,15 @@ func (l *Level) LoadGame(save *SaveGame) error {
 	}
 	loadOne := func(sp *Spawnable) {
 		// Do not reallocate the map! Works better with already loaded entities.
-		for key := range sp.PersistentState {
-			delete(sp.PersistentState, key)
-		}
+		propmap.ForEach(sp.PersistentState, func(k, _ string) error {
+			propmap.Delete(sp.PersistentState, k)
+			return nil
+		})
 		// Due to aliasing, we can't just do sp.PersistentState = save.State[sp.ID].
-		for key, value := range save.State[sp.ID] {
-			propmap.Set(sp.PersistentState, key, value)
-		}
+		propmap.ForEach(save.State[sp.ID], func(k, v string) error {
+			propmap.Set(sp.PersistentState, k, v)
+			return nil
+		})
 	}
 	l.ForEachTile(func(_ m.Pos, tile *LevelTile) {
 		for _, sp := range tile.Tile.Spawnables {
@@ -432,7 +434,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		if td.DiagonallyFlipped {
 			orientation = m.FlipD().Concat(orientation)
 		}
-		properties := propmap.Map{}
+		properties := propmap.New()
 		for i := range td.Tile.Properties {
 			prop := &td.Tile.Properties[i]
 			propmap.Set(properties, prop.Name, prop.Value)
@@ -483,7 +485,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		for j := range og.Objects {
 			o := &og.Objects[j]
 			// o.ObjectID used later.
-			properties := propmap.Map{}
+			properties := propmap.New()
 			if o.Name != "" {
 				propmap.Set(properties, "name", o.Name)
 			}
@@ -545,8 +547,8 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 					DY: int(o.Height),
 				},
 			}
-			objType := properties["type"]
-			delete(properties, "type")
+			objType := propmap.ValueP(properties, "type", "", &parseErr)
+			propmap.Delete(properties, "type")
 			propmap.DebugSetType(properties, objType)
 			spawnTilesGrowth := propmap.ValueOrP(properties, "spawn_tiles_growth", m.Delta{}, &parseErr)
 			startTile := entRect.Origin.Div(TileSize)
@@ -803,7 +805,7 @@ func (l *Level) VerifyHash() error {
 }
 
 // ParseImageSrcByOrientation parses the imgSrcByOrientation map.
-func ParseImageSrcByOrientation(defaultSrc string, properties map[string]string) (map[m.Orientation]string, error) {
+func ParseImageSrcByOrientation(defaultSrc string, properties propmap.Map) (map[m.Orientation]string, error) {
 	imgSrcByOrientation := map[m.Orientation]string{}
 	for _, o := range m.AllOrientations {
 		src := propmap.StringOr(properties, fmt.Sprintf("img.%v", o), "")

@@ -219,14 +219,12 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 			return nil, fmt.Errorf("could not find checkpoint location for %q in %q", name, filename)
 		}
 		cpDeadEnd := propmap.ValueOrP(cp.Properties, "dead_end", false, &parseErr)
-		for propname, propval := range cp.Properties {
-			if !strings.HasPrefix(propname, "next_") {
+		for _, propname := range []string{"next_left", "next_right", "next_up", "next_down"} {
+			id := propmap.ValueOrP(cp.Properties, propname, -1, &parseErr)
+			if id == -1 {
 				continue
 			}
-			var nextID EntityID
-			if _, err := fmt.Sscanf(propval, "%d", &nextID); err != nil {
-				return nil, fmt.Errorf("could not parse next checkpoint ID %q for %q property %q in %q", propval, name, propname, filename)
-			}
+			nextID := EntityID(id)
 			other := id2name[nextID]
 			if other == "" {
 				return nil, fmt.Errorf("next checkpoint ID for %q property %q in %q is not a checkpoint", name, propname, filename)

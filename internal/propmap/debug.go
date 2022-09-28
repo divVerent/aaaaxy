@@ -30,7 +30,7 @@ func DebugSetType(pm Map, name string) {
 	if !*debugLogEntityDefaults {
 		return
 	}
-	pm["__type__"] = name
+	pm.m["__type__"] = name
 }
 
 var linesPrinted = map[string]bool{}
@@ -44,7 +44,7 @@ func debugLogDefault[V any](pm Map, key string, def V, useDefault bool) {
 	case "name", "type":
 		return
 	}
-	name, found := pm["__type__"]
+	name, found := pm.m["__type__"]
 	if !found {
 		return
 	}

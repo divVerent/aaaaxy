@@ -41,9 +41,8 @@ var (
 
 type Player struct {
 	mixins.Physics
-	World           *engine.World
-	Entity          *engine.Entity
-	PersistentState map[string]string
+	World  *engine.World
+	Entity *engine.Entity
 
 	CoyoteFrames   int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
 	LastGroundPos  m.Pos
@@ -185,7 +184,6 @@ func (p *Player) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch)
 	p.World = w
 	p.Entity = e
-	p.PersistentState = sp.PersistentState
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
 	p.Entity.RenderOffset = m.Delta{DX: PlayerOffsetDX, DY: PlayerOffsetDY}
 	p.Entity.BorderPixels = PlayerBorderPixels

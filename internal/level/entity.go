@@ -59,10 +59,11 @@ func (sp *Spawnable) Clone() *Spawnable {
 	outSp := new(Spawnable)
 	*outSp = *sp
 	// Now "deepend" all that's needed.
-	outSp.PersistentState = make(PersistentState, len(sp.PersistentState))
-	for k, v := range sp.PersistentState {
-		outSp.PersistentState[k] = v
-	}
+	outSp.PersistentState = propmap.New()
+	propmap.ForEach(sp.PersistentState, func(k, v string) error {
+		propmap.Set(outSp.PersistentState, k, v)
+		return nil
+	})
 	return outSp
 }
 

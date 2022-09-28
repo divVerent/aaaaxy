@@ -40,7 +40,7 @@ type TnihSign struct {
 	mixins.NonSolidTouchable
 	World           *engine.World
 	Entity          *engine.Entity
-	PersistentState map[string]string
+	PersistentState propmap.Map
 
 	Text      string
 	SeenImage *ebiten.Image

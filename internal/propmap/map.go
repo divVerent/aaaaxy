@@ -15,32 +15,65 @@
 package propmap
 
 import (
+	"encoding/json"
 	"fmt"
+
+	"github.com/mitchellh/hashstructure/v2"
 
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // Map is a helper to easier deal with maps.
-type Map map[string]string
+type Map struct {
+	m map[string]string
+}
+
+// New creates a new map.
+func New() Map {
+	return Map{
+		m: map[string]string{},
+	}
+}
+
+// ForEach iterates over a map.
+func ForEach(pm Map, f func(k, v string) error) error {
+	for k, v := range pm.m {
+		err := f(k, v)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// Empty tells if the map is empty.
+func Empty(pm Map) bool {
+	return len(pm.m) == 0
+}
+
+// Delete deletes a properties map entry.
+func Delete(pm Map, key string) {
+	delete(pm.m, key)
+}
 
 // Set sets a properties map entry.
 func Set(pm Map, key string, value interface{}) {
-	pm[key] = fmt.Sprint(value)
+	pm.m[key] = fmt.Sprint(value)
 }
 
 // SetDefault sets a properties map entry if not already set.
 func SetDefault(pm Map, key string, value interface{}) {
-	_, found := pm[key]
+	_, found := pm.m[key]
 	if found {
 		return
 	}
-	pm[key] = fmt.Sprint(value)
+	pm.m[key] = fmt.Sprint(value)
 }
 
 // Value returns the requested value, or fails if not found.
 func Value[V any](pm Map, key string, def V) (V, error) {
 	debugLogDefault(pm, key, def, false)
-	str, found := pm[key]
+	str, found := pm.m[key]
 	if !found {
 		return def, fmt.Errorf("key %q is missing", key)
 	}
@@ -57,7 +90,7 @@ func Value[V any](pm Map, key string, def V) (V, error) {
 // This is separate as this special case cannot ever fail.
 func StringOr(pm Map, key string, def string) string {
 	debugLogDefault(pm, key, def, true)
-	str, found := pm[key]
+	str, found := pm.m[key]
 	if !found {
 		return def
 	}
@@ -67,7 +100,7 @@ func StringOr(pm Map, key string, def string) string {
 // ValueOr returns the requested value, or the given value if not found.
 func ValueOr[V any](pm Map, key string, def V) (V, error) {
 	debugLogDefault(pm, key, def, true)
-	str, found := pm[key]
+	str, found := pm.m[key]
 	if !found {
 		return def, nil
 	}
@@ -101,4 +134,20 @@ func ValueOrP[V any](pm Map, key string, def V, errp *error) V {
 	v, err := ValueOr(pm, key, def)
 	errToP(err, errp)
 	return v
+}
+
+// Interface functions so Maps behave just like map[string]string for JSON and hashstructure.
+// This is needed for savegame compatibility.
+
+func (pm Map) MarshalJSON() ([]byte, error) {
+	return json.Marshal(pm.m)
+}
+
+func (pm *Map) UnmarshalJSON(data []byte) error {
+	pm.m = nil
+	return json.Unmarshal(data, &pm.m)
+}
+
+func (pm Map) Hash() (uint64, error) {
+	return hashstructure.Hash(pm.m, hashstructure.FormatV2, nil)
 }
