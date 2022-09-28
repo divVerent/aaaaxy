@@ -16,12 +16,9 @@ package propmap
 
 import (
 	"fmt"
-	"image/color"
-	"time"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
-	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
 var (
@@ -51,23 +48,7 @@ func debugLogDefault[V any](pm Map, key string, def V, useDefault bool) {
 	if !found {
 		return
 	}
-	var typeName, defStr string
-	defStr = fmt.Sprint(def)
-	switch defT := (interface{})(def).(type) {
-	case bool:
-		typeName = "bool"
-	case int:
-		typeName = "int"
-	case float64, string:
-		typeName = "string"
-	case color.NRGBA:
-		typeName = "color"
-		defStr = fmt.Sprintf("#%02x%02x%02x%02x", defT.A, defT.R, defT.G, defT.B)
-	case m.Delta, m.Orientation, m.Orientations, time.Duration:
-		typeName = "string"
-	default:
-		log.Fatalf("missing support for type %T", def)
-	}
+	defStr, typeName := printValue(def)
 	if typeName != "string" || defStr != "" {
 		defStr = fmt.Sprintf(" default=\"%s\"", defStr)
 	}

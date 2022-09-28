@@ -16,31 +16,12 @@ package propmap
 
 import (
 	"fmt"
-	"image/color"
-	"time"
 
 	"github.com/divVerent/aaaaxy/internal/log"
-	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
 // Map is a helper to easier deal with maps.
 type Map map[string]string
-
-func parseValue[V any](str string) (V, error) {
-	var ret V
-	var err error
-	switch retP := (interface{})(&ret).(type) {
-	case *string:
-		*retP = str
-	case *color.NRGBA:
-		*retP, err = palette.Parse(str, "entity field")
-	case *time.Duration:
-		*retP, err = time.ParseDuration(str)
-	default:
-		_, err = fmt.Sscan(str, retP)
-	}
-	return ret, err
-}
 
 // Set sets a properties map entry.
 func Set(pm Map, key string, value interface{}) {
