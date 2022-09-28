@@ -53,7 +53,7 @@ func (p Pos) FromRectToRect(a Rect, b Rect) Pos {
 }
 
 func (p Pos) String() string {
-	return fmt.Sprintf("%p %p", p.X, p.Y)
+	return fmt.Sprintf("%d %d", p.X, p.Y)
 }
 
 func (p *Pos) Scan(state fmt.ScanState, verb rune) error {
