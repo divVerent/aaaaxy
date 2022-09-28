@@ -15,8 +15,6 @@
 package mixins
 
 import (
-	"fmt"
-
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -32,16 +30,9 @@ type Moving struct {
 
 func (v *Moving) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Entity, contents level.Contents, handleTouch func(engine.TraceResult)) error {
 	v.Physics.Init(w, e, contents, handleTouch)
-	if str := propmap.StringOr(sp.Properties, "velocity", ""); str != "" {
-		// Special parsing case, not needed to generalize.
-		var dx, dy float64
-		if _, err := fmt.Sscanf(str, "%f %f", &dx, &dy); err != nil {
-			return fmt.Errorf("failed to parse velocity %q: %w", str, err)
-		}
-		v.Physics.Velocity = e.Transform.Inverse().Apply(m.Delta{
-			DX: m.Rint(dx * constants.SubPixelScale / engine.GameTPS),
-			DY: m.Rint(dy * constants.SubPixelScale / engine.GameTPS),
-		})
-	}
-	return nil
+	var parseErr error
+	vel := propmap.ValueOrP(sp.Properties, "velocity", m.Delta{}, &parseErr)
+	v.Physics.Velocity = e.Transform.Inverse().Apply(
+		vel.MulFracFixed(m.NewFixed(constants.SubPixelScale), m.NewFixed(engine.GameTPS)))
+	return parseErr
 }

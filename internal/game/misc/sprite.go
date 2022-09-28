@@ -15,7 +15,6 @@
 package misc
 
 import (
-	"fmt"
 	go_image "image"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -83,22 +82,16 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	if e.RenderOffset.IsZero() {
 		e.ResizeImage = true
 	}
-	subX, subY := 0, 0
-	subW, subH := e.Image.Size()
-	// This pattern is very specific - just have it here and not clutter the generic parser with it.
-	regionString := propmap.StringOr(sp.Properties, "image_region", "")
-	if regionString != "" {
-		if _, err := fmt.Sscanf(regionString, "%d %d %d %d", &subX, &subY, &subW, &subH); err != nil {
-			return fmt.Errorf("could not decode image region %q: %w", regionString, err)
-		}
+	region := propmap.ValueOrP(sp.Properties, "image_region", m.Rect{}, &parseErr)
+	if !region.Size.IsZero() {
 		e.Image = e.Image.SubImage(go_image.Rectangle{
 			Min: go_image.Point{
-				X: subX,
-				Y: subY,
+				X: region.Origin.X,
+				Y: region.Origin.Y,
 			},
 			Max: go_image.Point{
-				X: subX + subW,
-				Y: subY + subH,
+				X: region.Origin.X + region.Size.DX,
+				Y: region.Origin.Y + region.Size.DY,
 			},
 		}).(*ebiten.Image)
 	}

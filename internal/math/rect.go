@@ -14,6 +14,10 @@
 
 package math
 
+import (
+	"fmt"
+)
+
 // Rect represents a rectangle.
 type Rect struct {
 	// Origin is the origin of the rectangle, typically the top left corner.
@@ -120,4 +124,16 @@ func (r Rect) Delta(other Rect) Delta {
 // DeltaPos returns the vector between the closest points of a rectangle and a point.
 func (r Rect) DeltaPos(other Pos) Delta {
 	return r.delta(other, other)
+}
+
+func (r Rect) String() string {
+	return fmt.Sprintf("%v %v", r.Origin, r.Size)
+}
+
+func (r *Rect) Scan(state fmt.ScanState, verb rune) error {
+	err := r.Origin.Scan(state, verb)
+	if err != nil {
+		return err
+	}
+	return r.Size.Scan(state, verb)
 }

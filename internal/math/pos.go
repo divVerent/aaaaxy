@@ -14,6 +14,11 @@
 
 package math
 
+import (
+	"fmt"
+	"strconv"
+)
+
 // Pos represents a pixel position, where X points right and Y points down.
 type Pos struct {
 	X, Y int
@@ -32,17 +37,41 @@ func (p Pos) Delta(p2 Pos) Delta {
 	return Delta{p.X - p2.X, p.Y - p2.Y}
 }
 
-func (d Pos) Mul(n int) Pos {
-	return Pos{X: d.X * n, Y: d.Y * n}
+func (p Pos) Mul(n int) Pos {
+	return Pos{X: p.X * n, Y: p.Y * n}
 }
 
-func (d Pos) Div(m int) Pos {
-	return Pos{X: Div(d.X, m), Y: Div(d.Y, m)}
+func (p Pos) Div(m int) Pos {
+	return Pos{X: Div(p.X, m), Y: Div(p.Y, m)}
 }
 
-func (d Pos) FromRectToRect(a Rect, b Rect) Pos {
+func (p Pos) FromRectToRect(a Rect, b Rect) Pos {
 	return Pos{
-		X: b.Origin.X + Div((d.X-a.Origin.X)*b.Size.DX, a.Size.DX),
-		Y: b.Origin.Y + Div((d.Y-a.Origin.Y)*b.Size.DY, a.Size.DY),
+		X: b.Origin.X + Div((p.X-a.Origin.X)*b.Size.DX, a.Size.DX),
+		Y: b.Origin.Y + Div((p.Y-a.Origin.Y)*b.Size.DY, a.Size.DY),
 	}
+}
+
+func (p Pos) String() string {
+	return fmt.Sprintf("%p %p", p.X, p.Y)
+}
+
+func (p *Pos) Scan(state fmt.ScanState, verb rune) error {
+	sx, err := state.Token(true, nil)
+	if err != nil {
+		return err
+	}
+	p.X, err = strconv.Atoi(string(sx))
+	if err != nil {
+		return err
+	}
+	sy, err := state.Token(true, nil)
+	if err != nil {
+		return err
+	}
+	p.Y, err = strconv.Atoi(string(sy))
+	if err != nil {
+		return err
+	}
+	return nil
 }
