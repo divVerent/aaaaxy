@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
@@ -96,9 +97,10 @@ func main() {
 	}
 	log.Debugf("listing vertices...")
 	vertices := map[level.EntityID]*Vertex{}
+	var parseErr error
 	for id, sp := range cpMap {
 		vertices[id] = &Vertex{
-			Name:   sp.Properties["name"],
+			Name:   propmap.StringOr(sp.Properties, "name", ""),
 			MapPos: sp.LevelPos.Mul(level.TileSize).Add(sp.RectInTile.Center().Delta(m.Pos{})),
 		}
 	}
@@ -124,21 +126,18 @@ func main() {
 			{"next_up", m.North()},
 			{"next_down", m.South()},
 		} {
-			next := sp.Properties[conn.name]
-			if next == "" {
+			next := propmap.ValueOr(sp.Properties, "name", -1, &parseErr)
+			if next == -1 {
 				continue
 			}
-			var nextID level.EntityID
-			if _, err := fmt.Sscanf(next, "%d", &nextID); err != nil {
-				log.Fatalf("could not parse next CP %q -> %q: %v", sp.Properties["name"], next, err)
-			}
+			nextID := level.EntityID(next)
 			nextSp := cpMap[nextID]
 			nextVert := vertices[nextID]
 			if nextVert == nil {
 				log.Fatalf("checkpoint %q doesn't point at a checkpoint but entity %d", sp.Properties["name"], nextID)
 			}
 			distance := 10
-			if nextSp.Properties["dead_end"] == "true" {
+			if propmap.ValueOr(sp.Properties, "dead_end", false, &parseErr) {
 				distance = 15
 			}
 			edge := &Edge{
@@ -149,6 +148,9 @@ func main() {
 			v.OutEdges = append(v.OutEdges, edge)
 			nextVert.InEdges = append(nextVert.InEdges, edge)
 		}
+	}
+	if parseErr != nil {
+		log.Fatalf("failed to parse: %v", parseErr)
 	}
 	log.Debugf("calculating positions...")
 	for _, id := range entityIDs {
