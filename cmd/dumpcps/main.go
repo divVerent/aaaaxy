@@ -126,7 +126,7 @@ func main() {
 			{"next_up", m.North()},
 			{"next_down", m.South()},
 		} {
-			next := propmap.ValueOr(sp.Properties, "name", -1, &parseErr)
+			next := propmap.ValueOrP(sp.Properties, conn.name, -1, &parseErr)
 			if next == -1 {
 				continue
 			}
@@ -134,10 +134,10 @@ func main() {
 			nextSp := cpMap[nextID]
 			nextVert := vertices[nextID]
 			if nextVert == nil {
-				log.Fatalf("checkpoint %q doesn't point at a checkpoint but entity %d", sp.Properties["name"], nextID)
+				log.Fatalf("checkpoint %q doesn't point at a checkpoint but entity %d", next, nextID)
 			}
 			distance := 10
-			if propmap.ValueOr(sp.Properties, "dead_end", false, &parseErr) {
+			if propmap.ValueOrP(nextSp.Properties, "dead_end", false, &parseErr) {
 				distance = 15
 			}
 			edge := &Edge{
