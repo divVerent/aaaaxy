@@ -18,6 +18,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/mitchellh/hashstructure/v2"
 
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -136,7 +137,7 @@ func ValueOrP[V any](pm Map, key string, def V, errp *error) V {
 	return v
 }
 
-// Interface functions so Maps behave just like map[string]string for JSON and hashstructure.
+// Interface functions so Maps behave just like map[string]string for cmp, encoding/json and hashstructure.
 // This is needed for savegame compatibility.
 
 func (pm Map) MarshalJSON() ([]byte, error) {
@@ -150,4 +151,8 @@ func (pm *Map) UnmarshalJSON(data []byte) error {
 
 func (pm Map) Hash() (uint64, error) {
 	return hashstructure.Hash(pm.m, hashstructure.FormatV2, nil)
+}
+
+func (pm Map) Equal(other Map) bool {
+	return cmp.Equal(pm.m, other.m)
 }
