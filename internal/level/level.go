@@ -259,29 +259,33 @@ func (l *Level) LoadGame(save *SaveGame) error {
 
 func (l *Level) applyTileMod(startTile, endTile m.Pos, mods propmap.Map) {
 	var add, remove Contents
-	switch propmap.StringOr(mods, "object_solid", "") {
-	case "true":
-		add |= ObjectSolidContents
-	case "false":
-		remove |= ObjectSolidContents
+	if t := propmap.ValueOrP(mods, "solid", propmap.TriState{}, nil); t.Active {
+		if t.Value {
+			add |= SolidContents
+		} else {
+			remove |= SolidContents
+		}
 	}
-	switch propmap.StringOr(mods, "opaque", "") {
-	case "true":
-		add |= OpaqueContents
-	case "false":
-		remove |= OpaqueContents
+	if t := propmap.ValueOrP(mods, "object_solid", propmap.TriState{}, nil); t.Active {
+		if t.Value {
+			add |= ObjectSolidContents
+		} else {
+			remove |= ObjectSolidContents
+		}
 	}
-	switch propmap.StringOr(mods, "player_solid", "") {
-	case "true":
-		add |= PlayerSolidContents
-	case "false":
-		remove |= PlayerSolidContents
+	if t := propmap.ValueOrP(mods, "player_solid", propmap.TriState{}, nil); t.Active {
+		if t.Value {
+			add |= PlayerSolidContents
+		} else {
+			remove |= PlayerSolidContents
+		}
 	}
-	switch propmap.StringOr(mods, "solid", "") {
-	case "true":
-		add |= SolidContents
-	case "false":
-		remove |= SolidContents
+	if t := propmap.ValueOrP(mods, "opaque", propmap.TriState{}, nil); t.Active {
+		if t.Value {
+			add |= OpaqueContents
+		} else {
+			remove |= OpaqueContents
+		}
 	}
 	for y := startTile.Y; y <= endTile.Y; y++ {
 		for x := startTile.X; x <= endTile.X; x++ {

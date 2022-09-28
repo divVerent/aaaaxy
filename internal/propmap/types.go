@@ -17,6 +17,7 @@ package propmap
 import (
 	"fmt"
 	"image/color"
+	"io"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -34,7 +35,7 @@ func parseValue[V any](str string) (V, error) {
 		*retP, err = palette.Parse(str, "entity field")
 	case *time.Duration:
 		*retP, err = time.ParseDuration(str)
-	case *bool, *int, *float64, *m.Delta, *m.Orientation, *m.Orientations:
+	case *bool, *int, *float64, *m.Delta, *m.Orientation, *m.Orientations, *TriState:
 		_, err = fmt.Sscan(str, retP)
 	default:
 		log.Fatalf("missing support for type %T", ret)
@@ -54,10 +55,43 @@ func printValue[V any](v V) (ret, tmxType string) {
 		return fmt.Sprint(vT), "bool"
 	case int:
 		return fmt.Sprint(vT), "int"
-	case float64, m.Delta, m.Orientation, m.Orientations:
+	case float64, m.Delta, m.Orientation, m.Orientations, TriState:
 		return fmt.Sprint(vT), "string"
 	default:
 		log.Fatalf("missing support for type %T", v)
 		return "", ""
 	}
+}
+
+type TriState struct {
+	Active bool
+	Value  bool
+}
+
+func (t TriState) String() string {
+	if !t.Active {
+		return ""
+	}
+	if t.Value {
+		return "true"
+	}
+	return "false"
+}
+
+func (t *TriState) Scan(state fmt.ScanState, verb rune) error {
+	token, err := state.Token(true, nil)
+	if err == io.EOF {
+		t.Active = false
+		return nil
+	}
+	t.Active = true
+	switch string(token) {
+	case "true":
+		t.Value = true
+	case "false":
+		t.Value = false
+	default:
+		return fmt.Errorf("unexpected token: %s", token)
+	}
+	return nil
 }

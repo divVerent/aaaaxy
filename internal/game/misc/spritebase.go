@@ -35,11 +35,11 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	var parseErr error
 	w.SetSolid(e, propmap.ValueOrP(sp.Properties, "solid", false, &parseErr))
 	w.SetOpaque(e, propmap.ValueOrP(sp.Properties, "opaque", false, &parseErr))
-	if s := propmap.StringOr(sp.Properties, "player_solid", ""); s != "" {
-		w.MutateContentsBool(e, level.PlayerSolidContents, s == "true")
+	if t := propmap.ValueOrP(sp.Properties, "player_solid", propmap.TriState{}, &parseErr); t.Active {
+		w.MutateContentsBool(e, level.PlayerSolidContents, t.Value)
 	}
-	if s := propmap.StringOr(sp.Properties, "object_solid", ""); s != "" {
-		w.MutateContentsBool(e, level.ObjectSolidContents, s == "true")
+	if t := propmap.ValueOrP(sp.Properties, "object_solid", propmap.TriState{}, &parseErr); t.Active {
+		w.MutateContentsBool(e, level.ObjectSolidContents, t.Value)
 	}
 	e.Alpha = propmap.ValueOrP(sp.Properties, "alpha", 1.0, &parseErr)
 	mapBlackTo := propmap.ValueOrP(sp.Properties, "map_black_to", color.NRGBA{R: 0, G: 0, B: 0, A: 0}, &parseErr)
