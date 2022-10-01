@@ -56,6 +56,7 @@ type Controller struct {
 	moveSound     *sound.Sound
 	activateSound *sound.Sound
 	blurFrame     int
+	creditsBlur   bool
 	needReloadMap bool
 }
 
@@ -86,6 +87,7 @@ func (c *Controller) Update() error {
 	if c.World.ForceCredits {
 		c.World.ForceCredits = false
 		c.blurFrame = 0
+		c.creditsBlur = true
 		return c.SwitchToScreen(&CreditsScreen{Fancy: true})
 	} else if input.Exit.JustHit && c.Screen == nil && !c.World.TimerStopped {
 		if c.World.PlayerState.LastCheckpoint() != "" || c.World.PlayerState.Frames() > 0 {
@@ -97,6 +99,7 @@ func (c *Controller) Update() error {
 		}
 		c.World.PreDespawn()
 		c.blurFrame = 0
+		c.creditsBlur = false
 		return c.SwitchToScreen(&MainScreen{})
 	}
 	if input.Fullscreen.JustHit {
@@ -116,6 +119,7 @@ func (c *Controller) Update() error {
 		}
 	} else {
 		c.blurFrame = 0
+		c.creditsBlur = false
 		input.SetWantClicks(false)
 	}
 
@@ -163,9 +167,12 @@ func (c *Controller) DrawWorld(screen *ebiten.Image) {
 		dest = offscreen.New("GameUnblurred", engine.GameWidth, engine.GameHeight)
 	}
 
-	// Disable rotozoom effect if not having a CP yet.
+	// Disable rotozoom effect if not having a CP yet, or if fading to the credits.
 	fWorld := f
 	if c.World.PlayerState.LastCheckpoint() == "" {
+		fWorld = 0
+	}
+	if c.creditsBlur {
 		fWorld = 0
 	}
 	c.World.Draw(dest, fWorld)
