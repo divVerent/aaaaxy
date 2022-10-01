@@ -1,0 +1,3 @@
+  - Android: require min 8.1, as sufficient performance got confirmed.
+  - Engine: massive refactor to simplify property parsing.
+  - Menu: do not rotozoom the player out before the credits.
