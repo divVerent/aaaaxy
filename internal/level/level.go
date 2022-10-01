@@ -809,10 +809,10 @@ func ParseImageSrcByOrientation(defaultSrc string, properties propmap.Map) (map[
 	imgSrcByOrientation := map[m.Orientation]string{}
 	for _, o := range m.AllOrientations {
 		src := propmap.StringOr(properties, fmt.Sprintf("img.%v", o), "")
-		if src == "" || src == defaultSrc {
+		if src == "" {
 			continue
 		}
-		if o == m.Identity() {
+		if o == m.Identity() && src != defaultSrc {
 			return nil, fmt.Errorf("unrotated image isn't same as img: got %q, want %q", src, defaultSrc)
 		}
 		imgSrcByOrientation[o] = src
