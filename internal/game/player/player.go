@@ -159,6 +159,10 @@ func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta, factor float64) {
 		p.Velocity = p.Velocity.Add(velUpScaled.Sub(velUp))
 	}
 	p.LastGroundPos = p.Entity.Rect.Origin
+	// Note: NOT resetting JumpingUp here.
+	// This allows for an exploit where hitting a gravity flip retains
+	// the increased gravity amount if the jump key is released.
+	// A place in Vae Victis is much easier this way.
 }
 
 func (p *Player) HasAbility(name string) bool {
@@ -365,6 +369,7 @@ func (p *Player) Update() {
 		}
 	} else {
 		if p.VVVVVV {
+			// Always update the scroll pos while in flipping mode.
 			p.LastGroundPos = p.Entity.Rect.Origin
 		}
 		p.Anim.SetGroup("jump")
