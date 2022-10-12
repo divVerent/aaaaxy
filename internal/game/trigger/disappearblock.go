@@ -69,6 +69,8 @@ func (a *DisappearBlock) Update() {
 		}
 	}
 	a.Entity.Alpha = float64(a.AnimFrame) / DisappearFrames
+	// Note: this makes disappearblocks only player-solid or not. Platforms can go through them.
+	// This is useful in Crumbling Upwards.
 	a.World.MutateContentsBool(a.Entity, level.PlayerSolidContents, a.AnimFrame >= DisappearSolidThreshold)
 }
 
