@@ -310,12 +310,14 @@ func (w *World) loadUnchecked(saveName string) error {
 	if !intercepted {
 		state, err := vfs.ReadState(vfs.SavedGames, saveName)
 		if err != nil {
+			demo.InterceptPostLoadGame(nil)
 			return err
 		}
 		// Normal loading.
 		save = &level.SaveGame{}
 		err = json.Unmarshal(state, save)
 		if err != nil {
+			demo.InterceptPostLoadGame(nil)
 			return err
 		}
 	}
