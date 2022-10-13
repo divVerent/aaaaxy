@@ -236,6 +236,9 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 func InterceptPreLoadGame() (*level.SaveGame, bool) {
 	// While playing back, we always return the last save game from the demo.
 	if demoPlayer != nil {
+		if demoPlayerFrame.SaveGame.GameVersion == "" {
+			return nil, true
+		}
 		return demoPlayerFrame.SaveGame, true
 	}
 	return nil, false
@@ -244,6 +247,9 @@ func InterceptPreLoadGame() (*level.SaveGame, bool) {
 func InterceptPostLoadGame(save *level.SaveGame) {
 	// While recording, store the current save game.
 	if demoRecorder != nil {
+		if save == nil {
+			save = &level.SaveGame{}
+		}
 		demoRecorderFrame.SaveGame = save
 	}
 }
