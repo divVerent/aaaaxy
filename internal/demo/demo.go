@@ -243,7 +243,7 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 func InterceptPreLoadGame() (*level.SaveGame, bool) {
 	// While playing back, we always return the last save game from the demo.
 	if demoPlayer != nil {
-		if demoPlayerFrame.SaveGame.GameVersion == "" {
+		if demoPlayerFrame.SaveGame != nil && demoPlayerFrame.SaveGame.GameVersion == "" {
 			return nil, true
 		}
 		return demoPlayerFrame.SaveGame, true
