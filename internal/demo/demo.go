@@ -50,6 +50,7 @@ var (
 	demoPlayer                *json.Decoder
 	demoPlayerFrame           frame
 	demoPlayerFrameIdx        int
+	demoPlayerHasExplicitSave bool
 	demoRecorderFrame         frame
 	demoRecorderFile          *os.File
 	demoRecorderFinalSaveGame *level.SaveGame
@@ -146,6 +147,7 @@ func PostDraw(screen *ebiten.Image) {
 
 func playReadFrame() bool {
 	s := demoPlayerFrame.SaveGame
+	demoPlayerHasExplicitSave = false
 	for demoPlayer.More() {
 		demoPlayerFrame = frame{}
 		err := demoPlayer.Decode(&demoPlayerFrame)
@@ -156,6 +158,8 @@ func playReadFrame() bool {
 			// Restore save game, so loading always succeeds even if we've regressed.
 			if demoPlayerFrame.SaveGame == nil {
 				demoPlayerFrame.SaveGame = s
+			} else {
+				demoPlayerHasExplicitSave = true
 			}
 			return true
 		}
@@ -219,7 +223,10 @@ func InterceptSaveGame(save *level.SaveGame) bool {
 		// Ensure next load event will be handled right according to this save game.
 		// This shoulnd't be needed - InterceptPostLoadGame should have ensured the save game is always updated on every load event.
 		// Still there to have better chance of being in sync during playback with regression.
-		demoPlayerFrame.SaveGame = save
+		// Don't do this however if this frame also contains a load!
+		if !demoPlayerHasExplicitSave {
+			demoPlayerFrame.SaveGame = save
+		}
 		if len(demoPlayerFrame.SaveGames) == 0 {
 			regression(mediumPrio, "save game: got hash %v, want no saves", save.StateHash)
 		} else {
