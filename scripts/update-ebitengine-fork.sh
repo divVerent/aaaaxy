@@ -31,4 +31,4 @@ if [ -n "$cps" ]; then
 replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 $tag
 EOF
 fi
-make -C ../aaaaxy mod-tidy
+make -C ../aaaaxy mod-update
