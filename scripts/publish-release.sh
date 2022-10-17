@@ -108,13 +108,12 @@ sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 	sed -i -e "/--- TAG GOES HERE ---/,+1 s/: .*/: $new/" io.github.divverent.aaaaxy.yml
 	sed -i -e "/--- REV GOES HERE ---/,+1 s/: .*/: $newrev/" io.github.divverent.aaaaxy.yml
 	git commit -a -m "Release $new."
-	git push origin HEAD:beta
-	git push origin HEAD
+	git push -f origin HEAD:aaaaxy
+	xdg-open 'https://github.com/flathub/io.github.divverent.aaaaxy/compare/master...aaaaxy'
+	xdg-open 'https://github.com/flathub/io.github.divverent.aaaaxy/compare/main...aaaaxy'
+	xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy~2Fbeta'
+	xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 )
-
-# Then let the user test and publish it.
-xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy~2Fbeta'
-xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 
 # Arch Linux.
 (
