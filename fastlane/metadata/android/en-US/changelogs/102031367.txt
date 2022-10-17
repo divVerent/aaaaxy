@@ -1,0 +1,3 @@
+  - Engine: update Ebitengine to v2.4.7.
+  - Engine: fix demo playback when savegames are switched during demo.
+  - Level: fix hint exitbuttons that should only show up when abilities are actually missing.

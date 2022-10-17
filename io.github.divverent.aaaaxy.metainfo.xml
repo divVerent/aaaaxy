@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.356" date="2022-10-01">
-      <description><ul><li>Android: require min 8.1, as sufficient performance got confirmed.</li><li>Engine: massive refactor to simplify property parsing.</li><li>Menu: do not rotozoom the player out before the credits.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.356</url>
+    <release version="v1.2.367" date="2022-10-17">
+      <description><ul><li>Engine: update Ebitengine to v2.4.7.</li><li>Engine: fix demo playback when savegames are switched during demo.</li><li>Level: fix hint exitbuttons that should only show up when abilities are actually missing.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.367</url>
     </release>
   </releases>
 </component>
