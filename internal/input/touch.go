@@ -55,11 +55,11 @@ var (
 		draw:  m.Rect{Origin: m.Pos{X: 32, Y: 168}, Size: m.Delta{DX: 64, DY: 64}},
 	}
 	jumpTouch = touchRects{
-		touch: m.Rect{Origin: m.Pos{X: 512, Y: 232}, Size: m.Delta{DX: 128, DY: 128}},
+		touch: m.Rect{Origin: m.Pos{X: 512, Y: 296}, Size: m.Delta{DX: 128, DY: 64}},
 		draw:  m.Rect{Origin: m.Pos{X: 576, Y: 296}, Size: m.Delta{DX: 64, DY: 64}},
 	}
 	actionTouch = touchRects{
-		touch: m.Rect{Origin: m.Pos{X: 512, Y: 40}, Size: m.Delta{DX: 128, DY: 192}},
+		touch: m.Rect{Origin: m.Pos{X: 512, Y: 0}, Size: m.Delta{DX: 128, DY: 296}},
 		draw:  m.Rect{Origin: m.Pos{X: 576, Y: 104}, Size: m.Delta{DX: 64, DY: 64}},
 	}
 	exitTouch = touchRects{
