@@ -1,0 +1,3 @@
+  - Engine: update Ebitengine to 2.4.9.
+  - Mobile: make the action jump touch button larger, and the jump touch button
+    smaller.
