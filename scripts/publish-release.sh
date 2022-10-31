@@ -110,7 +110,7 @@ sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 	git commit -a -m "Release $new."
 	git push -f origin HEAD:aaaaxy
 	xdg-open 'https://github.com/flathub/io.github.divverent.aaaaxy/compare/master...aaaaxy'
-	xdg-open 'https://github.com/flathub/io.github.divverent.aaaaxy/compare/main...aaaaxy'
+	xdg-open 'https://github.com/flathub/io.github.divverent.aaaaxy/compare/beta...aaaaxy'
 	xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy~2Fbeta'
 	xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 )
