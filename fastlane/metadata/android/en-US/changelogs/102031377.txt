@@ -1,0 +1,3 @@
+  - Engine: update Ebitengine to v2.4.12. Fixes some crashes.
+  - Level: Nine Boxes In Sight: fix something that looked like a render bug but was just weird mapping :)
+  - Makefile: rename environment variables to non-deprecated ones.

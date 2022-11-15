@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.372" date="2022-10-31">
-      <description><ul><li>Engine: update Ebitengine to 2.4.9.</li><li>Mobile: make the action jump touch button larger, and the jump touch button smaller.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.372</url>
+    <release version="v1.2.377" date="2022-11-14">
+      <description><ul><li>Engine: update Ebitengine to v2.4.12. Fixes some crashes.</li><li>Level: Nine Boxes In Sight: fix something that looked like a render bug but was just weird mapping :)</li><li>Makefile: rename environment variables to non-deprecated ones.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.377</url>
     </release>
   </releases>
 </component>
