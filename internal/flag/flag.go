@@ -15,6 +15,7 @@
 package flag
 
 import (
+	"encoding"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -75,6 +76,29 @@ func String(name string, value string, usage string) *string {
 // Duration creates a Duration in our FlagSet.
 func Duration(name string, value time.Duration, usage string) *time.Duration {
 	return flagSet.Duration(name, value, usage)
+}
+
+// TextUnAndMarshaler supports both marshaling and unmarshaling.
+type TextUnAndMarshaler interface {
+	encoding.TextMarshaler
+	encoding.TextUnmarshaler
+}
+
+func newPtr[T any](_ *T) T {
+	var t T
+	return t
+}
+
+// Text creates a flag based on a variable that fulfills TextMarshaler and TextUnmarshaler.
+func Text[T any, PT interface {
+	TextUnAndMarshaler
+	*T
+}](name string, value T, usage string) PT {
+	var actual T
+	actualPT := PT(&actual)
+	valuePT := PT(&value)
+	flagSet.TextVar(actualPT, name, valuePT, usage)
+	return &actual
 }
 
 // Set overrides a flag value. May be used by the menu.
