@@ -130,6 +130,9 @@ var AllOrientations = Orientations{
 }
 
 func ParseOrientations(s string) (Orientations, error) {
+	if s == "" {
+		return Orientations{}, nil
+	}
 	orientations := strings.Split(s, " ")
 	if len(orientations) == 0 {
 		return nil, fmt.Errorf("unsupported orientation list: empty")
@@ -187,6 +190,9 @@ func (o *Orientation) UnmarshalText(text []byte) error {
 }
 
 func (o Orientations) MarshalText() ([]byte, error) {
+	if len(o) == 0 {
+		return []byte{}, nil
+	}
 	out := make([]byte, 0, 3*len(o)-1)
 	for _, o1 := range o {
 		out1, err := o1.MarshalText()
