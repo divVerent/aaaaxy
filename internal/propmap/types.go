@@ -15,6 +15,7 @@
 package propmap
 
 import (
+	"encoding"
 	"fmt"
 	"image/color"
 	"time"
@@ -36,9 +37,9 @@ func parseValue[V any](str string) (V, error) {
 		*retP, err = palette.Parse(str, "entity field")
 	case *time.Duration:
 		*retP, err = time.ParseDuration(str)
-	case *bool, *int, *float64, *m.Delta, *m.Orientation, *m.Orientations, *m.Rect:
+	case *bool, *int, *float64, *m.Delta, *m.Rect:
 		_, err = fmt.Sscan(str, retP)
-	case *TriState:
+	case encoding.TextUnmarshaler:
 		err = retP.UnmarshalText([]byte(str))
 	default:
 		log.Fatalf("missing support for type %T", ret)
@@ -58,9 +59,9 @@ func printValue[V any](v V) (ret, tmxType string) {
 		return fmt.Sprint(vT), "bool"
 	case int:
 		return fmt.Sprint(vT), "int"
-	case float64, m.Delta, m.Orientation, m.Orientations, m.Rect:
+	case float64, m.Delta, m.Rect:
 		return fmt.Sprint(vT), "string"
-	case TriState:
+	case encoding.TextMarshaler:
 		text, err := vT.MarshalText()
 		if err != nil {
 			log.Fatalf("failed to marshal value %#v: %v", vT, err)

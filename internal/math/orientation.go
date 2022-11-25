@@ -17,7 +17,6 @@ package math
 import (
 	"fmt"
 	"strings"
-	"unicode"
 )
 
 // Orientation represents a transformation matrix, written as a right and a down vector.
@@ -150,53 +149,60 @@ func (o Orientation) Determinant() int {
 	return o.Right.DX*o.Down.DY - o.Right.DY*o.Down.DX
 }
 
-func (o Orientation) String() string {
+func (o Orientation) MarshalText() ([]byte, error) {
 	switch o {
 	case Orientation{Right: East(), Down: North()}:
-		return "EN"
+		return []byte("EN"), nil
 	case Orientation{Right: East(), Down: South()}:
-		return "ES"
+		return []byte("ES"), nil
 	case Orientation{Right: North(), Down: East()}:
-		return "NE"
+		return []byte("NE"), nil
 	case Orientation{Right: North(), Down: West()}:
-		return "NW"
+		return []byte("NW"), nil
 	case Orientation{Right: South(), Down: East()}:
-		return "SE"
+		return []byte("SE"), nil
 	case Orientation{Right: South(), Down: West()}:
-		return "SW"
+		return []byte("SW"), nil
 	case Orientation{Right: West(), Down: North()}:
-		return "WN"
+		return []byte("WN"), nil
 	case Orientation{Right: West(), Down: South()}:
-		return "WS"
+		return []byte("WS"), nil
 	default:
-		return fmt.Sprintf("Orientation{Right: %v, Down: %v}", o.Right, o.Down)
+		return nil, fmt.Errorf("unsupported Orientation{Right: %v, Down: %v}", o.Right, o.Down)
 	}
 }
 
-func (o *Orientation) Scan(state fmt.ScanState, verb rune) error {
-	so, err := state.Token(true, nil)
+func (o Orientation) String() string {
+	text, err := o.MarshalText()
 	if err != nil {
-		return err
+		return err.Error()
 	}
-	*o, err = ParseOrientation(string(so))
+	return string(text)
+}
+
+func (o *Orientation) UnmarshalText(text []byte) error {
+	var err error
+	*o, err = ParseOrientation(string(text))
 	return err
 }
 
-func (o Orientations) String() string {
-	out := make([]string, 0, len(o))
+func (o Orientations) MarshalText() ([]byte, error) {
+	out := make([]byte, 0, 3*len(o)-1)
 	for _, o1 := range o {
-		out = append(out, o1.String())
+		out1, err := o1.MarshalText()
+		if err != nil {
+			return nil, err
+		}
+		if len(out) != 0 {
+			out = append(out, ' ')
+		}
+		out = append(out, out1...)
 	}
-	return strings.Join(out, " ")
+	return out, nil
 }
 
-func (o *Orientations) Scan(state fmt.ScanState, verb rune) error {
-	so, err := state.Token(true, func(c rune) bool {
-		return unicode.IsSpace(c) || unicode.IsUpper(c)
-	})
-	if err != nil {
-		return err
-	}
-	*o, err = ParseOrientations(string(so))
+func (o *Orientations) UnmarshalText(text []byte) error {
+	var err error
+	*o, err = ParseOrientations(string(text))
 	return err
 }
