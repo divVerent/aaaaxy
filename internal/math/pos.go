@@ -16,6 +16,7 @@ package math
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -63,4 +64,20 @@ func (p Pos) MarshalText() ([]byte, error) {
 func (p *Pos) UnmarshalText(text []byte) error {
 	_, err := fmt.Fscanf(bytes.NewReader(text), "%d %d", &p.X, &p.Y)
 	return err
+}
+
+func (p *Pos) UnmarshalJSON(text []byte) error {
+	if len(text) > 0 && text[0] == '{' {
+		// Old-style raw JSON field for compatibility to old savegames.
+		// TODO(divVerent): Remove on next SaveGameVersion.
+		type oldPos struct {
+			X, Y int
+		}
+		var oldP oldPos
+		err := json.Unmarshal(text, &oldP)
+		p.X = oldP.X
+		p.Y = oldP.Y
+		return err
+	}
+	return p.UnmarshalText(text)
 }
