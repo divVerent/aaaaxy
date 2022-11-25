@@ -84,11 +84,6 @@ type TextUnAndMarshaler interface {
 	encoding.TextUnmarshaler
 }
 
-func newPtr[T any](_ *T) T {
-	var t T
-	return t
-}
-
 // Text creates a flag based on a variable that fulfills TextMarshaler and TextUnmarshaler.
 func Text[T any, PT interface {
 	TextUnAndMarshaler
