@@ -37,6 +37,14 @@ type touchRects struct {
 	draw  m.Rect
 }
 
+// TODO(divVerent):
+// Make each rect a command line option.
+// Only store the touch rect - the draw rect shall be the largest box of correct aspect that fits inside.
+// Then make an editor for these.
+// Idea: put the edit mode in here, but make it impossible to cover the center.
+// Also no button overlap.
+// Use an 8x8 grid (gcd).
+
 var (
 	leftTouch = touchRects{
 		touch: m.Rect{Origin: m.Pos{X: 0, Y: 232}, Size: m.Delta{DX: 64, DY: 64}},
