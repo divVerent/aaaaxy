@@ -18,6 +18,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // Pos represents a pixel position, where X points right and Y points down.
@@ -63,6 +65,9 @@ func (p Pos) MarshalText() ([]byte, error) {
 
 func (p *Pos) UnmarshalText(text []byte) error {
 	_, err := fmt.Fscanf(bytes.NewReader(text), "%d %d", &p.X, &p.Y)
+	if err != nil {
+		log.Infof("fscanf error: %q -> %#v", text, err)
+	}
 	return err
 }
 
@@ -79,5 +84,10 @@ func (p *Pos) UnmarshalJSON(text []byte) error {
 		p.Y = oldP.Y
 		return err
 	}
-	return p.UnmarshalText(text)
+	if len(text) > 1 && text[0] == '"' && text[len(text)-1] == '"' {
+		// Quoted JSON string. This will no longer be needed if we can remove
+		// this function and have encoding/json use UnmarshalText again.
+		return p.UnmarshalText(text[1 : len(text)-1])
+	}
+	return fmt.Errorf("not a JSON value: %q", text)
 }
