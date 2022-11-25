@@ -17,7 +17,6 @@ package propmap
 import (
 	"fmt"
 	"image/color"
-	"io"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -37,8 +36,10 @@ func parseValue[V any](str string) (V, error) {
 		*retP, err = palette.Parse(str, "entity field")
 	case *time.Duration:
 		*retP, err = time.ParseDuration(str)
-	case *bool, *int, *float64, *m.Delta, *m.Orientation, *m.Orientations, *m.Rect, *TriState:
+	case *bool, *int, *float64, *m.Delta, *m.Orientation, *m.Orientations, *m.Rect:
 		_, err = fmt.Sscan(str, retP)
+	case *TriState:
+		err = retP.UnmarshalText([]byte(str))
 	default:
 		log.Fatalf("missing support for type %T", ret)
 	}
@@ -57,8 +58,14 @@ func printValue[V any](v V) (ret, tmxType string) {
 		return fmt.Sprint(vT), "bool"
 	case int:
 		return fmt.Sprint(vT), "int"
-	case float64, m.Delta, m.Orientation, m.Orientations, m.Rect, TriState:
+	case float64, m.Delta, m.Orientation, m.Orientations, m.Rect:
 		return fmt.Sprint(vT), "string"
+	case TriState:
+		text, err := vT.MarshalText()
+		if err != nil {
+			log.Fatalf("failed to marshal value %#v: %v", vT, err)
+		}
+		return string(text), "string"
 	default:
 		log.Fatalf("missing support for type %T", v)
 		return "", ""
@@ -70,30 +77,29 @@ type TriState struct {
 	Value  bool
 }
 
-func (t TriState) String() string {
+func (t TriState) MarshalText() ([]byte, error) {
 	if !t.Active {
-		return ""
+		return []byte(""), nil
 	}
 	if t.Value {
-		return "true"
+		return []byte("true"), nil
 	}
-	return "false"
+	return []byte("false"), nil
 }
 
-func (t *TriState) Scan(state fmt.ScanState, verb rune) error {
-	token, err := state.Token(true, nil)
-	if err == io.EOF {
-		t.Active = false
-		return nil
-	}
-	t.Active = true
-	switch string(token) {
+func (t *TriState) UnmarshalText(text []byte) error {
+	switch string(text) {
 	case "true":
+		t.Active = true
 		t.Value = true
 	case "false":
+		t.Active = true
+		t.Value = false
+	case "":
+		t.Active = false
 		t.Value = false
 	default:
-		return fmt.Errorf("unexpected token: %s", token)
+		return fmt.Errorf("unexpected TriState value: %s", string(text))
 	}
 	return nil
 }
