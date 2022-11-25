@@ -78,15 +78,10 @@ func Duration(name string, value time.Duration, usage string) *time.Duration {
 	return flagSet.Duration(name, value, usage)
 }
 
-// TextUnAndMarshaler supports both marshaling and unmarshaling.
-type TextUnAndMarshaler interface {
-	encoding.TextMarshaler
-	encoding.TextUnmarshaler
-}
-
 // Text creates a flag based on a variable that fulfills TextMarshaler and TextUnmarshaler.
 func Text[T any, PT interface {
-	TextUnAndMarshaler
+	encoding.TextMarshaler
+	encoding.TextUnmarshaler
 	*T
 }](name string, value T, usage string) PT {
 	var actual T
