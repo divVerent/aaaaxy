@@ -22,7 +22,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.18
+        go-version: 1.19
 
     - name: Build
       run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
@@ -87,7 +87,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.18
+        go-version: 1.19
 
     - name: Build
       run: 'GOOS=windows GOARCH=amd64 AAAAXY_BUILD_USE_VERSION_FILE=true make'
@@ -185,7 +185,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.18
+        go-version: 1.19
 
     - name: Build
       run: 'GOOS=windows GOARCH=386 AAAAXY_BUILD_USE_VERSION_FILE=true make'
@@ -252,7 +252,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.18
+        go-version: 1.19
 
     - name: Build
       run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
