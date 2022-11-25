@@ -15,8 +15,8 @@
 package math
 
 import (
+	"bytes"
 	"fmt"
-	"strconv"
 )
 
 // Pos represents a pixel position, where X points right and Y points down.
@@ -56,22 +56,11 @@ func (p Pos) String() string {
 	return fmt.Sprintf("%d %d", p.X, p.Y)
 }
 
-func (p *Pos) Scan(state fmt.ScanState, verb rune) error {
-	sx, err := state.Token(true, nil)
-	if err != nil {
-		return err
-	}
-	p.X, err = strconv.Atoi(string(sx))
-	if err != nil {
-		return err
-	}
-	sy, err := state.Token(true, nil)
-	if err != nil {
-		return err
-	}
-	p.Y, err = strconv.Atoi(string(sy))
-	if err != nil {
-		return err
-	}
-	return nil
+func (p Pos) MarshalText() ([]byte, error) {
+	return []byte(p.String()), nil
+}
+
+func (p *Pos) UnmarshalText(text []byte) error {
+	_, err := fmt.Fscanf(bytes.NewReader(text), "%d %d", &p.X, &p.Y)
+	return err
 }

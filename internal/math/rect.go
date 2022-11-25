@@ -15,6 +15,7 @@
 package math
 
 import (
+	"bytes"
 	"fmt"
 )
 
@@ -127,13 +128,14 @@ func (r Rect) DeltaPos(other Pos) Delta {
 }
 
 func (r Rect) String() string {
-	return fmt.Sprintf("%v %v", r.Origin, r.Size)
+	return fmt.Sprintf("%d %d %d %d", r.Origin.X, r.Origin.Y, r.Size.DX, r.Size.DY)
 }
 
-func (r *Rect) Scan(state fmt.ScanState, verb rune) error {
-	err := r.Origin.Scan(state, verb)
-	if err != nil {
-		return err
-	}
-	return r.Size.Scan(state, verb)
+func (r Rect) MarshalText() ([]byte, error) {
+	return []byte(r.String()), nil
+}
+
+func (r *Rect) UnmarshalText(text []byte) error {
+	_, err := fmt.Fscanf(bytes.NewReader(text), "%d %d %d %d", &r.Origin.X, &r.Origin.Y, &r.Size.DX, &r.Size.DY)
+	return err
 }

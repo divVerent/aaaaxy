@@ -21,7 +21,6 @@ import (
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/log"
-	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
@@ -37,7 +36,7 @@ func parseValue[V any](str string) (V, error) {
 		*retP, err = palette.Parse(str, "entity field")
 	case *time.Duration:
 		*retP, err = time.ParseDuration(str)
-	case *bool, *int, *float64, *m.Delta, *m.Rect:
+	case *bool, *int, *float64:
 		_, err = fmt.Sscan(str, retP)
 	case encoding.TextUnmarshaler:
 		err = retP.UnmarshalText([]byte(str))
@@ -59,7 +58,7 @@ func printValue[V any](v V) (ret, tmxType string) {
 		return fmt.Sprint(vT), "bool"
 	case int:
 		return fmt.Sprint(vT), "int"
-	case float64, m.Delta, m.Rect:
+	case float64:
 		return fmt.Sprint(vT), "string"
 	case encoding.TextMarshaler:
 		text, err := vT.MarshalText()
