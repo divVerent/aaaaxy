@@ -25,6 +25,8 @@ import (
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
+// TODO(divVerent) migrate to TextMarshaler and TextUnmarshaler.
+
 func parseValue[V any](str string) (V, error) {
 	var ret V
 	var err error
