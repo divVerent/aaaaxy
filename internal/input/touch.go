@@ -30,12 +30,14 @@ var (
 		"js/*":      true,
 		"*/*":       false,
 	}).(bool), "always show touch controls")
+	touchRectLeft   = flag.Text("touch_rect_left", m.Rect{Origin: m.Pos{X: 0, Y: 232}, Size: m.Delta{DX: 64, DY: 64}}, "touch rectangle for moving left")
+	touchRectRight  = flag.Text("touch_rect_right", m.Rect{Origin: m.Pos{X: 64, Y: 232}, Size: m.Delta{DX: 64, DY: 64}}, "touch rectangle for moving right")
+	touchRectDown   = flag.Text("touch_rect_down", m.Rect{Origin: m.Pos{X: 0, Y: 296}, Size: m.Delta{DX: 128, DY: 64}}, "touch rectangle for moving down")
+	touchRectUp     = flag.Text("touch_rect_up", m.Rect{Origin: m.Pos{X: 0, Y: 168}, Size: m.Delta{DX: 128, DY: 64}}, "touch rectangle for moving up")
+	touchRectJump   = flag.Text("touch_rect_jump", m.Rect{Origin: m.Pos{X: 576, Y: 296}, Size: m.Delta{DX: 64, DY: 64}}, "touch rectangle for jumping")
+	touchRectAction = flag.Text("touch_rect_action", m.Rect{Origin: m.Pos{X: 576, Y: 0}, Size: m.Delta{DX: 64, DY: 296}}, "touch rectangle for performing an action")
+	touchRectExit   = flag.Text("touch_rect_exit", m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 128, DY: 64}}, "touch rectangle for exiting")
 )
-
-type touchRects struct {
-	touch m.Rect
-	draw  m.Rect
-}
 
 // TODO(divVerent):
 // Make each rect a command line option.
@@ -44,37 +46,6 @@ type touchRects struct {
 // Idea: put the edit mode in here, but make it impossible to cover the center.
 // Also no button overlap.
 // Use an 8x8 grid (gcd).
-
-var (
-	leftTouch = touchRects{
-		touch: m.Rect{Origin: m.Pos{X: 0, Y: 232}, Size: m.Delta{DX: 64, DY: 64}},
-		draw:  m.Rect{Origin: m.Pos{X: 0, Y: 232}, Size: m.Delta{DX: 64, DY: 64}},
-	}
-	rightTouch = touchRects{
-		touch: m.Rect{Origin: m.Pos{X: 64, Y: 232}, Size: m.Delta{DX: 64, DY: 64}},
-		draw:  m.Rect{Origin: m.Pos{X: 64, Y: 232}, Size: m.Delta{DX: 64, DY: 64}},
-	}
-	downTouch = touchRects{
-		touch: m.Rect{Origin: m.Pos{X: 0, Y: 296}, Size: m.Delta{DX: 128, DY: 64}},
-		draw:  m.Rect{Origin: m.Pos{X: 32, Y: 296}, Size: m.Delta{DX: 64, DY: 64}},
-	}
-	upTouch = touchRects{
-		touch: m.Rect{Origin: m.Pos{X: 0, Y: 168}, Size: m.Delta{DX: 128, DY: 64}},
-		draw:  m.Rect{Origin: m.Pos{X: 32, Y: 168}, Size: m.Delta{DX: 64, DY: 64}},
-	}
-	jumpTouch = touchRects{
-		touch: m.Rect{Origin: m.Pos{X: 512, Y: 296}, Size: m.Delta{DX: 128, DY: 64}},
-		draw:  m.Rect{Origin: m.Pos{X: 576, Y: 296}, Size: m.Delta{DX: 64, DY: 64}},
-	}
-	actionTouch = touchRects{
-		touch: m.Rect{Origin: m.Pos{X: 512, Y: 0}, Size: m.Delta{DX: 128, DY: 296}},
-		draw:  m.Rect{Origin: m.Pos{X: 576, Y: 104}, Size: m.Delta{DX: 64, DY: 64}},
-	}
-	exitTouch = touchRects{
-		touch: m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 128, DY: 64}},
-		draw:  m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 128, DY: 64}},
-	}
-)
 
 const (
 	touchClickMaxFrames = 30
@@ -153,11 +124,11 @@ func (i *impulse) touchPressed() InputMap {
 	if !touchWantPad {
 		return 0
 	}
-	if i.touchRects.touch.Size.IsZero() {
+	if i.touchRect == nil || i.touchRect.Size.IsZero() {
 		return 0
 	}
 	for _, t := range touches {
-		if i.touchRects.touch.DeltaPos(t.pos).IsZero() {
+		if i.touchRect.DeltaPos(t.pos).IsZero() {
 			return Touchscreen
 		}
 	}
@@ -205,7 +176,7 @@ func touchDraw(screen *ebiten.Image) {
 		return
 	}
 	for _, i := range impulses {
-		if i.touchRects.draw.Size.IsZero() {
+		if i.touchRect == nil || i.touchRect.Size.IsZero() {
 			continue
 		}
 		img := i.touchImage
@@ -217,10 +188,19 @@ func touchDraw(screen *ebiten.Image) {
 			Filter:        ebiten.FilterNearest,
 		}
 		w, h := img.Size()
-		options.GeoM.Scale(
-			float64(i.touchRects.draw.Size.DX)/float64(w),
-			float64(i.touchRects.draw.Size.DY)/float64(h))
-		options.GeoM.Translate(float64(i.touchRects.draw.Origin.X), float64(i.touchRects.draw.Origin.Y))
+		ox := float64(i.touchRect.Origin.X)
+		oy := float64(i.touchRect.Origin.Y)
+		sw := float64(i.touchRect.Size.DX) / float64(w)
+		sh := float64(i.touchRect.Size.DY) / float64(h)
+		if sw < sh {
+			oy += float64(h) * 0.5 * (sh - sw)
+			sh = sw
+		} else if sw > sh {
+			ox += float64(w) * 0.5 * (sw - sh)
+			sw = sh
+		}
+		options.GeoM.Scale(sw, sh)
+		options.GeoM.Translate(ox, oy)
 		if i.Held {
 			options.ColorM.Scale(-1, -1, -1, 1)
 			options.ColorM.Translate(1, 1, 1, 0)

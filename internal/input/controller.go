@@ -58,7 +58,7 @@ type impulse struct {
 	keys              map[ebiten.Key]InputMap
 	padControls       padControls
 	mouseControl      bool
-	touchRects        touchRects
+	touchRect         *m.Rect
 	touchImage        *ebiten.Image
 	externallyPressed bool
 }
@@ -90,13 +90,13 @@ const (
 )
 
 var (
-	Left       = (&impulse{Name: "Left", keys: leftKeys, padControls: leftPad, touchRects: leftTouch}).register()
-	Right      = (&impulse{Name: "Right", keys: rightKeys, padControls: rightPad, touchRects: rightTouch}).register()
-	Up         = (&impulse{Name: "Up", keys: upKeys, padControls: upPad, touchRects: upTouch}).register()
-	Down       = (&impulse{Name: "Down", keys: downKeys, padControls: downPad, touchRects: downTouch}).register()
-	Jump       = (&impulse{Name: "Jump", keys: jumpKeys, padControls: jumpPad, touchRects: jumpTouch}).register()
-	Action     = (&impulse{Name: "Action", keys: actionKeys, padControls: actionPad, touchRects: actionTouch}).register()
-	Exit       = (&impulse{Name: "Exit", keys: exitKeys, padControls: exitPad, mouseControl: true, touchRects: exitTouch}).register()
+	Left       = (&impulse{Name: "Left", keys: leftKeys, padControls: leftPad, touchRect: touchRectLeft}).register()
+	Right      = (&impulse{Name: "Right", keys: rightKeys, padControls: rightPad, touchRect: touchRectRight}).register()
+	Up         = (&impulse{Name: "Up", keys: upKeys, padControls: upPad, touchRect: touchRectUp}).register()
+	Down       = (&impulse{Name: "Down", keys: downKeys, padControls: downPad, touchRect: touchRectDown}).register()
+	Jump       = (&impulse{Name: "Jump", keys: jumpKeys, padControls: jumpPad, touchRect: touchRectJump}).register()
+	Action     = (&impulse{Name: "Action", keys: actionKeys, padControls: actionPad, touchRect: touchRectAction}).register()
+	Exit       = (&impulse{Name: "Exit", keys: exitKeys, padControls: exitPad, mouseControl: true, touchRect: touchRectExit}).register()
 	Fullscreen = (&impulse{Name: "Fullscreen", keys: fullscreenKeys /* no padControls */}).register()
 
 	impulses = []*impulse{}

@@ -93,7 +93,16 @@ func Text[T any, PT interface {
 
 // Set overrides a flag value. May be used by the menu.
 func Set(name string, value interface{}) error {
-	return flagSet.Set(name, fmt.Sprint(value))
+	switch vT := value.(type) {
+	case encoding.TextMarshaler:
+		buf, err := vT.MarshalText()
+		if err != nil {
+			return err
+		}
+		return flagSet.Set(name, string(buf))
+	default:
+		return flagSet.Set(name, fmt.Sprint(vT))
+	}
 }
 
 // Get loads a flag by name.
@@ -170,6 +179,16 @@ func ResetToDefaults() {
 	flagSet.Visit(func(f *flag.Flag) {
 		f.Value.Set(f.DefValue)
 	})
+}
+
+// ResetFlagToDefault returns a given flag to its default value.
+func ResetFlagToDefault(name string) error {
+	f := flagSet.Lookup(name)
+	if f == nil {
+		return fmt.Errorf("resetting non-existing flag: %v", name)
+	}
+	f.Value.Set(f.DefValue)
+	return nil
 }
 
 var getConfig func() (*Config, error)
