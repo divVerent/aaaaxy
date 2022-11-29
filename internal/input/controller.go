@@ -186,16 +186,16 @@ func SetMode(mode Mode) {
 	switch mode {
 	case PlayingMode:
 		mouseSetWantClicks(false)
-		touchSetWantPad(true)
-		touchSetHidePad(false)
+		touchSetUsePad(true)
+		touchSetShowPad(true)
 	case EndingMode:
 		mouseSetWantClicks(false)
-		touchSetWantPad(true)
-		touchSetHidePad(true)
+		touchSetUsePad(true)
+		touchSetShowPad(false)
 	case MenuMode:
 		mouseSetWantClicks(true)
-		touchSetWantPad(false)
-		touchSetHidePad(true)
+		touchSetUsePad(false)
+		touchSetShowPad(false)
 	}
 }
 
