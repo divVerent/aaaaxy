@@ -16,10 +16,12 @@ package input
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/image"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
 var (
@@ -61,6 +63,7 @@ type touchInfo struct {
 var (
 	touchUsePad   bool
 	touchShowPad  bool
+	touchEditPad  bool
 	touches       = map[ebiten.TouchID]*touchInfo{}
 	touchIDs      []ebiten.TouchID
 	touchHoverPos m.Pos
@@ -179,6 +182,12 @@ func touchDraw(screen *ebiten.Image) {
 		if i.touchRect == nil || i.touchRect.Size.IsZero() {
 			continue
 		}
+		if touchEditPad {
+			boxColor := palette.EGA(palette.White, 255)
+			ebitenutil.DrawRect(screen, float64(i.touchRect.Origin.X), float64(i.touchRect.Origin.Y), float64(i.touchRect.Size.DX), float64(i.touchRect.Size.DY), boxColor)
+			innerColor := palette.EGA(palette.DarkGrey, 255)
+			ebitenutil.DrawRect(screen, float64(i.touchRect.Origin.X+1), float64(i.touchRect.Origin.Y+1), float64(i.touchRect.Size.DX-2), float64(i.touchRect.Size.DY-2), innerColor)
+		}
 		img := i.touchImage
 		if img == nil {
 			continue
@@ -206,5 +215,14 @@ func touchDraw(screen *ebiten.Image) {
 			options.ColorM.Translate(1, 1, 1, 0)
 		}
 		screen.DrawImage(img, options)
+	}
+	if touchEditPad {
+		gridColor := palette.EGA(palette.LightGrey, 32)
+		w, h := screen.Size()
+		for x := 0; x < w/8; x++ {
+			for y := 0; y < h/8; y++ {
+				ebitenutil.DrawRect(screen, float64(x*8+1), float64(y*8+1), 6, 6, gridColor)
+			}
+		}
 	}
 }
