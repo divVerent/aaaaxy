@@ -83,7 +83,6 @@ func (c *Controller) Update() error {
 
 	timing.Section("global_hotkeys")
 
-	input.SetHideControls(c.World.TimerStopped)
 	if c.World.ForceCredits {
 		c.World.ForceCredits = false
 		c.blurFrame = 0
@@ -112,7 +111,7 @@ func (c *Controller) Update() error {
 			c.blurFrame++
 			c.World.AssumeChanged()
 		}
-		input.SetWantClicks(true)
+		input.SetMode(input.MenuMode)
 		err := c.Screen.Update()
 		if err != nil {
 			return err
@@ -120,7 +119,11 @@ func (c *Controller) Update() error {
 	} else {
 		c.blurFrame = 0
 		c.creditsBlur = false
-		input.SetWantClicks(false)
+		if c.World.TimerStopped {
+			input.SetMode(input.EndingMode)
+		} else {
+			input.SetMode(input.PlayingMode)
+		}
 	}
 
 	performQualityAdjustment()

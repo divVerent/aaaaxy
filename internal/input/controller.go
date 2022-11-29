@@ -174,13 +174,29 @@ func Update(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 f
 	easterEggUpdate()
 }
 
-func SetWantClicks(want bool) {
-	mouseSetWantClicks(want)
-	touchSetWantPad(!want)
-}
+type Mode int
 
-func SetHideControls(want bool) {
-	touchSetHidePad(want)
+const (
+	PlayingMode Mode = iota
+	EndingMode
+	MenuMode
+)
+
+func SetMode(mode Mode) {
+	switch mode {
+	case PlayingMode:
+		mouseSetWantClicks(false)
+		touchSetWantPad(true)
+		touchSetHidePad(false)
+	case EndingMode:
+		mouseSetWantClicks(false)
+		touchSetWantPad(true)
+		touchSetHidePad(true)
+	case MenuMode:
+		mouseSetWantClicks(true)
+		touchSetWantPad(false)
+		touchSetHidePad(true)
+	}
 }
 
 func EasterEggJustHit() bool {
