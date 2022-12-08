@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<its:rules xmlns:its="http://www.w3.org/2005/11/its" version="1.0">
+	<its:translateRule selector="/map/layer/data" translate="no" />
+	<its:translateRule selector="/map/objectgroup/object/properties/property[@name='text']/@value" translate="yes" />
+</its:rules>
