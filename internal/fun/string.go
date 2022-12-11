@@ -22,6 +22,7 @@ import (
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
@@ -48,62 +49,62 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			_, offset := time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.Local).Zone()
 			switch m.Div(offset, 3600) {
 			case -12:
-				return "Baker Island"
+				return locale.G.Get("Baker Island")
 			case -11:
-				return "Alofi"
+				return locale.G.Get("Alofi")
 			case -10:
-				return "Honolulu"
+				return locale.G.Get("Honolulu")
 			case -9:
-				return "Anchorage"
+				return locale.G.Get("Anchorage")
 			case -8:
-				return "San Francisco"
+				return locale.G.Get("San Francisco")
 			case -7:
-				return "Edmonton"
+				return locale.G.Get("Edmonton")
 			case -6:
-				return "Chicago"
+				return locale.G.Get("Chicago")
 			case -5:
-				return "New York"
+				return locale.G.Get("New York")
 			case -4:
-				return "Halifax"
+				return locale.G.Get("Halifax")
 			case -3:
-				return "Nuuk"
+				return locale.G.Get("Nuuk")
 			case -2:
-				return "Fernando de Noronha"
+				return locale.G.Get("Fernando de Noronha")
 			case -1:
-				return "Ponta Delgada"
+				return locale.G.Get("Ponta Delgada")
 			case 0:
-				return "London"
+				return locale.G.Get("London")
 			case 1:
-				return "Berlin"
+				return locale.G.Get("Berlin")
 			case 2:
-				return "Tel Aviv"
+				return locale.G.Get("Tel Aviv")
 			case 3:
-				return "Istanbul"
+				return locale.G.Get("Istanbul")
 			case 4:
-				return "Tehran"
+				return locale.G.Get("Tehran")
 			case 5:
-				return "Turkistan"
+				return locale.G.Get("Turkistan")
 			case 6:
-				return "Bishkek"
+				return locale.G.Get("Bishkek")
 			case 7:
-				return "Hanoi"
+				return locale.G.Get("Hanoi")
 			case 8:
-				return "Beijing"
+				return locale.G.Get("Beijing")
 			case 9:
-				return "Tokyo"
+				return locale.G.Get("Tokyo")
 			case 10:
-				return "Sydney"
+				return locale.G.Get("Sydney")
 			case 11:
-				return "Port Moresby"
+				return locale.G.Get("Port Moresby")
 			case 12:
-				return "Auckland"
+				return locale.G.Get("Auckland")
 			case 13:
-				return "Nuku'alofa"
+				return locale.G.Get("Nuku'alofa")
 			case 14:
-				return "Kiritimati"
+				return locale.G.Get("Kiritimati")
 			default:
 				// Boston is a great default for a bad place to drive.
-				return "Boston"
+				return locale.G.Get("Boston")
 			}
 		},
 		"GameTime": func() (string, error) {
@@ -134,26 +135,26 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			}
 			abilities := make([]string, 0, 4)
 			if ps.HasAbility("carry") {
-				abilities = append(abilities, "The Gloves")
+				abilities = append(abilities, locale.G.Get("The Gloves"))
 			}
 			if ps.HasAbility("control") {
-				abilities = append(abilities, "The Remote")
+				abilities = append(abilities, locale.G.Get("The Remote"))
 			}
 			if ps.HasAbility("push") {
-				abilities = append(abilities, "The Coil")
+				abilities = append(abilities, locale.G.Get("The Coil"))
 			}
 			if ps.HasAbility("stand") {
-				abilities = append(abilities, "The Cleats")
+				abilities = append(abilities, locale.G.Get("The Cleats"))
 			}
 			switch len(abilities) {
 			case 0:
-				return "nothing", nil
+				return locale.G.Get("nothing"), nil
 			case 1:
 				return abilities[0], nil
 			default:
-				return strings.Join(abilities[:len(abilities)-1], ", ") + " and " + abilities[len(abilities)-1], nil
+				return strings.Join(abilities[:len(abilities)-1], locale.G.Get(", ")) + locale.G.Get(" and ") + abilities[len(abilities)-1], nil
 			case 4:
-				return "everything", nil
+				return locale.G.Get("everything"), nil
 			}
 		},
 		"ExitButton": func() (string, error) {
@@ -162,13 +163,13 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			}
 			switch input.ExitButton() {
 			default: // case input.Escape:
-				return "Escape", nil
+				return locale.G.Get("Escape"), nil
 			case input.Backspace:
-				return "Backspace", nil
+				return locale.G.Get("Backspace"), nil
 			case input.Start:
-				return "Start", nil
+				return locale.G.Get("Start"), nil
 			case input.Back:
-				return "Back", nil
+				return locale.G.Get("Back"), nil
 			}
 		},
 		"ActionButton": func() (string, error) {
@@ -177,24 +178,24 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			}
 			i := input.Map()
 			if i.ContainsAny(input.Gamepad) {
-				return "B/X", nil
+				return locale.G.Get("B/X"), nil
 			}
 			if i.ContainsAny(input.Touchscreen) {
-				return "B", nil
+				return locale.G.Get("B"), nil
 			}
 			if i.ContainsAny(input.DOSKeyboard) {
-				return "Ctrl/Shift", nil
+				return locale.G.Get("Ctrl/Shift"), nil
 			}
 			if i.ContainsAny(input.NESKeyboard) {
-				return "Z", nil
+				return locale.G.Get("Z"), nil
 			}
 			if i.ContainsAny(input.FPSKeyboard) {
-				return "Shift/E/Tab", nil
+				return locale.G.Get("Shift/E/Tab"), nil
 			}
 			if i.ContainsAny(input.ViKeyboard) {
-				return "Enter", nil
+				return locale.G.Get("Enter"), nil
 			}
-			return "Shift", nil
+			return locale.G.Get("Shift"), nil
 		},
 		"SpeedrunCategories": func() (string, error) {
 			if ps == nil {

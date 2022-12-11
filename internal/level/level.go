@@ -21,6 +21,7 @@ import (
 	"github.com/mitchellh/hashstructure/v2"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/propmap"
@@ -550,6 +551,9 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 			objType := propmap.ValueP(properties, "type", "", &parseErr)
 			propmap.Delete(properties, "type")
 			propmap.DebugSetType(properties, objType)
+			if text, err := propmap.Value(properties, "text", ""); err == nil {
+				propmap.Set(properties, "text", locale.L.Get(text))
+			}
 			spawnTilesGrowth := propmap.ValueOrP(properties, "spawn_tiles_growth", m.Delta{}, &parseErr)
 			startTile := entRect.Origin.Div(TileSize)
 			endTile := entRect.OppositeCorner().Div(TileSize)

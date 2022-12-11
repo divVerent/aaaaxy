@@ -15,4 +15,7 @@
 
 xgettext --its=scripts/tmx.its --from-code=utf-8 -F \
 	-o assets/locales/level.pot assets/maps/level.tmx
-# TODO(divVerent): Also extract strings from code.
+go run github.com/leonelquinteros/gotext/cli/xgotext \
+	-default game \
+	-in internal/ \
+	-out assets/locales/

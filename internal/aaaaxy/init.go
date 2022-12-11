@@ -32,6 +32,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/noise"
@@ -55,6 +56,7 @@ var (
 	dumpLoadingFractions = flag.String("dump_loading_fractions", "", "file name to dump actual loading fractions to")
 	debugJustInit        = flag.Bool("debug_just_init", false, "just init everything, then quit right away")
 	fpsDivisor           = flag.Int("fps_divisor", 1, "framerate divisor (use on very low systems, but this may make the game unwinnable or harder as it restricts input; must be a divisor of "+fmt.Sprint(engine.GameTPS))
+	language             = flag.String("language", "", "language to translate the game into")
 )
 
 func LoadConfig() (*flag.Config, error) {
@@ -106,6 +108,27 @@ func (g *Game) InitEbitengine() error {
 	return g.InitEarly()
 }
 
+func initLocale() error {
+	if *language == "" {
+		return
+	}
+	data, err := vfs.Load("locales", fmt.Sprintf("game.%s.po", *language))
+	if err == nil {
+		locale.G.Parse(data)
+		log.Infof("game translated to language %v", *language)
+	} else {
+		log.Errorf("could not load game translation for language %v: %v", *language, err)
+	}
+	data, err = vfs.Load("locales", fmt.Sprintf("level.%s.po", *language))
+	if err == nil {
+		locale.L.Parse(data)
+		log.Infof("level translated to language %v", *language)
+	} else {
+		log.Errorf("could not load level translation for language %v: %v", *language, err)
+	}
+	return nil
+}
+
 // InitEarly is the beginning of our initialization,
 // and may take place in the first frame
 // if there is no way to run this before the main loop (e.g. on mobile).
@@ -128,6 +151,10 @@ func (g *Game) InitEarly() error {
 	err := vfs.Init()
 	if err != nil {
 		return fmt.Errorf("could not initialize VFS: %w", err)
+	}
+	err = initLocale()
+	if err != nil {
+		return fmt.Errorf("could not initialize locale: %w", err)
 	}
 	err = version.Init()
 	if err != nil {
