@@ -18,11 +18,14 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
+// Type is the type of a locale.
+type Type = *gotext.Po
+
 // G is the translation of the game.
-var G *gotext.Po
+var G Type
 
 // L is the translation of the levels.
-var L *gotext.Po
+var L Type
 
 func init() {
 	// Make T always a valid object.

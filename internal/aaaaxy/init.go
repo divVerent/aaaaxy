@@ -17,6 +17,7 @@ package aaaaxy
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"math"
 	"os"
 
@@ -108,24 +109,28 @@ func (g *Game) InitEbitengine() error {
 	return g.InitEarly()
 }
 
-func initLocale() error {
+func initLocaleDomain(l locale.Type, domain string) {
 	if *language == "" {
 		return
 	}
-	data, err := vfs.Load("locales", fmt.Sprintf("game.%s.po", *language))
-	if err == nil {
-		locale.G.Parse(data)
-		log.Infof("game translated to language %v", *language)
-	} else {
-		log.Errorf("could not load game translation for language %v: %v", *language, err)
+	data, err := vfs.Load("locales", fmt.Sprintf("%s.%s.po", domain, *language))
+	if err != nil {
+		log.Errorf("could not open %s translation for language %s: %v", domain, *language, err)
+		return
 	}
-	data, err = vfs.Load("locales", fmt.Sprintf("level.%s.po", *language))
-	if err == nil {
-		locale.L.Parse(data)
-		log.Infof("level translated to language %v", *language)
-	} else {
-		log.Errorf("could not load level translation for language %v: %v", *language, err)
+	defer data.Close()
+	buf, err := io.ReadAll(data)
+	if err != nil {
+		log.Errorf("could not read %s translation for language %s: %v", domain, *language, err)
+		return
 	}
+	locale.G.Parse(buf)
+	log.Infof("%s translated to language %s", domain, *language)
+}
+
+func initLocale() error {
+	initLocaleDomain(locale.G, "game")
+	initLocaleDomain(locale.L, "level")
 	return nil
 }
 
