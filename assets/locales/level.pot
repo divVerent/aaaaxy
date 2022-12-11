@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-10 21:27-0500\n"
+"POT-Creation-Date: 2022-12-11 08:35-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,9 +26,7 @@ msgid "Failure was never an option."
 msgstr ""
 
 #: assets/maps/level.tmx:601
-msgid ""
-"Don't children like to say, &quot;Are we there yet?&quot; Press "
-"{{ExitButton}}."
+msgid "Don't children like to say, \"Are we there yet?\" Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:607
@@ -72,9 +70,7 @@ msgid "Some people prefer 2τ over 4π."
 msgstr ""
 
 #: assets/maps/level.tmx:703
-msgid ""
-"&quot;In spite of one-time overwhelming consensus, the earth isn't flat."
-"&quot;"
+msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr ""
 
 #: assets/maps/level.tmx:709
@@ -532,7 +528,7 @@ msgid "The Gloves (hold {{ActionButton}}) Hint: no speeding!"
 msgstr ""
 
 #: assets/maps/level.tmx:6334
-msgid "Little &amp; Big Platforms"
+msgid "Little & Big Platforms"
 msgstr ""
 
 #: assets/maps/level.tmx:6340
@@ -662,8 +658,7 @@ msgid "If walking alone won't do, try some exercise."
 msgstr ""
 
 #: assets/maps/level.tmx:7632
-msgid ""
-"Every great adventure started with the line &quot;I know a shortcut&quot;"
+msgid "Every great adventure started with the line \"I know a shortcut\""
 msgstr ""
 
 #: assets/maps/level.tmx:7763
