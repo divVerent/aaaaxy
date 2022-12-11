@@ -24,6 +24,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
@@ -98,44 +99,46 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 	bgs := palette.EGA(palette.Black, 255)
 	fgn := palette.EGA(palette.LightGrey, 255)
 	bgn := palette.EGA(palette.DarkGrey, 255)
-	font.MenuBig.Draw(screen, "Reset", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, locale.G.Get("Reset"), m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == ResetNothing {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset Nothing", m.Pos{X: CenterX, Y: ItemBaselineY(ResetNothing, ResetCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Reset Nothing"), m.Pos{X: CenterX, Y: ItemBaselineY(ResetNothing, ResetCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == ResetConfig {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset and Lose Settings", m.Pos{X: CenterX, Y: ItemBaselineY(ResetConfig, ResetCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Reset and Lose Settings"), m.Pos{X: CenterX, Y: ItemBaselineY(ResetConfig, ResetCount)}, true, fg, bg)
 	var resetText string
 	var dx, dy int
-	save := ""
+	var save string
 	switch *saveState {
 	case 0:
-		save = " A"
+		save = "A"
 	case 1:
-		save = " 4"
+		save = "4"
 	case 2:
-		save = " X"
+		save = "X"
 	case 3:
-		save = " Y"
+		save = "Y"
+	default:
+		save = fmt.Sprint(*saveState)
 	}
 	if s.ResetFrame >= resetFrames && s.Item == ResetGame {
 		fg, bg = palette.EGA(palette.Red, 255), palette.EGA(palette.Black, 255)
-		resetText = fmt.Sprintf("Reset and Lose SAVE STATE%s", save)
+		resetText = locale.G.Get("Reset and Lose SAVE STATE %s", save)
 	} else {
 		fg, bg = fgn, bgn
 		if s.Item == ResetGame {
 			fg, bg = palette.EGA(palette.LightRed, 255), palette.EGA(palette.Red, 255)
 			if s.WaitForKeyReleaseThenReset {
-				resetText = fmt.Sprintf("Reset and Lose Save State%s (just release buttons)", save)
+				resetText = locale.G.Get("Reset and Lose Save State %s (just release buttons)", save)
 			} else {
-				resetText = fmt.Sprintf("Reset and Lose Save State%s (think about it for %d sec)", save, (resetFrames-s.ResetFrame+engine.GameTPS-1)/engine.GameTPS)
+				resetText = locale.G.Get("Reset and Lose Save State %s (think about it for %d sec)", save, (resetFrames-s.ResetFrame+engine.GameTPS-1)/engine.GameTPS)
 			}
 		} else {
-			resetText = fmt.Sprintf("Reset and Lose Save State%s", save)
+			resetText = locale.G.Get("Reset and Lose Save State %s", save)
 		}
 		dx = rand.Intn(3) - 1
 		dy = rand.Intn(3) - 1
@@ -145,5 +148,5 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 	if s.Item == BackToMain {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Main Menu", m.Pos{X: CenterX, Y: ItemBaselineY(BackToMain, ResetCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Main Menu"), m.Pos{X: CenterX, Y: ItemBaselineY(BackToMain, ResetCount)}, true, fg, bg)
 }

@@ -28,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
@@ -264,11 +265,11 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	unseenPathToSeenCPColor := palette.EGA(palette.White, 255)
 	unseenPathToUnseenCPColor := palette.EGA(palette.Black, 255)
 	unseenPathBlinkColor := palette.EGA(palette.DarkGrey, 255)
-	font.MenuBig.Draw(screen, "Pick-a-Path", m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, locale.G.Get("Pick-a-Path"), m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := fun.FormatText(&s.Controller.World.PlayerState, propmap.ValueP(s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties, "text", "", nil))
 	seen, total := s.Controller.World.PlayerState.TnihSignsSeen(s.CurrentCP)
 	if total > 0 {
-		cpText += fmt.Sprintf(" (%d/%d)", seen, total)
+		cpText = locale.G.Get("%s (%d/%d)", cpText, seen, total)
 	}
 	fg, bg := fgn, bgn
 	if s.nameHovered {

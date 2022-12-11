@@ -15,7 +15,6 @@
 package menu
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -26,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/palette"
@@ -63,15 +63,15 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	s.Lines = nil
 	if len(credits.Licenses) != 0 && !s.Fancy {
 		s.Lines = append(s.Lines,
-			"For Software Licenses",
-			"press right",
+			locale.G.Get("For Software Licenses"),
+			locale.G.Get("press right"),
 			"")
 	}
 	s.Lines = append(s.Lines, credits.Lines...)
 	s.Lines = append(
 		s.Lines,
-		fmt.Sprintf("Level Version: %d", s.Controller.World.Level.SaveGameVersion),
-		"Build: "+version.Revision(),
+		locale.G.Get("Level Version: %d", s.Controller.World.Level.SaveGameVersion),
+		locale.G.Get("Build: %s", version.Revision()),
 	)
 	if s.Fancy {
 		music.Switch(s.Controller.World.Level.CreditsMusic)
@@ -91,10 +91,10 @@ func (s *CreditsScreen) Init(m *Controller) error {
 		s.Lines = append(
 			s.Lines,
 			"",
-			"Your Time",
+			locale.G.Get("Your Time"),
 			timeStr,
 			"",
-			"Your Speedrun Categories",
+			locale.G.Get("Your Speedrun Categories"),
 			categories1,
 		)
 		if categories2 != "" {
@@ -104,12 +104,12 @@ func (s *CreditsScreen) Init(m *Controller) error {
 		if tryNext != "" {
 			s.Lines = append(s.Lines,
 				"",
-				"Try Next",
+				locale.G.Get("Try Next"),
 				tryNext)
 		}
 		s.Lines = append(s.Lines,
 			"",
-			"Thank You!")
+			locale.G.Get("Thank You!"))
 	}
 	s.ScrollPos = textScreenScrollInPos(s.Lines, creditsLineHeight)
 	return nil

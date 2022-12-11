@@ -22,6 +22,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
@@ -328,15 +329,15 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	bgs := palette.EGA(palette.Black, 255)
 	fgn := palette.EGA(palette.LightGrey, 255)
 	bgn := palette.EGA(palette.DarkGrey, 255)
-	font.MenuBig.Draw(screen, "Settings", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, locale.G.Get("Settings"), m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	if offerFullscreen {
 		fg, bg := fgn, bgn
 		if s.Item == Fullscreen {
 			fg, bg = fgs, bgs
 		}
-		fsText := "Switch to Fullscreen Mode"
+		fsText := locale.G.Get("Switch to Fullscreen Mode")
 		if ebiten.IsFullscreen() {
-			fsText = "Switch to Windowed Mode"
+			fsText = locale.G.Get("Switch to Windowed Mode")
 		}
 		font.Menu.Draw(screen, fsText, m.Pos{X: CenterX, Y: ItemBaselineY(Fullscreen, SettingsCount)}, true, fg, bg)
 	}
@@ -344,30 +345,30 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Graphics: %v", currentGraphics()), m.Pos{X: CenterX, Y: ItemBaselineY(Graphics, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Graphics: %v", currentGraphics()), m.Pos{X: CenterX, Y: ItemBaselineY(Graphics, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Quality {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Quality: %v", currentQuality()), m.Pos{X: CenterX, Y: ItemBaselineY(Quality, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Quality: %v", currentQuality()), m.Pos{X: CenterX, Y: ItemBaselineY(Quality, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Volume {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, fmt.Sprintf("Volume: %v", currentVolume()), m.Pos{X: CenterX, Y: ItemBaselineY(Volume, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Volume: %v", currentVolume()), m.Pos{X: CenterX, Y: ItemBaselineY(Volume, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveState {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Switch Save State", m.Pos{X: CenterX, Y: ItemBaselineY(SaveState, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Switch Save State"), m.Pos{X: CenterX, Y: ItemBaselineY(SaveState, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Reset {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Reset", m.Pos{X: CenterX, Y: ItemBaselineY(Reset, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Reset"), m.Pos{X: CenterX, Y: ItemBaselineY(Reset, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Back {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Main Menu", m.Pos{X: CenterX, Y: ItemBaselineY(Back, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Main Menu"), m.Pos{X: CenterX, Y: ItemBaselineY(Back, SettingsCount)}, true, fg, bg)
 }

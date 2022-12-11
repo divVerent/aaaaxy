@@ -20,6 +20,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 )
@@ -233,40 +234,40 @@ const (
 func (c SpeedrunCategories) Name() string {
 	switch c {
 	case AnyPercentSpeedrun:
-		return "Any%"
+		return locale.G.Get("Any%")
 	case AllCheckpointsSpeedrun:
-		return "All Checkpoints"
+		return locale.G.Get("All Checkpoints")
 	case AllSignsSpeedrun:
-		return "All Notes"
+		return locale.G.Get("All Notes")
 	case AllPathsSpeedrun:
-		return "All Paths"
+		return locale.G.Get("All Paths")
 	case AllSecretsSpeedrun:
-		return "All Secrets"
+		return locale.G.Get("All Secrets")
 	case AllFlippedSpeedrun:
-		return "All Flipped"
+		return locale.G.Get("All Flipped")
 	case NoTeleportsSpeedrun:
-		return "No Teleports"
+		return locale.G.Get("No Teleports")
 	case NoEscapeSpeedrun:
 		switch input.ExitButton() {
 		default: // case input.Escape:
-			return "No Escape"
+			return locale.G.Get("No Escape")
 		case input.Backspace:
-			return "No Backspace"
+			return locale.G.Get("No Backspace")
 		case input.Start:
-			return "No Start"
+			return locale.G.Get("No Start")
 		case input.Back:
-			return "No Back"
+			return locale.G.Get("No Back")
 		}
 	case hundredPercentSpeedrun:
-		return "100%"
+		return locale.G.Get("100%")
 	case withoutCheatsSpeedrun:
-		return "Without Cheating Of Course"
+		return locale.G.Get("Without Cheating Of Course")
 	case cheatingSpeedrun:
-		return "Cheat%"
+		return locale.G.Get("Cheat%")
 	case impossibleSpeedrun:
-		return "Impossible"
+		return locale.G.Get("Impossible")
 	default:
-		return "???"
+		return locale.G.Get("???")
 	}
 }
 
@@ -342,11 +343,11 @@ func (c SpeedrunCategories) Describe() (categories string, tryNext string) {
 	l := len(categoryNames)
 	switch l {
 	case 0:
-		categories = "None"
+		categories = locale.G.Get("None")
 	case 1:
 		categories = categoryNames[0]
 	default:
-		categories = strings.Join(categoryNames[0:l-1], ", ") + " and " + categoryNames[l-1]
+		categories = strings.Join(categoryNames[0:l-1], locale.G.Get(", ")) + locale.G.Get(" and ") + categoryNames[l-1]
 	}
 	return categories, tryNextId.Name()
 }

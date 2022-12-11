@@ -24,6 +24,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
@@ -70,7 +71,7 @@ func (s *SaveStateScreen) saveStateInfo(initLvl *level.Level, idx int) string {
 			Level: initLvl,
 		}
 	}
-	format := "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
+	format := locale.G.Get("Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}")
 	return fun.FormatText(ps, format)
 }
 
@@ -141,30 +142,30 @@ func (s *SaveStateScreen) Draw(screen *ebiten.Image) {
 	bgs := palette.EGA(palette.Black, 255)
 	fgn := palette.EGA(palette.LightGrey, 255)
 	bgn := palette.EGA(palette.DarkGrey, 255)
-	font.MenuBig.Draw(screen, "Switch Save State", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, locale.G.Get("Switch Save State"), m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == SaveStateA {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "A: "+s.Text[0], m.Pos{X: CenterX, Y: ItemBaselineY(SaveStateA, SaveStateCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("A: %s", s.Text[0]), m.Pos{X: CenterX, Y: ItemBaselineY(SaveStateA, SaveStateCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveState4 {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "4: "+s.Text[1], m.Pos{X: CenterX, Y: ItemBaselineY(SaveState4, SaveStateCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("4: %s", s.Text[1]), m.Pos{X: CenterX, Y: ItemBaselineY(SaveState4, SaveStateCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveStateX {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "X: "+s.Text[2], m.Pos{X: CenterX, Y: ItemBaselineY(SaveStateX, SaveStateCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("X: %s", s.Text[2]), m.Pos{X: CenterX, Y: ItemBaselineY(SaveStateX, SaveStateCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveStateY {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Y: "+s.Text[3], m.Pos{X: CenterX, Y: ItemBaselineY(SaveStateY, SaveStateCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Y: %s", s.Text[3]), m.Pos{X: CenterX, Y: ItemBaselineY(SaveStateY, SaveStateCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveExit {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, "Main Menu", m.Pos{X: CenterX, Y: ItemBaselineY(SaveExit, SaveStateCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Main Menu"), m.Pos{X: CenterX, Y: ItemBaselineY(SaveExit, SaveStateCount)}, true, fg, bg)
 }

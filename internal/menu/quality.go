@@ -15,13 +15,12 @@
 package menu
 
 import (
-	"fmt"
-
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/dump"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
@@ -44,19 +43,19 @@ const (
 func (s qualitySetting) String() string {
 	switch s {
 	case autoQuality:
-		return fmt.Sprintf("Auto (%s)", currentActualQuality())
+		return locale.G.Get("Auto (%s)", currentActualQuality())
 	case maxQuality:
-		return "Max"
+		return locale.G.Get("Max")
 	case highQuality:
-		return "High"
+		return locale.G.Get("High")
 	case mediumQuality:
-		return "Medium"
+		return locale.G.Get("Medium")
 	case lowQuality:
-		return "Low"
+		return locale.G.Get("Low")
 	case lowestQuality:
-		return "Lowest"
+		return locale.G.Get("Lowest")
 	}
-	return "???"
+	return locale.G.Get("???")
 }
 
 func currentQuality() qualitySetting {

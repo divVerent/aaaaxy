@@ -8,11 +8,41 @@ msgstr ""
 "X-Generator: xgotext\n"
 
 #: fun/string.go:155
+#: playerstate/playerstate.go:350
 msgid " and "
 msgstr ""
 
 #: fun/string.go:155
+#: playerstate/playerstate.go:350
 msgid ", "
+msgstr ""
+
+#: playerstate/playerstate.go:262
+msgid "100%"
+msgstr ""
+
+#: playerstate/playerstate.go:270
+msgid "???"
+msgstr ""
+
+#: playerstate/playerstate.go:239
+msgid "All Checkpoints"
+msgstr ""
+
+#: playerstate/playerstate.go:247
+msgid "All Flipped"
+msgstr ""
+
+#: playerstate/playerstate.go:241
+msgid "All Notes"
+msgstr ""
+
+#: playerstate/playerstate.go:243
+msgid "All Paths"
+msgstr ""
+
+#: playerstate/playerstate.go:245
+msgid "All Secrets"
 msgstr ""
 
 #: fun/string.go:54
@@ -21,6 +51,10 @@ msgstr ""
 
 #: fun/string.go:58
 msgid "Anchorage"
+msgstr ""
+
+#: playerstate/playerstate.go:237
+msgid "Any%"
 msgstr ""
 
 #: fun/string.go:100
@@ -63,6 +97,14 @@ msgstr ""
 msgid "Boston"
 msgstr ""
 
+#: menu/credits.go:74
+msgid "Build: %s"
+msgstr ""
+
+#: playerstate/playerstate.go:266
+msgid "Cheat%"
+msgstr ""
+
 #: fun/string.go:64
 msgid "Chicago"
 msgstr ""
@@ -87,6 +129,10 @@ msgstr ""
 msgid "Fernando de Noronha"
 msgstr ""
 
+#: menu/credits.go:66
+msgid "For Software Licenses"
+msgstr ""
+
 #: fun/string.go:68
 msgid "Halifax"
 msgstr ""
@@ -99,6 +145,10 @@ msgstr ""
 msgid "Honolulu"
 msgstr ""
 
+#: playerstate/playerstate.go:268
+msgid "Impossible"
+msgstr ""
+
 #: fun/string.go:82
 msgid "Istanbul"
 msgstr ""
@@ -107,12 +157,40 @@ msgstr ""
 msgid "Kiritimati"
 msgstr ""
 
+#: menu/credits.go:73
+msgid "Level Version: %d"
+msgstr ""
+
 #: fun/string.go:76
 msgid "London"
 msgstr ""
 
 #: fun/string.go:66
 msgid "New York"
+msgstr ""
+
+#: playerstate/playerstate.go:259
+msgid "No Back"
+msgstr ""
+
+#: playerstate/playerstate.go:255
+msgid "No Backspace"
+msgstr ""
+
+#: playerstate/playerstate.go:253
+msgid "No Escape"
+msgstr ""
+
+#: playerstate/playerstate.go:257
+msgid "No Start"
+msgstr ""
+
+#: playerstate/playerstate.go:249
+msgid "No Teleports"
+msgstr ""
+
+#: playerstate/playerstate.go:346
+msgid "None"
 msgstr ""
 
 #: fun/string.go:102
@@ -159,6 +237,10 @@ msgstr ""
 msgid "Tel Aviv"
 msgstr ""
 
+#: menu/credits.go:112
+msgid "Thank You!"
+msgstr ""
+
 #: fun/string.go:147
 msgid "The Cleats"
 msgstr ""
@@ -179,8 +261,24 @@ msgstr ""
 msgid "Tokyo"
 msgstr ""
 
+#: menu/credits.go:107
+msgid "Try Next"
+msgstr ""
+
 #: fun/string.go:86
 msgid "Turkistan"
+msgstr ""
+
+#: playerstate/playerstate.go:264
+msgid "Without Cheating Of Course"
+msgstr ""
+
+#: menu/credits.go:97
+msgid "Your Speedrun Categories"
+msgstr ""
+
+#: menu/credits.go:94
+msgid "Your Time"
 msgstr ""
 
 #: fun/string.go:190
@@ -193,4 +291,8 @@ msgstr ""
 
 #: fun/string.go:151
 msgid "nothing"
+msgstr ""
+
+#: menu/credits.go:67
+msgid "press right"
 msgstr ""
