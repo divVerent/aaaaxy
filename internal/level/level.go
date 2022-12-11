@@ -552,7 +552,9 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 			propmap.Delete(properties, "type")
 			propmap.DebugSetType(properties, objType)
 			if text, err := propmap.Value(properties, "text", ""); err == nil {
-				propmap.Set(properties, "text", locale.L.Get(text))
+				translated := locale.L.Get(text)
+				// log.Infof("translated %v -> %v", text, translated)
+				propmap.Set(properties, "text", translated)
 			}
 			spawnTilesGrowth := propmap.ValueOrP(properties, "spawn_tiles_growth", m.Delta{}, &parseErr)
 			startTile := entRect.Origin.Div(TileSize)

@@ -124,7 +124,7 @@ func initLocaleDomain(l locale.Type, domain string) {
 		log.Errorf("could not read %s translation for language %s: %v", domain, *language, err)
 		return
 	}
-	locale.G.Parse(buf)
+	l.Parse(buf)
 	log.Infof("%s translated to language %s", domain, *language)
 }
 
