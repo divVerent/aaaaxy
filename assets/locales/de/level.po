@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-11 08:35-0500\n"
-"PO-Revision-Date: 2022-12-11 09:29-0500\n"
+"PO-Revision-Date: 2022-12-11 16:44-0500\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
 "Language-Team: Rudolf Polzer <rpolzer@google.com>\n"
 "Language: de\n"
@@ -107,7 +107,7 @@ msgstr "Manche Dinge sind nun einmal einseitig."
 
 #: assets/maps/level.tmx:817
 msgid "Thinking outside the box can remove the need of getting over it."
-msgstr ""
+msgstr "Wer um die Ecke denkt, braucht kein \"Getting Over It\"."
 
 #: assets/maps/level.tmx:825
 msgid "The Möbius Strip"
@@ -127,7 +127,7 @@ msgstr "Die Kleinsche Flasche"
 
 #: assets/maps/level.tmx:898
 msgid "Whenever I climb I am followed by a dog called Ego."
-msgstr ""
+msgstr "Wo immer ich klettere, folgt mir ein Hund namens Ego."
 
 #: assets/maps/level.tmx:914
 msgid "The Projective Plane"
@@ -139,13 +139,15 @@ msgstr "Die Sphäre"
 
 #: assets/maps/level.tmx:978
 msgid "Unparalleled execution is all you really need here."
-msgstr ""
+msgstr "Es gibt keine Parallelen zu dieser Sache hier."
 
 #: assets/maps/level.tmx:985
 msgid ""
 "Welcome to the top of the mountain. If you're alone, all this was just a "
 "waste of time. Press {{ExitButton}}."
 msgstr ""
+"Willkommen am Gipfel des Berges. Wenn du alleine bist, war dies alles nur "
+"Zeitverschwendung.  Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx:991
 msgid "The shortest path can be the one that takes longest."
