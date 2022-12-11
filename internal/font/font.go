@@ -30,7 +30,6 @@ import (
 	"golang.org/x/image/math/fixed"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/locale"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
@@ -65,7 +64,7 @@ func makeFace(f font.Face) Face {
 func KeepInCache(dst *ebiten.Image) {
 	if *pinFontsToCache {
 		for _, f := range all {
-			f.precache(locale.G.Get(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©"))
+			f.precache(charSet())
 		}
 	}
 }

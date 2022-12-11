@@ -19,3 +19,11 @@ go run github.com/leonelquinteros/gotext/cli/xgotext \
 	-default game \
 	-in internal/ \
 	-out assets/locales/
+
+for domain in level game; do
+	for f in assets/locales/"$domain".*.po; do
+		msgmerge -U "$f" assets/locales/"$domain".pot
+		# TODO(divVerent): Output stats.
+		# Maybe msgattrib --only-fuzzy, msgattrib --untranslated and count results?
+	done
+done

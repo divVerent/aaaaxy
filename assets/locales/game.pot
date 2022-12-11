@@ -7,6 +7,10 @@ msgstr ""
 "Language: \n"
 "X-Generator: xgotext\n"
 
+#: font/charset.go:23
+msgid " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©"
+msgstr ""
+
 #: fun/string.go:155
 #: playerstate/playerstate.go:350
 msgid " and "
