@@ -30,6 +30,7 @@ import (
 	"golang.org/x/image/math/fixed"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
@@ -58,14 +59,13 @@ func makeFace(f font.Face) Face {
 
 // cacheChars are all characters the game uses. ASCII plus all Unicode our map file contains.
 // NOT including stuff from the credits.
-var cacheChars = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©"
 
 // We always keep the game character set in cache.
 // This has to be repeated regularly as Ebitengine expires unused cache entries.
 func KeepInCache(dst *ebiten.Image) {
 	if *pinFontsToCache {
 		for _, f := range all {
-			f.precache(cacheChars)
+			f.precache(locale.G.Get(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©"))
 		}
 	}
 }
