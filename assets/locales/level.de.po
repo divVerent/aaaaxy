@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-11 08:35-0500\n"
-"PO-Revision-Date: 2022-12-11 08:43-0500\n"
+"PO-Revision-Date: 2022-12-11 09:29-0500\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
 "Language-Team: Rudolf Polzer <rpolzer@google.com>\n"
 "Language: de\n"
@@ -99,10 +99,11 @@ msgstr "Das Band"
 #: assets/maps/level.tmx:805
 msgid "The path of least resistance will not always lead to success."
 msgstr ""
+"Der Weg des geringsten Widerstands ist nicht immer der Weg des Erfolges."
 
 #: assets/maps/level.tmx:811
 msgid "Some things only have one side to them."
-msgstr ""
+msgstr "Manche Dinge sind nun einmal einseitig."
 
 #: assets/maps/level.tmx:817
 msgid "Thinking outside the box can remove the need of getting over it."
@@ -110,19 +111,19 @@ msgstr ""
 
 #: assets/maps/level.tmx:825
 msgid "The Möbius Strip"
-msgstr ""
+msgstr "Das Möbiusband"
 
 #: assets/maps/level.tmx:833
 msgid "The Torus"
-msgstr ""
+msgstr "Der Torus"
 
 #: assets/maps/level.tmx:862
 msgid "If it doesn't fit in three dimensions, try two."
-msgstr ""
+msgstr "Wenn es nicht in drei Dimensionen passt, versuche es mit zwei."
 
 #: assets/maps/level.tmx:870
 msgid "The Klein Bottle"
-msgstr ""
+msgstr "Die Kleinsche Flasche"
 
 #: assets/maps/level.tmx:898
 msgid "Whenever I climb I am followed by a dog called Ego."
@@ -130,11 +131,11 @@ msgstr ""
 
 #: assets/maps/level.tmx:914
 msgid "The Projective Plane"
-msgstr ""
+msgstr "Die Projektive Ebene"
 
 #: assets/maps/level.tmx:972
 msgid "The Sphere"
-msgstr ""
+msgstr "Die Sphäre"
 
 #: assets/maps/level.tmx:978
 msgid "Unparalleled execution is all you really need here."
@@ -148,19 +149,19 @@ msgstr ""
 
 #: assets/maps/level.tmx:991
 msgid "The shortest path can be the one that takes longest."
-msgstr ""
+msgstr "Die Abkürzung kann auch der langsamste Weg sein."
 
 #: assets/maps/level.tmx:997
 msgid "If you just press on forward, you will eventually reach your goal."
-msgstr ""
+msgstr "Gehe voran, und du wirst dein Ziel erreichen."
 
 #: assets/maps/level.tmx:1003
 msgid "Falling a long distance does not always hurt."
-msgstr ""
+msgstr "Nicht jeder, der tief fällt, verletzt sich."
 
 #: assets/maps/level.tmx:1020
 msgid "Entering through the front door is boring."
-msgstr ""
+msgstr "Der Haupteingang ist langweilig."
 
 #: assets/maps/level.tmx:1040
 msgid "House with Two Rooms"
@@ -168,11 +169,11 @@ msgstr ""
 
 #: assets/maps/level.tmx:1052
 msgid "Taking the right entrance makes all the difference."
-msgstr ""
+msgstr "Es kommt nur auf die Wahl des richtigen Eingangs an."
 
 #: assets/maps/level.tmx:1070
 msgid "A New Beginning"
-msgstr ""
+msgstr "Ein neuer Anfang"
 
 #: assets/maps/level.tmx:1078
 msgid "If this isn't your downfall, I don't know what is."
