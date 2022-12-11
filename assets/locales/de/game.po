@@ -449,7 +449,7 @@ msgstr "Z"
 
 #: sound/sound.go:234
 msgid "enumerating sounds"
-msgstr "Sound-Effekte auflisten"
+msgstr "Finde Sound-Effekte"
 
 #: fun/string.go:157
 msgid "everything"
@@ -457,35 +457,35 @@ msgstr "alle"
 
 #: level/level.go:787
 msgid "hashing level"
-msgstr "Level hashen"
+msgstr "Hashe Level"
 
 #: aaaaxy/init.go:240
 msgid "initializing audio"
-msgstr "Audio initialisieren"
+msgstr "Initialisiere Sound"
 
 #: aaaaxy/init.go:264
 msgid "initializing dumping"
-msgstr "Dumping initialisieren"
+msgstr "Initialisiere Dumping"
 
 #: aaaaxy/init.go:256
 msgid "initializing input"
-msgstr "Eingabe initialisieren"
+msgstr "Initialisiere Eingabe"
 
 #: aaaaxy/init.go:244
 msgid "initializing noise"
-msgstr "Rauschen initialisieren"
+msgstr "Initialisiere Rauschen"
 
 #: level/level.go:766
 msgid "loading checkpoints"
-msgstr "Checkpoints laden"
+msgstr "Lade Checkpoints"
 
 #: level/level.go:738
 msgid "loading level file"
-msgstr "Leveldatei laden"
+msgstr "Lade Leveldatei"
 
 #: engine/world.go:212
 msgid "loading level"
-msgstr "Level laden"
+msgstr "Lade Level"
 
 #: fun/string.go:151
 msgid "nothing"
@@ -493,31 +493,31 @@ msgstr "keine"
 
 #: level/level.go:754
 msgid "parsing level data"
-msgstr "Leveldaten lesen"
+msgstr "Lese Level"
 
 #: sound/sound.go:247
 msgid "precaching %s"
-msgstr "%s laden"
+msgstr "Lade %s"
 
 #: aaaaxy/init.go:236
 msgid "precaching credits"
-msgstr "Abspann laden"
+msgstr "Lade Abspann"
 
 #: aaaaxy/init.go:260
 msgid "precaching engine"
-msgstr "Engine laden"
+msgstr "Lade Engine"
 
 #: engine/world.go:217
 msgid "precaching entities"
-msgstr "Objekte laden"
+msgstr "Lade Objekte"
 
 #: aaaaxy/init.go:252
 msgid "precaching images"
-msgstr "Grafiken laden"
+msgstr "Lade Grafiken"
 
 #: aaaaxy/init.go:248
 msgid "precaching sounds"
-msgstr "Soundeffekte laden"
+msgstr "Lade Soundeffekte"
 
 #: menu/credits.go:67
 msgid "press right"

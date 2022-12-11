@@ -113,7 +113,7 @@ func initLocaleDomain(l locale.Type, domain string) {
 	if *language == "" {
 		return
 	}
-	data, err := vfs.Load("locales", fmt.Sprintf("%s.%s.po", domain, *language))
+	data, err := vfs.Load(fmt.Sprintf("locales/%s", *language), fmt.Sprintf("%s.po", domain))
 	if err != nil {
 		log.Errorf("could not open %s translation for language %s: %v", domain, *language, err)
 		return
