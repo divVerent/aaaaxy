@@ -233,35 +233,35 @@ func (g *Game) InitStep() error {
 			log.Errorf("could not provide loading fractions: %v", err)
 		}
 	}
-	status, err := g.init.Enter("precaching credits", "could not precache credits", splash.Single(credits.Precache))
+	status, err := g.init.Enter("precaching credits", locale.G.Get("precaching credits"), "could not precache credits", splash.Single(credits.Precache))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("initializing audio", "could not initialize audio", splash.Single(audiowrap.Init))
+	status, err = g.init.Enter("initializing audio", locale.G.Get("initializing audio"), "could not initialize audio", splash.Single(audiowrap.Init))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("initializing noise", "could not initialize noise", splash.Single(noise.Init))
+	status, err = g.init.Enter("initializing noise", locale.G.Get("initializing noise"), "could not initialize noise", splash.Single(noise.Init))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("precaching sounds", "could not precache sounds", sound.Precache)
+	status, err = g.init.Enter("precaching sounds", locale.G.Get("precaching sounds"), "could not precache sounds", sound.Precache)
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("precaching images", "could not precache images", splash.Single(image.Precache))
+	status, err = g.init.Enter("precaching images", locale.G.Get("precaching images"), "could not precache images", splash.Single(image.Precache))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("initializing input", "could not initialize input", splash.Single(input.Init))
+	status, err = g.init.Enter("initializing input", locale.G.Get("initializing input"), "could not initialize input", splash.Single(input.Init))
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("precaching engine", "could not precache engine", engine.Precache)
+	status, err = g.init.Enter("precaching engine", locale.G.Get("precaching engine"), "could not precache engine", engine.Precache)
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("initializing dumping", "could not initialize dumping", splash.Single(dump.InitLate))
+	status, err = g.init.Enter("initializing dumping", locale.G.Get("initializing dumping"), "could not initialize dumping", splash.Single(dump.InitLate))
 	if status != splash.Continue {
 		return err
 	}

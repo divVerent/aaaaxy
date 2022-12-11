@@ -27,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
@@ -208,12 +209,12 @@ func loadLevel() (*level.Level, error) {
 var levelLoader *level.Loader = level.NewLoader("level")
 
 func Precache(s *splash.State) (splash.Status, error) {
-	status, err := s.Enter("loading level", "failed to load level", levelLoader.LoadStepwise)
+	status, err := s.Enter("loading level", locale.G.Get("loading level"), "failed to load level", levelLoader.LoadStepwise)
 	if status != splash.Continue {
 		return status, err
 	}
 
-	status, err = s.Enter("precaching entities", "failed to precache entities", splash.Single(func() error {
+	status, err = s.Enter("precaching entities", locale.G.Get("precaching entities"), "failed to precache entities", splash.Single(func() error {
 		return precacheEntities(levelLoader.Level())
 	}))
 	if status != splash.Continue {

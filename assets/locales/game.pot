@@ -12,6 +12,10 @@ msgstr ""
 msgid " and "
 msgstr ""
 
+#: menu/map.go:272
+msgid "%s (%d/%d)"
+msgstr ""
+
 #: fun/string.go:155
 #: playerstate/playerstate.go:350
 msgid ", "
@@ -21,8 +25,17 @@ msgstr ""
 msgid "100%"
 msgstr ""
 
+#: menu/savestate.go:155
+msgid "4: %s"
+msgstr ""
+
+#: menu/quality.go:58
 #: playerstate/playerstate.go:270
 msgid "???"
+msgstr ""
+
+#: menu/savestate.go:150
+msgid "A: %s"
 msgstr ""
 
 #: playerstate/playerstate.go:239
@@ -59,6 +72,10 @@ msgstr ""
 
 #: fun/string.go:100
 msgid "Auckland"
+msgstr ""
+
+#: menu/quality.go:46
+msgid "Auto (%s)"
 msgstr ""
 
 #: fun/string.go:184
@@ -109,6 +126,10 @@ msgstr ""
 msgid "Chicago"
 msgstr ""
 
+#: menu/main.go:101
+msgid "Credits"
+msgstr ""
+
 #: fun/string.go:187
 msgid "Ctrl/Shift"
 msgstr ""
@@ -133,12 +154,20 @@ msgstr ""
 msgid "For Software Licenses"
 msgstr ""
 
+#: menu/settings.go:348
+msgid "Graphics: %v"
+msgstr ""
+
 #: fun/string.go:68
 msgid "Halifax"
 msgstr ""
 
 #: fun/string.go:90
 msgid "Hanoi"
+msgstr ""
+
+#: menu/quality.go:50
+msgid "High"
 msgstr ""
 
 #: fun/string.go:56
@@ -163,6 +192,28 @@ msgstr ""
 
 #: fun/string.go:76
 msgid "London"
+msgstr ""
+
+#: menu/quality.go:54
+msgid "Low"
+msgstr ""
+
+#: menu/quality.go:56
+msgid "Lowest"
+msgstr ""
+
+#: menu/reset.go:151
+#: menu/savestate.go:170
+#: menu/settings.go:373
+msgid "Main Menu"
+msgstr ""
+
+#: menu/quality.go:48
+msgid "Max"
+msgstr ""
+
+#: menu/quality.go:52
+msgid "Medium"
 msgstr ""
 
 #: fun/string.go:66
@@ -201,6 +252,14 @@ msgstr ""
 msgid "Nuuk"
 msgstr ""
 
+#: menu/map.go:268
+msgid "Pick-a-Path"
+msgstr ""
+
+#: menu/main.go:91
+msgid "Play"
+msgstr ""
+
 #: fun/string.go:74
 msgid "Ponta Delgada"
 msgstr ""
@@ -209,8 +268,55 @@ msgstr ""
 msgid "Port Moresby"
 msgstr ""
 
+#: menu/settings.go:353
+msgid "Quality: %v"
+msgstr ""
+
+#: menu/main.go:106
+msgid "Quit"
+msgstr ""
+
+#: menu/reset.go:107
+msgid "Reset Nothing"
+msgstr ""
+
+#: menu/reset.go:130
+msgid "Reset and Lose SAVE STATE %s"
+msgstr ""
+
+#: menu/reset.go:136
+msgid "Reset and Lose Save State %s (just release buttons)"
+msgstr ""
+
+#: menu/reset.go:138
+msgid "Reset and Lose Save State %s (think about it for %d sec)"
+msgstr ""
+
+#: menu/reset.go:141
+msgid "Reset and Lose Save State %s"
+msgstr ""
+
+#: menu/reset.go:112
+msgid "Reset and Lose Settings"
+msgstr ""
+
+#: menu/reset.go:102
+#: menu/settings.go:368
+msgid "Reset"
+msgstr ""
+
 #: fun/string.go:60
 msgid "San Francisco"
+msgstr ""
+
+#: menu/main.go:109
+#: menu/savestate.go:74
+msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
+msgstr ""
+
+#: menu/main.go:96
+#: menu/settings.go:332
+msgid "Settings"
 msgstr ""
 
 #: fun/string.go:198
@@ -223,6 +329,19 @@ msgstr ""
 
 #: fun/string.go:170
 msgid "Start"
+msgstr ""
+
+#: menu/savestate.go:145
+#: menu/settings.go:363
+msgid "Switch Save State"
+msgstr ""
+
+#: menu/settings.go:338
+msgid "Switch to Fullscreen Mode"
+msgstr ""
+
+#: menu/settings.go:340
+msgid "Switch to Windowed Mode"
 msgstr ""
 
 #: fun/string.go:96
@@ -269,8 +388,20 @@ msgstr ""
 msgid "Turkistan"
 msgstr ""
 
+#: menu/settings.go:358
+msgid "Volume: %v"
+msgstr ""
+
 #: playerstate/playerstate.go:264
 msgid "Without Cheating Of Course"
+msgstr ""
+
+#: menu/savestate.go:160
+msgid "X: %s"
+msgstr ""
+
+#: menu/savestate.go:165
+msgid "Y: %s"
 msgstr ""
 
 #: menu/credits.go:97
@@ -285,12 +416,76 @@ msgstr ""
 msgid "Z"
 msgstr ""
 
+#: sound/sound.go:234
+msgid "enumerating sounds"
+msgstr ""
+
 #: fun/string.go:157
 msgid "everything"
 msgstr ""
 
+#: level/level.go:787
+msgid "hashing level"
+msgstr ""
+
+#: aaaaxy/init.go:240
+msgid "initializing audio"
+msgstr ""
+
+#: aaaaxy/init.go:264
+msgid "initializing dumping"
+msgstr ""
+
+#: aaaaxy/init.go:256
+msgid "initializing input"
+msgstr ""
+
+#: aaaaxy/init.go:244
+msgid "initializing noise"
+msgstr ""
+
+#: level/level.go:766
+msgid "loading checkpoints"
+msgstr ""
+
+#: level/level.go:738
+msgid "loading level file"
+msgstr ""
+
+#: engine/world.go:212
+msgid "loading level"
+msgstr ""
+
 #: fun/string.go:151
 msgid "nothing"
+msgstr ""
+
+#: level/level.go:754
+msgid "parsing level data"
+msgstr ""
+
+#: sound/sound.go:247
+msgid "precaching %s"
+msgstr ""
+
+#: aaaaxy/init.go:236
+msgid "precaching credits"
+msgstr ""
+
+#: aaaaxy/init.go:260
+msgid "precaching engine"
+msgstr ""
+
+#: engine/world.go:217
+msgid "precaching entities"
+msgstr ""
+
+#: aaaaxy/init.go:252
+msgid "precaching images"
+msgstr ""
+
+#: aaaaxy/init.go:248
+msgid "precaching sounds"
 msgstr ""
 
 #: menu/credits.go:67

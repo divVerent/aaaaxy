@@ -32,6 +32,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/dontgc"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/vfs"
@@ -230,7 +231,7 @@ func Precache(s *splash.State) (splash.Status, error) {
 	if !*precacheSounds {
 		return splash.Continue, nil
 	}
-	status, err := s.Enter("enumerating sounds", "could not enumerate sounds", splash.Single(func() error {
+	status, err := s.Enter("enumerating sounds", locale.G.Get("enumerating sounds"), "could not enumerate sounds", splash.Single(func() error {
 		var err error
 		soundsToPrecache, err = vfs.ReadDir("sounds")
 		sort.Strings(soundsToPrecache)
@@ -243,7 +244,7 @@ func Precache(s *splash.State) (splash.Status, error) {
 		if !strings.HasSuffix(name, ".ogg") {
 			continue
 		}
-		status, err := s.Enter("precaching "+name, fmt.Sprintf("could not precache %v", name), splash.Single(func() error {
+		status, err := s.Enter(fmt.Sprintf("precaching %s", name), locale.G.Get("precaching %s", name), fmt.Sprintf("could not precache %v", name), splash.Single(func() error {
 			_, err := Load(name)
 			return err
 		}))

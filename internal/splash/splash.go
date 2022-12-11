@@ -49,6 +49,9 @@ type State struct {
 	// curStep is the currently executing step.
 	curStep string
 
+	// curStepName is the localized name of the currently executing step.
+	curStepName string
+
 	// curFraction is the current progress bar fraction.
 	curFraction float64
 }
@@ -80,7 +83,7 @@ func RunImmediately(errPrefix string, f func(s *State) (Status, error)) (Status,
 // step must be an unique string identifying what is being loaded.
 // f is allowed to call Enter too, but must return false, nil if its own Enter calls returned false.
 // f must repeat all Enter calls it does, but will never be called again once it returned true.
-func (s *State) Enter(step string, errPrefix string, f func(s *State) (Status, error)) (Status, error) {
+func (s *State) Enter(step string, stepName string, errPrefix string, f func(s *State) (Status, error)) (Status, error) {
 	if !*loadingScreen || s == nil {
 		return RunImmediately(errPrefix, f)
 	}
@@ -98,6 +101,7 @@ func (s *State) Enter(step string, errPrefix string, f func(s *State) (Status, e
 	if _, have := s.startTimes[step]; !have {
 		s.startTimes[step] = time.Now()
 		s.curStep = step
+		s.curStepName = stepName
 		frac := s.knownFractions[step]
 		if frac > s.curFraction {
 			s.curFraction = frac
@@ -126,7 +130,7 @@ func Single(f func() error) func(s *State) (Status, error) {
 
 // Current returns the current progress bar content.
 func (s *State) Current() (string, float64) {
-	return s.curStep, s.curFraction
+	return s.curStepName, s.curFraction
 }
 
 // ToFractions returns the init fraction map by step. This can be provided via ProvideFractions next time.

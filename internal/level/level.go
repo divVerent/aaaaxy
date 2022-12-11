@@ -735,7 +735,7 @@ func (l *Loader) Load() (*Level, error) {
 
 // LoadStepwise loads a level in steps.
 func (l *Loader) LoadStepwise(s *splash.State) (splash.Status, error) {
-	status, err := s.Enter("loading level file", "could not load level file", splash.Single(func() error {
+	status, err := s.Enter("loading level file", locale.G.Get("loading level file"), "could not load level file", splash.Single(func() error {
 		r, err := vfs.Load("maps", l.filename+".tmx")
 		if err != nil {
 			return fmt.Errorf("could not open map: %w", err)
@@ -751,7 +751,7 @@ func (l *Loader) LoadStepwise(s *splash.State) (splash.Status, error) {
 	if status != splash.Continue {
 		return status, err
 	}
-	status, err = s.Enter("parsing level data", "could not parse level data", splash.Single(func() error {
+	status, err = s.Enter("parsing level data", locale.G.Get("parsing level data"), "could not parse level data", splash.Single(func() error {
 		level, err := parseTmx(l.tmxData)
 		if err != nil {
 			return err
@@ -763,7 +763,7 @@ func (l *Loader) LoadStepwise(s *splash.State) (splash.Status, error) {
 		return status, err
 	}
 	if !l.skipCheckpointLocations {
-		status, err = s.Enter("loading checkpoints", "could not load checkpoint locations", splash.Single(func() error {
+		status, err = s.Enter("loading checkpoints", locale.G.Get("loading checkpoints"), "could not load checkpoint locations", splash.Single(func() error {
 			var err error
 			l.level.CheckpointLocations, err = l.level.LoadCheckpointLocations(l.filename)
 			if err != nil {
@@ -784,7 +784,7 @@ func (l *Loader) LoadStepwise(s *splash.State) (splash.Status, error) {
 			return status, err
 		}
 	}
-	status, err = s.Enter("hashing level", "could not hash level", splash.Single(func() error {
+	status, err = s.Enter("hashing level", locale.G.Get("hashing level"), "could not hash level", splash.Single(func() error {
 		var err error
 		l.level.Hash, err = hashstructure.Hash(l.level, hashstructure.FormatV2, nil)
 		return err

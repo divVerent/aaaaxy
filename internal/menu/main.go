@@ -83,7 +83,7 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	bgs := palette.EGA(palette.Black, 255)
 	fgn := palette.EGA(palette.LightGrey, 255)
 	bgn := palette.EGA(palette.DarkGrey, 255)
-	font.MenuBig.Draw(screen, locale.G.Get("AAAAXY"), m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
+	font.MenuBig.Draw(screen, "AAAAXY", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == Play {
 		fg, bg = fgs, bgs
