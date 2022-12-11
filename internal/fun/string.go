@@ -38,6 +38,9 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 	*/
 	tmpl := template.New("")
 	tmpl.Funcs(map[string]interface{}{
+		"BR": func() string {
+			return "\n"
+		},
 		"Year": func() string {
 			return time.Now().Format("2006")
 		},

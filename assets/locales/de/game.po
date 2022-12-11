@@ -18,10 +18,9 @@ msgid ""
 "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©"
 msgstr ""
 " !\"#$%&'()*+,-./0123456789:;<=>?"
-"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}"
-"~τπö¾©ÄÖÜäöüß"
+"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©ÄÖÜäöüß"
 
-#: fun/string.go:155 playerstate/playerstate.go:350
+#: fun/string.go:158 playerstate/playerstate.go:350
 msgid " and "
 msgstr " und "
 
@@ -29,7 +28,7 @@ msgstr " und "
 msgid "%s (%d/%d)"
 msgstr "%s (%d/%d)"
 
-#: fun/string.go:155 playerstate/playerstate.go:350
+#: fun/string.go:158 playerstate/playerstate.go:350
 msgid ", "
 msgstr ", "
 
@@ -69,11 +68,11 @@ msgstr "Alle Wege"
 msgid "All Secrets"
 msgstr "Alle Geheimnisse"
 
-#: fun/string.go:54
+#: fun/string.go:57
 msgid "Alofi"
 msgstr "Alofi"
 
-#: fun/string.go:58
+#: fun/string.go:61
 msgid "Anchorage"
 msgstr "Anchorage"
 
@@ -81,7 +80,7 @@ msgstr "Anchorage"
 msgid "Any%"
 msgstr "Any%"
 
-#: fun/string.go:100
+#: fun/string.go:103
 msgid "Auckland"
 msgstr "Auckland"
 
@@ -89,39 +88,39 @@ msgstr "Auckland"
 msgid "Auto (%s)"
 msgstr "Automatisch (%s)"
 
-#: fun/string.go:184
+#: fun/string.go:187
 msgid "B"
 msgstr "B"
 
-#: fun/string.go:181
+#: fun/string.go:184
 msgid "B/X"
 msgstr "B/X"
 
-#: fun/string.go:172
+#: fun/string.go:175
 msgid "Back"
 msgstr "Zurück"
 
-#: fun/string.go:168
+#: fun/string.go:171
 msgid "Backspace"
 msgstr "Rückschritt"
 
-#: fun/string.go:52
+#: fun/string.go:55
 msgid "Baker Island"
 msgstr "Bakerinsel"
 
-#: fun/string.go:92
+#: fun/string.go:95
 msgid "Beijing"
 msgstr "Peking"
 
-#: fun/string.go:78
+#: fun/string.go:81
 msgid "Berlin"
 msgstr "Berlin"
 
-#: fun/string.go:88
+#: fun/string.go:91
 msgid "Bishkek"
 msgstr "Bischkek"
 
-#: fun/string.go:107
+#: fun/string.go:110
 msgid "Boston"
 msgstr "Boston"
 
@@ -133,7 +132,7 @@ msgstr "Build: %s"
 msgid "Cheat%"
 msgstr "Schummel%"
 
-#: fun/string.go:64
+#: fun/string.go:67
 msgid "Chicago"
 msgstr "Chicago"
 
@@ -141,15 +140,15 @@ msgstr "Chicago"
 msgid "Credits"
 msgstr "Abspann"
 
-#: fun/string.go:187
+#: fun/string.go:190
 msgid "Ctrl/Shift"
 msgstr "Ctrl/Shift"
 
-#: fun/string.go:62
+#: fun/string.go:65
 msgid "Edmonton"
 msgstr "Edmonton"
 
-#: fun/string.go:196
+#: fun/string.go:199
 msgid "Enter"
 msgstr "Enter"
 
@@ -163,11 +162,11 @@ msgstr ""
 "konnte den Spielstand nicht speichern:\n"
 "%v"
 
-#: fun/string.go:166
+#: fun/string.go:169
 msgid "Escape"
 msgstr "Escape"
 
-#: fun/string.go:72
+#: fun/string.go:75
 msgid "Fernando de Noronha"
 msgstr "Fernando de Noronha"
 
@@ -187,11 +186,11 @@ msgstr "Für Software-Lizenzen"
 msgid "Graphics: %v"
 msgstr "Grafik: %v"
 
-#: fun/string.go:68
+#: fun/string.go:71
 msgid "Halifax"
 msgstr "Halifax"
 
-#: fun/string.go:90
+#: fun/string.go:93
 msgid "Hanoi"
 msgstr "Hanoi"
 
@@ -199,7 +198,7 @@ msgstr "Hanoi"
 msgid "High"
 msgstr "Hoch"
 
-#: fun/string.go:56
+#: fun/string.go:59
 msgid "Honolulu"
 msgstr "Honolulu"
 
@@ -207,11 +206,11 @@ msgstr "Honolulu"
 msgid "Impossible"
 msgstr "Unmöglich"
 
-#: fun/string.go:82
+#: fun/string.go:85
 msgid "Istanbul"
 msgstr "Istanbul"
 
-#: fun/string.go:104
+#: fun/string.go:107
 msgid "Kiritimati"
 msgstr "Kiritimati"
 
@@ -219,7 +218,7 @@ msgstr "Kiritimati"
 msgid "Level Version: %d"
 msgstr "Level-Version: %d"
 
-#: fun/string.go:76
+#: fun/string.go:79
 msgid "London"
 msgstr "London"
 
@@ -243,7 +242,7 @@ msgstr "Maximal"
 msgid "Medium"
 msgstr "Mittel"
 
-#: fun/string.go:66
+#: fun/string.go:69
 msgid "New York"
 msgstr "New York"
 
@@ -271,11 +270,11 @@ msgstr "Ohne Teleportieren"
 msgid "None"
 msgstr "Keine"
 
-#: fun/string.go:102
+#: fun/string.go:105
 msgid "Nuku'alofa"
 msgstr "Nuku'alofa"
 
-#: fun/string.go:70
+#: fun/string.go:73
 msgid "Nuuk"
 msgstr "Nuuk"
 
@@ -287,11 +286,11 @@ msgstr "Wähl-dir-was"
 msgid "Play"
 msgstr "Spielen"
 
-#: fun/string.go:74
+#: fun/string.go:77
 msgid "Ponta Delgada"
 msgstr "Ponta Delgada"
 
-#: fun/string.go:98
+#: fun/string.go:101
 msgid "Port Moresby"
 msgstr "Port Moresby"
 
@@ -331,7 +330,7 @@ msgstr "Einstellungen zurücksetzen"
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: fun/string.go:60
+#: fun/string.go:63
 msgid "San Francisco"
 msgstr "San Francisco"
 
@@ -343,15 +342,15 @@ msgstr "Punkte: {{Score}}{{SpeedrunCategoriesShort}} | Zeit: {{GameTime}}"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: fun/string.go:198
+#: fun/string.go:201
 msgid "Shift"
 msgstr "Shift"
 
-#: fun/string.go:193
+#: fun/string.go:196
 msgid "Shift/E/Tab"
 msgstr "Shift/E/Tab"
 
-#: fun/string.go:170
+#: fun/string.go:173
 msgid "Start"
 msgstr "Start"
 
@@ -367,15 +366,15 @@ msgstr "Auf Vollbildmodus wechseln"
 msgid "Switch to Windowed Mode"
 msgstr "Auf Fenstermodus wechseln"
 
-#: fun/string.go:96
+#: fun/string.go:99
 msgid "Sydney"
 msgstr "Sydney"
 
-#: fun/string.go:84
+#: fun/string.go:87
 msgid "Tehran"
 msgstr "Teheran"
 
-#: fun/string.go:80
+#: fun/string.go:83
 msgid "Tel Aviv"
 msgstr "Tel Aviv"
 
@@ -383,23 +382,23 @@ msgstr "Tel Aviv"
 msgid "Thank You!"
 msgstr "Danke!"
 
-#: fun/string.go:147
+#: fun/string.go:150
 msgid "The Cleats"
 msgstr "Die Stollen"
 
-#: fun/string.go:144
+#: fun/string.go:147
 msgid "The Coil"
 msgstr "Der Elektromagnet"
 
-#: fun/string.go:138
+#: fun/string.go:141
 msgid "The Gloves"
 msgstr "Die Handschuhe"
 
-#: fun/string.go:141
+#: fun/string.go:144
 msgid "The Remote"
 msgstr "Die Fernbedienung"
 
-#: fun/string.go:94
+#: fun/string.go:97
 msgid "Tokyo"
 msgstr "Tokio"
 
@@ -407,7 +406,7 @@ msgstr "Tokio"
 msgid "Try Next"
 msgstr "Versuche als Nächstes"
 
-#: fun/string.go:86
+#: fun/string.go:89
 msgid "Turkistan"
 msgstr "Türkistan"
 
@@ -443,7 +442,7 @@ msgstr "Deine Speedrun-Kategorien"
 msgid "Your Time"
 msgstr "Deine Zeit"
 
-#: fun/string.go:190
+#: fun/string.go:193
 msgid "Z"
 msgstr "Z"
 
@@ -451,11 +450,11 @@ msgstr "Z"
 msgid "enumerating sounds"
 msgstr "Finde Sound-Effekte"
 
-#: fun/string.go:157
+#: fun/string.go:160
 msgid "everything"
 msgstr "alle"
 
-#: level/level.go:787
+#: level/level.go:789
 msgid "hashing level"
 msgstr "Hashe Level"
 
@@ -475,11 +474,11 @@ msgstr "Initialisiere Eingabe"
 msgid "initializing noise"
 msgstr "Initialisiere Rauschen"
 
-#: level/level.go:766
+#: level/level.go:768
 msgid "loading checkpoints"
 msgstr "Lade Checkpoints"
 
-#: level/level.go:738
+#: level/level.go:740
 msgid "loading level file"
 msgstr "Lade Leveldatei"
 
@@ -487,11 +486,11 @@ msgstr "Lade Leveldatei"
 msgid "loading level"
 msgstr "Lade Level"
 
-#: fun/string.go:151
+#: fun/string.go:154
 msgid "nothing"
 msgstr "keine"
 
-#: level/level.go:754
+#: level/level.go:756
 msgid "parsing level data"
 msgstr "Lese Level"
 

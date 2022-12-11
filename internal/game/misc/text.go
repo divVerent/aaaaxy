@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"image"
 	"image/color"
-	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -83,7 +82,6 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 		}
 		return nil, err
 	}
-	txt = strings.ReplaceAll(txt, "  ", "\n")
 	bounds := fnt.BoundString(txt)
 	useMemImages := *memImagesForStaticText
 	if ps != nil {

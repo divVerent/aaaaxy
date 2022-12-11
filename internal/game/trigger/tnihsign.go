@@ -16,7 +16,6 @@ package trigger
 
 import (
 	"fmt"
-	"strings"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -80,7 +79,7 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	}
 	t.Entity.Orientation = m.Identity()
 	w.SetZIndex(t.Entity, constants.TnihSignZ)
-	t.Text = strings.ReplaceAll(propmap.ValueP(sp.Properties, "text", "", &parseErr), "  ", "\n")
+	t.Text = propmap.ValueP(sp.Properties, "text", "", &parseErr)
 	t.Sound, err = sound.Load("tnihsign.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load tnihsign sound: %w", err)

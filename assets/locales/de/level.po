@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 08:35-0500\n"
+"POT-Creation-Date: 2022-12-11 17:18-0500\n"
 "PO-Revision-Date: 2022-12-11 16:44-0500\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
 "Language-Team: Rudolf Polzer <rpolzer@google.com>\n"
@@ -26,9 +26,10 @@ msgid "Failure was never an option."
 msgstr "Versagen war nie eine Alternative."
 
 #: assets/maps/level.tmx:601
-msgid "Don't children like to say, \"Are we there yet?\" Press {{ExitButton}}."
+msgid ""
+"Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Sagen die Kinder nicht immer, \"Sind wir schon da?\"  Drücke {{ExitButton}}."
+"Sagen die Kinder nicht immer, \"Sind wir schon da?\"{{BR}}Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx:607
 msgid "Sometimes the angle of looking at things is all that matters."
@@ -143,11 +144,11 @@ msgstr "Es gibt keine Parallelen zu dieser Sache hier."
 
 #: assets/maps/level.tmx:985
 msgid ""
-"Welcome to the top of the mountain. If you're alone, all this was just a "
-"waste of time. Press {{ExitButton}}."
+"Welcome to the top of the mountain.{{BR}}If you're alone, all this was just "
+"a waste of time.{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Willkommen am Gipfel des Berges. Wenn du alleine bist, war dies alles nur "
-"Zeitverschwendung.  Drücke {{ExitButton}}."
+"Willkommen am Gipfel des Berges.{{BR}}Wenn du alleine bist, war dies alles "
+"nur Zeitverschwendung.{{BR}}Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx:991
 msgid "The shortest path can be the one that takes longest."
@@ -198,11 +199,11 @@ msgid "Choose Wisely"
 msgstr ""
 
 #: assets/maps/level.tmx:1121
-msgid "Pick this path?"
+msgid "Pick{{BR}}this path?"
 msgstr ""
 
 #: assets/maps/level.tmx:1129
-msgid "Pick that path?"
+msgid "Pick{{BR}}that path?"
 msgstr ""
 
 #: assets/maps/level.tmx:1140
@@ -347,7 +348,8 @@ msgstr ""
 
 #: assets/maps/level.tmx:5273
 msgid ""
-"Hilbert's Dotel Welcome! 1) Check in 2) Take your keys 3) Esc for checkout"
+"Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your "
+"keys{{BR}}3) Esc for checkout"
 msgstr ""
 
 #: assets/maps/level.tmx:5284
@@ -355,7 +357,7 @@ msgid "Hilbert's Dotel"
 msgstr ""
 
 #: assets/maps/level.tmx:5375
-msgid "I ran out of ... rooms"
+msgid "I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"
 msgstr ""
 
 #: assets/maps/level.tmx:5428
@@ -367,7 +369,7 @@ msgid "Shepard Tone"
 msgstr ""
 
 #: assets/maps/level.tmx:5661
-msgid "Play ECED to open. No Trololos!"
+msgid "Play ECED{{BR}}to open.{{BR}}No Trololos!"
 msgstr ""
 
 #: assets/maps/level.tmx:5669
@@ -403,7 +405,7 @@ msgid "Sometimes all you need is a little opening."
 msgstr ""
 
 #: assets/maps/level.tmx:5765
-msgid "I am so happy to finally be back home. Press {{ExitButton}}."
+msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:5790
@@ -419,7 +421,7 @@ msgid "The Axiom of Choiche"
 msgstr ""
 
 #: assets/maps/level.tmx:5860
-msgid "Trololololol, lololol, lololol, Oh ha ha ha oh!"
+msgid "Trololololol, lololol, lololol,{{BR}}Oh ha ha ha oh!"
 msgstr ""
 
 #: assets/maps/level.tmx:5871
@@ -439,7 +441,7 @@ msgid "Listen to the spell of the magical turtle and you may proceed."
 msgstr ""
 
 #: assets/maps/level.tmx:5968
-msgid "Don't Look Up!"
+msgid "Don't{{BR}}Look Up!"
 msgstr ""
 
 #: assets/maps/level.tmx:5980
@@ -451,7 +453,7 @@ msgid "Some things you simply can't see right away."
 msgstr ""
 
 #: assets/maps/level.tmx:6003
-msgid "Curiosity killed the Carl - no, the cat. Press {{ExitButton}}."
+msgid "Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:6016 assets/maps/level.tmx:6024
@@ -466,7 +468,7 @@ msgid "You now can stand on platforms!"
 msgstr ""
 
 #: assets/maps/level.tmx:6106
-msgid "The Cleats Hint: no head bumping!"
+msgid "The Cleats{{BR}}Hint: no head bumping!"
 msgstr ""
 
 #: assets/maps/level.tmx:6132
@@ -522,7 +524,7 @@ msgid "You can now push them away!"
 msgstr ""
 
 #: assets/maps/level.tmx:6240
-msgid "The Coil (hold {{ActionButton}}) Hint: no littering!"
+msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
 msgstr ""
 
 #: assets/maps/level.tmx:6261
@@ -530,7 +532,7 @@ msgid "You can now grab and carry them!"
 msgstr ""
 
 #: assets/maps/level.tmx:6266
-msgid "The Gloves (hold {{ActionButton}}) Hint: no speeding!"
+msgid "The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"
 msgstr ""
 
 #: assets/maps/level.tmx:6334
@@ -575,8 +577,8 @@ msgstr ""
 
 #: assets/maps/level.tmx:6445
 msgid ""
-"We all wait for the special Tetris block, special Tetris block, special "
-"Tetris block."
+"We all wait for the special Tetris block,{{BR}}special Tetris block,{{BR}}"
+"special Tetris block."
 msgstr ""
 
 #: assets/maps/level.tmx:6575
@@ -608,7 +610,7 @@ msgid "I Like To Move It Move It"
 msgstr ""
 
 #: assets/maps/level.tmx:6771
-msgid "Hello, World!"
+msgid "Hello,{{BR}}World!"
 msgstr ""
 
 #: assets/maps/level.tmx:6800
@@ -620,7 +622,7 @@ msgid "Switching it up"
 msgstr ""
 
 #: assets/maps/level.tmx:6882
-msgid "He who waits, retries... #DGR"
+msgid "He who waits,{{BR}}retries... #DGR"
 msgstr ""
 
 #: assets/maps/level.tmx:6926
@@ -640,11 +642,11 @@ msgid "Same procedure as last year?"
 msgstr ""
 
 #: assets/maps/level.tmx:6957
-msgid "Just put the thing on the thing and the other one too, already!"
+msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
 msgstr ""
 
 #: assets/maps/level.tmx:7335
-msgid "If you don't look ahead, you'll end up dead- ended."
+msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
 msgstr ""
 
 #: assets/maps/level.tmx:7482
@@ -652,11 +654,11 @@ msgid "Gotta carry it out"
 msgstr ""
 
 #: assets/maps/level.tmx:7533
-msgid "You are in a maze of twisted little passages, all alike."
+msgid "You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
 msgstr ""
 
 #: assets/maps/level.tmx:7555
-msgid "A hollow voice says 'fool'. Press {{ExitButton}}."
+msgid "A hollow voice says 'fool'.{{BR}}Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:7594
@@ -664,7 +666,7 @@ msgid "If walking alone won't do, try some exercise."
 msgstr ""
 
 #: assets/maps/level.tmx:7632
-msgid "Every great adventure started with the line \"I know a shortcut\""
+msgid "Every great adventure started with the line{{BR}}\"I know a shortcut\""
 msgstr ""
 
 #: assets/maps/level.tmx:7763
@@ -728,7 +730,7 @@ msgid "Those who walk, fall."
 msgstr ""
 
 #: assets/maps/level.tmx:8453
-msgid "Well, it's actually surprisingly simple."
+msgid "Well, it's actually{{BR}}surprisingly simple."
 msgstr ""
 
 #: assets/maps/level.tmx:8486
@@ -741,12 +743,13 @@ msgstr ""
 
 #: assets/maps/level.tmx:8656
 msgid ""
-"And... the floor transforms into shiny yet deadly coins. Without the coins. "
-"That's unfortunate."
+"And... the floor transforms into shiny yet deadly coins.{{BR}}Without the "
+"coins.{{BR}}That's unfortunate."
 msgstr ""
 
 #: assets/maps/level.tmx:9205
-msgid "I pressed the impossible button and all I got was this lousy message."
+msgid ""
+"I pressed the impossible button and{{BR}}all I got was this lousy message."
 msgstr ""
 
 #: assets/maps/level.tmx:9226
@@ -758,23 +761,23 @@ msgid "You can now disable the force fields."
 msgstr ""
 
 #: assets/maps/level.tmx:9286
-msgid "The Remote (hold {{ActionButton}})"
+msgid "The Remote{{BR}}(hold {{ActionButton}})"
 msgstr ""
 
 #: assets/maps/level.tmx:9313
-msgid "Do you have what it takes?"
+msgid "Do you have{{BR}}what it takes?"
 msgstr ""
 
 #: assets/maps/level.tmx:9323
-msgid "You think you can do it?"
+msgid "You think{{BR}}you can do it?"
 msgstr ""
 
 #: assets/maps/level.tmx:9332
-msgid "Show me what you've got"
+msgid "Show me{{BR}}what you've got"
 msgstr ""
 
 #: assets/maps/level.tmx:9341
-msgid "And you didn't forget the remote?"
+msgid "And you didn't{{BR}}forget the remote?"
 msgstr ""
 
 #: assets/maps/level.tmx:9359
@@ -790,27 +793,27 @@ msgid "WARNING"
 msgstr ""
 
 #: assets/maps/level.tmx:9383
-msgid "RISK OF ELECTRIC SHOCK"
+msgid "RISK OF{{BR}}ELECTRIC SHOCK"
 msgstr ""
 
 #: assets/maps/level.tmx:9391
-msgid "DO NOT LOOK INTO LASER WITH REMAINING EYE"
+msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
 msgstr ""
 
 #: assets/maps/level.tmx:9399
-msgid "LEGAL WAIVER"
+msgid "LEGAL{{BR}}WAIVER"
 msgstr ""
 
 #: assets/maps/level.tmx:9407
-msgid "NO WARRANTY"
+msgid "NO{{BR}}WARRANTY"
 msgstr ""
 
 #: assets/maps/level.tmx:9415
-msgid "HIGH VOLTAGE"
+msgid "HIGH{{BR}}VOLTAGE"
 msgstr ""
 
 #: assets/maps/level.tmx:9423
-msgid "YOU HAVE BEEN WARNED"
+msgid "YOU HAVE{{BR}}BEEN WARNED"
 msgstr ""
 
 #: assets/maps/level.tmx:9431
@@ -818,7 +821,7 @@ msgid "PROPOSITION 65"
 msgstr ""
 
 #: assets/maps/level.tmx:9440
-msgid "And now you've learned not to touch the hot stove."
+msgid "And now you've learned{{BR}}not to touch the hot stove."
 msgstr ""
 
 #: assets/maps/level.tmx:9451
@@ -826,17 +829,17 @@ msgid "The Butterfly Effect"
 msgstr ""
 
 #: assets/maps/level.tmx:9537
-msgid "What we've done before may impact what we can do next."
+msgid "What we've done before{{BR}}may impact what we can do next."
 msgstr ""
 
 #: assets/maps/level.tmx:9594
 msgid ""
-"If you're only focusing on right now, you won't have enough for later. Press "
-"{{ExitButton}}."
+"If you're only focusing on right now,{{BR}}you won't have enough for later."
+"{{BR}}Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:9600
-msgid "Moving forward may require making the most of what you've got."
+msgid "Moving forward may require{{BR}} making the most of what you've got."
 msgstr ""
 
 #: assets/maps/level.tmx:9784
@@ -852,7 +855,7 @@ msgid "Kaaaart Race"
 msgstr ""
 
 #: assets/maps/level.tmx:9881
-msgid "Those who haven't learned the trick must take a little pit stop."
+msgid "Those who haven't learned the trick{{BR}}must take a little pit stop."
 msgstr ""
 
 #: assets/maps/level.tmx:9899
@@ -864,7 +867,7 @@ msgid "Carried enough?"
 msgstr ""
 
 #: assets/maps/level.tmx:10201
-msgid "T r a s h C h u t e"
+msgid "T{{BR}}r{{BR}}a{{BR}}s{{BR}}h{{BR}}{{BR}}C{{BR}}h{{BR}}u{{BR}}t{{BR}}e"
 msgstr ""
 
 #: assets/maps/level.tmx:10274
@@ -888,13 +891,13 @@ msgid "No"
 msgstr ""
 
 #: assets/maps/level.tmx:10595
-msgid "Why did you even lie? Press {{ExitButton}}."
+msgid "Why did you even lie?{{BR}}Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:10725
 msgid ""
-"The definition of insanity is doing the same thing over and over again, but "
-"expecting different results."
+"The definition of insanity is doing the same thing over and over again,{{BR}}"
+"but expecting different results."
 msgstr ""
 
 #: assets/maps/level.tmx:10802
@@ -910,7 +913,7 @@ msgid "deja Vu"
 msgstr ""
 
 #: assets/maps/level.tmx:10879
-msgid "Try again"
+msgid "Try{{BR}}again"
 msgstr ""
 
 #: assets/maps/level.tmx:10890
@@ -946,7 +949,7 @@ msgid "Still got it?"
 msgstr ""
 
 #: assets/maps/level.tmx:11225
-msgid "Small cars only"
+msgid "Small cars{{BR}}only"
 msgstr ""
 
 #: assets/maps/level.tmx:11238
@@ -962,11 +965,11 @@ msgid "Welcome to {{BigCity}}."
 msgstr ""
 
 #: assets/maps/level.tmx:11338
-msgid "Crime doesn't pay. Press {{ExitButton}}."
+msgid "Crime doesn't pay.{{BR}}Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:11361
-msgid "Dude! That's MY car!"
+msgid "Dude!{{BR}}That's{{BR}}MY car!"
 msgstr ""
 
 #: assets/maps/level.tmx:11380
@@ -1006,7 +1009,7 @@ msgid "Get it back!"
 msgstr ""
 
 #: assets/maps/level.tmx:11830
-msgid "y tho? Press {{ExitButton}}."
+msgid "y tho?{{BR}}Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:11872
@@ -1026,12 +1029,13 @@ msgid "You just need to push away what you don't need."
 msgstr ""
 
 #: assets/maps/level.tmx:12055
-msgid "Looking in every nook and cranny sometimes yields unexpected gains."
+msgid ""
+"Looking in every nook and cranny{{BR}}sometimes yields unexpected gains."
 msgstr ""
 
 #: assets/maps/level.tmx:12061
 msgid ""
-"If you come back to a familiar place, it may no longer look the way you "
+"If you come back to a familiar place,{{BR}}it may no longer look the way you "
 "remember it."
 msgstr ""
 
@@ -1049,7 +1053,8 @@ msgstr ""
 
 #: assets/maps/level.tmx:12208
 msgid ""
-"Looking at things and observing how they change is what brought us science."
+"Looking at things and observing how they change{{BR}}is what brought us "
+"science."
 msgstr ""
 
 #: assets/maps/level.tmx:12250
@@ -1065,7 +1070,7 @@ msgid "The Cube"
 msgstr ""
 
 #: assets/maps/level.tmx:12317
-msgid "Good news. I figured out why she wanted you gone."
+msgid "Good news.{{BR}}I figured out why she wanted you gone."
 msgstr ""
 
 #: assets/maps/level.tmx:12362
@@ -1077,7 +1082,7 @@ msgid "Not every shortcut works."
 msgstr ""
 
 #: assets/maps/level.tmx:12468
-msgid "The slow and slothful deserve... nothing."
+msgid "The slow and slothful deserve...{{BR}}nothing."
 msgstr ""
 
 #: assets/maps/level.tmx:12487
@@ -1089,7 +1094,7 @@ msgid "Those who are not inattentive get trolled."
 msgstr ""
 
 #: assets/maps/level.tmx:13045
-msgid "If you don't know who you are, you don't know where to go."
+msgid "If you don't know who you are,{{BR}}you don't know where to go."
 msgstr ""
 
 #: assets/maps/level.tmx:13131
@@ -1117,7 +1122,7 @@ msgid "Any regrets?"
 msgstr ""
 
 #: assets/maps/level.tmx:13271 assets/maps/level.tmx:17763
-msgid "E X I T"
+msgid "E{{BR}}X{{BR}}I{{BR}}T"
 msgstr ""
 
 #: assets/maps/level.tmx:13443
@@ -1153,7 +1158,7 @@ msgid "The well prepared will earn their reward."
 msgstr ""
 
 #: assets/maps/level.tmx:13899
-msgid "Platform is key."
+msgid "Platform{{BR}}is key."
 msgstr ""
 
 #: assets/maps/level.tmx:13975
@@ -1191,8 +1196,8 @@ msgstr ""
 
 #: assets/maps/level.tmx:14534
 msgid ""
-"The Enrichment Center regrets to inform you that the Super Gravitron is "
-"currently out of order. Press {{ExitButton}}."
+"The Enrichment Center regrets to inform you that{{BR}}the Super Gravitron is "
+"currently out of order.{{BR}}Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:15039
@@ -1200,7 +1205,7 @@ msgid "Viability Voodoo"
 msgstr ""
 
 #: assets/maps/level.tmx:15067
-msgid "UNDER CONSTRUCTION"
+msgid "UNDER{{BR}}CONSTRUCTION"
 msgstr ""
 
 #: assets/maps/level.tmx:15081
@@ -1232,19 +1237,19 @@ msgid "Hah! Nobody will ever get this one."
 msgstr ""
 
 #: assets/maps/level.tmx:15983
-msgid "You have found a shiny trinket! One out of One."
+msgid "You have found a shiny trinket!{{BR}}One out of One."
 msgstr ""
 
 #: assets/maps/level.tmx:16395
-msgid "W A T"
+msgid "W{{BR}}A{{BR}}T"
 msgstr ""
 
 #: assets/maps/level.tmx:16403
-msgid "Just kiddin'"
+msgid "Just{{BR}}kiddin'"
 msgstr ""
 
 #: assets/maps/level.tmx:16680
-msgid "I hope you took the small one..."
+msgid "I hope you took{{BR}}the small one..."
 msgstr ""
 
 #: assets/maps/level.tmx:16707
@@ -1256,7 +1261,7 @@ msgid "Those who don't, don't."
 msgstr ""
 
 #: assets/maps/level.tmx:16719
-msgid "The path to success is littered with... litter."
+msgid "The path to success is littered with...{{BR}}litter."
 msgstr ""
 
 #: assets/maps/level.tmx:16725
@@ -1264,7 +1269,7 @@ msgid "Getting up is half the fun."
 msgstr ""
 
 #: assets/maps/level.tmx:16782
-msgid "If stuck, press {{ExitButton}}."
+msgid "If stuck,{{BR}}press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx:16794
@@ -1292,7 +1297,7 @@ msgid "Stepping away from the problem can help resolve it."
 msgstr ""
 
 #: assets/maps/level.tmx:17479
-msgid "Jumpers lose platforms. Don't be a jumper."
+msgid "Jumpers lose platforms.{{BR}}Don't be a jumper."
 msgstr ""
 
 #: assets/maps/level.tmx:17556
@@ -1309,8 +1314,8 @@ msgstr ""
 
 #: assets/maps/level.tmx:17891
 msgid ""
-"Let's put weird and weird together, and make it even weirder! Weird, weird "
-"space is super-weird!"
+"Let's put weird and weird together,{{BR}}and make it even weirder!{{BR}}"
+"Weird, weird space{{BR}}is super-weird!"
 msgstr ""
 
 #: assets/maps/level.tmx:18112

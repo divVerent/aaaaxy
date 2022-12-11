@@ -598,7 +598,7 @@
     <property name="reached_from" type="object" value="280"/>
     <property name="required_orientation" value="WN"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Don't children like to say, &quot;Are we there yet?&quot;  Press {{ExitButton}}."/>
+    <property name="text" value="Don't children like to say, &quot;Are we there yet?&quot;{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="51" gid="312" x="8128" y="6832" width="32" height="32">
@@ -982,7 +982,7 @@
    <properties>
     <property name="reached_from" type="object" value="249"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Welcome to the top of the mountain.  If you're alone, all this was just a waste of time.  Press {{ExitButton}}."/>
+    <property name="text" value="Welcome to the top of the mountain.{{BR}}If you're alone, all this was just a waste of time.{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="245" gid="312" x="896" y="5536" width="32" height="32">
@@ -1118,7 +1118,7 @@
   </object>
   <object id="298" type="Text" x="4240" y="6784" width="80" height="64">
    <properties>
-    <property name="text" value="Pick  this path?"/>
+    <property name="text" value="Pick{{BR}}this path?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -1126,7 +1126,7 @@
   </object>
   <object id="299" type="Text" x="4240" y="6912" width="80" height="64">
    <properties>
-    <property name="text" value="Pick  that path?"/>
+    <property name="text" value="Pick{{BR}}that path?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -5270,7 +5270,7 @@
   </object>
   <object id="1172" type="Text" x="4272" y="5088" width="160" height="112">
    <properties>
-    <property name="text" value="Hilbert's Dotel    Welcome!    1) Check in  2) Take your keys  3) Esc for checkout"/>
+    <property name="text" value="Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your keys{{BR}}3) Esc for checkout"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -5372,7 +5372,7 @@
   </object>
   <object id="1189" type="Text" x="4272" y="5376" width="160" height="96">
    <properties>
-    <property name="text" value="I ran out of ...        rooms"/>
+    <property name="text" value="I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -5658,7 +5658,7 @@
   </object>
   <object id="1243" type="Text" x="4256" y="5680" width="112" height="64">
    <properties>
-    <property name="text" value="Play ECED  to open.  No Trololos!"/>
+    <property name="text" value="Play ECED{{BR}}to open.{{BR}}No Trololos!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -5762,7 +5762,7 @@
    <properties>
     <property name="reached_from" type="object" value="1284"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="I am so happy to finally be back home.  Press {{ExitButton}}."/>
+    <property name="text" value="I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="1282" name="ShepardDontPunish" gid="297" x="4288" y="6064" width="48" height="16">
@@ -5857,7 +5857,7 @@
   </object>
   <object id="1302" type="Text" x="4240" y="6192" width="144" height="32">
    <properties>
-    <property name="text" value="Trololololol, lololol, lololol,  Oh ha ha ha oh!"/>
+    <property name="text" value="Trololololol, lololol, lololol,{{BR}}Oh ha ha ha oh!"/>
     <property name="text_bg" type="color" value="#ffffff55"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Small"/>
@@ -5965,7 +5965,7 @@
   </object>
   <object id="1364" type="Text" x="160" y="102" width="160" height="32">
    <properties>
-    <property name="text" value="Don't  Look Up!"/>
+    <property name="text" value="Don't{{BR}}Look Up!"/>
     <property name="text_bg" type="color" value="#ffaa0000"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6000,7 +6000,7 @@
    <properties>
     <property name="reached_from" type="object" value="1408"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Curiosity killed the Carl - no, the cat.  Press {{ExitButton}}."/>
+    <property name="text" value="Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="1408" name="curiosity_killed_the_carl" type="Checkpoint" x="64" y="8128" width="352" height="32">
@@ -6103,7 +6103,7 @@
   <object id="1429" name="StandFailWarp2" gid="295" x="528" y="6624" width="48" height="16"/>
   <object id="1430" type="Text" x="688" y="6704" width="192" height="48">
    <properties>
-    <property name="text" value="The Cleats  Hint: no head bumping!"/>
+    <property name="text" value="The Cleats{{BR}}Hint: no head bumping!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6237,7 +6237,7 @@
   </object>
   <object id="1479" type="Text" x="7808" y="7168" width="192" height="48">
    <properties>
-    <property name="text" value="The Coil  (hold {{ActionButton}})  Hint: no littering!"/>
+    <property name="text" value="The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6263,7 +6263,7 @@
   </object>
   <object id="1494" type="Text" x="608" y="416" width="192" height="48">
    <properties>
-    <property name="text" value="The Gloves  (hold {{ActionButton}})  Hint: no speeding!"/>
+    <property name="text" value="The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6442,7 +6442,7 @@
   <object id="1582" gid="312" x="488" y="7520" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1545"/>
-    <property name="text" value="We all wait for the special Tetris block,  special Tetris block,  special Tetris block."/>
+    <property name="text" value="We all wait for the special Tetris block,{{BR}}special Tetris block,{{BR}}special Tetris block."/>
    </properties>
   </object>
   <object id="1583" type="Text" x="448" y="7760" width="64" height="32">
@@ -6768,7 +6768,7 @@
   </object>
   <object id="1765" name="HelloWorldText" type="Text" x="8032" y="6928" width="64" height="48">
    <properties>
-    <property name="text" value="Hello,  World!"/>
+    <property name="text" value="Hello,{{BR}}World!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -6879,7 +6879,7 @@
   <object id="1806" gid="320" x="7472" y="7232" width="32" height="32"/>
   <object id="1807" type="Text" x="7296" y="7344" width="160" height="32">
    <properties>
-    <property name="text" value="He who waits,  retries... #DGR"/>
+    <property name="text" value="He who waits,{{BR}}retries... #DGR"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -6954,7 +6954,7 @@
   </object>
   <object id="1819" type="Text" x="7280" y="7248" width="208" height="32">
    <properties>
-    <property name="text" value="Just put the thing on the thing  and the other one too, already!"/>
+    <property name="text" value="Just put the thing on the thing{{BR}}and the other one too, already!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -7332,7 +7332,7 @@
   <object id="2220" gid="312" x="6384" y="7024" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1793"/>
-    <property name="text" value="If you don't look ahead, you'll end up dead-  ended."/>
+    <property name="text" value="If you don't look ahead, you'll end up dead-{{BR}}ended."/>
    </properties>
   </object>
   <object id="2221" gid="306" x="6304" y="7168" width="32" height="32"/>
@@ -7530,7 +7530,7 @@
   </object>
   <object id="2324" name="XyzzyCloser" type="SwitchableText" x="1008" y="32" width="128" height="112">
    <properties>
-    <property name="text" value="You are in a  maze of twisted  little passages,  all alike."/>
+    <property name="text" value="You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Mono"/>
@@ -7552,7 +7552,7 @@
   <object id="2329" gid="312" x="1120" y="128" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="2325"/>
-    <property name="text" value="A hollow voice says 'fool'.  Press {{ExitButton}}."/>
+    <property name="text" value="A hollow voice says 'fool'.{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="2330" gid="309" x="1072" y="304" width="16" height="16"/>
@@ -7629,7 +7629,7 @@
   <object id="2368" gid="312" x="1664" y="288" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4108"/>
-    <property name="text" value="Every great adventure started with the line  &quot;I know a shortcut&quot;"/>
+    <property name="text" value="Every great adventure started with the line{{BR}}&quot;I know a shortcut&quot;"/>
    </properties>
   </object>
   <object id="2369" gid="313" x="1296" y="176" width="16" height="16"/>
@@ -8450,7 +8450,7 @@
   <object id="3152" gid="309" x="3744" y="2352" width="16" height="16"/>
   <object id="3153" type="Text" x="3784" y="2456" width="160" height="64">
    <properties>
-    <property name="text" value="Well, it's actually  surprisingly simple."/>
+    <property name="text" value="Well, it's actually{{BR}}surprisingly simple."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -8653,7 +8653,7 @@
   <object id="3332" gid="312" x="2992" y="3888" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="3186"/>
-    <property name="text" value="And... the floor transforms into shiny yet deadly coins.  Without the coins.  That's unfortunate."/>
+    <property name="text" value="And... the floor transforms into shiny yet deadly coins.{{BR}}Without the coins.{{BR}}That's unfortunate."/>
    </properties>
   </object>
   <object id="3333" name="ShinyYetDeadlyCoins" gid="299" x="3008" y="3824" width="16" height="32">
@@ -9202,7 +9202,7 @@
   <object id="3812" name="TowerImpossibleWinWarp" gid="296" x="3344" y="2432" width="64" height="16"/>
   <object id="3813" name="TowerImpossibleWin" type="SwitchableText" x="3200" y="2480" width="352" height="32">
    <properties>
-    <property name="text" value="I pressed the impossible button and  all I got was this lousy message."/>
+    <property name="text" value="I pressed the impossible button and{{BR}}all I got was this lousy message."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -9283,7 +9283,7 @@
   </object>
   <object id="3834" type="Text" x="3248" y="1888" width="192" height="48">
    <properties>
-    <property name="text" value="The Remote  (hold {{ActionButton}})"/>
+    <property name="text" value="The Remote{{BR}}(hold {{ActionButton}})"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
@@ -9310,7 +9310,7 @@
   <object id="3840" type="Text" x="4896" y="3696" width="32" height="112">
    <properties>
     <property name="orientation" value="NE"/>
-    <property name="text" value="Do you have  what it takes?"/>
+    <property name="text" value="Do you have{{BR}}what it takes?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -9320,7 +9320,7 @@
   <object id="3842" type="Text" x="4992" y="3696" width="32" height="128">
    <properties>
     <property name="orientation" value="NE"/>
-    <property name="text" value="You think  you can do it?"/>
+    <property name="text" value="You think{{BR}}you can do it?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -9329,7 +9329,7 @@
   <object id="3843" type="Text" x="5120" y="3696" width="32" height="128">
    <properties>
     <property name="orientation" value="NE"/>
-    <property name="text" value="Show me  what you've got"/>
+    <property name="text" value="Show me{{BR}}what you've got"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -9338,7 +9338,7 @@
   <object id="3844" type="Text" x="5056" y="3696" width="32" height="128">
    <properties>
     <property name="orientation" value="NE"/>
-    <property name="text" value="And you didn't  forget the remote?"/>
+    <property name="text" value="And you didn't{{BR}}forget the remote?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -9380,7 +9380,7 @@
   </object>
   <object id="3856" type="Text" x="7440" y="6784" width="160" height="32">
    <properties>
-    <property name="text" value="RISK OF  ELECTRIC SHOCK"/>
+    <property name="text" value="RISK OF{{BR}}ELECTRIC SHOCK"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Bold"/>
@@ -9388,7 +9388,7 @@
   </object>
   <object id="3857" type="Text" x="7296" y="6688" width="224" height="32">
    <properties>
-    <property name="text" value="DO NOT LOOK INTO LASER  WITH REMAINING EYE"/>
+    <property name="text" value="DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Bold"/>
@@ -9396,7 +9396,7 @@
   </object>
   <object id="3858" type="Text" x="7216" y="6800" width="80" height="32">
    <properties>
-    <property name="text" value="LEGAL  WAIVER"/>
+    <property name="text" value="LEGAL{{BR}}WAIVER"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Bold"/>
@@ -9404,7 +9404,7 @@
   </object>
   <object id="3859" type="Text" x="7088" y="6704" width="112" height="32">
    <properties>
-    <property name="text" value="NO  WARRANTY"/>
+    <property name="text" value="NO{{BR}}WARRANTY"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Bold"/>
@@ -9412,7 +9412,7 @@
   </object>
   <object id="3860" type="Text" x="6656" y="6704" width="80" height="48">
    <properties>
-    <property name="text" value="HIGH  VOLTAGE"/>
+    <property name="text" value="HIGH{{BR}}VOLTAGE"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ffaa0000"/>
     <property name="text_font" value="Bold"/>
@@ -9420,7 +9420,7 @@
   </object>
   <object id="3861" type="Text" x="6960" y="6784" width="128" height="32">
    <properties>
-    <property name="text" value="YOU HAVE  BEEN WARNED"/>
+    <property name="text" value="YOU HAVE{{BR}}BEEN WARNED"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Bold"/>
@@ -9437,7 +9437,7 @@
   <object id="3863" gid="312" x="8064" y="6736" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="53"/>
-    <property name="text" value="And now you've learned  not to touch the hot stove."/>
+    <property name="text" value="And now you've learned{{BR}}not to touch the hot stove."/>
    </properties>
   </object>
   <object id="3864" gid="303" x="5024" y="3808" width="16" height="16"/>
@@ -9534,7 +9534,7 @@
   <object id="3912" gid="312" x="4984" y="3472" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="3866"/>
-    <property name="text" value="What we've done before  may impact what we can do next."/>
+    <property name="text" value="What we've done before{{BR}}may impact what we can do next."/>
    </properties>
   </object>
   <object id="3916" gid="331" x="5277" y="3376" width="3" height="5"/>
@@ -9591,13 +9591,13 @@
    <properties>
     <property name="reached_from" type="object" value="3976"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="If you're only focusing on right now,  you won't have enough for later.  Press {{ExitButton}}."/>
+    <property name="text" value="If you're only focusing on right now,{{BR}}you won't have enough for later.{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="3927" gid="312" x="5488" y="3392" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="3866"/>
-    <property name="text" value="Moving forward may require   making the most of what you've got."/>
+    <property name="text" value="Moving forward may require{{BR}} making the most of what you've got."/>
    </properties>
   </object>
   <object id="3928" type="_TileMod" x="5152" y="3344" width="160" height="144">
@@ -9878,7 +9878,7 @@
   <object id="4097" gid="312" x="6296" y="3656" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4025"/>
-    <property name="text" value="Those who haven't learned the trick  must take a little pit stop."/>
+    <property name="text" value="Those who haven't learned the trick{{BR}}must take a little pit stop."/>
    </properties>
   </object>
   <object id="4098" gid="323" x="6288" y="3584" width="32" height="32"/>
@@ -10198,7 +10198,7 @@
   <object id="4277" gid="322" x="6208" y="4048" width="32" height="32"/>
   <object id="4278" type="Text" x="6176" y="3888" width="32" height="176">
    <properties>
-    <property name="text" value="T  r  a  s  h    C  h  u  t  e"/>
+    <property name="text" value="T{{BR}}r{{BR}}a{{BR}}s{{BR}}h{{BR}}{{BR}}C{{BR}}h{{BR}}u{{BR}}t{{BR}}e"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -10592,7 +10592,7 @@
    <properties>
     <property name="reached_from" type="object" value="7836"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Why did you even lie?  Press {{ExitButton}}."/>
+    <property name="text" value="Why did you even lie?{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="4521" name="LToLL" gid="297" x="6240" y="4336" width="32" height="16"/>
@@ -10722,7 +10722,7 @@
   <object id="4551" gid="312" x="6432" y="4384" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4409"/>
-    <property name="text" value="The definition of insanity is doing the same thing over and over again,  but expecting different results."/>
+    <property name="text" value="The definition of insanity is doing the same thing over and over again,{{BR}}but expecting different results."/>
    </properties>
   </object>
   <object id="4552" type="SetState" x="6432" y="4368" width="32" height="16">
@@ -10876,7 +10876,7 @@
   <object id="4639" gid="309" x="4656" y="496" width="32" height="16"/>
   <object id="4640" type="Text" x="4576" y="640" width="32" height="32">
    <properties>
-    <property name="text" value="Try  again"/>
+    <property name="text" value="Try{{BR}}again"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Small"/>
@@ -11222,7 +11222,7 @@
   <object id="4933" gid="322" x="4688" y="1616" width="32" height="32"/>
   <object id="4934" type="Text" x="4624" y="1200" width="64" height="32">
    <properties>
-    <property name="text" value="Small cars  only"/>
+    <property name="text" value="Small cars{{BR}}only"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Small"/>
@@ -11335,7 +11335,7 @@
    <properties>
     <property name="reached_from" type="object" value="4995"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="Crime doesn't pay.  Press {{ExitButton}}."/>
+    <property name="text" value="Crime doesn't pay.{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="4987" gid="341" x="4817" y="2112" width="16" height="32"/>
@@ -11358,7 +11358,7 @@
   </object>
   <object id="4997" type="Text" x="4704" y="3040" width="64" height="64">
    <properties>
-    <property name="text" value="Dude!  That's  MY car!"/>
+    <property name="text" value="Dude!{{BR}}That's{{BR}}MY car!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -11827,7 +11827,7 @@
    <properties>
     <property name="reached_from" type="object" value="5189"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="y tho?  Press {{ExitButton}}."/>
+    <property name="text" value="y tho?{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="5189" name="y_tho" type="Checkpoint" x="5616" y="5872" width="64" height="32">
@@ -12052,13 +12052,13 @@
   <object id="5476" gid="312" x="6496" y="4976" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5207"/>
-    <property name="text" value="Looking in every nook and cranny  sometimes yields unexpected gains."/>
+    <property name="text" value="Looking in every nook and cranny{{BR}}sometimes yields unexpected gains."/>
    </properties>
   </object>
   <object id="5478" gid="312" x="6896" y="5280" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5482"/>
-    <property name="text" value="If you come back to a familiar place,  it may no longer look the way you remember it."/>
+    <property name="text" value="If you come back to a familiar place,{{BR}}it may no longer look the way you remember it."/>
    </properties>
   </object>
   <object id="5479" name="TwiceTwice" gid="293" x="6944" y="5280" width="16" height="32">
@@ -12205,7 +12205,7 @@
   <object id="5538" gid="312" x="7408" y="4192" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5482"/>
-    <property name="text" value="Looking at things and observing how they change  is what brought us science."/>
+    <property name="text" value="Looking at things and observing how they change{{BR}}is what brought us science."/>
    </properties>
   </object>
   <object id="5539" name="PlatformSound" type="SoundTarget" x="7184" y="4880" width="16" height="16">
@@ -12314,7 +12314,7 @@
   <object id="5575" gid="312" x="7440" y="3952" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5568"/>
-    <property name="text" value="Good news.  I figured out why she wanted you gone."/>
+    <property name="text" value="Good news.{{BR}}I figured out why she wanted you gone."/>
    </properties>
   </object>
   <object id="5576" gid="330" x="7424" y="3984" width="16" height="16"/>
@@ -12465,7 +12465,7 @@
   <object id="5689" gid="312" x="7440" y="3328" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5627"/>
-    <property name="text" value="The slow and slothful deserve...  nothing."/>
+    <property name="text" value="The slow and slothful deserve...{{BR}}nothing."/>
    </properties>
   </object>
   <object id="5690" gid="307" x="7440" y="3392" width="32" height="32"/>
@@ -13042,7 +13042,7 @@
   <object id="6074" gid="312" x="7512" y="2512" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5697"/>
-    <property name="text" value="If you don't know who you are,  you don't know where to go."/>
+    <property name="text" value="If you don't know who you are,{{BR}}you don't know where to go."/>
    </properties>
   </object>
   <object id="6075" name="CrumblerSound" type="SoundTarget" x="7536" y="3248" width="16" height="16">
@@ -13268,7 +13268,7 @@
   </object>
   <object id="6140" type="Text" x="6944" y="384" width="16" height="64">
    <properties>
-    <property name="text" value="E  X  I  T"/>
+    <property name="text" value="E{{BR}}X{{BR}}I{{BR}}T"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -13896,7 +13896,7 @@
   </object>
   <object id="6540" type="Text" x="6624" y="2512" width="64" height="32">
    <properties>
-    <property name="text" value="Platform  is key."/>
+    <property name="text" value="Platform{{BR}}is key."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -14531,7 +14531,7 @@
    <properties>
     <property name="reached_from" type="object" value="6762"/>
     <property name="target" value="EscapeButton"/>
-    <property name="text" value="The Enrichment Center regrets to inform you that  the Super Gravitron is currently out of order.  Press {{ExitButton}}."/>
+    <property name="text" value="The Enrichment Center regrets to inform you that{{BR}}the Super Gravitron is currently out of order.{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="6819" name="NotTheGravitronWarp" gid="293" x="7152" y="5472" width="16" height="608"/>
@@ -15064,7 +15064,7 @@
   </object>
   <object id="6960" type="Text" x="6688" y="6144" width="144" height="32">
    <properties>
-    <property name="text" value="UNDER  CONSTRUCTION"/>
+    <property name="text" value="UNDER{{BR}}CONSTRUCTION"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Bold"/>
@@ -15980,7 +15980,7 @@
   <object id="7490" gid="312" x="7584" y="5904" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="7351"/>
-    <property name="text" value="You have found a shiny trinket!  One out of One."/>
+    <property name="text" value="You have found a shiny trinket!{{BR}}One out of One."/>
    </properties>
   </object>
   <object id="7491" gid="336" x="7488" y="5840" width="16" height="16"/>
@@ -16392,7 +16392,7 @@
   </object>
   <object id="7769" type="Text" x="7408" y="5488" width="32" height="48">
    <properties>
-    <property name="text" value="W  A  T"/>
+    <property name="text" value="W{{BR}}A{{BR}}T"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -16400,7 +16400,7 @@
   </object>
   <object id="7770" type="Text" x="7488" y="5216" width="64" height="32">
    <properties>
-    <property name="text" value="Just  kiddin'"/>
+    <property name="text" value="Just{{BR}}kiddin'"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -16677,7 +16677,7 @@
   </object>
   <object id="7837" type="Text" x="7136" y="880" width="144" height="32">
    <properties>
-    <property name="text" value="I hope you took  the small one..."/>
+    <property name="text" value="I hope you took{{BR}}the small one..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -16716,7 +16716,7 @@
   <object id="7848" gid="312" x="5760" y="1576" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="6119"/>
-    <property name="text" value="The path to success is littered with...  litter."/>
+    <property name="text" value="The path to success is littered with...{{BR}}litter."/>
    </properties>
   </object>
   <object id="7849" gid="312" x="5936" y="4256" width="32" height="32">
@@ -16779,7 +16779,7 @@
   </object>
   <object id="7872" type="Text" x="4976" y="4576" width="128" height="32">
    <properties>
-    <property name="text" value="If stuck,  press {{ExitButton}}."/>
+    <property name="text" value="If stuck,{{BR}}press {{ExitButton}}."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -17476,7 +17476,7 @@
   <object id="8079" gid="303" x="6784" y="800" width="16" height="16"/>
   <object id="8080" type="Text" x="6708" y="1984" width="192" height="32">
    <properties>
-    <property name="text" value="Jumpers lose platforms.  Don't be a jumper."/>
+    <property name="text" value="Jumpers lose platforms.{{BR}}Don't be a jumper."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -17760,7 +17760,7 @@
    <properties>
     <property name="orientation" value="WN"/>
     <property name="required_orientation" value="WN"/>
-    <property name="text" value="E  X  I  T"/>
+    <property name="text" value="E{{BR}}X{{BR}}I{{BR}}T"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Small"/>
@@ -17888,7 +17888,7 @@
    <properties>
     <property name="reached_from" type="object" value="8201"/>
     <property name="target" value="EscapeButtonDelay"/>
-    <property name="text" value="Let's put weird and weird together,  and make it even weirder!  Weird, weird space  is super-weird!"/>
+    <property name="text" value="Let's put weird and weird together,{{BR}}and make it even weirder!{{BR}}Weird, weird space{{BR}}is super-weird!"/>
    </properties>
   </object>
   <object id="8205" name="WeirdSpace" type="MovableSprite" x="3472" y="4735" width="32" height="32">
