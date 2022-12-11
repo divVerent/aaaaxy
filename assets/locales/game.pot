@@ -142,12 +142,20 @@ msgstr ""
 msgid "Enter"
 msgstr ""
 
+#: game/checkpoint/checkpoint_target.go:110
+msgid "Error:\ncould not save game:\n%v"
+msgstr ""
+
 #: fun/string.go:166
 msgid "Escape"
 msgstr ""
 
 #: fun/string.go:72
 msgid "Fernando de Noronha"
+msgstr ""
+
+#: game/player/player.go:395
+msgid "Fine, I give up, have it your way.\nAll cheats are documented in --help."
 msgstr ""
 
 #: menu/credits.go:66
@@ -402,6 +410,14 @@ msgstr ""
 
 #: menu/savestate.go:165
 msgid "Y: %s"
+msgstr ""
+
+#: game/player/player.go:405
+msgid "You now have 30 lives. Enjoy!"
+msgstr ""
+
+#: game/player/player.go:398
+msgid "You really thought this would do something?"
 msgstr ""
 
 #: menu/credits.go:97

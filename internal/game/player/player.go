@@ -28,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/noise"
@@ -391,17 +392,17 @@ func (p *Player) Update() {
 	if input.EasterEggJustHit() {
 		p.EasterEggCount++
 		if p.EasterEggCount%4 == 0 {
-			centerprint.New("Fine, I give up, have it your way.\nAll cheats are documented in --help.", centerprint.Important, centerprint.Top, centerprint.BigFont(), palette.EGA(palette.LightBlue, 255), 5*time.Second).SetFadeOut(true)
+			centerprint.New(locale.G.Get("Fine, I give up, have it your way.\nAll cheats are documented in --help."), centerprint.Important, centerprint.Top, centerprint.BigFont(), palette.EGA(palette.LightBlue, 255), 5*time.Second).SetFadeOut(true)
 			p.GotAbilitySound.Play()
 		} else {
-			centerprint.New("You really thought this would do something?", centerprint.Important, centerprint.Middle, centerprint.BigFont(), palette.EGA(palette.LightCyan, 255), time.Second).SetFadeOut(true)
+			centerprint.New(locale.G.Get("You really thought this would do something?"), centerprint.Important, centerprint.Middle, centerprint.BigFont(), palette.EGA(palette.LightCyan, 255), time.Second).SetFadeOut(true)
 			// No sound. We really want to do nothing here.
 		}
 	}
 
 	// Konami code. Grants 30 lives. Too bad this game does not use lives :)
 	if input.KonamiCodeJustHit() {
-		centerprint.New("You now have 30 lives. Enjoy!", centerprint.Important, centerprint.Top, centerprint.BigFont(), palette.EGA(palette.LightMagenta, 255), 5*time.Second).SetFadeOut(true)
+		centerprint.New(locale.G.Get("You now have 30 lives. Enjoy!"), centerprint.Important, centerprint.Top, centerprint.BigFont(), palette.EGA(palette.LightMagenta, 255), 5*time.Second).SetFadeOut(true)
 		p.GotAbilitySound.Play()
 	}
 }

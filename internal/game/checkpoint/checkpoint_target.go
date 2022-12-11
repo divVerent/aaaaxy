@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/music"
@@ -106,7 +107,7 @@ func (c *CheckpointTarget) SetState(originator, predecessor *engine.Entity, stat
 	err := c.World.Save()
 	if err != nil {
 		log.Errorf("could not save game: %v", err)
-		str := fmt.Sprintf("Error:\ncould not save game:\n%v", err)
+		str := locale.G.Get("Error:\ncould not save game:\n%v", err)
 		centerprint.New(fun.FormatText(&c.World.PlayerState, str), centerprint.Important, centerprint.Top, centerprint.NormalFont(), palette.EGA(palette.LightRed, 255), 5*time.Second).SetFadeOut(true)
 		return
 	}
