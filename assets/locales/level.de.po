@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-11 08:35-0500\n"
-"PO-Revision-Date: 2022-12-11 08:27-0500\n"
+"PO-Revision-Date: 2022-12-11 08:43-0500\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
 "Language-Team: Rudolf Polzer <rpolzer@google.com>\n"
 "Language: de\n"
@@ -28,72 +28,73 @@ msgstr "Versagen war nie eine Alternative."
 #: assets/maps/level.tmx:601
 msgid "Don't children like to say, \"Are we there yet?\" Press {{ExitButton}}."
 msgstr ""
-"Sagen die Kinder nicht immer, \"Sind wir schon da?\"  Drücke "
-"{{ExitButton}}."
+"Sagen die Kinder nicht immer, \"Sind wir schon da?\"  Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx:607
 msgid "Sometimes the angle of looking at things is all that matters."
-msgstr ""
+msgstr "Manchmal hängt es einfach nur vom Blickwinkel ab."
 
 #: assets/maps/level.tmx:613
 msgid "There can be too much of a good thing."
-msgstr ""
+msgstr "Zuviel des Guten ist auch nicht gut."
 
 #: assets/maps/level.tmx:625
 msgid "Leap of Faith"
-msgstr ""
+msgstr "Das Wagnis"
 
 #: assets/maps/level.tmx:633
 msgid "There are no wrong ways, just wrong goals."
-msgstr ""
+msgstr "Es gibt keine falschen Wege - nur falsche Ziele."
 
 #: assets/maps/level.tmx:639
 msgid "Where there's a down, there must also be an up."
-msgstr ""
+msgstr "Wo es hinunter geht, muss es auch hinauf gehen."
 
 #: assets/maps/level.tmx:645
 msgid "Persistence is the key to success."
-msgstr ""
+msgstr "Hartnäckigkeit führt zum Erfolg."
 
 #: assets/maps/level.tmx:655
 msgid "Stop and Stair"
-msgstr ""
+msgstr "Der Treppenwitz"
 
 #: assets/maps/level.tmx:684
 msgid "Endless Eight"
-msgstr ""
+msgstr "Achterbahn"
 
 #: assets/maps/level.tmx:690
 msgid "Sometimes you just keep running in circles."
-msgstr ""
+msgstr "Manchmal läuft man einfach im Kreis."
 
 #: assets/maps/level.tmx:696
 msgid "Some people prefer 2τ over 4π."
-msgstr ""
+msgstr "Manche bevorzugen 2τ über 4π."
 
 #: assets/maps/level.tmx:703
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr ""
+"\"Beispielsweise ist die Erde trotz einst erdrückender Einmütigkeit in "
+"dieser Frage keine Scheibe.\""
 
 #: assets/maps/level.tmx:709
 msgid "Some people prefer 4π over 2τ."
-msgstr ""
+msgstr "Manche bevorzugen 4π über 2τ."
 
 #: assets/maps/level.tmx:715
 msgid "Interesting things are hardly ever found in corners."
-msgstr ""
+msgstr "In Ecken findet sich selten etwas Interessantes."
 
 #: assets/maps/level.tmx:721
 msgid "Interesting things are always found in corners."
-msgstr ""
+msgstr "In Ecken findet sich immer etwas Interessantes."
 
 #: assets/maps/level.tmx:735
 msgid "The Hub"
-msgstr ""
+msgstr "Der Hub"
 
 #: assets/maps/level.tmx:769
 msgid "The Strip"
-msgstr ""
+msgstr "Das Band"
 
 #: assets/maps/level.tmx:805
 msgid "The path of least resistance will not always lead to success."
