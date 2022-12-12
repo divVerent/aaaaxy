@@ -175,8 +175,8 @@ msgid ""
 "Fine, I give up, have it your way.\n"
 "All cheats are documented in --help."
 msgstr ""
-"OK, ich gebe auf, mach, was du willst. Alle Cheats sind dokumentiert in --"
-"help."
+"OK, ich gebe auf, mach, was du willst.\n"
+"Alle Cheats sind dokumentiert in --help."
 
 #: menu/credits.go:66
 msgid "For Software Licenses"
