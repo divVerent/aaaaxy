@@ -23,8 +23,13 @@ import (
 
 // Current returns all text locales in descending priority order.
 func Current() []string {
+	locs, err := locale.GetLocales()
+	if err != nil {
+		log.Errorf("could not detect current locales: %v", err)
+		return nil
+	}
 	var ret []string
-	for _, loc := range locale.GetLocales() {
+	for _, loc := range locs {
 		lang, err := language.Parse(loc)
 		if err != nil {
 			continue

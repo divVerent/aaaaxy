@@ -14,12 +14,5 @@
 
 package locale
 
-import (
-	"github.com/jeandeaual/go-locale"
-	"golang.org/x/text/language"
-
-	"github.com/divVerent/aaaaxy/internal/log"
-)
-
 // Linguas is the set of current languages that are translated "enough".
 var Linguas = map[string]struct{}{}
