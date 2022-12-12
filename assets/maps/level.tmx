@@ -1037,7 +1037,7 @@
     <property name="music" value="strange_inspiraton.ogg"/>
     <property name="next_down" type="object" value="1457"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="House with Two Rooms"/>
+    <property name="text" value="House With Two Rooms"/>
    </properties>
   </object>
   <object id="274" type="SetState" x="777" y="6208" width="46" height="37">
@@ -6849,7 +6849,7 @@
     <property name="music" value="Pressure.ogg"/>
     <property name="next_up" type="object" value="2886"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="Switching it up"/>
+    <property name="text" value="Switching It Up"/>
    </properties>
   </object>
   <object id="1794" gid="309" x="7424" y="7264" width="16" height="16"/>
@@ -7479,7 +7479,7 @@
     <property name="music" value="Pressure.ogg"/>
     <property name="next_right" type="object" value="4108"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="Gotta carry it out"/>
+    <property name="text" value="Gotta Carry It Out"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
    </properties>
   </object>
@@ -9907,7 +9907,7 @@
     <property name="next_right" type="object" value="2886"/>
     <property name="next_up" type="object" value="2325"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="Carried enough?"/>
+    <property name="text" value="Carried Enough?"/>
    </properties>
   </object>
   <object id="4109" gid="307" x="5976" y="3376" width="32" height="32"/>
@@ -10271,7 +10271,7 @@
     <property name="next_left" type="object" value="7836"/>
     <property name="next_right" type="object" value="1745"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="Taking Out The Trash"/>
+    <property name="text" value="Taking Out the Trash"/>
    </properties>
   </object>
   <object id="4411" gid="306" x="6368" y="4048" width="32" height="32"/>
