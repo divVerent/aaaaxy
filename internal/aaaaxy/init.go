@@ -115,17 +115,17 @@ func initLocaleDomain(l locale.Type, domain string) {
 	}
 	data, err := vfs.Load(fmt.Sprintf("locales/%s", *language), fmt.Sprintf("%s.po", domain))
 	if err != nil {
-		log.Errorf("could not open %s translation for language %s: %v", domain, *language, err)
+		log.Errorf("could not open %s translation for language %s: %v", domain, locale.Name(*language), err)
 		return
 	}
 	defer data.Close()
 	buf, err := io.ReadAll(data)
 	if err != nil {
-		log.Errorf("could not read %s translation for language %s: %v", domain, *language, err)
+		log.Errorf("could not read %s translation for language %s: %v", domain, locale.Name(*language), err)
 		return
 	}
 	l.Parse(buf)
-	log.Infof("%s translated to language %s", domain, *language)
+	log.Infof("%s translated to language %s", domain, locale.Name(*language))
 }
 
 func initLocale() error {
