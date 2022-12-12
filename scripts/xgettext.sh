@@ -49,3 +49,5 @@ good_languages=$(
 	} | sort | uniq -u
 )
 echo "Good languages:" $good_languages
+
+echo "$good_languages" > assets/locales/LINGUAS
