@@ -122,41 +122,41 @@ func initLinguas() {
 		if len(line) == 0 || line[0] == '#' {
 			continue
 		}
-		locale.Linguas[string(line)] = struct{}{}
+		locale.Linguas[locale.Lingua(line)] = struct{}{}
 	}
 }
 
-func initLocaleDomain(lang string, l locale.Type, domain string) {
+func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
 	if lang == "" {
 		return
 	}
 	data, err := vfs.Load(fmt.Sprintf("locales/%s", lang), fmt.Sprintf("%s.po", domain))
 	if err != nil {
-		log.Errorf("could not open %s translation for language %s: %v", domain, locale.Name(lang), err)
+		log.Errorf("could not open %s translation for language %s: %v", domain, lang.Name(), err)
 		return
 	}
 	defer data.Close()
 	buf, err := io.ReadAll(data)
 	if err != nil {
-		log.Errorf("could not read %s translation for language %s: %v", domain, locale.Name(lang), err)
+		log.Errorf("could not read %s translation for language %s: %v", domain, lang.Name(), err)
 		return
 	}
 	l.Parse(buf)
-	log.Infof("%s translated to language %s", domain, locale.Name(lang))
+	log.Infof("%s translated to language %s", domain, lang.Name())
 }
 
 func initLocale() error {
 	initLinguas()
-	lang := *language
+	lang := locale.Lingua(*language)
 	if lang == "auto" {
 		for _, loc := range locale.Current() {
 			if loc == "en" {
 				// English is default language, stop searching once encountered in preference list.
-				log.Infof("detected language %s (not translating)", locale.Name(""))
+				log.Infof("detected language %s (not translating)", locale.Lingua("").Name())
 				return nil
 			}
 			if _, found := locale.Linguas[loc]; found {
-				log.Infof("detected language %s", locale.Name(loc))
+				log.Infof("detected language %s", loc.Name())
 				lang = loc
 				break
 			}

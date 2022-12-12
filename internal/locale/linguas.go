@@ -14,5 +14,36 @@
 
 package locale
 
+import (
+	"sort"
+)
+
+// Lingua identifies a language.
+type Lingua string
+
 // Linguas is the set of current languages that are translated "enough".
-var Linguas = map[string]struct{}{}
+var Linguas = map[Lingua]struct{}{}
+
+// Name returns the human readable name of a language.
+func (l Lingua) Name() string {
+	switch l {
+	case "":
+		return "English"
+	case "de":
+		return "Deutsch"
+	default:
+		return string(l)
+	}
+}
+
+// Linguas returns the languages sorted by humanly expected ordering.
+func LinguasSorted() []Lingua {
+	ret := []Lingua{""}
+	for l := range Linguas {
+		ret = append(ret, l)
+	}
+	sort.Slice(ret, func(a, b int) bool {
+		return ret[a].Name() < ret[b].Name()
+	})
+	return ret
+}

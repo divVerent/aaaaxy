@@ -22,20 +22,20 @@ import (
 )
 
 // Current returns all text locales in descending priority order.
-func Current() []string {
+func Current() []Lingua {
 	locs, err := locale.GetLocales()
 	if err != nil {
 		log.Errorf("could not detect current locales: %v", err)
 		return nil
 	}
-	var ret []string
+	var ret []Lingua
 	for _, loc := range locs {
 		lang, err := language.Parse(loc)
 		if err != nil {
 			continue
 		}
 		for lang != language.Und {
-			ret = append(ret, lang.String())
+			ret = append(ret, Lingua(lang.String()))
 			lang = lang.Parent()
 		}
 	}
