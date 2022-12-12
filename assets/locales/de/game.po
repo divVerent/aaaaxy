@@ -15,10 +15,10 @@ msgstr ""
 #: font/charset.go:23
 msgid ""
 " !\"#$%&'()*+,-./0123456789:;<=>?"
-"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©"
+"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 " !\"#$%&'()*+,-./0123456789:;<=>?"
-"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©ÄÖÜäöüß"
+"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöüß"
 
 #: fun/string.go:158 playerstate/playerstate.go:350
 msgid " and "

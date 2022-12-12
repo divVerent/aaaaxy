@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 05:46-0800\n"
-"PO-Revision-Date: 2022-12-12 07:20-0800\n"
+"POT-Creation-Date: 2022-12-12 07:39-0800\n"
+"PO-Revision-Date: 2022-12-12 07:37-0800\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
 "Language-Team: German - Germany <rpolzer@google.com>\n"
 "Language: de_DE\n"
@@ -854,37 +854,40 @@ msgstr "Und jetzt weißt du,{{BR}}dass der Ofen heiß ist."
 
 #: assets/maps/level.tmx:9451
 msgid "The Butterfly Effect"
-msgstr ""
+msgstr "Der Schmetterlingseffekt"
 
 #: assets/maps/level.tmx:9537
 msgid "What we've done before{{BR}}may impact what we can do next."
-msgstr ""
+msgstr "Was du vorher getan hast,{{BR}}kann sich auf das auswirken, das kommt."
 
 #: assets/maps/level.tmx:9594
 msgid ""
 "If you're only focusing on right now,{{BR}}you won't have enough for later."
 "{{BR}}Press {{ExitButton}}."
 msgstr ""
+"Wenn du nur an jetzt denkst,{{BR}}hast du nicht genug für später.{{BR}}"
+"Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx:9600
-msgid "Moving forward may require{{BR}} making the most of what you've got."
+msgid "Moving forward may require{{BR}}making the most of what you've got."
 msgstr ""
+"Um voran zu kommen, musst du{{BR}}das meiste aus dem machen, was du hast."
 
 #: assets/maps/level.tmx:9784
 msgid "Kaizo"
-msgstr ""
+msgstr "Kaizo"
 
 #: assets/maps/level.tmx:9797
 msgid "Missing a shelljump in {{Year}}?"
-msgstr ""
+msgstr "Einen Shelljump versemmelt in {{Year}}?"
 
 #: assets/maps/level.tmx:9834
 msgid "Kaaaart Race"
-msgstr ""
+msgstr "Kaaaart-Rennen"
 
 #: assets/maps/level.tmx:9881
 msgid "Those who haven't learned the trick{{BR}}must take a little pit stop."
-msgstr ""
+msgstr "Wer den Trick noch nicht kann,{{BR}}muss in die Boxengasse."
 
 #: assets/maps/level.tmx:9899
 msgid "Moved Enough?"
@@ -897,68 +900,71 @@ msgstr "Alles ertragen?"
 #: assets/maps/level.tmx:10201
 msgid "T{{BR}}r{{BR}}a{{BR}}s{{BR}}h{{BR}}{{BR}}C{{BR}}h{{BR}}u{{BR}}t{{BR}}e"
 msgstr ""
+"M{{BR}}ü{{BR}}l{{BR}}l{{BR}}e{{BR}}i{{BR}}n{{BR}}w{{BR}}u{{BR}}r{{BR}}f"
 
 #: assets/maps/level.tmx:10274
 msgid "Taking Out the Trash"
-msgstr ""
+msgstr "Den Müll rausbringen"
 
 #: assets/maps/level.tmx:10496
 msgid "Wait, did you take out all the trash?"
-msgstr ""
+msgstr "Moment, hast du den Müll rausgebracht?"
 
 #: assets/maps/level.tmx:10516
 msgid "There is no such thing as a little white lie."
-msgstr ""
+msgstr "Es gibt keine harmlosen Lügen."
 
 #: assets/maps/level.tmx:10542
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: assets/maps/level.tmx:10551
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: assets/maps/level.tmx:10595
 msgid "Why did you even lie?{{BR}}Press {{ExitButton}}."
-msgstr ""
+msgstr "Wieso hast du überhaupt gelogen?{{BR}}Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx:10725
 msgid ""
 "The definition of insanity is doing the same thing over and over again,{{BR}}"
 "but expecting different results."
 msgstr ""
+"Die Definition von Wahnsinn ist, immer wieder das Gleiche zu tun{{BR}}und "
+"andere Ergebnisse zu erwarten."
 
 #: assets/maps/level.tmx:10802
 msgid "Van Vlijmen's Vexing Vertical Vector Vertigo"
-msgstr ""
+msgstr "Van Vlijmens Verzwicktes Vertikales Vektor-Vexierspiel"
 
 #: assets/maps/level.tmx:10821
 msgid "The One Way Round"
-msgstr ""
+msgstr "Eine große Runde"
 
 #: assets/maps/level.tmx:10830
-msgid "deja Vu"
-msgstr ""
+msgid "déjà Vu"
+msgstr "déjà Vu"
 
 #: assets/maps/level.tmx:10879
 msgid "Try{{BR}}again"
-msgstr ""
+msgstr "Und{{BR}}nochmal"
 
 #: assets/maps/level.tmx:10890
 msgid "The Wide Gap"
-msgstr ""
+msgstr "Der Abgrund"
 
 #: assets/maps/level.tmx:10915
 msgid "Mind your head, you've only got one."
-msgstr ""
+msgstr "Achte auf deinen Kopf - du hast nur einen."
 
 #: assets/maps/level.tmx:10973
 msgid "More is not always better."
-msgstr ""
+msgstr "Qualität braucht keine Quantität."
 
 #: assets/maps/level.tmx:11005
 msgid "Those who are not up to speed may get left behind."
-msgstr ""
+msgstr "Wer sich nicht beeilt, wird zurückgelassen."
 
 #: assets/maps/level.tmx:11027
 msgid "Time is of the essence."

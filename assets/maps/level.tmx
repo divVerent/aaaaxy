@@ -9597,7 +9597,7 @@
   <object id="3927" gid="312" x="5488" y="3392" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="3866"/>
-    <property name="text" value="Moving forward may require{{BR}} making the most of what you've got."/>
+    <property name="text" value="Moving forward may require{{BR}}making the most of what you've got."/>
    </properties>
   </object>
   <object id="3928" type="_TileMod" x="5152" y="3344" width="160" height="144">
@@ -10825,9 +10825,9 @@
    <properties>
     <property name="music" value="Theme Song 8-bit V1.ogg"/>
     <property name="next_up" type="object" value="6716"/>
-    <property name="required_orientation" value="WN"/>
+    <property name="required_orientatiou" value="WN"/>
     <property name="secret" type="bool" value="true"/>
-    <property name="text" value="deja Vu"/>
+    <property name="text" value="déjà Vu"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
     <property name="vvvvvv" type="bool" value="true"/>
    </properties>

@@ -8,7 +8,7 @@ msgstr ""
 "X-Generator: xgotext\n"
 
 #: font/charset.go:23
-msgid " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©"
+msgid " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 
 #: fun/string.go:158

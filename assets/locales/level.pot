@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 05:46-0800\n"
+"POT-Creation-Date: 2022-12-12 07:39-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -833,7 +833,7 @@ msgid ""
 msgstr ""
 
 #: assets/maps/level.tmx:9600
-msgid "Moving forward may require{{BR}} making the most of what you've got."
+msgid "Moving forward may require{{BR}}making the most of what you've got."
 msgstr ""
 
 #: assets/maps/level.tmx:9784
@@ -903,7 +903,7 @@ msgid "The One Way Round"
 msgstr ""
 
 #: assets/maps/level.tmx:10830
-msgid "deja Vu"
+msgid "déjà Vu"
 msgstr ""
 
 #: assets/maps/level.tmx:10879
