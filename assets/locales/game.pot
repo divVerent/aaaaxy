@@ -448,19 +448,19 @@ msgstr ""
 msgid "hashing level"
 msgstr ""
 
-#: aaaaxy/init.go:240
+#: aaaaxy/init.go:277
 msgid "initializing audio"
 msgstr ""
 
-#: aaaaxy/init.go:264
+#: aaaaxy/init.go:301
 msgid "initializing dumping"
 msgstr ""
 
-#: aaaaxy/init.go:256
+#: aaaaxy/init.go:293
 msgid "initializing input"
 msgstr ""
 
-#: aaaaxy/init.go:244
+#: aaaaxy/init.go:281
 msgid "initializing noise"
 msgstr ""
 
@@ -488,11 +488,11 @@ msgstr ""
 msgid "precaching %s"
 msgstr ""
 
-#: aaaaxy/init.go:236
+#: aaaaxy/init.go:273
 msgid "precaching credits"
 msgstr ""
 
-#: aaaaxy/init.go:260
+#: aaaaxy/init.go:297
 msgid "precaching engine"
 msgstr ""
 
@@ -500,11 +500,11 @@ msgstr ""
 msgid "precaching entities"
 msgstr ""
 
-#: aaaaxy/init.go:252
+#: aaaaxy/init.go:289
 msgid "precaching images"
 msgstr ""
 
-#: aaaaxy/init.go:248
+#: aaaaxy/init.go:285
 msgid "precaching sounds"
 msgstr ""
 

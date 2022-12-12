@@ -458,19 +458,19 @@ msgstr "alle"
 msgid "hashing level"
 msgstr "Hashe Level"
 
-#: aaaaxy/init.go:240
+#: aaaaxy/init.go:277
 msgid "initializing audio"
 msgstr "Initialisiere Sound"
 
-#: aaaaxy/init.go:264
+#: aaaaxy/init.go:301
 msgid "initializing dumping"
 msgstr "Initialisiere Dumping"
 
-#: aaaaxy/init.go:256
+#: aaaaxy/init.go:293
 msgid "initializing input"
 msgstr "Initialisiere Eingabe"
 
-#: aaaaxy/init.go:244
+#: aaaaxy/init.go:281
 msgid "initializing noise"
 msgstr "Initialisiere Rauschen"
 
@@ -498,11 +498,11 @@ msgstr "Lese Level"
 msgid "precaching %s"
 msgstr "Lade %s"
 
-#: aaaaxy/init.go:236
+#: aaaaxy/init.go:273
 msgid "precaching credits"
 msgstr "Lade Abspann"
 
-#: aaaaxy/init.go:260
+#: aaaaxy/init.go:297
 msgid "precaching engine"
 msgstr "Lade Engine"
 
@@ -510,11 +510,11 @@ msgstr "Lade Engine"
 msgid "precaching entities"
 msgstr "Lade Objekte"
 
-#: aaaaxy/init.go:252
+#: aaaaxy/init.go:289
 msgid "precaching images"
 msgstr "Lade Grafiken"
 
-#: aaaaxy/init.go:248
+#: aaaaxy/init.go:285
 msgid "precaching sounds"
 msgstr "Lade Soundeffekte"
 
