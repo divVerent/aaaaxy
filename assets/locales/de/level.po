@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-11 20:31-0500\n"
-"PO-Revision-Date: 2022-12-11 20:31-0500\n"
+"PO-Revision-Date: 2022-12-11 22:02-0500\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
 "Language-Team: Rudolf Polzer <rpolzer@google.com>\n"
 "Language: de\n"
@@ -413,38 +413,39 @@ msgstr "Manchmal braucht man nichts weiter als eine kleine Öffnung."
 #: assets/maps/level.tmx:5765
 msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
 msgstr ""
+"Ich bin so froh, endlich wieder zu Hause zu sein.{{BR}}Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx:5790
 msgid "Try the lower path."
-msgstr ""
+msgstr "Probiere den unteren Weg."
 
 #: assets/maps/level.tmx:5796
 msgid "Try the upper path."
-msgstr ""
+msgstr "Probiere den oberen Weg."
 
 #: assets/maps/level.tmx:5855
 msgid "The Axiom of Choiche"
-msgstr ""
+msgstr "Das Auswahlaxiom"
 
 #: assets/maps/level.tmx:5860
 msgid "Trololololol, lololol, lololol,{{BR}}Oh ha ha ha oh!"
-msgstr ""
+msgstr "Trololololol, lololol, lololol,{{BR}}Oh ha ha ha oh!"
 
 #: assets/maps/level.tmx:5871
 msgid "Turtles All the Way In"
-msgstr ""
+msgstr "Schildkröten den ganzen Weg nach innen"
 
 #: assets/maps/level.tmx:5882
 msgid "Some things just aren't that simple."
-msgstr ""
+msgstr "Manche Dinge sind nicht so einfach."
 
 #: assets/maps/level.tmx:5906
 msgid "It's turtles all the way in."
-msgstr ""
+msgstr "Es sind Schildkröten den ganzen Weg nach innen."
 
 #: assets/maps/level.tmx:5951
 msgid "Listen to the spell of the magical turtle and you may proceed."
-msgstr ""
+msgstr "Horche auf den Zauber der magischen Schildkröte, und du kannst weiter."
 
 #: assets/maps/level.tmx:5968
 msgid "Don't{{BR}}Look Up!"
@@ -452,106 +453,110 @@ msgstr "Nicht{{BR}}Nach oben schauen!"
 
 #: assets/maps/level.tmx:5980
 msgid "The Rover and the Feline"
-msgstr ""
+msgstr "Der Rover und die Spatzen"
 
 #: assets/maps/level.tmx:5988
 msgid "Some things you simply can't see right away."
-msgstr ""
+msgstr "Manche Dinge kann man einfach nicht sofort sehen."
 
 #: assets/maps/level.tmx:6003
 msgid "Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."
 msgstr ""
+"Zu große Neugier treibt den Vogel in die Schlinge.{{BR}}Drücke "
+"{{ExitButton}}."
 
 #: assets/maps/level.tmx:6016 assets/maps/level.tmx:6024
 #: assets/maps/level.tmx:6032 assets/maps/level.tmx:6040
 #: assets/maps/level.tmx:6048 assets/maps/level.tmx:6056
 #: assets/maps/level.tmx:6064 assets/maps/level.tmx:6072
 msgid "?"
-msgstr ""
+msgstr "?"
 
 #: assets/maps/level.tmx:6097
 msgid "You now can stand on platforms!"
-msgstr ""
+msgstr "Du kannst jetzt auf Plattformen stehen!"
 
 #: assets/maps/level.tmx:6106
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr ""
+msgstr "Die Stollen{{BR}}Tipp: nicht den Kopf stoßen!"
 
 #: assets/maps/level.tmx:6132
 msgid "Steadfastly holding on to the iron rod prevents disasters."
 msgstr ""
+"Sich standhaft an der eisernen Stange festzuhalten verhindert Katastrophen."
 
 #: assets/maps/level.tmx:6138
 msgid "Sometimes the thing that is in plain sight can be a challenge to reach."
-msgstr ""
+msgstr "Manchmal ist das, was vor deiner Nase liegt, schwierig zu erreichen."
 
 #: assets/maps/level.tmx:6144
 msgid "Can't tell if this place is pointless or not."
-msgstr ""
+msgstr "Der Fleck muss weg."
 
 #: assets/maps/level.tmx:6150
 msgid "Peaceful games require peaceful solutions."
-msgstr ""
+msgstr "Friedliche Spiele brauchen friedliche Lösungen."
 
 #: assets/maps/level.tmx:6159
 msgid "3..."
-msgstr ""
+msgstr "3..."
 
 #: assets/maps/level.tmx:6167
 msgid "2..."
-msgstr ""
+msgstr "2..."
 
 #: assets/maps/level.tmx:6175
 msgid "1..."
-msgstr ""
+msgstr "1..."
 
 #: assets/maps/level.tmx:6183
 msgid "Blast off?"
-msgstr ""
+msgstr "Abflug?"
 
 #: assets/maps/level.tmx:6192
 msgid "Redundant launch systems aren't rocket science."
-msgstr ""
+msgstr "Redundante Startsysteme sind kein Hexenwerk."
 
 #: assets/maps/level.tmx:6201
 msgid "Fly High"
-msgstr ""
+msgstr "Flieg hoch"
 
 #: assets/maps/level.tmx:6221
 msgid "Before The Hub"
-msgstr ""
+msgstr "Vor dem Hub"
 
 #: assets/maps/level.tmx:6229
 msgid "Close To The Hub"
-msgstr ""
+msgstr "Nahe am Hub"
 
 #: assets/maps/level.tmx:6235
 msgid "You can now push them away!"
-msgstr ""
+msgstr "Du kannst sie jetzt wegschieben!"
 
 #: assets/maps/level.tmx:6240
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
-msgstr ""
+msgstr "Die Spule{{BR}}(halte {{ActionButton}}){{BR}}Tipp: Müll vermeiden!"
 
 #: assets/maps/level.tmx:6261
 msgid "You can now grab and carry them!"
-msgstr ""
+msgstr "Du kannst sie jetzt greifen und tragen!"
 
 #: assets/maps/level.tmx:6266
 msgid "The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"
 msgstr ""
+"Die Handschuhe{{BR}}(halte {{ActionButton}}){{BR}}Tipp: nicht zu schnell!"
 
 #: assets/maps/level.tmx:6334
 msgid "Little & Big Platforms"
-msgstr ""
+msgstr "Kleine & große Plattformen"
 
 #: assets/maps/level.tmx:6340
 msgid "Unlike that Italian plumber, you can go left."
-msgstr ""
+msgstr "Im Gegensatz zum italienischen Klempner kannst du nach links."
 
 #: assets/maps/level.tmx:6346
 msgid "Some things just take a second attempt."
-msgstr ""
+msgstr "Manche Dinge brauchen einfach einen zweiten Versuch."
 
 #: assets/maps/level.tmx:6370 assets/maps/level.tmx:6450
 #: assets/maps/level.tmx:6556 assets/maps/level.tmx:6566
@@ -559,7 +564,7 @@ msgstr ""
 #: assets/maps/level.tmx:16525 assets/maps/level.tmx:16533
 #: assets/maps/level.tmx:16541 assets/maps/level.tmx:16550
 msgid "Reset"
-msgstr ""
+msgstr "Nochmal"
 
 #: assets/maps/level.tmx:6379
 msgid "If platforms require platforming, what do trains require?"
@@ -567,19 +572,19 @@ msgstr ""
 
 #: assets/maps/level.tmx:6384
 msgid "Do"
-msgstr ""
+msgstr "Lass"
 
 #: assets/maps/level.tmx:6392
 msgid "not"
-msgstr ""
+msgstr "dich"
 
 #: assets/maps/level.tmx:6400
 msgid "get"
-msgstr ""
+msgstr "nicht"
 
 #: assets/maps/level.tmx:6408
 msgid "distracted"
-msgstr ""
+msgstr "ablenken"
 
 #: assets/maps/level.tmx:6445
 msgid ""
