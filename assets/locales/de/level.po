@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-12 05:46-0800\n"
-"PO-Revision-Date: 2022-12-12 06:06-0800\n"
+"PO-Revision-Date: 2022-12-12 07:20-0800\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
 "Language-Team: German - Germany <rpolzer@google.com>\n"
 "Language: de_DE\n"
@@ -618,7 +618,7 @@ msgstr "Der Zettel links ist viel interessanter als dieser."
 
 #: assets/maps/level.tmx:6656
 msgid "The Anti-Hub"
-msgstr "Der Anti-Hub"
+msgstr "Der Antihub"
 
 #: assets/maps/level.tmx:6686
 msgid "Welcome to Moonside."
@@ -722,130 +722,135 @@ msgstr "Vorgeschoben"
 
 #: assets/maps/level.tmx:8071
 msgid "Some ideas only seem smart at first."
-msgstr ""
+msgstr "Manche Ideen sind nur scheinbar schlau."
 
 #: assets/maps/level.tmx:8077
 msgid "If there seems to be no way, you just haven't found it yet."
 msgstr ""
+"Wenn es keinen Weg zu geben scheint, hast du ihn bloß noch nicht gefunden."
 
 #: assets/maps/level.tmx:8125
 msgid "Before The Anti-Hub"
-msgstr ""
+msgstr "Vor dem Antihub"
 
 #: assets/maps/level.tmx:8220
 msgid "Only you would fall for a trap as primitive as this one."
-msgstr ""
+msgstr "Nur du würdest in eine derart primitive Falle gehen."
 
 #: assets/maps/level.tmx:8239
 msgid "Lack of purpose never was a reason not to do it."
-msgstr ""
+msgstr "Obwohl etwas keinen Sinn hat, kann man es doch trotzdem tun."
 
 #: assets/maps/level.tmx:8254
 msgid "Multi Party Authorization"
-msgstr ""
+msgstr "Das Vier-Augen-Prinzip"
 
 #: assets/maps/level.tmx:8359
 msgid "Failure is a stepping stone to success."
-msgstr ""
+msgstr "Aus Fehlern lernt man."
 
 #: assets/maps/level.tmx:8369
 msgid "Those who walk, fall."
-msgstr ""
+msgstr "Wer geht, fällt."
 
 #: assets/maps/level.tmx:8453
 msgid "Well, it's actually{{BR}}surprisingly simple."
-msgstr ""
+msgstr "Na, das ist eigentlich{{BR}}überraschend einfach."
 
 #: assets/maps/level.tmx:8486
 msgid "Ganz einfach, wenn man's doppelt nimmt."
-msgstr ""
+msgstr "Ganz einfach, wenn man's doppelt nimmt."
 
 #: assets/maps/level.tmx:8494
 msgid "Tower of Impossible"
-msgstr ""
+msgstr "Der unmögliche Turm"
 
 #: assets/maps/level.tmx:8656
 msgid ""
 "And... the floor transforms into shiny yet deadly coins.{{BR}}Without the "
 "coins.{{BR}}That's unfortunate."
 msgstr ""
+"Und... der Boden verwandelt sich in glänzende, doch tödliche, Münzen.{{BR}}"
+"Ohne die Münzen.{{BR}}Wie schade."
 
 #: assets/maps/level.tmx:9205
 msgid ""
 "I pressed the impossible button and{{BR}}all I got was this lousy message."
 msgstr ""
+"Ich drückte den unerreichbaren Knopf und{{BR}}alles, was ich bekam, war "
+"diese blöde Nachricht."
 
 #: assets/maps/level.tmx:9226
 msgid "The grass is always greener on the other side."
-msgstr ""
+msgstr "Die Kirschen in Nachbars Garten schmecken immer ein bisschen süßer."
 
 #: assets/maps/level.tmx:9274
 msgid "You can now disable the force fields."
-msgstr ""
+msgstr "Du kannst jetzt Kraftfelder abschalten."
 
 #: assets/maps/level.tmx:9286
 msgid "The Remote{{BR}}(hold {{ActionButton}})"
-msgstr ""
+msgstr "Die Fernbedienung{{BR}}(halte {{ActionButton}})"
 
 #: assets/maps/level.tmx:9313
 msgid "Do you have{{BR}}what it takes?"
-msgstr ""
+msgstr "Bist du{{BR}}stark genug?"
 
 #: assets/maps/level.tmx:9323
 msgid "You think{{BR}}you can do it?"
-msgstr ""
+msgstr "Denkst du,{{BR}}du kannst es?"
 
 #: assets/maps/level.tmx:9332
 msgid "Show me{{BR}}what you've got"
-msgstr ""
+msgstr "Zeig mir,{{BR}}was du kannst"
 
 #: assets/maps/level.tmx:9341
 msgid "And you didn't{{BR}}forget the remote?"
-msgstr ""
+msgstr "Die Fernbedienung{{BR}}nicht vergessen?"
 
 #: assets/maps/level.tmx:9359
 msgid "DANGER"
-msgstr ""
+msgstr "GEFAHR"
 
 #: assets/maps/level.tmx:9367
 msgid "CAUTION"
-msgstr ""
+msgstr "VORSICHT"
 
 #: assets/maps/level.tmx:9375
 msgid "WARNING"
-msgstr ""
+msgstr "WARNUNG"
 
 #: assets/maps/level.tmx:9383
 msgid "RISK OF{{BR}}ELECTRIC SHOCK"
-msgstr ""
+msgstr "STROMSCHLAG-{{BR}}GEFAHR"
 
 #: assets/maps/level.tmx:9391
 msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
-msgstr ""
+msgstr "SCHAUE NICHT IN LASER{{BR}}MIT VERBLEIBENDEM AUGE"
 
 #: assets/maps/level.tmx:9399
 msgid "LEGAL{{BR}}WAIVER"
-msgstr ""
+msgstr "VERZICHTS-{{BR}}ERKLÄRUNG"
 
 #: assets/maps/level.tmx:9407
 msgid "NO{{BR}}WARRANTY"
-msgstr ""
+msgstr "KEINE{{BR}}GARANTIE"
 
 #: assets/maps/level.tmx:9415
 msgid "HIGH{{BR}}VOLTAGE"
-msgstr ""
+msgstr "HOCH-{{BR}}SPANNUNG"
 
 #: assets/maps/level.tmx:9423
 msgid "YOU HAVE{{BR}}BEEN WARNED"
-msgstr ""
+msgstr "DU BIST{{BR}}GEWARNT"
 
 #: assets/maps/level.tmx:9431
 msgid "PROPOSITION 65"
-msgstr ""
+msgstr "BLEI BLEI BLEI"
 
 #: assets/maps/level.tmx:9440
 msgid "And now you've learned{{BR}}not to touch the hot stove."
-msgstr ""
+msgstr "Und jetzt weißt du,{{BR}}dass der Ofen heiß ist."
 
 #: assets/maps/level.tmx:9451
 msgid "The Butterfly Effect"

@@ -9394,7 +9394,7 @@
     <property name="text_font" value="Bold"/>
    </properties>
   </object>
-  <object id="3858" type="Text" x="7216" y="6800" width="80" height="32">
+  <object id="3858" type="Text" x="7200" y="6800" width="112" height="32">
    <properties>
     <property name="text" value="LEGAL{{BR}}WAIVER"/>
     <property name="text_bg" type="color" value="#00000000"/>
@@ -9410,7 +9410,7 @@
     <property name="text_font" value="Bold"/>
    </properties>
   </object>
-  <object id="3860" type="Text" x="6656" y="6704" width="80" height="48">
+  <object id="3860" type="Text" x="6656" y="6704" width="96" height="48">
    <properties>
     <property name="text" value="HIGH{{BR}}VOLTAGE"/>
     <property name="text_bg" type="color" value="#00000000"/>
