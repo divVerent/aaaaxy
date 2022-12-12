@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 07:39-0800\n"
+"POT-Creation-Date: 2022-12-12 08:53-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,7 +177,7 @@ msgid "If this isn't your downfall, I don't know what is."
 msgstr ""
 
 #: assets/maps/level.tmx:1084
-msgid "Oh, gravity, you're a heartless... force?"
+msgid "Oh, gravity, you're a heartless ... force?"
 msgstr ""
 
 #: assets/maps/level.tmx:1092
@@ -253,7 +253,7 @@ msgid "Hide and seek is never fun without opponents."
 msgstr ""
 
 #: assets/maps/level.tmx:1348
-msgid "Welcome to..."
+msgid "Welcome to ..."
 msgstr ""
 
 #: assets/maps/level.tmx:1420
@@ -482,15 +482,15 @@ msgid "Peaceful games require peaceful solutions."
 msgstr ""
 
 #: assets/maps/level.tmx:6159
-msgid "3..."
+msgid "3 ..."
 msgstr ""
 
 #: assets/maps/level.tmx:6167
-msgid "2..."
+msgid "2 ..."
 msgstr ""
 
 #: assets/maps/level.tmx:6175
-msgid "1..."
+msgid "1 ..."
 msgstr ""
 
 #: assets/maps/level.tmx:6183
@@ -616,7 +616,7 @@ msgid "Switching It Up"
 msgstr ""
 
 #: assets/maps/level.tmx:6882
-msgid "He who waits,{{BR}}retries... #DGR"
+msgid "He who waits,{{BR}}retries ... #DGR"
 msgstr ""
 
 #: assets/maps/level.tmx:6926
@@ -737,7 +737,7 @@ msgstr ""
 
 #: assets/maps/level.tmx:8656
 msgid ""
-"And... the floor transforms into shiny yet deadly coins.{{BR}}Without the "
+"And ... the floor transforms into shiny yet deadly coins.{{BR}}Without the "
 "coins.{{BR}}That's unfortunate."
 msgstr ""
 
@@ -1076,7 +1076,7 @@ msgid "Not every shortcut works."
 msgstr ""
 
 #: assets/maps/level.tmx:12468
-msgid "The slow and slothful deserve...{{BR}}nothing."
+msgid "The slow and slothful deserve ...{{BR}}nothing."
 msgstr ""
 
 #: assets/maps/level.tmx:12487
@@ -1177,7 +1177,7 @@ msgid "reached The Anti-Hub with {{Abilities}} at {{GameTime}}."
 msgstr ""
 
 #: assets/maps/level.tmx:14378
-msgid "reached You Only Need One with {{Abilities}} at {{GameTime}}."
+msgid "reached It Only Takes One with {{Abilities}} at {{GameTime}}."
 msgstr ""
 
 #: assets/maps/level.tmx:14422
@@ -1243,7 +1243,7 @@ msgid "Just{{BR}}kiddin'"
 msgstr ""
 
 #: assets/maps/level.tmx:16680
-msgid "I hope you took{{BR}}the small one..."
+msgid "I hope you took{{BR}}the small one ..."
 msgstr ""
 
 #: assets/maps/level.tmx:16707
@@ -1255,7 +1255,7 @@ msgid "Those who don't, don't."
 msgstr ""
 
 #: assets/maps/level.tmx:16719
-msgid "The path to success is littered with...{{BR}}litter."
+msgid "The path to success is littered with ...{{BR}}litter."
 msgstr ""
 
 #: assets/maps/level.tmx:16725
@@ -1295,7 +1295,7 @@ msgid "Jumpers lose platforms.{{BR}}Don't be a jumper."
 msgstr ""
 
 #: assets/maps/level.tmx:17556
-msgid "Try going in circles, but..."
+msgid "Try going in circles, but ..."
 msgstr ""
 
 #: assets/maps/level.tmx:17568
@@ -1313,9 +1313,9 @@ msgid ""
 msgstr ""
 
 #: assets/maps/level.tmx:18112
-msgid "4..."
+msgid "4 ..."
 msgstr ""
 
 #: assets/maps/level.tmx:18120
-msgid "5..."
+msgid "5 ..."
 msgstr ""

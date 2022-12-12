@@ -1081,7 +1081,7 @@
   <object id="287" gid="312" x="3920" y="5424" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="288"/>
-    <property name="text" value="Oh, gravity, you're a heartless... force?"/>
+    <property name="text" value="Oh, gravity, you're a heartless ... force?"/>
    </properties>
   </object>
   <object id="288" name="short_circuited" type="Checkpoint" x="3920" y="5376" width="192" height="32">
@@ -1345,7 +1345,7 @@
   </object>
   <object id="396" type="Text" x="4064" y="8080" width="128" height="32">
    <properties>
-    <property name="text" value="Welcome to..."/>
+    <property name="text" value="Welcome to ..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -6156,7 +6156,7 @@
   <object id="1451" name="GotStandWarp2" gid="297" x="448" y="6592" width="48" height="16"/>
   <object id="1452" type="Text" x="496" y="6112" width="32" height="16">
    <properties>
-    <property name="text" value="3..."/>
+    <property name="text" value="3 ..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -6164,7 +6164,7 @@
   </object>
   <object id="1453" type="Text" x="496" y="5984" width="32" height="16">
    <properties>
-    <property name="text" value="2..."/>
+    <property name="text" value="2 ..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -6172,7 +6172,7 @@
   </object>
   <object id="1454" type="Text" x="496" y="5856" width="32" height="16">
    <properties>
-    <property name="text" value="1..."/>
+    <property name="text" value="1 ..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -6879,7 +6879,7 @@
   <object id="1806" gid="320" x="7472" y="7232" width="32" height="32"/>
   <object id="1807" type="Text" x="7296" y="7344" width="160" height="32">
    <properties>
-    <property name="text" value="He who waits,{{BR}}retries... #DGR"/>
+    <property name="text" value="He who waits,{{BR}}retries ... #DGR"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -8653,7 +8653,7 @@
   <object id="3332" gid="312" x="2992" y="3888" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="3186"/>
-    <property name="text" value="And... the floor transforms into shiny yet deadly coins.{{BR}}Without the coins.{{BR}}That's unfortunate."/>
+    <property name="text" value="And ... the floor transforms into shiny yet deadly coins.{{BR}}Without the coins.{{BR}}That's unfortunate."/>
    </properties>
   </object>
   <object id="3333" name="ShinyYetDeadlyCoins" gid="299" x="3008" y="3824" width="16" height="32">
@@ -12465,7 +12465,7 @@
   <object id="5689" gid="312" x="7440" y="3328" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5627"/>
-    <property name="text" value="The slow and slothful deserve...{{BR}}nothing."/>
+    <property name="text" value="The slow and slothful deserve ...{{BR}}nothing."/>
    </properties>
   </object>
   <object id="5690" gid="307" x="7440" y="3392" width="32" height="32"/>
@@ -14375,7 +14375,7 @@
   </object>
   <object id="6680" name="HubTimer" type="PrintToConsoleTarget" x="6560" y="400" width="16" height="32">
    <properties>
-    <property name="text" value="reached You Only Need One with {{Abilities}} at {{GameTime}}."/>
+    <property name="text" value="reached It Only Takes One with {{Abilities}} at {{GameTime}}."/>
    </properties>
   </object>
   <object id="6684" gid="337" x="6464" y="6288" width="16" height="16"/>
@@ -16677,7 +16677,7 @@
   </object>
   <object id="7837" type="Text" x="7136" y="880" width="144" height="32">
    <properties>
-    <property name="text" value="I hope you took{{BR}}the small one..."/>
+    <property name="text" value="I hope you took{{BR}}the small one ..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
@@ -16716,7 +16716,7 @@
   <object id="7848" gid="312" x="5760" y="1576" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="6119"/>
-    <property name="text" value="The path to success is littered with...{{BR}}litter."/>
+    <property name="text" value="The path to success is littered with ...{{BR}}litter."/>
    </properties>
   </object>
   <object id="7849" gid="312" x="5936" y="4256" width="32" height="32">
@@ -17553,7 +17553,7 @@
   <object id="8097" gid="312" x="7312" y="5568" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="7351"/>
-    <property name="text" value="Try going in circles, but..."/>
+    <property name="text" value="Try going in circles, but ..."/>
    </properties>
   </object>
   <object id="8098" gid="330" x="7312" y="5472" width="16" height="16"/>
@@ -18109,7 +18109,7 @@
   </object>
   <object id="8246" type="Text" x="496" y="6240" width="32" height="16">
    <properties>
-    <property name="text" value="4..."/>
+    <property name="text" value="4 ..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
@@ -18117,7 +18117,7 @@
   </object>
   <object id="8247" type="Text" x="496" y="6368" width="32" height="16">
    <properties>
-    <property name="text" value="5..."/>
+    <property name="text" value="5 ..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>

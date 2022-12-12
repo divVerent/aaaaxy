@@ -130,22 +130,23 @@ func initLocaleDomain(lang string, l locale.Type, domain string) {
 	if lang == "" {
 		return
 	}
-	data, err := vfs.Load(fmt.Sprintf("locales/%s", *language), fmt.Sprintf("%s.po", domain))
+	data, err := vfs.Load(fmt.Sprintf("locales/%s", lang), fmt.Sprintf("%s.po", domain))
 	if err != nil {
-		log.Errorf("could not open %s translation for language %s: %v", domain, locale.Name(*language), err)
+		log.Errorf("could not open %s translation for language %s: %v", domain, locale.Name(lang), err)
 		return
 	}
 	defer data.Close()
 	buf, err := io.ReadAll(data)
 	if err != nil {
-		log.Errorf("could not read %s translation for language %s: %v", domain, locale.Name(*language), err)
+		log.Errorf("could not read %s translation for language %s: %v", domain, locale.Name(lang), err)
 		return
 	}
 	l.Parse(buf)
-	log.Infof("%s translated to language %s", domain, locale.Name(*language))
+	log.Infof("%s translated to language %s", domain, locale.Name(lang))
 }
 
 func initLocale() error {
+	initLinguas()
 	lang := *language
 	if lang == "auto" {
 		for _, loc := range locale.Current() {
@@ -162,7 +163,7 @@ func initLocale() error {
 		}
 		if lang == "auto" {
 			// No language found.
-			log.Infof("detected no supported language (not translating)", locale.Name(""))
+			log.Infof("detected no supported language (not translating)")
 			return nil
 		}
 	}
