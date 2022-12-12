@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 22:05-0500\n"
+"POT-Creation-Date: 2022-12-12 05:46-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,7 +161,7 @@ msgid "Entering through the front door is boring."
 msgstr ""
 
 #: assets/maps/level.tmx:1040
-msgid "House with Two Rooms"
+msgid "House With Two Rooms"
 msgstr ""
 
 #: assets/maps/level.tmx:1052
@@ -612,7 +612,7 @@ msgid "Be resourceful with what you have, and you will succeed."
 msgstr ""
 
 #: assets/maps/level.tmx:6852
-msgid "Switching it up"
+msgid "Switching It Up"
 msgstr ""
 
 #: assets/maps/level.tmx:6882
@@ -644,7 +644,7 @@ msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
 msgstr ""
 
 #: assets/maps/level.tmx:7482
-msgid "Gotta carry it out"
+msgid "Gotta Carry It Out"
 msgstr ""
 
 #: assets/maps/level.tmx:7533
@@ -857,7 +857,7 @@ msgid "Moved Enough?"
 msgstr ""
 
 #: assets/maps/level.tmx:9910
-msgid "Carried enough?"
+msgid "Carried Enough?"
 msgstr ""
 
 #: assets/maps/level.tmx:10201
@@ -865,7 +865,7 @@ msgid "T{{BR}}r{{BR}}a{{BR}}s{{BR}}h{{BR}}{{BR}}C{{BR}}h{{BR}}u{{BR}}t{{BR}}e"
 msgstr ""
 
 #: assets/maps/level.tmx:10274
-msgid "Taking Out The Trash"
+msgid "Taking Out the Trash"
 msgstr ""
 
 #: assets/maps/level.tmx:10496

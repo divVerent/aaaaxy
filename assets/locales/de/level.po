@@ -2,20 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Rudolf Polzer <rpolzer@google.com>, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 20:31-0500\n"
-"PO-Revision-Date: 2022-12-11 22:02-0500\n"
+"POT-Creation-Date: 2022-12-12 05:46-0800\n"
+"PO-Revision-Date: 2022-12-12 06:06-0800\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
-"Language-Team: Rudolf Polzer <rpolzer@google.com>\n"
-"Language: de\n"
+"Language-Team: German - Germany <rpolzer@google.com>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: assets/maps/level.tmx:586
 msgid "A short walk can go a long way."
@@ -168,7 +170,7 @@ msgid "Entering through the front door is boring."
 msgstr "Der Haupteingang ist langweilig."
 
 #: assets/maps/level.tmx:1040
-msgid "House with Two Rooms"
+msgid "House With Two Rooms"
 msgstr "Haus mit zwei Zimmern"
 
 #: assets/maps/level.tmx:1052
@@ -179,6 +181,7 @@ msgstr "Es kommt nur auf die Wahl des richtigen Eingangs an."
 msgid "A New Beginning"
 msgstr "Ein neuer Anfang"
 
+# question mark error accepted
 #: assets/maps/level.tmx:1078
 msgid "If this isn't your downfall, I don't know what is."
 msgstr "Wenn dich das nicht stürzt, was dann?"
@@ -245,6 +248,7 @@ msgid "A slight breeze is enough for water to escape the waterfall."
 msgstr ""
 "Eine leichte Brise genügt, um das Wasser aus dem Wasserfall zu treiben."
 
+# question mark error accepted
 #: assets/maps/level.tmx:1271
 msgid "If it ain't broke, don't fix it."
 msgstr "Nichts kaputt reparieren!"
@@ -517,9 +521,10 @@ msgstr "Abflug?"
 msgid "Redundant launch systems aren't rocket science."
 msgstr "Redundante Startsysteme sind kein Hexenwerk."
 
+# question mark error accepted
 #: assets/maps/level.tmx:6201
 msgid "Fly High"
-msgstr "Flieg hoch"
+msgstr "Alles verflogen?"
 
 #: assets/maps/level.tmx:6221
 msgid "Before The Hub"
@@ -548,7 +553,7 @@ msgstr ""
 
 #: assets/maps/level.tmx:6334
 msgid "Little & Big Platforms"
-msgstr "Kleine & große Plattformen"
+msgstr "Ausgestanden"
 
 #: assets/maps/level.tmx:6340
 msgid "Unlike that Italian plumber, you can go left."
@@ -569,6 +574,7 @@ msgstr "Nochmal"
 #: assets/maps/level.tmx:6379
 msgid "If platforms require platforming, what do trains require?"
 msgstr ""
+"Wenn man Platforming für Plattformen braucht, was braucht man für Züge?"
 
 #: assets/maps/level.tmx:6384
 msgid "Do"
@@ -591,122 +597,128 @@ msgid ""
 "We all wait for the special Tetris block,{{BR}}special Tetris block,{{BR}}"
 "special Tetris block."
 msgstr ""
+"Bald, bald, bald kommt der lange Tetris-Block,{{BR}}lange Tetris-Block,{{BR}}"
+"lange Tetris-Block."
 
 #: assets/maps/level.tmx:6575
 msgid "Sweet is the reward of the swift."
-msgstr ""
+msgstr "Der frühe Vogel frisst den Wurm."
 
 #: assets/maps/level.tmx:6581
 msgid "Swim swim hungry, swim swim hungry."
-msgstr ""
+msgstr "Schwimm schwimm hungrig, schwimm schwimm hungrig."
 
 #: assets/maps/level.tmx:6631
 msgid "The note on the right is much more interesting than this one."
-msgstr ""
+msgstr "Der Zettel rechts ist viel interessanter als dieser."
 
 #: assets/maps/level.tmx:6637
 msgid "The note on the left is much more interesting than this one."
-msgstr ""
+msgstr "Der Zettel links ist viel interessanter als dieser."
 
 #: assets/maps/level.tmx:6656
 msgid "The Anti-Hub"
-msgstr ""
+msgstr "Der Anti-Hub"
 
 #: assets/maps/level.tmx:6686
 msgid "Welcome to Moonside."
-msgstr ""
+msgstr "Willkommen in Moonside."
 
 #: assets/maps/level.tmx:6730
 msgid "I Like To Move It Move It"
-msgstr ""
+msgstr "I like to move it move it"
 
 #: assets/maps/level.tmx:6771
 msgid "Hello,{{BR}}World!"
-msgstr ""
+msgstr "Hallo,{{BR}}Welt!"
 
 #: assets/maps/level.tmx:6800
 msgid "Be resourceful with what you have, and you will succeed."
-msgstr ""
+msgstr "Nutze, was du hast, und Erfolg wird sich zeigen."
 
 #: assets/maps/level.tmx:6852
-msgid "Switching it up"
-msgstr ""
+msgid "Switching It Up"
+msgstr "Ausgeschaltet"
 
 #: assets/maps/level.tmx:6882
 msgid "He who waits,{{BR}}retries... #DGR"
-msgstr ""
+msgstr "Wer wartet,{{BR}}muss nochmal... #DGR"
 
 #: assets/maps/level.tmx:6926
 msgid "Avoid getting blocked in!"
-msgstr ""
+msgstr "Lass dich nicht einmauern!"
 
 #: assets/maps/level.tmx:6936
 msgid "Treasure hunts can be time intensive."
-msgstr ""
+msgstr "Schatzsuchen brauchen Zeit."
 
 #: assets/maps/level.tmx:6941
 msgid "Easy does it."
-msgstr ""
+msgstr "Immer sachte."
 
 #: assets/maps/level.tmx:6949
 msgid "Same procedure as last year?"
-msgstr ""
+msgstr "Same procedure as last year?"
 
+# question mark error accepted
 #: assets/maps/level.tmx:6957
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
-msgstr ""
+msgstr "Pack das Dings auf das Dings,{{BR}}und das andere auch noch, klaro?"
 
 #: assets/maps/level.tmx:7335
 msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
-msgstr ""
+msgstr "Bewege dich Vorausschauend, sonst: Sack-{{BR}}gasse."
 
 #: assets/maps/level.tmx:7482
-msgid "Gotta carry it out"
-msgstr ""
+msgid "Gotta Carry It Out"
+msgstr "Ausgetragen"
 
 #: assets/maps/level.tmx:7533
 msgid "You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
 msgstr ""
+"You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
 
 #: assets/maps/level.tmx:7555
 msgid "A hollow voice says 'fool'.{{BR}}Press {{ExitButton}}."
-msgstr ""
+msgstr "A hollow voice says 'fool'.{{BR}}Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx:7594
 msgid "If walking alone won't do, try some exercise."
-msgstr ""
+msgstr "Wenn Gehen nicht reicht, versuche es mit ein wenig Sport."
 
 #: assets/maps/level.tmx:7632
 msgid "Every great adventure started with the line{{BR}}\"I know a shortcut\""
 msgstr ""
+"Die längsten und abenteuerlichsten Reisen beginnen mit den Worten:"
+"{{BR}}\"Ich kenne eine Abkürzung.\""
 
 #: assets/maps/level.tmx:7763
 msgid "Sometimes you don't just lose sight of something."
-msgstr ""
+msgstr "Manches sollte man besser nicht aus dem Auge verlieren."
 
 #: assets/maps/level.tmx:7784
 msgid "Hey, I needed that!"
-msgstr ""
+msgstr "He, ich brauchte den noch!"
 
 #: assets/maps/level.tmx:7815
 msgid "Do you like the red room?"
-msgstr ""
+msgstr "Gefällt dir das rote Zimmer?"
 
 #: assets/maps/level.tmx:7947
 msgid "Lack of apparent purpose does not mean you don't need it."
-msgstr ""
+msgstr "Nicht alles, was nutzlos scheint, ist unbrauchbar."
 
 #: assets/maps/level.tmx:7976
 msgid "Funny and"
-msgstr ""
+msgstr "Witzig und"
 
 #: assets/maps/level.tmx:7985
 msgid "original."
-msgstr ""
+msgstr "originell."
 
 #: assets/maps/level.tmx:8065
 msgid "Pushing Onwards"
-msgstr ""
+msgstr "Vorgeschoben"
 
 #: assets/maps/level.tmx:8071
 msgid "Some ideas only seem smart at first."
@@ -871,18 +883,18 @@ msgstr ""
 
 #: assets/maps/level.tmx:9899
 msgid "Moved Enough?"
-msgstr ""
+msgstr "Alles verschoben?"
 
 #: assets/maps/level.tmx:9910
-msgid "Carried enough?"
-msgstr ""
+msgid "Carried Enough?"
+msgstr "Alles ertragen?"
 
 #: assets/maps/level.tmx:10201
 msgid "T{{BR}}r{{BR}}a{{BR}}s{{BR}}h{{BR}}{{BR}}C{{BR}}h{{BR}}u{{BR}}t{{BR}}e"
 msgstr ""
 
 #: assets/maps/level.tmx:10274
-msgid "Taking Out The Trash"
+msgid "Taking Out the Trash"
 msgstr ""
 
 #: assets/maps/level.tmx:10496
