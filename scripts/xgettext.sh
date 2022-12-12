@@ -20,11 +20,32 @@ go run github.com/leonelquinteros/gotext/cli/xgotext \
 	-in internal/ \
 	-out assets/locales/
 
+LF='
+'
+all_languages=
+bad_languages=
+
 for domain in level game; do
 	for f in assets/locales/*/"$domain".po; do
+		language=${f%/*}
+		language=${language##*/}
 		msgmerge -U "$f" assets/locales/"$domain".pot
-		untranslated=$(msgattrib --untranslated "$f" | grep -c ^msgid)
-		fuzzy=$(msgattrib --only-fuzzy "$f" | grep -c ^msgid)
-		echo "$f: $untranslated untranslated, $fuzzy fuzzy"
+		total=$(grep -c '^#:' "$f")
+		untranslated=$(msgattrib --untranslated "$f" | grep -c '^#:')
+		fuzzy=$(msgattrib --only-fuzzy "$f" | grep -c '^#:')
+		score=$(((total - untranslated - fuzzy) * 100 / total))
+		echo "$f: $score%: $untranslated/$total untranslated, $fuzzy/$total fuzzy"
+		all_languages="$all_languages$language$LF"
+		if [ $score -lt 90 ]; then
+			bad_languages="$bad_languages$language$LF"
+		fi
 	done
 done
+
+good_languages=$(
+	{
+		echo "$all_languages" | sort -u
+		echo "$bad_languages"
+	} | sort | uniq -u
+)
+echo "Good languages:" $good_languages
