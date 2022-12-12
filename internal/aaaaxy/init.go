@@ -15,6 +15,7 @@
 package aaaaxy
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -57,7 +58,7 @@ var (
 	dumpLoadingFractions = flag.String("dump_loading_fractions", "", "file name to dump actual loading fractions to")
 	debugJustInit        = flag.Bool("debug_just_init", false, "just init everything, then quit right away")
 	fpsDivisor           = flag.Int("fps_divisor", 1, "framerate divisor (use on very low systems, but this may make the game unwinnable or harder as it restricts input; must be a divisor of "+fmt.Sprint(engine.GameTPS))
-	language             = flag.String("language", "", "language to translate the game into")
+	language             = flag.String("language", "auto", "language to translate the game into; if set to 'auto', it will be detected using the system locale; set to '' to not translate")
 )
 
 func LoadConfig() (*flag.Config, error) {
@@ -109,8 +110,24 @@ func (g *Game) InitEbitengine() error {
 	return g.InitEarly()
 }
 
-func initLocaleDomain(l locale.Type, domain string) {
-	if *language == "" {
+func initLinguas() {
+	data, err := vfs.Load("locales", "LINGUAS")
+	if err != nil {
+		log.Errorf("could not open LINGUAS file: %v", err)
+		return
+	}
+	defer data.Close()
+	buf, err := io.ReadAll(data)
+	for _, line := range bytes.Split(buf, []byte{'\n'}) {
+		if len(line) == 0 || line[0] == '#' {
+			continue
+		}
+		locale.Linguas[string(line)] = struct{}{}
+	}
+}
+
+func initLocaleDomain(lang string, l locale.Type, domain string) {
+	if lang == "" {
 		return
 	}
 	data, err := vfs.Load(fmt.Sprintf("locales/%s", *language), fmt.Sprintf("%s.po", domain))
@@ -129,8 +146,26 @@ func initLocaleDomain(l locale.Type, domain string) {
 }
 
 func initLocale() error {
-	initLocaleDomain(locale.G, "game")
-	initLocaleDomain(locale.L, "level")
+	lang := *language
+	if lang == "auto" {
+		for _, loc := range locale.Current() {
+			if loc == "en" {
+				// English is default language, stop searching once encountered in preference list.
+				return nil
+			}
+			if _, found := locale.Linguas[loc]; found {
+				log.Infof("Detected language %s", locale.Name(loc))
+				lang = loc
+				break
+			}
+		}
+		if lang == "auto" {
+			// No language found.
+			return nil
+		}
+	}
+	initLocaleDomain(lang, locale.G, "game")
+	initLocaleDomain(lang, locale.L, "level")
 	return nil
 }
 

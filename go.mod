@@ -11,6 +11,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
 	github.com/hajimehoshi/ebiten/v2 v2.4.13
+	github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
 	github.com/leonelquinteros/gotext v1.5.0
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
@@ -18,6 +19,7 @@ require (
 	golang.org/x/image v0.1.0
 	golang.org/x/mobile v0.0.0-20221110043201-43a038452099
 	golang.org/x/sys v0.2.0
+	golang.org/x/text v0.4.0
 )
 
 require (
@@ -37,7 +39,6 @@ require (
 	github.com/josephspurrier/goversioninfo v1.4.0 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
@@ -46,7 +47,6 @@ require (
 	golang.org/x/crypto v0.1.0 // indirect
 	golang.org/x/mod v0.7.0 // indirect
 	golang.org/x/net v0.2.0 // indirect
-	golang.org/x/text v0.4.0 // indirect
 	golang.org/x/tools v0.3.0 // indirect
 	gopkg.in/src-d/go-billy.v4 v4.3.2 // indirect
 	gopkg.in/src-d/go-git.v4 v4.13.1 // indirect
