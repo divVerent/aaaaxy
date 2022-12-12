@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 17:18-0500\n"
-"PO-Revision-Date: 2022-12-11 17:56-0500\n"
+"POT-Creation-Date: 2022-12-11 20:31-0500\n"
+"PO-Revision-Date: 2022-12-11 20:31-0500\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
 "Language-Team: Rudolf Polzer <rpolzer@google.com>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: assets/maps/level.tmx:586
 msgid "A short walk can go a long way."
@@ -29,7 +29,8 @@ msgstr "Versagen war nie eine Alternative."
 msgid ""
 "Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Sagen die Kinder nicht immer, \"Sind wir schon da?\"{{BR}}Drücke {{ExitButton}}."
+"Sagen die Kinder nicht immer, \"Sind wir schon da?\"{{BR}}Drücke "
+"{{ExitButton}}."
 
 #: assets/maps/level.tmx:607
 msgid "Sometimes the angle of looking at things is all that matters."
@@ -74,8 +75,8 @@ msgstr "Manche bevorzugen 2τ über 4π."
 #: assets/maps/level.tmx:703
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr ""
-"\"Beispielsweise ist die Erde trotz einst erdrückender Einmütigkeit in dieser "
-"Frage keine Scheibe.\""
+"\"Beispielsweise ist die Erde trotz einst erdrückender Einmütigkeit in "
+"dieser Frage keine Scheibe.\""
 
 #: assets/maps/level.tmx:709
 msgid "Some people prefer 4π over 2τ."
@@ -99,7 +100,8 @@ msgstr "Das Band"
 
 #: assets/maps/level.tmx:805
 msgid "The path of least resistance will not always lead to success."
-msgstr "Der Weg des geringsten Widerstands ist nicht immer der Weg des Erfolges."
+msgstr ""
+"Der Weg des geringsten Widerstands ist nicht immer der Weg des Erfolges."
 
 #: assets/maps/level.tmx:811
 msgid "Some things only have one side to them."
@@ -143,11 +145,11 @@ msgstr "Es gibt keine Parallelen zu dieser Sache hier."
 
 #: assets/maps/level.tmx:985
 msgid ""
-"Welcome to the top of the mountain.{{BR}}If you're alone, all this was just a "
-"waste of time.{{BR}}Press {{ExitButton}}."
+"Welcome to the top of the mountain.{{BR}}If you're alone, all this was just "
+"a waste of time.{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Willkommen am Gipfel des Berges.{{BR}}Wenn du alleine bist, war dies alles nur "
-"Zeitverschwendung.{{BR}}Drücke {{ExitButton}}."
+"Willkommen am Gipfel des Berges.{{BR}}Wenn du alleine bist, war dies alles "
+"nur Zeitverschwendung.{{BR}}Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx:991
 msgid "The shortest path can be the one that takes longest."
@@ -207,7 +209,8 @@ msgstr "Oder{{BR}}diesen?"
 
 #: assets/maps/level.tmx:1140
 msgid "Some water must be periodically added to compensate for evaporation."
-msgstr "Man fülle regelmäßig etwas Wasser nach, um die Verdunstung auszugleichen."
+msgstr ""
+"Man fülle regelmäßig etwas Wasser nach, um die Verdunstung auszugleichen."
 
 #: assets/maps/level.tmx:1146
 msgid "You broke out of the stream, yet you're back in the stream."
@@ -239,7 +242,8 @@ msgstr "Silver City"
 
 #: assets/maps/level.tmx:1265
 msgid "A slight breeze is enough for water to escape the waterfall."
-msgstr "Eine leichte Brise genügt, um das Wasser aus dem Wasserfall zu treiben."
+msgstr ""
+"Eine leichte Brise genügt, um das Wasser aus dem Wasserfall zu treiben."
 
 #: assets/maps/level.tmx:1271
 msgid "If it ain't broke, don't fix it."
@@ -331,77 +335,80 @@ msgstr "11"
 
 #: assets/maps/level.tmx:5106
 msgid "The first track is never the one with your train."
-msgstr ""
+msgstr "Das erste Gleis ist nie das, auf dem dein Zug kommt."
 
 #: assets/maps/level.tmx:5112
 msgid "Reaching for the stars can really tear you down."
-msgstr ""
+msgstr "Der Versuch, die Sterne zu ergreifen, endet oft im Fall."
 
 #: assets/maps/level.tmx:5117
 msgid "9¾"
-msgstr ""
+msgstr "9¾"
 
 #: assets/maps/level.tmx:5268
 msgid "A watched train never departs."
-msgstr ""
+msgstr "Der erwartete Zug kommt nie."
 
 #: assets/maps/level.tmx:5273
 msgid ""
 "Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your "
-"keys{{BR}}3) Esc for checkout"
+"keys{{BR}}3) {{ExitButton}} for checkout"
 msgstr ""
+"Hilberts Dotel{{BR}}{{BR}}Willkommen!{{BR}}{{BR}}1) Einchecken{{BR}}2) "
+"Schlüssel entgegennehmen{{BR}}3) {{ExitButton}} zum Auschecken"
 
 #: assets/maps/level.tmx:5284
 msgid "Hilbert's Dotel"
-msgstr ""
+msgstr "Hilberts Dotel"
 
 #: assets/maps/level.tmx:5375
 msgid "I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"
-msgstr ""
+msgstr "Das waren alle...{{BR}}{{BR}}{{BR}}{{BR}}Zimmer"
 
 #: assets/maps/level.tmx:5428
 msgid "He shall not return by the way of the gate whereby he came in."
 msgstr ""
+"Niemand soll durch das Tor wieder hinausgehen, durch das er gekommen ist."
 
 #: assets/maps/level.tmx:5572
 msgid "Shepard Tone"
-msgstr ""
+msgstr "Die Shepard-Skala"
 
 #: assets/maps/level.tmx:5661
 msgid "Play ECED{{BR}}to open.{{BR}}No Trololos!"
-msgstr ""
+msgstr "Spiele ECED{{BR}}zum Öffnen.{{BR}}Kein Trololo!"
 
 #: assets/maps/level.tmx:5669
 msgid "C"
-msgstr ""
+msgstr "C"
 
 #: assets/maps/level.tmx:5677
 msgid "D"
-msgstr ""
+msgstr "D"
 
 #: assets/maps/level.tmx:5685
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #: assets/maps/level.tmx:5693
 msgid "F"
-msgstr ""
+msgstr "F"
 
 #: assets/maps/level.tmx:5701
 msgid "G"
-msgstr ""
+msgstr "G"
 
 #: assets/maps/level.tmx:5709
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: assets/maps/level.tmx:5717
 msgid "B"
-msgstr ""
+msgstr "H"
 
 #: assets/maps/level.tmx:5738
 msgid "Sometimes all you need is a little opening."
-msgstr ""
+msgstr "Manchmal braucht man nichts weiter als eine kleine Öffnung."
 
 #: assets/maps/level.tmx:5765
 msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
@@ -441,7 +448,7 @@ msgstr ""
 
 #: assets/maps/level.tmx:5968
 msgid "Don't{{BR}}Look Up!"
-msgstr ""
+msgstr "Nicht{{BR}}Nach oben schauen!"
 
 #: assets/maps/level.tmx:5980
 msgid "The Rover and the Feline"
@@ -742,12 +749,13 @@ msgstr ""
 
 #: assets/maps/level.tmx:8656
 msgid ""
-"And... the floor transforms into shiny yet deadly coins.{{BR}}Without the coins."
-"{{BR}}That's unfortunate."
+"And... the floor transforms into shiny yet deadly coins.{{BR}}Without the "
+"coins.{{BR}}That's unfortunate."
 msgstr ""
 
 #: assets/maps/level.tmx:9205
-msgid "I pressed the impossible button and{{BR}}all I got was this lousy message."
+msgid ""
+"I pressed the impossible button and{{BR}}all I got was this lousy message."
 msgstr ""
 
 #: assets/maps/level.tmx:9226
@@ -1027,7 +1035,8 @@ msgid "You just need to push away what you don't need."
 msgstr ""
 
 #: assets/maps/level.tmx:12055
-msgid "Looking in every nook and cranny{{BR}}sometimes yields unexpected gains."
+msgid ""
+"Looking in every nook and cranny{{BR}}sometimes yields unexpected gains."
 msgstr ""
 
 #: assets/maps/level.tmx:12061
@@ -1050,7 +1059,8 @@ msgstr ""
 
 #: assets/maps/level.tmx:12208
 msgid ""
-"Looking at things and observing how they change{{BR}}is what brought us science."
+"Looking at things and observing how they change{{BR}}is what brought us "
+"science."
 msgstr ""
 
 #: assets/maps/level.tmx:12250
@@ -1310,8 +1320,8 @@ msgstr ""
 
 #: assets/maps/level.tmx:17891
 msgid ""
-"Let's put weird and weird together,{{BR}}and make it even weirder!{{BR}}Weird, "
-"weird space{{BR}}is super-weird!"
+"Let's put weird and weird together,{{BR}}and make it even weirder!{{BR}}"
+"Weird, weird space{{BR}}is super-weird!"
 msgstr ""
 
 #: assets/maps/level.tmx:18112
