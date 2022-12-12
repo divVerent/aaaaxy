@@ -50,23 +50,23 @@ msgstr "A: %s"
 
 #: playerstate/playerstate.go:239
 msgid "All Checkpoints"
-msgstr "Alle Checkpoints"
+msgstr "alle Checkpoints"
 
 #: playerstate/playerstate.go:247
 msgid "All Flipped"
-msgstr "Alles gespiegelt"
+msgstr "alles gespiegelt"
 
 #: playerstate/playerstate.go:241
 msgid "All Notes"
-msgstr "Alle Zettel"
+msgstr "alle Zettel"
 
 #: playerstate/playerstate.go:243
 msgid "All Paths"
-msgstr "Alle Wege"
+msgstr "alle Wege"
 
 #: playerstate/playerstate.go:245
 msgid "All Secrets"
-msgstr "Alle Geheimnisse"
+msgstr "alle Geheimnisse"
 
 #: fun/string.go:57
 msgid "Alofi"
@@ -78,7 +78,7 @@ msgstr "Anchorage"
 
 #: playerstate/playerstate.go:237
 msgid "Any%"
-msgstr "Any%"
+msgstr "any%"
 
 #: fun/string.go:103
 msgid "Auckland"
@@ -130,7 +130,7 @@ msgstr "Build: %s"
 
 #: playerstate/playerstate.go:266
 msgid "Cheat%"
-msgstr "Schummel%"
+msgstr "schummel%"
 
 #: fun/string.go:67
 msgid "Chicago"
@@ -204,7 +204,7 @@ msgstr "Honolulu"
 
 #: playerstate/playerstate.go:268
 msgid "Impossible"
-msgstr "Unmöglich"
+msgstr "unmöglich"
 
 #: fun/string.go:85
 msgid "Istanbul"
@@ -248,27 +248,27 @@ msgstr "New York"
 
 #: playerstate/playerstate.go:259
 msgid "No Back"
-msgstr "Ohne Zurück"
+msgstr "ohne Zurück"
 
 #: playerstate/playerstate.go:255
 msgid "No Backspace"
-msgstr "Ohne Rückschritt"
+msgstr "ohne Rückschritt"
 
 #: playerstate/playerstate.go:253
 msgid "No Escape"
-msgstr "Ohne Escape"
+msgstr "ohne Escape"
 
 #: playerstate/playerstate.go:257
 msgid "No Start"
-msgstr "Ohne Start"
+msgstr "ohne Start"
 
 #: playerstate/playerstate.go:249
 msgid "No Teleports"
-msgstr "Ohne Teleportieren"
+msgstr "ohne Teleportieren"
 
 #: playerstate/playerstate.go:346
 msgid "None"
-msgstr "Keine"
+msgstr "keine"
 
 #: fun/string.go:105
 msgid "Nuku'alofa"
@@ -416,7 +416,7 @@ msgstr "Lautstärke: %v"
 
 #: playerstate/playerstate.go:264
 msgid "Without Cheating Of Course"
-msgstr "Ohne Schummeln natürlich"
+msgstr "ohne Schummeln natürlich"
 
 #: menu/savestate.go:160
 msgid "X: %s"
