@@ -151,16 +151,18 @@ func initLocale() error {
 		for _, loc := range locale.Current() {
 			if loc == "en" {
 				// English is default language, stop searching once encountered in preference list.
+				log.Infof("detected language %s (not translating)", locale.Name(""))
 				return nil
 			}
 			if _, found := locale.Linguas[loc]; found {
-				log.Infof("Detected language %s", locale.Name(loc))
+				log.Infof("detected language %s", locale.Name(loc))
 				lang = loc
 				break
 			}
 		}
 		if lang == "auto" {
 			// No language found.
+			log.Infof("detected no supported language (not translating)", locale.Name(""))
 			return nil
 		}
 	}
