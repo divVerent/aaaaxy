@@ -3,12 +3,12 @@ git:
     - filter_type: file
       file_format: PO
       source_file: assets/locales/game.pot
-      translation_files_expression: assets/locales/<language>/game.po
+      translation_files_expression: assets/locales/<lang>/game.po
       source_language: en
     - filter_type: file
       file_format: PO
       source_file: assets/locales/level.pot
-      translation_files_expression: assets/locales/<language>/level.po
+      translation_files_expression: assets/locales/<lang>/level.po
       source_language: en
   settings:
     pr_branch_name: transifex_<br_unique_id>
