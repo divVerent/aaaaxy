@@ -1085,7 +1085,7 @@ msgstr "Doppelt gemoppelt"
 
 #: assets/maps/level.tmx:12139
 msgid "Why didn't you like the one I gave you?"
-msgstr "Warum wolltest du nicht den, den ich dir gegeben hatte?"
+msgstr "Warum wolltest du nicht die, die ich dir gegeben hatte?"
 
 #: assets/maps/level.tmx:12175
 msgid "You really don't get it, do you?"
