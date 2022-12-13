@@ -234,7 +234,11 @@ const (
 func (c SpeedrunCategories) Name() string {
 	switch c {
 	case AnyPercentSpeedrun:
-		return locale.G.Get("Any%")
+		// Using an explicit format to work around "go vet" being annoying here.
+		// Issue is, locale.G.Get doesn't always take format strings - if there is just one arg, it does not call printf.
+		// But "go vet" doesn't know that.
+		// See https://github.com/golang/go/issues/57288
+		return locale.G.Get("Any%s", "%")
 	case AllCheckpointsSpeedrun:
 		return locale.G.Get("All Checkpoints")
 	case AllSignsSpeedrun:
@@ -259,11 +263,19 @@ func (c SpeedrunCategories) Name() string {
 			return locale.G.Get("No Back")
 		}
 	case hundredPercentSpeedrun:
-		return locale.G.Get("100%")
+		// Using an explicit format to work around "go vet" being annoying here.
+		// Issue is, locale.G.Get doesn't always take format strings - if there is just one arg, it does not call printf.
+		// But "go vet" doesn't know that.
+		// See https://github.com/golang/go/issues/57288
+		return locale.G.Get("100%s", "%")
 	case withoutCheatsSpeedrun:
 		return locale.G.Get("Without Cheating Of Course")
 	case cheatingSpeedrun:
-		return locale.G.Get("Cheat%")
+		// Using an explicit format to work around "go vet" being annoying here.
+		// Issue is, locale.G.Get doesn't always take format strings - if there is just one arg, it does not call printf.
+		// But "go vet" doesn't know that.
+		// See https://github.com/golang/go/issues/57288
+		return locale.G.Get("Cheat%s", "%")
 	case impossibleSpeedrun:
 		return locale.G.Get("Impossible")
 	default:
