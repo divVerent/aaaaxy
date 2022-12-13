@@ -1,25 +1,25 @@
+# 
+# Translators:
+# Rudolf Polzer, 2022
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
-"Language-Team: Rudolf Polzer <rpolzer@google.com>\n"
-"Language: de\n"
+"Last-Translator: Rudolf Polzer, 2022\n"
+"Language-Team: German (https://www.transifex.com/aaaaxy/teams/158611/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: xgotext\n"
 
 #: font/charset.go:27
 msgid ""
-" !\"#$%s&'()*+,-./0123456789:;<=>?"
-"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+" "
+"!\"#$%s&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
-" !\"#$%s&'()*+,-./0123456789:;<=>?"
-"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}"
-"~τπö¾©éàÄÖÜäöüß"
+" "
+"!\"#$%s&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöüß"
 
 #: menu/settings.go:374
 msgid " (restart to apply)"
@@ -53,27 +53,22 @@ msgstr "???"
 msgid "A: %s"
 msgstr "A: %s"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:243
 msgid "All Checkpoints"
 msgstr "alle Checkpoints"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:251
 msgid "All Flipped"
 msgstr "alles gespiegelt"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:245
 msgid "All Notes"
 msgstr "alle Zettel"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:247
 msgid "All Paths"
 msgstr "alle Wege"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:249
 msgid "All Secrets"
 msgstr "alle Geheimnisse"
@@ -86,7 +81,6 @@ msgstr "Alofi"
 msgid "Anchorage"
 msgstr "Anchorage"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:241
 msgid "Any%s"
 msgstr "any%s"
@@ -139,7 +133,6 @@ msgstr "Boston"
 msgid "Build: %s"
 msgstr "Build: %s"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:278
 msgid "Cheat%s"
 msgstr "schummel%s"
@@ -214,7 +207,6 @@ msgstr "Hoch"
 msgid "Honolulu"
 msgstr "Honolulu"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:280
 msgid "Impossible"
 msgstr "unmöglich"
@@ -263,32 +255,26 @@ msgstr "Mittel"
 msgid "New York"
 msgstr "New York"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:263
 msgid "No Back"
 msgstr "ohne Zurück"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:259
 msgid "No Backspace"
 msgstr "ohne Rückschritt"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:257
 msgid "No Escape"
 msgstr "ohne Escape"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:261
 msgid "No Start"
 msgstr "ohne Start"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:253
 msgid "No Teleports"
 msgstr "ohne Teleportation"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:358
 msgid "None"
 msgstr "keine"
@@ -437,7 +423,6 @@ msgstr "Türkistan"
 msgid "Volume: %s"
 msgstr "Lautstärke: %s"
 
-# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:272
 msgid "Without Cheating Of Course"
 msgstr "ohne Schummeln natürlich"
