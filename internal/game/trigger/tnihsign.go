@@ -57,6 +57,25 @@ const (
 	tnihHeight = 32
 )
 
+func (t *TnihSign) Precache(sp *level.Spawnable) error {
+	txtOrig, err := propmap.Value(sp.Properties, "text", "")
+	if err != nil {
+		log.Warningf("failed to read text on entity %v: %v", sp.ID, err)
+		return nil
+	}
+	txt, err := fun.TryFormatText(nil, txtOrig)
+	if err != nil {
+		// Cannot format, requires player state. No bounds checking then.
+		return nil
+	}
+	bounds := centerprint.NormalFont().BoundString(txt)
+	if bounds.Size.DX > engine.GameWidth {
+		log.Warningf("text too big: entity %v must fit in width %v but text needs %v: %v",
+			sp.ID, engine.GameWidth, bounds.Size, txtOrig)
+	}
+	return nil
+}
+
 func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	t.NonSolidTouchable.Init(w, e)
 	t.NotifyUntouched = true

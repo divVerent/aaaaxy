@@ -48,6 +48,24 @@ type CheckpointTarget struct {
 	Sound *sound.Sound
 }
 
+func (c *CheckpointTarget) Precache(sp *level.Spawnable) {
+	txtOrig, err := propmap.Value(sp.Properties, "text", "")
+	if err != nil {
+		log.Warningf("failed to read text on entity %v: %v", sp.ID, err)
+		return
+	}
+	txt, err := fun.TryFormatText(nil, txtOrig)
+	if err != nil {
+		// Cannot format, requires player state. No bounds checking then.
+		return
+	}
+	bounds := centerprint.BigFont().BoundString(txt)
+	if bounds.Size.DX > engine.GameWidth {
+		log.Warningf("text too big: entity %v must fit in width %v but text needs %v: %v",
+			sp.ID, engine.GameWidth, bounds.Size, txtOrig)
+	}
+}
+
 func (c *CheckpointTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	c.World = w
 	c.Entity = e

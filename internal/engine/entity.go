@@ -87,7 +87,7 @@ type EntityImpl interface {
 // Some entities fulfill PrecacheImpl. These will get precached.
 type Precacher interface {
 	// Precache gets called during level loading to preload anything the entity may need.
-	Precache(id level.EntityID, sp *level.SpawnableProps) error
+	Precache(sp *level.Spawnable) error
 }
 
 // Some entities get a pre-despawn notification.
@@ -124,7 +124,7 @@ func precacheEntities(lvl *level.Level) error {
 				break
 			}
 			if precacher, ok := eTmpl.(Precacher); ok {
-				err = precacher.Precache(sp.ID, &sp.SpawnableProps)
+				err = precacher.Precache(sp)
 				if err != nil {
 					err = fmt.Errorf("failed to precache entity %v: %w", sp, err)
 				}

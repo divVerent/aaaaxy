@@ -120,20 +120,32 @@ func ClearPrecache() {
 	textCache = map[textCacheKey]*ebiten.Image{}
 }
 
-func (t *Text) Precache(id level.EntityID, sp *level.SpawnableProps) error {
+func (t *Text) Precache(sp *level.Spawnable) error {
 	if !*precacheText {
 		return nil
 	}
-	log.Debugf("precaching text for entity %v", id)
-	key := cacheKey(sp)
+	log.Debugf("precaching text for entity %v", sp.ID)
+	key := cacheKey(&sp.SpawnableProps)
 	if textCache[key] != nil {
 		return nil
 	}
 	img, err := key.load(nil)
 	if err != nil {
-		return fmt.Errorf("could not precache text image for entity %v: %w", sp, err)
+		return fmt.Errorf("could not precache text image for entity %v: %w", sp.ID, err)
 	}
 	textCache[key] = img
+	if img == nil {
+		// Nothing precached.
+		return nil
+	}
+	dx, dy := img.Size()
+	if sp.Orientation.Right.DX == 0 {
+		dx, dy = dy, dx
+	}
+	if dx > sp.RectInTile.Size.DX || dy > sp.RectInTile.Size.DY {
+		log.Warningf("text too big: entity %v has size %v but text needs %v: %v",
+			sp.ID, sp.RectInTile.Size, m.Delta{DX: dx, DY: dy}, key.text)
+	}
 	return nil
 }
 

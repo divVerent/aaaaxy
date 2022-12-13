@@ -38,7 +38,7 @@ type Sprite struct {
 
 var _ engine.Precacher = &Sprite{}
 
-func (s *Sprite) Precache(id level.EntityID, sp *level.SpawnableProps) error {
+func (s *Sprite) Precache(sp *level.Spawnable) error {
 	if !*checkSprites {
 		return nil
 	}
