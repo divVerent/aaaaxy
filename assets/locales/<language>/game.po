@@ -1,0 +1,532 @@
+# 
+# Translators:
+# Rudolf Polzer, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Rudolf Polzer, 2022\n"
+"Language-Team: German (https://www.transifex.com/aaaaxy/teams/158611/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: xgotext\n"
+
+#: font/charset.go:27
+msgid ""
+" "
+"!\"#$%s&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+msgstr ""
+" "
+"!\"#$%s&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöüß"
+
+#: menu/settings.go:374
+msgid " (restart to apply)"
+msgstr " (Neustart erforderlich)"
+
+#: fun/string.go:158 playerstate/playerstate.go:362
+msgid " and "
+msgstr " und "
+
+#: menu/map.go:272
+msgid "%s (%d/%d)"
+msgstr "%s (%d/%d)"
+
+#: fun/string.go:158 playerstate/playerstate.go:362
+msgid ", "
+msgstr ", "
+
+#: playerstate/playerstate.go:270
+msgid "100%s"
+msgstr "100%s"
+
+#: menu/savestate.go:155
+msgid "4: %s"
+msgstr "4: %s"
+
+#: menu/quality.go:58 playerstate/playerstate.go:282
+msgid "???"
+msgstr "???"
+
+#: menu/savestate.go:150
+msgid "A: %s"
+msgstr "A: %s"
+
+#: playerstate/playerstate.go:243
+msgid "All Checkpoints"
+msgstr "alle Checkpoints"
+
+#: playerstate/playerstate.go:251
+msgid "All Flipped"
+msgstr "alles gespiegelt"
+
+#: playerstate/playerstate.go:245
+msgid "All Notes"
+msgstr "alle Zettel"
+
+#: playerstate/playerstate.go:247
+msgid "All Paths"
+msgstr "alle Wege"
+
+#: playerstate/playerstate.go:249
+msgid "All Secrets"
+msgstr "alle Geheimnisse"
+
+#: fun/string.go:57
+msgid "Alofi"
+msgstr "Alofi"
+
+#: fun/string.go:61
+msgid "Anchorage"
+msgstr "Anchorage"
+
+#: playerstate/playerstate.go:241
+msgid "Any%s"
+msgstr "any%s"
+
+#: fun/string.go:103
+msgid "Auckland"
+msgstr "Auckland"
+
+#: menu/language.go:39 menu/quality.go:46
+msgid "Auto (%s)"
+msgstr "Automatisch (%s)"
+
+#: fun/string.go:187
+msgid "B"
+msgstr "B"
+
+#: fun/string.go:184
+msgid "B/X"
+msgstr "B/X"
+
+#: fun/string.go:175
+msgid "Back"
+msgstr "Zurück"
+
+#: fun/string.go:171
+msgid "Backspace"
+msgstr "Rückschritt"
+
+#: fun/string.go:55
+msgid "Baker Island"
+msgstr "Bakerinsel"
+
+#: fun/string.go:95
+msgid "Beijing"
+msgstr "Peking"
+
+#: fun/string.go:81
+msgid "Berlin"
+msgstr "Berlin"
+
+#: fun/string.go:91
+msgid "Bishkek"
+msgstr "Bischkek"
+
+#: fun/string.go:110
+msgid "Boston"
+msgstr "Boston"
+
+#: menu/credits.go:74
+msgid "Build: %s"
+msgstr "Build: %s"
+
+#: playerstate/playerstate.go:278
+msgid "Cheat%s"
+msgstr "schummel%s"
+
+#: fun/string.go:67
+msgid "Chicago"
+msgstr "Chicago"
+
+#: menu/main.go:101
+msgid "Credits"
+msgstr "Abspann"
+
+#: fun/string.go:190
+msgid "Ctrl/Shift"
+msgstr "Ctrl/Shift"
+
+#: fun/string.go:65
+msgid "Edmonton"
+msgstr "Edmonton"
+
+#: fun/string.go:199
+msgid "Enter"
+msgstr "Enter"
+
+#: game/checkpoint/checkpoint_target.go:128
+msgid ""
+"Error:\n"
+"could not save game:\n"
+"%s"
+msgstr ""
+"Fehler:\n"
+"konnte den Spielstand nicht speichern:\n"
+"%s"
+
+#: fun/string.go:169
+msgid "Escape"
+msgstr "Escape"
+
+#: fun/string.go:75
+msgid "Fernando de Noronha"
+msgstr "Fernando de Noronha"
+
+#: game/player/player.go:395
+msgid ""
+"Fine, I give up, have it your way.\n"
+"All cheats are documented in --help."
+msgstr ""
+"OK, ich gebe auf, mach, was du willst.\n"
+"Alle Cheats sind dokumentiert in --help."
+
+#: menu/credits.go:66
+msgid "For Software Licenses"
+msgstr "Für Software-Lizenzen"
+
+#: menu/settings.go:357
+msgid "Graphics: %s"
+msgstr "Grafik: %s"
+
+#: fun/string.go:71
+msgid "Halifax"
+msgstr "Halifax"
+
+#: fun/string.go:93
+msgid "Hanoi"
+msgstr "Hanoi"
+
+#: menu/quality.go:50
+msgid "High"
+msgstr "Hoch"
+
+#: fun/string.go:59
+msgid "Honolulu"
+msgstr "Honolulu"
+
+#: playerstate/playerstate.go:280
+msgid "Impossible"
+msgstr "unmöglich"
+
+#: fun/string.go:85
+msgid "Istanbul"
+msgstr "Istanbul"
+
+#: fun/string.go:107
+msgid "Kiritimati"
+msgstr "Kiritimati"
+
+#: menu/settings.go:376
+msgid "Language: %s%s"
+msgstr "Sprache: %s%s"
+
+#: menu/credits.go:73
+msgid "Level Version: %d"
+msgstr "Level-Version: %d"
+
+#: fun/string.go:79
+msgid "London"
+msgstr "London"
+
+#: menu/quality.go:54
+msgid "Low"
+msgstr "Niedrig"
+
+#: menu/quality.go:56
+msgid "Lowest"
+msgstr "Am niedrigsten"
+
+#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:391
+msgid "Main Menu"
+msgstr "Hauptmenü"
+
+#: menu/quality.go:48
+msgid "Max"
+msgstr "Maximal"
+
+#: menu/quality.go:52
+msgid "Medium"
+msgstr "Mittel"
+
+#: fun/string.go:69
+msgid "New York"
+msgstr "New York"
+
+#: playerstate/playerstate.go:263
+msgid "No Back"
+msgstr "ohne Zurück"
+
+#: playerstate/playerstate.go:259
+msgid "No Backspace"
+msgstr "ohne Rückschritt"
+
+#: playerstate/playerstate.go:257
+msgid "No Escape"
+msgstr "ohne Escape"
+
+#: playerstate/playerstate.go:261
+msgid "No Start"
+msgstr "ohne Start"
+
+#: playerstate/playerstate.go:253
+msgid "No Teleports"
+msgstr "ohne Teleportation"
+
+#: playerstate/playerstate.go:358
+msgid "None"
+msgstr "keine"
+
+#: fun/string.go:105
+msgid "Nuku'alofa"
+msgstr "Nuku'alofa"
+
+#: fun/string.go:73
+msgid "Nuuk"
+msgstr "Nuuk"
+
+#: menu/map.go:268
+msgid "Pick-a-Path"
+msgstr "Wähl-dir-was"
+
+#: menu/main.go:91
+msgid "Play"
+msgstr "Spielen"
+
+#: fun/string.go:77
+msgid "Ponta Delgada"
+msgstr "Ponta Delgada"
+
+#: fun/string.go:101
+msgid "Port Moresby"
+msgstr "Port Moresby"
+
+#: menu/settings.go:362
+msgid "Quality: %s"
+msgstr "Qualität: %s"
+
+#: menu/main.go:106
+msgid "Quit"
+msgstr "Beenden"
+
+#: menu/reset.go:107
+msgid "Reset Nothing"
+msgstr "Nichts zurücksetzen"
+
+#: menu/reset.go:130
+msgid "Reset and Lose SAVE STATE %s"
+msgstr "Den SPIELSTAND %s zurücksetzen"
+
+#: menu/reset.go:136
+msgid "Reset and Lose Save State %s (just release buttons)"
+msgstr "Den Spielstand %s zurücksetzen (bitte loslassen)"
+
+#: menu/reset.go:138
+msgid "Reset and Lose Save State %s (think about it for %d sec)"
+msgstr "Den Spielstand %s zurücksetzen (denke darüber nach für %ds)"
+
+#: menu/reset.go:141
+msgid "Reset and Lose Save State %s"
+msgstr "Den Spielstand %s zurücksetzen"
+
+#: menu/reset.go:112
+msgid "Reset and Lose Settings"
+msgstr "Einstellungen zurücksetzen"
+
+#: menu/reset.go:102 menu/settings.go:386
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: fun/string.go:63
+msgid "San Francisco"
+msgstr "San Francisco"
+
+#: menu/main.go:109 menu/savestate.go:74
+msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
+msgstr "Punkte: {{Score}}{{SpeedrunCategoriesShort}} | Zeit: {{GameTime}}"
+
+#: menu/main.go:96 menu/settings.go:341
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: fun/string.go:201
+msgid "Shift"
+msgstr "Shift"
+
+#: fun/string.go:196
+msgid "Shift/E/Tab"
+msgstr "Shift/E/Tab"
+
+#: fun/string.go:173
+msgid "Start"
+msgstr "Start"
+
+#: menu/savestate.go:145 menu/settings.go:381
+msgid "Switch Save State"
+msgstr "Spielstand wechseln"
+
+#: menu/settings.go:347
+msgid "Switch to Fullscreen Mode"
+msgstr "Auf Vollbildmodus wechseln"
+
+#: menu/settings.go:349
+msgid "Switch to Windowed Mode"
+msgstr "Auf Fenstermodus wechseln"
+
+#: fun/string.go:99
+msgid "Sydney"
+msgstr "Sydney"
+
+#: fun/string.go:87
+msgid "Tehran"
+msgstr "Teheran"
+
+#: fun/string.go:83
+msgid "Tel Aviv"
+msgstr "Tel Aviv"
+
+#: menu/credits.go:112
+msgid "Thank You!"
+msgstr "Danke!"
+
+#: fun/string.go:150
+msgid "The Cleats"
+msgstr "Die Stollen"
+
+#: fun/string.go:147
+msgid "The Coil"
+msgstr "Der Elektromagnet"
+
+#: fun/string.go:141
+msgid "The Gloves"
+msgstr "Die Handschuhe"
+
+#: fun/string.go:144
+msgid "The Remote"
+msgstr "Die Fernbedienung"
+
+#: fun/string.go:97
+msgid "Tokyo"
+msgstr "Tokio"
+
+#: menu/credits.go:107
+msgid "Try Next"
+msgstr "Versuche als Nächstes"
+
+#: fun/string.go:89
+msgid "Turkistan"
+msgstr "Türkistan"
+
+#: menu/settings.go:367
+msgid "Volume: %s"
+msgstr "Lautstärke: %s"
+
+#: playerstate/playerstate.go:272
+msgid "Without Cheating Of Course"
+msgstr "ohne Schummeln natürlich"
+
+#: menu/savestate.go:160
+msgid "X: %s"
+msgstr "X: %s"
+
+#: menu/savestate.go:165
+msgid "Y: %s"
+msgstr "Y: %s"
+
+#: game/player/player.go:405
+msgid "You now have 30 lives. Enjoy!"
+msgstr "Du hast jetzt 30 Leben. Viel Spaß damit!"
+
+#: game/player/player.go:398
+msgid "You really thought this would do something?"
+msgstr "Dachtest du wirklich, das wird etwas tun?"
+
+#: menu/credits.go:97
+msgid "Your Speedrun Categories"
+msgstr "Deine Speedrun-Kategorien"
+
+#: menu/credits.go:94
+msgid "Your Time"
+msgstr "Deine Zeit"
+
+#: fun/string.go:193
+msgid "Z"
+msgstr "Z"
+
+#: sound/sound.go:234
+msgid "enumerating sounds"
+msgstr "Finde Sound-Effekte"
+
+#: fun/string.go:160
+msgid "everything"
+msgstr "alle"
+
+#: level/level.go:789
+msgid "hashing level"
+msgstr "Hashe Level"
+
+#: aaaaxy/init.go:264
+msgid "initializing audio"
+msgstr "Initialisiere Sound"
+
+#: aaaaxy/init.go:288
+msgid "initializing dumping"
+msgstr "Initialisiere Dumping"
+
+#: aaaaxy/init.go:280
+msgid "initializing input"
+msgstr "Initialisiere Eingabe"
+
+#: aaaaxy/init.go:268
+msgid "initializing noise"
+msgstr "Initialisiere Rauschen"
+
+#: level/level.go:768
+msgid "loading checkpoints"
+msgstr "Lade Checkpoints"
+
+#: level/level.go:740
+msgid "loading level file"
+msgstr "Lade Leveldatei"
+
+#: engine/world.go:212
+msgid "loading level"
+msgstr "Lade Level"
+
+#: fun/string.go:154
+msgid "nothing"
+msgstr "keine"
+
+#: level/level.go:756
+msgid "parsing level data"
+msgstr "Lese Level"
+
+#: sound/sound.go:247
+msgid "precaching %s"
+msgstr "Lade %s"
+
+#: aaaaxy/init.go:260
+msgid "precaching credits"
+msgstr "Lade Abspann"
+
+#: aaaaxy/init.go:284
+msgid "precaching engine"
+msgstr "Lade Engine"
+
+#: engine/world.go:217
+msgid "precaching entities"
+msgstr "Lade Objekte"
+
+#: aaaaxy/init.go:276
+msgid "precaching images"
+msgstr "Lade Grafiken"
+
+#: aaaaxy/init.go:272
+msgid "precaching sounds"
+msgstr "Lade Soundeffekte"
+
+#: menu/credits.go:67
+msgid "press right"
+msgstr "drücke Rechts"
