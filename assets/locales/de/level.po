@@ -77,7 +77,7 @@ msgstr "Manche bevorzugen 2τ über 4π."
 #: assets/maps/level.tmx:703
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr ""
-"\"Beispielsweise ist die Erde trotz einst erdrückender{BR}Einmütigkeit in "
+"\"Beispielsweise ist die Erde trotz einst erdrückender{{BR}}Einmütigkeit in "
 "dieser Frage keine Scheibe.\""
 
 #: assets/maps/level.tmx:709
