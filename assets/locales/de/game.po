@@ -21,6 +21,10 @@ msgstr ""
 "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}"
 "~τπö¾©éàÄÖÜäöüß"
 
+#: menu/settings.go:374
+msgid " (restart to apply)"
+msgstr " (Neustart erforderlich)"
+
 #: fun/string.go:158 playerstate/playerstate.go:362
 msgid " and "
 msgstr " und "
@@ -49,22 +53,27 @@ msgstr "???"
 msgid "A: %s"
 msgstr "A: %s"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:243
 msgid "All Checkpoints"
 msgstr "alle Checkpoints"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:251
 msgid "All Flipped"
 msgstr "alles gespiegelt"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:245
 msgid "All Notes"
 msgstr "alle Zettel"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:247
 msgid "All Paths"
 msgstr "alle Wege"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:249
 msgid "All Secrets"
 msgstr "alle Geheimnisse"
@@ -77,6 +86,7 @@ msgstr "Alofi"
 msgid "Anchorage"
 msgstr "Anchorage"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:241
 msgid "Any%s"
 msgstr "any%s"
@@ -85,7 +95,7 @@ msgstr "any%s"
 msgid "Auckland"
 msgstr "Auckland"
 
-#: menu/quality.go:46
+#: menu/language.go:39 menu/quality.go:46
 msgid "Auto (%s)"
 msgstr "Automatisch (%s)"
 
@@ -129,6 +139,7 @@ msgstr "Boston"
 msgid "Build: %s"
 msgstr "Build: %s"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:278
 msgid "Cheat%s"
 msgstr "schummel%s"
@@ -183,7 +194,7 @@ msgstr ""
 msgid "For Software Licenses"
 msgstr "Für Software-Lizenzen"
 
-#: menu/settings.go:348
+#: menu/settings.go:357
 msgid "Graphics: %v"
 msgstr "Grafik: %v"
 
@@ -203,6 +214,7 @@ msgstr "Hoch"
 msgid "Honolulu"
 msgstr "Honolulu"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:280
 msgid "Impossible"
 msgstr "unmöglich"
@@ -214,6 +226,10 @@ msgstr "Istanbul"
 #: fun/string.go:107
 msgid "Kiritimati"
 msgstr "Kiritimati"
+
+#: menu/settings.go:376
+msgid "Language: %v%s"
+msgstr "Sprache: %v%s"
 
 #: menu/credits.go:73
 msgid "Level Version: %d"
@@ -231,7 +247,7 @@ msgstr "Niedrig"
 msgid "Lowest"
 msgstr "Am niedrigsten"
 
-#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:373
+#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:391
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
@@ -247,26 +263,32 @@ msgstr "Mittel"
 msgid "New York"
 msgstr "New York"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:263
 msgid "No Back"
 msgstr "ohne Zurück"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:259
 msgid "No Backspace"
 msgstr "ohne Rückschritt"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:257
 msgid "No Escape"
 msgstr "ohne Escape"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:261
 msgid "No Start"
 msgstr "ohne Start"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:253
 msgid "No Teleports"
-msgstr "ohne Teleportieren"
+msgstr "ohne Teleportation"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:358
 msgid "None"
 msgstr "keine"
@@ -295,7 +317,7 @@ msgstr "Ponta Delgada"
 msgid "Port Moresby"
 msgstr "Port Moresby"
 
-#: menu/settings.go:353
+#: menu/settings.go:362
 msgid "Quality: %v"
 msgstr "Qualität: %v"
 
@@ -327,7 +349,7 @@ msgstr "Den Spielstand %s zurücksetzen"
 msgid "Reset and Lose Settings"
 msgstr "Einstellungen zurücksetzen"
 
-#: menu/reset.go:102 menu/settings.go:368
+#: menu/reset.go:102 menu/settings.go:386
 msgid "Reset"
 msgstr "Zurücksetzen"
 
@@ -339,7 +361,7 @@ msgstr "San Francisco"
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr "Punkte: {{Score}}{{SpeedrunCategoriesShort}} | Zeit: {{GameTime}}"
 
-#: menu/main.go:96 menu/settings.go:332
+#: menu/main.go:96 menu/settings.go:341
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -355,15 +377,15 @@ msgstr "Shift/E/Tab"
 msgid "Start"
 msgstr "Start"
 
-#: menu/savestate.go:145 menu/settings.go:363
+#: menu/savestate.go:145 menu/settings.go:381
 msgid "Switch Save State"
 msgstr "Spielstand wechseln"
 
-#: menu/settings.go:338
+#: menu/settings.go:347
 msgid "Switch to Fullscreen Mode"
 msgstr "Auf Vollbildmodus wechseln"
 
-#: menu/settings.go:340
+#: menu/settings.go:349
 msgid "Switch to Windowed Mode"
 msgstr "Auf Fenstermodus wechseln"
 
@@ -411,10 +433,11 @@ msgstr "Versuche als Nächstes"
 msgid "Turkistan"
 msgstr "Türkistan"
 
-#: menu/settings.go:358
+#: menu/settings.go:367
 msgid "Volume: %v"
 msgstr "Lautstärke: %v"
 
+# lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:272
 msgid "Without Cheating Of Course"
 msgstr "ohne Schummeln natürlich"
@@ -459,19 +482,19 @@ msgstr "alle"
 msgid "hashing level"
 msgstr "Hashe Level"
 
-#: aaaaxy/init.go:278
+#: aaaaxy/init.go:264
 msgid "initializing audio"
 msgstr "Initialisiere Sound"
 
-#: aaaaxy/init.go:302
+#: aaaaxy/init.go:288
 msgid "initializing dumping"
 msgstr "Initialisiere Dumping"
 
-#: aaaaxy/init.go:294
+#: aaaaxy/init.go:280
 msgid "initializing input"
 msgstr "Initialisiere Eingabe"
 
-#: aaaaxy/init.go:282
+#: aaaaxy/init.go:268
 msgid "initializing noise"
 msgstr "Initialisiere Rauschen"
 
@@ -499,11 +522,11 @@ msgstr "Lese Level"
 msgid "precaching %s"
 msgstr "Lade %s"
 
-#: aaaaxy/init.go:274
+#: aaaaxy/init.go:260
 msgid "precaching credits"
 msgstr "Lade Abspann"
 
-#: aaaaxy/init.go:298
+#: aaaaxy/init.go:284
 msgid "precaching engine"
 msgstr "Lade Engine"
 
@@ -511,11 +534,11 @@ msgstr "Lade Engine"
 msgid "precaching entities"
 msgstr "Lade Objekte"
 
-#: aaaaxy/init.go:290
+#: aaaaxy/init.go:276
 msgid "precaching images"
 msgstr "Lade Grafiken"
 
-#: aaaaxy/init.go:286
+#: aaaaxy/init.go:272
 msgid "precaching sounds"
 msgstr "Lade Soundeffekte"
 

@@ -21,24 +21,36 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
-// Current returns all text locales in descending priority order.
-func Current() []Lingua {
+// Current returns the preferred system locale, intersected with available locales.
+var Current Lingua
+
+// InitCurrent identifies the system locale. Requires Linguas to have been set.
+func InitCurrent() {
+	Current = ""
 	locs, err := locale.GetLocales()
 	if err != nil {
 		log.Errorf("could not detect current locales: %v", err)
-		return nil
+		return
 	}
-	var ret []Lingua
 	for _, loc := range locs {
 		lang, err := language.Parse(loc)
 		if err != nil {
 			continue
 		}
 		for lang != language.Und {
-			ret = append(ret, Lingua(lang.String()))
+			lingua := Lingua(lang.String())
+			if lingua == "en" {
+				log.Infof("detected language %s (not translating)", Lingua("").Name())
+				return
+			}
+			if _, found := Linguas[lingua]; found {
+				log.Infof("detected language %s", lingua.Name())
+				Current = lingua
+				return
+			}
 			lang = lang.Parent()
 		}
 	}
-	log.Infof("current locales: %+v", ret)
-	return ret
+	log.Infof("detected no supported language (not translating)")
+	return
 }

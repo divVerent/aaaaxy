@@ -147,28 +147,14 @@ func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
 
 func initLocale() error {
 	initLinguas()
+	locale.InitCurrent()
 	lang := locale.Lingua(*language)
 	if lang == "auto" {
-		for _, loc := range locale.Current() {
-			if loc == "en" {
-				// English is default language, stop searching once encountered in preference list.
-				log.Infof("detected language %s (not translating)", locale.Lingua("").Name())
-				return nil
-			}
-			if _, found := locale.Linguas[loc]; found {
-				log.Infof("detected language %s", loc.Name())
-				lang = loc
-				break
-			}
-		}
-		if lang == "auto" {
-			// No language found.
-			log.Infof("detected no supported language (not translating)")
-			return nil
-		}
+		lang = locale.Current
 	}
 	initLocaleDomain(lang, locale.G, "game")
 	initLocaleDomain(lang, locale.L, "level")
+	locale.Active = lang
 	return nil
 }
 

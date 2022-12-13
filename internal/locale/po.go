@@ -27,9 +27,13 @@ var G Type
 // L is the translation of the levels.
 var L Type
 
+// Active is the name of the current language.
+var Active Lingua
+
 func init() {
 	// Make T always a valid object.
 	// Before translations are loaded, it does nothing.
 	G = gotext.NewPo()
 	L = gotext.NewPo()
+	Active = ""
 }

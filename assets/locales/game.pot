@@ -11,6 +11,10 @@ msgstr ""
 msgid " !\"#$%s&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 
+#: menu/settings.go:374
+msgid " (restart to apply)"
+msgstr ""
+
 #: fun/string.go:158
 #: playerstate/playerstate.go:362
 msgid " and "
@@ -78,6 +82,7 @@ msgstr ""
 msgid "Auckland"
 msgstr ""
 
+#: menu/language.go:39
 #: menu/quality.go:46
 msgid "Auto (%s)"
 msgstr ""
@@ -166,7 +171,7 @@ msgstr ""
 msgid "For Software Licenses"
 msgstr ""
 
-#: menu/settings.go:348
+#: menu/settings.go:357
 msgid "Graphics: %v"
 msgstr ""
 
@@ -198,6 +203,10 @@ msgstr ""
 msgid "Kiritimati"
 msgstr ""
 
+#: menu/settings.go:376
+msgid "Language: %v%s"
+msgstr ""
+
 #: menu/credits.go:73
 msgid "Level Version: %d"
 msgstr ""
@@ -216,7 +225,7 @@ msgstr ""
 
 #: menu/reset.go:151
 #: menu/savestate.go:170
-#: menu/settings.go:373
+#: menu/settings.go:391
 msgid "Main Menu"
 msgstr ""
 
@@ -280,7 +289,7 @@ msgstr ""
 msgid "Port Moresby"
 msgstr ""
 
-#: menu/settings.go:353
+#: menu/settings.go:362
 msgid "Quality: %v"
 msgstr ""
 
@@ -313,7 +322,7 @@ msgid "Reset and Lose Settings"
 msgstr ""
 
 #: menu/reset.go:102
-#: menu/settings.go:368
+#: menu/settings.go:386
 msgid "Reset"
 msgstr ""
 
@@ -327,7 +336,7 @@ msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr ""
 
 #: menu/main.go:96
-#: menu/settings.go:332
+#: menu/settings.go:341
 msgid "Settings"
 msgstr ""
 
@@ -344,15 +353,15 @@ msgid "Start"
 msgstr ""
 
 #: menu/savestate.go:145
-#: menu/settings.go:363
+#: menu/settings.go:381
 msgid "Switch Save State"
 msgstr ""
 
-#: menu/settings.go:338
+#: menu/settings.go:347
 msgid "Switch to Fullscreen Mode"
 msgstr ""
 
-#: menu/settings.go:340
+#: menu/settings.go:349
 msgid "Switch to Windowed Mode"
 msgstr ""
 
@@ -400,7 +409,7 @@ msgstr ""
 msgid "Turkistan"
 msgstr ""
 
-#: menu/settings.go:358
+#: menu/settings.go:367
 msgid "Volume: %v"
 msgstr ""
 
@@ -448,19 +457,19 @@ msgstr ""
 msgid "hashing level"
 msgstr ""
 
-#: aaaaxy/init.go:278
+#: aaaaxy/init.go:264
 msgid "initializing audio"
 msgstr ""
 
-#: aaaaxy/init.go:302
+#: aaaaxy/init.go:288
 msgid "initializing dumping"
 msgstr ""
 
-#: aaaaxy/init.go:294
+#: aaaaxy/init.go:280
 msgid "initializing input"
 msgstr ""
 
-#: aaaaxy/init.go:282
+#: aaaaxy/init.go:268
 msgid "initializing noise"
 msgstr ""
 
@@ -488,11 +497,11 @@ msgstr ""
 msgid "precaching %s"
 msgstr ""
 
-#: aaaaxy/init.go:274
+#: aaaaxy/init.go:260
 msgid "precaching credits"
 msgstr ""
 
-#: aaaaxy/init.go:298
+#: aaaaxy/init.go:284
 msgid "precaching engine"
 msgstr ""
 
@@ -500,11 +509,11 @@ msgstr ""
 msgid "precaching entities"
 msgstr ""
 
-#: aaaaxy/init.go:290
+#: aaaaxy/init.go:276
 msgid "precaching images"
 msgstr ""
 
-#: aaaaxy/init.go:286
+#: aaaaxy/init.go:272
 msgid "precaching sounds"
 msgstr ""
 

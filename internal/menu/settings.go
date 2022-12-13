@@ -41,6 +41,7 @@ const (
 	Graphics
 	Quality
 	Volume
+	Language
 	SaveState
 	Reset
 	Back
@@ -51,11 +52,13 @@ type SettingsScreen struct {
 	Controller      *Controller
 	Item            SettingsScreenItem
 	CurrentGraphics graphicsSetting
+	CurrentLanguage languageSetting
 }
 
 func (s *SettingsScreen) Init(m *Controller) error {
 	s.Controller = m
 	s.CurrentGraphics = currentGraphics()
+	s.CurrentLanguage.init()
 	return nil
 }
 
@@ -289,6 +292,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(toggleQuality(0))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(0))
+		case Language:
+			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(0))
 		case SaveState:
 			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&SaveStateScreen{}))
 		case Reset:
@@ -307,6 +312,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(toggleQuality(-1))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(-1))
+		case Language:
+			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(-1))
 		}
 	}
 	if input.Right.JustHit || clicked == RightClicked {
@@ -319,6 +326,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(toggleQuality(+1))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(+1))
+		case Language:
+			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(+1))
 		}
 	}
 	return nil
@@ -356,6 +365,15 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 		fg, bg = fgs, bgs
 	}
 	font.Menu.Draw(screen, locale.G.Get("Volume: %v", currentVolume()), m.Pos{X: CenterX, Y: ItemBaselineY(Volume, SettingsCount)}, true, fg, bg)
+	fg, bg = fgn, bgn
+	if s.Item == Language {
+		fg, bg = fgs, bgs
+	}
+	needRestart := ""
+	if s.CurrentLanguage.needRestart() {
+		needRestart = locale.G.Get(" (restart to apply)")
+	}
+	font.Menu.Draw(screen, locale.G.Get("Language: %v%s", s.CurrentLanguage.name(), needRestart), m.Pos{X: CenterX, Y: ItemBaselineY(Language, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveState {
 		fg, bg = fgs, bgs
