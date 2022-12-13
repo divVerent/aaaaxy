@@ -18,7 +18,8 @@ msgid ""
 "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 " !\"#$%&'()*+,-./0123456789:;<=>?"
-"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöüß"
+"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}"
+"~τπö¾©éàÄÖÜäöüß"
 
 #: fun/string.go:158 playerstate/playerstate.go:350
 msgid " and "
@@ -152,7 +153,7 @@ msgstr "Edmonton"
 msgid "Enter"
 msgstr "Enter"
 
-#: game/checkpoint/checkpoint_target.go:110
+#: game/checkpoint/checkpoint_target.go:128
 msgid ""
 "Error:\n"
 "could not save game:\n"
@@ -458,19 +459,19 @@ msgstr "alle"
 msgid "hashing level"
 msgstr "Hashe Level"
 
-#: aaaaxy/init.go:277
+#: aaaaxy/init.go:278
 msgid "initializing audio"
 msgstr "Initialisiere Sound"
 
-#: aaaaxy/init.go:301
+#: aaaaxy/init.go:302
 msgid "initializing dumping"
 msgstr "Initialisiere Dumping"
 
-#: aaaaxy/init.go:293
+#: aaaaxy/init.go:294
 msgid "initializing input"
 msgstr "Initialisiere Eingabe"
 
-#: aaaaxy/init.go:281
+#: aaaaxy/init.go:282
 msgid "initializing noise"
 msgstr "Initialisiere Rauschen"
 
@@ -498,11 +499,11 @@ msgstr "Lese Level"
 msgid "precaching %s"
 msgstr "Lade %s"
 
-#: aaaaxy/init.go:273
+#: aaaaxy/init.go:274
 msgid "precaching credits"
 msgstr "Lade Abspann"
 
-#: aaaaxy/init.go:297
+#: aaaaxy/init.go:298
 msgid "precaching engine"
 msgstr "Lade Engine"
 
@@ -510,11 +511,11 @@ msgstr "Lade Engine"
 msgid "precaching entities"
 msgstr "Lade Objekte"
 
-#: aaaaxy/init.go:289
+#: aaaaxy/init.go:290
 msgid "precaching images"
 msgstr "Lade Grafiken"
 
-#: aaaaxy/init.go:285
+#: aaaaxy/init.go:286
 msgid "precaching sounds"
 msgstr "Lade Soundeffekte"
 

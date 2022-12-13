@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 08:33-0800\n"
+"POT-Creation-Date: 2022-12-12 20:31-0500\n"
 "PO-Revision-Date: 2022-12-12 08:33-0800\n"
 "Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
 "Language-Team: German - Germany <rpolzer@google.com>\n"
@@ -233,7 +233,7 @@ msgstr "Abfluss"
 
 #: assets/maps/level.tmx:1178
 msgid "The prospect of additional strength fills you with determination."
-msgstr "Der Gedanke an zusätzliche Kraft füllt dich mit Entschlossenheit."
+msgstr "Der Gedanke an zusätzliche Kraft erfüllt dich mit Entschlossenheit."
 
 #: assets/maps/level.tmx:1184
 msgid "Behold the cage of health!"
@@ -432,8 +432,8 @@ msgid "The Axiom of Choiche"
 msgstr "Das Auswahlaxiom"
 
 #: assets/maps/level.tmx:5860
-msgid "Trololololol, lololol, lololol,{{BR}}Oh ha ha ha oh!"
-msgstr "Trololololol, lololol, lololol,{{BR}}Oh ha ha ha oh!"
+msgid "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
+msgstr "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
 
 #: assets/maps/level.tmx:5871
 msgid "Turtles All the Way In"
@@ -482,7 +482,7 @@ msgstr "Du kannst jetzt auf Plattformen stehen!"
 
 #: assets/maps/level.tmx:6106
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr "Die Stollen{{BR}}Tipp: nicht den Kopf stoßen!"
+msgstr "Die Stollen{{BR}}Tipp: nicht den{{BR}}Kopf stoßen!"
 
 #: assets/maps/level.tmx:6132
 msgid "Steadfastly holding on to the iron rod prevents disasters."
@@ -806,7 +806,7 @@ msgstr "Zeig mir,{{BR}}was du kannst"
 
 #: assets/maps/level.tmx:9341
 msgid "And you didn't{{BR}}forget the remote?"
-msgstr "Die Fernbedienung{{BR}}nicht vergessen?"
+msgstr "Hast du die{{BR}}Fernbedienung?"
 
 #: assets/maps/level.tmx:9359
 msgid "DANGER"
@@ -1346,7 +1346,7 @@ msgstr "Viele Probleme lösen, wenn man einfach ein paar Schritte zurück geht."
 
 #: assets/maps/level.tmx:17479
 msgid "Jumpers lose platforms.{{BR}}Don't be a jumper."
-msgstr "Springer verlieren Plattformen.{{BR}}Sei kein Springer."
+msgstr "Springer{{BR}}verlieren Plattformen.{{BR}}Sei kein Springer."
 
 #: assets/maps/level.tmx:17556
 msgid "Try going in circles, but ..."

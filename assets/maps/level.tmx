@@ -1156,7 +1156,7 @@
   </object>
   <object id="313" name="EscherFirst" gid="295" x="4704" y="6512" width="32" height="16"/>
   <object id="314" name="EscherSecond" gid="295" x="4976" y="6688" width="32" height="16"/>
-  <object id="315" type="Text" x="3968" y="6848" width="96" height="32">
+  <object id="315" type="Text" x="3952" y="6848" width="128" height="32">
    <properties>
     <property name="text" value="A shortcut?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -1423,7 +1423,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="422" type="Text" x="4352" y="7072" width="224" height="16">
+  <object id="422" type="Text" x="4304" y="7072" width="320" height="16">
    <properties>
     <property name="text" value="BRLOGENSHFEGLE doesn't lol."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -8448,7 +8448,7 @@
    </properties>
   </object>
   <object id="3152" gid="309" x="3744" y="2352" width="16" height="16"/>
-  <object id="3153" type="Text" x="3784" y="2456" width="160" height="64">
+  <object id="3153" type="Text" x="3776" y="2464" width="176" height="48">
    <properties>
     <property name="text" value="Well, it's actually{{BR}}surprisingly simple."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -10491,7 +10491,7 @@
   </object>
   <object id="4493" name="TrashExit" gid="293" x="5984" y="4160" width="16" height="32"/>
   <object id="4494" name="TrashExit" gid="299" x="5808" y="3280" width="16" height="32"/>
-  <object id="4495" type="Text" x="6144" y="3280" width="256" height="32">
+  <object id="4495" type="Text" x="6112" y="3280" width="288" height="32">
    <properties>
     <property name="text" value="Wait, did you take out all the trash?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -13894,7 +13894,7 @@
     <property name="text" value="The well prepared will earn their reward."/>
    </properties>
   </object>
-  <object id="6540" type="Text" x="6608" y="2512" width="96" height="32">
+  <object id="6540" type="Text" x="6592" y="2512" width="128" height="32">
    <properties>
     <property name="text" value="Platform{{BR}}is key."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -17394,7 +17394,7 @@
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="8049" type="Text" x="5776" y="4240" width="128" height="16">
+  <object id="8049" type="Text" x="5744" y="4240" width="192" height="16">
    <properties>
     <property name="text" value="Oh, it shrunk?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -17474,7 +17474,7 @@
   <object id="8077" gid="303" x="6752" y="800" width="16" height="16"/>
   <object id="8078" gid="303" x="6768" y="800" width="16" height="16"/>
   <object id="8079" gid="303" x="6784" y="800" width="16" height="16"/>
-  <object id="8080" type="Text" x="6708" y="1984" width="192" height="32">
+  <object id="8080" type="Text" x="6696" y="1968" width="216" height="64">
    <properties>
     <property name="text" value="Jumpers lose platforms.{{BR}}Don't be a jumper."/>
     <property name="text_bg" type="color" value="#ff000000"/>

@@ -146,7 +146,7 @@ msgstr ""
 msgid "Enter"
 msgstr ""
 
-#: game/checkpoint/checkpoint_target.go:110
+#: game/checkpoint/checkpoint_target.go:128
 msgid "Error:\ncould not save game:\n%v"
 msgstr ""
 
@@ -448,19 +448,19 @@ msgstr ""
 msgid "hashing level"
 msgstr ""
 
-#: aaaaxy/init.go:277
+#: aaaaxy/init.go:278
 msgid "initializing audio"
 msgstr ""
 
-#: aaaaxy/init.go:301
+#: aaaaxy/init.go:302
 msgid "initializing dumping"
 msgstr ""
 
-#: aaaaxy/init.go:293
+#: aaaaxy/init.go:294
 msgid "initializing input"
 msgstr ""
 
-#: aaaaxy/init.go:281
+#: aaaaxy/init.go:282
 msgid "initializing noise"
 msgstr ""
 
@@ -488,11 +488,11 @@ msgstr ""
 msgid "precaching %s"
 msgstr ""
 
-#: aaaaxy/init.go:273
+#: aaaaxy/init.go:274
 msgid "precaching credits"
 msgstr ""
 
-#: aaaaxy/init.go:297
+#: aaaaxy/init.go:298
 msgid "precaching engine"
 msgstr ""
 
@@ -500,11 +500,11 @@ msgstr ""
 msgid "precaching entities"
 msgstr ""
 
-#: aaaaxy/init.go:289
+#: aaaaxy/init.go:290
 msgid "precaching images"
 msgstr ""
 
-#: aaaaxy/init.go:285
+#: aaaaxy/init.go:286
 msgid "precaching sounds"
 msgstr ""
 
