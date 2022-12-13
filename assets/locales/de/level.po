@@ -948,7 +948,7 @@ msgstr "déjà Vu"
 
 #: assets/maps/level.tmx:10879
 msgid "Try{{BR}}again"
-msgstr "Und{{BR}}nochmal"
+msgstr "Noch{{BR}}mal"
 
 #: assets/maps/level.tmx:10890
 msgid "The Wide Gap"
@@ -980,7 +980,7 @@ msgstr "Jeder bringt seine eigene Plattform."
 
 #: assets/maps/level.tmx:11061
 msgid "Still got it?"
-msgstr "Hast du sie noch?"
+msgstr "Hast du{{BR}}sie noch?"
 
 #: assets/maps/level.tmx:11225
 msgid "Small cars{{BR}}only"

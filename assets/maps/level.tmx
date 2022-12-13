@@ -5857,7 +5857,7 @@
   </object>
   <object id="1302" type="Text" x="4240" y="6192" width="144" height="32">
    <properties>
-    <property name="text" value="Trololololol, lololol, lololol,{{BR}}Oh ha ha ha oh!"/>
+    <property name="text" value="Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"/>
     <property name="text_bg" type="color" value="#ffffff55"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Small"/>
@@ -6178,7 +6178,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1455" type="Text" x="480" y="5728" width="64" height="16">
+  <object id="1455" type="Text" x="464" y="5728" width="96" height="16">
    <properties>
     <property name="text" value="Blast off?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6408,7 +6408,7 @@
     <property name="text" value="distracted"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
-    <property name="text_font" value="Regular"/>
+    <property name="text_font" value="Small"/>
    </properties>
   </object>
   <object id="1576" gid="317" x="832" y="7200" width="64" height="80">
@@ -6877,7 +6877,7 @@
   <object id="1804" gid="302" x="7264" y="7456" width="16" height="16"/>
   <object id="1805" gid="302" x="7264" y="7472" width="16" height="16"/>
   <object id="1806" gid="320" x="7472" y="7232" width="32" height="32"/>
-  <object id="1807" type="Text" x="7296" y="7344" width="160" height="32">
+  <object id="1807" type="Text" x="7280" y="7344" width="192" height="32">
    <properties>
     <property name="text" value="He who waits,{{BR}}retries ... #DGR"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6921,7 +6921,7 @@
    </properties>
   </object>
   <object id="1813" name="BlockedInWarp" gid="293" x="7520" y="7424" width="16" height="64"/>
-  <object id="1814" type="Text" x="7296" y="7440" width="208" height="32">
+  <object id="1814" type="Text" x="7280" y="7440" width="240" height="32">
    <properties>
     <property name="text" value="Avoid getting blocked in!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6936,7 +6936,7 @@
     <property name="text" value="Treasure hunts can be time intensive."/>
    </properties>
   </object>
-  <object id="1817" type="Text" x="7392" y="7056" width="96" height="32">
+  <object id="1817" type="Text" x="7376" y="7056" width="128" height="32">
    <properties>
     <property name="text" value="Easy does it."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6944,7 +6944,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1818" type="Text" x="7296" y="7152" width="208" height="32">
+  <object id="1818" type="Text" x="7280" y="7152" width="240" height="32">
    <properties>
     <property name="text" value="Same procedure as last year?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -6952,7 +6952,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1819" type="Text" x="7280" y="7248" width="208" height="32">
+  <object id="1819" type="Text" x="7264" y="7248" width="240" height="32">
    <properties>
     <property name="text" value="Just put the thing on the thing{{BR}}and the other one too, already!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -7528,7 +7528,7 @@
     <property name="invert" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="2324" name="XyzzyCloser" type="SwitchableText" x="1008" y="32" width="128" height="112">
+  <object id="2324" name="XyzzyCloser" type="SwitchableText" x="992" y="48" width="160" height="80">
    <properties>
     <property name="text" value="You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -10491,7 +10491,7 @@
   </object>
   <object id="4493" name="TrashExit" gid="293" x="5984" y="4160" width="16" height="32"/>
   <object id="4494" name="TrashExit" gid="299" x="5808" y="3280" width="16" height="32"/>
-  <object id="4495" type="Text" x="6160" y="3280" width="240" height="32">
+  <object id="4495" type="Text" x="6144" y="3280" width="256" height="32">
    <properties>
     <property name="text" value="Wait, did you take out all the trash?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -13230,7 +13230,7 @@
     <property name="target" value="Teleported !UnTeleported1 !UnTeleported2"/>
    </properties>
   </object>
-  <object id="6128" type="Text" x="6720" y="688" width="80" height="32">
+  <object id="6128" type="Text" x="6688" y="688" width="144" height="32">
    <properties>
     <property name="text" value="Any regrets?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -13894,7 +13894,7 @@
     <property name="text" value="The well prepared will earn their reward."/>
    </properties>
   </object>
-  <object id="6540" type="Text" x="6624" y="2512" width="64" height="32">
+  <object id="6540" type="Text" x="6608" y="2512" width="96" height="32">
    <properties>
     <property name="text" value="Platform{{BR}}is key."/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -17394,7 +17394,7 @@
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="8049" type="Text" x="5808" y="4240" width="64" height="16">
+  <object id="8049" type="Text" x="5776" y="4240" width="128" height="16">
    <properties>
     <property name="text" value="Oh, it shrunk?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
