@@ -152,7 +152,7 @@ msgid "Enter"
 msgstr ""
 
 #: game/checkpoint/checkpoint_target.go:128
-msgid "Error:\ncould not save game:\n%v"
+msgid "Error:\ncould not save game:\n%s"
 msgstr ""
 
 #: fun/string.go:169
@@ -172,7 +172,7 @@ msgid "For Software Licenses"
 msgstr ""
 
 #: menu/settings.go:357
-msgid "Graphics: %v"
+msgid "Graphics: %s"
 msgstr ""
 
 #: fun/string.go:71
@@ -204,7 +204,7 @@ msgid "Kiritimati"
 msgstr ""
 
 #: menu/settings.go:376
-msgid "Language: %v%s"
+msgid "Language: %s%s"
 msgstr ""
 
 #: menu/credits.go:73
@@ -290,7 +290,7 @@ msgid "Port Moresby"
 msgstr ""
 
 #: menu/settings.go:362
-msgid "Quality: %v"
+msgid "Quality: %s"
 msgstr ""
 
 #: menu/main.go:106
@@ -410,7 +410,7 @@ msgid "Turkistan"
 msgstr ""
 
 #: menu/settings.go:367
-msgid "Volume: %v"
+msgid "Volume: %s"
 msgstr ""
 
 #: playerstate/playerstate.go:272

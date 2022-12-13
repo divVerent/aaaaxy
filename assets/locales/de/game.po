@@ -168,11 +168,11 @@ msgstr "Enter"
 msgid ""
 "Error:\n"
 "could not save game:\n"
-"%v"
+"%s"
 msgstr ""
 "Fehler:\n"
 "konnte den Spielstand nicht speichern:\n"
-"%v"
+"%s"
 
 #: fun/string.go:169
 msgid "Escape"
@@ -195,8 +195,8 @@ msgid "For Software Licenses"
 msgstr "Für Software-Lizenzen"
 
 #: menu/settings.go:357
-msgid "Graphics: %v"
-msgstr "Grafik: %v"
+msgid "Graphics: %s"
+msgstr "Grafik: %s"
 
 #: fun/string.go:71
 msgid "Halifax"
@@ -228,8 +228,8 @@ msgid "Kiritimati"
 msgstr "Kiritimati"
 
 #: menu/settings.go:376
-msgid "Language: %v%s"
-msgstr "Sprache: %v%s"
+msgid "Language: %s%s"
+msgstr "Sprache: %s%s"
 
 #: menu/credits.go:73
 msgid "Level Version: %d"
@@ -318,8 +318,8 @@ msgid "Port Moresby"
 msgstr "Port Moresby"
 
 #: menu/settings.go:362
-msgid "Quality: %v"
-msgstr "Qualität: %v"
+msgid "Quality: %s"
+msgstr "Qualität: %s"
 
 #: menu/main.go:106
 msgid "Quit"
@@ -434,8 +434,8 @@ msgid "Turkistan"
 msgstr "Türkistan"
 
 #: menu/settings.go:367
-msgid "Volume: %v"
-msgstr "Lautstärke: %v"
+msgid "Volume: %s"
+msgstr "Lautstärke: %s"
 
 # lower case intended (more usual in German this way)
 #: playerstate/playerstate.go:272

@@ -354,17 +354,17 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Graphics: %v", currentGraphics()), m.Pos{X: CenterX, Y: ItemBaselineY(Graphics, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Graphics: %s", currentGraphics()), m.Pos{X: CenterX, Y: ItemBaselineY(Graphics, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Quality {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Quality: %v", currentQuality()), m.Pos{X: CenterX, Y: ItemBaselineY(Quality, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Quality: %s", currentQuality()), m.Pos{X: CenterX, Y: ItemBaselineY(Quality, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Volume {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Volume: %v", currentVolume()), m.Pos{X: CenterX, Y: ItemBaselineY(Volume, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Volume: %s", currentVolume()), m.Pos{X: CenterX, Y: ItemBaselineY(Volume, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Language {
 		fg, bg = fgs, bgs
@@ -373,7 +373,7 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	if s.CurrentLanguage.needRestart() {
 		needRestart = locale.G.Get(" (restart to apply)")
 	}
-	font.Menu.Draw(screen, locale.G.Get("Language: %v%s", s.CurrentLanguage.name(), needRestart), m.Pos{X: CenterX, Y: ItemBaselineY(Language, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Language: %s%s", s.CurrentLanguage.name(), needRestart), m.Pos{X: CenterX, Y: ItemBaselineY(Language, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveState {
 		fg, bg = fgs, bgs
