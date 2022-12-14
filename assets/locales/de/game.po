@@ -13,19 +13,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: xgotext\n"
 
-#: font/charset.go:27
+#: font/charset.go:23
 msgid ""
 " "
-"!\"#$%s&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 " "
-"!\"#$%s&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöüß"
+"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöüß"
 
 #: menu/settings.go:374
 msgid " (restart to apply)"
 msgstr " (Neustart erforderlich)"
 
-#: fun/string.go:158 playerstate/playerstate.go:362
+#: fun/string.go:158 playerstate/playerstate.go:350
 msgid " and "
 msgstr " und "
 
@@ -33,19 +33,19 @@ msgstr " und "
 msgid "%s (%d/%d)"
 msgstr "%s (%d/%d)"
 
-#: fun/string.go:158 playerstate/playerstate.go:362
+#: fun/string.go:158 playerstate/playerstate.go:350
 msgid ", "
 msgstr ", "
 
-#: playerstate/playerstate.go:270
-msgid "100%s"
-msgstr "100%s"
+#: playerstate/playerstate.go:262
+msgid "100%"
+msgstr "100%"
 
 #: menu/savestate.go:155
 msgid "4: %s"
 msgstr "4: %s"
 
-#: menu/quality.go:58 playerstate/playerstate.go:282
+#: menu/quality.go:58 playerstate/playerstate.go:270
 msgid "???"
 msgstr "???"
 
@@ -53,23 +53,23 @@ msgstr "???"
 msgid "A: %s"
 msgstr "A: %s"
 
-#: playerstate/playerstate.go:243
+#: playerstate/playerstate.go:239
 msgid "All Checkpoints"
 msgstr "alle Checkpoints"
 
-#: playerstate/playerstate.go:251
+#: playerstate/playerstate.go:247
 msgid "All Flipped"
 msgstr "alles gespiegelt"
 
-#: playerstate/playerstate.go:245
+#: playerstate/playerstate.go:241
 msgid "All Notes"
 msgstr "alle Zettel"
 
-#: playerstate/playerstate.go:247
+#: playerstate/playerstate.go:243
 msgid "All Paths"
 msgstr "alle Wege"
 
-#: playerstate/playerstate.go:249
+#: playerstate/playerstate.go:245
 msgid "All Secrets"
 msgstr "alle Geheimnisse"
 
@@ -81,9 +81,9 @@ msgstr "Alofi"
 msgid "Anchorage"
 msgstr "Anchorage"
 
-#: playerstate/playerstate.go:241
-msgid "Any%s"
-msgstr "any%s"
+#: playerstate/playerstate.go:237
+msgid "Any%"
+msgstr "any%"
 
 #: fun/string.go:103
 msgid "Auckland"
@@ -133,9 +133,9 @@ msgstr "Boston"
 msgid "Build: %s"
 msgstr "Build: %s"
 
-#: playerstate/playerstate.go:278
-msgid "Cheat%s"
-msgstr "schummel%s"
+#: playerstate/playerstate.go:266
+msgid "Cheat%"
+msgstr "schummel%"
 
 #: fun/string.go:67
 msgid "Chicago"
@@ -207,7 +207,7 @@ msgstr "Hoch"
 msgid "Honolulu"
 msgstr "Honolulu"
 
-#: playerstate/playerstate.go:280
+#: playerstate/playerstate.go:268
 msgid "Impossible"
 msgstr "unmöglich"
 
@@ -255,27 +255,27 @@ msgstr "Mittel"
 msgid "New York"
 msgstr "New York"
 
-#: playerstate/playerstate.go:263
+#: playerstate/playerstate.go:259
 msgid "No Back"
 msgstr "ohne Zurück"
 
-#: playerstate/playerstate.go:259
+#: playerstate/playerstate.go:255
 msgid "No Backspace"
 msgstr "ohne Rückschritt"
 
-#: playerstate/playerstate.go:257
+#: playerstate/playerstate.go:253
 msgid "No Escape"
 msgstr "ohne Escape"
 
-#: playerstate/playerstate.go:261
+#: playerstate/playerstate.go:257
 msgid "No Start"
 msgstr "ohne Start"
 
-#: playerstate/playerstate.go:253
+#: playerstate/playerstate.go:249
 msgid "No Teleports"
 msgstr "ohne Teleportation"
 
-#: playerstate/playerstate.go:358
+#: playerstate/playerstate.go:346
 msgid "None"
 msgstr "keine"
 
@@ -423,7 +423,7 @@ msgstr "Türkistan"
 msgid "Volume: %s"
 msgstr "Lautstärke: %s"
 
-#: playerstate/playerstate.go:272
+#: playerstate/playerstate.go:264
 msgid "Without Cheating Of Course"
 msgstr "ohne Schummeln natürlich"
 
