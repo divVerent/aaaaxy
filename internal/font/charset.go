@@ -20,9 +20,5 @@ import (
 
 // charSet has been separated out to help xgotext.
 func charSet() string {
-	// Using an explicit format to work around "go vet" being annoying here.
-	// Issue is, locale.G.Get doesn't always take format strings - if there is just one arg, it does not call printf.
-	// But "go vet" doesn't know that.
-	// See https://github.com/golang/go/issues/57288
-	return locale.G.Get(" !\"#$%s&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà", "%")
+	return locale.GI.Get(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà")
 }

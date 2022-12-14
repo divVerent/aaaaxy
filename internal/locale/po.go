@@ -18,11 +18,20 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-// Type is the type of a locale.
+// Type is the type of a locale translator.
 type Type = *gotext.Po
+
+// IType is the type of a locale translator interface.
+type IType = gotext.Translator
 
 // G is the translation of the game.
 var G Type
+
+// GI is the translation of the game but as an interface.
+// Used to work around go vet as it can't figure out
+// that G.Get isn't a printf-like function if it gets only one arg.
+// See https://github.com/golang/go/issues/57288
+var GI IType
 
 // L is the translation of the levels.
 var L Type
@@ -31,9 +40,9 @@ var L Type
 var Active Lingua
 
 func init() {
-	// Make T always a valid object.
-	// Before translations are loaded, it does nothing.
+	// The translators must always be valid objects.
 	G = gotext.NewPo()
+	GI = G
 	L = gotext.NewPo()
 	Active = ""
 }
