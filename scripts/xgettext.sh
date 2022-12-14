@@ -29,10 +29,10 @@ for domain in level game; do
 	for f in assets/locales/*/"$domain".po; do
 		language=${f%/*}
 		language=${language##*/}
-		msgmerge -U "$f" assets/locales/"$domain".pot
-		total=$(grep -c '^#:' "$f")
-		untranslated=$(msgattrib --untranslated "$f" | grep -c '^#:')
-		fuzzy=$(msgattrib --only-fuzzy "$f" | grep -c '^#:')
+		msgmerge -o "$f.new" "$f" assets/locales/"$domain".pot
+		total=$(grep -c '^#:' "$f.new")
+		untranslated=$(msgattrib --untranslated "$f.new" | grep -c '^#:')
+		fuzzy=$(msgattrib --only-fuzzy "$f.new" | grep -c '^#:')
 		score=$(((total - untranslated - fuzzy) * 100 / total))
 		echo "$f: $score%: $untranslated/$total untranslated, $fuzzy/$total fuzzy"
 		all_languages="$all_languages$language$LF"
