@@ -591,6 +591,7 @@
     <property name="reached_from" type="object" value="53"/>
     <property name="target" value="NeverAnOptionTimer"/>
     <property name="text" value="Failure was never an option."/>
+    <property name="_text_localization_note" value="https://knowyourmeme.com/memes/peace-was-never-an-option"/>
    </properties>
   </object>
   <object id="50" gid="312" x="4704" y="3760" width="32" height="32">
@@ -701,6 +702,7 @@
     <property name="greetings_to" value="Dieter F. Uchtdorf"/>
     <property name="reached_from" type="object" value="89"/>
     <property name="text" value="&quot;In spite of one-time overwhelming consensus, the earth isn't flat.&quot;"/>
+    <property name="_text_localization_note" value="https://www.churchofjesuschrist.org/broadcasts/article/ces-devotionals/2013/01/what-is-truth?lang=eng"/>
    </properties>
   </object>
   <object id="93" gid="312" x="4960" y="4992" width="32" height="32">
@@ -815,6 +817,7 @@
    <properties>
     <property name="reached_from" type="object" value="148"/>
     <property name="text" value="Thinking outside the box can remove the need of getting over it."/>
+    <property name="_text_localization_note" value="https://gettingoverit.co/"/>
    </properties>
   </object>
   <object id="147" name="the_moebius_strip" type="Checkpoint" x="3104" y="5216" width="96" height="32">
@@ -896,6 +899,7 @@
    <properties>
     <property name="reached_from" type="object" value="192"/>
     <property name="text" value="Whenever I climb I am followed by a dog called Ego."/>
+    <property name="_text_localization_note" value="https://www.brainyquote.com/quotes/friedrich_nietzsche_103584"/>
    </properties>
   </object>
   <object id="189" name="GettingOverItMirror" gid="298" x="1952" y="5152" width="64" height="16"/>
@@ -983,6 +987,7 @@
     <property name="reached_from" type="object" value="249"/>
     <property name="target" value="EscapeButton"/>
     <property name="text" value="Welcome to the top of the mountain.{{BR}}If you're alone, all this was just a waste of time.{{BR}}Press {{ExitButton}}."/>
+    <property name="_text_localization_note" value="https://getting-over-it.fandom.com/wiki/Top_of_the_mountain"/>
    </properties>
   </object>
   <object id="245" gid="312" x="896" y="5536" width="32" height="32">
@@ -1038,6 +1043,7 @@
     <property name="next_down" type="object" value="1457"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="House With Two Rooms"/>
+    <property name="_text_localization_note" value="https://en.wikipedia.org/wiki/House_with_two_rooms"/>
    </properties>
   </object>
   <object id="274" type="SetState" x="777" y="6208" width="46" height="37">
@@ -1081,7 +1087,8 @@
   <object id="287" gid="312" x="3920" y="5424" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="288"/>
-    <property name="text" value="Oh, gravity, you're a heartless ... force?"/>
+    <property name="text" value="Oh, gravity, thou art a heartless ... force?"/>
+    <property name="_text_localization_note" value="https://www.youtube.com/watch?v=zpRQtHjEniQ"/>
    </properties>
   </object>
   <object id="288" name="short_circuited" type="Checkpoint" x="3920" y="5376" width="192" height="32">
@@ -1106,6 +1113,7 @@
    <properties>
     <property name="reached_from" type="object" value="296"/>
     <property name="text" value="Your choices don't matter."/>
+    <property name="_text_localization_note" value="https://deltarune.com/"/>
    </properties>
   </object>
   <object id="296" name="choose_wisely" type="Checkpoint" x="4144" y="6848" width="32" height="64">
@@ -1138,6 +1146,7 @@
    <properties>
     <property name="reached_from" type="object" value="312"/>
     <property name="text" value="Some water must be periodically added to compensate for evaporation."/>
+    <property name="_text_localization_note" value="https://en.wikipedia.org/wiki/Waterfall_(M._C._Escher)"/>
    </properties>
   </object>
   <object id="311" gid="312" x="4976" y="6752" width="32" height="32">
@@ -1176,6 +1185,7 @@
    <properties>
     <property name="reached_from" type="object" value="330"/>
     <property name="text" value="The prospect of additional strength fills you with determination."/>
+    <property name="_text_localization_note" value="https://undertale.com/"/>
    </properties>
   </object>
   <object id="319" gid="312" x="4304" y="7264" width="32" height="32">
@@ -1228,6 +1238,7 @@
     <property name="next_left" type="object" value="865"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Silver City"/>
+    <property name="_text_localization_note" value="https://www.youtube.com/watch?v=8otWflEtlyg"/>
    </properties>
   </object>
   <object id="331" type="JumpPad" x="4513" y="7600" width="15" height="1">
@@ -5424,8 +5435,8 @@
   <object id="1199" gid="312" x="4336" y="5488" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1173"/>
-    <property name="source" value="Ezekiel 46:9"/>
     <property name="text" value="He shall not return by the way of the gate whereby he came in."/>
+    <property name="_text_localization_note" value="https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&amp;version=KJV"/>
    </properties>
   </object>
   <object id="1201" name="ShepardWarp" gid="293" x="4368" y="5616" width="16" height="432"/>
@@ -5861,6 +5872,7 @@
     <property name="text_bg" type="color" value="#ffffff55"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Small"/>
+    <property name="_text_localization_note" value="https://www.youtube.com/watch?v=2Z4m4lnjxkY"/>
    </properties>
   </object>
   <object id="1304" name="turtles" type="Checkpoint" x="5232" y="6176" width="32" height="32">
@@ -5969,6 +5981,7 @@
     <property name="text_bg" type="color" value="#ffaa0000"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
     <property name="text_font" value="SmallCaps"/>
+    <property name="_text_localization_note" value="https://antichamber.fandom.com/wiki/Don%27t_Look_Down"/>
    </properties>
   </object>
   <object id="1365" name="dont_look_up" type="Checkpoint" x="416" y="288" width="32" height="32">
@@ -5978,6 +5991,7 @@
     <property name="next_left" type="object" value="2301"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="The Rover and the Feline"/>
+    <property name="_text_localization_note" value="reference to 'curiosity killed the cat' saying; be creative here when translating; be consistent with the 'Curiosity killed the Carl - no the cat.' text."/>
    </properties>
   </object>
   <object id="1366" name="DontLookUp" gid="297" x="5040" y="6192" width="48" height="16"/>
@@ -6001,6 +6015,7 @@
     <property name="reached_from" type="object" value="1408"/>
     <property name="target" value="EscapeButton"/>
     <property name="text" value="Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."/>
+    <property name="_text_localization_note" value="reference to 'curiosity killed the cat' saying and Super Mario Maker trollery; be creative here when translating; be consistent with the 'The Rover and the Feline' text."/>
    </properties>
   </object>
   <object id="1408" name="curiosity_killed_the_carl" type="Checkpoint" x="64" y="8128" width="352" height="32">
@@ -6443,6 +6458,7 @@
    <properties>
     <property name="reached_from" type="object" value="1545"/>
     <property name="text" value="We all wait for the special Tetris block,{{BR}}special Tetris block,{{BR}}special Tetris block."/>
+    <property name="_text_localization_note" value="when translating, make sure it fits the 'yellow submarine' song"/>
    </properties>
   </object>
   <object id="1583" type="Text" x="448" y="7760" width="64" height="32">
@@ -6579,6 +6595,7 @@
    <properties>
     <property name="reached_from" type="object" value="1545"/>
     <property name="text" value="Swim swim hungry, swim swim hungry."/>
+    <property name="_text_localization_note" value="https://knowyourmeme.com/memes/dopefish"/>
    </properties>
   </object>
   <object id="1668" gid="301" x="1184" y="7536" width="16" height="16"/>
@@ -6684,6 +6701,7 @@
    <properties>
     <property name="reached_from" type="object" value="1713"/>
     <property name="text" value="Welcome to Moonside."/>
+    <property name="_text_localization_note" value="https://earthbound.fandom.com/wiki/Moonside"/>
    </properties>
   </object>
   <object id="1720" name="WarpFromThreePlatforms" gid="297" x="4048" y="1872" width="48" height="16"/>
@@ -6883,6 +6901,7 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="SmallCaps"/>
+    <property name="_text_localization_note" value="https://youtube.fandom.com/wiki/DGR"/>
    </properties>
   </object>
   <object id="1808" gid="317" x="7520" y="7104" width="16" height="32">
@@ -7535,6 +7554,7 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Mono"/>
+    <property name="_text_localization_note" value="https://en.wikipedia.org/wiki/Colossal_Cave_Adventure"/>
    </properties>
   </object>
   <object id="2325" name="xyzzy" type="Checkpoint" x="1024" y="16" width="16" height="144">
@@ -7554,6 +7574,7 @@
    <properties>
     <property name="reached_from" type="object" value="2325"/>
     <property name="text" value="A hollow voice says 'fool'.{{BR}}Press {{ExitButton}}."/>
+    <property name="_text_localization_note" value="https://en.wikipedia.org/wiki/Xyzzy_(computing)"/>
    </properties>
   </object>
   <object id="2330" gid="309" x="1072" y="304" width="16" height="16"/>
@@ -8655,6 +8676,7 @@
    <properties>
     <property name="reached_from" type="object" value="3186"/>
     <property name="text" value="And ... the floor transforms into shiny yet deadly coins.{{BR}}Without the coins.{{BR}}That's unfortunate."/>
+    <property name="_text_localization_note" value="https://www.youtube.com/c/CeaveGaming"/>
    </properties>
   </object>
   <object id="3333" name="ShinyYetDeadlyCoins" gid="299" x="3008" y="3824" width="16" height="32">
@@ -9433,6 +9455,7 @@
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="Bold"/>
+    <property name="_text_localization_note" value="name of a law about declaring lead content; often caused ridiculous warnings; pick your own ridiculous law when translating"/>
    </properties>
   </object>
   <object id="3863" gid="312" x="8064" y="6736" width="32" height="32">
@@ -9536,6 +9559,7 @@
    <properties>
     <property name="reached_from" type="object" value="3866"/>
     <property name="text" value="What we've done before{{BR}}may impact what we can do next."/>
+    <property name="_text_localization_note" value="http://www.antichamber-game.com/"/>
    </properties>
   </object>
   <object id="3916" gid="331" x="5277" y="3376" width="3" height="5"/>
@@ -9593,12 +9617,14 @@
     <property name="reached_from" type="object" value="3976"/>
     <property name="target" value="EscapeButton"/>
     <property name="text" value="If you're only focusing on right now,{{BR}}you won't have enough for later.{{BR}}Press {{ExitButton}}."/>
+    <property name="_text_localization_note" value="http://www.antichamber-game.com/"/>
    </properties>
   </object>
   <object id="3927" gid="312" x="5488" y="3392" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="3866"/>
     <property name="text" value="Moving forward may require{{BR}}making the most of what you've got."/>
+    <property name="_text_localization_note" value="http://www.antichamber-game.com/"/>
    </properties>
   </object>
   <object id="3928" type="_TileMod" x="5152" y="3344" width="160" height="144">
@@ -10803,6 +10829,7 @@
     <property name="text" value="Van Vlijmen's Vexing Vertical Vector Vertigo"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
     <property name="vvvvvv" type="bool" value="true"/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the six V alliteration when translating"/>
    </properties>
   </object>
   <object id="4598" name="FinalVerticalMirror" gid="296" x="6160" y="6640" width="32" height="16"/>
@@ -10831,6 +10858,7 @@
     <property name="text" value="déjà Vu"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
     <property name="vvvvvv" type="bool" value="true"/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the V when translating"/>
    </properties>
   </object>
   <object id="4611" gid="339" x="6176" y="6096" width="16" height="16"/>
@@ -12316,6 +12344,7 @@
    <properties>
     <property name="reached_from" type="object" value="5568"/>
     <property name="text" value="Good news.{{BR}}I figured out why she wanted you gone."/>
+    <property name="_text_localization_note" value="https://en.wikipedia.org/wiki/Portal_(series)"/>
    </properties>
   </object>
   <object id="5576" gid="330" x="7424" y="3984" width="16" height="16"/>
@@ -14424,6 +14453,7 @@
     <property name="tnih_sign_expected" type="bool" value="false"/>
     <property name="vvvvvv" type="bool" value="true"/>
     <property name="vvvvvv_gravity_direction" value="0 -1"/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the V when translating"/>
    </properties>
   </object>
   <object id="6717" gid="339" x="6704" y="6416" width="16" height="16"/>
@@ -14453,6 +14483,7 @@
     <property name="text" value="Vertically challenged"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
     <property name="vvvvvv" type="bool" value="true"/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the V when translating"/>
    </properties>
   </object>
   <object id="6735" gid="309" x="6864" y="6480" width="32" height="16"/>
@@ -15040,6 +15071,7 @@
     <property name="text" value="Viability Voodoo"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
     <property name="vvvvvv" type="bool" value="true"/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the two V alliteration when translating"/>
    </properties>
   </object>
   <object id="6948" type="SetState" x="7088" y="6240" width="112" height="16">
@@ -15081,6 +15113,7 @@
     <property name="secret" type="bool" value="true"/>
     <property name="text" value="Vuvuzela Virtuoso"/>
     <property name="vvvvvv" type="bool" value="true"/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the two V alliteration when translating"/>
    </properties>
   </object>
   <object id="6964" gid="337" x="7184" y="6592" width="16" height="16"/>
@@ -15207,6 +15240,7 @@
     <property name="text" value="Virtual Vandalism"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
     <property name="vvvvvv" type="bool" value="true"/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the two V alliteration when translating"/>
    </properties>
   </object>
   <object id="7032" gid="337" x="8032" y="6512" width="16" height="16"/>
@@ -15339,6 +15373,7 @@
     <property name="secret" type="bool" value="true"/>
     <property name="text" value="Vae Victis"/>
     <property name="vvvvvv" type="bool" value="true"/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the two V alliteration when translating"/>
    </properties>
   </object>
   <object id="7153" gid="339" x="8032" y="6144" width="16" height="16"/>
@@ -15734,6 +15769,7 @@
     <property name="secret" type="bool" value="true"/>
     <property name="text" value="Veni, Vidi, Vici"/>
     <property name="vvvvvv" type="bool" value="true"/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the three V alliteration when translating"/>
    </properties>
   </object>
   <object id="7352" gid="338" x="7280" y="6224" width="16" height="16"/>
@@ -15967,6 +16003,7 @@
    <properties>
     <property name="reached_from" type="object" value="7151"/>
     <property name="text" value="Hah! Nobody will ever get this one."/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/"/>
    </properties>
   </object>
   <object id="7478" gid="336" x="7200" y="5920" width="16" height="16"/>
@@ -15982,6 +16019,7 @@
    <properties>
     <property name="reached_from" type="object" value="7351"/>
     <property name="text" value="You have found a shiny trinket!{{BR}}One out of One."/>
+    <property name="_text_localization_note" value="https://thelettervsixtim.es/"/>
    </properties>
   </object>
   <object id="7491" gid="336" x="7488" y="5840" width="16" height="16"/>
@@ -17890,6 +17928,7 @@
     <property name="reached_from" type="object" value="8201"/>
     <property name="target" value="EscapeButtonDelay"/>
     <property name="text" value="Let's put weird and weird together,{{BR}}and make it even weirder!{{BR}}Weird, weird space{{BR}}is super-weird!"/>
+    <property name="_text_localization_note" value="https://www.youtube.com/watch?v=N78CavWrtjw - try to be consistent with some existing translation if you can find one"/>
    </properties>
   </object>
   <object id="8205" name="WeirdSpace" type="MovableSprite" x="3472" y="4735" width="32" height="32">
