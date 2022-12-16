@@ -5516,61 +5516,73 @@
   <object id="1215" name="ShepardC" type="SoundTarget" x="4263" y="5882" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_00.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1216" name="ShepardD" type="SoundTarget" x="4279" y="5882" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_02.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1217" name="ShepardE" type="SoundTarget" x="4295" y="5882" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_04.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1218" name="ShepardF" type="SoundTarget" x="4311" y="5882" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_05.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1219" name="ShepardG" type="SoundTarget" x="4327" y="5882" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_07.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1220" name="ShepardA" type="SoundTarget" x="4343" y="5882" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_09.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1221" name="ShepardB" type="SoundTarget" x="4359" y="5882" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_11.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1222" name="ShepardC#" type="SoundTarget" x="4270" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_01.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1223" name="ShepardD#" type="SoundTarget" x="4288" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_03.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1224" name="ShepardF#" type="SoundTarget" x="4317" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_06.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1225" name="ShepardG#" type="SoundTarget" x="4335" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_08.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1226" name="ShepardA#" type="SoundTarget" x="4353" y="5792" width="2" height="2">
    <properties>
     <property name="sound" value="shepard_10.ogg"/>
+    <property name="visual" value="fade_in"/>
    </properties>
   </object>
   <object id="1227" name="ToShepard" gid="295" x="4304" y="5584" width="16" height="16"/>
