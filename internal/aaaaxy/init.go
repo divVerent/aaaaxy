@@ -21,6 +21,7 @@ import (
 	"io"
 	"math"
 	"os"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -130,7 +131,7 @@ func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
 	if lang == "" {
 		return
 	}
-	data, err := vfs.Load(fmt.Sprintf("locales/%s", strings.ReplaceAll(lang, "-", "_")), fmt.Sprintf("%s.po", domain))
+	data, err := vfs.Load(fmt.Sprintf("locales/%s", strings.ReplaceAll(string(lang), "-", "_")), fmt.Sprintf("%s.po", domain))
 	if err != nil {
 		log.Errorf("could not open %s translation for language %s: %v", domain, lang.Name(), err)
 		return
