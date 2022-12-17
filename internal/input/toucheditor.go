@@ -52,10 +52,11 @@ const (
 )
 
 type touchEditInfo struct {
-	active bool
-	rect   *m.Rect
-	xMode  editMode
-	yMode  editMode
+	active   bool
+	rect     *m.Rect
+	xMode    editMode
+	yMode    editMode
+	startPos m.Pos
 }
 
 func touchEditUpdate(gameWidth, gameHeight int) {
@@ -65,9 +66,47 @@ func touchEditUpdate(gameWidth, gameHeight int) {
 	for _, t := range touches {
 		if t.active {
 			// Move what is being hit.
+			if t.rect == nil {
+				continue
+			}
 		} else {
+			t.active = true
+			t.rect = nil
+			t.startPos = t.pos
 			// Identify what is hit, set flag, xMode, yMode appropriately.
 			// Just set active if nothing is hit.
+			for _, i := range impulses {
+				if i.touchRect == nil || i.touchRect.Size.IsZero() {
+					continue
+				}
+				gx, gy := i.touchRect.GridPos(t.pos, 4, 4)
+				if gx < 0 || gy < 0 || gx >= 4 || gy >= 4 {
+					continue
+				}
+				// Hit, so start editing this rectangle.
+				t.rect = i.touchRect
+				switch gx {
+				case 0:
+					t.xMode = editMin
+				case 3:
+					t.xMode = editMax
+				default:
+					t.xMode = editNone
+				}
+				switch gy {
+				case 0:
+					t.yMode = editMin
+				case 3:
+					t.yMode = editMax
+				default:
+					t.yMode = editNone
+				}
+				if t.xMode == editNone && t.yMode == editNone {
+					t.xMode = editBoth
+					t.yMode = editBoth
+				}
+				break
+			}
 		}
 	}
 }

@@ -68,7 +68,7 @@ func mulFracInt64(a, b, d int64) int64 {
 	return int64(q) * sign
 }
 
-// mulFracModUint64 returns a*b/d rounded to even.
+// mulFracModUint64 returns a*b/d with remainder like in C (may be negative).
 func mulFracModUint64(a, b, d uint64) (uint64, uint64) {
 	ch, cl := bits.Mul64(a, b)
 	return bits.Div64(ch, cl, d)

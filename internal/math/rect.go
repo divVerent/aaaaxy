@@ -127,6 +127,15 @@ func (r Rect) DeltaPos(other Pos) Delta {
 	return r.delta(other, other)
 }
 
+// GridPos converts coordinates of p within the rect into grid coords.
+func (r Rect) GridPos(p Pos, nx int, ny int) (int, int) {
+	dx := p.X - r.Origin.X
+	dy := p.Y - r.Origin.Y
+	ix, _ := mulFracModUint64(uint64(dx), uint64(nx), uint64(r.Size.DX))
+	iy, _ := mulFracModUint64(uint64(dy), uint64(ny), uint64(r.Size.DY))
+	return int(ix), int(iy)
+}
+
 func (r Rect) String() string {
 	return fmt.Sprintf("%d %d %d %d", r.Origin.X, r.Origin.Y, r.Size.DX, r.Size.DY)
 }
