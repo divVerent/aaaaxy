@@ -48,6 +48,16 @@ var (
 // Idea: put the edit mode in here, but make it impossible to cover the center.
 // Also no button overlap.
 // Use an 8x8 grid (gcd).
+// Controls:
+// - Each active finger has a state and a start pos.
+// - State is what object it moves and which corner/side.
+// - 4x4 grid.
+// - left, none, none, right
+// - however, if both x and y are none, move both
+// - do not allow overlaps or outside
+// - do moves in steps to move as much as needed
+// - in center of screen, menu items/buttons to exit input edit mode
+// - min size of each button: 64x64
 
 const (
 	touchClickMaxFrames = 30
