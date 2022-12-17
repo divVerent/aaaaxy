@@ -41,30 +41,13 @@ var (
 	touchRectExit   = flag.Text("touch_rect_exit", m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 128, DY: 64}}, "touch rectangle for exiting")
 )
 
-// TODO(divVerent):
-// Make each rect a command line option.
-// Only store the touch rect - the draw rect shall be the largest box of correct aspect that fits inside.
-// Then make an editor for these.
-// Idea: put the edit mode in here, but make it impossible to cover the center.
-// Also no button overlap.
-// Use an 8x8 grid (gcd).
-// Controls:
-// - Each active finger has a state and a start pos.
-// - State is what object it moves and which corner/side.
-// - 4x4 grid.
-// - left, none, none, right
-// - however, if both x and y are none, move both
-// - do not allow overlaps or outside
-// - do moves in steps to move as much as needed
-// - in center of screen, menu items/buttons to exit input edit mode
-// - min size of each button: 64x64
-
 const (
 	touchClickMaxFrames = 30
 	touchPadFrames      = 300
 )
 
 type touchInfo struct {
+	touchEditInfo
 	frames int
 	pos    m.Pos
 	hit    bool
@@ -73,7 +56,6 @@ type touchInfo struct {
 var (
 	touchUsePad   bool
 	touchShowPad  bool
-	touchEditPad  bool
 	touches       = map[ebiten.TouchID]*touchInfo{}
 	touchIDs      []ebiten.TouchID
 	touchHoverPos m.Pos
@@ -123,6 +105,7 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 		touchHoverPos = hoverAcc.Add(m.Delta{DX: hoverCnt / 2, DY: hoverCnt / 2}).Div(hoverCnt)
 		hoverPos = &touchHoverPos
 	}
+	touchEditUpdate(gameWidth, gameHeight)
 }
 
 func touchSetUsePad(want bool) {
@@ -182,11 +165,13 @@ func touchInit() error {
 }
 
 func touchDraw(screen *ebiten.Image) {
-	if !touchShowPad {
-		return
-	}
-	if !*touchForce && touchPadFrame <= 0 {
-		return
+	if !touchEditPad {
+		if !touchShowPad {
+			return
+		}
+		if !*touchForce && touchPadFrame <= 0 {
+			return
+		}
 	}
 	for _, i := range impulses {
 		if i.touchRect == nil || i.touchRect.Size.IsZero() {
@@ -226,13 +211,5 @@ func touchDraw(screen *ebiten.Image) {
 		}
 		screen.DrawImage(img, options)
 	}
-	if touchEditPad {
-		gridColor := palette.EGA(palette.LightGrey, 32)
-		w, h := screen.Size()
-		for x := 0; x < w/8; x++ {
-			for y := 0; y < h/8; y++ {
-				ebitenutil.DrawRect(screen, float64(x*8+1), float64(y*8+1), 6, 6, gridColor)
-			}
-		}
-	}
+	touchEditDraw(screen)
 }
