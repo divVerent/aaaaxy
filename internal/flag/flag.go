@@ -37,7 +37,7 @@ var (
 
 // SystemDefault performs a GOOS/GOARCH dependent value lookup to be used in flag defaults.
 // Map keys shall be */*, GOOS/*, */GOARCH or GOOS/GOARCH.
-func SystemDefault(m map[string]interface{}) interface{} {
+func SystemDefault[T any](m map[string]T) T {
 	k := fmt.Sprintf("%v/%v", runtime.GOOS, runtime.GOARCH)
 	if val, found := m[k]; found {
 		return val

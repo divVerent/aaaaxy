@@ -28,11 +28,11 @@ import (
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
-var offerFullscreen = flag.SystemDefault(map[string]interface{}{
+var offerFullscreen = flag.SystemDefault(map[string]bool{
 	"android/*": false,
 	"ios/*":     false,
 	"*/*":       true,
-}).(bool)
+})
 
 type SettingsScreenItem int
 

@@ -24,12 +24,12 @@ import (
 
 var (
 	touch      = flag.Bool("touch", true, "enable touch input")
-	touchForce = flag.Bool("touch_force", flag.SystemDefault(map[string]interface{}{
+	touchForce = flag.Bool("touch_force", flag.SystemDefault(map[string]bool{
 		"android/*": true,
 		"ios/*":     true,
 		"js/*":      true,
 		"*/*":       false,
-	}).(bool), "always show touch controls")
+	}), "always show touch controls")
 	touchRectLeft   = flag.Text("touch_rect_left", m.Rect{Origin: m.Pos{X: 0, Y: 232}, Size: m.Delta{DX: 64, DY: 64}}, "touch rectangle for moving left")
 	touchRectRight  = flag.Text("touch_rect_right", m.Rect{Origin: m.Pos{X: 64, Y: 232}, Size: m.Delta{DX: 64, DY: 64}}, "touch rectangle for moving right")
 	touchRectDown   = flag.Text("touch_rect_down", m.Rect{Origin: m.Pos{X: 0, Y: 296}, Size: m.Delta{DX: 128, DY: 64}}, "touch rectangle for moving down")
