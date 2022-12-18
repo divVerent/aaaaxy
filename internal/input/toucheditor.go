@@ -83,16 +83,25 @@ func touchEditSize(mode editMode, s int, dp int) int {
 	}
 }
 
-func touchHaveOverlaps(rect *m.Rect, replacement m.Rect) bool {
+func touchEditAllowed(rect *m.Rect, replacement m.Rect, gameWidth, gameHeight int) bool {
+	if replacement.Origin.X < 0 || replacement.Origin.Y < 0 {
+		return false
+	}
+	if replacement.Size.DX < 64 || replacement.Size.DY < 64 {
+		return false
+	}
+	if replacement.OppositeCorner().X >= gameWidth || replacement.OppositeCorner().Y >= gameHeight {
+		return false
+	}
 	for _, i := range impulses {
 		if i.touchRect == nil || i.touchRect.Size.IsZero() || i.touchRect == rect {
 			continue
 		}
 		if replacement.Delta(*i.touchRect).IsZero() {
-			return true
+			return false
 		}
 	}
-	return false
+	return true
 }
 
 func touchEditUpdate(gameWidth, gameHeight int) bool {
@@ -118,7 +127,7 @@ func touchEditUpdate(gameWidth, gameHeight int) bool {
 			newRect.Size.DX = touchEditSize(t.edit.xMode, t.edit.startRect.Size.DX, t.pos.X-t.edit.startPos.X)
 			newRect.Size.DY = touchEditSize(t.edit.yMode, t.edit.startRect.Size.DY, t.pos.Y-t.edit.startPos.Y)
 			// TODO(divVerent): can we be nicer and on overlap try a shorter move until there is no overlap?
-			if !touchHaveOverlaps(t.edit.rect, newRect) {
+			if touchEditAllowed(t.edit.rect, newRect, gameWidth, gameHeight) {
 				*t.edit.rect = newRect
 			}
 		} else {
