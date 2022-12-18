@@ -111,7 +111,11 @@ func (c *Controller) Update() error {
 			c.blurFrame++
 			c.World.AssumeChanged()
 		}
-		input.SetMode(input.MenuMode)
+		if _, ok := c.Screen.(*TouchEditScreen); ok {
+			input.SetMode(input.TouchEditMode)
+		} else {
+			input.SetMode(input.MenuMode)
+		}
 		err := c.Screen.Update()
 		if err != nil {
 			return err

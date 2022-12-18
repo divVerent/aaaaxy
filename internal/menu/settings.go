@@ -37,7 +37,7 @@ var offerFullscreen = flag.SystemDefault(map[string]interface{}{
 type SettingsScreenItem int
 
 const (
-	Fullscreen = iota
+	FullscreenOrEditControls = iota
 	Graphics
 	Quality
 	Volume
@@ -259,7 +259,7 @@ func toggleVolume(delta int) error {
 
 func (s *SettingsScreen) Update() error {
 	var clicked Direction
-	if offerFullscreen {
+	if offerFullscreen || input.HaveTouch() {
 		clicked = s.Controller.QueryMouseItem(&s.Item, SettingsCount)
 	} else {
 		s.Item--
@@ -274,7 +274,7 @@ func (s *SettingsScreen) Update() error {
 		s.Item--
 		s.Controller.MoveSound(nil)
 	}
-	if offerFullscreen {
+	if offerFullscreen || input.HaveTouch() {
 		s.Item = SettingsScreenItem(m.Mod(int(s.Item), int(SettingsCount)))
 	} else {
 		s.Item = SettingsScreenItem(m.Mod(int(s.Item-1), int(SettingsCount-1)) + 1)
@@ -284,8 +284,12 @@ func (s *SettingsScreen) Update() error {
 	}
 	if input.Jump.JustHit || input.Action.JustHit || clicked == CenterClicked {
 		switch s.Item {
-		case Fullscreen:
-			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
+		case FullscreenOrEditControls:
+			if offerFullscreen {
+				return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
+			} else {
+				return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&TouchEditScreen{}))
+			}
 		case Graphics:
 			return s.Controller.ActivateSound(s.toggleGraphics(0))
 		case Quality:
@@ -304,8 +308,12 @@ func (s *SettingsScreen) Update() error {
 	}
 	if input.Left.JustHit || clicked == LeftClicked {
 		switch s.Item {
-		case Fullscreen:
-			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
+		case FullscreenOrEditControls:
+			if offerFullscreen {
+				return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
+			} else {
+				return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&TouchEditScreen{}))
+			}
 		case Graphics:
 			return s.Controller.ActivateSound(s.toggleGraphics(-1))
 		case Quality:
@@ -318,8 +326,12 @@ func (s *SettingsScreen) Update() error {
 	}
 	if input.Right.JustHit || clicked == RightClicked {
 		switch s.Item {
-		case Fullscreen:
-			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
+		case FullscreenOrEditControls:
+			if offerFullscreen {
+				return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
+			} else {
+				return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&TouchEditScreen{}))
+			}
 		case Graphics:
 			return s.Controller.ActivateSound(s.toggleGraphics(+1))
 		case Quality:
@@ -339,18 +351,20 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	fgn := palette.EGA(palette.LightGrey, 255)
 	bgn := palette.EGA(palette.DarkGrey, 255)
 	font.MenuBig.Draw(screen, locale.G.Get("Settings"), m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
+	fg, bg := fgn, bgn
+	if s.Item == FullscreenOrEditControls {
+		fg, bg = fgs, bgs
+	}
 	if offerFullscreen {
-		fg, bg := fgn, bgn
-		if s.Item == Fullscreen {
-			fg, bg = fgs, bgs
-		}
 		fsText := locale.G.Get("Switch to Fullscreen Mode")
 		if ebiten.IsFullscreen() {
 			fsText = locale.G.Get("Switch to Windowed Mode")
 		}
-		font.Menu.Draw(screen, fsText, m.Pos{X: CenterX, Y: ItemBaselineY(Fullscreen, SettingsCount)}, true, fg, bg)
+		font.Menu.Draw(screen, fsText, m.Pos{X: CenterX, Y: ItemBaselineY(FullscreenOrEditControls, SettingsCount)}, true, fg, bg)
+	} else if input.HaveTouch() {
+		font.Menu.Draw(screen, locale.G.Get("Edit Touch Controls"), m.Pos{X: CenterX, Y: ItemBaselineY(FullscreenOrEditControls, SettingsCount)}, true, fg, bg)
 	}
-	fg, bg := fgn, bgn
+	fg, bg = fgn, bgn
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs
 	}

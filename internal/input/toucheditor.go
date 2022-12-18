@@ -47,8 +47,8 @@ var (
 	touchEditPad bool = false
 
 	touchReservedArea = m.Rect{
-		Origin: m.Pos{X: 128, Y: 128},
-		Size:   m.Delta{DX: 640 - 128 - 128, DY: 360 - 128 - 128},
+		Origin: m.Pos{X: 192, Y: 64},
+		Size:   m.Delta{DX: 640 - 192 - 192, DY: 360 - 64},
 	}
 )
 
