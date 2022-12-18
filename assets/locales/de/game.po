@@ -21,7 +21,7 @@ msgstr ""
 " "
 "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöüß"
 
-#: menu/settings.go:374
+#: menu/settings.go:388
 msgid " (restart to apply)"
 msgstr " (Neustart erforderlich)"
 
@@ -149,6 +149,14 @@ msgstr "Abspann"
 msgid "Ctrl/Shift"
 msgstr "Ctrl/Shift"
 
+#: menu/touchedit.go:85
+msgid "Done"
+msgstr "Fertig"
+
+#: menu/settings.go:365 menu/touchedit.go:80
+msgid "Edit Touch Controls"
+msgstr "Virtuelles Gamepad bearbeiten"
+
 #: fun/string.go:65
 msgid "Edmonton"
 msgstr "Edmonton"
@@ -187,7 +195,7 @@ msgstr ""
 msgid "For Software Licenses"
 msgstr "Für Software-Lizenzen"
 
-#: menu/settings.go:357
+#: menu/settings.go:371
 msgid "Graphics: %s"
 msgstr "Grafik: %s"
 
@@ -219,7 +227,7 @@ msgstr "Istanbul"
 msgid "Kiritimati"
 msgstr "Kiritimati"
 
-#: menu/settings.go:376
+#: menu/settings.go:390
 msgid "Language: %s%s"
 msgstr "Sprache: %s%s"
 
@@ -239,7 +247,7 @@ msgstr "Niedrig"
 msgid "Lowest"
 msgstr "Am niedrigsten"
 
-#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:391
+#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:405
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
@@ -303,7 +311,7 @@ msgstr "Ponta Delgada"
 msgid "Port Moresby"
 msgstr "Port Moresby"
 
-#: menu/settings.go:362
+#: menu/settings.go:376
 msgid "Quality: %s"
 msgstr "Qualität: %s"
 
@@ -335,7 +343,11 @@ msgstr "Den Spielstand %s zurücksetzen"
 msgid "Reset and Lose Settings"
 msgstr "Einstellungen zurücksetzen"
 
-#: menu/reset.go:102 menu/settings.go:386
+#: menu/touchedit.go:90
+msgid "Reset to Defaults"
+msgstr "Zurücksetzen"
+
+#: menu/reset.go:102 menu/settings.go:400
 msgid "Reset"
 msgstr "Zurücksetzen"
 
@@ -347,7 +359,7 @@ msgstr "San Francisco"
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr "Punkte: {{Score}}{{SpeedrunCategoriesShort}} | Zeit: {{GameTime}}"
 
-#: menu/main.go:96 menu/settings.go:341
+#: menu/main.go:96 menu/settings.go:353
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -363,15 +375,15 @@ msgstr "Shift/E/Tab"
 msgid "Start"
 msgstr "Start"
 
-#: menu/savestate.go:145 menu/settings.go:381
+#: menu/savestate.go:145 menu/settings.go:395
 msgid "Switch Save State"
 msgstr "Spielstand wechseln"
 
-#: menu/settings.go:347
+#: menu/settings.go:359
 msgid "Switch to Fullscreen Mode"
 msgstr "Auf Vollbildmodus wechseln"
 
-#: menu/settings.go:349
+#: menu/settings.go:361
 msgid "Switch to Windowed Mode"
 msgstr "Auf Fenstermodus wechseln"
 
@@ -419,7 +431,7 @@ msgstr "Versuche als Nächstes"
 msgid "Turkistan"
 msgstr "Türkistan"
 
-#: menu/settings.go:367
+#: menu/settings.go:381
 msgid "Volume: %s"
 msgstr "Lautstärke: %s"
 
@@ -467,19 +479,19 @@ msgstr "alle"
 msgid "hashing level"
 msgstr "Hashe Level"
 
-#: aaaaxy/init.go:264
+#: aaaaxy/init.go:265
 msgid "initializing audio"
 msgstr "Initialisiere Sound"
 
-#: aaaaxy/init.go:288
+#: aaaaxy/init.go:289
 msgid "initializing dumping"
 msgstr "Initialisiere Dumping"
 
-#: aaaaxy/init.go:280
+#: aaaaxy/init.go:281
 msgid "initializing input"
 msgstr "Initialisiere Eingabe"
 
-#: aaaaxy/init.go:268
+#: aaaaxy/init.go:269
 msgid "initializing noise"
 msgstr "Initialisiere Rauschen"
 
@@ -507,11 +519,11 @@ msgstr "Lese Level"
 msgid "precaching %s"
 msgstr "Lade %s"
 
-#: aaaaxy/init.go:260
+#: aaaaxy/init.go:261
 msgid "precaching credits"
 msgstr "Lade Abspann"
 
-#: aaaaxy/init.go:284
+#: aaaaxy/init.go:285
 msgid "precaching engine"
 msgstr "Lade Engine"
 
@@ -519,11 +531,11 @@ msgstr "Lade Engine"
 msgid "precaching entities"
 msgstr "Lade Objekte"
 
-#: aaaaxy/init.go:276
+#: aaaaxy/init.go:277
 msgid "precaching images"
 msgstr "Lade Grafiken"
 
-#: aaaaxy/init.go:272
+#: aaaaxy/init.go:273
 msgid "precaching sounds"
 msgstr "Lade Soundeffekte"
 
