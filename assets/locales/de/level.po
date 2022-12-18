@@ -2,150 +2,158 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Rudolf Polzer <rpolzer@google.com>, 2022.
-#
+# 
+# Translators:
+# Rudolf Polzer, 2022
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: unnamed project\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-13 05:59-0800\n"
-"PO-Revision-Date: 2022-12-12 08:33-0800\n"
-"Last-Translator: Rudolf Polzer <rpolzer@google.com>\n"
-"Language-Team: German - Germany <rpolzer@google.com>\n"
-"Language: de_DE\n"
+"POT-Creation-Date: 2022-12-17 19:51-0500\n"
+"PO-Revision-Date: 2022-12-13 17:39+0000\n"
+"Last-Translator: Rudolf Polzer, 2022\n"
+"Language-Team: German (https://www.transifex.com/aaaaxy/teams/158611/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
 
 #: assets/maps/level.tmx:586
 msgid "A short walk can go a long way."
 msgstr "Ein kurzer Spaziergang kann einen sehr weit bringen."
 
+#. https://knowyourmeme.com/memes/peace-was-never-an-option
 #: assets/maps/level.tmx:593
 msgid "Failure was never an option."
 msgstr "Versagen war nie eine Alternative."
 
-#: assets/maps/level.tmx:601
+#: assets/maps/level.tmx:602
 msgid ""
 "Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
 msgstr ""
 "Sagen die Kinder nicht immer, \"Sind wir schon da?\"{{BR}}Drücke "
 "{{ExitButton}}."
 
-#: assets/maps/level.tmx:607
+#: assets/maps/level.tmx:608
 msgid "Sometimes the angle of looking at things is all that matters."
 msgstr "Manchmal hängt es einfach nur vom Blickwinkel ab."
 
-#: assets/maps/level.tmx:613
+#: assets/maps/level.tmx:614
 msgid "There can be too much of a good thing."
 msgstr "Zuviel des Guten ist auch nicht gut."
 
-#: assets/maps/level.tmx:625
+#: assets/maps/level.tmx:626
 msgid "Leap of Faith"
 msgstr "Das Wagnis"
 
-#: assets/maps/level.tmx:633
+#: assets/maps/level.tmx:634
 msgid "There are no wrong ways, just wrong goals."
 msgstr "Es gibt keine falschen Wege - nur falsche Ziele."
 
-#: assets/maps/level.tmx:639
+#: assets/maps/level.tmx:640
 msgid "Where there's a down, there must also be an up."
 msgstr "Wo es hinunter geht, muss es auch hinauf gehen."
 
-#: assets/maps/level.tmx:645
+#: assets/maps/level.tmx:646
 msgid "Persistence is the key to success."
 msgstr "Hartnäckigkeit führt zum Erfolg."
 
-#: assets/maps/level.tmx:655
+#: assets/maps/level.tmx:656
 msgid "Stop and Stair"
 msgstr "Der Treppenwitz"
 
-#: assets/maps/level.tmx:684
+#: assets/maps/level.tmx:685
 msgid "Endless Eight"
 msgstr "Achterbahn"
 
-#: assets/maps/level.tmx:690
+#: assets/maps/level.tmx:691
 msgid "Sometimes you just keep running in circles."
 msgstr "Manchmal läuft man einfach im Kreis."
 
-#: assets/maps/level.tmx:696
+#: assets/maps/level.tmx:697
 msgid "Some people prefer 2τ over 4π."
 msgstr "Manche bevorzugen 2τ über 4π."
 
-#: assets/maps/level.tmx:703
+#. https://www.churchofjesuschrist.org/broadcasts/article/ces-
+#. devotionals/2013/01/what-is-truth?lang=eng
+#: assets/maps/level.tmx:704
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr ""
 "\"Beispielsweise ist die Erde trotz einst erdrückender{{BR}}Einmütigkeit in "
 "dieser Frage keine Scheibe.\""
 
-#: assets/maps/level.tmx:709
+#: assets/maps/level.tmx:711
 msgid "Some people prefer 4π over 2τ."
 msgstr "Manche bevorzugen 4π über 2τ."
 
-#: assets/maps/level.tmx:715
+#: assets/maps/level.tmx:717
 msgid "Interesting things are hardly ever found in corners."
 msgstr "In Ecken findet sich selten etwas Interessantes."
 
-#: assets/maps/level.tmx:721
+#: assets/maps/level.tmx:723
 msgid "Interesting things are always found in corners."
 msgstr "In Ecken findet sich immer etwas Interessantes."
 
-#: assets/maps/level.tmx:735
+#: assets/maps/level.tmx:737
 msgid "The Hub"
 msgstr "Der Hub"
 
-#: assets/maps/level.tmx:769
+#: assets/maps/level.tmx:771
 msgid "The Strip"
 msgstr "Das Band"
 
-#: assets/maps/level.tmx:805
+#: assets/maps/level.tmx:807
 msgid "The path of least resistance will not always lead to success."
 msgstr ""
 "Der Weg des geringsten Widerstands ist nicht immer der Weg des Erfolges."
 
-#: assets/maps/level.tmx:811
+#: assets/maps/level.tmx:813
 msgid "Some things only have one side to them."
 msgstr "Manche Dinge sind nun einmal einseitig."
 
-#: assets/maps/level.tmx:817
+#. https://gettingoverit.co/
+#: assets/maps/level.tmx:819
 msgid "Thinking outside the box can remove the need of getting over it."
 msgstr "Wer um die Ecke denkt, braucht kein \"Getting Over It\"."
 
-#: assets/maps/level.tmx:825
+#: assets/maps/level.tmx:828
 msgid "The Möbius Strip"
 msgstr "Das Möbiusband"
 
-#: assets/maps/level.tmx:833
+#: assets/maps/level.tmx:836
 msgid "The Torus"
 msgstr "Der Torus"
 
-#: assets/maps/level.tmx:862
+#: assets/maps/level.tmx:865
 msgid "If it doesn't fit in three dimensions, try two."
 msgstr "Wenn es nicht in drei Dimensionen passt, versuche es mit zwei."
 
-#: assets/maps/level.tmx:870
+#: assets/maps/level.tmx:873
 msgid "The Klein Bottle"
 msgstr "Die Kleinsche Flasche"
 
-#: assets/maps/level.tmx:898
+#. https://www.brainyquote.com/quotes/friedrich_nietzsche_103584
+#: assets/maps/level.tmx:901
 msgid "Whenever I climb I am followed by a dog called Ego."
 msgstr "Wo immer ich klettere, folgt mir ein Hund namens Ego."
 
-#: assets/maps/level.tmx:914
+#: assets/maps/level.tmx:918
 msgid "The Projective Plane"
 msgstr "Die Projektive Ebene"
 
-#: assets/maps/level.tmx:972
+#: assets/maps/level.tmx:976
 msgid "The Sphere"
 msgstr "Die Sphäre"
 
-#: assets/maps/level.tmx:978
+#: assets/maps/level.tmx:982
 msgid "Unparalleled execution is all you really need here."
 msgstr "Es gibt keine Parallelen zu dieser Sache hier."
 
-#: assets/maps/level.tmx:985
+#. https://getting-over-it.fandom.com/wiki/Top_of_the_mountain
+#: assets/maps/level.tmx:989
 msgid ""
 "Welcome to the top of the mountain.{{BR}}If you're alone, all this was just "
 "a waste of time.{{BR}}Press {{ExitButton}}."
@@ -153,945 +161,976 @@ msgstr ""
 "Willkommen am Gipfel des Berges.{{BR}}Wenn du alleine bist, war dies alles "
 "nur Zeitverschwendung.{{BR}}Drücke {{ExitButton}}."
 
-#: assets/maps/level.tmx:991
+#: assets/maps/level.tmx:996
 msgid "The shortest path can be the one that takes longest."
 msgstr "Die Abkürzung kann auch der langsamste Weg sein."
 
-#: assets/maps/level.tmx:997
+#: assets/maps/level.tmx:1002
 msgid "If you just press on forward, you will eventually reach your goal."
 msgstr "Gehe voran, und du wirst dein Ziel erreichen."
 
-#: assets/maps/level.tmx:1003
+#: assets/maps/level.tmx:1008
 msgid "Falling a long distance does not always hurt."
 msgstr "Nicht jeder, der tief fällt, verletzt sich."
 
-#: assets/maps/level.tmx:1020
+#: assets/maps/level.tmx:1025
 msgid "Entering through the front door is boring."
 msgstr "Der Haupteingang ist langweilig."
 
-#: assets/maps/level.tmx:1040
+#. https://en.wikipedia.org/wiki/House_with_two_rooms
+#: assets/maps/level.tmx:1045
 msgid "House With Two Rooms"
 msgstr "Haus mit zwei Zimmern"
 
-#: assets/maps/level.tmx:1052
+#: assets/maps/level.tmx:1058
 msgid "Taking the right entrance makes all the difference."
 msgstr "Es kommt nur auf die Wahl des richtigen Eingangs an."
 
-#: assets/maps/level.tmx:1070
+#: assets/maps/level.tmx:1076
 msgid "A New Beginning"
 msgstr "Ein neuer Anfang"
 
-# question mark error accepted
-#: assets/maps/level.tmx:1078
+#: assets/maps/level.tmx:1084
 msgid "If this isn't your downfall, I don't know what is."
 msgstr "Wenn dich das nicht stürzt, was dann?"
 
-#: assets/maps/level.tmx:1084
-msgid "Oh, gravity, you're a heartless ... force?"
+#. https://www.youtube.com/watch?v=zpRQtHjEniQ
+#: assets/maps/level.tmx:1090
+msgid "Oh, gravity, thou art a heartless ... force?"
 msgstr "O, Schwerkraft, du herzlose ... Kraft?"
 
-#: assets/maps/level.tmx:1092
+#: assets/maps/level.tmx:1099
 msgid "Short Circuited"
 msgstr "Abgekürzt"
 
-#: assets/maps/level.tmx:1108
+#. https://deltarune.com/
+#: assets/maps/level.tmx:1115
 msgid "Your choices don't matter."
 msgstr "Deine Entscheidungen sind bedeutungslos."
 
-#: assets/maps/level.tmx:1116
+#: assets/maps/level.tmx:1124
 msgid "Choose Wisely"
 msgstr "Wähle weise"
 
-#: assets/maps/level.tmx:1121
+#: assets/maps/level.tmx:1129
 msgid "Pick{{BR}}this path?"
 msgstr "Diesen{{BR}}Weg?"
 
-#: assets/maps/level.tmx:1129
+#: assets/maps/level.tmx:1137
 msgid "Pick{{BR}}that path?"
 msgstr "Oder{{BR}}diesen?"
 
-#: assets/maps/level.tmx:1140
+#. https://en.wikipedia.org/wiki/Waterfall_(M._C._Escher)
+#: assets/maps/level.tmx:1148
 msgid "Some water must be periodically added to compensate for evaporation."
 msgstr ""
 "Man fülle regelmäßig etwas Wasser nach, um die Verdunstung auszugleichen."
 
-#: assets/maps/level.tmx:1146
+#: assets/maps/level.tmx:1155
 msgid "You broke out of the stream, yet you're back in the stream."
 msgstr "Raus aus dem Wasser, rein in das Wasser."
 
-#: assets/maps/level.tmx:1154
+#: assets/maps/level.tmx:1163
 msgid "M. C. Waterfall"
 msgstr "M. C. Wasserfall"
 
-#: assets/maps/level.tmx:1161
+#: assets/maps/level.tmx:1170
 msgid "A shortcut?"
 msgstr "Eine Abkürzung?"
 
-#: assets/maps/level.tmx:1169
+#: assets/maps/level.tmx:1178
 msgid "Draaains"
 msgstr "Abfluss"
 
-#: assets/maps/level.tmx:1178
+#. https://undertale.com/
+#: assets/maps/level.tmx:1187
 msgid "The prospect of additional strength fills you with determination."
 msgstr "Der Gedanke an zusätzliche Kraft erfüllt dich mit Entschlossenheit."
 
-#: assets/maps/level.tmx:1184
+#: assets/maps/level.tmx:1194
 msgid "Behold the cage of health!"
 msgstr "Nun sieh den Käfig der Heilung!"
 
-#: assets/maps/level.tmx:1230
+#. https://www.youtube.com/watch?v=8otWflEtlyg
+#: assets/maps/level.tmx:1240
 msgid "Silver City"
 msgstr "Silver City"
 
-#: assets/maps/level.tmx:1265
+#: assets/maps/level.tmx:1276
 msgid "A slight breeze is enough for water to escape the waterfall."
 msgstr ""
 "Eine leichte Brise genügt, um das Wasser aus dem Wasserfall zu treiben."
 
-# question mark error accepted
-#: assets/maps/level.tmx:1271
+#: assets/maps/level.tmx:1282
 msgid "If it ain't broke, don't fix it."
 msgstr "Nichts kaputt reparieren!"
 
-#: assets/maps/level.tmx:1304
+#: assets/maps/level.tmx:1315
 msgid "What's broken is in need of repair."
 msgstr "Repariere, was kaputt ist."
 
-#: assets/maps/level.tmx:1337
+#: assets/maps/level.tmx:1348
 msgid "There is no need to hide if nobody is after you."
 msgstr "Wenn niemand hinter dir her ist, brauchst du kein Versteck."
 
-#: assets/maps/level.tmx:1343
+#: assets/maps/level.tmx:1354
 msgid "Hide and seek is never fun without opponents."
 msgstr "Das Versteckspiel macht ohne Gegner einfach keinen Spaß."
 
-#: assets/maps/level.tmx:1348
+#: assets/maps/level.tmx:1359
 msgid "Welcome to ..."
 msgstr "Willkommen zu ..."
 
-#: assets/maps/level.tmx:1420
+#: assets/maps/level.tmx:1431
 msgid "Nexuiz!"
 msgstr "Nexuiz!"
 
-#: assets/maps/level.tmx:1428
+#: assets/maps/level.tmx:1439
 msgid "BRLOGENSHFEGLE doesn't lol."
 msgstr "BRLOGENSCHFEGLE lacht sich nicht kaputt."
 
-#: assets/maps/level.tmx:4241
+#: assets/maps/level.tmx:4252
 msgid "Nine Boxes In Sight"
 msgstr "Die Neun Kästen"
 
-#: assets/maps/level.tmx:4814
+#: assets/maps/level.tmx:4825
 msgid "King's Cross"
 msgstr "Kings Cross"
 
-#: assets/maps/level.tmx:4820
+#: assets/maps/level.tmx:4831
 msgid "Looking behind the scenes can be important at times."
 msgstr "Ein Blick hinter die Kulissen kann Geheimnisse aufdecken."
 
-#: assets/maps/level.tmx:5009
+#: assets/maps/level.tmx:5020
 msgid "00"
 msgstr "00"
 
-#: assets/maps/level.tmx:5017
+#: assets/maps/level.tmx:5028
 msgid "01"
 msgstr "01"
 
-#: assets/maps/level.tmx:5025
+#: assets/maps/level.tmx:5036
 msgid "02"
 msgstr "02"
 
-#: assets/maps/level.tmx:5033
+#: assets/maps/level.tmx:5044
 msgid "03"
 msgstr "03"
 
-#: assets/maps/level.tmx:5041
+#: assets/maps/level.tmx:5052
 msgid "04"
 msgstr "04"
 
-#: assets/maps/level.tmx:5049
+#: assets/maps/level.tmx:5060
 msgid "05"
 msgstr "05"
 
-#: assets/maps/level.tmx:5057
+#: assets/maps/level.tmx:5068
 msgid "06"
 msgstr "06"
 
-#: assets/maps/level.tmx:5065
+#: assets/maps/level.tmx:5076
 msgid "07"
 msgstr "07"
 
-#: assets/maps/level.tmx:5073
+#: assets/maps/level.tmx:5084
 msgid "08"
 msgstr "08"
 
-#: assets/maps/level.tmx:5081
+#: assets/maps/level.tmx:5092
 msgid "09"
 msgstr "09"
 
-#: assets/maps/level.tmx:5089
+#: assets/maps/level.tmx:5100
 msgid "10"
 msgstr "10"
 
-#: assets/maps/level.tmx:5097
+#: assets/maps/level.tmx:5108
 msgid "11"
 msgstr "11"
 
-#: assets/maps/level.tmx:5106
+#: assets/maps/level.tmx:5117
 msgid "The first track is never the one with your train."
 msgstr "Das erste Gleis ist nie das, auf dem dein Zug kommt."
 
-#: assets/maps/level.tmx:5112
+#: assets/maps/level.tmx:5123
 msgid "Reaching for the stars can really tear you down."
 msgstr "Der Versuch, die Sterne zu ergreifen, endet oft im Fall."
 
-#: assets/maps/level.tmx:5117
+#: assets/maps/level.tmx:5128
 msgid "9¾"
 msgstr "9¾"
 
-#: assets/maps/level.tmx:5268
+#: assets/maps/level.tmx:5279
 msgid "A watched train never departs."
 msgstr "Der erwartete Zug kommt nie."
 
-#: assets/maps/level.tmx:5273
+#: assets/maps/level.tmx:5284
 msgid ""
-"Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your "
-"keys{{BR}}3) {{ExitButton}} for checkout"
+"Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your"
+" keys{{BR}}3) {{ExitButton}} for checkout"
 msgstr ""
 "Hilberts Dotel{{BR}}{{BR}}Willkommen!{{BR}}{{BR}}1) Einchecken{{BR}}2) "
 "Schlüssel entgegennehmen{{BR}}3) {{ExitButton}} zum Auschecken"
 
-#: assets/maps/level.tmx:5284
+#: assets/maps/level.tmx:5295
 msgid "Hilbert's Dotel"
 msgstr "Hilberts Dotel"
 
-#: assets/maps/level.tmx:5375
+#: assets/maps/level.tmx:5386
 msgid "I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"
 msgstr "Das waren alle...{{BR}}{{BR}}{{BR}}{{BR}}Zimmer"
 
-#: assets/maps/level.tmx:5428
+#. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
+#: assets/maps/level.tmx:5438
 msgid "He shall not return by the way of the gate whereby he came in."
 msgstr ""
 "Niemand soll durch das Tor wieder hinausgehen, durch das er gekommen ist."
 
-#: assets/maps/level.tmx:5572
+#: assets/maps/level.tmx:5595
 msgid "Shepard Tone"
 msgstr "Die Shepard-Skala"
 
-#: assets/maps/level.tmx:5661
+#: assets/maps/level.tmx:5684
 msgid "Play ECED{{BR}}to open.{{BR}}No Trololos!"
 msgstr "Spiele ECED{{BR}}zum Öffnen.{{BR}}Kein Trololo!"
 
-#: assets/maps/level.tmx:5669
+#: assets/maps/level.tmx:5692
 msgid "C"
 msgstr "C"
 
-#: assets/maps/level.tmx:5677
+#: assets/maps/level.tmx:5700
 msgid "D"
 msgstr "D"
 
-#: assets/maps/level.tmx:5685
+#: assets/maps/level.tmx:5708
 msgid "E"
 msgstr "E"
 
-#: assets/maps/level.tmx:5693
+#: assets/maps/level.tmx:5716
 msgid "F"
 msgstr "F"
 
-#: assets/maps/level.tmx:5701
+#: assets/maps/level.tmx:5724
 msgid "G"
 msgstr "G"
 
-#: assets/maps/level.tmx:5709
+#: assets/maps/level.tmx:5732
 msgid "A"
 msgstr "A"
 
-#: assets/maps/level.tmx:5717
+#: assets/maps/level.tmx:5740
 msgid "B"
 msgstr "H"
 
-#: assets/maps/level.tmx:5738
+#: assets/maps/level.tmx:5761
 msgid "Sometimes all you need is a little opening."
 msgstr "Manchmal braucht man nichts weiter als eine kleine Öffnung."
 
-#: assets/maps/level.tmx:5765
+#: assets/maps/level.tmx:5788
 msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Ich bin so froh, endlich wieder zu Hause zu sein.{{BR}}Drücke {{ExitButton}}."
+"Ich bin so froh, endlich wieder zu Hause zu sein.{{BR}}Drücke "
+"{{ExitButton}}."
 
-#: assets/maps/level.tmx:5790
+#: assets/maps/level.tmx:5813
 msgid "Try the lower path."
 msgstr "Probiere den unteren Weg."
 
-#: assets/maps/level.tmx:5796
+#: assets/maps/level.tmx:5819
 msgid "Try the upper path."
 msgstr "Probiere den oberen Weg."
 
-#: assets/maps/level.tmx:5855
+#: assets/maps/level.tmx:5878
 msgid "The Axiom of Choiche"
 msgstr "Das Auswahlaxiom"
 
-#: assets/maps/level.tmx:5860
+#. https://www.youtube.com/watch?v=2Z4m4lnjxkY
+#: assets/maps/level.tmx:5883
 msgid "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
 msgstr "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
 
-#: assets/maps/level.tmx:5871
+#: assets/maps/level.tmx:5895
 msgid "Turtles All the Way In"
 msgstr "Schildkröten den ganzen Weg nach innen"
 
-#: assets/maps/level.tmx:5882
+#: assets/maps/level.tmx:5906
 msgid "Some things just aren't that simple."
 msgstr "Manche Dinge sind nicht so einfach."
 
-#: assets/maps/level.tmx:5906
+#: assets/maps/level.tmx:5930
 msgid "It's turtles all the way in."
 msgstr "Es sind Schildkröten den ganzen Weg nach innen."
 
-#: assets/maps/level.tmx:5951
+#: assets/maps/level.tmx:5975
 msgid "Listen to the spell of the magical turtle and you may proceed."
-msgstr "Horche auf den Zauber der magischen Schildkröte, und du kannst weiter."
+msgstr ""
+"Horche auf den Zauber der magischen Schildkröte, und du kannst weiter."
 
-#: assets/maps/level.tmx:5968
+#. https://antichamber.fandom.com/wiki/Don%27t_Look_Down
+#: assets/maps/level.tmx:5992
 msgid "Don't{{BR}}Look Up!"
 msgstr "Nicht{{BR}}Nach oben schauen!"
 
-#: assets/maps/level.tmx:5980
+#. reference to 'curiosity killed the cat' saying; be creative here when
+#. translating; be consistent with the 'Curiosity killed the Carl - no the
+#. cat.' text.
+#: assets/maps/level.tmx:6005
 msgid "The Rover and the Feline"
 msgstr "Der Rover und die Spatzen"
 
-#: assets/maps/level.tmx:5988
+#: assets/maps/level.tmx:6014
 msgid "Some things you simply can't see right away."
 msgstr "Manche Dinge kann man einfach nicht sofort sehen."
 
-#: assets/maps/level.tmx:6003
+#. reference to 'curiosity killed the cat' saying and Super Mario Maker
+#. trollery; be creative here when translating; be consistent with the 'The
+#. Rover and the Feline' text.
+#: assets/maps/level.tmx:6029
 msgid "Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."
 msgstr ""
 "Zu große Neugier treibt den Vogel in die Schlinge.{{BR}}Drücke "
 "{{ExitButton}}."
 
-#: assets/maps/level.tmx:6016 assets/maps/level.tmx:6024
-#: assets/maps/level.tmx:6032 assets/maps/level.tmx:6040
-#: assets/maps/level.tmx:6048 assets/maps/level.tmx:6056
-#: assets/maps/level.tmx:6064 assets/maps/level.tmx:6072
+#: assets/maps/level.tmx:6043 assets/maps/level.tmx:6051
+#: assets/maps/level.tmx:6059 assets/maps/level.tmx:6067
+#: assets/maps/level.tmx:6075 assets/maps/level.tmx:6083
+#: assets/maps/level.tmx:6091 assets/maps/level.tmx:6099
 msgid "?"
 msgstr "?"
 
-#: assets/maps/level.tmx:6097
+#: assets/maps/level.tmx:6124
 msgid "You now can stand on platforms!"
 msgstr "Du kannst jetzt auf Plattformen stehen!"
 
-#: assets/maps/level.tmx:6106
+#: assets/maps/level.tmx:6133
 msgid "The Cleats{{BR}}Hint: no head bumping!"
 msgstr "Die Stollen{{BR}}Tipp: nicht den{{BR}}Kopf stoßen!"
 
-#: assets/maps/level.tmx:6132
+#: assets/maps/level.tmx:6159
 msgid "Steadfastly holding on to the iron rod prevents disasters."
 msgstr ""
 "Sich standhaft an der eisernen Stange festzuhalten verhindert Katastrophen."
 
-#: assets/maps/level.tmx:6138
-msgid "Sometimes the thing that is in plain sight can be a challenge to reach."
+#: assets/maps/level.tmx:6165
+msgid ""
+"Sometimes the thing that is in plain sight can be a challenge to reach."
 msgstr "Manchmal ist das, was vor deiner Nase liegt, schwierig zu erreichen."
 
-#: assets/maps/level.tmx:6144
+#: assets/maps/level.tmx:6171
 msgid "Can't tell if this place is pointless or not."
 msgstr "Der Fleck muss weg."
 
-#: assets/maps/level.tmx:6150
+#: assets/maps/level.tmx:6177
 msgid "Peaceful games require peaceful solutions."
 msgstr "Friedliche Spiele brauchen friedliche Lösungen."
 
-#: assets/maps/level.tmx:6159
+#: assets/maps/level.tmx:6186
 msgid "3 ..."
 msgstr "3 ..."
 
-#: assets/maps/level.tmx:6167
+#: assets/maps/level.tmx:6194
 msgid "2 ..."
 msgstr "2 ..."
 
-#: assets/maps/level.tmx:6175
+#: assets/maps/level.tmx:6202
 msgid "1 ..."
 msgstr "1 ..."
 
-#: assets/maps/level.tmx:6183
+#: assets/maps/level.tmx:6210
 msgid "Blast off?"
 msgstr "Abflug?"
 
-#: assets/maps/level.tmx:6192
+#: assets/maps/level.tmx:6219
 msgid "Redundant launch systems aren't rocket science."
 msgstr "Redundante Startsysteme sind kein Hexenwerk."
 
-# question mark error accepted
-#: assets/maps/level.tmx:6201
+#: assets/maps/level.tmx:6228
 msgid "Fly High"
 msgstr "Alles verflogen?"
 
-#: assets/maps/level.tmx:6221
+#: assets/maps/level.tmx:6248
 msgid "Before The Hub"
 msgstr "Vor dem Hub"
 
-#: assets/maps/level.tmx:6229
+#: assets/maps/level.tmx:6256
 msgid "Close To The Hub"
 msgstr "Nahe am Hub"
 
-#: assets/maps/level.tmx:6235
+#: assets/maps/level.tmx:6262
 msgid "You can now push them away!"
 msgstr "Du kannst sie jetzt wegschieben!"
 
-#: assets/maps/level.tmx:6240
+#: assets/maps/level.tmx:6267
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
 msgstr "Die Spule{{BR}}(halte {{ActionButton}}){{BR}}Tipp: Müll vermeiden!"
 
-#: assets/maps/level.tmx:6261
+#: assets/maps/level.tmx:6288
 msgid "You can now grab and carry them!"
 msgstr "Du kannst sie jetzt greifen und tragen!"
 
-#: assets/maps/level.tmx:6266
+#: assets/maps/level.tmx:6293
 msgid "The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"
 msgstr ""
 "Die Handschuhe{{BR}}(halte {{ActionButton}}){{BR}}Tipp: nicht zu schnell!"
 
-#: assets/maps/level.tmx:6334
+#: assets/maps/level.tmx:6361
 msgid "Little & Big Platforms"
 msgstr "Ausgestanden"
 
-#: assets/maps/level.tmx:6340
+#: assets/maps/level.tmx:6367
 msgid "Unlike that Italian plumber, you can go left."
 msgstr "Im Gegensatz zum italienischen Klempner kannst du nach links."
 
-#: assets/maps/level.tmx:6346
+#: assets/maps/level.tmx:6373
 msgid "Some things just take a second attempt."
 msgstr "Manche Dinge brauchen einfach einen zweiten Versuch."
 
-#: assets/maps/level.tmx:6370 assets/maps/level.tmx:6450
-#: assets/maps/level.tmx:6556 assets/maps/level.tmx:6566
-#: assets/maps/level.tmx:16510 assets/maps/level.tmx:16518
-#: assets/maps/level.tmx:16526 assets/maps/level.tmx:16534
-#: assets/maps/level.tmx:16542 assets/maps/level.tmx:16551
+#: assets/maps/level.tmx:6397 assets/maps/level.tmx:6478
+#: assets/maps/level.tmx:6584 assets/maps/level.tmx:6594
+#: assets/maps/level.tmx:16560 assets/maps/level.tmx:16568
+#: assets/maps/level.tmx:16576 assets/maps/level.tmx:16584
+#: assets/maps/level.tmx:16592 assets/maps/level.tmx:16601
 msgid "Reset"
 msgstr "Nochmal"
 
-#: assets/maps/level.tmx:6379
+#: assets/maps/level.tmx:6406
 msgid "If platforms require platforming, what do trains require?"
 msgstr ""
 "Wenn man Platforming für Plattformen braucht, was braucht man für Züge?"
 
-#: assets/maps/level.tmx:6384
+#: assets/maps/level.tmx:6411
 msgid "Do"
 msgstr "Lass"
 
-#: assets/maps/level.tmx:6392
+#: assets/maps/level.tmx:6419
 msgid "not"
 msgstr "dich"
 
-#: assets/maps/level.tmx:6400
+#: assets/maps/level.tmx:6427
 msgid "get"
 msgstr "nicht"
 
-#: assets/maps/level.tmx:6408
+#: assets/maps/level.tmx:6435
 msgid "distracted"
 msgstr "ablenken"
 
-#: assets/maps/level.tmx:6445
+#. when translating, make sure it fits the 'yellow submarine' song
+#: assets/maps/level.tmx:6472
 msgid ""
-"We all wait for the special Tetris block,{{BR}}special Tetris block,{{BR}}"
-"special Tetris block."
+"We all wait for the special Tetris block,{{BR}}special Tetris "
+"block,{{BR}}special Tetris block."
 msgstr ""
-"Bald, bald, bald kommt der lange Tetris-Block,{{BR}}lange Tetris-Block,{{BR}}"
-"lange Tetris-Block."
+"Bald, bald, bald kommt der lange Tetris-Block,{{BR}}lange Tetris-"
+"Block,{{BR}}lange Tetris-Block."
 
-#: assets/maps/level.tmx:6575
+#: assets/maps/level.tmx:6603
 msgid "Sweet is the reward of the swift."
 msgstr "Der frühe Vogel frisst den Wurm."
 
-#: assets/maps/level.tmx:6581
+#. https://knowyourmeme.com/memes/dopefish
+#: assets/maps/level.tmx:6609
 msgid "Swim swim hungry, swim swim hungry."
 msgstr "Schwimm schwimm hungrig, schwimm schwimm hungrig."
 
-#: assets/maps/level.tmx:6631
+#: assets/maps/level.tmx:6660
 msgid "The note on the right is much more interesting than this one."
 msgstr "Der Zettel rechts ist viel interessanter als dieser."
 
-#: assets/maps/level.tmx:6637
+#: assets/maps/level.tmx:6666
 msgid "The note on the left is much more interesting than this one."
 msgstr "Der Zettel links ist viel interessanter als dieser."
 
-#: assets/maps/level.tmx:6656
+#: assets/maps/level.tmx:6685
 msgid "The Anti-Hub"
 msgstr "Der Antihub"
 
-#: assets/maps/level.tmx:6686
+#. https://earthbound.fandom.com/wiki/Moonside
+#: assets/maps/level.tmx:6715
 msgid "Welcome to Moonside."
 msgstr "Willkommen in Moonside."
 
-#: assets/maps/level.tmx:6730
+#: assets/maps/level.tmx:6760
 msgid "I Like To Move It Move It"
 msgstr "I like to move it move it"
 
-#: assets/maps/level.tmx:6771
+#: assets/maps/level.tmx:6801
 msgid "Hello,{{BR}}World!"
 msgstr "Hallo,{{BR}}Welt!"
 
-#: assets/maps/level.tmx:6800
+#: assets/maps/level.tmx:6830
 msgid "Be resourceful with what you have, and you will succeed."
 msgstr "Nutze, was du hast, und Erfolg wird sich zeigen."
 
-#: assets/maps/level.tmx:6852
+#: assets/maps/level.tmx:6882
 msgid "Switching It Up"
 msgstr "Ausgeschaltet"
 
-#: assets/maps/level.tmx:6882
+#. https://youtube.fandom.com/wiki/DGR
+#: assets/maps/level.tmx:6912
 msgid "He who waits,{{BR}}retries ... #DGR"
 msgstr "Wer wartet,{{BR}}muss nochmal ... #DGR"
 
-#: assets/maps/level.tmx:6926
+#: assets/maps/level.tmx:6957
 msgid "Avoid getting blocked in!"
 msgstr "Lass dich nicht einmauern!"
 
-#: assets/maps/level.tmx:6936
+#: assets/maps/level.tmx:6967
 msgid "Treasure hunts can be time intensive."
 msgstr "Schatzsuchen brauchen Zeit."
 
-#: assets/maps/level.tmx:6941
+#: assets/maps/level.tmx:6972
 msgid "Easy does it."
 msgstr "Immer sachte."
 
-#: assets/maps/level.tmx:6949
+#: assets/maps/level.tmx:6980
 msgid "Same procedure as last year?"
 msgstr "Same procedure as last year?"
 
-# question mark error accepted
-#: assets/maps/level.tmx:6957
+#: assets/maps/level.tmx:6988
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
 msgstr "Pack das Dings auf das Dings,{{BR}}und das andere auch noch, klaro?"
 
-#: assets/maps/level.tmx:7336
+#: assets/maps/level.tmx:7367
 msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
 msgstr "Bewege dich Vorausschauend, sonst: Sack-{{BR}}gasse."
 
-#: assets/maps/level.tmx:7483
+#: assets/maps/level.tmx:7514
 msgid "Gotta Carry It Out"
 msgstr "Ausgetragen"
 
-#: assets/maps/level.tmx:7534
-msgid "You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
+#. https://en.wikipedia.org/wiki/Colossal_Cave_Adventure
+#: assets/maps/level.tmx:7565
+msgid ""
+"You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
 msgstr ""
 "You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
 
-#: assets/maps/level.tmx:7556
+#. https://en.wikipedia.org/wiki/Xyzzy_(computing)
+#: assets/maps/level.tmx:7588
 msgid "A hollow voice says 'fool'.{{BR}}Press {{ExitButton}}."
 msgstr "A hollow voice says 'fool'.{{BR}}Drücke {{ExitButton}}."
 
-#: assets/maps/level.tmx:7595
+#: assets/maps/level.tmx:7628
 msgid "If walking alone won't do, try some exercise."
 msgstr "Wenn Gehen nicht reicht, versuche es mit ein wenig Sport."
 
-#: assets/maps/level.tmx:7633
+#: assets/maps/level.tmx:7666
 msgid "Every great adventure started with the line{{BR}}\"I know a shortcut\""
 msgstr ""
-"Die längsten und abenteuerlichsten Reisen beginnen mit den Worten:"
-"{{BR}}\"Ich kenne eine Abkürzung.\""
+"Die längsten und abenteuerlichsten Reisen beginnen mit den "
+"Worten:{{BR}}\"Ich kenne eine Abkürzung.\""
 
-#: assets/maps/level.tmx:7764
+#: assets/maps/level.tmx:7797
 msgid "Sometimes you don't just lose sight of something."
 msgstr "Manches sollte man besser nicht aus dem Auge verlieren."
 
-#: assets/maps/level.tmx:7785
+#: assets/maps/level.tmx:7818
 msgid "Hey, I needed that!"
 msgstr "He, ich brauchte den noch!"
 
-#: assets/maps/level.tmx:7816
+#: assets/maps/level.tmx:7849
 msgid "Do you like the red room?"
 msgstr "Gefällt dir das rote Zimmer?"
 
-#: assets/maps/level.tmx:7948
+#: assets/maps/level.tmx:7981
 msgid "Lack of apparent purpose does not mean you don't need it."
 msgstr "Nicht alles, was nutzlos scheint, ist unbrauchbar."
 
-#: assets/maps/level.tmx:7977
+#: assets/maps/level.tmx:8010
 msgid "Funny and"
 msgstr "Witzig und"
 
-#: assets/maps/level.tmx:7986
+#: assets/maps/level.tmx:8019
 msgid "original."
 msgstr "originell."
 
-#: assets/maps/level.tmx:8066
+#: assets/maps/level.tmx:8099
 msgid "Pushing Onwards"
 msgstr "Vorgeschoben"
 
-#: assets/maps/level.tmx:8072
+#: assets/maps/level.tmx:8105
 msgid "Some ideas only seem smart at first."
 msgstr "Manche Ideen sind nur scheinbar schlau."
 
-#: assets/maps/level.tmx:8078
+#: assets/maps/level.tmx:8111
 msgid "If there seems to be no way, you just haven't found it yet."
 msgstr ""
 "Wenn es keinen Weg zu geben scheint, hast du ihn bloß noch nicht gefunden."
 
-#: assets/maps/level.tmx:8126
+#: assets/maps/level.tmx:8159
 msgid "Before The Anti-Hub"
 msgstr "Vor dem Antihub"
 
-#: assets/maps/level.tmx:8221
+#: assets/maps/level.tmx:8254
 msgid "Only you would fall for a trap as primitive as this one."
 msgstr "Nur du würdest in eine derart primitive Falle gehen."
 
-#: assets/maps/level.tmx:8240
+#: assets/maps/level.tmx:8273
 msgid "Lack of purpose never was a reason not to do it."
 msgstr "Obwohl etwas keinen Sinn hat, kann man es doch trotzdem tun."
 
-#: assets/maps/level.tmx:8255
+#: assets/maps/level.tmx:8288
 msgid "Multi Party Authorization"
 msgstr "Das Vier-Augen-Prinzip"
 
-#: assets/maps/level.tmx:8360
+#: assets/maps/level.tmx:8393
 msgid "Failure is a stepping stone to success."
 msgstr "Aus Fehlern lernt man."
 
-#: assets/maps/level.tmx:8370
+#: assets/maps/level.tmx:8403
 msgid "Those who walk, fall."
 msgstr "Wer geht, fällt."
 
-#: assets/maps/level.tmx:8454
+#: assets/maps/level.tmx:8487
 msgid "Well, it's actually{{BR}}surprisingly simple."
 msgstr "Na, das ist eigentlich{{BR}}überraschend einfach."
 
-#: assets/maps/level.tmx:8487
+#: assets/maps/level.tmx:8520
 msgid "Ganz einfach, wenn man's doppelt nimmt."
 msgstr "Ganz einfach, wenn man's doppelt nimmt."
 
-#: assets/maps/level.tmx:8495
+#: assets/maps/level.tmx:8528
 msgid "Tower of Impossible"
 msgstr "Der unmögliche Turm"
 
-#: assets/maps/level.tmx:8657
+#. https://www.youtube.com/c/CeaveGaming
+#: assets/maps/level.tmx:8690
 msgid ""
 "And ... the floor transforms into shiny yet deadly coins.{{BR}}Without the "
 "coins.{{BR}}That's unfortunate."
 msgstr ""
-"Und ... der Boden verwandelt sich in glänzende, doch tödliche, Münzen.{{BR}}"
-"Ohne die Münzen.{{BR}}Wie schade."
+"Und ... der Boden verwandelt sich in glänzende, doch tödliche, "
+"Münzen.{{BR}}Ohne die Münzen.{{BR}}Wie schade."
 
-#: assets/maps/level.tmx:9206
+#: assets/maps/level.tmx:9240
 msgid ""
 "I pressed the impossible button and{{BR}}all I got was this lousy message."
 msgstr ""
 "Ich drückte den unerreichbaren Knopf und{{BR}}alles, was ich bekam, war "
 "diese blöde Nachricht."
 
-#: assets/maps/level.tmx:9227
+#: assets/maps/level.tmx:9261
 msgid "The grass is always greener on the other side."
 msgstr "Die Kirschen in Nachbars Garten schmecken immer ein bisschen süßer."
 
-#: assets/maps/level.tmx:9275
+#: assets/maps/level.tmx:9309
 msgid "You can now disable the force fields."
 msgstr "Du kannst jetzt Kraftfelder abschalten."
 
-#: assets/maps/level.tmx:9287
+#: assets/maps/level.tmx:9321
 msgid "The Remote{{BR}}(hold {{ActionButton}})"
 msgstr "Die Fernbedienung{{BR}}(halte {{ActionButton}})"
 
-#: assets/maps/level.tmx:9314
+#: assets/maps/level.tmx:9348
 msgid "Do you have{{BR}}what it takes?"
 msgstr "Bist du{{BR}}stark genug?"
 
-#: assets/maps/level.tmx:9324
+#: assets/maps/level.tmx:9358
 msgid "You think{{BR}}you can do it?"
 msgstr "Denkst du,{{BR}}du kannst es?"
 
-#: assets/maps/level.tmx:9333
+#: assets/maps/level.tmx:9367
 msgid "Show me{{BR}}what you've got"
 msgstr "Zeig mir,{{BR}}was du kannst"
 
-#: assets/maps/level.tmx:9342
+#: assets/maps/level.tmx:9376
 msgid "And you didn't{{BR}}forget the remote?"
 msgstr "Hast du die{{BR}}Fernbedienung?"
 
-#: assets/maps/level.tmx:9360
+#: assets/maps/level.tmx:9394
 msgid "DANGER"
 msgstr "GEFAHR"
 
-#: assets/maps/level.tmx:9368
+#: assets/maps/level.tmx:9402
 msgid "CAUTION"
 msgstr "VORSICHT"
 
-#: assets/maps/level.tmx:9376
+#: assets/maps/level.tmx:9410
 msgid "WARNING"
 msgstr "WARNUNG"
 
-#: assets/maps/level.tmx:9384
+#: assets/maps/level.tmx:9418
 msgid "RISK OF{{BR}}ELECTRIC SHOCK"
 msgstr "STROMSCHLAG-{{BR}}GEFAHR"
 
-#: assets/maps/level.tmx:9392
+#: assets/maps/level.tmx:9426
 msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
 msgstr "SCHAUE NICHT IN LASER{{BR}}MIT VERBLEIBENDEM AUGE"
 
-#: assets/maps/level.tmx:9400
+#: assets/maps/level.tmx:9434
 msgid "LEGAL{{BR}}WAIVER"
 msgstr "VERZICHTS-{{BR}}ERKLÄRUNG"
 
-#: assets/maps/level.tmx:9408
+#: assets/maps/level.tmx:9442
 msgid "NO{{BR}}WARRANTY"
 msgstr "KEINE{{BR}}GARANTIE"
 
-#: assets/maps/level.tmx:9416
+#: assets/maps/level.tmx:9450
 msgid "HIGH{{BR}}VOLTAGE"
 msgstr "HOCH-{{BR}}SPANNUNG"
 
-#: assets/maps/level.tmx:9424
+#: assets/maps/level.tmx:9458
 msgid "YOU HAVE{{BR}}BEEN WARNED"
 msgstr "DU BIST{{BR}}GEWARNT"
 
-#: assets/maps/level.tmx:9432
+#. name of a law about declaring lead content; often caused ridiculous
+#. warnings; pick your own ridiculous law when translating
+#: assets/maps/level.tmx:9466
 msgid "PROPOSITION 65"
 msgstr "BLEI BLEI BLEI"
 
-#: assets/maps/level.tmx:9441
+#: assets/maps/level.tmx:9476
 msgid "And now you've learned{{BR}}not to touch the hot stove."
 msgstr "Und jetzt weißt du,{{BR}}dass der Ofen heiß ist."
 
-#: assets/maps/level.tmx:9452
+#: assets/maps/level.tmx:9487
 msgid "The Butterfly Effect"
 msgstr "Der Schmetterlingseffekt"
 
-#: assets/maps/level.tmx:9538
+#. http://www.antichamber-game.com/
+#: assets/maps/level.tmx:9573
 msgid "What we've done before{{BR}}may impact what we can do next."
-msgstr "Was du vorher getan hast,{{BR}}kann sich auf das auswirken, das kommt."
-
-#: assets/maps/level.tmx:9595
-msgid ""
-"If you're only focusing on right now,{{BR}}you won't have enough for later."
-"{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Wenn du nur an jetzt denkst,{{BR}}hast du nicht genug für später.{{BR}}"
-"Drücke {{ExitButton}}."
+"Was du vorher getan hast,{{BR}}kann sich auf das auswirken, das kommt."
 
-#: assets/maps/level.tmx:9601
+#. http://www.antichamber-game.com/
+#: assets/maps/level.tmx:9631
+msgid ""
+"If you're only focusing on right now,{{BR}}you won't have enough for "
+"later.{{BR}}Press {{ExitButton}}."
+msgstr ""
+"Wenn du nur an jetzt denkst,{{BR}}hast du nicht genug für "
+"später.{{BR}}Drücke {{ExitButton}}."
+
+#. http://www.antichamber-game.com/
+#: assets/maps/level.tmx:9638
 msgid "Moving forward may require{{BR}}making the most of what you've got."
 msgstr ""
 "Um voran zu kommen, musst du{{BR}}das meiste aus dem machen, was du hast."
 
-#: assets/maps/level.tmx:9785
+#: assets/maps/level.tmx:9823
 msgid "Kaizo"
 msgstr "Kaizo"
 
-#: assets/maps/level.tmx:9798
+#: assets/maps/level.tmx:9836
 msgid "Missing a shelljump in {{Year}}?"
 msgstr "Einen Shelljump versemmelt in {{Year}}?"
 
-#: assets/maps/level.tmx:9835
+#: assets/maps/level.tmx:9873
 msgid "Kaaaart Race"
 msgstr "Kaaaart-Rennen"
 
-#: assets/maps/level.tmx:9882
+#: assets/maps/level.tmx:9920
 msgid "Those who haven't learned the trick{{BR}}must take a little pit stop."
 msgstr "Wer den Trick noch nicht kann,{{BR}}muss in die Boxengasse."
 
-#: assets/maps/level.tmx:9900
+#: assets/maps/level.tmx:9938
 msgid "Moved Enough?"
 msgstr "Alles verschoben?"
 
-#: assets/maps/level.tmx:9911
+#: assets/maps/level.tmx:9949
 msgid "Carried Enough?"
 msgstr "Alles ertragen?"
 
-#: assets/maps/level.tmx:10202
+#: assets/maps/level.tmx:10240
 msgid "T{{BR}}r{{BR}}a{{BR}}s{{BR}}h{{BR}}{{BR}}C{{BR}}h{{BR}}u{{BR}}t{{BR}}e"
 msgstr ""
 "M{{BR}}ü{{BR}}l{{BR}}l{{BR}}e{{BR}}i{{BR}}n{{BR}}w{{BR}}u{{BR}}r{{BR}}f"
 
-#: assets/maps/level.tmx:10275
+#: assets/maps/level.tmx:10313
 msgid "Taking Out the Trash"
 msgstr "Den Müll rausbringen"
 
-#: assets/maps/level.tmx:10497
+#: assets/maps/level.tmx:10535
 msgid "Wait, did you take out all the trash?"
 msgstr "Moment, hast du den Müll rausgebracht?"
 
-#: assets/maps/level.tmx:10517
+#: assets/maps/level.tmx:10555
 msgid "There is no such thing as a little white lie."
 msgstr "Es gibt keine harmlosen Lügen."
 
-#: assets/maps/level.tmx:10543
+#: assets/maps/level.tmx:10581
 msgid "Yes"
 msgstr "Ja"
 
-#: assets/maps/level.tmx:10552
+#: assets/maps/level.tmx:10590
 msgid "No"
 msgstr "Nein"
 
-#: assets/maps/level.tmx:10596
+#: assets/maps/level.tmx:10634
 msgid "Why did you even lie?{{BR}}Press {{ExitButton}}."
 msgstr "Wieso hast du überhaupt gelogen?{{BR}}Drücke {{ExitButton}}."
 
-#: assets/maps/level.tmx:10726
+#: assets/maps/level.tmx:10764
 msgid ""
-"The definition of insanity is doing the same thing over and over again,{{BR}}"
-"but expecting different results."
+"The definition of insanity is doing the same thing over and over "
+"again,{{BR}}but expecting different results."
 msgstr ""
 "Die Definition von Wahnsinn ist, immer wieder das Gleiche zu tun{{BR}}und "
 "andere Ergebnisse zu erwarten."
 
-#: assets/maps/level.tmx:10803
+#. https://thelettervsixtim.es/ - try keeping the six V alliteration when
+#. translating
+#: assets/maps/level.tmx:10841
 msgid "Van Vlijmen's Vexing Vertical Vector Vertigo"
 msgstr "Van Vlijmens Verzwicktes Vertikales Vektor-Vexierspiel"
 
-#: assets/maps/level.tmx:10822
+#: assets/maps/level.tmx:10861
 msgid "The One Way Round"
 msgstr "Eine große Runde"
 
-#: assets/maps/level.tmx:10831
+#. https://thelettervsixtim.es/ - try keeping the V when translating
+#: assets/maps/level.tmx:10870
 msgid "déjà Vu"
 msgstr "déjà Vu"
 
-#: assets/maps/level.tmx:10880
+#: assets/maps/level.tmx:10920
 msgid "Try{{BR}}again"
 msgstr "Noch{{BR}}mal"
 
-#: assets/maps/level.tmx:10891
+#: assets/maps/level.tmx:10931
 msgid "The Wide Gap"
 msgstr "Der Abgrund"
 
-#: assets/maps/level.tmx:10916
+#: assets/maps/level.tmx:10956
 msgid "Mind your head, you've only got one."
 msgstr "Achte auf deinen Kopf - du hast nur einen."
 
-#: assets/maps/level.tmx:10974
+#: assets/maps/level.tmx:11014
 msgid "More is not always better."
 msgstr "Qualität braucht keine Quantität."
 
-#: assets/maps/level.tmx:11006
+#: assets/maps/level.tmx:11046
 msgid "Those who are not up to speed may get left behind."
 msgstr "Wer sich nicht beeilt, wird zurückgelassen."
 
-#: assets/maps/level.tmx:11028
+#: assets/maps/level.tmx:11068
 msgid "Time is of the essence."
 msgstr "Die Fristeinhaltung ist wesentlich."
 
-#: assets/maps/level.tmx:11045
+#: assets/maps/level.tmx:11085
 msgid "Driving You Mad"
 msgstr "In den Wahnsinn getrieben"
 
-#: assets/maps/level.tmx:11055
+#: assets/maps/level.tmx:11095
 msgid "It's Bring Your Own Platform, you know."
 msgstr "Jeder bringt seine eigene Plattform."
 
-#: assets/maps/level.tmx:11062
+#: assets/maps/level.tmx:11102
 msgid "Still got it?"
 msgstr "Hast du{{BR}}sie noch?"
 
-#: assets/maps/level.tmx:11226
+#: assets/maps/level.tmx:11266
 msgid "Small cars{{BR}}only"
 msgstr "Nur kleine{{BR}}Fahrzeuge"
 
-#: assets/maps/level.tmx:11239
+#: assets/maps/level.tmx:11279
 msgid "{{BigCity}} Road Rage"
 msgstr "Raserei in {{BigCity}}"
 
-#: assets/maps/level.tmx:11249
+#: assets/maps/level.tmx:11289
 msgid "Grant Theft Auto!"
 msgstr "Grant Theft Auto!"
 
-#: assets/maps/level.tmx:11296
+#: assets/maps/level.tmx:11336
 msgid "Welcome to {{BigCity}}."
 msgstr "Willkommen in {{BigCity}}."
 
-#: assets/maps/level.tmx:11339
+#: assets/maps/level.tmx:11379
 msgid "Crime doesn't pay.{{BR}}Press {{ExitButton}}."
 msgstr "Verbrechen lohnt sich nicht.{{BR}}Drücke {{ExitButton}}."
 
-#: assets/maps/level.tmx:11362
+#: assets/maps/level.tmx:11402
 msgid "Dude!{{BR}}That's{{BR}}MY car!"
 msgstr "He!{{BR}}Das ist{{BR}}MEINS!"
 
-#: assets/maps/level.tmx:11381
+#: assets/maps/level.tmx:11421
 msgid "... after?"
 msgstr "... hier?"
 
-#: assets/maps/level.tmx:11387
+#: assets/maps/level.tmx:11427
 msgid "... are ..."
 msgstr "... suchst ..."
 
-#: assets/maps/level.tmx:11393
+#: assets/maps/level.tmx:11433
 msgid "What ..."
 msgstr "Was ..."
 
-#: assets/maps/level.tmx:11399
+#: assets/maps/level.tmx:11439
 msgid "... you ..."
 msgstr "... du ..."
 
-#: assets/maps/level.tmx:11405
+#: assets/maps/level.tmx:11445
 msgid "Those who cannot remember the past are condemned to repeat it."
 msgstr ""
 "Wer sich nicht seiner Vergangenheit erinnert, ist verurteilt, sie zu "
 "wiederholen."
 
-#: assets/maps/level.tmx:11464
+#: assets/maps/level.tmx:11504
 msgid "Sometimes, the unprepared can't even follow instructions."
 msgstr ""
 "Manchmal können die Unvorbereiteten nicht einmal einfachen Anweisungen "
 "folgen."
 
-#: assets/maps/level.tmx:11470
+#: assets/maps/level.tmx:11510
 msgid "If everything is upside down, nothing is."
 msgstr "Wenn alles auf dem Kopf steht, dann steht nichts auf dem Kopf."
 
-#: assets/maps/level.tmx:11771
+#: assets/maps/level.tmx:11811
 msgid "Even going in circles you can get somewhere."
 msgstr "Auch wer im Kreis geht, kommt irgendwo an."
 
-#: assets/maps/level.tmx:11782
+#: assets/maps/level.tmx:11822
 msgid "Get it back!"
 msgstr "Hol sie zurück!"
 
-#: assets/maps/level.tmx:11831
+#: assets/maps/level.tmx:11871
 msgid "y tho?{{BR}}Press {{ExitButton}}."
 msgstr "warum?{{BR}}Drücke {{ExitButton}}."
 
-#: assets/maps/level.tmx:11873
+#: assets/maps/level.tmx:11913
 msgid "Stairs to Nowhere"
 msgstr "Treppen nach Nirgendwo"
 
-#: assets/maps/level.tmx:11879
+#: assets/maps/level.tmx:11919
 msgid "Not every staircase leads somewhere nice."
 msgstr "Nicht jedes Treppenhaus führt an einen schönen Ort."
 
-#: assets/maps/level.tmx:11933
+#: assets/maps/level.tmx:11973
 msgid "Don't let appearances fool you."
 msgstr "Der Schein trügt."
 
-#: assets/maps/level.tmx:12050
+#: assets/maps/level.tmx:12090
 msgid "You just need to push away what you don't need."
 msgstr "Einfach wegschieben, was du nicht brauchst."
 
-#: assets/maps/level.tmx:12056
+#: assets/maps/level.tmx:12096
 msgid ""
 "Looking in every nook and cranny{{BR}}sometimes yields unexpected gains."
 msgstr "In jeder Ecke zu suchen,{{BR}}bringt manchmal Gewinn."
 
-#: assets/maps/level.tmx:12062
+#: assets/maps/level.tmx:12102
 msgid ""
-"If you come back to a familiar place,{{BR}}it may no longer look the way you "
-"remember it."
+"If you come back to a familiar place,{{BR}}it may no longer look the way you"
+" remember it."
 msgstr ""
 "Wenn du an einen bekannten Ort zurückkommst,{{BR}}ist er vielleicht nicht "
 "mehr so, wie er war."
 
-#: assets/maps/level.tmx:12081
+#: assets/maps/level.tmx:12121
 msgid "Twice Twice"
 msgstr "Doppelt gemoppelt"
 
-#: assets/maps/level.tmx:12140
+#: assets/maps/level.tmx:12180
 msgid "Why didn't you like the one I gave you?"
 msgstr "Warum wolltest du nicht die, die ich dir gegeben hatte?"
 
-#: assets/maps/level.tmx:12176
+#: assets/maps/level.tmx:12216
 msgid "You really don't get it, do you?"
 msgstr "Du verstehst es wirklich nicht, oder?"
 
-#: assets/maps/level.tmx:12209
+#: assets/maps/level.tmx:12249
 msgid ""
 "Looking at things and observing how they change{{BR}}is what brought us "
 "science."
@@ -1099,296 +1138,294 @@ msgstr ""
 "Dinge anzuschauen und ihre Veränderungen zu beobachten{{BR}}brachte uns die "
 "Wissenschaft."
 
-#: assets/maps/level.tmx:12251
+#: assets/maps/level.tmx:12291
 msgid "You should have done this a little bit earlier."
 msgstr "Das hättest du wirklich früher machen können."
 
-#: assets/maps/level.tmx:12257
+#: assets/maps/level.tmx:12297
 msgid "Greedy you are, greedy!"
 msgstr "Gierig bist du, gierig!"
 
-#: assets/maps/level.tmx:12308
+#: assets/maps/level.tmx:12348
 msgid "The Cube"
 msgstr "Der Würfel"
 
-#: assets/maps/level.tmx:12318
+#. https://en.wikipedia.org/wiki/Portal_(series)
+#: assets/maps/level.tmx:12358
 msgid "Good news.{{BR}}I figured out why she wanted you gone."
 msgstr "Gute Nachrichten.{{BR}}Ich weiß nun, warum sie dich loswerden wollte."
 
-#: assets/maps/level.tmx:12363
+#: assets/maps/level.tmx:12404
 msgid "Crumbling Upwards"
 msgstr "Hochbröckeln"
 
-#: assets/maps/level.tmx:12463
+#: assets/maps/level.tmx:12504
 msgid "Not every shortcut works."
 msgstr "Nicht jede Abkürzung führt zum Ziel."
 
-#: assets/maps/level.tmx:12469
+#: assets/maps/level.tmx:12510
 msgid "The slow and slothful deserve ...{{BR}}nothing."
 msgstr "Die Langsamen und Faulen verdienen ...{{BR}}nichts."
 
-#: assets/maps/level.tmx:12488
+#: assets/maps/level.tmx:12529
 msgid "Ski Dyver"
 msgstr "Ski-Dyver"
 
-#: assets/maps/level.tmx:13017
+#: assets/maps/level.tmx:13058
 msgid "Those who are not inattentive get trolled."
 msgstr "Wer nicht aufpasst, wird getrollt."
 
-#: assets/maps/level.tmx:13046
+#: assets/maps/level.tmx:13087
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
 msgstr ""
 "Wenn du nicht weißt, wer du bist,{{BR}}dann weißt du auch nicht, wo du hin "
 "willst."
 
-#: assets/maps/level.tmx:13132
+#: assets/maps/level.tmx:13173
 msgid "Dr. W?"
 msgstr "Dr. W?"
 
-#: assets/maps/level.tmx:13154
+#: assets/maps/level.tmx:13195
 msgid "All good things ..."
 msgstr "Alles hat ein Ende ..."
 
-#: assets/maps/level.tmx:13196
+#: assets/maps/level.tmx:13237
 msgid "... come to an end."
 msgstr "... nur die Wurst hat zwei."
 
-#: assets/maps/level.tmx:13204
+#: assets/maps/level.tmx:13245
 msgid "Dr. W!"
 msgstr "Dr. W!"
 
-#: assets/maps/level.tmx:13213
+#: assets/maps/level.tmx:13254
 msgid "It Only Takes One"
 msgstr "Nur eine genügt"
 
-#: assets/maps/level.tmx:13236
+#: assets/maps/level.tmx:13277
 msgid "Any regrets?"
 msgstr "Noch einmal zurück?"
 
-#: assets/maps/level.tmx:13272 assets/maps/level.tmx:17764
+#: assets/maps/level.tmx:13313 assets/maps/level.tmx:17814
 msgid "E{{BR}}X{{BR}}I{{BR}}T"
 msgstr "E{{BR}}N{{BR}}D{{BR}}E"
 
-#: assets/maps/level.tmx:13444
+#: assets/maps/level.tmx:13485
 msgid "Careful!"
 msgstr "Vorsicht!"
 
-#: assets/maps/level.tmx:13533
+#: assets/maps/level.tmx:13574
 msgid "You sit on a throne of lies."
 msgstr "Du sitzt auf einem Thron von Lügen."
 
-#: assets/maps/level.tmx:13662
+#: assets/maps/level.tmx:13703
 msgid "There is no universe where ..."
 msgstr "In keinem Universum ist ..."
 
-#: assets/maps/level.tmx:13668
+#: assets/maps/level.tmx:13709
 msgid "... this is the right way."
 msgstr "... das der richtige Weg."
 
-#: assets/maps/level.tmx:13877
+#: assets/maps/level.tmx:13918
 msgid "What looked like cheese might be the only way."
 msgstr "Was aussah, wie eine Abkürzung, könnte der einzige Weg sein."
 
-#: assets/maps/level.tmx:13883
+#: assets/maps/level.tmx:13924
 msgid "Not triggering the switch of doom might take some effort."
 msgstr "Den Schalter der Verdammnis nicht zu drücken, ist nicht leicht."
 
-#: assets/maps/level.tmx:13889
+#: assets/maps/level.tmx:13930
 msgid "A window of opportunity can lead to greener pastures."
 msgstr "Wer sich aus dem Fenster lehnt, kann auf einer grünen Wiese landen."
 
-#: assets/maps/level.tmx:13895
+#: assets/maps/level.tmx:13936
 msgid "The well prepared will earn their reward."
 msgstr "Wer sät, wird ernten."
 
-# missing period makes sense as new phrase is not a sentence
-#: assets/maps/level.tmx:13900
+#: assets/maps/level.tmx:13941
 msgid "Platform{{BR}}is key."
 msgstr "Der Schlüssel{{BR}}zum Erfolg"
 
-#: assets/maps/level.tmx:13976
+#: assets/maps/level.tmx:14017
 msgid "Quo vadis?"
 msgstr "Quo vadis?"
 
-#: assets/maps/level.tmx:14311 assets/maps/level.tmx:14343
-#: assets/maps/level.tmx:14356 assets/maps/level.tmx:17229
+#: assets/maps/level.tmx:14352 assets/maps/level.tmx:14384
+#: assets/maps/level.tmx:14397 assets/maps/level.tmx:17279
 msgid "{{GameTime}}"
 msgstr "{{GameTime}}"
 
-#: assets/maps/level.tmx:14322
+#: assets/maps/level.tmx:14363
 msgid "Those who never try, never find out."
 msgstr "Wer es nie versucht, wird es nie wissen."
 
-#: assets/maps/level.tmx:14369
+#: assets/maps/level.tmx:14410
 msgid "reached The Hub with {{Abilities}} at {{GameTime}}."
 msgstr "erreichte den Hub mit {{Abilities}} nach {{GameTime}}."
 
-#: assets/maps/level.tmx:14374
+#: assets/maps/level.tmx:14415
 msgid "reached The Anti-Hub with {{Abilities}} at {{GameTime}}."
 msgstr "erreichte den Antihub mit {{Abilities}} nach {{GameTime}}."
 
-#: assets/maps/level.tmx:14379
+#: assets/maps/level.tmx:14420
 msgid "reached It Only Takes One with {{Abilities}} at {{GameTime}}."
 msgstr "erreichte \"Nur eine genügt\" mit {{Abilities}} nach {{GameTime}}."
 
-#: assets/maps/level.tmx:14423
+#. https://thelettervsixtim.es/ - try keeping the V when translating
+#: assets/maps/level.tmx:14464
 msgid "Vindication"
 msgstr "Vorahnung"
 
-#: assets/maps/level.tmx:14453
+#. https://thelettervsixtim.es/ - try keeping the V when translating
+#: assets/maps/level.tmx:14495
 msgid "Vertically challenged"
 msgstr "Vertikal beschränkt"
 
-#: assets/maps/level.tmx:14535
+#: assets/maps/level.tmx:14578
 msgid ""
-"The Enrichment Center regrets to inform you that{{BR}}the Super Gravitron is "
-"currently out of order.{{BR}}Press {{ExitButton}}."
+"The Enrichment Center regrets to inform you that{{BR}}the Super Gravitron is"
+" currently out of order.{{BR}}Press {{ExitButton}}."
 msgstr ""
 "Das Enrichment-Center muss Sie leider informieren, dass{{BR}}der Super "
 "Gravitron leider außer Betrieb ist.{{BR}}Drücke {{ExitButton}}."
 
-#: assets/maps/level.tmx:15040
+#. https://thelettervsixtim.es/ - try keeping the two V alliteration when
+#. translating
+#: assets/maps/level.tmx:15083
 msgid "Viability Voodoo"
 msgstr "Verdammtes Voodoo"
 
-#: assets/maps/level.tmx:15068
+#: assets/maps/level.tmx:15112
 msgid "UNDER{{BR}}CONSTRUCTION"
 msgstr "BAU-{{BR}}STELLE"
 
-#: assets/maps/level.tmx:15082
+#. https://thelettervsixtim.es/ - try keeping the two V alliteration when
+#. translating
+#: assets/maps/level.tmx:15126
 msgid "Vuvuzela Virtuoso"
 msgstr "Vuvuzela-Virtuoso"
 
-#: assets/maps/level.tmx:15108
+#: assets/maps/level.tmx:15153
 msgid "It is hard to focus with all the noise."
 msgstr "Ich kann mich bei dem ganzen Lärm nicht konzentrieren!"
 
-#: assets/maps/level.tmx:15207
+#. https://thelettervsixtim.es/ - try keeping the two V alliteration when
+#. translating
+#: assets/maps/level.tmx:15252
 msgid "Virtual Vandalism"
 msgstr "Virtueller Vandalismus"
 
-#: assets/maps/level.tmx:15340
+#. https://thelettervsixtim.es/ - try keeping the two V alliteration when
+#. translating
+#: assets/maps/level.tmx:15386
 msgid "Vae Victis"
 msgstr "Vae Victis"
 
-#: assets/maps/level.tmx:15634
+#: assets/maps/level.tmx:15681
 msgid "This one is your end."
 msgstr "Das ist dein Ende."
 
-#: assets/maps/level.tmx:15735
+#. https://thelettervsixtim.es/ - try keeping the three V alliteration when
+#. translating
+#: assets/maps/level.tmx:15782
 msgid "Veni, Vidi, Vici"
 msgstr "Veni, Vidi, Vici"
 
-#: assets/maps/level.tmx:15969
+#. https://thelettervsixtim.es/
+#: assets/maps/level.tmx:16017
 msgid "Hah! Nobody will ever get this one."
 msgstr "Ha! Niemand wird dieses hier kriegen."
 
-#: assets/maps/level.tmx:15984
+#. https://thelettervsixtim.es/
+#: assets/maps/level.tmx:16033
 msgid "You have found a shiny trinket!{{BR}}One out of One."
 msgstr "Du hast ein glänzendes Dings gefunden!{{BR}}Eins von einem."
 
-#: assets/maps/level.tmx:16396
+#: assets/maps/level.tmx:16446
 msgid "W{{BR}}A{{BR}}T"
 msgstr "W{{BR}}A{{BR}}S"
 
-#: assets/maps/level.tmx:16404
+#: assets/maps/level.tmx:16454
 msgid "Just{{BR}}kiddin'"
 msgstr "War nur{{BR}}Spaß."
 
-#: assets/maps/level.tmx:16681
+#: assets/maps/level.tmx:16731
 msgid "I hope you took{{BR}}the small one ..."
 msgstr "Ich hoffe, du hast{{BR}}die Kleine ..."
 
-#: assets/maps/level.tmx:16708
+#: assets/maps/level.tmx:16758
 msgid "Those who have, have."
 msgstr "Wer hat, der hat."
 
-#: assets/maps/level.tmx:16714
+#: assets/maps/level.tmx:16764
 msgid "Those who don't, don't."
 msgstr "Wer nicht will, der hat schon."
 
-#: assets/maps/level.tmx:16720
+#: assets/maps/level.tmx:16770
 msgid "The path to success is littered with ...{{BR}}litter."
 msgstr "Der Weg zum Erfolg ist zugemüllt mit ...{{BR}}Müll."
 
-#: assets/maps/level.tmx:16726
+#: assets/maps/level.tmx:16776
 msgid "Getting up is half the fun."
 msgstr "Hinaufgehen ist der halbe Spaß."
 
-# exclamation point intended
-#: assets/maps/level.tmx:16783
+#: assets/maps/level.tmx:16833
 msgid "If stuck,{{BR}}press {{ExitButton}}."
 msgstr "Gefangen?{{BR}}Drücke {{ExitButton}}!"
 
-#: assets/maps/level.tmx:16795
+#: assets/maps/level.tmx:16845
 msgid "Phew?"
 msgstr "Uff?"
 
-#: assets/maps/level.tmx:17242
+#: assets/maps/level.tmx:17292
 msgid "reached A New Beginning with {{Abilities}} at {{GameTime}}."
 msgstr "erreichte \"Ein neuer Anfang\" mit {{Abilities} nach {{GameTime}}."
 
-#: assets/maps/level.tmx:17256
+#: assets/maps/level.tmx:17306
 msgid "Higher, Higher, Higher!"
 msgstr "Höher, höher, höher!"
 
-#: assets/maps/level.tmx:17262
+#: assets/maps/level.tmx:17312
 msgid "It can be helpful to do two things at the same time."
 msgstr "Es kann hilfreich sein, zwei Dinge gleichzeitig zu tun."
 
-#: assets/maps/level.tmx:17400
+#: assets/maps/level.tmx:17450
 msgid "Oh, it shrunk?"
 msgstr "Sie ist geschrumpft?"
 
-#: assets/maps/level.tmx:17412
+#: assets/maps/level.tmx:17462
 msgid "Stepping away from the problem can help resolve it."
 msgstr "Viele Probleme lösen, wenn man einfach ein paar Schritte zurück geht."
 
-#: assets/maps/level.tmx:17480
+#: assets/maps/level.tmx:17530
 msgid "Jumpers lose platforms.{{BR}}Don't be a jumper."
 msgstr "Springer{{BR}}verlieren Plattformen.{{BR}}Sei kein Springer."
 
-#: assets/maps/level.tmx:17557
+#: assets/maps/level.tmx:17607
 msgid "Try going in circles, but ..."
 msgstr "Versuche, im Kreis zu gehen, aber ..."
 
-#: assets/maps/level.tmx:17569
+#: assets/maps/level.tmx:17619
 msgid "... five is right out!"
 msgstr "... 5 ist raus!"
 
-#: assets/maps/level.tmx:17587
+#: assets/maps/level.tmx:17637
 msgid "Mwahaha!"
 msgstr "Muahaha!"
 
-# https://www.youtube.com/watch?v=Dv2JivJL4F4
-# Apparently from http://www.freebooter-anime.com
-#: assets/maps/level.tmx:17892
+#. https://www.youtube.com/watch?v=N78CavWrtjw - try to be consistent with
+#. some existing translation if you can find one
+#: assets/maps/level.tmx:17942
 msgid ""
-"Let's put weird and weird together,{{BR}}and make it even weirder!{{BR}}"
-"Weird, weird space{{BR}}is super-weird!"
+"Let's put weird and weird together,{{BR}}and make it even "
+"weirder!{{BR}}Weird, weird space{{BR}}is super-weird!"
 msgstr ""
 "Lasst uns zusammen albern sein.{{BR}}Noch viel verrückter sein.{{BR}}Das "
 "wirre, wirre All{{BR}}ist nicht ganz bei Trost!"
 
-#: assets/maps/level.tmx:18113
+#: assets/maps/level.tmx:18164
 msgid "4 ..."
 msgstr "4 ..."
 
-#: assets/maps/level.tmx:18121
+#: assets/maps/level.tmx:18172
 msgid "5 ..."
 msgstr "5 ..."
-
-#~ msgid "3..."
-#~ msgstr "3..."
-
-#~ msgid "2..."
-#~ msgstr "2..."
-
-#~ msgid "1..."
-#~ msgstr "1..."
-
-#~ msgid "4..."
-#~ msgstr "4 ..."
-
-#~ msgid "5..."
-#~ msgstr "5 ..."
