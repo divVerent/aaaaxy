@@ -180,6 +180,7 @@ const (
 	PlayingMode Mode = iota
 	EndingMode
 	MenuMode
+	TouchEditMode
 )
 
 func SetMode(mode Mode) {
@@ -188,14 +189,22 @@ func SetMode(mode Mode) {
 		mouseSetWantClicks(false)
 		touchSetUsePad(true)
 		touchSetShowPad(true)
+		touchSetEditor(false)
 	case EndingMode:
 		mouseSetWantClicks(false)
 		touchSetUsePad(true)
 		touchSetShowPad(false)
+		touchSetEditor(false)
 	case MenuMode:
 		mouseSetWantClicks(true)
 		touchSetUsePad(false)
 		touchSetShowPad(false)
+		touchSetEditor(false)
+	case TouchEditMode:
+		mouseSetWantClicks(true)
+		touchSetUsePad(false)
+		touchSetShowPad(false)
+		touchSetEditor(true)
 	}
 }
 

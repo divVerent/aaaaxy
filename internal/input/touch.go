@@ -16,12 +16,10 @@ package input
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/image"
 	m "github.com/divVerent/aaaaxy/internal/math"
-	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
 var (
@@ -47,10 +45,10 @@ const (
 )
 
 type touchInfo struct {
-	touchEditInfo
 	frames int
 	pos    m.Pos
 	hit    bool
+	edit   touchEditInfo
 }
 
 var (
@@ -173,15 +171,10 @@ func touchDraw(screen *ebiten.Image) {
 			return
 		}
 	}
+	touchEditDraw(screen)
 	for _, i := range impulses {
 		if i.touchRect == nil || i.touchRect.Size.IsZero() {
 			continue
-		}
-		if touchEditPad {
-			boxColor := palette.EGA(palette.White, 255)
-			ebitenutil.DrawRect(screen, float64(i.touchRect.Origin.X), float64(i.touchRect.Origin.Y), float64(i.touchRect.Size.DX), float64(i.touchRect.Size.DY), boxColor)
-			innerColor := palette.EGA(palette.DarkGrey, 255)
-			ebitenutil.DrawRect(screen, float64(i.touchRect.Origin.X+1), float64(i.touchRect.Origin.Y+1), float64(i.touchRect.Size.DX-2), float64(i.touchRect.Size.DY-2), innerColor)
 		}
 		img := i.touchImage
 		if img == nil {
@@ -211,5 +204,4 @@ func touchDraw(screen *ebiten.Image) {
 		}
 		screen.DrawImage(img, options)
 	}
-	touchEditDraw(screen)
 }

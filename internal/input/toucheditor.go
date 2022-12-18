@@ -18,29 +18,10 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
-
-// TODO(divVerent):
-// Make each rect a command line option.
-// Only store the touch rect - the draw rect shall be the largest box of correct aspect that fits inside.
-// Then make an editor for these.
-// Idea: put the edit mode in here, but make it impossible to cover the center.
-// Also no button overlap.
-// Use an 8x8 grid (gcd).
-// Controls:
-// - Each active finger has a state and a start pos.
-// - State is what object it moves and which corner/side.
-// - 4x4 grid.
-// - left, none, none, right
-// - however, if both x and y are none, move both
-// - do not allow overlaps or outside
-// - do moves in steps to move as much as needed
-// - in center of screen, menu items/buttons to exit input edit mode
-// - min size of each button: 64x64
-
-var touchEditPad bool
 
 type editMode int
 
@@ -52,27 +33,94 @@ const (
 )
 
 type touchEditInfo struct {
-	active   bool
-	rect     *m.Rect
-	xMode    editMode
-	yMode    editMode
-	startPos m.Pos
+	active    bool
+	rect      *m.Rect
+	xMode     editMode
+	yMode     editMode
+	startPos  m.Pos
+	startRect m.Rect
+}
+
+const gridSize = 8
+
+var (
+	touchEditPad bool = false
+
+	touchReservedArea = m.Rect{
+		Origin: m.Pos{X: 128, Y: 128},
+		Size:   m.Delta{DX: 640 - 128 - 128, DY: 360 - 128 - 128},
+	}
+)
+
+func touchEditMode(g int) editMode {
+	switch g {
+	case 0:
+		return editMin
+	case 3:
+		return editMax
+	default:
+		return editNone
+	}
+}
+
+func touchEditOrigin(mode editMode, o int, dp int) int {
+	switch mode {
+	case editMin, editBoth:
+		return o + gridSize*m.Div(dp, gridSize)
+	default:
+		return o
+	}
+}
+
+func touchEditSize(mode editMode, s int, dp int) int {
+	switch mode {
+	case editMin:
+		return s - gridSize*m.Div(dp, gridSize)
+	case editMax:
+		return s + gridSize*m.Div(dp, gridSize)
+	default:
+		return s
+	}
+}
+
+func touchHaveOverlaps(rect *m.Rect, replacement m.Rect) bool {
+	for _, i := range impulses {
+		if i.touchRect == nil || i.touchRect.Size.IsZero() || i.touchRect == rect {
+			continue
+		}
+		if replacement.Delta(*i.touchRect).IsZero() {
+			return true
+		}
+	}
+	return false
 }
 
 func touchEditUpdate(gameWidth, gameHeight int) {
 	if !touchEditPad {
+		for _, t := range touches {
+			t.edit.active = false
+		}
 		return
 	}
 	for _, t := range touches {
-		if t.active {
+		if t.edit.active {
 			// Move what is being hit.
-			if t.rect == nil {
+			if t.edit.rect == nil {
 				continue
 			}
+			newRect := *t.edit.rect
+			newRect.Origin.X = touchEditOrigin(t.edit.xMode, t.edit.startRect.Origin.X, t.pos.X-t.edit.startPos.X)
+			newRect.Origin.Y = touchEditOrigin(t.edit.yMode, t.edit.startRect.Origin.Y, t.pos.Y-t.edit.startPos.Y)
+			newRect.Size.DX = touchEditSize(t.edit.xMode, t.edit.startRect.Size.DX, t.pos.X-t.edit.startPos.X)
+			newRect.Size.DY = touchEditSize(t.edit.yMode, t.edit.startRect.Size.DY, t.pos.Y-t.edit.startPos.Y)
+			// TODO(divVerent): can we be nicer and on overlap try a shorter move until there is no overlap?
+			if !touchHaveOverlaps(t.edit.rect, newRect) {
+				*t.edit.rect = newRect
+			}
 		} else {
-			t.active = true
-			t.rect = nil
-			t.startPos = t.pos
+			t.edit.active = true
+			t.edit.rect = nil
+			t.edit.startPos = t.pos
 			// Identify what is hit, set flag, xMode, yMode appropriately.
 			// Just set active if nothing is hit.
 			for _, i := range impulses {
@@ -83,27 +131,14 @@ func touchEditUpdate(gameWidth, gameHeight int) {
 				if gx < 0 || gy < 0 || gx >= 4 || gy >= 4 {
 					continue
 				}
-				// Hit, so start editing this rectangle.
-				t.rect = i.touchRect
-				switch gx {
-				case 0:
-					t.xMode = editMin
-				case 3:
-					t.xMode = editMax
-				default:
-					t.xMode = editNone
-				}
-				switch gy {
-				case 0:
-					t.yMode = editMin
-				case 3:
-					t.yMode = editMax
-				default:
-					t.yMode = editNone
-				}
-				if t.xMode == editNone && t.yMode == editNone {
-					t.xMode = editBoth
-					t.yMode = editBoth
+				// Hit, so start active this rectangle.
+				t.edit.rect = i.touchRect
+				t.edit.startRect = *t.edit.rect
+				t.edit.xMode = touchEditMode(gx)
+				t.edit.yMode = touchEditMode(gy)
+				if t.edit.xMode == editNone && t.edit.yMode == editNone {
+					t.edit.xMode = editBoth
+					t.edit.yMode = editBoth
 				}
 				break
 			}
@@ -126,9 +161,30 @@ func touchEditDraw(screen *ebiten.Image) {
 	}
 	gridColor := palette.EGA(palette.LightGrey, 32)
 	w, h := screen.Size()
-	for x := 0; x < w/8; x++ {
-		for y := 0; y < h/8; y++ {
-			ebitenutil.DrawRect(screen, float64(x*8+1), float64(y*8+1), 6, 6, gridColor)
+	for x := 0; x < w/gridSize; x++ {
+		for y := 0; y < h/gridSize; y++ {
+			r := m.Rect{
+				Origin: m.Pos{X: x * gridSize, Y: y * gridSize},
+				Size:   m.Delta{DX: 8, DY: 8},
+			}
+			if touchReservedArea.Delta(r).IsZero() {
+				continue
+			}
+			ebitenutil.DrawRect(screen, float64(x*gridSize+1), float64(y*gridSize+1), 6, 6, gridColor)
 		}
 	}
+}
+
+func touchSetEditor(editing bool) {
+	touchEditPad = editing
+}
+
+func TouchResetEditor() {
+	flag.ResetFlagToDefault("touch_rect_left")
+	flag.ResetFlagToDefault("touch_rect_right")
+	flag.ResetFlagToDefault("touch_rect_down")
+	flag.ResetFlagToDefault("touch_rect_up")
+	flag.ResetFlagToDefault("touch_rect_jump")
+	flag.ResetFlagToDefault("touch_rect_action")
+	flag.ResetFlagToDefault("touch_rect_exit")
 }
