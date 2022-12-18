@@ -93,6 +93,9 @@ func touchEditAllowed(rect *m.Rect, replacement m.Rect, gameWidth, gameHeight in
 	if replacement.OppositeCorner().X >= gameWidth || replacement.OppositeCorner().Y >= gameHeight {
 		return false
 	}
+	if touchReservedArea.Delta(replacement).IsZero() {
+		return false
+	}
 	for _, i := range impulses {
 		if i.touchRect == nil || i.touchRect.Size.IsZero() || i.touchRect == rect {
 			continue
