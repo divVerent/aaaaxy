@@ -86,7 +86,6 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 		t.hit = true
 		t.frames++
 	}
-	hoverPos = nil
 	if touchEditUpdate(gameWidth, gameHeight) {
 		return
 	}
