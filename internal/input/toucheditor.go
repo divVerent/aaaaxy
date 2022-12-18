@@ -113,6 +113,9 @@ func touchEditUpdate(gameWidth, gameHeight int) bool {
 	}
 	eatTouches := false
 	for _, t := range touches {
+		if !t.hit {
+			continue
+		}
 		if !touchReservedArea.DeltaPos(t.pos).IsZero() {
 			eatTouches = true
 		}

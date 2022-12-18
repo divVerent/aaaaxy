@@ -45,10 +45,11 @@ const (
 )
 
 type touchInfo struct {
-	frames int
-	pos    m.Pos
-	hit    bool
-	edit   touchEditInfo
+	frames  int
+	pos     m.Pos
+	prevPos m.Pos
+	hit     bool
+	edit    touchEditInfo
 }
 
 var (
@@ -60,6 +61,25 @@ var (
 	touchPadFrame int
 	touchPadUsed  bool = false
 )
+
+func touchEmulateMouse() {
+	hoverAcc := m.Pos{}
+	hoverCnt := 0
+	for _, t := range touches {
+		if !t.hit {
+			if t.frames < touchClickMaxFrames {
+				clickPos = &t.prevPos
+			}
+			continue
+		}
+		hoverAcc = hoverAcc.Add(t.pos.Delta(m.Pos{}))
+		hoverCnt++
+	}
+	if hoverCnt > 0 {
+		touchHoverPos = hoverAcc.Add(m.Delta{DX: hoverCnt / 2, DY: hoverCnt / 2}).Div(hoverCnt)
+		hoverPos = &touchHoverPos
+	}
+}
 
 func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 float64) {
 	if !*touch {
@@ -85,28 +105,20 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 		}
 		t.hit = true
 		t.frames++
+		t.prevPos = t.pos
+		x, y := ebiten.TouchPosition(id)
+		t.pos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, x, y)
 	}
 	if touchEditUpdate(gameWidth, gameHeight) {
-		return
+		// log.Infof("touchEditUpdate returned true - not emulating mouse")
+	} else {
+		touchEmulateMouse()
 	}
-	hoverAcc := m.Pos{}
-	hoverCnt := 0
 	for id, t := range touches {
 		if !t.hit {
-			if t.frames < touchClickMaxFrames {
-				clickPos = &t.pos
-			}
 			delete(touches, id)
 			continue
 		}
-		x, y := ebiten.TouchPosition(id)
-		t.pos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, x, y)
-		hoverAcc = hoverAcc.Add(t.pos.Delta(m.Pos{}))
-		hoverCnt++
-	}
-	if hoverCnt > 0 {
-		touchHoverPos = hoverAcc.Add(m.Delta{DX: hoverCnt / 2, DY: hoverCnt / 2}).Div(hoverCnt)
-		hoverPos = &touchHoverPos
 	}
 }
 
