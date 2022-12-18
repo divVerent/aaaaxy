@@ -58,6 +58,7 @@ var (
 	touchIDs      []ebiten.TouchID
 	touchHoverPos m.Pos
 	touchPadFrame int
+	touchPadUsed  bool = false
 )
 
 func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 float64) {
@@ -72,6 +73,7 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 		// Either support touch OR mouse. This prevents duplicate click events.
 		mouseCancel()
 		touchPadFrame = touchPadFrames
+		touchPadUsed = true
 	} else if touchPadFrame > 0 {
 		touchPadFrame--
 	}
@@ -204,4 +206,8 @@ func touchDraw(screen *ebiten.Image) {
 		}
 		screen.DrawImage(img, options)
 	}
+}
+
+func HaveTouch() bool {
+	return *touchForce || touchPadUsed
 }
