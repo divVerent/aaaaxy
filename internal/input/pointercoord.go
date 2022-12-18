@@ -40,8 +40,22 @@ func pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, 
 	outRelY := inRelY * outFac
 	outX := srcMidX + outRelX/mapVecX
 	outY := srcMidY + outRelY/mapVecY
+	iX := int(math.Floor(outX))
+	iY := int(math.Floor(outY))
+	if iX < 0 {
+		iX = 0
+	}
+	if iX >= gameWidth {
+		iX = gameWidth - 1
+	}
+	if iY < 0 {
+		iY = 0
+	}
+	if iY >= gameHeight {
+		iY = gameHeight - 1
+	}
 	return m.Pos{
-		X: int(math.Floor(outX)),
-		Y: int(math.Floor(outY)),
+		X: iX,
+		Y: iY,
 	}
 }
