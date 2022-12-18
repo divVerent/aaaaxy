@@ -50,6 +50,40 @@ var (
 		Origin: m.Pos{X: 192, Y: 64},
 		Size:   m.Delta{DX: 640 - 192 - 192, DY: 360 - 64},
 	}
+
+	snaps = []m.Delta{
+		// Distance: 0
+		m.Delta{DX: 0, DY: 0},
+		// Distance: 1, always enumerated clockwise starting at 12.
+		m.Delta{DX: 0, DY: -1},
+		m.Delta{DX: 1, DY: 0},
+		m.Delta{DX: 0, DY: 1},
+		m.Delta{DX: -1, DY: 0},
+		// Distance: sqrt(2), always enumerated clockwise starting at 12.
+		m.Delta{DX: 1, DY: -1},
+		m.Delta{DX: 1, DY: 1},
+		m.Delta{DX: -1, DY: 1},
+		m.Delta{DX: -1, DY: -1},
+		// Distance: 2, always enumerated clockwise starting at 12.
+		m.Delta{DX: 0, DY: -2},
+		m.Delta{DX: 2, DY: 0},
+		m.Delta{DX: 0, DY: 2},
+		m.Delta{DX: -2, DY: 0},
+		// Distance: sqrt(5), always enumerated clockwise starting at 12.
+		m.Delta{DX: 1, DY: -2},
+		m.Delta{DX: 2, DY: -1},
+		m.Delta{DX: 2, DY: 1},
+		m.Delta{DX: 1, DY: 2},
+		m.Delta{DX: -1, DY: 2},
+		m.Delta{DX: -2, DY: 1},
+		m.Delta{DX: -2, DY: -1},
+		m.Delta{DX: -1, DY: -2},
+		// Distance: sqrt(8), always enumerated clockwise starting at 12.
+		m.Delta{DX: 2, DY: -2},
+		m.Delta{DX: 2, DY: 2},
+		m.Delta{DX: -2, DY: 2},
+		m.Delta{DX: -2, DY: -2},
+	}
 )
 
 func touchEditMode(g int) editMode {
@@ -66,7 +100,7 @@ func touchEditMode(g int) editMode {
 func touchEditOrigin(mode editMode, o int, dp int) int {
 	switch mode {
 	case editMin, editBoth:
-		return o + gridSize*m.Div(dp, gridSize)
+		return o + dp
 	default:
 		return o
 	}
@@ -75,9 +109,9 @@ func touchEditOrigin(mode editMode, o int, dp int) int {
 func touchEditSize(mode editMode, s int, dp int) int {
 	switch mode {
 	case editMin:
-		return s - gridSize*m.Div(dp, gridSize)
+		return s - dp
 	case editMax:
-		return s + gridSize*m.Div(dp, gridSize)
+		return s + dp
 	default:
 		return s
 	}
@@ -128,13 +162,18 @@ func touchEditUpdate(gameWidth, gameHeight int) bool {
 				continue
 			}
 			newRect := *t.edit.rect
-			newRect.Origin.X = touchEditOrigin(t.edit.xMode, t.edit.startRect.Origin.X, t.pos.X-t.edit.startPos.X)
-			newRect.Origin.Y = touchEditOrigin(t.edit.yMode, t.edit.startRect.Origin.Y, t.pos.Y-t.edit.startPos.Y)
-			newRect.Size.DX = touchEditSize(t.edit.xMode, t.edit.startRect.Size.DX, t.pos.X-t.edit.startPos.X)
-			newRect.Size.DY = touchEditSize(t.edit.yMode, t.edit.startRect.Size.DY, t.pos.Y-t.edit.startPos.Y)
-			// TODO(divVerent): can we be nicer and on overlap try a shorter move until there is no overlap?
-			if touchEditAllowed(t.edit.rect, newRect, gameWidth, gameHeight) {
-				*t.edit.rect = newRect
+			// The truncate rounding in m.Div slightly prefers the same coordinate. Good.
+			dx := gridSize * m.Div(t.pos.X-t.edit.startPos.X, gridSize)
+			dy := gridSize * m.Div(t.pos.Y-t.edit.startPos.Y, gridSize)
+			for _, snap := range snaps {
+				newRect.Origin.X = touchEditOrigin(t.edit.xMode, t.edit.startRect.Origin.X, dx+gridSize*snap.DX)
+				newRect.Origin.Y = touchEditOrigin(t.edit.yMode, t.edit.startRect.Origin.Y, dy+gridSize*snap.DY)
+				newRect.Size.DX = touchEditSize(t.edit.xMode, t.edit.startRect.Size.DX, dx+gridSize*snap.DX)
+				newRect.Size.DY = touchEditSize(t.edit.yMode, t.edit.startRect.Size.DY, dy+gridSize*snap.DY)
+				if touchEditAllowed(t.edit.rect, newRect, gameWidth, gameHeight) {
+					*t.edit.rect = newRect
+					break
+				}
 			}
 		} else {
 			t.edit.active = true
