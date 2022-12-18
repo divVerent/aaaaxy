@@ -86,11 +86,15 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 		t.hit = true
 		t.frames++
 	}
+	hoverPos = nil
+	if touchEditUpdate(gameWidth, gameHeight) {
+		return
+	}
 	hoverAcc := m.Pos{}
 	hoverCnt := 0
 	for id, t := range touches {
 		if !t.hit {
-			if !touchEditPad && t.frames < touchClickMaxFrames {
+			if t.frames < touchClickMaxFrames {
 				clickPos = &t.pos
 			}
 			delete(touches, id)
@@ -101,11 +105,10 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 		hoverAcc = hoverAcc.Add(t.pos.Delta(m.Pos{}))
 		hoverCnt++
 	}
-	if !touchEditPad && hoverCnt > 0 {
+	if hoverCnt > 0 {
 		touchHoverPos = hoverAcc.Add(m.Delta{DX: hoverCnt / 2, DY: hoverCnt / 2}).Div(hoverCnt)
 		hoverPos = &touchHoverPos
 	}
-	touchEditUpdate(gameWidth, gameHeight)
 }
 
 func touchSetUsePad(want bool) {

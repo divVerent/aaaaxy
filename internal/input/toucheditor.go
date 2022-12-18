@@ -95,14 +95,18 @@ func touchHaveOverlaps(rect *m.Rect, replacement m.Rect) bool {
 	return false
 }
 
-func touchEditUpdate(gameWidth, gameHeight int) {
+func touchEditUpdate(gameWidth, gameHeight int) bool {
 	if !touchEditPad {
 		for _, t := range touches {
 			t.edit.active = false
 		}
-		return
+		return false
 	}
+	eatTouches := false
 	for _, t := range touches {
+		if !touchReservedArea.DeltaPos(t.pos).IsZero() {
+			eatTouches = true
+		}
 		if t.edit.active {
 			// Move what is being hit.
 			if t.edit.rect == nil {
@@ -144,6 +148,7 @@ func touchEditUpdate(gameWidth, gameHeight int) {
 			}
 		}
 	}
+	return eatTouches
 }
 
 func touchEditDraw(screen *ebiten.Image) {
