@@ -3,6 +3,7 @@
   <id>io.github.divverent.aaaaxy</id>
   <name>AAAAXY</name>
   <summary>A nonlinear puzzle platformer taking place in impossible spaces</summary>
+  <summary xml:lang="de">Ein nichtlinearer 2D-Puzzle-Platformer, der in unmöglichen Räumen stattfindet.</summary>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>Apache-2.0</project_license>
   <url type="homepage">https://divverent.github.io/aaaaxy</url>
@@ -19,24 +20,33 @@
     <p>
       Although your general goal is reaching the surprising end of the game, you are encouraged to set your own goals while playing. Exploration will be rewarded, and secrets await you!
     </p>
+    <p xml:lang="de">
+      Obwohl es grundsätzlich darum geht, das überraschende Ende des Spiels zu finden, setze dir doch deine eigenen Ziele beim Spielen. Erforsche die unmögliche Welt dieses Spiels und finde versteckte Geheimnisse!
+    </p>
     <p>
       So jump and run around, and enjoy losing your sense of orientation in this World of Wicked Weirdness. Find out what Van Vlijmen will make you do. Pick a path, get inside a Klein Bottle, recognize some memes, and by all means: don&apos;t look up.
+    </p>
+    <p xml:lang="de">
+      Springe und laufe herum, und verliere deinen Orientierungssinn in dieser "World of Wicked Weirdness". Finde heraus, was Van Vlijmen von dir will. Wähle klug, krieche in eine Kleinsche Flasche, erkenne die Memes, und vor allen Dingen: schaue nicht nach oben.
     </p>
   </description>
   <launchable type="desktop-id">aaaaxy.desktop</launchable>
   <screenshots>
     <screenshot type="default">
       <caption>Game Start</caption>
+      <caption xml:lang="de">Spielbeginn</caption>
       <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot1.jpg</image>
       <image type="source" width="2880" height="1620">https://divVerent.github.io/aaaaxy/screenshots/shot1.png</image>
     </screenshot>
     <screenshot>
       <caption>Road Rage</caption>
+      <caption xml:lang="de">Raserei</caption>
       <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot5.jpg</image>
       <image type="source" width="2880" height="1620">https://divVerent.github.io/aaaaxy/screenshots/shot5.png</image>
     </screenshot>
     <screenshot>
-      <caption>Getting It Back</caption>
+      <caption>Crumbling Upwards</caption>
+      <caption xml:lang="de">Hochbröckeln</caption>
       <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot8.jpg</image>
       <image type="source" width="2880" height="1620">https://divVerent.github.io/aaaaxy/screenshots/shot8.png</image>
     </screenshot>
