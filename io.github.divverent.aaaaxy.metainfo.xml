@@ -45,9 +45,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.2.399" date="2022-12-05">
-      <description><ul><li>Engine: demos are now using a new format (smaller files). Old format remains readable.</li><li>Engine: update Ebitengine to 2.4.13.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.2.399</url>
+    <release version="v1.3.43" date="2022-12-19">
+      <description><ul><li>Engine: now with a touch controls editor!</li><li>Localization: now also in German!</li><li>Accessibility: Shepard Tone now has a visual effect to indicate that a note is playing.</li><li>Engine: update Ebitengine to 2.4.15, fixing crashes and macOS framerate.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.43</url>
     </release>
   </releases>
 </component>

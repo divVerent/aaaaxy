@@ -1,0 +1,5 @@
+  - Engine: now with a touch controls editor!
+  - Localization: now also in German!
+  - Accessibility: Shepard Tone now has a visual effect to indicate that a note
+    is playing.
+  - Engine: update Ebitengine to 2.4.15, fixing crashes and macOS framerate.
