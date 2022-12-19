@@ -97,7 +97,7 @@ GOOS=js sh scripts/binary-release-compile.sh wasm
 (
 	cd AndroidStudioProjects/AAAAXY/
 	export ANDROID_HOME=$HOME/Android/Sdk
-	./gradlew bundleRelease
+	./gradlew assembleRelease bundleRelease
 )
 
 git commit -a -m "$(cat .commitmsg)"
