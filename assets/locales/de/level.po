@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-17 19:51-0500\n"
+"POT-Creation-Date: 2022-12-19 16:40-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2022\n"
 "Language-Team: German (https://www.transifex.com/aaaaxy/teams/158611/de/)\n"
@@ -1082,7 +1082,7 @@ msgid "Even going in circles you can get somewhere."
 msgstr "Auch wer im Kreis geht, kommt irgendwo an."
 
 #: assets/maps/level.tmx:11822
-msgid "Get it back!"
+msgid "Get It Back!"
 msgstr "Hol sie zurück!"
 
 #: assets/maps/level.tmx:11871
