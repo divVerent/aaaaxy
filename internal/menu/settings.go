@@ -76,6 +76,7 @@ func (s *SettingsScreen) Init(m *Controller) error {
 	} else {
 		s.EditControls = SettingsCount
 	}
+	s.Item = s.TopItem
 	return nil
 }
 
