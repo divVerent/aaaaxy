@@ -11819,7 +11819,7 @@
     <property name="next_down" type="object" value="5207"/>
     <property name="next_left" type="object" value="5189"/>
     <property name="required_orientation" value="ES"/>
-    <property name="text" value="Get it back!"/>
+    <property name="text" value="Get It Back!"/>
    </properties>
   </object>
   <object id="5168" gid="308" x="5976" y="5840" width="16" height="16">

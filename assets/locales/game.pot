@@ -11,7 +11,7 @@ msgstr ""
 msgid " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 
-#: menu/settings.go:388
+#: menu/settings.go:399
 msgid " (restart to apply)"
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr ""
 msgid "For Software Licenses"
 msgstr ""
 
-#: menu/settings.go:371
+#: menu/settings.go:382
 msgid "Graphics: %s"
 msgstr ""
 
@@ -212,7 +212,7 @@ msgstr ""
 msgid "Kiritimati"
 msgstr ""
 
-#: menu/settings.go:390
+#: menu/settings.go:401
 msgid "Language: %s%s"
 msgstr ""
 
@@ -234,7 +234,7 @@ msgstr ""
 
 #: menu/reset.go:151
 #: menu/savestate.go:170
-#: menu/settings.go:405
+#: menu/settings.go:416
 msgid "Main Menu"
 msgstr ""
 
@@ -298,7 +298,7 @@ msgstr ""
 msgid "Port Moresby"
 msgstr ""
 
-#: menu/settings.go:376
+#: menu/settings.go:387
 msgid "Quality: %s"
 msgstr ""
 
@@ -335,7 +335,7 @@ msgid "Reset to Defaults"
 msgstr ""
 
 #: menu/reset.go:102
-#: menu/settings.go:400
+#: menu/settings.go:411
 msgid "Reset"
 msgstr ""
 
@@ -349,7 +349,7 @@ msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr ""
 
 #: menu/main.go:96
-#: menu/settings.go:353
+#: menu/settings.go:359
 msgid "Settings"
 msgstr ""
 
@@ -366,15 +366,15 @@ msgid "Start"
 msgstr ""
 
 #: menu/savestate.go:145
-#: menu/settings.go:395
+#: menu/settings.go:406
 msgid "Switch Save State"
 msgstr ""
 
-#: menu/settings.go:359
+#: menu/settings.go:372
 msgid "Switch to Fullscreen Mode"
 msgstr ""
 
-#: menu/settings.go:361
+#: menu/settings.go:374
 msgid "Switch to Windowed Mode"
 msgstr ""
 
@@ -422,7 +422,7 @@ msgstr ""
 msgid "Turkistan"
 msgstr ""
 
-#: menu/settings.go:381
+#: menu/settings.go:392
 msgid "Volume: %s"
 msgstr ""
 
