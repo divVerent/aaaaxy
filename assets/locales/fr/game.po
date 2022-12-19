@@ -1,0 +1,548 @@
+# 
+# Translators:
+# Rudolf Polzer, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Rudolf Polzer, 2022\n"
+"Language-Team: French (https://www.transifex.com/aaaaxy/teams/158611/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"X-Generator: xgotext\n"
+
+#: font/charset.go:23
+msgid ""
+" "
+"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+msgstr ""
+" !\"#$%&amp;'()*+,-./0123456789: ; "
+"<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+
+#: menu/settings.go:388
+msgid " (restart to apply)"
+msgstr " (redémarrer pour appliquer)"
+
+#: fun/string.go:158 playerstate/playerstate.go:350
+msgid " and "
+msgstr " et "
+
+#: menu/map.go:272
+msgid "%s (%d/%d)"
+msgstr "%s (%d/%d)"
+
+#: fun/string.go:158 playerstate/playerstate.go:350
+msgid ", "
+msgstr ", "
+
+#: playerstate/playerstate.go:262
+msgid "100%"
+msgstr "100%"
+
+#: menu/savestate.go:155
+msgid "4: %s"
+msgstr "4 : %s"
+
+#: menu/quality.go:58 playerstate/playerstate.go:270
+msgid "???"
+msgstr "? ??"
+
+#: menu/savestate.go:150
+msgid "A: %s"
+msgstr "A : %s"
+
+#: playerstate/playerstate.go:239
+msgid "All Checkpoints"
+msgstr "Tous les points de contrôle"
+
+#: playerstate/playerstate.go:247
+msgid "All Flipped"
+msgstr "Tout est inversé"
+
+#: playerstate/playerstate.go:241
+msgid "All Notes"
+msgstr "Toutes les notes"
+
+#: playerstate/playerstate.go:243
+msgid "All Paths"
+msgstr "Tous les chemins"
+
+#: playerstate/playerstate.go:245
+msgid "All Secrets"
+msgstr "Tous les secrets"
+
+#: fun/string.go:57
+msgid "Alofi"
+msgstr "Alofi"
+
+#: fun/string.go:61
+msgid "Anchorage"
+msgstr "Anchorage"
+
+#: playerstate/playerstate.go:237
+msgid "Any%"
+msgstr "N'importe quel pourcentage"
+
+#: fun/string.go:103
+msgid "Auckland"
+msgstr "Auckland"
+
+#: menu/language.go:39 menu/quality.go:46
+msgid "Auto (%s)"
+msgstr "Auto (%s)"
+
+#: fun/string.go:187
+msgid "B"
+msgstr "B"
+
+#: fun/string.go:184
+msgid "B/X"
+msgstr "B/X"
+
+#: fun/string.go:175
+msgid "Back"
+msgstr "Dos"
+
+#: fun/string.go:171
+msgid "Backspace"
+msgstr "Retour en arrière"
+
+#: fun/string.go:55
+msgid "Baker Island"
+msgstr "Île Baker"
+
+#: fun/string.go:95
+msgid "Beijing"
+msgstr "Pékin"
+
+#: fun/string.go:81
+msgid "Berlin"
+msgstr "Berlin"
+
+#: fun/string.go:91
+msgid "Bishkek"
+msgstr "Bishkek"
+
+#: fun/string.go:110
+msgid "Boston"
+msgstr "Boston"
+
+#: menu/credits.go:74
+msgid "Build: %s"
+msgstr "Construire : %s"
+
+#: playerstate/playerstate.go:266
+msgid "Cheat%"
+msgstr "Cheat%"
+
+#: fun/string.go:67
+msgid "Chicago"
+msgstr "Chicago"
+
+#: menu/main.go:101
+msgid "Credits"
+msgstr "Crédits"
+
+#: fun/string.go:190
+msgid "Ctrl/Shift"
+msgstr "Ctrl/Shift"
+
+#: menu/touchedit.go:85
+msgid "Done"
+msgstr "Terminé"
+
+#: menu/settings.go:365 menu/touchedit.go:80
+msgid "Edit Touch Controls"
+msgstr "Modifier les commandes tactiles"
+
+#: fun/string.go:65
+msgid "Edmonton"
+msgstr "Edmonton"
+
+#: fun/string.go:199
+msgid "Enter"
+msgstr "Entrez"
+
+#: game/checkpoint/checkpoint_target.go:128
+msgid ""
+"Error:\n"
+"could not save game:\n"
+"%s"
+msgstr ""
+"Erreur :\n"
+"Impossible de sauvegarder le jeu :\n"
+"%s"
+
+#: fun/string.go:169
+msgid "Escape"
+msgstr "Escape"
+
+#: fun/string.go:75
+msgid "Fernando de Noronha"
+msgstr "Fernando de Noronha"
+
+#: game/player/player.go:395
+msgid ""
+"Fine, I give up, have it your way.\n"
+"All cheats are documented in --help."
+msgstr ""
+"Bien, j'abandonne, faites comme vous voulez.\n"
+"Tous les cheats sont documentés dans --help."
+
+#: menu/credits.go:66
+msgid "For Software Licenses"
+msgstr "Pour les licences de logiciels"
+
+#: menu/settings.go:371
+msgid "Graphics: %s"
+msgstr "Graphiques : %s"
+
+#: fun/string.go:71
+msgid "Halifax"
+msgstr "Halifax"
+
+#: fun/string.go:93
+msgid "Hanoi"
+msgstr "Hanoi"
+
+#: menu/quality.go:50
+msgid "High"
+msgstr "Haut"
+
+#: fun/string.go:59
+msgid "Honolulu"
+msgstr "Honolulu"
+
+#: playerstate/playerstate.go:268
+msgid "Impossible"
+msgstr "Impossible"
+
+#: fun/string.go:85
+msgid "Istanbul"
+msgstr "Istanbul"
+
+#: fun/string.go:107
+msgid "Kiritimati"
+msgstr "Kiritimati"
+
+#: menu/settings.go:390
+msgid "Language: %s%s"
+msgstr "Langue : %s%s"
+
+#: menu/credits.go:73
+msgid "Level Version: %d"
+msgstr "Version de niveau : %d"
+
+#: fun/string.go:79
+msgid "London"
+msgstr "Londres"
+
+#: menu/quality.go:54
+msgid "Low"
+msgstr "Faible"
+
+#: menu/quality.go:56
+msgid "Lowest"
+msgstr "Le plus bas"
+
+#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:405
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: menu/quality.go:48
+msgid "Max"
+msgstr "Max"
+
+#: menu/quality.go:52
+msgid "Medium"
+msgstr "Moyen"
+
+#: fun/string.go:69
+msgid "New York"
+msgstr "New York"
+
+#: playerstate/playerstate.go:259
+msgid "No Back"
+msgstr "Pas de dos"
+
+#: playerstate/playerstate.go:255
+msgid "No Backspace"
+msgstr "Pas de retour en arrière"
+
+#: playerstate/playerstate.go:253
+msgid "No Escape"
+msgstr "Pas d'échappatoire"
+
+#: playerstate/playerstate.go:257
+msgid "No Start"
+msgstr "Pas de départ"
+
+#: playerstate/playerstate.go:249
+msgid "No Teleports"
+msgstr "Pas de téléportation"
+
+#: playerstate/playerstate.go:346
+msgid "None"
+msgstr "Aucun"
+
+#: fun/string.go:105
+msgid "Nuku'alofa"
+msgstr "Nuku'alofa"
+
+#: fun/string.go:73
+msgid "Nuuk"
+msgstr "Nuuk"
+
+#: menu/map.go:268
+msgid "Pick-a-Path"
+msgstr "Pick-a-Path"
+
+#: menu/main.go:91
+msgid "Play"
+msgstr "Jouer"
+
+#: fun/string.go:77
+msgid "Ponta Delgada"
+msgstr "Ponta Delgada"
+
+#: fun/string.go:101
+msgid "Port Moresby"
+msgstr "Port Moresby"
+
+#: menu/settings.go:376
+msgid "Quality: %s"
+msgstr "Qualité : %s"
+
+#: menu/main.go:106
+msgid "Quit"
+msgstr "Arrêtez"
+
+#: menu/reset.go:107
+msgid "Reset Nothing"
+msgstr "Ne rien réinitialiser"
+
+#: menu/reset.go:130
+msgid "Reset and Lose SAVE STATE %s"
+msgstr "Réinitialiser et perdre SAVE STATE %s"
+
+#: menu/reset.go:136
+msgid "Reset and Lose Save State %s (just release buttons)"
+msgstr ""
+"Réinitialisation et perte de l'état de sauvegarde %s (il suffit de relâcher "
+"les boutons)"
+
+#: menu/reset.go:138
+msgid "Reset and Lose Save State %s (think about it for %d sec)"
+msgstr ""
+"Réinitialisation et perte de l'état de sauvegarde %s (pensez-y pendant %d "
+"sec)"
+
+#: menu/reset.go:141
+msgid "Reset and Lose Save State %s"
+msgstr "Réinitialisation et perte de l'état de sauvegarde %s"
+
+#: menu/reset.go:112
+msgid "Reset and Lose Settings"
+msgstr "Réinitialisation et perte des paramètres"
+
+#: menu/touchedit.go:90
+msgid "Reset to Defaults"
+msgstr "Réinitialiser les valeurs par défaut"
+
+#: menu/reset.go:102 menu/settings.go:400
+msgid "Reset"
+msgstr "Réinitialiser"
+
+#: fun/string.go:63
+msgid "San Francisco"
+msgstr "San Francisco"
+
+#: menu/main.go:109 menu/savestate.go:74
+msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
+msgstr "Score : {{Score}}{{SpeedrunCategoriesShort}} | Temps : {{GameTime}}."
+
+#: menu/main.go:96 menu/settings.go:353
+msgid "Settings"
+msgstr "Paramètres"
+
+#: fun/string.go:201
+msgid "Shift"
+msgstr "Équipe"
+
+#: fun/string.go:196
+msgid "Shift/E/Tab"
+msgstr "Shift/E/Tab"
+
+#: fun/string.go:173
+msgid "Start"
+msgstr "Début"
+
+#: menu/savestate.go:145 menu/settings.go:395
+msgid "Switch Save State"
+msgstr "Switch Save State"
+
+#: menu/settings.go:359
+msgid "Switch to Fullscreen Mode"
+msgstr "Passer en mode plein écran"
+
+#: menu/settings.go:361
+msgid "Switch to Windowed Mode"
+msgstr "Passer en mode fenêtré"
+
+#: fun/string.go:99
+msgid "Sydney"
+msgstr "Sydney"
+
+#: fun/string.go:87
+msgid "Tehran"
+msgstr "Téhéran"
+
+#: fun/string.go:83
+msgid "Tel Aviv"
+msgstr "Tel Aviv"
+
+#: menu/credits.go:112
+msgid "Thank You!"
+msgstr "Merci !"
+
+#: fun/string.go:150
+msgid "The Cleats"
+msgstr "Les crampons"
+
+#: fun/string.go:147
+msgid "The Coil"
+msgstr "La bobine"
+
+#: fun/string.go:141
+msgid "The Gloves"
+msgstr "Les gants"
+
+#: fun/string.go:144
+msgid "The Remote"
+msgstr "La télécommande"
+
+#: fun/string.go:97
+msgid "Tokyo"
+msgstr "Tokyo"
+
+#: menu/credits.go:107
+msgid "Try Next"
+msgstr "Essayez le suivant"
+
+#: fun/string.go:89
+msgid "Turkistan"
+msgstr "Turkistan"
+
+#: menu/settings.go:381
+msgid "Volume: %s"
+msgstr "Volume : %s"
+
+#: playerstate/playerstate.go:264
+msgid "Without Cheating Of Course"
+msgstr "Sans tricher bien sûr"
+
+#: menu/savestate.go:160
+msgid "X: %s"
+msgstr "X : %s"
+
+#: menu/savestate.go:165
+msgid "Y: %s"
+msgstr "Y : %s"
+
+#: game/player/player.go:405
+msgid "You now have 30 lives. Enjoy!"
+msgstr "Vous avez maintenant 30 vies. Profitez-en !"
+
+#: game/player/player.go:398
+msgid "You really thought this would do something?"
+msgstr "Tu pensais vraiment que ça ferait quelque chose ?"
+
+#: menu/credits.go:97
+msgid "Your Speedrun Categories"
+msgstr "Vos catégories de speedrun"
+
+#: menu/credits.go:94
+msgid "Your Time"
+msgstr "Votre temps"
+
+#: fun/string.go:193
+msgid "Z"
+msgstr "Z"
+
+#: sound/sound.go:234
+msgid "enumerating sounds"
+msgstr "énumération des sons"
+
+#: fun/string.go:160
+msgid "everything"
+msgstr "tout"
+
+#: level/level.go:789
+msgid "hashing level"
+msgstr "niveau de hachage"
+
+#: aaaaxy/init.go:265
+msgid "initializing audio"
+msgstr "initialisation de l'audio"
+
+#: aaaaxy/init.go:289
+msgid "initializing dumping"
+msgstr "initialisation du dumping"
+
+#: aaaaxy/init.go:281
+msgid "initializing input"
+msgstr "initialisation de l'entrée"
+
+#: aaaaxy/init.go:269
+msgid "initializing noise"
+msgstr "initialisation du bruit"
+
+#: level/level.go:768
+msgid "loading checkpoints"
+msgstr "points de contrôle du chargement"
+
+#: level/level.go:740
+msgid "loading level file"
+msgstr "chargement du fichier de niveau"
+
+#: engine/world.go:212
+msgid "loading level"
+msgstr "niveau de chargement"
+
+#: fun/string.go:154
+msgid "nothing"
+msgstr "rien"
+
+#: level/level.go:756
+msgid "parsing level data"
+msgstr "analyse syntaxique des données de niveau"
+
+#: sound/sound.go:247
+msgid "precaching %s"
+msgstr "Précurseur %s"
+
+#: aaaaxy/init.go:261
+msgid "precaching credits"
+msgstr "crédits d'anticipation"
+
+#: aaaaxy/init.go:285
+msgid "precaching engine"
+msgstr "moteur de précaching"
+
+#: engine/world.go:217
+msgid "precaching entities"
+msgstr "entités de précachetage"
+
+#: aaaaxy/init.go:277
+msgid "precaching images"
+msgstr "Prémémorisation des images"
+
+#: aaaaxy/init.go:273
+msgid "precaching sounds"
+msgstr "les sons précurseurs"
+
+#: menu/credits.go:67
+msgid "press right"
+msgstr "appuyer à droite"
