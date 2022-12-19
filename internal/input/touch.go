@@ -45,11 +45,12 @@ const (
 )
 
 type touchInfo struct {
-	frames  int
-	pos     m.Pos
-	prevPos m.Pos
-	hit     bool
-	edit    touchEditInfo
+	clickFrames    int
+	clickCancelled bool
+	pos            m.Pos
+	prevPos        m.Pos
+	hit            bool
+	edit           touchEditInfo
 }
 
 var (
@@ -62,12 +63,18 @@ var (
 	touchPadUsed  bool = false
 )
 
+func touchCancelClicks() {
+	for _, t := range touches {
+		t.clickCancelled = true
+	}
+}
+
 func touchEmulateMouse() {
 	hoverAcc := m.Pos{}
 	hoverCnt := 0
 	for _, t := range touches {
 		if !t.hit {
-			if t.frames < touchClickMaxFrames {
+			if t.clickFrames < touchClickMaxFrames && !t.clickCancelled {
 				clickPos = &t.prevPos
 			}
 			continue
@@ -104,7 +111,7 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 			touches[id] = t
 		}
 		t.hit = true
-		t.frames++
+		t.clickFrames++
 		t.prevPos = t.pos
 		x, y := ebiten.TouchPosition(id)
 		t.pos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, x, y)
@@ -123,10 +130,18 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 }
 
 func touchSetUsePad(want bool) {
+	if touchUsePad == want {
+		return
+	}
+	touchCancelClicks()
 	touchUsePad = want
 }
 
 func touchSetShowPad(want bool) {
+	if touchShowPad == want {
+		return
+	}
+	touchCancelClicks()
 	touchShowPad = want
 }
 

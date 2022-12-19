@@ -234,8 +234,12 @@ func touchEditDraw(screen *ebiten.Image) {
 	}
 }
 
-func touchSetEditor(editing bool) {
-	touchEditPad = editing
+func touchSetEditor(want bool) {
+	if touchEditPad == want {
+		return
+	}
+	touchCancelClicks()
+	touchEditPad = want
 }
 
 func TouchResetEditor() {
