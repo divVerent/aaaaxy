@@ -105,6 +105,10 @@ xdg-open https://snapcraft.io/aaaaxy/builds
 sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 (
 	cd ../io.github.divverent.aaaaxy
+	git checkout master
+	git fetch
+	git reset --hard '@{u}'
+	git merge --no-edit beta
 	sed -i -e "/--- TAG GOES HERE ---/,+1 s/: .*/: $new/" io.github.divverent.aaaaxy.yml
 	sed -i -e "/--- REV GOES HERE ---/,+1 s/: .*/: $newrev/" io.github.divverent.aaaaxy.yml
 	git commit -a -m "Release $new."
