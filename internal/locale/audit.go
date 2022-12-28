@@ -78,7 +78,7 @@ func auditPo(po Type) error {
 					// Same as original - probably OK then.
 					continue
 				}
-				err := fmt.Errorf("translation contains bad substring: %q (%q), matched by regexp %v", v, vbad, badRE)
+				err := fmt.Errorf("translation contains bad substring: %q -> %q (%q), matched by regexp %v", k, v, vbad, badRE)
 				if *debugCheckTranslations {
 					return err
 				} else {
