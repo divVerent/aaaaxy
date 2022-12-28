@@ -8,9 +8,27 @@ on:
   workflow_dispatch:
 
 jobs:
+  list-languages:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: false
+    - name: Generate Language Matrix
+      run: 'all=; for l in assets/locales/*/; do l=${l%/}; l=${l##*/}; all="$all,\"$l\""; done; echo "languages=[${all#,}]" > $GITHUB_OUTPUT'
+    outputs:
+      languages: ${{ steps.set-matrix.outputs.languages }}
 
   build:
+    needs: list-languages
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: ${{ fromJson(needs.list-languages.outputs.languages) }}
+
+    env:
+      language: ${{ matrix.language }}
+
     steps:
     - uses: actions/checkout@v2
       with:
@@ -28,17 +46,14 @@ jobs:
     - name: Build
       run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
 
-    - name: Vet
-      run: 'make vet'
-
-    - name: Test in All Languages
-      run: 'set -e; for l in assets/locales/*/; do l=${l%/}; l=${l##*/}; echo "Testing language $l..."; env LC_ALL="$l" xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "$l" ./aaaaxy benchmark.dem; done'
+    - name: Test in language ${{ matrix.language }}
+      run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64-{{ matrix.language }} "" ./aaaaxy benchmark.dem'
 
     - name: Archive Results
       if: ${{ always() }}
       uses: actions/upload-artifact@v2
       with:
-        name: regression-test-results-benchmark-linux-amd64
+        name: regression-test-results-benchmark-${{ matrix.language }}-linux-amd64
         path: |
           *.dem.*.log
           *.dem.*.png
