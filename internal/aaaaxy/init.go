@@ -15,13 +15,10 @@
 package aaaaxy
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
 	"math"
 	"os"
-	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -36,6 +33,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/locale"
+	"github.com/divVerent/aaaaxy/internal/locale/initlocale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/noise"
@@ -111,54 +109,6 @@ func (g *Game) InitEbitengine() error {
 	return g.InitEarly()
 }
 
-func initLinguas() {
-	data, err := vfs.Load("locales", "LINGUAS")
-	if err != nil {
-		log.Errorf("could not open LINGUAS file: %v", err)
-		return
-	}
-	defer data.Close()
-	buf, err := io.ReadAll(data)
-	for _, line := range bytes.Split(buf, []byte{'\n'}) {
-		if len(line) == 0 || line[0] == '#' {
-			continue
-		}
-		locale.Linguas[locale.Lingua(line)] = struct{}{}
-	}
-}
-
-func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
-	if lang == "" {
-		return
-	}
-	data, err := vfs.Load(fmt.Sprintf("locales/%s", strings.ReplaceAll(string(lang), "-", "_")), fmt.Sprintf("%s.po", domain))
-	if err != nil {
-		log.Errorf("could not open %s translation for language %s: %v", domain, lang.Name(), err)
-		return
-	}
-	defer data.Close()
-	buf, err := io.ReadAll(data)
-	if err != nil {
-		log.Errorf("could not read %s translation for language %s: %v", domain, lang.Name(), err)
-		return
-	}
-	l.Parse(buf)
-	log.Infof("%s translated to language %s", domain, lang.Name())
-}
-
-func initLocale() error {
-	initLinguas()
-	locale.InitCurrent()
-	lang := locale.Lingua(*language)
-	if lang == "auto" {
-		lang = locale.Current
-	}
-	initLocaleDomain(lang, locale.G, "game")
-	initLocaleDomain(lang, locale.L, "level")
-	locale.Active = lang
-	return nil
-}
-
 // InitEarly is the beginning of our initialization,
 // and may take place in the first frame
 // if there is no way to run this before the main loop (e.g. on mobile).
@@ -182,7 +132,7 @@ func (g *Game) InitEarly() error {
 	if err != nil {
 		return fmt.Errorf("could not initialize VFS: %w", err)
 	}
-	err = initLocale()
+	err = initlocale.Init()
 	if err != nil {
 		return fmt.Errorf("could not initialize locale: %w", err)
 	}
