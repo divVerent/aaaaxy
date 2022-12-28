@@ -1437,6 +1437,7 @@
   <object id="422" type="Text" x="4304" y="7072" width="320" height="16">
    <properties>
     <property name="text" value="BRLOGENSHFEGLE doesn't lol."/>
+    <property name="_text_localization_note" value="A made-up word from the PeaceBrothers Nexuiz clan that started a very long thread in its forum. Probably was just keyboard mashing. Recommend translating it as is, except possibly adjusting for spelling of the sounds in your language (e.g. in German I translated as BRLOGENSCHFEGLE, just replacing the SH that does not exist in German by SCH)."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
