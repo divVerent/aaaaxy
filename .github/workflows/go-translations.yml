@@ -1,0 +1,45 @@
+name: Go In All Languages
+
+on:
+  pull_request:
+  push:
+  schedule:
+    - cron: '38 10 * * *'
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Install Dependencies
+      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '>=1.19'
+        check-latest: true
+
+    - name: Build
+      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true AAAAXY_GENERATE_ASSETS=true AAAAXY_DIFF_ASSETS=true make'
+
+    - name: Vet
+      run: 'make vet'
+
+    - name: Test in All Languages
+      run: 'set -e; for l in assets/locales/*/; do l=${l%/}; l=${l##*/}; echo "Testing language $l..."; env LC_ALL="$l" xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "$l" ./aaaaxy benchmark.dem; done'
+
+    - name: Archive Results
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: regression-test-results-benchmark-linux-amd64
+        path: |
+          *.dem.*.log
+          *.dem.*.png
+
