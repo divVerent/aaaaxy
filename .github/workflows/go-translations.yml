@@ -14,10 +14,11 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: false
-    - name: Generate Language Matrix
+    - name: Generate Language List
+      id: list-languages
       run: 'all=; for l in assets/locales/*/; do l=${l%/}; l=${l##*/}; all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
     outputs:
-      languages: ${{ steps.set-matrix.outputs.languages }}
+      languages: ${{ steps.list-languages.outputs.languages }}
 
   build:
     needs: list-languages
