@@ -29,6 +29,7 @@ var (
 
 var (
 	formatRE = regexp.MustCompile(`({{[^}]*}})|%(?:(\d+)\$)?([^a-z]*[a-z])`)
+	badRE    = regexp.MustCompile(` {{BR}}|{{BR}} |^ | $`)
 )
 
 func formats(s string) map[string]int {
@@ -53,11 +54,31 @@ func formats(s string) map[string]int {
 
 func auditPo(po Type) error {
 	for k, vs := range po.GetDomain().GetTranslations() {
+		if k == "" {
+			// Not a real string, just a header.
+			continue
+		}
+		kbads := map[string]struct{}{}
+		for _, kbad := range badRE.FindAllString(k, -1) {
+			kbads[kbad] = struct{}{}
+		}
 		kf := formats(k)
 		for _, v := range vs.Trs {
 			vf := formats(v)
 			if !reflect.DeepEqual(kf, vf) {
 				err := fmt.Errorf("translation format string mismatch: %q (%v) -> %q (%v)", k, kf, v, vf)
+				if *debugCheckTranslations {
+					return err
+				} else {
+					log.Errorf("%v", err)
+				}
+			}
+			for _, vbad := range badRE.FindAllString(v, -1) {
+				if _, found := kbads[vbad]; found {
+					// Same as original - probably OK then.
+					continue
+				}
+				err := fmt.Errorf("translation contains bad substring: %q (%q), matched by regexp %v", v, vbad, badRE)
 				if *debugCheckTranslations {
 					return err
 				} else {
