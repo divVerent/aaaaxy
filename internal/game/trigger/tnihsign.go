@@ -27,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
@@ -70,7 +71,7 @@ func (t *TnihSign) Precache(sp *level.Spawnable) error {
 	}
 	bounds := centerprint.NormalFont().BoundString(txt)
 	if bounds.Size.DX > engine.GameWidth {
-		log.Warningf("text too big: entity %v must fit in width %v but text needs %v: %v",
+		locale.Errorf("text too big: entity %v must fit in width %v but text needs %v: %v",
 			sp.ID, engine.GameWidth, bounds.Size, txtOrig)
 	}
 	return nil

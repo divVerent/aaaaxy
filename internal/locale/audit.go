@@ -24,7 +24,7 @@ import (
 )
 
 var (
-	debugCheckTranslations = flag.Bool("debug_check_translations", false, "fail startup if a translation contains a format string mismatch")
+	debugCheckTranslations = flag.Bool("debug_check_translations", false, "fail startup if a translation contains a format string mismatch or a too big text box")
 )
 
 var (
@@ -75,4 +75,12 @@ func Audit() error {
 		return err
 	}
 	return auditPo(L)
+}
+
+func Errorf(format string, args ...interface{}) {
+	if *debugCheckTranslations {
+		log.Fatalf(format, args...)
+	} else {
+		log.Errorf(format, args...)
+	}
 }

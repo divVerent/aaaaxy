@@ -61,7 +61,7 @@ func (c *CheckpointTarget) Precache(sp *level.Spawnable) {
 	}
 	bounds := centerprint.BigFont().BoundString(txt)
 	if bounds.Size.DX > engine.GameWidth {
-		log.Warningf("text too big: entity %v must fit in width %v but text needs %v: %v",
+		locale.Errorf("text too big: entity %v must fit in width %v but text needs %v: %v",
 			sp.ID, engine.GameWidth, bounds.Size, txtOrig)
 	}
 }

@@ -26,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
@@ -143,7 +144,7 @@ func (t *Text) Precache(sp *level.Spawnable) error {
 		dx, dy = dy, dx
 	}
 	if dx > sp.RectInTile.Size.DX || dy > sp.RectInTile.Size.DY {
-		log.Warningf("text too big: entity %v has size %v but text needs %v: %v",
+		locale.Errorf("text too big: entity %v has size %v but text needs %v: %v",
 			sp.ID, sp.RectInTile.Size, m.Delta{DX: dx, DY: dy}, key.text)
 	}
 	return nil
