@@ -15,7 +15,7 @@ jobs:
       with:
         submodules: false
     - name: Generate Language Matrix
-      run: 'all=; for l in assets/locales/*/; do l=${l%/}; l=${l##*/}; all="$all,\"$l\""; done; echo "languages=[${all#,}]" > $GITHUB_OUTPUT'
+      run: 'all=; for l in assets/locales/*/; do l=${l%/}; l=${l##*/}; all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
     outputs:
       languages: ${{ steps.set-matrix.outputs.languages }}
 
