@@ -1,4 +1,4 @@
-// Copyright 2021 Google LLC
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -75,5 +75,5 @@ func Init() error {
 	initLocaleDomain(lang, locale.G, "game")
 	initLocaleDomain(lang, locale.L, "level")
 	locale.Active = lang
-	return nil
+	return locale.Audit()
 }

@@ -57,7 +57,6 @@ var (
 	dumpLoadingFractions = flag.String("dump_loading_fractions", "", "file name to dump actual loading fractions to")
 	debugJustInit        = flag.Bool("debug_just_init", false, "just init everything, then quit right away")
 	fpsDivisor           = flag.Int("fps_divisor", 1, "framerate divisor (use on very low systems, but this may make the game unwinnable or harder as it restricts input; must be a divisor of "+fmt.Sprint(engine.GameTPS))
-	language             = flag.String("language", "auto", "language to translate the game into; if set to 'auto', it will be detected using the system locale; set to '' to not translate")
 )
 
 func LoadConfig() (*flag.Config, error) {
