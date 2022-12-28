@@ -27,6 +27,9 @@ jobs:
       matrix:
         language: ${{ fromJson(needs.list-languages.outputs.languages) }}
 
+    env:
+      language: ${{ matrix.language }}
+
     steps:
     - uses: actions/checkout@v2
       with:
@@ -45,7 +48,7 @@ jobs:
       run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
 
     - name: Test in language ${{ matrix.language }}
-      run: 'xvfb-run env LC_ALL=${{ matrix.language }} sh scripts/regression-test-demo.sh linux-amd64-{{ matrix.language }} "" ./aaaaxy benchmark.dem'
+      run: 'xvfb-run env LC_ALL=$language sh scripts/regression-test-demo.sh linux-amd64-$language "" ./aaaaxy benchmark.dem'
 
     - name: Archive Results
       if: ${{ always() }}
