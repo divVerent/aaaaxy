@@ -2,9 +2,2622 @@
     "automappingRulesFile": "",
     "commands": [
     ],
+    "compatibilityVersion": 1080,
     "extensionsPath": "extensions",
     "folders": [
         "."
     ],
-    "objectTypesFile": "assets/objecttypes.xml"
+    "propertyTypes": [
+        {
+            "color": "#ffffffff",
+            "id": 1,
+            "members": [
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "animation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_frame_interval",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_frames",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_group",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_repeat_interval",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_symmetric",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "animation_sync_to_music_offset",
+                    "type": "string",
+                    "value": "0s"
+                },
+                {
+                    "name": "border_pixels",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "render_offset",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "Animation",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff00aa00",
+            "id": 2,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "AppearBlock",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff008000",
+            "id": 3,
+            "members": [
+                {
+                    "name": "dead_end",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "downtrace_on_spawn",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "first",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "hub",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "music",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "secret",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "tnih_sign_expected",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "vvvvvv",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "vvvvvv_gravity_direction",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "Checkpoint",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffffff",
+            "id": 4,
+            "members": [
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "border_pixels",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "image",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "image_dir",
+                    "type": "string",
+                    "value": "sprites"
+                },
+                {
+                    "name": "image_region",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.EN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.ES",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WS",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "render_offset",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 5
+                }
+            ],
+            "name": "CoverSprite",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff00ff",
+            "id": 5,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "CreditsTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "id": 6,
+            "members": [
+                {
+                    "name": "delay",
+                    "type": "string",
+                    "value": "0s"
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "DelayTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff00aa00",
+            "id": 7,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "DisappearBlock",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffffff",
+            "id": 8,
+            "members": [
+                {
+                    "name": "abilities",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "border_pixels",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "fade_despawn",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "fade_time",
+                    "type": "string",
+                    "value": "266.666666ms"
+                },
+                {
+                    "name": "image",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "image_dir",
+                    "type": "string",
+                    "value": "sprites"
+                },
+                {
+                    "name": "image_region",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.EN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.ES",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WS",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "invert",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "render_offset",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 4
+                }
+            ],
+            "name": "ExitButton",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff00ff",
+            "id": 9,
+            "members": [
+                {
+                    "name": "duration",
+                    "type": "string",
+                    "value": "1s"
+                },
+                {
+                    "name": "from_color_a",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "from_color_b",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "from_color_c",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "from_color_d",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "to_color_a",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "to_color_b",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "to_color_c",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "to_color_d",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "FadeTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff00ff",
+            "id": 10,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "ForceField",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffff00",
+            "id": 11,
+            "members": [
+                {
+                    "name": "ability",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "Give",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffff00",
+            "id": 12,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "Goal",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff00ff",
+            "id": 13,
+            "members": [
+                {
+                    "name": "delta",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "height",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "rel_delta",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "JumpPad",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "id": 14,
+            "members": [
+                {
+                    "name": "count_required",
+                    "type": "int",
+                    "value": 1
+                },
+                {
+                    "name": "ignore_off",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "invert",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "LogicalGate",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffffff",
+            "id": 15,
+            "members": [
+                {
+                    "name": "acceleration",
+                    "type": "string",
+                    "value": "0"
+                },
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "border_pixels",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "delta",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "hit_opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "image",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "image_dir",
+                    "type": "string",
+                    "value": "sprites"
+                },
+                {
+                    "name": "image_region",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.EN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.ES",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WS",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "invert",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "render_offset",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "MovableSprite",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffffff",
+            "id": 16,
+            "members": [
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "animation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_frame_interval",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_frames",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_group",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_repeat_interval",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_symmetric",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "animation_sync_to_music_offset",
+                    "type": "string",
+                    "value": "0s"
+                },
+                {
+                    "name": "border_pixels",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "fade_despawn",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "fade_on_touch",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "fade_skip_animation",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "fade_time",
+                    "type": "string",
+                    "value": "266.666666ms"
+                },
+                {
+                    "name": "invert",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "render_offset",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "respawn_on_touch",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "stop_on_touch",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "time_to_fade",
+                    "type": "string",
+                    "value": "0s"
+                },
+                {
+                    "name": "time_to_move",
+                    "type": "string",
+                    "value": "0s"
+                },
+                {
+                    "name": "velocity",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "MovingAnimation",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff0000ff",
+            "id": 17,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "OneWay",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff008000",
+            "id": 18,
+            "members": [
+                {
+                    "name": "dead_end",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "downtrace_on_spawn",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "vvvvvv_gravity_direction",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "Player",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "id": 19,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "PrintToConsoleTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "id": 20,
+            "members": [
+                {
+                    "name": "kaizo",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "QuestionBlock",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff0000",
+            "id": 21,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "RespawnPlayer",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff000080",
+            "id": 22,
+            "members": [
+                {
+                    "name": "flipped",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "Riser",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffff80",
+            "id": 23,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "RiserFsck",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff00ff00",
+            "id": 24,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "sequence",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "state",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "SequenceCollector",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff00ff00",
+            "id": 25,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "sequence",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "SequenceTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff0000",
+            "id": 26,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_only",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "send_once",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "send_untouch",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "state",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "SetState",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff0000ff",
+            "id": 27,
+            "members": [
+                {
+                    "name": "duration",
+                    "type": "string",
+                    "value": "0s"
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "sound",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "state",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "stop_when_off",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "visual",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "SoundTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff0000",
+            "id": 28,
+            "members": [
+                {
+                    "name": "divisor",
+                    "type": "int",
+                    "value": -1
+                },
+                {
+                    "name": "divisor2",
+                    "type": "int",
+                    "value": -1
+                },
+                {
+                    "name": "divisor3",
+                    "type": "int",
+                    "value": -1
+                },
+                {
+                    "name": "divisor4",
+                    "type": "int",
+                    "value": -1
+                },
+                {
+                    "name": "modulus",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "modulus2",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "modulus3",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "state",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "target2",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "target3",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "SpawnCounter",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffffff",
+            "id": 29,
+            "members": [
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "border_pixels",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "image",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "image_dir",
+                    "type": "string",
+                    "value": "sprites"
+                },
+                {
+                    "name": "image_region",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.EN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.ES",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WS",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "render_offset",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "Sprite",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff00ff",
+            "id": 30,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "StopTimerTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff0000",
+            "id": 31,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_only",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "send_once",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "send_untouch",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "state",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "Switch",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff00ff00",
+            "id": 32,
+            "members": [
+                {
+                    "name": "music",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "SwitchMusic",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff00ff00",
+            "id": 33,
+            "members": [
+                {
+                    "name": "music",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "SwitchMusicTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffffff",
+            "id": 34,
+            "members": [
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "animation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_frame_interval",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_frames",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_group",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_repeat_interval",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "animation_symmetric",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "animation_sync_to_music_offset",
+                    "type": "string",
+                    "value": "0s"
+                },
+                {
+                    "name": "border_pixels",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "fade_despawn",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "fade_time",
+                    "type": "string",
+                    "value": "266.666666ms"
+                },
+                {
+                    "name": "invert",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "render_offset",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "SwitchableAnimation",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff00ff",
+            "id": 35,
+            "members": [
+                {
+                    "name": "delta",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "height",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "invert",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "rel_delta",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "SwitchableJumpPad",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffffff",
+            "id": 36,
+            "members": [
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "border_pixels",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "fade_despawn",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "fade_skip_animation",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "fade_time",
+                    "type": "string",
+                    "value": "266.666666ms"
+                },
+                {
+                    "name": "image",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "image_dir",
+                    "type": "string",
+                    "value": "sprites"
+                },
+                {
+                    "name": "image_region",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.EN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.ES",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.NW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SE",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.SW",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WN",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "img.WS",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "invert",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "render_offset",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 4
+                }
+            ],
+            "name": "SwitchableSprite",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffffff",
+            "id": 37,
+            "members": [
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "fade_despawn",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "fade_time",
+                    "type": "string",
+                    "value": "266.666666ms"
+                },
+                {
+                    "name": "invert",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_bg",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_fg",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_font",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "SwitchableText",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffffff",
+            "id": 38,
+            "members": [
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_bg",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_fg",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_font",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "Text",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffff00",
+            "id": 39,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "reached_from",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "resize_image",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "target",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "TnihSign",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff00ff00",
+            "id": 40,
+            "members": [
+                {
+                    "name": "gravity_flip",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "velocity_factor",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "vvvvvv_gravity_flip",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "vvvvvv_velocity_factor",
+                    "type": "string",
+                    "value": "1"
+                }
+            ],
+            "name": "VVVVVV",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff0000",
+            "id": 41,
+            "members": [
+                {
+                    "name": "invert",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "switchable",
+                    "type": "bool",
+                    "value": false
+                }
+            ],
+            "name": "WarpZone",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff00ff",
+            "id": 42,
+            "members": [
+                {
+                    "name": "duration",
+                    "type": "string",
+                    "value": "1s"
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "ZoomTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff0000ff",
+            "id": 43,
+            "members": [
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "_TileMod",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        }
+    ]
 }
