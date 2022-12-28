@@ -36,9 +36,7 @@ for domain in game level; do
 		assets/locales/test/"$domain".po
 done
 
-cp -v ~/.config/AAAAXY/config.json ~/.config/AAAAXY/config.json.save
-make run ARGS='-language=test'
-cp -v ~/.config/AAAAXY/config.json.save ~/.config/AAAAXY/config.json
+make run ARGS='-language=test -save_config=false'
 
 echo >&2
 echo >&2 'Please look for lines marked ERROR in above log.'

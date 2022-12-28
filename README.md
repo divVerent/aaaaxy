@@ -118,6 +118,13 @@ Go to <https://www.transifex.com/aaaaxy/aaaaxy> to translate AAAAXY to
 your language\! You can always copy the translation files from Transifex
 to `assets/locales/<language>/` to try them out locally.
 
+Some automated verification of translation files is done at startup to
+check that text fits in boxes and format strings work properly - see the
+log output of the game in the terminal for details.
+
+A script to quickly try out your downloaded translations from Transifex
+is provided in `scripts/try-from-transifex.sh`.
+
 ## Mathematical Notes
 
 This game does not take place in the Euclidean space you're used to -

@@ -25,6 +25,10 @@ import (
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
+var (
+	saveConfig = flag.Bool("save_config", true, "allow saving the config file")
+)
+
 // LoadConfig loads the current configuration.
 func LoadConfig() (*flag.Config, error) {
 	const name = "config.json"
@@ -54,7 +58,7 @@ func loadConfigUnchecked(name string) (*flag.Config, error) {
 
 // SaveConfig writes the current configuration to a file.
 func SaveConfig() error {
-	if demo.Playing() {
+	if demo.Playing() || !*saveConfig {
 		return nil
 	}
 	config := flag.Marshal()
