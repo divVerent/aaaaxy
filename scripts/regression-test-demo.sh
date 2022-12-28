@@ -51,6 +51,7 @@ for demo in "$@"; do
 		-debug_check_image_palette \
 		-debug_check_tile_window_size \
 		-debug_check_tnih_signs \
+		-debug_check_translations \
 		-debug_log_file="$demo.$tag.log" \
 		-demo_record="$demo.$tag.actual.dem" \
 		-demo_play_regression_prefix="$demo.$tag." \
