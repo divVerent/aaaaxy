@@ -48,7 +48,7 @@ jobs:
       run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
 
     - name: Test in language ${{ matrix.language }}
-      run: 'xvfb-run env LC_ALL=$language sh scripts/regression-test-demo.sh linux-amd64-$language "translated to" ./aaaaxy benchmark.dem'
+      run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64-$language "translated to" "./aaaaxy -language=$language" benchmark.dem'
 
     - name: Archive Results
       if: ${{ always() }}
