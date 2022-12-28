@@ -8518,7 +8518,7 @@
   <object id="3185" gid="312" x="3984" y="2128" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="2992"/>
-    <property name="text" value="Ganz einfach, wenn man's doppelt nimmt."/>
+    <property name="text" value="Simplex, duplex,{{BR}}oh so complex."/>
    </properties>
   </object>
   <object id="3186" name="brlogenshfegle" type="Checkpoint" x="3776" y="2112" width="32" height="64">
