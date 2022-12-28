@@ -18,7 +18,7 @@ jobs:
       run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
 
     - name: Set up Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v3
       with:
         go-version: '>=1.19'
         check-latest: true
@@ -40,7 +40,7 @@ jobs:
 
     - name: Archive Results
       if: ${{ always() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: regression-test-results-benchmark-linux-amd64
         path: |
