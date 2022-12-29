@@ -1178,7 +1178,7 @@
     <property name="text" value="Draaains"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
-    <property name="text_font" value="Regular"/>
+    <property name="text_font" value="Small"/>
    </properties>
   </object>
   <object id="317" gid="312" x="4448" y="7152" width="32" height="32">
