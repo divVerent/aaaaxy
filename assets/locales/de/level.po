@@ -240,7 +240,7 @@ msgstr "Eine Abkürzung?"
 
 #: assets/maps/level.tmx:1178
 msgid "Draaains"
-msgstr "Abfluss"
+msgstr "Abflusss"
 
 #. https://undertale.com/
 #: assets/maps/level.tmx:1188
