@@ -29,14 +29,14 @@ lang=$2
 
 prefix=for_use_aaaaxy_assets-locales
 
-mkdir -p assets/locales/test
+mkdir -p assets/locales/"$lang"
 for domain in game level; do
 	cp -v \
 		"$dir"/"$prefix"-"$domain"-pot--main_"$lang".po \
-		assets/locales/test/"$domain".po
+		assets/locales/"$lang"/"$domain".po
 done
 
-make run ARGS='-language=test -save_config=false'
+make run ARGS="-language=$lang -save_config=false"
 
 echo >&2
 echo >&2 'Please look for lines marked ERROR in above log.'
