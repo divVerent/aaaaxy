@@ -9422,7 +9422,7 @@
     <property name="text_font" value="Bold"/>
    </properties>
   </object>
-  <object id="3857" type="Text" x="7296" y="6687" width="224" height="34">
+  <object id="3857" type="Text" x="7296" y="6688" width="224" height="32">
    <properties>
     <property name="text" value="DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"/>
     <property name="text_bg" type="color" value="#00000000"/>
@@ -9430,7 +9430,7 @@
     <property name="text_font" value="Bold"/>
    </properties>
   </object>
-  <object id="3858" type="Text" x="7200" y="6799" width="112" height="34">
+  <object id="3858" type="Text" x="7200" y="6800" width="112" height="32">
    <properties>
     <property name="text" value="LEGAL{{BR}}WAIVER"/>
     <property name="text_bg" type="color" value="#00000000"/>
