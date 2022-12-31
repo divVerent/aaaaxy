@@ -19,8 +19,11 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
+	"github.com/divVerent/aaaaxy/internal/game/misc"
+	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -195,8 +198,30 @@ func currentGraphics() graphicsSetting {
 	return 0
 }
 
-func (s graphicsSetting) apply() error {
-	flag.Set("palette", graphicsSettings[s].palette)
+func (s graphicsSetting) apply(m *Controller) error {
+	palName := graphicsSettings[s].palette
+	if palName == flag.Get[string]("palette") {
+		return nil
+	}
+	flag.Set("palette", palName)
+
+	pal := palette.ByName(palName)
+	if palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
+		err := image.PaletteChanged()
+		if err != nil {
+			return fmt.Errorf("could not reapply palette to images: %v", err)
+		}
+		misc.ClearPrecache()
+		err = engine.PaletteChanged()
+		if err != nil {
+			return fmt.Errorf("could not reapply palette to engine: %v", err)
+		}
+		err = m.PaletteChanged()
+		if err != nil {
+			return fmt.Errorf("could not reapply palette to menu: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -221,7 +246,7 @@ func (s *SettingsScreen) toggleGraphics(delta int) error {
 			s.CurrentGraphics--
 		}
 	}
-	s.CurrentGraphics.apply()
+	s.CurrentGraphics.apply(s.Controller)
 	return nil
 }
 
