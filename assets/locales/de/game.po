@@ -1,7 +1,7 @@
-#
+# 
 # Translators:
 # Rudolf Polzer, 2022
-#
+# 
 msgid ""
 msgstr ""
 "Last-Translator: Rudolf Polzer, 2022\n"
@@ -85,7 +85,7 @@ msgstr "any%"
 msgid "Auckland"
 msgstr "Auckland"
 
-#: menu/language.go:39 menu/quality.go:46
+#: menu/language.go:43 menu/quality.go:46
 msgid "Auto (%s)"
 msgstr "Automatisch (%s)"
 
@@ -149,7 +149,7 @@ msgstr "Ctrl/Shift"
 msgid "Done"
 msgstr "Fertig"
 
-#: menu/settings.go:365 menu/touchedit.go:80
+#: menu/settings.go:391 menu/touchedit.go:80
 msgid "Edit Touch Controls"
 msgstr "Virtuelles Gamepad ändern"
 
@@ -191,7 +191,7 @@ msgstr ""
 msgid "For Software Licenses"
 msgstr "Für Software-Lizenzen"
 
-#: menu/settings.go:382
+#: menu/settings.go:408
 msgid "Graphics: %s"
 msgstr "Grafik: %s"
 
@@ -223,7 +223,7 @@ msgstr "Istanbul"
 msgid "Kiritimati"
 msgstr "Kiritimati"
 
-#: menu/settings.go:401
+#: menu/settings.go:423
 msgid "Language: %s"
 msgstr "Sprache: %s"
 
@@ -243,7 +243,7 @@ msgstr "Niedrig"
 msgid "Lowest"
 msgstr "Am niedrigsten"
 
-#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:416
+#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:438
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
@@ -307,7 +307,7 @@ msgstr "Ponta Delgada"
 msgid "Port Moresby"
 msgstr "Port Moresby"
 
-#: menu/settings.go:387
+#: menu/settings.go:413
 msgid "Quality: %s"
 msgstr "Qualität: %s"
 
@@ -343,7 +343,7 @@ msgstr "Einstellungen zurücksetzen"
 msgid "Reset to Defaults"
 msgstr "Zurücksetzen"
 
-#: menu/reset.go:102 menu/settings.go:411
+#: menu/reset.go:102 menu/settings.go:433
 msgid "Reset"
 msgstr "Zurücksetzen"
 
@@ -355,7 +355,7 @@ msgstr "San Francisco"
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr "Punkte: {{Score}}{{SpeedrunCategoriesShort}} | Zeit: {{GameTime}}"
 
-#: menu/main.go:96 menu/settings.go:359
+#: menu/main.go:96 menu/settings.go:385
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -371,15 +371,15 @@ msgstr "Shift/E/Tab"
 msgid "Start"
 msgstr "Start"
 
-#: menu/savestate.go:145 menu/settings.go:406
+#: menu/savestate.go:145 menu/settings.go:428
 msgid "Switch Save State"
 msgstr "Spielstand wechseln"
 
-#: menu/settings.go:372
+#: menu/settings.go:398
 msgid "Switch to Fullscreen Mode"
 msgstr "Auf Vollbildmodus wechseln"
 
-#: menu/settings.go:374
+#: menu/settings.go:400
 msgid "Switch to Windowed Mode"
 msgstr "Auf Fenstermodus wechseln"
 
@@ -427,7 +427,7 @@ msgstr "Versuche als Nächstes"
 msgid "Turkistan"
 msgstr "Türkistan"
 
-#: menu/settings.go:392
+#: menu/settings.go:418
 msgid "Volume: %s"
 msgstr "Lautstärke: %s"
 
