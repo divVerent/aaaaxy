@@ -226,6 +226,20 @@ func Precache(s *splash.State) (splash.Status, error) {
 	return splash.Continue, nil
 }
 
+func ReloadLevel() error {
+	// Must do this when the language changed.
+	lvl, err := level.NewLoader("level").Load()
+	if err != nil {
+		return err
+	}
+	err = precacheEntities(lvl)
+	if err != nil {
+		return err
+	}
+	loadLevelCache = lvl
+	return nil
+}
+
 func PaletteChanged() error {
 	loaded, err := level.NewLoader("level").Load()
 	if err != nil {

@@ -39,10 +39,15 @@ var L Type
 // Active is the name of the current language.
 var Active Lingua
 
-func init() {
-	// The translators must always be valid objects.
+// ResetLanguage makes everything English again.
+func ResetLanguage() {
 	G = gotext.NewPo()
 	GI = G
 	L = gotext.NewPo()
 	Active = ""
+}
+
+func init() {
+	// The translators must always be valid objects.
+	ResetLanguage()
 }

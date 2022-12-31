@@ -68,12 +68,20 @@ func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
 func Init() error {
 	initLinguas()
 	locale.InitCurrent()
-	lang := locale.Lingua(*language)
+	_, err := SetLanguage(locale.Lingua(*language))
+	return err
+}
+
+func SetLanguage(lang locale.Lingua) (bool, error) {
 	if lang == "auto" {
 		lang = locale.Current
 	}
+	if locale.Active == lang {
+		return false, nil
+	}
+	locale.ResetLanguage()
 	initLocaleDomain(lang, locale.G, "game")
 	initLocaleDomain(lang, locale.L, "level")
 	locale.Active = lang
-	return locale.Audit()
+	return true, locale.Audit()
 }

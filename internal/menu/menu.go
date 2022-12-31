@@ -50,14 +50,15 @@ type MenuScreen interface {
 }
 
 type Controller struct {
-	initialized   bool
-	World         engine.World
-	Screen        MenuScreen
-	moveSound     *sound.Sound
-	activateSound *sound.Sound
-	blurFrame     int
-	creditsBlur   bool
-	needReloadMap bool
+	initialized     bool
+	World           engine.World
+	Screen          MenuScreen
+	moveSound       *sound.Sound
+	activateSound   *sound.Sound
+	blurFrame       int
+	creditsBlur     bool
+	needReloadLevel bool
+	needReloadGame  bool
 }
 
 func (c *Controller) Update() error {
@@ -206,6 +207,15 @@ func (c *Controller) initGame(f resetFlag) error {
 	// Stop the timer.
 	c.World.TimerStarted = false
 
+	// Reload the level if really needed.
+	if c.needReloadLevel {
+		err := engine.ReloadLevel()
+		if err != nil {
+			return err
+		}
+		c.needReloadLevel = false
+	}
+
 	// Initialize the world.
 	err := c.World.Init(*saveState)
 	if err != nil {
@@ -220,8 +230,7 @@ func (c *Controller) initGame(f resetFlag) error {
 		}
 	}
 
-	// Now we're good.
-	c.needReloadMap = false
+	c.needReloadGame = false
 
 	return nil
 }
@@ -259,7 +268,7 @@ func (c *Controller) SwitchSaveState(state int) error {
 
 // SwitchToGame switches to the game without teleporting.
 func (c *Controller) SwitchToGame() error {
-	if c.needReloadMap {
+	if c.needReloadGame {
 		err := c.initGame(loadGame)
 		if err != nil {
 			return err
@@ -271,7 +280,7 @@ func (c *Controller) SwitchToGame() error {
 
 // SwitchToCheckpoint switches to a specific checkpoint.
 func (c *Controller) SwitchToCheckpoint(cp string) error {
-	if c.needReloadMap {
+	if c.needReloadGame {
 		err := c.initGame(loadGame)
 		if err != nil {
 			return err
@@ -355,10 +364,16 @@ func (c *Controller) QueryMouseItem(item interface{}, count int) Direction {
 	return NotClicked
 }
 
-func (c *Controller) PaletteChanged() error {
-	// Reinitialize world when going back to game so palette change applies
-	// fully. While under menu blur, some stuff will be slightly glitchy (e.g.
-	// gradient), but that's better than black screen.
-	c.needReloadMap = true
+func (c *Controller) GameChanged() error {
+	// Reinitialize world when going back to game so palette or language change
+	// applies fully. While under menu blur, some stuff will be slightly
+	// glitchy (e.g. gradient), but that's better than black screen.
+	c.needReloadGame = true
+	return nil
+}
+
+func (c *Controller) LevelChanged() error {
+	c.GameChanged()
+	c.needReloadLevel = true
 	return nil
 }

@@ -206,22 +206,23 @@ func (s graphicsSetting) apply(m *Controller) error {
 	flag.Set("palette", palName)
 
 	pal := palette.ByName(palName)
-	if palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
-		err := image.PaletteChanged()
-		if err != nil {
-			return fmt.Errorf("could not reapply palette to images: %v", err)
-		}
-		misc.ClearPrecache()
-		err = engine.PaletteChanged()
-		if err != nil {
-			return fmt.Errorf("could not reapply palette to engine: %v", err)
-		}
-		err = m.PaletteChanged()
-		if err != nil {
-			return fmt.Errorf("could not reapply palette to menu: %v", err)
-		}
+	if !palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
+		return nil
 	}
 
+	err := image.PaletteChanged()
+	if err != nil {
+		return fmt.Errorf("could not reapply palette to images: %v", err)
+	}
+	misc.ClearPrecache()
+	err = engine.PaletteChanged()
+	if err != nil {
+		return fmt.Errorf("could not reapply palette to engine: %v", err)
+	}
+	err = m.GameChanged()
+	if err != nil {
+		return fmt.Errorf("could not reapply palette to menu: %v", err)
+	}
 	return nil
 }
 
@@ -332,7 +333,7 @@ func (s *SettingsScreen) Update() error {
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(0))
 		case Language:
-			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(0))
+			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(s.Controller, 0))
 		case SaveState:
 			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&SaveStateScreen{}))
 		case Reset:
@@ -354,7 +355,7 @@ func (s *SettingsScreen) Update() error {
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(-1))
 		case Language:
-			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(-1))
+			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(s.Controller, -1))
 		}
 	}
 	if input.Right.JustHit || clicked == RightClicked {
@@ -370,7 +371,7 @@ func (s *SettingsScreen) Update() error {
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(+1))
 		case Language:
-			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(+1))
+			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(s.Controller, +1))
 		}
 	}
 	return nil
@@ -419,11 +420,7 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	if s.Item == Language {
 		fg, bg = fgs, bgs
 	}
-	needRestart := ""
-	if s.CurrentLanguage.needRestart() {
-		needRestart = locale.G.Get(" (restart to apply)")
-	}
-	font.Menu.Draw(screen, locale.G.Get("Language: %s%s", s.CurrentLanguage.name(), needRestart), m.Pos{X: CenterX, Y: ItemBaselineY(Language, SettingsCount)}, true, fg, bg)
+	font.Menu.Draw(screen, locale.G.Get("Language: %s", s.CurrentLanguage.name()), m.Pos{X: CenterX, Y: ItemBaselineY(Language, SettingsCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == SaveState {
 		fg, bg = fgs, bgs

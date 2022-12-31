@@ -1,7 +1,7 @@
-# 
+#
 # Translators:
 # Rudolf Polzer, 2022
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Rudolf Polzer, 2022\n"
@@ -20,10 +20,6 @@ msgid ""
 msgstr ""
 " "
 "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöüß"
-
-#: menu/settings.go:399
-msgid " (restart to apply)"
-msgstr " (Neustart erforderlich)"
 
 #: fun/string.go:158 playerstate/playerstate.go:350
 msgid " and "
@@ -228,8 +224,8 @@ msgid "Kiritimati"
 msgstr "Kiritimati"
 
 #: menu/settings.go:401
-msgid "Language: %s%s"
-msgstr "Sprache: %s%s"
+msgid "Language: %s"
+msgstr "Sprache: %s"
 
 #: menu/credits.go:73
 msgid "Level Version: %d"
