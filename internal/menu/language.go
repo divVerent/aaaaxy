@@ -27,7 +27,7 @@ type languageSetting struct {
 func (l *languageSetting) init() {
 	l.linguas = append([]locale.Lingua{"auto"}, locale.LinguasSorted()...)
 	for i, lingua := range l.linguas {
-		if flag.Get("language").(string) == string(lingua) {
+		if flag.Get[string]("language") == string(lingua) {
 			l.current = i
 		}
 	}
@@ -68,7 +68,7 @@ func (l *languageSetting) toggle(delta int) error {
 }
 
 func (l *languageSetting) needRestart() bool {
-	lingua := locale.Lingua(flag.Get("language").(string))
+	lingua := locale.Lingua(flag.Get[string]("language"))
 	if lingua == "auto" {
 		lingua = locale.Current
 	}

@@ -66,16 +66,16 @@ func currentQuality() qualitySetting {
 }
 
 func currentActualQuality() qualitySetting {
-	if flag.Get("screen_filter").(string) == "linear2xcrt" {
+	if flag.Get[string]("screen_filter") == "linear2xcrt" {
 		return maxQuality
 	}
-	if flag.Get("draw_outside").(bool) {
+	if flag.Get[bool]("draw_outside") {
 		return highQuality
 	}
-	if flag.Get("draw_blurs").(bool) {
+	if flag.Get[bool]("draw_blurs") {
 		return mediumQuality
 	}
-	if flag.Get("expand_using_vertices_accurately").(bool) {
+	if flag.Get[bool]("expand_using_vertices_accurately") {
 		return lowQuality
 	}
 	return lowestQuality

@@ -181,7 +181,7 @@ func (s graphicsSetting) String() string {
 }
 
 func currentGraphics() graphicsSetting {
-	pal := flag.Get("palette").(string)
+	pal := flag.Get[string]("palette")
 	for i, s := range graphicsSettings {
 		if s.palette == pal {
 			return graphicsSetting(i)
@@ -248,12 +248,12 @@ func toggleQuality(delta int) error {
 }
 
 func currentVolume() string {
-	v := flag.Get("volume").(float64)
+	v := flag.Get[float64]("volume")
 	return fmt.Sprintf("%.0f%%", v*100)
 }
 
 func toggleVolume(delta int) error {
-	v := flag.Get("volume").(float64)
+	v := flag.Get[float64]("volume")
 	switch delta {
 	case 0:
 		v += 0.1

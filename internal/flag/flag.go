@@ -106,13 +106,14 @@ func Set(name string, value interface{}) error {
 }
 
 // Get loads a flag by name.
-func Get(name string) interface{} {
+func Get[T any](name string) T {
 	f := flagSet.Lookup(name)
 	if f == nil {
 		log.Errorf("queried non-existing flag: %v", name)
-		return ""
+		var zeroValue T
+		return zeroValue
 	}
-	return f.Value.(flag.Getter).Get()
+	return f.Value.(flag.Getter).Get().(T)
 }
 
 // Config is a JSON serializable type containing the flags.
