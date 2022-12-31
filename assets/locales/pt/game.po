@@ -1,8 +1,8 @@
-#
+# 
 # Translators:
 # yy0zz, 2022
 # Rudolf Polzer, 2022
-#
+# 
 msgid ""
 msgstr ""
 "Last-Translator: Rudolf Polzer, 2022\n"
@@ -86,7 +86,7 @@ msgstr "Qualquer%"
 msgid "Auckland"
 msgstr "Auckland"
 
-#: menu/language.go:39 menu/quality.go:46
+#: menu/language.go:43 menu/quality.go:46
 msgid "Auto (%s)"
 msgstr "Auto (%s)"
 
@@ -150,7 +150,7 @@ msgstr "Ctrl/Shift"
 msgid "Done"
 msgstr "Pronto"
 
-#: menu/settings.go:365 menu/touchedit.go:80
+#: menu/settings.go:391 menu/touchedit.go:80
 msgid "Edit Touch Controls"
 msgstr "Editar Controles de Toque"
 
@@ -192,9 +192,9 @@ msgstr ""
 msgid "For Software Licenses"
 msgstr "Para Licenças de Software"
 
-#: menu/settings.go:382
+#: menu/settings.go:408
 msgid "Graphics: %s"
-msgstr "Gráfico: %s"
+msgstr "Gráficos: %s"
 
 #: fun/string.go:71
 msgid "Halifax"
@@ -206,7 +206,7 @@ msgstr "Hanói"
 
 #: menu/quality.go:50
 msgid "High"
-msgstr "Alto"
+msgstr "Alta"
 
 #: fun/string.go:59
 msgid "Honolulu"
@@ -224,7 +224,7 @@ msgstr "Istambul"
 msgid "Kiritimati"
 msgstr "Kiritimati"
 
-#: menu/settings.go:401
+#: menu/settings.go:423
 msgid "Language: %s"
 msgstr "Língua: %s"
 
@@ -238,13 +238,13 @@ msgstr "Londres"
 
 #: menu/quality.go:54
 msgid "Low"
-msgstr "Baixo"
+msgstr "Baixa"
 
 #: menu/quality.go:56
 msgid "Lowest"
-msgstr "Baixíssimo"
+msgstr "Baixíssima"
 
-#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:416
+#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:438
 msgid "Main Menu"
 msgstr "Menu Principal"
 
@@ -254,7 +254,7 @@ msgstr "Máx"
 
 #: menu/quality.go:52
 msgid "Medium"
-msgstr "Médio"
+msgstr "Média"
 
 #: fun/string.go:69
 msgid "New York"
@@ -308,7 +308,7 @@ msgstr "Ponta Delgada"
 msgid "Port Moresby"
 msgstr "Porto Moresby"
 
-#: menu/settings.go:387
+#: menu/settings.go:413
 msgid "Quality: %s"
 msgstr "Qualidade: %s"
 
@@ -318,23 +318,23 @@ msgstr "Sair"
 
 #: menu/reset.go:107
 msgid "Reset Nothing"
-msgstr "Restaurar Nada"
+msgstr "Apagar Nada"
 
 #: menu/reset.go:130
 msgid "Reset and Lose SAVE STATE %s"
-msgstr "Restaurar e Perder ESTADO SALVO %s"
+msgstr "Apagar ESTADO SALVO %s"
 
 #: menu/reset.go:136
 msgid "Reset and Lose Save State %s (just release buttons)"
-msgstr "Restaurar e Perder Estado Salvo %s (solte os botões)"
+msgstr "Apagar Estado Salvo %s (solte os botões)"
 
 #: menu/reset.go:138
 msgid "Reset and Lose Save State %s (think about it for %d sec)"
-msgstr "Restaurar e Perder Estado Salvo %s (pense por %d s)"
+msgstr "Apagar Estado Salvo %s (pense por %d s)"
 
 #: menu/reset.go:141
 msgid "Reset and Lose Save State %s"
-msgstr "Restaurar e Perder Estado Salvo %s"
+msgstr "Apagar Estado Salvo %s"
 
 #: menu/reset.go:112
 msgid "Reset and Lose Settings"
@@ -344,7 +344,7 @@ msgstr "Restaurar e Perder Definições"
 msgid "Reset to Defaults"
 msgstr "Restaurar ao Padrão"
 
-#: menu/reset.go:102 menu/settings.go:411
+#: menu/reset.go:102 menu/settings.go:433
 msgid "Reset"
 msgstr "Apagar dados"
 
@@ -356,7 +356,7 @@ msgstr "São Francisco"
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr "Pontuação: {{Score}}{{SpeedrunCategoriesShort}} | Tempo: {{GameTime}}"
 
-#: menu/main.go:96 menu/settings.go:359
+#: menu/main.go:96 menu/settings.go:385
 msgid "Settings"
 msgstr "Ajustes"
 
@@ -372,15 +372,15 @@ msgstr "Shift/E/Tab"
 msgid "Start"
 msgstr "Começar"
 
-#: menu/savestate.go:145 menu/settings.go:406
+#: menu/savestate.go:145 menu/settings.go:428
 msgid "Switch Save State"
 msgstr "Mudar Estado Salvo"
 
-#: menu/settings.go:372
+#: menu/settings.go:398
 msgid "Switch to Fullscreen Mode"
 msgstr "Mudar para Tela Cheia"
 
-#: menu/settings.go:374
+#: menu/settings.go:400
 msgid "Switch to Windowed Mode"
 msgstr "Mudar para Modo de Janela"
 
@@ -428,7 +428,7 @@ msgstr "Tente Em Seguida"
 msgid "Turkistan"
 msgstr "Turquistão"
 
-#: menu/settings.go:392
+#: menu/settings.go:418
 msgid "Volume: %s"
 msgstr "Volume: %s"
 
