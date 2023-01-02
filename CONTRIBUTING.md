@@ -10,7 +10,7 @@ review. We use GitHub pull requests for this purpose. Consult [GitHub
 Help](https://help.github.com/articles/about-pull-requests/) for more
 information on using pull requests.
 
-### Translating
+## Translating
 
 Go to <https://www.transifex.com/aaaaxy/aaaaxy> to translate AAAAXY to
 your language\! You can always copy the translation files from Transifex
@@ -23,6 +23,8 @@ log output of the game in the terminal for details.
 A script to quickly try out your downloaded translations from Transifex
 is provided in `scripts/try-from-transifex.sh`.
 
+### Inflections
+
 Right now, some strings are used in multiple places and thus will need
 different inflection in languages like Latin and Russian; before
 translating to languages that require this, this may need to be resolved
@@ -31,6 +33,19 @@ in code first.
 This in particular applies to proper names expanded via `{{BigCity}}`
 into both `Welcome to %s` and `%s Road Rage`. If your target language
 does not inflect proper names, this simplifies things a lot.
+
+### Reordering
+
+Sometimes arguments in a format string need to be reordered when
+translating.
+
+This can be achieved using [Go's reordering
+syntax](https://pkg.go.dev/fmt#hdr-Explicit_argument_indexes). In
+particular, the following things can be done:
+
+  - `%s walks towards %s`
+  - `%[1]s walks towards %[2]s` - same but with explicit indexes
+  - `%[2]s is where %[1]s walks towards` - reordered
 
 ## Community Guidelines
 
