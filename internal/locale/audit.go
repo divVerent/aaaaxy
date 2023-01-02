@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"reflect"
 	"regexp"
+	"strconv"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -28,7 +29,7 @@ var (
 )
 
 var (
-	formatRE = regexp.MustCompile(`({{[^}]*}})|%(?:(\d+)\$)?([^a-z]*[a-z])`)
+	formatRE = regexp.MustCompile(`({{[^}]*}})|%(?:\[(\d+)\])?([^a-z]*[a-z])`)
 	badRE    = regexp.MustCompile(` {{BR}}|{{BR}} |^ | $`)
 )
 
@@ -43,10 +44,16 @@ func formats(s string) map[string]int {
 			}
 			out[match[0]]++
 		} else if match[2] != "" {
-			// Go doesn't support %1$s syntax yet, sadly.
-			out["UNSUPPORTED:"+match[0]]++
+			// Has an explicit index. No change needed.
+			out[match[0]]++
+			i, err := strconv.Atoi(match[2])
+			if err != nil {
+				log.Fatalf("failed to parse format string %q: %v", s, err)
+			}
+			index = i + 1
 		} else {
-			out[fmt.Sprintf("%%%d$%s", index, match[3])]++
+			out[fmt.Sprintf("%%[%d]%s", index, match[3])]++
+			index++
 		}
 	}
 	return out
