@@ -16,6 +16,7 @@ package fun
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"strings"
 	"text/template"
@@ -112,7 +113,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"GameTime": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("cannot use {{GameTime}} in static elements")
+				return "", errors.New("cannot use {{GameTime}} in static elements")
 			}
 			frames := ps.Frames()
 			ss, ms := frames/60, (frames%60)*1000/60
@@ -122,19 +123,19 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"Score": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("cannot use {{Score}} in static elements")
+				return "", errors.New("cannot use {{Score}} in static elements")
 			}
 			return fmt.Sprintf("%d", ps.Score()), nil
 		},
 		"SpeedrunCategoriesShort": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("cannot use {{SpeedrunsShort}} in static elements")
+				return "", errors.New("cannot use {{SpeedrunsShort}} in static elements")
 			}
 			return ps.SpeedrunCategories().DescribeShort(), nil
 		},
 		"Abilities": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("cannot use {{Abilities}} in static elements")
+				return "", errors.New("cannot use {{Abilities}} in static elements")
 			}
 			abilities := make([]string, 0, 4)
 			if ps.HasAbility("carry") {
@@ -162,7 +163,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"ExitButton": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("cannot use {{ExitButton}} in static elements")
+				return "", errors.New("cannot use {{ExitButton}} in static elements")
 			}
 			switch input.ExitButton() {
 			default: // case input.Escape:
@@ -177,7 +178,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"ActionButton": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("cannot use {{ActionButton}} in static elements")
+				return "", errors.New("cannot use {{ActionButton}} in static elements")
 			}
 			i := input.Map()
 			if i.ContainsAny(input.Gamepad) {
@@ -202,14 +203,14 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		},
 		"SpeedrunCategories": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("cannot use {{SpeedrunCategories}} in static elements")
+				return "", errors.New("cannot use {{SpeedrunCategories}} in static elements")
 			}
 			categories, _ := ps.SpeedrunCategories().Describe()
 			return categories, nil
 		},
 		"SpeedrunTryNext": func() (string, error) {
 			if ps == nil {
-				return "", fmt.Errorf("cannot use {{SpeedrunTryNext}} in static elements")
+				return "", errors.New("cannot use {{SpeedrunTryNext}} in static elements")
 			}
 			_, tryNext := ps.SpeedrunCategories().Describe()
 			return tryNext, nil

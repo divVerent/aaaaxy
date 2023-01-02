@@ -15,6 +15,7 @@
 package palette
 
 import (
+	"errors"
 	"fmt"
 	"image"
 	"image/color"
@@ -159,7 +160,7 @@ func EGA(i EGAIndex, a uint8) color.NRGBA {
 
 func Parse(s string, name string) (color.NRGBA, error) {
 	if s == "" {
-		return color.NRGBA{}, fmt.Errorf("no color specified")
+		return color.NRGBA{}, errors.New("no color specified")
 	}
 	// Trailing ! means "do not map according to palette".
 	p := len(s) - 1

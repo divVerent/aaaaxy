@@ -16,6 +16,7 @@ package shader
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"text/template"
@@ -39,7 +40,7 @@ var cache = map[shaderPath]*ebiten.Shader{}
 
 func Load(name string, params interface{}) (*ebiten.Shader, error) {
 	if !*debugUseShaders {
-		return nil, fmt.Errorf("shader support has been turned off using --debug_use_shaders=false")
+		return nil, errors.New("shader support has been turned off using --debug_use_shaders=false")
 	}
 	sp := shaderPath{name, fmt.Sprint(params)}
 	if shader, found := cache[sp]; found {

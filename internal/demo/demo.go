@@ -16,6 +16,7 @@ package demo
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 
@@ -68,7 +69,7 @@ func Init() error {
 	}
 	if *demoRecord != "" {
 		if is, _ := flag.Cheating(); is {
-			return fmt.Errorf("cannot record a demo while cheating")
+			return errors.New("cannot record a demo while cheating")
 		}
 		var err error
 		demoRecorderFile, err = os.Create(*demoRecord)

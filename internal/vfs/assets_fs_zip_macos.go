@@ -47,7 +47,7 @@ import "C"
 func openAssetsZip() (*os.File, error) {
 	pathCStr := C.assets_zip_path()
 	if pathCStr == nil {
-		return nil, fmt.Errorf("could not find aaaaxy.dat: PathForResource:ofType: failed")
+		return nil, errors.New("could not find aaaaxy.dat: PathForResource:ofType: failed")
 	}
 	defer C.free(unsafe.Pointer(pathCStr))
 	return os.Open(C.GoString(pathCStr))

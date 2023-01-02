@@ -53,36 +53,36 @@ var (
 
 	snaps = []m.Delta{
 		// Distance: 0
-		m.Delta{DX: 0, DY: 0},
+		{DX: 0, DY: 0},
 		// Distance: 1, always enumerated clockwise starting at 12.
-		m.Delta{DX: 0, DY: -1},
-		m.Delta{DX: 1, DY: 0},
-		m.Delta{DX: 0, DY: 1},
-		m.Delta{DX: -1, DY: 0},
+		{DX: 0, DY: -1},
+		{DX: 1, DY: 0},
+		{DX: 0, DY: 1},
+		{DX: -1, DY: 0},
 		// Distance: sqrt(2), always enumerated clockwise starting at 12.
-		m.Delta{DX: 1, DY: -1},
-		m.Delta{DX: 1, DY: 1},
-		m.Delta{DX: -1, DY: 1},
-		m.Delta{DX: -1, DY: -1},
+		{DX: 1, DY: -1},
+		{DX: 1, DY: 1},
+		{DX: -1, DY: 1},
+		{DX: -1, DY: -1},
 		// Distance: 2, always enumerated clockwise starting at 12.
-		m.Delta{DX: 0, DY: -2},
-		m.Delta{DX: 2, DY: 0},
-		m.Delta{DX: 0, DY: 2},
-		m.Delta{DX: -2, DY: 0},
+		{DX: 0, DY: -2},
+		{DX: 2, DY: 0},
+		{DX: 0, DY: 2},
+		{DX: -2, DY: 0},
 		// Distance: sqrt(5), always enumerated clockwise starting at 12.
-		m.Delta{DX: 1, DY: -2},
-		m.Delta{DX: 2, DY: -1},
-		m.Delta{DX: 2, DY: 1},
-		m.Delta{DX: 1, DY: 2},
-		m.Delta{DX: -1, DY: 2},
-		m.Delta{DX: -2, DY: 1},
-		m.Delta{DX: -2, DY: -1},
-		m.Delta{DX: -1, DY: -2},
+		{DX: 1, DY: -2},
+		{DX: 2, DY: -1},
+		{DX: 2, DY: 1},
+		{DX: 1, DY: 2},
+		{DX: -1, DY: 2},
+		{DX: -2, DY: 1},
+		{DX: -2, DY: -1},
+		{DX: -1, DY: -2},
 		// Distance: sqrt(8), always enumerated clockwise starting at 12.
-		m.Delta{DX: 2, DY: -2},
-		m.Delta{DX: 2, DY: 2},
-		m.Delta{DX: -2, DY: 2},
-		m.Delta{DX: -2, DY: -2},
+		{DX: 2, DY: -2},
+		{DX: 2, DY: 2},
+		{DX: -2, DY: 2},
+		{DX: -2, DY: -2},
 	}
 )
 

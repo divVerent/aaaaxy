@@ -15,6 +15,7 @@
 package math
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 )
@@ -135,7 +136,7 @@ func ParseOrientations(s string) (Orientations, error) {
 	}
 	orientations := strings.Split(s, " ")
 	if len(orientations) == 0 {
-		return nil, fmt.Errorf("unsupported orientation list: empty")
+		return nil, errors.New("unsupported orientation list: empty")
 	}
 	out := make([]Orientation, len(orientations))
 	for i, orientation := range orientations {

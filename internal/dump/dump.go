@@ -15,6 +15,7 @@
 package dump
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -87,10 +88,10 @@ func InitEarly(p Params) error {
 
 	if *dumpMedia != "" {
 		if *dumpVideo != "" || *dumpAudio != "" {
-			return fmt.Errorf("-dump_media is mutually exclusive with -dump_video/-dump_audio")
+			return errors.New("-dump_media is mutually exclusive with -dump_video/-dump_audio")
 		}
 		if *dumpAudioCodecSettings == "" && *dumpVideoCodecSettings == "" {
-			return fmt.Errorf("not both of -dump_audio_codec_settings and -dump_video_codec_settings may be empty - we need at least one stream")
+			return errors.New("not both of -dump_audio_codec_settings and -dump_video_codec_settings may be empty - we need at least one stream")
 		}
 		var err error
 		if *dumpAudioCodecSettings != "" {

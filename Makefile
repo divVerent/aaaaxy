@@ -82,6 +82,10 @@ clean:
 .PHONY: vet
 vet:
 	$(GO) vet ./...
+	# TODO make it bail out when something is found.
+	gofmt -d -s $(SOURCES)
+	gofmt -d -r 'fmt.Sprintf(s) -> s' $(SOURCES)
+	gofmt -d -r 'fmt.Errorf(s) -> errors.New(s)' $(SOURCES)
 
 .PHONY: mod-tidy
 mod-tidy:

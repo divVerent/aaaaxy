@@ -195,7 +195,7 @@ var loadLevelCache *level.Level
 
 func loadLevel() (*level.Level, error) {
 	if loadLevelCache == nil {
-		return nil, fmt.Errorf("trying to load level but nothing has been precached")
+		return nil, errors.New("trying to load level but nothing has been precached")
 	}
 	// Verify that the level hasn't changed.
 	// If this hits when resetting the game, most likely Clone doesn't properly clone some state.

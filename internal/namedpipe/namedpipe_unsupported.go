@@ -27,7 +27,7 @@ type Fifo struct {
 }
 
 func New(name string, bufCount, bufSize int, timeout time.Duration) (*Fifo, error) {
-	return nil, fmt.Errorf("named pipes are not supported on this OS")
+	return nil, errors.New("named pipes are not supported on this OS")
 }
 
 func (f *Fifo) Path() string {
@@ -35,9 +35,9 @@ func (f *Fifo) Path() string {
 }
 
 func (f *Fifo) Write(p []byte) (int, error) {
-	return 0, fmt.Errorf("named pipes are not supported on this OS")
+	return 0, errors.New("named pipes are not supported on this OS")
 }
 
 func (f *Fifo) Close() error {
-	return fmt.Errorf("named pipes are not supported on this OS")
+	return errors.New("named pipes are not supported on this OS")
 }

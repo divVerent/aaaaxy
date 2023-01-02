@@ -15,6 +15,7 @@
 package level
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/fardog/tmx"
@@ -123,7 +124,7 @@ type SaveGameData struct {
 // SaveGame returns the current state as a SaveGame.
 func (l *Level) SaveGame() (*SaveGame, error) {
 	if l.SaveGameVersion != 1 {
-		return nil, fmt.Errorf("please FIXME! On the next SaveGameVersion, please remove the SaveGameData v0 support, make all uint64 hashes `json:\",string\"`, and remove this check too")
+		return nil, errors.New("please FIXME! On the next SaveGameVersion, please remove the SaveGameData v0 support, make all uint64 hashes `json:\",string\"`, and remove this check too")
 	}
 	save := &SaveGame{
 		SaveGameDataV1: SaveGameDataV1{
@@ -220,14 +221,14 @@ func (l *Level) LoadGame(save *SaveGame) error {
 			return err
 		}
 		if infoHash != save.InfoHash {
-			return fmt.Errorf("someone tampered with the save game info")
+			return errors.New("someone tampered with the save game info")
 		}
 		stateHash, err := hashstructure.Hash(save.State, hashstructure.FormatV2, nil)
 		if err != nil {
 			return err
 		}
 		if stateHash != save.StateHash {
-			return fmt.Errorf("someone tampered with the save game state")
+			return errors.New("someone tampered with the save game state")
 		}
 	}
 	if save.GameVersion != version.Revision() {
@@ -326,10 +327,10 @@ func FetchTileset(ts *tmx.TileSet) error {
 	}
 	// ts.Properties doesn't matter.
 	if ts.TileOffset.X != 0 || ts.TileOffset.Y != 0 {
-		return fmt.Errorf("unsupported tileset: got a tile offset")
+		return errors.New("unsupported tileset: got a tile offset")
 	}
 	if ts.Image.Source != "" {
-		return fmt.Errorf("unsupported tileset: got single image, want image collection")
+		return errors.New("unsupported tileset: got single image, want image collection")
 	}
 	// ts.TerrainTypes doesn't matter (editor only).
 	// ts.Tiles used later.
@@ -367,12 +368,12 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 	}
 	layer := &t.Layers[0]
 	if layer.X != 0 || layer.Y != 0 {
-		return nil, fmt.Errorf("unsupported map: layer has been shifted")
+		return nil, errors.New("unsupported map: layer has been shifted")
 	}
 	// layer.Width, layer.Height used later.
 	// layer.Opacity, layer.Visible not used (we allow it though as it may help in the editor).
 	if layer.OffsetX != 0 || layer.OffsetY != 0 {
-		return nil, fmt.Errorf("unsupported map: layer has an offset")
+		return nil, errors.New("unsupported map: layer has an offset")
 	}
 	// layer.Properties not used.
 	// layer.RawData not used.
@@ -392,7 +393,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 	if prop := t.Properties.WithName("checkpoint_locations_hash"); prop != nil {
 		_, err := fmt.Sscanf(prop.Value, "%d", &checkpointLocationsHash)
 		if err != nil {
-			return nil, fmt.Errorf("unsupported map: could not parse checkpoint_locations_hash")
+			return nil, errors.New("unsupported map: could not parse checkpoint_locations_hash")
 		}
 	}
 	level := Level{
@@ -418,10 +419,10 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		// td.Tile.Properties used later.
 		// td.Tile.Image used later.
 		if len(td.Tile.Animation) != 0 {
-			return nil, fmt.Errorf("unsupported tileset: got an animation")
+			return nil, errors.New("unsupported tileset: got an animation")
 		}
 		if len(td.Tile.ObjectGroup.Objects) != 0 {
-			return nil, fmt.Errorf("unsupported tileset: got objects in a tile")
+			return nil, errors.New("unsupported tileset: got objects in a tile")
 		}
 		// td.Tile.RawTerrainType not used (editor only).
 		pos := m.Pos{X: i % layer.Width, Y: i / layer.Width}
@@ -474,12 +475,12 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		og := &t.ObjectGroups[i]
 		// og.Name, og.Color not used (editor only).
 		if og.X != 0 || og.Y != 0 {
-			return nil, fmt.Errorf("unsupported map: object group has been shifted")
+			return nil, errors.New("unsupported map: object group has been shifted")
 		}
 		// og.Width, og.Height not used.
 		// og.Opacity, og.Visible not used (we allow it though as it may help in the editor).
 		if og.OffsetX != 0 || og.OffsetY != 0 {
-			return nil, fmt.Errorf("unsupported map: object group has an offset")
+			return nil, errors.New("unsupported map: object group has an offset")
 		}
 		// og.DrawOrder not used (we use our own z index).
 		// og.Properties not used.

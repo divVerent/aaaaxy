@@ -58,7 +58,7 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 	}
 	if state.Type() != js.TypeString {
 		log.Errorf("unexpected localStorage type: got %v, want string", state.Type())
-		return nil, fmt.Errorf("invalid type")
+		return nil, errors.New("invalid type")
 	}
 	return []byte(state.String()), nil
 }
