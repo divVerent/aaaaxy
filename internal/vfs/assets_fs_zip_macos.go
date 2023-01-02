@@ -18,7 +18,7 @@
 package vfs
 
 import (
-	"fmt"
+	"errors"
 	"os"
 	"unsafe"
 )
