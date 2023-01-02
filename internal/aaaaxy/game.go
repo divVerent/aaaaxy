@@ -33,6 +33,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/menu"
@@ -417,14 +418,14 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	if *showFPS {
 		timing.Section("fps")
 		font.DebugSmall.Draw(drawDest,
-			fmt.Sprintf("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
+			locale.G.Get("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
 			m.Pos{X: engine.GameWidth - 48, Y: engine.GameHeight - 4}, true,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 0))
 	}
 	if *showTime {
 		timing.Section("time")
 		font.DebugSmall.Draw(drawDest,
-			fmt.Sprintf(fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}")),
+			fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}"),
 			m.Pos{X: 32, Y: engine.GameHeight - 4}, true,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 0))
 	}

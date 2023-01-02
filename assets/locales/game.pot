@@ -16,6 +16,14 @@ msgstr ""
 msgid " and "
 msgstr ""
 
+#: aaaaxy/game.go:421
+msgid "%.1f fps, %.1f tps"
+msgstr ""
+
+#: fun/string.go:121
+msgid "%d:%02d:%02d.%03d"
+msgstr ""
+
 #: menu/map.go:272
 msgid "%s (%d/%d)"
 msgstr ""

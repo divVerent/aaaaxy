@@ -118,7 +118,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			ss, ms := frames/60, (frames%60)*1000/60
 			mm, ss := ss/60, ss%60
 			hh, mm := mm/60, mm%60
-			return fmt.Sprintf("%d:%02d:%02d.%03d", hh, mm, ss, ms), nil
+			return locale.G.Get("%d:%02d:%02d.%03d", hh, mm, ss, ms), nil
 		},
 		"Score": func() (string, error) {
 			if ps == nil {
