@@ -7,12 +7,17 @@ msgstr ""
 "Language: \n"
 "X-Generator: xgotext\n"
 
+#. Character set used by the game for font glyph caching purposes. Should
+#. contain all characters used in any translation. In general, use the msgid
+#. and append all language specific special characters to it.
 #: font/charset.go:23
-msgid " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+msgid ""
+" !\"#$%&'()*+,-./0123456789:;<=>?"
+"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 
-#: fun/string.go:158
-#: playerstate/playerstate.go:350
+#. Last separator when building a list.
+#: fun/string.go:159 playerstate/playerstate.go:350
 msgid " and "
 msgstr ""
 
@@ -20,7 +25,7 @@ msgstr ""
 msgid "%.1f fps, %.1f tps"
 msgstr ""
 
-#: fun/string.go:121
+#: fun/string.go:122
 msgid "%d:%02d:%02d.%03d"
 msgstr ""
 
@@ -28,8 +33,8 @@ msgstr ""
 msgid "%s (%d/%d)"
 msgstr ""
 
-#: fun/string.go:158
-#: playerstate/playerstate.go:350
+#. Other separator when building a list.
+#: fun/string.go:159 playerstate/playerstate.go:350
 msgid ", "
 msgstr ""
 
@@ -41,8 +46,7 @@ msgstr ""
 msgid "4: %s"
 msgstr ""
 
-#: menu/quality.go:58
-#: playerstate/playerstate.go:270
+#: menu/quality.go:58 playerstate/playerstate.go:270
 msgid "???"
 msgstr ""
 
@@ -70,11 +74,13 @@ msgstr ""
 msgid "All Secrets"
 msgstr ""
 
-#: fun/string.go:57
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:58
 msgid "Alofi"
 msgstr ""
 
-#: fun/string.go:61
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:62
 msgid "Anchorage"
 msgstr ""
 
@@ -82,48 +88,53 @@ msgstr ""
 msgid "Any%"
 msgstr ""
 
-#: fun/string.go:103
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:104
 msgid "Auckland"
 msgstr ""
 
-#: menu/language.go:43
-#: menu/quality.go:46
+#: menu/language.go:43 menu/quality.go:46
 msgid "Auto (%s)"
 msgstr ""
 
-#: fun/string.go:187
+#: fun/string.go:188
 msgid "B"
 msgstr ""
 
-#: fun/string.go:184
+#: fun/string.go:185
 msgid "B/X"
 msgstr ""
 
-#: fun/string.go:175
+#: fun/string.go:176
 msgid "Back"
 msgstr ""
 
-#: fun/string.go:171
+#: fun/string.go:172
 msgid "Backspace"
 msgstr ""
 
-#: fun/string.go:55
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:56
 msgid "Baker Island"
 msgstr ""
 
-#: fun/string.go:95
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:96
 msgid "Beijing"
 msgstr ""
 
-#: fun/string.go:81
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:82
 msgid "Berlin"
 msgstr ""
 
-#: fun/string.go:91
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:92
 msgid "Bishkek"
 msgstr ""
 
-#: fun/string.go:110
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:111
 msgid "Boston"
 msgstr ""
 
@@ -135,7 +146,8 @@ msgstr ""
 msgid "Cheat%"
 msgstr ""
 
-#: fun/string.go:67
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:68
 msgid "Chicago"
 msgstr ""
 
@@ -143,7 +155,7 @@ msgstr ""
 msgid "Credits"
 msgstr ""
 
-#: fun/string.go:190
+#: fun/string.go:191
 msgid "Ctrl/Shift"
 msgstr ""
 
@@ -151,35 +163,42 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: menu/settings.go:391
-#: menu/touchedit.go:80
+#: menu/settings.go:391 menu/touchedit.go:80
 msgid "Edit Touch Controls"
 msgstr ""
 
-#: fun/string.go:65
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:66
 msgid "Edmonton"
 msgstr ""
 
-#: fun/string.go:199
+#: fun/string.go:200
 msgid "Enter"
 msgstr ""
 
 #: game/checkpoint/checkpoint_target.go:128
-msgid "Error:\ncould not save game:\n%s"
+msgid ""
+"Error:\n"
+"could not save game:\n"
+"%s"
 msgstr ""
 
-#: fun/string.go:169
+#: fun/string.go:170
 msgid "Escape"
 msgstr ""
 
-#: fun/string.go:75
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:76
 msgid "Fernando de Noronha"
 msgstr ""
 
 #: game/player/player.go:395
-msgid "Fine, I give up, have it your way.\nAll cheats are documented in --help."
+msgid ""
+"Fine, I give up, have it your way.\n"
+"All cheats are documented in --help."
 msgstr ""
 
+#. Multi-line text: "For Software Licenses press right".
 #: menu/credits.go:66
 msgid "For Software Licenses"
 msgstr ""
@@ -188,19 +207,23 @@ msgstr ""
 msgid "Graphics: %s"
 msgstr ""
 
-#: fun/string.go:71
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:72
 msgid "Halifax"
 msgstr ""
 
-#: fun/string.go:93
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:94
 msgid "Hanoi"
 msgstr ""
 
+#. Used in context "Quality: ...".
 #: menu/quality.go:50
 msgid "High"
 msgstr ""
 
-#: fun/string.go:59
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:60
 msgid "Honolulu"
 msgstr ""
 
@@ -208,11 +231,13 @@ msgstr ""
 msgid "Impossible"
 msgstr ""
 
-#: fun/string.go:85
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:86
 msgid "Istanbul"
 msgstr ""
 
-#: fun/string.go:107
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:108
 msgid "Kiritimati"
 msgstr ""
 
@@ -224,33 +249,37 @@ msgstr ""
 msgid "Level Version: %d"
 msgstr ""
 
-#: fun/string.go:79
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:80
 msgid "London"
 msgstr ""
 
+#. Used in context "Quality: ...".
 #: menu/quality.go:54
 msgid "Low"
 msgstr ""
 
+#. Used in context "Quality: ...".
 #: menu/quality.go:56
 msgid "Lowest"
 msgstr ""
 
-#: menu/reset.go:151
-#: menu/savestate.go:170
-#: menu/settings.go:438
+#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:438
 msgid "Main Menu"
 msgstr ""
 
+#. Used in context "Quality: ...".
 #: menu/quality.go:48
 msgid "Max"
 msgstr ""
 
+#. Used in context "Quality: ...".
 #: menu/quality.go:52
 msgid "Medium"
 msgstr ""
 
-#: fun/string.go:69
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:70
 msgid "New York"
 msgstr ""
 
@@ -278,11 +307,13 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: fun/string.go:105
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:106
 msgid "Nuku'alofa"
 msgstr ""
 
-#: fun/string.go:73
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:74
 msgid "Nuuk"
 msgstr ""
 
@@ -294,11 +325,13 @@ msgstr ""
 msgid "Play"
 msgstr ""
 
-#: fun/string.go:77
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:78
 msgid "Ponta Delgada"
 msgstr ""
 
-#: fun/string.go:101
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:102
 msgid "Port Moresby"
 msgstr ""
 
@@ -310,12 +343,20 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
+#: menu/reset.go:102 menu/settings.go:433
+msgid "Reset"
+msgstr ""
+
 #: menu/reset.go:107
 msgid "Reset Nothing"
 msgstr ""
 
 #: menu/reset.go:130
 msgid "Reset and Lose SAVE STATE %s"
+msgstr ""
+
+#: menu/reset.go:141
+msgid "Reset and Lose Save State %s"
 msgstr ""
 
 #: menu/reset.go:136
@@ -326,10 +367,6 @@ msgstr ""
 msgid "Reset and Lose Save State %s (think about it for %d sec)"
 msgstr ""
 
-#: menu/reset.go:141
-msgid "Reset and Lose Save State %s"
-msgstr ""
-
 #: menu/reset.go:112
 msgid "Reset and Lose Settings"
 msgstr ""
@@ -338,39 +375,32 @@ msgstr ""
 msgid "Reset to Defaults"
 msgstr ""
 
-#: menu/reset.go:102
-#: menu/settings.go:433
-msgid "Reset"
-msgstr ""
-
-#: fun/string.go:63
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:64
 msgid "San Francisco"
 msgstr ""
 
-#: menu/main.go:109
-#: menu/savestate.go:74
+#: menu/main.go:109 menu/savestate.go:74
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr ""
 
-#: menu/main.go:96
-#: menu/settings.go:385
+#: menu/main.go:96 menu/settings.go:385
 msgid "Settings"
 msgstr ""
 
-#: fun/string.go:201
+#: fun/string.go:202
 msgid "Shift"
 msgstr ""
 
-#: fun/string.go:196
+#: fun/string.go:197
 msgid "Shift/E/Tab"
 msgstr ""
 
-#: fun/string.go:173
+#: fun/string.go:174
 msgid "Start"
 msgstr ""
 
-#: menu/savestate.go:145
-#: menu/settings.go:428
+#: menu/savestate.go:145 menu/settings.go:428
 msgid "Switch Save State"
 msgstr ""
 
@@ -382,15 +412,18 @@ msgstr ""
 msgid "Switch to Windowed Mode"
 msgstr ""
 
-#: fun/string.go:99
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:100
 msgid "Sydney"
 msgstr ""
 
-#: fun/string.go:87
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:88
 msgid "Tehran"
 msgstr ""
 
-#: fun/string.go:83
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:84
 msgid "Tel Aviv"
 msgstr ""
 
@@ -398,23 +431,24 @@ msgstr ""
 msgid "Thank You!"
 msgstr ""
 
-#: fun/string.go:150
+#: fun/string.go:151
 msgid "The Cleats"
 msgstr ""
 
-#: fun/string.go:147
+#: fun/string.go:148
 msgid "The Coil"
 msgstr ""
 
-#: fun/string.go:141
+#: fun/string.go:142
 msgid "The Gloves"
 msgstr ""
 
-#: fun/string.go:144
+#: fun/string.go:145
 msgid "The Remote"
 msgstr ""
 
-#: fun/string.go:97
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:98
 msgid "Tokyo"
 msgstr ""
 
@@ -422,7 +456,8 @@ msgstr ""
 msgid "Try Next"
 msgstr ""
 
-#: fun/string.go:89
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:90
 msgid "Turkistan"
 msgstr ""
 
@@ -458,7 +493,7 @@ msgstr ""
 msgid "Your Time"
 msgstr ""
 
-#: fun/string.go:193
+#: fun/string.go:194
 msgid "Z"
 msgstr ""
 
@@ -466,11 +501,11 @@ msgstr ""
 msgid "enumerating sounds"
 msgstr ""
 
-#: fun/string.go:160
+#: fun/string.go:161
 msgid "everything"
 msgstr ""
 
-#: level/level.go:789
+#: level/level.go:790
 msgid "hashing level"
 msgstr ""
 
@@ -490,23 +525,23 @@ msgstr ""
 msgid "initializing noise"
 msgstr ""
 
-#: level/level.go:768
+#: level/level.go:769
 msgid "loading checkpoints"
-msgstr ""
-
-#: level/level.go:740
-msgid "loading level file"
 msgstr ""
 
 #: engine/world.go:212
 msgid "loading level"
 msgstr ""
 
-#: fun/string.go:154
+#: level/level.go:741
+msgid "loading level file"
+msgstr ""
+
+#: fun/string.go:155
 msgid "nothing"
 msgstr ""
 
-#: level/level.go:756
+#: level/level.go:757
 msgid "parsing level data"
 msgstr ""
 
@@ -534,6 +569,7 @@ msgstr ""
 msgid "precaching sounds"
 msgstr ""
 
+#. Multi-line text: "For Software Licenses press right".
 #: menu/credits.go:67
 msgid "press right"
 msgstr ""

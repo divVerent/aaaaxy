@@ -1,0 +1,162 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Generator: xgotext\n"
+
+#. Character set used by the game for font glyph caching purposes. Should
+#. contain all characters used in any translation. In general, use the msgid
+#. and append all language specific special characters to it.
+msgid " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+msgstr ""
+
+#. Last separator when building a list.
+msgid " and "
+msgstr ""
+
+#. Other separator when building a list.
+msgid ", "
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Alofi"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Anchorage"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Auckland"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Baker Island"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Beijing"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Berlin"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Bishkek"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Boston"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Chicago"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Edmonton"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Fernando de Noronha"
+msgstr ""
+
+#. Multi-line text: "For Software Licenses press right".
+msgid "For Software Licenses"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Halifax"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Hanoi"
+msgstr ""
+
+#. Used in context "Quality: ...".
+msgid "High"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Honolulu"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Istanbul"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Kiritimati"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "London"
+msgstr ""
+
+#. Used in context "Quality: ...".
+msgid "Low"
+msgstr ""
+
+#. Used in context "Quality: ...".
+msgid "Lowest"
+msgstr ""
+
+#. Used in context "Quality: ...".
+msgid "Max"
+msgstr ""
+
+#. Used in context "Quality: ...".
+msgid "Medium"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "New York"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Nuku'alofa"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Nuuk"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Ponta Delgada"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Port Moresby"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "San Francisco"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Sydney"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Tehran"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Tel Aviv"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Tokyo"
+msgstr ""
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+msgid "Turkistan"
+msgstr ""
+
+#. Multi-line text: "For Software Licenses press right".
+msgid "press right"
+msgstr ""

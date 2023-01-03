@@ -16,9 +16,33 @@
 xgettext --its=scripts/tmx.its --from-code=utf-8 -F \
 	-o assets/locales/level.pot assets/maps/level.tmx
 go run github.com/leonelquinteros/gotext/cli/xgotext \
-	-default game \
+	-default game_raw \
 	-in internal/ \
 	-out assets/locales/
+
+# Passing in game_raw.pot in two different ways so that
+# messages that just have a comment are not emitted.
+# This just outputs any obsolete strings in game.pot.comments.
+cat assets/locales/game_raw.pot |\
+msgcomm \
+	--less-than=2 \
+	--more-than=0 \
+	-s \
+	assets/locales/game.pot.comments \
+	assets/locales/game_raw.pot \
+	-
+
+# Passing in game_raw.pot in two different ways so that
+# messages that just have a comment are not emitted.
+cat assets/locales/game_raw.pot |\
+msgcomm \
+	--less-than=999999 \
+	--more-than=1 \
+	-s \
+	-o assets/locales/game.pot \
+	assets/locales/game.pot.comments \
+	assets/locales/game_raw.pot \
+	-
 
 LF='
 '
