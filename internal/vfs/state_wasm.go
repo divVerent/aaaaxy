@@ -18,6 +18,7 @@
 package vfs
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"syscall/js"

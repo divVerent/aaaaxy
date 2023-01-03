@@ -18,7 +18,7 @@
 package namedpipe
 
 import (
-	"fmt"
+	"errors"
 	"time"
 )
 
