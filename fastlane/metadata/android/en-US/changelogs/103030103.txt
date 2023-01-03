@@ -1,0 +1,4 @@
+  - Languages: add Portuguese! Thanks, yy0zz!
+  - Level: rephrase a German pun to an English one.
+  - Level: minor text fixes.
+  - Menu: support changing language without restarting the game.

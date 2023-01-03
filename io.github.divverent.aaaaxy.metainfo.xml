@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.43" date="2022-12-19">
-      <description><ul><li>Engine: now with a touch controls editor!</li><li>Localization: now also in German!</li><li>Accessibility: Shepard Tone now has a visual effect to indicate that a note is playing.</li><li>Engine: update Ebitengine to 2.4.15, fixing crashes and macOS framerate.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.43</url>
+    <release version="v1.3.103" date="2023-01-02">
+      <description><ul><li>Languages: add Portuguese! Thanks, yy0zz!</li><li>Level: rephrase a German pun to an English one.</li><li>Level: minor text fixes.</li><li>Menu: support changing language without restarting the game.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.103</url>
     </release>
   </releases>
 </component>
