@@ -197,7 +197,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 				return locale.G.Get("Shift/E/Tab"), nil
 			}
 			if i.ContainsAny(input.ViKeyboard) {
-				return locale.G.Get("Enter"), nil
+				return locale.G.Get("Enter/Shift"), nil
 			}
 			return locale.G.Get("Shift"), nil
 		},

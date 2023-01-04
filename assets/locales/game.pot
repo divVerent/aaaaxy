@@ -173,7 +173,7 @@ msgid "Edmonton"
 msgstr ""
 
 #: fun/string.go:200
-msgid "Enter"
+msgid "Enter/Shift"
 msgstr ""
 
 #: game/checkpoint/checkpoint_target.go:128
