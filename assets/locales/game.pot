@@ -138,7 +138,7 @@ msgstr ""
 msgid "Boston"
 msgstr ""
 
-#: menu/credits.go:74
+#: menu/credits.go:73
 msgid "Build: %s"
 msgstr ""
 
@@ -198,9 +198,8 @@ msgid ""
 "All cheats are documented in --help."
 msgstr ""
 
-#. Multi-line text: "For Software Licenses press right".
 #: menu/credits.go:66
-msgid "For Software Licenses"
+msgid "For Software Licenses{{BR}}Press Right"
 msgstr ""
 
 #: menu/settings.go:408
@@ -245,7 +244,7 @@ msgstr ""
 msgid "Language: %s"
 msgstr ""
 
-#: menu/credits.go:73
+#: menu/credits.go:72
 msgid "Level Version: %d"
 msgstr ""
 
@@ -427,7 +426,7 @@ msgstr ""
 msgid "Tel Aviv"
 msgstr ""
 
-#: menu/credits.go:112
+#: menu/credits.go:111
 msgid "Thank You!"
 msgstr ""
 
@@ -452,7 +451,7 @@ msgstr ""
 msgid "Tokyo"
 msgstr ""
 
-#: menu/credits.go:107
+#: menu/credits.go:106
 msgid "Try Next"
 msgstr ""
 
@@ -485,11 +484,11 @@ msgstr ""
 msgid "You really thought this would do something?"
 msgstr ""
 
-#: menu/credits.go:97
+#: menu/credits.go:96
 msgid "Your Speedrun Categories"
 msgstr ""
 
-#: menu/credits.go:94
+#: menu/credits.go:93
 msgid "Your Time"
 msgstr ""
 
@@ -567,9 +566,4 @@ msgstr ""
 
 #: aaaaxy/init.go:222
 msgid "precaching sounds"
-msgstr ""
-
-#. Multi-line text: "For Software Licenses press right".
-#: menu/credits.go:67
-msgid "press right"
 msgstr ""

@@ -8006,18 +8006,9 @@
   <object id="2761" name="YellowFall" gid="297" x="5728" y="336" width="176" height="16"/>
   <object id="2762" name="YellowFall" gid="295" x="5728" y="0" width="176" height="16"/>
   <object id="2763" gid="314" x="5728" y="256" width="16" height="16"/>
-  <object id="2764" type="Text" x="5696" y="240" width="80" height="16">
+  <object id="2764" type="Text" x="5696" y="240" width="80" height="48">
    <properties>
-    <property name="text" value="Funny and"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
-    <property name="text_font" value="Regular"/>
-    <property name="z_index" type="int" value="1"/>
-   </properties>
-  </object>
-  <object id="2765" type="Text" x="5696" y="272" width="80" height="16">
-   <properties>
-    <property name="text" value="original."/>
+    <property name="text" value="Funny and{{BR}}{{BR}}original."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
