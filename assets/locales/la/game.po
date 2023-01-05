@@ -103,7 +103,7 @@ msgstr "Aucopoli"
 
 #: menu/language.go:43 menu/quality.go:46
 msgid "Auto (%s)"
-msgstr "Automatice (%s)"
+msgstr "Automatica (%s)"
 
 #: fun/string.go:188
 msgid "B"
@@ -475,7 +475,7 @@ msgstr "Turcistania"
 
 #: menu/settings.go:418
 msgid "Volume: %s"
-msgstr "Fortitudo Audiendi"
+msgstr "Fortitudo Audiendi: %s"
 
 #: playerstate/playerstate.go:264
 msgid "Without Cheating Of Course"
