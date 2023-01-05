@@ -1,0 +1,582 @@
+# 
+# Translators:
+# Rudolf Polzer, 2023
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Rudolf Polzer, 2023\n"
+"Language-Team: Latin (https://www.transifex.com/aaaaxy/teams/158611/la/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: la\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: xgotext\n"
+
+#. Character set used by the game for font glyph caching purposes. Should
+#. contain all characters used in any translation. In general, use the msgid
+#. and append all language specific special characters to it.
+#: font/charset.go:23
+msgid ""
+" "
+"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+msgstr ""
+" "
+"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+
+#. Last separator when building a list.
+#: fun/string.go:159 playerstate/playerstate.go:350
+msgid " and "
+msgstr " et "
+
+#: aaaaxy/game.go:421
+msgid "%.1f fps, %.1f tps"
+msgstr "%.1f tps, %.1f rps"
+
+#: fun/string.go:122
+msgid "%d:%02d:%02d.%03d"
+msgstr "%d:%02d:%02d.%03d"
+
+#: menu/map.go:272
+msgid "%s (%d/%d)"
+msgstr "%s (%d ex %d)"
+
+#. Other separator when building a list.
+#: fun/string.go:159 playerstate/playerstate.go:350
+msgid ", "
+msgstr " et "
+
+#: playerstate/playerstate.go:262
+msgid "100%"
+msgstr "100%"
+
+#: menu/savestate.go:155
+msgid "4: %s"
+msgstr "4: %s"
+
+#: menu/quality.go:58 playerstate/playerstate.go:270
+msgid "???"
+msgstr "???"
+
+#: menu/savestate.go:150
+msgid "A: %s"
+msgstr "A: %s"
+
+#: playerstate/playerstate.go:239
+msgid "All Checkpoints"
+msgstr "Loci Omnes"
+
+#: playerstate/playerstate.go:247
+msgid "All Flipped"
+msgstr "Omnia Inversi"
+
+#: playerstate/playerstate.go:241
+msgid "All Notes"
+msgstr "Epistolia Omnia"
+
+#: playerstate/playerstate.go:243
+msgid "All Paths"
+msgstr "Viae Omnes"
+
+#: playerstate/playerstate.go:245
+msgid "All Secrets"
+msgstr "Secreta Omnia"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:58
+msgid "Alofi"
+msgstr "Alofe"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:62
+msgid "Anchorage"
+msgstr "Ancoratico"
+
+#: playerstate/playerstate.go:237
+msgid "Any%"
+msgstr "Quidquid%"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:104
+msgid "Auckland"
+msgstr "Aucopoli"
+
+#: menu/language.go:43 menu/quality.go:46
+msgid "Auto (%s)"
+msgstr "Automatice (%s)"
+
+#: fun/string.go:188
+msgid "B"
+msgstr "B"
+
+#: fun/string.go:185
+msgid "B/X"
+msgstr "B/X"
+
+#: fun/string.go:176
+msgid "Back"
+msgstr "Retrocedere"
+
+#: fun/string.go:172
+msgid "Backspace"
+msgstr "Retrocedere"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:56
+msgid "Baker Island"
+msgstr "Insula Pistoris"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:96
+msgid "Beijing"
+msgstr "Pechino"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:82
+msgid "Berlin"
+msgstr "Berolino"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:92
+msgid "Bishkek"
+msgstr "Pispheco"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:111
+msgid "Boston"
+msgstr "Bostonia"
+
+#: menu/credits.go:73
+msgid "Build: %s"
+msgstr "Aedificatum: %s"
+
+#: playerstate/playerstate.go:266
+msgid "Cheat%"
+msgstr "Fraudans%"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:68
+msgid "Chicago"
+msgstr "Sicago"
+
+#: menu/main.go:101
+msgid "Credits"
+msgstr "Crediti"
+
+#: fun/string.go:191
+msgid "Ctrl/Shift"
+msgstr "Dicio/Maior"
+
+#: menu/touchedit.go:85
+msgid "Done"
+msgstr "Satis"
+
+#: menu/settings.go:391 menu/touchedit.go:80
+msgid "Edit Touch Controls"
+msgstr "Muta Contrarotulatorem Tactilem"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:66
+msgid "Edmonton"
+msgstr "Edmontone"
+
+#: fun/string.go:200
+msgid "Enter/Shift"
+msgstr "Intra/Maior"
+
+#: game/checkpoint/checkpoint_target.go:128
+msgid ""
+"Error:\n"
+"could not save game:\n"
+"%s"
+msgstr ""
+"Error:\n"
+"salvare non potui ludum:\n"
+"%s"
+
+#: fun/string.go:170
+msgid "Escape"
+msgstr "Effugium"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:76
+msgid "Fernando de Noronha"
+msgstr "Ferdinando Noronhae"
+
+#: game/player/player.go:395
+msgid ""
+"Fine, I give up, have it your way.\n"
+"All cheats are documented in --help."
+msgstr ""
+"Cedo, vincis. Non curo.\n"
+"Quomodo fraudare  in --help expositum est."
+
+#: menu/credits.go:66
+msgid "For Software Licenses{{BR}}Press Right"
+msgstr "Ad Videndum Licentias Programmae{{BR}}Preme Dextrum"
+
+#: menu/settings.go:408
+msgid "Graphics: %s"
+msgstr "Graphica: %s"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:72
+msgid "Halifax"
+msgstr "Haliface"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:94
+msgid "Hanoi"
+msgstr "Hanoi"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go:50
+msgid "High"
+msgstr "Maior"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:60
+msgid "Honolulu"
+msgstr "Honolulo"
+
+#: playerstate/playerstate.go:268
+msgid "Impossible"
+msgstr "Impossibile"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:86
+msgid "Istanbul"
+msgstr "Constantinopoli"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:108
+msgid "Kiritimati"
+msgstr "Insula Christi Natalis"
+
+#: menu/settings.go:423
+msgid "Language: %s"
+msgstr "Lingua: %s"
+
+#: menu/credits.go:72
+msgid "Level Version: %d"
+msgstr "Versio Libellae: %s"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:80
+msgid "London"
+msgstr "Londonii"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go:54
+msgid "Low"
+msgstr "Minor"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go:56
+msgid "Lowest"
+msgstr "Minima"
+
+#: menu/reset.go:151 menu/savestate.go:170 menu/settings.go:438
+msgid "Main Menu"
+msgstr "Menu Principale"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go:48
+msgid "Max"
+msgstr "Maxima"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go:52
+msgid "Medium"
+msgstr "Media"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:70
+msgid "New York"
+msgstr "Novo Eboraco"
+
+#: playerstate/playerstate.go:259
+msgid "No Back"
+msgstr "Noli Retrocedere"
+
+#: playerstate/playerstate.go:255
+msgid "No Backspace"
+msgstr "Noli Retrocedere"
+
+#: playerstate/playerstate.go:253
+msgid "No Escape"
+msgstr "Noli Effugere"
+
+#: playerstate/playerstate.go:257
+msgid "No Start"
+msgstr "Noli Incipere"
+
+#: playerstate/playerstate.go:249
+msgid "No Teleports"
+msgstr "Noli Teleportare"
+
+#: playerstate/playerstate.go:346
+msgid "None"
+msgstr "Nihil"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:106
+msgid "Nuku'alofa"
+msgstr "Nukualofa"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:74
+msgid "Nuuk"
+msgstr "Nuuk"
+
+#: menu/map.go:268
+msgid "Pick-a-Path"
+msgstr "Via-Ductus"
+
+#: menu/main.go:91
+msgid "Play"
+msgstr "Lude"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:78
+msgid "Ponta Delgada"
+msgstr "Ponte Delicato"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:102
+msgid "Port Moresby"
+msgstr "Porta Moresbii"
+
+#: menu/settings.go:413
+msgid "Quality: %s"
+msgstr "Qualitas: %s"
+
+#: menu/main.go:106
+msgid "Quit"
+msgstr "Desere"
+
+#: menu/reset.go:102 menu/settings.go:433
+msgid "Reset"
+msgstr "Purga"
+
+#: menu/reset.go:107
+msgid "Reset Nothing"
+msgstr "Purga Nihil"
+
+#: menu/reset.go:130
+msgid "Reset and Lose SAVE STATE %s"
+msgstr "Purga Perdeque LUDUM SALVATUM %s"
+
+#: menu/reset.go:141
+msgid "Reset and Lose Save State %s"
+msgstr "Purga Perdeque Ludum Salvatum %s"
+
+#: menu/reset.go:136
+msgid "Reset and Lose Save State %s (just release buttons)"
+msgstr "Purga Perdeque Ludum Salvatum %s (dimitte claves)"
+
+#: menu/reset.go:138
+msgid "Reset and Lose Save State %s (think about it for %d sec)"
+msgstr "Purga Perdeque Ludum Salvatum %s (cogita per secundas %d)"
+
+#: menu/reset.go:112
+msgid "Reset and Lose Settings"
+msgstr "Purga Perdeque Optiones"
+
+#: menu/touchedit.go:90
+msgid "Reset to Defaults"
+msgstr "Purga et Restora"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:64
+msgid "San Francisco"
+msgstr "Sancto Francisco"
+
+#: menu/main.go:109 menu/savestate.go:74
+msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
+msgstr "Puncti: {{Score}}{{SpeedrunCategoriesShort}} | Tempus: {{GameTime}}"
+
+#: menu/main.go:96 menu/settings.go:385
+msgid "Settings"
+msgstr "Optiones"
+
+#: fun/string.go:202
+msgid "Shift"
+msgstr "Maior"
+
+#: fun/string.go:197
+msgid "Shift/E/Tab"
+msgstr "Maior/E/Tab"
+
+#: fun/string.go:174
+msgid "Start"
+msgstr "Incipe"
+
+#: menu/savestate.go:145 menu/settings.go:428
+msgid "Switch Save State"
+msgstr "Selige Ludum Salvatum"
+
+#: menu/settings.go:398
+msgid "Switch to Fullscreen Mode"
+msgstr "Vide in Tela Toto"
+
+#: menu/settings.go:400
+msgid "Switch to Windowed Mode"
+msgstr "Vide in Fenestra"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:100
+msgid "Sydney"
+msgstr "Sydneio"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:88
+msgid "Tehran"
+msgstr "Teherano"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:84
+msgid "Tel Aviv"
+msgstr "Telavivo"
+
+#: menu/credits.go:111
+msgid "Thank You!"
+msgstr "Gratias Tibi Ago!"
+
+#: fun/string.go:151
+msgid "The Cleats"
+msgstr "Caligae"
+
+#: fun/string.go:148
+msgid "The Coil"
+msgstr "Spira"
+
+#: fun/string.go:142
+msgid "The Gloves"
+msgstr "Chirothecae"
+
+#: fun/string.go:145
+msgid "The Remote"
+msgstr "Missor"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:98
+msgid "Tokyo"
+msgstr "Tocio"
+
+#: menu/credits.go:106
+msgid "Try Next"
+msgstr "Experire"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go:90
+msgid "Turkistan"
+msgstr "Turcia"
+
+#: menu/settings.go:418
+msgid "Volume: %s"
+msgstr "Fortitudo Audiendi"
+
+#: playerstate/playerstate.go:264
+msgid "Without Cheating Of Course"
+msgstr "Noli Fraudare Quaeso"
+
+#: menu/savestate.go:160
+msgid "X: %s"
+msgstr "X: %s"
+
+#: menu/savestate.go:165
+msgid "Y: %s"
+msgstr "Y: %s"
+
+#: game/player/player.go:405
+msgid "You now have 30 lives. Enjoy!"
+msgstr "Vitae triginta nunc habes. Bene sit tibi!"
+
+#: game/player/player.go:398
+msgid "You really thought this would do something?"
+msgstr "Num hoc aliquid facere putabaris?"
+
+#: menu/credits.go:96
+msgid "Your Speedrun Categories"
+msgstr "Categoriae Tuae"
+
+#: menu/credits.go:93
+msgid "Your Time"
+msgstr "Tempus Tuum"
+
+#: fun/string.go:194
+msgid "Z"
+msgstr "Z"
+
+#: sound/sound.go:234
+msgid "enumerating sounds"
+msgstr "enumero audienda"
+
+#: fun/string.go:161
+msgid "everything"
+msgstr "omnis"
+
+#: level/level.go:790
+msgid "hashing level"
+msgstr "verifico libella"
+
+#: aaaaxy/init.go:214
+msgid "initializing audio"
+msgstr "initio audiendum"
+
+#: aaaaxy/init.go:238
+msgid "initializing dumping"
+msgstr "initio scribendum"
+
+#: aaaaxy/init.go:230
+msgid "initializing input"
+msgstr "initio contrarotulatores"
+
+#: aaaaxy/init.go:218
+msgid "initializing noise"
+msgstr "initio strepitum"
+
+#: level/level.go:769
+msgid "loading checkpoints"
+msgstr "accumulo locos"
+
+#: engine/world.go:212
+msgid "loading level"
+msgstr "accumulo libella"
+
+#: level/level.go:741
+msgid "loading level file"
+msgstr "accumulo data libellae"
+
+#: fun/string.go:155
+msgid "nothing"
+msgstr "nihil"
+
+#: level/level.go:757
+msgid "parsing level data"
+msgstr "divido data libellae"
+
+#: sound/sound.go:247
+msgid "precaching %s"
+msgstr "accumulo %s"
+
+#: aaaaxy/init.go:210
+msgid "precaching credits"
+msgstr "accumulo nomina creditorum"
+
+#: aaaaxy/init.go:234
+msgid "precaching engine"
+msgstr "accumulo motorium"
+
+#: engine/world.go:217
+msgid "precaching entities"
+msgstr "accumulo entitates"
+
+#: aaaaxy/init.go:226
+msgid "precaching images"
+msgstr "accumulo videnda"
+
+#: aaaaxy/init.go:222
+msgid "precaching sounds"
+msgstr "accumulo audienda"
