@@ -259,7 +259,7 @@ msgstr "Lingua: %s"
 
 #: menu/credits.go:72
 msgid "Level Version: %d"
-msgstr "Versio Libellae: %s"
+msgstr "Versio Libellae: %d"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go:80
