@@ -13,7 +13,7 @@ information on using pull requests.
 ## Translating
 
 Go to <https://www.transifex.com/aaaaxy/aaaaxy> to translate AAAAXY to
-your language\! You can always copy the translation files from Transifex
+your language! You can always copy the translation files from Transifex
 to `assets/locales/<language>/` to try them out locally.
 
 Some automated verification of translation files is done at startup to
@@ -43,9 +43,9 @@ This can be achieved using [Go's reordering
 syntax](https://pkg.go.dev/fmt#hdr-Explicit_argument_indexes). In
 particular, the following things can be done:
 
-  - `%s walks towards %s`
-  - `%[1]s walks towards %[2]s` - same but with explicit indexes
-  - `%[2]s is where %[1]s walks towards` - reordered
+-   `%s walks towards %s`
+-   `%[1]s walks towards %[2]s` - same but with explicit indexes
+-   `%[2]s is where %[1]s walks towards` - reordered
 
 ## Community Guidelines
 
