@@ -34,9 +34,10 @@ import (
 )
 
 var (
-	pinFontsToCache  = flag.Bool("pin_fonts_to_cache", true, "pin all fonts to glyph cache")
-	fontThreshold    = flag.Int("font_threshold", 0x5E00, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive")
-	fontExtraSpacing = flag.Int("font_extra_spacing", 32, "additional spacing for fonts in 64th pixels; should help with outline effect")
+	pinFontsToCache       = flag.Bool("pin_fonts_to_cache", true, "pin all fonts to glyph cache")
+	fontThreshold         = flag.Int("font_threshold", 0x5E00, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive")
+	fontExtraSpacing      = flag.Int("font_extra_spacing", 31, "additional spacing for fonts in 64th pixels; should help with outline effect")
+	fontFractionalSpacing = flag.Bool("font_fractional_spacing", false, "allow fractional font spacing; looks better but may be slower; makes --pin_fonts_to_cache less effective")
 )
 
 // Face is an alias to font.Face so users do not need to import the font package.
@@ -189,14 +190,28 @@ type fontEffects struct {
 	font.Face
 }
 
+func roundFixed(f fixed.Int26_6) fixed.Int26_6 {
+	if *fontFractionalSpacing {
+		return f
+	}
+	return (f + 32) & ^63
+}
+
 func (e *fontEffects) Glyph(dot fixed.Point26_6, r rune) (
 	image.Rectangle, image.Image, image.Point, fixed.Int26_6, bool) {
 	dr, mask, maskp, advance, ok := e.Face.Glyph(dot, r)
 	return dr, &fontEffectsMask{mask}, maskp, advance, ok
 }
 
+func (e *fontEffects) GlyphAdvance(r rune) (advance fixed.Int26_6, ok bool) {
+	adv, ok := e.Face.GlyphAdvance(r)
+	adv += fixed.Int26_6(*fontExtraSpacing)
+	return roundFixed(adv), ok
+}
+
 func (e *fontEffects) Kern(r0, r1 rune) fixed.Int26_6 {
-	return e.Face.Kern(r0, r1) + fixed.Int26_6(*fontExtraSpacing)
+	kern := e.Face.Kern(r0, r1)
+	return roundFixed(kern)
 }
 
 type fontEffectsMask struct {
