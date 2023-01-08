@@ -32,7 +32,7 @@ type ReadSeekCloser interface {
 
 func LoadPath(purpose, name string) (ReadSeekCloser, error) {
 	override := path.Base(path.Dir(name))
-	if override != "" {
+	if override != "" && override != "." {
 		purpose = override
 	}
 	name = path.Base(name)

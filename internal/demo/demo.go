@@ -28,6 +28,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 var (
@@ -47,7 +48,7 @@ type frame struct {
 }
 
 var (
-	demoPlayerFile            *os.File
+	demoPlayerFile            vfs.ReadSeekCloser
 	demoPlayer                *json.Decoder
 	demoPlayerFrame           frame
 	demoPlayerFrameIdx        int
@@ -63,7 +64,11 @@ func Init() error {
 		var err error
 		demoPlayerFile, err = os.Open(*demoPlay)
 		if err != nil {
-			return err
+			var verr error
+			demoPlayerFile, verr = vfs.LoadPath("demos", *demoPlay)
+			if verr != nil {
+				return fmt.Errorf("could not open demo %v: local error: %v, VFS error: %v", *demoPlay, err, verr)
+			}
 		}
 		demoPlayer = json.NewDecoder(demoPlayerFile)
 	}
