@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-10 06:41-0800\n"
+"POT-Creation-Date: 2023-01-10 07:54-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -771,7 +771,7 @@ msgid "The grass is always greener on the other side."
 msgstr ""
 
 #: assets/maps/level.tmx:9301
-msgid "You can now disable the force fields."
+msgid "You can now disable the force fields!"
 msgstr ""
 
 #: assets/maps/level.tmx:9313

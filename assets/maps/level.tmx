@@ -9298,7 +9298,7 @@
   <object id="3832" type="Give" x="3312" y="1952" width="64" height="64">
    <properties>
     <property name="ability" value="control"/>
-    <property name="text" value="You can now disable the force fields."/>
+    <property name="text" value="You can now disable the force fields!"/>
    </properties>
   </object>
   <object id="3833" gid="318" x="3280" y="1888" width="128" height="128">
