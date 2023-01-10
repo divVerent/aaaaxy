@@ -6760,6 +6760,7 @@
     <property name="required_orientation" value="ES"/>
     <property name="text" value="I Like To Move It Move It"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
+    <property name="_text_localization_note" value="Song title by Reel 2 Real, was used in Madagascar movie"/>
    </properties>
   </object>
   <object id="1746" name="not_that_simple" type="Checkpoint" x="6176" y="7744" width="32" height="32">
