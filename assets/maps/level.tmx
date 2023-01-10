@@ -11411,24 +11411,28 @@
    <properties>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="... after?"/>
+    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
    </properties>
   </object>
   <object id="5005" gid="312" x="5600" y="2616" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="... are ..."/>
+    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
    </properties>
   </object>
   <object id="5006" gid="312" x="5024" y="2616" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="What ..."/>
+    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
    </properties>
   </object>
   <object id="5007" gid="312" x="5024" y="2808" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="... you ..."/>
+    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
    </properties>
   </object>
   <object id="5008" gid="312" x="5312" y="2496" width="32" height="32">
