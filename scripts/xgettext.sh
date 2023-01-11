@@ -13,8 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-xgettext --its=scripts/tmx.its --from-code=utf-8 -F \
-	-o assets/locales/level.pot assets/maps/level.tmx
+xgettext --its=scripts/tmx.its --from-code=utf-8 -F --no-location \
+	-o - assets/maps/level.tmx |\
+	sed -e 's/^#. #:/#:/g' \
+	> assets/locales/level.pot
 go run github.com/leonelquinteros/gotext/cli/xgotext \
 	-default game_raw \
 	-in internal/ \
