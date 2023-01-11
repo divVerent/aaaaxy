@@ -53,14 +53,17 @@ download from GitHub's "Releases" section, you can try it out as follows
 instead (here, `xx` stands for the short name of the language you are
 translating to):
 
+NOTE: This does not work in the current version (1.3.127); in the next
+release these instructions will work and this note will be removed.
+
 1.  Unpack the release zip file, as usual.
 2.  Open a command prompt in the directory containing the game.
 3.  Run `./aaaaxy -dump_embedded_assets=data`
 4.  If the language isn't in the game yet:
-    1.  Edit `data/assets/locales/LINGUAS` to include the `xx`.
-    2.  Create a subdirectory in `data/assets/locales` named `xx`.
+    1.  Edit `data/locales/LINGUAS` to include the `xx`.
+    2.  Create a subdirectory in `data/locales` named `xx`.
 5.  Put your translated `game.po` and `level.po` files in the
-    subdirectory within `data/assets/locales/xx`.
+    subdirectory within `data/locales/xx`.
 6.  Run `./aaaaxy -cheat_replace_embedded_assets=data -language=xx` to
     run the game with the modified data.
 

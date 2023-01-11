@@ -108,7 +108,7 @@ func initAssets() error {
 			{
 				name:     "replace",
 				filesys:  os.DirFS(*cheatReplaceEmbeddedAssets),
-				root:     "/",
+				root:     ".",
 				toPrefix: "",
 			},
 		}
