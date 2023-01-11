@@ -20,9 +20,6 @@ Some automated verification of translation files is done at startup to
 check that text fits in boxes and format strings work properly - see the
 log output of the game in the terminal for details.
 
-A script to quickly try out your downloaded translations from Transifex
-is provided in `scripts/try-from-transifex.sh`.
-
 ### Inflections
 
 Right now, some strings are used in multiple places and thus will need
@@ -46,6 +43,26 @@ particular, the following things can be done:
 -   `%s walks towards %s`
 -   `%[1]s walks towards %[2]s` - same but with explicit indexes
 -   `%[2]s is where %[1]s walks towards` - reordered
+
+### Trying It Out
+
+If you compiled the game from source code, you can quickly try out your
+downloaded translations from Transifex using
+`scripts/try-from-transifex.sh`. When using the game from a binary
+download from GitHub's "Releases" section, you can try it out as follows
+instead (here, `xx` stands for the short name of the language you are
+translating to):
+
+1.  Unpack the release zip file, as usual.
+2.  Open a command prompt in the directory containing the game.
+3.  Run `./aaaaxy -dump_embedded_assets=data`
+4.  If the language isn't in the game yet:
+    1.  Edit `data/assets/locales/LINGUAS` to include the `xx`.
+    2.  Create a subdirectory in `data/assets/locales` named `xx`.
+5.  Put your translated `game.po` and `level.po` files in the
+    subdirectory within `data/assets/locales/xx`.
+6.  Run `./aaaaxy -cheat_replace_embedded_assets=data -language=xx` to
+    run the game with the modified data.
 
 ## Community Guidelines
 
