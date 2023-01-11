@@ -49,17 +49,23 @@ LF='
 all_languages=
 bad_languages=
 
-for domain in level game; do
-	for f in assets/locales/*/"$domain".po; do
-		language=${f%/*}
-		language=${language##*/}
+for d in assets/locales/*/; do
+	language=${d%/}
+	language=${language##*/}
+	all_languages="$all_languages$language$LF"
+	for domain in level game; do
+		f=assets/locales/"$language"/"$domain".po
+		if ! [ -f "$f" ]; then
+			echo "$f: not found"
+			bad_languages="$bad_languages$language$LF"
+			continue
+		fi
 		msgmerge -o "$f.new" "$f" assets/locales/"$domain".pot
 		total=$(grep -c '^#:' "$f.new")
 		untranslated=$(msgattrib --untranslated "$f.new" | grep -c '^#:')
 		fuzzy=$(msgattrib --only-fuzzy "$f.new" | grep -c '^#:')
 		score=$(((total - untranslated - fuzzy) * 100 / total))
 		echo "$f: $score%: $untranslated/$total untranslated, $fuzzy/$total fuzzy"
-		all_languages="$all_languages$language$LF"
 		if [ $score -lt 90 ]; then
 			bad_languages="$bad_languages$language$LF"
 		fi
@@ -68,7 +74,8 @@ done
 
 good_languages=$(
 	{
-		echo "$all_languages" | sort -u
+		echo "$all_languages"
+		echo "$bad_languages"
 		echo "$bad_languages"
 	} | sort | uniq -u
 )
