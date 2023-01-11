@@ -1436,7 +1436,7 @@
   </object>
   <object id="422" type="Text" x="4304" y="7072" width="320" height="16">
    <properties>
-    <property name="_text_localization_note" value="A made-up word from the PeaceBrothers Nexuiz clan that started a very long thread in its forum. Probably was just keyboard mashing. Recommend translating it as is, except possibly adjusting for spelling of the sounds in your language (e.g. in German I translated as BRLOGENSCHFEGLE, just replacing the SH that does not exist in German by SCH)."/>
+    <property name="_text_localization_note" value="A made-up word from the PeaceBrothers Nexuiz clan that started a very long thread in its forum. Probably was just keyboard mashing. Recommend transliterating phonetically, possibly adjusting for spelling of the sounds in your language (e.g. in German I translated as BRLOGENSCHFEGLE, just replacing the SH that does not exist in German by SCH)."/>
     <property name="text" value="BRLOGENSHFEGLE doesn't lol."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5282,6 +5282,7 @@
   </object>
   <object id="1172" type="Text" x="4272" y="5088" width="160" height="112">
    <properties>
+    <property name="_text_localization_note" value="https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&amp;version=KJV"/>
     <property name="text" value="Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your keys{{BR}}3) {{ExitButton}} for checkout"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5290,6 +5291,7 @@
   </object>
   <object id="1173" name="hilberts_dotel" type="Checkpoint" x="4336" y="5056" width="32" height="176">
    <properties>
+    <property name="_text_localization_note" value="Translate 'Dilbert's Hotel', but swap the first consonant of the two main words. Prefer translating 'Hotel' to something that makes a H sound at the first consonant, so that the name becomes Hilbert, the mathematician."/>
     <property name="music" value="at_the_end_of_hope.ogg"/>
     <property name="next_left" type="object" value="1228"/>
     <property name="required_orientation" value="ES"/>
@@ -5682,6 +5684,7 @@
   </object>
   <object id="1243" type="Text" x="4256" y="5680" width="112" height="64">
    <properties>
+    <property name="_text_localization_note" value="ECED are music notes - so in some languages something like MiDoMiRe may be better. Trololo is the 'meme name' of a song by Eduard Khil."/>
     <property name="text" value="Play ECED{{BR}}to open.{{BR}}No Trololos!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -5873,6 +5876,7 @@
   </object>
   <object id="1300" name="axiom_of_choice" type="Checkpoint" x="4288" y="6288" width="48" height="16">
    <properties>
+    <property name="_text_localization_note" value="Translate as 'The Axiom of Choice' in the mathematical sense, but find a funny way to mispronounce or misspell the word that means 'choice'"/>
     <property name="music" value="at_the_end_of_hope.ogg"/>
     <property name="next_right" type="object" value="1304"/>
     <property name="required_orientation" value="ES"/>
@@ -6911,7 +6915,7 @@
   <object id="1806" gid="320" x="7472" y="7232" width="32" height="32"/>
   <object id="1807" type="Text" x="7280" y="7344" width="192" height="32">
    <properties>
-    <property name="_text_localization_note" value="https://youtube.fandom.com/wiki/DGR"/>
+    <property name="_text_localization_note" value="https://youtube.fandom.com/wiki/DGR - he frequently says 'He who waits, dies'"/>
     <property name="text" value="He who waits,{{BR}}retries ... #DGR"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
