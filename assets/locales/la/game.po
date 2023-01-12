@@ -22,7 +22,7 @@ msgid ""
 "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 " "
-"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
+"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà∴"
 
 #. Last separator when building a list.
 #: fun/string.go:159 playerstate/playerstate.go:350
@@ -72,7 +72,7 @@ msgstr "Omnia Inversi"
 
 #: playerstate/playerstate.go:241
 msgid "All Notes"
-msgstr "Epistolia Omnia"
+msgstr "Annotationes Omnes"
 
 #: playerstate/playerstate.go:243
 msgid "All Paths"
@@ -173,7 +173,7 @@ msgstr "Satis"
 
 #: menu/settings.go:391 menu/touchedit.go:80
 msgid "Edit Touch Controls"
-msgstr "Muta Contrarotulatorem Tactilem"
+msgstr "Muta Gubernaculum Tactile"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go:66
