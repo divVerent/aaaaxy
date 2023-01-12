@@ -48,7 +48,7 @@ var (
 	newlineReplacement = "\n\t"
 	// Note: explicitly allow the special Unicode characters that we actually use.
 	// Do not allow anything else, as it could be nasty stuff like overrides or invisible stuff.
-	specialRE          = regexp.MustCompile(`[^\n\t\040-\176µτπö¾©]|\\`)
+	specialRE          = regexp.MustCompile(`[^\n\t\040-\176\p{L}\p{M}\p{N}\p{P}\p{S}]|\\`)
 	specialReplacement = "?"
 )
 
