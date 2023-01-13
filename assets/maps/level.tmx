@@ -7669,7 +7669,7 @@
   <object id="2368" gid="312" x="1664" y="288" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4108"/>
-    <property name="text" value="Every great adventure started with the line{{BR}}&quot;I know a shortcut&quot;"/>
+    <property name="text" value="Every great adventure started with the line{{BR}}&quot;I know a shortcut&quot;."/>
    </properties>
   </object>
   <object id="2369" gid="313" x="1296" y="176" width="16" height="16"/>
