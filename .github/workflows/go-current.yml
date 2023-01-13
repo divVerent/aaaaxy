@@ -36,7 +36,7 @@ jobs:
       run: 'make vet'
 
     - name: Test
-      run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "on track for Any%, All Paths and No Teleports" ./aaaaxy benchmark.dem'
+      run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "on track for Any%, All Paths and No Teleports" ./aaaaxy assets/demos/benchmark.dem'
 
     - name: Archive Results
       if: ${{ always() }}
