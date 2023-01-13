@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-11 14:38-0500\n"
+"POT-Creation-Date: 2023-01-13 07:00-0800\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Portuguese (https://www.transifex.com/aaaaxy/teams/158611/pt/)\n"
@@ -728,8 +728,8 @@ msgid "If walking alone won't do, try some exercise."
 msgstr "Se andar não basta, tente exercitar-se."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2368]
-msgid "Every great adventure started with the line{{BR}}\"I know a shortcut\""
-msgstr "Toda grande aventura começou com{{BR}}\"Sei um atalho\""
+msgid "Every great adventure started with the line{{BR}}\"I know a shortcut\"."
+msgstr "Toda grande aventura começou com{{BR}}\"Sei um atalho\"."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2659]
 msgid "Sometimes you don't just lose sight of something."
