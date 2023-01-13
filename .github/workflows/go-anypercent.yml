@@ -44,7 +44,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install xvfb'
+      run: 'sudo apt-get update && sudo apt-get -y install libgl1 xvfb'
 
     - name: Download Binary
       uses: actions/download-artifact@v2
