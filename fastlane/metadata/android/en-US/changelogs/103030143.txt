@@ -1,0 +1,5 @@
+  - Engine: minor module update.
+  - Level: minor text fixes (periods, spaces).
+  - Translation: fix bug that prevented replacing content (so now one can change translation files on a released binary for testing).
+  - Translation: level file now points at object IDs, not line numbers. More stable, and findable in Tiled.
+  - Translation: more localization notes.
