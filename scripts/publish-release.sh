@@ -61,7 +61,7 @@ hub release create \
 	git fetch origin
 	git reset --hard origin/master
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=0/;" APKBUILD
-	podman run --pull=always --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:edge /bin/sh -c '
+	podman run --network=slirp4netns:enable_ipv6=false --pull=always --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:edge /bin/sh -c '
 		set -e
 		apk add alpine-sdk sudo
 		abuild-keygen -i -a -n
@@ -102,13 +102,16 @@ git worktree remove /tmp/gh-pages
 xdg-open https://snapcraft.io/aaaaxy/builds
 
 # Flatpak - first push a new build.
-sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 (
 	cd ../io.github.divverent.aaaaxy
 	git checkout master
 	git fetch
 	git reset --hard '@{u}'
 	git merge --no-edit beta
+)
+sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
+(
+	cd ../io.github.divverent.aaaaxy
 	sed -i -e "/--- TAG GOES HERE ---/,+1 s/: .*/: $new/" io.github.divverent.aaaaxy.yml
 	sed -i -e "/--- REV GOES HERE ---/,+1 s/: .*/: $newrev/" io.github.divverent.aaaaxy.yml
 	git commit -a -m "Release $new."
@@ -123,7 +126,7 @@ sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 (
 	cd ../aur-aaaaxy
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;" PKGBUILD
-	podman run --pull=always --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/archlinux:latest /bin/sh -c '
+	podman run --network=slirp4netns:enable_ipv6=false --pull=always --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/archlinux:latest /bin/sh -c '
 		set -e
 		pacman --noconfirm -Syu base-devel namcap pacman-contrib sudo
 		useradd -m builder
