@@ -53,9 +53,6 @@ download from GitHub's "Releases" section, you can try it out as follows
 instead (here, `xx` stands for the short name of the language you are
 translating to):
 
-NOTE: This does not work in the current version (1.3.127); in the next
-release these instructions will work and this note will be removed.
-
 1.  Unpack the release zip file, as usual.
 2.  Open a command prompt in the directory containing the game.
 3.  Run `./aaaaxy -dump_embedded_assets=data`
