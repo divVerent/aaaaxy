@@ -9,7 +9,7 @@ form](https://github.com/divVerent/aaaaxy/releases) as a zip file
 containing self-contained executables for each supported platform.
 
 So just extract the game executable to a convenient place and run it
-from there\!
+from there!
 
 ### Input
 
@@ -23,7 +23,7 @@ Start button.
 
 If your gamepad is not supported yet, you can typically make it work by
 passing its definition in
-[SDL\_GameControllerDB](https://github.com/gabomdq/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt)
+[SDL_GameControllerDB](https://github.com/gabomdq/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt)
 format as `-gamepad_override` flag or `SDL_GAMECONTROLLERCONFIG`
 environment variable. As an extension, multiple gamepad definitions can
 be provided not just separated by newlines but also by semicolons.
@@ -34,7 +34,7 @@ Press `Esc` or `Start` to get to the game menu which has settings.
 
 ### Known Issues
 
-  - Especially on laptops with 4K displays connected, graphics
+-   Especially on laptops with 4K displays connected, graphics
     performance may be poor. As a workaround, press `Esc` to switch to
     the game menu, then in the settings switch to a lower graphics
     setting. <https://github.com/hajimehoshi/ebiten/issues/1772> tracks
@@ -50,16 +50,16 @@ it](https://ffmpeg.org/download.html) and place `ffmpeg.exe` right next
 to `aaaaxy.exe`.
 
 To then record a video of the game, first record a demo (see below), and
-then un the game again, passing the flags `-dump_media=video.mp4
--demo_play=demo.dem`. This will save a video of the gameplay under
-`video.mp4`.
+then un the game again, passing the flags
+`-dump_media=video.mp4 -demo_play=demo.dem`. This will save a video of
+the gameplay under `video.mp4`.
 
 #### Via Raw Files
 
-To record a video of the game, pass the flags `-dump_video=video.raw
--dump_audio=audio.raw`. Then play normally (game may be slower). When
-you then exit the game, the console window will show you a FFmpeg
-command to turn these files into a finished video\!
+To record a video of the game, pass the flags
+`-dump_video=video.raw -dump_audio=audio.raw`. Then play normally (game
+may be slower). When you then exit the game, the console window will
+show you a FFmpeg command to turn these files into a finished video!
 
 Video recording can be sped up by using `make FASTER_VIDEO_DUMPING=true`
 when compiling to enable multithreading, and by passing
@@ -82,7 +82,7 @@ don't want any duplicate frames, right?
 AAAAXY stores saved games in the following location:
 
 | Operating System |                                                  Save Games<br>Configuration                                                   |
-| :--------------: | :----------------------------------------------------------------------------------------------------------------------------: |
+|:----------------:|:------------------------------------------------------------------------------------------------------------------------------:|
 |     Android      | `/sdcard/Android/data/io.github.divVerent.aaaaxy/files/save`<br>`/sdcard/Android/data/io.github.divVerent.aaaaxy/files/config` |
 |  Linux AppImage  |                                         `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`                                          |
 |  Linux FlatPak   |          `~/.var/app/io.github.divverent.aaaaxy/data/AAAAXY`<br>`~/.var/app/io.github.divverent.aaaaxy/config/AAAAXY`          |

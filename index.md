@@ -5,7 +5,7 @@ spaces.
 
 Although your general goal is reaching the surprising end of the game,
 you are encouraged to set your own goals while playing. Exploration will
-be rewarded, and secrets await you\!
+be rewarded, and secrets await you!
 
 So jump and run around, and enjoy losing your sense of orientation in
 this World of Wicked Weirdness. Find out what Van Vlijmen will make you
@@ -41,24 +41,24 @@ END DOWNLOAD LINKS TEMPLATE -->
 
 <!-- BEGIN DOWNLOAD LINKS -->
 
-The current version is v1.3.103. Download here:
+The current version is v1.3.143. Download here:
 
-  - [Windows x86\_64
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.3.103/aaaaxy-windows-amd64-v1.3.103.zip)
-  - [Windows x86
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.3.103/aaaaxy-windows-386-v1.3.103.zip)
-  - [Linux x86\_64
-    AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.3.103/AAAAXY-x86_64.AppImage)
-  - [Linux x86\_64
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.3.103/aaaaxy-linux-amd64-v1.3.103.zip)
-  - [macOS x86\_64+M1
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.3.103/aaaaxy-darwin-v1.3.103.zip)
-  - [All files and
+-   [Windows x86_64
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.3.143/aaaaxy-windows-amd64-v1.3.143.zip)
+-   [Windows x86
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.3.143/aaaaxy-windows-386-v1.3.143.zip)
+-   [Linux x86_64
+    AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.3.143/AAAAXY-x86_64.AppImage)
+-   [Linux x86_64
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.3.143/aaaaxy-linux-amd64-v1.3.143.zip)
+-   [macOS x86_64+M1
+    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.3.143/aaaaxy-darwin-v1.3.143.zip)
+-   [All files and
     releases](https://github.com/divVerent/aaaaxy/releases)
 
 <!-- END DOWNLOAD LINKS -->
 
-### Try Online\!
+### Try Online!
 
 There is also a bleeding edge [WebAssembly
 build](https://rm.cloudns.org/aaaaxy/current/aaaaxy.html).
@@ -69,13 +69,13 @@ above.
 
 ### Further Resources
 
-  - [User Guide](userguide.md)
-  - [Technical Support](https://github.com/divVerent/aaaaxy/issues)
-  - [Discussion Forum](https://github.com/divVerent/aaaaxy/discussions)
-  - [Chat](https://matrix.to/#/#aaaaxy:matrix.org)
-  - [Pull Requests](https://github.com/divVerent/aaaaxy/pulls)
-  - [Speedrunning](speedrunning.md)
-  - [Music](music.md)
+-   [User Guide](userguide.md)
+-   [Technical Support](https://github.com/divVerent/aaaaxy/issues)
+-   [Discussion Forum](https://github.com/divVerent/aaaaxy/discussions)
+-   [Chat](https://matrix.to/#/#aaaaxy:matrix.org)
+-   [Pull Requests](https://github.com/divVerent/aaaaxy/pulls)
+-   [Speedrunning](speedrunning.md)
+-   [Music](music.md)
 
 ### Screenshots
 
