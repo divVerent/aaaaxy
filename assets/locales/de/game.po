@@ -22,7 +22,8 @@ msgid ""
 "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 " "
-"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöüß"
+"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàÄÖÜäöü{{if"
+" ne Lang \"de-CH\"}}ß{{end}}"
 
 #. Last separator when building a list.
 #: fun/string.go:159 playerstate/playerstate.go:350
@@ -491,7 +492,9 @@ msgstr "Y: %s"
 
 #: game/player/player.go:405
 msgid "You now have 30 lives. Enjoy!"
-msgstr "Du hast jetzt 30 Leben. Viel Spaß damit!"
+msgstr ""
+"Du hast jetzt 30 Leben. Viel Spa{{if eq Lang \"de_CH\"}}ss{{else}}ß{{end}} "
+"damit!"
 
 #: game/player/player.go:398
 msgid "You really thought this would do something?"
