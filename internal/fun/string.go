@@ -31,12 +31,10 @@ import (
 
 // TryFormatText replaces placeholders in the given text.
 func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
-	/*
-		// Fast path if the template is trivial.
-		if !strings.Contains(s, "{") {
-			return s
-		}
-	*/
+	// Fast path if the template is trivial.
+	if !strings.Contains(s, "{{") {
+		return s, nil
+	}
 	tmpl := template.New("")
 	tmpl.Funcs(map[string]interface{}{
 		"Lang": func() string {

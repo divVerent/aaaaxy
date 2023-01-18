@@ -41,12 +41,18 @@ func (l Lingua) Name() string {
 
 // Directory returns the directory containing the language.
 func (l Lingua) Directory() string {
-	// NOTE: This may contract multiple linguas to a single directory for aliasing.
+	// Handle aliases.
+	if l == "de-CH" {
+		return "de"
+	}
 	return strings.ReplaceAll(string(l), "-", "_")
 }
 
 func (l Lingua) Aliases() []Lingua {
-	// NOTE: Aliases go here.
+	// Handle aliases.
+	if l == "de" {
+		return []Lingua{"de-CH"}
+	}
 	return nil
 }
 

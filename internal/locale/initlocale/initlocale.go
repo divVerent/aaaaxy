@@ -20,6 +20,7 @@ import (
 	"io"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/vfs"
@@ -86,5 +87,17 @@ func SetLanguage(lang locale.Lingua) (bool, error) {
 	initLocaleDomain(lang, locale.G, "game")
 	initLocaleDomain(lang, locale.L, "level")
 	locale.Active = lang
+	// Now perform all replacements in locale.G.
+	// In locale.L they're applied at runtime as more stuff may need filling in.
+	// This must be done after setting it active, and before auditing.
+	for _, t := range locale.G.GetDomain().GetTranslations() {
+		for n, msgstr := range t.Trs {
+			replacement, err := fun.TryFormatText(nil, msgstr)
+			if err != nil || replacement == msgstr {
+				continue
+			}
+			locale.G.SetN(t.ID, t.PluralID, n, replacement)
+		}
+	}
 	return true, locale.Audit()
 }
