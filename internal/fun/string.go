@@ -39,6 +39,9 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 	*/
 	tmpl := template.New("")
 	tmpl.Funcs(map[string]interface{}{
+		"Lang": func() string {
+			return string(locale.Active)
+		},
 		"BR": func() string {
 			return "\n"
 		},

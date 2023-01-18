@@ -18,7 +18,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/locale"
@@ -42,7 +41,11 @@ func initLinguas() {
 		if len(line) == 0 || line[0] == '#' {
 			continue
 		}
-		locale.Linguas[locale.Lingua(line)] = struct{}{}
+		l := locale.Lingua(line)
+		locale.Linguas[l] = struct{}{}
+		for _, alias := range l.Aliases() {
+			locale.Linguas[alias] = struct{}{}
+		}
 	}
 }
 
@@ -50,7 +53,7 @@ func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
 	if lang == "" {
 		return
 	}
-	data, err := vfs.Load(fmt.Sprintf("locales/%s", strings.ReplaceAll(string(lang), "-", "_")), fmt.Sprintf("%s.po", domain))
+	data, err := vfs.Load(fmt.Sprintf("locales/%s", lang.Directory()), fmt.Sprintf("%s.po", domain))
 	if err != nil {
 		log.Errorf("could not open %s translation for language %s: %v", domain, lang.Name(), err)
 		return

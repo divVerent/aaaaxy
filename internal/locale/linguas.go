@@ -16,6 +16,7 @@ package locale
 
 import (
 	"sort"
+	"strings"
 )
 
 // Lingua identifies a language.
@@ -36,6 +37,17 @@ func (l Lingua) Name() string {
 	default:
 		return string(l)
 	}
+}
+
+// Directory returns the directory containing the language.
+func (l Lingua) Directory() string {
+	// NOTE: This may contract multiple linguas to a single directory for aliasing.
+	return strings.ReplaceAll(string(l), "-", "_")
+}
+
+func (l Lingua) Aliases() []Lingua {
+	// NOTE: Aliases go here.
+	return nil
 }
 
 // Linguas returns the languages sorted by humanly expected ordering.
