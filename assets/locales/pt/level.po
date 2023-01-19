@@ -1032,7 +1032,7 @@ msgstr "Condução Agressiva em {{BigCity}}"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4941]
 msgid "Grand Theft Auto!"
-msgstr "Grant Theft Auto!"
+msgstr "Grand Theft Auto!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4953]
 msgid "Welcome to {{BigCity}}."
