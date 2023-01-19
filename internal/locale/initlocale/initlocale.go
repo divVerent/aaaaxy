@@ -91,13 +91,18 @@ func SetLanguage(lang locale.Lingua) (bool, error) {
 	// In locale.L they're applied at runtime as more stuff may need filling in.
 	// This must be done after setting it active, and before auditing.
 	for _, t := range locale.G.GetDomain().GetTranslations() {
-		for n, msgstr := range t.Trs {
-			replacement, err := fun.TryFormatText(nil, msgstr)
-			if err != nil || replacement == msgstr {
-				continue
-			}
-			locale.G.SetN(t.ID, t.PluralID, n, replacement)
+		if len(t.Trs) != 1 {
+			continue
 		}
+		msgstr, ok := t.Trs[0]
+		if !ok {
+			continue
+		}
+		replacement, err := fun.TryFormatText(nil, msgstr)
+		if err != nil || replacement == msgstr {
+			continue
+		}
+		locale.G.Set(t.ID, replacement)
 	}
 	return true, locale.Audit()
 }
