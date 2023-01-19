@@ -63,7 +63,8 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	s.Lines = nil
 	if len(credits.Licenses) != 0 && !s.Fancy {
 		s.Lines = append(append(s.Lines,
-			strings.Split(locale.G.Get("For Software Licenses{{BR}}Press Right"), "\n")...),
+			strings.Split(fun.FormatText(&s.Controller.World.PlayerState,
+				locale.G.Get("For Software Licenses{{BR}}Press Right")), "\n")...),
 			"")
 	}
 	s.Lines = append(s.Lines, credits.Lines...)

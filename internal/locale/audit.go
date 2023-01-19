@@ -19,6 +19,7 @@ import (
 	"reflect"
 	"regexp"
 	"strconv"
+	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -40,6 +41,10 @@ func formats(s string) map[string]int {
 		if match[1] != "" {
 			if match[1] == "{{BR}}" {
 				// Newlines are allowed to vary.
+				continue
+			}
+			if strings.HasPrefix(match[1], "{{if ") || strings.HasPrefix(match[1], "{{else") || match[1] == "{{end}}" {
+				// Conditionals are allowed to vary.
 				continue
 			}
 			out[match[0]]++

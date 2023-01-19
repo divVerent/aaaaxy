@@ -18,6 +18,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/fun"
@@ -92,14 +93,27 @@ func SetLanguage(lang locale.Lingua) (bool, error) {
 	// This must be done after setting it active, and before auditing.
 	for _, t := range locale.G.GetDomain().GetTranslations() {
 		if len(t.Trs) != 1 {
+			// Sorry, not supporting plurals yet.
+			continue
+		}
+		if strings.Contains(t.ID, "{{") {
+			// If the LHS is a template already, no need to replace.
 			continue
 		}
 		msgstr, ok := t.Trs[0]
 		if !ok {
+			// Odd - no singular form?
 			continue
 		}
 		replacement, err := fun.TryFormatText(nil, msgstr)
-		if err != nil || replacement == msgstr {
+		if err != nil {
+			// Failed to format? This usually means a syntax error.
+			// Format strings that fail due to no player state should not get here.
+			// They should have been caught by the {{ check above.
+			log.Fatalf("invalid msgstr: %q: %v", msgstr, err)
+		}
+		if replacement == msgstr {
+			// No change.
 			continue
 		}
 		locale.G.Set(t.ID, replacement)
