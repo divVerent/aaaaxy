@@ -493,7 +493,7 @@ msgstr "Y: %s"
 #: game/player/player.go:405
 msgid "You now have 30 lives. Enjoy!"
 msgstr ""
-"Du hast jetzt 30 Leben. Viel Spa{{if eq Lang \"de_CH\"}}ss{{else}}ß{{end}} "
+"Du hast jetzt 30 Leben. Viel Spa{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}} "
 "damit!"
 
 #: game/player/player.go:398
