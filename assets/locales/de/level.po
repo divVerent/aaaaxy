@@ -224,7 +224,8 @@ msgstr "Oder{{BR}}diesen?"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=309]
 msgid "Some water must be periodically added to compensate for evaporation."
 msgstr ""
-"Man fülle regelmäßig etwas Wasser nach, um die Verdunstung auszugleichen."
+"Man fülle regelmä{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}ig etwas Wasser "
+"nach, um die Verdunstung auszugleichen."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=311]
 msgid "You broke out of the stream, yet you're back in the stream."
@@ -275,7 +276,9 @@ msgstr "Wenn niemand hinter dir her ist, brauchst du kein Versteck."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=395]
 msgid "Hide and seek is never fun without opponents."
-msgstr "Das Versteckspiel macht ohne Gegner einfach keinen Spaß."
+msgstr ""
+"Das Versteckspiel macht ohne Gegner einfach keinen Spa{{if eq Lang \"de-"
+"CH\"}}ss{{else}}ß{{end}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=396]
 msgid "Welcome to ..."
@@ -502,8 +505,8 @@ msgstr "Manche Dinge kann man einfach nicht sofort sehen."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1407]
 msgid "Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Zu große Neugier treibt den Vogel in die Schlinge.{{BR}}Drücke "
-"{{ExitButton}}."
+"Zu gro{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}e Neugier treibt den Vogel "
+"in die Schlinge.{{BR}}Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1410]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1411]
@@ -522,7 +525,9 @@ msgstr "Du kannst jetzt auf Plattformen stehen!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1430]
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr "Die Stollen{{BR}}Tipp: nicht den{{BR}}Kopf stoßen!"
+msgstr ""
+"Die Stollen{{BR}}Tipp: nicht den{{BR}}Kopf sto{{if eq Lang \"de-"
+"CH\"}}ss{{else}}ß{{end}}en!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1441]
 msgid "Steadfastly holding on to the iron rod prevents disasters."
@@ -776,7 +781,8 @@ msgstr "Manche Ideen sind nur scheinbar schlau."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2842]
 msgid "If there seems to be no way, you just haven't found it yet."
 msgstr ""
-"Wenn es keinen Weg zu geben scheint, hast du ihn bloß noch nicht gefunden."
+"Wenn es keinen Weg zu geben scheint, hast du ihn blo{{if eq Lang \"de-"
+"CH\"}}ss{{else}}ß{{end}} noch nicht gefunden."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2886]
 msgid "Before The Anti-Hub"
@@ -832,7 +838,9 @@ msgstr ""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3821]
 msgid "The grass is always greener on the other side."
-msgstr "Die Kirschen in Nachbars Garten schmecken immer ein bisschen süßer."
+msgstr ""
+"Die Kirschen in Nachbars Garten schmecken immer ein bisschen sü{{if eq Lang "
+"\"de-CH\"}}ss{{else}}ß{{end}}er."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3832]
 msgid "You can now disable the force fields!"
@@ -902,7 +910,9 @@ msgstr "RISIKEN UND{{BR}}NEBENWIRKUNGEN"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3863]
 msgid "And now you've learned{{BR}}not to touch the hot stove."
-msgstr "Und jetzt weißt du,{{BR}}dass der Ofen heiß ist."
+msgstr ""
+"Und jetzt wei{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}t du,{{BR}}dass der "
+"Ofen hei{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}} ist."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3866]
 msgid "The Butterfly Effect"
@@ -998,7 +1008,7 @@ msgstr "Van Vlijmens Verzwicktes Vertikales Vektor-Vexierspiel"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4609]
 msgid "The One Way Round"
-msgstr "Eine große Runde"
+msgstr "Eine gro{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}e Runde"
 
 #. https://thelettervsixtim.es/ - try keeping the V when translating
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4610]
@@ -1177,7 +1187,9 @@ msgstr "Der Würfel"
 #. https://en.wikipedia.org/wiki/Portal_(series)
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5575]
 msgid "Good news.{{BR}}I figured out why she wanted you gone."
-msgstr "Gute Nachrichten.{{BR}}Ich weiß nun, warum sie dich loswerden wollte."
+msgstr ""
+"Gute Nachrichten.{{BR}}Ich wei{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}} "
+"nun, warum sie dich loswerden wollte."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5627]
 msgid "Crumbling Upwards"
@@ -1202,8 +1214,9 @@ msgstr "Wer nicht aufpasst, wird getrollt."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
 msgstr ""
-"Wenn du nicht weißt, wer du bist,{{BR}}dann weißt du auch nicht, wo du hin "
-"willst."
+"Wenn du nicht wei{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}t, wer du "
+"bist,{{BR}}dann wei{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}t du auch "
+"nicht, wo du hin willst."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6103]
 msgid "Dr. W?"
@@ -1313,7 +1326,8 @@ msgid ""
 " currently out of order.{{BR}}Press {{ExitButton}}."
 msgstr ""
 "Das Enrichment-Center muss Sie leider informieren, dass{{BR}}der Super "
-"Gravitron leider außer Betrieb ist.{{BR}}Drücke {{ExitButton}}."
+"Gravitron leider au{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}er Betrieb "
+"ist.{{BR}}Drücke {{ExitButton}}."
 
 #. https://thelettervsixtim.es/ - try keeping the two V alliteration when
 #. translating
@@ -1373,7 +1387,7 @@ msgstr "W{{BR}}A{{BR}}S"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7770]
 msgid "Just{{BR}}kiddin'"
-msgstr "War nur{{BR}}Spaß."
+msgstr "War nur{{BR}}Spa{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7837]
 msgid "I hope you took{{BR}}the small one ..."
@@ -1393,7 +1407,7 @@ msgstr "Der Weg zum Erfolg ist zugemüllt mit ...{{BR}}Müll."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7849]
 msgid "Getting up is half the fun."
-msgstr "Hinaufgehen ist der halbe Spaß."
+msgstr "Hinaufgehen ist der halbe Spa{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7872]
 msgid "If stuck,{{BR}}press {{ExitButton}}."
