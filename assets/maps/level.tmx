@@ -11283,7 +11283,7 @@
   <object id="4941" gid="312" x="4720" y="2944" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="4935"/>
-    <property name="text" value="Grant Theft Auto!"/>
+    <property name="text" value="Grand Theft Auto!"/>
    </properties>
   </object>
   <object id="4944" gid="340" x="4657" y="2737" width="30" height="62"/>
