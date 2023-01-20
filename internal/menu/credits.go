@@ -67,6 +67,8 @@ func localizeCredits(line string) string {
 		return locale.G.Get("Graphics")
 	case "Sprites":
 		return locale.G.Get("Sprites")
+	case "Player Sprite":
+		return locale.G.Get("Player Sprite")
 	case "Audio":
 		return locale.G.Get("Audio")
 	case "Sound Effects":

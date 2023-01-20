@@ -97,7 +97,7 @@ msgstr ""
 msgid "Auckland"
 msgstr ""
 
-#: menu/credits.go:71
+#: menu/credits.go:73
 msgid "Audio"
 msgstr ""
 
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Boston"
 msgstr ""
 
-#: menu/credits.go:108
+#: menu/credits.go:110
 msgid "Build: %s"
 msgstr ""
 
@@ -206,7 +206,7 @@ msgid ""
 "All cheats are documented in --help."
 msgstr ""
 
-#: menu/credits.go:99
+#: menu/credits.go:101
 msgid "For Software Licenses{{BR}}Press Right"
 msgstr ""
 
@@ -256,7 +256,7 @@ msgstr ""
 msgid "Language: %s"
 msgstr ""
 
-#: menu/credits.go:107
+#: menu/credits.go:109
 msgid "Level Version: %d"
 msgstr ""
 
@@ -336,6 +336,10 @@ msgstr ""
 msgid "Play"
 msgstr ""
 
+#: menu/credits.go:71
+msgid "Player Sprite"
+msgstr ""
+
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go:79
 msgid "Ponta Delgada"
@@ -411,7 +415,7 @@ msgstr ""
 msgid "Shift/E/Tab"
 msgstr ""
 
-#: menu/credits.go:73
+#: menu/credits.go:75
 msgid "Sound Effects"
 msgstr ""
 
@@ -450,11 +454,11 @@ msgstr ""
 msgid "Tel Aviv"
 msgstr ""
 
-#: menu/credits.go:75
+#: menu/credits.go:77
 msgid "Testing"
 msgstr ""
 
-#: menu/credits.go:146
+#: menu/credits.go:148
 msgid "Thank You!"
 msgstr ""
 
@@ -479,11 +483,11 @@ msgstr ""
 msgid "Tokyo"
 msgstr ""
 
-#: menu/credits.go:77
+#: menu/credits.go:79
 msgid "Translators"
 msgstr ""
 
-#: menu/credits.go:141
+#: menu/credits.go:143
 msgid "Try Next"
 msgstr ""
 
@@ -516,11 +520,11 @@ msgstr ""
 msgid "You really thought this would do something?"
 msgstr ""
 
-#: menu/credits.go:131
+#: menu/credits.go:133
 msgid "Your Speedrun Categories"
 msgstr ""
 
-#: menu/credits.go:128
+#: menu/credits.go:130
 msgid "Your Time"
 msgstr ""
 
@@ -528,11 +532,11 @@ msgstr ""
 msgid "Z"
 msgstr ""
 
-#: menu/credits.go:85
+#: menu/credits.go:87
 msgid "and %s"
 msgstr ""
 
-#: menu/credits.go:82
+#: menu/credits.go:84
 msgid "by %s"
 msgstr ""
 
