@@ -106,7 +106,7 @@ msgstr "any%"
 msgid "Auckland"
 msgstr "Auckland"
 
-#: menu/credits.go:71
+#: menu/credits.go:73
 msgid "Audio"
 msgstr "Audio"
 
@@ -155,7 +155,7 @@ msgstr "Bischkek"
 msgid "Boston"
 msgstr "Boston"
 
-#: menu/credits.go:108
+#: menu/credits.go:110
 msgid "Build: %s"
 msgstr "Build: %s"
 
@@ -220,7 +220,7 @@ msgstr ""
 "OK, ich gebe auf, mach, was du willst.\n"
 "Alle Cheats sind dokumentiert in --help."
 
-#: menu/credits.go:99
+#: menu/credits.go:101
 msgid "For Software Licenses{{BR}}Press Right"
 msgstr "Für Software-Lizenzen{{BR}}drücke Rechts"
 
@@ -270,7 +270,7 @@ msgstr "Kiritimati"
 msgid "Language: %s"
 msgstr "Sprache: %s"
 
-#: menu/credits.go:107
+#: menu/credits.go:109
 msgid "Level Version: %d"
 msgstr "Level-Version: %d"
 
@@ -350,6 +350,10 @@ msgstr "Wähl-dir-was"
 msgid "Play"
 msgstr "Spielen"
 
+#: menu/credits.go:71
+msgid "Player Sprite"
+msgstr "Spieler-Sprite"
+
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go:79
 msgid "Ponta Delgada"
@@ -425,7 +429,7 @@ msgstr "Shift"
 msgid "Shift/E/Tab"
 msgstr "Shift/E/Tab"
 
-#: menu/credits.go:73
+#: menu/credits.go:75
 msgid "Sound Effects"
 msgstr "Soundeffekte"
 
@@ -464,11 +468,11 @@ msgstr "Teheran"
 msgid "Tel Aviv"
 msgstr "Tel Aviv"
 
-#: menu/credits.go:75
+#: menu/credits.go:77
 msgid "Testing"
 msgstr "Tester"
 
-#: menu/credits.go:146
+#: menu/credits.go:148
 msgid "Thank You!"
 msgstr "Danke!"
 
@@ -493,11 +497,11 @@ msgstr "Die Fernbedienung"
 msgid "Tokyo"
 msgstr "Tokio"
 
-#: menu/credits.go:77
+#: menu/credits.go:79
 msgid "Translators"
 msgstr "Übersetzer"
 
-#: menu/credits.go:141
+#: menu/credits.go:143
 msgid "Try Next"
 msgstr "Versuche als Nächstes"
 
@@ -532,11 +536,11 @@ msgstr ""
 msgid "You really thought this would do something?"
 msgstr "Dachtest du wirklich, das wird etwas tun?"
 
-#: menu/credits.go:131
+#: menu/credits.go:133
 msgid "Your Speedrun Categories"
 msgstr "Deine Speedrun-Kategorien"
 
-#: menu/credits.go:128
+#: menu/credits.go:130
 msgid "Your Time"
 msgstr "Deine Zeit"
 
@@ -544,11 +548,11 @@ msgstr "Deine Zeit"
 msgid "Z"
 msgstr "Z"
 
-#: menu/credits.go:85
+#: menu/credits.go:87
 msgid "and %s"
 msgstr "und %s"
 
-#: menu/credits.go:82
+#: menu/credits.go:84
 msgid "by %s"
 msgstr "von %s"
 
