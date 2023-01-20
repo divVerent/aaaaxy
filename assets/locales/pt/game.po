@@ -1,11 +1,11 @@
 # 
 # Translators:
-# yy0zz, 2023
 # Rudolf Polzer, 2023
+# yy0zz, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2023\n"
+"Last-Translator: yy0zz, 2023\n"
 "Language-Team: Portuguese (https://www.transifex.com/aaaaxy/teams/158611/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,7 +174,7 @@ msgstr "Pronto"
 
 #: menu/settings.go:391 menu/touchedit.go:80
 msgid "Edit Touch Controls"
-msgstr "Editar Controles de Toque"
+msgstr "Editar Control{{if eq Lang \"pt-BR\"}}e{{else}}o{{end}}s de Toque"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go:66
@@ -500,7 +500,7 @@ msgstr "Realmente pensou que isto faria algo?"
 
 #: menu/credits.go:96
 msgid "Your Speedrun Categories"
-msgstr "Suas Categorias de Corrida contra o Tempo"
+msgstr "Suas Categorias de Speedrun"
 
 #: menu/credits.go:93
 msgid "Your Time"
