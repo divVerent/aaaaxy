@@ -36,6 +36,8 @@ func (l Lingua) Name() string {
 		return "Deutsch (Schweiz)"
 	case "pt":
 		return "Português"
+	case "pt-BR":
+		return "Português (Brasil)"
 	default:
 		return string(l)
 	}
@@ -47,6 +49,9 @@ func (l Lingua) Directory() string {
 	if l == "de-CH" {
 		return "de"
 	}
+	if l == "pt-BR" {
+		return "pt"
+	}
 	return strings.ReplaceAll(string(l), "-", "_")
 }
 
@@ -54,6 +59,9 @@ func (l Lingua) Aliases() []Lingua {
 	// Handle aliases.
 	if l == "de" {
 		return []Lingua{"de-CH"}
+	}
+	if l == "pt" {
+		return []Lingua{"pt-BR"}
 	}
 	return nil
 }
