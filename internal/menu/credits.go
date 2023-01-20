@@ -55,6 +55,38 @@ type CreditsScreen struct {
 	Exits      int      // How often exit was pressed. Need to press 7 times to leave fancy credits.
 }
 
+func localizeCredits(line string) string {
+	// Note: locale.G.Get must take a literal or xgotext won't find it,
+	// so we can't just do locale.G.Get(line).
+	switch line {
+	case "Programming":
+		return locale.G.Get("Programming")
+	case "Additional Programming Libraries & Tools":
+		return locale.G.Get("Additional Programming Libraries & Tools")
+	case "Graphics":
+		return locale.G.Get("Graphics")
+	case "Sprites":
+		return locale.G.Get("Sprites")
+	case "Audio":
+		return locale.G.Get("Audio")
+	case "Sound Effects":
+		return locale.G.Get("Sound Effects")
+	case "Testing":
+		return locale.G.Get("Testing")
+	case "Translators":
+		return locale.G.Get("Translators")
+	}
+	// Do not localize names directly.
+	// This does break name-inflecting languages, but so be it.
+	if trimmed := strings.TrimPrefix(line, "by "); trimmed != line {
+		return locale.G.Get("by %s", trimmed)
+	}
+	if trimmed := strings.TrimPrefix(line, "and "); trimmed != line {
+		return locale.G.Get("and %s", trimmed)
+	}
+	return line
+}
+
 func (s *CreditsScreen) Init(m *Controller) error {
 	if *cheatShowFinalCredits {
 		s.Fancy = true
@@ -67,7 +99,9 @@ func (s *CreditsScreen) Init(m *Controller) error {
 				locale.G.Get("For Software Licenses{{BR}}Press Right")), "\n")...),
 			"")
 	}
-	s.Lines = append(s.Lines, credits.Lines...)
+	for _, line := range credits.Lines {
+		s.Lines = append(s.Lines, localizeCredits(line))
+	}
 	s.Lines = append(
 		s.Lines,
 		locale.G.Get("Level Version: %d", s.Controller.World.Level.SaveGameVersion),
