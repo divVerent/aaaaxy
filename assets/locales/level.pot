@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-20 08:26-0500\n"
+"POT-Creation-Date: 2023-01-20 20:12-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -264,10 +264,12 @@ msgid "Hide and seek is never fun without opponents."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=396]
+#. Part of 'Welcome to Nexuiz!'
 msgid "Welcome to ..."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=421]
+#. Part of 'Welcome to Nexuiz!'
 msgid "Nexuiz!"
 msgstr ""
 
@@ -1141,10 +1143,12 @@ msgid "Dr. W?"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6110]
+#. Part of 'All good things come to an end.'
 msgid "All good things ..."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6117]
+#. Part of 'All good things come to an end.'
 msgid "... come to an end."
 msgstr ""
 
@@ -1174,10 +1178,12 @@ msgid "You sit on a throne of lies."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6357]
+#. Part of 'There is no universe where this is the right way.'
 msgid "There is no universe where ..."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6358]
+#. Part of 'There is no universe where this is the right way.'
 msgid "... this is the right way."
 msgstr ""
 
@@ -1352,10 +1358,12 @@ msgid "Jumpers lose platforms.{{BR}}Don't be a jumper."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8097]
+#. Part of 'Try going in circles, but five is right out!'
 msgid "Try going in circles, but ..."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8104]
+#. Part of 'Try going in circles, but five is right out!'
 msgid "... five is right out!"
 msgstr ""
 

@@ -1356,6 +1356,7 @@
   </object>
   <object id="396" type="Text" x="4064" y="8080" width="128" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'Welcome to Nexuiz!'"/>
     <property name="text" value="Welcome to ..."/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -1428,6 +1429,7 @@
   <object id="420" gid="322" x="4544" y="7680" width="32" height="32"/>
   <object id="421" type="Text" x="4736" y="8080" width="128" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'Welcome to Nexuiz!'"/>
     <property name="text" value="Nexuiz!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -6759,12 +6761,12 @@
   <object id="1744" name="LeapOfFaithAnyAbility" gid="311" x="4832" y="3984" width="16" height="16"/>
   <object id="1745" name="move_it_move_it" type="Checkpoint" x="7568" y="7392" width="16" height="32">
    <properties>
+    <property name="_text_localization_note" value="Song title by Reel 2 Real, was used in Madagascar movie"/>
     <property name="music" value="Pressure.ogg"/>
     <property name="next_up" type="object" value="4107"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="I Like To Move It Move It"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
-    <property name="_text_localization_note" value="Song title by Reel 2 Real, was used in Madagascar movie"/>
    </properties>
   </object>
   <object id="1746" name="not_that_simple" type="Checkpoint" x="6176" y="7744" width="32" height="32">
@@ -11414,30 +11416,30 @@
   <object id="5003" name="RoadRageEnd" gid="297" x="5296" y="3200" width="64" height="16"/>
   <object id="5004" gid="312" x="5600" y="2808" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="... after?"/>
-    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
    </properties>
   </object>
   <object id="5005" gid="312" x="5600" y="2616" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="... are ..."/>
-    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
    </properties>
   </object>
   <object id="5006" gid="312" x="5024" y="2616" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="What ..."/>
-    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
    </properties>
   </object>
   <object id="5007" gid="312" x="5024" y="2808" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="... you ..."/>
-    <property name="_text_localization_note" value="Part of 'What are you after?'"/>
    </properties>
   </object>
   <object id="5008" gid="312" x="5312" y="2496" width="32" height="32">
@@ -13192,6 +13194,7 @@
   </object>
   <object id="6110" gid="312" x="5736" y="416" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'All good things come to an end.'"/>
     <property name="reached_from" type="object" value="5697"/>
     <property name="text" value="All good things ..."/>
    </properties>
@@ -13234,6 +13237,7 @@
   </object>
   <object id="6117" gid="312" x="6152" y="416" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'All good things come to an end.'"/>
     <property name="reached_from" type="object" value="6103"/>
     <property name="text" value="... come to an end."/>
    </properties>
@@ -13700,12 +13704,14 @@
   </object>
   <object id="6357" gid="312" x="6040" y="2344" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'There is no universe where this is the right way.'"/>
     <property name="reached_from" type="object" value="6119"/>
     <property name="text" value="There is no universe where ..."/>
    </properties>
   </object>
   <object id="6358" gid="312" x="6040" y="2280" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'There is no universe where this is the right way.'"/>
     <property name="reached_from" type="object" value="6119"/>
     <property name="text" value="... this is the right way."/>
    </properties>
@@ -17604,6 +17610,7 @@
   </object>
   <object id="8097" gid="312" x="7312" y="5568" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'Try going in circles, but five is right out!'"/>
     <property name="reached_from" type="object" value="7351"/>
     <property name="text" value="Try going in circles, but ..."/>
    </properties>
@@ -17616,6 +17623,7 @@
   <object id="8103" gid="330" x="7328" y="5600" width="16" height="16"/>
   <object id="8104" gid="312" x="7312" y="5504" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Part of 'Try going in circles, but five is right out!'"/>
     <property name="reached_from" type="object" value="7351"/>
     <property name="text" value="... five is right out!"/>
    </properties>
