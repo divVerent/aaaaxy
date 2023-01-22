@@ -5697,8 +5697,8 @@
    <properties>
     <property name="orientation" value="NE"/>
     <property name="text" value="C"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#00000000"/>
+    <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
@@ -5706,8 +5706,8 @@
    <properties>
     <property name="orientation" value="NE"/>
     <property name="text" value="D"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#00000000"/>
+    <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
@@ -5715,8 +5715,8 @@
    <properties>
     <property name="orientation" value="NE"/>
     <property name="text" value="E"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#00000000"/>
+    <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
@@ -5724,8 +5724,8 @@
    <properties>
     <property name="orientation" value="NE"/>
     <property name="text" value="F"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#00000000"/>
+    <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
@@ -5733,8 +5733,8 @@
    <properties>
     <property name="orientation" value="NE"/>
     <property name="text" value="G"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#00000000"/>
+    <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
@@ -5742,8 +5742,8 @@
    <properties>
     <property name="orientation" value="NE"/>
     <property name="text" value="A"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#00000000"/>
+    <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
@@ -5751,8 +5751,8 @@
    <properties>
     <property name="orientation" value="NE"/>
     <property name="text" value="B"/>
-    <property name="text_bg" type="color" value="#ff000000"/>
-    <property name="text_fg" type="color" value="#ffaaaaaa"/>
+    <property name="text_bg" type="color" value="#00000000"/>
+    <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
