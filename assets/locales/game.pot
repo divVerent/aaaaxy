@@ -146,7 +146,7 @@ msgstr ""
 msgid "Boston"
 msgstr ""
 
-#: menu/credits.go:110
+#: menu/credits.go:112
 msgid "Build: %s"
 msgstr ""
 
@@ -206,7 +206,7 @@ msgid ""
 "All cheats are documented in --help."
 msgstr ""
 
-#: menu/credits.go:101
+#: menu/credits.go:103
 msgid "For Software Licenses{{BR}}Press Right"
 msgstr ""
 
@@ -256,7 +256,7 @@ msgstr ""
 msgid "Language: %s"
 msgstr ""
 
-#: menu/credits.go:109
+#: menu/credits.go:111
 msgid "Level Version: %d"
 msgstr ""
 
@@ -458,7 +458,7 @@ msgstr ""
 msgid "Testing"
 msgstr ""
 
-#: menu/credits.go:148
+#: menu/credits.go:150
 msgid "Thank You!"
 msgstr ""
 
@@ -487,7 +487,7 @@ msgstr ""
 msgid "Translators"
 msgstr ""
 
-#: menu/credits.go:143
+#: menu/credits.go:145
 msgid "Try Next"
 msgstr ""
 
@@ -520,11 +520,11 @@ msgstr ""
 msgid "You really thought this would do something?"
 msgstr ""
 
-#: menu/credits.go:133
+#: menu/credits.go:135
 msgid "Your Speedrun Categories"
 msgstr ""
 
-#: menu/credits.go:130
+#: menu/credits.go:132
 msgid "Your Time"
 msgstr ""
 
@@ -532,11 +532,15 @@ msgstr ""
 msgid "Z"
 msgstr ""
 
-#: menu/credits.go:87
+#: menu/credits.go:89
 msgid "and %s"
 msgstr ""
 
-#: menu/credits.go:84
+#: menu/credits.go:81
+msgid "and other contributors"
+msgstr ""
+
+#: menu/credits.go:86
 msgid "by %s"
 msgstr ""
 

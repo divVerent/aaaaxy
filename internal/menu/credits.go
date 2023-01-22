@@ -77,6 +77,8 @@ func localizeCredits(line string) string {
 		return locale.G.Get("Testing")
 	case "Translators":
 		return locale.G.Get("Translators")
+	case "and other contributors":
+		return locale.G.Get("and other contributors")
 	}
 	// Do not localize names directly.
 	// This does break name-inflecting languages, but so be it.
