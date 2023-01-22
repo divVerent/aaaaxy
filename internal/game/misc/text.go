@@ -143,8 +143,8 @@ func (t *Text) Precache(sp *level.Spawnable) error {
 	if sp.Orientation.Right.DX == 0 {
 		dx, dy = dy, dx
 	}
-	if dx > sp.RectInTile.Size.DX || dy > sp.RectInTile.Size.DY+2 {
-		// Tolerate 2 extra pixels for diacritics.
+	if dx > sp.RectInTile.Size.DX+2 || dy > sp.RectInTile.Size.DY+2 {
+		// Tolerate 2 extra pixels for diacritics or borders.
 		locale.Errorf("text too big: entity %v has size %v but text needs %v: %v",
 			sp.ID, sp.RectInTile.Size, m.Delta{DX: dx, DY: dy}, key.text)
 	}
