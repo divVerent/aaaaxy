@@ -154,7 +154,7 @@ msgstr "Pispheco"
 msgid "Boston"
 msgstr "Bostonia"
 
-#: menu/credits.go:110
+#: menu/credits.go:112
 msgid "Build: %s"
 msgstr "Aedificatum: %s"
 
@@ -219,7 +219,7 @@ msgstr ""
 "Cedo, vincis. Non curo.\n"
 "Quomodo fraudare  in --help expositum est."
 
-#: menu/credits.go:101
+#: menu/credits.go:103
 msgid "For Software Licenses{{BR}}Press Right"
 msgstr "Ad Videndum Licentias Programmae{{BR}}Preme Dextrum"
 
@@ -269,7 +269,7 @@ msgstr "Insula Christi Natalis"
 msgid "Language: %s"
 msgstr "Lingua: %s"
 
-#: menu/credits.go:109
+#: menu/credits.go:111
 msgid "Level Version: %d"
 msgstr "Versio Libellae: %d"
 
@@ -471,7 +471,7 @@ msgstr "Telavivo"
 msgid "Testing"
 msgstr "Probatores"
 
-#: menu/credits.go:148
+#: menu/credits.go:150
 msgid "Thank You!"
 msgstr "Gratias Tibi Ago!"
 
@@ -500,7 +500,7 @@ msgstr "Tocio"
 msgid "Translators"
 msgstr "Interpretes"
 
-#: menu/credits.go:143
+#: menu/credits.go:145
 msgid "Try Next"
 msgstr "Experire"
 
@@ -533,11 +533,11 @@ msgstr "Vitae triginta nunc habes. Bene sit tibi!"
 msgid "You really thought this would do something?"
 msgstr "Num hoc aliquid facere putabaris?"
 
-#: menu/credits.go:133
+#: menu/credits.go:135
 msgid "Your Speedrun Categories"
 msgstr "Categoriae Tuae"
 
-#: menu/credits.go:130
+#: menu/credits.go:132
 msgid "Your Time"
 msgstr "Tempus Tuum"
 
@@ -545,11 +545,15 @@ msgstr "Tempus Tuum"
 msgid "Z"
 msgstr "Z"
 
-#: menu/credits.go:87
+#: menu/credits.go:89
 msgid "and %s"
 msgstr "et %s"
 
-#: menu/credits.go:84
+#: menu/credits.go:81
+msgid "and other contributors"
+msgstr "et al."
+
+#: menu/credits.go:86
 msgid "by %s"
 msgstr "a %s"
 
