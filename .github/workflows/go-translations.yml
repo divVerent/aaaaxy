@@ -16,7 +16,7 @@ jobs:
         submodules: false
     - name: Generate Language List
       id: list-languages
-      run: 'all=; for l in assets/locales/*/ de-CH; do l=${l%/}; l=${l##*/}; l=$(echo "$l" | tr _ -); all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
+      run: 'all=; for l in en assets/locales/*/ de-CH pt-BR; do l=${l%/}; l=${l##*/}; l=$(echo "$l" | tr _ -); all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
     outputs:
       languages: ${{ steps.list-languages.outputs.languages }}
 
