@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-20 20:12-0500\n"
+"POT-Creation-Date: 2023-01-21 21:35-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Latin (https://www.transifex.com/aaaaxy/teams/158611/la/)\n"
@@ -28,7 +28,7 @@ msgstr "Interdum ambulatio brevis opus magnum."
 #. https://knowyourmeme.com/memes/peace-was-never-an-option
 #: assets/maps/level.tmx//map/objectgroup/object[@id=49]
 msgid "Failure was never an option."
-msgstr "Devinci numquam permitto."
+msgstr "Devinci neminem permitto."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=50]
 msgid ""
@@ -418,7 +418,7 @@ msgstr "Fa"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1248]
 msgid "G"
-msgstr "So"
+msgstr "Sol"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1249]
 msgid "A"
