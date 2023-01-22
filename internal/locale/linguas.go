@@ -34,6 +34,8 @@ func (l Lingua) Name() string {
 		return "Deutsch"
 	case "de-CH":
 		return "Deutsch (Schweiz)"
+	case "la":
+		return "Latina"
 	case "pt":
 		return "Português"
 	case "pt-BR":
