@@ -28,7 +28,7 @@ msgstr "Interdum ambulatio brevis opus magnum."
 #. https://knowyourmeme.com/memes/peace-was-never-an-option
 #: assets/maps/level.tmx//map/objectgroup/object[@id=49]
 msgid "Failure was never an option."
-msgstr "Devinci neminem permitto."
+msgstr "Devinci nemini permitto."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=50]
 msgid ""
