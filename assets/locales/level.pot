@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-22 21:16-0500\n"
+"POT-Creation-Date: 2023-01-22 21:17-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1128,11 +1128,6 @@ msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=5689]
 msgid "The slow and slothful deserve ...{{BR}}nothing."
-msgstr ""
-
-#: assets/maps/level.tmx://map/objectgroup/object[@id=5697]
-#. Mix of 'Sky Diver', an Atari 2600 game, and the sport 'Ski'.
-msgid "Mix of 'Sky Diver', an Atari 2600 game, and the sport 'Ski'."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=5697]

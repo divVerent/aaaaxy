@@ -12537,7 +12537,7 @@
   <object id="5695" gid="305" x="8032" y="2880" width="32" height="32"/>
   <object id="5697" name="ski_dyver" type="Checkpoint" x="7808" y="2624" width="288" height="32">
    <properties>
-    <property name="text" value="Mix of 'Sky Diver', an Atari 2600 game, and the sport 'Ski'."/>
+    <property name="_text_localization_note" value="Mix of 'Sky Diver', an Atari 2600 game, and the sport 'Ski'."/>
     <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
     <property name="next_left" type="object" value="6103"/>
     <property name="required_orientation" value="ES"/>
