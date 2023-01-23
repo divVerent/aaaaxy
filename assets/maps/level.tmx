@@ -13933,6 +13933,7 @@
   </object>
   <object id="6536" gid="312" x="7192" y="1504" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="'Cheese' here means 'unintended shortcut' - https://english.stackexchange.com/questions/21867/origins-of-the-gaming-term-cheese-strategy"/>
     <property name="reached_from" type="object" value="6119"/>
     <property name="text" value="What looked like cheese might be the only way."/>
    </properties>

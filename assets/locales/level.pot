@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-22 20:45-0500\n"
+"POT-Creation-Date: 2023-01-22 21:16-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1198,6 +1198,7 @@ msgid "... this is the right way."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6536]
+#. 'Cheese' here means 'unintended shortcut' - https://english.stackexchange.com/questions/21867/origins-of-the-gaming-term-cheese-strategy
 msgid "What looked like cheese might be the only way."
 msgstr ""
 
