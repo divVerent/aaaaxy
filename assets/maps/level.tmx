@@ -1190,6 +1190,7 @@
   </object>
   <object id="319" gid="312" x="4304" y="7264" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="Refers to a cage with a 100 HP healthpack on the Nexuiz (first person shooter) map silvercity."/>
     <property name="reached_from" type="object" value="330"/>
     <property name="text" value="Behold the cage of health!"/>
    </properties>
@@ -1234,7 +1235,7 @@
   <object id="329" name="ToSilverCity" gid="297" x="4640" y="6704" width="32" height="16"/>
   <object id="330" name="silvercity" type="Checkpoint" x="4448" y="7952" width="32" height="32">
    <properties>
-    <property name="_text_localization_note" value="https://www.youtube.com/watch?v=8otWflEtlyg"/>
+    <property name="_text_localization_note" value="Refers to a map of the first person shooter game Nexuiz: https://www.youtube.com/watch?v=8otWflEtlyg"/>
     <property name="music" value="Next to You.ogg"/>
     <property name="next_left" type="object" value="865"/>
     <property name="required_orientation" value="ES"/>
@@ -8288,6 +8289,7 @@
   <object id="2990" gid="305" x="4064" y="3232" width="32" height="32"/>
   <object id="2992" name="push_me_not" type="Checkpoint" x="4000" y="3136" width="96" height="64">
    <properties>
+    <property name="_text_localization_note" value="May also be known as 'for eyes principle'; a concept from IT security. This part of the level focuses on the need for multiple switches being toggled on by two platforms simultaneously to make progress."/>
     <property name="music" value="AugustUltraAmbience.ogg"/>
     <property name="next_up" type="object" value="3186"/>
     <property name="required_orientation" value="ES"/>
@@ -9823,6 +9825,7 @@
   </object>
   <object id="3977" name="kaizo" type="Checkpoint" x="5520" y="3392" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="https://en.wikipedia.org/wiki/Kaizo - transcribe phonetically"/>
     <property name="music" value="mythica.ogg"/>
     <property name="next_down" type="object" value="4025"/>
     <property name="required_orientation" value="ES"/>
@@ -11105,6 +11108,7 @@
   <object id="4765" name="DrivingYouMad1" gid="297" x="5392" y="1824" width="32" height="16"/>
   <object id="4766" type="Text" x="5392" y="1696" width="96" height="32">
    <properties>
+    <property name="_text_localization_note" value="The 'it' here refers to the large platform."/>
     <property name="text" value="Still got it?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -12533,6 +12537,7 @@
   <object id="5695" gid="305" x="8032" y="2880" width="32" height="32"/>
   <object id="5697" name="ski_dyver" type="Checkpoint" x="7808" y="2624" width="288" height="32">
    <properties>
+    <property name="text" value="Mix of 'Sky Diver', an Atari 2600 game, and the sport 'Ski'."/>
     <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
     <property name="next_left" type="object" value="6103"/>
     <property name="required_orientation" value="ES"/>
