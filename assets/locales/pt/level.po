@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-19 15:49-0500\n"
+"POT-Creation-Date: 2023-01-22 21:17-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: yy0zz, 2023\n"
 "Language-Team: Portuguese (https://www.transifex.com/aaaaxy/teams/158611/pt/)\n"
@@ -244,10 +244,13 @@ msgstr "Dreeenos"
 msgid "The prospect of additional strength fills you with determination."
 msgstr "A expectativa de força adicional enche-o de determinação."
 
+#. Refers to a cage with a 100 HP healthpack on the Nexuiz (first person
+#. shooter) map silvercity.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=319]
 msgid "Behold the cage of health!"
 msgstr "Eis a jaula da saúde!"
 
+#. Refers to a map of the first person shooter game Nexuiz:
 #. https://www.youtube.com/watch?v=8otWflEtlyg
 #: assets/maps/level.tmx//map/objectgroup/object[@id=330]
 msgid "Silver City"
@@ -275,10 +278,12 @@ msgstr ""
 "{{if eq Lang \"pt-BR\"}}Esconde-esconde{{else}}Jogo das escondidas{{end}} "
 "nunca é divertido sem oponentes."
 
+#. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=396]
 msgid "Welcome to ..."
 msgstr "Bem-vindo a ..."
 
+#. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=421]
 msgid "Nexuiz!"
 msgstr "Nexuiz!"
@@ -782,6 +787,9 @@ msgstr "Só você cairia numa armadilha tão primitiva quanto esta."
 msgid "Lack of purpose never was a reason not to do it."
 msgstr "Falta de propósito nunca foi motivo de não o fazer."
 
+#. May also be known as 'for eyes principle'; a concept from IT security. This
+#. part of the level focuses on the need for multiple switches being toggled
+#. on by two platforms simultaneously to make progress.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2992]
 msgid "Multi Party Authorization"
 msgstr "Autorização por Múltiplas Partes"
@@ -918,6 +926,7 @@ msgstr ""
 msgid "Moving forward may require{{BR}}making the most of what you've got."
 msgstr "Prosseguir pode requerer{{BR}}fazer a maior parte do que já fez."
 
+#. https://en.wikipedia.org/wiki/Kaizo - transcribe phonetically
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3977]
 msgid "Kaizo"
 msgstr "Kaizo"
@@ -1025,6 +1034,7 @@ msgstr "Ir à Loucura"
 msgid "It's Bring Your Own Platform, you know."
 msgstr "É para trazer sua própria plataforma, sabe."
 
+#. The 'it' here refers to the large platform.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4766]
 msgid "Still got it?"
 msgstr "Ainda tem?"
@@ -1175,6 +1185,7 @@ msgstr "Nem todo atalho funciona."
 msgid "The slow and slothful deserve ...{{BR}}nothing."
 msgstr "O lento e preguiçoso merece ...{{BR}}nada."
 
+#. Mix of 'Sky Diver', an Atari 2600 game, and the sport 'Ski'.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5697]
 msgid "Ski Dyver"
 msgstr "Esquia Quedas"
@@ -1191,10 +1202,12 @@ msgstr "Se não sabe quem é,{{BR}}não sabe aonde ir."
 msgid "Dr. W?"
 msgstr "Dr. W?"
 
+#. Part of 'All good things come to an end.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6110]
 msgid "All good things ..."
 msgstr "Cada boa coisa ..."
 
+#. Part of 'All good things come to an end.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6117]
 msgid "... come to an end."
 msgstr "... tem um final."
@@ -1224,14 +1237,19 @@ msgstr "Cuidado!"
 msgid "You sit on a throne of lies."
 msgstr "Está sentado num trono de mentiras."
 
+#. Part of 'There is no universe where this is the right way.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6357]
 msgid "There is no universe where ..."
 msgstr "Não há universo onde ..."
 
+#. Part of 'There is no universe where this is the right way.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6358]
 msgid "... this is the right way."
 msgstr "... isto seja o caminho certo."
 
+#. 'Cheese' here means 'unintended shortcut' -
+#. https://english.stackexchange.com/questions/21867/origins-of-the-gaming-
+#. term-cheese-strategy
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6536]
 msgid "What looked like cheese might be the only way."
 msgstr "O que parecia queijo pode ser o único caminho."
@@ -1409,10 +1427,12 @@ msgstr "Pisar fora do problema pode ajudar a resolvê-lo."
 msgid "Jumpers lose platforms.{{BR}}Don't be a jumper."
 msgstr "Saltadores perdem{{BR}}plataformas.{{BR}}Não seja um saltador."
 
+#. Part of 'Try going in circles, but five is right out!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8097]
 msgid "Try going in circles, but ..."
 msgstr "Tente ir em círculos, mas ..."
 
+#. Part of 'Try going in circles, but five is right out!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8104]
 msgid "... five is right out!"
 msgstr "... cinco é o certo!"
