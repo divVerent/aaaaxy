@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.143" date="2023-01-16">
-      <description><ul><li>Engine: minor module update.</li><li>Level: minor text fixes (periods, spaces).</li><li>Translation: fix bug that prevented replacing content (so now one can change translation files on a released binary for testing).</li><li>Translation: level file now points at object IDs, not line numbers. More stable, and findable in Tiled.</li><li>Translation: more localization notes.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.143</url>
+    <release version="v1.3.186" date="2023-01-23">
+      <description><ul><li>Level: make the piano look better with do-re-mi scales.</li><li>New language: Portuguese (Brazil).</li><li>New language: Latin.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.186</url>
     </release>
   </releases>
 </component>

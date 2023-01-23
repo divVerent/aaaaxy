@@ -1,0 +1,3 @@
+  - Level: make the piano look better with do-re-mi scales.
+  - New language: Portuguese (Brazil).
+  - New language: Latin.
