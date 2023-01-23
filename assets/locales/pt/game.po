@@ -26,7 +26,7 @@ msgstr ""
 "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàáâãçêíóôõúÁÂÃÀÇÉÊÍÓÔÕÚ"
 
 #. Last separator when building a list.
-#: fun/string.go:159 playerstate/playerstate.go:350
+#: fun/string.go:160 playerstate/playerstate.go:350
 msgid " and "
 msgstr " e "
 
@@ -34,7 +34,7 @@ msgstr " e "
 msgid "%.1f fps, %.1f tps"
 msgstr "%.1f fps, %.1f tps"
 
-#: fun/string.go:122
+#: fun/string.go:123
 msgid "%d:%02d:%02d.%03d"
 msgstr "%d:%02d:%02d.%03d"
 
@@ -43,7 +43,7 @@ msgid "%s (%d/%d)"
 msgstr "%s (%d/%d)"
 
 #. Other separator when building a list.
-#: fun/string.go:159 playerstate/playerstate.go:350
+#: fun/string.go:160 playerstate/playerstate.go:350
 msgid ", "
 msgstr ", "
 
@@ -62,6 +62,10 @@ msgstr "???"
 #: menu/savestate.go:150
 msgid "A: %s"
 msgstr "A: %s"
+
+#: menu/credits.go:65
+msgid "Additional Programming Libraries & Tools"
+msgstr "Bibliotecas de Programas & Ferramentas Adicionais"
 
 #: playerstate/playerstate.go:239
 msgid "All Checkpoints"
@@ -84,12 +88,12 @@ msgid "All Secrets"
 msgstr "Todos os Segredos"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:58
+#: fun/string.go:59
 msgid "Alofi"
 msgstr "Alofi"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:62
+#: fun/string.go:63
 msgid "Anchorage"
 msgstr "Anchorage"
 
@@ -98,56 +102,60 @@ msgid "Any%"
 msgstr "Qualquer%"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:104
+#: fun/string.go:105
 msgid "Auckland"
 msgstr "Auckland"
+
+#: menu/credits.go:73
+msgid "Audio"
+msgstr "Áudio"
 
 #: menu/language.go:43 menu/quality.go:46
 msgid "Auto (%s)"
 msgstr "Auto (%s)"
 
-#: fun/string.go:188
+#: fun/string.go:189
 msgid "B"
 msgstr "B"
 
-#: fun/string.go:185
+#: fun/string.go:186
 msgid "B/X"
 msgstr "B/X"
 
-#: fun/string.go:176
+#: fun/string.go:177
 msgid "Back"
 msgstr "Voltar"
 
-#: fun/string.go:172
+#: fun/string.go:173
 msgid "Backspace"
 msgstr "Backspace"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:56
+#: fun/string.go:57
 msgid "Baker Island"
 msgstr "Ilha Baker"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:96
+#: fun/string.go:97
 msgid "Beijing"
 msgstr "Pequim"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:82
+#: fun/string.go:83
 msgid "Berlin"
 msgstr "Berlim"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:92
+#: fun/string.go:93
 msgid "Bishkek"
 msgstr "Bishkek"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:111
+#: fun/string.go:112
 msgid "Boston"
 msgstr "Boston"
 
-#: menu/credits.go:73
+#: menu/credits.go:112
 msgid "Build: %s"
 msgstr "Compilação: %s"
 
@@ -156,7 +164,7 @@ msgid "Cheat%"
 msgstr "Trapaça%"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:68
+#: fun/string.go:69
 msgid "Chicago"
 msgstr "Chicago"
 
@@ -164,7 +172,7 @@ msgstr "Chicago"
 msgid "Credits"
 msgstr "Créditos"
 
-#: fun/string.go:191
+#: fun/string.go:192
 msgid "Ctrl/Shift"
 msgstr "Ctrl/Shift"
 
@@ -177,11 +185,11 @@ msgid "Edit Touch Controls"
 msgstr "Editar Control{{if eq Lang \"pt-BR\"}}e{{else}}o{{end}}s de Toque"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:66
+#: fun/string.go:67
 msgid "Edmonton"
 msgstr "Edmonton"
 
-#: fun/string.go:200
+#: fun/string.go:201
 msgid "Enter/Shift"
 msgstr "Enter/Shift"
 
@@ -195,12 +203,12 @@ msgstr ""
 "não se pôde salvar o jogo:\n"
 "%s"
 
-#: fun/string.go:170
+#: fun/string.go:171
 msgid "Escape"
 msgstr "Escape"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:76
+#: fun/string.go:77
 msgid "Fernando de Noronha"
 msgstr "Fernando de Noronha"
 
@@ -212,21 +220,25 @@ msgstr ""
 "Bem, desisto, faça como quiser.\n"
 "Todas as trapaças estão documentadas em --help."
 
-#: menu/credits.go:66
+#: menu/credits.go:103
 msgid "For Software Licenses{{BR}}Press Right"
 msgstr "Para Licenças de Software{{BR}}aperte direita"
+
+#: menu/credits.go:67
+msgid "Graphics"
+msgstr "Gráficos"
 
 #: menu/settings.go:408
 msgid "Graphics: %s"
 msgstr "Gráficos: %s"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:72
+#: fun/string.go:73
 msgid "Halifax"
 msgstr "Halifax"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:94
+#: fun/string.go:95
 msgid "Hanoi"
 msgstr "Hanói"
 
@@ -236,7 +248,7 @@ msgid "High"
 msgstr "Alta"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:60
+#: fun/string.go:61
 msgid "Honolulu"
 msgstr "Honolulu"
 
@@ -245,12 +257,12 @@ msgid "Impossible"
 msgstr "Impossível"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:86
+#: fun/string.go:87
 msgid "Istanbul"
 msgstr "Istambul"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:108
+#: fun/string.go:109
 msgid "Kiritimati"
 msgstr "Kiritimati"
 
@@ -258,12 +270,12 @@ msgstr "Kiritimati"
 msgid "Language: %s"
 msgstr "Língua: %s"
 
-#: menu/credits.go:72
+#: menu/credits.go:111
 msgid "Level Version: %d"
 msgstr "Versão do Nível: %d"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:80
+#: fun/string.go:81
 msgid "London"
 msgstr "Londres"
 
@@ -292,7 +304,7 @@ msgid "Medium"
 msgstr "Média"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:70
+#: fun/string.go:71
 msgid "New York"
 msgstr "Nova Iorque"
 
@@ -321,12 +333,12 @@ msgid "None"
 msgstr "Nada"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:106
+#: fun/string.go:107
 msgid "Nuku'alofa"
 msgstr "Nucualofa"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:74
+#: fun/string.go:75
 msgid "Nuuk"
 msgstr "Nuuk"
 
@@ -338,15 +350,23 @@ msgstr "Escolha um Caminho"
 msgid "Play"
 msgstr "Jogar"
 
+#: menu/credits.go:71
+msgid "Player Sprite"
+msgstr "Sprite do Jogador"
+
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:78
+#: fun/string.go:79
 msgid "Ponta Delgada"
 msgstr "Ponta Delgada"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:102
+#: fun/string.go:103
 msgid "Port Moresby"
 msgstr "Porto Moresby"
+
+#: menu/credits.go:63
+msgid "Programming"
+msgstr "Programação"
 
 #: menu/settings.go:413
 msgid "Quality: %s"
@@ -389,7 +409,7 @@ msgid "Reset to Defaults"
 msgstr "Restaurar ao Padrão"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:64
+#: fun/string.go:65
 msgid "San Francisco"
 msgstr "São Francisco"
 
@@ -401,15 +421,23 @@ msgstr "Pontuação: {{Score}}{{SpeedrunCategoriesShort}} | Tempo: {{GameTime}}"
 msgid "Settings"
 msgstr "Ajustes"
 
-#: fun/string.go:202
+#: fun/string.go:203
 msgid "Shift"
 msgstr "Shift"
 
-#: fun/string.go:197
+#: fun/string.go:198
 msgid "Shift/E/Tab"
 msgstr "Shift/E/Tab"
 
-#: fun/string.go:174
+#: menu/credits.go:75
+msgid "Sound Effects"
+msgstr "Efeitos Sonoros"
+
+#: menu/credits.go:69
+msgid "Sprites"
+msgstr "Sprites"
+
+#: fun/string.go:175
 msgid "Start"
 msgstr "Começar"
 
@@ -426,51 +454,59 @@ msgid "Switch to Windowed Mode"
 msgstr "Mudar para Modo de Janela"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:100
+#: fun/string.go:101
 msgid "Sydney"
 msgstr "Sydney"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:88
+#: fun/string.go:89
 msgid "Tehran"
 msgstr "Teerã"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:84
+#: fun/string.go:85
 msgid "Tel Aviv"
 msgstr "Tel Aviv"
 
-#: menu/credits.go:111
+#: menu/credits.go:77
+msgid "Testing"
+msgstr "Testagem"
+
+#: menu/credits.go:150
 msgid "Thank You!"
 msgstr "Obrigado!"
 
-#: fun/string.go:151
+#: fun/string.go:152
 msgid "The Cleats"
 msgstr "As Chuteiras"
 
-#: fun/string.go:148
+#: fun/string.go:149
 msgid "The Coil"
 msgstr "A Bobina"
 
-#: fun/string.go:142
+#: fun/string.go:143
 msgid "The Gloves"
 msgstr "As Luvas"
 
-#: fun/string.go:145
+#: fun/string.go:146
 msgid "The Remote"
 msgstr "O Remoto"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:98
+#: fun/string.go:99
 msgid "Tokyo"
 msgstr "Tóquio"
 
-#: menu/credits.go:106
+#: menu/credits.go:79
+msgid "Translators"
+msgstr "Tradutores"
+
+#: menu/credits.go:145
 msgid "Try Next"
 msgstr "Tente Em Seguida"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go:90
+#: fun/string.go:91
 msgid "Turkistan"
 msgstr "Turquistão"
 
@@ -498,23 +534,35 @@ msgstr "Agora tem 30 vidas. Aproveite!"
 msgid "You really thought this would do something?"
 msgstr "Realmente pensou que isto faria algo?"
 
-#: menu/credits.go:96
+#: menu/credits.go:135
 msgid "Your Speedrun Categories"
 msgstr "Suas Categorias de Speedrun"
 
-#: menu/credits.go:93
+#: menu/credits.go:132
 msgid "Your Time"
 msgstr "Seu Tempo"
 
-#: fun/string.go:194
+#: fun/string.go:195
 msgid "Z"
 msgstr "Z"
+
+#: menu/credits.go:89
+msgid "and %s"
+msgstr "e %s"
+
+#: menu/credits.go:81
+msgid "and other contributors"
+msgstr "e outros contribuidores"
+
+#: menu/credits.go:86
+msgid "by %s"
+msgstr "por %s"
 
 #: sound/sound.go:234
 msgid "enumerating sounds"
 msgstr "enumerar sons"
 
-#: fun/string.go:161
+#: fun/string.go:162
 msgid "everything"
 msgstr "tudo"
 
@@ -550,7 +598,7 @@ msgstr "carregar o nível"
 msgid "loading level file"
 msgstr "carregar dados do nível"
 
-#: fun/string.go:155
+#: fun/string.go:156
 msgid "nothing"
 msgstr "nada"
 
