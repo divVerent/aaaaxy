@@ -217,7 +217,7 @@ msgid ""
 "All cheats are documented in --help."
 msgstr ""
 "Cedo, vincis. Non curo.\n"
-"Quomodo fraudare  in --help expositum est."
+"Quomodo fraudare in --help expositum est."
 
 #: menu/credits.go:103
 msgid "For Software Licenses{{BR}}Press Right"
@@ -276,7 +276,7 @@ msgstr "Versio Libellae: %d"
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go:81
 msgid "London"
-msgstr "Londonii"
+msgstr "Londonio"
 
 #. Used in context "Quality: ...".
 #: menu/quality.go:54
@@ -356,7 +356,7 @@ msgstr "Graphica Animationis Lusoris"
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go:79
 msgid "Ponta Delgada"
-msgstr "Ponte Delicato"
+msgstr "Ponto Delicato"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go:103
@@ -477,19 +477,19 @@ msgstr "Gratias Tibi Ago!"
 
 #: fun/string.go:152
 msgid "The Cleats"
-msgstr "Caligae"
+msgstr "Calceis"
 
 #: fun/string.go:149
 msgid "The Coil"
-msgstr "Spira"
+msgstr "Fuso Electrico"
 
 #: fun/string.go:143
 msgid "The Gloves"
-msgstr "Chirothecae"
+msgstr "Digitabulis"
 
 #: fun/string.go:146
 msgid "The Remote"
-msgstr "Missor"
+msgstr "Gubernaculo Remoto"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go:99
@@ -527,7 +527,7 @@ msgstr "Y: %s"
 
 #: game/player/player.go:405
 msgid "You now have 30 lives. Enjoy!"
-msgstr "Vitae triginta nunc habes. Bene sit tibi!"
+msgstr "Vitae triginta nunc habes. Prosint!"
 
 #: game/player/player.go:398
 msgid "You really thought this would do something?"
@@ -563,7 +563,7 @@ msgstr "enumero audienda"
 
 #: fun/string.go:162
 msgid "everything"
-msgstr "omnis"
+msgstr "omnibus"
 
 #: level/level.go:790
 msgid "hashing level"
