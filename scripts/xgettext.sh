@@ -41,10 +41,11 @@ msgcomm \
 	--less-than=999999 \
 	--more-than=1 \
 	-s \
-	-o assets/locales/game.pot \
 	assets/locales/game.pot.comments \
 	assets/locales/game_raw.pot \
-	-
+	- |\
+	sed -e '/^#: / s/:[1-9][0-9]*//g' \
+	> assets/locales/game.pot
 
 LF='
 '
