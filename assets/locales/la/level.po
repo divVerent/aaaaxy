@@ -33,7 +33,7 @@ msgstr "Devinci nemini permitto."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=50]
 msgid ""
 "Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
-msgstr "Parvuli semper quaerent adveniamus.{{BR}}Preme {{ExitButton}}."
+msgstr "Parvuli semper quaerent num adveniamus.{{BR}}Preme {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=51]
 msgid "Sometimes the angle of looking at things is all that matters."
@@ -79,7 +79,7 @@ msgstr "Aliqui numerum 2τ numero 4π praeponunt."
 #. devotionals/2013/01/what-is-truth?lang=eng
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
-msgstr "\"Cum olim consenus vehentissimus esset, vero terra non est plana.\""
+msgstr "\"Quamquam olim consenus vehentissimus esset, vero terra non est plana.\""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=93]
 msgid "Some people prefer 4π over 2τ."
@@ -222,7 +222,7 @@ msgstr "Identidem aliquid aquae addendum est ut compenses exhalationem."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=311]
 msgid "You broke out of the stream, yet you're back in the stream."
-msgstr "Ex flumine, iterum in flumine."
+msgstr "Ex flumine, in flumine iterum."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=312]
 msgid "M. C. Waterfall"
@@ -239,7 +239,7 @@ msgstr "S.P.Q.R."
 #. https://undertale.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=317]
 msgid "The prospect of additional strength fills you with determination."
-msgstr "Prospectus ad plure virium te implet determinationis."
+msgstr "Prospecto ad plure virium impleris determinationis."
 
 #. Refers to a cage with a 100 HP healthpack on the Nexuiz (first person
 #. shooter) map silvercity.
@@ -354,7 +354,7 @@ msgstr "I"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1101]
 msgid "The first track is never the one with your train."
-msgstr "Orbita prima numquam orbita traminis tui."
+msgstr "Orbita prima numquam traminis tui."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
@@ -386,7 +386,7 @@ msgstr "Deversorium Hilberti"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1189]
 msgid "I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"
-msgstr "Exhaurio ...{{BR}}{{BR}}{{BR}}{{BR}}cubicula."
+msgstr "Exhausi ...{{BR}}{{BR}}{{BR}}{{BR}}cubicula."
 
 #. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1199]
@@ -456,7 +456,7 @@ msgstr "Axioma Selectionis"
 #. https://www.youtube.com/watch?v=2Z4m4lnjxkY
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1302]
 msgid "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
-msgstr "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
+msgstr "Trololololol, lololol, lololol{{BR}}O hahahae o!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1304]
 msgid "Turtles All the Way In"
@@ -477,7 +477,7 @@ msgstr "Audi carmen testudinis magicae, post quod procedere poteris."
 #. https://antichamber.fandom.com/wiki/Don%27t_Look_Down
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1364]
 msgid "Don't{{BR}}Look Up!"
-msgstr "Ne{{BR}}Specta Sursum!"
+msgstr "Ne{{BR}}Spectes Sursum!"
 
 #. reference to 'curiosity killed the cat' saying; be creative here when
 #. translating; be consistent with the 'Curiosity killed the Carl - no the
@@ -611,7 +611,7 @@ msgstr "Iterum"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1570]
 msgid "If platforms require platforming, what do trains require?"
-msgstr "Suggestisne uti suggestiones indigent?"
+msgstr "Suggestibusne uti suggestiones indigent?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1571]
 msgid "Do"
@@ -671,7 +671,7 @@ msgstr "Alecto Movit Movit"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1765]
 msgid "Hello,{{BR}}World!"
-msgstr "Salve,{{BR}}Mundus!"
+msgstr "Salve,{{BR}}Munde!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1771]
 msgid "Be resourceful with what you have, and you will succeed."
@@ -689,7 +689,7 @@ msgstr "Qui exspectat,{{BR}}iterum conatur ... #DGR"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1814]
 msgid "Avoid getting blocked in!"
-msgstr "Ne includitor in carcerem truncorum!"
+msgstr "Ne includaris in carcerem truncorum!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1816]
 msgid "Treasure hunts can be time intensive."
@@ -701,7 +701,7 @@ msgstr "Simplex facilisque."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1818]
 msgid "Same procedure as last year?"
-msgstr "Idemne modus operandi{{BR}}tamquam proximo anno?"
+msgstr "Idemne modus operandi{{BR}}quam proximo anno?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1819]
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
@@ -713,7 +713,7 @@ msgstr "Quidquid agis, prudenter agas et respice{{BR}}finem."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2301]
 msgid "Gotta Carry It Out"
-msgstr "Porta Portam"
+msgstr "Porta Per Portam"
 
 #. https://en.wikipedia.org/wiki/Colossal_Cave_Adventure
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2324]
@@ -948,7 +948,8 @@ msgstr "Num Satis Portavisti?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
 msgid "T{{BR}}r{{BR}}a{{BR}}s{{BR}}h{{BR}}{{BR}}C{{BR}}h{{BR}}u{{BR}}t{{BR}}e"
-msgstr "P{{BR}}u{{BR}}r{{BR}}g{{BR}}a{{BR}}m{{BR}}e{{BR}}n{{BR}}t{{BR}}a"
+msgstr ""
+"{{BR}}P{{BR}}u{{BR}}r{{BR}}g{{BR}}a{{BR}}m{{BR}}e{{BR}}n{{BR}}t{{BR}}a"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4409]
 msgid "Taking Out the Trash"
@@ -956,7 +957,7 @@ msgstr "Purgamenta Egerere"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4495]
 msgid "Wait, did you take out all the trash?"
-msgstr "Exspecta! Purgamentane egessisti?"
+msgstr "Exspecta! Nonne purgamenta egessisti?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4498]
 msgid "There is no such thing as a little white lie."
@@ -1050,7 +1051,7 @@ msgstr "Salve in {{BigCity}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4986]
 msgid "Crime doesn't pay.{{BR}}Press {{ExitButton}}."
-msgstr "Delirant isti scelesti.{{BR}}Preme {{ExitButton}}."
+msgstr "Scelestus operae pretium non est.{{BR}}Preme {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4997]
 msgid "Dude!{{BR}}That's{{BR}}MY car!"
@@ -1177,7 +1178,7 @@ msgstr "Lenti ignavique merent ...{{BR}}nihil."
 #. Mix of 'Sky Diver', an Atari 2600 game, and the sport 'Ski'.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5697]
 msgid "Ski Dyver"
-msgstr "Sublatus Ad Caelum"
+msgstr "Sublatus ad Caelum"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
 msgid "Those who are not inattentive get trolled."
@@ -1194,7 +1195,7 @@ msgstr "Num Est Vilenius Doctor Roboticae?"
 #. Part of 'All good things come to an end.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6110]
 msgid "All good things ..."
-msgstr "Rerum bonarum ..."
+msgstr "Omnis rei boni ..."
 
 #. Part of 'All good things come to an end.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6117]
@@ -1249,7 +1250,7 @@ msgstr "Mutatrum condemnationis non accendere molis est."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6538]
 msgid "A window of opportunity can lead to greener pastures."
-msgstr "Fenestra ad occasionem interdum ad prata viridiora ducit."
+msgstr "Fenestra ad occasionem interdum ad pratum viridius ducit."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6539]
 msgid "The well prepared will earn their reward."
@@ -1338,7 +1339,7 @@ msgstr "Vae Victis"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7253]
 msgid "This one is your end."
-msgstr "Quo Erat Desperandum."
+msgstr "Quod Erat Desperandum."
 
 #. https://thelettervsixtim.es/ - try keeping the three V alliteration when
 #. translating
@@ -1349,7 +1350,7 @@ msgstr "Veni, Vidi, Vici"
 #. https://thelettervsixtim.es/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7477]
 msgid "Hah! Nobody will ever get this one."
-msgstr "Hercle! Vero nemo umquam id perveniet."
+msgstr "Hercle! Vero nemo umquam hoc obtinebit."
 
 #. https://thelettervsixtim.es/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7490]
@@ -1402,7 +1403,7 @@ msgstr "Alte, Altius, Altissime!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7987]
 msgid "It can be helpful to do two things at the same time."
-msgstr "Saepe duos res simul facere prodest."
+msgstr "Saepe duos res simul agere prodest."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8049]
 msgid "Oh, it shrunk?"
