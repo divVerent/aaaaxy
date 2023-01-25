@@ -35,6 +35,9 @@ import (
 
 const char *assets_zip_path() {
 	NSString *path = [[NSBundle mainBundle] pathForResource: @"aaaaxy" ofType: @"dat"];
+	if (path == nil) {
+		return NULL;
+	}
 	const char *data = [path UTF8String];
 	if (data == NULL) {
 		return NULL;
