@@ -29,7 +29,7 @@ jobs:
 
     - name: Generate Language List
       id: list-languages
-      run: 'for l in $(xvfb-run ./aaaaxy -dump_languages); do all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
+      run: 'rm -f l; xvfb-run sh -c "./aaaaxy -dump_languages > l"; for l in $(cat l); do all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
     outputs:
       languages: ${{ steps.list-languages.outputs.languages }}
 
