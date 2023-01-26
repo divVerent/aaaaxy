@@ -85,3 +85,15 @@ good_languages=$(
 echo "Good languages:" $good_languages
 
 echo "$good_languages" > assets/locales/LINGUAS
+
+make
+languages=$(
+	printf '"en"'
+	xvfb-run ./aaaaxy -dump_languages |\
+	grep . |\
+	while IFS=- read -r lang variant; do
+		printf ', "%s"' "$lang${variant:+-r$variant}"
+	done
+)
+sed -i -e "s/resConfigs .*/resConfigs $languages/" \
+	./AndroidStudioProjects/AAAAXY/app/build.gradle
