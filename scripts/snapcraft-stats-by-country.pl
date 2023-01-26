@@ -5,14 +5,14 @@ use warnings;
 use POSIX qw(strftime);
 use JSON qw(decode_json);
 
-my $top = 10;
+my $top = 15;
 
 my $now = time;
 my $start_date = strftime '%Y-%m-%d', gmtime $now - 86400 * 90;
 my $end_date   = strftime '%Y-%m-%d', gmtime $now - 86400 * 1;
 
 open my $json, '-|', qw(snap run snapcraft metrics aaaaxy),
-	'--name' => 'installed_base_by_country',
+	'--name' => 'weekly_installed_base_by_country',
 	'--format' => 'json',
 	'--start' => $start_date,
 	'--end' => $end_date
@@ -27,6 +27,7 @@ my $data = decode_json $raw;
 my %sheet;
 for my $series (@{$data->{series}}) {
 	my $key = $series->{name};
+	next if $key eq 'none';
 	my $i = 0;
 	for my $value(@{$series->{values}}) {
 		my $bucket = $data->{buckets}[$i];
