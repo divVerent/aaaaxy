@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity implements Quitter {
 		File dir = getExternalFilesDir(null);
 		Aaaaxy.setFilesDir(dir.getAbsolutePath());
 		Aaaaxy.setQuitter(this);
+		if (getIntent().getAction().equals("com.google.intent.action.TEST_LOOP")) {
+			Aaaaxy.forceBenchmarkDemo();
+		} else {
+			Aaaaxy.loadConfig();
+		}
 		setContentView(R.layout.activity_main);
 		insetsController = new WindowInsetsControllerCompat(
 			getWindow(), getWindow().getDecorView());

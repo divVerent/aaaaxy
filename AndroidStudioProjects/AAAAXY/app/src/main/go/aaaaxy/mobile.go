@@ -119,9 +119,20 @@ func init() {
 // SetFilesDir forwards the location of the data files to the app.
 func SetFilesDir(dir string) {
 	vfs.SetFilesDir(dir)
-	// Only now we can actually load the config.
+}
+
+// LoadConfig loads the configuration. To be called after SetFilesDir().
+func LoadConfig() {
 	// Sorry, some of the stuff SetGame does couldn't use flags then.
 	flag.Parse(aaaaxy.LoadConfig)
+}
+
+// ForceBenchmarkDemo runs a benchmark demo instead of the game.
+// This ignores the config, and should be called instead of LoadConfig() after SetFilesDir().
+func ForceBenchmarkDemo() {
+	flag.Parse(flag.NoConfig)
+	flag.Set("demo_play", "benchmark.dem")
+	flag.Set("demo_timedemo", true)
 }
 
 // BackPressed notifies the game that the back button has been pressed.
