@@ -68,7 +68,7 @@ func (l Lingua) Aliases() []Lingua {
 	return nil
 }
 
-// Linguas returns the languages sorted by humanly expected ordering.
+// LinguasSorted returns the languages sorted by humanly expected ordering.
 func LinguasSorted() []Lingua {
 	ret := []Lingua{""}
 	for l := range Linguas {

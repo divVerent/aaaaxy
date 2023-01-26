@@ -13,10 +13,23 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        submodules: false
+        submodules: true
+
+    - name: Install Dependencies
+      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.19
+        check-latest: true
+
+    - name: Build
+      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
+
     - name: Generate Language List
       id: list-languages
-      run: 'all=; for l in assets/locales/*/ de-CH pt-BR; do l=${l%/}; l=${l##*/}; l=$(echo "$l" | tr _ -); all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
+      run: 'for l in $(xvfb-run ./aaaaxy -dump_languages); do all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
     outputs:
       languages: ${{ steps.list-languages.outputs.languages }}
 

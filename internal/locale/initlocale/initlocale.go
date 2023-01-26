@@ -20,6 +20,7 @@ import (
 	"io"
 	"strings"
 
+	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/locale"
@@ -28,14 +29,18 @@ import (
 )
 
 var (
-	language = flag.String("language", "auto", "language to translate the game into; if set to 'auto', it will be detected using the system locale; set to '' to not translate")
+	language      = flag.String("language", "auto", "language to translate the game into; if set to 'auto', it will be detected using the system locale; set to '' to not translate")
+	dumpLanguages = flag.Bool("dump_languages", false, "just print the list of languages and exit")
 )
 
-func initLinguas() {
+func initLinguas() error {
 	data, err := vfs.Load("locales", "LINGUAS")
 	if err != nil {
+		if *dumpLanguages {
+			log.Fatalf("could not open LINGUAS file: %v", err)
+		}
 		log.Errorf("could not open LINGUAS file: %v", err)
-		return
+		return nil
 	}
 	defer data.Close()
 	buf, err := io.ReadAll(data)
@@ -49,6 +54,13 @@ func initLinguas() {
 			locale.Linguas[alias] = struct{}{}
 		}
 	}
+	if *dumpLanguages {
+		for _, l := range locale.LinguasSorted() {
+			fmt.Println(string(l))
+		}
+		return exitstatus.RegularTermination
+	}
+	return nil
 }
 
 func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
@@ -71,9 +83,12 @@ func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
 }
 
 func Init() error {
-	initLinguas()
+	err := initLinguas()
+	if err != nil {
+		return err
+	}
 	locale.InitCurrent()
-	_, err := SetLanguage(locale.Lingua(*language))
+	_, err = SetLanguage(locale.Lingua(*language))
 	return err
 }
 
