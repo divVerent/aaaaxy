@@ -5685,13 +5685,13 @@
     <property name="target" value="=ShepardKhil"/>
    </properties>
   </object>
-  <object id="1243" type="Text" x="4256" y="5680" width="112" height="64">
+  <object id="1243" type="Text" x="4256" y="5680" width="112" height="72">
    <properties>
     <property name="_text_localization_note" value="ECED are music notes - so in some languages something like MiDoMiRe may be better. Trololo is the 'meme name' of a song by Eduard Khil."/>
     <property name="text" value="Play ECED{{BR}}to open.{{BR}}No Trololos!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
-    <property name="text_font" value="Regular"/>
+    <property name="text_font" value="Small"/>
    </properties>
   </object>
   <object id="1244" type="Text" x="4256" y="5856" width="16" height="32">
