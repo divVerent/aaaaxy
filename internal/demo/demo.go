@@ -71,6 +71,7 @@ func Init() error {
 			}
 		}
 		demoPlayer = json.NewDecoder(demoPlayerFile)
+		vfs.PreventWrite("demo playback")
 	}
 	if *demoRecord != "" {
 		if is, _ := flag.Cheating(); is {

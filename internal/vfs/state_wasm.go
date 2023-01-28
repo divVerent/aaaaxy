@@ -79,8 +79,8 @@ func MoveAwayState(kind StateKind, name string) error {
 	})
 }
 
-// WriteState writes the given state file.
-func WriteState(kind StateKind, name string, data []byte) error {
+// writeState writes the given state file.
+func writeState(kind StateKind, name string, data []byte) error {
 	path := fmt.Sprintf("%d/%s", kind, name)
 	return protectJS(func() {
 		js.Global().Get("localStorage").Call("setItem", js.ValueOf(path), js.ValueOf(string(data)))

@@ -71,8 +71,8 @@ func MoveAwayState(kind StateKind, name string) error {
 	return err
 }
 
-// WriteState writes the given state file.
-func WriteState(kind StateKind, name string, data []byte) error {
+// writeState writes the given state file.
+func writeState(kind StateKind, name string, data []byte) error {
 	path, err := pathForWrite(kind, name)
 	if err != nil {
 		return err

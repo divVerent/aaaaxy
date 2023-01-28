@@ -14,6 +14,10 @@
 
 package vfs
 
+import (
+	"github.com/divVerent/aaaaxy/internal/log"
+)
+
 type StateKind int
 
 const (
@@ -24,3 +28,21 @@ const (
 	Config StateKind = iota
 	SavedGames
 )
+
+var preventWrite *string = nil
+
+// PreventWrite prevents further writing to any state.
+//
+// This is used as a safety mechanism so demo playback cannot have any
+// influence on the system.
+func PreventWrite(reason string) {
+	preventWrite = &reason
+}
+
+// WriteState writes the given state file.
+func WriteState(kind StateKind, name string, data []byte) error {
+	if preventWrite != nil {
+		log.Fatalf("attempted to write data despite %s", *preventWrite)
+	}
+	return writeState(kind, name, data)
+}
