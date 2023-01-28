@@ -5687,8 +5687,8 @@
   </object>
   <object id="1243" type="Text" x="4256" y="5680" width="112" height="72">
    <properties>
-    <property name="_text_localization_note" value="ECED are music notes - so in some languages something like MiDoMiRe may be better. Trololo is the 'meme name' of a song by Eduard Khil."/>
-    <property name="text" value="Play ECED{{BR}}to open.{{BR}}No Trololos!"/>
+    <property name="_text_localization_note" value="ECED are music notes - so in some languages something like Mi Do Mi Re may be better. Ideally write something slighly related to opening where E C E D are upper case or otherwise highlighted. Trololo is the 'meme name' of a song by Eduard Khil."/>
+    <property name="text" value="Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Small"/>

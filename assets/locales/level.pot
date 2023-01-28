@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-23 21:44-0500\n"
+"POT-Creation-Date: 2023-01-28 07:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -381,8 +381,8 @@ msgid "Shepard Tone"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1243]
-#. ECED are music notes - so in some languages something like MiDoMiRe may be better. Trololo is the 'meme name' of a song by Eduard Khil.
-msgid "Play ECED{{BR}}to open.{{BR}}No Trololos!"
+#. ECED are music notes - so in some languages something like Mi Do Mi Re may be better. Ideally write something slighly related to opening where E C E D are upper case or otherwise highlighted. Trololo is the 'meme name' of a song by Eduard Khil.
+msgid "Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1244]
