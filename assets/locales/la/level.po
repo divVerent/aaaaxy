@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-22 21:17-0500\n"
+"POT-Creation-Date: 2023-01-28 07:13-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Latin (https://www.transifex.com/aaaaxy/teams/158611/la/)\n"
@@ -397,11 +397,13 @@ msgstr "Non revertetur per viam portae per quam ingressus est."
 msgid "Shepard Tone"
 msgstr "Sonus Shepardium"
 
-#. ECED are music notes - so in some languages something like MiDoMiRe may be
-#. better. Trololo is the 'meme name' of a song by Eduard Khil.
+#. ECED are music notes - so in some languages something like Mi Do Mi Re may
+#. be better. Ideally write something slighly related to opening where E C E D
+#. are upper case or otherwise highlighted. Trololo is the 'meme name' of a
+#. song by Eduard Khil.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1243]
-msgid "Play ECED{{BR}}to open.{{BR}}No Trololos!"
-msgstr "Cane MiDoMiRe{{BR}}ad aperire.{{BR}}Ne trololes!"
+msgid "Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"
+msgstr "Mihi Domus{{BR}}Mira Res.{{BR}}Ne trololes!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1244]
 msgid "C"
