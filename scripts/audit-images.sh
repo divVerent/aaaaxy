@@ -13,12 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-find . -name \*.png | sort | while read -r file; do
+find ./assets -name \*.png | sort | while read -r file; do
 	# Exceptions.
 	case "$file" in
 		# Editing only.
 		*/_editorimgs/*) continue ;;
+		*/_saved/*) continue ;;
 		*/_src/*) continue ;;
+		*/generated/*) continue ;;
 		./assets/sprites/warpzone_*.png) continue ;;
 		# Intentionally violating.
 		./assets/sprites/clock_*.png) continue ;;
