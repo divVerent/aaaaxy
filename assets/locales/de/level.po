@@ -414,7 +414,7 @@ msgstr "Die Shepard-Skala"
 #. song by Eduard Khil.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1243]
 msgid "Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"
-msgstr "gib Einem Chaoten{{BR}}}Einen Dietrich.{{BR}}Kein Trololo!"
+msgstr "gib Einem Chaoten{{BR}}Einen Dietrich.{{BR}}Kein Trololo!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1244]
 msgid "C"
