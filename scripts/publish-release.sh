@@ -51,7 +51,7 @@ hub release create \
 	-a aaaaxy-windows-386-"$new".zip \
 	-a aaaaxy-darwin-"$new".zip \
 	-a sdl-gamecontrollerdb-for-aaaaxy-"$new".zip \
-	-a AndroidStudioProjects/AAAAXY/app/build/outputs/apk/debug/app-debug.apk \
+	-a aaaaxy.apk \
 	-m "$(cat .commitmsg)" \
 	"$new"
 

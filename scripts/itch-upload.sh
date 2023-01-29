@@ -25,4 +25,4 @@ set -ex
 ../butler/butler push --userversion="$version" aaaaxy-windows-386-"$version".zip divVerent/aaaaxy:windows-386
 ../butler/butler push --userversion="$version" aaaaxy-darwin-"$version".zip divVerent/aaaaxy:mac
 ../butler/butler push --userversion="$version" aaaaxy-js-wasm-"$version".zip divVerent/aaaaxy:js-wasm
-../butler/butler push --userversion="$version" AndroidStudioProjects/AAAAXY/app/build/outputs/apk/debug/app-debug.apk divVerent/aaaaxy:android
+../butler/butler push --userversion="$version" aaaaxy.apk divVerent/aaaaxy:android
