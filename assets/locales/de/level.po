@@ -902,7 +902,7 @@ msgstr "VERZICHTS-{{BR}}ERKLÄRUNG"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3859]
 msgid "NO{{BR}}WARRANTY"
-msgstr "KEINE{{BR}}GARANTIE"
+msgstr "OHNE{{BR}}GARANTIE"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3860]
 msgid "HIGH{{BR}}VOLTAGE"
@@ -910,7 +910,7 @@ msgstr "HOCH-{{BR}}SPANNUNG"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3861]
 msgid "YOU HAVE{{BR}}BEEN WARNED"
-msgstr "DU BIST{{BR}}GEWARNT"
+msgstr "DU WURDEST{{BR}}GEWARNT"
 
 #. name of a law about declaring lead content; often caused ridiculous
 #. warnings; pick your own ridiculous law when translating
