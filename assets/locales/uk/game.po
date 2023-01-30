@@ -28,7 +28,7 @@ msgstr ""
 #. Last separator when building a list.
 #: fun/string.go playerstate/playerstate.go
 msgid " and "
-msgstr "і"
+msgstr " і "
 
 #: aaaaxy/game.go
 msgid "%.1f fps, %.1f tps"
@@ -45,7 +45,7 @@ msgstr "%s(%d/%d)"
 #. Other separator when building a list.
 #: fun/string.go playerstate/playerstate.go
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: playerstate/playerstate.go
 msgid "100%"
