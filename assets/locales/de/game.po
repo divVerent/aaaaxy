@@ -479,22 +479,22 @@ msgstr "Danke!"
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "The Cleats"
-msgstr "Die Stollen"
+msgstr "den Stollen"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "The Coil"
-msgstr "Der Elektromagnet"
+msgstr "dem Elektromagnet"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "The Gloves"
-msgstr "Die Handschuhe"
+msgstr "den Handschuhen"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "The Remote"
-msgstr "Die Fernbedienung"
+msgstr "der Fernbedienung"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
