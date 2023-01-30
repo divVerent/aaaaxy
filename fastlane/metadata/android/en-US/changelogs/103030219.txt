@@ -1,0 +1,5 @@
+  - Easter egg: fix Konami Code on keyboard.
+  - Engine: minor ebitengine update.
+  - Level: reworded Shepard Tone.
+  - Game: provide a game loop for Google Play.
+  - Translations: added translation to Ukrainian.

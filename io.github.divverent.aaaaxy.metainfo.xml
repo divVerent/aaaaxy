@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.186" date="2023-01-23">
-      <description><ul><li>Level: make the piano look better with do-re-mi scales.</li><li>New language: Portuguese (Brazil).</li><li>New language: Latin.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.186</url>
+    <release version="v1.3.219" date="2023-01-30">
+      <description><ul><li>Easter egg: fix Konami Code on keyboard.</li><li>Engine: minor ebitengine update.</li><li>Level: reworded Shepard Tone.</li><li>Game: provide a game loop for Google Play.</li><li>Translations: added translation to Ukrainian.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.219</url>
     </release>
   </releases>
 </component>
