@@ -925,7 +925,7 @@ msgid ""
 "later.{{BR}}Press {{ExitButton}}."
 msgstr ""
 "Якщо фокусуватись тільки на теперішньому,{{BR}}не залишиться достатньо на "
-"потім.{{BR}}Натисніть .{{ExitButton}}"
+"потім.{{BR}}Натисніть {{ExitButton}}"
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3927]
