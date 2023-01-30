@@ -420,14 +420,14 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 		font.DebugSmall.Draw(drawDest,
 			locale.G.Get("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
 			m.Pos{X: engine.GameWidth - 48, Y: engine.GameHeight - 4}, true,
-			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 0))
+			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}
 	if *showTime {
 		timing.Section("time")
 		font.DebugSmall.Draw(drawDest,
 			fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}"),
 			m.Pos{X: 32, Y: engine.GameHeight - 4}, true,
-			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 0))
+			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}
 
 	timing.Section("demo_postdraw")
