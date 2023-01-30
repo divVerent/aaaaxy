@@ -571,7 +571,7 @@ msgstr "Finde Sound-Effekte"
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "everything"
-msgstr "alle"
+msgstr "allen"
 
 #: level/level.go
 msgid "hashing level"
@@ -608,7 +608,7 @@ msgstr "Lade Leveldatei"
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "nothing"
-msgstr "keine"
+msgstr "nichts"
 
 #: level/level.go
 msgid "parsing level data"
