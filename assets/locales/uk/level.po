@@ -489,7 +489,7 @@ msgstr ""
 #. https://antichamber.fandom.com/wiki/Don%27t_Look_Down
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1364]
 msgid "Don't{{BR}}Look Up!"
-msgstr "Не вздумай{{BR}}Дивитись вгору!"
+msgstr "Не вздумай{{BR}}дивитись вгору!"
 
 #. reference to 'curiosity killed the cat' saying; be creative here when
 #. translating; be consistent with the 'Curiosity killed the Carl - no the
@@ -594,8 +594,8 @@ msgstr "Тепер їх можна схопити та нести!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1494]
 msgid "The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"
 msgstr ""
-"Рукавички{{BR}}(затисніть {{ActionButton}}){{BR}}Підказка: не перевищуйте "
-"швидкість!"
+"Рукавички{{BR}}(затисніть {{ActionButton}}){{BR}}Підказка: "
+"не{{BR}}перевищуйте швидкість!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1545]
 msgid "Little & Big Platforms"
