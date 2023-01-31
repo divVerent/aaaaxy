@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8279">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8279">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -6150,7 +6150,7 @@
   <object id="1427" name="StandFailWarp2" gid="297" x="912" y="7008" width="48" height="16"/>
   <object id="1428" name="StandFailWarp1" gid="295" x="992" y="6624" width="48" height="16"/>
   <object id="1429" name="StandFailWarp2" gid="295" x="528" y="6624" width="48" height="16"/>
-  <object id="1430" type="Text" x="688" y="6704" width="192" height="48">
+  <object id="1430" type="Text" x="688" y="6704" width="192" height="64">
    <properties>
     <property name="text" value="The Cleats{{BR}}Hint: no head bumping!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
@@ -6284,7 +6284,7 @@
     <property name="text" value="You can now push them away!"/>
    </properties>
   </object>
-  <object id="1479" type="Text" x="7808" y="7168" width="192" height="48">
+  <object id="1479" type="Text" x="7808" y="7168" width="192" height="64">
    <properties>
     <property name="text" value="The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
@@ -6310,7 +6310,7 @@
     <property name="text" value="You can now grab and carry them!"/>
    </properties>
   </object>
-  <object id="1494" type="Text" x="608" y="416" width="192" height="48">
+  <object id="1494" type="Text" x="608" y="416" width="192" height="64">
    <properties>
     <property name="text" value="The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
@@ -9331,7 +9331,7 @@
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="3834" type="Text" x="3248" y="1888" width="192" height="48">
+  <object id="3834" type="Text" x="3248" y="1888" width="192" height="64">
    <properties>
     <property name="text" value="The Remote{{BR}}(hold {{ActionButton}})"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
