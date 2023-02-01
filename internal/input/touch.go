@@ -149,11 +149,31 @@ func (i *impulse) touchPressed() InputMap {
 	if touchEditPad || !touchUsePad {
 		return 0
 	}
-	if i.touchRect == nil || i.touchRect.Size.IsZero() {
+	if i.touchRect == nil {
 		return 0
 	}
 	for _, t := range touches {
-		if i.touchRect.DeltaPos(t.pos).IsZero() {
+		if i.touchRect.Size.IsZero() {
+			touched := false
+			for _, other := range impulses {
+				if other == i {
+					continue
+				}
+				if other.touchRect == nil {
+					continue
+				}
+				if other.touchRect.Size.IsZero() {
+					continue
+				}
+				if other.touchRect.DeltaPos(t.pos).IsZero() {
+					touched = true
+					break
+				}
+			}
+			if !touched {
+				return Touchscreen
+			}
+		} else if i.touchRect.DeltaPos(t.pos).IsZero() {
 			return Touchscreen
 		}
 	}
@@ -204,7 +224,8 @@ func touchDraw(screen *ebiten.Image) {
 	}
 	touchEditDraw(screen)
 	for _, i := range impulses {
-		if i.touchRect == nil || i.touchRect.Size.IsZero() {
+		r := i.touchRect
+		if r == nil {
 			continue
 		}
 		img := i.touchImage
@@ -215,11 +236,21 @@ func touchDraw(screen *ebiten.Image) {
 			CompositeMode: ebiten.CompositeModeSourceOver,
 			Filter:        ebiten.FilterNearest,
 		}
+		if r.Size.IsZero() {
+			if !i.Held {
+				continue
+			}
+			r = &m.Rect{
+				Origin: m.Pos{X: (640 - 32) / 2, Y: 360 - 32},
+				Size:   m.Delta{DX: 32, DY: 32},
+			}
+			options.ColorM.Scale(1, 1, 1, 1.0/3)
+		}
 		w, h := img.Size()
-		ox := float64(i.touchRect.Origin.X)
-		oy := float64(i.touchRect.Origin.Y)
-		sw := float64(i.touchRect.Size.DX) / float64(w)
-		sh := float64(i.touchRect.Size.DY) / float64(h)
+		ox := float64(r.Origin.X)
+		oy := float64(r.Origin.Y)
+		sw := float64(r.Size.DX) / float64(w)
+		sh := float64(r.Size.DY) / float64(h)
 		if sw < sh {
 			oy += float64(h) * 0.5 * (sh - sw)
 			sh = sw
