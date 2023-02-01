@@ -562,6 +562,11 @@ msgstr "та інші співрозробники"
 msgid "by %s"
 msgstr "на %s"
 
+#. Used in context "Hold ...".
+#: fun/string.go
+msgid "elsewhere"
+msgstr "деінде"
+
 #: sound/sound.go
 msgid "enumerating sounds"
 msgstr "перелічуємо звуки"
