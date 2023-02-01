@@ -167,40 +167,38 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 				return "", errors.New("cannot use {{ExitButton}} in static elements")
 			}
 			switch input.ExitButton() {
-			default: // case input.Escape:
-				return locale.G.Get("Escape"), nil
-			case input.Backspace:
-				return locale.G.Get("Backspace"), nil
 			case input.Start:
 				return locale.G.Get("Start"), nil
 			case input.Back:
 				return locale.G.Get("Back"), nil
+			case input.Escape:
+				return locale.G.Get("Escape"), nil
+			default: // case input.Backspace:
+				return locale.G.Get("Backspace"), nil
 			}
 		},
 		"ActionButton": func() (string, error) {
 			if ps == nil {
 				return "", errors.New("cannot use {{ActionButton}} in static elements")
 			}
-			i := input.Map()
-			if i.ContainsAny(input.Gamepad) {
+			switch input.ActionButton() {
+			case input.BX:
 				return locale.G.Get("B/X"), nil
-			}
-			if i.ContainsAny(input.Touchscreen) {
+			case input.Elsewhere:
+				return locale.G.Get("elsewhere"), nil
+			case input.B:
 				return locale.G.Get("B"), nil
-			}
-			if i.ContainsAny(input.DOSKeyboard) {
+			case input.CtrlShift:
 				return locale.G.Get("Ctrl/Shift"), nil
-			}
-			if i.ContainsAny(input.NESKeyboard) {
+			case input.Z:
 				return locale.G.Get("Z"), nil
-			}
-			if i.ContainsAny(input.FPSKeyboard) {
+			case input.ShiftETab:
 				return locale.G.Get("Shift/E/Tab"), nil
-			}
-			if i.ContainsAny(input.ViKeyboard) {
+			case input.EnterShift:
 				return locale.G.Get("Enter/Shift"), nil
+			default: // case input.Shift:
+				return locale.G.Get("Shift"), nil
 			}
-			return locale.G.Get("Shift"), nil
 		},
 		"SpeedrunCategories": func() (string, error) {
 			if ps == nil {

@@ -223,10 +223,10 @@ func Map() InputMap {
 type ExitButtonID int
 
 const (
-	Escape ExitButtonID = iota
-	Backspace
-	Start
+	Start ExitButtonID = iota
 	Back
+	Escape
+	Backspace
 )
 
 func ExitButton() ExitButtonID {
@@ -244,6 +244,44 @@ func ExitButton() ExitButtonID {
 		}
 	}
 	return Backspace
+}
+
+type ActionButtonID int
+
+const (
+	BX ActionButtonID = iota
+	Elsewhere
+	B
+	CtrlShift
+	Z
+	ShiftETab
+	EnterShift
+	Shift
+)
+
+func ActionButton() ActionButtonID {
+	if inputMap.ContainsAny(Gamepad) {
+		return BX
+	}
+	if inputMap.ContainsAny(Touchscreen) {
+		if Action.touchRect.Size.IsZero() {
+			return Elsewhere
+		}
+		return B
+	}
+	if inputMap.ContainsAny(DOSKeyboard) {
+		return CtrlShift
+	}
+	if inputMap.ContainsAny(NESKeyboard) {
+		return Z
+	}
+	if inputMap.ContainsAny(FPSKeyboard) {
+		return ShiftETab
+	}
+	if inputMap.ContainsAny(ViKeyboard) {
+		return EnterShift
+	}
+	return Shift
 }
 
 func HoverPos() (m.Pos, bool) {
