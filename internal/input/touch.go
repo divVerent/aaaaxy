@@ -35,7 +35,7 @@ var (
 	touchRectDown   = flag.Text("touch_rect_down", m.Rect{Origin: m.Pos{X: 0, Y: 296}, Size: m.Delta{DX: 128, DY: 64}}, "touch rectangle for moving down")
 	touchRectUp     = flag.Text("touch_rect_up", m.Rect{Origin: m.Pos{X: 0, Y: 168}, Size: m.Delta{DX: 128, DY: 64}}, "touch rectangle for moving up")
 	touchRectJump   = flag.Text("touch_rect_jump", m.Rect{Origin: m.Pos{X: 576, Y: 296}, Size: m.Delta{DX: 64, DY: 64}}, "touch rectangle for jumping")
-	touchRectAction = flag.Text("touch_rect_action", m.Rect{Origin: m.Pos{X: 576, Y: 0}, Size: m.Delta{DX: 64, DY: 296}}, "touch rectangle for performing an action")
+	touchRectAction = flag.Text("touch_rect_action", m.Rect{}, "touch rectangle for performing an action")
 	touchRectExit   = flag.Text("touch_rect_exit", m.Rect{Origin: m.Pos{X: 0, Y: 0}, Size: m.Delta{DX: 128, DY: 64}}, "touch rectangle for exiting")
 )
 

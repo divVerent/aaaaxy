@@ -150,6 +150,7 @@ func touchToggleActionButton(gameWidth, gameHeight int) {
 		Action.touchRect.Size = m.Delta{}
 		return
 	}
+	// Start with the square inscribed into Jump.
 	jumpSize := Jump.touchRect.Size
 	for range []int{0, 1} {
 		// Find an empty place close to Jump, and make it the same size.
@@ -159,11 +160,50 @@ func touchToggleActionButton(gameWidth, gameHeight int) {
 			{DX: -1, DY: 0},
 			{DX: 0, DY: 1},
 		} {
+			initialSize := jumpSize
+			initialOrigin := Jump.touchRect.Origin
+			// Minimize size in the direction moving in.
+			if neighbor.DX == 0 {
+				initialSize.DY = 64
+			} else {
+				initialSize.DX = 64
+			}
+			// Set initial origin.
+			if neighbor.DX < 0 {
+				initialOrigin.X -= initialSize.DX
+			} else if neighbor.DX > 0 {
+				initialOrigin.X += jumpSize.DX
+			} else if neighbor.DY < 0 {
+				initialOrigin.Y -= initialSize.DY
+			} else if neighbor.DY > 0 {
+				initialOrigin.Y += jumpSize.DY
+			}
 			newRect := m.Rect{
-				Origin: Jump.touchRect.Origin.Add(jumpSize.Mul2(neighbor.DX, neighbor.DY)),
-				Size:   Jump.touchRect.Size,
+				Origin: initialOrigin,
+				Size:   initialSize,
 			}
 			if touchEditAllowed(Action.touchRect, newRect, gameWidth, gameHeight) {
+				sizeStep := neighbor.Mul(gridSize)
+				originStep := m.Delta{}
+				if sizeStep.DX < 0 {
+					originStep.DX = sizeStep.DX
+					sizeStep.DX = -sizeStep.DX
+				}
+				if sizeStep.DY < 0 {
+					originStep.DY = sizeStep.DY
+					sizeStep.DY = -sizeStep.DY
+				}
+				// Expand as far as we can.
+				for {
+					expandedRect := m.Rect{
+						Origin: newRect.Origin.Add(originStep),
+						Size:   newRect.Size.Add(sizeStep),
+					}
+					if !touchEditAllowed(Action.touchRect, expandedRect, gameWidth, gameHeight) {
+						break
+					}
+					newRect = expandedRect
+				}
 				*Action.touchRect = newRect
 				return
 			}
