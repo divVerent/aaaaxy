@@ -176,3 +176,7 @@ msgstr ""
 #. Used in context "reached <location> with ... at <time>".
 msgid "The Remote"
 msgstr ""
+
+#. Used in context "Hold ...".
+msgid "elsewhere"
+msgstr ""

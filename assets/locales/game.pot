@@ -548,6 +548,11 @@ msgstr ""
 msgid "by %s"
 msgstr ""
 
+#. Used in context "Hold ...".
+#: fun/string.go
+msgid "elsewhere"
+msgstr ""
+
 #: sound/sound.go
 msgid "enumerating sounds"
 msgstr ""
