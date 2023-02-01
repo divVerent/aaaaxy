@@ -18,13 +18,17 @@ To reach the end, a new player will take about 4 to 6 hours, a full
 playthrough can be finished in about 1 hour and the end can be reached
 in about 15 minutes.
 
-Download from
-[F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/),
-[Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy),
-[Google
-Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy),
-[Itch](https://divverent.itch.io/aaaaxy), or the [Snap
-Store](https://snapcraft.io/aaaaxy).
+The game is available for the following platforms:
+
+| Platform     | Downloads                                                                                                                                                                                                           |
+|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Windows      | [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy)                                                                                                                    |
+| Linux        | [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy), [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy), [Snap Store](https://snapcraft.io/aaaaxy) |
+| macOS        | [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy)                                                                                                                    |
+| Android      | [F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/), [Google Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy)                                                     |
+| HTML5 (slow) | [netcup](https://rm.cloudns.org/aaaaxy/current/aaaaxy.html)                                                                                                                                                         |
+
+Available languages: English, German, Latin, Portuguese, Ukrainian.
 
 ### Direct Downloads
 
