@@ -34,6 +34,7 @@ const (
 
 type touchEditInfo struct {
 	active    bool
+	frames    int
 	rect      *m.Rect
 	xMode     editMode
 	yMode     editMode
@@ -41,7 +42,10 @@ type touchEditInfo struct {
 	startRect m.Rect
 }
 
-const gridSize = 8
+const (
+	gridSize                = 8
+	touchToggleActionFrames = 120
+)
 
 var (
 	touchEditPad bool = false
@@ -141,6 +145,34 @@ func touchEditAllowed(rect *m.Rect, replacement m.Rect, gameWidth, gameHeight in
 	return true
 }
 
+func touchToggleActionButton(gameWidth, gameHeight int) {
+	if !Action.touchRect.Size.IsZero() {
+		Action.touchRect.Size = m.Delta{}
+		return
+	}
+	jumpSize := Jump.touchRect.Size
+	for range []int{0, 1} {
+		// Find an empty place close to Jump, and make it the same size.
+		for _, neighbor := range []m.Delta{
+			{DX: 1, DY: 0},
+			{DX: 0, DY: -1},
+			{DX: -1, DY: 0},
+			{DX: 0, DY: 1},
+		} {
+			newRect := m.Rect{
+				Origin: Jump.touchRect.Origin.Add(jumpSize.Mul2(neighbor.DX, neighbor.DY)),
+				Size:   Jump.touchRect.Size,
+			}
+			if touchEditAllowed(Action.touchRect, newRect, gameWidth, gameHeight) {
+				*Action.touchRect = newRect
+				return
+			}
+		}
+		// Didn't work? Swap size and try again.
+		jumpSize.DX, jumpSize.DY = jumpSize.DY, jumpSize.DX
+	}
+}
+
 func touchEditUpdate(gameWidth, gameHeight int) bool {
 	if !touchEditPad {
 		for _, t := range touches {
@@ -158,7 +190,12 @@ func touchEditUpdate(gameWidth, gameHeight int) bool {
 		}
 		if t.edit.active {
 			// Move what is being hit.
+			t.edit.frames++
 			if t.edit.rect == nil {
+				// Hold for some time to toggle action button existence.
+				if t.edit.frames == touchToggleActionFrames {
+					touchToggleActionButton(gameWidth, gameHeight)
+				}
 				continue
 			}
 			newRect := *t.edit.rect

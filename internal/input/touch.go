@@ -240,8 +240,9 @@ func touchDraw(screen *ebiten.Image) {
 			if !i.Held {
 				continue
 			}
+			w, h := screen.Size()
 			r = &m.Rect{
-				Origin: m.Pos{X: (640 - 32) / 2, Y: 360 - 32},
+				Origin: m.Pos{X: (w - 32) / 2, Y: h - 32},
 				Size:   m.Delta{DX: 32, DY: 32},
 			}
 			options.ColorM.Scale(1, 1, 1, 1.0/3)
