@@ -28,6 +28,8 @@ The game is available for the following platforms:
 | Android      | [F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/), [Google Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy)                                                     |
 | HTML5 (slow) | [netcup](https://rm.cloudns.org/aaaaxy/current/aaaaxy.html)                                                                                                                                                         |
 
+Available languages: English, German, Latin, Portuguese, Ukrainian.
+
 ## Screenshots
 
 [![shot1](https://divVerent.github.io/aaaaxy/screenshots/shot1.jpg)](https://divVerent.github.io/aaaaxy/screenshots/shot1.png)
