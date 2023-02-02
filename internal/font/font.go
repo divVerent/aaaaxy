@@ -22,8 +22,8 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/gobold"
-	"golang.org/x/image/font/gofont/goitalic"
 	"golang.org/x/image/font/gofont/gomedium"
+	"golang.org/x/image/font/gofont/gomediumitalic"
 	"golang.org/x/image/font/gofont/gomono"
 	"golang.org/x/image/font/gofont/gosmallcaps"
 	"golang.org/x/image/font/opentype"
@@ -92,11 +92,11 @@ func Init() error {
 	// Load the fonts.
 	regular, err := opentype.Parse(gomedium.TTF)
 	if err != nil {
-		return fmt.Errorf("could not load goitalic font: %w", err)
+		return fmt.Errorf("could not load gomedium font: %w", err)
 	}
-	italic, err := opentype.Parse(goitalic.TTF)
+	italic, err := opentype.Parse(gomediumitalic.TTF)
 	if err != nil {
-		return fmt.Errorf("could not load goitalic font: %w", err)
+		return fmt.Errorf("could not load gomediumitalic font: %w", err)
 	}
 	bold, err := opentype.Parse(gobold.TTF)
 	if err != nil {
