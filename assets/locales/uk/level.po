@@ -393,7 +393,7 @@ msgstr "Дотель Гілберта"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1189]
 msgid "I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"
-msgstr "Перед очима пролетіли всі ...{{BR}}{{BR}}{{BR}}{{BR}}кімнати."
+msgstr "Перед очима пролетіли всі{{BR}}...{{BR}}{{BR}}{{BR}}кімнати."
 
 #. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1199]
@@ -719,7 +719,7 @@ msgstr "Та сама процедура що й тогоріч?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1819]
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
-msgstr "Просто покладіть вже одне на одне,{{BR}}і друге ще кудись!"
+msgstr "Просто покладіть вже одне на{{BR}}одне, і друге ще кудись!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2220]
 msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
