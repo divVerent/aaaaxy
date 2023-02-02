@@ -5127,7 +5127,7 @@
     <property name="text" value="Reaching for the stars can really tear you down."/>
    </properties>
   </object>
-  <object id="1103" type="Text" x="8144" y="7056" width="32" height="32">
+  <object id="1103" type="Text" x="8128" y="7056" width="48" height="32">
    <properties>
     <property name="text" value="9¾"/>
     <property name="text_bg" type="color" value="#ff000000"/>
