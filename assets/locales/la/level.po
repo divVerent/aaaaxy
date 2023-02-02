@@ -362,7 +362,7 @@ msgstr "Astra capere te detrahere vero potest."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1103]
 msgid "9¾"
-msgstr "IXS∴"
+msgstr "IXS:."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1171]
 msgid "A watched train never departs."
