@@ -19,14 +19,14 @@ import (
 	"image"
 	"image/color"
 
-	"github.com/golang/freetype/truetype"
 	"github.com/hajimehoshi/ebiten/v2"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/gobold"
 	"golang.org/x/image/font/gofont/goitalic"
+	"golang.org/x/image/font/gofont/gomedium"
 	"golang.org/x/image/font/gofont/gomono"
-	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/font/gofont/gosmallcaps"
+	"golang.org/x/image/font/opentype"
 	"golang.org/x/image/math/fixed"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
@@ -35,7 +35,7 @@ import (
 
 var (
 	pinFontsToCache       = flag.Bool("pin_fonts_to_cache", true, "pin all fonts to glyph cache")
-	fontThreshold         = flag.Int("font_threshold", 0x5E00, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive; set to 0 to use smooth font rendering instead")
+	fontThreshold         = flag.Int("font_threshold", 0x8000, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive; set to 0 to use smooth font rendering instead")
 	fontExtraSpacing      = flag.Int("font_extra_spacing", 31, "additional spacing for fonts in 64th pixels; should help with outline effect")
 	fontFractionalSpacing = flag.Bool("font_fractional_spacing", false, "allow fractional font spacing; looks better but may be slower; makes --pin_fonts_to_cache less effective")
 )
@@ -46,15 +46,22 @@ type Face struct {
 	Outline font.Face
 }
 
-func makeFace(f font.Face) Face {
-	effect := &fontEffects{f}
+func makeFace(fnt *opentype.Font, options *opentype.FaceOptions) (Face, error) {
+	f, err := opentype.NewFace(fnt, options)
+	if err != nil {
+		return Face{}, err
+	}
+	effect := &fontEffects{
+		Face:       f,
+		LineHeight: m.Rint(options.Size * options.DPI / 72),
+	}
 	outline := &fontOutline{effect}
 	face := Face{
 		Face:    effect,
 		Outline: outline,
 	}
 	all = append(all, face)
-	return face
+	return face, nil
 }
 
 // cacheChars are all characters the game uses. ASCII plus all Unicode our map file contains.
@@ -83,111 +90,138 @@ var (
 
 func Init() error {
 	// Load the fonts.
-	regular, err := truetype.Parse(goregular.TTF)
+	regular, err := opentype.Parse(gomedium.TTF)
 	if err != nil {
 		return fmt.Errorf("could not load goitalic font: %w", err)
 	}
-	italic, err := truetype.Parse(goitalic.TTF)
+	italic, err := opentype.Parse(goitalic.TTF)
 	if err != nil {
 		return fmt.Errorf("could not load goitalic font: %w", err)
 	}
-	bold, err := truetype.Parse(gobold.TTF)
+	bold, err := opentype.Parse(gobold.TTF)
 	if err != nil {
 		return fmt.Errorf("could not load gosmallcaps font: %w", err)
 	}
-	mono, err := truetype.Parse(gomono.TTF)
+	mono, err := opentype.Parse(gomono.TTF)
 	if err != nil {
 		return fmt.Errorf("could not load gomono font: %w", err)
 	}
-	smallcaps, err := truetype.Parse(gosmallcaps.TTF)
+	smallcaps, err := opentype.Parse(gosmallcaps.TTF)
 	if err != nil {
 		return fmt.Errorf("could not load gosmallcaps font: %w", err)
 	}
 
-	ByName["Small"] = makeFace(truetype.NewFace(regular, &truetype.Options{
-		Size:       10,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	ByName["Regular"] = makeFace(truetype.NewFace(regular, &truetype.Options{
-		Size:       14,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	ByName["Italic"] = makeFace(truetype.NewFace(italic, &truetype.Options{
-		Size:       14,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	ByName["Bold"] = makeFace(truetype.NewFace(bold, &truetype.Options{
-		Size:       14,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	ByName["Mono"] = makeFace(truetype.NewFace(mono, &truetype.Options{
-		Size:       14,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	ByName["MonoSmall"] = makeFace(truetype.NewFace(mono, &truetype.Options{
-		Size:       10,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	ByName["SmallCaps"] = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
-		Size:       14,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	Centerprint = makeFace(truetype.NewFace(italic, &truetype.Options{
-		Size:       14,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	CenterprintBig = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
-		Size:       24,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	DebugSmall = makeFace(truetype.NewFace(regular, &truetype.Options{
-		Size:       9,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	Menu = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
-		Size:       18,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	MenuBig = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
-		Size:       24,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
-	MenuSmall = makeFace(truetype.NewFace(smallcaps, &truetype.Options{
-		Size:       12,
-		Hinting:    font.HintingFull,
-		SubPixelsX: 1,
-		SubPixelsY: 1,
-	}))
+	ByName["Small"], err = makeFace(regular, &opentype.FaceOptions{
+		Size:    10,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	ByName["Regular"], err = makeFace(regular, &opentype.FaceOptions{
+		Size:    14,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	ByName["Italic"], err = makeFace(italic, &opentype.FaceOptions{
+		Size:    14,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	ByName["Bold"], err = makeFace(bold, &opentype.FaceOptions{
+		Size:    14,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	ByName["Mono"], err = makeFace(mono, &opentype.FaceOptions{
+		Size:    14,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	ByName["MonoSmall"], err = makeFace(mono, &opentype.FaceOptions{
+		Size:    10,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	ByName["SmallCaps"], err = makeFace(smallcaps, &opentype.FaceOptions{
+		Size:    14,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	Centerprint, err = makeFace(italic, &opentype.FaceOptions{
+		Size:    14,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	CenterprintBig, err = makeFace(smallcaps, &opentype.FaceOptions{
+		Size:    24,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	DebugSmall, err = makeFace(regular, &opentype.FaceOptions{
+		Size:    9,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	Menu, err = makeFace(smallcaps, &opentype.FaceOptions{
+		Size:    18,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	MenuBig, err = makeFace(smallcaps, &opentype.FaceOptions{
+		Size:    24,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
+	MenuSmall, err = makeFace(smallcaps, &opentype.FaceOptions{
+		Size:    12,
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
+	if err != nil {
+		return fmt.Errorf("could not create face: %w", err)
+	}
 
 	return nil
 }
 
 type fontEffects struct {
 	font.Face
+	LineHeight int
 }
 
 func roundFixed(f fixed.Int26_6) fixed.Int26_6 {
@@ -207,6 +241,14 @@ func (e *fontEffects) GlyphAdvance(r rune) (advance fixed.Int26_6, ok bool) {
 	adv, ok := e.Face.GlyphAdvance(r)
 	adv += fixed.Int26_6(*fontExtraSpacing)
 	return roundFixed(adv), ok
+}
+
+func (e *fontEffects) Metrics() font.Metrics {
+	// Override the line height to match what go-freetype did.
+	// Narrower lines really look better here.
+	m := e.Face.Metrics()
+	m.Height = fixed.Int26_6(e.LineHeight) << 6
+	return m
 }
 
 func (e *fontEffects) Kern(r0, r1 rune) fixed.Int26_6 {
