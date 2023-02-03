@@ -97,6 +97,7 @@ var graphicsSettings = []graphicsSettingData{
 	{"ega", "EGA"},
 	{"vga", "VGA"},
 	{"none", "SVGA"},
+	// Six more identical entries so one has to press right seven times to reach the custom palettes.
 	{"none", "SVGA"},
 	{"none", "SVGA"},
 	{"none", "SVGA"},
