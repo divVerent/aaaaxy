@@ -180,3 +180,8 @@ msgstr ""
 #. Used in context "Hold ...".
 msgid "elsewhere"
 msgstr ""
+
+#. Translate so it can be recognized by English speakers too (e.g.
+#. "Lingua (Language): %s").
+msgid "Language: %s"
+msgstr ""

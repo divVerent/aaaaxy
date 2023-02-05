@@ -31,6 +31,7 @@ var (
 	fontThreshold         = flag.Int("font_threshold", 0x8000, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive; set to 0 to use smooth font rendering instead")
 	fontExtraSpacing      = flag.Int("font_extra_spacing", 31, "additional spacing for fonts in 64th pixels; should help with outline effect")
 	fontFractionalSpacing = flag.Bool("font_fractional_spacing", false, "allow fractional font spacing; looks better but may be slower; makes --pin_fonts_to_cache less effective")
+	debugFontOverride     = flag.String("debug_font_override", "", "name of font to use instead of the intended font")
 )
 
 // Face is an alias to font.Face so users do not need to import the font package.
@@ -220,6 +221,9 @@ func (o *fontOutlineMask) At(x, y int) color.Color {
 }
 
 func SetFont(font string) error {
+	if *debugFontOverride != "" {
+		font = *debugFontOverride
+	}
 	if font == currentFont {
 		return nil
 	}
