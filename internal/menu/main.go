@@ -83,29 +83,29 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	bgs := palette.EGA(palette.Black, 255)
 	fgn := palette.EGA(palette.LightGrey, 255)
 	bgn := palette.EGA(palette.DarkGrey, 255)
-	font.MenuBig.Draw(screen, "AAAAXY", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
+	font.ByName["MenuBig"].Draw(screen, "AAAAXY", m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == Play {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Play"), m.Pos{X: CenterX, Y: ItemBaselineY(Play, MainCount)}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Play"), m.Pos{X: CenterX, Y: ItemBaselineY(Play, MainCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Settings {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Settings"), m.Pos{X: CenterX, Y: ItemBaselineY(Settings, MainCount)}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Settings"), m.Pos{X: CenterX, Y: ItemBaselineY(Settings, MainCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Credits {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Credits"), m.Pos{X: CenterX, Y: ItemBaselineY(Credits, MainCount)}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Credits"), m.Pos{X: CenterX, Y: ItemBaselineY(Credits, MainCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Quit {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Quit"), m.Pos{X: CenterX, Y: ItemBaselineY(Quit, MainCount)}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Quit"), m.Pos{X: CenterX, Y: ItemBaselineY(Quit, MainCount)}, true, fg, bg)
 
 	// Display stats.
-	font.MenuSmall.Draw(screen, fun.FormatText(&s.Controller.World.PlayerState, locale.G.Get("Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}")),
+	font.ByName["MenuSmall"].Draw(screen, fun.FormatText(&s.Controller.World.PlayerState, locale.G.Get("Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}")),
 		m.Pos{X: CenterX, Y: ItemBaselineY(-2, MainCount)}, true, fgn, bgn)
 }

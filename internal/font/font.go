@@ -49,25 +49,21 @@ func makeFace(f font.Face, size int) (Face, error) {
 		Face:    effect,
 		Outline: outline,
 	}
-	all = append(all, face)
 	return face, nil
 }
-
-// cacheChars are all characters the game uses. ASCII plus all Unicode our map file contains.
-// NOT including stuff from the credits.
 
 // We always keep the game character set in cache.
 // This has to be repeated regularly as Ebitengine expires unused cache entries.
 func KeepInCache(dst *ebiten.Image) {
 	if *pinFontsToCache {
-		for _, f := range all {
+		for _, f := range ByName {
 			f.precache(charSet())
 		}
 	}
 }
 
 var (
-	all         = []Face{}
+	ByName      = map[string]Face{}
 	currentFont string
 )
 
@@ -230,6 +226,6 @@ func SetFont(font string) error {
 	currentFont = font
 	switch font {
 	default:
-		return InitGoFont()
+		return initGoFont()
 	}
 }

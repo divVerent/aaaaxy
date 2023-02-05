@@ -265,7 +265,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	unseenPathToSeenCPColor := palette.EGA(palette.White, 255)
 	unseenPathToUnseenCPColor := palette.EGA(palette.Black, 255)
 	unseenPathBlinkColor := palette.EGA(palette.DarkGrey, 255)
-	font.MenuBig.Draw(screen, locale.G.Get("Pick-a-Path"), m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
+	font.ByName["MenuBig"].Draw(screen, locale.G.Get("Pick-a-Path"), m.Pos{X: x, Y: h / 8}, true, fgs, bgs)
 	cpText := fun.FormatText(&s.Controller.World.PlayerState, propmap.ValueP(s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties, "text", "", nil))
 	seen, total := s.Controller.World.PlayerState.TnihSignsSeen(s.CurrentCP)
 	if total > 0 {
@@ -275,7 +275,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	if s.nameHovered {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, cpText, m.Pos{X: x, Y: 7 * h / 8}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, cpText, m.Pos{X: x, Y: 7 * h / 8}, true, fg, bg)
 
 	// Draw all known checkpoints.
 	opts := ebiten.DrawImageOptions{

@@ -24,29 +24,21 @@ import (
 	"golang.org/x/image/font/gofont/gomono"
 	"golang.org/x/image/font/gofont/gosmallcaps"
 	"golang.org/x/image/font/opentype"
-
-	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
-var (
-	ByName         = map[string]Face{}
-	Centerprint    Face
-	CenterprintBig Face
-	DebugSmall     Face
-	MenuBig        Face
-	Menu           Face
-	MenuSmall      Face
-)
-
-func makeGoFontFace(fnt *opentype.Font, options *opentype.FaceOptions) (Face, error) {
-	f, err := opentype.NewFace(fnt, options)
+func makeGoFontFace(fnt *opentype.Font, size int) (Face, error) {
+	f, err := opentype.NewFace(fnt, &opentype.FaceOptions{
+		Size:    float64(size),
+		DPI:     72,
+		Hinting: font.HintingFull,
+	})
 	if err != nil {
 		return Face{}, err
 	}
-	return makeFace(f, m.Rint(options.Size*options.DPI/72))
+	return makeFace(f, size)
 }
 
-func InitGoFont() error {
+func initGoFont() error {
 	// Load the fonts.
 	regular, err := opentype.Parse(gomedium.TTF)
 	if err != nil {
@@ -69,107 +61,55 @@ func InitGoFont() error {
 		return fmt.Errorf("could not load gosmallcaps font: %w", err)
 	}
 
-	ByName["Small"], err = makeGoFontFace(regular, &opentype.FaceOptions{
-		Size:    10,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["Small"], err = makeGoFontFace(regular, 10)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	ByName["Regular"], err = makeGoFontFace(regular, &opentype.FaceOptions{
-		Size:    14,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["Regular"], err = makeGoFontFace(regular, 14)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	ByName["Italic"], err = makeGoFontFace(italic, &opentype.FaceOptions{
-		Size:    14,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["Italic"], err = makeGoFontFace(italic, 14)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	ByName["Bold"], err = makeGoFontFace(bold, &opentype.FaceOptions{
-		Size:    14,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["Bold"], err = makeGoFontFace(bold, 14)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	ByName["Mono"], err = makeGoFontFace(mono, &opentype.FaceOptions{
-		Size:    14,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["Mono"], err = makeGoFontFace(mono, 14)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	ByName["MonoSmall"], err = makeGoFontFace(mono, &opentype.FaceOptions{
-		Size:    10,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["MonoSmall"], err = makeGoFontFace(mono, 10)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	ByName["SmallCaps"], err = makeGoFontFace(smallcaps, &opentype.FaceOptions{
-		Size:    14,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["SmallCaps"], err = makeGoFontFace(smallcaps, 14)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	Centerprint, err = makeGoFontFace(italic, &opentype.FaceOptions{
-		Size:    14,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["Centerprint"], err = makeGoFontFace(italic, 14)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	CenterprintBig, err = makeGoFontFace(smallcaps, &opentype.FaceOptions{
-		Size:    24,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["CenterprintBig"], err = makeGoFontFace(smallcaps, 24)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	DebugSmall, err = makeGoFontFace(regular, &opentype.FaceOptions{
-		Size:    9,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["DebugSmall"], err = makeGoFontFace(regular, 9)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	Menu, err = makeGoFontFace(smallcaps, &opentype.FaceOptions{
-		Size:    18,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["Menu"], err = makeGoFontFace(smallcaps, 18)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	MenuBig, err = makeGoFontFace(smallcaps, &opentype.FaceOptions{
-		Size:    24,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["MenuBig"], err = makeGoFontFace(smallcaps, 24)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	MenuSmall, err = makeGoFontFace(smallcaps, &opentype.FaceOptions{
-		Size:    12,
-		DPI:     72,
-		Hinting: font.HintingFull,
-	})
+	ByName["MenuSmall"], err = makeGoFontFace(smallcaps, 12)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}

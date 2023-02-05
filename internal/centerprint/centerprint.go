@@ -62,11 +62,11 @@ const (
 )
 
 func NormalFont() font.Face {
-	return font.Centerprint
+	return font.ByName["Centerprint"]
 }
 
 func BigFont() font.Face {
-	return font.CenterprintBig
+	return font.ByName["CenterprintBig"]
 }
 
 func Reset() {

@@ -119,8 +119,8 @@ func regressionPostDrawFrame(screen *ebiten.Image) {
 
 	// Draw text on it.
 	text := strings.Join(regressions, "\n")
-	bounds := font.DebugSmall.BoundString(text)
-	font.DebugSmall.Draw(dup, text, m.Pos{
+	bounds := font.ByName["DebugSmall"].BoundString(text)
+	font.ByName["DebugSmall"].Draw(dup, text, m.Pos{
 		X: w / 2,
 		Y: -bounds.Origin.Y,
 	}, true, color.Gray{0}, color.Gray{255})

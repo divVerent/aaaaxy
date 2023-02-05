@@ -99,17 +99,17 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 	bgs := palette.EGA(palette.Black, 255)
 	fgn := palette.EGA(palette.LightGrey, 255)
 	bgn := palette.EGA(palette.DarkGrey, 255)
-	font.MenuBig.Draw(screen, locale.G.Get("Reset"), m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
+	font.ByName["MenuBig"].Draw(screen, locale.G.Get("Reset"), m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == ResetNothing {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Reset Nothing"), m.Pos{X: CenterX, Y: ItemBaselineY(ResetNothing, ResetCount)}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Reset Nothing"), m.Pos{X: CenterX, Y: ItemBaselineY(ResetNothing, ResetCount)}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == ResetConfig {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Reset and Lose Settings"), m.Pos{X: CenterX, Y: ItemBaselineY(ResetConfig, ResetCount)}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Reset and Lose Settings"), m.Pos{X: CenterX, Y: ItemBaselineY(ResetConfig, ResetCount)}, true, fg, bg)
 	var resetText string
 	var dx, dy int
 	var save string
@@ -143,10 +143,10 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 		dx = rand.Intn(3) - 1
 		dy = rand.Intn(3) - 1
 	}
-	font.Menu.Draw(screen, resetText, m.Pos{X: CenterX + dx, Y: ItemBaselineY(ResetGame, ResetCount) + dy}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, resetText, m.Pos{X: CenterX + dx, Y: ItemBaselineY(ResetGame, ResetCount) + dy}, true, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == BackToMain {
 		fg, bg = fgs, bgs
 	}
-	font.Menu.Draw(screen, locale.G.Get("Main Menu"), m.Pos{X: CenterX, Y: ItemBaselineY(BackToMain, ResetCount)}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Main Menu"), m.Pos{X: CenterX, Y: ItemBaselineY(BackToMain, ResetCount)}, true, fg, bg)
 }

@@ -392,10 +392,10 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 		fg := palette.EGA(palette.LightGrey, 255)
 		ol := palette.EGA(palette.Black, 255)
 		drawDest.Fill(bg)
-		if font.MenuSmall.Face != nil && text != "" {
-			r := font.MenuSmall.BoundString(text)
+		if font.ByName["MenuSmall"].Face != nil && text != "" {
+			r := font.ByName["MenuSmall"].BoundString(text)
 			y := m.Rint(float64((engine.GameHeight-r.Size.DY))*(1-fraction)) - r.Origin.Y
-			font.MenuSmall.Draw(drawDest, text, m.Pos{
+			font.ByName["MenuSmall"].Draw(drawDest, text, m.Pos{
 				X: engine.GameWidth / 2,
 				Y: y,
 			}, true, fg, ol)
@@ -417,14 +417,14 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	timing.Section("global_overlays")
 	if *showFPS {
 		timing.Section("fps")
-		font.DebugSmall.Draw(drawDest,
+		font.ByName["DebugSmall"].Draw(drawDest,
 			locale.G.Get("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
 			m.Pos{X: engine.GameWidth - 48, Y: engine.GameHeight - 4}, true,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}
 	if *showTime {
 		timing.Section("time")
-		font.DebugSmall.Draw(drawDest,
+		font.ByName["DebugSmall"].Draw(drawDest,
 			fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}"),
 			m.Pos{X: 32, Y: engine.GameHeight - 4}, true,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
