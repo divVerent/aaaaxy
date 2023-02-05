@@ -22,6 +22,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -106,6 +107,11 @@ func SetLanguage(lang locale.Lingua) (bool, error) {
 	// Now perform all replacements in locale.G.
 	// In locale.L they're applied at runtime as more stuff may need filling in.
 	// This must be done after setting it active, and before auditing.
+	err := font.SetFont(lang.Font())
+	if err != nil {
+		return false, err
+	}
+
 	for _, t := range locale.G.GetDomain().GetTranslations() {
 		if len(t.Trs) != 1 {
 			// Sorry, not supporting plurals yet.

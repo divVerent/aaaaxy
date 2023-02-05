@@ -47,27 +47,36 @@ func (l Lingua) Name() string {
 	}
 }
 
+func (l Lingua) Font() string {
+	switch l {
+	default:
+		return "gofont"
+	}
+}
+
 // Directory returns the directory containing the language.
 func (l Lingua) Directory() string {
 	// Handle aliases.
-	if l == "de-CH" {
+	switch l {
+	case "de-CH":
 		return "de"
-	}
-	if l == "pt-BR" {
+	case "pt-BR":
 		return "pt"
+	default:
+		return strings.ReplaceAll(string(l), "-", "_")
 	}
-	return strings.ReplaceAll(string(l), "-", "_")
 }
 
 func (l Lingua) Aliases() []Lingua {
 	// Handle aliases.
-	if l == "de" {
+	switch l {
+	case "de":
 		return []Lingua{"de-CH"}
-	}
-	if l == "pt" {
+	case "pt":
 		return []Lingua{"pt-BR"}
+	default:
+		return nil
 	}
-	return nil
 }
 
 // LinguasSorted returns the languages sorted by humanly expected ordering.

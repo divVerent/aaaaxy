@@ -29,7 +29,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/locale"
@@ -152,10 +151,6 @@ func (g *Game) InitEarly() error {
 	})
 	if err != nil {
 		return fmt.Errorf("could not preinitialize dumping: %w", err)
-	}
-	err = font.Init()
-	if err != nil {
-		return fmt.Errorf("could not initialize fonts: %w", err)
 	}
 	err = palette.Init(engine.GameWidth, engine.GameHeight)
 	if err != nil {
