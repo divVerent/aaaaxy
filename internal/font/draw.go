@@ -64,7 +64,8 @@ func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color
 type Align int
 
 const (
-	Left Align = iota
+	AsBounds Align = iota
+	Left
 	Center
 	Right
 )
@@ -74,11 +75,14 @@ func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg
 	// We need to do our own line splitting because
 	// we always want to center and Ebitengine would left adjust.
 	totalBounds := f.BoundString(str)
+	// AsBounds: offset := pos.X + totalBounds.Size.DX/2 + totalBounds.Origin.X
 	// Center: offset := pos.X
 	// Left: offset := pos.X + totalBounds.Size.DX/2
 	// Right: offset := pos.X - (totalBounds.Size.DX+1)/2
 	offset := pos.X
 	switch boxAlign {
+	case AsBounds:
+		offset += totalBounds.Size.DX/2 + totalBounds.Origin.X
 	case Left:
 		offset += totalBounds.Size.DX / 2
 	case Right:
