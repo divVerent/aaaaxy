@@ -156,7 +156,7 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 	bg := palette.EGA(palette.Black, uint8(a*255))
 	x := screenWidth / 2
 	y := cp.scrollPos - cp.bounds.Size.DY - cp.bounds.Origin.Y
-	cp.face.Draw(screen, cp.text, m.Pos{X: x, Y: y}, true, fg, bg)
+	cp.face.Draw(screen, cp.text, m.Pos{X: x, Y: y}, font.Center, fg, bg)
 }
 
 func (cp *Centerprint) Active() bool {

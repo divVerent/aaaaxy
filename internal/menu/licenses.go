@@ -83,5 +83,5 @@ func (s *LicensesScreen) Draw(screen *ebiten.Image) {
 		Y: s.ScrollPos,
 	}
 	f := font.ByName["MonoSmall"]
-	renderTextScreen(screen, f, f, credits.Licenses, pos, false, licensesLineHeight, fg, bg, fg, bg)
+	renderTextScreen(screen, f, f, credits.Licenses, pos, font.Left, licensesLineHeight, fg, bg, fg, bg)
 }

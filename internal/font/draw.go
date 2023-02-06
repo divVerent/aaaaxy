@@ -61,13 +61,28 @@ func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color
 	}
 }
 
+type Align int
+
+const (
+	Left Align = iota
+	Center
+	Right
+)
+
 // Draw draws the given text.
-func (f Face) Draw(dst draw.Image, str string, pos m.Pos, centerX bool, fg, bg color.Color) {
+func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg color.Color) {
 	// We need to do our own line splitting because
 	// we always want to center and Ebitengine would left adjust.
-	var totalBounds m.Rect
-	if !centerX {
-		totalBounds = f.BoundString(str)
+	totalBounds := f.BoundString(str)
+	// Center: offset := pos.X
+	// Left: offset := pos.X + totalBounds.Size.DX/2
+	// Right: offset := pos.X - (totalBounds.Size.DX+1)/2
+	offset := pos.X
+	switch boxAlign {
+	case Left:
+		offset += totalBounds.Size.DX / 2
+	case Right:
+		offset -= (totalBounds.Size.DX + 1) / 2
 	}
 	fy := fixed.I(pos.Y)
 	for _, line := range strings.Split(str, "\n") {
@@ -77,7 +92,7 @@ func (f Face) Draw(dst draw.Image, str string, pos m.Pos, centerX bool, fg, bg c
 		// Want lX+d .. lX+lDX+d centered in tX .. tX+tDX
 		// Thus: lX+d - tX = tX+tDX - (lX+lDX+d)
 		// d = tX - lX + (tDX - lDX)/2.
-		x := pos.X + totalBounds.Origin.X - lineBounds.Origin.X + (totalBounds.Size.DX-lineBounds.Size.DX)/2
+		x := offset - lineBounds.Origin.X - lineBounds.Size.DX/2
 		y := fy.Floor()
 		if _, _, _, a := bg.RGBA(); a != 0 {
 			drawLine(f.Outline, dst, line, x, y, bg)

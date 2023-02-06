@@ -100,12 +100,12 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 					Y: bounds.Size.DY,
 				},
 			})
-		fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, key.fg, key.bg)
+		fnt.Draw(img, txt, bounds.Origin.Mul(-1), font.Left, key.fg, key.bg)
 		img2 := ebiten.NewImageFromImage(img)
 		return img2, nil
 	} else {
 		img := ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
-		fnt.Draw(img, txt, bounds.Origin.Mul(-1), false, key.fg, key.bg)
+		fnt.Draw(img, txt, bounds.Origin.Mul(-1), font.Left, key.fg, key.bg)
 		return img, nil
 	}
 }

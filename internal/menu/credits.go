@@ -218,5 +218,5 @@ func (s *CreditsScreen) Draw(screen *ebiten.Image) {
 		X: engine.GameWidth / 2,
 		Y: s.ScrollPos,
 	}
-	renderTextScreen(screen, font.ByName["MenuBig"], font.ByName["Menu"], s.Lines, pos, true, creditsLineHeight, fgs, bgs, fgn, bgn)
+	renderTextScreen(screen, font.ByName["MenuBig"], font.ByName["Menu"], s.Lines, pos, font.Center, creditsLineHeight, fgs, bgs, fgn, bgn)
 }

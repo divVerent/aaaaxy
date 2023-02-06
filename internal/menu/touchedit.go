@@ -77,15 +77,15 @@ func (s *TouchEditScreen) Draw(screen *ebiten.Image) {
 	bgs := palette.EGA(palette.Black, 255)
 	fgn := palette.EGA(palette.LightGrey, 255)
 	bgn := palette.EGA(palette.DarkGrey, 255)
-	font.ByName["MenuBig"].Draw(screen, locale.G.Get("Edit Touch Controls"), m.Pos{X: CenterX, Y: HeaderY}, true, fgs, bgs)
+	font.ByName["MenuBig"].Draw(screen, locale.G.Get("Edit Touch Controls"), m.Pos{X: CenterX, Y: HeaderY}, font.Center, fgs, bgs)
 	fg, bg := fgn, bgn
 	if s.Item == TouchDone {
 		fg, bg = fgs, bgs
 	}
-	font.ByName["Menu"].Draw(screen, locale.G.Get("Done"), m.Pos{X: CenterX, Y: ItemBaselineY(TouchDone, TouchCount)}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Done"), m.Pos{X: CenterX, Y: ItemBaselineY(TouchDone, TouchCount)}, font.Center, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == TouchReset {
 		fg, bg = fgs, bgs
 	}
-	font.ByName["Menu"].Draw(screen, locale.G.Get("Reset to Defaults"), m.Pos{X: CenterX, Y: ItemBaselineY(TouchReset, TouchCount)}, true, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Reset to Defaults"), m.Pos{X: CenterX, Y: ItemBaselineY(TouchReset, TouchCount)}, font.Center, fg, bg)
 }
