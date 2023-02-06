@@ -35,7 +35,7 @@ func makeGoFontFace(fnt *opentype.Font, size int) (Face, error) {
 	if err != nil {
 		return Face{}, err
 	}
-	return makeFace(f, size)
+	return makeFace(f, size), nil
 }
 
 func initGoFont() error {

@@ -40,7 +40,7 @@ type Face struct {
 	Outline font.Face
 }
 
-func makeFace(f font.Face, size int) (Face, error) {
+func makeFace(f font.Face, size int) Face {
 	effect := &fontEffects{
 		Face:       f,
 		LineHeight: size,
@@ -50,7 +50,7 @@ func makeFace(f font.Face, size int) (Face, error) {
 		Face:    effect,
 		Outline: outline,
 	}
-	return face, nil
+	return face
 }
 
 // We always keep the game character set in cache.

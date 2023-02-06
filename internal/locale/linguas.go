@@ -54,6 +54,13 @@ func (l Lingua) Font() string {
 	}
 }
 
+func (l Lingua) AuditHeight() bool {
+	switch l {
+	default:
+		return true
+	}
+}
+
 // Directory returns the directory containing the language.
 func (l Lingua) Directory() string {
 	// Handle aliases.
