@@ -266,9 +266,11 @@ msgstr "Istanbul"
 msgid "Kiritimati"
 msgstr "Kiritimati"
 
+#. Translate so it can be recognized by English speakers too (e.g.
+#. "Lingua (Language): %s").
 #: menu/settings.go
 msgid "Language: %s"
-msgstr "Sprache: %s"
+msgstr "Sprache (Language): %s"
 
 #: menu/credits.go
 msgid "Level Version: %d"
