@@ -265,9 +265,11 @@ msgstr "Constantinopoli"
 msgid "Kiritimati"
 msgstr "Insula Christi Natalis"
 
+#. Translate so it can be recognized by English speakers too (e.g.
+#. "Lingua (Language): %s").
 #: menu/settings.go
 msgid "Language: %s"
-msgstr "Lingua: %s"
+msgstr "Lingua (Language): %s"
 
 #: menu/credits.go
 msgid "Level Version: %d"
