@@ -89,7 +89,7 @@ func Init() error {
 		return err
 	}
 	locale.InitCurrent()
-	_, err = SetLanguage(locale.Lingua(*language))
+	_, err = forceSetLanguage(locale.Lingua(*language))
 	return err
 }
 
@@ -99,6 +99,13 @@ func SetLanguage(lang locale.Lingua) (bool, error) {
 	}
 	if locale.Active == lang {
 		return false, nil
+	}
+	return forceSetLanguage(lang)
+}
+
+func forceSetLanguage(lang locale.Lingua) (bool, error) {
+	if lang == "auto" {
+		lang = locale.Current
 	}
 	locale.ResetLanguage()
 	initLocaleDomain(lang, locale.G, "game")
