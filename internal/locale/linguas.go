@@ -63,7 +63,7 @@ func (l Lingua) AuditHeight() bool {
 
 // Directory returns the directory containing the language.
 func (l Lingua) Directory() string {
-	// Handle aliases.
+	// Handle groups.
 	switch l {
 	case "de-CH":
 		return "de"
@@ -74,8 +74,9 @@ func (l Lingua) Directory() string {
 	}
 }
 
-func (l Lingua) Aliases() []Lingua {
-	// Handle aliases.
+// GroupMembers returns all additional members of a language group.
+// Groups use the same file, but have {{if eq Lang ...}} template commands for minor differences.
+func (l Lingua) GroupMembers() []Lingua {
 	switch l {
 	case "de":
 		return []Lingua{"de-CH"}
@@ -83,6 +84,15 @@ func (l Lingua) Aliases() []Lingua {
 		return []Lingua{"pt-BR"}
 	default:
 		return nil
+	}
+}
+
+func (l Lingua) Canonical() Lingua {
+	// Handle aliases.
+	// Aliases are different names for the same language.
+	switch l {
+	default:
+		return l
 	}
 }
 

@@ -51,8 +51,8 @@ func initLinguas() error {
 		}
 		l := locale.Lingua(line)
 		locale.Linguas[l] = struct{}{}
-		for _, alias := range l.Aliases() {
-			locale.Linguas[alias] = struct{}{}
+		for _, member := range l.GroupMembers() {
+			locale.Linguas[member] = struct{}{}
 		}
 	}
 	if *dumpLanguages {

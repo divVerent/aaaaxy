@@ -38,7 +38,7 @@ func InitCurrent() {
 			continue
 		}
 		for lang != language.Und {
-			lingua := Lingua(lang.String())
+			lingua := Lingua(lang.String()).Canonical()
 			if lingua == "en" {
 				log.Infof("detected language %s (not translating)", Lingua("").Name())
 				return
