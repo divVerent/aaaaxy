@@ -258,6 +258,10 @@ msgstr ""
 msgid "Language: %s"
 msgstr ""
 
+#: menu/settings.go
+msgid "Letterbox Screen"
+msgstr ""
+
 #: menu/credits.go
 msgid "Level Version: %d"
 msgstr ""
@@ -427,6 +431,10 @@ msgstr ""
 
 #: fun/string.go
 msgid "Start"
+msgstr ""
+
+#: menu/settings.go
+msgid "Stretch Screen"
 msgstr ""
 
 #: menu/savestate.go menu/settings.go

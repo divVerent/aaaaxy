@@ -402,6 +402,12 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 		}
 		font.ByName["Menu"].Draw(screen, fsText, m.Pos{X: CenterX, Y: ItemBaselineY(int(s.Fullscreen), SettingsCount)}, font.Center, fg, bg)
 	}
+
+	// Some texts that will be used in a future version.
+	locale.G.Get("Stretch Screen")
+	locale.G.Get("Letterbox Screen")
+	// Referencing here so they show up on Transifex already.
+
 	fg, bg := fgn, bgn
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs
