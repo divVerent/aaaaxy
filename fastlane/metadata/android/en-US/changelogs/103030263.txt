@@ -1,0 +1,5 @@
+  - Engine: update oto library.
+  - Engine: slightly improve font alignment.
+  - Engine: refactor for better localization support.
+  - Engine: migrate from go-freetype to x/image/font/opentype.
+  - Mobile: replace the B button by "touching anywhere else" for less visual clutter. Can be reverted by going to the input touch editor and long-pressing an empty space.

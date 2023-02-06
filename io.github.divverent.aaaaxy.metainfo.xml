@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.219" date="2023-01-30">
-      <description><ul><li>Easter egg: fix Konami Code on keyboard.</li><li>Engine: minor ebitengine update.</li><li>Level: reworded Shepard Tone.</li><li>Game: provide a game loop for Google Play.</li><li>Translations: added translation to Ukrainian.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.219</url>
+    <release version="v1.3.263" date="2023-02-06">
+      <description><ul><li>Engine: update oto library.</li><li>Engine: slightly improve font alignment.</li><li>Engine: refactor for better localization support.</li><li>Engine: migrate from go-freetype to x/image/font/opentype.</li><li>Mobile: replace the B button by "touching anywhere else" for less visual clutter. Can be reverted by going to the input touch editor and long-pressing an empty space.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.263</url>
     </release>
   </releases>
 </component>
