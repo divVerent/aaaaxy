@@ -417,7 +417,6 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	timing.Section("global_overlays")
 	if *showFPS {
 		timing.Section("fps")
-		// TODO: can we, instead of centering, right-align this?
 		font.ByName["DebugSmall"].Draw(drawDest,
 			locale.G.Get("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
 			m.Pos{X: engine.GameWidth - 1, Y: engine.GameHeight - 4}, font.Right,
@@ -425,7 +424,6 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	}
 	if *showTime {
 		timing.Section("time")
-		// TODO: can we, instead of centering, left-align this?
 		font.ByName["DebugSmall"].Draw(drawDest,
 			fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}"),
 			m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
