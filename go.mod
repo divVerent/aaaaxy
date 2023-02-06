@@ -29,7 +29,7 @@ require (
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
 	github.com/hajimehoshi/file2byteslice v1.0.0 // indirect
-	github.com/hajimehoshi/oto/v2 v2.4.0-alpha.11 // indirect
+	github.com/hajimehoshi/oto/v2 v2.4.0-alpha.12 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jezek/xgb v1.1.0 // indirect

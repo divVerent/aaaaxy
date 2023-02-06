@@ -68,8 +68,8 @@ github.com/hajimehoshi/file2byteslice v1.0.0/go.mod h1:CqqAHp7Dk/AqQiwuhV1yT2334
 github.com/hajimehoshi/go-mp3 v0.3.3/go.mod h1:qMJj/CSDxx6CGHiZeCgbiq2DSUkbK0UbtXShQcnfyMM=
 github.com/hajimehoshi/oto v0.6.1/go.mod h1:0QXGEkbuJRohbJaxr7ZQSxnju7hEhseiPx2hrh6raOI=
 github.com/hajimehoshi/oto/v2 v2.3.1/go.mod h1:seWLbgHH7AyUMYKfKYT9pg7PhUu9/SisyJvNTT+ASQo=
-github.com/hajimehoshi/oto/v2 v2.4.0-alpha.11 h1:g/QXMYcTZSr40Y7CUW2gUN1swjFnDPhfQHyRQ5I6qYA=
-github.com/hajimehoshi/oto/v2 v2.4.0-alpha.11/go.mod h1:wre+KgbOrKDXpgk6W/JC6KoFqZnVC/VtX5ZFRkJuxO4=
+github.com/hajimehoshi/oto/v2 v2.4.0-alpha.12 h1:Te24epx3UHrk9SkW3nFTHLy3vK+ZNE3rKFeWM23622Q=
+github.com/hajimehoshi/oto/v2 v2.4.0-alpha.12/go.mod h1:wre+KgbOrKDXpgk6W/JC6KoFqZnVC/VtX5ZFRkJuxO4=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=
 github.com/inconshreveable/mousetrap v1.0.0 h1:Z8tu5sraLXCXIcARxBp/8cbvlwVa7Z1NHg9XEKhtSvM=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
