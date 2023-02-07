@@ -258,10 +258,6 @@ msgstr ""
 msgid "Language: %s"
 msgstr ""
 
-#: menu/settings.go
-msgid "Letterbox Screen"
-msgstr ""
-
 #: menu/credits.go
 msgid "Level Version: %d"
 msgstr ""
@@ -433,16 +429,20 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: menu/settings.go
-msgid "Stretch Screen"
-msgstr ""
-
 #: menu/savestate.go menu/settings.go
 msgid "Switch Save State"
 msgstr ""
 
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
+msgstr ""
+
+#: menu/settings.go
+msgid "Switch to Letterboxed Screen"
+msgstr ""
+
+#: menu/settings.go
+msgid "Switch to Stretched Screen"
 msgstr ""
 
 #: menu/settings.go
