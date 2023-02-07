@@ -451,6 +451,14 @@ msgid "Switch to Fullscreen Mode"
 msgstr "Vide in Tela Toto"
 
 #: menu/settings.go
+msgid "Switch to Letterboxed Screen"
+msgstr "Vide in Tela Aequabili"
+
+#: menu/settings.go
+msgid "Switch to Stretched Screen"
+msgstr "Vide in Tela Tenta"
+
+#: menu/settings.go
 msgid "Switch to Windowed Mode"
 msgstr "Vide in Fenestra"
 
