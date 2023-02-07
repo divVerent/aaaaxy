@@ -404,8 +404,8 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 	}
 
 	// Some texts that will be used in a future version.
-	locale.G.Get("Stretch Screen")
-	locale.G.Get("Letterbox Screen")
+	locale.G.Get("Switch to Stretched Screen")
+	locale.G.Get("Switch to Letterboxed Screen")
 	// Referencing here so they show up on Transifex already.
 
 	fg, bg := fgn, bgn
