@@ -271,6 +271,10 @@ msgstr "Insula Christi Natalis"
 msgid "Language: %s"
 msgstr "Lingua (Language): %s"
 
+#: menu/settings.go
+msgid "Letterbox Screen"
+msgstr "Vide in Tela Aequabile"
+
 #: menu/credits.go
 msgid "Level Version: %d"
 msgstr "Versio Libellae: %d"
@@ -441,6 +445,10 @@ msgstr "Graphica Animationis"
 #: fun/string.go
 msgid "Start"
 msgstr "Incipe"
+
+#: menu/settings.go
+msgid "Stretch Screen"
+msgstr "Vide in Tela Tenta"
 
 #: menu/savestate.go menu/settings.go
 msgid "Switch Save State"
