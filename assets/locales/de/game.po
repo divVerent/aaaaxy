@@ -272,10 +272,6 @@ msgstr "Kiritimati"
 msgid "Language: %s"
 msgstr "Sprache (Language): %s"
 
-#: menu/settings.go
-msgid "Letterbox Screen"
-msgstr "Auf entzerrtes Bild wechseln"
-
 #: menu/credits.go
 msgid "Level Version: %d"
 msgstr "Level-Version: %d"
@@ -447,10 +443,6 @@ msgstr "Sprites"
 msgid "Start"
 msgstr "Start"
 
-#: menu/settings.go
-msgid "Stretch Screen"
-msgstr "Auf gestrecktes Bild wechseln"
-
 #: menu/savestate.go menu/settings.go
 msgid "Switch Save State"
 msgstr "Spielstand wechseln"
@@ -458,6 +450,14 @@ msgstr "Spielstand wechseln"
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
 msgstr "Auf Vollbildmodus wechseln"
+
+#: menu/settings.go
+msgid "Switch to Letterboxed Screen"
+msgstr "Bild einpassen"
+
+#: menu/settings.go
+msgid "Switch to Stretched Screen"
+msgstr "Bild strecken"
 
 #: menu/settings.go
 msgid "Switch to Windowed Mode"
