@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-06 20:00-0500\n"
+"POT-Creation-Date: 2023-02-07 04:37-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -386,30 +386,37 @@ msgid "Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1244]
+#. C as in the first music note of the C major scale. Also known as Do, Sa, 上, ル or 1.
 msgid "C"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1245]
+#. D as in the second music note of the C major scale. Also known as Re, Ri, 尺, 人 or 2.
 msgid "D"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1246]
+#. E as in the third music note of the C major scale. Also known as Mi, Ga, 工, フ or 3.
 msgid "E"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1247]
+#. F as in the fourth music note of the C major scale. Also known as Fa, Ma, 凡, り or 4.
 msgid "F"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1248]
+#. G as in the fifth music note of the C major scale. Also known as Sol, Pa, 六, 久 or 5.
 msgid "G"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1249]
+#. A as in the sixth music note of the C major scale. Also known as La, Dha, 五, ゐ or 6.
 msgid "A"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1250]
+#. B as in the seventh music note of the C major scale. Also known as H, Ti, Si, Ni, 乙, L or 7.
 msgid "B"
 msgstr ""
 
