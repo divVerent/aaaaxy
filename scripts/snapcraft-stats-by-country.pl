@@ -9,7 +9,7 @@ my $top = 15;
 
 my $now = time;
 my $start_date = strftime '%Y-%m-%d', gmtime $now - 86400 * 90;
-my $end_date   = strftime '%Y-%m-%d', gmtime $now - 86400 * 1;
+my $end_date   = strftime '%Y-%m-%d', gmtime $now - 86400 * 2;
 
 open my $json, '-|', qw(snap run snapcraft metrics aaaaxy),
 	'--name' => 'weekly_installed_base_by_country',
@@ -40,7 +40,7 @@ for my $series (@{$data->{series}}) {
 my @buckets = sort @{$data->{buckets}};
 my $newest_bucket = [@buckets]->[-1];
 my @keys = sort {
-		$sheet{$b}{$newest_bucket} <=> $sheet{$a}{$newest_bucket}
+		($sheet{$b}{$newest_bucket} // 0) <=> ($sheet{$a}{$newest_bucket} // 0)
 	} keys %sheet;
 my @topkeys = @keys[0..$top - 1];
 
@@ -70,7 +70,7 @@ for my $item(@rows) {
 	$header .= "$header_comma'-' using 1:2 with linespoints title '$key'";
 	$header_comma = ', ';
 	for my $bucket(@buckets) {
-		$body .= "$bucket $row->{$bucket}\n";
+		$body .= "$bucket @{[$row->{$bucket} // 0]}\n";
 	}
 	$body .= "e\n";
 }
