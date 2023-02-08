@@ -244,7 +244,7 @@ msgstr "额外力量的前景使你充满了决心。"
 #. shooter) map silvercity.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=319]
 msgid "Behold the cage of health!"
-msgstr "看哪，健康笼子!"
+msgstr "看哪，健康笼子！"
 
 #. Refers to a map of the first person shooter game Nexuiz:
 #. https://www.youtube.com/watch?v=8otWflEtlyg
@@ -490,7 +490,7 @@ msgstr "听一下神奇乌龟的咒语，就可以继续前进。"
 #. https://antichamber.fandom.com/wiki/Don%27t_Look_Down
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1364]
 msgid "Don't{{BR}}Look Up!"
-msgstr "不要{{BR}}往上看!"
+msgstr "不要{{BR}}往上看！"
 
 #. reference to 'curiosity killed the cat' saying; be creative here when
 #. translating; be consistent with the 'Curiosity killed the Carl - no the
@@ -523,11 +523,11 @@ msgstr "？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1423]
 msgid "You now can stand on platforms!"
-msgstr "你现在可以站在平台上了!"
+msgstr "你现在可以站在平台上了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1430]
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr "防滑钉{{BR}}提示：不要撞头!"
+msgstr "防滑钉{{BR}}提示：不要撞头！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1441]
 msgid "Steadfastly holding on to the iron rod prevents disasters."
@@ -580,15 +580,15 @@ msgstr "中心附近"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1478]
 msgid "You can now push them away!"
-msgstr "你现在可以把平台推开了!"
+msgstr "你现在可以把平台推开了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
-msgstr "电磁铁{{BR}}（按住{{ActionButton}}）{{BR}}提示：不要乱扔垃圾!"
+msgstr "电磁铁{{BR}}（按住{{ActionButton}}）{{BR}}提示：不要乱扔垃圾！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1493]
 msgid "You can now grab and carry them!"
-msgstr "你现在可以抓住并携带它们了!"
+msgstr "你现在可以抓住并携带它们了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1494]
 msgid "The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"
@@ -1093,7 +1093,7 @@ msgstr "转圈有时候也有用。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5167]
 msgid "Get It Back!"
-msgstr "把它抢回来!"
+msgstr "把它抢回来！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5187]
 msgid "y tho?{{BR}}Press {{ExitButton}}."
