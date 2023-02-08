@@ -64,7 +64,8 @@ func KeepInCache(dst *ebiten.Image) {
 }
 
 var (
-	ByName      = map[string]Face{}
+	ByFont      = map[string]map[string]Face{}
+	ByName      = map[string]Face(nil)
 	currentFont string
 )
 
@@ -227,11 +228,17 @@ func SetFont(font string) error {
 	if font == currentFont {
 		return nil
 	}
-	currentFont = font
-	switch font {
-	case "unifont":
-		return initUnifont()
-	default:
-		return initGoFont()
+	ByName = ByFont[font]
+	if ByName == nil {
+		ByName = map[string]Face{}
+		ByFont[font] = ByName
+		switch font {
+		case "unifont":
+			return initUnifont()
+		default:
+			return initGoFont()
+		}
 	}
+	currentFont = font
+	return nil
 }
