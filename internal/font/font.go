@@ -229,6 +229,7 @@ func SetFont(font string) error {
 		return nil
 	}
 	ByName = ByFont[font]
+	currentFont = font
 	if ByName == nil {
 		ByName = map[string]Face{}
 		ByFont[font] = ByName
@@ -239,6 +240,5 @@ func SetFont(font string) error {
 			return initGoFont()
 		}
 	}
-	currentFont = font
 	return nil
 }
