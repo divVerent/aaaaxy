@@ -31,6 +31,7 @@ for demo in "$@"; do
 	./aaaaxy \
 		-audio=false \
 		-batch \
+		-debug_profiling=1m \
 		-demo_play="$demo.replaced.dem" \
 		-demo_record="$demo.rechained.dem" \
 		-demo_timedemo \
@@ -40,7 +41,6 @@ for demo in "$@"; do
 		-expand_using_vertices_accurately=false \
 		-fps_divisor=15 \
 		-fullscreen=false \
-		-profiling=1m \
 		-runnable_when_unfocused \
 		--screen_filter=simple \
 		-show_fps \

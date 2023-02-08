@@ -53,6 +53,7 @@ for demo in "$@"; do
 		-debug_check_tnih_signs \
 		-debug_check_translations \
 		-debug_log_file="$demo.$tag.log" \
+		-debug_profiling=1m \
 		-demo_record="$demo.$tag.actual.dem" \
 		-demo_play_regression_prefix="$demo.$tag." \
 		-draw_blurs=false \
@@ -61,7 +62,6 @@ for demo in "$@"; do
 		-expand_using_vertices_accurately=false \
 		-fps_divisor=4 \
 		-fullscreen=false \
-		-profiling=1m \
 		-screen_filter=nearest \
 		-show_fps \
 		-show_time \

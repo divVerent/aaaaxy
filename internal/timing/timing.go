@@ -25,7 +25,8 @@ import (
 )
 
 var (
-	profiling = flag.Duration("profiling", 0, "enable simple wall-clock profiling to log messages")
+	debugProfiling      = flag.Duration("debug_profiling", 0, "enable simple wall-clock profiling to log messages")
+	debugFrameProfiling = flag.Bool("debug_frame_profiling", false, "print duration of each frame")
 )
 
 const (
@@ -68,6 +69,7 @@ var (
 	accumulator map[string]*entry
 	stack       []node
 	nextReport  time.Time
+	prevFrame   time.Time
 )
 
 func restartProfiling() {
@@ -134,11 +136,19 @@ func accountTime(now time.Time) {
 }
 
 func Update() {
-	if *profiling != 0 && stack == nil {
+	now := time.Now()
+	if *debugFrameProfiling {
+		if !prevFrame.IsZero() {
+			delta := now.Sub(prevFrame)
+			log.Infof("frame time: %v", delta)
+		}
+	}
+	prevFrame = now
+	if *debugProfiling != 0 && stack == nil {
 		restartProfiling()
 		return
 	}
-	if *profiling == 0 {
+	if *debugProfiling == 0 {
 		stopProfiling()
 		return
 	}
@@ -154,16 +164,15 @@ func Update() {
 		entry.thisFrame = 0
 		entry.touchedThisFrame = false
 	}
-	now := time.Now()
 	if now.After(nextReport) {
 		PrintReport()
-		nextReport = now.Add(*profiling)
+		nextReport = now.Add(*debugProfiling)
 		restartProfiling()
 	}
 }
 
 func PrintReport() {
-	if *profiling == 0 {
+	if *debugProfiling == 0 {
 		return
 	}
 	if !nextReport.IsZero() {
