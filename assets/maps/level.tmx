@@ -5285,7 +5285,6 @@
   </object>
   <object id="1172" type="Text" x="4272" y="5088" width="160" height="112">
    <properties>
-    <property name="_text_localization_note" value="https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&amp;version=KJV"/>
     <property name="text" value="Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your keys{{BR}}3) {{ExitButton}} for checkout"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
