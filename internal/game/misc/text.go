@@ -139,14 +139,15 @@ func (t *Text) Precache(sp *level.Spawnable) error {
 		// Nothing precached.
 		return nil
 	}
-	dx, dy := img.Size()
+	rx, ry := sp.RectInTile.Size.DX, sp.RectInTile.Size.DY
 	if sp.Orientation.Right.DX == 0 {
-		dx, dy = dy, dx
+		rx, ry = ry, rx
 	}
-	if dx > sp.RectInTile.Size.DX+2 || (locale.Active.AuditHeight() && dy > sp.RectInTile.Size.DY+2) {
+	dx, dy := img.Size()
+	if dx > rx+2 || (locale.Active.AuditHeight() && dy > ry+2) {
 		// Tolerate 2 extra pixels for diacritics or borders.
 		locale.Errorf("text too big: entity %v has size %v but text needs %v: %v",
-			sp.ID, sp.RectInTile.Size, m.Delta{DX: dx, DY: dy}, key.text)
+			sp.ID, m.Delta{DX: rx, DY: ry}, m.Delta{DX: dx, DY: dy}, key.text)
 	}
 	return nil
 }
