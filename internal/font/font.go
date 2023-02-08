@@ -229,6 +229,8 @@ func SetFont(font string) error {
 	}
 	currentFont = font
 	switch font {
+	case "unifont":
+		return initUnifont()
 	default:
 		return initGoFont()
 	}
