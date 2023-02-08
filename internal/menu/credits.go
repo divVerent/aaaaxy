@@ -79,6 +79,11 @@ func localizeCredits(line string) string {
 		return locale.G.Get("Translators")
 	case "and other contributors":
 		return locale.G.Get("and other contributors")
+	case "Anthony Wang (王文韬)":
+		if locale.Active.Font() != "unifont" && locale.Active.Font() != "unifont_jp" {
+			return "Anthony Wang"
+		}
+		return line
 	}
 	// Do not localize names directly.
 	// This does break name-inflecting languages, but so be it.
