@@ -30,7 +30,7 @@ var (
 )
 
 var (
-	formatRE = regexp.MustCompile(`({{[^}]*}})|%(?:\[(\d+)\])?([^a-z]*[a-z])`)
+	formatRE = regexp.MustCompile(`({{[^}]*}})|%(?:\[(\d+)\])?([-+# 0-9.]*[a-zA-Z%])`)
 	badRE    = regexp.MustCompile(` {{BR}}|{{BR}} |^ | $`)
 )
 
