@@ -42,6 +42,8 @@ func (l Lingua) Name() string {
 		return "Português (Brasil)"
 	case "uk":
 		return "Українська"
+	case "zh-Hans":
+		return "简体中文"
 	default:
 		return string(l)
 	}
@@ -49,6 +51,8 @@ func (l Lingua) Name() string {
 
 func (l Lingua) Font() string {
 	switch l {
+	case "zh-Hans":
+		return "unifont"
 	default:
 		return "gofont"
 	}
@@ -56,6 +60,10 @@ func (l Lingua) Font() string {
 
 func (l Lingua) AuditHeight() bool {
 	switch l {
+	// These languages use unifont which is a tad bit too high.
+	// Accept anyway, as some minor vertical overflow is not noticeable ingame.
+	case "zh-Hans":
+		return false
 	default:
 		return true
 	}
@@ -63,12 +71,16 @@ func (l Lingua) AuditHeight() bool {
 
 // Directory returns the directory containing the language.
 func (l Lingua) Directory() string {
-	// Handle groups.
 	switch l {
+	// Handle groups.
 	case "de-CH":
 		return "de"
 	case "pt-BR":
 		return "pt"
+	// This one doesn't get an underscore.
+	case "zh-Hans":
+		return "zh-Hans"
+	// Otherwise Transifex uses underscores, but x/text/language uses dashes.
 	default:
 		return strings.ReplaceAll(string(l), "-", "_")
 	}
@@ -91,6 +103,8 @@ func (l Lingua) Canonical() Lingua {
 	// Handle aliases.
 	// Aliases are different names for the same language.
 	switch l {
+	case "zh-CHS", "zh-CN", "zh-SG":
+		return "zh-Hans"
 	default:
 		return l
 	}

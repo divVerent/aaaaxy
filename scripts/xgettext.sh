@@ -49,18 +49,20 @@ msgcomm \
 
 LF='
 '
-all_languages=
-bad_languages=
+all_linguas=
+bad_linguas=
 
 for d in assets/locales/*/; do
 	language=${d%/}
 	language=${language##*/}
-	all_languages="$all_languages$language$LF"
+	# Go's x/text/language always uses dashes as separator.
+	lingua=$(echo "$language" | tr _ -)
+	all_linguas="$all_linguas$lingua$LF"
 	for domain in level game; do
 		f=assets/locales/"$language"/"$domain".po
 		if ! [ -f "$f" ]; then
 			echo "$f: not found"
-			bad_languages="$bad_languages$language$LF"
+			bad_linguas="$bad_linguas$lingua$LF"
 			continue
 		fi
 		msgmerge -o "$f.new" "$f" assets/locales/"$domain".pot
@@ -70,21 +72,21 @@ for d in assets/locales/*/; do
 		score=$(((total - untranslated - fuzzy) * 100 / total))
 		echo "$f: $score%: $untranslated/$total untranslated, $fuzzy/$total fuzzy"
 		if [ $score -lt 90 ]; then
-			bad_languages="$bad_languages$language$LF"
+			bad_linguas="$bad_linguas$lingua$LF"
 		fi
 	done
 done
 
-good_languages=$(
+good_lingua=$(
 	{
-		echo "$all_languages"
-		echo "$bad_languages"
-		echo "$bad_languages"
+		echo "$all_linguas"
+		echo "$bad_linguas"
+		echo "$bad_linguas"
 	} | sort | uniq -u
 )
-echo "Good languages:" $good_languages
+echo "Good languages:" $good_lingua
 
-echo "$good_languages" > assets/locales/LINGUAS
+echo "$good_lingua" > assets/locales/LINGUAS
 
 make
 languages=$(
@@ -92,7 +94,15 @@ languages=$(
 	xvfb-run ./aaaaxy -dump_languages |\
 	grep . |\
 	while IFS=- read -r lang variant; do
-		printf ', "%s"' "$lang${variant:+-r$variant}"
+		case "$lang-$variant" in
+			zh-Hans)
+				res=b+zh+Hans
+				;;
+			*)
+				res=$lang${variant:+-r$variant}
+				;;
+		esac
+		printf ', "%s"' "$res"
 	done
 )
 sed -i -e "s/resConfigs .*/resConfigs $languages/" \
