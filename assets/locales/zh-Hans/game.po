@@ -560,7 +560,7 @@ msgstr "Z"
 
 #: menu/credits.go
 msgid "and %s"
-msgstr "和%s"
+msgstr "%s"
 
 #: menu/credits.go
 msgid "and other contributors"
