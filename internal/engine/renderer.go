@@ -16,6 +16,7 @@ package engine
 
 import (
 	"fmt"
+	go_image "image"
 	"image/color"
 	"math"
 
@@ -357,6 +358,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 					nil,
 				},
 			})
+			ResetTextureUnit(screen, r.visibilityMaskImage)
 		} else {
 			// First set the alpha channel to the visibility mask.
 			drawDest.DrawImage(r.visibilityMaskImage, &ebiten.DrawImageOptions{
@@ -440,4 +442,24 @@ func (r *renderer) Draw(screen *ebiten.Image, blurFactor float64) {
 
 	// Debug stuff comes last.
 	r.drawDebug(screen, scrollDelta)
+}
+
+func ResetTextureUnit(screen *ebiten.Image, firstRenderedTexture *ebiten.Image) {
+	// Workaround for https://github.com/hajimehoshi/ebiten/issues/2525
+	// Doesn't actually change screen.
+	// But causes the following GL calls:
+	//
+	// glActiveTexture(GL_TEXTURE0);
+	// if (lastRenderedTexture != firstRenderedTexture) {
+	//   glBindTexture(firstRenderedTexture);
+	//   lastRenderedTexture = firstRenderedTexture;
+	// }
+	opts := &ebiten.DrawImageOptions{
+		CompositeMode: ebiten.CompositeModeSourceOver,
+	}
+	opts.ColorM.Scale(0, 0, 0, 0)
+	screen.DrawImage(firstRenderedTexture.SubImage(go_image.Rectangle{
+		Min: go_image.Point{},
+		Max: go_image.Point{X: 1, Y: 1},
+	}).(*ebiten.Image), &ebiten.DrawImageOptions{})
 }

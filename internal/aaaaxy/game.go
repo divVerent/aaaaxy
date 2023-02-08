@@ -364,6 +364,7 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 		}
 		screen := g.maybeAcquireOffscreen(maybeScreen)
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.paletteShader, options)
+		engine.ResetTextureUnit(screen, paletteOffscreen)
 		if tmp == nil {
 			offscreen.Dispose(paletteOffscreen)
 		}
