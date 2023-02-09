@@ -20,6 +20,7 @@ package aaaaxy
 import (
 	"errors"
 	"fmt"
+	"time"
 
 	"github.com/jeandeaual/go-locale"
 	"golang.org/x/mobile/app"
@@ -131,6 +132,8 @@ func LoadConfig() {
 // This ignores the config, and should be called instead of LoadConfig() after SetFilesDir().
 func ForceBenchmarkDemo() {
 	flag.Parse(flag.NoConfig)
+	flag.Set("debug_frame_profiling", true)
+	flag.Set("debug_profiling", time.Seconds(10))
 	flag.Set("demo_play", "benchmark.dem")
 	flag.Set("demo_timedemo", true)
 }
