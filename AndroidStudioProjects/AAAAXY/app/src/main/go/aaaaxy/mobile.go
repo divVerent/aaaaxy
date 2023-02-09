@@ -133,7 +133,7 @@ func LoadConfig() {
 func ForceBenchmarkDemo() {
 	flag.Parse(flag.NoConfig)
 	flag.Set("debug_frame_profiling", true)
-	flag.Set("debug_profiling", time.Seconds(10))
+	flag.Set("debug_profiling", 10*time.Second)
 	flag.Set("demo_play", "benchmark.dem")
 	flag.Set("demo_timedemo", true)
 }
