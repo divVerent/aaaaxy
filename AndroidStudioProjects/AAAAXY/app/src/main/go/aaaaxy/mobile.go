@@ -136,6 +136,29 @@ func ForceBenchmarkDemo() {
 	flag.Set("debug_profiling", 10*time.Second)
 	flag.Set("demo_play", "benchmark.dem")
 	flag.Set("demo_timedemo", true)
+
+	/*
+	   // Settings for benchmarking:
+	   flag.Set("auto_adjust_quality", false)
+	   flag.Set("vsync", false)
+
+	   // TEST.
+	   flag.Set("pin_fonts_to_cache", true)
+
+	   // Low settings:
+	   flag.Set("palette", "none")
+	   flag.Set("draw_blurs", false)
+	   flag.Set("draw_outside", false)
+	   flag.Set("expand_using_vertices_accurately", false)
+	   flag.Set("screen_filter", "nearest")
+
+	   // Highest settings:
+	   flag.Set("palette", "vga")
+	   flag.Set("draw_blurs", true)
+	   flag.Set("draw_outside", true)
+	   flag.Set("expand_using_vertices_accurately", true)
+	   flag.Set("screen_filter", "linear2xcrt")
+	*/
 }
 
 // BackPressed notifies the game that the back button has been pressed.
