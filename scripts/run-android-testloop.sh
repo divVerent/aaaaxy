@@ -18,9 +18,11 @@ set -ex
 # Disable zip packing improvements as these do not matter at runtime.
 export ADVZIP=:
 
+adb shell pm uninstall -k io.github.divverent.aaaaxy || true
 cd AndroidStudioProjects/AAAAXY/
 export ANDROID_HOME=$HOME/Android/Sdk
-./gradlew assembleRelease bundleRelease
+./gradlew assembleRelease
+adb install app/build/outputs/apk/release/app-release.apk
 
 adb logcat -c
 adb logcat &
@@ -32,5 +34,5 @@ while adb shell pidof io.github.divverent.aaaaxy >/dev/null; do
 	sleep 5
 done
 
-kill -INT $logcat_pid
+kill $logcat_pid
 wait
