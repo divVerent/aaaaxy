@@ -19,7 +19,6 @@ import (
 	"fmt"
 	go_image "image"
 	"math"
-	"math/rand"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -47,15 +46,12 @@ import (
 
 var (
 	screenFilter = flag.String("screen_filter", flag.SystemDefault(map[string]string{
-		"android/*": "simple",
-		"js/*":      "simple",
+		"android/*": "linear2x",
+		"js/*":      "linear2x",
 		"*/*":       "linear2xcrt",
-	}), "filter to use for rendering the screen; current possible values are 'simple', 'linear', 'linear2x', 'linear2xcrt' and 'nearest'")
-	// TODO(divVerent): Remove this flag when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved.
-	screenFilterMaxScale    = flag.Float64("screen_filter_max_scale", 4.0, "maximum scale-up factor for the screen filter")
+	}), "filter to use for rendering the screen; current possible values are 'nearest', 'linear', 'linear2x' and 'linear2xcrt'")
 	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
 	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
-	screenFilterJitter      = flag.Float64("screen_filter_jitter", 0.0, "for any filter other than simple, amount of jitter to add to the filter")
 	paletteFlag             = flag.String("palette", flag.SystemDefault(map[string]string{
 		"android/*": "none",
 		"js/*":      "none",
@@ -166,8 +162,6 @@ func (g *Game) updateFrame() error {
 }
 
 func (g *Game) Update() error {
-	ebiten.SetScreenFilterEnabled(*screenFilter != "nearest")
-
 	if !g.canUpdate {
 		return nil
 	}
@@ -364,7 +358,6 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 		}
 		screen := g.maybeAcquireOffscreen(maybeScreen)
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.paletteShader, options)
-		engine.ResetTextureUnit(screen, paletteOffscreen)
 		if tmp == nil {
 			offscreen.Dispose(paletteOffscreen)
 		}
@@ -473,21 +466,6 @@ func (g *Game) drawOffscreen(tmp *ebiten.Image) *ebiten.Image {
 	return offscreen
 }
 
-func (g *Game) setOffscreenGeoM(screen *ebiten.Image, geoM *ebiten.GeoM, w, h int) {
-	sw, sh := screen.Size()
-	fw := float64(sw) / float64(w)
-	fh := float64(sh) / float64(h)
-	f := fw
-	if fh < fw {
-		f = fh
-	}
-	dx := (float64(sw) - f*float64(w)) * 0.5
-	dy := (float64(sh) - f*float64(h)) * 0.5
-	geoM.Scale(f, f)
-	geoM.Translate(dx, dy)
-	geoM.Translate((rand.Float64()-0.5)**screenFilterJitter, (rand.Float64()-0.5)**screenFilterJitter)
-}
-
 // First two terms of the Taylor expansion of asin(strength*x)/strength.
 func crtK1() float64 {
 	if *screenFilter != "linear2xcrt" {
@@ -501,10 +479,6 @@ func crtK2() float64 {
 		return 0
 	}
 	return 3.0 / 40.0 * math.Pow(*screenFilterCRTStrength, 4)
-}
-
-func IsBuiltinFilter() bool {
-	return *screenFilter == "simple" || *screenFilter == "nearest"
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
@@ -529,11 +503,13 @@ DoneDisposing:
 		return
 	}
 
-	if !dump.Active() && IsBuiltinFilter() {
+	if !dump.Active() {
 		// No offscreen needed. Just render.
 		g.drawAtGameSizeThenReturnTo(screen, make(chan *ebiten.Image, 1), nil)
 		return
 	}
+
+	// When dumping, draw to an offscreen, hand it to the dumper and also copy it to the screen.
 
 	var tmp *ebiten.Image
 	if !offscreen.AvoidReuse() {
@@ -546,26 +522,32 @@ DoneDisposing:
 		}
 	}
 	srcImage := g.drawOffscreen(tmp)
+	options := &ebiten.DrawImageOptions{
+		CompositeMode: ebiten.CompositeModeCopy,
+		Filter:        ebiten.FilterNearest,
+	}
+	screen.DrawImage(srcImage, options)
+}
 
-	switch {
-	case IsBuiltinFilter():
-		// We're dumping, so we NEED an offscreen.
-		// This is actually just like "nearest", except that to Ebitengine we have a game-sized and not screen-sized screen.
-		// So we can use an identity matrix and need not clear the screen.
+func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Image, geoM ebiten.GeoM) {
+	switch *screenFilter {
+	case "nearest":
+		// Normal nearest blitting.
 		options := &ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Filter:        ebiten.FilterNearest,
+			GeoM:          geoM,
 		}
-		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
-		screen.DrawImage(srcImage, options)
-	case *screenFilter == "linear":
+		screen.DrawImage(offscreen, options)
+	case "linear":
+		// Normal linear scaling.
 		options := &ebiten.DrawImageOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Filter:        ebiten.FilterLinear,
+			GeoM:          geoM,
 		}
-		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
-		screen.DrawImage(srcImage, options)
-	case *screenFilter == "linear2x":
+		screen.DrawImage(offscreen, options)
+	case "linear2x":
 		if g.linear2xShader == nil {
 			var err error
 			g.linear2xShader, err = shader.Load("linear2xcrt.kage.tmpl", map[string]interface{}{
@@ -573,22 +555,22 @@ DoneDisposing:
 			})
 			if err != nil {
 				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load linear2x shader: %v", err)
-				*screenFilter = "simple"
+				*screenFilter = "linear"
 				return
 			}
 		}
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Images: [4]*ebiten.Image{
-				srcImage,
+				offscreen,
 				nil,
 				nil,
 				nil,
 			},
+			GeoM: geoM,
 		}
-		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xShader, options)
-	case *screenFilter == "linear2xcrt":
+	case "linear2xcrt":
 		if g.linear2xCRTShader == nil {
 			var err error
 			g.linear2xCRTShader, err = shader.Load("linear2xcrt.kage.tmpl", map[string]interface{}{
@@ -603,7 +585,7 @@ DoneDisposing:
 		options := &ebiten.DrawRectShaderOptions{
 			CompositeMode: ebiten.CompositeModeCopy,
 			Images: [4]*ebiten.Image{
-				srcImage,
+				offscreen,
 				nil,
 				nil,
 				nil,
@@ -613,31 +595,18 @@ DoneDisposing:
 				"CRTK1":          float32(crtK1()),
 				"CRTK2":          float32(crtK2()),
 			},
+			GeoM: geoM,
 		}
-		g.setOffscreenGeoM(screen, &options.GeoM, engine.GameWidth, engine.GameHeight)
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xCRTShader, options)
 	default:
-		log.Errorf("WARNING: unknown screen filter type: %q; reverted to simple", *screenFilter)
-		*screenFilter = "simple"
+		log.Errorf("unknown screen filter type: %q; reverted to simple", *screenFilter)
+		*screenFilter = "linear2x"
 	}
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
-	if IsBuiltinFilter() {
-		g.screenWidth = engine.GameWidth
-		g.screenHeight = engine.GameHeight
-	} else {
-		d := ebiten.DeviceScaleFactor()
-		// TODO: when https://github.com/hajimehoshi/ebiten/issues/1772 is resolved,
-		// change this back to int(float64(outsideWidth) * d), int(float64(outsideHeight) * d).
-		f := math.Min(
-			math.Min(
-				float64(outsideWidth)*d/engine.GameWidth,
-				float64(outsideHeight)*d/engine.GameHeight),
-			*screenFilterMaxScale)
-		g.screenWidth = int(engine.GameWidth * f)
-		g.screenHeight = int(engine.GameHeight * f)
-	}
+	g.screenWidth = engine.GameWidth
+	g.screenHeight = engine.GameHeight
 	g.canUpdate = true
 	return g.screenWidth, g.screenHeight
 }

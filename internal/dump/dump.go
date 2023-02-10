@@ -234,7 +234,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 		switch screenFilter {
 		case "linear":
 			filterComplex += "[lowres]scale=1920:1080"
-		case "simple", "linear2x":
+		case "linear2x":
 			// Note: the two step upscale simulates the effect of the linear2xcrt shader.
 			// "simple" does the same as "linear2x" if the screen res is exactly 1080p.
 			filterComplex += "[lowres]scale=1280:720:flags=neighbor,scale=1920:1080"
