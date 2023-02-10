@@ -452,6 +452,14 @@ msgid "Switch to Fullscreen Mode"
 msgstr "Увімкнути повноекранний режим"
 
 #: menu/settings.go
+msgid "Switch to Letterboxed Screen"
+msgstr "Увімкнути стандартний режим екрана"
+
+#: menu/settings.go
+msgid "Switch to Stretched Screen"
+msgstr "Увімкнути повноекранний режим"
+
+#: menu/settings.go
 msgid "Switch to Windowed Mode"
 msgstr "Увімкнути режим гри у Вікні"
 
