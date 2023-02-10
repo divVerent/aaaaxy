@@ -144,6 +144,12 @@ func (c *Controller) toggleFullscreen() error {
 	return nil
 }
 
+func (c *Controller) toggleStretch() error {
+	flag.Set("screen_stretch", !flag.Get[bool]("screen_stretch"))
+	input.CancelHover() // Fullscreen toggle changes mouse position; ignore hover events for that.
+	return nil
+}
+
 func (c *Controller) UpdateWorld() error {
 	// Increment the frame counter.
 	// Except when on the credits screen - that time does not count.

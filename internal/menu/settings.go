@@ -37,6 +37,12 @@ var offerFullscreen = flag.SystemDefault(map[string]bool{
 	"*/*":       true,
 })
 
+var offerStretch = flag.SystemDefault(map[string]bool{
+	"android/*": true,
+	"ios/*":     true,
+	"*/*":       false,
+})
+
 type SettingsScreenItem int
 
 const (
@@ -60,6 +66,7 @@ type SettingsScreen struct {
 	TopItem         SettingsScreenItem
 	EditControls    SettingsScreenItem
 	Fullscreen      SettingsScreenItem
+	Stretch         SettingsScreenItem
 }
 
 func (s *SettingsScreen) Init(m *Controller) error {
@@ -70,8 +77,14 @@ func (s *SettingsScreen) Init(m *Controller) error {
 	if offerFullscreen {
 		s.TopItem--
 		s.Fullscreen = s.TopItem
+		s.Stretch = SettingsCount
+	} else if offerStretch {
+		s.TopItem--
+		s.Fullscreen = SettingsCount
+		s.Stretch = s.TopItem
 	} else {
 		s.Fullscreen = SettingsCount
+		s.Stretch = SettingsCount
 	}
 	if input.HaveTouch() {
 		s.TopItem--
@@ -325,6 +338,8 @@ func (s *SettingsScreen) Update() error {
 		switch s.Item {
 		case s.Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
+		case s.Stretch:
+			return s.Controller.ActivateSound(s.Controller.toggleStretch())
 		case s.EditControls:
 			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&TouchEditScreen{}))
 		case Graphics:
@@ -347,6 +362,8 @@ func (s *SettingsScreen) Update() error {
 		switch s.Item {
 		case s.Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
+		case s.Stretch:
+			return s.Controller.ActivateSound(s.Controller.toggleStretch())
 		case s.EditControls:
 			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&TouchEditScreen{}))
 		case Graphics:
@@ -363,6 +380,8 @@ func (s *SettingsScreen) Update() error {
 		switch s.Item {
 		case s.Fullscreen:
 			return s.Controller.ActivateSound(s.Controller.toggleFullscreen())
+		case s.Stretch:
+			return s.Controller.ActivateSound(s.Controller.toggleStretch())
 		case s.EditControls:
 			return s.Controller.ActivateSound(s.Controller.SaveConfigAndSwitchToScreen(&TouchEditScreen{}))
 		case Graphics:
@@ -402,12 +421,17 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 		}
 		font.ByName["Menu"].Draw(screen, fsText, m.Pos{X: CenterX, Y: ItemBaselineY(int(s.Fullscreen), SettingsCount)}, font.Center, fg, bg)
 	}
-
-	// Some texts that will be used in a future version.
-	locale.G.Get("Switch to Stretched Screen")
-	locale.G.Get("Switch to Letterboxed Screen")
-	// Referencing here so they show up on Transifex already.
-
+	if s.Stretch != SettingsCount {
+		fg, bg := fgn, bgn
+		if s.Item == s.Stretch {
+			fg, bg = fgs, bgs
+		}
+		fsText := locale.G.Get("Switch to Stretched Screen")
+		if flag.Get[bool]("screen_stretch") {
+			fsText = locale.G.Get("Switch to Letterboxed Screen")
+		}
+		font.ByName["Menu"].Draw(screen, fsText, m.Pos{X: CenterX, Y: ItemBaselineY(int(s.Stretch), SettingsCount)}, font.Center, fg, bg)
+	}
 	fg, bg := fgn, bgn
 	if s.Item == Graphics {
 		fg, bg = fgs, bgs

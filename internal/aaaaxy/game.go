@@ -52,6 +52,7 @@ var (
 	}), "filter to use for rendering the screen; current possible values are 'nearest', 'linear', 'linear2x' and 'linear2xcrt'")
 	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
 	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
+	screenStretch           = flag.Bool("screen_stretch", false, "stretch screen content instead of letterboxing")
 	paletteFlag             = flag.String("palette", flag.SystemDefault(map[string]string{
 		"android/*": "none",
 		"js/*":      "none",
@@ -482,6 +483,15 @@ func crtK2() float64 {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
+	w, h := screen.Size()
+	if w != engine.GameWidth || h != engine.GameHeight {
+		// NOTE: This implies *screenStretch.
+		screen = screen.SubImage(go_image.Rectangle{
+			Min: go_image.Point{},
+			Max: go_image.Point{X: engine.GameWidth, Y: engine.GameHeight},
+		}).(*ebiten.Image)
+	}
+
 	defer timing.Group()()
 	timing.Section("draw")
 	defer timing.Group()()
@@ -513,13 +523,7 @@ DoneDisposing:
 
 	var tmp *ebiten.Image
 	if !offscreen.AvoidReuse() {
-		w, h := screen.Size()
-		if w >= engine.GameWidth && h >= engine.GameHeight {
-			tmp = screen.SubImage(go_image.Rectangle{
-				Min: go_image.Point{X: 0, Y: 0},
-				Max: go_image.Point{X: engine.GameWidth, Y: engine.GameHeight},
-			}).(*ebiten.Image)
-		}
+		tmp = screen
 	}
 	srcImage := g.drawOffscreen(tmp)
 	options := &ebiten.DrawImageOptions{
@@ -530,6 +534,25 @@ DoneDisposing:
 }
 
 func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Image, geoM ebiten.GeoM) {
+
+	if *screenStretch {
+		offscreen = offscreen.SubImage(go_image.Rectangle{
+			Min: go_image.Point{},
+			Max: go_image.Point{X: engine.GameWidth, Y: engine.GameHeight},
+		}).(*ebiten.Image)
+
+		// Note that due to the code in Layout(), this changes almost nothing;
+		// differences are 1 pixel or less.
+		// Doing this override anyway to remove possible small black bars on some displays.
+
+		ssz := screen.Bounds().Size()
+		sw, sh := ssz.X, ssz.Y
+		fw := float64(sw) / float64(engine.GameWidth)
+		fh := float64(sh) / float64(engine.GameHeight)
+		geoM.Reset()
+		geoM.Scale(fw, fh)
+	}
+
 	switch *screenFilter {
 	case "nearest":
 		// Normal nearest blitting.
@@ -607,6 +630,13 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
 	g.screenWidth = engine.GameWidth
 	g.screenHeight = engine.GameHeight
+	if *screenStretch {
+		if g.screenWidth*outsideHeight > g.screenHeight*outsideWidth {
+			g.screenHeight = g.screenWidth * outsideHeight / outsideWidth
+		} else {
+			g.screenWidth = g.screenHeight * outsideWidth / outsideHeight
+		}
+	}
 	g.canUpdate = true
 	return g.screenWidth, g.screenHeight
 }
