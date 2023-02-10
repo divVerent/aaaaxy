@@ -29,6 +29,24 @@ import (
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 )
 
+var (
+	timeZoneHours int = 0xDEAD
+)
+
+// SetTimeZoneHours overrides the current time zone.
+//
+// Should be the time zone offset of Jan 1 this year, rounded DOWN (as in, floor) to whole hours.
+//
+// Used on Android to get the time zone from Java code.
+func SetTimeZoneHours(h int) {
+	timeZoneHours = h
+}
+
+func init() {
+	_, offset := time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.Local).Zone()
+	timeZoneHours = m.Div(offset, 3600)
+}
+
 // TryFormatText replaces placeholders in the given text.
 func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 	// Fast path if the template is trivial.
@@ -51,8 +69,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			// Rather inaccurate.
 			// Sourced by searching for "<city> Road Rage" on Google and maximizing result count.
 			// If no road rage found, any larger city will do.
-			_, offset := time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.Local).Zone()
-			switch m.Div(offset, 3600) {
+			switch timeZoneHours {
 			case -12:
 				return locale.G.Get("Baker Island")
 			case -11:

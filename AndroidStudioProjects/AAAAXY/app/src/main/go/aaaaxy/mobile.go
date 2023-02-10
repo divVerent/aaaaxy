@@ -31,6 +31,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/aaaaxy"
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/vfs"
@@ -126,6 +127,11 @@ func SetFilesDir(dir string) {
 func LoadConfig() {
 	// Sorry, some of the stuff SetGame does couldn't use flags then.
 	flag.Parse(aaaaxy.LoadConfig)
+}
+
+// SetTimeZoneHours sets the time zone.
+func SetTimeZoneHours(h int) {
+	fun.SetTimeZoneHours(h)
 }
 
 // ForceBenchmarkDemo runs a benchmark demo instead of the game.
