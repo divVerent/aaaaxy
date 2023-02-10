@@ -18,7 +18,6 @@
 package vfs
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"time"
@@ -51,7 +50,7 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 		log.Infof("could not find path for folder%d/%s: %v", kind, name, err)
 		return nil, os.ErrNotExist
 	}
-	return ioutil.ReadFile(path)
+	return os.ReadFile(path)
 }
 
 // MoveAwayState renames a detected-to-be-broken state file so it will not be used again.
@@ -81,5 +80,5 @@ func writeState(kind StateKind, name string, data []byte) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(path, data, 0666)
+	return os.WriteFile(path, data, 0666)
 }

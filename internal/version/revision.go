@@ -15,7 +15,7 @@
 package version
 
 import (
-	"io/ioutil"
+	"io"
 	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -31,7 +31,7 @@ func Init() error {
 		return err
 	}
 	defer fh.Close()
-	revStr, err := ioutil.ReadAll(fh)
+	revStr, err := io.ReadAll(fh)
 	if err != nil {
 		log.Errorf("cannot read out my version: %v", err)
 		return err

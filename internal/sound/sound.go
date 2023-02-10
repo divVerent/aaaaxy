@@ -20,7 +20,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"sort"
 	"strings"
@@ -92,7 +91,7 @@ func Load(name string) (*Sound, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not start decoding: %w", err)
 	}
-	decoded, err := ioutil.ReadAll(stream)
+	decoded, err := io.ReadAll(stream)
 	if err != nil {
 		return nil, fmt.Errorf("could not decode: %w", err)
 	}

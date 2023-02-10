@@ -18,7 +18,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
@@ -255,7 +254,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 				m.Rint(255*(1.0-1.0/6.0*params.ScreenFilterScanLines)),
 				m.Rint(255*(1.0-3.0/6.0*params.ScreenFilterScanLines)),
 				m.Rint(255*(1.0-5.0/6.0*params.ScreenFilterScanLines))))
-			tempFile, err := ioutil.TempFile("", "aaaaxy-*")
+			tempFile, err := os.CreateTemp("", "aaaaxy-*")
 			if err != nil {
 				return nil, "", err
 			}

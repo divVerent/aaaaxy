@@ -18,10 +18,8 @@
 package vfs
 
 import (
-	"os"
-
 	"fmt"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 )
 
@@ -35,7 +33,7 @@ func initAssetsFS() ([]fsRoot, error) {
 			toPrefix: "/",
 		},
 	}
-	content, err := ioutil.ReadDir("third_party")
+	content, err := os.ReadDir("third_party")
 	if err != nil {
 		return nil, fmt.Errorf("could not find local third party directory: %v", err)
 	}

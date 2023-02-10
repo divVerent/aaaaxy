@@ -19,7 +19,6 @@ package namedpipe
 
 import (
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"syscall"
@@ -34,7 +33,7 @@ type Fifo struct {
 
 func New(name string, bufCount, _ int, timeout time.Duration) (*Fifo, error) {
 	// NOTE: using a temporary directory as there is no other race-free way to create a temporary pipe.
-	tmpDir, err := ioutil.TempDir("", name+"-*")
+	tmpDir, err := os.MkdirTemp("", name+"-*")
 	if err != nil {
 		return nil, err
 	}

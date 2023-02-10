@@ -18,7 +18,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
@@ -51,7 +50,7 @@ func Init() error {
 	if err != nil {
 		return fmt.Errorf("could not start decoding stereonosie: %w", err)
 	}
-	decoded, err := ioutil.ReadAll(stream)
+	decoded, err := io.ReadAll(stream)
 	if err != nil {
 		return fmt.Errorf("could not decode stereonoise: %w", err)
 	}

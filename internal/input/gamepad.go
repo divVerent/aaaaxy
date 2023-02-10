@@ -16,7 +16,7 @@ package input
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"regexp"
 	"strings"
@@ -230,7 +230,7 @@ func readBuiltinGamepadMappings() (string, error) {
 		return "", fmt.Errorf("open: %w", err)
 	}
 	defer configHandle.Close()
-	configBytes, err := ioutil.ReadAll(configHandle)
+	configBytes, err := io.ReadAll(configHandle)
 	if err != nil {
 		return "", fmt.Errorf("read: %w", err)
 	}

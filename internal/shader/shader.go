@@ -18,7 +18,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"text/template"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -51,7 +51,7 @@ func Load(name string, params interface{}) (*ebiten.Shader, error) {
 		return nil, fmt.Errorf("could not load: %w", err)
 	}
 	defer data.Close()
-	shaderCode, err := ioutil.ReadAll(data)
+	shaderCode, err := io.ReadAll(data)
 	if err != nil {
 		return nil, fmt.Errorf("could not read shader %q: %w", name, err)
 	}
