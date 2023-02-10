@@ -82,7 +82,13 @@ func Load(name string) (*Sound, error) {
 		return nil, fmt.Errorf("could not load: %w", err)
 	}
 	defer data.Close()
-	stream, err := vorbis.DecodeWithSampleRate(audiowrap.SampleRate(), data)
+	// If sounds are seekable, they take a LOT longer on 32-bit Windows to load.
+	// However, we don't need seekability for sounds, only for music.
+	// So, let's just read them as non-seekable files.
+	type noSeeker struct {
+		io.Reader
+	}
+	stream, err := vorbis.DecodeWithSampleRate(audiowrap.SampleRate(), noSeeker{data})
 	if err != nil {
 		return nil, fmt.Errorf("could not start decoding: %w", err)
 	}
