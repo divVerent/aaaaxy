@@ -79,7 +79,7 @@ don't want any duplicate frames, right?
 
 ### Data Storage
 
-AAAAXY stores saved games in the following location:
+By default AAAAXY stores saved games in the following location:
 
 | Operating System |                                                  Save Games<br>Configuration                                                   |
 |:----------------:|:------------------------------------------------------------------------------------------------------------------------------:|
@@ -92,6 +92,8 @@ AAAAXY stores saved games in the following location:
 |       Web        |                                                    `getSave(n)`<br>`get()`                                                     |
 |     Windows      |                     `C:\Users\%USERNAME%\Saved Games\AAAAXY`<br>`C:\Users\%USERNAME%\AppData\Local\AAAAXY`                     |
 |       Wine       |    `~/.wine/drive_c/users/$USER/Saved Games/AAAAXY`<br>`~/.wine/drive_c/users/$USER/Local Settings/Application Data/AAAAXY`    |
+
+This can be customized by passing the flags `-conig_path` and `-save_path`, or by passing `-portable`, in which case the files will be stored in subdirectories named `config` and `save` of the current directory.
 
 It is recommended to back up these files.
 
