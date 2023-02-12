@@ -154,6 +154,15 @@ func Marshal() *Config {
 		if f.Name == "batch" {
 			return
 		}
+		if f.Name == "config_path" {
+			return
+		}
+		if f.Name == "portable" {
+			return
+		}
+		if f.Name == "save_path" {
+			return
+		}
 		if f.Value.String() == f.DefValue {
 			return
 		}

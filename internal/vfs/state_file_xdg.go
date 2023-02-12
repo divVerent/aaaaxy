@@ -24,7 +24,7 @@ import (
 	"github.com/adrg/xdg"
 )
 
-func pathForRead(kind StateKind, name string) (string, error) {
+func pathForReadRaw(kind StateKind, name string) (string, error) {
 	switch kind {
 	case Config:
 		return xdg.SearchConfigFile(filepath.Join(gameName, name))
@@ -35,7 +35,7 @@ func pathForRead(kind StateKind, name string) (string, error) {
 	}
 }
 
-func pathForWrite(kind StateKind, name string) (string, error) {
+func pathForWriteRaw(kind StateKind, name string) (string, error) {
 	switch kind {
 	case Config:
 		return xdg.ConfigFile(filepath.Join(gameName, name))

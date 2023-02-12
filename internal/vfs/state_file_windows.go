@@ -35,11 +35,11 @@ func knownFolder(kind StateKind) (string, error) {
 	}
 }
 
-func pathForRead(kind StateKind, name string) (string, error) {
+func pathForReadRaw(kind StateKind, name string) (string, error) {
 	return pathForWrite(kind, name)
 }
 
-func pathForWrite(kind StateKind, name string) (string, error) {
+func pathForWriteRaw(kind StateKind, name string) (string, error) {
 	root, err := knownFolder(kind)
 	if err != nil {
 		return "", err

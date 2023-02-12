@@ -22,8 +22,51 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
+
+var (
+	portable   = flag.Bool("portable", false, "run as a portable program (store all data in the current directory)")
+	configPath = flag.String("config_path", "", "if set, override path to configs")
+	savePath   = flag.String("save_path", "", "if set, override path to saves")
+)
+
+func pathForOverride(kind StateKind) string {
+	switch kind {
+	case Config:
+		if *configPath != "" {
+			return *configPath
+		}
+		if *portable {
+			return "config"
+		}
+	case SavedGames:
+		if *savePath != "" {
+			return *savePath
+		}
+		if *portable {
+			return "save"
+		}
+	}
+	return ""
+}
+
+func pathForRead(kind StateKind, name string) (string, error) {
+	o := pathForOverride(kind)
+	if o != "" {
+		return filepath.Join(o, name), nil
+	}
+	return pathForReadRaw(kind, name)
+}
+
+func pathForWrite(kind StateKind, name string) (string, error) {
+	o := pathForOverride(kind)
+	if o != "" {
+		return filepath.Join(o, name), nil
+	}
+	return pathForWriteRaw(kind, name)
+}
 
 func initState() error {
 	path, err := pathForWrite(Config, "*")

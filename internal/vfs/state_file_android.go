@@ -32,11 +32,11 @@ func SetFilesDir(dir string) {
 	filesDir = dir
 }
 
-func pathForRead(kind StateKind, name string) (string, error) {
+func pathForReadRaw(kind StateKind, name string) (string, error) {
 	return pathForWrite(kind, name)
 }
 
-func pathForWrite(kind StateKind, name string) (string, error) {
+func pathForWriteRaw(kind StateKind, name string) (string, error) {
 	if filesDir == "" {
 		log.Fatalf("tried to access data but SetFilesDir was not called yet")
 	}
