@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-28 07:13-0500\n"
+"POT-Creation-Date: 2023-02-07 22:20-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Ukrainian (https://www.transifex.com/aaaaxy/teams/158611/uk/)\n"
@@ -375,7 +375,6 @@ msgstr "9¾"
 msgid "A watched train never departs."
 msgstr "Поки дивишся на потяг, він стоїть на місці."
 
-#. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1172]
 msgid ""
 "Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your"
@@ -414,30 +413,44 @@ msgstr ""
 "Зіграймо МІ, у цьому{{BR}}ДОМІ.{{BR}}ЕлементаРЕно!{{BR}}і все "
 "відкриється.{{BR}}Жодних Трололо!"
 
+#. C as in the first music note of the C major scale. Also known as Do, Sa, 上,
+#. ル or 1.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1244]
 msgid "C"
 msgstr "До"
 
+#. D as in the second music note of the C major scale. Also known as Re, Ri,
+#. 尺, 人 or 2.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1245]
 msgid "D"
 msgstr "Ре"
 
+#. E as in the third music note of the C major scale. Also known as Mi, Ga, 工,
+#. フ or 3.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1246]
 msgid "E"
 msgstr "Мі"
 
+#. F as in the fourth music note of the C major scale. Also known as Fa, Ma,
+#. 凡, り or 4.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1247]
 msgid "F"
 msgstr "Фа"
 
+#. G as in the fifth music note of the C major scale. Also known as Sol, Pa,
+#. 六, 久 or 5.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1248]
 msgid "G"
 msgstr "Соль"
 
+#. A as in the sixth music note of the C major scale. Also known as La, Dha,
+#. 五, ゐ or 6.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1249]
 msgid "A"
 msgstr "Ля"
 
+#. B as in the seventh music note of the C major scale. Also known as H, Ti,
+#. Si, Ni, 乙, L or 7.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1250]
 msgid "B"
 msgstr "Сі"
