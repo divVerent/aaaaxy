@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-07 22:06-0500\n"
+"POT-Creation-Date: 2023-02-07 22:20-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Anthony Wang, 2023\n"
 "Language-Team: Chinese Simplified (https://www.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
@@ -270,7 +270,7 @@ msgstr "如果没人追你，就不必要藏。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=395]
 msgid "Hide and seek is never fun without opponents."
-msgstr "没有对手，捉迷藏就不好玩。"
+msgstr "没有对手，捉迷藏就不好玩了。"
 
 #. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=396]
@@ -469,7 +469,7 @@ msgstr "选择公理"
 #. https://www.youtube.com/watch?v=2Z4m4lnjxkY
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1302]
 msgid "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
-msgstr "Trololololol,{{BR}}lololol, lololol!"
+msgstr "Trololololol，{{BR}}lololol，lololol！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1304]
 msgid "Turtles All the Way In"
