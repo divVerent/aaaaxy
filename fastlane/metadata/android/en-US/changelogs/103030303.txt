@@ -1,0 +1,7 @@
+  - Dependencies; update to Ebitengine 2.5.
+  - Engine: add support for stretched aspect on Android.
+  - Engine: can now pass `-portable` to run as a portable application (with
+    configs and saves in the local directory).
+  - Engine: provide the correct time zone on Android.
+  - Engine: speed up sound loading on Win32.
+  - Localization: new language: Chinese (Simplified)!
