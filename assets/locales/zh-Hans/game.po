@@ -540,7 +540,7 @@ msgstr "Y：%s"
 
 #: game/player/player.go
 msgid "You now have 30 lives. Enjoy!"
-msgstr "你现在有30条命。好好享受吧!"
+msgstr "你现在有30条命。好好享受吧！"
 
 #: game/player/player.go
 msgid "You really thought this would do something?"
