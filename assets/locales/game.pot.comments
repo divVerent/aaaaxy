@@ -185,3 +185,55 @@ msgstr ""
 #. "Lingua (Language): %s").
 msgid "Language: %s"
 msgstr ""
+
+#. A speedrun category (all checkpoints reached).
+msgid "100%"
+msgstr ""
+
+#. A speedrun category (all checkpoints reached, but game not won yet).
+msgid "All Checkpoints"
+msgstr ""
+
+#. A speedrun category (all checkpoints reached in flipped state).
+msgid "All Flipped"
+msgstr ""
+
+#. A speedrun category (all notes seen).
+msgid "All Notes"
+msgstr ""
+
+#. A speedrun category (all paths walked).
+msgid "All Paths"
+msgstr ""
+
+#. A speedrun category (all secrets found).
+msgid "All Secrets"
+msgstr ""
+
+#. A speedrun category (any way to finish the game).
+msgid "Any%"
+msgstr ""
+
+#. A speedrun category (not a real one, but what we show if cheats are active).
+msgid "Cheat%"
+msgstr ""
+
+#. A speedrun category (back button never pressed).
+msgid "No Back"
+msgstr ""
+
+#. A speedrun category (backspace key never pressed).
+msgid "No Backspace"
+msgstr ""
+
+#. A speedrun category (escape key never pressed).
+msgid "No Escape"
+msgstr ""
+
+#. A speedrun category (start button never pressed).
+msgid "No Start"
+msgstr ""
+
+#. A speedrun category (never teleported).
+msgid "No Teleports"
+msgstr ""
