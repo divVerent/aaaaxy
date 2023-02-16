@@ -89,7 +89,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			case -4:
 				return locale.G.Get("Halifax")
 			case -3:
-				return locale.G.Get("Nuuk")
+				return locale.G.Get("São Paulo")
 			case -2:
 				return locale.G.Get("Fernando de Noronha")
 			case -1:

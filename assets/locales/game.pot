@@ -338,11 +338,6 @@ msgstr ""
 msgid "Nuku'alofa"
 msgstr ""
 
-#. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go
-msgid "Nuuk"
-msgstr ""
-
 #: menu/map.go
 msgid "Pick-a-Path"
 msgstr ""
@@ -465,6 +460,10 @@ msgstr ""
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Sydney"
+msgstr ""
+
+#: fun/string.go
+msgid "São Paulo"
 msgstr ""
 
 #. Used in context "Welcome to ..." and "... Road Rage".
