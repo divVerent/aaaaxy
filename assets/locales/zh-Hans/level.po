@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-07 22:20-0500\n"
+"POT-Creation-Date: 2023-02-16 14:29-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Anthony Wang, 2023\n"
 "Language-Team: Chinese Simplified (https://www.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
@@ -744,7 +744,7 @@ msgstr "每个伟大冒险都是从这句话开始的：{{BR}}\"我知道一条�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2659]
 msgid "Sometimes you don't just lose sight of something."
-msgstr "有时你不能看不见某些东西。"
+msgstr "有时候你不能看不见某些东西。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2665]
 msgid "Hey, I needed that!"
