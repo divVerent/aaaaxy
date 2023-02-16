@@ -462,6 +462,7 @@ msgstr ""
 msgid "Sydney"
 msgstr ""
 
+#. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "São Paulo"
 msgstr ""
