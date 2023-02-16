@@ -46,6 +46,7 @@ msgstr "%s (%d ex %d)"
 msgid ", "
 msgstr " et "
 
+#. A speedrun category (all checkpoints reached).
 #: playerstate/playerstate.go
 msgid "100%"
 msgstr "100%"
@@ -66,22 +67,27 @@ msgstr "A: %s"
 msgid "Additional Programming Libraries & Tools"
 msgstr "Bibliothecae Programmatium Additae & Instrumenta"
 
+#. A speedrun category (all checkpoints reached, but game not won yet).
 #: playerstate/playerstate.go
 msgid "All Checkpoints"
 msgstr "Loci Omnes"
 
+#. A speedrun category (all checkpoints reached in flipped state).
 #: playerstate/playerstate.go
 msgid "All Flipped"
 msgstr "Omnia Inversi"
 
+#. A speedrun category (all notes seen).
 #: playerstate/playerstate.go
 msgid "All Notes"
 msgstr "Annotationes Omnes"
 
+#. A speedrun category (all paths walked).
 #: playerstate/playerstate.go
 msgid "All Paths"
 msgstr "Viae Omnes"
 
+#. A speedrun category (all secrets found).
 #: playerstate/playerstate.go
 msgid "All Secrets"
 msgstr "Secreta Omnia"
@@ -96,6 +102,7 @@ msgstr "Alofe"
 msgid "Anchorage"
 msgstr "Ancoraria"
 
+#. A speedrun category (any way to finish the game).
 #: playerstate/playerstate.go
 msgid "Any%"
 msgstr "Quidquid%"
@@ -158,6 +165,8 @@ msgstr "Bostonia"
 msgid "Build: %s"
 msgstr "Aedificatum: %s"
 
+#. A speedrun category (not a real one, but what we show if cheats are
+#. active).
 #: playerstate/playerstate.go
 msgid "Cheat%"
 msgstr "Fraudans%"
@@ -309,22 +318,27 @@ msgstr "Media"
 msgid "New York"
 msgstr "Novo Eboraco"
 
+#. A speedrun category (back button never pressed).
 #: playerstate/playerstate.go
 msgid "No Back"
 msgstr "Noli Retrocedere"
 
+#. A speedrun category (backspace key never pressed).
 #: playerstate/playerstate.go
 msgid "No Backspace"
 msgstr "Noli Retrocedere"
 
+#. A speedrun category (escape key never pressed).
 #: playerstate/playerstate.go
 msgid "No Escape"
 msgstr "Noli Effugere"
 
+#. A speedrun category (start button never pressed).
 #: playerstate/playerstate.go
 msgid "No Start"
 msgstr "Noli Incipere"
 
+#. A speedrun category (never teleported).
 #: playerstate/playerstate.go
 msgid "No Teleports"
 msgstr "Noli Teleportare"
@@ -337,11 +351,6 @@ msgstr "Nihil"
 #: fun/string.go
 msgid "Nuku'alofa"
 msgstr "Nukualofa"
-
-#. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go
-msgid "Nuuk"
-msgstr "Nuuk"
 
 #: menu/map.go
 msgid "Pick-a-Path"
@@ -466,6 +475,11 @@ msgstr "Vide in Fenestra"
 #: fun/string.go
 msgid "Sydney"
 msgstr "Sydneio"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "São Paulo"
+msgstr "Paulopoli"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
