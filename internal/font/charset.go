@@ -20,5 +20,5 @@ import (
 
 // charSet has been separated out to help xgotext.
 func charSet() string {
-	return locale.GI.Get(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà")
+	return locale.GI.Get(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàã")
 }
