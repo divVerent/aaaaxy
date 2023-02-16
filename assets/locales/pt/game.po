@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Rudolf Polzer, 2023
 # yy0zz, 2023
+# Rudolf Polzer, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: yy0zz, 2023\n"
+"Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Portuguese (https://www.transifex.com/aaaaxy/teams/158611/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,6 +47,7 @@ msgstr "%s (%d/%d)"
 msgid ", "
 msgstr ", "
 
+#. A speedrun category (all checkpoints reached).
 #: playerstate/playerstate.go
 msgid "100%"
 msgstr "100%"
@@ -67,22 +68,27 @@ msgstr "A: %s"
 msgid "Additional Programming Libraries & Tools"
 msgstr "Bibliotecas de Programas & Ferramentas Adicionais"
 
+#. A speedrun category (all checkpoints reached, but game not won yet).
 #: playerstate/playerstate.go
 msgid "All Checkpoints"
 msgstr "Todos os Checkpoints"
 
+#. A speedrun category (all checkpoints reached in flipped state).
 #: playerstate/playerstate.go
 msgid "All Flipped"
 msgstr "Tudo Virado"
 
+#. A speedrun category (all notes seen).
 #: playerstate/playerstate.go
 msgid "All Notes"
 msgstr "Todas as Notas"
 
+#. A speedrun category (all paths walked).
 #: playerstate/playerstate.go
 msgid "All Paths"
 msgstr "Todos os Caminhos"
 
+#. A speedrun category (all secrets found).
 #: playerstate/playerstate.go
 msgid "All Secrets"
 msgstr "Todos os Segredos"
@@ -97,6 +103,7 @@ msgstr "Alofi"
 msgid "Anchorage"
 msgstr "Anchorage"
 
+#. A speedrun category (any way to finish the game).
 #: playerstate/playerstate.go
 msgid "Any%"
 msgstr "Qualquer%"
@@ -159,6 +166,8 @@ msgstr "Boston"
 msgid "Build: %s"
 msgstr "Compilação: %s"
 
+#. A speedrun category (not a real one, but what we show if cheats are
+#. active).
 #: playerstate/playerstate.go
 msgid "Cheat%"
 msgstr "Trapaça%"
@@ -310,22 +319,27 @@ msgstr "Média"
 msgid "New York"
 msgstr "Nova Iorque"
 
+#. A speedrun category (back button never pressed).
 #: playerstate/playerstate.go
 msgid "No Back"
 msgstr "Sem Voltar"
 
+#. A speedrun category (backspace key never pressed).
 #: playerstate/playerstate.go
 msgid "No Backspace"
 msgstr "Sem Backspace"
 
+#. A speedrun category (escape key never pressed).
 #: playerstate/playerstate.go
 msgid "No Escape"
 msgstr "Sem Escape"
 
+#. A speedrun category (start button never pressed).
 #: playerstate/playerstate.go
 msgid "No Start"
 msgstr "Sem Start"
 
+#. A speedrun category (never teleported).
 #: playerstate/playerstate.go
 msgid "No Teleports"
 msgstr "Sem Teletransporte"
@@ -338,11 +352,6 @@ msgstr "Nenhuma"
 #: fun/string.go
 msgid "Nuku'alofa"
 msgstr "Nucualofa"
-
-#. Used in context "Welcome to ..." and "... Road Rage".
-#: fun/string.go
-msgid "Nuuk"
-msgstr "Nuuk"
 
 #: menu/map.go
 msgid "Pick-a-Path"
@@ -467,6 +476,11 @@ msgstr "Mudar para Modo de Janela"
 #: fun/string.go
 msgid "Sydney"
 msgstr "Sydney"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "São Paulo"
+msgstr "São Paulo"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
