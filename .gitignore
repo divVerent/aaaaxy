@@ -1,6 +1,8 @@
 *~
 /.commitmsg
 /AAAAXY-*.AppImage*
+/AndroidStudioProjects/AAAAXY/gradle-bin.zip
+/AndroidStudioProjects/AAAAXY/gradle-bin/
 /aaaaxy
 /aaaaxy-*.zip
 /aaaaxy-js-wasm.wasm
