@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-16 15:04-0500\n"
+"POT-Creation-Date: 2023-02-18 18:36-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -552,6 +552,7 @@ msgid "You can now push them away!"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1479]
+#. 'coil' here refers to an electromagnetic coil
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
 msgstr ""
 
@@ -799,6 +800,7 @@ msgid "You can now disable the force fields!"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=3834]
+#. 'remote' here refers to e.g. a TV's remote control
 msgid "The Remote{{BR}}(hold {{ActionButton}})"
 msgstr ""
 
@@ -815,6 +817,7 @@ msgid "Show me{{BR}}what you've got"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=3844]
+#. 'remote' here refers to e.g. a TV's remote control
 msgid "And you didn't{{BR}}forget the remote?"
 msgstr ""
 

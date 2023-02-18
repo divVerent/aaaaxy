@@ -487,7 +487,8 @@ msgstr ""
 msgid "The Cleats"
 msgstr ""
 
-#. Used in context "reached <location> with ... at <time>".
+#. Used in context "reached <location> with ... at <time>";
+#. "coil" here refers to an electromagnetic coil.
 #: fun/string.go
 msgid "The Coil"
 msgstr ""
@@ -497,7 +498,8 @@ msgstr ""
 msgid "The Gloves"
 msgstr ""
 
-#. Used in context "reached <location> with ... at <time>".
+#. Used in context "reached <location> with ... at <time>";
+#. "remote" here refers to e.g. a TV's remote control.
 #: fun/string.go
 msgid "The Remote"
 msgstr ""

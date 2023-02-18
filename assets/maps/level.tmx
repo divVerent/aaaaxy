@@ -6292,6 +6292,7 @@
   </object>
   <object id="1479" type="Text" x="7808" y="7168" width="192" height="64">
    <properties>
+    <property name="_text_localization_note" value="'coil' here refers to an electromagnetic coil"/>
     <property name="text" value="The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
@@ -9339,6 +9340,7 @@
   </object>
   <object id="3834" type="Text" x="3248" y="1888" width="192" height="64">
    <properties>
+    <property name="_text_localization_note" value="'remote' here refers to e.g. a TV's remote control"/>
     <property name="text" value="The Remote{{BR}}(hold {{ActionButton}})"/>
     <property name="text_bg" type="color" value="#ffff5555"/>
     <property name="text_fg" type="color" value="#ffffff55"/>
@@ -9393,6 +9395,7 @@
   </object>
   <object id="3844" type="Text" x="5056" y="3696" width="32" height="128">
    <properties>
+    <property name="_text_localization_note" value="'remote' here refers to e.g. a TV's remote control"/>
     <property name="orientation" value="NE"/>
     <property name="text" value="And you didn't{{BR}}forget the remote?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
