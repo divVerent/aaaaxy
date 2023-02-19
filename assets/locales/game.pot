@@ -13,7 +13,7 @@ msgid ""
 "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàã"
 msgstr ""
 
-#. Last separator when building a list.
+#. Last separator when building a list. Usually starts and ends with a space.
 #: fun/string.go playerstate/playerstate.go
 msgid " and "
 msgstr ""
@@ -30,7 +30,7 @@ msgstr ""
 msgid "%s (%d/%d)"
 msgstr ""
 
-#. Other separator when building a list.
+#. Other separator when building a list. Usually is a comma and a space.
 #: fun/string.go playerstate/playerstate.go
 msgid ", "
 msgstr ""

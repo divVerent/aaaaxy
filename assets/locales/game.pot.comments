@@ -13,11 +13,11 @@ msgstr ""
 msgid " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éà"
 msgstr ""
 
-#. Last separator when building a list.
+#. Last separator when building a list. Usually starts and ends with a space.
 msgid " and "
 msgstr ""
 
-#. Other separator when building a list.
+#. Other separator when building a list. Usually is a comma and a space.
 msgid ", "
 msgstr ""
 
