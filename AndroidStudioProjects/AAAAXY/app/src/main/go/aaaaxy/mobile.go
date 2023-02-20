@@ -106,6 +106,20 @@ func (g *game) Draw(screen *ebiten.Image) {
 	ok = true
 }
 
+func (g *game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Image, geoM ebiten.GeoM) {
+	if !g.inited {
+		return
+	}
+	ok := false
+	defer func() {
+		if !ok {
+			g.drawErr = fmt.Errorf("caught panic during final screen draw: %v", recover())
+		}
+	}()
+	g.game.DrawFinalScreen(screen, offscreen, geoM)
+	ok = true
+}
+
 func (g *game) Layout(outsideWidth, outsideHeight int) (int, int) {
 	return g.game.Layout(outsideWidth, outsideHeight)
 }
