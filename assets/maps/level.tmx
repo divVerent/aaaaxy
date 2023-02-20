@@ -10891,7 +10891,7 @@
     <property name="_text_localization_note" value="https://thelettervsixtim.es/ - try keeping the V when translating"/>
     <property name="music" value="Theme Song 8-bit V1.ogg"/>
     <property name="next_up" type="object" value="6716"/>
-    <property name="required_orientatiou" value="WN"/>
+    <property name="required_orientation" value="WN"/>
     <property name="secret" type="bool" value="true"/>
     <property name="text" value="déjà Vu"/>
     <property name="tnih_sign_expected" type="bool" value="false"/>
