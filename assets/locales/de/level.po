@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-07 22:20-0500\n"
+"POT-Creation-Date: 2023-02-18 19:07-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: German (https://www.transifex.com/aaaaxy/teams/158611/de/)\n"
@@ -603,6 +603,7 @@ msgstr "Nahe am Hub"
 msgid "You can now push them away!"
 msgstr "Du kannst sie jetzt wegschieben!"
 
+#. 'coil' here refers to an electromagnetic coil
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
 msgstr "Die Spule{{BR}}(halte {{ActionButton}}){{BR}}Tipp: Müll vermeiden!"
@@ -869,6 +870,7 @@ msgstr ""
 msgid "You can now disable the force fields!"
 msgstr "Du kannst jetzt Kraftfelder abschalten!"
 
+#. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3834]
 msgid "The Remote{{BR}}(hold {{ActionButton}})"
 msgstr "Die Fernbedienung{{BR}}(halte {{ActionButton}})"
@@ -885,6 +887,7 @@ msgstr "Denkst du,{{BR}}du kannst es?"
 msgid "Show me{{BR}}what you've got"
 msgstr "Zeig mir,{{BR}}was du kannst"
 
+#. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
 msgid "And you didn't{{BR}}forget the remote?"
 msgstr "Hast du die{{BR}}Fernbedienung?"
@@ -929,7 +932,7 @@ msgstr "DU WURDEST{{BR}}GEWARNT"
 #. warnings; pick your own ridiculous law when translating
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3862]
 msgid "PROPOSITION 65"
-msgstr "RISIKEN UND{{BR}}NEBENWIRKUNGEN"
+msgstr "RkReÜAÜG M-V{{BR}}GVOBl. M-V S. 22"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3863]
 msgid "And now you've learned{{BR}}not to touch the hot stove."
