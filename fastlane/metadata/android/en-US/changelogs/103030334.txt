@@ -1,0 +1,3 @@
+  - Engine: fix stretched mode and input location on Android.
+  - Engine: minor module updates.
+  - Level: fix crash in room "deja Vu". This started in December.

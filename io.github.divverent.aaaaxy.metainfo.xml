@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.332" date="2023-02-20">
-      <description><ul><li>Engine: fix stretched mode and input location on Android.</li><li>Engine: minor module updates.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.332</url>
+    <release version="v1.3.334" date="2023-02-20">
+      <description><ul><li>Engine: fix stretched mode and input location on Android.</li><li>Engine: minor module updates.</li><li>Level: fix crash in room "deja Vu". This started in December.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.334</url>
     </release>
   </releases>
 </component>
