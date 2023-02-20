@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.303" date="2023-02-13">
-      <description><ul><li>Dependencies; update to Ebitengine 2.5.</li><li>Engine: add support for stretched aspect on Android.</li><li>Engine: can now pass `-portable` to run as a portable application (with configs and saves in the local directory).</li><li>Engine: provide the correct time zone on Android.</li><li>Engine: speed up sound loading on Win32.</li><li>Localization: new language: Chinese (Simplified)!</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.303</url>
+    <release version="v1.3.332" date="2023-02-20">
+      <description><ul><li>Engine: fix stretched mode and input location on Android.</li><li>Engine: minor module updates.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.332</url>
     </release>
   </releases>
 </component>
