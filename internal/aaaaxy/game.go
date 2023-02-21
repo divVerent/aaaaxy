@@ -534,13 +534,16 @@ DoneDisposing:
 }
 
 func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Image, geoM ebiten.GeoM) {
-
-	if *screenStretch {
+	w, h := offscreen.Size()
+	if w != engine.GameWidth || h != engine.GameHeight {
+		// NOTE: This implies *screenStretch.
 		offscreen = offscreen.SubImage(go_image.Rectangle{
 			Min: go_image.Point{},
 			Max: go_image.Point{X: engine.GameWidth, Y: engine.GameHeight},
 		}).(*ebiten.Image)
+	}
 
+	if *screenStretch {
 		// Note that due to the code in Layout(), this changes almost nothing;
 		// differences are 1 pixel or less.
 		// Doing this override anyway to remove possible small black bars on some displays.
