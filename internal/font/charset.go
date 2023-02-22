@@ -17,5 +17,13 @@ package font
 // charSetBase is the set of all characters we use in English, ignoring credits.
 const charSetBase = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàã"
 
-// charSet is the active character set. Used for font pinning.
-var charSet string
+var (
+	// charSet is the active character set. Used for font pinning.
+	charSet []rune
+
+	// charSetCached indicates whether charSet is already cached.
+	charSetCached bool
+
+	// charSetPos is the current caching position.
+	charSetPos int
+)

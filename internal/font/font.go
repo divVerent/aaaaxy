@@ -35,6 +35,7 @@ var (
 	}), "pin all fonts to glyph cache")
 	pinFontsToCacheBaseWeight = flag.Int("pin_fonts_to_cache_base_weight", 1, "base weight for English characters when font pinning")
 	pinFontsToCacheCount      = flag.Int("pin_fonts_to_cache_count", 256, "maximum number of characters to pin")
+	pinFontsToCacheFraction   = flag.Int("pin_fonts_to_cache_fraction", 30, "fraction of all characters to cache per frame")
 	fontThreshold             = flag.Int("font_threshold", 0x7800, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive; set to 0 to use smooth font rendering instead")
 	fontExtraSpacing          = flag.Int("font_extra_spacing", 31, "additional spacing for fonts in 64th pixels; should help with outline effect")
 	fontFractionalSpacing     = flag.Bool("font_fractional_spacing", false, "allow fractional font spacing; looks better but may be slower; makes --pin_fonts_to_cache less effective")
@@ -66,13 +67,29 @@ func KeepInCache(dst *ebiten.Image) {
 	if !*pinFontsToCache {
 		return
 	}
+	charSubSet := charSet
+	if charSetCached {
+		f := *pinFontsToCacheFraction
+		l := len(charSet)
+		low := charSetPos * l / f
+		charSetPos++
+		high := charSetPos * l / f
+		if charSetPos == f {
+			charSetPos = 0
+		}
+		charSubSet = charSubSet[low:high]
+	} else {
+		charSetCached = true
+		charSetPos = 0
+	}
+	charSubSetStr := string(charSubSet)
 	done := map[*Face]struct{}{}
 	for _, f := range ByName {
 		if _, found := done[f]; found {
 			continue
 		}
 		done[f] = struct{}{}
-		f.precache(charSet)
+		f.precache(charSubSetStr)
 	}
 }
 
@@ -237,6 +254,7 @@ func (o *fontOutlineMask) At(x, y int) color.Color {
 func SetFont(font string) error {
 	charSet = locale.CharSet(charSetBase, *pinFontsToCacheBaseWeight, *pinFontsToCacheCount)
 	log.Infof("charset pinned: %v", charSet)
+	charSetCached = false
 	if *debugFontOverride != "" {
 		font = *debugFontOverride
 	}

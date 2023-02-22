@@ -18,7 +18,7 @@ import (
 	"sort"
 )
 
-func CharSet(base string, baseWeight, maxCount int) string {
+func CharSet(base string, baseWeight, maxCount int) []rune {
 	weights := map[rune]int{}
 	for _, r := range base {
 		weights[r] = baseWeight
@@ -61,5 +61,5 @@ func CharSet(base string, baseWeight, maxCount int) string {
 	sort.Slice(out, func(i, j int) bool {
 		return out[i] < out[j]
 	})
-	return string(out)
+	return out
 }
