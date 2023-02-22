@@ -253,7 +253,7 @@ func (o *fontOutlineMask) At(x, y int) color.Color {
 
 func SetFont(font string) error {
 	charSet = locale.CharSet(charSetBase, *pinFontsToCacheBaseWeight, *pinFontsToCacheCount)
-	log.Infof("charset pinned: %v", charSet)
+	log.Infof("charset pinned: %v", string(charSet))
 	charSetCached = false
 	if *debugFontOverride != "" {
 		font = *debugFontOverride
