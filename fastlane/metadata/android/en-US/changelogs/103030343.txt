@@ -1,0 +1,6 @@
+  - Engine: add support for limited font pinning even of Chinese.
+  - Engine: enable font pinning on Android again.
+  - Engine: fix crash when toggling stretching.
+  - Engine: only re-pin a few characters per frame.
+  - Engine: revert sound loading speedup for Win32 - it inexplicably breaks
+    runtime performance A LOT.

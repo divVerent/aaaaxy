@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.334" date="2023-02-20">
-      <description><ul><li>Engine: fix stretched mode and input location on Android.</li><li>Engine: minor module updates.</li><li>Level: fix crash in room "deja Vu". This started in December.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.334</url>
+    <release version="v1.3.343" date="2023-02-22">
+      <description><ul><li>Engine: add support for limited font pinning even of Chinese.</li><li>Engine: enable font pinning on Android again.</li><li>Engine: fix crash when toggling stretching.</li><li>Engine: only re-pin a few characters per frame.</li><li>Engine: revert sound loading speedup for Win32 - it inexplicably breaks runtime performance A LOT.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.343</url>
     </release>
   </releases>
 </component>
