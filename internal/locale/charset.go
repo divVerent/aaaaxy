@@ -34,7 +34,7 @@ func CharSet(base string, baseWeight, maxCount int) string {
 				kbads[kbad] = struct{}{}
 			}
 			for _, v := range vs.Trs {
-				for _, r := range v {
+				for _, r := range formatRE.ReplaceAllString(v, "") {
 					if r < ' ' {
 						continue
 					}
@@ -48,7 +48,12 @@ func CharSet(base string, baseWeight, maxCount int) string {
 		out = append(out, r)
 	}
 	sort.Slice(out, func(i, j int) bool {
-		return weights[out[i]] > weights[out[j]]
+		// Prefer those with higher weight.
+		if d := weights[out[i]] - weights[out[j]]; d != 0 {
+			return d > 0
+		}
+		// At equal weight, prefer those first in ASCII. They're punctuation and digits.
+		return out[i] < out[j]
 	})
 	if len(out) > maxCount {
 		out = out[:maxCount]
