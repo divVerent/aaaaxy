@@ -23,6 +23,8 @@ import (
 	"golang.org/x/image/math/fixed"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/locale"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
@@ -31,10 +33,12 @@ var (
 		"android/*": true,
 		"*/*":       false,
 	}), "pin all fonts to glyph cache")
-	fontThreshold         = flag.Int("font_threshold", 0x7800, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive; set to 0 to use smooth font rendering instead")
-	fontExtraSpacing      = flag.Int("font_extra_spacing", 31, "additional spacing for fonts in 64th pixels; should help with outline effect")
-	fontFractionalSpacing = flag.Bool("font_fractional_spacing", false, "allow fractional font spacing; looks better but may be slower; makes --pin_fonts_to_cache less effective")
-	debugFontOverride     = flag.String("debug_font_override", "", "name of font to use instead of the intended font")
+	pinFontsToCacheBaseWeight = flag.Int("pin_fonts_to_cache_base_weight", 1, "base weight for English characters when font pinning")
+	pinFontsToCacheCount      = flag.Int("pin_fonts_to_cache_count", 256, "maximum number of characters to pin")
+	fontThreshold             = flag.Int("font_threshold", 0x7800, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive; set to 0 to use smooth font rendering instead")
+	fontExtraSpacing          = flag.Int("font_extra_spacing", 31, "additional spacing for fonts in 64th pixels; should help with outline effect")
+	fontFractionalSpacing     = flag.Bool("font_fractional_spacing", false, "allow fractional font spacing; looks better but may be slower; makes --pin_fonts_to_cache less effective")
+	debugFontOverride         = flag.String("debug_font_override", "", "name of font to use instead of the intended font")
 )
 
 // Face is an alias to font.Face so users do not need to import the font package.
@@ -43,13 +47,13 @@ type Face struct {
 	Outline font.Face
 }
 
-func makeFace(f font.Face, size int) Face {
+func makeFace(f font.Face, size int) *Face {
 	effect := &fontEffects{
 		Face:       f,
 		LineHeight: size,
 	}
 	outline := &fontOutline{effect}
-	face := Face{
+	face := &Face{
 		Face:    effect,
 		Outline: outline,
 	}
@@ -59,16 +63,22 @@ func makeFace(f font.Face, size int) Face {
 // We always keep the game character set in cache.
 // This has to be repeated regularly as Ebitengine expires unused cache entries.
 func KeepInCache(dst *ebiten.Image) {
-	if *pinFontsToCache {
-		for _, f := range ByName {
-			f.precache(charSet())
+	if !*pinFontsToCache {
+		return
+	}
+	done := map[*Face]struct{}{}
+	for _, f := range ByName {
+		if _, found := done[f]; found {
+			continue
 		}
+		done[f] = struct{}{}
+		f.precache(charSet)
 	}
 }
 
 var (
-	ByFont      = map[string]map[string]Face{}
-	ByName      = map[string]Face(nil)
+	ByFont      = map[string]map[string]*Face{}
+	ByName      = map[string]*Face(nil)
 	currentFont string
 )
 
@@ -225,6 +235,8 @@ func (o *fontOutlineMask) At(x, y int) color.Color {
 }
 
 func SetFont(font string) error {
+	charSet = locale.CharSet(charSetBase, *pinFontsToCacheBaseWeight, *pinFontsToCacheCount)
+	log.Infof("charset pinned: %v", charSet)
 	if *debugFontOverride != "" {
 		font = *debugFontOverride
 	}
@@ -234,7 +246,7 @@ func SetFont(font string) error {
 	ByName = ByFont[font]
 	currentFont = font
 	if ByName == nil {
-		ByName = map[string]Face{}
+		ByName = map[string]*Face{}
 		ByFont[font] = ByName
 		switch font {
 		case "unifont":

@@ -32,7 +32,7 @@ type Centerprint struct {
 	color      color.Color
 	waitScroll bool
 	waitFade   bool
-	face       font.Face
+	face       *font.Face
 	pos        InitialPosition
 
 	alphaFrames int
@@ -61,11 +61,11 @@ const (
 	Middle
 )
 
-func NormalFont() font.Face {
+func NormalFont() *font.Face {
 	return font.ByName["Centerprint"]
 }
 
-func BigFont() font.Face {
+func BigFont() *font.Face {
 	return font.ByName["CenterprintBig"]
 }
 
@@ -73,7 +73,7 @@ func Reset() {
 	centerprints = centerprints[:0]
 }
 
-func New(txt string, imp Importance, pos InitialPosition, face font.Face, color color.Color, fadeTime time.Duration) *Centerprint {
+func New(txt string, imp Importance, pos InitialPosition, face *font.Face, color color.Color, fadeTime time.Duration) *Centerprint {
 	frames := int(fadeTime * 60 / time.Second)
 	if frames < 1 {
 		frames = 1

@@ -14,11 +14,8 @@
 
 package font
 
-import (
-	"github.com/divVerent/aaaaxy/internal/locale"
-)
+// charSetBase is the set of all characters we use in English, ignoring credits.
+const charSetBase = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàã"
 
-// charSet has been separated out to help xgotext.
-func charSet() string {
-	return locale.GI.Get(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàã")
-}
+// charSet is the active character set. Used for font pinning.
+var charSet string

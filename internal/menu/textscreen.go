@@ -62,7 +62,7 @@ func textScreenEndPos(text []string, lineHeight int) int {
 	return -lineHeight*len(text) + engine.GameHeight
 }
 
-func renderTextScreen(dst *ebiten.Image, titleFont, normalFont font.Face, text []string, pos m.Pos, align font.Align, lineHeight int, titleFG, titleBG, normalFG, normalBG color.Color) {
+func renderTextScreen(dst *ebiten.Image, titleFont, normalFont *font.Face, text []string, pos m.Pos, align font.Align, lineHeight int, titleFG, titleBG, normalFG, normalBG color.Color) {
 	x := pos.X
 	nextIsTitle := true
 	for i, line := range text {
