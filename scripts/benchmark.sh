@@ -17,15 +17,39 @@
 
 if [ $# -lt 2 ]; then
 	echo >&2 "Usage: $0 benchmark.dem count binary with flags..."
+	echo >&2 'Optionally, export AAAAXY_FRAME_PROFILING=filename to gather logs.'
 	exit 1
 fi
 
 demo=$1; shift
 count=$1; shift
 
+measure() {
+	(
+		if [ -n "$AAAAXY_FRAME_PROFILING" ]; then
+			exec 3>&2
+			exec 2>"$AAAAXY_FRAME_PROFILING.$tag.log"
+			set -- "$@" -debug_frame_profiling
+		fi
+		sh scripts/measure-timedemo.sh "$demo" "$@" -load_config=false
+		if [ -n "$AAAAXY_FRAME_PROFILING" ]; then
+			exec 2>&3
+			exec 3>&-
+			perl -ne '
+					/frame time: (?:([0-9]+)h)?(?:([0-9]+)m)?(?:([0-9.]+)s)?(?:([0-9.]+)ms)?(?:([0-9.]+)µs)?(?:([0-9.]+)ns)?$/
+						or next;
+					my $t = $1 * 3600 + $2 * 60 + $3 + $4 * 1e-3 + $5 * 1e-6 + $6 * 1e-9;
+					print "$t\n";
+				' \
+				< "$AAAAXY_FRAME_PROFILING.$tag.log" \
+				> "$AAAAXY_FRAME_PROFILING.$tag.plot"
+		fi
+	)
+}
+
 run() {
 	tag=$1; shift
-	time=$(sh scripts/measure-timedemo.sh "$demo" "$@" -load_config=false)
+	time=$(measure "$@")
 	if [ $? -eq 0 ]; then
 		echo "$tag,$time"
 	fi
