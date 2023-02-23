@@ -16,6 +16,8 @@ package locale
 
 import (
 	"sort"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 func CharSet(base string, baseWeight, maxCount int) []rune {
@@ -43,9 +45,11 @@ func CharSet(base string, baseWeight, maxCount int) []rune {
 			}
 		}
 	}
+	totalWeight := 0
 	var out []rune
-	for r := range weights {
+	for r, w := range weights {
 		out = append(out, r)
+		totalWeight += w
 	}
 	sort.Slice(out, func(i, j int) bool {
 		// Prefer those with higher weight.
@@ -58,6 +62,11 @@ func CharSet(base string, baseWeight, maxCount int) []rune {
 	if len(out) > maxCount {
 		out = out[:maxCount]
 	}
+	chosenWeight := 0
+	for _, r := range out {
+		chosenWeight += weights[r]
+	}
+	log.Infof("font pinning coverage: %v%%", float64(chosenWeight)*100.0/float64(totalWeight))
 	sort.Slice(out, func(i, j int) bool {
 		return out[i] < out[j]
 	})
