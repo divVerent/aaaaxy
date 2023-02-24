@@ -30,13 +30,29 @@ import (
 )
 
 var (
-	debugCpuprofile     = flag.String("debug_cpuprofile", "", "write CPU profile to file")
-	debugMemprofile     = flag.String("debug_memprofile", "", "write memory profile to file")
-	debugMemprofileRate = flag.Int("debug_memprofile_rate", runtime.MemProfileRate, "fraction of bytes to be included in -debug_memprofile")
-	debugLogFile        = flag.String("debug_log_file", "", "log file to write all messages to (may be slow)")
+	debugCpuprofile        = flag.String("debug_cpuprofile", "", "write CPU profile to file")
+	debugLoadingCpuprofile = flag.String("debug_loading_cpuprofile", "", "write CPU profile of loading to file")
+	debugMemprofile        = flag.String("debug_memprofile", "", "write memory profile to file")
+	debugMemprofileRate    = flag.Int("debug_memprofile_rate", runtime.MemProfileRate, "fraction of bytes to be included in -debug_memprofile")
+	debugLogFile           = flag.String("debug_log_file", "", "log file to write all messages to (may be slow)")
 )
 
 func runGame(game *aaaaxy.Game) error {
+	if *debugCpuprofile != "" {
+		f, err := os.Create(*debugLoadingCpuprofile)
+		if err != nil {
+			log.Fatalf("could not create loading CPU profile: %v", err)
+		}
+		defer f.Close()
+		if err := pprof.StartCPUProfile(f); err != nil {
+			log.Fatalf("could not start CPU profile: %v", err)
+		}
+		err = game.InitFull()
+		if err != nil {
+			log.Fatalf("could not initialize game: %v", err)
+		}
+		pprof.StopCPUProfile()
+	}
 	if *debugCpuprofile != "" {
 		err := game.InitFull()
 		if err != nil {
@@ -50,9 +66,11 @@ func runGame(game *aaaaxy.Game) error {
 		if err := pprof.StartCPUProfile(f); err != nil {
 			log.Fatalf("could not start CPU profile: %v", err)
 		}
-		defer pprof.StopCPUProfile()
 	}
 	err := ebiten.RunGame(game)
+	if *debugCpuprofile != "" {
+		pprof.StopCPUProfile()
+	}
 	if *debugMemprofile != "" {
 		f, err := os.Create(*debugMemprofile)
 		if err != nil {
