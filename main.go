@@ -38,7 +38,7 @@ var (
 )
 
 func runGame(game *aaaaxy.Game) error {
-	if *debugCpuprofile != "" {
+	if *debugLoadingCpuprofile != "" {
 		f, err := os.Create(*debugLoadingCpuprofile)
 		if err != nil {
 			log.Fatalf("could not create loading CPU profile: %v", err)
