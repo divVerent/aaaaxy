@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-07 22:20-0500\n"
+"POT-Creation-Date: 2023-02-18 19:07-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: yy0zz, 2023\n"
 "Language-Team: Portuguese (https://www.transifex.com/aaaaxy/teams/158611/pt/)\n"
@@ -592,6 +592,7 @@ msgstr "Perto do Cruzamento"
 msgid "You can now push them away!"
 msgstr "Agora pode empurrá-las!"
 
+#. 'coil' here refers to an electromagnetic coil
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
 msgstr "A Bobina{{BR}}(segurar {{ActionButton}}){{BR}}Dica: não poluir!"
@@ -852,6 +853,7 @@ msgstr "A grama do vizinho é sempre a mais verde."
 msgid "You can now disable the force fields!"
 msgstr "Agora pode desligar os campos de força!"
 
+#. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3834]
 msgid "The Remote{{BR}}(hold {{ActionButton}})"
 msgstr "O Remoto{{BR}}(segure {{ActionButton}})"
@@ -868,6 +870,7 @@ msgstr "Pensa que{{BR}}consegue?"
 msgid "Show me{{BR}}what you've got"
 msgstr "Mostre-me{{BR}}o que sabe"
 
+#. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
 msgid "And you didn't{{BR}}forget the remote?"
 msgstr "E não es-{{BR}}queceu o remoto?"
