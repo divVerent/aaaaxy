@@ -1,0 +1,4 @@
+  - Engine: build the Win32 builds with SSE2. All non-EOL Windows versions require SSE2 too, and this speeds up the game a lot.
+  - Engine: enable pinning for all platforms again (performs better for Chinese).
+  - Engine: log the font pinning coverage.
+  - Engine: new flag: -debug_loading_cpuprofile.
