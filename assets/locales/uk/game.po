@@ -22,7 +22,7 @@ msgstr ""
 " "
 "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàАаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЬьЮюЯя"
 
-#. Last separator when building a list.
+#. Last separator when building a list. Usually starts and ends with a space.
 #: fun/string.go playerstate/playerstate.go
 msgid " and "
 msgstr " і "
@@ -39,7 +39,7 @@ msgstr "%d:%02d:%02d.%03d"
 msgid "%s (%d/%d)"
 msgstr "%s(%d/%d)"
 
-#. Other separator when building a list.
+#. Other separator when building a list. Usually is a comma and a space.
 #: fun/string.go playerstate/playerstate.go
 msgid ", "
 msgstr ", "
@@ -502,7 +502,8 @@ msgstr "Дякуємо!"
 msgid "The Cleats"
 msgstr "Шипованого Взуття"
 
-#. Used in context "reached <location> with ... at <time>".
+#. Used in context "reached <location> with ... at <time>";
+#. "coil" here refers to an electromagnetic coil.
 #: fun/string.go
 msgid "The Coil"
 msgstr "Котушки"
@@ -512,7 +513,8 @@ msgstr "Котушки"
 msgid "The Gloves"
 msgstr "Рукавичок"
 
-#. Used in context "reached <location> with ... at <time>".
+#. Used in context "reached <location> with ... at <time>";
+#. "remote" here refers to e.g. a TV's remote control.
 #: fun/string.go
 msgid "The Remote"
 msgstr "Дистанційки"
