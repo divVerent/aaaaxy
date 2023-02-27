@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-07 22:20-0500\n"
+"POT-Creation-Date: 2023-02-18 19:07-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Latin (https://www.transifex.com/aaaaxy/teams/158611/la/)\n"
@@ -586,6 +586,7 @@ msgstr "Ad Axem"
 msgid "You can now push them away!"
 msgstr "Suggestus propellere posthac potes!"
 
+#. 'coil' here refers to an electromagnetic coil
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
 msgstr ""
@@ -846,6 +847,7 @@ msgstr "Gramen viridius est altero lato."
 msgid "You can now disable the force fields!"
 msgstr "Fulmina exstinguere posthac potes!"
 
+#. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3834]
 msgid "The Remote{{BR}}(hold {{ActionButton}})"
 msgstr "Gubernaculum Remotum{{BR}}(tene {{ActionButton}})"
@@ -862,6 +864,7 @@ msgstr "Existimasne{{BR}}te posse?"
 msgid "Show me{{BR}}what you've got"
 msgstr "Monstra{{BR}}potestatem tuam"
 
+#. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
 msgid "And you didn't{{BR}}forget the remote?"
 msgstr "Num obliviscitur{{BR}}gubernaculum remotum?"
