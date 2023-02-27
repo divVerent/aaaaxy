@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-16 14:29-0500\n"
+"POT-Creation-Date: 2023-02-18 19:07-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Anthony Wang, 2023\n"
 "Language-Team: Chinese Simplified (https://www.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
@@ -582,6 +582,7 @@ msgstr "中心附近"
 msgid "You can now push them away!"
 msgstr "你现在可以把平台推开了！"
 
+#. 'coil' here refers to an electromagnetic coil
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
 msgstr "电磁铁{{BR}}（按住{{ActionButton}}）{{BR}}提示：不要乱扔垃圾！"
@@ -833,6 +834,7 @@ msgstr "对面的草总是更绿。"
 msgid "You can now disable the force fields!"
 msgstr "你现在可以禁用力场了！"
 
+#. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3834]
 msgid "The Remote{{BR}}(hold {{ActionButton}})"
 msgstr "遥控器{{BR}}（按住{{ActionButton}}）"
@@ -849,6 +851,7 @@ msgstr "你真的觉得{{BR}}你很了不起吗？"
 msgid "Show me{{BR}}what you've got"
 msgstr "给我看看{{BR}}你的力量！"
 
+#. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
 msgid "And you didn't{{BR}}forget the remote?"
 msgstr "而没忘{{BR}}遥控器吗？"
