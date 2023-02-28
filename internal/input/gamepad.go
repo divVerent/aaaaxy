@@ -33,6 +33,7 @@ var (
 	gamepadAxisOnThreshold  = flag.Float64("gamepad_axis_on_threshold", 0.6, "minimum amount to push the game pad for registering an action; can be zero to accept any movement")
 	gamepadAxisOffThreshold = flag.Float64("gamepad_axis_off_threshold", 0.4, "maximum amount to push the game pad for unregistering an action; can be zero to accept any movement")
 	gamepadOverride         = flag.String("gamepad_override", "", "entries in SDL_GameControllerDB format to add/override gamepad support; multiple entries are permitted and can be separated by newlines or semicolons; can also be provided via $SDL_GAMECONTROLLERCONFIG environment variable")
+	debugGamepadLogging     = flag.Bool("debug_gamepad_logging", false, "log all gamepad states (spammy)")
 )
 
 type (
@@ -151,6 +152,62 @@ func (i *impulse) gamepadPressed() InputMap {
 	return NoInput
 }
 
+func encodeAxis(f float64, m map[int]string, i int) {
+	if f < -0.333 {
+		m[i] = "-"
+	}
+	if f > 0.333 {
+		m[i] = "+"
+	}
+}
+
+func gamepadLog() {
+	if !*debugGamepadLogging {
+		return
+	}
+	type state struct {
+		Name           string
+		SDLID          string
+		AxisCount      int
+		ButtonCount    int
+		HasStandard    bool
+		Axis           map[int]string
+		Button         []int
+		StandardAxis   map[int]string
+		StandardButton []int
+	}
+	var states []state
+	for _, p := range allGamepadsList {
+		s := state{
+			Name:         ebiten.GamepadName(p),
+			SDLID:        ebiten.GamepadSDLID(p),
+			AxisCount:    ebiten.GamepadAxisCount(p),
+			ButtonCount:  ebiten.GamepadButtonCount(p),
+			HasStandard:  ebiten.IsStandardGamepadLayoutAvailable(p),
+			Axis:         map[int]string{},
+			StandardAxis: map[int]string{},
+		}
+		for i := 0; i < ebiten.GamepadAxisCount(p); i++ {
+			encodeAxis(ebiten.GamepadAxisValue(p, i), s.Axis, i)
+		}
+		for i := 0; i < ebiten.GamepadButtonCount(p); i++ {
+			if ebiten.IsGamepadButtonPressed(p, ebiten.GamepadButton(i)) {
+				s.Button = append(s.Button, i)
+			}
+		}
+		for i := 0; i <= int(ebiten.StandardGamepadAxisMax); i++ {
+			encodeAxis(ebiten.StandardGamepadAxisValue(p, ebiten.StandardGamepadAxis(i)), s.StandardAxis, i)
+		}
+		for i := 0; i <= int(ebiten.StandardGamepadButtonMax); i++ {
+			if ebiten.IsStandardGamepadButtonPressed(p, ebiten.StandardGamepadButton(i)) {
+				s.StandardButton = append(s.StandardButton, i)
+			}
+		}
+		states = append(states, s)
+	}
+	log.Infof("gamepad states: %+v", states)
+}
+
 func gamepadScan() {
 	if !*gamepad {
 		for p := range gamepads {
@@ -188,6 +245,8 @@ func gamepadScan() {
 		delete(allGamepads, p)
 		delete(gamepads, p)
 	}
+
+	gamepadLog()
 }
 
 func applyAndLogGameControllerDb(config string, err error, name string) {
