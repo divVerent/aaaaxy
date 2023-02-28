@@ -824,7 +824,7 @@ msgstr "Bem, é de fato{{BR}}surpreendentemente{{BR}}simples."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3185]
 msgid "Simplex, duplex,{{BR}}oh so complex."
-msgstr "Muito fácil será, quando pegar o dobro."
+msgstr "Única fique, ou duplique{{BR}}busque e pratique, ou complique."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3186]
 msgid "Tower of Impossible"
@@ -1270,7 +1270,7 @@ msgstr "... isto seja o caminho certo."
 #. term-cheese-strategy
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6536]
 msgid "What looked like cheese might be the only way."
-msgstr "O que parecia queijo pode ser o único caminho."
+msgstr "O que parecia um lapso no jogo pode ser o único caminho."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6537]
 msgid "Not triggering the switch of doom might take some effort."
