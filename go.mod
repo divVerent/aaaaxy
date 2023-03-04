@@ -9,22 +9,22 @@ require (
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/google/go-cmp v0.5.9
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.5.0-alpha.12
+	github.com/hajimehoshi/ebiten/v2 v2.5.0-alpha.13
 	github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
-	github.com/leonelquinteros/gotext v1.5.1
+	github.com/leonelquinteros/gotext v1.5.2
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.10.6
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.5.0
-	golang.org/x/mobile v0.0.0-20221110043201-43a038452099
+	golang.org/x/mobile v0.0.0-20230301163155-e0f57694e12c
 	golang.org/x/sys v0.5.0
 	golang.org/x/text v0.7.0
 )
 
 require (
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
-	github.com/ebitengine/purego v0.2.0-alpha.1 // indirect
+	github.com/ebitengine/purego v0.2.0 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20221017161538-93cebf72946b // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
@@ -33,7 +33,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jezek/xgb v1.1.0 // indirect
-	github.com/jfreymuth/oggvorbis v1.0.4 // indirect
+	github.com/jfreymuth/oggvorbis v1.0.5 // indirect
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
 	github.com/josephspurrier/goversioninfo v1.4.0 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd // indirect
@@ -65,3 +65,6 @@ require (
 // For debugging:
 // replace github.com/hajimehoshi/ebiten/v2 => /home/rpolzer/src/ebiten
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
+
+// update-ebitengine-fork.sh changes:
+replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.0-alpha.13-with-b278e5521fc37e3dd9bd1d813aee04d855a36811-and-809ad991c278ef43ed04270847536ad1924d8d57-and-06c141475c0d85d37221c6055345053f54fb1d6c
