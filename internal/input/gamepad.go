@@ -152,13 +152,67 @@ func (i *impulse) gamepadPressed() InputMap {
 	return NoInput
 }
 
-func encodeAxis(f float64, m map[int]string, i int) {
+func encodeAxis[K comparable](f float64, m map[K]string, i K) {
 	if f < -0.333 {
 		m[i] = "-"
 	}
 	if f > 0.333 {
 		m[i] = "+"
 	}
+}
+
+func standardAxisName(a int) string {
+	switch ebiten.StandardGamepadAxis(a) {
+	case ebiten.StandardGamepadAxisLeftStickHorizontal:
+		return "LX"
+	case ebiten.StandardGamepadAxisLeftStickVertical:
+		return "LY"
+	case ebiten.StandardGamepadAxisRightStickHorizontal:
+		return "RX"
+	case ebiten.StandardGamepadAxisRightStickVertical:
+		return "RY"
+	}
+	return "?"
+}
+
+func standardButtonName(b int) string {
+	switch ebiten.StandardGamepadButton(b) {
+	case ebiten.StandardGamepadButtonRightBottom:
+		return "RB"
+	case ebiten.StandardGamepadButtonRightRight:
+		return "RR"
+	case ebiten.StandardGamepadButtonRightLeft:
+		return "RL"
+	case ebiten.StandardGamepadButtonRightTop:
+		return "RT"
+	case ebiten.StandardGamepadButtonFrontTopLeft:
+		return "FTL"
+	case ebiten.StandardGamepadButtonFrontTopRight:
+		return "FTR"
+	case ebiten.StandardGamepadButtonFrontBottomLeft:
+		return "FBL"
+	case ebiten.StandardGamepadButtonFrontBottomRight:
+		return "FBR"
+	case ebiten.StandardGamepadButtonCenterLeft:
+		return "CL"
+	case ebiten.StandardGamepadButtonCenterRight:
+		return "CR"
+	case ebiten.StandardGamepadButtonLeftStick:
+		return "LS"
+	case ebiten.StandardGamepadButtonRightStick:
+		return "RS"
+	case ebiten.StandardGamepadButtonLeftTop:
+		return "LT"
+	case ebiten.StandardGamepadButtonLeftBottom:
+		return "LB"
+	case ebiten.StandardGamepadButtonLeftLeft:
+		return "LL"
+	case ebiten.StandardGamepadButtonLeftRight:
+		return "LR"
+	case ebiten.StandardGamepadButtonCenterCenter:
+		return "CC"
+	}
+	return "?"
 }
 
 func gamepadLog() {
@@ -173,8 +227,8 @@ func gamepadLog() {
 		HasStandard    bool
 		Axis           map[int]string
 		Button         []int
-		StandardAxis   map[int]string
-		StandardButton []int
+		StandardAxis   map[string]string
+		StandardButton []string
 	}
 	var states []state
 	for _, p := range allGamepadsList {
@@ -185,7 +239,7 @@ func gamepadLog() {
 			ButtonCount:  ebiten.GamepadButtonCount(p),
 			HasStandard:  ebiten.IsStandardGamepadLayoutAvailable(p),
 			Axis:         map[int]string{},
-			StandardAxis: map[int]string{},
+			StandardAxis: map[string]string{},
 		}
 		for i := 0; i < ebiten.GamepadAxisCount(p); i++ {
 			encodeAxis(ebiten.GamepadAxisValue(p, i), s.Axis, i)
@@ -196,11 +250,11 @@ func gamepadLog() {
 			}
 		}
 		for i := 0; i <= int(ebiten.StandardGamepadAxisMax); i++ {
-			encodeAxis(ebiten.StandardGamepadAxisValue(p, ebiten.StandardGamepadAxis(i)), s.StandardAxis, i)
+			encodeAxis(ebiten.StandardGamepadAxisValue(p, ebiten.StandardGamepadAxis(i)), s.StandardAxis, standardAxisName(i))
 		}
 		for i := 0; i <= int(ebiten.StandardGamepadButtonMax); i++ {
 			if ebiten.IsStandardGamepadButtonPressed(p, ebiten.StandardGamepadButton(i)) {
-				s.StandardButton = append(s.StandardButton, i)
+				s.StandardButton = append(s.StandardButton, standardButtonName(i))
 			}
 		}
 		states = append(states, s)
