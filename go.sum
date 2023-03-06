@@ -27,8 +27,8 @@ github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f h1:OGqDDftRTwrvUoL6pO
 github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f/go.mod h1:Dv9D0NUlAsaQcGQZa5kc5mqR9ua72SmA8VXi4cd+cBw=
 github.com/divVerent/ebiten/v2 v2.5.0-alpha.13-with-b278e5521fc37e3dd9bd1d813aee04d855a36811-and-809ad991c278ef43ed04270847536ad1924d8d57-and-06c141475c0d85d37221c6055345053f54fb1d6c h1:n3ZwSVMDIsdNdeJTrTijvQfkc8POwQ/1BDNbjlSpWqM=
 github.com/divVerent/ebiten/v2 v2.5.0-alpha.13-with-b278e5521fc37e3dd9bd1d813aee04d855a36811-and-809ad991c278ef43ed04270847536ad1924d8d57-and-06c141475c0d85d37221c6055345053f54fb1d6c/go.mod h1:W1jZoPf5VcmN1WfLOzXyiRyDZUN2Bo619/471fijFP4=
-github.com/ebitengine/purego v0.3.0-alpha h1:7eoxaayPodJU34x1xmFE9INXm9h9quDoREmCum07z8E=
-github.com/ebitengine/purego v0.3.0-alpha/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=
+github.com/ebitengine/purego v0.2.0 h1:Zf5ZJkd16tTTZn786BBe2R4NdPRs5imPWYUW4bG6tz0=
+github.com/ebitengine/purego v0.2.0/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=
 github.com/emirpasic/gods v1.12.0 h1:QAUIPSaCu4G+POclxeqb3F+WPpdKqFGlw36+yOzGlrg=
 github.com/emirpasic/gods v1.12.0/go.mod h1:YfzfFFoVP/catgzJb4IKIqXjX78Ha8FMSDh3ymbK86o=
 github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672 h1:MUk7T1sPNKoyDjXubIrd+XPhHqBzgjLw0nvYG+uXMhw=

@@ -68,3 +68,5 @@ require (
 
 // update-ebitengine-fork.sh changes:
 replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.0-alpha.13-with-b278e5521fc37e3dd9bd1d813aee04d855a36811-and-809ad991c278ef43ed04270847536ad1924d8d57-and-06c141475c0d85d37221c6055345053f54fb1d6c
+
+replace github.com/ebitengine/purego => github.com/ebitengine/purego v0.2.0 // indirect
