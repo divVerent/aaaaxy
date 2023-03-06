@@ -24,12 +24,12 @@ require (
 
 require (
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
-	github.com/ebitengine/purego v0.3.0-alpha // indirect
+	github.com/ebitengine/purego v0.2.0 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20221017161538-93cebf72946b // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
-	github.com/hajimehoshi/oto/v2 v2.4.0-alpha.13 // indirect
+	github.com/hajimehoshi/oto/v2 v2.4.0-alpha.12 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jezek/xgb v1.1.0 // indirect
@@ -68,5 +68,3 @@ require (
 
 // update-ebitengine-fork.sh changes:
 replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.0-alpha.13-with-b278e5521fc37e3dd9bd1d813aee04d855a36811-and-809ad991c278ef43ed04270847536ad1924d8d57-and-06c141475c0d85d37221c6055345053f54fb1d6c
-
-replace github.com/ebitengine/purego => github.com/ebitengine/purego v0.2.0 // indirect
