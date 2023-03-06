@@ -33,7 +33,7 @@ var (
 	gamepadAxisOnThreshold  = flag.Float64("gamepad_axis_on_threshold", 0.6, "minimum amount to push the game pad for registering an action; can be zero to accept any movement")
 	gamepadAxisOffThreshold = flag.Float64("gamepad_axis_off_threshold", 0.4, "maximum amount to push the game pad for unregistering an action; can be zero to accept any movement")
 	gamepadOverride         = flag.String("gamepad_override", "", "entries in SDL_GameControllerDB format to add/override gamepad support; multiple entries are permitted and can be separated by newlines or semicolons; can also be provided via $SDL_GAMECONTROLLERCONFIG environment variable")
-	debugGamepadLogging     = flag.Bool("debug_gamepad_logging", false, "log all gamepad states (spammy)")
+	debugGamepadLogging     = flag.Bool("debug_gamepad_logging", true, "log all gamepad states (spammy)")
 )
 
 type (
