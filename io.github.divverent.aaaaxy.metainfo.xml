@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.359" date="2023-02-27">
-      <description><ul><li>Engine: build the Win32 builds with SSE2. All non-EOL Windows versions require SSE2 too, and this speeds up the game a lot.</li><li>Engine: enable pinning for all platforms again (performs better for Chinese).</li><li>Engine: log the font pinning coverage.</li><li>Engine: new flag: -debug_loading_cpuprofile.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.359</url>
+    <release version="v1.3.367" date="2023-03-06">
+      <description><ul><li>Engine: add more complete Linux gamepad support.</li><li>Engine: minor module update.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.367</url>
     </release>
   </releases>
 </component>
