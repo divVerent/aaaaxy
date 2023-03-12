@@ -113,13 +113,29 @@ var (
 // Ignore ebiten.StandardGamepadButtonRightStick.
 )
 
+type gamepadItem int
+
+func gamepadButtonItem(b ebiten.StandardGamepadButton) gamepadItem {
+	return gamepadItem(b)
+}
+
+func gamepadAxisItem(a ebiten.StandardGamepadAxis) gamepadItem {
+	return gamepadItem(a) + gamepadItem(ebiten.StandardGamepadButtonMax) + 1
+}
+
+const gamepadItemCount = gamepadItem(ebiten.StandardGamepadButtonMax) + gamepadItem(ebiten.StandardGamepadAxisMax) + 2
+
+// Buttons or axes will only be recognized once they were depressed for at least one frame.
+// This removes impact of every-frame-active buttons.
+type gamepadActiveItems [gamepadItemCount]bool
+
 var (
 	// gamepadInvAxisOnThreshold is 1.0 divided by the variable gamepadAxisOnThreshold. Done to save a division for every axis test.
 	gamepadInvAxisOnThreshold float64
 	// gamepadInvAxisOffThreshold is 1.0 divided by the variable gamepadAxisOffThreshold. Done to save a division for every axis test.
 	gamepadInvAxisOffThreshold float64
 	// gamepads is the set of currently active gamepads. The boolean value should always be true, except during rescanning, where it's set to false temporarily to detect removed gamepads.
-	gamepads = map[ebiten.GamepadID]struct{}{}
+	gamepads = map[ebiten.GamepadID]*gamepadActiveItems{}
 	// allGamepads is the set of all gamepads, even unsupported ones.
 	allGamepads = map[ebiten.GamepadID]bool{}
 	// allGamepadsList is the list of all gamepads. Global to reduce allocation.
@@ -131,21 +147,36 @@ func (i *impulse) gamepadPressed() InputMap {
 	if i.Held {
 		t = *gamepadAxisOffThreshold
 	}
-	for p := range gamepads {
+	for p, activated := range gamepads {
 		for _, b := range i.padControls.buttons {
 			if ignoredGamepadButtons[b] {
 				continue
 			}
+			item := gamepadButtonItem(b)
 			if ebiten.IsStandardGamepadButtonPressed(p, b) {
-				return Gamepad
+				// Button pressed: only accept if it was activated already.
+				if activated[item] {
+					return Gamepad
+				}
+			} else {
+				// Button released: activate it from now on.
+				activated[item] = true
 			}
 		}
 		for _, a := range i.padControls.axes {
 			if ignoredGamepadAxes[a] {
 				continue
 			}
-			if ebiten.StandardGamepadAxisValue(p, a)*i.padControls.axisDirection >= t {
-				return Gamepad
+			item := gamepadAxisItem(a)
+			v := ebiten.StandardGamepadAxisValue(p, a) * i.padControls.axisDirection
+			if v >= t {
+				// Axis moved: only accept if it was activated already.
+				if activated[item] {
+					return Gamepad
+				}
+			} else if v > -t {
+				// Axis released: activate it from now on.
+				activated[item] = true
 			}
 		}
 	}
@@ -282,20 +313,20 @@ func gamepadScan() {
 			allGamepads[p] = true
 			continue
 		}
-		log.Infof("gamepad %v (%v) added", ebiten.GamepadName(p), ebiten.GamepadSDLID(p))
+		log.Infof("gamepad %v (%v) added as %v", ebiten.GamepadName(p), ebiten.GamepadSDLID(p), p)
 		allGamepads[p] = true
 		if !ebiten.IsStandardGamepadLayoutAvailable(p) {
 			log.Errorf("gamepad %v (%v) has no standard layout - cannot use", ebiten.GamepadName(p), ebiten.GamepadSDLID(p))
 			continue
 		}
 		// A good gamepad! Add it.
-		gamepads[p] = struct{}{}
+		gamepads[p] = &gamepadActiveItems{}
 	}
 	for p, stillThere := range allGamepads {
 		if stillThere {
 			continue
 		}
-		log.Infof("gamepad %v (%v) removed", ebiten.GamepadName(p), ebiten.GamepadSDLID(p))
+		log.Infof("gamepad %d removed", p)
 		delete(allGamepads, p)
 		delete(gamepads, p)
 	}
