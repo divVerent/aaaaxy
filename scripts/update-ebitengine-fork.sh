@@ -4,9 +4,7 @@ set -ex
 
 version=$1
 cherrypicks='
-	b278e5521fc37e3dd9bd1d813aee04d855a36811
-	809ad991c278ef43ed04270847536ad1924d8d57
-	06c141475c0d85d37221c6055345053f54fb1d6c
+	10c1b56e625cdab4f56a8245c56d6efd4fa429ea
 '
 
 cd ../ebiten
@@ -15,7 +13,7 @@ git checkout refs/tags/"$version"
 cps=
 for cp in $cherrypicks; do
 	rev0=$(git rev-parse HEAD)
-	git cherry-pick --allow-empty "$cp" || true
+	git cherry-pick --keep-redundant-commits --allow-empty "$cp" || true
 	rev=$(git rev-parse HEAD)
 	if [ x"$rev" != x"$rev0" ]; then
 		cps="$cps"-and-"$cp"
