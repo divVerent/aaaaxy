@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.367" date="2023-03-06">
-      <description><ul><li>Engine: add more complete Linux gamepad support.</li><li>Engine: minor module update.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.367</url>
+    <release version="v1.3.372" date="2023-03-13">
+      <description><ul><li>Engine: oops. Flip debug gamepad logging back to false.</li><li>Engine: update Ebitengine to v2.5.0-alpha.14, improving gamepad detection on Android.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.372</url>
     </release>
   </releases>
 </component>

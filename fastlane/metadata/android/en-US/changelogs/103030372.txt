@@ -1,0 +1,2 @@
+  - Engine: oops. Flip debug gamepad logging back to false.
+  - Engine: update Ebitengine to v2.5.0-alpha.14, improving gamepad detection on Android.
