@@ -14,14 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 "X-Generator: xgotext\n"
 
-#: font/charset.go
-msgid ""
-" "
-"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàã"
-msgstr ""
-" "
-"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~τπö¾©éàãáâçêíóôõúÁÂÃÀÇÉÊÍÓÔÕÚ"
-
 #. Last separator when building a list. Usually starts and ends with a space.
 #: fun/string.go playerstate/playerstate.go
 msgid " and "
