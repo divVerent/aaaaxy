@@ -1,8 +1,0 @@
-When Ebitengine releases 9ff332980ad55c26fbfcc16d168cb41e46b65495 + 4328b0b7fff0f0df300df9f8ff22e78eb3c70347 + cb61a3e9885d5014b5e5e8202863b875e97157c1:
-- Use IsStandardGamepadButtonAvailable and IsStandardGamepadAxisAvailable to:
-  - Filter gamepads - require all buttons other than Exit to be on the gamepad, and otherwise ignore anything "incompatible"
-  - If button count is enough but not everything can be assigned, assign remaining buttons to something else
-
-When Ebitengine releases 30cc36b1baef654d823d11bceede07e342b5561d + 599571c7a723935be73b4fbe7ef80a5502ae174b:
-- Refactor CRT filter to use FinalScreenDrawer
-  - Should save a render pass and thus improve fps.

@@ -10262,10 +10262,10 @@
   <object id="4277" gid="322" x="6208" y="4048" width="32" height="32"/>
   <object id="4278" type="Text" x="6176" y="3888" width="32" height="176">
    <properties>
-    <property name="text" value="T{{BR}}r{{BR}}a{{BR}}s{{BR}}h{{BR}}{{BR}}C{{BR}}h{{BR}}u{{BR}}t{{BR}}e"/>
+    <property name="text" value="T{{BR}}R{{BR}}A{{BR}}S{{BR}}H{{BR}}{{BR}}C{{BR}}H{{BR}}U{{BR}}T{{BR}}E"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
-    <property name="text_font" value="SmallCaps"/>
+    <property name="text_font" value="Small"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
