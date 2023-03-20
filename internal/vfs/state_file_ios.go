@@ -1,4 +1,4 @@
-// Copyright 2021 Google LLC
+// Copyright 2023 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build !wasm && !windows && !android && !ios
-// +build !wasm,!windows,!android,!ios
+//go:build ios
+// +build ios
 
 package vfs
 
@@ -21,26 +21,19 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/adrg/xdg"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 func pathForReadRaw(kind StateKind, name string) (string, error) {
-	switch kind {
-	case Config:
-		return xdg.SearchConfigFile(filepath.Join(gameName, name))
-	case SavedGames:
-		return xdg.SearchDataFile(filepath.Join(gameName, name))
-	default:
-		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
-	}
+	return pathForWrite(kind, name)
 }
 
 func pathForWriteRaw(kind StateKind, name string) (string, error) {
 	switch kind {
 	case Config:
-		return xdg.ConfigFile(filepath.Join(gameName, name))
+		return "", fmt.Errorf("NOT YET IMPLEMENTED: %d", kind)
 	case SavedGames:
-		return xdg.DataFile(filepath.Join(gameName, name))
+		return "", fmt.Errorf("NOT YET IMPLEMENTED: %d", kind)
 	default:
 		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
 	}
