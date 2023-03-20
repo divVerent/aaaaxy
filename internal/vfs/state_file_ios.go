@@ -18,10 +18,40 @@
 package vfs
 
 import (
+	"errors"
 	"fmt"
 	"path/filepath"
 
 	"github.com/divVerent/aaaaxy/internal/log"
+)
+
+/*
+#cgo CFLAGS: -x objective-c
+#cgo LDFLAGS: -framework Foundation
+
+#import <Foundation/NSPathUtilities.h>
+#import <Foundation/NSString.h>
+
+#include <stdlib.h>
+#include <string.h>
+
+const char *documents_path() {
+	// TODO: support this containing more than one element.
+	NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) elementAtIndex: 0];
+	if (path == nil) {
+		return NULL;
+	}
+	const char *data = [path UTF8String];
+	if (data == NULL) {
+		return NULL;
+	}
+	return strdup(data);
+}
+*/
+import "C"
+
+var (
+	documentsPath string
 )
 
 func pathForReadRaw(kind StateKind, name string) (string, error) {
@@ -29,11 +59,19 @@ func pathForReadRaw(kind StateKind, name string) (string, error) {
 }
 
 func pathForWriteRaw(kind StateKind, name string) (string, error) {
+	if documentsPath == "" {
+		documentsPathCStr := C.documents_path()
+		if documentsPathCStr == nil {
+			return "", errors.New("could not find documents path")
+		}
+		defer C.free(unsafe.Pointer(documentsPathCStr))
+		documentsPath = C.GoString(documentsPathCStr)
+	}
 	switch kind {
 	case Config:
-		return "", fmt.Errorf("NOT YET IMPLEMENTED: %d", kind)
+		return filepath.Join(documentsPath, "config", name)
 	case SavedGames:
-		return "", fmt.Errorf("NOT YET IMPLEMENTED: %d", kind)
+		return filepath.Join(documentsPath, "save", name)
 	default:
 		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
 	}
