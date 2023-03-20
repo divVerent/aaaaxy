@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build zip && !android && !darwin
-// +build zip,!android,!darwin
+//go:build zip && !android && !darwin && !ios
+// +build zip,!android,!darwin,!ios
 
 package vfs
 
