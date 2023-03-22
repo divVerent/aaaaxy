@@ -10,7 +10,7 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/Theme.AAAAXY"
-		tools:targetApi="32">
+		tools:targetApi="33">
 		<activity
 			android:name=".MainActivity"
 			android:configChanges="density|fontScale|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
