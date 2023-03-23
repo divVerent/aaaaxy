@@ -90,7 +90,7 @@ echo "$good_lingua" > assets/locales/LINGUAS
 
 make
 languages=$(
-	printf '"en"'
+	printf "'en'"
 	xvfb-run ./aaaaxy -dump_languages |\
 	grep . |\
 	while IFS=- read -r lang variant; do
@@ -102,7 +102,7 @@ languages=$(
 				res=$lang${variant:+-r$variant}
 				;;
 		esac
-		printf ', "%s"' "$res"
+		printf ", '%s'" "$res"
 	done
 )
 sed -i -e "s/resConfigs .*/resConfigs $languages/" \
