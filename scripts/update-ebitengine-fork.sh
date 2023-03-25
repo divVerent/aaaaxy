@@ -4,8 +4,8 @@ set -ex
 
 version=$1
 cherrypicks='
-	10c1b56e625cdab4f56a8245c56d6efd4fa429ea
 '
+#	10c1b56e625cdab4f56a8245c56d6efd4fa429ea
 
 cd ../ebiten
 git fetch
