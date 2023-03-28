@@ -1,0 +1,3 @@
+  - Engine: bump android target SDK version to 33.
+  - Engine: update to Ebitengine v2.5.0.
+  - Level: make the trash chute have small font.
