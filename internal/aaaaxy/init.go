@@ -112,6 +112,8 @@ func (g *Game) InitEbitengine() error {
 // and may take place in the first frame
 // if there is no way to run this before the main loop (e.g. on mobile).
 func (g *Game) InitEarly() error {
+	log.Infof("starting early initialization")
+
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetScreenClearedEveryFrame(false)
 	if *vsync {
@@ -166,6 +168,8 @@ func (g *Game) InitEarly() error {
 
 	// Pause when unfocused, except when recording demos.
 	ebiten.SetRunnableOnUnfocused(*runnableWhenUnfocused || (demo.Playing() && dump.Active()))
+
+	log.Infof("finished early initialization")
 
 	return nil
 }
