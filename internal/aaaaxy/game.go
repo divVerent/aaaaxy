@@ -87,6 +87,7 @@ type Game struct {
 	init      initState
 	canUpdate bool
 	canDraw   bool
+	canInit   bool
 
 	// screenWidth and screenHeight are updated by Layout().
 	screenWidth  int
@@ -168,6 +169,10 @@ func (g *Game) Update() error {
 	}
 
 	if !g.init.done {
+		if !g.canInit {
+			return nil
+		}
+		g.canInit = false
 		return g.InitStep()
 	}
 	g.canDraw = true
@@ -379,6 +384,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	}
 
 	if !g.canDraw {
+		g.canInit = true
 		text, fraction := g.init.Current()
 		bg := palette.EGA(palette.Blue, uint8(m.Rint(255*(1-fraction))))
 		fg := palette.EGA(palette.LightGrey, 255)
@@ -510,6 +516,7 @@ DoneDisposing:
 	offscreen.Collect()
 
 	if !*debugEnableDrawing {
+		g.canInit = true
 		return
 	}
 
