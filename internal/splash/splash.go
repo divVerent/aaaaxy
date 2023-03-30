@@ -22,7 +22,12 @@ import (
 )
 
 var (
-	loadingScreen = flag.Bool("loading_screen", true, "show a detailed loading screen")
+	loadingScreen                = flag.Bool("loading_screen", true, "show a detailed loading screen")
+	debugLoadingScreenSkipFrames = flag.Int("debug_loading_screen_skip_frames", flag.SystemDefault(map[string]int{
+		"android/*": 1, // Android seems to delay by one frame.
+		"windows/*": 1, // Direct3D seems to delay by one frame.
+		"*/*":       0,
+	}), "number of frames to wait on the loading screen for each step; needed if the loading screen behaves erratically due to render delay")
 )
 
 type Status int
@@ -54,6 +59,9 @@ type State struct {
 
 	// curFraction is the current progress bar fraction.
 	curFraction float64
+
+	// skipFrames is the number of frames to skip before the next step.
+	skipFrames int
 }
 
 // ProvideFractions loads a known fractions map.
@@ -88,6 +96,11 @@ func (s *State) Enter(step string, stepName string, errPrefix string, f func(s *
 		return RunImmediately(errPrefix, f)
 	}
 
+	if s.skipFrames > 0 {
+		s.skipFrames--
+		return EndFrame, nil
+	}
+
 	if s.startTimes == nil {
 		s.startTimes = map[string]time.Time{}
 	}
@@ -107,6 +120,7 @@ func (s *State) Enter(step string, stepName string, errPrefix string, f func(s *
 			s.curFraction = frac
 		}
 		// Must force a refresh so the new text actually can show.
+		s.skipFrames = *debugLoadingScreenSkipFrames
 		return EndFrame, nil
 	}
 	status, err := f(s)
@@ -115,6 +129,7 @@ func (s *State) Enter(step string, stepName string, errPrefix string, f func(s *
 	}
 	if status == EndFrame {
 		// f did not terminate yet - we need to call it again next frame.
+		s.skipFrames = *debugLoadingScreenSkipFrames
 		return EndFrame, nil
 	}
 	s.done[step] = struct{}{}

@@ -486,6 +486,10 @@ func crtK2() float64 {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
+	defer timing.Group()()
+	timing.Section("draw")
+	defer timing.Group()()
+
 	w, h := screen.Size()
 	if w != engine.GameWidth || h != engine.GameHeight {
 		// NOTE: This implies *screenStretch.
@@ -494,10 +498,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			Max: go_image.Point{X: engine.GameWidth, Y: engine.GameHeight},
 		}).(*ebiten.Image)
 	}
-
-	defer timing.Group()()
-	timing.Section("draw")
-	defer timing.Group()()
 
 DoneDisposing:
 	for {
@@ -537,6 +537,10 @@ DoneDisposing:
 }
 
 func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Image, geoM ebiten.GeoM) {
+	defer timing.Group()()
+	timing.Section("drawfinal")
+	defer timing.Group()()
+
 	w, h := offscreen.Size()
 	if w != engine.GameWidth || h != engine.GameHeight {
 		// NOTE: This implies *screenStretch.
