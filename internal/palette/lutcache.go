@@ -83,10 +83,6 @@ func SaveCachedLUTs(w, h int, dir string) error {
 	return nil
 }
 
-func Init(w, h int) error {
-	return nil
-}
-
 func (p *Palette) loadLUT(numLUTs int) (image.Image, int, int, int, error) {
 	name := fmt.Sprintf("lut_%s_%d.png", p.name, numLUTs)
 	data, err := vfs.Load("generated", name)

@@ -18,7 +18,6 @@ import (
 	"image"
 	"image/color"
 
-	"github.com/hajimehoshi/ebiten/v2"
 	"golang.org/x/image/font"
 	"golang.org/x/image/math/fixed"
 
@@ -60,9 +59,9 @@ func makeFace(f font.Face, size int) *Face {
 
 // We always keep the game character set in cache.
 // This has to be repeated regularly as Ebitengine expires unused cache entries.
-func KeepInCache(dst *ebiten.Image) {
+func KeepInCache() error {
 	if !*pinFontsToCache {
-		return
+		return nil
 	}
 	charSubSet := charSet
 	if charSetCached {
@@ -88,6 +87,7 @@ func KeepInCache(dst *ebiten.Image) {
 		done[f] = struct{}{}
 		f.precache(charSubSetStr)
 	}
+	return nil
 }
 
 var (

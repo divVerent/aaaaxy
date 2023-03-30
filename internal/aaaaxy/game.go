@@ -378,9 +378,6 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 		return screen
 	}
 
-	timing.Section("fontcache")
-	font.KeepInCache(drawDest)
-
 	if !g.canDraw {
 		text, fraction := g.init.Current()
 		bg := palette.EGA(palette.Blue, uint8(m.Rint(255*(1-fraction))))
@@ -398,6 +395,12 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 		screen := finishDrawing()
 		to <- screen
 		return screen
+	}
+
+	timing.Section("fontcache")
+	err := font.KeepInCache()
+	if err != nil {
+		log.Fatalf("font.KeepInCache failed: %v", err)
 	}
 
 	timing.Section("world")

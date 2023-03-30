@@ -29,6 +29,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/locale"
@@ -152,10 +153,6 @@ func (g *Game) InitEarly() error {
 	if err != nil {
 		return fmt.Errorf("could not preinitialize dumping: %w", err)
 	}
-	err = palette.Init(engine.GameWidth, engine.GameHeight)
-	if err != nil {
-		return fmt.Errorf("could not initialize palettes: %w", err)
-	}
 
 	// Load images with the right palette from the start.
 	palette.SetCurrent(palette.ByName(*paletteFlag), *paletteRemapColors)
@@ -202,7 +199,11 @@ func (g *Game) InitStep() error {
 			log.Errorf("could not provide loading fractions: %v", err)
 		}
 	}
-	status, err := g.init.Enter("precaching credits", locale.G.Get("precaching credits"), "could not precache credits", splash.Single(credits.Precache))
+	status, err := g.init.Enter("precaching fonts", locale.G.Get("precaching fonts"), "could not precache fonts", splash.Single(font.KeepInCache))
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("precaching credits", locale.G.Get("precaching credits"), "could not precache credits", splash.Single(credits.Precache))
 	if status != splash.Continue {
 		return err
 	}
