@@ -24,7 +24,6 @@ import (
 var (
 	loadingScreen                = flag.Bool("loading_screen", true, "show a detailed loading screen")
 	debugLoadingScreenSkipFrames = flag.Int("debug_loading_screen_skip_frames", flag.SystemDefault(map[string]int{
-		"android/*": 1, // Android seems to delay by one frame.
 		"windows/*": 1, // Direct3D seems to delay by one frame.
 		"*/*":       0,
 	}), "number of frames to wait on the loading screen for each step; needed if the loading screen behaves erratically due to render delay")

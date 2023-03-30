@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"image"
 	"image/color"
+	"sort"
 
 	"golang.org/x/image/font"
 	"golang.org/x/image/math/fixed"
@@ -65,8 +66,14 @@ func LoadIntoCacheStepwise(s *splash.State) (splash.Status, error) {
 	}
 	charSetStr := string(charSet)
 	done := map[*Face]struct{}{}
-	for name, f := range ByName {
+	names := make([]string, 0, len(ByName))
+	for name := range ByName {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	for _, name := range names {
 		status, err := s.Enter(fmt.Sprintf("precaching %s", name), locale.G.Get("precaching %s", name), fmt.Sprintf("could not precache %v", name), splash.Single(func() error {
+			f := ByName[name]
 			if _, found := done[f]; found {
 				return nil
 			}
