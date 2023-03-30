@@ -15,6 +15,7 @@
 package font
 
 import (
+	"fmt"
 	"image"
 	"image/color"
 
@@ -25,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/splash"
 )
 
 var (
@@ -57,11 +59,33 @@ func makeFace(f font.Face, size int) *Face {
 	return face
 }
 
+func LoadIntoCacheStepwise(s *splash.State) (splash.Status, error) {
+	if !*pinFontsToCache {
+		return splash.Continue, nil
+	}
+	charSetStr := string(charSet)
+	done := map[*Face]struct{}{}
+	for name, f := range ByName {
+		status, err := s.Enter(fmt.Sprintf("precaching %s", name), locale.G.Get("precaching %s", name), fmt.Sprintf("could not precache %v", name), splash.Single(func() error {
+			if _, found := done[f]; found {
+				return nil
+			}
+			done[f] = struct{}{}
+			f.precache(charSetStr)
+			return nil
+		}))
+		if status != splash.Continue {
+			return status, err
+		}
+	}
+	return splash.Continue, nil
+}
+
 // We always keep the game character set in cache.
 // This has to be repeated regularly as Ebitengine expires unused cache entries.
-func KeepInCache() error {
+func KeepInCache() {
 	if !*pinFontsToCache {
-		return nil
+		return
 	}
 	charSubSet := charSet
 	if charSetCached {
@@ -73,7 +97,7 @@ func KeepInCache() error {
 		if charSetPos == f {
 			charSetPos = 0
 		}
-		charSubSet = charSubSet[low:high]
+		charSubSet = charSet[low:high]
 	} else {
 		charSetCached = true
 		charSetPos = 0
@@ -87,7 +111,7 @@ func KeepInCache() error {
 		done[f] = struct{}{}
 		f.precache(charSubSetStr)
 	}
-	return nil
+	return
 }
 
 var (

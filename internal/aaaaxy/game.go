@@ -398,10 +398,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	}
 
 	timing.Section("fontcache")
-	err := font.KeepInCache()
-	if err != nil {
-		log.Fatalf("font.KeepInCache failed: %v", err)
-	}
+	font.KeepInCache()
 
 	timing.Section("world")
 	g.Menu.DrawWorld(drawDest)
