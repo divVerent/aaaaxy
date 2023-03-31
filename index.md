@@ -102,5 +102,5 @@ Deeper technical information and source code is to be found on the
 
 ### Privacy
 
-For information about this game's data collection and handling, [see
-here](privacy.md).
+For information about this game's data collection and handling, you can
+[see here](privacy.md).
