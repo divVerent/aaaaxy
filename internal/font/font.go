@@ -19,6 +19,7 @@ import (
 	"image"
 	"image/color"
 	"sort"
+	"time"
 
 	"golang.org/x/image/font"
 	"golang.org/x/image/math/fixed"
@@ -39,6 +40,7 @@ var (
 	fontExtraSpacing          = flag.Int("font_extra_spacing", 31, "additional spacing for fonts in 64th pixels; should help with outline effect")
 	fontFractionalSpacing     = flag.Bool("font_fractional_spacing", false, "allow fractional font spacing; looks better but may be slower; makes --pin_fonts_to_cache less effective")
 	debugFontOverride         = flag.String("debug_font_override", "", "name of font to use instead of the intended font")
+	debugFontProfiling        = flag.Bool("debug_font_profiling", false, "measure how long font caching took")
 )
 
 // Face is an alias to font.Face so users do not need to import the font package.
@@ -78,7 +80,15 @@ func LoadIntoCacheStepwise(s *splash.State) (splash.Status, error) {
 				return nil
 			}
 			done[f] = struct{}{}
+			var t0 time.Time
+			if *debugFontProfiling {
+				t0 = time.Now()
+			}
 			f.precache(charSetStr)
+			if *debugFontProfiling {
+				dt := time.Now().Sub(t0)
+				log.Infof("caching font %v: %v", name, dt)
+			}
 			return nil
 		}))
 		if status != splash.Continue {
