@@ -60,9 +60,13 @@ func makeFace(f font.Face, size int) *Face {
 	return face
 }
 
-func LoadIntoCacheStepwise(s *splash.State) (splash.Status, error) {
+var fontProfilingTotal time.Duration
+
+func LoadIntoCacheStepwise() func(s *splash.State) (splash.Status, error) {
 	if !*pinFontsToCache {
-		return splash.Continue, nil
+		return func(s *splash.State) (splash.Status, error) {
+			return splash.Continue, nil
+		}
 	}
 	charSetStr := string(charSet)
 	done := map[*Face]struct{}{}
@@ -71,29 +75,32 @@ func LoadIntoCacheStepwise(s *splash.State) (splash.Status, error) {
 		names = append(names, name)
 	}
 	sort.Strings(names)
-	for _, name := range names {
-		status, err := s.Enter(fmt.Sprintf("precaching %s", name), locale.G.Get("precaching %s", name), fmt.Sprintf("could not precache %v", name), splash.Single(func() error {
-			f := ByName[name]
-			if _, found := done[f]; found {
+	return func(s *splash.State) (splash.Status, error) {
+		for _, name := range names {
+			status, err := s.Enter(fmt.Sprintf("precaching %s", name), locale.G.Get("precaching %s", name), fmt.Sprintf("could not precache %v", name), splash.Single(func() error {
+				f := ByName[name]
+				if _, found := done[f]; found {
+					return nil
+				}
+				done[f] = struct{}{}
+				var t0 time.Time
+				if *debugFontProfiling {
+					t0 = time.Now()
+				}
+				f.precache(charSetStr)
+				if *debugFontProfiling {
+					dt := time.Now().Sub(t0)
+					fontProfilingTotal += dt
+					log.Infof("caching font %v: %v (total: %v)", name, dt, fontProfilingTotal)
+				}
 				return nil
+			}))
+			if status != splash.Continue {
+				return status, err
 			}
-			done[f] = struct{}{}
-			var t0 time.Time
-			if *debugFontProfiling {
-				t0 = time.Now()
-			}
-			f.precache(charSetStr)
-			if *debugFontProfiling {
-				dt := time.Now().Sub(t0)
-				log.Infof("caching font %v: %v", name, dt)
-			}
-			return nil
-		}))
-		if status != splash.Continue {
-			return status, err
 		}
+		return splash.Continue, nil
 	}
-	return splash.Continue, nil
 }
 
 // We always keep the game character set in cache.

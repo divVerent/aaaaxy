@@ -48,7 +48,6 @@ func initUnifont() error {
 	ByName["SmallCaps"] = face
 	ByName["Centerprint"] = face
 	ByName["CenterprintBig"] = face
-	ByName["DebugSmall"] = face
 	ByName["Menu"] = face
 	ByName["MenuBig"] = face
 	ByName["MenuSmall"] = face

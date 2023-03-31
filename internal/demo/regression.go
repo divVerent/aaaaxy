@@ -119,13 +119,11 @@ func regressionPostDrawFrame(screen *ebiten.Image) {
 
 	// Draw text on it.
 	text := strings.Join(regressions, "\n")
-	bounds := font.ByName["DebugSmall"].BoundString(text)
-	font.ByName["DebugSmall"].Draw(dup, text, m.Pos{
+	bounds := font.ByName["Small"].BoundString(text)
+	font.ByName["Small"].Draw(dup, text, m.Pos{
 		X: w / 2,
 		Y: -bounds.Origin.Y,
-	}, font.Center,
-
-		color.Gray{0}, color.Gray{255})
+	}, font.Center, color.Gray{0}, color.Gray{255})
 
 	// Remove alpha.
 	// Actually we could just draw a black rectangle on it with GL_SRC_ALPHA GL_ZERO.

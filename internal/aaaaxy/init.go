@@ -203,7 +203,7 @@ func (g *Game) InitStep() error {
 			log.Errorf("could not provide loading fractions: %v", err)
 		}
 	}
-	status, err := g.init.Enter("precaching fonts", locale.G.Get("precaching fonts"), "could not precache fonts", font.LoadIntoCacheStepwise)
+	status, err := g.init.Enter("precaching fonts", locale.G.Get("precaching fonts"), "could not precache fonts", font.LoadIntoCacheStepwise())
 	if status != splash.Continue {
 		return err
 	}

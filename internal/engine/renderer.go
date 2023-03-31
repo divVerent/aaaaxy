@@ -231,7 +231,7 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		if *debugShowCoords {
 			c := color.Gray{128}
-			font.ByName["DebugSmall"].Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), screenPos.Add(m.Delta{
+			font.ByName["Small"].Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), screenPos.Add(m.Delta{
 				DX: 0,
 				DY: level.TileSize - 1,
 			}), font.Left, c, color.Transparent)
@@ -273,7 +273,7 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY+ent.Rect.Size.DY), float64(ent.Rect.Size.DX+ent.BorderPixels), float64(ent.BorderPixels), boxColor)
 				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float64(ent.Rect.Origin.Y+scrollDelta.DY), float64(ent.BorderPixels), float64(ent.Rect.Size.DY+ent.BorderPixels), boxColor)
 			}
-			font.ByName["DebugSmall"].Draw(screen, fmt.Sprintf("%v", ent.Incarnation), ent.Rect.Origin.Add(scrollDelta), font.Left, boxColor, color.Transparent)
+			font.ByName["Small"].Draw(screen, fmt.Sprintf("%v", ent.Incarnation), ent.Rect.Origin.Add(scrollDelta), font.Left, boxColor, color.Transparent)
 			return nil
 		})
 	}

@@ -94,10 +94,6 @@ func initGoFont() error {
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
 	}
-	ByName["DebugSmall"], err = makeGoFontFace(regular, 9)
-	if err != nil {
-		return fmt.Errorf("could not create face: %w", err)
-	}
 	ByName["Menu"], err = makeGoFontFace(smallcaps, 18)
 	if err != nil {
 		return fmt.Errorf("could not create face: %w", err)
