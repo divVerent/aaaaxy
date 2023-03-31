@@ -17,7 +17,6 @@ package font
 import (
 	"fmt"
 	"image"
-	"image/color"
 	"sort"
 	"time"
 
@@ -27,7 +26,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
-	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/splash"
 )
 
@@ -152,7 +150,7 @@ func roundFixed(f fixed.Int26_6) fixed.Int26_6 {
 func (e *fontEffects) Glyph(dot fixed.Point26_6, r rune) (
 	image.Rectangle, image.Image, image.Point, fixed.Int26_6, bool) {
 	dr, mask, maskp, advance, ok := e.Face.Glyph(dot, r)
-	return dr, &fontEffectsMask{mask}, maskp, advance, ok
+	return dr, fontEffectsMask(mask), maskp, advance, ok
 }
 
 func (e *fontEffects) GlyphAdvance(r rune) (advance fixed.Int26_6, ok bool) {
@@ -174,21 +172,25 @@ func (e *fontEffects) Kern(r0, r1 rune) fixed.Int26_6 {
 	return roundFixed(kern)
 }
 
-type fontEffectsMask struct {
-	image.Image
-}
-
-func (e *fontEffectsMask) At(x, y int) color.Color {
-	// FYI: This yields a mask, and the draw function will only ever look at its alpha channel.
-	base := e.Image.At(x, y)
+func fontEffectsMask(src image.Image) image.Image {
 	if *fontThreshold <= 0 {
-		return base
+		return src
 	}
-	_, _, _, a := base.RGBA()
-	if int(a) < *fontThreshold {
-		return color.Transparent
+	r := src.Bounds()
+	dst := image.NewAlpha(r)
+	pr := 0
+	for y := r.Min.Y; y < r.Max.Y; y++ {
+		p := pr
+		for x := r.Min.X; x < r.Max.X; x++ {
+			_, _, _, a := src.At(x, y).RGBA()
+			if int(a) >= *fontThreshold {
+				dst.Pix[p] = 0xFF
+			}
+			p++
+		}
+		pr += dst.Stride
 	}
-	return color.Opaque
+	return dst
 }
 
 type fontOutline struct {
@@ -209,22 +211,10 @@ func (o *fontOutline) Glyph(dot fixed.Point26_6, r rune) (
 		},
 	}
 	maskpExpanded := image.Point{
-		X: maskp.X,
-		Y: maskp.Y,
+		X: maskp.X - 1,
+		Y: maskp.Y - 1,
 	}
-	return drExpanded, &fontOutlineMask{
-		Image: mask,
-		Rect: m.Rect{
-			Origin: m.Pos{
-				X: maskp.X,
-				Y: maskp.Y,
-			},
-			Size: m.Delta{
-				DX: dr.Max.X - dr.Min.X,
-				DY: dr.Max.Y - dr.Min.Y,
-			},
-		},
-	}, maskpExpanded, advance, ok
+	return drExpanded, fontOutlineMask(mask), maskpExpanded, advance, ok
 }
 
 func (o *fontOutline) GlyphBounds(r rune) (fixed.Rectangle26_6, fixed.Int26_6, bool) {
@@ -244,49 +234,103 @@ func (o *fontOutline) Metrics() font.Metrics {
 	return m
 }
 
-type fontOutlineMask struct {
-	image.Image
-	Rect m.Rect
-}
+func outlineLine(a []uint8, n, stride int) {
+	// In-place replace every value by the max of a[i-1]-1, a[i], a[i+1]-1.
 
-func (o *fontOutlineMask) Bounds() image.Rectangle {
-	r := o.Image.Bounds()
-	r.Max.X += 2
-	r.Max.Y += 2
-	return r
-}
+	x := uint8(0)
+	y := a[0]
+	z := a[stride]
 
-func (o *fontOutlineMask) atRaw(x, y int) color.Color {
-	if o.Rect.DeltaPos(m.Pos{X: x, Y: y}).IsZero() {
-		return o.Image.At(x, y)
+	p := 0
+	m := n - 2
+	for i := 0; i < n; i++ {
+		mx := x
+		my := y
+		mz := z
+		if mx > my {
+			my = mx - 1
+		}
+		if mz > my {
+			my = mz - 1
+		}
+		a[p] = my
+		p += stride
+		x, y = y, z
+		if i < m {
+			z = a[p+stride]
+		} else {
+			// Would be out of range.
+			z = 0
+		}
 	}
-	return color.Transparent
 }
 
-func (o *fontOutlineMask) At(x, y int) color.Color {
+func fontOutlineMask(src image.Image) image.Image {
 	// The outline is:
 	// - Transparent where the font is fully opaque (only if antialiasing is off).
 	//   This fixes alpha blending of "font atop outline".
-	if *fontThreshold > 0 {
-		_, _, _, a := o.atRaw(x-1, y-1).RGBA()
-		if a == 0xFFFF {
-			return color.Transparent
-		}
-	}
 	// - Otherwise it's the max of the bordering pixels.
-	var maxA uint32
-	for dy := -2; dy <= 0; dy++ {
-		for dx := -2; dx <= 0; dx++ {
-			if dx == -1 && dy == -1 {
-				continue
+
+	// First make a copy. This saves At() calls.
+	// Image must have 0-based rectangle.
+	srcR := src.Bounds()
+	r := image.Rectangle{
+		Min: image.Point{
+			X: srcR.Min.X - 1,
+			Y: srcR.Min.Y - 1,
+		},
+		Max: image.Point{
+			X: srcR.Max.X + 1,
+			Y: srcR.Max.Y + 1,
+		},
+	}
+	dst := image.NewAlpha(r)
+	pr := dst.Stride
+	for y := srcR.Min.Y; y < srcR.Max.Y; y++ {
+		p := pr
+		p++
+		for x := srcR.Min.X; x < srcR.Max.X; x++ {
+			_, _, _, a := src.At(x, y).RGBA()
+			dst.Pix[p] = uint8((a + 128) / 257)
+			p++
+		}
+		pr += dst.Stride
+	}
+
+	// Then replace every value by the max of the eight values around them - 1, or the self value.
+	// This is done as a separable operation.
+
+	pr = 0
+	for y := r.Min.Y; y < r.Max.Y; y++ {
+		outlineLine(dst.Pix[pr:], r.Max.X-r.Min.X, 1)
+		pr += dst.Stride
+	}
+
+	pr = 0
+	for x := r.Min.X; x < r.Max.X; x++ {
+		outlineLine(dst.Pix[pr:], r.Max.Y-r.Min.Y, dst.Stride)
+		pr++
+	}
+
+	// Finally, if NOT antialiasing, remap pixel values.
+	if *fontThreshold > 0 {
+		pr = 0
+		for y := r.Min.Y; y < r.Max.Y; y++ {
+			p := pr
+			for x := r.Min.X; x < r.Max.X; x++ {
+				switch dst.Pix[p] {
+				case 0, 0xFF:
+					dst.Pix[p] = 0
+				default:
+					dst.Pix[p] = 0xFF
+				}
+				p++
 			}
-			_, _, _, a := o.atRaw(x+dx, y+dy).RGBA()
-			if a > maxA {
-				maxA = a
-			}
+			pr += dst.Stride
 		}
 	}
-	return color.Alpha16{A: uint16(maxA)}
+
+	return dst
 }
 
 func SetFont(font string) error {
