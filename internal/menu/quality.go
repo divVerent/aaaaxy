@@ -19,6 +19,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/demo"
 	"github.com/divVerent/aaaaxy/internal/dump"
+	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -164,5 +165,11 @@ func performQualityAdjustment() {
 		log.Warningf("didn't get good framerate at quality %v - moving to %v", g, g-1)
 		g--
 		g.applyActual()
+		// Instantly save config when quality was adjusted.
+		// That way this setting isn't lost if the app is restarted.
+		err := engine.SaveConfig()
+		if err != nil {
+			log.Errorf("could not save config: %w", err)
+		}
 	}
 }
