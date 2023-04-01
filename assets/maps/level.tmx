@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8279">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8280">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -6857,6 +6857,7 @@
   <object id="1771" gid="312" x="8128" y="6896" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1766"/>
+    <property name="target" value="EscapeButton"/>
     <property name="text" value="Be resourceful with what you have, and you will succeed.{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
@@ -18339,6 +18340,13 @@
   <object id="8278" type="SetState" x="6368" y="6720" width="16" height="48">
    <properties>
     <property name="target" value="a_new_beginning"/>
+   </properties>
+  </object>
+  <object id="8279" name="EscapeButton" type="ExitButton" x="7968" y="6920" width="64" height="64">
+   <properties>
+    <property name="map_black_to" type="color" value="#00ffffff"/>
+    <property name="map_white_to" type="color" value="#ffffffff"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>
