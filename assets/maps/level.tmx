@@ -18346,7 +18346,7 @@
    <properties>
     <property name="map_black_to" type="color" value="#00ffffff"/>
     <property name="map_white_to" type="color" value="#ffffffff"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
  </objectgroup>
