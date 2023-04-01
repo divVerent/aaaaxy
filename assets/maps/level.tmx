@@ -6857,7 +6857,7 @@
   <object id="1771" gid="312" x="8128" y="6896" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1766"/>
-    <property name="text" value="Be resourceful with what you have, and you will succeed."/>
+    <property name="text" value="Be resourceful with what you have, and you will succeed.{{BR}}Press {{ExitButton}}."/>
    </properties>
   </object>
   <object id="1772" gid="309" x="7472" y="7360" width="16" height="16"/>
