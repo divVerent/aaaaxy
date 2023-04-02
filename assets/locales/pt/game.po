@@ -649,6 +649,10 @@ msgid "precaching entities"
 msgstr "pré-cachear entidades"
 
 #: aaaaxy/init.go
+msgid "precaching fonts"
+msgstr "pré-cachear fontes"
+
+#: aaaaxy/init.go
 msgid "precaching images"
 msgstr "pré-cachear imagens"
 
