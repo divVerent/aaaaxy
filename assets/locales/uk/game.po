@@ -649,6 +649,10 @@ msgid "precaching entities"
 msgstr "кешуємо компоненти"
 
 #: aaaaxy/init.go
+msgid "precaching fonts"
+msgstr "кешуємо шрифти"
+
+#: aaaaxy/init.go
 msgid "precaching images"
 msgstr "кешуємо зображення"
 
