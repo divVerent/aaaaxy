@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 08:25-0400\n"
+"POT-Creation-Date: 2023-04-01 10:57-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: German (https://www.transifex.com/aaaaxy/teams/158611/de/)\n"
@@ -708,8 +708,11 @@ msgid "Hello,{{BR}}World!"
 msgstr "Hallo,{{BR}}Welt!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1771]
-msgid "Be resourceful with what you have, and you will succeed."
-msgstr "Nutze, was du hast, und Erfolg wird sich zeigen."
+msgid ""
+"Be resourceful with what you have, and you will succeed.{{BR}}Press "
+"{{ExitButton}}."
+msgstr ""
+"Nutze, was du hast, und Erfolg wird sich zeigen.{{BR}}Drücke {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1793]
 msgid "Switching It Up"
