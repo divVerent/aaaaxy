@@ -1,0 +1,3 @@
+  - Engine: speed up font loading by about 20%, and add loading screen info.
+  - Level: also add an EscapeButton pic to Hello World.
+  - Menu: when quality was adjusted, save settings instantly.
