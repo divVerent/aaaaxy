@@ -17,6 +17,7 @@ package menu
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
@@ -24,6 +25,11 @@ import (
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
+
+var offerQuit = flag.SystemDefault(map[string]bool{
+	"ios/*": false,
+	"*/*":   true,
+})
 
 type MainScreenItem int
 
@@ -38,15 +44,20 @@ const (
 type MainScreen struct {
 	Controller *Controller
 	Item       MainScreenItem
+	Count      int
 }
 
 func (s *MainScreen) Init(m *Controller) error {
 	s.Controller = m
+	s.Count = MainCount
+	if !offerQuit {
+		s.Count--
+	}
 	return nil
 }
 
 func (s *MainScreen) Update() error {
-	clicked := s.Controller.QueryMouseItem(&s.Item, MainCount)
+	clicked := s.Controller.QueryMouseItem(&s.Item, s.Count)
 	if input.Down.JustHit {
 		s.Item++
 		s.Controller.MoveSound(nil)
@@ -55,7 +66,7 @@ func (s *MainScreen) Update() error {
 		s.Item--
 		s.Controller.MoveSound(nil)
 	}
-	s.Item = MainScreenItem(m.Mod(int(s.Item), int(MainCount)))
+	s.Item = MainScreenItem(m.Mod(int(s.Item), int(s.Count)))
 
 	/*
 		Actually not allowed as it could be used for pausebuffering.
@@ -88,26 +99,28 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	if s.Item == Play {
 		fg, bg = fgs, bgs
 	}
-	font.ByName["Menu"].Draw(screen, locale.G.Get("Play"), m.Pos{X: CenterX, Y: ItemBaselineY(Play, MainCount)}, font.Center, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Play"), m.Pos{X: CenterX, Y: ItemBaselineY(Play, s.Count)}, font.Center, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Settings {
 		fg, bg = fgs, bgs
 	}
-	font.ByName["Menu"].Draw(screen, locale.G.Get("Settings"), m.Pos{X: CenterX, Y: ItemBaselineY(Settings, MainCount)}, font.Center, fg, bg)
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Settings"), m.Pos{X: CenterX, Y: ItemBaselineY(Settings, s.Count)}, font.Center, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Credits {
 		fg, bg = fgs, bgs
 	}
-	font.ByName["Menu"].Draw(screen, locale.G.Get("Credits"), m.Pos{X: CenterX, Y: ItemBaselineY(Credits, MainCount)}, font.Center, fg, bg)
-	fg, bg = fgn, bgn
-	if s.Item == Quit {
-		fg, bg = fgs, bgs
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Credits"), m.Pos{X: CenterX, Y: ItemBaselineY(Credits, s.Count)}, font.Center, fg, bg)
+	if offerQuit {
+		fg, bg = fgn, bgn
+		if s.Item == Quit {
+			fg, bg = fgs, bgs
+		}
+		font.ByName["Menu"].Draw(screen, locale.G.Get("Quit"), m.Pos{X: CenterX, Y: ItemBaselineY(Quit, s.Count)}, font.Center, fg, bg)
 	}
-	font.ByName["Menu"].Draw(screen, locale.G.Get("Quit"), m.Pos{X: CenterX, Y: ItemBaselineY(Quit, MainCount)}, font.Center, fg, bg)
 
 	// Display stats.
 	font.ByName["MenuSmall"].Draw(screen, fun.FormatText(&s.Controller.World.PlayerState, locale.G.Get("Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}")),
-		m.Pos{X: CenterX, Y: ItemBaselineY(-2, MainCount)}, font.Center,
+		m.Pos{X: CenterX, Y: ItemBaselineY(-2, s.Count)}, font.Center,
 		fgn, bgn)
 
 }

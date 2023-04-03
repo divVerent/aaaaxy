@@ -21,8 +21,7 @@ import (
 	"errors"
 	"fmt"
 	"path/filepath"
-
-	"github.com/divVerent/aaaaxy/internal/log"
+	"unsafe"
 )
 
 /*
@@ -36,8 +35,11 @@ import (
 #include <string.h>
 
 const char *documents_path() {
-	// TODO: support this containing more than one element.
-	NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) elementAtIndex: 0];
+	NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	if ([paths count] < 1) {
+		return NULL;
+	}
+	NSString *path = [paths objectAtIndex: 0];
 	if (path == nil) {
 		return NULL;
 	}
@@ -69,9 +71,9 @@ func pathForWriteRaw(kind StateKind, name string) (string, error) {
 	}
 	switch kind {
 	case Config:
-		return filepath.Join(documentsPath, "config", name)
+		return filepath.Join(documentsPath, "config", name), nil
 	case SavedGames:
-		return filepath.Join(documentsPath, "save", name)
+		return filepath.Join(documentsPath, "save", name), nil
 	default:
 		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
 	}

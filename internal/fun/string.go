@@ -25,7 +25,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
-	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 )
 
@@ -40,11 +39,6 @@ var (
 // Used on Android to get the time zone from Java code.
 func SetTimeZoneHours(h int) {
 	timeZoneHours = h
-}
-
-func init() {
-	_, offset := time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.Local).Zone()
-	timeZoneHours = m.Div(offset, 3600)
 }
 
 // TryFormatText replaces placeholders in the given text.
