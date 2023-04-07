@@ -18,6 +18,7 @@ import (
 	"encoding"
 	"fmt"
 	"image/color"
+	"strconv"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -34,8 +35,12 @@ func parseValue[V any](str string) (V, error) {
 		*retP, err = palette.Parse(str, "entity field")
 	case *time.Duration:
 		*retP, err = time.ParseDuration(str)
-	case *bool, *int, *float64:
-		_, err = fmt.Sscan(str, retP)
+	case *bool:
+		*retP, err = strconv.ParseBool(str)
+	case *int:
+		*retP, err = strconv.Atoi(str)
+	case *float64:
+		*retP, err = strconv.ParseFloat(str, 64)
 	case encoding.TextUnmarshaler:
 		err = retP.UnmarshalText([]byte(str))
 	default:
@@ -51,13 +56,13 @@ func printValue[V any](v V) (ret, tmxType string) {
 	case color.NRGBA:
 		return fmt.Sprintf("#%02x%02x%02x%02x", vT.A, vT.R, vT.G, vT.B), "color"
 	case time.Duration:
-		return fmt.Sprint(vT), "string"
+		return vT.String(), "string"
 	case bool:
-		return fmt.Sprint(vT), "bool"
+		return strconv.FormatBool(vT), "bool"
 	case int:
-		return fmt.Sprint(vT), "int"
+		return strconv.Itoa(vT), "int"
 	case float64:
-		return fmt.Sprint(vT), "string"
+		return strconv.FormatFloat(vT, 'g', -1, 64), "string"
 	case encoding.TextMarshaler:
 		text, err := vT.MarshalText()
 		if err != nil {
