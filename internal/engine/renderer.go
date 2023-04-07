@@ -202,58 +202,60 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurF
 }
 
 func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
-	r.world.forEachTile(func(pos m.Pos, tile *level.Tile) {
-		screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
-		if *debugShowNeighbors {
-			neighborScreenPos := tile.LoadedFromNeighbor.Mul(level.TileSize).Add(scrollDelta)
-			startx := float64(neighborScreenPos.X) + level.TileSize/2
-			starty := float64(neighborScreenPos.Y) + level.TileSize/2
-			endx := float64(screenPos.X) + level.TileSize/2
-			endy := float64(screenPos.Y) + level.TileSize/2
-			arrowpx := (startx + endx*2) / 3
-			arrowpy := (starty + endy*2) / 3
-			arrowdx := (endx - startx) / 6
-			arrowdy := (endy - starty) / 6
-			// Right only (1 0): left side goes by (-1, -1), right side by (-1, 1)
-			// Down right (1 1): left side goes by (0, -2), right side by (-2, 0)
-			// Down only (0 1): left side goes by (1, -1), right side by (-1, -1)
-			// ax + by
-			arrowlx := arrowpx - arrowdx + arrowdy
-			arrowly := arrowpy - arrowdx - arrowdy
-			arrowrx := arrowpx - arrowdx - arrowdy
-			arrowry := arrowpy + arrowdx - arrowdy
-			c := color.Gray{64}
-			if tile.VisibilityFlags&level.FrameVis == r.world.frameVis {
-				c = color.Gray{192}
+	if *debugShowNeighbors || *debugShowCoords || *debugShowOrientations || *debugShowTransforms {
+		r.world.forEachTile(func(pos m.Pos, tile *level.Tile) {
+			screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
+			if *debugShowNeighbors {
+				neighborScreenPos := tile.LoadedFromNeighbor.Mul(level.TileSize).Add(scrollDelta)
+				startx := float64(neighborScreenPos.X) + level.TileSize/2
+				starty := float64(neighborScreenPos.Y) + level.TileSize/2
+				endx := float64(screenPos.X) + level.TileSize/2
+				endy := float64(screenPos.Y) + level.TileSize/2
+				arrowpx := (startx + endx*2) / 3
+				arrowpy := (starty + endy*2) / 3
+				arrowdx := (endx - startx) / 6
+				arrowdy := (endy - starty) / 6
+				// Right only (1 0): left side goes by (-1, -1), right side by (-1, 1)
+				// Down right (1 1): left side goes by (0, -2), right side by (-2, 0)
+				// Down only (0 1): left side goes by (1, -1), right side by (-1, -1)
+				// ax + by
+				arrowlx := arrowpx - arrowdx + arrowdy
+				arrowly := arrowpy - arrowdx - arrowdy
+				arrowrx := arrowpx - arrowdx - arrowdy
+				arrowry := arrowpy + arrowdx - arrowdy
+				c := color.Gray{64}
+				if tile.VisibilityFlags&level.FrameVis == r.world.frameVis {
+					c = color.Gray{192}
+				}
+				ebitenutil.DrawLine(screen, startx, starty, endx, endy, c)
+				ebitenutil.DrawLine(screen, arrowlx, arrowly, arrowpx, arrowpy, c)
+				ebitenutil.DrawLine(screen, arrowrx, arrowry, arrowpx, arrowpy, c)
 			}
-			ebitenutil.DrawLine(screen, startx, starty, endx, endy, c)
-			ebitenutil.DrawLine(screen, arrowlx, arrowly, arrowpx, arrowpy, c)
-			ebitenutil.DrawLine(screen, arrowrx, arrowry, arrowpx, arrowpy, c)
-		}
-		if *debugShowCoords {
-			c := color.Gray{128}
-			font.ByName["Small"].Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), screenPos.Add(m.Delta{
-				DX: 0,
-				DY: level.TileSize - 1,
-			}), font.Left, c, color.Transparent)
-		}
-		if *debugShowOrientations {
-			midx := float64(screenPos.X) + level.TileSize/2
-			midy := float64(screenPos.Y) + level.TileSize/2
-			dx := tile.Orientation.Apply(m.Delta{DX: 4, DY: 0})
-			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.EGA(palette.Red, 255))
-			dy := tile.Orientation.Apply(m.Delta{DX: 0, DY: 4})
-			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.EGA(palette.Green, 255))
-		}
-		if *debugShowTransforms {
-			midx := float64(screenPos.X) + level.TileSize/2
-			midy := float64(screenPos.Y) + level.TileSize/2
-			dx := tile.Transform.Apply(m.Delta{DX: 4, DY: 0})
-			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.EGA(palette.Red, 255))
-			dy := tile.Transform.Apply(m.Delta{DX: 0, DY: 4})
-			ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.EGA(palette.Green, 255))
-		}
-	})
+			if *debugShowCoords {
+				c := color.Gray{128}
+				font.ByName["Small"].Draw(screen, fmt.Sprintf("%d,%d", tile.LevelPos.X, tile.LevelPos.Y), screenPos.Add(m.Delta{
+					DX: 0,
+					DY: level.TileSize - 1,
+				}), font.Left, c, color.Transparent)
+			}
+			if *debugShowOrientations {
+				midx := float64(screenPos.X) + level.TileSize/2
+				midy := float64(screenPos.Y) + level.TileSize/2
+				dx := tile.Orientation.Apply(m.Delta{DX: 4, DY: 0})
+				ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.EGA(palette.Red, 255))
+				dy := tile.Orientation.Apply(m.Delta{DX: 0, DY: 4})
+				ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.EGA(palette.Green, 255))
+			}
+			if *debugShowTransforms {
+				midx := float64(screenPos.X) + level.TileSize/2
+				midy := float64(screenPos.Y) + level.TileSize/2
+				dx := tile.Transform.Apply(m.Delta{DX: 4, DY: 0})
+				ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.EGA(palette.Red, 255))
+				dy := tile.Transform.Apply(m.Delta{DX: 0, DY: 4})
+				ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.EGA(palette.Green, 255))
+			}
+		})
+	}
 	if *cheatShowBboxes {
 		r.world.entities.forEach(func(ent *Entity) error {
 			boxColor := palette.EGA(palette.DarkGrey, 128)
