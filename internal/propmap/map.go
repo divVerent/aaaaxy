@@ -58,17 +58,17 @@ func Delete(pm Map, key string) {
 }
 
 // Set sets a properties map entry.
-func Set(pm Map, key string, value interface{}) {
-	pm.m[key] = fmt.Sprint(value)
+func Set[V any](pm Map, key string, value V) {
+	pm.m[key], _ = printValue(value)
 }
 
 // SetDefault sets a properties map entry if not already set.
-func SetDefault(pm Map, key string, value interface{}) {
+func SetDefault[V any](pm Map, key string, value V) {
 	_, found := pm.m[key]
 	if found {
 		return
 	}
-	pm.m[key] = fmt.Sprint(value)
+	pm.m[key], _ = printValue(value)
 }
 
 // Value returns the requested value, or fails if not found.
