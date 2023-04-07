@@ -813,9 +813,9 @@ func (l *Level) VerifyHash() error {
 
 // ParseImageSrcByOrientation parses the imgSrcByOrientation map.
 func ParseImageSrcByOrientation(defaultSrc string, properties propmap.Map) (map[m.Orientation]string, error) {
-	imgSrcByOrientation := map[m.Orientation]string{}
+	imgSrcByOrientation := make(map[m.Orientation]string, len(m.AllOrientations))
 	for _, o := range m.AllOrientations {
-		src := propmap.StringOr(properties, fmt.Sprintf("img.%v", o), "")
+		src := propmap.StringOr(properties, "img."+o.String(), "")
 		if src == "" {
 			continue
 		}
