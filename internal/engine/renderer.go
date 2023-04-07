@@ -32,6 +32,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/offscreen"
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/shader"
+	"github.com/divVerent/aaaaxy/internal/timing"
 )
 
 var (
@@ -304,6 +305,8 @@ func (r *renderer) offscreenDrawDest(screen *ebiten.Image) *ebiten.Image {
 }
 
 func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m.Delta) {
+	defer timing.Group()()
+
 	// Draw trace polygon to buffer.
 	geoM := ebiten.GeoM{}
 	geoM.Translate(float64(scrollDelta.DX), float64(scrollDelta.DY))
@@ -311,11 +314,13 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 	texM.Scale(0, 0)
 
 	if *expandUsingVertices && !*expandUsingVerticesAccurately && !*drawBlurs && !*drawOutside {
+		timing.Section("draw_mask")
 		drawAntiPolygonAround(screen, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, color.Gray{0}, geoM, texM, &ebiten.DrawTrianglesOptions{})
 		return
 	}
 
 	if r.worldChanged || r.visibilityMaskImage == nil {
+		timing.Section("compute_mask")
 		// Optimization note:
 		// - This isn't optimal. Visibility mask maybe shouldn't even exist?
 		// - If screen were a separate image, we could instead copy image to screen masked by polygon.
@@ -342,6 +347,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 		}
 	}
 
+	timing.Section("apply_mask")
 	if *drawOutside && r.prevImage != nil {
 		if r.visibilityMaskShader != nil {
 			delta := r.world.scrollPos.Delta(r.prevScrollPos)
@@ -407,6 +413,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 	}
 
 	if *drawOutside && r.worldChanged {
+		timing.Section("copy_outside")
 		// Remember last image. Only do this once per update.
 		if r.prevImage != nil {
 			offscreen.Dispose(r.prevImage)
@@ -420,24 +427,38 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 }
 
 func (r *renderer) Draw(screen *ebiten.Image, blurFactor float64) {
-	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(r.world.scrollPos)
+	defer timing.Group()()
 
+	scrollDelta := m.Pos{X: GameWidth / 2, Y: GameHeight / 2}.Delta(r.world.scrollPos)
 	off := r.offscreenDrawDest(screen)
 	dest := screen
 	if off != nil {
 		dest = off
 	}
+
+	timing.Section("fill")
 	dest.Fill(color.Gray{0})
+
+	timing.Section("tiles")
 	r.drawTiles(dest, scrollDelta)
+
+	timing.Section("entities")
 	r.drawEntities(dest, scrollDelta, blurFactor)
+
 	if *drawVisibilityMask {
+		timing.Section("visibility_mask")
 		r.drawVisibilityMask(screen, dest, scrollDelta)
 	}
+
 	if off != nil {
+		timing.Section("dispose")
 		offscreen.Dispose(off)
 	}
+
+	timing.Section("centerprint")
 	centerprint.Draw(screen)
 
 	// Debug stuff comes last.
+	timing.Section("debug")
 	r.drawDebug(screen, scrollDelta)
 }
