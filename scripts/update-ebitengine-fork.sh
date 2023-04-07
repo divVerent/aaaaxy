@@ -4,14 +4,18 @@ set -ex
 
 version=$1
 cherrypicks='
+	divVerent/remove-canAlloc
+	divVerent/speedup-remove-duplicated-regions
 '
 #	10c1b56e625cdab4f56a8245c56d6efd4fa429ea
 
 cd ../ebiten
 git fetch
+git fetch divVerent
 git checkout refs/tags/"$version"
 cps=
 for cp in $cherrypicks; do
+	cp=$(git rev-parse "$cp")
 	rev0=$(git rev-parse HEAD)
 	git cherry-pick --keep-redundant-commits --allow-empty "$cp" || true
 	rev=$(git rev-parse HEAD)
