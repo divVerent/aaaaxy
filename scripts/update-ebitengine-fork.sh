@@ -5,7 +5,7 @@ set -ex
 version=$1
 cherrypicks='
 	divVerent/remove-canAlloc
-	divVerent/speedup-remove-duplicated-regions
+	divVerent/speedup-remove-duplicated-regions-2
 '
 #	10c1b56e625cdab4f56a8245c56d6efd4fa429ea
 
