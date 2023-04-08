@@ -21,7 +21,7 @@ endif
 # This however makes them slower for normal use, so we're not releasing those.
 FASTER_VIDEO_DUMPING = false
 ifeq ($(FASTER_VIDEO_DUMPING),false)
-BUILDTAGS += ebitensinglethread
+BUILDTAGS += ebitenginesinglethread
 endif
 
 ifeq ($(BUILDTYPE),extradebug)

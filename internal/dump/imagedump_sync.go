@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build ebitensinglethread
-// +build ebitensinglethread
+//go:build ebitenginesinglethread
+// +build ebitenginesinglethread
 
 package dump
 
