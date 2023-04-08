@@ -15,7 +15,7 @@
 # limitations under the License.
 
 if [ $# -ne 2 ]; then
-	echo >&2 'First, go to https://www.transifex.com/aaaaxy/aaaaxy,'
+	echo >&2 'First, go to https://app.transifex.com/aaaaxy/aaaaxy,'
 	echo >&2 'your language, and "Download for use" both game.pot and'
 	echo >&2 'level.pot translations.'
 	echo >&2

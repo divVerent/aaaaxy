@@ -12,7 +12,7 @@ information on using pull requests.
 
 ## Translating
 
-Go to <https://www.transifex.com/aaaaxy/aaaaxy> to translate AAAAXY to
+Go to <https://app.transifex.com/aaaaxy/aaaaxy> to translate AAAAXY to
 your language! You can always copy the translation files from Transifex
 to `assets/locales/<language>/` to try them out locally.
 
