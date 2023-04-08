@@ -4,10 +4,9 @@ set -ex
 
 version=$1
 cherrypicks='
-	divVerent/remove-canAlloc
-	divVerent/speedup-remove-duplicated-regions-2
+	574925cf7a72deaf73be4c481348a7a44f7b7e19
+	cc247962703eba99eae732876496375191f16cbe
 '
-#	10c1b56e625cdab4f56a8245c56d6efd4fa429ea
 
 cd ../ebiten
 git fetch

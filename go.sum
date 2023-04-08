@@ -25,8 +25,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f h1:OGqDDftRTwrvUoL6pOG7rYTmWsTCvyEWFsMjg+HcOaA=
 github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f/go.mod h1:Dv9D0NUlAsaQcGQZa5kc5mqR9ua72SmA8VXi4cd+cBw=
-github.com/divVerent/ebiten/v2 v2.5.1-with-33de4bc6d0025fdc69ee89d109f135a35d6887fe-and-d3421612735b52ddb1fbb0453e8f20367e6cb499 h1:C8IC1iuap1rkQe+KEnOB7koimQtMUmj6CjyfOQjSnaA=
-github.com/divVerent/ebiten/v2 v2.5.1-with-33de4bc6d0025fdc69ee89d109f135a35d6887fe-and-d3421612735b52ddb1fbb0453e8f20367e6cb499/go.mod h1:mnHSOVysTr/nUZrN1lBTRqhK4NG+T9NR3JsJP2rCppk=
+github.com/divVerent/ebiten/v2 v2.5.1-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe h1:LK6tM5xVAc8lEAGhHt3ODgTGGBnOo6PIXPQ5xfIGYwY=
+github.com/divVerent/ebiten/v2 v2.5.1-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe/go.mod h1:mnHSOVysTr/nUZrN1lBTRqhK4NG+T9NR3JsJP2rCppk=
 github.com/ebitengine/purego v0.4.0-alpha.2 h1:4ei2TdI5kJ+jjoX6TmHi2rr3Q7XFwbw8RlITQJYO0gc=
 github.com/ebitengine/purego v0.4.0-alpha.2/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=
 github.com/emirpasic/gods v1.12.0 h1:QAUIPSaCu4G+POclxeqb3F+WPpdKqFGlw36+yOzGlrg=
