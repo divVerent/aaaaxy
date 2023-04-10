@@ -17,12 +17,6 @@
 
 package fun
 
-import (
-	"time"
-
-	m "github.com/divVerent/aaaaxy/internal/math"
-)
-
 /*
 #cgo CFLAGS: -x objective-c
 #cgo LDFLAGS: -framework Foundation
@@ -33,7 +27,7 @@ import (
 
 int time_zone_hours() {
 	NSCalendar *cal = [NSCalendar currentCalendar];
-	NSDate *now = [NSDate now];
+	NSDate *now = [NSDate date];
 	NSDate *jan1 = [cal
 		dateWithEra: [cal component:NSCalendarUnitEra fromDate: now]
 		year: [cal component:NSCalendarUnitYear fromDate: now]
@@ -50,5 +44,5 @@ int time_zone_hours() {
 import "C"
 
 func init() {
-	SetTimeZoneHours(C.time_zone_hours())
+	SetTimeZoneHours(int(C.time_zone_hours()))
 }
