@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8284">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8293">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -8091,10 +8091,10 @@
   <object id="2813" gid="324" x="5744" y="224" width="32" height="32"/>
   <object id="2814" gid="320" x="7184" y="256" width="32" height="32"/>
   <object id="2815" gid="321" x="7304" y="64" width="32" height="32"/>
-  <object id="2816" gid="317" x="4128" y="1840" width="32" height="1984">
+  <object id="2816" gid="317" x="4128" y="1840" width="32" height="992">
    <properties>
     <property name="map_black_to" type="color" value="#00ffffff"/>
-    <property name="map_white_to" type="color" value="#ffffffff"/>
+    <property name="map_white_to" type="color" value="#80ffffff"/>
    </properties>
   </object>
   <object id="2820" gid="309" x="4064" y="3808" width="32" height="16"/>
@@ -14302,17 +14302,17 @@
     <property name="player_solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="6639" gid="317" x="1024" y="432" width="672" height="4544">
+  <object id="6639" gid="317" x="1024" y="432" width="672" height="1504">
    <properties>
     <property name="map_black_to" type="color" value="#00555555"/>
-    <property name="map_white_to" type="color" value="#ff555555"/>
+    <property name="map_white_to" type="color" value="#55555555"/>
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="6640" gid="317" x="1728" y="368" width="672" height="4592">
+  <object id="6640" gid="317" x="1728" y="368" width="672" height="1520">
    <properties>
     <property name="map_black_to" type="color" value="#00ffffff"/>
-    <property name="map_white_to" type="color" value="#ffffffff"/>
+    <property name="map_white_to" type="color" value="#55ffffff"/>
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
@@ -18372,6 +18372,40 @@
    <properties>
     <property name="map_black_to" type="color" value="#c0555555"/>
     <property name="map_white_to" type="color" value="#ff555555"/>
+   </properties>
+  </object>
+  <object id="8284" gid="317" x="1024" y="1936" width="672" height="1520">
+   <properties>
+    <property name="map_black_to" type="color" value="#55555555"/>
+    <property name="map_white_to" type="color" value="#aa555555"/>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
+  <object id="8285" gid="317" x="1024" y="3456" width="672" height="1520">
+   <properties>
+    <property name="map_black_to" type="color" value="#aa555555"/>
+    <property name="map_white_to" type="color" value="#ff555555"/>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
+  <object id="8286" gid="317" x="1728" y="1888" width="672" height="1536">
+   <properties>
+    <property name="map_black_to" type="color" value="#55ffffff"/>
+    <property name="map_white_to" type="color" value="#aaffffff"/>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
+  <object id="8287" gid="317" x="1728" y="3424" width="672" height="1536">
+   <properties>
+    <property name="map_black_to" type="color" value="#aaffffff"/>
+    <property name="map_white_to" type="color" value="#ffffffff"/>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
+  <object id="8292" gid="317" x="4128" y="2832" width="32" height="992">
+   <properties>
+    <property name="map_black_to" type="color" value="#80ffffff"/>
+    <property name="map_white_to" type="color" value="#ffffffff"/>
    </properties>
   </object>
  </objectgroup>

@@ -59,10 +59,16 @@ const (
 
 	// borderWindowWidth is the maximum amount of pixels loaded outside the screen.
 	// Must be at least the largest entity width plus two tiles to cover for misalignment.
+	// _TileMod can be ignored.
+	//
+	// $ < assets/maps/level.tmx perl -nE '/TileMod/ and next; /width="(\d+)"/ and say $1' | sort -n
 	borderWindowWidth = 704 + 2*level.TileSize
 	// borderWindowHeight is the maximum amount of pixels loaded outside the screen.
 	// Must be at least the largest entity height plus two tiles to cover for misalignment.
-	borderWindowHeight = 4640 + 2*level.TileSize
+	// _TileMod can be ignored.
+	//
+	// $ < assets/maps/level.tmx perl -nE '/TileMod/ and next; /height="(\d+)"/ and say $1' | sort -n
+	borderWindowHeight = 1632 + 2*level.TileSize
 
 	// tileWindowWidth is the maximum known width in tiles.
 	tileWindowWidth = (GameWidth+2*borderWindowWidth+level.TileSize-2)/level.TileSize + 1
