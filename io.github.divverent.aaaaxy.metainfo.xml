@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.421" date="2023-04-03">
-      <description><ul><li>Engine: speed up font loading by about 20%, and add loading screen info.</li><li>Level: also add an EscapeButton pic to Hello World.</li><li>Menu: when quality was adjusted, save settings instantly.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.421</url>
+    <release version="v1.3.436" date="2023-04-10">
+      <description><ul><li>Engine: almost twice as fast loading.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.436</url>
     </release>
   </releases>
 </component>
