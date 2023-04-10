@@ -158,7 +158,8 @@ func (w *World) clearTile(pos m.Pos) {
 }
 
 func (w *World) forEachTile(f func(i int, t *level.Tile)) {
-	for i, t := range w.tiles[:] {
+	for i := 0; i < tileWindowWidth*tileWindowHeight; i++ {
+		t := w.tiles[i]
 		if t == nil {
 			continue
 		}
