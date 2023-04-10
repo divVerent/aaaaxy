@@ -18,11 +18,12 @@ import (
 	"fmt"
 	"image"
 	"image/png"
-	"os"
+
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 func Write(img image.Image, name string) (err error) {
-	file, err := os.Create(name)
+	file, err := vfs.OSCreate(name)
 	if err != nil {
 		return fmt.Errorf("failed to open image file %v: %w", name, err)
 	}

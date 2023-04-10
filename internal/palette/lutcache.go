@@ -64,7 +64,7 @@ func SaveCachedLUTs(w, h int, dir string) error {
 				PerRow: perRow,
 				Width:  width,
 			}
-			f, err := os.Create(metaName)
+			f, err := vfs.OSCreate(metaName)
 			if err != nil {
 				return err
 			}

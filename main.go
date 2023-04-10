@@ -16,7 +16,6 @@ package main
 
 import (
 	"errors"
-	"os"
 	"runtime"
 	"runtime/pprof"
 
@@ -27,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 var (
@@ -39,7 +39,7 @@ var (
 
 func runGame(game *aaaaxy.Game) error {
 	if *debugLoadingCpuprofile != "" {
-		f, err := os.Create(*debugLoadingCpuprofile)
+		f, err := vfs.OSCreate(*debugLoadingCpuprofile)
 		if err != nil {
 			log.Fatalf("could not create loading CPU profile: %v", err)
 		}
@@ -58,7 +58,7 @@ func runGame(game *aaaaxy.Game) error {
 		if err != nil {
 			log.Fatalf("could not initialize game: %v", err)
 		}
-		f, err := os.Create(*debugCpuprofile)
+		f, err := vfs.OSCreate(*debugCpuprofile)
 		if err != nil {
 			log.Fatalf("could not create CPU profile: %v", err)
 		}
@@ -72,7 +72,7 @@ func runGame(game *aaaaxy.Game) error {
 		pprof.StopCPUProfile()
 	}
 	if *debugMemprofile != "" {
-		f, err := os.Create(*debugMemprofile)
+		f, err := vfs.OSCreate(*debugMemprofile)
 		if err != nil {
 			log.Fatalf("could not create memory profile: %v", err)
 		}

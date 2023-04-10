@@ -34,6 +34,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/namedpipe"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 var (
@@ -112,7 +113,7 @@ func InitEarly(p Params) error {
 
 	if *dumpAudio != "" {
 		var err error
-		audioWriter, err = os.Create(*dumpAudio)
+		audioWriter, err = vfs.OSCreate(*dumpAudio)
 		if err != nil {
 			return fmt.Errorf("could not initialize audio dump: %w", err)
 		}
@@ -121,7 +122,7 @@ func InitEarly(p Params) error {
 
 	if *dumpVideo != "" {
 		var err error
-		videoWriter, err = os.Create(*dumpVideo)
+		videoWriter, err = vfs.OSCreate(*dumpVideo)
 		if err != nil {
 			return fmt.Errorf("could not initialize video dump: %w", err)
 		}

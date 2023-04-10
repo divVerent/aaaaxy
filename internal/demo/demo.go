@@ -18,6 +18,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"os"
 
 	"github.com/google/go-cmp/cmp"
@@ -54,7 +55,7 @@ var (
 	demoPlayerFrameIdx        int
 	demoPlayerHasExplicitSave bool
 	demoRecorderFrame         frame
-	demoRecorderFile          *os.File
+	demoRecorderFile          io.WriteCloser
 	demoRecorderFinalSaveGame *level.SaveGame
 	demoRecorder              *json.Encoder
 )
@@ -78,7 +79,7 @@ func Init() error {
 			return errors.New("cannot record a demo while cheating")
 		}
 		var err error
-		demoRecorderFile, err = os.Create(*demoRecord)
+		demoRecorderFile, err = vfs.OSCreate(*demoRecord)
 		if err != nil {
 			return err
 		}

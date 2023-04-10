@@ -18,8 +18,8 @@ import (
 	"errors"
 	"fmt"
 	go_image "image"
+	"io"
 	"math"
-	"os"
 	"runtime/pprof"
 	"strings"
 
@@ -44,6 +44,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/shader"
 	"github.com/divVerent/aaaaxy/internal/timing"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 var (
@@ -116,7 +117,7 @@ type Game struct {
 
 	framesToDump int
 
-	debugLoadingScreenCpuprofileF *os.File
+	debugLoadingScreenCpuprofileF io.WriteCloser
 }
 
 var _ ebiten.Game = &Game{}
@@ -180,7 +181,7 @@ func (g *Game) Update() error {
 		g.canInit = false
 		if *debugLoadingScreenCpuprofile != "" && g.debugLoadingScreenCpuprofileF == nil {
 			var err error
-			g.debugLoadingScreenCpuprofileF, err = os.Create(*debugLoadingScreenCpuprofile)
+			g.debugLoadingScreenCpuprofileF, err = vfs.OSCreate(*debugLoadingScreenCpuprofile)
 			if err != nil {
 				return fmt.Errorf("could not create CPU profile: %w", err)
 			}

@@ -18,7 +18,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"math"
-	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -240,7 +239,7 @@ func (g *Game) InitStep() error {
 		return err
 	}
 	if *dumpLoadingFractions != "" {
-		f, err := os.Create(*dumpLoadingFractions)
+		f, err := vfs.OSCreate(*dumpLoadingFractions)
 		if err != nil {
 			return fmt.Errorf("could not open loading fractions file: %w", err)
 		}
