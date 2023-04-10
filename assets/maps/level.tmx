@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8281">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8284">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -9405,10 +9405,10 @@
    </properties>
   </object>
   <object id="3845" name="WarpToEnding" gid="293" x="5168" y="3792" width="16" height="32"/>
-  <object id="3847" gid="317" x="8128" y="352" width="32" height="6480">
+  <object id="3847" gid="317" x="8128" y="352" width="32" height="1632">
    <properties>
     <property name="map_black_to" type="color" value="#00555555"/>
-    <property name="map_white_to" type="color" value="#ff555555"/>
+    <property name="map_white_to" type="color" value="#40555555"/>
    </properties>
   </object>
   <object id="3848" type="SwitchMusic" x="5152" y="3792" width="16" height="32"/>
@@ -18354,6 +18354,24 @@
     <property name="map_black_to" type="color" value="#80ffffff"/>
     <property name="map_white_to" type="color" value="#ffffffff"/>
     <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
+  <object id="8281" gid="317" x="8128" y="1984" width="32" height="1616">
+   <properties>
+    <property name="map_black_to" type="color" value="#40555555"/>
+    <property name="map_white_to" type="color" value="#80555555"/>
+   </properties>
+  </object>
+  <object id="8282" gid="317" x="8128" y="3600" width="32" height="1616">
+   <properties>
+    <property name="map_black_to" type="color" value="#80555555"/>
+    <property name="map_white_to" type="color" value="#c0555555"/>
+   </properties>
+  </object>
+  <object id="8283" gid="317" x="8128" y="5216" width="32" height="1616">
+   <properties>
+    <property name="map_black_to" type="color" value="#c0555555"/>
+    <property name="map_white_to" type="color" value="#ff555555"/>
    </properties>
   </object>
  </objectgroup>

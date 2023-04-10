@@ -62,7 +62,7 @@ const (
 	borderWindowWidth = 704 + 2*level.TileSize
 	// borderWindowHeight is the maximum amount of pixels loaded outside the screen.
 	// Must be at least the largest entity height plus two tiles to cover for misalignment.
-	borderWindowHeight = 6480 + 2*level.TileSize
+	borderWindowHeight = 4640 + 2*level.TileSize
 
 	// tileWindowWidth is the maximum known width in tiles.
 	tileWindowWidth = (GameWidth+2*borderWindowWidth+level.TileSize-2)/level.TileSize + 1
