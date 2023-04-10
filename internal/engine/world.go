@@ -48,9 +48,9 @@ type World struct {
 	renderer renderer
 
 	// tiles are all tiles currently loaded.
-	tiles []*level.Tile
+	tiles [tileWindowWidth*tileWindowHeight]*level.Tile
 	// markedTilesBuffer has the same size as tiles and is used when updating visibility.
-	markedTilesBuffer []m.Pos
+	markedTilesBuffer [tileWindowWidth*tileWindowHeight]m.Pos
 	// incarnations are all currently existing entity incarnations.
 	incarnations map[EntityIncarnation]struct{}
 	// entities are all entities currently loaded.
@@ -116,7 +116,7 @@ type World struct {
 
 // Initialized returns whether Init() has been called on this World before.
 func (w *World) Initialized() bool {
-	return w.tiles != nil
+	return w.Level != nil
 }
 
 func (w *World) tileIndex(pos m.Pos) int {
@@ -266,7 +266,6 @@ func (w *World) Init(saveState int) error {
 	w.clearEntities()
 
 	*w = World{
-		tiles:          make([]*level.Tile, tileWindowWidth*tileWindowHeight),
 		incarnations:   map[EntityIncarnation]struct{}{},
 		entities:       makeList(allList),
 		opaqueEntities: makeList(opaqueList),
@@ -408,8 +407,9 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	tile.VisibilityFlags = w.frameVis
 	w.clearEntities()
 	w.link(w.Player)
-	w.tiles = make([]*level.Tile, tileWindowWidth*tileWindowHeight)
-	w.markedTilesBuffer = make([]m.Pos, tileWindowWidth*tileWindowHeight)
+	for i := range w.tiles {
+		w.tiles[i] = nil
+	}
 	w.setScrollPos(cpSp.LevelPos.Mul(level.TileSize)) // Scroll the tile into view.
 	w.setTile(cpSp.LevelPos, &tile)
 
