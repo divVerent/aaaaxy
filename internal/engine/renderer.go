@@ -144,10 +144,11 @@ func setGeoM(geoM *ebiten.GeoM, pos m.Pos, resize bool, entSize, imgSize m.Delta
 }
 
 func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
-	r.world.forEachTile(func(pos m.Pos, tile *level.Tile) {
+	r.world.forEachTile(func(i int, tile *level.Tile) {
 		if tile.ImageSrc == "" {
 			return
 		}
+		pos := r.world.tilePos(i)
 		screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
 		img, err := image.Load("tiles", tile.ImageSrc)
 		if err != nil {
@@ -203,7 +204,8 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurF
 
 func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 	if *debugShowNeighbors || *debugShowCoords || *debugShowOrientations || *debugShowTransforms {
-		r.world.forEachTile(func(pos m.Pos, tile *level.Tile) {
+		r.world.forEachTile(func(i int, tile *level.Tile) {
+			pos := r.world.tilePos(i)
 			screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
 			if *debugShowNeighbors {
 				neighborScreenPos := tile.LoadedFromNeighbor.Mul(level.TileSize).Add(scrollDelta)

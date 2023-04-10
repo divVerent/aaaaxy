@@ -157,12 +157,12 @@ func (w *World) clearTile(pos m.Pos) {
 	w.tilesCleared++
 }
 
-func (w *World) forEachTile(f func(pos m.Pos, t *level.Tile)) {
+func (w *World) forEachTile(f func(i int, t *level.Tile)) {
 	for i, t := range w.tiles[:] {
 		if t == nil {
 			continue
 		}
-		f(w.tilePos(i), t)
+		f(i, t)
 	}
 }
 
@@ -658,7 +658,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	// BUG: the above also loads tiles (but doesn't mark) if their path was blocked by an entity.
 	// Workaround: mark them as if they were previous frame's tiles, so they're not a basis for loading and get cleared at the end if needed.
 	timing.Section("untrace_workaround")
-	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
+	w.forEachTile(func(_ int, tile *level.Tile) {
 		if tile.VisibilityFlags == w.frameVis {
 			tile.VisibilityFlags ^= level.FrameVis
 		}
@@ -669,9 +669,9 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	timing.Section("expand")
 	markedTiles := w.markedTilesBuffer[:0]
 	justTraced := w.frameVis | level.TracedVis
-	w.forEachTile(func(tilePos m.Pos, tile *level.Tile) {
+	w.forEachTile(func(i int, tile *level.Tile) {
 		if tile.VisibilityFlags == justTraced {
-			markedTiles = append(markedTiles, tilePos)
+			markedTiles = append(markedTiles, w.tilePos(i))
 		}
 	})
 	numExpandSteps := (2*expandTiles+1)*(2*expandTiles+1) - 1
@@ -696,10 +696,11 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	}
 
 	timing.Section("spawn_search")
-	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
+	w.forEachTile(func(i int, tile *level.Tile) {
 		if tile.VisibilityFlags&level.FrameVis != w.frameVis {
 			return
 		}
+		pos := w.tilePos(i)
 		for _, spawnable := range tile.Spawnables {
 			_, err := w.Spawn(spawnable, pos, tile)
 			if err != nil {
@@ -753,9 +754,9 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 
 	// Delete all unmarked tiles.
 	timing.Section("cleanup_unmarked")
-	w.forEachTile(func(pos m.Pos, tile *level.Tile) {
+	w.forEachTile(func(i int, tile *level.Tile) {
 		if tile.VisibilityFlags&level.FrameVis != w.frameVis {
-			w.clearTile(pos)
+			w.clearTile(w.tilePos(i))
 		}
 	})
 }
