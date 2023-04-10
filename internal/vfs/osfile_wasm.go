@@ -74,6 +74,10 @@ func (w *osWriter) Close() error {
 	if err != nil {
 		return err
 	}
+	err = enc.Close()
+	if err != nil {
+		return err
+	}
 	return protectJS(func() {
 		js.Global().Set(w.name, js.ValueOf(buf.String()))
 	})
