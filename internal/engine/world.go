@@ -158,27 +158,26 @@ func (w *World) clearTile(pos m.Pos) {
 }
 
 func (w *World) forEachTile(f func(pos m.Pos, t *level.Tile)) {
-	i := 0
+	ofs := 0
 	pos := w.tilePos(0)
 	x0 := pos.X
 	for y := 0; y < tileWindowHeight; y++ {
 		pos.X = x0
 		for x := 0; x < tileWindowWidth; x++ {
-			if *debugCheckTileWindowSize {
-				if want := w.tilePos(i); pos != want {
-					log.Fatalf("invalid tilePos in forEachTile: %v: got %v, want %v", i, pos, want)
-				}
+			t := w.tiles[x + ofs]
+			if t == nil {
+				continue
 			}
-			t := w.tiles[i]
-			if t != nil {
-				f(pos, t)
+			if want := w.tilePos(x + ofs); pos != want {
+				log.Fatalf("invalid tilePos in forEachTile: %v: got %v, want %v", x + ofs, pos, want)
 			}
+			f(pos, t)
 			if pos.X == w.bottomRightTile.X {
 				pos.X -= tileWindowWidth
 			}
 			pos.X++
-			i++
 		}
+		ofs += tileWindowHeight
 		if pos.Y == w.bottomRightTile.Y {
 			pos.Y -= tileWindowHeight
 		}
