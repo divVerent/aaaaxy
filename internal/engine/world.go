@@ -157,6 +157,16 @@ func (w *World) clearTile(pos m.Pos) {
 	w.tilesCleared++
 }
 
+func (w *World) forEachTile(f func(i int, t *level.Tile)) {
+	for i := 0; i < tileWindowWidth*tileWindowHeight; i++ {
+		t := w.tiles[i]
+		if t == nil {
+			continue
+		}
+		f(i, t)
+	}
+}
+
 func (w *World) ForEachEntity(f func(e *Entity)) {
 	w.entities.forEach(func(e *Entity) error {
 		f(e)
