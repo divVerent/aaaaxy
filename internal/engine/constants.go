@@ -57,18 +57,22 @@ const (
 	// Fully "fade in" in one second.
 	pixelsPerSpawnFrame = (GameWidth / 2) / 60
 
+	// Amount of pixels to trace downwards when spawning from a checkpoint.
+	// Must be at least half the max of all checkpoint widths or heights.
+	// But may need to be more if checkpoints are far above solid.
+	spawnDownTracePixels = 240
+
 	// borderWindowWidth is the maximum amount of pixels loaded outside the screen.
-	// Must be at least the largest entity width plus two tiles to cover for misalignment.
-	// _TileMod can be ignored.
-	//
-	// $ < assets/maps/level.tmx perl -nE '/TileMod/ and next; /width="(\d+)"/ and say $1' | sort -n
-	borderWindowWidth = 704 + 2*level.TileSize
+	// Must be at least the largest RequireTiles entity width plus two tiles to cover for misalignment.
+	// (Misalignment: one tile for camera position vs screen center, one tile for entity position vs tile edge)
+	// _TileMod or non-physics entities can be ignored.
+	borderWindowWidth = 64 + 2*level.TileSize
 	// borderWindowHeight is the maximum amount of pixels loaded outside the screen.
-	// Must be at least the largest entity height plus two tiles to cover for misalignment.
-	// _TileMod can be ignored.
-	//
-	// $ < assets/maps/level.tmx perl -nE '/TileMod/ and next; /height="(\d+)"/ and say $1' | sort -n
-	borderWindowHeight = 1632 + 2*level.TileSize
+	// Must be at least the largest RequireTiles entity height plus two tiles to cover for misalignment.
+	// (Misalignment: one tile for camera position vs screen center, one tile for entity position vs tile edge)
+	// Must also include spawnDownTracePixels to support player spawning.
+	// _TileMod or non-physics entities can be ignored.
+	borderWindowHeight = 64 + spawnDownTracePixels + 2*level.TileSize
 
 	// tileWindowWidth is the maximum known width in tiles.
 	tileWindowWidth = (GameWidth+2*borderWindowWidth+level.TileSize-2)/level.TileSize + 1

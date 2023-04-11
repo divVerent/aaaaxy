@@ -426,6 +426,9 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 		}
 	}
 
+	// Update the scroll position right away so we can proceed.
+	w.setScrollPos(cp.Rect.Center())
+
 	if newGameSection {
 		// Clear all centerprints.
 		// But only when coming from menu, not when respawning/teleporting in game.
@@ -456,7 +459,7 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 		if dir.IsZero() {
 			dir.DY = 1
 		}
-		trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(dir.Mul(1024)), TraceOptions{
+		trace := w.TraceBox(w.Player.Rect, w.Player.Rect.Origin.Add(dir.Mul(spawnDownTracePixels)), TraceOptions{
 			Contents:   level.PlayerSolidContents,
 			NoEntities: true,
 			LoadTiles:  true,
@@ -713,6 +716,23 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	timing.Section("despawn_search")
 	w.entities.forEach(func(ent *Entity) error {
 		tp0, tp1 := tilesBox(ent.Rect.Grow(ent.SpawnTilesGrowth))
+		if !ent.RequireTiles {
+			// Non-RequireTiles entities are allowed to sit on tiles outside the tiles window.
+			// But here, we must skip them during checking if there is a loaded tile under the entity.
+			topLeftTile := w.bottomRightTile.Sub(m.Delta{DX: tileWindowWidth - 1, DY: tileWindowHeight - 1})
+			if tp0.X < topLeftTile.X {
+				tp0.X = topLeftTile.X
+			}
+			if tp0.Y < topLeftTile.Y {
+				tp0.Y = topLeftTile.Y
+			}
+			if tp1.X > w.bottomRightTile.X {
+				tp1.X = w.bottomRightTile.X
+			}
+			if tp1.Y > w.bottomRightTile.Y {
+				tp1.Y = w.bottomRightTile.Y
+			}
+		}
 		var pos m.Pos
 		havePos := false
 	DESPAWN_SEARCH:
