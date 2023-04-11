@@ -32,8 +32,9 @@ func SetFilesDir(dir string) {
 	filesDir = dir
 }
 
-func pathForReadRaw(kind StateKind, name string) (string, error) {
-	return pathForWrite(kind, name)
+func pathForReadRaw(kind StateKind, name string) ([]string, error) {
+	path, err := pathForWrite(kind, name)
+	return []string{path}, err
 }
 
 func pathForWriteRaw(kind StateKind, name string) (string, error) {

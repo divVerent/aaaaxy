@@ -21,6 +21,7 @@ import (
 	"os"
 	"path/filepath"
 	"time"
+	"errors"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -52,10 +53,10 @@ func pathForOverride(kind StateKind) string {
 	return ""
 }
 
-func pathForRead(kind StateKind, name string) (string, error) {
+func pathForRead(kind StateKind, name string) ([]string, error) {
 	o := pathForOverride(kind)
 	if o != "" {
-		return filepath.Join(o, name), nil
+		return []string{filepath.Join(o, name)}, nil
 	}
 	return pathForReadRaw(kind, name)
 }
@@ -86,31 +87,42 @@ func initState() error {
 
 // ReadState loads the given state file and returns its contents.
 func ReadState(kind StateKind, name string) ([]byte, error) {
-	path, err := pathForRead(kind, name)
+	paths, err := pathForRead(kind, name)
 	if err != nil {
 		// Remap to os.ErrNotExist so callers can deal with the error on their own.
 		// This error is expected on first run, so it's just INFO.
-		log.Infof("could not find path for folder%d/%s: %v", kind, name, err)
+		log.Infof("could not find paths for folder%d/%s: %v", kind, name, err)
 		return nil, os.ErrNotExist
 	}
-	return os.ReadFile(path)
+	lastErr := os.ErrNotExist
+	for _, path := range paths {
+		data, err := os.ReadFile(path)
+		if err == nil || !errors.Is(err, os.ErrNotExist) {
+			return data, err
+		}
+		lastErr = err
+	}
+	log.Infof("could not find path for folder%d/%s, tried %v: %v", kind, name, paths, lastErr)
+	return nil, lastErr
 }
 
 // MoveAwayState renames a detected-to-be-broken state file so it will not be used again.
 func MoveAwayState(kind StateKind, name string) error {
 	suffix := time.Now().UTC().Format(".2006-01-02T15-04-05Z")
-	oldName, err := pathForRead(kind, name)
+	oldNames, err := pathForRead(kind, name)
 	if err != nil {
 		return err
 	}
-	newName := oldName + suffix
-	log.Errorf("renaming broken state file %s -> %v", oldName, newName)
-	err = os.Rename(oldName, newName)
-	if err == os.ErrNotExist {
-		// Source file not therre? I guess that is fine too.
-		return nil
+	var lastErr error
+	for _, oldName := range oldNames {
+		newName := oldName + suffix
+		log.Errorf("renaming broken state file %s -> %v", oldName, newName)
+		err = os.Rename(oldName, newName)
+		if err != nil && !errors.Is(err, os.ErrNotExist) {
+			lastErr = err
+		}
 	}
-	return err
+	return lastErr
 }
 
 // writeState writes the given state file.

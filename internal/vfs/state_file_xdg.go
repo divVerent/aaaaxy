@@ -24,14 +24,16 @@ import (
 	"github.com/adrg/xdg"
 )
 
-func pathForReadRaw(kind StateKind, name string) (string, error) {
+func pathForReadRaw(kind StateKind, name string) ([]string, error) {
 	switch kind {
 	case Config:
-		return xdg.SearchConfigFile(filepath.Join(gameName, name))
+		path, err := xdg.SearchConfigFile(filepath.Join(gameName, name))
+		return []string{path}, err
 	case SavedGames:
-		return xdg.SearchDataFile(filepath.Join(gameName, name))
+		path,err := xdg.SearchDataFile(filepath.Join(gameName, name))
+		return []string{path}, err
 	default:
-		return "", fmt.Errorf("searched for unsupported state kind: %d", kind)
+		return nil, fmt.Errorf("searched for unsupported state kind: %d", kind)
 	}
 }
 
