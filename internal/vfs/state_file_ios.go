@@ -18,7 +18,6 @@
 package vfs
 
 import (
-	"errors"
 	"fmt"
 	"path/filepath"
 	"unsafe"
@@ -60,7 +59,7 @@ func initAppSupportPath() {
 	if appSupportPath == "" {
 		appSupportPathCStr := C.app_support_path()
 		if appSupportPathCStr == nil {
-			return "", errors.New("could not find documents path")
+			panic("could not find documents path")
 		}
 		defer C.free(unsafe.Pointer(appSupportPathCStr))
 		appSupportPath = C.GoString(appSupportPathCStr)
