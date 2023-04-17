@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.436" date="2023-04-10">
-      <description><ul><li>Engine: almost twice as fast loading.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.436</url>
+    <release version="v1.3.457" date="2023-04-17">
+      <description><ul><li>Engine: aggressively optimize tile iteration, and reduce the loaded tiles window. More fps on CPU-bound devices.</li><li>iOS: separate save and config file location. Previous data is imported.</li><li>Level: fix wrong shepard tone pitches.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.457</url>
     </release>
   </releases>
 </component>

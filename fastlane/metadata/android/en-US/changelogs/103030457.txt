@@ -1,0 +1,3 @@
+  - Engine: aggressively optimize tile iteration, and reduce the loaded tiles window. More fps on CPU-bound devices.
+  - iOS: separate save and config file location. Previous data is imported.
+  - Level: fix wrong shepard tone pitches.
