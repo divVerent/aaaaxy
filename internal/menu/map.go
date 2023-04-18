@@ -63,7 +63,7 @@ const (
 	edgeThickness         = 3
 	mouseDistance         = 16
 	walkSpeed             = 0.2
-	mapBorder             = 12
+	mapBorder             = 6
 )
 
 func (s *MapScreen) Init(c *Controller) error {
@@ -135,7 +135,7 @@ func (s *MapScreen) Init(c *Controller) error {
 	}
 
 	mapWidth := engine.GameWidth
-	mapHeight := engine.GameHeight / 2
+	mapHeight := 3 * engine.GameHeight / 4
 	if mapWidth*loc.Rect.Size.DY > mapHeight*loc.Rect.Size.DX {
 		mapWidth = mapHeight * loc.Rect.Size.DX / loc.Rect.Size.DY
 	} else {
@@ -265,7 +265,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	unseenPathToSeenCPColor := palette.EGA(palette.White, 255)
 	unseenPathToUnseenCPColor := palette.EGA(palette.Black, 255)
 	unseenPathBlinkColor := palette.EGA(palette.DarkGrey, 255)
-	font.ByName["MenuBig"].Draw(screen, locale.G.Get("Pick-a-Path"), m.Pos{X: x, Y: h / 8}, font.Center, fgs, bgs)
+	font.ByName["MenuBig"].Draw(screen, locale.G.Get("Pick-a-Path"), m.Pos{X: x, Y: h / 12}, font.Center, fgs, bgs)
 	cpText := fun.FormatText(&s.Controller.World.PlayerState, propmap.ValueP(s.Controller.World.Level.Checkpoints[s.CurrentCP].Properties, "text", "", nil))
 	seen, total := s.Controller.World.PlayerState.TnihSignsSeen(s.CurrentCP)
 	if total > 0 {
@@ -275,7 +275,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	if s.nameHovered {
 		fg, bg = fgs, bgs
 	}
-	font.ByName["Menu"].Draw(screen, cpText, m.Pos{X: x, Y: 7 * h / 8}, font.Center, fg, bg)
+	font.ByName["Menu"].Draw(screen, cpText, m.Pos{X: x, Y: 11 * h / 12 + 12}, font.Center, fg, bg)
 
 	// Draw all known checkpoints.
 	opts := ebiten.DrawImageOptions{
