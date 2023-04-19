@@ -58,10 +58,18 @@ case "$mode" in
 	diff_seq)
 		a=$(mktemp)
 		b=$(mktemp)
-		"$0" end   "$demo" > "$a"
-		"$0" start "$3" > "$b"
-		diff -u "$a" "$b"
-		status=$?
+		status=0
+		while [ $# -ge 3 ]; do
+			"$0" end   "$2" > "$a"
+			"$0" start "$3" > "$b"
+			echo "--- $2.end"
+			echo "+++ $3.start"
+			if ! diff -u "$a" "$b"; then
+				status=1
+			fi
+			status=$?
+			shift
+		done
 		rm -f "$a" "$b"
 		exit "$status"
 		;;
@@ -82,6 +90,7 @@ case "$mode" in
 	*)
 		echo >&2 "Usage: $0 {start|end|diff} filename.dem"
 		echo >&2 "       $0 {replace_start} filename.dem < savegame.sav > newfilename.dem"
+		echo >&2 "       $0 {diff_seq} filename.dem"
 		exit 1
 		;;
 esac
