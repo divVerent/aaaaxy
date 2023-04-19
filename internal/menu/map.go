@@ -63,7 +63,7 @@ const (
 	edgeThickness         = 3
 	mouseDistance         = 16
 	walkSpeed             = 0.2
-	mapBorder             = 6
+	mapBorder             = 8
 )
 
 func (s *MapScreen) Init(c *Controller) error {
@@ -275,7 +275,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	if s.nameHovered {
 		fg, bg = fgs, bgs
 	}
-	font.ByName["Menu"].Draw(screen, cpText, m.Pos{X: x, Y: 11 * h / 12 + 12}, font.Center, fg, bg)
+	font.ByName["Menu"].Draw(screen, cpText, m.Pos{X: x, Y: 11*h/12 + 12}, font.Center, fg, bg)
 
 	// Draw all known checkpoints.
 	opts := ebiten.DrawImageOptions{
