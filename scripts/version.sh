@@ -158,7 +158,7 @@ case "$format" in
 				;;
 		esac
 		;;
-	macos)
+	macos|ios)
 		case "$prerelease" in
 			'')
 				echo "$major.$minor.$patch"

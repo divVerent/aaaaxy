@@ -25,3 +25,11 @@ go run github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile bind \
 	github.com/divVerent/aaaaxy/XcodeProjects/iOS/aaaaxy/go/aaaaxy
 
 cp ../../../../../aaaaxy.dat ../..
+
+version=$(
+	 cd ../../../../.. && scripts/version.sh ios
+)
+sed -i -e "
+	s,CURRENT_PROJECT_VERSION = .*;,CURRENT_PROJECT_VERSION = 1;,g;
+	s,MARKETING_VERSION = .*;,MARKETING_VERSION = $version;,g;
+" ../../../aaaaxy.xcodeproj/project.pbxproj
