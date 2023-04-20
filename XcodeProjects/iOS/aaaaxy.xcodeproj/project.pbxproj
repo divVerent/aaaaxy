@@ -68,7 +68,6 @@
 		902DCB1929CDC3AF0025B811 /* aaaaxy */ = {
 			isa = PBXGroup;
 			children = (
-				90170AF529F1AC78007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.xcframework */,
 				90170AF329F1AC6E007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.dat */,
 				902DCB3529CDC3EB0025B811 /* Info.plist */,
 				902DCB1A29CDC3AF0025B811 /* AppDelegate.h */,
@@ -86,6 +85,7 @@
 		902DCB3629CDD2E30025B811 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90170AF529F1AC78007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.xcframework */,
 				902DCB3E29CDD4940025B811 /* GameController.framework */,
 				902DCB3729CDD2E30025B811 /* aaaaxy */,
 			);
