@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90170AF429F1AC6E007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.dat in Resources */ = {isa = PBXBuildFile; fileRef = 90170AF329F1AC6E007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.dat */; };
+		90170AF629F1AC78007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90170AF529F1AC78007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.xcframework */; };
 		902DCB1C29CDC3AF0025B811 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 902DCB1B29CDC3AF0025B811 /* AppDelegate.m */; };
 		902DCB2229CDC3AF0025B811 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 902DCB2129CDC3AF0025B811 /* GameViewController.m */; };
 		902DCB2829CDC3AF0025B811 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 902DCB2629CDC3AF0025B811 /* Main.storyboard */; };
 		902DCB2A29CDC3AF0025B811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 902DCB2929CDC3AF0025B811 /* Assets.xcassets */; };
 		902DCB2D29CDC3AF0025B811 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 902DCB2B29CDC3AF0025B811 /* LaunchScreen.storyboard */; };
 		902DCB2F29CDC3AF0025B811 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 902DCB2E29CDC3AF0025B811 /* main.m */; };
-		902DCB3929CDD2F20025B811 /* aaaaxy.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902DCB3829CDD2F20025B811 /* aaaaxy.xcframework */; };
-		902DCB3D29CDD3790025B811 /* aaaaxy.dat in Resources */ = {isa = PBXBuildFile; fileRef = 902DCB3C29CDD3790025B811 /* aaaaxy.dat */; };
 		902DCB3F29CDD4940025B811 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902DCB3E29CDD4940025B811 /* GameController.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		90170AF329F1AC6E007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "${DERIVED_FILE_DIR}/aaaaxy.dat"; sourceTree = "<absolute>"; };
+		90170AF529F1AC78007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = "${DERIVED_FILE_DIR}/aaaaxy.xcframework"; sourceTree = "<absolute>"; };
 		902DCB1729CDC3AF0025B811 /* aaaaxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aaaaxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		902DCB1A29CDC3AF0025B811 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		902DCB1B29CDC3AF0025B811 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,8 +32,6 @@
 		902DCB2E29CDC3AF0025B811 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		902DCB3529CDC3EB0025B811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		902DCB3729CDD2E30025B811 /* aaaaxy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = aaaaxy; sourceTree = "<group>"; };
-		902DCB3829CDD2F20025B811 /* aaaaxy.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = aaaaxy.xcframework; path = aaaaxy/go/aaaaxy/aaaaxy.xcframework; sourceTree = "<group>"; };
-		902DCB3C29CDD3790025B811 /* aaaaxy.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = aaaaxy.dat; sourceTree = "<group>"; };
 		902DCB3E29CDD4940025B811 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -40,8 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90170AF629F1AC78007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.xcframework in Frameworks */,
 				902DCB3F29CDD4940025B811 /* GameController.framework in Frameworks */,
-				902DCB3929CDD2F20025B811 /* aaaaxy.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +68,8 @@
 		902DCB1929CDC3AF0025B811 /* aaaaxy */ = {
 			isa = PBXGroup;
 			children = (
-				902DCB3C29CDD3790025B811 /* aaaaxy.dat */,
+				90170AF529F1AC78007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.xcframework */,
+				90170AF329F1AC6E007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.dat */,
 				902DCB3529CDC3EB0025B811 /* Info.plist */,
 				902DCB1A29CDC3AF0025B811 /* AppDelegate.h */,
 				902DCB1B29CDC3AF0025B811 /* AppDelegate.m */,
@@ -86,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				902DCB3E29CDD4940025B811 /* GameController.framework */,
-				902DCB3829CDD2F20025B811 /* aaaaxy.xcframework */,
 				902DCB3729CDD2E30025B811 /* aaaaxy */,
 			);
 			name = Frameworks;
@@ -99,6 +99,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 902DCB3229CDC3AF0025B811 /* Build configuration list for PBXNativeTarget "aaaaxy" */;
 			buildPhases = (
+				90170AF229F1A788007A4654 /* ShellScript */,
 				902DCB1329CDC3AF0025B811 /* Sources */,
 				902DCB1429CDC3AF0025B811 /* Frameworks */,
 				902DCB1529CDC3AF0025B811 /* Resources */,
@@ -151,12 +152,36 @@
 			files = (
 				902DCB2D29CDC3AF0025B811 /* LaunchScreen.storyboard in Resources */,
 				902DCB2A29CDC3AF0025B811 /* Assets.xcassets in Resources */,
-				902DCB3D29CDD3790025B811 /* aaaaxy.dat in Resources */,
+				90170AF429F1AC6E007A4654 /* ${DERIVED_FILE_DIR}/aaaaxy.dat in Resources */,
 				902DCB2829CDC3AF0025B811 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		90170AF229F1A788007A4654 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/aaaaxy.dat",
+				"$(DERIVED_FILE_DIR)/aaaaxy.xcframework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -ex\n\ncd \"${SOURCE_ROOT}\"\n\nexport PATH=$HOME/bin:/usr/local/go/bin:$PATH\n\nexport CGO_ENABLED=1\nexport CGO_CPPFLAGS=-DNDEBUG\nexport CGO_CFLAGS='-g0 -O3'\nexport CGO_CXXFLAGS='-g0 -O3'\nexport CGO_LDFLAGS='-g0 -O3'\n\nenv GOOS=ios go generate -tags zip github.com/divVerent/aaaaxy\n\nln -f ../../aaaaxy.dat \"${DERIVED_FILE_DIR}\"/aaaaxy.dat\n\ngo run github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile bind \\\n    -target ios \\\n    -o \"${DERIVED_FILE_DIR}\"/aaaaxy.xcframework \\\n    -iosversion 12.0 \\\n    -tags zip \\\n    -gcflags=all=-dwarf=false \\\n    -ldflags=all=-s \\\n    -ldflags=all=-w \\\n    -a \\\n    -trimpath \\\n    github.com/divVerent/aaaaxy/XcodeProjects/iOS/aaaaxy/go/aaaaxy\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		902DCB1329CDC3AF0025B811 /* Sources */ = {
