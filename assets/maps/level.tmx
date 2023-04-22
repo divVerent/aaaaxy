@@ -14179,7 +14179,7 @@
     <property name="image" value="the_big_round.png"/>
    </properties>
   </object>
-  <object id="6603" type="Sprite" x="7168" y="2448" width="48" height="48">
+  <object id="6603" type="Sprite" x="7168" y="2464" width="48" height="48">
    <properties>
     <property name="image" value="caution.png"/>
    </properties>
