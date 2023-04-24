@@ -53,7 +53,7 @@ func (r *reader) Read(p []byte) (int, error) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 	n, err := r.readAt(p, r.pos)
-	r.pos += n
+	r.pos += int64(n)
 	return n, err
 }
 
