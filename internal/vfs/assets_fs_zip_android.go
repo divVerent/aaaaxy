@@ -36,18 +36,31 @@ func (i fileInfo) IsDir() bool        { return false }
 func (i fileInfo) Sys() interface{}   { return nil }
 
 type reader struct {
-	f  asset.File
-	mu sync.Mutex
+	f   asset.File
+	mu  sync.Mutex
+	pos int64
 }
 
-func (r *reader) ReadAt(p []byte, off int64) (int, error) {
-	r.mu.Lock()
-	defer r.mu.Unlock()
+func (r *reader) readAt(p []byte, off int64) (int, error) {
 	_, err := r.f.Seek(off, io.SeekStart)
 	if err != nil {
 		return 0, err
 	}
 	return r.f.Read(p)
+}
+
+func (r *reader) Read(p []byte) (int, error) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	n, err := r.readAt(p, r.pos)
+	r.pos += n
+	return n, err
+}
+
+func (r *reader) ReadAt(p []byte, off int64) (int, error) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	return r.readAt(p, off)
 }
 
 func (r *reader) Stat() (fs.FileInfo, error) {
