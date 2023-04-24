@@ -22,11 +22,12 @@ The game is available for the following platforms:
 
 | Platform     | Downloads                                                                                                                                                                                                           |
 |--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Windows      | [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy)                                                                                                                    |
-| Linux        | [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy), [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy), [Snap Store](https://snapcraft.io/aaaaxy) |
-| macOS        | [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy)                                                                                                                    |
 | Android      | [F-Droid](https://f-droid.org/en/packages/io.github.divverent.aaaaxy/), [Google Play](https://play.google.com/store/apps/details?id=io.github.divverent.aaaaxy)                                                     |
 | HTML5 (slow) | [netcup](https://rm.cloudns.org/aaaaxy/current/aaaaxy.html)                                                                                                                                                         |
+| iOS          | [App Store](https://apps.apple.com/us/app/aaaaxy/id6447063878)                                                                                                                                                      |
+| Linux        | [Flathub](https://flathub.org/apps/details/io.github.divverent.aaaaxy), [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy), [Snap Store](https://snapcraft.io/aaaaxy) |
+| macOS        | [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy)                                                                                                                    |
+| Windows      | [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy)                                                                                                                    |
 
 Available languages: Chinese (Simplified), English, German, Latin,
 Portuguese and Ukrainian.
