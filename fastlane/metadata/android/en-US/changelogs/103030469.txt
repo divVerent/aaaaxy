@@ -1,0 +1,3 @@
+  - Engine: experimental new flag: -pin_assets_to_ram to maybe speedup loading on mobile.
+  - Level: minor "confusion fix".
+  - Menu: draw the map bigger to play nicer on touchscreens.
