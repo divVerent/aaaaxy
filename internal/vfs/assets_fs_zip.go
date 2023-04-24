@@ -24,7 +24,12 @@ import (
 	"io"
 	"io/fs"
 
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
+)
+
+var (
+	pinAssetsToRAM = flag.Bool("pin_assets_to_ram", false, "if enabled, keep all asset data in RAM in compressed form rather than loading from the file system as needed")
 )
 
 // Make it seekable.
@@ -86,7 +91,18 @@ func initAssetsFS() ([]fsRoot, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not stat aaaaxy.dat: %v", err)
 	}
-	zip, err := zip.NewReader(zipf, zipi.Size())
+	var zipr io.ReaderAt
+	if *pinAssetsToRAM {
+		zipb, err := io.ReadAll(zipf)
+		if err != nil {
+			return nil, fmt.Errorf("could not read aaaaxy.dat: %v", err)
+		}
+		zipf.Close()
+		zipr = bytes.NewReader(zipb)
+	} else {
+		zipr = zipf
+	}
+	zip, err := zip.NewReader(zipr, zipi.Size())
 	if err != nil {
 		return nil, fmt.Errorf("could not parse aaaaxy.dat: %v", err)
 	}
