@@ -199,7 +199,8 @@ case "$format" in
 		# <major><minor:%02d>3<patch:%04d>0
 		# Last digit forced to zero to allow F-Droid to extend for
 		# split packages.
-		echo "$((major * 100000000 + minor * 1000000 + patch * 10 + prerelease_add * 10 + extra * 10))"
+		: ${AAAAXY_BUILD_VERSIONCODE_ADD:=0}
+		echo "$((major * 100000000 + minor * 1000000 + patch * 10 + prerelease_add * 10 + extra * 10 + AAAAXY_BUILD_VERSIONCODE_ADD))"
 		;;
 	*)
 		echo >&2 "Unknown version type: $format."
