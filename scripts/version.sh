@@ -147,10 +147,10 @@ case "$format" in
 	semver)
 		case "$prerelease" in
 			'')
-				echo "$major.$minor.$patch+$date.$commits.$hash"
+				printf '%d.%d.%d+%s.%d.%s\n' "$major" "$minor" "$patch" "$date" "$commits" "$hash"
 				;;
 			-*)
-				echo "$major.$minor.0$prerelease.$patch+$date.$commits.$hash"
+				printf '%d.%d.0%s.%d+%s.%d.%s\n' "$major" "$minor" "$prerelease" "$patch" "$date" "$commits" "$hash"
 				;;
 			*)
 				echo >&2 "Internal error - invalid parsed prerelease version: $prerelease."
@@ -161,10 +161,10 @@ case "$format" in
 	macos|ios)
 		case "$prerelease" in
 			'')
-				echo "$major.$minor.$patch"
+				printf '%d.%d.%d\n' "$major" "$minor" "$patch"
 				;;
 			-*)
-				echo "$major.$minor.0${prerelease#-}$patch"
+				printf '%d.%d.0%s%d\n' "$major" "$minor" "${prerelease#-}" "$patch"
 				;;
 			*)
 				echo >&2 "Internal error - invalid parsed prerelease version: $prerelease."
@@ -173,15 +173,19 @@ case "$format" in
 		esac
 		;;
 	windows)
-		echo "$major.$minor.$((patch + prerelease_add)).$commits"
+		printf '%d.%d.%d.%d\n' \
+			"$major" \
+			"$minor" \
+			"$((patch + prerelease_add))" \
+			"$commits"
 		;;
 	gittag)
 		case "$prerelease" in
 			'')
-				echo "v$major.$minor.$patch"
+				printf 'v%d.%d.%d\n' "$major" "$minor" "$patch"
 				;;
 			-*)
-				echo "v$major.$minor.0$prerelease.$patch"
+				printf 'v%d.%d.0%s.%d\n' "$major" "$minor" "$prerelease" "$patch"
 				;;
 			*)
 				echo >&2 "Internal error - invalid parsed prerelease version: $prerelease."
@@ -191,16 +195,14 @@ case "$format" in
 		;;
 	android)
 		# Building an Android version code out of the semver, similar to Windows binary versions.
-		case "$major.$minor" in
-			1.2)
-				extra=1000
-				;;
-		esac
 		# <major><minor:%02d>3<patch:%04d>0
 		# Last digit forced to zero to allow F-Droid to extend for
 		# split packages.
-		: ${AAAAXY_BUILD_VERSIONCODE_ADD:=0}
-		echo "$((major * 100000000 + minor * 1000000 + patch * 10 + prerelease_add * 10 + extra * 10 + AAAAXY_BUILD_VERSIONCODE_ADD))"
+		printf '%d%02d%05d%d\n' \
+			"$major" \
+			"$minor" \
+			"$((patch + prerelease_add))" \
+			"${AAAAXY_BUILD_VERSIONCODE_ADD:-0}"
 		;;
 	*)
 		echo >&2 "Unknown version type: $format."
