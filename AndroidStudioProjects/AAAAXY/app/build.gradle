@@ -48,7 +48,7 @@ task goGenerate(type: Exec) {
     if (aaaaxy_build_use_version_file == 'true') {
         environment 'AAAAXY_BUILD_USE_VERSION_FILE', 'true'
     }
-    commandLine 'go', 'generate', '-tags', 'zip', '../../..'
+    commandLine 'go', 'generate', '-tags', aaaaxy_build_tags, '../../..'
 }
 
 task prepareLibsDir(type: Exec) {
@@ -68,7 +68,7 @@ task ebitenMobile(type: Exec) {
         '-javapkg', 'io.github.divverent.aaaaxy',
         '-o', 'libs/aaaaxy.aar',
         '-androidapi', '21',
-        '-tags', 'zip',
+        '-tags', aaaaxy_build_tags,
         '-gcflags=all=-dwarf=false',
         '-ldflags=all=-s',
         '-ldflags=all=-w',
@@ -84,7 +84,9 @@ task prepareAssetsDir(type: Exec) {
 task getAssets(type: Exec) {
     dependsOn prepareAssetsDir
     dependsOn goGenerate
-    commandLine 'cp', '--reflink=auto', '../../../aaaaxy.dat', 'src/main/assets/aaaaxy.dat'
+    if (aaaaxy_build_tags == 'zip') {
+        commandLine 'cp', '--reflink=auto', '../../../aaaaxy.dat', 'src/main/assets/aaaaxy.dat'
+    }
 }
 
 tasks.whenTaskAdded { theTask ->
