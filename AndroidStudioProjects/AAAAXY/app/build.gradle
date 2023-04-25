@@ -62,6 +62,7 @@ task ebitenMobile(type: Exec) {
     environment 'CGO_CFLAGS', '-g0 -O3'
     environment 'CGO_CXXFLAGS', '-g0 -O3'
     environment 'CGO_LDFLAGS', '-g0 -O3'
+    environment 'GO386', 'sse2'
     commandLine 'go', 'run', 'github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile', 'bind',
         '-target', 'android',
         '-javapkg', 'io.github.divverent.aaaaxy',
