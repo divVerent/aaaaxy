@@ -84,11 +84,12 @@ By default AAAAXY stores saved games in the following location:
 | Operating System |                                                  Save Games<br>Configuration                                                   |
 |:----------------:|:------------------------------------------------------------------------------------------------------------------------------:|
 |     Android      | `/sdcard/Android/data/io.github.divVerent.aaaaxy/files/save`<br>`/sdcard/Android/data/io.github.divVerent.aaaaxy/files/config` |
+|       iOS        |                        `Library/Application Support/AAAAXY/save`<br>`Library/Preferences/AAAAXY/config`                        |
 |  Linux AppImage  |                                         `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`                                          |
 |  Linux FlatPak   |          `~/.var/app/io.github.divverent.aaaaxy/data/AAAAXY`<br>`~/.var/app/io.github.divverent.aaaaxy/config/AAAAXY`          |
 |    Linux Snap    |                      `~/snap/aaaaxy/common/.local/share/AAAAXY`<br>`~/snap/aaaaxy/common/.config/AAAAXY`                       |
 |   Linux native   |                                         `~/.local/share/AAAAXY`<br>`~/.config/AAAAXY`                                          |
-|      macOS       |                            `~/Library/Application Support/AAAAXY`<br>`~/Library/Preferences/AAAAXY`                            |
+|      macOS       |                        `~/Library/Application Support/AAAAXY`<br>`~/Library/Application Support/AAAAXY`                        |
 |       Web        |                                                    `getSave(n)`<br>`get()`                                                     |
 |     Windows      |                     `C:\Users\%USERNAME%\Saved Games\AAAAXY`<br>`C:\Users\%USERNAME%\AppData\Local\AAAAXY`                     |
 |       Wine       |    `~/.wine/drive_c/users/$USER/Saved Games/AAAAXY`<br>`~/.wine/drive_c/users/$USER/Local Settings/Application Data/AAAAXY`    |
@@ -122,6 +123,17 @@ Similarly, to restore it, first launch the AAAAXY app, quit it again,
 and then run:
 
     adb push aaaaxy-save-0.json /sdcard/Android/data/io.github.divVerent.aaaaxy/files/save/save-0.json
+
+On iOS, the file path above can be reached using
+[iExplorer](https://macroplant.com/iexplorer) from macOS and Windows,
+and using [ifuse](https://github.com/libimobiledevice/ifuse) from Linux
+like this:
+
+    mkdir -p ~/mnt
+    ifuse --container io.github.divverent.aaaaxy ~/mnt
+    cp ~/mnt/Library/Application\ Support/AAAAXY/save/save-0.json aaaaxy-save-0.json
+    # or: cp aaaaxy-save-0.json ~/mnt/Library/Application\ Support/AAAAXY/save/save-0.json
+    fusermount -u ~/mnt
 
 ### Save States
 
