@@ -48,6 +48,9 @@ task goGenerate(type: Exec) {
     if (aaaaxy_build_use_version_file == 'true') {
         environment 'AAAAXY_BUILD_USE_VERSION_FILE', 'true'
     }
+    if (aaaaxy_build_versioncode_add != '') {
+        environment 'AAAAXY_BUILD_VERSIONCODE_ADD', aaaaxy_build_versioncode_add
+    }
     commandLine 'go', 'generate', '-tags', aaaaxy_build_tags, '../../..'
 }
 
