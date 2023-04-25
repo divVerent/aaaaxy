@@ -214,15 +214,19 @@ func touchInit() error {
 }
 
 func touchDraw(screen *ebiten.Image) {
-	if !touchEditPad {
-		if !touchShowPad {
-			return
-		}
-		if !*touchForce && touchPadFrame <= 0 {
-			return
-		}
+	if touchEditPad {
+		return
 	}
-	touchEditDraw(screen)
+	if !touchShowPad {
+		return
+	}
+	if !*touchForce && touchPadFrame <= 0 {
+		return
+	}
+	touchPadDraw(screen)
+}
+
+func touchPadDraw(screen *ebiten.Image) {
 	for _, i := range impulses {
 		r := i.touchRect
 		if r == nil {

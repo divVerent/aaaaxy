@@ -380,6 +380,10 @@ func Draw(screen *ebiten.Image) {
 	touchDraw(screen)
 }
 
+func DrawEditor(screen *ebiten.Image) {
+	touchEditDraw(screen)
+}
+
 func ExitPressed() {
 	Exit.externallyPressed = true
 }

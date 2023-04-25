@@ -26,6 +26,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/image"
+	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -458,6 +459,9 @@ func (r *renderer) Draw(screen *ebiten.Image, blurFactor float64) {
 		timing.Section("dispose")
 		offscreen.Dispose(off)
 	}
+
+	timing.Section("input")
+	input.Draw(screen)
 
 	timing.Section("centerprint")
 	centerprint.Draw(screen)

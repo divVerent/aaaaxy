@@ -73,6 +73,7 @@ func (s *TouchEditScreen) Update() error {
 }
 
 func (s *TouchEditScreen) Draw(screen *ebiten.Image) {
+	input.DrawEditor(screen)
 	fgs := palette.EGA(palette.Yellow, 255)
 	bgs := palette.EGA(palette.Black, 255)
 	fgn := palette.EGA(palette.LightGrey, 255)

@@ -437,9 +437,6 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	timing.Section("menu")
 	g.Menu.Draw(drawDest)
 
-	timing.Section("input")
-	input.Draw(drawDest)
-
 	timing.Section("global_overlays")
 	if *showFPS {
 		timing.Section("fps")

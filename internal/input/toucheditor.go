@@ -309,6 +309,7 @@ func touchEditDraw(screen *ebiten.Image) {
 			ebitenutil.DrawRect(screen, float64(x*gridSize+1), float64(y*gridSize+1), 6, 6, gridColor)
 		}
 	}
+	touchPadDraw(screen)
 }
 
 func touchSetEditor(want bool) {
