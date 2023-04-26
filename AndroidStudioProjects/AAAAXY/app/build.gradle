@@ -89,6 +89,8 @@ task getAssets(type: Exec) {
     dependsOn goGenerate
     if (aaaaxy_build_tags == 'zip') {
         commandLine 'cp', '--reflink=auto', '../../../aaaaxy.dat', 'src/main/assets/aaaaxy.dat'
+    } else {
+        commandLine 'rm', '-f', 'src/main/assets/aaaaxy.dat'
     }
 }
 
