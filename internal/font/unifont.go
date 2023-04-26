@@ -15,6 +15,7 @@
 package font
 
 import (
+	"compress/gzip"
 	"fmt"
 	"io"
 
@@ -24,9 +25,14 @@ import (
 )
 
 func initUnifont() error {
-	unifontHandle, err := vfs.Load("fonts", "unifont-15.0.01.bdf")
+	unifontRawHandle, err := vfs.Load("fonts", "unifont-15.0.01.bdf.gz")
 	if err != nil {
 		return fmt.Errorf("could not open unifont: %w", err)
+	}
+	defer unifontRawHandle.Close()
+	unifontHandle, err := gzip.NewReader(unifontRawHandle)
+	if err != nil {
+		return fmt.Errorf("could not decompress unifont: %w", err)
 	}
 	defer unifontHandle.Close()
 	unifontData, err := io.ReadAll(unifontHandle)
