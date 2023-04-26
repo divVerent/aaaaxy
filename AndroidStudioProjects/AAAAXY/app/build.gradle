@@ -12,7 +12,9 @@ android {
         minSdk 27  // For now, restrict to newer devices.
         targetSdk 33
         def rootDir = new File("${project.rootDir}/../..")
-        def prefix = aaaaxy_build_use_version_file == 'true' ? 'env AAAAXY_BUILD_USE_VERSION_FILE=true ' : ''
+        def prefix =
+          (aaaaxy_build_use_version_file == 'true' ? 'env AAAAXY_BUILD_USE_VERSION_FILE=true ' : '') +
+          (aaaaxy_build_versioncode_add != '' ? 'env AAAAXY_BUILD_VERSIONCODE_ADD=' + aaaaxy_build_versioncode_add + ' ' : '')
         versionCode "${prefix}scripts/version.sh android".execute(null, rootDir).text.trim().toInteger()
         versionName "${prefix}scripts/version.sh semver".execute(null, rootDir).text.trim()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
