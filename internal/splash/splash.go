@@ -19,10 +19,12 @@ import (
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 var (
 	loadingScreen                = flag.Bool("loading_screen", true, "show a detailed loading screen")
+	debugLogLoading              = flag.Int("debug_log_loading", false, "log each loading step")
 	debugLoadingScreenSkipFrames = flag.Int("debug_loading_screen_skip_frames", flag.SystemDefault(map[string]int{
 		"windows/*": 1, // Direct3D seems to delay by one frame.
 		"*/*":       0,
@@ -74,7 +76,13 @@ func (s *State) ProvideFractions(fractions map[string]float64) {
 func RunImmediately(errPrefix string, f func(s *State) (Status, error)) (Status, error) {
 	// Simpler implementation that never updates the loading screen and does all init in one frame.
 	for {
+		if *debugLogLoading {
+			log.Infof("loading: entering step: %v", errPrefix)
+		}
 		status, err := f(nil)
+		if *debugLogLoading {
+			log.Infof("loading: leaving step with status %v: %v: %v", status, errPrefix, err)
+		}
 		if err != nil {
 			return EndFrame, fmt.Errorf("%v: %w", errPrefix, err)
 		}
@@ -122,7 +130,13 @@ func (s *State) Enter(step string, stepName string, errPrefix string, f func(s *
 		s.skipFrames = *debugLoadingScreenSkipFrames
 		return EndFrame, nil
 	}
+	if *debugLogLoading {
+		log.Infof("loading: entering step: %v", errPrefix)
+	}
 	status, err := f(s)
+	if *debugLogLoading {
+		log.Infof("loading: leaving step with status %v: %v: %v", status, errPrefix, err)
+	}
 	if err != nil {
 		return EndFrame, fmt.Errorf("%v: %w", errPrefix, err)
 	}
