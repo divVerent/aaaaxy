@@ -24,7 +24,7 @@ import (
 
 var (
 	loadingScreen                = flag.Bool("loading_screen", true, "show a detailed loading screen")
-	debugLogLoading              = flag.Int("debug_log_loading", false, "log each loading step")
+	debugLogLoading              = flag.Bool("debug_log_loading", false, "log each loading step")
 	debugLoadingScreenSkipFrames = flag.Int("debug_loading_screen_skip_frames", flag.SystemDefault(map[string]int{
 		"windows/*": 1, // Direct3D seems to delay by one frame.
 		"*/*":       0,
