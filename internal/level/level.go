@@ -732,7 +732,7 @@ func (l *Loader) Level() *Level {
 }
 
 func (l *Loader) Load() (*Level, error) {
-	_, err := splash.RunImmediately("loading level", l.LoadStepwise)
+	_, err := splash.RunImmediately("loading level", "loading level", l.LoadStepwise)
 	return l.level, err
 }
 
