@@ -52,18 +52,16 @@ type Level struct {
 
 // Tile returns the tile at the given position.
 func (l *Level) Tile(pos m.Pos) *LevelTile {
-	i := pos.X + pos.Y*l.width
-	t := &l.tiles[i]
+	t := &l.tiles[l.tilePos(pos)]
 	if !t.Valid {
 		return nil
 	}
 	return t
 }
 
-// setTile sets the tile at the given position.
-func (l *Level) setTile(pos m.Pos, t *LevelTile) {
-	i := pos.X + pos.Y*l.width
-	l.tiles[i] = *t
+// tilePos sets the tile at the given position. Should be used to set a tile.
+func (l *Level) tilePos(pos m.Pos) int {
+	return pos.X + pos.Y*l.width
 }
 
 // ForEachTile iterates over all tiles in the level.
@@ -453,7 +451,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		if err != nil {
 			return nil, fmt.Errorf("invalid map: %w", err)
 		}
-		level.setTile(pos, &LevelTile{
+		level.tiles[level.tilePos(pos)] = LevelTile{
 			Tile: Tile{
 				Contents:              contents,
 				LevelPos:              pos,
@@ -462,7 +460,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				Orientation:           orientation,
 			},
 			Valid: true,
-		})
+		}
 	}
 	type RawWarpZone struct {
 		StartTile, EndTile m.Pos
