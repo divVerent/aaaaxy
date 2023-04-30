@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8293">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8294">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -6800,7 +6800,7 @@
   </object>
   <object id="1747" type="SetState" x="6304" y="7760" width="16" height="128">
    <properties>
-    <property name="target" value="NotThatSimpleExit"/>
+    <property name="target" value="NotThatSimpleExit EscapeButton"/>
    </properties>
   </object>
   <object id="1749" name="NotThatSimpleExit" type="SwitchableSprite" gid="26" x="6336" y="7792" width="16" height="64"/>
@@ -18359,5 +18359,6 @@
   <object id="8290" gid="301" x="7184" y="2432" width="16" height="16"/>
   <object id="8291" gid="301" x="7136" y="2384" width="16" height="16"/>
   <object id="8292" gid="301" x="7232" y="2384" width="16" height="16"/>
+  <object id="8293" name="EscapeButton" type="ExitButton" x="6248" y="7792" width="64" height="64"/>
  </objectgroup>
 </map>
