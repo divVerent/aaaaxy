@@ -387,3 +387,7 @@ func DrawEditor(screen *ebiten.Image) {
 func ExitPressed() {
 	Exit.externallyPressed = true
 }
+
+func SetActionButtonAvailable(avail bool) {
+	actionButtonAvailable = avail
+}

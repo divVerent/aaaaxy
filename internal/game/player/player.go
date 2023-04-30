@@ -175,6 +175,8 @@ func (p *Player) GiveAbility(name, text string) {
 		return
 	}
 
+	p.setActionButtonAvailable()
+
 	err := p.World.Save()
 	if err != nil {
 		log.Errorf("could not save game: %v", err)
@@ -277,6 +279,11 @@ func accelerate(vel *int, accel, max, dir int) {
 func friction(vel *int, friction int) {
 	accelerate(vel, friction, 0, +1)
 	accelerate(vel, friction, 0, -1)
+}
+
+func (p *Player) setActionButtonAvailable() {
+	wantButton := p.HasAbility("carry") || p.HasAbility("push") || p.HasAbility("control")
+	input.SetActionButtonAvailable(wantButton)
 }
 
 func (p *Player) Update() {
@@ -488,6 +495,7 @@ func (p *Player) Respawned() {
 	p.Entity.Orientation = m.FlipX()       // Default to looking right.
 	p.Goal = nil                           // Normal input.
 	p.JustSpawned = true                   // Just respawned.
+	p.setActionButtonAvailable()           // Update abilities.
 }
 
 func (p *Player) ActionPressed() bool {

@@ -54,13 +54,14 @@ type touchInfo struct {
 }
 
 var (
-	touchUsePad   bool
-	touchShowPad  bool
-	touches       = map[ebiten.TouchID]*touchInfo{}
-	touchIDs      []ebiten.TouchID
-	touchHoverPos m.Pos
-	touchPadFrame int
-	touchPadUsed  bool = false
+	touchUsePad           bool
+	touchShowPad          bool
+	touches               = map[ebiten.TouchID]*touchInfo{}
+	touchIDs              []ebiten.TouchID
+	touchHoverPos         m.Pos
+	touchPadFrame         int
+	touchPadUsed          bool = false
+	actionButtonAvailable bool = false
 )
 
 func touchCancelClicks() {
@@ -241,7 +242,7 @@ func touchPadDraw(screen *ebiten.Image) {
 			Filter:        ebiten.FilterNearest,
 		}
 		if r.Size.IsZero() {
-			if !i.Held {
+			if !i.Held || !actionButtonAvailable {
 				continue
 			}
 			w, h := screen.Size()
