@@ -18,6 +18,7 @@ import (
 	"fmt"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/colorm"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -30,14 +31,15 @@ var (
 )
 
 func blurPassFixedFunction(img, out *ebiten.Image, mode ebiten.Blend, dx, dy int, scale, darken float64) {
-	opts := ebiten.DrawImageOptions{
+	opts := colorm.DrawImageOptions{
 		Blend:  mode,
 		Filter: ebiten.FilterNearest,
 	}
-	opts.ColorM.Scale(1, 1, 1, scale)
-	opts.ColorM.Translate(-darken, -darken, -darken, 0)
+	var colorM colorm.ColorM
+	colorM.Scale(1, 1, 1, scale)
+	colorM.Translate(-darken, -darken, -darken, 0)
 	opts.GeoM.Translate(float64(dx), float64(dy))
-	out.DrawImage(img, &opts)
+	colorm.DrawImage(out, img, colorM, &opts)
 }
 
 func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale, darken float64) {
@@ -123,24 +125,30 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 			if scale == 1.0 && darken == 0.0 {
 				return
 			}
-			options := &ebiten.DrawImageOptions{
+			copyOptions := &ebiten.DrawImageOptions{
 				Blend:  ebiten.BlendCopy,
 				Filter: ebiten.FilterNearest,
 			}
 			tmp := offscreen.New(name, sz.X, sz.Y)
 			defer offscreen.Dispose(tmp)
-			tmp.DrawImage(img, options)
-			options.ColorM.Scale(scale, scale, scale, 1.0)
-			options.ColorM.Translate(-darken, -darken, -darken, 0.0)
-			out.DrawImage(tmp, options)
-		} else {
-			options := &ebiten.DrawImageOptions{
+			tmp.DrawImage(img, copyOptions)
+			options := &colorm.DrawImageOptions{
 				Blend:  ebiten.BlendCopy,
 				Filter: ebiten.FilterNearest,
 			}
-			options.ColorM.Scale(scale, scale, scale, 1.0)
-			options.ColorM.Translate(-darken, -darken, -darken, 0.0)
-			out.DrawImage(img, options)
+			var colorM colorm.ColorM
+			colorM.Scale(scale, scale, scale, 1.0)
+			colorM.Translate(-darken, -darken, -darken, 0.0)
+			colorm.DrawImage(out, tmp, colorM, options)
+		} else {
+			options := &colorm.DrawImageOptions{
+				Blend:  ebiten.BlendCopy,
+				Filter: ebiten.FilterNearest,
+			}
+			var colorM colorm.ColorM
+			colorM.Scale(scale, scale, scale, 1.0)
+			colorM.Translate(-darken, -darken, -darken, 0.0)
+			colorm.DrawImage(out, img, colorM, options)
 		}
 		return
 	}
