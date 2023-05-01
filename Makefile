@@ -82,7 +82,7 @@ clean:
 .PHONY: vet
 vet:
 	$(GO) vet ./...
-	$(GO) run honnef.co/go/tools/cmd/staticcheck ./...
+	$(GO) run honnef.co/go/tools/cmd/staticcheck@latest ./...
 	# TODO make it bail out when something is found.
 	gofmt -d -s $(SOURCES)
 	gofmt -d -r 'fmt.Sprintf(s) -> s' $(SOURCES)
@@ -91,7 +91,6 @@ vet:
 .PHONY: mod-tidy
 mod-tidy:
 	$(GO) mod tidy -compat=1.19 -go=1.19
-	$(GO) get honnef.co/go/tools/cmd/staticcheck@latest
 
 .PHONY: mod-update
 mod-update:
