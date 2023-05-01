@@ -520,8 +520,8 @@ func ensureRect(img *ebiten.Image, rect go_image.Rectangle) *ebiten.Image {
 		return img
 	}
 	ret := img.SubImage(rect).(*ebiten.Image)
-	if ret.Bounds().Min != (go_image.Point{}) {
-		log.Fatalf("could not ensure zero origin: %v", ret.Bounds())
+	if ret.Bounds().Min != rect.Min {
+		log.Fatalf("could not ensure rect origin: got %v, want %v", ret.Bounds(), rect.Min)
 	}
 	return ret
 }

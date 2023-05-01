@@ -141,9 +141,6 @@ func (f *ForceField) Update() {
 			Y: yOffset + wantH,
 		},
 	}).(*ebiten.Image)
-	if f.Entity.Image.Bounds().Min != (go_image.Point{}) {
-		log.Fatalf("could not ensure zero origin: %v", f.Entity.Image.Bounds())
-	}
 
 	// Regular updating.
 	f.NonSolidTouchable.Update()
