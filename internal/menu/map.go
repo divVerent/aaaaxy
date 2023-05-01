@@ -388,8 +388,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					}
 				}
 				options := &ebiten.DrawTrianglesOptions{
-					Blend:  ebiten.BlendSourceOver,
-					Filter: ebiten.FilterNearest,
+					Blend:     ebiten.BlendSourceOver,
+					Filter:    ebiten.FilterNearest,
+					AntiAlias: true,
 				}
 				geoM := &ebiten.GeoM{}
 				geoM.Scale(0, 0)
