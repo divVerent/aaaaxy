@@ -87,6 +87,10 @@ vet:
 	gofmt -d -r 'fmt.Sprintf(s) -> s' $(SOURCES)
 	gofmt -d -r 'fmt.Errorf(s) -> errors.New(s)' $(SOURCES)
 
+.PHONY: staticcheck
+staticcheck:
+	$(GO) run honnef.co/go/tools/cmd/staticcheck@latest ./...
+
 .PHONY: mod-tidy
 mod-tidy:
 	$(GO) mod tidy -compat=1.19 -go=1.19
