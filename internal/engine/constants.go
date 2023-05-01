@@ -29,8 +29,6 @@ const (
 
 	// sweepStep is the distance between visibility traces in pixels. Lower means worse performance.
 	sweepStep = 4
-	// numSweepTraces is the number of sweep operations we need.
-	numSweepTraces = 2 * (GameWidth + GameHeight) / sweepStep
 	// expandSize is the amount of pixels to expand the visible area by.
 	expandSize = 7
 	// blurSize is the amount of pixels to blur the visible area by.

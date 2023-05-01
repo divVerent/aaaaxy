@@ -43,9 +43,6 @@ type State struct {
 	// knownFractions are the known progress bar fractions for each step as loaded.
 	knownFractions map[string]float64
 
-	// started is when the first init step started.
-	started time.Time
-
 	// startTimes are the actual start times of each step.
 	startTimes map[string]time.Time
 

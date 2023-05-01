@@ -27,10 +27,6 @@ import (
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
-var (
-	initialCP = flag.String("initial_cp", "leap_of_faith", "Name of the initial checkpoint to base the layout on.")
-)
-
 type (
 	Edge struct {
 		WantDelta m.Delta

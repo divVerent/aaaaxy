@@ -111,9 +111,6 @@ var (
 
 	// Last mouse/finger click/release pos, if any.
 	clickPos *m.Pos
-
-	// Force back button pressed for next frame.
-	backPressed bool
 )
 
 func (i *impulse) register() *impulse {

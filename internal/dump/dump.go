@@ -79,8 +79,7 @@ const (
 )
 
 var (
-	dumpVideoFrame int64 = 0
-	dumpVideoWg    sync.WaitGroup
+	dumpVideoWg sync.WaitGroup
 )
 
 func InitEarly(p Params) error {

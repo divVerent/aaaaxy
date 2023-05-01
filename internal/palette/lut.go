@@ -164,16 +164,6 @@ func (p *Palette) lookupNearest(c rgb) int {
 	return bestI
 }
 
-func (p *Palette) nearestTwoChoices() (int, int, int) {
-	nI := p.protected
-	if nI <= 0 || nI >= p.size {
-		nI = p.size - 1
-	}
-	nJMin := p.size - nI
-	nJMax := p.size - 1
-	return nI, nJMin, nJMax
-}
-
 func (p *Palette) tryValuePair(c rgb, i, j int, bestI, bestJ *int, bestS *float64) {
 	c0 := p.lookup(i)
 	c1 := p.lookup(j)
@@ -557,16 +547,6 @@ func sizeHalftone(size int) (sizeSquare int, scale, offset float64) {
 	offset = 0.5 / float64(sizeSquare)
 	scale = 1.0 / float64(sizeSquare)
 	return
-}
-
-func clamp(a, mi, ma float64) float64 {
-	if a < mi {
-		return mi
-	}
-	if a > ma {
-		return ma
-	}
-	return a
 }
 
 // BayerPattern computes the Bayer pattern for this palette.

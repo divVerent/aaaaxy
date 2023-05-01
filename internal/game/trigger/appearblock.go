@@ -30,8 +30,6 @@ type AppearBlock struct {
 	AnimFrame int
 }
 
-var count int = 0
-
 const (
 	AppearFrames         = 16
 	AppearXDistance      = 2 * level.TileSize

@@ -45,6 +45,9 @@ func initLinguas() error {
 	}
 	defer data.Close()
 	buf, err := io.ReadAll(data)
+	if err != nil {
+		log.Errorf("could not read LINGUAS file: %v", err)
+	}
 	for _, line := range bytes.Split(buf, []byte{'\n'}) {
 		if len(line) == 0 || line[0] == '#' {
 			continue

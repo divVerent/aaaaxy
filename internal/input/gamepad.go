@@ -114,10 +114,6 @@ var (
 )
 
 var (
-	// gamepadInvAxisOnThreshold is 1.0 divided by the variable gamepadAxisOnThreshold. Done to save a division for every axis test.
-	gamepadInvAxisOnThreshold float64
-	// gamepadInvAxisOffThreshold is 1.0 divided by the variable gamepadAxisOffThreshold. Done to save a division for every axis test.
-	gamepadInvAxisOffThreshold float64
 	// gamepads is the set of currently active gamepads. The boolean value should always be true, except during rescanning, where it's set to false temporarily to detect removed gamepads.
 	gamepads = map[ebiten.GamepadID]struct{}{}
 	// allGamepads is the set of all gamepads, even unsupported ones.
