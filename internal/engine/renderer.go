@@ -20,6 +20,7 @@ import (
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/colorm"
 	"github.com/hajimehoshi/ebiten/v2/vector"
 
 	"github.com/divVerent/aaaaxy/internal/centerprint"
@@ -156,14 +157,13 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 			log.Errorf("could not load already cached image %q for tile: %v", tile.ImageSrc, err)
 			return
 		}
-		opts := ebiten.DrawImageOptions{
-			// Note: could be CompositeModeCopy, but that can't be merged with entities pass.
+		opts := colorm.DrawImageOptions{
+			// Note: could be BlendCopy, but that can't be merged with entities pass.
 			Blend:  ebiten.BlendSourceOver,
 			Filter: ebiten.FilterNearest,
 		}
 		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, tile.Orientation, 1.0, 0.0)
-		opts.ColorM = r.world.GlobalColorM
-		screen.DrawImage(img, &opts)
+		colorm.DrawImage(screen, img, r.world.GlobalColorM, &opts)
 	})
 }
 
@@ -176,7 +176,7 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurF
 					return nil
 				}
 				screenPos := ent.Rect.Origin.Add(scrollDelta).Add(ent.RenderOffset)
-				opts := ebiten.DrawImageOptions{
+				opts := colorm.DrawImageOptions{
 					Blend:  ebiten.BlendSourceOver,
 					Filter: ebiten.FilterNearest,
 				}
@@ -192,11 +192,12 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurF
 					alphaFactor = 1.0 - blurFactor
 				}
 				setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation, sizeFactor, angle)
-				opts.ColorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.ColorMod[3])
-				opts.ColorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], ent.ColorAdd[3])
-				opts.ColorM.Scale(1.0, 1.0, 1.0, ent.Alpha*alphaFactor)
-				opts.ColorM.Concat(r.world.GlobalColorM)
-				screen.DrawImage(ent.Image, &opts)
+				var colorM colorm.ColorM
+				colorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.ColorMod[3])
+				colorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], ent.ColorAdd[3])
+				colorM.Scale(1.0, 1.0, 1.0, ent.Alpha*alphaFactor)
+				colorM.Concat(r.world.GlobalColorM)
+				colorm.DrawImage(screen, ent.Image, colorM, &opts)
 				return nil
 			})
 		}

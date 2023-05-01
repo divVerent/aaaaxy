@@ -22,6 +22,7 @@ import (
 	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/colorm"
 
 	"github.com/divVerent/aaaaxy/internal/centerprint"
 	"github.com/divVerent/aaaaxy/internal/demo"
@@ -81,7 +82,7 @@ type World struct {
 	// ForceCredits is set when we want to jump to credits.
 	ForceCredits bool
 	// GlobalColorM is a color matrix to apply to everything. Reset on every frame.
-	GlobalColorM ebiten.ColorM
+	GlobalColorM colorm.ColorM
 
 	// Properties that can in theory be regenerated from the above and thus do not
 	// need serialization support.

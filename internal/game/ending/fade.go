@@ -18,7 +18,7 @@ import (
 	"image/color"
 	"time"
 
-	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/colorm"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
@@ -33,7 +33,7 @@ type FadeTarget struct {
 	Frame  int
 	State  bool
 
-	ColorM ebiten.ColorM
+	ColorM colorm.ColorM
 }
 
 func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
@@ -50,7 +50,7 @@ func (f *FadeTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 	// We want a color matrix that maps A1 to A'1, B1 to B'1, C1 to C'1, D1 to D'1.
 	// So we build two color matrices - fromM maps a pentahedron to 0 A0 B0 C0 D0, toM maps the same pentahedron to 0 A' B' C' D'.
 	// Then toM * fromM^-1 will be what we need.
-	var fromM, toM ebiten.ColorM
+	var fromM, toM colorm.ColorM
 
 	c := propmap.ValueP(sp.Properties, "from_color_a", color.NRGBA{}, &parseErr)
 	fromM.SetElement(0, 0, float64(c.R)/255.0)
@@ -127,7 +127,7 @@ func (f *FadeTarget) Update() {
 	factor := 1.0 - float64(f.Frame)/float64(f.Frames) // Is 1.0 in the last execution.
 
 	// Linearly interpolate the matrix.
-	var colorM ebiten.ColorM
+	var colorM colorm.ColorM
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 4; j++ {
 			identity := 0.0
