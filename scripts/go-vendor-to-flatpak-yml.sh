@@ -64,7 +64,7 @@ while read -r command pkg ver _ replacementpkg replacementver; do
 		golang.org/x/*)
 			# These modules don't use their real git URL.
 			# Must be some special handling in "go get".
-			url=https://go.googlesource.com/${pkg##*/}
+			url=https://go.googlesource.com/${pkg##golang.org/x/}
 			;;
 		*)
 			url=https://$pkg
