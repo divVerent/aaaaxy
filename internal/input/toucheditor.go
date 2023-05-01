@@ -16,7 +16,7 @@ package input
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
+	"github.com/hajimehoshi/ebiten/v2/vector"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -291,9 +291,9 @@ func touchEditDraw(screen *ebiten.Image) {
 			continue
 		}
 		boxColor := palette.EGA(palette.White, 255)
-		ebitenutil.DrawRect(screen, float64(i.touchRect.Origin.X), float64(i.touchRect.Origin.Y), float64(i.touchRect.Size.DX), float64(i.touchRect.Size.DY), boxColor)
+		vector.DrawFilledRect(screen, float32(i.touchRect.Origin.X), float32(i.touchRect.Origin.Y), float32(i.touchRect.Size.DX), float32(i.touchRect.Size.DY), boxColor, false)
 		innerColor := palette.EGA(palette.DarkGrey, 255)
-		ebitenutil.DrawRect(screen, float64(i.touchRect.Origin.X+1), float64(i.touchRect.Origin.Y+1), float64(i.touchRect.Size.DX-2), float64(i.touchRect.Size.DY-2), innerColor)
+		vector.DrawFilledRect(screen, float32(i.touchRect.Origin.X+1), float32(i.touchRect.Origin.Y+1), float32(i.touchRect.Size.DX-2), float32(i.touchRect.Size.DY-2), innerColor, false)
 	}
 	gridColor := palette.EGA(palette.LightGrey, 32)
 	w, h := screen.Size()
@@ -306,7 +306,7 @@ func touchEditDraw(screen *ebiten.Image) {
 			if touchReservedArea.Delta(r).IsZero() {
 				continue
 			}
-			ebitenutil.DrawRect(screen, float64(x*gridSize+1), float64(y*gridSize+1), 6, 6, gridColor)
+			vector.DrawFilledRect(screen, float32(x*gridSize+1), float32(y*gridSize+1), 6, 6, gridColor, false)
 		}
 	}
 	touchPadDraw(screen)
