@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 10:57-0400\n"
+"POT-Creation-Date: 2023-04-30 20:31-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
-"Language-Team: Chinese Simplified (https://www.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
+"Language-Team: Chinese Simplified (https://app.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -476,8 +476,8 @@ msgid "Turtles All the Way In"
 msgstr "乌龟一直到底"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1306]
-msgid "Some things just aren't that simple."
-msgstr "有些事情没那么简单。"
+msgid "Some things just aren't that simple. Press {{ExitButton}}."
+msgstr "有些事情没那么简单。按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1321]
 msgid "It's turtles all the way in."
@@ -1437,8 +1437,10 @@ msgstr "哈哈哈！"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8235]
 msgid ""
 "Let's put weird and weird together,{{BR}}and make it even "
-"weirder!{{BR}}Weird, weird space{{BR}}is super-weird!"
-msgstr "让我们把奇怪加上奇怪，{{BR}}就等于更奇怪了！{{BR}}奇怪，奇怪的空间{{BR}}超级奇怪啊！"
+"weirder!{{BR}}Weird, weird space{{BR}}is super-weird!{{BR}}{{BR}}Press "
+"{{ExitButton}}."
+msgstr ""
+"让我们把奇怪加上奇怪，{{BR}}就等于更奇怪了！{{BR}}奇怪，奇怪的空间{{BR}}超级奇怪啊！{{BR}}{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8246]
 msgid "4 ..."
