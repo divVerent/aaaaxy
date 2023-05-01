@@ -3,28 +3,28 @@ module github.com/divVerent/aaaaxy
 go 1.19
 
 require (
-	github.com/Microsoft/go-winio v0.6.0
+	github.com/Microsoft/go-winio v0.6.1
 	github.com/adrg/xdg v0.4.0
 	github.com/akavel/rsrc v0.10.2
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/google/go-cmp v0.5.9
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.5.1
+	github.com/hajimehoshi/ebiten/v2 v2.5.3
 	github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
 	github.com/leonelquinteros/gotext v1.5.2
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/ncruces/zenity v0.10.6
+	github.com/ncruces/zenity v0.10.8
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.7.0
-	golang.org/x/mobile v0.0.0-20230301163155-e0f57694e12c
+	golang.org/x/mobile v0.0.0-20230427221453-e8d11dd0ba41
 	golang.org/x/sys v0.7.0
 	golang.org/x/text v0.9.0
 )
 
 require (
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
-	github.com/ebitengine/purego v0.4.0-alpha.2 // indirect
+	github.com/ebitengine/purego v0.4.0-alpha.4 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20221017161538-93cebf72946b // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
@@ -68,4 +68,4 @@ require (
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
 
 // update-ebitengine-fork.sh changes:
-replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.1-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe
+replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.3-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe
