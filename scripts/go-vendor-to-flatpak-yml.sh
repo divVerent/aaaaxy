@@ -58,12 +58,6 @@ while read -r command pkg ver _ replacementpkg replacementver; do
 			pkg=$(echo "$pkg" | cut -d / -f 1-3)
 			dir=$(echo "$dir" | cut -d / -f 1-3)
 			;;
-		golang.org/x/exp/*)
-			# Cut off subdirectory paths.
-			# typeparams seems to use that.
-			pkg=$(echo "$pkg" | cut -d / -f 1-3)
-			dir=$(echo "$dir" | cut -d / -f 1-3)
-			;;
 	esac
 	url=https://$pkg
 	case "$pkg" in
