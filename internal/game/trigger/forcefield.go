@@ -125,12 +125,12 @@ func (f *ForceField) Update() {
 
 	// Set image to random subsection.
 	// Need to take orientation into account to do that.
-	gotW, gotH := f.SourceImg.Size()
+	got := f.SourceImg.Bounds().Size()
 	wantW, wantH := f.Entity.Rect.Size.DX, f.Entity.Rect.Size.DY
 	if f.Entity.Orientation.Right.DX == 0 {
 		wantW, wantH = wantH, wantW
 	}
-	xOffset, yOffset := rand.Intn(gotW-wantW+1), rand.Intn(gotH-wantH+1)
+	xOffset, yOffset := rand.Intn(got.X-wantW+1), rand.Intn(got.Y-wantH+1)
 	f.Entity.Image = f.SourceImg.SubImage(go_image.Rectangle{
 		Min: go_image.Point{
 			X: xOffset,
@@ -141,6 +141,9 @@ func (f *ForceField) Update() {
 			Y: yOffset + wantH,
 		},
 	}).(*ebiten.Image)
+	if f.Entity.Image.Bounds().Min != (go_image.Point{}) {
+		log.Fatalf("could not ensure zero origin: %v", f.Entity.Image.Bounds())
+	}
 
 	// Regular updating.
 	f.NonSolidTouchable.Update()

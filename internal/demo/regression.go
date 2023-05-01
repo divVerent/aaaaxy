@@ -109,8 +109,8 @@ func regressionPostDrawFrame(screen *ebiten.Image) {
 
 	// Duplicate screen.
 	// This isn't just NewImageFromImage as we want to remove the alpha channel to get a proper screenshot.
-	w, h := screen.Size()
-	dup := offscreen.New("RegressionDumpFrame", w, h)
+	sz := screen.Bounds().Size()
+	dup := offscreen.New("RegressionDumpFrame", sz.X, sz.Y)
 	defer offscreen.Dispose(dup)
 	dup.Fill(color.Gray{0})
 	dup.DrawImage(screen, &ebiten.DrawImageOptions{
@@ -121,7 +121,7 @@ func regressionPostDrawFrame(screen *ebiten.Image) {
 	text := strings.Join(regressions, "\n")
 	bounds := font.ByName["Small"].BoundString(text)
 	font.ByName["Small"].Draw(dup, text, m.Pos{
-		X: w / 2,
+		X: sz.X / 2,
 		Y: -bounds.Origin.Y,
 	}, font.Center, color.Gray{0}, color.Gray{255})
 

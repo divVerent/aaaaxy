@@ -180,8 +180,8 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurF
 					Blend:  ebiten.BlendSourceOver,
 					Filter: ebiten.FilterNearest,
 				}
-				w, h := ent.Image.Size()
-				imageSize := m.Delta{DX: w, DY: h}
+				sz := ent.Image.Bounds().Size()
+				imageSize := m.Delta{DX: sz.X, DY: sz.Y}
 				sizeFactor := 1.0
 				angle := 0.0
 				alphaFactor := 1.0

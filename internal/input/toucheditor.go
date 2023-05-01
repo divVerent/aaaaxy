@@ -296,9 +296,9 @@ func touchEditDraw(screen *ebiten.Image) {
 		vector.DrawFilledRect(screen, float32(i.touchRect.Origin.X+1), float32(i.touchRect.Origin.Y+1), float32(i.touchRect.Size.DX-2), float32(i.touchRect.Size.DY-2), innerColor, false)
 	}
 	gridColor := palette.EGA(palette.LightGrey, 32)
-	w, h := screen.Size()
-	for x := 0; x < w/gridSize; x++ {
-		for y := 0; y < h/gridSize; y++ {
+	sz := screen.Bounds().Size()
+	for x := 0; x < sz.X/gridSize; x++ {
+		for y := 0; y < sz.Y/gridSize; y++ {
 			r := m.Rect{
 				Origin: m.Pos{X: x * gridSize, Y: y * gridSize},
 				Size:   m.Delta{DX: 8, DY: 8},

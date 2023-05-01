@@ -47,13 +47,13 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 		size--
 	}
 
-	w, h := img.Size()
+	sz := img.Bounds().Size()
 
 	if offscreen.AvoidReuse() {
 		src := img // Only in first pass. Otherwise it is a temp image.
 		for size > 1 {
 			size /= 2
-			tmp := offscreen.New(fmt.Sprintf("%s.Horiz.%d", name, size), w, h)
+			tmp := offscreen.New(fmt.Sprintf("%s.Horiz.%d", name, size), sz.X, sz.Y)
 			blurPassFixedFunction(src, tmp, ebiten.BlendCopy, -size, 0, 0.5, 0)
 			blurPassFixedFunction(src, tmp, ebiten.BlendLighter, size, 0, 0.5, 0)
 			if src != img {
@@ -65,7 +65,7 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 			dstDarken := 0.0
 			if size > 1 {
 				// Not last pass.
-				dst = offscreen.New(fmt.Sprintf("%s.Vert.%d", name, size), w, h)
+				dst = offscreen.New(fmt.Sprintf("%s.Vert.%d", name, size), sz.X, sz.Y)
 			} else {
 				// Last pass.
 				dstScale *= scale
@@ -78,7 +78,7 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 			src = dst
 		}
 	} else {
-		tmp := offscreen.New(name, w, h)
+		tmp := offscreen.New(name, sz.X, sz.Y)
 		src := img
 		for size > 1 {
 			size /= 2
@@ -113,7 +113,7 @@ var (
 )
 
 func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blurFade float64) {
-	w, h := img.Size()
+	sz := img.Bounds().Size()
 	scale *= scale * blurFade
 	scale += 1 - blurFade
 	darken *= blurFade
@@ -127,7 +127,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 				Blend:  ebiten.BlendCopy,
 				Filter: ebiten.FilterNearest,
 			}
-			tmp := offscreen.New(name, w, h)
+			tmp := offscreen.New(name, sz.X, sz.Y)
 			defer offscreen.Dispose(tmp)
 			tmp.DrawImage(img, options)
 			options.ColorM.Scale(scale, scale, scale, 1.0)
@@ -162,12 +162,12 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 	}
 	centerScale := 1.0 / (2*float64(size)*blurFade + 1)
 	otherScale := blurFade * centerScale
-	tmp := offscreen.New(fmt.Sprintf("%s.Horiz", name), w, h)
+	tmp := offscreen.New(fmt.Sprintf("%s.Horiz", name), sz.X, sz.Y)
 	defer offscreen.Dispose(tmp)
-	tmp.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
+	tmp.DrawRectShader(sz.X, sz.Y, blurShader, &ebiten.DrawRectShaderOptions{
 		Blend: ebiten.BlendCopy,
 		Uniforms: map[string]interface{}{
-			"Step":        []float32{1 / float32(w), 0},
+			"Step":        []float32{1 / float32(sz.X), 0},
 			"CenterScale": float32(centerScale),
 			"OtherScale":  float32(otherScale),
 			"Add":         []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},
@@ -179,10 +179,10 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 			nil,
 		},
 	})
-	out.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
+	out.DrawRectShader(sz.X, sz.Y, blurShader, &ebiten.DrawRectShaderOptions{
 		Blend: ebiten.BlendCopy,
 		Uniforms: map[string]interface{}{
-			"Step":        []float32{0, 1 / float32(h)},
+			"Step":        []float32{0, 1 / float32(sz.Y)},
 			"CenterScale": float32(centerScale * scale),
 			"OtherScale":  float32(otherScale * scale),
 			"Add":         []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},

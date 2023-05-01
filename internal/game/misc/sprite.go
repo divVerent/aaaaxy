@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 )
@@ -94,6 +95,9 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 				Y: region.Origin.Y + region.Size.DY,
 			},
 		}).(*ebiten.Image)
+		if e.Image.Bounds().Min != (go_image.Point{}) {
+			log.Fatalf("could not ensure zero origin: %v", e.Image.Bounds())
+		}
 	}
 	e.BorderPixels = propmap.ValueOrP(sp.Properties, "border_pixels", 0, &parseErr)
 	err = s.SpriteBase.Spawn(w, sp, e)

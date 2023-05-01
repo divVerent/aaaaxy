@@ -399,10 +399,9 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *ebiten.Image, tmp *ebiten.Image) *ebiten.Image {
 	drawDest, finishDrawing := g.palettePrepare(maybeScreen, tmp)
 
-	sw, sh := drawDest.Size()
-	if sw != engine.GameWidth || sh != engine.GameHeight {
+	if drawDest.Bounds() != go_image.Rect(0, 0, engine.GameWidth, engine.GameHeight) {
 		log.Infof("skipping frame as sizes do not match up: got %vx%v, want %vx%v",
-			sw, sh, engine.GameWidth, engine.GameHeight)
+			drawDest.Bounds(), engine.GameWidth, engine.GameHeight)
 		screen := finishDrawing()
 		to <- screen
 		return screen
@@ -510,19 +509,29 @@ func crtK2() float64 {
 	return 3.0 / 40.0 * math.Pow(*screenFilterCRTStrength, 4)
 }
 
+func assertOrigin(img ebiten.FinalScreen) {
+	if img.Bounds().Min != (go_image.Point{}) {
+		log.Fatalf("did not get zero origin: %v", img.Bounds())
+	}
+}
+
+func ensureRect(img *ebiten.Image, rect go_image.Rectangle) *ebiten.Image {
+	if img.Bounds() == rect {
+		return img
+	}
+	ret := img.SubImage(rect).(*ebiten.Image)
+	if ret.Bounds().Min != (go_image.Point{}) {
+		log.Fatalf("could not ensure zero origin: %v", ret.Bounds())
+	}
+	return ret
+}
+
 func (g *Game) Draw(screen *ebiten.Image) {
 	defer timing.Group()()
 	timing.Section("draw")
 	defer timing.Group()()
 
-	w, h := screen.Size()
-	if w != engine.GameWidth || h != engine.GameHeight {
-		// NOTE: This implies *screenStretch.
-		screen = screen.SubImage(go_image.Rectangle{
-			Min: go_image.Point{},
-			Max: go_image.Point{X: engine.GameWidth, Y: engine.GameHeight},
-		}).(*ebiten.Image)
-	}
+	screen = ensureRect(screen, go_image.Rect(0, 0, engine.GameWidth, engine.GameHeight))
 
 DoneDisposing:
 	for {
@@ -567,14 +576,8 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 	timing.Section("drawfinal")
 	defer timing.Group()()
 
-	w, h := offscreen.Size()
-	if w != engine.GameWidth || h != engine.GameHeight {
-		// NOTE: This implies *screenStretch.
-		offscreen = offscreen.SubImage(go_image.Rectangle{
-			Min: go_image.Point{},
-			Max: go_image.Point{X: engine.GameWidth, Y: engine.GameHeight},
-		}).(*ebiten.Image)
-	}
+	assertOrigin(screen)
+	offscreen = ensureRect(offscreen, go_image.Rect(0, 0, engine.GameWidth, engine.GameHeight))
 
 	if *screenStretch {
 		// Note that due to the code in Layout(), this changes almost nothing;

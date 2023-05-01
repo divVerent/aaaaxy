@@ -174,7 +174,8 @@ func Update() {
 }
 
 func Draw(screen *ebiten.Image) {
-	screenWidth, screenHeight = screen.Size()
+	sz := screen.Bounds().Size()
+	screenWidth, screenHeight = sz.X, sz.Y
 	for _, cp := range centerprints {
 		cp.draw(screen)
 	}

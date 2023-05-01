@@ -143,11 +143,11 @@ func (t *Text) Precache(sp *level.Spawnable) error {
 	if sp.Orientation.Right.DX == 0 {
 		rx, ry = ry, rx
 	}
-	dx, dy := img.Size()
-	if dx > rx+2 || (locale.Active.AuditHeight() && dy > ry+2) {
+	sz := img.Bounds().Size()
+	if sz.X > rx+2 || (locale.Active.AuditHeight() && sz.Y > ry+2) {
 		// Tolerate 2 extra pixels for diacritics or borders.
 		locale.Errorf("text too big: entity %v has size %v but text needs %v: %v",
-			sp.ID, m.Delta{DX: rx, DY: ry}, m.Delta{DX: dx, DY: dy}, key.text)
+			sp.ID, m.Delta{DX: rx, DY: ry}, sz, key.text)
 	}
 	return nil
 }
@@ -190,11 +190,11 @@ func (t *Text) updateText() error {
 			return fmt.Errorf("could not render text image for entity %v: %w", t.Key, err)
 		}
 	}
-	dx, dy := t.Entity.Image.Size()
+	sz := t.Entity.Image.Bounds().Size()
 	if t.Entity.Orientation.Right.DX == 0 {
-		dx, dy = dy, dx
+		sz.X, sz.Y = sz.Y, sz.X
 	}
-	centerOffset := t.Entity.Rect.Size.Sub(m.Delta{DX: dx, DY: dy}).Div(2)
+	centerOffset := t.Entity.Rect.Size.Sub(m.Delta{DX: sz.X, DY: sz.Y}).Div(2)
 	t.Entity.RenderOffset = centerOffset
 	return nil
 }

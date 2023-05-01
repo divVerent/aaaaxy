@@ -245,23 +245,23 @@ func touchPadDraw(screen *ebiten.Image) {
 			if !i.Held || !actionButtonAvailable {
 				continue
 			}
-			w, h := screen.Size()
+			sz := screen.Bounds().Size()
 			r = &m.Rect{
-				Origin: m.Pos{X: (w - 32) / 2, Y: h - 32},
+				Origin: m.Pos{X: (sz.X - 32) / 2, Y: sz.Y - 32},
 				Size:   m.Delta{DX: 32, DY: 32},
 			}
 			options.ColorM.Scale(1, 1, 1, 1.0/3)
 		}
-		w, h := img.Size()
+		sz := img.Bounds().Size()
 		ox := float64(r.Origin.X)
 		oy := float64(r.Origin.Y)
-		sw := float64(r.Size.DX) / float64(w)
-		sh := float64(r.Size.DY) / float64(h)
+		sw := float64(r.Size.DX) / float64(sz.X)
+		sh := float64(r.Size.DY) / float64(sz.Y)
 		if sw < sh {
-			oy += float64(h) * 0.5 * (sh - sw)
+			oy += float64(sz.Y) * 0.5 * (sh - sw)
 			sh = sw
 		} else if sw > sh {
-			ox += float64(w) * 0.5 * (sw - sh)
+			ox += float64(sz.X) * 0.5 * (sw - sh)
 			sw = sh
 		}
 		options.GeoM.Scale(sw, sh)

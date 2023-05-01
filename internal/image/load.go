@@ -75,6 +75,9 @@ func load(purpose, name string, force bool) (*ebiten.Image, error) {
 		img = palette.Current().ApplyToImage(img, name)
 	}
 	eImg := ebiten.NewImageFromImage(img)
+	if eImg.Bounds().Min != (image.Point{}) {
+		return nil, fmt.Errorf("could not get zero origin: %v", eImg.Bounds())
+	}
 	cache[ip] = eImg
 	return eImg, nil
 }

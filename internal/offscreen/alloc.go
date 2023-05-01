@@ -358,8 +358,8 @@ func NewExplicit(name string, w, h int) *ebiten.Image {
 }
 
 func Dispose(img *ebiten.Image) {
-	w, h := img.Size()
-	managerForSize(w, h).Dispose(img)
+	sz := img.Bounds().Size()
+	managerForSize(sz.X, sz.Y).Dispose(img)
 }
 
 func Collect() {
