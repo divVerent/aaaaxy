@@ -138,6 +138,7 @@ func (f *FadeTarget) Update() {
 		}
 	}
 	f.World.GlobalColorM.Concat(colorM)
+	f.World.GlobalColorMSet = true
 
 	if f.Frame == 0 {
 		// Keep showing this effect when at the end.

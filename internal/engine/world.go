@@ -83,6 +83,8 @@ type World struct {
 	ForceCredits bool
 	// GlobalColorM is a color matrix to apply to everything. Reset on every frame.
 	GlobalColorM colorm.ColorM
+	// GlobalColorMSet is true whenever GlobalColorM is set to anything.
+	GlobalColorMSet bool
 
 	// Properties that can in theory be regenerated from the above and thus do not
 	// need serialization support.
@@ -541,6 +543,7 @@ func (w *World) updateEntities() {
 	w.warpzoneStatesChanged = false
 	w.respawned = false
 	w.GlobalColorM.Reset()
+	w.GlobalColorMSet = false
 
 	w.entities.forEach(func(ent *Entity) error {
 		ent.Impl.Update()

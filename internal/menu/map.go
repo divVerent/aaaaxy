@@ -21,7 +21,6 @@ import (
 	"sort"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/colorm"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/font"
@@ -279,15 +278,14 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	font.ByName["Menu"].Draw(screen, cpText, m.Pos{X: x, Y: 11*h/12 + 12}, font.Center, fg, bg)
 
 	// Draw all known checkpoints.
-	opts := colorm.DrawImageOptions{
+	opts := ebiten.DrawImageOptions{
 		Blend:  ebiten.BlendSourceOver,
 		Filter: ebiten.FilterNearest,
 	}
 	opts.GeoM.Scale(float64(s.MapRect.Size.DX+2*mapBorder), float64(s.MapRect.Size.DY+2*mapBorder))
 	opts.GeoM.Translate(float64(s.MapRect.Origin.X-mapBorder), float64(s.MapRect.Origin.Y-mapBorder))
-	var colorM colorm.ColorM
-	colorM.Scale(1.0/3.0, 1.0/3.0, 1.0/3.0, 2.0/3.0)
-	colorm.DrawImage(screen, s.whiteImage, colorM, &opts)
+	opts.ColorScale.Scale(2.0/9.0, 2.0/9.0, 2.0/9.0, 2.0/3.0) // Color: #555555 at 2/3 alpha.
+	screen.DrawImage(s.whiteImage, &opts)
 
 	// First draw all edges.
 	cpPos := make(map[string]m.Pos, len(s.SortedLocs))

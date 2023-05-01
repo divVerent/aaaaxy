@@ -102,6 +102,7 @@ func (s *SoundTarget) Update() {
 		case fadeInVisual:
 			f := 1.0 - fadeInStrength*float64(s.Frame)/float64(s.Frames)
 			s.World.GlobalColorM.Scale(f, f, f, 1.0)
+			s.World.GlobalColorMSet = true
 		}
 		s.Frame--
 		if s.Frame == 0 {

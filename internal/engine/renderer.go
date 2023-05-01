@@ -157,29 +157,36 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 			log.Errorf("could not load already cached image %q for tile: %v", tile.ImageSrc, err)
 			return
 		}
-		opts := colorm.DrawImageOptions{
-			// Note: could be BlendCopy, but that can't be merged with entities pass.
-			Blend:  ebiten.BlendSourceOver,
-			Filter: ebiten.FilterNearest,
+		if r.world.GlobalColorMSet {
+			opts := colorm.DrawImageOptions{
+				// Note: could be BlendCopy, but that can't be merged with entities pass.
+				Blend:  ebiten.BlendSourceOver,
+				Filter: ebiten.FilterNearest,
+			}
+			setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, tile.Orientation, 1.0, 0.0)
+			colorm.DrawImage(screen, img, r.world.GlobalColorM, &opts)
+		} else {
+			opts := ebiten.DrawImageOptions{
+				// Note: could be BlendCopy, but that can't be merged with entities pass.
+				Blend:  ebiten.BlendSourceOver,
+				Filter: ebiten.FilterNearest,
+			}
+			setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, tile.Orientation, 1.0, 0.0)
+			screen.DrawImage(img, &opts)
 		}
-		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, tile.Orientation, 1.0, 0.0)
-		colorm.DrawImage(screen, img, r.world.GlobalColorM, &opts)
 	})
 }
 
 func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurFactor float64) {
 	minZ, maxZ := zBounds(len(r.world.entitiesByZ))
 	for z := minZ; z <= maxZ; z++ {
-		for _, colormods := range []bool{true, false} {
+		for _, colormods := range []bool{false, true} {
 			r.world.entitiesByZ[encodeZ(z)].forEach(func(ent *Entity) error {
-				if ent.Image == nil || ent.Alpha == 0 || (ent.ColorAdd != [4]float64{0, 0, 0, 0}) != colormods {
+				needColormods := (ent.ColorAdd != [4]float64{0, 0, 0, 0}) || r.world.GlobalColorMSet
+				if ent.Image == nil || ent.Alpha == 0 || needColormods != colormods {
 					return nil
 				}
 				screenPos := ent.Rect.Origin.Add(scrollDelta).Add(ent.RenderOffset)
-				opts := colorm.DrawImageOptions{
-					Blend:  ebiten.BlendSourceOver,
-					Filter: ebiten.FilterNearest,
-				}
 				sz := ent.Image.Bounds().Size()
 				imageSize := m.Delta{DX: sz.X, DY: sz.Y}
 				sizeFactor := 1.0
@@ -191,13 +198,32 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurF
 					angle = blurFactor * 2 * math.Pi
 					alphaFactor = 1.0 - blurFactor
 				}
-				setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation, sizeFactor, angle)
-				var colorM colorm.ColorM
-				colorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.ColorMod[3])
-				colorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], ent.ColorAdd[3])
-				colorM.Scale(1.0, 1.0, 1.0, ent.Alpha*alphaFactor)
-				colorM.Concat(r.world.GlobalColorM)
-				colorm.DrawImage(screen, ent.Image, colorM, &opts)
+				if needColormods {
+					opts := colorm.DrawImageOptions{
+						Blend:  ebiten.BlendSourceOver,
+						Filter: ebiten.FilterNearest,
+					}
+					setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation, sizeFactor, angle)
+					var colorM colorm.ColorM
+					colorM.Scale(ent.ColorMod[0], ent.ColorMod[1], ent.ColorMod[2], ent.ColorMod[3])
+					colorM.Translate(ent.ColorAdd[0], ent.ColorAdd[1], ent.ColorAdd[2], ent.ColorAdd[3])
+					colorM.Scale(1.0, 1.0, 1.0, ent.Alpha*alphaFactor)
+					colorM.Concat(r.world.GlobalColorM)
+					colorm.DrawImage(screen, ent.Image, colorM, &opts)
+				} else {
+					opts := ebiten.DrawImageOptions{
+						Blend:  ebiten.BlendSourceOver,
+						Filter: ebiten.FilterNearest,
+					}
+					setGeoM(&opts.GeoM, screenPos, ent.ResizeImage, ent.Rect.Size, imageSize, ent.Orientation, sizeFactor, angle)
+					alpha := ent.ColorMod[3] * ent.Alpha * alphaFactor
+					opts.ColorScale.Scale(
+						float32(ent.ColorMod[0]*alpha),
+						float32(ent.ColorMod[1]*alpha),
+						float32(ent.ColorMod[2]*alpha),
+						float32(alpha))
+					screen.DrawImage(ent.Image, &opts)
+				}
 				return nil
 			})
 		}
