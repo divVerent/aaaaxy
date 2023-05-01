@@ -19,6 +19,7 @@ import (
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/colorm"
 
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -150,7 +151,7 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 	if a == 0 {
 		return
 	}
-	var alphaM ebiten.ColorM
+	var alphaM colorm.ColorM
 	alphaM.Scale(1.0, 1.0, 1.0, a)
 	fg := alphaM.Apply(cp.color)
 	bg := palette.EGA(palette.Black, uint8(a*255))

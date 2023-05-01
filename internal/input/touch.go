@@ -16,6 +16,7 @@ package input
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/colorm"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/image"
@@ -237,10 +238,11 @@ func touchPadDraw(screen *ebiten.Image) {
 		if img == nil {
 			continue
 		}
-		options := &ebiten.DrawImageOptions{
+		options := &colorm.DrawImageOptions{
 			Blend:  ebiten.BlendSourceOver,
 			Filter: ebiten.FilterNearest,
 		}
+		var colorM colorm.ColorM
 		if r.Size.IsZero() {
 			if !i.Held || !actionButtonAvailable {
 				continue
@@ -250,7 +252,7 @@ func touchPadDraw(screen *ebiten.Image) {
 				Origin: m.Pos{X: (sz.X - 32) / 2, Y: sz.Y - 32},
 				Size:   m.Delta{DX: 32, DY: 32},
 			}
-			options.ColorM.Scale(1, 1, 1, 1.0/3)
+			colorM.Scale(1, 1, 1, 1.0/3)
 		}
 		sz := img.Bounds().Size()
 		ox := float64(r.Origin.X)
@@ -267,10 +269,10 @@ func touchPadDraw(screen *ebiten.Image) {
 		options.GeoM.Scale(sw, sh)
 		options.GeoM.Translate(ox, oy)
 		if i.Held {
-			options.ColorM.Scale(-1, -1, -1, 1)
-			options.ColorM.Translate(1, 1, 1, 0)
+			colorM.Scale(-1, -1, -1, 1)
+			colorM.Translate(1, 1, 1, 0)
 		}
-		screen.DrawImage(img, options)
+		colorm.DrawImage(screen, img, colorM, options)
 	}
 }
 
