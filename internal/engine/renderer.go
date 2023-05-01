@@ -20,7 +20,7 @@ import (
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
+	"github.com/hajimehoshi/ebiten/v2/vector"
 
 	"github.com/divVerent/aaaaxy/internal/centerprint"
 	"github.com/divVerent/aaaaxy/internal/flag"
@@ -210,10 +210,10 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
 			if *debugShowNeighbors {
 				neighborScreenPos := tile.LoadedFromNeighbor.Mul(level.TileSize).Add(scrollDelta)
-				startx := float64(neighborScreenPos.X) + level.TileSize/2
-				starty := float64(neighborScreenPos.Y) + level.TileSize/2
-				endx := float64(screenPos.X) + level.TileSize/2
-				endy := float64(screenPos.Y) + level.TileSize/2
+				startx := float32(neighborScreenPos.X) + level.TileSize/2
+				starty := float32(neighborScreenPos.Y) + level.TileSize/2
+				endx := float32(screenPos.X) + level.TileSize/2
+				endy := float32(screenPos.Y) + level.TileSize/2
 				arrowpx := (startx + endx*2) / 3
 				arrowpy := (starty + endy*2) / 3
 				arrowdx := (endx - startx) / 6
@@ -230,9 +230,9 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 				if tile.VisibilityFlags&level.FrameVis == r.world.frameVis {
 					c = color.Gray{192}
 				}
-				ebitenutil.DrawLine(screen, startx, starty, endx, endy, c)
-				ebitenutil.DrawLine(screen, arrowlx, arrowly, arrowpx, arrowpy, c)
-				ebitenutil.DrawLine(screen, arrowrx, arrowry, arrowpx, arrowpy, c)
+				vector.StrokeLine(screen, startx, starty, endx, endy, 1, c, false)
+				vector.StrokeLine(screen, arrowlx, arrowly, arrowpx, arrowpy, 1, c, false)
+				vector.StrokeLine(screen, arrowrx, arrowry, arrowpx, arrowpy, 1, c, false)
 			}
 			if *debugShowCoords {
 				c := color.Gray{128}
@@ -242,20 +242,20 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 				}), font.Left, c, color.Transparent)
 			}
 			if *debugShowOrientations {
-				midx := float64(screenPos.X) + level.TileSize/2
-				midy := float64(screenPos.Y) + level.TileSize/2
+				midx := float32(screenPos.X) + level.TileSize/2
+				midy := float32(screenPos.Y) + level.TileSize/2
 				dx := tile.Orientation.Apply(m.Delta{DX: 4, DY: 0})
-				ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.EGA(palette.Red, 255))
+				vector.StrokeLine(screen, midx, midy, midx+float32(dx.DX), midy+float32(dx.DY), 1, palette.EGA(palette.Red, 255), false)
 				dy := tile.Orientation.Apply(m.Delta{DX: 0, DY: 4})
-				ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.EGA(palette.Green, 255))
+				vector.StrokeLine(screen, midx, midy, midx+float32(dy.DX), midy+float32(dy.DY), 1, palette.EGA(palette.Green, 255), false)
 			}
 			if *debugShowTransforms {
-				midx := float64(screenPos.X) + level.TileSize/2
-				midy := float64(screenPos.Y) + level.TileSize/2
+				midx := float32(screenPos.X) + level.TileSize/2
+				midy := float32(screenPos.Y) + level.TileSize/2
 				dx := tile.Transform.Apply(m.Delta{DX: 4, DY: 0})
-				ebitenutil.DrawLine(screen, midx, midy, midx+float64(dx.DX), midy+float64(dx.DY), palette.EGA(palette.Red, 255))
+				vector.StrokeLine(screen, midx, midy, midx+float32(dx.DX), midy+float32(dx.DY), 1, palette.EGA(palette.Red, 255), false)
 				dy := tile.Transform.Apply(m.Delta{DX: 0, DY: 4})
-				ebitenutil.DrawLine(screen, midx, midy, midx+float64(dy.DX), midy+float64(dy.DY), palette.EGA(palette.Green, 255))
+				vector.StrokeLine(screen, midx, midy, midx+float32(dy.DX), midy+float32(dy.DY), 1, palette.EGA(palette.Green, 255), false)
 			}
 		})
 	}
@@ -271,13 +271,13 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			if ent.contents.Opaque() {
 				boxColor.B = 255
 			}
-			ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY), float64(ent.Rect.Size.DX), float64(ent.Rect.Size.DY), boxColor)
+			vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY), float32(ent.Rect.Size.DX), float32(ent.Rect.Size.DY), boxColor, false)
 			if ent.BorderPixels > 0 {
 				boxColor.A = 255
-				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float64(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float64(ent.Rect.Size.DX+ent.BorderPixels), float64(ent.BorderPixels), boxColor)
-				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX+ent.Rect.Size.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float64(ent.BorderPixels), float64(ent.Rect.Size.DY+ent.BorderPixels), boxColor)
-				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX), float64(ent.Rect.Origin.Y+scrollDelta.DY+ent.Rect.Size.DY), float64(ent.Rect.Size.DX+ent.BorderPixels), float64(ent.BorderPixels), boxColor)
-				ebitenutil.DrawRect(screen, float64(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float64(ent.Rect.Origin.Y+scrollDelta.DY), float64(ent.BorderPixels), float64(ent.Rect.Size.DY+ent.BorderPixels), boxColor)
+				vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float32(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float32(ent.Rect.Size.DX+ent.BorderPixels), float32(ent.BorderPixels), boxColor, false)
+				vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX+ent.Rect.Size.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float32(ent.BorderPixels), float32(ent.Rect.Size.DY+ent.BorderPixels), boxColor, false)
+				vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY+ent.Rect.Size.DY), float32(ent.Rect.Size.DX+ent.BorderPixels), float32(ent.BorderPixels), boxColor, false)
+				vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float32(ent.Rect.Origin.Y+scrollDelta.DY), float32(ent.BorderPixels), float32(ent.Rect.Size.DY+ent.BorderPixels), boxColor, false)
 			}
 			font.ByName["Small"].Draw(screen, fmt.Sprintf("%v", ent.Incarnation), ent.Rect.Origin.Add(scrollDelta), font.Left, boxColor, color.Transparent)
 			return nil
