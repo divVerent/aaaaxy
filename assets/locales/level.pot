@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 10:57-0400\n"
+"POT-Creation-Date: 2023-04-30 20:31-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -450,7 +450,7 @@ msgid "Turtles All the Way In"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1306]
-msgid "Some things just aren't that simple."
+msgid "Some things just aren't that simple. Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1321]
@@ -1392,7 +1392,7 @@ msgstr ""
 #. https://www.youtube.com/watch?v=N78CavWrtjw - try to be consistent with some existing translation if you can find one
 msgid ""
 "Let's put weird and weird together,{{BR}}and make it even weirder!{{BR}}"
-"Weird, weird space{{BR}}is super-weird!"
+"Weird, weird space{{BR}}is super-weird!{{BR}}{{BR}}Press {{ExitButton}}."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8246]
