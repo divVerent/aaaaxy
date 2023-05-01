@@ -76,7 +76,7 @@ func Init() error {
 
 		// Workaround: for some reason playing the first sound can incur significant delay.
 		// So let's do this at the start.
-		ebiaudio.NewPlayerFromBytes(ebiaudio.CurrentContext(), []byte{}).Play()
+		ebiaudio.CurrentContext().NewPlayerFromBytes([]byte{}).Play()
 	}
 	return nil
 }
@@ -112,7 +112,7 @@ func ebiPlayer(src io.Reader) (*ebiaudio.Player, error) {
 	if !*audio {
 		return nil, nil
 	}
-	return ebiaudio.NewPlayer(ebiaudio.CurrentContext(), src)
+	return ebiaudio.CurrentContext().NewPlayer(src)
 }
 
 func NewPlayer(src func() (io.ReadCloser, error)) (*Player, error) {
@@ -149,7 +149,7 @@ func ebiPlayerFromBytes(src []byte) *ebiaudio.Player {
 	if !*audio {
 		return nil
 	}
-	return ebiaudio.NewPlayerFromBytes(ebiaudio.CurrentContext(), src)
+	return ebiaudio.CurrentContext().NewPlayerFromBytes(src)
 }
 
 func NewPlayerFromBytes(src []byte) (*Player, error) {

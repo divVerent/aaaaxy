@@ -52,5 +52,4 @@ func InitCurrent() {
 		}
 	}
 	log.Infof("detected no supported language (not translating)")
-	return
 }

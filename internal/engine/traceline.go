@@ -38,14 +38,14 @@ func (l *normalizedLine) traceLineTiles(w *World, o TraceOptions, result *TraceR
 			result.EndPos = prevPixel
 			result.HitDelta = delta
 			// result.HitFogOfWar = true
-			return traceDoneErr
+			return errTraceDone
 		}
 		if o.Contents&tile.Contents != 0 {
 			result.EndPos = prevPixel
 			result.HitDelta = delta
 			// result.HitTilePos = nextTile
 			// result.HitTile = tile
-			return traceDoneErr
+			return errTraceDone
 		}
 		if o.PathOut != nil {
 			*o.PathOut = append(*o.PathOut, nextTile)

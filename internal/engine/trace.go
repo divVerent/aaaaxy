@@ -285,7 +285,7 @@ func (l *normalizedLine) walkTiles(check func(prevTile, nextTile m.Pos, delta m.
 	}
 }
 
-var traceDoneErr = errors.New("traceDone")
+var errTraceDone = errors.New("traceDone")
 
 // traceEntity returns whether the line from from to to hits the entity, as well as the last coordinate not hitting yet.
 func (l *normalizedLine) traceEntity(ent *Entity, enlarge m.Delta, maxBorder int) (bool, m.Pos, m.Delta) {

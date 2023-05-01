@@ -167,10 +167,10 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 				return locale.G.Get("nothing"), nil
 			case 1:
 				return abilities[0], nil
-			default:
-				return strings.Join(abilities[:len(abilities)-1], locale.G.Get(", ")) + locale.G.Get(" and ") + abilities[len(abilities)-1], nil
 			case 4:
 				return locale.G.Get("everything"), nil
+			default:
+				return strings.Join(abilities[:len(abilities)-1], locale.G.Get(", ")) + locale.G.Get(" and ") + abilities[len(abilities)-1], nil
 			}
 		},
 		"ExitButton": func() (string, error) {

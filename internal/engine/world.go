@@ -546,7 +546,7 @@ func (w *World) updateEntities() {
 		if w.respawned {
 			// Once respawned, stop further processing to avoid
 			// entities to interact with the respawned player.
-			return breakError
+			return errBreak
 		}
 		return nil
 	})

@@ -135,7 +135,7 @@ func (g *Game) updateFrame() error {
 	timing.Section("demo_pre")
 	if demo.Update() {
 		log.Infof("demo playback ended, exiting")
-		return exitstatus.RegularTermination
+		return exitstatus.ErrRegularTermination
 	}
 
 	defer func() {
@@ -213,7 +213,7 @@ func (g *Game) Update() error {
 
 	for frame := 0; frame < *fpsDivisor; frame++ {
 		if err := g.updateFrame(); err != nil {
-			if errors.Is(err, exitstatus.RegularTermination) {
+			if errors.Is(err, exitstatus.ErrRegularTermination) {
 				log.Infof("exiting normally")
 			} else {
 				log.Infof("exiting due to: %v", err)
@@ -338,7 +338,7 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 			lut, g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(g.paletteLUT.Bounds(), 2)
 		}
 		if nrgba, ok := lut.(*go_image.NRGBA); ok {
-			g.paletteLUT.SubImage(nrgba.Rect).(*ebiten.Image).ReplacePixels(nrgba.Pix)
+			g.paletteLUT.SubImage(nrgba.Rect).(*ebiten.Image).WritePixels(nrgba.Pix)
 		} else {
 			log.Fatalf("palette LUT isn't NRGBA, got %T, please fix game data", lut)
 		}
@@ -441,7 +441,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	if *showFPS {
 		timing.Section("fps")
 		font.ByName["Small"].Draw(drawDest,
-			locale.G.Get("%.1f fps, %.1f tps", ebiten.CurrentFPS(), ebiten.CurrentTPS()),
+			locale.G.Get("%.1f fps, %.1f tps", ebiten.ActualFPS(), ebiten.ActualTPS()),
 			m.Pos{X: engine.GameWidth - 1, Y: engine.GameHeight - 4}, font.Right,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}

@@ -114,7 +114,6 @@ func (s *State) SetGroup(group string) {
 	// Immediately switch over if current group isn't WaitFinish.
 	s.WantNext = !s.Group.WaitFinish
 	s.NextGroup = requested
-	return
 }
 
 func (s *State) Update(e *engine.Entity) {

@@ -332,7 +332,7 @@ func (c *Controller) QuitGame() error {
 	if err != nil {
 		return fmt.Errorf("could not save config: %w", err)
 	}
-	return exitstatus.RegularTermination
+	return exitstatus.ErrRegularTermination
 }
 
 // ActivateSound plays the sound effect to activate something.

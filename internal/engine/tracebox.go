@@ -60,14 +60,14 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 					result.EndPos = prevPixel
 					result.HitDelta = delta
 					// result.HitFogOfWar = true
-					return traceDoneErr
+					return errTraceDone
 				}
 				if o.Contents&tile.Contents != 0 {
 					result.EndPos = prevPixel
 					result.HitDelta = delta
 					// result.HitTilePos = nextTile
 					// result.HitTile = tile
-					return traceDoneErr
+					return errTraceDone
 				}
 			}
 		} else {
@@ -87,14 +87,14 @@ func (l *normalizedLine) traceBoxTiles(w *World, o TraceOptions, enlarge m.Delta
 					result.EndPos = prevPixel
 					result.HitDelta = delta
 					// result.HitFogOfWar = true
-					return traceDoneErr
+					return errTraceDone
 				}
 				if o.Contents&tile.Contents != 0 {
 					result.EndPos = prevPixel
 					result.HitDelta = delta
 					// result.HitTilePos = nextTile
 					// result.HitTile = tile
-					return traceDoneErr
+					return errTraceDone
 				}
 			}
 		}

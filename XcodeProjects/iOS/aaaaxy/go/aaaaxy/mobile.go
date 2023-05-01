@@ -64,7 +64,7 @@ func (g *game) Update() (err error) {
 		err = g.game.Update()
 		if err != nil {
 			errbe := g.game.BeforeExit()
-			if !errors.Is(err, exitstatus.RegularTermination) {
+			if !errors.Is(err, exitstatus.ErrRegularTermination) {
 				log.Errorf("RunGame exited abnormally: %v", err)
 			} else if errbe != nil {
 				log.Errorf("BeforeExit exited abnormally: %v", errbe)

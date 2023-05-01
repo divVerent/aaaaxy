@@ -89,7 +89,7 @@ func LoadIntoCacheStepwise() func(s *splash.State) (splash.Status, error) {
 				}
 				f.precache(charSetStr)
 				if *debugFontProfiling {
-					dt := time.Now().Sub(t0)
+					dt := time.Since(t0)
 					fontProfilingTotal += dt
 					log.Infof("caching font %v: %v (total: %v)", name, dt, fontProfilingTotal)
 				}
@@ -133,7 +133,6 @@ func KeepInCache() {
 		done[f] = struct{}{}
 		f.precache(charSubSetStr)
 	}
-	return
 }
 
 var (

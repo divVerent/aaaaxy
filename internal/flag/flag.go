@@ -306,7 +306,7 @@ func (m *stringBoolMap) Set(s string) error {
 				var v bool
 				_, err := fmt.Sscanf(kv[1], "%v", &v)
 				if err != nil {
-					return fmt.Errorf("invalid StringBoolMap flag value, got %q, want something of the form key1=true/false,key2=true/false,...", s)
+					return fmt.Errorf("invalid StringBoolMap flag value, got %q, want something of the form key1=true/false,key2=true/false", s)
 				}
 				m.m[kv[0]] = v
 			}
@@ -317,7 +317,7 @@ func (m *stringBoolMap) Set(s string) error {
 				m.m[kv[0]] = true
 			}
 		default:
-			return fmt.Errorf("invalid StringMap flag value, got %q, want something of the form key1=value1,key2=value2,...", s)
+			return fmt.Errorf("invalid StringMap flag value, got %q, want something of the form key1=value1,key2=value2", s)
 		}
 	}
 	return nil

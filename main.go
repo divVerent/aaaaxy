@@ -111,7 +111,7 @@ func main() {
 	game := aaaaxy.NewGame()
 	err := game.InitEbitengine()
 	if err != nil {
-		if errors.Is(err, exitstatus.RegularTermination) {
+		if errors.Is(err, exitstatus.ErrRegularTermination) {
 			ok = true
 			return
 		}
@@ -121,7 +121,7 @@ func main() {
 	errbe := game.BeforeExit()
 	// From here on, nothing can panic.
 	ok = true
-	if err != nil && !errors.Is(err, exitstatus.RegularTermination) {
+	if err != nil && !errors.Is(err, exitstatus.ErrRegularTermination) {
 		log.Fatalf("RunGame exited abnormally: %v", err)
 	}
 	if errbe != nil {

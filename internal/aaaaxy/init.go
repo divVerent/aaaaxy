@@ -99,8 +99,6 @@ func setWindowSize() {
 // NOTE: This function only runs on desktop systems.
 // On mobile, we instead run InitEarly only.
 func (g *Game) InitEbitengine() error {
-	ebiten.SetInitFocused(true)
-	ebiten.SetScreenTransparent(false)
 	ebiten.SetWindowDecorated(true)
 	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
 	setWindowSize()
@@ -115,11 +113,7 @@ func (g *Game) InitEarly() error {
 
 	ebiten.SetFullscreen(*fullscreen)
 	ebiten.SetScreenClearedEveryFrame(false)
-	if *vsync {
-		ebiten.SetFPSMode(ebiten.FPSModeVsyncOn)
-	} else {
-		ebiten.SetFPSMode(ebiten.FPSModeVsyncOffMaximum)
-	}
+	ebiten.SetVsyncEnabled(*vsync)
 	ebiten.SetWindowTitle("AAAAXY")
 
 	// Ensure fps divisor is valid. We can only do integer TPS.
@@ -160,9 +154,9 @@ func (g *Game) InitEarly() error {
 
 	// When dumping video or benchmarking, do precisely one render frame per update.
 	if dump.Slow() || demo.Timedemo() {
-		ebiten.SetMaxTPS(ebiten.SyncWithFPS)
+		ebiten.SetTPS(ebiten.SyncWithFPS)
 	} else {
-		ebiten.SetMaxTPS(engine.GameTPS / *fpsDivisor)
+		ebiten.SetTPS(engine.GameTPS / *fpsDivisor)
 	}
 
 	// Pause when unfocused, except when recording demos.
@@ -256,7 +250,7 @@ func (g *Game) InitStep() error {
 	}
 	if *debugJustInit {
 		log.Errorf("requested early termination via --debug_just_init")
-		return exitstatus.RegularTermination
+		return exitstatus.ErrRegularTermination
 	}
 	log.Infof("game started")
 	g.init.done = true

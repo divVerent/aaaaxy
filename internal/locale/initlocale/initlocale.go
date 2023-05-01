@@ -62,7 +62,7 @@ func initLinguas() error {
 		for _, l := range locale.LinguasSorted() {
 			fmt.Println(string(l))
 		}
-		return exitstatus.RegularTermination
+		return exitstatus.ErrRegularTermination
 	}
 	return nil
 }

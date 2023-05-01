@@ -144,7 +144,7 @@ func performQualityAdjustment() {
 
 	// Check if downgrade is needed.
 	totalQualityFrames++
-	if ebiten.CurrentFPS() >= minFPS {
+	if ebiten.ActualFPS() >= minFPS {
 		goodQualityFrames++
 	}
 	if totalQualityFrames < measureQualityFrames {

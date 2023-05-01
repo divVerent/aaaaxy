@@ -122,7 +122,7 @@ func initAssets() error {
 			return err
 		}
 		log.Infof("requested an asset dump - not running the game")
-		return exitstatus.RegularTermination
+		return exitstatus.ErrRegularTermination
 	}
 
 	return nil

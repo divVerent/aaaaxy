@@ -96,7 +96,7 @@ func (l *entityList) compact() {
 	l.verify("compact post")
 }
 
-var breakError = errors.New("break")
+var errBreak = errors.New("break")
 
 func (l *entityList) forEach(f func(e *Entity) error) error {
 	for _, e := range l.items {

@@ -18,4 +18,4 @@ import (
 	"errors"
 )
 
-var RegularTermination = errors.New("exited normally")
+var ErrRegularTermination = errors.New("exited normally")
