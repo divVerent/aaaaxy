@@ -30,7 +30,7 @@ func pathForReadRaw(kind StateKind, name string) ([]string, error) {
 		path, err := xdg.SearchConfigFile(filepath.Join(gameName, name))
 		return []string{path}, err
 	case SavedGames:
-		path,err := xdg.SearchDataFile(filepath.Join(gameName, name))
+		path, err := xdg.SearchDataFile(filepath.Join(gameName, name))
 		return []string{path}, err
 	default:
 		return nil, fmt.Errorf("searched for unsupported state kind: %d", kind)

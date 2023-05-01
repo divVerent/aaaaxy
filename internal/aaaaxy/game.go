@@ -367,7 +367,7 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 			}
 		}
 		options := &ebiten.DrawRectShaderOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
+			Blend: ebiten.BlendCopy,
 			Images: [4]*ebiten.Image{
 				paletteOffscreen,
 				g.paletteLUT,
@@ -556,8 +556,8 @@ DoneDisposing:
 	}
 	srcImage := g.drawOffscreen(tmp)
 	options := &ebiten.DrawImageOptions{
-		CompositeMode: ebiten.CompositeModeCopy,
-		Filter:        ebiten.FilterNearest,
+		Blend:  ebiten.BlendCopy,
+		Filter: ebiten.FilterNearest,
 	}
 	screen.DrawImage(srcImage, options)
 }
@@ -593,17 +593,17 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 	case "nearest":
 		// Normal nearest blitting.
 		options := &ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
-			Filter:        ebiten.FilterNearest,
-			GeoM:          geoM,
+			Blend:  ebiten.BlendCopy,
+			Filter: ebiten.FilterNearest,
+			GeoM:   geoM,
 		}
 		screen.DrawImage(offscreen, options)
 	case "linear":
 		// Normal linear scaling.
 		options := &ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
-			Filter:        ebiten.FilterLinear,
-			GeoM:          geoM,
+			Blend:  ebiten.BlendCopy,
+			Filter: ebiten.FilterLinear,
+			GeoM:   geoM,
 		}
 		screen.DrawImage(offscreen, options)
 	case "linear2x":
@@ -619,7 +619,7 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 			}
 		}
 		options := &ebiten.DrawRectShaderOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
+			Blend: ebiten.BlendCopy,
 			Images: [4]*ebiten.Image{
 				offscreen,
 				nil,
@@ -642,7 +642,7 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 			}
 		}
 		options := &ebiten.DrawRectShaderOptions{
-			CompositeMode: ebiten.CompositeModeCopy,
+			Blend: ebiten.BlendCopy,
 			Images: [4]*ebiten.Image{
 				offscreen,
 				nil,

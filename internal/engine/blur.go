@@ -29,10 +29,10 @@ var (
 	drawBlurs = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 )
 
-func blurPassFixedFunction(img, out *ebiten.Image, mode ebiten.CompositeMode, dx, dy int, scale, darken float64) {
+func blurPassFixedFunction(img, out *ebiten.Image, mode ebiten.Blend, dx, dy int, scale, darken float64) {
 	opts := ebiten.DrawImageOptions{
-		CompositeMode: mode,
-		Filter:        ebiten.FilterNearest,
+		Blend:  mode,
+		Filter: ebiten.FilterNearest,
 	}
 	opts.ColorM.Scale(1, 1, 1, scale)
 	opts.ColorM.Translate(-darken, -darken, -darken, 0)
@@ -54,8 +54,8 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 		for size > 1 {
 			size /= 2
 			tmp := offscreen.New(fmt.Sprintf("%s.Horiz.%d", name, size), w, h)
-			blurPassFixedFunction(src, tmp, ebiten.CompositeModeCopy, -size, 0, 0.5, 0)
-			blurPassFixedFunction(src, tmp, ebiten.CompositeModeLighter, size, 0, 0.5, 0)
+			blurPassFixedFunction(src, tmp, ebiten.BlendCopy, -size, 0, 0.5, 0)
+			blurPassFixedFunction(src, tmp, ebiten.BlendLighter, size, 0, 0.5, 0)
 			if src != img {
 				// Not first pass.
 				offscreen.Dispose(src)
@@ -72,8 +72,8 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 				dstDarken = darken
 				dst = out
 			}
-			blurPassFixedFunction(tmp, dst, ebiten.CompositeModeCopy, -size, 0, dstScale, dstDarken)
-			blurPassFixedFunction(tmp, dst, ebiten.CompositeModeLighter, size, 0, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, dst, ebiten.BlendCopy, -size, 0, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, dst, ebiten.BlendLighter, size, 0, dstScale, dstDarken)
 			offscreen.Dispose(tmp)
 			src = dst
 		}
@@ -82,16 +82,16 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 		src := img
 		for size > 1 {
 			size /= 2
-			blurPassFixedFunction(src, tmp, ebiten.CompositeModeCopy, -size, 0, 0.5, 0)
-			blurPassFixedFunction(src, tmp, ebiten.CompositeModeLighter, size, 0, 0.5, 0)
+			blurPassFixedFunction(src, tmp, ebiten.BlendCopy, -size, 0, 0.5, 0)
+			blurPassFixedFunction(src, tmp, ebiten.BlendLighter, size, 0, 0.5, 0)
 			dstScale := 0.5
 			dstDarken := 0.0
 			if size <= 1 {
 				dstScale *= scale
 				dstDarken = darken
 			}
-			blurPassFixedFunction(tmp, out, ebiten.CompositeModeCopy, -size, 0, dstScale, dstDarken)
-			blurPassFixedFunction(tmp, out, ebiten.CompositeModeLighter, size, 0, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, out, ebiten.BlendCopy, -size, 0, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, out, ebiten.BlendLighter, size, 0, dstScale, dstDarken)
 			src = out
 		}
 		offscreen.Dispose(tmp)
@@ -124,8 +124,8 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 				return
 			}
 			options := &ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeCopy,
-				Filter:        ebiten.FilterNearest,
+				Blend:  ebiten.BlendCopy,
+				Filter: ebiten.FilterNearest,
 			}
 			tmp := offscreen.New(name, w, h)
 			defer offscreen.Dispose(tmp)
@@ -135,8 +135,8 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 			out.DrawImage(tmp, options)
 		} else {
 			options := &ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeCopy,
-				Filter:        ebiten.FilterNearest,
+				Blend:  ebiten.BlendCopy,
+				Filter: ebiten.FilterNearest,
 			}
 			options.ColorM.Scale(scale, scale, scale, 1.0)
 			options.ColorM.Translate(-darken, -darken, -darken, 0.0)
@@ -165,7 +165,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 	tmp := offscreen.New(fmt.Sprintf("%s.Horiz", name), w, h)
 	defer offscreen.Dispose(tmp)
 	tmp.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
-		CompositeMode: ebiten.CompositeModeCopy,
+		Blend: ebiten.BlendCopy,
 		Uniforms: map[string]interface{}{
 			"Step":        []float32{1 / float32(w), 0},
 			"CenterScale": float32(centerScale),
@@ -180,7 +180,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 		},
 	})
 	out.DrawRectShader(w, h, blurShader, &ebiten.DrawRectShaderOptions{
-		CompositeMode: ebiten.CompositeModeCopy,
+		Blend: ebiten.BlendCopy,
 		Uniforms: map[string]interface{}{
 			"Step":        []float32{0, 1 / float32(h)},
 			"CenterScale": float32(centerScale * scale),

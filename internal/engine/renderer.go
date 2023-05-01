@@ -158,8 +158,8 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		opts := ebiten.DrawImageOptions{
 			// Note: could be CompositeModeCopy, but that can't be merged with entities pass.
-			CompositeMode: ebiten.CompositeModeSourceOver,
-			Filter:        ebiten.FilterNearest,
+			Blend:  ebiten.BlendSourceOver,
+			Filter: ebiten.FilterNearest,
 		}
 		setGeoM(&opts.GeoM, screenPos, false, m.Delta{DX: level.TileSize, DY: level.TileSize}, m.Delta{DX: level.TileSize, DY: level.TileSize}, tile.Orientation, 1.0, 0.0)
 		opts.ColorM = r.world.GlobalColorM
@@ -177,8 +177,8 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurF
 				}
 				screenPos := ent.Rect.Origin.Add(scrollDelta).Add(ent.RenderOffset)
 				opts := ebiten.DrawImageOptions{
-					CompositeMode: ebiten.CompositeModeSourceOver,
-					Filter:        ebiten.FilterNearest,
+					Blend:  ebiten.BlendSourceOver,
+					Filter: ebiten.FilterNearest,
 				}
 				w, h := ent.Image.Size()
 				imageSize := m.Delta{DX: w, DY: h}
@@ -357,7 +357,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 		if r.visibilityMaskShader != nil {
 			delta := r.world.scrollPos.Delta(r.prevScrollPos)
 			screen.DrawRectShader(GameWidth, GameHeight, r.visibilityMaskShader, &ebiten.DrawRectShaderOptions{
-				CompositeMode: ebiten.CompositeModeCopy,
+				Blend: ebiten.BlendCopy,
 				Uniforms: map[string]interface{}{
 					"Scroll": []float32{float32(delta.DX) / GameWidth, float32(delta.DY) / GameHeight},
 				},
@@ -371,8 +371,8 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 		} else {
 			// First set the alpha channel to the visibility mask.
 			drawDest.DrawImage(r.visibilityMaskImage, &ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeMultiply,
-				Filter:        ebiten.FilterNearest,
+				Blend:  ebiten.BlendDestinationIn,
+				Filter: ebiten.FilterNearest,
 			})
 
 			// Then draw the background.
@@ -399,21 +399,21 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 					ColorR: 1, ColorG: 1, ColorB: 1, ColorA: 1,
 				},
 			}, []uint16{0, 1, 2, 1, 2, 3}, r.prevImage, &ebiten.DrawTrianglesOptions{
-				CompositeMode: ebiten.CompositeModeCopy,
-				Filter:        ebiten.FilterNearest,
-				Address:       ebiten.AddressClampToZero,
+				Blend:   ebiten.BlendCopy,
+				Filter:  ebiten.FilterNearest,
+				Address: ebiten.AddressClampToZero,
 			})
 
 			// Finally put the masked foreground on top.
 			screen.DrawImage(drawDest, &ebiten.DrawImageOptions{
-				CompositeMode: ebiten.CompositeModeSourceOver,
-				Filter:        ebiten.FilterNearest,
+				Blend:  ebiten.BlendSourceOver,
+				Filter: ebiten.FilterNearest,
 			})
 		}
 	} else {
 		screen.DrawImage(r.visibilityMaskImage, &ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeDestinationIn,
-			Filter:        ebiten.FilterNearest,
+			Blend:  ebiten.BlendDestinationIn,
+			Filter: ebiten.FilterNearest,
 		})
 	}
 

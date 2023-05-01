@@ -238,8 +238,8 @@ func touchPadDraw(screen *ebiten.Image) {
 			continue
 		}
 		options := &ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeSourceOver,
-			Filter:        ebiten.FilterNearest,
+			Blend:  ebiten.BlendSourceOver,
+			Filter: ebiten.FilterNearest,
 		}
 		if r.Size.IsZero() {
 			if !i.Held || !actionButtonAvailable {

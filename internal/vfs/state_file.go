@@ -18,10 +18,10 @@
 package vfs
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 	"time"
-	"errors"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"

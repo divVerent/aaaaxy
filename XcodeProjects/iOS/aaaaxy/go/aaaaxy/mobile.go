@@ -38,7 +38,7 @@ type game struct {
 }
 
 var (
-	g       *game
+	g *game
 )
 
 func (g *game) Update() (err error) {

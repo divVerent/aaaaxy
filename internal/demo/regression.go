@@ -114,7 +114,7 @@ func regressionPostDrawFrame(screen *ebiten.Image) {
 	defer offscreen.Dispose(dup)
 	dup.Fill(color.Gray{0})
 	dup.DrawImage(screen, &ebiten.DrawImageOptions{
-		CompositeMode: ebiten.CompositeModeSourceOver,
+		Blend: ebiten.BlendSourceOver,
 	})
 
 	// Draw text on it.

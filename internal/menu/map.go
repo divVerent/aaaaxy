@@ -279,8 +279,8 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 
 	// Draw all known checkpoints.
 	opts := ebiten.DrawImageOptions{
-		CompositeMode: ebiten.CompositeModeSourceOver,
-		Filter:        ebiten.FilterNearest,
+		Blend:  ebiten.BlendSourceOver,
+		Filter: ebiten.FilterNearest,
 	}
 	opts.GeoM.Scale(float64(s.MapRect.Size.DX+2*mapBorder), float64(s.MapRect.Size.DY+2*mapBorder))
 	opts.GeoM.Translate(float64(s.MapRect.Origin.X-mapBorder), float64(s.MapRect.Origin.Y-mapBorder))
@@ -388,8 +388,8 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 					}
 				}
 				options := &ebiten.DrawTrianglesOptions{
-					CompositeMode: ebiten.CompositeModeSourceOver,
-					Filter:        ebiten.FilterNearest,
+					Blend:  ebiten.BlendSourceOver,
+					Filter: ebiten.FilterNearest,
 				}
 				geoM := &ebiten.GeoM{}
 				geoM.Scale(0, 0)
@@ -424,8 +424,8 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		}
 		pos := cpPos[cpName]
 		opts := ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeSourceOver,
-			Filter:        ebiten.FilterNearest,
+			Blend:  ebiten.BlendSourceOver,
+			Filter: ebiten.FilterNearest,
 		}
 		opts.GeoM.Translate(float64(pos.X-7), float64(pos.Y-7))
 		screen.DrawImage(sprite, &opts)
@@ -441,8 +441,8 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 		sprite := s.cpCheckmarkSprite
 		pos := cpPos[cpName]
 		opts := ebiten.DrawImageOptions{
-			CompositeMode: ebiten.CompositeModeSourceOver,
-			Filter:        ebiten.FilterNearest,
+			Blend:  ebiten.BlendSourceOver,
+			Filter: ebiten.FilterNearest,
 		}
 		opts.GeoM.Translate(float64(pos.X-7), float64(pos.Y-7))
 		screen.DrawImage(sprite, &opts)
