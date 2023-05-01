@@ -1,0 +1,7 @@
+  - Engine: draw the touch controls BELOW the centerprints.
+  - Engine: faster loading.
+  - Engine: show the ActionButton on touch only if one has an ability for it.
+  - Engine: update to Ebitengine 2.5.3, and fix deprecated stuff.
+  - Level: add two missing ExitButton text notes and a missing ExitButton.
+  - Menu: show the map with anti aliasing.
+  - Mobile: support for split APKs.

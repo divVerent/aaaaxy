@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.469" date="2023-04-24">
-      <description><ul><li>Engine: experimental new flag: -pin_assets_to_ram to maybe speedup loading on mobile.</li><li>Level: minor "confusion fix".</li><li>Menu: draw the map bigger to play nicer on touchscreens.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.469</url>
+    <release version="v1.3.511" date="2023-05-01">
+      <description><ul><li>Engine: draw the touch controls BELOW the centerprints.</li><li>Engine: faster loading.</li><li>Engine: show the ActionButton on touch only if one has an ability for it.</li><li>Engine: update to Ebitengine 2.5.3, and fix deprecated stuff.</li><li>Level: add two missing ExitButton text notes and a missing ExitButton.</li><li>Menu: show the map with anti aliasing.</li><li>Mobile: support for split APKs.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.511</url>
     </release>
   </releases>
 </component>
