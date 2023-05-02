@@ -76,6 +76,12 @@ log=fastlane/metadata/android/en-US/changelogs/"$(sh scripts/version.sh android)
 tail -n +4 .commitmsg > "$log"
 git add "$log"
 
+# Provide version for iOS.
+sed -i -e "
+	s,CURRENT_PROJECT_VERSION = .*;,CURRENT_PROJECT_VERSION = 1;,g;
+	s,MARKETING_VERSION = .*;,MARKETING_VERSION = $(sh scripts/version.sh ios);,g;
+" XcodeProjects/iOS/aaaaxy.xcodeproj/project.pbxproj
+
 # Also pack the SDL game controller DB at the exact version used for the
 # release. Used for compiling from source tarballs.
 zip -r sdl-gamecontrollerdb-for-aaaaxy-$new.zip third_party/SDL_GameControllerDB/assets/input/*
