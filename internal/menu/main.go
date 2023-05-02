@@ -28,6 +28,7 @@ import (
 
 var offerQuit = flag.SystemDefault(map[string]bool{
 	"ios/*": false,
+	"js/*":  false,
 	"*/*":   true,
 })
 
