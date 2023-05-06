@@ -162,12 +162,12 @@ func Update(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 f
 		}
 		firstUpdate = false
 	}
-	for _, i := range impulses {
-		i.update()
-	}
 	clickPos, hoverPos = nil, nil
 	mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2)
 	touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2)
+	for _, i := range impulses {
+		i.update()
+	}
 	easterEggUpdate()
 }
 
