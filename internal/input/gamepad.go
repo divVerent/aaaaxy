@@ -38,14 +38,30 @@ var (
 
 type (
 	padControls struct {
+		name          string
 		buttons       []ebiten.StandardGamepadButton
 		axes          []ebiten.StandardGamepadAxis
 		axisDirection float64
 	}
 )
 
+func (c *padControls) AvailableOn(p ebiten.GamepadID) bool {
+	for _, b := range c.buttons {
+		if ebiten.IsStandardGamepadButtonAvailable(p, b) {
+			return true
+		}
+	}
+	for _, a := range c.axes {
+		if ebiten.IsStandardGamepadAxisAvailable(p, a) {
+			return true
+		}
+	}
+	return false
+}
+
 var (
 	leftPad = padControls{
+		name: "left",
 		buttons: []ebiten.StandardGamepadButton{
 			ebiten.StandardGamepadButtonLeftLeft,
 		},
@@ -56,6 +72,7 @@ var (
 		axisDirection: -1,
 	}
 	rightPad = padControls{
+		name: "right",
 		buttons: []ebiten.StandardGamepadButton{
 			ebiten.StandardGamepadButtonLeftRight,
 		},
@@ -66,6 +83,7 @@ var (
 		axisDirection: +1,
 	}
 	upPad = padControls{
+		name: "up",
 		buttons: []ebiten.StandardGamepadButton{
 			ebiten.StandardGamepadButtonLeftTop,
 		},
@@ -76,6 +94,7 @@ var (
 		axisDirection: -1,
 	}
 	downPad = padControls{
+		name: "down",
 		buttons: []ebiten.StandardGamepadButton{
 			ebiten.StandardGamepadButtonLeftBottom,
 		},
@@ -86,6 +105,7 @@ var (
 		axisDirection: +1,
 	}
 	jumpPad = padControls{
+		name: "jump",
 		buttons: []ebiten.StandardGamepadButton{
 			ebiten.StandardGamepadButtonRightBottom,
 			ebiten.StandardGamepadButtonRightTop,
@@ -93,6 +113,7 @@ var (
 		},
 	}
 	actionPad = padControls{
+		name: "action",
 		buttons: []ebiten.StandardGamepadButton{
 			ebiten.StandardGamepadButtonRightLeft,
 			ebiten.StandardGamepadButtonRightRight,
@@ -100,6 +121,7 @@ var (
 		},
 	}
 	exitPad = padControls{
+		name: "exit",
 		buttons: []ebiten.StandardGamepadButton{
 			ebiten.StandardGamepadButtonFrontTopLeft,
 			ebiten.StandardGamepadButtonFrontTopRight,
@@ -272,6 +294,7 @@ func gamepadScan() {
 	for p := range allGamepads {
 		allGamepads[p] = false
 	}
+NextGamepad:
 	for _, p := range allGamepadsList {
 		_, alreadyThere := allGamepads[p]
 		if alreadyThere {
@@ -284,6 +307,13 @@ func gamepadScan() {
 			log.Errorf("gamepad %v (%v) has no standard layout - cannot use", ebiten.GamepadName(p), ebiten.GamepadSDLID(p))
 			continue
 		}
+		for _, controls := range []padControls{leftPad, rightPad, upPad, downPad, jumpPad, actionPad} {
+			if !controls.AvailableOn(p) {
+				log.Errorf("gamepad %v (%v) has standard layout but lacks %v control - cannot use", ebiten.GamepadName(p), ebiten.GamepadSDLID(p), controls.name)
+				continue NextGamepad
+			}
+		}
+		// TODO also check button/axis existence.
 		// A good gamepad! Add it.
 		gamepads[p] = struct{}{}
 	}
@@ -291,7 +321,7 @@ func gamepadScan() {
 		if stillThere {
 			continue
 		}
-		log.Infof("gamepad %v (%v) removed", ebiten.GamepadName(p), ebiten.GamepadSDLID(p))
+		log.Infof("gamepad removed")
 		delete(allGamepads, p)
 		delete(gamepads, p)
 	}

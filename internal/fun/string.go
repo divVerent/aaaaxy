@@ -205,10 +205,8 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 				return locale.G.Get("Z"), nil
 			case input.ShiftETab:
 				return locale.G.Get("Shift/E/Tab"), nil
-			case input.EnterShift:
+			default: // case input.EnterShift:
 				return locale.G.Get("Enter/Shift"), nil
-			default: // case input.Shift:
-				return locale.G.Get("Shift"), nil
 			}
 		},
 		"SpeedrunCategories": func() (string, error) {

@@ -155,9 +155,16 @@ func Update(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 f
 	gamepadScan()
 	if firstUpdate {
 		// At first, assume gamepad whenever one is present.
-		if len(gamepads) > 0 {
+		switch {
+		case len(gamepads) > 0:
 			inputMap = Gamepad
-		} else {
+		case runtime.GOOS == "android":
+			inputMap = Touchscreen
+		case runtime.GOOS == "ios":
+			inputMap = Touchscreen
+		case runtime.GOOS == "js":
+			inputMap = Touchscreen
+		default:
 			inputMap = AnyKeyboard
 		}
 		firstUpdate = false
@@ -213,10 +220,6 @@ func KonamiCodeJustHit() bool {
 	return konamiCode.justHit || snesKonamiCode.justHit || kbdKonamiCode.justHit || literalKbdKonamiCode.justHit
 }
 
-func Map() InputMap {
-	return inputMap
-}
-
 type ExitButtonID int
 
 const (
@@ -253,7 +256,6 @@ const (
 	Z
 	ShiftETab
 	EnterShift
-	Shift
 )
 
 func ActionButton() ActionButtonID {
@@ -278,7 +280,8 @@ func ActionButton() ActionButtonID {
 	if inputMap.ContainsAny(ViKeyboard) {
 		return EnterShift
 	}
-	return Shift
+	// Should never hit this.
+	return CtrlShift
 }
 
 func HoverPos() (m.Pos, bool) {

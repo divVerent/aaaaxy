@@ -24,13 +24,8 @@ import (
 )
 
 var (
-	touch      = flag.Bool("touch", true, "enable touch input")
-	touchForce = flag.Bool("touch_force", flag.SystemDefault(map[string]bool{
-		"android/*": true,
-		"ios/*":     true,
-		"js/*":      true,
-		"*/*":       false,
-	}), "always show touch controls")
+	touch           = flag.Bool("touch", true, "enable touch input")
+	touchForce      = flag.Bool("touch_force", false, "always show touch controls")
 	touchRectLeft   = flag.Text("touch_rect_left", m.Rect{Origin: m.Pos{X: 0, Y: 232}, Size: m.Delta{DX: 64, DY: 64}}, "touch rectangle for moving left")
 	touchRectRight  = flag.Text("touch_rect_right", m.Rect{Origin: m.Pos{X: 64, Y: 232}, Size: m.Delta{DX: 64, DY: 64}}, "touch rectangle for moving right")
 	touchRectDown   = flag.Text("touch_rect_down", m.Rect{Origin: m.Pos{X: 0, Y: 296}, Size: m.Delta{DX: 128, DY: 64}}, "touch rectangle for moving down")
@@ -42,7 +37,6 @@ var (
 
 const (
 	touchClickMaxFrames = 30
-	touchPadFrames      = 300
 )
 
 type touchInfo struct {
@@ -60,8 +54,6 @@ var (
 	touches               = map[ebiten.TouchID]*touchInfo{}
 	touchIDs              []ebiten.TouchID
 	touchHoverPos         m.Pos
-	touchPadFrame         int
-	touchPadUsed          bool = false
 	actionButtonAvailable bool = false
 )
 
@@ -101,10 +93,6 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 	if len(touchIDs) > 0 {
 		// Either support touch OR mouse. This prevents duplicate click events.
 		mouseCancel()
-		touchPadFrame = touchPadFrames
-		touchPadUsed = true
-	} else if touchPadFrame > 0 {
-		touchPadFrame--
 	}
 	for _, id := range touchIDs {
 		t, found := touches[id]
@@ -222,7 +210,7 @@ func touchDraw(screen *ebiten.Image) {
 	if !touchShowPad {
 		return
 	}
-	if !*touchForce && touchPadFrame <= 0 {
+	if !HaveTouch() {
 		return
 	}
 	touchPadDraw(screen)
@@ -277,5 +265,5 @@ func touchPadDraw(screen *ebiten.Image) {
 }
 
 func HaveTouch() bool {
-	return *touchForce || touchPadUsed
+	return *touchForce || (inputMap&Touchscreen != 0)
 }
