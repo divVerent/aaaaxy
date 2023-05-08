@@ -48,6 +48,7 @@ for demo in "$@"; do
 		"$demo" \
 		$binary \
 		-audio=false \
+		-debug_check_entity_overlaps \
 		-debug_check_image_palette \
 		-debug_check_tile_window_size \
 		-debug_check_tnih_signs \

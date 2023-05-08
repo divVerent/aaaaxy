@@ -17,12 +17,12 @@ package constants
 const (
 	MinSpriteZ      = -1
 	MaxSpriteZ      = 2
-	OneWayZ         = 3
 	TnihSignZ       = 3
+	OneWayZ         = 4
 	AppearBlockZ    = 4
 	DisappearBlockZ = 4
-	SwitchBlockZ    = 4
 	SwitchZ         = 4
+	SwitchBlockZ    = 5
 	CoverSpriteZ    = 5
 	RiserMovingZ    = 6
 	PlayerZ         = 7

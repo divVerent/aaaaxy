@@ -42,6 +42,7 @@ var (
 	debugCountTiles                  = flag.Bool("debug_count_tiles", false, "count tiles set/cleared")
 	debugNeighborLoadingOptimization = flag.Bool("debug_neighbor_loading_optimization", true, "load tiles faster from the same neighbor tile (maybe incorrect, but faster)")
 	debugCheckTileWindowSize         = flag.Bool("debug_check_tile_window_size", false, "if set, we verify that the tile window size is set high enough")
+	debugCheckEntityOverlaps         = flag.Bool("debug_check_entity_overlaps", false, "if set, we verify no two static entities overlap at same Z index")
 )
 
 // World represents the current game state including its entities.
@@ -790,6 +791,42 @@ func (w *World) AssumeChanged() {
 	w.renderer.worldChanged = true
 }
 
+func (w *World) checkEntityOverlaps() error {
+	if !*debugCheckEntityOverlaps {
+		return nil
+	}
+	minZ, maxZ := zBounds(len(w.entitiesByZ))
+	for z := minZ; z <= maxZ; z++ {
+		var boxes []*Entity
+		err := w.entitiesByZ[encodeZ(z)].forEach(func(ent *Entity) error {
+			if ent.Image == nil || ent.Alpha == 0 {
+				return nil
+			}
+			if ent.RequireTiles {
+				// This one is likely dynamic and Z overlap is expected.
+				return nil
+			}
+			for _, box := range boxes {
+				if box.Rect.Delta(ent.Rect).IsZero() {
+					if box.Image == ent.Image {
+						// Exception: permit overlap of same image - it's likely intentional.
+						// Exists in "Nine Boxes In Sight" around Box5N and seems hard to fix.
+						continue
+					}
+					return fmt.Errorf("overlapping entities: %v rect %v overlaps %v rect %v",
+						ent.Incarnation, ent.Rect, box.Incarnation, box.Rect)
+				}
+			}
+			boxes = append(boxes, ent)
+			return nil
+		})
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func (w *World) Update() error {
 	defer timing.Group()()
 	w.FramesSinceSpawn++
@@ -797,6 +834,12 @@ func (w *World) Update() error {
 	// Let everything move.
 	timing.Section("entities")
 	w.updateEntities()
+
+	// Audit overlaps.
+	err := w.checkEntityOverlaps()
+	if err != nil {
+		return err
+	}
 
 	// Fetch the player entity.
 	playerImpl := w.Player.Impl.(PlayerEntityImpl)

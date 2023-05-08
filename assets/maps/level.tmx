@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8294">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8297">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -265,8 +265,8 @@
 0,0,40,30,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,63,63,63,32,36,36,36,36,25,63,63,63,40,30,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,56,56,30,285,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,62,62,62,62,62,62,62,289,62,62,289,62,40,30,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,40,30,56,56,40,30,64,64,40,30,
 0,0,40,30,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,63,63,63,63,63,63,63,63,63,63,63,63,40,30,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,56,56,30,284,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,18,22,22,22,22,14,62,62,62,62,62,62,40,48,22,22,22,22,22,22,22,22,22,22,22,14,64,64,64,64,18,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,55,30,56,56,40,30,64,64,40,30,
 0,0,40,30,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,63,63,63,63,63,63,63,63,63,63,63,63,40,30,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,56,56,30,284,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,18,14,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,18,22,55,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,32,52,36,36,54,30,62,62,62,62,62,62,32,36,36,36,36,36,36,36,36,36,36,36,36,34,16,16,16,16,35,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,25,56,56,40,30,64,64,40,30,
-0,0,40,30,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,63,63,18,22,22,22,22,22,22,22,22,22,55,48,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,14,88,88,88,88,88,88,88,88,88,88,88,88,88,18,14,82,82,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,56,56,30,285,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,56,56,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,40,30,64,64,40,30,62,289,62,62,289,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,56,56,40,30,64,64,40,30,
-0,0,40,30,64,64,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,25,170,170,32,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,25,61,61,32,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,54,30,60,60,60,60,60,60,60,60,60,60,60,60,60,40,30,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,56,56,30,285,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,56,56,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,40,30,64,64,40,30,289,62,62,62,62,289,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,56,56,40,30,64,64,40,30,
+0,0,40,30,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,63,63,18,22,22,22,22,22,22,22,22,22,55,48,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,14,88,88,88,88,88,88,88,88,88,88,88,88,88,18,14,82,82,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,56,56,30,285,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,56,56,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,40,30,64,64,40,30,62,289,62,62,289,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,56,56,56,56,40,30,64,64,40,30,
+0,0,40,30,64,64,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,25,170,170,32,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,25,61,61,32,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,54,30,60,60,60,60,60,60,60,60,60,60,60,60,60,40,30,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,56,56,30,285,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,56,56,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,40,30,64,64,40,30,289,62,62,62,62,289,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,56,56,56,56,40,30,64,64,40,30,
 0,0,40,30,64,64,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,18,14,18,14,18,14,61,61,61,61,61,61,61,61,61,61,61,61,61,61,18,14,18,14,18,14,61,61,61,61,61,61,0,0,40,30,60,60,60,60,60,60,60,60,60,60,60,60,60,40,30,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,56,56,30,284,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,56,56,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,18,30,188,188,40,48,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,55,30,64,64,40,30,
 0,0,40,30,64,64,56,56,64,64,64,64,64,64,56,56,64,64,64,64,64,64,56,56,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,40,30,40,30,40,30,61,61,61,61,61,61,61,61,61,61,61,61,61,61,40,30,40,30,40,30,61,61,61,61,61,61,0,0,40,30,60,60,60,60,60,60,60,60,60,60,60,60,60,40,30,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,52,36,25,284,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,32,28,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,56,56,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,32,25,62,62,32,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,54,30,64,64,40,30,
 0,0,40,30,64,64,56,64,64,64,64,64,64,64,56,56,64,64,64,64,64,64,64,56,64,64,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,40,30,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,61,61,61,61,61,61,61,61,61,61,40,30,40,30,39,25,61,61,61,61,61,61,61,61,61,61,61,61,61,61,40,30,40,30,39,25,61,61,61,61,61,61,0,0,40,30,60,60,60,60,60,60,60,60,60,60,60,60,60,40,30,57,57,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,284,284,285,40,56,30,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,57,57,57,26,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,40,56,56,30,56,56,40,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,30,62,62,62,62,62,62,62,62,62,62,62,62,62,62,149,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,40,30,64,64,40,30,
@@ -6670,7 +6670,7 @@
     <property name="invert" type="bool" value="true"/>
     <property name="map_black_to" type="color" value="#00555555"/>
     <property name="map_white_to" type="color" value="#ff555555"/>
-    <property name="z_index" type="int" value="-1"/>
+    <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
   <object id="1695" gid="316" x="800" y="8016" width="32" height="32">
@@ -7708,6 +7708,7 @@
    <properties>
     <property name="map_black_to" type="color" value="#0000aa00"/>
     <property name="map_white_to" type="color" value="#ff00aa00"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="2372" name="GrabSesame" gid="310" x="1696" y="32" width="16" height="16"/>
@@ -7856,8 +7857,16 @@
     <property name="target" value="!GrabSesame3 !GrabAntiSesame3"/>
    </properties>
   </object>
-  <object id="2668" name="GrabAntiSesame3" gid="311" x="2704" y="320" width="16" height="16"/>
-  <object id="2669" name="GrabAntiSesame3" gid="311" x="2720" y="320" width="16" height="16"/>
+  <object id="2668" name="GrabAntiSesame3" gid="311" x="2704" y="320" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="2669" name="GrabAntiSesame3" gid="311" x="2720" y="320" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
   <object id="2670" name="GrabSesame3" gid="310" x="2736" y="288" width="16" height="16"/>
   <object id="2671" name="GrabSesame3" gid="310" x="2736" y="304" width="16" height="16"/>
   <object id="2672" gid="307" x="2704" y="0" width="32" height="32"/>
@@ -8299,6 +8308,7 @@
    <properties>
     <property name="map_black_to" type="color" value="#ff000000"/>
     <property name="map_white_to" type="color" value="#00000000"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="2990" gid="305" x="4064" y="3232" width="32" height="32"/>
@@ -8455,15 +8465,51 @@
   <object id="3113" name="PushMeNot4a" gid="310" x="3904" y="2624" width="16" height="16"/>
   <object id="3114" name="PushMeNot4a" gid="310" x="3904" y="2640" width="16" height="16"/>
   <object id="3116" name="PushMeNot4a" gid="310" x="3920" y="2624" width="16" height="16"/>
-  <object id="3120" name="PushMeNot4b" gid="311" x="3952" y="2640" width="16" height="16"/>
-  <object id="3121" name="PushMeNot4b" gid="311" x="3968" y="2624" width="16" height="16"/>
-  <object id="3122" name="PushMeNot4b" gid="311" x="3968" y="2640" width="16" height="16"/>
-  <object id="3123" name="PushMeNot4b" gid="311" x="3984" y="2624" width="16" height="16"/>
-  <object id="3124" name="PushMeNot4b" gid="311" x="3984" y="2640" width="16" height="16"/>
-  <object id="3125" name="PushMeNot4b" gid="311" x="4000" y="2624" width="16" height="16"/>
-  <object id="3126" name="PushMeNot4b" gid="311" x="4000" y="2640" width="16" height="16"/>
-  <object id="3127" name="PushMeNot4b" gid="311" x="4016" y="2624" width="16" height="16"/>
-  <object id="3128" name="PushMeNot4b" gid="311" x="4016" y="2640" width="16" height="16"/>
+  <object id="3120" name="PushMeNot4b" gid="311" x="3952" y="2640" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3121" name="PushMeNot4b" gid="311" x="3968" y="2624" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3122" name="PushMeNot4b" gid="311" x="3968" y="2640" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3123" name="PushMeNot4b" gid="311" x="3984" y="2624" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3124" name="PushMeNot4b" gid="311" x="3984" y="2640" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3125" name="PushMeNot4b" gid="311" x="4000" y="2624" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3126" name="PushMeNot4b" gid="311" x="4000" y="2640" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3127" name="PushMeNot4b" gid="311" x="4016" y="2624" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3128" name="PushMeNot4b" gid="311" x="4016" y="2640" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
   <object id="3129" gid="308" x="3832" y="2576" width="16" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="true"/>
@@ -8551,8 +8597,16 @@
     <property name="text" value="Tower of Impossible"/>
    </properties>
   </object>
-  <object id="3188" name="PushMeNot4b" gid="311" x="3936" y="2640" width="16" height="16"/>
-  <object id="3189" name="PushMeNot4b" gid="311" x="3952" y="2624" width="16" height="16"/>
+  <object id="3188" name="PushMeNot4b" gid="311" x="3936" y="2640" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3189" name="PushMeNot4b" gid="311" x="3952" y="2624" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
   <object id="3190" gid="302" x="3808" y="2576" width="16" height="16"/>
   <object id="3191" gid="302" x="3760" y="2576" width="16" height="16"/>
   <object id="3192" gid="303" x="4000" y="2352" width="16" height="16"/>
@@ -8588,8 +8642,16 @@
   <object id="3244" gid="302" x="3744" y="2240" width="16" height="16"/>
   <object id="3245" gid="302" x="3952" y="2240" width="16" height="16"/>
   <object id="3246" gid="302" x="3792" y="2240" width="16" height="16"/>
-  <object id="3247" name="PushMeNot4b" gid="311" x="3936" y="2624" width="16" height="16"/>
-  <object id="3248" name="PushMeNot4b" gid="311" x="3920" y="2640" width="16" height="16"/>
+  <object id="3247" name="PushMeNot4b" gid="311" x="3936" y="2624" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3248" name="PushMeNot4b" gid="311" x="3920" y="2640" width="16" height="16">
+   <properties>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
   <object id="3249" gid="302" x="3856" y="2576" width="16" height="16"/>
   <object id="3255" gid="317" x="2992" y="2176" width="32" height="1616">
    <properties>
@@ -10022,7 +10084,6 @@
   <object id="4143" gid="10" x="5888" y="3536" width="16" height="16"/>
   <object id="4144" gid="10" x="5952" y="3488" width="16" height="16"/>
   <object id="4145" gid="10" x="5968" y="3488" width="16" height="16"/>
-  <object id="4149" gid="58" x="5824" y="3408" width="16" height="16"/>
   <object id="4157" gid="316" x="5776" y="3408" width="208" height="64">
    <properties>
     <property name="map_black_to" type="color" value="#ffff55ff"/>
@@ -10381,14 +10442,46 @@
   <object id="4439" gid="301" x="6320" y="4032" width="16" height="16"/>
   <object id="4440" gid="301" x="6336" y="4032" width="16" height="16"/>
   <object id="4441" gid="301" x="6352" y="4032" width="16" height="16"/>
-  <object id="4442" gid="331" x="6208" y="4016" width="3" height="5"/>
-  <object id="4443" gid="331" x="6208" y="4032" width="3" height="5"/>
-  <object id="4445" gid="331" x="6208" y="4027" width="3" height="5"/>
-  <object id="4446" gid="331" x="6208" y="4043" width="3" height="5"/>
-  <object id="4447" gid="331" x="6173" y="4016" width="3" height="5"/>
-  <object id="4448" gid="331" x="6173" y="4032" width="3" height="5"/>
-  <object id="4449" gid="331" x="6173" y="4027" width="3" height="5"/>
-  <object id="4450" gid="331" x="6173" y="4043" width="3" height="5"/>
+  <object id="4442" gid="331" x="6208" y="4016" width="3" height="5">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4443" gid="331" x="6208" y="4032" width="3" height="5">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4445" gid="331" x="6208" y="4027" width="3" height="5">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4446" gid="331" x="6208" y="4043" width="3" height="5">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4447" gid="331" x="6173" y="4016" width="3" height="5">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4448" gid="331" x="6173" y="4032" width="3" height="5">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4449" gid="331" x="6173" y="4027" width="3" height="5">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4450" gid="331" x="6173" y="4043" width="3" height="5">
+   <properties>
+    <property name="z_index" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="4451" type="SetState" x="6256" y="4116" width="16" height="16">
    <properties>
     <property name="send_untouch" type="bool" value="true"/>
@@ -10581,16 +10674,17 @@
     <property name="text" value="There is no such thing as a little white lie."/>
    </properties>
   </object>
-  <object id="4500" gid="316" x="5824" y="3280" width="576" height="32">
+  <object id="4500" gid="316" x="5888" y="3280" width="512" height="32">
    <properties>
     <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#ff000000"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="4501" gid="317" x="6016" y="4096" width="352" height="96">
+  <object id="4501" gid="317" x="6016" y="4096" width="352" height="48">
    <properties>
     <property name="map_black_to" type="color" value="#00aaaaaa"/>
-    <property name="map_white_to" type="color" value="#ffaaaaaa"/>
+    <property name="map_white_to" type="color" value="#7faaaaaa"/>
     <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
@@ -11000,12 +11094,14 @@
    <properties>
     <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#ff000000"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="4673" gid="317" x="4912" y="608" width="32" height="64">
    <properties>
     <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#ff000000"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="4674" gid="317" x="4576" y="608" width="32" height="64">
@@ -11045,6 +11141,7 @@
    <properties>
     <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#ff000000"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="4697" gid="309" x="5320" y="416" width="32" height="16"/>
@@ -11269,13 +11366,29 @@
   <object id="4908" gid="301" x="5088" y="960" width="16" height="16"/>
   <object id="4909" gid="301" x="5104" y="960" width="16" height="16"/>
   <object id="4910" gid="301" x="5120" y="960" width="16" height="16"/>
-  <object id="4911" gid="321" x="4928" y="1528" width="32" height="32"/>
-  <object id="4912" gid="321" x="4928" y="1336" width="32" height="32"/>
+  <object id="4911" gid="321" x="4928" y="1528" width="32" height="32">
+   <properties>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
+  <object id="4912" gid="321" x="4928" y="1336" width="32" height="32">
+   <properties>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
   <object id="4914" gid="320" x="4864" y="1168" width="32" height="32"/>
   <object id="4916" gid="322" x="4864" y="1120" width="32" height="32"/>
-  <object id="4917" gid="321" x="4848" y="1144" width="32" height="32"/>
+  <object id="4917" gid="321" x="4848" y="1144" width="32" height="32">
+   <properties>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
   <object id="4918" gid="322" x="4992" y="976" width="32" height="32"/>
-  <object id="4919" gid="321" x="5008" y="952" width="32" height="32"/>
+  <object id="4919" gid="321" x="5008" y="952" width="32" height="32">
+   <properties>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
   <object id="4920" gid="320" x="4992" y="928" width="32" height="32"/>
   <object id="4921" gid="320" x="4928" y="1040" width="32" height="32"/>
   <object id="4922" gid="322" x="4896" y="1248" width="32" height="32"/>
@@ -12340,7 +12453,7 @@
     <property name="map_white_to" type="color" value="#ffaa00aa"/>
    </properties>
   </object>
-  <object id="5555" gid="316" x="7488" y="4096" width="576" height="32">
+  <object id="5555" gid="316" x="7488" y="4096" width="544" height="32">
    <properties>
     <property name="map_black_to" type="color" value="#00000000"/>
     <property name="map_white_to" type="color" value="#ff000000"/>
@@ -14035,6 +14148,7 @@
   <object id="6564" type="Sprite" x="768" y="80" width="160" height="112">
    <properties>
     <property name="image" value="switching_it_up.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="6565" type="Sprite" x="4272" y="112" width="272" height="192">
@@ -14045,6 +14159,7 @@
   <object id="6566" type="Sprite" x="5760" y="128" width="112" height="112">
    <properties>
     <property name="image" value="huh.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="6567" gid="319" x="5936" y="64" width="32" height="32"/>
@@ -16665,7 +16780,7 @@
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="0 0 314 157"/>
-    <property name="z_index" type="int" value="-1"/>
+    <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
   <object id="7806" name="FinalPowerLED" type="SwitchableSprite" gid="318" x="1908" y="4753" width="16" height="16">
@@ -16688,7 +16803,7 @@
     <property name="delta" value="0 -120"/>
     <property name="image" value="ending_logo.png"/>
     <property name="no_flip" value="x"/>
-    <property name="z_index" type="int" value="0"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="7812" name="FinalSoundDelay" type="DelayTarget" x="2072" y="4704" width="4" height="4">
@@ -16707,7 +16822,7 @@
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="0 162 6 15"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7816" gid="323" x="1344" y="5216" width="32" height="32">
@@ -16895,6 +17010,7 @@
     <property name="fade_time" value="3s"/>
     <property name="map_black_to" type="color" value="#00aa5500"/>
     <property name="map_white_to" type="color" value="#ffff5555"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="7879" name="ShepardAnimation" type="SwitchableAnimation" x="4256" y="5856" width="48" height="48">
@@ -16907,6 +17023,7 @@
     <property name="fade_time" value="3s"/>
     <property name="map_black_to" type="color" value="#000000aa"/>
     <property name="map_white_to" type="color" value="#ffff55ff"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="7880" gid="330" x="6720" y="800" width="16" height="16"/>
@@ -17015,42 +17132,42 @@
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="0 157 314 5"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
-  <object id="7924" type="Sprite" x="1907" y="4717" width="314" height="41">
+  <object id="7924" type="Sprite" x="1971" y="4717" width="250" height="41">
    <properties>
     <property name="image" value="ending_base.png"/>
-    <property name="image_region" value="0 177 314 41"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="image_region" value="64 177 250 41"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
-  <object id="7925" type="Sprite" x="1907" y="4758" width="221" height="15">
+  <object id="7925" type="Sprite" x="1907" y="4758" width="64" height="15">
    <properties>
     <property name="image" value="ending_base.png"/>
-    <property name="image_region" value="0 218 221 15"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="image_region" value="0 218 64 15"/>
+    <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
   <object id="7926" type="Sprite" x="1907" y="4773" width="314" height="19">
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="0 233 314 19"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7927" type="Sprite" x="1907" y="4792" width="6" height="15">
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="0 252 6 15"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7928" type="Sprite" x="1907" y="4807" width="314" height="21">
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="0 267 314 21"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7929" type="Sprite" x="1913" y="4702" width="15" height="15">
@@ -17058,14 +17175,14 @@
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="6 162 15 15"/>
     <property name="no_flip" value="x"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7931" type="Sprite" x="1928" y="4702" width="293" height="15">
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="21 162 293 15"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7932" type="Sprite" x="2128" y="4758" width="31" height="15">
@@ -17073,14 +17190,14 @@
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="221 218 31 15"/>
     <property name="no_flip" value="x"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7933" type="Sprite" x="2159" y="4758" width="62" height="15">
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="252 218 62 15"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7934" type="Sprite" x="1913" y="4792" width="15" height="15">
@@ -17088,14 +17205,14 @@
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="6 252 15 15"/>
     <property name="no_flip" value="x"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7937" type="Sprite" x="1928" y="4792" width="293" height="15">
    <properties>
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="21 252 293 15"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7938" gid="336" x="7344" y="6016" width="16" height="16"/>
@@ -17165,7 +17282,7 @@
     <property name="animation_frames" type="int" value="2"/>
     <property name="animation_group" value="idle"/>
     <property name="animation_repeat_interval" type="int" value="32"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7958" type="Animation" x="4844" y="6204" width="8" height="5">
@@ -17175,7 +17292,7 @@
     <property name="animation_frames" type="int" value="2"/>
     <property name="animation_group" value="idle"/>
     <property name="animation_repeat_interval" type="int" value="32"/>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="7959" type="Animation" x="6956" y="8044" width="8" height="5">
@@ -17776,6 +17893,7 @@
     <property name="animation_frames" type="int" value="2"/>
     <property name="animation_group" value="idle"/>
     <property name="animation_repeat_interval" type="int" value="32"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8128" gid="309" x="4192" y="3808" width="32" height="16"/>
@@ -17906,6 +18024,7 @@
    <properties>
     <property name="image" value="enotion.png"/>
     <property name="no_flip" value="x"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8183" type="Sprite" x="5712" y="816" width="160" height="64">
@@ -17972,7 +18091,7 @@
   </object>
   <object id="8202" name="EscapeButton" type="ExitButton" x="3616" y="4592" width="64" height="64">
    <properties>
-    <property name="z_index" type="int" value="1"/>
+    <property name="z_index" type="int" value="2"/>
    </properties>
   </object>
   <object id="8235" gid="312" x="3632" y="4656" width="32" height="32">
@@ -17989,6 +18108,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8206" name="WeirdSpaceDelay" type="DelayTarget" x="3632" y="4544" width="32" height="16">
@@ -18003,6 +18123,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8208" name="WeirdSpace" type="MovableSprite" x="3765" y="4722" width="32" height="32">
@@ -18011,6 +18132,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8209" name="WeirdSpace" type="MovableSprite" x="3698" y="4642" width="32" height="32">
@@ -18019,6 +18141,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8210" name="WeirdSpace" type="MovableSprite" x="3716" y="4574" width="32" height="32">
@@ -18027,6 +18150,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8211" name="WeirdSpace" type="MovableSprite" x="3798" y="4538" width="32" height="32">
@@ -18035,6 +18159,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8212" name="WeirdSpace" type="MovableSprite" x="3625" y="4564" width="32" height="32">
@@ -18043,6 +18168,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8213" name="WeirdSpace" type="MovableSprite" x="3526" y="4561" width="32" height="32">
@@ -18051,6 +18177,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8214" name="WeirdSpace" type="MovableSprite" x="3494" y="4616" width="32" height="32">
@@ -18059,6 +18186,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8215" name="WeirdSpace" type="MovableSprite" x="3555" y="4697" width="32" height="32">
@@ -18067,6 +18195,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8216" name="WeirdSpace" type="MovableSprite" x="3609" y="4670" width="32" height="32">
@@ -18075,6 +18204,7 @@
     <property name="delta" value="-16 8"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_small.png"/>
+    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="8217" name="WeirdSpace" type="MovableSprite" x="3480" y="4711" width="64" height="64">
@@ -18083,6 +18213,7 @@
     <property name="delta" value="-24 12"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_medium.png"/>
+    <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
   <object id="8218" name="WeirdSpace" type="MovableSprite" x="3523" y="4562" width="64" height="64">
@@ -18091,6 +18222,7 @@
     <property name="delta" value="-24 12"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_medium.png"/>
+    <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
   <object id="8219" name="WeirdSpace" type="MovableSprite" x="3740" y="4587" width="64" height="64">
@@ -18099,6 +18231,7 @@
     <property name="delta" value="-24 12"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_medium.png"/>
+    <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
   <object id="8221" name="WeirdSpace" type="MovableSprite" x="3667" y="4734" width="64" height="64">
@@ -18107,6 +18240,7 @@
     <property name="delta" value="-24 12"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_medium.png"/>
+    <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
   <object id="8222" name="WeirdSpace" type="MovableSprite" x="3635" y="4672" width="128" height="128">
@@ -18115,6 +18249,7 @@
     <property name="delta" value="-32 16"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_large.png"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="8223" name="WeirdSpace" type="MovableSprite" x="3567" y="4528" width="128" height="128">
@@ -18123,6 +18258,7 @@
     <property name="delta" value="-32 16"/>
     <property name="hit_opaque" type="bool" value="true"/>
     <property name="image" value="weird_star_large.png"/>
+    <property name="z_index" type="int" value="-1"/>
    </properties>
   </object>
   <object id="8224" gid="56" x="4080" y="4688" width="16" height="32">
@@ -18360,5 +18496,26 @@
   <object id="8291" gid="301" x="7136" y="2384" width="16" height="16"/>
   <object id="8292" gid="301" x="7232" y="2384" width="16" height="16"/>
   <object id="8293" name="EscapeButton" type="ExitButton" x="6248" y="7792" width="64" height="64"/>
+  <object id="8294" gid="317" x="6016" y="4144" width="352" height="48">
+   <properties>
+    <property name="map_black_to" type="color" value="#80aaaaaa"/>
+    <property name="map_white_to" type="color" value="#ffaaaaaa"/>
+    <property name="z_index" type="int" value="-1"/>
+   </properties>
+  </object>
+  <object id="8295" type="Sprite" x="1907" y="4717" width="64" height="41">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="0 177 64 41"/>
+    <property name="z_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="8296" type="Sprite" x="1971" y="4758" width="157" height="15">
+   <properties>
+    <property name="image" value="ending_base.png"/>
+    <property name="image_region" value="64 218 157 15"/>
+    <property name="z_index" type="int" value="2"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

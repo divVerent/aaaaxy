@@ -19,6 +19,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/animation"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
