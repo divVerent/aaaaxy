@@ -72,6 +72,7 @@ func (s *Switch) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	if err != nil {
 		return fmt.Errorf("could not load switch_off sound: %w", err)
 	}
+	w.SetZIndex(e, constants.SwitchZ)
 
 	return nil
 }

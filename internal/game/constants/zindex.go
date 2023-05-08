@@ -22,6 +22,7 @@ const (
 	AppearBlockZ    = 4
 	DisappearBlockZ = 4
 	SwitchBlockZ    = 4
+	SwitchZ         = 4
 	CoverSpriteZ    = 5
 	RiserMovingZ    = 6
 	PlayerZ         = 7
