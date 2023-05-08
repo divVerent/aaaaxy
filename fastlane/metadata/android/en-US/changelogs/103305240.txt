@@ -1,0 +1,5 @@
+  - Engine: instead of --touch_force or the touch timer, detect use of touch
+    controls by last inputs.
+  - Level: fixed a bunch of text/image overlaps.
+  - Mobile: fix one frame of input latency.
+  - Web: remove the Quit button.

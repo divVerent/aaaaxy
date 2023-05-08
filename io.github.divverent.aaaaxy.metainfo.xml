@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.511" date="2023-05-01">
-      <description><ul><li>Engine: draw the touch controls BELOW the centerprints.</li><li>Engine: faster loading.</li><li>Engine: show the ActionButton on touch only if one has an ability for it.</li><li>Engine: update to Ebitengine 2.5.3, and fix deprecated stuff.</li><li>Level: add two missing ExitButton text notes and a missing ExitButton.</li><li>Menu: show the map with anti aliasing.</li><li>Mobile: support for split APKs.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.511</url>
+    <release version="v1.3.524" date="2023-05-08">
+      <description><ul><li>Engine: instead of --touch_force or the touch timer, detect use of touch controls by last inputs.</li><li>Level: fixed a bunch of text/image overlaps.</li><li>Mobile: fix one frame of input latency.</li><li>Web: remove the Quit button.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.524</url>
     </release>
   </releases>
 </component>
