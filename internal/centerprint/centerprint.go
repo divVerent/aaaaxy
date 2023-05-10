@@ -108,16 +108,25 @@ func (cp *Centerprint) SetFadeOut(fadeOut bool) {
 	cp.fadeOut = fadeOut
 }
 
+func (cp *Centerprint) height() int {
+	return cp.bounds.Size.DY + 1 // Leave one pixel between lines.
+}
+
 func (cp *Centerprint) targetPos() int {
+	var t int
 	switch cp.pos {
 	case Top:
-		return screenHeight / 4
+		t = screenHeight / 4
 	case Middle:
-		return screenHeight / 3
+		t = screenHeight / 3
 	default:
 		log.TraceErrorf("invalid initial position: %v", cp.pos)
-		return screenHeight / 3
+		t = screenHeight / 3
 	}
+	if t < cp.height() {
+		t = cp.height()
+	}
+	return t
 }
 
 func (cp *Centerprint) update() bool {
