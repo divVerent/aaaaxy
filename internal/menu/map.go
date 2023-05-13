@@ -63,7 +63,7 @@ const (
 	edgeThickness         = 3
 	mouseDistance         = 16
 	walkSpeed             = 0.2
-	mapBorder             = 8
+	mapBorder             = 9
 )
 
 func (s *MapScreen) Init(c *Controller) error {
