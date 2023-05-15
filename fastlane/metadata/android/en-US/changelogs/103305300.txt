@@ -1,0 +1,4 @@
+  - Debugging: new flags -debug_show_gc, -debug_go_gc_percent.
+  - Engine: remove the logic that tries to avoid overlapping centerprints.
+  - Engine: still display overlong centerprints fully.
+  - Menu: display checkmarks on map better.
