@@ -72,13 +72,13 @@ func pathForReadRaw(kind StateKind, name string) ([]string, error) {
 	case Config:
 		return []string{
 			filepath.Join(appSupportPath, "AAAAXY", "config", name),
-			// This one matches state_file_xdg.go's for compatibility.
+			// This one matches state_file_xdg.go's for compatibility with data for releases up to 1.3.530.
 			filepath.Join(appSupportPath, "AAAAXY", name),
 		}, nil
 	case SavedGames:
 		return []string{
 			filepath.Join(appSupportPath, "AAAAXY", "save", name),
-			// This one matches state_file_xdg.go's for compatibility.
+			// This one matches state_file_xdg.go's for compatibility with data for releases up to 1.3.530.
 			filepath.Join(appSupportPath, "AAAAXY", name),
 		}, nil
 	default:
