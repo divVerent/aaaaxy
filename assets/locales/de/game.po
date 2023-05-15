@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Last-Translator: Rudolf Polzer, 2023\n"
-"Language-Team: German (https://www.transifex.com/aaaaxy/teams/158611/de/)\n"
+"Language-Team: German (https://app.transifex.com/aaaaxy/teams/158611/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -221,6 +221,10 @@ msgstr ""
 msgid "For Software Licenses{{BR}}Press Right"
 msgstr "Für Software-Lizenzen{{BR}}drücke Rechts"
 
+#: aaaaxy/game.go
+msgid "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
+msgstr "GC Iteration %d: Pause %.1fms Delta %.1fs (vor %.1fs) "
+
 #: menu/credits.go
 msgid "Graphics"
 msgstr "Grafik"
@@ -419,10 +423,6 @@ msgstr "Punkte: {{Score}}{{SpeedrunCategoriesShort}} | Zeit: {{GameTime}}"
 #: menu/main.go menu/settings.go
 msgid "Settings"
 msgstr "Einstellungen"
-
-#: fun/string.go
-msgid "Shift"
-msgstr "Shift"
 
 #: fun/string.go
 msgid "Shift/E/Tab"
