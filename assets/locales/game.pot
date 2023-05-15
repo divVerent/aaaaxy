@@ -209,6 +209,10 @@ msgstr ""
 msgid "For Software Licenses{{BR}}Press Right"
 msgstr ""
 
+#: aaaaxy/game.go
+msgid "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
+msgstr ""
+
 #: menu/credits.go
 msgid "Graphics"
 msgstr ""
@@ -406,10 +410,6 @@ msgstr ""
 
 #: menu/main.go menu/settings.go
 msgid "Settings"
-msgstr ""
-
-#: fun/string.go
-msgid "Shift"
 msgstr ""
 
 #: fun/string.go

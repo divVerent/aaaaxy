@@ -20,8 +20,10 @@ import (
 	go_image "image"
 	"io"
 	"math"
+	"runtime/debug"
 	"runtime/pprof"
 	"strings"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -70,6 +72,7 @@ var (
 	showFPS                      = flag.Bool("show_fps", false, "show fps counter")
 	showTime                     = flag.Bool("show_time", false, "show game time")
 	debugLoadingScreenCpuprofile = flag.String("debug_loading_screen_cpuprofile", "", "write CPU profile of loading screen to file")
+	debugShowGC                  = flag.Bool("debug_show_gc", false, "show garbage collector pause info")
 )
 
 type ditherMode int
@@ -450,6 +453,22 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 			fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}"),
 			m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
+	}
+	if *debugShowGC {
+		timing.Section("time")
+		now := time.Now()
+		var stats debug.GCStats
+		debug.ReadGCStats(&stats)
+		if len(stats.Pause) > 0 && len(stats.PauseEnd) > 1 {
+			font.ByName["Small"].Draw(drawDest,
+				locale.G.Get("GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)",
+					stats.NumGC,
+					stats.Pause[0].Seconds()*1000,
+					stats.PauseEnd[0].Sub(stats.PauseEnd[1]).Seconds(),
+					now.Sub(stats.PauseEnd[0]).Seconds()),
+				m.Pos{X: engine.GameWidth / 2, Y: engine.GameHeight - 4}, font.Center,
+				palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
+		}
 	}
 
 	timing.Section("demo_postdraw")
