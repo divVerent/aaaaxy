@@ -29,10 +29,11 @@ import (
 )
 
 var (
-	flagSet    = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
-	v          = Int("v", 0, "verbose logging level")                // Must be declared here to prevent cycle.
-	batch      = Bool("batch", false, "if set, show no alert boxes") // Must be declared here to prevent cycle.
-	loadConfig = Bool("load_config", true, "enable processing of the configuration file")
+	flagSet           = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
+	v                 = Int("v", 0, "verbose logging level")                // Must be declared here to prevent cycle.
+	batch             = Bool("batch", false, "if set, show no alert boxes") // Must be declared here to prevent cycle.
+	loadConfig        = Bool("load_config", true, "enable processing of the configuration file")
+	debugPersistFlags = Bool("debug_persist_flags", false, "persist debug_* flags to config (including this one); BEWARE: this can degrade game performance")
 )
 
 // SystemDefault performs a GOOS/GOARCH dependent value lookup to be used in flag defaults.
@@ -142,7 +143,7 @@ func Marshal() *Config {
 		if strings.HasPrefix(f.Name, "cheat_") {
 			return
 		}
-		if strings.HasPrefix(f.Name, "debug_") {
+		if !*debugPersistFlags && strings.HasPrefix(f.Name, "debug_") {
 			return
 		}
 		if strings.HasPrefix(f.Name, "dump_") {
