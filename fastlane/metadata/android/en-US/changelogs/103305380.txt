@@ -1,0 +1,2 @@
+  - Engine: add a flag -debug_persist_flags, mainly nice for persisting some debug settings on mobile devices.
+  - Engine: on macOS, put config and savegame in separate directories. Old data is imported.

@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.3.530" date="2023-05-15">
-      <description><ul><li>Debugging: new flags -debug_show_gc, -debug_go_gc_percent.</li><li>Engine: remove the logic that tries to avoid overlapping centerprints.</li><li>Engine: still display overlong centerprints fully.</li><li>Menu: display checkmarks on map better.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.530</url>
+    <release version="v1.3.538" date="2023-05-22">
+      <description><ul><li>Engine: add a flag -debug_persist_flags, mainly nice for persisting some debug settings on mobile devices.</li><li>Engine: on macOS, put config and savegame in separate directories. Old data is imported.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.3.538</url>
     </release>
   </releases>
 </component>
