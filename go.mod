@@ -9,7 +9,7 @@ require (
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/google/go-cmp v0.5.9
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
-	github.com/hajimehoshi/ebiten/v2 v2.5.3
+	github.com/hajimehoshi/ebiten/v2 v2.5.4
 	github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
 	github.com/leonelquinteros/gotext v1.5.2
 	github.com/lucasb-eyer/go-colorful v1.2.0
@@ -18,7 +18,7 @@ require (
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.7.0
 	golang.org/x/mobile v0.0.0-20230427221453-e8d11dd0ba41
-	golang.org/x/sys v0.7.0
+	golang.org/x/sys v0.8.0
 	golang.org/x/text v0.9.0
 )
 
@@ -45,9 +45,9 @@ require (
 	github.com/xanzy/ssh-agent v0.2.1 // indirect
 	golang.org/x/crypto v0.1.0 // indirect
 	golang.org/x/mod v0.10.0 // indirect
-	golang.org/x/net v0.9.0 // indirect
-	golang.org/x/sync v0.1.0 // indirect
-	golang.org/x/tools v0.8.0 // indirect
+	golang.org/x/net v0.10.0 // indirect
+	golang.org/x/sync v0.2.0 // indirect
+	golang.org/x/tools v0.9.1 // indirect
 	gopkg.in/src-d/go-billy.v4 v4.3.2 // indirect
 	gopkg.in/src-d/go-git.v4 v4.13.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
@@ -68,4 +68,4 @@ require (
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
 
 // update-ebitengine-fork.sh changes:
-replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.3-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe
+replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.4-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe
