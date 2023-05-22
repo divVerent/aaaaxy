@@ -57,6 +57,11 @@ func (g *Give) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity
 	if err != nil {
 		return fmt.Errorf("could not initialize give animation: %w", err)
 	}
+	if g.World.Player.Impl.(interfaces.Abilityer).HasAbility(g.Ability) {
+		g.AnimFrame = 0
+	} else {
+		g.AnimFrame = giveFadeFrames
+	}
 	return parseErr
 }
 
