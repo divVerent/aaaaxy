@@ -55,7 +55,7 @@ jobs:
       run: 'chmod +x aaaaxy'
 
     - name: Test
-      run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" ./aaaaxy assets/demos/anypercent.dem'
+      run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" ./aaaaxy assets/demos/_anypercent.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -109,7 +109,7 @@ jobs:
         name: aaaaxy-debug-windows-amd64
 
     - name: Test
-      run: 'bash scripts/regression-test-demo.sh windows-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" "./aaaaxy.exe" assets/demos/anypercent.dem'
+      run: 'bash scripts/regression-test-demo.sh windows-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" "./aaaaxy.exe" assets/demos/_anypercent.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -137,7 +137,7 @@ jobs:
         name: aaaaxy-debug-windows-amd64
 
     - name: Test
-      run: 'xvfb-run sh scripts/regression-test-demo.sh wine-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" "wine ./aaaaxy.exe" assets/demos/anypercent.dem'
+      run: 'xvfb-run sh scripts/regression-test-demo.sh wine-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" "wine ./aaaaxy.exe" assets/demos/_anypercent.dem'
 
     - name: Archive Results
       if: ${{ always() }}
@@ -199,7 +199,7 @@ jobs:
 #       name: aaaaxy-debug-windows-386
 
 #   - name: Test
-#     run: 'bash scripts/regression-test-demo.sh windows-386 "your time: 0:14:05.500; your speedrun categories: Any%;" "./aaaaxy.exe" assets/demos/anypercent.dem'
+#     run: 'bash scripts/regression-test-demo.sh windows-386 "your time: 0:14:05.500; your speedrun categories: Any%;" "./aaaaxy.exe" assets/demos/_anypercent.dem'
 
 #   - name: Archive Results
 #     if: ${{ always() }}
@@ -254,7 +254,7 @@ jobs:
 
     - name: Test
       # NOTE: When changing the path ./aaaaxy, likely need to also change the CFBundleExecutable in scripts/Info.plist.sh.
-      run: 'sh scripts/regression-test-demo.sh darwin-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" ./aaaaxy assets/demos/anypercent.dem'
+      run: 'sh scripts/regression-test-demo.sh darwin-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" ./aaaaxy assets/demos/_anypercent.dem'
 
     - name: Archive Results
       if: ${{ always() }}
