@@ -9,15 +9,15 @@ BINARY = aaaaxy$(shell $(GO) env GOEXE)
 ifeq ($(BUILDTYPE),release)
 # Smaller binary.
 ISRELEASE = true
-BUILDTAGS = embed
+BUILDTAGS = embed zip
 else ifeq ($(BUILDTYPE),ziprelease)
 # Separate assets file.
 ISRELEASE = true
 BUILDTAGS = zip
-else ifeq ($(BUILDTYPE),embedziprelease)
+else ifeq ($(BUILDTYPE),embedrelease)
 # Larger binary.
 ISRELEASE = true
-BUILDTAGS = embed zip
+BUILDTAGS = embed
 else
 ISRELEASE = false
 BUILDTAGS =
