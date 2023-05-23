@@ -7,11 +7,17 @@ GO ?= go
 BINARY = aaaaxy$(shell $(GO) env GOEXE)
 
 ifeq ($(BUILDTYPE),release)
+# Smaller binary.
 ISRELEASE = true
 BUILDTAGS = embed
 else ifeq ($(BUILDTYPE),ziprelease)
+# Separate assets file.
 ISRELEASE = true
 BUILDTAGS = zip
+else ifeq ($(BUILDTYPE),embedziprelease)
+# Larger binary.
+ISRELEASE = true
+BUILDTAGS = embed zip
 else
 ISRELEASE = false
 BUILDTAGS =

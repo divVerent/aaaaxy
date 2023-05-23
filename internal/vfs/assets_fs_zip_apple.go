@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build zip && (darwin || ios)
+//go:build zip && !embed && (darwin || ios)
 // +build zip
+// +build !embed
 // +build darwin ios
 
 package vfs

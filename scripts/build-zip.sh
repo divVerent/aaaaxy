@@ -17,6 +17,7 @@ set -ex
 
 d0=$PWD
 out=$PWD/aaaaxy.dat
+out2=$PWD/assets/aaaaxy.dat
 
 : ${ADVZIP:=advzip -4}
 
@@ -34,3 +35,4 @@ done
 cd "$d0"/assets
 zip -r "$out" [!_]*/[!_]*
 $ADVZIP -z "$out"
+ln "$out" "$out2" || cp "$out" "$out2"
