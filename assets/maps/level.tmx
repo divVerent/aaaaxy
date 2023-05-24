@@ -18677,7 +18677,7 @@
     <property name="unless_abilities" value="push"/>
    </properties>
   </object>
-  <object id="8333" type="Sprite" gid="10" x="7888" y="1648" width="16" height="16">
+  <object id="8333" type="Sprite" gid="10" x="7872" y="1664" width="16" height="16">
    <properties>
     <property name="unless_abilities" value="push"/>
    </properties>
@@ -18692,7 +18692,7 @@
     <property name="unless_abilities" value="push"/>
    </properties>
   </object>
-  <object id="8337" type="Sprite" gid="10" x="7984" y="1552" width="16" height="16">
+  <object id="8337" type="Sprite" gid="10" x="7984" y="1568" width="16" height="16">
    <properties>
     <property name="unless_abilities" value="push"/>
    </properties>
@@ -18702,7 +18702,7 @@
     <property name="unless_abilities" value="push"/>
    </properties>
   </object>
-  <object id="8339" type="Sprite" gid="10" x="7872" y="1568" width="16" height="16">
+  <object id="8339" type="Sprite" gid="10" x="7888" y="1568" width="16" height="16">
    <properties>
     <property name="unless_abilities" value="push"/>
    </properties>
@@ -18797,7 +18797,7 @@
     <property name="unless_abilities" value="push"/>
    </properties>
   </object>
-  <object id="8359" type="Sprite" gid="10" x="7984" y="704" width="16" height="16">
+  <object id="8359" type="Sprite" gid="10" x="7984" y="720" width="16" height="16">
    <properties>
     <property name="unless_abilities" value="push"/>
    </properties>
