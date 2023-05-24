@@ -18672,12 +18672,12 @@
     <property name="unless_abilities" value="push"/>
    </properties>
   </object>
-  <object id="8332" type="Sprite" gid="10" x="7872" y="1712" width="16" height="16">
+  <object id="8332" type="Sprite" gid="10" x="7888" y="1712" width="16" height="16">
    <properties>
     <property name="unless_abilities" value="push"/>
    </properties>
   </object>
-  <object id="8333" type="Sprite" gid="10" x="7872" y="1648" width="16" height="16">
+  <object id="8333" type="Sprite" gid="10" x="7888" y="1648" width="16" height="16">
    <properties>
     <property name="unless_abilities" value="push"/>
    </properties>
