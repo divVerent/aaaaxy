@@ -15,7 +15,6 @@
 package misc
 
 import (
-	"strings"
 	"time"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
@@ -42,23 +41,6 @@ func (s *ExitButton) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		propmap.SetDefault(sp.Properties, "image", "start.png")
 	}
 	s.SwitchableSprite.Spawn(w, sp, e)
-
-	// Can turn off based on player abilities :)
-	if abilities := propmap.StringOr(sp.Properties, "abilities", ""); abilities != "" {
-		haveAll := true
-		for _, a := range strings.Split(abilities, " ") {
-			if !w.PlayerState.HasAbility(a) {
-				haveAll = false
-				break
-			}
-		}
-		if haveAll {
-			// Hide.
-			e.Alpha = 0.0
-			w.MutateContentsBool(e, level.AllContents, false)
-			s.Fadable.Alpha = 0.0
-		}
-	}
 
 	return nil
 }

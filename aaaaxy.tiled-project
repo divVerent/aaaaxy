@@ -359,6 +359,11 @@
                     "value": "0 0"
                 },
                 {
+                    "name": "unless_abilities",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "z_index",
                     "type": "int",
                     "value": 5
@@ -451,11 +456,6 @@
             "color": "#ffffffff",
             "id": 8,
             "members": [
-                {
-                    "name": "abilities",
-                    "type": "string",
-                    "value": ""
-                },
                 {
                     "name": "alpha",
                     "type": "string",
@@ -595,6 +595,11 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "unless_abilities",
+                    "type": "string",
+                    "value": ""
                 },
                 {
                     "name": "z_index",
@@ -984,6 +989,11 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "unless_abilities",
+                    "type": "string",
+                    "value": ""
                 },
                 {
                     "name": "z_index",
@@ -1739,6 +1749,11 @@
                     "value": "0 0"
                 },
                 {
+                    "name": "unless_abilities",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "z_index",
                     "type": "int",
                     "value": 0
@@ -2208,6 +2223,11 @@
                     "value": "0 0"
                 },
                 {
+                    "name": "unless_abilities",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "z_index",
                     "type": "int",
                     "value": 4
@@ -2320,6 +2340,11 @@
                     "value": ""
                 },
                 {
+                    "name": "unless_abilities",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "z_index",
                     "type": "int",
                     "value": 0
@@ -2413,6 +2438,11 @@
                 },
                 {
                     "name": "text_font",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "unless_abilities",
                     "type": "string",
                     "value": ""
                 },

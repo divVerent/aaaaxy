@@ -18373,7 +18373,7 @@
   </object>
   <object id="8252" name="EscapeButton" type="ExitButton" x="4576" y="3712" width="64" height="64">
    <properties>
-    <property name="abilities" value="carry"/>
+    <property name="unless_abilities" value="carry"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -18385,7 +18385,7 @@
   </object>
   <object id="8254" name="EscapeButton" type="ExitButton" x="3880" y="3744" width="64" height="64">
    <properties>
-    <property name="abilities" value="carry push"/>
+    <property name="unless_abilities" value="carry push"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -18397,7 +18397,7 @@
   </object>
   <object id="8256" name="EscapeButton" type="ExitButton" x="4816" y="512" width="64" height="64">
    <properties>
-    <property name="abilities" value="push stand"/>
+    <property name="unless_abilities" value="push stand"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -18409,7 +18409,7 @@
   </object>
   <object id="8258" name="EscapeButton" type="ExitButton" x="6720" y="6784" width="64" height="64">
    <properties>
-    <property name="abilities" value="control"/>
+    <property name="unless_abilities" value="control"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -18421,7 +18421,7 @@
   </object>
   <object id="8260" name="EscapeButton" type="ExitButton" x="4304" y="3680" width="64" height="64">
    <properties>
-    <property name="abilities" value="stand"/>
+    <property name="unless_abilities" value="stand"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>

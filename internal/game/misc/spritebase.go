@@ -17,6 +17,7 @@ package misc
 import (
 	"fmt"
 	"image/color"
+	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/constants"
@@ -91,6 +92,22 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 			}
 		}
 		if !show {
+			// Hide.
+			e.Alpha = 0.0
+			w.MutateContentsBool(e, level.AllContents, false)
+		}
+	}
+
+	// Can turn off based on player abilities :)
+	if abilities := propmap.StringOr(sp.Properties, "unless_abilities", ""); abilities != "" {
+		haveAll := true
+		for _, a := range strings.Split(abilities, " ") {
+			if !w.PlayerState.HasAbility(a) {
+				haveAll = false
+				break
+			}
+		}
+		if haveAll {
 			// Hide.
 			e.Alpha = 0.0
 			w.MutateContentsBool(e, level.AllContents, false)
