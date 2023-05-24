@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8297">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8372">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -18515,6 +18515,326 @@
     <property name="image" value="ending_base.png"/>
     <property name="image_region" value="64 218 157 15"/>
     <property name="z_index" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="8299" type="Sprite" gid="32" x="5904" y="4304" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8300" type="Sprite" gid="18" x="5904" y="4288" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8301" type="Sprite" gid="22" x="5920" y="4288" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8302" type="Sprite" gid="22" x="5936" y="4288" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8303" type="Sprite" gid="36" x="5920" y="4304" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8304" type="Sprite" gid="36" x="5936" y="4304" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8305" type="Sprite" gid="10" x="8032" y="2816" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8306" type="Sprite" gid="10" x="8000" y="2768" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8307" type="Sprite" gid="10" x="8032" y="2720" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8308" type="Sprite" gid="10" x="8000" y="2672" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8309" type="Sprite" gid="10" x="8032" y="2608" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8310" type="Sprite" gid="10" x="8000" y="2544" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8311" type="Sprite" gid="10" x="7952" y="2528" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8312" type="Sprite" gid="10" x="7920" y="2480" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8313" type="Sprite" gid="10" x="7952" y="2432" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8314" type="Sprite" gid="10" x="8000" y="2384" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8315" type="Sprite" gid="10" x="8016" y="2336" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8316" type="Sprite" gid="10" x="7984" y="2288" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8317" type="Sprite" gid="10" x="7920" y="2240" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8318" type="Sprite" gid="10" x="7904" y="2176" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8320" type="Sprite" gid="10" x="7952" y="2128" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8321" type="Sprite" gid="10" x="8000" y="2112" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8322" type="Sprite" gid="10" x="8032" y="2064" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8323" type="Sprite" gid="10" x="8000" y="2000" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8324" type="Sprite" gid="10" x="7936" y="1984" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8325" type="Sprite" gid="10" x="7872" y="1952" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8326" type="Sprite" gid="10" x="7856" y="1888" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8328" type="Sprite" gid="10" x="7968" y="1872" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8329" type="Sprite" gid="10" x="8032" y="1808" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8330" type="Sprite" gid="10" x="8016" y="1744" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8331" type="Sprite" gid="10" x="7952" y="1728" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8332" type="Sprite" gid="10" x="7872" y="1712" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8333" type="Sprite" gid="10" x="7872" y="1648" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8335" type="Sprite" gid="10" x="7984" y="1648" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8336" type="Sprite" gid="10" x="8032" y="1600" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8337" type="Sprite" gid="10" x="7984" y="1552" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8338" type="Sprite" gid="10" x="7936" y="1552" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8339" type="Sprite" gid="10" x="7872" y="1568" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8340" type="Sprite" gid="10" x="7840" y="1520" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8341" type="Sprite" gid="10" x="7872" y="1472" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8343" type="Sprite" gid="10" x="7936" y="1440" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8344" type="Sprite" gid="10" x="8000" y="1376" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8345" type="Sprite" gid="10" x="7952" y="1328" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8346" type="Sprite" gid="10" x="7904" y="1280" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8347" type="Sprite" gid="10" x="7952" y="1232" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8348" type="Sprite" gid="10" x="7952" y="1168" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8349" type="Sprite" gid="10" x="7984" y="1104" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8350" type="Sprite" gid="10" x="8000" y="1040" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8351" type="Sprite" gid="10" x="7968" y="1008" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8352" type="Sprite" gid="10" x="7888" y="992" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8353" type="Sprite" gid="10" x="7872" y="928" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8354" type="Sprite" gid="10" x="7904" y="880" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8355" type="Sprite" gid="10" x="7872" y="832" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8356" type="Sprite" gid="10" x="7984" y="864" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8357" type="Sprite" gid="10" x="8000" y="832" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8358" type="Sprite" gid="10" x="8016" y="768" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8359" type="Sprite" gid="10" x="7984" y="704" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8360" type="Sprite" gid="10" x="7904" y="704" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8361" type="Sprite" gid="10" x="7856" y="640" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8362" type="Sprite" gid="10" x="7888" y="576" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8363" type="Sprite" gid="10" x="7808" y="560" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8364" type="Sprite" gid="10" x="7808" y="496" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8368" type="Sprite" gid="10" x="6816" y="2496" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
+   </properties>
+  </object>
+  <object id="8371" type="Sprite" gid="10" x="6832" y="2496" width="16" height="16">
+   <properties>
+    <property name="unless_abilities" value="push"/>
    </properties>
   </object>
  </objectgroup>
