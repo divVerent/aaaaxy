@@ -21,6 +21,9 @@ The following run categories exist:
     different checkpoint.
 -   No Escape/Backspace/Start: the game menu was never used during the
     run. Implies No Teleports.
+-   No Coil: the coil item was never collected, and thus the push
+    ability never granted. In that case, some rooms are changed to make
+    them beatable at all. Only possible since v1.4.
 
 Also, All Secrets and No Escape are mutually exclusive, unless you find
 a glitch I do not know about yet :)
