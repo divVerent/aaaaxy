@@ -321,6 +321,10 @@ msgstr "Noli Retrocedere"
 msgid "No Backspace"
 msgstr "Noli Retrocedere"
 
+#: playerstate/playerstate.go
+msgid "No Coil"
+msgstr "Noli Propellere"
+
 #. A speedrun category (escape key never pressed).
 #: playerstate/playerstate.go
 msgid "No Escape"
