@@ -321,6 +321,10 @@ msgstr "ohne Zurück"
 msgid "No Backspace"
 msgstr "ohne Rückschritt"
 
+#: playerstate/playerstate.go
+msgid "No Coil"
+msgstr "ohne Elektromagnet"
+
 #. A speedrun category (escape key never pressed).
 #: playerstate/playerstate.go
 msgid "No Escape"
