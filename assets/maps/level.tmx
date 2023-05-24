@@ -18827,12 +18827,7 @@
     <property name="unless_abilities" value="push"/>
    </properties>
   </object>
-  <object id="8368" type="Sprite" gid="10" x="6816" y="2496" width="16" height="16">
-   <properties>
-    <property name="unless_abilities" value="push"/>
-   </properties>
-  </object>
-  <object id="8371" type="Sprite" gid="10" x="6832" y="2496" width="16" height="16">
+  <object id="8368" type="Sprite" gid="10" x="6802" y="2496" width="16" height="16">
    <properties>
     <property name="unless_abilities" value="push"/>
    </properties>
