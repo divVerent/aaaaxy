@@ -217,6 +217,7 @@ const (
 	AllFlippedSpeedrun     SpeedrunCategories = 0x20
 	NoEscapeSpeedrun       SpeedrunCategories = 0x40
 	NoTeleportsSpeedrun    SpeedrunCategories = 0x80
+	NoPushSpeedrun         SpeedrunCategories = 0x100
 	// Remapping (reason: one can have all CPs but not Any%, i.e. won the game yet):
 	// AnyPercent AllCheckpoints => Result
 	// false      false          => 0
@@ -258,6 +259,8 @@ func (c SpeedrunCategories) Name() string {
 		case input.Back:
 			return locale.G.Get("No Back")
 		}
+	case NoPushSpeedrun:
+		return locale.G.Get("No Coil")
 	case hundredPercentSpeedrun:
 		return locale.GI.Get("100%")
 	case withoutCheatsSpeedrun:
@@ -291,6 +294,8 @@ func (c SpeedrunCategories) ShortName() string {
 		return "T"
 	case NoEscapeSpeedrun:
 		return "E"
+	case NoPushSpeedrun:
+		return "U"
 	case withoutCheatsSpeedrun:
 		return "" // Never actually appears other than in tryNext.
 	case cheatingSpeedrun:
@@ -327,6 +332,7 @@ func (c SpeedrunCategories) describeCommon() (categories []SpeedrunCategories, t
 	addCategory(AllFlippedSpeedrun, AllFlippedSpeedrun)
 	addCategory(NoTeleportsSpeedrun, NoTeleportsSpeedrun)
 	addCategory(NoEscapeSpeedrun, NoEscapeSpeedrun)
+	addCategory(NoPushSpeedrun, NoPushSpeedrun)
 	return categories, tryNext
 }
 
@@ -387,7 +393,7 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 	if !s.Won() {
 		cat &^= AnyPercentSpeedrun
 	}
-	cat |= AllCheckpointsSpeedrun | AllFlippedSpeedrun | AllSignsSpeedrun
+	cat |= AllCheckpointsSpeedrun | AllFlippedSpeedrun | AllSignsSpeedrun | NoPushSpeedrun
 	for cp, cpSp := range s.Level.Checkpoints {
 		if cp == "" {
 			// Start is not a real CP.
@@ -447,6 +453,10 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 	if s.Teleports() != 0 {
 		// Note: this can in theory be combined with AllSecrets.
 		cat &^= NoTeleportsSpeedrun
+	}
+	if s.HasAbility("push") {
+		// Probably can't be combined with much.
+		cat &^= NoPushSpeedrun
 	}
 	return cat
 }
