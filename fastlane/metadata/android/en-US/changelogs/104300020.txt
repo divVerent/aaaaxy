@@ -1,0 +1,5 @@
+  - Engine: make smaller binaries for desktop platforms. No change to mobile.
+  - Level: add a new run category: No Coil. This is done by making the
+    ending beatable without coil. No change to the normal ending.
+  - Game: set initial animation frame of items correctly.
+  - Minor module updates.
