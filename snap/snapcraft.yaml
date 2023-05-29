@@ -78,6 +78,7 @@ parts:
     source: https://github.com/divVerent/aaaaxy
     source-type: git
     build-packages:
+      - advancecomp
       - libasound2-dev
       - libgl-dev
       - libxcursor-dev
@@ -86,6 +87,7 @@ parts:
       - libxrandr-dev
       - libxxf86vm-dev
       - pkgconf
+      - zip
     stage-packages:
       - libasound2
       - libgl1
