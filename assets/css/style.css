@@ -1,0 +1,68 @@
+---
+---
+
+$apple-blossom: #ff5555;
+$alto: #aaaaaa;
+$bouquet: #ffaaff;
+$chelsea-cucumber: #aa5500;
+$cod-grey: #000000;
+$conifer: #55ff55;
+$dove-grey: #555555;
+$gallery: #ffffff;
+$grey: #aaaaaa;
+$gulf-stream: #55ffff;
+$hippie-blue: #55ffff;
+$potters-clay: #aa0000;
+$rajah: #ffff55;
+$raw-sienna: #aaaa00;
+$silver-chalice: #aaaaaa;
+
+@import "{{ site.theme }}";
+
+body {
+  font-size: 24px;
+}
+
+header h1 {
+  font-size: 32px;
+}
+
+header h1:before {
+  font-size: 32px;
+}
+
+header h2 {
+  font-size: 28px;
+}
+
+#main-content h1 {
+  font-size: 32px;
+}
+
+#main-content h2 {
+  font-size: 28px;
+}
+
+#main-content h3 {
+  font-size: 24px;
+}
+
+#main-content h4 {
+  font-size: 24px;
+}
+
+#main-content h5 {
+  font-size: 24px;
+}
+
+#main-content h6 {
+  font-size: 24px;
+}
+
+pre {
+  font-size: 24px;
+}
+
+.btn {
+  font-size: 24px;
+}
