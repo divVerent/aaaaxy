@@ -5,6 +5,11 @@
 AAAAXY has integrated speedrun timing support. Your time and run
 category will be shown in the end credits.
 
+### Leaderboard
+
+Known speedruns are collected on [the
+leaderboard](https://github.com/divVerent/aaaaxy/discussions/30).
+
 ### Run Categories
 
 The following run categories exist:

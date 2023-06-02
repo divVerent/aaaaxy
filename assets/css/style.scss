@@ -1,0 +1,51 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+// Larger font to make Google Search happy.
+body { font-size: 20px; }
+header h1 { font-size: 32px; }
+header h1:before { font-size: 32px; }
+header h2 { font-size: 24px; }
+#main-content h1 { font-size: 32px; }
+#main-content h2 { font-size: 24px; }
+#main-content h3 { font-size: 22px; }
+#main-content h4 { font-size: 20px; }
+#main-content h5 { font-size: 20px; }
+#main-content h6 { font-size: 20px; }
+pre { font-size: 20px; }
+.btn { font-size: 20px; }
+
+// EGA colors.
+* {
+  color: #aaaaaa ! important;
+  background-image: none ! important;
+  background-color: #0000aa ! important;
+}
+h1, h2, h3, h4, h5, h6, th {
+  color: #ffffff ! important;
+  font-weight: bold ! important;
+}
+code, pre {
+  color: #55ff55 ! important;
+}
+a[href] {
+  color: #ffff55 ! important;
+  font-weight: bold ! important;
+}
+a[href]:visited {
+  color: #aa5500 ! important;
+  font-weight: bold ! important;
+}
+li {
+  list-style-image: none ! important;
+  list-style-type: none ! important;
+}
+li::before {
+  content: "-> " ! important;
+  color: #ffffff ! important;
+  display: inline-block ! important;
+  width: 2em ! important;
+  margin-left: -2em ! important;
+}
