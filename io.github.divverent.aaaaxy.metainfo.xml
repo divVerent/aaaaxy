@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.4.6" date="2023-06-05">
-      <description><ul><li>Engine: minor module updates.</li><li>Game: update Chinese translation text.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.6</url>
+    <release version="v1.4.8" date="2023-06-21">
+      <description><ul><li>Minor module updates.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.8</url>
     </release>
   </releases>
 </component>
