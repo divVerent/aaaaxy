@@ -20,9 +20,11 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"time"
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/lestrrat-go/strftime"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/input"
@@ -33,9 +35,10 @@ import (
 )
 
 var (
-	demoRecord   = flag.String("demo_record", "", "local file path for demo to record to")
-	demoPlay     = flag.String("demo_play", "", "local file path for demo to play back")
-	demoTimedemo = flag.Bool("demo_timedemo", false, "run demos as fast as possible, only limited by rendering; normally you'd want to pass -vsync=false too when using this")
+	demoRecord                    = flag.String("demo_record", "", "local file path for demo to record to")
+	alwaysDemoRecordWithTimestamp = flag.String("always_demo_record_with_timestamp", "", "local file path for demo to record to; in the filename, strftime parameters or %s can be used to encode a timestamp; this option persists")
+	demoPlay                      = flag.String("demo_play", "", "local file path for demo to play back")
+	demoTimedemo                  = flag.Bool("demo_timedemo", false, "run demos as fast as possible, only limited by rendering; normally you'd want to pass -vsync=false too when using this")
 )
 
 type frame struct {
@@ -74,17 +77,28 @@ func Init() error {
 		demoPlayer = json.NewDecoder(demoPlayerFile)
 		vfs.PreventWrite("demo playback")
 	}
+	var demoRecordName string
 	if *demoRecord != "" {
+		demoRecordName = *demoRecord
+	} else if *alwaysDemoRecordWithTimestamp != "" {
+		var err error
+		demoRecordName, err = strftime.Format(*alwaysDemoRecordWithTimestamp, time.Now(), strftime.WithUnixSeconds('s'))
+		if err != nil {
+			return err
+		}
+	}
+	if demoRecordName != "" {
 		if is, _ := flag.Cheating(); is {
 			return errors.New("cannot record a demo while cheating")
 		}
 		var err error
-		demoRecorderFile, err = vfs.OSCreate(*demoRecord)
+		demoRecorderFile, err = vfs.OSCreate(demoRecordName)
 		if err != nil {
 			return err
 		}
 		demoRecorder = json.NewEncoder(demoRecorderFile)
 		demoRecorder.SetIndent("", "")
+		log.Infof("recording demo to %v", demoRecordName)
 	}
 	return nil
 }

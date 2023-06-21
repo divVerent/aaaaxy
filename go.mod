@@ -12,6 +12,7 @@ require (
 	github.com/hajimehoshi/ebiten/v2 v2.5.4
 	github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
 	github.com/leonelquinteros/gotext v1.5.2
+	github.com/lestrrat-go/strftime v1.0.6
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.10.9
@@ -38,6 +39,7 @@ require (
 	github.com/josephspurrier/goversioninfo v1.4.0 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
 	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
