@@ -451,7 +451,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 		timing.Section("time")
 		font.ByName["Small"].Draw(drawDest,
 			fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}"),
-			m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
+			m.Pos{X: engine.GameWidth / 2, Y: engine.GameHeight - 4}, font.Center,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}
 	if *debugShowGC {
@@ -466,7 +466,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 					stats.Pause[0].Seconds()*1000,
 					stats.PauseEnd[0].Sub(stats.PauseEnd[1]).Seconds(),
 					now.Sub(stats.PauseEnd[0]).Seconds()),
-				m.Pos{X: engine.GameWidth / 2, Y: engine.GameHeight - 4}, font.Center,
+				m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
 				palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 		}
 	}
