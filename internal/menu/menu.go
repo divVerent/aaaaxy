@@ -16,6 +16,7 @@ package menu
 
 import (
 	"fmt"
+	"image/color"
 	"reflect"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -59,6 +60,8 @@ type Controller struct {
 	creditsBlur     bool
 	needReloadLevel bool
 	needReloadGame  bool
+
+	WhiteImage *ebiten.Image
 }
 
 func (c *Controller) Update() error {
@@ -66,6 +69,9 @@ func (c *Controller) Update() error {
 
 	timing.Section("once")
 	if !c.initialized {
+		c.WhiteImage = ebiten.NewImage(1, 1)
+		c.WhiteImage.Fill(color.Gray{255})
+
 		err := c.InitGame(loadGame)
 		if err != nil {
 			return err

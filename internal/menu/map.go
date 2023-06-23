@@ -16,7 +16,6 @@ package menu
 
 import (
 	"fmt"
-	"image/color"
 	"math/rand"
 	"sort"
 
@@ -52,7 +51,6 @@ type MapScreen struct {
 	cpFlippedSelectedSprite *ebiten.Image
 	deadEndSprite           *ebiten.Image
 	cpCheckmarkSprite       *ebiten.Image
-	whiteImage              *ebiten.Image
 
 	nameHovered bool
 }
@@ -98,8 +96,6 @@ func (s *MapScreen) Init(c *Controller) error {
 	if err != nil {
 		return err
 	}
-	s.whiteImage = ebiten.NewImage(1, 1)
-	s.whiteImage.Fill(color.Gray{255})
 
 	var parseErr error
 
@@ -285,7 +281,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	opts.GeoM.Scale(float64(s.MapRect.Size.DX+2*mapBorder), float64(s.MapRect.Size.DY+2*mapBorder))
 	opts.GeoM.Translate(float64(s.MapRect.Origin.X-mapBorder), float64(s.MapRect.Origin.Y-mapBorder))
 	opts.ColorScale.Scale(2.0/9.0, 2.0/9.0, 2.0/9.0, 2.0/3.0) // Color: #555555 at 2/3 alpha.
-	screen.DrawImage(s.whiteImage, &opts)
+	screen.DrawImage(s.Controller.WhiteImage, &opts)
 
 	// First draw all edges.
 	cpPos := make(map[string]m.Pos, len(s.SortedLocs))
@@ -394,9 +390,9 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				}
 				geoM := &ebiten.GeoM{}
 				geoM.Scale(0, 0)
-				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{startPos, endPos}, s.whiteImage, color, geoM, options)
+				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{startPos, endPos}, s.Controller.WhiteImage, color, geoM, options)
 				if startPos2 != endPos2 {
-					engine.DrawPolyLine(screen, edgeThickness, []m.Pos{startPos2, endPos2}, s.whiteImage, color, geoM, options)
+					engine.DrawPolyLine(screen, edgeThickness, []m.Pos{startPos2, endPos2}, s.Controller.WhiteImage, color, geoM, options)
 				}
 			}
 		}
