@@ -65,9 +65,9 @@ require (
 // replace github.com/fardog/tmx => github.com/divVerent/tmx v0.0.0-20210504110059-b8d75006ad02
 
 // For debugging:
-// replace github.com/hajimehoshi/ebiten/v2 => /home/rpolzer/src/ebiten
+// replace github.com/hajimehoshi/ebiten/v2 => /Users/rpolzer/src/ebiten
 
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
 
 // update-ebitengine-fork.sh changes:
-replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.4-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe-and-b96aea70f1559d8a35856bf6a7c814ae168dcce4-and-c2038434680951c8ca879613d80665973846fd7d
+replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.4-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe-and-b96aea70f1559d8a35856bf6a7c814ae168dcce4-and-1789f509e1153944a44651db3c07dc35042b6e85
