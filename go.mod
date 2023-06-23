@@ -70,4 +70,4 @@ require (
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
 
 // update-ebitengine-fork.sh changes:
-replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.4-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe-and-b96aea70f1559d8a35856bf6a7c814ae168dcce4-and-e2739460d11184d2a05d0d1a5c25e0911c5fff88
+replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.5.4-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe-and-b96aea70f1559d8a35856bf6a7c814ae168dcce4-and-c2038434680951c8ca879613d80665973846fd7d
