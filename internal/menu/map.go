@@ -22,6 +22,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/image"
@@ -32,6 +33,13 @@ import (
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/propmap"
+)
+
+var (
+	debugAntiAlias = flag.Bool("debug_anti_alias", flag.SystemDefault(map[string]bool{
+		"ios/*": false,
+		"*/*":   true,
+	}), "allow anti aliasing")
 )
 
 type MapScreen struct {
@@ -386,7 +394,7 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 				options := &ebiten.DrawTrianglesOptions{
 					Blend:     ebiten.BlendSourceOver,
 					Filter:    ebiten.FilterNearest,
-					AntiAlias: true,
+					AntiAlias: *debugAntiAlias,
 				}
 				geoM := &ebiten.GeoM{}
 				geoM.Scale(0, 0)
