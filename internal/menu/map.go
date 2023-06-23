@@ -36,10 +36,7 @@ import (
 )
 
 var (
-	debugAntiAlias = flag.Bool("debug_anti_alias", flag.SystemDefault(map[string]bool{
-		"ios/*": false,
-		"*/*":   true,
-	}), "allow anti aliasing")
+	debugAntiAlias = flag.Bool("debug_anti_alias", true, "allow anti aliasing")
 )
 
 type MapScreen struct {
