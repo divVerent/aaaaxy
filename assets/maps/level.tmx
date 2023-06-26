@@ -18836,7 +18836,7 @@
    <properties>
     <property name="player_only" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
-    <property name="target" value="!CounterClockwiseL1 !CounterClockwiseL2 !CounterClockwiseL3 !CounterClockwiseR1 !CounterClockwiseR2 !CounterClockwiseR3 !CounterClockwiseA !CounterClockwiseB !CounterClockwiseC"/>
+    <property name="target" value="!CounterClockwiseL1 !CounterClockwiseL2 !CounterClockwiseL3 !CounterClockwiseR1 !CounterClockwiseR2 !CounterClockwiseR3 !CounterClockwiseB !CounterClockwiseC"/>
    </properties>
   </object>
  </objectgroup>
