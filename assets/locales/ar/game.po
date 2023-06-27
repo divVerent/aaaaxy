@@ -462,7 +462,7 @@ msgstr "حوّل إلى الشاشة الممتدة"
 
 #: menu/settings.go
 msgid "Switch to Windowed Mode"
-msgstr "حول إلى الشاشة المصغرة"
+msgstr "حوّل إلى الشاشة المصغرة"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
