@@ -458,7 +458,7 @@ msgstr "حوّل إلى شاشة مقطوعة من أعلى و أسفل (Letterb
 
 #: menu/settings.go
 msgid "Switch to Stretched Screen"
-msgstr "حول إلى الشاشة الممتدة"
+msgstr "حوّل إلى الشاشة الممتدة"
 
 #: menu/settings.go
 msgid "Switch to Windowed Mode"
