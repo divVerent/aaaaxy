@@ -446,7 +446,7 @@ msgstr "إبدأ"
 
 #: menu/savestate.go menu/settings.go
 msgid "Switch Save State"
-msgstr "حول حالات الحفظ"
+msgstr "حوّل حالات الحفظ"
 
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
