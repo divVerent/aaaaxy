@@ -405,7 +405,7 @@ msgstr "أعِد و أخسر حالة الحفظ %s (إترك الأزرار ف�
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s (think about it for %d sec)"
-msgstr "أعِد و أخسر حالة الحفظ %s (فكر بالأمر ل%d ثوانٍ)"
+msgstr "أعِد و أخسر حالة الحفظ %s (فكر بالأمر ل%d ث)"
 
 #: menu/reset.go
 msgid "Reset and Lose Settings"
