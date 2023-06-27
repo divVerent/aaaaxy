@@ -450,11 +450,11 @@ msgstr "حوّل حالات الحفظ"
 
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
-msgstr "حول إلى الشاشة الكاملة"
+msgstr "حوّل إلى الشاشة الكاملة"
 
 #: menu/settings.go
 msgid "Switch to Letterboxed Screen"
-msgstr "حول إلى شاشة مقطوعة من أعلى و أسفل (Letterboxed)"
+msgstr "حوّل إلى شاشة مقطوعة من أعلى و أسفل (Letterboxed)"
 
 #: menu/settings.go
 msgid "Switch to Stretched Screen"
