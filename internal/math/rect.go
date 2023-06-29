@@ -139,9 +139,9 @@ func (r Rect) GridPos(p Pos, nx int, ny int) (int, int) {
 // Union returns the smallest Rect containing both Rects.
 func (r Rect) Union(other Rect) Rect {
 	c00 := r.Origin
-	c01 := r.OppositeCorner()
+	c01 := r.Origin.Add(r.Size)
 	c10 := other.Origin
-	c11 := other.OppositeCorner()
+	c11 := other.Origin.Add(other.Size)
 	var c0 Pos
 	if c00.X < c10.X {
 		c0.X = c00.X
