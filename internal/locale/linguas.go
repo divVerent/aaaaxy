@@ -30,6 +30,10 @@ func (l Lingua) Name() string {
 	switch l {
 	case "":
 		return "English"
+	case "ar":
+		return "العربية"
+	case "ar-EG":
+		return "العربية (مصر)"
 	case "de":
 		return "Deutsch"
 	case "de-CH":
@@ -51,6 +55,8 @@ func (l Lingua) Name() string {
 
 func (l Lingua) Font() string {
 	switch l {
+	case "ar", "ar-EG":
+		return "bitmapfont"
 	case "zh-Hans":
 		return "unifont"
 	default:
@@ -108,6 +114,21 @@ func (l Lingua) Canonical() Lingua {
 	default:
 		return l
 	}
+}
+
+// Shape performs glyph shaping on a given string.
+func (l Lingua) Shape(s string) string {
+	switch l {
+	case "ar", "ar-EG":
+		return l.shapeArabic(s)
+	default:
+		return s
+	}
+}
+
+// UseEbitenText returns whether using ebiten/text for font drawing is safe.
+func (l Lingua) UseEbitenText() bool {
+	return true
 }
 
 // LinguasSorted returns the languages sorted by humanly expected ordering.

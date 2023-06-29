@@ -136,6 +136,40 @@ func (r Rect) GridPos(p Pos, nx int, ny int) (int, int) {
 	return int(ix), int(iy)
 }
 
+// Union returns the smallest Rect containing both Rects.
+func (r Rect) Union(other Rect) Rect {
+	c00 := r.Origin
+	c01 := r.OppositeCorner()
+	c10 := other.Origin
+	c11 := other.OppositeCorner()
+	var c0 Pos
+	if c00.X < c10.X {
+		c0.X = c00.X
+	} else {
+		c0.X = c10.X
+	}
+	if c00.Y < c10.Y {
+		c0.Y = c00.Y
+	} else {
+		c0.Y = c10.Y
+	}
+	var c1 Pos
+	if c01.X > c11.X {
+		c1.X = c01.X
+	} else {
+		c1.X = c11.X
+	}
+	if c01.Y > c11.Y {
+		c1.Y = c01.Y
+	} else {
+		c1.Y = c11.Y
+	}
+	return Rect{
+		Origin: c0,
+		Size:   c1.Delta(c0),
+	}
+}
+
 func (r Rect) String() string {
 	return fmt.Sprintf("%d %d %d %d", r.Origin.X, r.Origin.Y, r.Size.DX, r.Size.DY)
 }

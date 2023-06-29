@@ -161,7 +161,9 @@ func (e *fontEffects) Glyph(dot fixed.Point26_6, r rune) (
 
 func (e *fontEffects) GlyphAdvance(r rune) (advance fixed.Int26_6, ok bool) {
 	adv, ok := e.Face.GlyphAdvance(r)
-	adv += fixed.Int26_6(*fontExtraSpacing)
+	if adv != 0 {
+		adv += fixed.Int26_6(*fontExtraSpacing)
+	}
 	return roundFixed(adv), ok
 }
 
@@ -355,6 +357,8 @@ func SetFont(font string) error {
 		ByName = map[string]*Face{}
 		ByFont[font] = ByName
 		switch font {
+		case "bitmapfont":
+			return initBitmapfont()
 		case "unifont":
 			return initUnifont()
 		default:

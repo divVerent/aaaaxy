@@ -25,40 +25,85 @@ import (
 	"golang.org/x/image/font"
 	"golang.org/x/image/math/fixed"
 
+	"github.com/divVerent/aaaaxy/internal/locale"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
+// boundString returns the bounding rectangle of the given text.
+func (f Face) boundString(str string) m.Rect {
+	var r m.Rect
+	if locale.Active.UseEbitenText() {
+		rect := text.BoundString(f.Outline, str)
+		r = m.Rect{
+			Origin: m.Pos{
+				X: rect.Min.X,
+				Y: rect.Min.Y,
+			},
+			Size: m.Delta{
+				DX: rect.Max.X - rect.Min.X,
+				DY: rect.Max.Y - rect.Min.Y,
+			},
+		}
+	} else {
+		bounds, _ := font.BoundString(f.Outline, str)
+		x0 := bounds.Min.X.Floor()
+		y0 := bounds.Min.Y.Floor()
+		x1 := bounds.Max.X.Ceil()
+		y1 := bounds.Max.Y.Ceil()
+		r = m.Rect{
+			Origin: m.Pos{
+				X: x0,
+				Y: y0,
+			},
+			Size: m.Delta{
+				DX: x1 - x0,
+				DY: y1 - y0,
+			},
+		}
+	}
+	if r.Size.DX <= 0 {
+		r.Size.DX = 1
+	}
+	if r.Size.DY <= 0 {
+		r.Size.DY = 1
+	}
+	return r
+}
+
 // BoundString returns the bounding rectangle of the given text.
 func (f Face) BoundString(str string) m.Rect {
-	rect := text.BoundString(f.Outline, str)
-	return m.Rect{
-		Origin: m.Pos{
-			X: rect.Min.X,
-			Y: rect.Min.Y,
-		},
-		Size: m.Delta{
-			DX: rect.Max.X - rect.Min.X,
-			DY: rect.Max.Y - rect.Min.Y,
-		},
+	str = locale.Active.Shape(str)
+	lines := strings.Split(str, "\n")
+	var totalBounds m.Rect
+	lineHeight := f.Outline.Metrics().Height.Ceil()
+	y := 0
+	for _, line := range lines {
+		bounds := f.boundString(line)
+		bounds.Origin.Y += y
+		totalBounds = totalBounds.Union(bounds)
+		y += lineHeight
 	}
+	return totalBounds
 }
 
 // drawLine draws one line of text.
 func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color) {
-	switch dst := dst.(type) {
-	case *ebiten.Image:
-		// Use Ebitengine's glyph cache.
-		text.Draw(dst, line, f, x, y, fg)
-	default:
-		// No glyph cache.
-		d := font.Drawer{
-			Dst:  dst,
-			Src:  image.NewUniform(fg),
-			Face: f,
-			Dot:  fixed.P(x, y),
+	if locale.Active.UseEbitenText() {
+		dst, ok := dst.(*ebiten.Image)
+		if ok {
+			// Use Ebitengine's glyph cache.
+			text.Draw(dst, line, f, x, y, fg)
+			return
 		}
-		d.DrawString(line)
 	}
+	// No glyph cache.
+	d := font.Drawer{
+		Dst:  dst,
+		Src:  image.NewUniform(fg),
+		Face: f,
+		Dot:  fixed.P(x, y),
+	}
+	d.DrawString(line)
 }
 
 type Align int
@@ -72,9 +117,27 @@ const (
 
 // Draw draws the given text.
 func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg color.Color) {
+	// log.Infof("PRE-SHAPING: %s", str)
+	str = locale.Active.Shape(str)
+	// log.Infof("POST-SHAPING: %s", str)
 	// We need to do our own line splitting because
 	// we always want to center and Ebitengine would left adjust.
-	totalBounds := f.BoundString(str)
+	lines := strings.Split(str, "\n")
+	bounds := make([]m.Rect, len(lines))
+	for i, line := range lines {
+		bounds[i] = f.boundString(line)
+	}
+	var totalMin, totalMax int
+	for _, lineBounds := range bounds {
+		xMin := lineBounds.Origin.X
+		xMax := xMin + lineBounds.Size.DX
+		if xMin < totalMin {
+			totalMin = xMin
+		}
+		if xMax > totalMax {
+			totalMax = xMax
+		}
+	}
 	// AsBounds: offset := pos.X + totalBounds.Size.DX/2 + totalBounds.Origin.X
 	// Center: offset := pos.X
 	// Left: offset := pos.X + totalBounds.Size.DX/2
@@ -82,28 +145,28 @@ func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg
 	offset := pos.X
 	switch boxAlign {
 	case AsBounds:
-		offset += totalBounds.Size.DX/2 + totalBounds.Origin.X
+		offset += (totalMin + totalMax) / 2
 	case Left:
-		offset += totalBounds.Size.DX / 2
+		offset += (totalMax - totalMin) / 2
 	case Right:
-		offset -= (totalBounds.Size.DX + 1) / 2
+		offset -= (totalMax - totalMin + 1) / 2
 	}
-	fy := fixed.I(pos.Y)
-	for _, line := range strings.Split(str, "\n") {
-		lineBounds := f.BoundString(line)
+	y := pos.Y
+	lineHeight := f.Outline.Metrics().Height.Ceil()
+	for i, line := range lines {
+		lineBounds := bounds[i]
 		// totalBounds: tX size tDX
 		// lineBouds: lX size lDX
 		// Want lX+d .. lX+lDX+d centered in tX .. tX+tDX
 		// Thus: lX+d - tX = tX+tDX - (lX+lDX+d)
 		// d = tX - lX + (tDX - lDX)/2.
 		x := offset - lineBounds.Origin.X - lineBounds.Size.DX/2
-		y := fy.Floor()
 		if _, _, _, a := bg.RGBA(); a != 0 {
 			drawLine(f.Outline, dst, line, x, y, bg)
 		}
 		// Draw the text itself.
 		drawLine(f.Face, dst, line, x, y, fg)
-		fy += f.Outline.Metrics().Height + 1 // Line height is 1 pixel above font height.
+		y += lineHeight
 	}
 }
 
