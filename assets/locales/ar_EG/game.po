@@ -175,7 +175,7 @@ msgstr "Ctrl/Shift"
 
 #: menu/touchedit.go
 msgid "Done"
-msgstr "إنتهى"
+msgstr "تمام"
 
 #: menu/settings.go menu/touchedit.go
 msgid "Edit Touch Controls"
