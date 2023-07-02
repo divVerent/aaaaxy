@@ -550,7 +550,7 @@ msgstr "ص: %s"
 
 #: game/player/player.go
 msgid "You now have 30 lives. Enjoy!"
-msgstr "لديك الأن ٣٠ حياةً. إستمتع ! "
+msgstr " عندك ٣٠ حياة دلوقتي. إستمتع ! "
 
 #: game/player/player.go
 msgid "You really thought this would do something?"
