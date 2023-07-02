@@ -558,7 +558,7 @@ msgstr "أ إعتقدت أن ذلك سيفعل شيئاً ؟"
 
 #: menu/credits.go
 msgid "Your Speedrun Categories"
-msgstr "مصنفاتك للإنتهاء السريع"
+msgstr "مصنفاتك للإنهاء السريع"
 
 #: menu/credits.go
 msgid "Your Time"
