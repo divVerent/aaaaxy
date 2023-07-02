@@ -490,7 +490,7 @@ msgstr "التجربة"
 
 #: menu/credits.go
 msgid "Thank You!"
-msgstr "شكراً لك !"
+msgstr "شكراً ليك !"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
