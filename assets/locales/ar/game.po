@@ -359,7 +359,7 @@ msgstr "إلعب"
 
 #: menu/credits.go
 msgid "Player Sprite"
-msgstr "نقش اللاعب"
+msgstr "شكل اللاعب"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
