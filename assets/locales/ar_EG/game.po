@@ -214,7 +214,7 @@ msgid ""
 "Fine, I give up, have it your way.\n"
 "All cheats are documented in --help."
 msgstr ""
-"خلاص اخويا اعمل اللي انت عايزه.\n"
+"خلاص أنا جضيت اعمل اللي انت عايزه.\n"
 "كل الشفرات متسجلة في --help"
 
 #: menu/credits.go
