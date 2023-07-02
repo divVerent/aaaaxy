@@ -413,7 +413,7 @@ msgstr "عيد و أخسر الإعدادات"
 
 #: menu/touchedit.go
 msgid "Reset to Defaults"
-msgstr "أعِد للحالة الإفتراضية"
+msgstr "عيد للحالة الإفتراضية"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
