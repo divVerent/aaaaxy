@@ -162,25 +162,8 @@ var data = map[string]*Palette{
 		0xFFFFFF,
 	}),
 
-	// IBM EGA mapped to adjacent greys.
-	"egagray": newPalette([]int{0, 1, 4, 5, 2, 8, 3, 6, 9, 12, 7, 13, 10, 11, 14, 15}, []uint32{
-		0x000000,
-		0x111111,
-		0x222222,
-		0x333333,
-		0x444444,
-		0x555555,
-		0x666666,
-		0x777777,
-		0x888888,
-		0x999999,
-		0xAAAAAA,
-		0xBBBBBB,
-		0xCCCCCC,
-		0xDDDDDD,
-		0xEEEEEE,
-		0xFFFFFF,
-	}),
+	// IBM EGA mapped to adjacent VGA greys.
+	"egagray": newPalette([]int{0, 1, 4, 5, 2, 8, 3, 6, 9, 12, 7, 13, 10, 11, 14, 15}, rounded(grays(16), 63)),
 
 	// The original IBM VGA palette, with colors too close to EGA colors commented out.
 	"vgadefault": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
@@ -456,8 +439,8 @@ var data = map[string]*Palette{
 		midpoints(egaColors[7:8], egaColors[8:9], []uint32{1, 2, 3, 4, 5}, 6)...),
 		63)),
 
-	// A standard grayscale VGA palette.
-	"vgagray": newPalette(nil, grays(63)),
+	// A standard grayscale VGA palette. Based on egagray.
+	"vgamono": newPalette([]int{0, 1, 4, 5, 2, 8, 3, 6, 9, 12, 7, 13, 10, 11, 14, 15}, append(rounded(grays(16), 63), grays(63)...)),
 
 	// Other home computers.
 

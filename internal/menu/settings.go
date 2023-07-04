@@ -108,6 +108,7 @@ var graphicsSettings = []graphicsSettingData{
 	{"egamono", "EGA (monochrome)"},
 	{"cga41l", "CGA"},
 	{"ega", "EGA"},
+	{"vgamono", "VGA (monochrome)"},
 	{"vga", "VGA"},
 	{"none", "SVGA"},
 	// Six more identical entries so one has to press right seven times to reach the custom palettes.
@@ -129,7 +130,6 @@ var graphicsSettings = []graphicsSettingData{
 	{"web", "Web"},
 	{"xterm", "XTerm"},
 	{"egagray", "EGA (grayscale)"},
-	{"vgagray", "VGA (grayscale)"},
 	{"3x3x3", "3x3x3"},
 	{"4x4x4", "4x4x4"},
 	{"7x7x4", "7x7x4"},
