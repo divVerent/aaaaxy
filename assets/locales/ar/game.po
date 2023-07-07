@@ -575,7 +575,7 @@ msgstr "و %s"
 
 #: menu/credits.go
 msgid "and other contributors"
-msgstr "و مساهمون أخرون "
+msgstr "و مساهمون أخرون"
 
 #: menu/credits.go
 msgid "by %s"
