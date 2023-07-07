@@ -1380,7 +1380,7 @@ msgid "Try going in circles, but ..."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8104]
-#. Part of 'Try going in circles, but five is right out!'
+#. Part of 'Try going in circles, but five is right out!' (Monty Python reference, i.e. "right out" in the sense of "out of the question", "not an option")
 msgid "... five is right out!"
 msgstr ""
 
