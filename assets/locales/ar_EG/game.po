@@ -386,7 +386,7 @@ msgstr "إخرج"
 
 #: menu/reset.go menu/settings.go
 msgid "Reset"
-msgstr "عيد "
+msgstr "عيد"
 
 #: menu/reset.go
 msgid "Reset Nothing"
