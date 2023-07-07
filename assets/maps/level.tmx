@@ -17770,7 +17770,7 @@
   <object id="8103" gid="330" x="7328" y="5600" width="16" height="16"/>
   <object id="8104" gid="312" x="7312" y="5504" width="32" height="32">
    <properties>
-    <property name="_text_localization_note" value="Part of 'Try going in circles, but five is right out!'"/>
+    <property name="_text_localization_note" value="Part of 'Try going in circles, but five is right out!' (Monty Python reference, i.e. 'right out' in the sense of 'out of the question', 'not an option')"/>
     <property name="reached_from" type="object" value="7351"/>
     <property name="text" value="... five is right out!"/>
    </properties>

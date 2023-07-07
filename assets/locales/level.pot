@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 09:35-0700\n"
+"POT-Creation-Date: 2023-07-07 05:38-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1380,7 +1380,7 @@ msgid "Try going in circles, but ..."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8104]
-#. Part of 'Try going in circles, but five is right out!' (Monty Python reference, i.e. "right out" in the sense of "out of the question", "not an option")
+#. Part of 'Try going in circles, but five is right out!' (Monty Python reference, i.e. 'right out' in the sense of 'out of the question', 'not an option')
 msgid "... five is right out!"
 msgstr ""
 
