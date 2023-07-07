@@ -272,7 +272,7 @@ msgstr "كيريتيماتي"
 #. "Lingua (Language): %s").
 #: menu/settings.go
 msgid "Language: %s"
-msgstr "اللغة (language) :%s "
+msgstr "اللغة (Language): %s"
 
 #: menu/credits.go
 msgid "Level Version: %d"
