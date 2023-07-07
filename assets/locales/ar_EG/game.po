@@ -1,10 +1,11 @@
 # 
 # Translators:
 # 4545duckling, 2023
+# Rudolf Polzer, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: 4545duckling, 2023\n"
+"Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Arabic (Egypt) (https://app.transifex.com/aaaaxy/teams/158611/ar_EG/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -271,7 +272,7 @@ msgstr "كيريتيماتي"
 #. "Lingua (Language): %s").
 #: menu/settings.go
 msgid "Language: %s"
-msgstr "اللغة (language) :%s "
+msgstr "اللغة (Language): %s"
 
 #: menu/credits.go
 msgid "Level Version: %d"
