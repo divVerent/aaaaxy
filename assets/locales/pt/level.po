@@ -1110,7 +1110,7 @@ msgstr "Os que não se lembram do passado estão condenados a repeti-lo."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5057]
 msgid "Sometimes, the unprepared can't even follow instructions."
-msgstr "Às vezes, os despreparados nem conseguem seguir instruções."
+msgstr "Às vezes, os despreparados nem sequer conseguem seguir instruções."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5058]
 msgid "If everything is upside down, nothing is."
