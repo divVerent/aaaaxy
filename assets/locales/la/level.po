@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 09:35-0700\n"
+"POT-Creation-Date: 2023-07-07 05:38-0700\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Latin (https://app.transifex.com/aaaaxy/teams/158611/la/)\n"
@@ -79,7 +79,8 @@ msgstr "Aliqui numerum 2τ numero 4π praeponunt."
 #. devotionals/2013/01/what-is-truth?lang=eng
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
-msgstr "\"Quamquam olim consenus vehentissimus esset, vero terra non est plana.\""
+msgstr ""
+"\"Quamquam olim consensus vehentissimus esset, vero terra non est plana.\""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=93]
 msgid "Some people prefer 4π over 2τ."
@@ -1442,7 +1443,9 @@ msgstr "Saltores suggestus amittunt.{{BR}}Ne fias saltor."
 msgid "Try going in circles, but ..."
 msgstr "Circumire conare, sed ..."
 
-#. Part of 'Try going in circles, but five is right out!'
+#. Part of 'Try going in circles, but five is right out!' (Monty Python
+#. reference, i.e. 'right out' in the sense of 'out of the question', 'not an
+#. option')
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8104]
 msgid "... five is right out!"
 msgstr "... sed noli ire quinquies!"
