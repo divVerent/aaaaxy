@@ -4,17 +4,17 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Anthony Wang, 2023
 # Rudolf Polzer, 2023
+# Anthony Wang, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-30 20:31-0400\n"
+"POT-Creation-Date: 2023-07-07 05:38-0700\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2023\n"
+"Last-Translator: Anthony Wang, 2023\n"
 "Language-Team: Chinese Simplified (https://app.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1423,10 +1423,12 @@ msgstr "跳者失去平台。{{BR}}不要成为跳者。"
 msgid "Try going in circles, but ..."
 msgstr "试试转圈，但是……"
 
-#. Part of 'Try going in circles, but five is right out!'
+#. Part of 'Try going in circles, but five is right out!' (Monty Python
+#. reference, i.e. 'right out' in the sense of 'out of the question', 'not an
+#. option')
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8104]
 msgid "... five is right out!"
-msgstr "……五就出去了！"
+msgstr "……五就不行！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8114]
 msgid "Mwahaha!"
