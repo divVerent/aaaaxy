@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-30 20:31-0400\n"
+"POT-Creation-Date: 2023-05-24 09:35-0700\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Latin (https://app.transifex.com/aaaaxy/teams/158611/la/)\n"
@@ -1445,7 +1445,7 @@ msgstr "Circumire conare, sed ..."
 #. Part of 'Try going in circles, but five is right out!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8104]
 msgid "... five is right out!"
-msgstr "... sed noli ire qunquies!"
+msgstr "... sed noli ire quinquies!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8114]
 msgid "Mwahaha!"
