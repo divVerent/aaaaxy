@@ -459,7 +459,7 @@ msgstr "حوّل إلى Letterboxed"
 
 #: menu/settings.go
 msgid "Switch to Stretched Screen"
-msgstr " حوّل إلى stretched"
+msgstr "حوّل إلى stretched"
 
 #: menu/settings.go
 msgid "Switch to Windowed Mode"
