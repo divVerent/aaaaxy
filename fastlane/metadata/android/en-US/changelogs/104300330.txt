@@ -1,0 +1,4 @@
+  - Engine: basic support for RTL languages to enable future translation.
+  - Engine: update modules.
+  - Menu: there's now also a nicer VGA monochrome palette. Ideal for any sort of color blindness!
+  - Translations: minor fixes.
