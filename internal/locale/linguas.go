@@ -38,6 +38,8 @@ func (l Lingua) Name() string {
 		return "Deutsch"
 	case "de-CH":
 		return "Deutsch (Schweiz)"
+	case "he":
+		return "עִבְרִית"
 	case "la":
 		return "Latina"
 	case "pt":
@@ -55,7 +57,7 @@ func (l Lingua) Name() string {
 
 func (l Lingua) Font() string {
 	switch l {
-	case "ar", "ar-EG":
+	case "ar", "ar-EG", "he":
 		return "bitmapfont"
 	case "zh-Hans":
 		return "unifont"
@@ -119,7 +121,7 @@ func (l Lingua) Canonical() Lingua {
 // Shape performs glyph shaping on a given string.
 func (l Lingua) Shape(s string) string {
 	switch l {
-	case "ar", "ar-EG":
+	case "ar", "ar-EG", "he":
 		return l.shapeArabic(s)
 	default:
 		return s

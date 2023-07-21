@@ -31,7 +31,7 @@ var (
 
 var (
 	formatRE = regexp.MustCompile(`({{[^}]*}})|%(?:\[(\d+)\])?([-+# 0-9.]*[a-zA-Z%])`)
-	badRE    = regexp.MustCompile(` {{BR}}|{{BR}} |^ | $`)
+	badRE    = regexp.MustCompile(` {{BR}}|{{BR}} |^ | $|^\n|\n$`)
 )
 
 func formats(s string) map[string]int {
