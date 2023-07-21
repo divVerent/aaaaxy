@@ -111,7 +111,9 @@ func (l Lingua) Canonical() Lingua {
 	// Handle aliases.
 	// Aliases are different names for the same language.
 	switch l {
-	case "zh-CHS", "zh-CN", "zh-SG":
+	case "iw": // Deprecated common alias for Hebrew. Java still uses it, and thus Android likely, too.
+		return "he"
+	case "zh-CHS", "zh-CN", "zh-SG": // Language specific Chinese aliases.
 		return "zh-Hans"
 	default:
 		return l
