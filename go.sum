@@ -27,8 +27,8 @@ github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f h1:OGqDDftRTwrvUoL6pO
 github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f/go.mod h1:Dv9D0NUlAsaQcGQZa5kc5mqR9ua72SmA8VXi4cd+cBw=
 github.com/divVerent/ebiten/v2 v2.5.5-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe-and-58eb1af1eb88915a726f29ffe9279025f98c9be8 h1:pfWglrlaXFChOECT83vgB6lpwTeX0RoSQkvFRpWLiqM=
 github.com/divVerent/ebiten/v2 v2.5.5-with-574925cf7a72deaf73be4c481348a7a44f7b7e19-and-cc247962703eba99eae732876496375191f16cbe-and-58eb1af1eb88915a726f29ffe9279025f98c9be8/go.mod h1:mnHSOVysTr/nUZrN1lBTRqhK4NG+T9NR3JsJP2rCppk=
-github.com/ebitengine/purego v0.4.0-alpha.5 h1:1jd+ClW6gD2x2F/+j4lCGc3TQMWL3hNYgLu/xF9Jz0g=
-github.com/ebitengine/purego v0.4.0-alpha.5/go.mod h1:ah1In8AOtksoNK6yk5z1HTJeUkC1Ez4Wk2idgGslMwQ=
+github.com/ebitengine/purego v0.4.0 h1:RQVuMIxQPQ5iCGEJvjQ17YOK+1tMKjVau2FUMvXH4HE=
+github.com/ebitengine/purego v0.4.0/go.mod h1:ah1In8AOtksoNK6yk5z1HTJeUkC1Ez4Wk2idgGslMwQ=
 github.com/emirpasic/gods v1.12.0 h1:QAUIPSaCu4G+POclxeqb3F+WPpdKqFGlw36+yOzGlrg=
 github.com/emirpasic/gods v1.12.0/go.mod h1:YfzfFFoVP/catgzJb4IKIqXjX78Ha8FMSDh3ymbK86o=
 github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672 h1:MUk7T1sPNKoyDjXubIrd+XPhHqBzgjLw0nvYG+uXMhw=
@@ -60,8 +60,8 @@ github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148/go.mod h1
 github.com/hajimehoshi/bitmapfont/v2 v2.2.3 h1:jmq/TMNj352V062Tr5e3hAoipkoxCbY1JWTzor0zNps=
 github.com/hajimehoshi/bitmapfont/v3 v3.0.0 h1:r2+6gYK38nfztS/et50gHAswb9hXgxXECYgE8Nczmi4=
 github.com/hajimehoshi/bitmapfont/v3 v3.0.0/go.mod h1:+CxxG+uMmgU4mI2poq944i3uZ6UYFfAkj9V6WqmuvZA=
-github.com/hajimehoshi/oto/v2 v2.5.0-alpha.0.20230315035531-31c83ff4311d h1:/uxUAmMcbof/7h4JwG+Tg6yrmvwsn2/9FAaVPXg9kYc=
-github.com/hajimehoshi/oto/v2 v2.5.0-alpha.0.20230315035531-31c83ff4311d/go.mod h1:HGiZnUkxl2+l+fNpiYJFfzhs4N1KeYaksFcnB8FmqDw=
+github.com/hajimehoshi/oto/v2 v2.5.0-alpha.1 h1:ldztpxgRmIZeOFOhXh4CBz8yQxn5mRmEVtVXD7S+Wxw=
+github.com/hajimehoshi/oto/v2 v2.5.0-alpha.1/go.mod h1:XoAqcfGced8SVzCvx7DO2YA69Zpr1NiHNhnxJawxaZ0=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=
 github.com/inconshreveable/mousetrap v1.0.0 h1:Z8tu5sraLXCXIcARxBp/8cbvlwVa7Z1NHg9XEKhtSvM=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=

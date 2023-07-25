@@ -10,7 +10,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
 	github.com/hajimehoshi/bitmapfont/v3 v3.0.0
-	github.com/hajimehoshi/ebiten/v2 v2.5.5
+	github.com/hajimehoshi/ebiten/v2 v2.5.6
 	github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
 	github.com/leonelquinteros/gotext v1.5.2
 	github.com/lestrrat-go/strftime v1.0.6
@@ -26,12 +26,12 @@ require (
 
 require (
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
-	github.com/ebitengine/purego v0.4.0-alpha.5 // indirect
+	github.com/ebitengine/purego v0.4.0 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20221017161538-93cebf72946b // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
-	github.com/hajimehoshi/oto/v2 v2.5.0-alpha.0.20230315035531-31c83ff4311d // indirect
+	github.com/hajimehoshi/oto/v2 v2.5.0-alpha.1 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jezek/xgb v1.1.0 // indirect
