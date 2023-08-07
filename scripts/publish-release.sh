@@ -158,4 +158,4 @@ xdg-open https://itch.io/dashboard/game/1199736/devlog
 xdg-open https://www.pling.com/p/1758731/edit
 
 # Google Play.
-xdg-open https://play.google.com/console/u/0/developers/7023357085064533456/app/4972666448425908274/tracks/open-testing
+xdg-open https://play.google.com/console/u/0/developers/7023357085064533456/app/4972666448425908274/tracks/production
