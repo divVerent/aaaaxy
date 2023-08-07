@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.4.39" date="2023-07-25">
-      <description><ul><li>Engine: internal preparations to support Hebrew (no translation yet).</li><li>Engine: update modules.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.39</url>
+    <release version="v1.4.42" date="2023-08-07">
+      <description><ul><li>Engine: minor module updates.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.42</url>
     </release>
   </releases>
 </component>
