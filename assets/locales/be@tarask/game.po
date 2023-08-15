@@ -107,7 +107,7 @@ msgstr "Aŭdyjo"
 
 #: menu/language.go menu/quality.go
 msgid "Auto (%s)"
-msgstr "Aŭta (%s)"
+msgstr "Aŭtamatyčna (%s)"
 
 #: fun/string.go
 msgid "B"
