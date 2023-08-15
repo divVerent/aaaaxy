@@ -34,6 +34,10 @@ func (l Lingua) Name() string {
 		return "العربية"
 	case "ar-EG":
 		return "العربية (مصر)"
+	case "be":
+		return "Беларуская"
+	case "be@tarask":
+		return "Biełaruskaja"
 	case "de":
 		return "Deutsch"
 	case "de-CH":
@@ -52,6 +56,16 @@ func (l Lingua) Name() string {
 		return "简体中文"
 	default:
 		return string(l)
+	}
+}
+
+func (l Lingua) SortKey() string {
+	switch l {
+	// Sort both Belarusian variants together.
+	case "be@tarask":
+		return "Беларуская (Łacinka)"
+	default:
+		return l.Name()
 	}
 }
 
@@ -142,7 +156,7 @@ func LinguasSorted() []Lingua {
 		ret = append(ret, l)
 	}
 	sort.Slice(ret, func(a, b int) bool {
-		return ret[a].Name() < ret[b].Name()
+		return ret[a].SortKey() < ret[b].SortKey()
 	})
 	return ret
 }
