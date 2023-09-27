@@ -47,6 +47,7 @@ require (
 	github.com/src-d/gcfg v1.4.0 // indirect
 	github.com/xanzy/ssh-agent v0.2.1 // indirect
 	golang.org/x/crypto v0.13.0 // indirect
+	golang.org/x/exp/shiny v0.0.0-20230817173708-d852ddb80c63 // indirect
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/net v0.15.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
@@ -59,7 +60,6 @@ require (
 require (
 	github.com/otiai10/copy v1.6.0
 	github.com/spf13/cobra v0.0.5
-	golang.org/x/exp v0.0.0-20220126164734-073fb1339172 // indirect
 )
 
 // Use when playing around with extended/fixed tmx versions.

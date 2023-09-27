@@ -101,7 +101,6 @@ mod-tidy:
 .PHONY: mod-update
 mod-update:
 	$(GO) get -u
-	$(GO) get golang.org/x/exp/shiny@none
 	$(MAKE) mod-tidy
 
 .PHONY: assets-update
