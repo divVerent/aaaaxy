@@ -1,0 +1,2 @@
+  - Engine: update Ebitengine to v2.5.10; fixes iOS crashes.
+  - Engine: update modules.
