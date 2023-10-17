@@ -32,34 +32,20 @@ import (
 // boundString returns the bounding rectangle of the given text.
 func (f Face) boundString(str string) m.Rect {
 	var r m.Rect
-	if locale.Active.UseEbitenText() {
-		rect := text.BoundString(f.Outline, str)
-		r = m.Rect{
-			Origin: m.Pos{
-				X: rect.Min.X,
-				Y: rect.Min.Y,
-			},
-			Size: m.Delta{
-				DX: rect.Max.X - rect.Min.X,
-				DY: rect.Max.Y - rect.Min.Y,
-			},
-		}
-	} else {
-		bounds, _ := font.BoundString(f.Outline, str)
-		x0 := bounds.Min.X.Floor()
-		y0 := bounds.Min.Y.Floor()
-		x1 := bounds.Max.X.Ceil()
-		y1 := bounds.Max.Y.Ceil()
-		r = m.Rect{
-			Origin: m.Pos{
-				X: x0,
-				Y: y0,
-			},
-			Size: m.Delta{
-				DX: x1 - x0,
-				DY: y1 - y0,
-			},
-		}
+	bounds, _ := font.BoundString(f.Outline, str)
+	x0 := bounds.Min.X.Floor()
+	y0 := bounds.Min.Y.Floor()
+	x1 := bounds.Max.X.Ceil()
+	y1 := bounds.Max.Y.Ceil()
+	r = m.Rect{
+		Origin: m.Pos{
+			X: x0,
+			Y: y0,
+		},
+		Size: m.Delta{
+			DX: x1 - x0,
+			DY: y1 - y0,
+		},
 	}
 	if r.Size.DX <= 0 {
 		r.Size.DX = 1
