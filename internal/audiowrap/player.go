@@ -24,6 +24,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/dontgc"
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 var (
@@ -244,12 +245,21 @@ func (f *FadeHandle) RestoreIn(d time.Duration) *Player {
 	return p
 }
 
-func (p *Player) Current() time.Duration {
+func (p *Player) Position() time.Duration {
 	if p.dmp != nil {
-		return p.dmp.Current()
+		return p.dmp.Position()
 	}
 	if p.ebi != nil {
-		return p.ebi.Current()
+		// Type switch to get around deprecation warning on Current() in Ebitengine v2.6.
+		// TODO(divVerent): Remove when requiring Ebitengine 2.6.
+		switch ebi := (interface{})(p.ebi).(type) {
+		case interface{ Position() time.Duration }:
+			return ebi.Position()
+		case interface{ Current() time.Duration }:
+			return ebi.Current()
+		default:
+			log.Fatalf("Ebitengine player of unknown type: %#v", ebi)
+		}
 	}
 	t := p.accumulatedTime
 	if !p.playTime.IsZero() {

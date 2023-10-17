@@ -104,7 +104,7 @@ func Enable() {
 // Now returns the current music playback time.
 func Now() time.Duration {
 	if player != nil && player.IsPlaying() {
-		return player.Current()
+		return player.Position()
 	}
 	return 0
 }

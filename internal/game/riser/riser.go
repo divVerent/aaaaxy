@@ -278,7 +278,7 @@ func (s *riserSound) update(cur bool) {
 		if s.counter >= s.minFrames {
 			s.on.Close()
 			s.off.Play()
-			if s.off.CurrentNotForGameplay() >= 100*time.Millisecond {
+			if s.off.PositionNotForGameplay() >= 100*time.Millisecond {
 				s.off.Reset()
 			}
 		}

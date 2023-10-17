@@ -96,7 +96,7 @@ func (d *dumper) Close() {
 	}
 }
 
-func (d *dumper) Current() time.Duration {
+func (d *dumper) Position() time.Duration {
 	return time.Duration(d.played) * time.Second / time.Duration(SampleRate())
 }
 

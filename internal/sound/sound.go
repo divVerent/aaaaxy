@@ -212,9 +212,9 @@ func (g *GroupedSound) Reset() {
 	g.s.groupedPlayer = g.s.Play()
 }
 
-// CurrentNotForGameplay returns the current playback position. As this may depend on hardware, do not use this for gameplay.
-func (g *GroupedSound) CurrentNotForGameplay() time.Duration {
-	return g.s.groupedPlayer.Current()
+// PositionNotForGameplay returns the current playback position. As this may depend on hardware, do not use this for gameplay.
+func (g *GroupedSound) PositionNotForGameplay() time.Duration {
+	return g.s.groupedPlayer.Position()
 }
 
 // IsPlayingNotForGameplay returns whether the sound is currently playing. As this may depend on hardware, do not use this for gameplay.
