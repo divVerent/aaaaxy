@@ -464,7 +464,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 		vx := float64(vxi) / constants.SubPixelScale * engine.GameTPS
 		vy := float64(vyi) / constants.SubPixelScale * engine.GameTPS
 		font.ByName["Small"].Draw(drawDest,
-			locale.G.Get("x=%.5f y=%.5f vx=%.4f vy=%.4f", x, y, vx, vy),
+			locale.G.Get("(%.5f %.5f) (%.4f %.4f)", x, y, vx, vy),
 			m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}
