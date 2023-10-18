@@ -515,6 +515,13 @@ func (p *Player) SetGoal(goal *engine.Entity) {
 	p.Goal = goal
 }
 
+func (p *Player) DebugPos64() (x int64, y int64, vx int64, vy int64) {
+	return int64(p.Entity.Rect.Origin.X)*constants.SubPixelScale + int64(p.Physics.SubPixel.DX),
+		int64(p.Entity.Rect.Origin.Y)*constants.SubPixelScale + int64(p.Physics.SubPixel.DY),
+		int64(p.Velocity.DX),
+		int64(p.Velocity.DY)
+}
+
 func init() {
 	engine.RegisterEntityType(&Player{})
 }

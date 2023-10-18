@@ -65,6 +65,7 @@ for demo in "$@"; do
 		-fullscreen=false \
 		-screen_filter=nearest \
 		-show_fps \
+		-show_pos \
 		-show_time \
 		-window_scale_factor=1
 	status=$?

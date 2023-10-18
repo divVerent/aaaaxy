@@ -35,6 +35,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
+	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -71,6 +72,7 @@ var (
 	debugEnableDrawing           = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 	showFPS                      = flag.Bool("show_fps", false, "show fps counter")
 	showTime                     = flag.Bool("show_time", false, "show game time")
+	showPos                      = flag.Bool("show_pos", false, "show player position")
 	debugLoadingScreenCpuprofile = flag.String("debug_loading_screen_cpuprofile", "", "write CPU profile of loading screen to file")
 	debugShowGC                  = flag.Bool("debug_show_gc", false, "show garbage collector pause info")
 )
@@ -454,8 +456,20 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 			m.Pos{X: engine.GameWidth / 2, Y: engine.GameHeight - 4}, font.Center,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}
+	if *showPos {
+		timing.Section("pos")
+		xi, yi, vxi, vyi := g.Menu.World.Player.Impl.(engine.PlayerEntityImpl).DebugPos64()
+		x := float64(xi) / constants.SubPixelScale
+		y := float64(yi) / constants.SubPixelScale
+		vx := float64(vxi) / constants.SubPixelScale * engine.GameTPS
+		vy := float64(vyi) / constants.SubPixelScale * engine.GameTPS
+		font.ByName["Small"].Draw(drawDest,
+			locale.G.Get("x=%.5f y=%.5f vx=%.4f vy=%.4f", x, y, vx, vy),
+			m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
+			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
+	}
 	if *debugShowGC {
-		timing.Section("time")
+		timing.Section("gc")
 		now := time.Now()
 		var stats debug.GCStats
 		debug.ReadGCStats(&stats)
@@ -466,7 +480,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 					stats.Pause[0].Seconds()*1000,
 					stats.PauseEnd[0].Sub(stats.PauseEnd[1]).Seconds(),
 					now.Sub(stats.PauseEnd[0]).Seconds()),
-				m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
+				m.Pos{X: 0, Y: 12}, font.Left,
 				palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 		}
 	}

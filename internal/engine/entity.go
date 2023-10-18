@@ -275,6 +275,9 @@ type PlayerEntityImpl interface {
 	// LookPos is the desired screen center position.
 	LookPos() m.Pos
 
+	// DebugPos64 returns the position and velocity for debug purposes, in subpixels.
+	DebugPos64() (x int64, y int64, vx int64, vy int64)
+
 	// Respawned() notifies the entity that the world respawned it.
 	Respawned()
 }
