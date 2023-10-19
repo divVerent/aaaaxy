@@ -17,7 +17,7 @@ msgstr ""
 #. Last separator when building a list. Usually starts and ends with a space.
 #: fun/string.go playerstate/playerstate.go
 msgid " and "
-msgstr " і "
+msgstr " i "
 
 #: aaaaxy/game.go
 msgid "%.1f fps, %.1f tps"
@@ -30,6 +30,10 @@ msgstr "%d:%02d:%02d.%03d"
 #: menu/map.go
 msgid "%s (%d/%d)"
 msgstr "%s(%d/%d)"
+
+#: aaaaxy/game.go
+msgid "(%.5f %.5f) (%.4f %.4f)"
+msgstr "(%.5f %.5f) (%.4f %.4f)"
 
 #. Other separator when building a list. Usually is a comma and a space.
 #: fun/string.go playerstate/playerstate.go
