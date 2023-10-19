@@ -15,21 +15,32 @@
 package vfs
 
 import (
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 type StateKind int
 
-const (
-	gameName = "AAAAXY"
-)
+type readonlyKey struct {
+	kind StateKind
+	name string
+}
 
 const (
+	gameName = "AAAAXY"
+
 	Config StateKind = iota
 	SavedGames
 )
 
-var preventWrite *string = nil
+var (
+	readonly = flag.Bool("readonly", false, "if set, save games and config changes will not be written")
+)
+
+var (
+	preventWrite   *string = nil
+	readonlyBuffer         = map[readonlyKey][]byte{}
+)
 
 // PreventWrite prevents further writing to any state.
 //
@@ -39,10 +50,29 @@ func PreventWrite(reason string) {
 	preventWrite = &reason
 }
 
+// ReadState loads the given state file and returns its contents.
+func ReadState(kind StateKind, name string) ([]byte, error) {
+	if *readonly {
+		key := readonlyKey{kind: kind, name: name}
+		buf, found := readonlyBuffer[key]
+		if found {
+			log.Infof("readonly: forcing read of %v from memory", key)
+			return append([]byte(nil), buf...), nil
+		}
+	}
+	return readState(kind, name)
+}
+
 // WriteState writes the given state file.
 func WriteState(kind StateKind, name string, data []byte) error {
 	if preventWrite != nil {
 		log.Fatalf("attempted to write data despite %s", *preventWrite)
+	}
+	if *readonly {
+		key := readonlyKey{kind: kind, name: name}
+		log.Infof("readonly: forcing write of %v to memory", key)
+		readonlyBuffer[key] = append([]byte(nil), data...)
+		return nil
 	}
 	return writeState(kind, name, data)
 }

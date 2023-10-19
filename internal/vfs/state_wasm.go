@@ -44,8 +44,8 @@ func protectJS(f func()) (err error) {
 	return
 }
 
-// ReadState loads the given state file and returns its contents.
-func ReadState(kind StateKind, name string) ([]byte, error) {
+// readState loads the given state file and returns its contents.
+func readState(kind StateKind, name string) ([]byte, error) {
 	path := fmt.Sprintf("%d/%s", kind, name)
 	var state js.Value
 	err := protectJS(func() {
@@ -67,7 +67,7 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 // MoveAwayState deletes a detected-to-be-broken state file so it will not be used again.
 // It will also be printed to the console for debugging.
 func MoveAwayState(kind StateKind, name string) error {
-	data, err := ReadState(kind, name)
+	data, err := readState(kind, name)
 	path := fmt.Sprintf("%d/%s", kind, name)
 	if err == nil {
 		log.Errorf("deleting broken state file %s with content: %s", path, string(data))

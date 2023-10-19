@@ -85,8 +85,8 @@ func initState() error {
 	return nil
 }
 
-// ReadState loads the given state file and returns its contents.
-func ReadState(kind StateKind, name string) ([]byte, error) {
+// readState loads the given state file and returns its contents.
+func readState(kind StateKind, name string) ([]byte, error) {
 	paths, err := pathForRead(kind, name)
 	if err != nil {
 		// Remap to os.ErrNotExist so callers can deal with the error on their own.
