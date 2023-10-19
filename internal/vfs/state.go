@@ -38,16 +38,17 @@ var (
 )
 
 var (
-	preventWrite   *string = nil
+	crashOnWrite   *string = nil
 	readonlyBuffer         = map[readonlyKey][]byte{}
 )
 
-// PreventWrite prevents further writing to any state.
+// CrashOnWrite prevents further writing to any state.
 //
 // This is used as a safety mechanism so demo playback cannot have any
-// influence on the system.
-func PreventWrite(reason string) {
-	preventWrite = &reason
+// influence on the system, and to ensure that demo playback's write attempts
+// are properly redirected to memory buffers for regression testing.
+func CrashOnWrite(reason string) {
+	crashOnWrite = &reason
 }
 
 // ReadState loads the given state file and returns its contents.
@@ -65,8 +66,8 @@ func ReadState(kind StateKind, name string) ([]byte, error) {
 
 // WriteState writes the given state file.
 func WriteState(kind StateKind, name string, data []byte) error {
-	if preventWrite != nil {
-		log.Fatalf("attempted to write data despite %s", *preventWrite)
+	if crashOnWrite != nil {
+		log.Fatalf("attempted to write data despite %s", *crashOnWrite)
 	}
 	if *readonly {
 		key := readonlyKey{kind: kind, name: name}

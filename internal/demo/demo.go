@@ -75,7 +75,7 @@ func Init() error {
 			}
 		}
 		demoPlayer = json.NewDecoder(demoPlayerFile)
-		vfs.PreventWrite("demo playback")
+		vfs.CrashOnWrite("demo playback")
 	}
 	var demoRecordName string
 	if *demoRecord != "" {
