@@ -38,6 +38,7 @@ import (
 
 var (
 	cheatInAirJump = flag.Bool("cheat_in_air_jump", false, "allow jumping while in air (allows getting anywhere)")
+	cheatVVVVVV = flag.Bool("cheat_vvvvvv", false, "play VVVVVV, not AAAAXY")
 )
 
 type Player struct {
@@ -315,7 +316,7 @@ func (p *Player) Update() {
 			p.CoyoteFrames = -1
 			p.Jumping = true
 			p.JumpingUp = true
-			if p.VVVVVV {
+			if p.VVVVVV || *cheatVVVVVV {
 				p.OnGroundVec = p.OnGroundVec.Mul(-1)
 			}
 			p.JumpSound.Play()
@@ -376,7 +377,7 @@ func (p *Player) Update() {
 			p.Anim.SetGroup("walk")
 		}
 	} else {
-		if p.VVVVVV {
+		if p.VVVVVV || *cheatVVVVVV {
 			// Always update the scroll pos while in flipping mode.
 			p.LastGroundPos = p.Entity.Rect.Origin
 		}
