@@ -45,7 +45,7 @@ cat > "$app/Contents/Info.plist" <<EOF
 	<key>LSMinimumSystemVersion</key>
 	<string>10.13.0</string>
 	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.games</string>
+	<string>public.app-category.puzzle-games</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
 </dict>
