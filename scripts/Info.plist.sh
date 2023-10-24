@@ -36,12 +36,16 @@ cat > "$app/Contents/Info.plist" <<EOF
 	<string>$binary</string>
 	<key>CFBundleIconFile</key>
 	<string>icon.icns</string>
+	<key>CFBundleName</key>
+	<string>AAAAXY</string>
 	<key>CFBundleIdentifier</key>
 	<string>io.github.divverent.aaaaxy</string>
 	<key>CFBundleVersion</key>
 	<string>$version</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.13.0</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.games</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
 </dict>
