@@ -550,7 +550,7 @@ func sizeHalftone(size int) (sizeSquare int, scale, offset float64) {
 }
 
 // BayerPattern computes the Bayer pattern for this palette.
-func (p *Palette) BayerPattern(size int) []float32 {
+func BayerPattern(size int) []float32 {
 	sizeSquare, scale, offset := sizeBayer(size)
 	bayern := make([]float32, sizeSquare)
 	for i := range bayern {
@@ -572,31 +572,31 @@ func (p *Palette) BayerPattern(size int) []float32 {
 	return bayern
 }
 
-// HalftonePattern computes the Halftone pattern for this palette.
-func (p *Palette) HalftonePattern(size int) []float32 {
+// halftonePattern computes the Halftone pattern for this palette.
+func halftonePattern(size int, distance func(dx, dy float64) float64) []float32 {
 	sizeSquare, scale, offset := sizeHalftone(size)
 	type index struct {
-		i         int
-		distance2 int
-		angle     float64
+		i        int
+		distance float64
+		angle    float64
 	}
 	weighted := make([]index, sizeSquare)
 	for i := range weighted {
 		x := i % size
 		y := i / size
 		// Take distance from top left pixel corner.
-		dx := 2*x + 1
-		dy := 2*y + 1
-		if dx > size {
-			dx -= 2 * size
+		dx := float64(x) + 0.5
+		dy := float64(y) + 0.5
+		if dx > 0.5*float64(size) {
+			dx -= float64(size)
 		}
-		if dy > size {
-			dy -= 2 * size
+		if dy > 0.5*float64(size) {
+			dy -= float64(size)
 		}
-		d := dx*dx + dy*dy
+		d := distance(dx, dy)
 		// Compute angle as tie breaker.
 		// Negate Y to get mathematically positive angles and not clockwise.
-		a := math.Atan2(-float64(dy), float64(dx))
+		a := math.Atan2(-dy, dx)
 		if a < 0 {
 			a += 2 * math.Pi
 		}
@@ -604,7 +604,7 @@ func (p *Palette) HalftonePattern(size int) []float32 {
 	}
 	// Note: sort in reverse; the innermost pixel thus gets filled first.
 	sort.Slice(weighted, func(i, j int) bool {
-		do := weighted[i].distance2 - weighted[j].distance2
+		do := weighted[i].distance - weighted[j].distance
 		if do != 0 {
 			return do < 0
 		}
@@ -620,4 +620,34 @@ func (p *Palette) HalftonePattern(size int) []float32 {
 		bayern[idx.i] = float32((float64(b) + offset) * scale)
 	}
 	return bayern
+}
+
+// HalftonePattern computes the Halftone pattern for this palette.
+func HalftonePattern(size int) []float32 {
+	return halftonePattern(size, math.Hypot)
+}
+
+// DiamondPattern computes the diamond halftone pattern for this palette.
+func DiamondPattern(size int) []float32 {
+	return halftonePattern(size, func(dx, dy float64) float64 {
+		return math.Abs(dx) + math.Abs(dy)
+	})
+}
+
+// HybridPattern computes a diamond/halftone hybrid pattern for this palette.
+func HybridPattern(size int) []float32 {
+	return halftonePattern(size, func(dx, dy float64) float64 {
+		r1 := math.Hypot(dx, dy)
+		r2 := math.Hypot(0.5*float64(size)-math.Abs(dx), 0.5*float64(size)-math.Abs(dy))
+		if r1 < r2 {
+			return r1
+		} else {
+			return float64(size)*2 - r2
+		}
+	})
+}
+
+// SquarePattern computes a square pattern for this palette.
+func SquarePattern(size int) []float32 {
+	return halftonePattern(size, math.Max)
 }

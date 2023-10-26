@@ -67,7 +67,7 @@ var (
 	paletteRemapOnly             = flag.Bool("palette_remap_only", false, "only apply the palette's color remapping, do not actually reduce color set")
 	paletteRemapColors           = flag.Bool("palette_remap_colors", true, "remap input colors to close palette colors on load (less dither but wrong colors)")
 	paletteDitherSize            = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
-	paletteDitherMode            = flag.String("palette_dither_mode", "plastic2", "dither type (none, bayer, bayer2, halftone, halftone2, plastic, plastic2, random or random2)")
+	paletteDitherMode            = flag.String("palette_dither_mode", "plastic2", "dither type (none, bayer, bayer2, diamond, diamond2, halftone, halftone2, hybrid, hybrid2, plastic, plastic2, random, random2, square or square2)")
 	paletteDitherWorldAligned    = flag.Bool("palette_dither_world_aligned", true, "align dither pattern to world as opposed to screen")
 	debugEnableDrawing           = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 	showFPS                      = flag.Bool("show_fps", false, "show fps counter")
@@ -82,12 +82,18 @@ type ditherMode int
 const (
 	bayerDither ditherMode = iota
 	bayer2Dither
+	diamondDither
+	diamond2Dither
 	halftoneDither
 	halftone2Dither
+	hybridDither
+	hybrid2Dither
 	plasticDither
 	plastic2Dither
 	randomDither
 	random2Dither
+	squareDither
+	square2Dither
 )
 
 type Game struct {
@@ -263,12 +269,20 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 		ditherSize = 1
 	case "bayer":
 		ditherMode = bayerDither
-	case "halftone":
-		ditherMode = halftoneDither
 	case "bayer2":
 		ditherMode = bayer2Dither
+	case "diamond":
+		ditherMode = diamondDither
+	case "diamond2":
+		ditherMode = diamond2Dither
+	case "halftone":
+		ditherMode = halftoneDither
 	case "halftone2":
 		ditherMode = halftone2Dither
+	case "hybrid":
+		ditherMode = hybridDither
+	case "hybrid2":
+		ditherMode = hybrid2Dither
 	case "plastic":
 		ditherMode = plasticDither
 		ditherSize = 0
@@ -281,6 +295,10 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 	case "random2":
 		ditherMode = random2Dither
 		ditherSize = 0
+	case "square":
+		ditherMode = squareDither
+	case "square2":
+		ditherMode = square2Dither
 	default:
 		log.Errorf("unknown dither mode %v, switching to bayer", *paletteDitherMode)
 		*paletteDitherMode = "bayer"
@@ -305,9 +323,9 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 		var err error
 		params := map[string]interface{}{}
 		switch ditherMode {
-		case bayerDither, halftoneDither:
+		case bayerDither, diamondDither, halftoneDither, hybridDither, squareDither:
 			params["BayerSize"] = ditherSize
-		case bayer2Dither, halftone2Dither:
+		case bayer2Dither, diamond2Dither, halftone2Dither, hybrid2Dither, square2Dither:
 			params["BayerSize"] = ditherSize
 			params["TwoColor"] = true
 		case plasticDither:
@@ -337,9 +355,9 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 	if g.palette != pal {
 		var lut go_image.Image
 		switch ditherMode {
-		case bayerDither, halftoneDither, randomDither, plasticDither:
+		case bayerDither, diamondDither, halftoneDither, hybridDither, randomDither, plasticDither, squareDither:
 			lut, g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(g.paletteLUT.Bounds(), 1)
-		case bayer2Dither, halftone2Dither, random2Dither, plastic2Dither:
+		case bayer2Dither, diamond2Dither, halftone2Dither, hybrid2Dither, random2Dither, plastic2Dither, square2Dither:
 			lut, g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(g.paletteLUT.Bounds(), 2)
 		}
 		if nrgba, ok := lut.(*go_image.NRGBA); ok {
@@ -349,11 +367,17 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 		}
 		switch ditherMode {
 		case bayerDither, bayer2Dither:
-			g.paletteBayern = pal.BayerPattern(g.paletteDitherSize)
+			g.paletteBayern = palette.BayerPattern(g.paletteDitherSize)
 		case halftoneDither, halftone2Dither:
-			g.paletteBayern = pal.HalftonePattern(g.paletteDitherSize)
+			g.paletteBayern = palette.HalftonePattern(g.paletteDitherSize)
+		case diamondDither, diamond2Dither:
+			g.paletteBayern = palette.DiamondPattern(g.paletteDitherSize)
+		case hybridDither, hybrid2Dither:
+			g.paletteBayern = palette.HybridPattern(g.paletteDitherSize)
 		case randomDither, random2Dither, plasticDither, plastic2Dither:
 			g.paletteBayern = nil
+		case squareDither, square2Dither:
+			g.paletteBayern = palette.SquarePattern(g.paletteDitherSize)
 		}
 		g.palette = pal
 	}
