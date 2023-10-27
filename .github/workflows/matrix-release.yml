@@ -18,7 +18,7 @@ jobs:
       run: 'git checkout -B main'
 
     - name: matrix-commit
-      uses: krazykirby99999/matrix-commit@v1
+      uses: imbev/matrix-commit@v1
 
       with:
         homeserver: ${{ secrets.BOT_HOMESERVER }}
