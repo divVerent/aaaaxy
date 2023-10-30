@@ -525,9 +525,9 @@ func (p *Palette) computeLUT(bounds image.Rectangle, numLUTs int, maxCycles floa
 	}, lutSize, perRow, lutWidth
 }
 
-func sizeBayer(size int) (sizeSquare int, scale, offset float64) {
+func sizeBayer(size int) (bits, sizeSquare int, scale, offset float64) {
 	sizeSquare = size * size
-	bits := 0
+	bits = 0
 	if size > 1 {
 		bits = math.Ilogb(float64(size-1)) + 1
 	}
@@ -549,13 +549,22 @@ func sizeHalftone(size int) (sizeSquare int, scale, offset float64) {
 	return
 }
 
-// BayerPattern computes the Bayer pattern for this palette.
-func BayerPattern(size int) []float32 {
-	sizeSquare, scale, offset := sizeBayer(size)
+// bayerPattern computes the Bayer pattern for this palette using an interleave function.
+func bayerPattern(size int, interleave func(sizeCeil, x, y int) int) []float32 {
+	bits, sizeSquare, scale, offset := sizeBayer(size)
 	bayern := make([]float32, sizeSquare)
 	for i := range bayern {
 		x := i % size
 		y := i / size
+		b := interleave(bits, x, y)
+		bayern[i] = float32((float64(b) + offset) * scale)
+	}
+	return bayern
+}
+
+// BayerPattern computes the Bayer pattern for this palette.
+func BayerPattern(size int) []float32 {
+	return bayerPattern(size, func(bits, x, y int) int {
 		z := x ^ y
 		b := 0
 		for bit := 1; bit < size; bit *= 2 {
@@ -567,9 +576,16 @@ func BayerPattern(size int) []float32 {
 				b += 2
 			}
 		}
-		bayern[i] = float32((float64(b) + offset) * scale)
-	}
-	return bayern
+		return b
+	})
+}
+
+// CheckerPattern computes the Bayer-like checkerboard pattern for this palette.
+func CheckerPattern(size int) []float32 {
+	return bayerPattern(size, func(bits, x, y int) int {
+		z := x ^ y
+		return (z << bits) | x
+	})
 }
 
 // halftonePattern computes the Halftone pattern for this palette.

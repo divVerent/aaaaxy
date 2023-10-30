@@ -67,7 +67,7 @@ var (
 	paletteRemapOnly             = flag.Bool("palette_remap_only", false, "only apply the palette's color remapping, do not actually reduce color set")
 	paletteRemapColors           = flag.Bool("palette_remap_colors", true, "remap input colors to close palette colors on load (less dither but wrong colors)")
 	paletteDitherSize            = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
-	paletteDitherMode            = flag.String("palette_dither_mode", "plastic2", "dither type (none, bayer, bayer2, diamond, diamond2, halftone, halftone2, hybrid, hybrid2, plastic, plastic2, random, random2, square or square2)")
+	paletteDitherMode            = flag.String("palette_dither_mode", "plastic2", "dither type (none, bayer, bayer2, checker, checker2, diamond, diamond2, halftone, halftone2, hybrid, hybrid2, plastic, plastic2, random, random2, square or square2)")
 	paletteDitherWorldAligned    = flag.Bool("palette_dither_world_aligned", true, "align dither pattern to world as opposed to screen")
 	debugEnableDrawing           = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
 	showFPS                      = flag.Bool("show_fps", false, "show fps counter")
@@ -82,6 +82,8 @@ type ditherMode int
 const (
 	bayerDither ditherMode = iota
 	bayer2Dither
+	checkerDither
+	checker2Dither
 	diamondDither
 	diamond2Dither
 	halftoneDither
@@ -271,6 +273,10 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 		ditherMode = bayerDither
 	case "bayer2":
 		ditherMode = bayer2Dither
+	case "checker":
+		ditherMode = checkerDither
+	case "checker2":
+		ditherMode = checker2Dither
 	case "diamond":
 		ditherMode = diamondDither
 	case "diamond2":
@@ -323,9 +329,9 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 		var err error
 		params := map[string]interface{}{}
 		switch ditherMode {
-		case bayerDither, diamondDither, halftoneDither, hybridDither, squareDither:
+		case bayerDither, checkerDither, diamondDither, halftoneDither, hybridDither, squareDither:
 			params["BayerSize"] = ditherSize
-		case bayer2Dither, diamond2Dither, halftone2Dither, hybrid2Dither, square2Dither:
+		case bayer2Dither, checker2Dither, diamond2Dither, halftone2Dither, hybrid2Dither, square2Dither:
 			params["BayerSize"] = ditherSize
 			params["TwoColor"] = true
 		case plasticDither:
@@ -355,9 +361,9 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 	if g.palette != pal {
 		var lut go_image.Image
 		switch ditherMode {
-		case bayerDither, diamondDither, halftoneDither, hybridDither, randomDither, plasticDither, squareDither:
+		case bayerDither, checkerDither, diamondDither, halftoneDither, hybridDither, randomDither, plasticDither, squareDither:
 			lut, g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(g.paletteLUT.Bounds(), 1)
-		case bayer2Dither, diamond2Dither, halftone2Dither, hybrid2Dither, random2Dither, plastic2Dither, square2Dither:
+		case bayer2Dither, checker2Dither, diamond2Dither, halftone2Dither, hybrid2Dither, random2Dither, plastic2Dither, square2Dither:
 			lut, g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(g.paletteLUT.Bounds(), 2)
 		}
 		if nrgba, ok := lut.(*go_image.NRGBA); ok {
@@ -368,6 +374,8 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 		switch ditherMode {
 		case bayerDither, bayer2Dither:
 			g.paletteBayern = palette.BayerPattern(g.paletteDitherSize)
+		case checkerDither, checker2Dither:
+			g.paletteBayern = palette.CheckerPattern(g.paletteDitherSize)
 		case halftoneDither, halftone2Dither:
 			g.paletteBayern = palette.HalftonePattern(g.paletteDitherSize)
 		case diamondDither, diamond2Dither:
