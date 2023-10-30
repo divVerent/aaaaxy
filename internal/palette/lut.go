@@ -549,6 +549,34 @@ func sizeHalftone(size int) (sizeSquare int, scale, offset float64) {
 	return
 }
 
+func reverse(bits, a int) int {
+	r := 0
+	for i, ibit := 0, 1; i < bits; i++ {
+		r <<= 1
+		if a&ibit != 0 {
+			r |= 1
+		}
+		ibit <<= 1
+	}
+	return r
+}
+
+func interleave(bits, a, b int) int {
+	r := 0
+	for i, ibit, obit := 0, 1, 1; i < bits; i++ {
+		if b&ibit != 0 {
+			r |= obit
+		}
+		obit <<= 1
+		if a&ibit != 0 {
+			r |= obit
+		}
+		obit <<= 1
+		ibit <<= 1
+	}
+	return r
+}
+
 // bayerPattern computes the Bayer pattern for this palette using an interleave function.
 func bayerPattern(size int, interleave func(sizeCeil, x, y int) int) []float32 {
 	bits, sizeSquare, scale, offset := sizeBayer(size)
@@ -566,17 +594,8 @@ func bayerPattern(size int, interleave func(sizeCeil, x, y int) int) []float32 {
 func BayerPattern(size int) []float32 {
 	return bayerPattern(size, func(bits, x, y int) int {
 		z := x ^ y
-		b := 0
-		for bit := 1; bit < size; bit *= 2 {
-			b *= 4
-			if y&bit != 0 {
-				b += 1
-			}
-			if z&bit != 0 {
-				b += 2
-			}
-		}
-		return b
+		// Bayer function: zyzyzyzyzy interleaving, with z and y reversed.
+		return interleave(bits, reverse(bits, z), reverse(bits, y))
 	})
 }
 
@@ -584,7 +603,9 @@ func BayerPattern(size int) []float32 {
 func CheckerPattern(size int) []float32 {
 	return bayerPattern(size, func(bits, x, y int) int {
 		z := x ^ y
-		return (z << bits) | x
+		// Checker function: zyzyzyzyzy interleaving, with z and y reversed (except for first bit of z).
+		z = ((z & ^(1 << (bits - 1))) << 1) | (z >> (bits - 1))
+		return interleave(bits, reverse(bits, z), reverse(bits, y))
 	})
 }
 
