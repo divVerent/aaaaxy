@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.4.50" date="2023-09-27">
-      <description><ul><li>Engine: update Ebitengine to v2.5.10; fixes iOS crashes.</li><li>Engine: update modules.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.50</url>
+    <release version="v1.4.72" date="2023-10-30">
+      <description><ul><li>Engine: add more dither patterns: `-palette_dither_mode=checker2`, `-palette_dither_mode=hybrid2`, `-palette_dither_mode=square2`.</li><li>Engine: add new flag: `-readonly`; disables all saving for speedrunning/TAS.</li><li>Engine: add new flag: `-show_pos` for a position/speed HUD for speedrunning/TAS.</li><li>Engine: minor module updates; preparations for Ebitengine 2.6.</li><li>Game: add new cheat: `-cheat_vvvvvv`.  Important announcement: a future version will use Ebitengine 2.6. This will increase the GPU requirement to OpenGL 3.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.72</url>
     </release>
   </releases>
 </component>

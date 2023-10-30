@@ -1,0 +1,8 @@
+  - Engine: add more dither patterns: `-palette_dither_mode=checker2`, `-palette_dither_mode=hybrid2`, `-palette_dither_mode=square2`.
+  - Engine: add new flag: `-readonly`; disables all saving for speedrunning/TAS.
+  - Engine: add new flag: `-show_pos` for a position/speed HUD for speedrunning/TAS.
+  - Engine: minor module updates; preparations for Ebitengine 2.6.
+  - Game: add new cheat: `-cheat_vvvvvv`.
+
+Important announcement: a future version will use Ebitengine 2.6. This
+will increase the GPU requirement to OpenGL 3.
