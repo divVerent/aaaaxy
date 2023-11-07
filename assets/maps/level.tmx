@@ -13419,7 +13419,7 @@
     <property name="target" value="Teleported !UnTeleported1 !UnTeleported2"/>
    </properties>
   </object>
-  <object id="6128" type="Text" x="6688" y="688" width="144" height="32">
+  <object id="6128" type="Text" x="6672" y="688" width="176" height="32">
    <properties>
     <property name="text" value="Any regrets?"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -17788,7 +17788,7 @@
     <property name="target" value="TheSecondKaizo"/>
    </properties>
   </object>
-  <object id="8114" name="TheSecondKaizo" type="SwitchableText" x="4576" y="3904" width="80" height="16">
+  <object id="8114" name="TheSecondKaizo" type="SwitchableText" x="4560" y="3904" width="112" height="16">
    <properties>
     <property name="text" value="Mwahaha!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
