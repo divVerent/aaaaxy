@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 09:35-0700\n"
+"POT-Creation-Date: 2023-10-19 04:23-0700\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Ukrainian (https://app.transifex.com/aaaaxy/teams/158611/uk/)\n"
@@ -717,7 +717,7 @@ msgstr "Вмикаємо та вимикаємо"
 #. dies'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1807]
 msgid "He who waits,{{BR}}retries ... #DGR"
-msgstr "Хто довго чекає, той{{BR}}виходить на пенсію #DGR"
+msgstr "Хто довго чекає, той{{BR}}повторює спробу #DGR"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1814]
 msgid "Avoid getting blocked in!"
@@ -1462,7 +1462,9 @@ msgstr "Стрибунці втрачають{{BR}}платформи.{{BR}}Не
 msgid "Try going in circles, but ..."
 msgstr "Спробуй ходити колами, але ..."
 
-#. Part of 'Try going in circles, but five is right out!'
+#. Part of 'Try going in circles, but five is right out!' (Monty Python
+#. reference, i.e. 'right out' in the sense of 'out of the question', 'not an
+#. option')
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8104]
 msgid "... five is right out!"
 msgstr "... п'ять не варіант!"
