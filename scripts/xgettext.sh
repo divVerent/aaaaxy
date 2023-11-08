@@ -95,6 +95,9 @@ languages=$(
 	grep . |\
 	while IFS=- read -r lang variant; do
 		case "$lang-$variant" in
+			be@tarask-)
+				res=b+be+Latn
+				;;
 			zh-Hans)
 				res=b+zh+Hans
 				;;

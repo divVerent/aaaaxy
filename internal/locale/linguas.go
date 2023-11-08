@@ -127,6 +127,8 @@ func (l Lingua) Canonical() Lingua {
 	switch l {
 	case "iw": // Deprecated common alias for Hebrew. Java still uses it, and thus Android likely, too.
 		return "he"
+	case "be@latin", "be-Latn": // Actually more correct, but using be@tarask as it is the closest match on Transifex.
+		return "be@tarask"
 	case "zh-CHS", "zh-CN", "zh-SG": // Language specific Chinese aliases.
 		return "zh-Hans"
 	default:

@@ -24,6 +24,20 @@ import (
 // Current returns the preferred system locale, intersected with available locales.
 var Current Lingua
 
+func tryInitCurrent(langName string) bool {
+	lingua := Lingua(langName).Canonical()
+	if lingua == "en" {
+		log.Infof("detected language %s (not translating)", Lingua("").Name())
+		return true
+	}
+	if _, found := Linguas[lingua]; found {
+		log.Infof("detected language %s", lingua.Name())
+		Current = lingua
+		return true
+	}
+	return false
+}
+
 // InitCurrent identifies the system locale. Requires Linguas to have been set.
 func InitCurrent() {
 	Current = ""
@@ -35,17 +49,13 @@ func InitCurrent() {
 	for _, loc := range locs {
 		lang, err := language.Parse(loc)
 		if err != nil {
+			if tryInitCurrent(loc) {
+				return
+			}
 			continue
 		}
 		for lang != language.Und {
-			lingua := Lingua(lang.String()).Canonical()
-			if lingua == "en" {
-				log.Infof("detected language %s (not translating)", Lingua("").Name())
-				return
-			}
-			if _, found := Linguas[lingua]; found {
-				log.Infof("detected language %s", lingua.Name())
-				Current = lingua
+			if tryInitCurrent(lang.String()) {
 				return
 			}
 			lang = lang.Parent()
