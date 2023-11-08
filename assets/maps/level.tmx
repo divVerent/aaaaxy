@@ -7014,7 +7014,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1819" type="Text" x="7264" y="7248" width="240" height="32">
+  <object id="1819" type="Text" x="7264" y="7232" width="240" height="64">
    <properties>
     <property name="text" value="Just put the thing on the thing{{BR}}and the other one too, already!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -11401,7 +11401,7 @@
   <object id="4931" gid="320" x="4608" y="1424" width="32" height="32"/>
   <object id="4932" gid="322" x="4672" y="1424" width="32" height="32"/>
   <object id="4933" gid="322" x="4688" y="1616" width="32" height="32"/>
-  <object id="4934" type="Text" x="4624" y="1200" width="64" height="32">
+  <object id="4934" type="Text" x="4624" y="1200" width="64" height="48">
    <properties>
     <property name="text" value="Small cars{{BR}}only"/>
     <property name="text_bg" type="color" value="#ff000000"/>
@@ -17788,7 +17788,7 @@
     <property name="target" value="TheSecondKaizo"/>
    </properties>
   </object>
-  <object id="8114" name="TheSecondKaizo" type="SwitchableText" x="4560" y="3904" width="112" height="16">
+  <object id="8114" name="TheSecondKaizo" type="SwitchableText" x="4544" y="3904" width="144" height="16">
    <properties>
     <property name="text" value="Mwahaha!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
