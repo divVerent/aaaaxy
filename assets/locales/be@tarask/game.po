@@ -1,0 +1,668 @@
+# 
+# Translators:
+# Denis Kočkarov, 2023
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Denis Kočkarov, 2023\n"
+"Language-Team: Belarusian (Tarask) (https://app.transifex.com/aaaaxy/teams/158611/be@tarask/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: be@tarask\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: xgotext\n"
+
+#. Last separator when building a list. Usually starts and ends with a space.
+#: fun/string.go playerstate/playerstate.go
+msgid " and "
+msgstr " i "
+
+#: aaaaxy/game.go
+msgid "%.1f fps, %.1f tps"
+msgstr "%.1f FPS, %.1f TPS"
+
+#: fun/string.go
+msgid "%d:%02d:%02d.%03d"
+msgstr "%d:%02d:%02d.%03d"
+
+#: menu/map.go
+msgid "%s (%d/%d)"
+msgstr "%s (%d/%d)"
+
+#: aaaaxy/game.go
+msgid "(%.5f %.5f) (%.4f %.4f)"
+msgstr "(%.5f %.5f) (%.4f %.4f)"
+
+#. Other separator when building a list. Usually is a comma and a space.
+#: fun/string.go playerstate/playerstate.go
+msgid ", "
+msgstr ", "
+
+#. A speedrun category (all checkpoints reached).
+#: playerstate/playerstate.go
+msgid "100%"
+msgstr "100%"
+
+#: menu/savestate.go
+msgid "4: %s"
+msgstr "4: %s"
+
+#: menu/quality.go playerstate/playerstate.go
+msgid "???"
+msgstr "???"
+
+#: menu/savestate.go
+msgid "A: %s"
+msgstr "A: %s"
+
+#: menu/credits.go
+msgid "Additional Programming Libraries & Tools"
+msgstr "Dadatkovyja pragramnyja biblijateki i instrumenty"
+
+#. A speedrun category (all checkpoints reached, but game not won yet).
+#: playerstate/playerstate.go
+msgid "All Checkpoints"
+msgstr "Usie kantrolnyja punkty"
+
+#. A speedrun category (all checkpoints reached in flipped state).
+#: playerstate/playerstate.go
+msgid "All Flipped"
+msgstr "Usio pierahornutaje"
+
+#. A speedrun category (all notes seen).
+#: playerstate/playerstate.go
+msgid "All Notes"
+msgstr "Usie natatki"
+
+#. A speedrun category (all paths walked).
+#: playerstate/playerstate.go
+msgid "All Paths"
+msgstr "Usie šlachi"
+
+#. A speedrun category (all secrets found).
+#: playerstate/playerstate.go
+msgid "All Secrets"
+msgstr "Usie sakrety"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Alofi"
+msgstr "Alofi"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Anchorage"
+msgstr "Anchorage"
+
+#. A speedrun category (any way to finish the game).
+#: playerstate/playerstate.go
+msgid "Any%"
+msgstr "Any%"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Auckland"
+msgstr "Auckland"
+
+#: menu/credits.go
+msgid "Audio"
+msgstr "Aŭdyjo"
+
+#: menu/language.go menu/quality.go
+msgid "Auto (%s)"
+msgstr "Aŭtamatyčna (%s)"
+
+#: fun/string.go
+msgid "B"
+msgstr "B"
+
+#: fun/string.go
+msgid "B/X"
+msgstr "B/X"
+
+#: fun/string.go
+msgid "Back"
+msgstr "Nazad"
+
+#: fun/string.go
+msgid "Backspace"
+msgstr "Backspace"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Baker Island"
+msgstr "Vostraŭ Bakera"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Beijing"
+msgstr "Pekin"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Berlin"
+msgstr "Berlin"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Bishkek"
+msgstr "Biškiek"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Boston"
+msgstr "Boston"
+
+#: menu/credits.go
+msgid "Build: %s"
+msgstr "Zborka: %s"
+
+#. A speedrun category (not a real one, but what we show if cheats are
+#. active).
+#: playerstate/playerstate.go
+msgid "Cheat%"
+msgstr "Cheat%"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Chicago"
+msgstr "Chicago"
+
+#: menu/main.go
+msgid "Credits"
+msgstr "Aŭtary i padziaki"
+
+#: fun/string.go
+msgid "Ctrl/Shift"
+msgstr "Ctrl/Shift"
+
+#: menu/touchedit.go
+msgid "Done"
+msgstr "Hatova"
+
+#: menu/settings.go menu/touchedit.go
+msgid "Edit Touch Controls"
+msgstr "Źmianić nałady kiravańnia"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Edmonton"
+msgstr "Edmonton"
+
+#: fun/string.go
+msgid "Enter/Shift"
+msgstr "Enter/Shift"
+
+#: game/checkpoint/checkpoint_target.go
+msgid ""
+"Error:\n"
+"could not save game:\n"
+"%s"
+msgstr ""
+"Chiba:\n"
+"nie ŭdałosia zachavać hulniu:\n"
+"%s"
+
+#: fun/string.go
+msgid "Escape"
+msgstr "Escape"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Fernando de Noronha"
+msgstr "Fernando de Noronha"
+
+#: game/player/player.go
+msgid ""
+"Fine, I give up, have it your way.\n"
+"All cheats are documented in --help."
+msgstr ""
+"Fajna, niachaj budzie jak ty chočaš.\n"
+"Usie čyty apisanyja ŭ --help."
+
+#: menu/credits.go
+msgid "For Software Licenses{{BR}}Press Right"
+msgstr "Dla licensij PZ{{BR}}naciśnicie ŭprava"
+
+#: aaaaxy/game.go
+msgid "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
+msgstr "GC pass %d: paŭza %.1fms delta %.1fs (%.1fs tamu)"
+
+#: menu/credits.go
+msgid "Graphics"
+msgstr "Grafika"
+
+#: menu/settings.go
+msgid "Graphics: %s"
+msgstr "Grafika: %s"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Halifax"
+msgstr "Halifax"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Hanoi"
+msgstr "Hanoi"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "High"
+msgstr "Vysokaja"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Honolulu"
+msgstr "Honolulu"
+
+#: playerstate/playerstate.go
+msgid "Impossible"
+msgstr "Niemahčymy"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Istanbul"
+msgstr "Stambuł"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Kiritimati"
+msgstr "Kirytymaci"
+
+#. Translate so it can be recognized by English speakers too (e.g.
+#. "Lingua (Language): %s").
+#: menu/settings.go
+msgid "Language: %s"
+msgstr "Mova (Language): %s"
+
+#: menu/credits.go
+msgid "Level Version: %d"
+msgstr "Versija roŭnia: %d"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "London"
+msgstr "London"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Low"
+msgstr "Nizkaja"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Lowest"
+msgstr "Najnižejšaja"
+
+#: menu/reset.go menu/savestate.go menu/settings.go
+msgid "Main Menu"
+msgstr "Hałoŭnaje meniu"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Max"
+msgstr "Maksymalnaja"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Medium"
+msgstr "Siaredniaja"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "New York"
+msgstr "New York"
+
+#. A speedrun category (back button never pressed).
+#: playerstate/playerstate.go
+msgid "No Back"
+msgstr "Biez Nazad"
+
+#. A speedrun category (backspace key never pressed).
+#: playerstate/playerstate.go
+msgid "No Backspace"
+msgstr "Biez Backspace"
+
+#: playerstate/playerstate.go
+msgid "No Coil"
+msgstr "Biez katuški"
+
+#. A speedrun category (escape key never pressed).
+#: playerstate/playerstate.go
+msgid "No Escape"
+msgstr "Biez Escape"
+
+#. A speedrun category (start button never pressed).
+#: playerstate/playerstate.go
+msgid "No Start"
+msgstr "Biaz Start"
+
+#. A speedrun category (never teleported).
+#: playerstate/playerstate.go
+msgid "No Teleports"
+msgstr "Biez teleportaŭ"
+
+#: playerstate/playerstate.go
+msgid "None"
+msgstr "Ničoha"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Nuku'alofa"
+msgstr "Nuku'alofa"
+
+#: menu/map.go
+msgid "Pick-a-Path"
+msgstr "Abiary-šlach"
+
+#: menu/main.go
+msgid "Play"
+msgstr "Hulać"
+
+#: menu/credits.go
+msgid "Player Sprite"
+msgstr "Persanaž"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Ponta Delgada"
+msgstr "Ponta-Delgada"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Port Moresby"
+msgstr "Port Moresby"
+
+#: menu/credits.go
+msgid "Programming"
+msgstr "Pragramavańnie"
+
+#: menu/settings.go
+msgid "Quality: %s"
+msgstr "Jakaść: %s"
+
+#: menu/main.go
+msgid "Quit"
+msgstr "Vyjści"
+
+#: menu/reset.go menu/settings.go
+msgid "Reset"
+msgstr "Skinuć"
+
+#: menu/reset.go
+msgid "Reset Nothing"
+msgstr "Ničoha nia skidvać"
+
+#: menu/reset.go
+msgid "Reset and Lose SAVE STATE %s"
+msgstr "Skinuć i vydalić ZACHAVAŃNIE %s"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s"
+msgstr "Skinuć i vydalić zachavańnie %s"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s (just release buttons)"
+msgstr "Skinuć i vydalić zachavańnie %s (tolki adpuścicie knopki)"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s (think about it for %d sec)"
+msgstr "Skinuć i vydalić zachavańnie %s (padumajcie ab hetym %d sek.)"
+
+#: menu/reset.go
+msgid "Reset and Lose Settings"
+msgstr "Skinuć i zhubić nałady"
+
+#: menu/touchedit.go
+msgid "Reset to Defaults"
+msgstr "Skinuć da naład pa zmaŭčańni"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "San Francisco"
+msgstr "San Francisco"
+
+#: menu/main.go menu/savestate.go
+msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
+msgstr "Ački: {{Score}}{{SpeedrunCategoriesShort}} | Čas: {{GameTime}}"
+
+#: menu/main.go menu/settings.go
+msgid "Settings"
+msgstr "Nałady"
+
+#: fun/string.go
+msgid "Shift/E/Tab"
+msgstr "Shift/E/Tab"
+
+#: menu/credits.go
+msgid "Sound Effects"
+msgstr "Hukavyja efekty"
+
+#: menu/credits.go
+msgid "Sprites"
+msgstr "Sprajty"
+
+#: fun/string.go
+msgid "Start"
+msgstr "Start"
+
+#: menu/savestate.go menu/settings.go
+msgid "Switch Save State"
+msgstr "Zachavać u jinšy słot"
+
+#: menu/settings.go
+msgid "Switch to Fullscreen Mode"
+msgstr "Uklučyć režym poŭnaha ekrana"
+
+#: menu/settings.go
+msgid "Switch to Letterboxed Screen"
+msgstr "Uklučyć standartny režym ekrana"
+
+#: menu/settings.go
+msgid "Switch to Stretched Screen"
+msgstr "Uklučyć režym raściahnutaha ekrana"
+
+#: menu/settings.go
+msgid "Switch to Windowed Mode"
+msgstr "Uklučyć režym u vaknie"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Sydney"
+msgstr "Sydney"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "São Paulo"
+msgstr "São Paulo"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Tehran"
+msgstr "Tehieran"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Tel Aviv"
+msgstr "Tel-Aviŭ"
+
+#: menu/credits.go
+msgid "Testing"
+msgstr "Testavańnie"
+
+#: menu/credits.go
+msgid "Thank You!"
+msgstr "Dziakuju!"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "The Cleats"
+msgstr "Šypy"
+
+#. Used in context "reached <location> with ... at <time>";
+#. "coil" here refers to an electromagnetic coil.
+#: fun/string.go
+msgid "The Coil"
+msgstr "Katuška"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "The Gloves"
+msgstr "Palčatki"
+
+#. Used in context "reached <location> with ... at <time>";
+#. "remote" here refers to e.g. a TV's remote control.
+#: fun/string.go
+msgid "The Remote"
+msgstr "Pult"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Tokyo"
+msgstr "Tokijo"
+
+#: menu/credits.go
+msgid "Translators"
+msgstr "Pierakładniki"
+
+#: menu/credits.go
+msgid "Try Next"
+msgstr "Pasprabujcie nastupny"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Turkistan"
+msgstr "Turkistan"
+
+#: menu/settings.go
+msgid "Volume: %s"
+msgstr "Hučnaść: %s"
+
+#: playerstate/playerstate.go
+msgid "Without Cheating Of Course"
+msgstr "Biez čytoŭ, viadoma"
+
+#: menu/savestate.go
+msgid "X: %s"
+msgstr "X: %s"
+
+#: menu/savestate.go
+msgid "Y: %s"
+msgstr "Y: %s"
+
+#: game/player/player.go
+msgid "You now have 30 lives. Enjoy!"
+msgstr "Ciapier vy majecie 30 žyćciaŭ. Cieściesia!"
+
+#: game/player/player.go
+msgid "You really thought this would do something?"
+msgstr "Vy sapraŭdy dumali, što heta b štości zrabiła?"
+
+#: menu/credits.go
+msgid "Your Speedrun Categories"
+msgstr "Vašy kategoryji spidranu"
+
+#: menu/credits.go
+msgid "Your Time"
+msgstr "Vaš čas"
+
+#: fun/string.go
+msgid "Z"
+msgstr "Z"
+
+#: menu/credits.go
+msgid "and %s"
+msgstr "i %s"
+
+#: menu/credits.go
+msgid "and other contributors"
+msgstr "i jinšyja ŭdzielniki"
+
+#: menu/credits.go
+msgid "by %s"
+msgstr "ad %s"
+
+#. Used in context "Hold ...".
+#: fun/string.go
+msgid "elsewhere"
+msgstr "niedzie jašče"
+
+#: sound/sound.go
+msgid "enumerating sounds"
+msgstr "pieraličvajem huki"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "everything"
+msgstr "ŭsio"
+
+#: level/level.go
+msgid "hashing level"
+msgstr "chešujem rovień"
+
+#: aaaaxy/init.go
+msgid "initializing audio"
+msgstr "inicyjalizujem aŭdyjo"
+
+#: aaaaxy/init.go
+msgid "initializing dumping"
+msgstr "inicyjalizujem damp"
+
+#: aaaaxy/init.go
+msgid "initializing input"
+msgstr "inicyjalizujem uvod"
+
+#: aaaaxy/init.go
+msgid "initializing noise"
+msgstr "inicyjalizujem šum"
+
+#: level/level.go
+msgid "loading checkpoints"
+msgstr "zahružajem kantrolnyja punkty"
+
+#: engine/world.go
+msgid "loading level"
+msgstr "zahružajem rovień"
+
+#: level/level.go
+msgid "loading level file"
+msgstr "zahružajem fajł roŭnia"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "nothing"
+msgstr "ničoha"
+
+#: level/level.go
+msgid "parsing level data"
+msgstr "parsyng źviestak roŭnia"
+
+#: sound/sound.go
+msgid "precaching %s"
+msgstr "kešujem %s"
+
+#: aaaaxy/init.go
+msgid "precaching credits"
+msgstr "kešujem padziaki"
+
+#: aaaaxy/init.go
+msgid "precaching engine"
+msgstr "kešujem ruchavik"
+
+#: engine/world.go
+msgid "precaching entities"
+msgstr "kešujem kampanenty"
+
+#: aaaaxy/init.go
+msgid "precaching fonts"
+msgstr "kešujem šryfty"
+
+#: aaaaxy/init.go
+msgid "precaching images"
+msgstr "kešujem vyjavy"
+
+#: aaaaxy/init.go
+msgid "precaching sounds"
+msgstr "kešujem huki"
