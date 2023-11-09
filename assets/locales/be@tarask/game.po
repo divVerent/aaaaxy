@@ -578,7 +578,7 @@ msgstr "%s"
 
 #: menu/credits.go
 msgid "and other contributors"
-msgstr "i jinšyja ŭdzielniki"
+msgstr "i jinšych udzielnikaŭ"
 
 #: menu/credits.go
 msgid "by %s"
