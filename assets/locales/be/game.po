@@ -466,7 +466,7 @@ msgstr "Уключыць рэжым расьцягнутага экрана"
 
 #: menu/settings.go
 msgid "Switch to Windowed Mode"
-msgstr "Уключыць рэжым у вакне"
+msgstr "Уключыць рэжым у акне"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
@@ -574,7 +574,7 @@ msgstr "Z"
 
 #: menu/credits.go
 msgid "and %s"
-msgstr "і %s"
+msgstr "%s"
 
 #: menu/credits.go
 msgid "and other contributors"
