@@ -466,7 +466,7 @@ msgstr "Uklučyć režym raściahnutaha ekrana"
 
 #: menu/settings.go
 msgid "Switch to Windowed Mode"
-msgstr "Uklučyć režym u vaknie"
+msgstr "Uklučyć režym u aknie"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
