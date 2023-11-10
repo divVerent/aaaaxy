@@ -357,7 +357,7 @@ msgstr "11"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1101]
 msgid "The first track is never the one with your train."
-msgstr "Jakraz tvoj ciahnik nikoli nie staić na pieršym šlachu."
+msgstr "Jakraz tvoj ciahnik nikoli nie stajić na pieršym šlachu."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
