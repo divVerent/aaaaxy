@@ -71,7 +71,7 @@ func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i int) vec4 {
 	cbrr := cb - r*cbrd
 	pixx := cbrr*s + cr + w*i
 	pixy := cbrd*s + cg
-	pix := vec2(pixx, pixy)
+	pix := vec2(float(pixx), float(pixy))
 	coord := srcOrigin + pix/srcImageSize
 	return imageSrc1UnsafeAt(coord)
 }
