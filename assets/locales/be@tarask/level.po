@@ -1447,7 +1447,7 @@ msgstr "Vyšej, Vyšej, Vyšej!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7987]
 msgid "It can be helpful to do two things at the same time."
-msgstr "Rabić dźvie dziei adnačasova moža być karysnym."
+msgstr "Rabić dźvie dzieji adnačasova moža być karysnym."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8049]
 msgid "Oh, it shrunk?"
