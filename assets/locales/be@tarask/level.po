@@ -795,7 +795,7 @@ msgstr "Šturchajem dalej"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2841]
 msgid "Some ideas only seem smart at first."
-msgstr "Niekatoryja idei tolki spačatku zdajucca razumnymi."
+msgstr "Niekatoryja ideji tolki spačatku zdajucca razumnymi."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2842]
 msgid "If there seems to be no way, you just haven't found it yet."
