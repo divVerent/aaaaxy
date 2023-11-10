@@ -389,7 +389,7 @@ msgstr "Datel Hilberta"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1189]
 msgid "I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"
-msgstr "U mianie skončylisia ...{{BR}}{{BR}}{{BR}}{{BR}}pakoi"
+msgstr "U mianie skončylisia ...{{BR}}{{BR}}{{BR}}{{BR}}pakoji"
 
 #. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1199]
