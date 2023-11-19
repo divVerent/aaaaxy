@@ -18,7 +18,7 @@
 
 rm -f stats.csv
 
-days_back=90
+days_back=360
 days_nocache=2
 id=io.github.divverent.aaaaxy
 cache=$HOME/.cache/AAAAXY/flathub-stats
