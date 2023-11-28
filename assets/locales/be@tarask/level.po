@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Denis Kočkarov, 2023
+# Rudolf Polzer, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 04:23-0700\n"
+"POT-Creation-Date: 2023-11-28 04:54-0800\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Denis Kočkarov, 2023\n"
+"Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Belarusian (Tarask) (https://app.transifex.com/aaaaxy/teams/158611/be@tarask/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -983,9 +984,8 @@ msgid "Carried Enough?"
 msgstr "Dastatkova paciahali?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
-msgid "T{{BR}}R{{BR}}A{{BR}}S{{BR}}H{{BR}}{{BR}}C{{BR}}H{{BR}}U{{BR}}T{{BR}}E"
-msgstr ""
-"Ś{{BR}}M{{BR}}IE{{BR}}Ć{{BR}}C{{BR}}IE{{BR}}PR{{BR}}A{{BR}}V{{BR}}O{{BR}}D"
+msgid "Trash Chute"
+msgstr "Śmiećciepravod"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4409]
 msgid "Taking Out the Trash"
@@ -1259,8 +1259,8 @@ msgstr "Škadujecie pa čamuści?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6140]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8167]
-msgid "E{{BR}}X{{BR}}I{{BR}}T"
-msgstr "VY{{BR}}CH{{BR}}A{{BR}}D"
+msgid "EXIT"
+msgstr "VYCHAD"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6204]
 msgid "Careful!"
