@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 04:32-0800\n"
+"POT-Creation-Date: 2023-11-28 04:54-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1182,7 +1182,7 @@ msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6140]
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8167]
-msgid "E{{BR}}X{{BR}}I{{BR}}T"
+msgid "EXIT"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6204]
