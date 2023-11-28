@@ -617,7 +617,7 @@ msgstr "تتم تهيئة الإدخالات"
 
 #: aaaaxy/init.go
 msgid "initializing noise"
-msgstr "تتم تهيئة الضوضاء"
+msgstr "تتم تهيئة الصخب"
 
 #: level/level.go
 msgid "loading checkpoints"
