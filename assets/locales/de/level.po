@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 04:23-0700\n"
+"POT-Creation-Date: 2023-11-28 04:54-0800\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: German (https://app.transifex.com/aaaaxy/teams/158611/de/)\n"
@@ -994,9 +994,8 @@ msgid "Carried Enough?"
 msgstr "Alles ertragen?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
-msgid "T{{BR}}R{{BR}}A{{BR}}S{{BR}}H{{BR}}{{BR}}C{{BR}}H{{BR}}U{{BR}}T{{BR}}E"
-msgstr ""
-"M{{BR}}Ü{{BR}}L{{BR}}L{{BR}}E{{BR}}I{{BR}}N{{BR}}W{{BR}}U{{BR}}R{{BR}}F"
+msgid "Trash Chute"
+msgstr "Mülleinwurf"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4409]
 msgid "Taking Out the Trash"
@@ -1278,8 +1277,8 @@ msgstr "Noch einmal zurück?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6140]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8167]
-msgid "E{{BR}}X{{BR}}I{{BR}}T"
-msgstr "E{{BR}}N{{BR}}D{{BR}}E"
+msgid "EXIT"
+msgstr "ENDE"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6204]
 msgid "Careful!"
