@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Denis Kočkarov, 2023
 # Rudolf Polzer, 2023
+# Denis Kočkarov, 2023
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-28 04:54-0800\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2023\n"
+"Last-Translator: Denis Kočkarov, 2023\n"
 "Language-Team: Belarusian (Tarask) (https://app.transifex.com/aaaaxy/teams/158611/be@tarask/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,7 +149,7 @@ msgstr "Sfera"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=238]
 msgid "Unparalleled execution is all you really need here."
-msgstr "Nieparaŭnanaje spaŭnieńnie - usio, što tut sapraŭdy patrebna."
+msgstr "Patrebnaje tolki nieparaŭnanaje spaŭnieńnie biaz prostych šlachaŭ."
 
 #. https://getting-over-it.fandom.com/wiki/Top_of_the_mountain
 #: assets/maps/level.tmx//map/objectgroup/object[@id=244]
