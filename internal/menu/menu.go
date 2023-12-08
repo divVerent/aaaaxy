@@ -60,6 +60,8 @@ type Controller struct {
 	creditsBlur     bool
 	needReloadLevel bool
 	needReloadGame  bool
+	nextFrame       []func() error
+	nextFrameReady  bool
 
 	WhiteImage *ebiten.Image
 }
@@ -123,9 +125,22 @@ func (c *Controller) Update() error {
 		} else {
 			input.SetMode(input.MenuMode)
 		}
-		err := c.Screen.Update()
-		if err != nil {
-			return err
+		if c.nextFrame != nil {
+			if c.nextFrameReady {
+				nextFrame := c.nextFrame
+				c.nextFrame = nil
+				for _, f := range nextFrame {
+					err := f()
+					if err != nil {
+						return err
+					}
+				}
+			}
+		} else {
+			err := c.Screen.Update()
+			if err != nil {
+				return err
+			}
 		}
 	} else {
 		c.blurFrame = 0
@@ -176,6 +191,10 @@ func (c *Controller) Draw(screen *ebiten.Image) {
 	timing.Section("screen")
 	if c.Screen != nil {
 		c.Screen.Draw(screen)
+	}
+
+	if c.nextFrame != nil {
+		c.nextFrameReady = true
 	}
 }
 
@@ -355,6 +374,16 @@ func (c *Controller) MoveSound(err error) error {
 		c.moveSound.Play()
 	}
 	return err
+}
+
+// NextFrame calls the given function next render frame instead of
+// regular processing. All input events are suppressed until then.
+//
+// This is useful to delay expensive actions.
+func (c *Controller) NextFrame(f func() error) error {
+	c.nextFrame = append(c.nextFrame, f)
+	c.nextFrameReady = false
+	return nil
 }
 
 func (c *Controller) QueryMouseItem(item interface{}, count int) Direction {

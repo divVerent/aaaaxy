@@ -52,24 +52,26 @@ func (l *languageSetting) apply(m *Controller) error {
 	}
 	flag.Set("language", string(lingua))
 
-	changed, err := initlocale.SetLanguage(lingua)
-	if err != nil {
-		return err
-	}
-	if !changed {
-		return nil
-	}
+	return m.NextFrame(func() error {
+		changed, err := initlocale.SetLanguage(lingua)
+		if err != nil {
+			return err
+		}
+		if !changed {
+			return nil
+		}
 
-	// KNOWN ISSUE: checkpoint names aren't reloaded right away,
-	// but only when actually entering the game. Decoupling reload
-	// of the level from the game state is more complicated and
-	// not in scope yet. Accepting this glitch for now.
-	misc.ClearPrecache()
-	err = m.LevelChanged()
-	if err != nil {
-		return fmt.Errorf("could not reapply language to menu: %v", err)
-	}
-	return nil
+		// KNOWN ISSUE: checkpoint names aren't reloaded right away,
+		// but only when actually entering the game. Decoupling reload
+		// of the level from the game state is more complicated and
+		// not in scope yet. Accepting this glitch for now.
+		misc.ClearPrecache()
+		err = m.LevelChanged()
+		if err != nil {
+			return fmt.Errorf("could not reapply language to menu: %v", err)
+		}
+		return nil
+	})
 }
 
 func (l *languageSetting) toggle(m *Controller, delta int) error {
