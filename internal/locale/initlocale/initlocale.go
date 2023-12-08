@@ -114,14 +114,15 @@ func forceSetLanguage(lang locale.Lingua) (bool, error) {
 	initLocaleDomain(lang, locale.G, "game")
 	initLocaleDomain(lang, locale.L, "level")
 	locale.Active = lang
-	// Now perform all replacements in locale.G.
-	// In locale.L they're applied at runtime as more stuff may need filling in.
-	// This must be done after setting it active, and before auditing.
+
 	err := font.SetFont(lang.Font())
 	if err != nil {
 		return false, err
 	}
 
+	// Now perform all replacements in locale.G.
+	// In locale.L they're applied at runtime as more stuff may need filling in.
+	// This must be done after setting it active, and before auditing.
 	for _, t := range locale.G.GetDomain().GetTranslations() {
 		if len(t.Trs) != 1 {
 			// Sorry, not supporting plurals yet.

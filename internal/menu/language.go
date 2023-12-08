@@ -60,7 +60,6 @@ func (l *languageSetting) apply(m *Controller) error {
 		if !changed {
 			return nil
 		}
-
 		// KNOWN ISSUE: checkpoint names aren't reloaded right away,
 		// but only when actually entering the game. Decoupling reload
 		// of the level from the game state is more complicated and

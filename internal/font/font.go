@@ -367,3 +367,7 @@ func SetFont(font string) error {
 	}
 	return nil
 }
+
+func CurrentFont() string {
+	return currentFont
+}
