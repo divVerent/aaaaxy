@@ -25,8 +25,8 @@ type Lingua string
 // Linguas is the set of current languages that are translated "enough".
 var Linguas = map[Lingua]struct{}{}
 
-// Name returns the human readable name of a language.
-func (l Lingua) Name() string {
+// name returns the human readable name of a language.
+func (l Lingua) name() string {
 	switch l {
 	case "":
 		return "English"
@@ -59,13 +59,30 @@ func (l Lingua) Name() string {
 	}
 }
 
+// Name returns the human readable name of a language for the current font.
+func (l Lingua) Name() string {
+	if Active.Font() != l.Font() {
+		switch l {
+		case "ar":
+			return "Arabic"
+		case "ar-EG":
+			return "Arabic (Egypt)"
+		case "he":
+			return "Hebrew"
+		case "zh-Hans":
+			return "Chinese (Simplified)"
+		}
+	}
+	return l.name()
+}
+
 func (l Lingua) SortKey() string {
 	switch l {
 	// Sort both Belarusian variants together.
 	case "be@tarask":
 		return "Беларуская (Łacinka)"
 	default:
-		return l.Name()
+		return l.name()
 	}
 }
 

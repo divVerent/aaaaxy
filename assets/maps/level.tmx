@@ -10324,10 +10324,12 @@
   <object id="4277" gid="322" x="6208" y="4048" width="32" height="32"/>
   <object id="4278" type="Text" x="6176" y="3888" width="32" height="176">
    <properties>
-    <property name="text" value="T{{BR}}R{{BR}}A{{BR}}S{{BR}}H{{BR}}{{BR}}C{{BR}}H{{BR}}U{{BR}}T{{BR}}E"/>
+    <property name="no_flip" value="y"/>
+    <property name="orientation" value="NE"/>
+    <property name="text" value="Trash Chute"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
-    <property name="text_font" value="Small"/>
+    <property name="text_font" value="SmallCaps"/>
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
@@ -13457,7 +13459,8 @@
   </object>
   <object id="6140" type="Text" x="6944" y="384" width="16" height="64">
    <properties>
-    <property name="text" value="E{{BR}}X{{BR}}I{{BR}}T"/>
+    <property name="orientation" value="SW"/>
+    <property name="text" value="EXIT"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Small"/>
@@ -17966,9 +17969,9 @@
   </object>
   <object id="8167" type="Text" x="4672" y="3776" width="16" height="64">
    <properties>
-    <property name="orientation" value="WN"/>
+    <property name="orientation" value="NE"/>
     <property name="required_orientation" value="WN"/>
-    <property name="text" value="E{{BR}}X{{BR}}I{{BR}}T"/>
+    <property name="text" value="EXIT"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Small"/>

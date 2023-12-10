@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 04:23-0700\n"
+"POT-Creation-Date: 2023-11-28 04:54-0800\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Denis Kočkarov, 2023\n"
 "Language-Team: Belarusian (https://app.transifex.com/aaaaxy/teams/158611/be/)\n"
@@ -147,7 +147,7 @@ msgstr "Сфэра"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=238]
 msgid "Unparalleled execution is all you really need here."
-msgstr "Непараўнанае спаўненьне - усё, што тут сапраўды патрэбна."
+msgstr "Патрэбнае толькі непараўнанае спаўненьне бяз простых шляхаў."
 
 #. https://getting-over-it.fandom.com/wiki/Top_of_the_mountain
 #: assets/maps/level.tmx//map/objectgroup/object[@id=244]
@@ -977,9 +977,8 @@ msgid "Carried Enough?"
 msgstr "Дастаткова пацягалі?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
-msgid "T{{BR}}R{{BR}}A{{BR}}S{{BR}}H{{BR}}{{BR}}C{{BR}}H{{BR}}U{{BR}}T{{BR}}E"
-msgstr ""
-"СЬ{{BR}}М{{BR}}Е{{BR}}ЦЬ{{BR}}Ц{{BR}}Е{{BR}}ПР{{BR}}А{{BR}}В{{BR}}О{{BR}}Д"
+msgid "Trash Chute"
+msgstr "Сьмецьцеправод"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4409]
 msgid "Taking Out the Trash"
@@ -1251,8 +1250,8 @@ msgstr "Шкадуеце па чамусьці?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6140]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8167]
-msgid "E{{BR}}X{{BR}}I{{BR}}T"
-msgstr "ВЫ{{BR}}Х{{BR}}А{{BR}}Д"
+msgid "EXIT"
+msgstr "ВЫХАД"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6204]
 msgid "Careful!"

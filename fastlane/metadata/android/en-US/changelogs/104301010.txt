@@ -1,0 +1,3 @@
+  - Engine: minor module updates.
+  - Game: new translations: Belarusian (in Cyrillic and Łacinka).
+  - Mobile: reduce min Android version to 6.0 as it got confirmed running well enough on a Xiaomi Redmi 4 Prime.

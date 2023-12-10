@@ -4,17 +4,17 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Rudolf Polzer, 2023
 # yy0zz, 2023
+# Rudolf Polzer, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 04:23-0700\n"
+"POT-Creation-Date: 2023-11-28 04:54-0800\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: yy0zz, 2023\n"
+"Last-Translator: Rudolf Polzer, 2023\n"
 "Language-Team: Portuguese (https://app.transifex.com/aaaaxy/teams/158611/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -973,8 +973,8 @@ msgid "Carried Enough?"
 msgstr "Carregou o Suficiente?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
-msgid "T{{BR}}R{{BR}}A{{BR}}S{{BR}}H{{BR}}{{BR}}C{{BR}}H{{BR}}U{{BR}}T{{BR}}E"
-msgstr "D{{BR}}u{{BR}}t{{BR}}o{{BR}}D{{BR}}e{{BR}}L{{BR}}i{{BR}}x{{BR}}o"
+msgid "Trash Chute"
+msgstr "Duto De Lixo"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4409]
 msgid "Taking Out the Trash"
@@ -1247,8 +1247,8 @@ msgstr "Arrependeu-se?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6140]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8167]
-msgid "E{{BR}}X{{BR}}I{{BR}}T"
-msgstr "S{{BR}}A{{BR}}Í{{BR}}D{{BR}}A"
+msgid "EXIT"
+msgstr "SAÍDA"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6204]
 msgid "Careful!"

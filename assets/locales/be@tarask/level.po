@@ -4,6 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
+# Rudolf Polzer, 2023
 # Denis Kočkarov, 2023
 # 
 #, fuzzy
@@ -11,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 04:23-0700\n"
+"POT-Creation-Date: 2023-11-28 04:54-0800\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Denis Kočkarov, 2023\n"
 "Language-Team: Belarusian (Tarask) (https://app.transifex.com/aaaaxy/teams/158611/be@tarask/)\n"
@@ -148,7 +149,7 @@ msgstr "Sfera"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=238]
 msgid "Unparalleled execution is all you really need here."
-msgstr "Nieparaŭnanaje spaŭnieńnie - usio, što tut sapraŭdy patrebna."
+msgstr "Patrebnaje tolki nieparaŭnanaje spaŭnieńnie biaz prostych šlachaŭ."
 
 #. https://getting-over-it.fandom.com/wiki/Top_of_the_mountain
 #: assets/maps/level.tmx//map/objectgroup/object[@id=244]
@@ -357,7 +358,7 @@ msgstr "11"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1101]
 msgid "The first track is never the one with your train."
-msgstr "Jakraz tvoj ciahnik nikoli nie staić na pieršym šlachu."
+msgstr "Jakraz tvoj ciahnik nikoli nie stajić na pieršym šlachu."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
@@ -389,7 +390,7 @@ msgstr "Datel Hilberta"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1189]
 msgid "I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"
-msgstr "U mianie skončylisia ...{{BR}}{{BR}}{{BR}}{{BR}}pakoi"
+msgstr "U mianie skončylisia ...{{BR}}{{BR}}{{BR}}{{BR}}pakoji"
 
 #. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1199]
@@ -795,7 +796,7 @@ msgstr "Šturchajem dalej"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2841]
 msgid "Some ideas only seem smart at first."
-msgstr "Niekatoryja idei tolki spačatku zdajucca razumnymi."
+msgstr "Niekatoryja ideji tolki spačatku zdajucca razumnymi."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2842]
 msgid "If there seems to be no way, you just haven't found it yet."
@@ -940,7 +941,7 @@ msgstr "Efekt matylka"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3912]
 msgid "What we've done before{{BR}}may impact what we can do next."
 msgstr ""
-"Našyja minułyja dziei{{BR}}mohuć upłyvać na našyja nastupnyja mahčymaści."
+"Našyja minułyja dzieji{{BR}}mohuć upłyvać na našyja nastupnyja mahčymaści."
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3926]
@@ -983,9 +984,8 @@ msgid "Carried Enough?"
 msgstr "Dastatkova paciahali?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
-msgid "T{{BR}}R{{BR}}A{{BR}}S{{BR}}H{{BR}}{{BR}}C{{BR}}H{{BR}}U{{BR}}T{{BR}}E"
-msgstr ""
-"Ś{{BR}}M{{BR}}IE{{BR}}Ć{{BR}}C{{BR}}IE{{BR}}PR{{BR}}A{{BR}}V{{BR}}O{{BR}}D"
+msgid "Trash Chute"
+msgstr "Śmiećciepravod"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4409]
 msgid "Taking Out the Trash"
@@ -1259,8 +1259,8 @@ msgstr "Škadujecie pa čamuści?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6140]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8167]
-msgid "E{{BR}}X{{BR}}I{{BR}}T"
-msgstr "VY{{BR}}CH{{BR}}A{{BR}}D"
+msgid "EXIT"
+msgstr "VYCHAD"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6204]
 msgid "Careful!"
@@ -1447,7 +1447,7 @@ msgstr "Vyšej, Vyšej, Vyšej!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7987]
 msgid "It can be helpful to do two things at the same time."
-msgstr "Rabić dźvie dziei adnačasova moža być karysnym."
+msgstr "Rabić dźvie dzieji adnačasova moža być karysnym."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8049]
 msgid "Oh, it shrunk?"

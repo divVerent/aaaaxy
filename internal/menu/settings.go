@@ -218,26 +218,26 @@ func (s graphicsSetting) apply(m *Controller) error {
 		return nil
 	}
 	flag.Set("palette", palName)
-
-	pal := palette.ByName(palName)
-	if !palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
+	return m.NextFrame(func() error {
+		pal := palette.ByName(palName)
+		if !palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
+			return nil
+		}
+		err := image.PaletteChanged()
+		if err != nil {
+			return fmt.Errorf("could not reapply palette to images: %v", err)
+		}
+		misc.ClearPrecache()
+		err = engine.PaletteChanged()
+		if err != nil {
+			return fmt.Errorf("could not reapply palette to engine: %v", err)
+		}
+		err = m.GameChanged()
+		if err != nil {
+			return fmt.Errorf("could not reapply palette to menu: %v", err)
+		}
 		return nil
-	}
-
-	err := image.PaletteChanged()
-	if err != nil {
-		return fmt.Errorf("could not reapply palette to images: %v", err)
-	}
-	misc.ClearPrecache()
-	err = engine.PaletteChanged()
-	if err != nil {
-		return fmt.Errorf("could not reapply palette to engine: %v", err)
-	}
-	err = m.GameChanged()
-	if err != nil {
-		return fmt.Errorf("could not reapply palette to menu: %v", err)
-	}
-	return nil
+	})
 }
 
 func (s *SettingsScreen) toggleGraphics(delta int) error {

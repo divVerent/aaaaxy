@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 04:23-0700\n"
+"POT-Creation-Date: 2023-11-28 04:54-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -915,7 +915,7 @@ msgid "Carried Enough?"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=4278]
-msgid "T{{BR}}R{{BR}}A{{BR}}S{{BR}}H{{BR}}{{BR}}C{{BR}}H{{BR}}U{{BR}}T{{BR}}E"
+msgid "Trash Chute"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=4409]
@@ -1182,7 +1182,7 @@ msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6140]
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8167]
-msgid "E{{BR}}X{{BR}}I{{BR}}T"
+msgid "EXIT"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6204]
