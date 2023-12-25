@@ -1,0 +1,6 @@
+  - Announcement: this is the last version using Ebitengine 2.5. Next
+    release will use Ebitengine 2.6 and drop support for OpenGL 2 graphics
+    chips. To keep running on OpenGL 2 only devices, either enable software
+    rendering or stay on this release.
+  - Engine: minor module updates.
+  - Translations: minor updates.

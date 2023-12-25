@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.4.101" date="2023-11-13">
-      <description><ul><li>Engine: minor module updates.</li><li>Game: new translations: Belarusian (in Cyrillic and Łacinka).</li><li>Mobile: reduce min Android version to 6.0 as it got confirmed running well enough on a Xiaomi Redmi 4 Prime.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.101</url>
+    <release version="v1.4.119" date="2023-12-11">
+      <description><ul><li>Announcement: this is the last version using Ebitengine 2.5. Next release will use Ebitengine 2.6 and drop support for OpenGL 2 graphics chips. To keep running on OpenGL 2 only devices, either enable software rendering or stay on this release.</li><li>Engine: minor module updates.</li><li>Translations: minor updates.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.119</url>
     </release>
   </releases>
 </component>
