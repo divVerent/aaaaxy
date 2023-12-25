@@ -15,6 +15,8 @@
 // A simple shader to perform blurs.
 package main
 
+//kage:unit pixels
+
 var Step vec2
 var CenterScale float
 var OtherScale float
@@ -22,13 +24,11 @@ var Add vec4
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
-	srcTexel := 1.0 / imageSrcTextureSize()
-	srcMax := srcOrigin + srcSize - srcTexel
+	srcMax := srcOrigin + srcSize - vec2(1, 1)
 	center := imageSrc0UnsafeAt(texCoord)
-	srcStep := Step * srcSize
 	other := vec4(0.0, 0.0, 0.0, 0.0)
 	for y := 1.0; y <= T[".Size"]; y++ {
-		d := y * srcStep
+		d := y * Step
 		other += imageSrc0UnsafeAt(clamp(texCoord-d, srcOrigin, srcMax))
 		other += imageSrc0UnsafeAt(clamp(texCoord+d, srcOrigin, srcMax))
 	}

@@ -175,7 +175,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 	tmp.DrawRectShader(sz.X, sz.Y, blurShader, &ebiten.DrawRectShaderOptions{
 		Blend: ebiten.BlendCopy,
 		Uniforms: map[string]interface{}{
-			"Step":        []float32{1 / float32(sz.X), 0},
+			"Step":        []float32{1, 0},
 			"CenterScale": float32(centerScale),
 			"OtherScale":  float32(otherScale),
 			"Add":         []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},
@@ -190,7 +190,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken, blu
 	out.DrawRectShader(sz.X, sz.Y, blurShader, &ebiten.DrawRectShaderOptions{
 		Blend: ebiten.BlendCopy,
 		Uniforms: map[string]interface{}{
-			"Step":        []float32{0, 1 / float32(sz.Y)},
+			"Step":        []float32{0, 1},
 			"CenterScale": float32(centerScale * scale),
 			"OtherScale":  float32(otherScale * scale),
 			"Add":         []float32{float32(-darken), float32(-darken), float32(-darken), 0.0},
