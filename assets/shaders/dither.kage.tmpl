@@ -15,6 +15,8 @@
 // A simple shader to map to EGA palette.
 package main
 
+//kage:unit pixels
+
 var (
 	// T["if .BayerSize"]
 	// Zieht den Bayern die Farbpaletten aus, Farbpaletten aus, Farbpaletten aus.
@@ -35,8 +37,8 @@ var (
 	Offset vec2
 )
 
-func noiseM(srcOrigin, srcImageSize, coord vec2) float {
-	p := srcImageSize*(coord-srcOrigin) + Offset
+func noiseM(coord vec2) float {
+	p := coord + Offset
 
 	// T["if .BayerSize"]
 	mPos := mod(floor(p), T[".BayerSize"])
@@ -59,7 +61,7 @@ func noiseM(srcOrigin, srcImageSize, coord vec2) float {
 	// T["end"]
 }
 
-func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i int) vec4 {
+func nearestColor(srcOrigin vec2, c vec3, i int) vec4 {
 	cLut := clamp(floor(c*LUTSize), 0, LUTSize-1)
 	cr := int(cLut.r)
 	cg := int(cLut.g)
@@ -72,7 +74,7 @@ func nearestColor(srcOrigin, srcImageSize vec2, c vec3, i int) vec4 {
 	pixx := cbrr*s + cr + w*i
 	pixy := cbrd*s + cg
 	pix := vec2(float(pixx), float(pixy))
-	coord := srcOrigin + pix/srcImageSize
+	coord := srcOrigin + pix
 	return imageSrc1UnsafeAt(coord)
 }
 
@@ -94,16 +96,16 @@ func computeF(a, b, c vec3) float {
 	return clamp(dotDiff(u, v) / dotDiff(v, v), 0, 1)
 }
 
-func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
+func dither(srcOrigin, coord vec2, p0 vec3) vec3 {
 	// Read the colors.
-	c0 := nearestColor(srcOrigin, srcImageSize, p0, 0).rgb
-	c1 := nearestColor(srcOrigin, srcImageSize, p0, 1).rgb
+	c0 := nearestColor(srcOrigin, p0, 0).rgb
+	c1 := nearestColor(srcOrigin, p0, 1).rgb
 
 	// Compute the fraction;
 	f := computeF(c0, c1, p0)
 
 	// Perform the dither.
-	b := noiseM(srcOrigin, srcImageSize, coord)
+	b := noiseM(coord)
 	if b >= f {
 		return c0
 	} else {
@@ -113,20 +115,20 @@ func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
 
 // T["else"]
 
-func dither(srcOrigin, srcImageSize, coord vec2, p0 vec3) vec3 {
-	scale := nearestColor(srcOrigin, srcImageSize, p0, 0).a
-	f := noiseM(srcOrigin, srcImageSize, coord)
+func dither(srcOrigin, coord vec2, p0 vec3) vec3 {
+	scale := nearestColor(srcOrigin, p0, 0).a
+	f := noiseM(coord)
 	// Map to [-1..1].
 	f = 2.0*f - 1.0
 	p := p0 + f*scale
-	return nearestColor(srcOrigin, srcImageSize, p, 0).rgb
+	return nearestColor(srcOrigin, p, 0).rgb
 }
 
 // T["end"]
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
-	srcOrigin, _ := imageSrcRegionOnTexture()
-	srcImageSize := imageSrcTextureSize()
+	srcOrigin := imageSrc0Origin()
+	srcTexCoord := texCoord - srcOrigin
 	p0 := imageSrc0UnsafeAt(texCoord).rgb
-	return vec4(dither(srcOrigin, srcImageSize, texCoord, p0), 1.0)
+	return vec4(dither(srcOrigin, srcTexCoord, p0), 1.0)
 }
