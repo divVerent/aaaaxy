@@ -386,7 +386,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 			screen.DrawRectShader(GameWidth, GameHeight, r.visibilityMaskShader, &ebiten.DrawRectShaderOptions{
 				Blend: ebiten.BlendCopy,
 				Uniforms: map[string]interface{}{
-					"Scroll": []float32{float32(delta.DX) / GameWidth, float32(delta.DY) / GameHeight},
+					"Scroll": []float32{float32(delta.DX), float32(delta.DY)},
 				},
 				Images: [4]*ebiten.Image{
 					r.visibilityMaskImage,

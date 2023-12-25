@@ -15,13 +15,14 @@
 // A simple shader to perform image mixing and scrolling.
 package main
 
+//kage:unit pixels
+
 var Scroll vec2
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
-	_, srcSize := imageSrcRegionOnTexture()
 	mask := imageSrc0UnsafeAt(texCoord)
 	curr := imageSrc1UnsafeAt(texCoord)
-	scrolled := texCoord + Scroll*srcSize
+	scrolled := texCoord + Scroll
 	prev := imageSrc2At(scrolled)
 	return mix(prev, curr, mask)
 }
