@@ -15,6 +15,8 @@
 // A simple shader to upscale and linearly "interpolate".
 package main
 
+//kage:unit pixels
+
 // T["if .CRT"]
 
 // Strength of the scan line effect.
@@ -26,22 +28,21 @@ var ScanLineEffect float // [0.0, 2.0]
 // Strength of the CRT bending effect. Matches k1 and k2 parameters of FFmpeg lenscorrection.
 var CRTK1, CRTK2 float
 
-func crtMap(srcOrigin, srcSize, srcImageSize, in vec2) vec2 {
-	// mapVec chosen so that diagonal has length "CRTStrength".
+func crtMap(srcOrigin, srcSize, in vec2) vec2 {
+	// mapF chosen so that diagonal has length 2.
 	// also correct for aspect.
 	// I.e.:
-	// length(srcSize * 0.5 * mapVec) == 1.
-	// mapVec.x / mapVec.y = srcImageSize.x / srcImageSize.y
-	mapVec := srcImageSize / (0.5 * length(srcImageSize*srcSize))
+	// length(srcSize * 0.5 * mapF) == 1.
+	mapF := 2.0 / length(srcSize)
 	srcMid := srcOrigin + srcSize*0.5
-	inRel := (in - srcMid) * mapVec
+	inRel := (in - srcMid) * mapF
 	inLen := length(inRel)
 	inLen2 := inLen * inLen
 	// outLen := inLen * (1.0 + inLen2 * (CRTK1 + inLen2 * CRTK2))
 	// outRel := normalize(inRel) * outLen
 	outFac := 1.0 + inLen2*(CRTK1+inLen2*CRTK2)
 	outRel := inRel * outFac
-	return srcMid + outRel/mapVec
+	return srcMid + outRel/mapF
 }
 
 // T["end"]
@@ -49,33 +50,29 @@ func crtMap(srcOrigin, srcSize, srcImageSize, in vec2) vec2 {
 func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
 	srcOrigin, srcSize := imageSrcRegionOnTexture()
 
-	srcImageSize := imageSrcTextureSize()
-	srcTexel := 1.0 / srcImageSize
-
 	// T["if .CRT"]
 	// Map texture coordinate to CRT.
-	texCoord := crtMap(srcOrigin, srcSize, srcImageSize, texCoord_)
+	texCoord := crtMap(srcOrigin, srcSize, texCoord_)
 	// T["else"]
 	texCoord := texCoord_
 	// T["end"]
 
 	// Set up typical linear interpolation.
-	halfTexel := 0.5 * srcTexel
-	tieBreaker := halfTexel / 256.0
+	tieBreaker := 0.5 / 256.0
 
 	// T["if .CRT"]
 	// Get the four texels, mapping outside to black.
-	topLeft := texCoord - halfTexel + tieBreaker
-	bottomRight := texCoord + halfTexel + tieBreaker
+	topLeft := texCoord - 0.5 + tieBreaker
+	bottomRight := texCoord + 0.5 + tieBreaker
 	a := imageSrc0At(topLeft)
 	b := imageSrc0At(vec2(bottomRight.x, topLeft.y))
 	c := imageSrc0At(vec2(topLeft.x, bottomRight.y))
 	d := imageSrc0At(bottomRight)
 	// T["else"]
 	// Get the four texels, clamping to edge.
-	srcMax := srcOrigin + srcSize - srcTexel
-	topLeft := clamp(texCoord-halfTexel+tieBreaker, srcOrigin, srcMax)
-	bottomRight := clamp(texCoord+halfTexel+tieBreaker, srcOrigin, srcMax)
+	srcMax := srcOrigin + srcSize - vec2(1, 1)
+	topLeft := clamp(texCoord-0.5+tieBreaker, srcOrigin, srcMax)
+	bottomRight := clamp(texCoord+0.5+tieBreaker, srcOrigin, srcMax)
 	a := imageSrc0UnsafeAt(topLeft)
 	b := imageSrc0UnsafeAt(vec2(bottomRight.x, topLeft.y))
 	c := imageSrc0UnsafeAt(vec2(topLeft.x, bottomRight.y))
@@ -83,7 +80,7 @@ func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
 	// T["end"]
 
 	// Mix them properly.
-	f := fract(topLeft * srcImageSize)
+	f := fract(topLeft)
 
 	// Reduce the blur to better match VGA-like scan line doubling.
 	// With a factor of 2.0, we get 50% of the pixels as nearest and 50%
@@ -96,7 +93,7 @@ func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
 
 	// T["if .CRT"]
 	// Scan line effect?
-	row := texCoord.y * srcImageSize.y
+	row := texCoord.y
 	fRow := fract(row)
 	fMask := 1.0 - abs(fRow-0.5)*ScanLineEffect
 	mask := vec4(fMask, fMask, fMask, 1.0)
