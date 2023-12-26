@@ -19,19 +19,19 @@ import (
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
+const gameName = "AAAAXY"
+
 type StateKind int
+
+const (
+	Config StateKind = iota
+	SavedGames
+)
 
 type readonlyKey struct {
 	kind StateKind
 	name string
 }
-
-const (
-	gameName = "AAAAXY"
-
-	Config StateKind = iota
-	SavedGames
-)
 
 var (
 	readonly = flag.Bool("readonly", false, "if set, save games and config changes will not be written")
