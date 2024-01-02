@@ -167,6 +167,11 @@
                     "value": true
                 },
                 {
+                    "name": "final",
+                    "type": "bool",
+                    "value": false
+                },
+                {
                     "name": "first",
                     "type": "bool",
                     "value": false

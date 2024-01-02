@@ -430,6 +430,10 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 			Filter: ebiten.FilterNearest,
 		}
 		opts.GeoM.Translate(float64(pos.X-7), float64(pos.Y-7))
+		if propmap.ValueOrP(s.Controller.World.Level.Checkpoints[cpName].Properties, "final", false, nil) {
+			c := rand.Float64() * 2.0
+			opts.ColorM.Scale(c, c, c, 1.0)
+		}
 		screen.DrawImage(sprite, &opts)
 	}
 	// Finally the checkmarks.

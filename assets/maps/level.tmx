@@ -13397,6 +13397,7 @@
   </object>
   <object id="6119" name="it_only_takes_one" type="Checkpoint" x="6560" y="384" width="16" height="400">
    <properties>
+    <property name="final" type="bool" value="true"/>
     <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
     <property name="next_down" type="object" value="53"/>
     <property name="required_orientation" value="ES"/>
