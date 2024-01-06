@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.4.119" date="2023-12-11">
-      <description><ul><li>Announcement: this is the last version using Ebitengine 2.5. Next release will use Ebitengine 2.6 and drop support for OpenGL 2 graphics chips. To keep running on OpenGL 2 only devices, either enable software rendering or stay on this release.</li><li>Engine: minor module updates.</li><li>Translations: minor updates.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.119</url>
+    <release version="v1.4.137" date="2024-01-06">
+      <description><ul><li>Engine: move to Ebitengine v2.6.2. Thus, on Linux it now requires OpenGL 3.2.</li><li>HTML5: fix savegame handling.</li><li>Menu: highlight the finishing point on the map too.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.137</url>
     </release>
   </releases>
 </component>
