@@ -44,6 +44,7 @@ not run at all at default settings:
     -   `EBITENGINE_GRAPHICS_LIBRARY=opengl` forces rendering using
         OpenGL 3.2.
 -   On Linux:
+    -   Rendering by default takes place using OpenGL 3.2.
     -   `EBITENGINE_OPENGL=es` forces rendering using OpenGL ES 3.
     -   `MESA_GL_VERSION_OVERRIDE=3.2` together with
         `MESA_GLSL_VERSION_OVERRIDE=150` may make the game run on some
@@ -51,6 +52,7 @@ not run at all at default settings:
         may break at any time, and it sure will not work on all OpenGL 2
         chips.
 -   On macOS:
+    -   Rendering by default takes place using Metal.
     -   `EBITENGINE_GRAPHICS_LIBRARY=opengl` forces rendering using
         OpenGL 3.2.
 
