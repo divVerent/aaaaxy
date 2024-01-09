@@ -32,13 +32,27 @@ be provided not just separated by newlines but also by semicolons.
 
 Press `Esc` or `Start` to get to the game menu which has settings.
 
-### Known Issues
+### Driver Settings
 
--   Especially on laptops with 4K displays connected, graphics
-    performance may be poor. As a workaround, press `Esc` to switch to
-    the game menu, then in the settings switch to a lower graphics
-    setting. <https://github.com/hajimehoshi/ebiten/issues/1772> tracks
-    a fix for this issue.
+The following environment variables can be used in case the game does
+not run at all at default settings:
+
+-   On Windows:
+    -   Rendering by default takes place using DirectX 11.
+    -   `EBITENGINE_DIRECTX=version=12` forces rendering using DirectX
+        12.
+    -   `EBITENGINE_GRAPHICS_LIBRARY=opengl` forces rendering using
+        OpenGL 3.2.
+-   On Linux:
+    -   `EBITENGINE_OPENGL=es` forces rendering using OpenGL ES 3.
+    -   `MESA_GL_VERSION_OVERRIDE=3.2` together with
+        `MESA_GLSL_VERSION_OVERRIDE=150` may make the game run on some
+        OpenGL 2 graphics chips. This configuration is unsupported and
+        may break at any time, and it sure will not work on all OpenGL 2
+        chips.
+-   On macOS:
+    -   `EBITENGINE_GRAPHICS_LIBRARY=opengl` forces rendering using
+        OpenGL 3.2.
 
 ### Video Recording
 
