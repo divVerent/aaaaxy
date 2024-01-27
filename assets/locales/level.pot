@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 04:54-0800\n"
+"POT-Creation-Date: 2024-01-27 08:10-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1389,7 +1389,7 @@ msgid "Mwahaha!"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8235]
-#. https://www.youtube.com/watch?v=N78CavWrtjw - try to be consistent with some existing translation if you can find one
+#. https://www.youtube.com/watch?v=N78CavWrtjw - try to be somewhat consistent with some existing translation if you can find one, but also try making sure the word for 'space' can have both the geometrical and the astronomical meaning
 msgid ""
 "Let's put weird and weird together,{{BR}}and make it even weirder!{{BR}}"
 "Weird, weird space{{BR}}is super-weird!{{BR}}{{BR}}Press {{ExitButton}}."
