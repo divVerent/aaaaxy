@@ -44,6 +44,8 @@ func (l Lingua) name() string {
 		return "Deutsch (Schweiz)"
 	case "he":
 		return "עִבְרִית"
+	case "ja":
+		return "日本語"
 	case "la":
 		return "Latina"
 	case "pt":
@@ -69,6 +71,8 @@ func (l Lingua) Name() string {
 			return "Arabic (Egypt)"
 		case "he":
 			return "Hebrew"
+		case "ja":
+			return "Japanese"
 		case "zh-Hans":
 			return "Chinese (Simplified)"
 		}
@@ -88,7 +92,7 @@ func (l Lingua) SortKey() string {
 
 func (l Lingua) Font() string {
 	switch l {
-	case "ar", "ar-EG":
+	case "ar", "ar-EG", "ja":
 		return "bitmapfont"
 	case "he", "zh-Hans":
 		return "unifont"
@@ -99,7 +103,7 @@ func (l Lingua) Font() string {
 
 func (l Lingua) PrefersVerticalText() bool {
 	switch l {
-	case "zh-Hans":
+	case "ja", "zh-Hans":
 		return true
 	default:
 		return false
@@ -110,7 +114,7 @@ func (l Lingua) AuditHeight() bool {
 	switch l {
 	// These languages use unifont which is a tad bit too high.
 	// Accept anyway, as some minor vertical overflow is not noticeable ingame.
-	case "zh-Hans":
+	case "he", "zh-Hans":
 		return false
 	default:
 		return true
