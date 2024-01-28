@@ -48,6 +48,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 		return s, nil
 	}
 	tmpl := template.New("")
+	verticalText := false
 	tmpl.Funcs(map[string]interface{}{
 		"Lang": func() string {
 			return string(locale.Active)
@@ -223,6 +224,10 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			_, tryNext := ps.SpeedrunCategories().Describe()
 			return tryNext, nil
 		},
+		"_VerticalText": func() string {
+			verticalText = true
+			return ""
+		},
 	})
 	_, err := tmpl.Parse(s)
 	if err != nil {
@@ -230,7 +235,22 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 	}
 	var buf bytes.Buffer
 	err = tmpl.Execute(&buf, nil)
-	return buf.String(), err
+	if err != nil {
+		return "", err
+	}
+	res := buf.String()
+	if verticalText {
+		rs := []rune(res)
+		rss := make([]rune, 2*len(rs)-1)
+		for i, r := range rs {
+			if i > 0 {
+				rss[2*i-1] = '\n'
+			}
+			rss[2*i] = r
+		}
+		return string(rss), nil
+	}
+	return res, nil
 }
 
 // FormatText replaces placeholders in the given text.

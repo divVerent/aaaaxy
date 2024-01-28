@@ -97,6 +97,15 @@ func (l Lingua) Font() string {
 	}
 }
 
+func (l Lingua) PrefersVerticalText() bool {
+	switch l {
+	case "zh-Hans":
+		return true
+	default:
+		return false
+	}
+}
+
 func (l Lingua) AuditHeight() bool {
 	switch l {
 	// These languages use unifont which is a tad bit too high.

@@ -562,6 +562,14 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 			spawnStartTile := spawnRect.Origin.Div(TileSize)
 			spawnEndTile := spawnRect.OppositeCorner().Div(TileSize)
 			orientation := propmap.ValueOrP(properties, "orientation", m.Identity(), &parseErr)
+			if locale.Active.PrefersVerticalText() {
+				cjkOrientation := propmap.ValueOrP(properties, "orientation_for_vertical_text", m.Orientation{}, &parseErr)
+				if !cjkOrientation.IsZero() {
+					propmap.Set(properties, "text", "{{_VerticalText}}"+propmap.ValueP(properties, "text", "", &parseErr))
+					propmap.Set(properties, "no_flip", "x")
+					orientation = cjkOrientation
+				}
+			}
 			if objType == "WarpZone" {
 				// WarpZones must be paired by name.
 				name := propmap.ValueP(properties, "name", "", &parseErr)

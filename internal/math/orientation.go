@@ -21,9 +21,16 @@ import (
 )
 
 // Orientation represents a transformation matrix, written as a right and a down vector.
+//
+// The zero value is not valid here.
 type Orientation struct {
 	Right Delta
 	Down  Delta
+}
+
+// IsZero returns whether o is the zero value. The zero value is not valid to use.
+func (o Orientation) IsZero() bool {
+	return o.Right.IsZero() && o.Down.IsZero()
 }
 
 // Concat returns the orientation o * o2 so that o.Concat(o2).Apply(d) == o.Apply(o2.Apply(d)).

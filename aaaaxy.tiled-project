@@ -2407,6 +2407,11 @@
                     "value": "ES"
                 },
                 {
+                    "name": "orientation_for_cjk_ttb_text",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "player_solid",
                     "type": "string",
                     "value": ""
