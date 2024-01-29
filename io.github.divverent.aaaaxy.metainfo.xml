@@ -2,11 +2,12 @@
 <component type="desktop-application">
   <id>io.github.divverent.aaaaxy</id>
   <name>AAAAXY</name>
-  <summary>A nonlinear puzzle platformer in impossible spaces</summary>
-  <summary xml:lang="de">Ein nichtlinearer 2D-Puzzle-Platformer in unmöglichen Räumen</summary>
+  <summary>Impossible spaces puzzle platformer</summary>
+  <summary xml:lang="de">Puzzle-Platformer in unmöglichen Räumen</summary>
   <developer id="divverent.github.io">
     <name>divVerent</name>
   </developer>
+  <developer_name>divVerent</developer_name>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>Apache-2.0</project_license>
   <url type="homepage">https://divverent.github.io/aaaaxy</url>
