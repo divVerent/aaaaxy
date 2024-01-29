@@ -21,14 +21,16 @@
 
 set -ex
 
-git diff --exit-code ../../../internal/builddeps/builddeps.go ../../../go.mod ../../../go.sum
+root=$(realpath "$(realpath "$0")/..")
+
+git diff --exit-code "$root"/internal/builddeps/builddeps.go "$root"/go.mod "$root"/go.sum
 
 atexit() {
-	git checkout ../../../internal/builddeps/builddeps.go ../../../go.mod ../../../go.sum
+	git checkout "$root"/internal/builddeps/builddeps.go "$root"/go.mod "$root"/go.sum
 }
 trap atexit EXIT
 
-rm -f ../../../internal/builddeps/builddeps.go
+rm -f "$root"/internal/builddeps/builddeps.go
 go mod tidy
 
 go run github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile "$@"
