@@ -55,9 +55,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.4.137" date="2024-01-06">
-      <description><ul><li>Engine: move to Ebitengine v2.6.2. Thus, on Linux it now requires OpenGL 3.2.</li><li>HTML5: fix savegame handling.</li><li>Menu: highlight the finishing point on the map too.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.137</url>
+    <release version="v1.4.160" date="2024-01-29">
+      <description><ul><li>Engine: module update.</li><li>Engine: when the configured language is Chinese, use vertical text instead of rotated text.</li><li>Map: make sure the keys on Shepard Tone read in order of increasing pitch.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.4.160</url>
     </release>
   </releases>
 </component>

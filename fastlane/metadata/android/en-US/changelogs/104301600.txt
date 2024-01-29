@@ -1,0 +1,4 @@
+  - Engine: module update.
+  - Engine: when the configured language is Chinese, use vertical text instead
+    of rotated text.
+  - Map: make sure the keys on Shepard Tone read in order of increasing pitch.
