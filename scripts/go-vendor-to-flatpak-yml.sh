@@ -71,6 +71,12 @@ while read -r command pkg ver _ replacementpkg replacementver; do
 			# Must be some special handling in "go get".
 			url=https://go.googlesource.com/${pkg##*/}
 			;;
+		go.opencensus.io)
+			url=https://github.com/census-instrumentation/opencensus-go
+			;;
+		k8s.io/klog)
+			url=https://github.com/kubernetes/klog
+			;;
 		*)
 			url=https://$pkg
 			;;
