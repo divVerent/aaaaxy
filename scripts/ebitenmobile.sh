@@ -14,6 +14,10 @@
 # limitations under the License.
 
 # To be run from the gradle project only.
+#
+# Works around https://github.com/hajimehoshi/ebiten/issues/2899 (build failure
+# due to go-licenses depending on golang.org/x/exp and gomobile not allowing
+# that for some reason).
 
 set -ex
 
