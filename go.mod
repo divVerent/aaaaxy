@@ -10,16 +10,16 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/google/go-licenses v0.0.0-20211006200916-ceb292363ec8
 	github.com/hajimehoshi/bitmapfont/v3 v3.0.0
-	github.com/hajimehoshi/ebiten/v2 v2.6.3
+	github.com/hajimehoshi/ebiten/v2 v2.6.4
 	github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
 	github.com/leonelquinteros/gotext v1.5.2
 	github.com/lestrrat-go/strftime v1.0.6
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/ncruces/zenity v0.10.10
+	github.com/ncruces/zenity v0.10.11
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.15.0
-	golang.org/x/mobile v0.0.0-20231108233038-35478a0c49da
+	golang.org/x/mobile v0.0.0-20240112133503-c713f31d574b
 	golang.org/x/sys v0.16.0
 	golang.org/x/text v0.14.0
 )
@@ -27,7 +27,7 @@ require (
 require (
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
 	github.com/ebitengine/oto/v3 v3.1.0 // indirect
-	github.com/ebitengine/purego v0.5.1 // indirect
+	github.com/ebitengine/purego v0.5.2 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/licenseclassifier v0.0.0-20210722185704-3043a050f148 // indirect
@@ -46,7 +46,7 @@ require (
 	github.com/src-d/gcfg v1.4.0 // indirect
 	github.com/xanzy/ssh-agent v0.2.1 // indirect
 	golang.org/x/crypto v0.18.0 // indirect
-	golang.org/x/exp/shiny v0.0.0-20231219180239-dc181d75b848 // indirect
+	golang.org/x/exp/shiny v0.0.0-20240119083558-1b970713d09a // indirect
 	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/net v0.20.0 // indirect
 	golang.org/x/sync v0.6.0 // indirect
