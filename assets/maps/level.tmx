@@ -5698,6 +5698,7 @@
     <property name="_text_localization_note" value="C as in the first music note of the C major scale. Also known as Do, Sa, 上, ル or 1."/>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="C"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
@@ -5709,6 +5710,7 @@
     <property name="_text_localization_note" value="D as in the second music note of the C major scale. Also known as Re, Ri, 尺, 人 or 2."/>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="D"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
@@ -5720,6 +5722,7 @@
     <property name="_text_localization_note" value="E as in the third music note of the C major scale. Also known as Mi, Ga, 工, フ or 3."/>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="E"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
@@ -5731,6 +5734,7 @@
     <property name="_text_localization_note" value="F as in the fourth music note of the C major scale. Also known as Fa, Ma, 凡, り or 4."/>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="F"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
@@ -5742,6 +5746,7 @@
     <property name="_text_localization_note" value="G as in the fifth music note of the C major scale. Also known as Sol, Pa, 六, 久 or 5."/>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="G"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
@@ -5753,6 +5758,7 @@
     <property name="_text_localization_note" value="A as in the sixth music note of the C major scale. Also known as La, Dha, 五, ゐ or 6."/>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="A"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
@@ -5764,6 +5770,7 @@
     <property name="_text_localization_note" value="B as in the seventh music note of the C major scale. Also known as H, Ti, Si, Ni, 乙, L or 7."/>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="B"/>
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
@@ -10326,6 +10333,7 @@
    <properties>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="Trash Chute"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -13461,6 +13469,7 @@
   <object id="6140" type="Text" x="6944" y="384" width="16" height="64">
    <properties>
     <property name="orientation" value="SW"/>
+    <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="EXIT"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
@@ -17971,6 +17980,7 @@
   <object id="8167" type="Text" x="4672" y="3776" width="16" height="64">
    <properties>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_vertical_text" value="WN"/>
     <property name="required_orientation" value="WN"/>
     <property name="text" value="EXIT"/>
     <property name="text_bg" type="color" value="#ff000000"/>
