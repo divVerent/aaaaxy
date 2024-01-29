@@ -12,6 +12,18 @@ export GOOS=ios
 
 go generate -tags zip github.com/divVerent/aaaaxy
 
+# TODO combine with ebitenmobile.sh.
+
+git diff --exit-code ../../../../../internal/builddeps/builddeps.go ../../../../../go.mod ../../../../../go.sum
+
+atexit() {
+	git checkout ../../../../../internal/builddeps/builddeps.go ../../../../../go.mod ../../../../../go.sum
+}
+trap atexit EXIT
+
+rm -rf ../../../../../internal/builddeps/builddeps.go
+go mod tidy
+
 go run github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile bind \
 	-target ios \
 	-o aaaaxy.xcframework \
