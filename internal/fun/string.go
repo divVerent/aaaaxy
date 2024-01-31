@@ -138,7 +138,7 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 			if ps == nil {
 				return "", errors.New("cannot use {{Score}} in static elements")
 			}
-			return fmt.Sprintf("%d", ps.Score()), nil
+			return ps.Score(), nil
 		},
 		"SpeedrunCategoriesShort": func() (string, error) {
 			if ps == nil {

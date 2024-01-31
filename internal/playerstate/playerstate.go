@@ -15,6 +15,7 @@
 package playerstate
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
@@ -371,7 +372,27 @@ func (c SpeedrunCategories) ContainAll(cats SpeedrunCategories) bool {
 	return (c & cats) == cats
 }
 
-func (s *PlayerState) Score() int {
+func fakeScore(n, k int) string {
+	// Looks kinda exponential with exponent 2/3.
+	if k == 0 {
+		return ""
+	}
+	const s = "987653"
+	const l = len(s)
+	maxDigits := (n + l - 1) / l
+	skipDigits := (n - k) / l
+	digits := maxDigits - skipDigits
+	lastDigit := (n - k) % l
+	b := make([]byte, digits+1)
+	b[0] = '.'
+	for i := 1; i < digits; i++ {
+		b[i] = s[0]
+	}
+	b[digits] = s[lastDigit]
+	return string(b)
+}
+
+func (s *PlayerState) Score() string {
 	score := 0
 	for cp := range s.Level.Checkpoints {
 		if cp == "" {
@@ -385,7 +406,14 @@ func (s *PlayerState) Score() int {
 			}
 		}
 	}
-	return score
+	qCount, qHit := len(s.Level.QuestionBlocks), 0
+	for _, q := range s.Level.QuestionBlocks {
+		if propmap.ValueOrP(q.PersistentState, "used", false, nil) {
+			qHit++
+		}
+	}
+	fake := fakeScore(qCount, qHit)
+	return fmt.Sprintf("%d%s", score, fake)
 }
 
 func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {

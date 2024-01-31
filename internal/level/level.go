@@ -45,6 +45,7 @@ type Level struct {
 	SaveGameVersion         int
 	CreditsMusic            string
 	Hash                    uint64 `hash:"-"`
+	QuestionBlocks          []*Spawnable
 
 	tiles []LevelTile
 	width int
@@ -183,6 +184,10 @@ func (l *Level) Clone() *Level {
 		for i, sign := range signs {
 			outSigns[i] = clone(sign)
 		}
+	}
+	out.QuestionBlocks = make([]*Spawnable, len(l.QuestionBlocks))
+	for i, q := range l.QuestionBlocks {
+		out.QuestionBlocks[i] = clone(q)
 	}
 	out.tiles = make([]LevelTile, len(l.tiles))
 	for i := range l.tiles {
@@ -584,7 +589,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				})
 				continue
 			}
-			ent := Spawnable{
+			ent := &Spawnable{
 				ID:       EntityID(o.ObjectID),
 				LevelPos: startTile,
 				RectInTile: m.Rect{
@@ -606,18 +611,22 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				continue
 			}
 			if objType == "Player" {
-				level.Player = &ent
-				level.Checkpoints[""] = &ent
+				level.Player = ent
+				level.Checkpoints[""] = ent
 				// Do not link to tiles.
 				continue
 			}
 			if objType == "Checkpoint" || objType == "CheckpointTarget" {
-				level.Checkpoints[propmap.ValueP(properties, "name", "", &parseErr)] = &ent
-				checkpoints[ent.ID] = &ent
+				level.Checkpoints[propmap.ValueP(properties, "name", "", &parseErr)] = ent
+				checkpoints[ent.ID] = ent
 				// These do get linked.
 			}
 			if objType == "TnihSign" {
-				tnihSigns = append(tnihSigns, &ent)
+				tnihSigns = append(tnihSigns, ent)
+				// These do get linked.
+			}
+			if objType == "QuestionBlock" {
+				level.QuestionBlocks = append(level.QuestionBlocks, ent)
 				// These do get linked.
 			}
 			for y := spawnStartTile.Y; y <= spawnEndTile.Y; y++ {
@@ -627,7 +636,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 					if levelTile == nil {
 						return nil, fmt.Errorf("invalid entity location: outside map bounds: %v in %v", pos, ent)
 					}
-					levelTile.Tile.Spawnables = append(levelTile.Tile.Spawnables, &ent)
+					levelTile.Tile.Spawnables = append(levelTile.Tile.Spawnables, ent)
 				}
 			}
 		}
