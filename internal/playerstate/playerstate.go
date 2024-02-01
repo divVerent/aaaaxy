@@ -373,22 +373,32 @@ func (c SpeedrunCategories) ContainAll(cats SpeedrunCategories) bool {
 }
 
 func fakeScore(n, k int) string {
-	// Looks kinda exponential with exponent 2/3.
 	if k == 0 {
 		return ""
 	}
+	// Integer math computation of 1 - 10^((n-k)/6 - ceil(n/6))
+	// Rounded down (otherwise last digit trick doesn't work)
+	// If max digits reached, use 1 significant digit, else 2.
 	const s = "987653"
+	const t = "058831"
 	const l = len(s)
 	maxDigits := (n + l - 1) / l
 	skipDigits := (n - k) / l
 	digits := maxDigits - skipDigits
 	lastDigit := (n - k) % l
-	b := make([]byte, digits+1)
+	fullDigits := digits
+	if skipDigits > 0 && lastDigit > 0 {
+		fullDigits++
+	}
+	b := make([]byte, fullDigits+1)
 	b[0] = '.'
 	for i := 1; i < digits; i++ {
 		b[i] = s[0]
 	}
 	b[digits] = s[lastDigit]
+	if skipDigits > 0 && lastDigit > 0 {
+		b[digits+1] = t[lastDigit]
+	}
 	return string(b)
 }
 
