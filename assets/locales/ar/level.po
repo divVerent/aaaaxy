@@ -1052,7 +1052,7 @@ msgstr "ألازالت معك؟ "
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4934]
 msgid "Small cars{{BR}}only"
-msgstr "العربات الصغيرة {{BR}}فقط"
+msgstr " العربات{{BR}}الصغيرة {{BR}}فقط"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4935]
 msgid "{{BigCity}} Road Rage"
