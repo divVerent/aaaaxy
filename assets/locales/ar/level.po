@@ -365,7 +365,7 @@ msgstr "أنا تمدّ يدك للنجوم قد يسحقك حقًا."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1103]
 msgid "9¾"
-msgstr "٩ وثلاثة أرباع"
+msgstr " ٣/٤ ٩"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1171]
 msgid "A watched train never departs."
