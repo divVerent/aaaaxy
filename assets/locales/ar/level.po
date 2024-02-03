@@ -1096,7 +1096,7 @@ msgstr "... تريد ..."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5008]
 msgid "Those who cannot remember the past are condemned to repeat it."
-msgstr "الذين لا يتذكرون الماضي محتوم عليهم تكراره."
+msgstr "من لا يتذكر الماضي محتوم عليهم تكراره."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5057]
 msgid "Sometimes, the unprepared can't even follow instructions."
