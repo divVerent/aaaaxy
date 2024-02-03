@@ -237,7 +237,7 @@ msgstr "طريقٌ مختصر؟"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=316]
 msgid "Draaains"
-msgstr "المواسيييير"
+msgstr "المواسير"
 
 #. https://undertale.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=317]
