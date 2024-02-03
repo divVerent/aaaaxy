@@ -1082,7 +1082,7 @@ msgstr "... أنت؟"
 #. Part of 'What are you after?'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5005]
 msgid "... are ..."
-msgstr "... تريد ..."
+msgstr "... ذا ..."
 
 #. Part of 'What are you after?'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5006]
