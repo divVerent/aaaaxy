@@ -1120,7 +1120,7 @@ msgstr " لما ذا؟ {{BR}} اضغط{{ExitButton}}"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5207]
 msgid "Stairs to Nowhere"
-msgstr "سلمٌ إلى لا مكان"
+msgstr "سلّمٌ إلى لا مكان"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5213]
 msgid "Not every staircase leads somewhere nice."
