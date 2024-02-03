@@ -43,7 +43,8 @@ func initUnifont() error {
 	if err != nil {
 		return fmt.Errorf("could not parse unifont: %w", err)
 	}
-	face := makeFace(unifont.NewFace(), 16)
+	// 14, which is 16 when adding back the outline.
+	face := makeFace(unifont.NewFace(), 14)
 
 	ByName["Small"] = face
 	ByName["Regular"] = face

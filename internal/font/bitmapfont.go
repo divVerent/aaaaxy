@@ -19,7 +19,8 @@ import (
 )
 
 func initBitmapfont() error {
-	face := makeFace(bitmapfont.Face, 16)
+	// 14, which is 16 when adding back the outline.
+	face := makeFace(bitmapfont.Face, 14)
 
 	ByName["Small"] = face
 	ByName["Regular"] = face
