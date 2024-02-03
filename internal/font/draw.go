@@ -58,11 +58,13 @@ func (f Face) boundString(str string) m.Rect {
 
 // BoundString returns the bounding rectangle of the given text.
 func (f Face) BoundString(str string) m.Rect {
-	str = locale.Active.Shape(str)
 	lines := strings.Split(str, "\n")
 	var totalBounds m.Rect
 	lineHeight := f.Outline.Metrics().Height.Ceil()
 	y := 0
+	for i, line := range lines {
+		lines[i] = locale.Active.Shape(line)
+	}
 	for _, line := range lines {
 		bounds := f.boundString(line)
 		bounds.Origin.Y += y
@@ -103,12 +105,12 @@ const (
 
 // Draw draws the given text.
 func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg color.Color) {
-	// log.Infof("PRE-SHAPING: %s", str)
-	str = locale.Active.Shape(str)
-	// log.Infof("POST-SHAPING: %s", str)
 	// We need to do our own line splitting because
 	// we always want to center and Ebitengine would left adjust.
 	lines := strings.Split(str, "\n")
+	for i, line := range lines {
+		lines[i] = locale.Active.Shape(line)
+	}
 	bounds := make([]m.Rect, len(lines))
 	for i, line := range lines {
 		bounds[i] = f.boundString(line)
