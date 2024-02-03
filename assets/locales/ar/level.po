@@ -1326,7 +1326,7 @@ msgstr ""
 #. translating
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6947]
 msgid "Viability Voodoo"
-msgstr "فودو الفائدة"
+msgstr "فائدة فودو"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6960]
 msgid "UNDER{{BR}}CONSTRUCTION"
