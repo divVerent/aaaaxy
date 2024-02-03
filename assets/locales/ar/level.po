@@ -474,7 +474,7 @@ msgstr "بديهية الإحتيار"
 #. https://www.youtube.com/watch?v=2Z4m4lnjxkY
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1302]
 msgid "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
-msgstr "ألم أقل لا trololo !!{{BR}} هاهاهاهاها"
+msgstr "ياااالك من مغفل!! هااهاهاها{{BR}}هاهاهاها!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1304]
 msgid "Turtles All the Way In"
