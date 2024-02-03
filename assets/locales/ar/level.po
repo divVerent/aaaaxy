@@ -957,7 +957,7 @@ msgstr "من لم يتعلم الطريقة{{BR}}وجب عليه التوقف ق
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4107]
 msgid "Moved Enough?"
-msgstr "أتحركت كفاية؟"
+msgstr "أحرّكت كفاية؟"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4108]
 msgid "Carried Enough?"
