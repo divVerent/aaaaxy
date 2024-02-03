@@ -1092,7 +1092,7 @@ msgstr "ما ..."
 #. Part of 'What are you after?'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5007]
 msgid "... you ..."
-msgstr "... ذا ..."
+msgstr "... تريد ..."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5008]
 msgid "Those who cannot remember the past are condemned to repeat it."
