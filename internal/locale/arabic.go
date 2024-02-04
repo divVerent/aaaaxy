@@ -23,6 +23,19 @@ import (
 )
 
 func (l Lingua) shapeArabic(s string) string {
+	// Do not shape strings that are fully ASCII.
+	// That just wrecks things.
+	needsShape := false
+	for _, r := range s {
+		if r >= 128 {
+			needsShape = true
+			break
+		}
+	}
+	if !needsShape {
+		return s
+	}
+
 	s = bitmapfont.PresentationForms(s, bitmapfont.DirectionRightToLeft, language.MustParse(string(l)))
 
 	// Mirroring. Sadly, it's not in PresentationForms() already.
