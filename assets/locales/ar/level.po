@@ -892,7 +892,7 @@ msgstr "لا تنظر للشعاع{{BR}}بالعين الباقية"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3858]
 msgid "LEGAL{{BR}}WAIVER"
-msgstr "التنازل{{BR}}القانوني"
+msgstr "تنازل{{BR}}قانوني"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3859]
 msgid "NO{{BR}}WARRANTY"
