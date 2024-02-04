@@ -84,6 +84,11 @@ func localizeCredits(line string) string {
 			return "Anthony Wang"
 		}
 		return line
+	case "Mo'taz Elhag (معتز الحاج)":
+		if locale.Active.Font() != "bitmapfont" || !locale.Active.WillShapeArabic() {
+			return "Mo'taz Elhag"
+		}
+		return line
 	}
 	// Do not localize names directly.
 	// This does break name-inflecting languages, but so be it.

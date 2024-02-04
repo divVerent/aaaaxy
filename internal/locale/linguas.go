@@ -166,10 +166,20 @@ func (l Lingua) Canonical() Lingua {
 	}
 }
 
-// Shape performs glyph shaping on a given string.
-func (l Lingua) Shape(s string) string {
+// WillShapeArabic returns whether Arabic shaping will be performed.
+func (l Lingua) WillShapeArabic() bool {
 	switch l {
 	case "ar", "ar-EG", "he":
+		return true
+	default:
+		return false
+	}
+}
+
+// Shape performs glyph shaping on a given string.
+func (l Lingua) Shape(s string) string {
+	switch {
+	case l.WillShapeArabic():
 		return l.shapeArabic(s)
 	default:
 		return s
