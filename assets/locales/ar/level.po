@@ -80,7 +80,7 @@ msgstr "البعضٌ يفضل ٢ن على π٤"
 #. devotionals/2013/01/what-is-truth?lang=eng
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
-msgstr "\"على الرغم من الإجماع ذو السيط والندرة، فالأرضُ ليست مسطحة.\""
+msgstr "\"على الرغم من الإجماع ذو السيط والندرة، الأرضُ ليست مسطحة.\""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=93]
 msgid "Some people prefer 4π over 2τ."
