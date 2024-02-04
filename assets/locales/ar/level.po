@@ -640,7 +640,7 @@ msgstr "و أن"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1573]
 msgid "get"
-msgstr "يُشتت"
+msgstr "يُشتّت"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1574]
 msgid "distracted"
