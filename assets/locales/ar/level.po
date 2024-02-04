@@ -904,7 +904,7 @@ msgstr "جهد{{BR}}عالي"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3861]
 msgid "YOU HAVE{{BR}}BEEN WARNED"
-msgstr "لقد{{BR}}حُذرت"
+msgstr "قد أعذر{{BR}}من أنذر"
 
 #. name of a law about declaring lead content; often caused ridiculous
 #. warnings; pick your own ridiculous law when translating
