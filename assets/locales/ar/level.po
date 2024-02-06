@@ -464,7 +464,7 @@ msgstr "جَرِّب الطريق السفلي."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1286]
 msgid "Try the upper path."
-msgstr "جَرِّب الطريق الأعلى"
+msgstr "جَرِّب الطريق العلوي."
 
 #. Translate as 'The Axiom of Choice' in the mathematical sense, but find a
 #. funny way to mispronounce or misspell the word that means 'choice'
