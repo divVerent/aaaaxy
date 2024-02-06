@@ -914,7 +914,7 @@ msgstr "البند ٦٥"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3863]
 msgid "And now you've learned{{BR}}not to touch the hot stove."
-msgstr "والآن تعلّمت{{BR}}ألّا تلمس الموقد الساخن"
+msgstr "والآن تعلّمت{{BR}}ألّا تلمس الموقد الساخن."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3866]
 msgid "The Butterfly Effect"
