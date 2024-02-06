@@ -1024,7 +1024,7 @@ msgstr "الفجوة الواسعة"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4661]
 msgid "Mind your head, you've only got one."
-msgstr "إنتبه لرأسك ، فما لك سواها."
+msgstr "إنتبه لرأسك؛ فما لك سواها."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4694]
 msgid "More is not always better."
