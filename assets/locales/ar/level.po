@@ -34,7 +34,7 @@ msgstr "ما كان الفشل خياراً يوماً."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=50]
 msgid ""
 "Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
-msgstr "ألا تحب الأطفال أن تسأل : \"ألم نصل بعد ؟ \"{{BR}}إضغط{{ExitButton}}."
+msgstr "ألا تحب الأطفال أن تسأل : \"ألم نصل بعد ؟ \"{{BR}}اضغط{{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=51]
 msgid "Sometimes the angle of looking at things is all that matters."
