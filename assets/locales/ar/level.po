@@ -1337,7 +1337,7 @@ msgstr "تحت{{BR}}الإنشاء"
 #. translating
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6963]
 msgid "Vuvuzela Virtuoso"
-msgstr "فنان الفوفوزيلا"
+msgstr "فنان فوفوزيلا"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6990]
 msgid "It is hard to focus with all the noise."
