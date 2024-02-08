@@ -1148,7 +1148,7 @@ msgstr "قد يخونك الحنين{{BR}}إذ عدت لمكانٍ مألوفٍ�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5482]
 msgid "Twice Twice"
-msgstr "كرتان مرتان"
+msgstr "كرّتان مرّتان"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5518]
 msgid "Why didn't you like the one I gave you?"
