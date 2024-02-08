@@ -804,7 +804,7 @@ msgstr "انعدام السبب ليس سببًا لئلّا تفعلها."
 #. on by two platforms simultaneously to make progress.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2992]
 msgid "Multi Party Authorization"
-msgstr "التفويض المتعدد"
+msgstr "تفويض متعدد المصدر"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3087]
 msgid "Failure is a stepping stone to success."
