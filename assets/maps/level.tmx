@@ -10715,7 +10715,7 @@
     <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
-  <object id="4511" type="Text" x="6464" y="3216" width="32" height="32">
+  <object id="4511" type="Text" x="6448" y="3216" width="64" height="32">
    <properties>
     <property name="text" value="No"/>
     <property name="text_bg" type="color" value="#ff000000"/>
