@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-05 09:30-0500\n"
+"POT-Creation-Date: 2024-02-12 09:31-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: 4545duckling, 2024\n"
 "Language-Team: Arabic (https://app.transifex.com/aaaaxy/teams/158611/ar/)\n"
@@ -167,7 +167,7 @@ msgstr "لو مضيت إلى الأمام لوصلت أخيراً لوجهتك."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=247]
 msgid "Falling a long distance does not always hurt."
-msgstr "لا يؤلم الوقوع من مكانٍ شاهقٍ دائماً."
+msgstr "لا يؤلم الوقوع من مكانٍ عالٍ دائماً."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=255]
 msgid "Entering through the front door is boring."
@@ -1206,6 +1206,7 @@ msgstr "من ذا لا يستغفل ذو الغفلة."
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
 msgstr "إن لم تعلم من أنت{{BR}}لن تعلم أين تذهب."
 
+#. Reference to Dr. Wily from the Mega Man / Rockman series.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6103]
 msgid "Dr. W?"
 msgstr "د. و؟"
@@ -1220,6 +1221,7 @@ msgstr "كل ما هو جميل ..."
 msgid "... come to an end."
 msgstr "... له نهاية."
 
+#. Reference to Dr. Wily from the Mega Man / Rockman series.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6118]
 msgid "Dr. W!"
 msgstr "د. و!"
