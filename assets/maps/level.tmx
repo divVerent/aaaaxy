@@ -13322,6 +13322,7 @@
   <object id="6102" name="ToMegaDoor" gid="299" x="5712" y="384" width="16" height="64"/>
   <object id="6103" name="dr_w" type="Checkpoint" x="5744" y="384" width="16" height="64">
    <properties>
+    <property name="_text_localization_note" value="Reference to Dr. Wily from the Mega Man / Rockman series."/>
     <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
     <property name="next_right" type="object" value="6118"/>
     <property name="required_orientation" value="ES"/>
@@ -13396,6 +13397,7 @@
   </object>
   <object id="6118" name="dr_w2" type="Checkpoint" x="6160" y="384" width="16" height="64">
    <properties>
+    <property name="_text_localization_note" value="Reference to Dr. Wily from the Mega Man / Rockman series."/>
     <property name="music" value="Juhani Junkala [Retro Game Music Pack] Level 3.ogg"/>
     <property name="next_right" type="object" value="6119"/>
     <property name="required_orientation" value="ES"/>
