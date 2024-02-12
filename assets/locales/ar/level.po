@@ -529,11 +529,11 @@ msgstr "؟"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1423]
 msgid "You now can stand on platforms!"
-msgstr "بإمكانك الآن الوقوف على المنصات"
+msgstr "بإمكانك الآن الوقوف على المنصات!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1430]
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr "الأوتاد{{BR}}ملحوظة: لا تبطح برأسك"
+msgstr "الأوتاد{{BR}}ملحوظة: لا تبطح برأسك!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1441]
 msgid "Steadfastly holding on to the iron rod prevents disasters."
