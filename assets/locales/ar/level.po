@@ -769,7 +769,7 @@ msgstr "أتحب الغرفة الحمراء؟"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2748]
 msgid "Lack of apparent purpose does not mean you don't need it."
-msgstr "الخلو من سبب واضح لا يعني أنك لا تحتاجه."
+msgstr "انعدام سبب واضح لا يعني أنك لا تحتاجه."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2764]
 msgid "Funny and{{BR}}{{BR}}original."
