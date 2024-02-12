@@ -797,7 +797,7 @@ msgstr "أنت فقط من قد يقع في فخٍ في مثل بدائية هذ
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2988]
 msgid "Lack of purpose never was a reason not to do it."
-msgstr "انعدام السبب ليس سببًا لئلّا تفعلها."
+msgstr "ما كان انعدام السبب سببًا لئلّا تفعلها."
 
 #. May also be known as 'for eyes principle'; a concept from IT security. This
 #. part of the level focuses on the need for multiple switches being toggled
