@@ -1113,7 +1113,7 @@ msgstr "حتى السير في دوائر قد يوصلك لمكانٍ ما."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5167]
 msgid "Get It Back!"
-msgstr "إسترجعها !!"
+msgstr "إسترجعها !"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5187]
 msgid "y tho?{{BR}}Press {{ExitButton}}."
