@@ -628,7 +628,7 @@ msgstr "أعِد"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1570]
 msgid "If platforms require platforming, what do trains require?"
-msgstr "لو كان القطار له التقطير، فما للمنصات؟"
+msgstr "لو كانت المنصات لها التمنيص، فما للقطار؟"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1571]
 msgid "Do"
