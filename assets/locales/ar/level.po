@@ -134,7 +134,7 @@ msgstr "زجاجة كلاين"
 #. https://www.brainyquote.com/quotes/friedrich_nietzsche_103584
 #: assets/maps/level.tmx//map/objectgroup/object[@id=188]
 msgid "Whenever I climb I am followed by a dog called Ego."
-msgstr "كلما تسلّقت تبِعني كلب اسمه الكبرياء"
+msgstr "كلما تسلّقت تبِعني كلب اسمه الكبرياء."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=192]
 msgid "The Projective Plane"
