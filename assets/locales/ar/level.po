@@ -838,11 +838,11 @@ msgstr ""
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3813]
 msgid ""
 "I pressed the impossible button and{{BR}}all I got was this lousy message."
-msgstr "ضغطت على الزر المستحيل{{BR}}و كل ما جنيت هو تلك الرسالة المبتذلة"
+msgstr "ضغطت على الزر المستحيل{{BR}}و كل ما جنيت هو تلك الرسالة المبتذلة."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3821]
 msgid "The grass is always greener on the other side."
-msgstr "المرج أكثر نضرة على الناحية الأخرى."
+msgstr "المرج أكثر خضرة على الناحية الأخرى."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3832]
 msgid "You can now disable the force fields!"
