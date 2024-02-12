@@ -586,7 +586,7 @@ msgstr "بالقرب من المركز"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1478]
 msgid "You can now push them away!"
-msgstr "الآن بإمكانك دفعهم بعيدًا"
+msgstr "الآن بإمكانك دفعهم بعيدًا!"
 
 #. 'coil' here refers to an electromagnetic coil
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
