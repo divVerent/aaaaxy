@@ -542,7 +542,7 @@ msgstr "التمسك بالعصا الحديدية بثبات يمنع الكو�
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1442]
 msgid ""
 "Sometimes the thing that is in plain sight can be a challenge to reach."
-msgstr "قد يكون الوصول لشيءٍ صعبُ وهو على مرمى البصر"
+msgstr "قد يكون الوصول لشيءٍ صعبُ وهو على مرمى البصر."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1443]
 msgid "Can't tell if this place is pointless or not."
