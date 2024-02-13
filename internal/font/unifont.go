@@ -25,7 +25,7 @@ import (
 )
 
 func initUnifont() error {
-	unifontRawHandle, err := vfs.Load("fonts", "unifont-15.0.01.bdf.gz")
+	unifontRawHandle, err := vfs.Load("fonts", "unifont-15.1.04.bdf.gz")
 	if err != nil {
 		return fmt.Errorf("could not open unifont: %w", err)
 	}
