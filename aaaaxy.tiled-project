@@ -108,6 +108,11 @@
                     "value": ""
                 },
                 {
+                    "name": "required_x_divisible_by",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "solid",
                     "type": "bool",
                     "value": false
@@ -354,6 +359,11 @@
                     "value": ""
                 },
                 {
+                    "name": "required_x_divisible_by",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "solid",
                     "type": "bool",
                     "value": false
@@ -588,6 +598,11 @@
                 },
                 {
                     "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "required_x_divisible_by",
                     "type": "string",
                     "value": ""
                 },
@@ -986,6 +1001,11 @@
                     "value": ""
                 },
                 {
+                    "name": "required_x_divisible_by",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "solid",
                     "type": "bool",
                     "value": false
@@ -1129,6 +1149,11 @@
                 },
                 {
                     "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "required_x_divisible_by",
                     "type": "string",
                     "value": ""
                 },
@@ -1744,6 +1769,11 @@
                     "value": ""
                 },
                 {
+                    "name": "required_x_divisible_by",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "solid",
                     "type": "bool",
                     "value": false
@@ -2009,6 +2039,11 @@
                     "value": ""
                 },
                 {
+                    "name": "required_x_divisible_by",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "solid",
                     "type": "bool",
                     "value": false
@@ -2218,6 +2253,11 @@
                     "value": ""
                 },
                 {
+                    "name": "required_x_divisible_by",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "solid",
                     "type": "bool",
                     "value": false
@@ -2311,6 +2351,11 @@
                 },
                 {
                     "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "required_x_divisible_by",
                     "type": "string",
                     "value": ""
                 },
@@ -2418,6 +2463,11 @@
                 },
                 {
                     "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "required_x_divisible_by",
                     "type": "string",
                     "value": ""
                 },
