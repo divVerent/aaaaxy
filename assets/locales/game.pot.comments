@@ -233,3 +233,8 @@ msgstr ""
 #. A speedrun category (never teleported).
 msgid "No Teleports"
 msgstr ""
+
+#. Menu item to go back to the game after having pressed escape. Leads to the
+#. map screen, then back into the game.
+msgid "Play"
+msgstr ""
