@@ -92,10 +92,12 @@ func (l Lingua) SortKey() string {
 
 func (l Lingua) Font() string {
 	switch l {
-	case "ar", "ar-EG", "ja":
+	case "ar", "ar-EG":
 		return "bitmapfont"
 	case "he", "zh-Hans":
 		return "unifont"
+	case "ja":
+		return "unifont_jp"
 	default:
 		return "gofont"
 	}

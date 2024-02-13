@@ -361,6 +361,8 @@ func SetFont(font string) error {
 			return initBitmapfont()
 		case "unifont":
 			return initUnifont()
+		case "unifont_jp":
+			return initUnifontJP()
 		default:
 			return initGoFont()
 		}
