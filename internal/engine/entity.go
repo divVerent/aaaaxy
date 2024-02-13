@@ -113,11 +113,16 @@ func RegisterEntityType(t EntityImpl) {
 // Precache all entities.
 func precacheEntities(lvl *level.Level) error {
 	var err error
+	precached := map[level.EntityID]struct{}{}
 	lvl.ForEachTile(func(pos m.Pos, t *level.LevelTile) {
 		for _, sp := range t.Tile.Spawnables {
 			if err != nil {
 				break
 			}
+			if _, found := precached[sp.ID]; found {
+				continue
+			}
+			precached[sp.ID] = struct{}{}
 			eTmpl := entityTypes[sp.EntityType]
 			if eTmpl == nil {
 				err = fmt.Errorf("unknown entity type %q", sp.EntityType)
