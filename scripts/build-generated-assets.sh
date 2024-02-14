@@ -66,3 +66,6 @@ if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 fi
 
 sh scripts/version.sh semver > assets/generated/version.txt
+
+# Prepare compressed font.
+gzip -9 < ./third_party/gnu_unifont/assets/fonts/_unifont-15.1.04.bdf > assets/generated/unifont.bdf.gz
