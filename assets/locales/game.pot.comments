@@ -8,7 +8,7 @@ msgstr ""
 "X-Generator: xgotext\n"
 
 #. Whether text is expected to fit text box height.
-#. Either translate to itself to keep default, or true, or false.
+#. Either translate to itself to keep default (true), or false.
 msgid "_locale_info:fits_height"
 msgstr ""
 
@@ -23,7 +23,7 @@ msgid "_locale_info:prefers_vertical_text"
 msgstr ""
 
 #. Whether text should be shaped using Arabic rules.
-#. Either translate to itself to keep default, or true, or false.
+#. Either translate to itself to keep default (false), or true.
 msgid "_locale_info:uses_arabic_shaping"
 msgstr ""
 
