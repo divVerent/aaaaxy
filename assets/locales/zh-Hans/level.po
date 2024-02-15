@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 09:31-0500\n"
+"POT-Creation-Date: 2024-02-15 10:50-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2024\n"
 "Language-Team: Chinese Simplified (https://app.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
@@ -1455,3 +1455,9 @@ msgstr "4……"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8247]
 msgid "5 ..."
 msgstr "5……"
+
+#. This text is meant to be in Ukrainian. Do not translate unless necessary to
+#. work with your font.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8374]
+msgid "Героям слава!"
+msgstr "Героям слава!"
