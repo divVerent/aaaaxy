@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-15 07:42-0500\n"
+"POT-Creation-Date: 2024-02-12 09:31-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: 4545duckling, 2024\n"
 "Language-Team: Arabic (https://app.transifex.com/aaaaxy/teams/158611/ar/)\n"
@@ -1270,7 +1270,7 @@ msgstr "ألّا تفتح أبواب الهلاك قد يحتاج شيئًا م�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6538]
 msgid "A window of opportunity can lead to greener pastures."
-msgstr "الفرصة منفذ لمراعٍ أكثر خضرةً."
+msgstr "الفرصة كمنفذٍ لمراعٍ أكثر خضرةً."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6539]
 msgid "The well prepared will earn their reward."
@@ -1293,7 +1293,7 @@ msgstr "{{GameTime}}"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6665]
 msgid "Those who never try, never find out."
-msgstr "من لم يجرِّب لن يعلم."
+msgstr "من لا يجرِّب لن يعلم"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6678]
 msgid "reached The Hub with {{Abilities}} at {{GameTime}}."
@@ -1359,7 +1359,7 @@ msgstr "فزنا"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7253]
 msgid "This one is your end."
-msgstr "هذه هي نهايتك."
+msgstr "هذه هي نهايتك"
 
 #. https://thelettervsixtim.es/ - try keeping the three V alliteration when
 #. translating
