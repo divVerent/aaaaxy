@@ -178,6 +178,9 @@ func (o Orientation) MarshalText() ([]byte, error) {
 		return []byte("WN"), nil
 	case Orientation{Right: West(), Down: South()}:
 		return []byte("WS"), nil
+	case Orientation{}:
+		// Used on some optional fields, otherwise should not happen.
+		return []byte(""), nil
 	default:
 		return nil, fmt.Errorf("unsupported Orientation{Right: %v, Down: %v}", o.Right, o.Down)
 	}
