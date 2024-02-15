@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 09:31-0500\n"
+"POT-Creation-Date: 2024-02-15 07:42-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: 4545duckling, 2024\n"
 "Language-Team: Arabic (https://app.transifex.com/aaaaxy/teams/158611/ar/)\n"
@@ -1293,7 +1293,7 @@ msgstr "{{GameTime}}"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6665]
 msgid "Those who never try, never find out."
-msgstr "من لا يجرِّب لن يعلم"
+msgstr "من لم يجرِّب لن يعلم."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6678]
 msgid "reached The Hub with {{Abilities}} at {{GameTime}}."
