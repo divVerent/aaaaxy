@@ -80,17 +80,17 @@ func (t *CenterPrintTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *
 	var parseErr error
 	t.World = w
 	t.Text = propmap.ValueP(sp.Properties, "text", "", &parseErr)
-	fontName := propmap.ValueP(sp.Properties, "text_font", "Centerprint", &parseErr)
+	fontName := propmap.ValueOrP(sp.Properties, "text_font", "Centerprint", &parseErr)
 	t.Font = font.ByName[fontName]
 	if t.Font == nil {
 		log.Warningf("failed to find font %q", fontName)
 		return nil
 	}
-	t.Imp = propmap.ValueP(sp.Properties, "importance", centerprint.Important, &parseErr)
-	t.Pos = propmap.ValueP(sp.Properties, "initial_position", centerprint.Top, &parseErr)
-	t.BGColor = propmap.ValueP(sp.Properties, "text_bg_color", palette.EGA(palette.Black, 255), &parseErr)
-	t.FGColor = propmap.ValueP(sp.Properties, "text_fg_color", palette.EGA(palette.White, 255), &parseErr)
-	t.FadeTime = propmap.ValueP(sp.Properties, "fade_time", 2*time.Second, &parseErr)
+	t.Imp = propmap.ValueOrP(sp.Properties, "importance", centerprint.Important, &parseErr)
+	t.Pos = propmap.ValueOrP(sp.Properties, "initial_position", centerprint.Top, &parseErr)
+	t.BGColor = propmap.ValueOrP(sp.Properties, "text_bg_color", palette.EGA(palette.Black, 255), &parseErr)
+	t.FGColor = propmap.ValueOrP(sp.Properties, "text_fg_color", palette.EGA(palette.White, 255), &parseErr)
+	t.FadeTime = propmap.ValueOrP(sp.Properties, "fade_time", 2*time.Second, &parseErr)
 	soundName := propmap.ValueP(sp.Properties, "sound", "", &parseErr)
 	if soundName != "" {
 		var err error
