@@ -8,27 +8,27 @@ msgstr ""
 "X-Generator: xgotext\n"
 
 #. Whether text is expected to fit text box height.
-#. Translate to either true or false.
+#. Translate to either true (preferred) or false.
 msgid "_locale_info:fits_height"
 msgstr ""
 
 #. Which font to use.
-#. Translate to either default, bitmapfont, gofont, unifont.
+#. Translate to either default (preferred), bitmapfont, gofont or unifont.
 msgid "_locale_info:font"
 msgstr ""
 
 #. Whether text should be rendered vertically instead of turned by 90 degrees.
-#. Translate to either default (which is a per-object default), true or false.
+#. Translate to either default (preferred, which is a per-object default), true or false.
 msgid "_locale_info:prefers_vertical_text"
 msgstr ""
 
 #. Whether text should be shaped using Arabic rules, which implements RTL.
-#. Translate to either true or false.
+#. Translate to either false (preferred) or true (e.g. if a RTL language).
 msgid "_locale_info:uses_arabic_shaping"
 msgstr ""
 
 #. Whether Ebitengine's glyph cache is safe to use with this language.
-#. Translate to either true or false.
+#. Translate to either true (preferred) or false (if it fixes bugs).
 msgid "_locale_info:uses_ebiten_text"
 msgstr ""
 
