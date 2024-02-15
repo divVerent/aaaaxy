@@ -21,10 +21,10 @@ import (
 	"os"
 )
 
-func OSOpen(name string) (readFile, error) {
+func osOpen(name string) (readFile, error) {
 	return os.Open(name)
 }
 
-func OSCreate(name string) (writeFile, error) {
+func osCreate(name string) (writeFile, error) {
 	return os.Create(name)
 }

@@ -25,7 +25,7 @@ import (
 	"syscall/js"
 )
 
-func OSOpen(name string) (readFile, error) {
+func osOpen(name string) (readFile, error) {
 	var data string
 	err := protectJS(func() {
 		data = js.Global().Get(name).String()
@@ -86,6 +86,6 @@ func (w *osWriter) Close() error {
 	})
 }
 
-func OSCreate(name string) (writeFile, error) {
+func osCreate(name string) (writeFile, error) {
 	return &osWriter{name: name}, nil
 }

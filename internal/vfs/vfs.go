@@ -16,6 +16,7 @@ package vfs
 
 // Init initializes the VFS. Must be called before loading anything.
 func Init() error {
+	initExeDir()
 	err := initState()
 	if err != nil {
 		return err

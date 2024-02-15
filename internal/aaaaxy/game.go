@@ -194,7 +194,7 @@ func (g *Game) Update() error {
 		g.canInit = false
 		if *debugLoadingScreenCpuprofile != "" && g.debugLoadingScreenCpuprofileF == nil {
 			var err error
-			g.debugLoadingScreenCpuprofileF, err = vfs.OSCreate(*debugLoadingScreenCpuprofile)
+			g.debugLoadingScreenCpuprofileF, err = vfs.OSCreate(vfs.WorkDir, *debugLoadingScreenCpuprofile)
 			if err != nil {
 				return fmt.Errorf("could not create CPU profile: %w", err)
 			}

@@ -65,7 +65,7 @@ var (
 func Init() error {
 	if *demoPlay != "" {
 		var err error
-		demoPlayerFile, err = vfs.OSOpen(*demoPlay)
+		demoPlayerFile, err = vfs.OSOpen(vfs.WorkDir, *demoPlay)
 		if err != nil {
 			var verr error
 			demoPlayerFile, verr = vfs.LoadPath("demos", *demoPlay)
@@ -91,7 +91,7 @@ func Init() error {
 			return errors.New("cannot record a demo while cheating")
 		}
 		var err error
-		demoRecorderFile, err = vfs.OSCreate(demoRecordName)
+		demoRecorderFile, err = vfs.OSCreate(vfs.WorkDir, demoRecordName)
 		if err != nil {
 			return err
 		}

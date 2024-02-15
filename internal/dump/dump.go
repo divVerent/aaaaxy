@@ -112,7 +112,7 @@ func InitEarly(p Params) error {
 
 	if *dumpAudio != "" {
 		var err error
-		audioWriter, err = vfs.OSCreate(*dumpAudio)
+		audioWriter, err = vfs.OSCreate(vfs.WorkDir, *dumpAudio)
 		if err != nil {
 			return fmt.Errorf("could not initialize audio dump: %w", err)
 		}
@@ -121,7 +121,7 @@ func InitEarly(p Params) error {
 
 	if *dumpVideo != "" {
 		var err error
-		videoWriter, err = vfs.OSCreate(*dumpVideo)
+		videoWriter, err = vfs.OSCreate(vfs.WorkDir, *dumpVideo)
 		if err != nil {
 			return fmt.Errorf("could not initialize video dump: %w", err)
 		}

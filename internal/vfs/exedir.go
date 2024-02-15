@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,46 +15,21 @@
 package vfs
 
 import (
-	"io"
+	"os"
 	"path/filepath"
 
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
-type OSRoot int
+// exeDir is the directory of the current executable.
+var exeDir string = ""
 
-const (
-	WorkDir OSRoot = iota
-	ExeDir
-)
-
-type readFile interface {
-	io.Reader
-	io.Seeker
-	io.Closer
-}
-
-type writeFile interface {
-	io.Writer
-	io.WriterAt
-	io.Closer
-}
-
-func osResolve(root OSRoot, name string) string {
-	switch root {
-	case ExeDir:
-		return filepath.Join(exeDir, name)
-	case WorkDir:
-		return name
+func initExeDir() {
+	exePath, err := os.Executable()
+	if err != nil {
+		log.Warningf("could not find path to executable: %v; using current working directory instead", err)
+		return
 	}
-	log.Fatalf("osResolve: invalid root %v", root)
-	return ""
-}
-
-func OSOpen(root OSRoot, name string) (readFile, error) {
-	return osOpen(osResolve(root, name))
-}
-
-func OSCreate(root OSRoot, name string) (writeFile, error) {
-	return osCreate(osResolve(root, name))
+	exeDir = filepath.Dir(exePath)
+	log.Infof("found executable directory: %v", exeDir)
 }

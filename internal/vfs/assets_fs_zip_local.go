@@ -22,5 +22,5 @@ import (
 )
 
 func openAssetsZip() (*os.File, error) {
-	return os.Open("aaaaxy.dat")
+	return os.Open(filepath.Join(exePath, "aaaaxy.dat"))
 }

@@ -239,7 +239,7 @@ func (g *Game) InitStep() error {
 		return err
 	}
 	if *dumpLoadingFractions != "" {
-		f, err := vfs.OSCreate(*dumpLoadingFractions)
+		f, err := vfs.OSCreate(vfs.WorkDir, *dumpLoadingFractions)
 		if err != nil {
 			return fmt.Errorf("could not open loading fractions file: %w", err)
 		}

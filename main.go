@@ -39,7 +39,7 @@ var (
 
 func runGame(game *aaaaxy.Game) error {
 	if *debugLoadingCpuprofile != "" {
-		f, err := vfs.OSCreate(*debugLoadingCpuprofile)
+		f, err := vfs.OSCreate(vfs.WorkDir, *debugLoadingCpuprofile)
 		if err != nil {
 			log.Fatalf("could not create loading CPU profile: %v", err)
 		}
@@ -58,7 +58,7 @@ func runGame(game *aaaaxy.Game) error {
 		if err != nil {
 			log.Fatalf("could not initialize game: %v", err)
 		}
-		f, err := vfs.OSCreate(*debugCpuprofile)
+		f, err := vfs.OSCreate(vfs.WorkDir, *debugCpuprofile)
 		if err != nil {
 			log.Fatalf("could not create CPU profile: %v", err)
 		}
@@ -72,7 +72,7 @@ func runGame(game *aaaaxy.Game) error {
 		pprof.StopCPUProfile()
 	}
 	if *debugMemprofile != "" {
-		f, err := vfs.OSCreate(*debugMemprofile)
+		f, err := vfs.OSCreate(vfs.WorkDir, *debugMemprofile)
 		if err != nil {
 			log.Fatalf("could not create memory profile: %v", err)
 		}

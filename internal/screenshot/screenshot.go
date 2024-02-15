@@ -23,7 +23,7 @@ import (
 )
 
 func Write(img image.Image, name string) (err error) {
-	file, err := vfs.OSCreate(name)
+	file, err := vfs.OSCreate(vfs.WorkDir, name)
 	if err != nil {
 		return fmt.Errorf("failed to open image file %v: %w", name, err)
 	}
