@@ -1270,7 +1270,7 @@ msgstr "ألّا تفتح أبواب الهلاك قد يحتاج شيئًا م�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6538]
 msgid "A window of opportunity can lead to greener pastures."
-msgstr "الفرصة كمنفذٍ لمراعٍ أكثر خضرةً."
+msgstr "الفرصة منفذ لمراعٍ أكثر خضرةً."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6539]
 msgid "The well prepared will earn their reward."
