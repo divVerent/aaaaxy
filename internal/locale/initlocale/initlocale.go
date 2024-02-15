@@ -58,6 +58,18 @@ func initLinguas() error {
 			locale.Linguas[member] = struct{}{}
 		}
 	}
+	// Try detecting language packs.
+	for _, domain := range []string{"game", "level"} {
+		data, err = vfs.OSOpen(vfs.ExeDir, fmt.Sprintf("%s.po", domain))
+		if err != nil {
+			// Missing language pack is OK.
+			continue
+		}
+		data.Close()
+		log.Infof("detected an user provided language pack")
+		locale.Linguas[locale.UserProvided] = struct{}{}
+		break
+	}
 	if *dumpLanguages {
 		for _, l := range locale.LinguasSorted() {
 			fmt.Println(string(l))
@@ -68,12 +80,12 @@ func initLinguas() error {
 }
 
 func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
-	if lang == "" {
+	if lang == locale.Builtin {
 		return
 	}
 	var data io.ReadCloser
 	var err error
-	if lang == "." {
+	if lang == locale.UserProvided {
 		data, err = vfs.OSOpen(vfs.ExeDir, fmt.Sprintf("%s.po", domain))
 	} else {
 		data, err = vfs.Load(fmt.Sprintf("locales/%s", lang.Directory()), fmt.Sprintf("%s.po", domain))

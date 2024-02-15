@@ -24,13 +24,19 @@ import (
 // Lingua identifies a language.
 type Lingua string
 
+// Builtin is a reserved language name for the included language.
+const Builtin Lingua = ""
+
+// UserProvided is a reserved language name for language packs.
+const UserProvided Lingua = "."
+
 // Linguas is the set of current languages that are translated "enough".
 var Linguas = map[Lingua]struct{}{}
 
 // name returns the human readable name of a language.
 func (l Lingua) name() string {
 	switch l {
-	case "":
+	case Builtin:
 		return "English"
 	case "ar":
 		return "العربية"
@@ -58,7 +64,7 @@ func (l Lingua) name() string {
 		return "Українська"
 	case "zh-Hans":
 		return "简体中文"
-	case ".":
+	case UserProvided:
 		return "user provided"
 	default:
 		return string(l)
@@ -89,7 +95,7 @@ func (l Lingua) SortKey() string {
 	case "be@tarask":
 		// Sort both Belarusian variants together.
 		return "Беларуская (Łacinka)"
-	case ".":
+	case UserProvided:
 		// User provided comes at the far left.
 		return ""
 	default:
@@ -144,7 +150,7 @@ func (l Lingua) Canonical() Lingua {
 
 // LinguasSorted returns the languages sorted by humanly expected ordering.
 func LinguasSorted() []Lingua {
-	ret := []Lingua{""}
+	ret := []Lingua{Builtin}
 	for l := range Linguas {
 		ret = append(ret, l)
 	}
