@@ -4,17 +4,17 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Rudolf Polzer, 2023
 # Denis Kočkarov, 2023
+# Rudolf Polzer, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 04:54-0800\n"
+"POT-Creation-Date: 2024-02-15 10:50-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Denis Kočkarov, 2023\n"
+"Last-Translator: Rudolf Polzer, 2024\n"
 "Language-Team: Belarusian (https://app.transifex.com/aaaaxy/teams/158611/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1222,6 +1222,7 @@ msgstr "Няўважлівых троляць."
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
 msgstr "Калі вы ня ведаеце, дзе вы,{{BR}}вы ня ведаеце, куды ісьці."
 
+#. Reference to Dr. Wily from the Mega Man / Rockman series.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6103]
 msgid "Dr. W?"
 msgstr "Доктар Ў?"
@@ -1236,6 +1237,7 @@ msgstr "Усё добрае ..."
 msgid "... come to an end."
 msgstr "... мае канец."
 
+#. Reference to Dr. Wily from the Mega Man / Rockman series.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6118]
 msgid "Dr. W!"
 msgstr "Доктар Ў!"
@@ -1468,8 +1470,10 @@ msgstr "... пяць не варыянт!"
 msgid "Mwahaha!"
 msgstr "Му-ха-ха-ха!"
 
-#. https://www.youtube.com/watch?v=N78CavWrtjw - try to be consistent with
-#. some existing translation if you can find one
+#. https://www.youtube.com/watch?v=N78CavWrtjw - try to be somewhat consistent
+#. with some existing translation if you can find one, but also try making
+#. sure the word for 'space' can have both the geometrical and the
+#. astronomical meaning
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8235]
 msgid ""
 "Let's put weird and weird together,{{BR}}and make it even "
@@ -1487,3 +1491,9 @@ msgstr "4 ..."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8247]
 msgid "5 ..."
 msgstr "5 ..."
+
+#. This text is meant to be in Ukrainian. Do not translate unless necessary to
+#. work with your font.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8374]
+msgid "Героям слава!"
+msgstr "Героям слава!"
