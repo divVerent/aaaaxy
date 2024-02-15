@@ -214,14 +214,14 @@ func ActiveUsesArabicShaping() bool {
 	po := G // Workaround for xgotext otherwise not finding the call.
 	setting := po.Get("_locale_info:uses_arabic_shaping")
 	switch setting {
-	case "_locale_info:use_arabic_shaping":
+	case "_locale_info:uses_arabic_shaping":
 		return false
 	case "true":
 		return true
 	case "false":
 		return false
 	default:
-		log.Fatalf("Invalid value of _locale_info:use_arabic_shaping: got %q, want true or false", setting)
+		log.Fatalf("Invalid value of _locale_info:uses_arabic_shaping: got %q, want true or false", setting)
 		return false
 	}
 }
@@ -245,14 +245,14 @@ func ActiveUsesEbitenText() bool {
 	po := G // Workaround for xgotext otherwise not finding the call.
 	setting := po.Get("_locale_info:uses_ebiten_text")
 	switch setting {
-	case "_locale_info:use_ebiten_text":
+	case "_locale_info:uses_ebiten_text":
 		return true
 	case "true":
 		return true
 	case "false":
 		return false
 	default:
-		log.Fatalf("Invalid value of _locale_info:use_ebiten_text: got %q, want true or false", setting)
+		log.Fatalf("Invalid value of _locale_info:uses_ebiten_text: got %q, want true or false", setting)
 		return true
 	}
 }
