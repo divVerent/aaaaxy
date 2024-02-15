@@ -63,7 +63,7 @@ func (f Face) BoundString(str string) m.Rect {
 	lineHeight := f.Outline.Metrics().Height.Ceil()
 	y := 0
 	for i, line := range lines {
-		lines[i] = locale.Active.Shape(line)
+		lines[i] = locale.ActiveShape(line)
 	}
 	for _, line := range lines {
 		bounds := f.boundString(line)
@@ -76,7 +76,7 @@ func (f Face) BoundString(str string) m.Rect {
 
 // drawLine draws one line of text.
 func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color) {
-	if locale.Active.UseEbitenText() {
+	if locale.ActiveUseEbitenText() {
 		dst, ok := dst.(*ebiten.Image)
 		if ok {
 			// Use Ebitengine's glyph cache.
@@ -109,7 +109,7 @@ func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg
 	// we always want to center and Ebitengine would left adjust.
 	lines := strings.Split(str, "\n")
 	for i, line := range lines {
-		lines[i] = locale.Active.Shape(line)
+		lines[i] = locale.ActiveShape(line)
 	}
 	bounds := make([]m.Rect, len(lines))
 	for i, line := range lines {

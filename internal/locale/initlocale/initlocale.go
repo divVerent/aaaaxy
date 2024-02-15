@@ -115,7 +115,7 @@ func forceSetLanguage(lang locale.Lingua) (bool, error) {
 	initLocaleDomain(lang, locale.L, "level")
 	locale.Active = lang
 
-	err := font.SetFont(lang.Font())
+	err := font.SetFont(locale.ActiveFont())
 	if err != nil {
 		return false, err
 	}

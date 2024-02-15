@@ -567,7 +567,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 			spawnStartTile := spawnRect.Origin.Div(TileSize)
 			spawnEndTile := spawnRect.OppositeCorner().Div(TileSize)
 			orientation := propmap.ValueOrP(properties, "orientation", m.Identity(), &parseErr)
-			if locale.Active.PrefersVerticalText() {
+			if locale.ActivePrefersVerticalText() {
 				cjkOrientation := propmap.ValueOrP(properties, "orientation_for_vertical_text", m.Orientation{}, &parseErr)
 				if !cjkOrientation.IsZero() {
 					propmap.Set(properties, "text", "{{_VerticalText}}"+propmap.ValueP(properties, "text", "", &parseErr))

@@ -63,7 +63,7 @@ func (l Lingua) name() string {
 
 // Name returns the human readable name of a language for the current font.
 func (l Lingua) Name() string {
-	if Active.Font() != l.Font() {
+	if l != Active {
 		switch l {
 		case "ar":
 			return "Arabic"
@@ -87,37 +87,6 @@ func (l Lingua) SortKey() string {
 		return "Беларуская (Łacinka)"
 	default:
 		return l.name()
-	}
-}
-
-func (l Lingua) Font() string {
-	switch l {
-	case "ar", "ar-EG", "ja":
-		return "bitmapfont"
-	case "he", "zh-Hans":
-		return "unifont"
-	default:
-		return "gofont"
-	}
-}
-
-func (l Lingua) PrefersVerticalText() bool {
-	switch l {
-	case "ja", "zh-Hans":
-		return true
-	default:
-		return false
-	}
-}
-
-func (l Lingua) AuditHeight() bool {
-	switch l {
-	// These languages use unifont which is a tad bit too high.
-	// Accept anyway, as some minor vertical overflow is not noticeable ingame.
-	case "he", "zh-Hans":
-		return false
-	default:
-		return true
 	}
 }
 
@@ -166,31 +135,6 @@ func (l Lingua) Canonical() Lingua {
 	}
 }
 
-// WillShapeArabic returns whether Arabic shaping will be performed.
-func (l Lingua) WillShapeArabic() bool {
-	switch l {
-	case "ar", "ar-EG", "he":
-		return true
-	default:
-		return false
-	}
-}
-
-// Shape performs glyph shaping on a given string.
-func (l Lingua) Shape(s string) string {
-	switch {
-	case l.WillShapeArabic():
-		return l.shapeArabic(s)
-	default:
-		return s
-	}
-}
-
-// UseEbitenText returns whether using ebiten/text for font drawing is safe.
-func (l Lingua) UseEbitenText() bool {
-	return true
-}
-
 // LinguasSorted returns the languages sorted by humanly expected ordering.
 func LinguasSorted() []Lingua {
 	ret := []Lingua{""}
@@ -201,4 +145,75 @@ func LinguasSorted() []Lingua {
 		return ret[a].SortKey() < ret[b].SortKey()
 	})
 	return ret
+}
+
+// ActiveFont returns the font this locale uses.
+//
+// This is only accessible for the active locale so it can later be defined by the language file itself.
+func ActiveFont() string {
+	switch Active {
+	case "ar", "ar-EG", "ja":
+		return "bitmapfont"
+	case "he", "zh-Hans":
+		return "unifont"
+	default:
+		return "gofont"
+	}
+}
+
+// ActivePrefersVerticalText returns the font this locale uses.
+//
+// This is only accessible for the active locale so it can later be defined by the language file itself.
+func ActivePrefersVerticalText() bool {
+	switch Active {
+	case "ja", "zh-Hans":
+		return true
+	default:
+		return false
+	}
+}
+
+// ActiveAuditHeight returns whether height auditing will be performed.
+//
+// This is only accessible for the active locale so it can later be defined by the language file itself.
+func ActiveAuditHeight() bool {
+	switch Active {
+	// These languages use unifont which is a tad bit too high.
+	// Accept anyway, as some minor vertical overflow is not noticeable ingame.
+	case "he", "zh-Hans":
+		return false
+	default:
+		return true
+	}
+}
+
+// ActiveWillShapeArabic returns whether Arabic shaping will be performed.
+//
+// This is only accessible for the active locale so it can later be defined by the language file itself.
+func ActiveWillShapeArabic() bool {
+	switch Active {
+	case "ar", "ar-EG", "he":
+		return true
+	default:
+		return false
+	}
+}
+
+// ActiveShape performs glyph shaping on a given string.
+//
+// This is only accessible for the active locale so it can later be defined by the language file itself.
+func ActiveShape(s string) string {
+	switch {
+	case ActiveWillShapeArabic():
+		return Active.shapeArabic(s)
+	default:
+		return s
+	}
+}
+
+// ActiveUseEbitenText returns whether using ebiten/text for font drawing is safe.
+//
+// This is only accessible for the active locale so it can later be defined by the language file itself.
+func ActiveUseEbitenText() bool {
+	return true
 }

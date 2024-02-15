@@ -144,7 +144,7 @@ func (t *Text) Precache(sp *level.Spawnable) error {
 		rx, ry = ry, rx
 	}
 	sz := img.Bounds().Size()
-	if sz.X > rx+2 || (locale.Active.AuditHeight() && sz.Y > ry+3) {
+	if sz.X > rx+2 || (locale.ActiveAuditHeight() && sz.Y > ry+3) {
 		// Tolerate 3 extra pixels for diacritics or borders.
 		locale.Errorf("text too big: entity %v has size %v but text needs %v: %v",
 			sp.ID, m.Delta{DX: rx, DY: ry}, sz, key.text)

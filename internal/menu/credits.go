@@ -80,12 +80,12 @@ func localizeCredits(line string) string {
 	case "and other contributors":
 		return locale.G.Get("and other contributors")
 	case "Anthony Wang (王文韬)":
-		if locale.Active.Font() != "unifont" && locale.Active.Font() != "bitmapfont" {
+		if locale.ActiveFont() != "unifont" && locale.ActiveFont() != "bitmapfont" {
 			return "Anthony Wang"
 		}
 		return line
 	case "Mo'taz Elhag (معتز الحاج)":
-		if locale.Active.Font() != "bitmapfont" || !locale.Active.WillShapeArabic() {
+		if locale.ActiveFont() != "bitmapfont" || !locale.ActiveWillShapeArabic() {
 			return "Mo'taz Elhag"
 		}
 		return line
