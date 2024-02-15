@@ -10330,7 +10330,7 @@
   </object>
   <object id="4276" gid="320" x="6144" y="4048" width="32" height="32"/>
   <object id="4277" gid="322" x="6208" y="4048" width="32" height="32"/>
-  <object id="4278" type="Text" x="6176" y="3888" width="32" height="176">
+  <object id="4278" type="Text" x="6176" y="3872" width="32" height="208">
    <properties>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
