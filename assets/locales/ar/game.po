@@ -592,7 +592,7 @@ msgstr "bitmapfont"
 #. Either translate to itself to keep default, or true, or false.
 #: locale/linguas.go
 msgid "_locale_info:prefers_vertical_text"
-msgstr "default"
+msgstr "false"
 
 #. Whether text should be shaped using Arabic rules.
 #. Either translate to itself to keep default (false), or true.
