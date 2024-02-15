@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 04:54-0800\n"
+"POT-Creation-Date: 2024-02-15 10:50-0500\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2024\n"
 "Language-Team: German (https://app.transifex.com/aaaaxy/teams/158611/de/)\n"
@@ -1249,6 +1249,7 @@ msgstr ""
 "bist,{{BR}}dann wei{{if eq Lang \"de-CH\"}}ss{{else}}ß{{end}}t du auch "
 "nicht, wo du hin willst."
 
+#. Reference to Dr. Wily from the Mega Man / Rockman series.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6103]
 msgid "Dr. W?"
 msgstr "Dr. W?"
@@ -1263,6 +1264,7 @@ msgstr "Alles hat ein Ende ..."
 msgid "... come to an end."
 msgstr "... nur die Wurst hat zwei."
 
+#. Reference to Dr. Wily from the Mega Man / Rockman series.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6118]
 msgid "Dr. W!"
 msgstr "Dr. W!"
@@ -1495,8 +1497,10 @@ msgstr "... 5 ist raus!"
 msgid "Mwahaha!"
 msgstr "Muahaha!"
 
-#. https://www.youtube.com/watch?v=N78CavWrtjw - try to be consistent with
-#. some existing translation if you can find one
+#. https://www.youtube.com/watch?v=N78CavWrtjw - try to be somewhat consistent
+#. with some existing translation if you can find one, but also try making
+#. sure the word for 'space' can have both the geometrical and the
+#. astronomical meaning
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8235]
 msgid ""
 "Let's put weird and weird together,{{BR}}and make it even "
@@ -1514,3 +1518,9 @@ msgstr "4 ..."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8247]
 msgid "5 ..."
 msgstr "5 ..."
+
+#. This text is meant to be in Ukrainian. Do not translate unless necessary to
+#. work with your font.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8374]
+msgid "Героям слава!"
+msgstr "Героям слава!"
