@@ -20,6 +20,7 @@ import (
 
 type readFile interface {
 	io.Reader
+	io.Seeker
 	io.Closer
 }
 

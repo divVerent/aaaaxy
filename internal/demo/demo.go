@@ -19,7 +19,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"os"
 	"time"
 
 	"github.com/google/go-cmp/cmp"

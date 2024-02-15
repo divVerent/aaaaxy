@@ -33,8 +33,11 @@ func OSOpen(name string) (readFile, error) {
 	if err != nil {
 		return nil, err
 	}
-	decoder := base64.NewDecoder(base64.StdEncoding, strings.NewReader(data))
-	return io.NopCloser(decoder), nil
+	decoded, err := base64.StdEncoding.DecodeString(data)
+	if err != nil {
+		return nil, err
+	}
+	return io.NopCloser(bytes.NewReader(decoded)), nil
 }
 
 type osWriter struct {
