@@ -592,7 +592,7 @@ msgstr "default"
 #. true or false.
 #: locale/linguas.go
 msgid "_locale_info:prefers_vertical_text"
-msgstr "default"
+msgstr "false"
 
 #. Whether text should be shaped using Arabic rules, which implements RTL.
 #. Translate to either false (preferred) or true (e.g. if a RTL language).
