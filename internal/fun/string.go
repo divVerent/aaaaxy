@@ -241,12 +241,17 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 	res := buf.String()
 	if verticalText {
 		rs := []rune(res)
-		rss := make([]rune, 2*len(rs)-1)
-		for i, r := range rs {
-			if i > 0 {
-				rss[2*i-1] = '\n'
+		rss := make([]rune, 0, 2*len(rs)-1)
+		for _, r := range rs {
+			if r == ' ' {
+				// Verticalization skips spaces.
+				// Thus, works best with SmallCaps.
+				continue
 			}
-			rss[2*i] = r
+			if len(rss) != 0 {
+				rss = append(rss, '\n')
+			}
+			rss = append(rss, r)
 		}
 		return string(rss), nil
 	}

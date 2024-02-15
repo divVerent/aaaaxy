@@ -158,6 +158,68 @@
             ]
         },
         {
+            "color": "#ff0000ff",
+            "id": 44,
+            "members": [
+                {
+                    "name": "fade_time",
+                    "type": "string",
+                    "value": "2s"
+                },
+                {
+                    "name": "importance",
+                    "type": "string",
+                    "value": "NotImportant"
+                },
+                {
+                    "name": "initial_position",
+                    "type": "string",
+                    "value": "Middle"
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "sound",
+                    "type": "file",
+                    "value": ""
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_bg_color",
+                    "type": "color",
+                    "value": ""
+                },
+                {
+                    "name": "text_fg_color",
+                    "type": "color",
+                    "value": ""
+                },
+                {
+                    "name": "text_font",
+                    "type": "string",
+                    "value": "Centerprint"
+                }
+            ],
+            "name": "CenterPrintTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
             "color": "#ff008000",
             "id": 3,
             "members": [

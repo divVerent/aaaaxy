@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-15 07:42-0500\n"
+"POT-Creation-Date: 2024-02-15 10:50-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1403,4 +1403,9 @@ msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8247]
 msgid "5 ..."
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8374]
+#. This text is meant to be in Ukrainian. Do not translate unless necessary to work with your font.
+msgid "Героям слава!"
 msgstr ""

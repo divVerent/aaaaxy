@@ -15,6 +15,7 @@
 package centerprint
 
 import (
+	"fmt"
 	"image/color"
 	"time"
 
@@ -30,7 +31,8 @@ import (
 type Centerprint struct {
 	text       string
 	bounds     m.Rect
-	color      color.Color
+	bgColor    color.Color
+	fgColor    color.Color
 	waitScroll bool
 	waitFade   bool
 	face       *font.Face
@@ -55,12 +57,58 @@ const (
 	NotImportant
 )
 
+func (i Importance) MarshalText() ([]byte, error) {
+	switch i {
+	case Important:
+		return []byte("Important"), nil
+	case NotImportant:
+		return []byte("NotImportant"), nil
+	}
+	return nil, fmt.Errorf("could not marshal Importance %d", i)
+}
+
+func (i *Importance) UnmarshalText(text []byte) error {
+	switch string(text) {
+	case "Important":
+		*i = Important
+		return nil
+	case "NotImportant":
+		*i = NotImportant
+		return nil
+	default:
+		return fmt.Errorf("unexpected Importance value: %q", string(text))
+	}
+}
+
 type InitialPosition int
 
 const (
 	Top InitialPosition = iota
 	Middle
 )
+
+func (i InitialPosition) MarshalText() ([]byte, error) {
+	switch i {
+	case Top:
+		return []byte("Top"), nil
+	case Middle:
+		return []byte("Middle"), nil
+	}
+	return nil, fmt.Errorf("could not marshal InitialPosition %d", i)
+}
+
+func (i *InitialPosition) UnmarshalText(text []byte) error {
+	switch string(text) {
+	case "Top":
+		*i = Top
+		return nil
+	case "Middle":
+		*i = Middle
+		return nil
+	default:
+		return fmt.Errorf("unexpected InitialPosition value: %q", string(text))
+	}
+}
 
 func NormalFont() *font.Face {
 	return font.ByName["Centerprint"]
@@ -74,14 +122,19 @@ func Reset() {
 	centerprints = centerprints[:0]
 }
 
-func New(txt string, imp Importance, pos InitialPosition, face *font.Face, color color.Color, fadeTime time.Duration) *Centerprint {
+func New(txt string, imp Importance, pos InitialPosition, face *font.Face, fgColor color.Color, fadeTime time.Duration) *Centerprint {
+	return NewWithBG(txt, imp, pos, face, palette.EGA(palette.Black, 255), fgColor, fadeTime)
+}
+
+func NewWithBG(txt string, imp Importance, pos InitialPosition, face *font.Face, bgColor, fgColor color.Color, fadeTime time.Duration) *Centerprint {
 	frames := int(fadeTime * 60 / time.Second)
 	if frames < 1 {
 		frames = 1
 	}
 	cp := &Centerprint{
 		text:        txt,
-		color:       color,
+		bgColor:     bgColor,
+		fgColor:     fgColor,
 		waitScroll:  imp == Important,
 		waitFade:    true,
 		face:        face,
@@ -156,8 +209,8 @@ func (cp *Centerprint) draw(screen *ebiten.Image) {
 	}
 	var alphaM colorm.ColorM
 	alphaM.Scale(1.0, 1.0, 1.0, a)
-	fg := alphaM.Apply(cp.color)
-	bg := palette.EGA(palette.Black, uint8(a*255))
+	fg := alphaM.Apply(cp.fgColor)
+	bg := alphaM.Apply(cp.bgColor)
 	x := screenWidth / 2
 	y := cp.scrollPos - cp.bounds.Size.DY - cp.bounds.Origin.Y
 	cp.face.Draw(screen, cp.text, m.Pos{X: x, Y: y}, font.Center, fg, bg)

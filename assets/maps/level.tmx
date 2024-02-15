@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8373">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8375">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -18855,6 +18855,24 @@
     <property name="player_only" type="bool" value="true"/>
     <property name="state" type="bool" value="true"/>
     <property name="target" value="!CounterClockwiseL1 !CounterClockwiseL2 !CounterClockwiseL3 !CounterClockwiseR1 !CounterClockwiseR2 !CounterClockwiseR3 !CounterClockwiseB !CounterClockwiseC"/>
+   </properties>
+  </object>
+  <object id="8373" name="ShepardSequence" type="SequenceCollector" x="4304" y="5840" width="16" height="16">
+   <properties>
+    <property name="sequence" value="GBF#BE"/>
+    <property name="target" value="=HeroiamSlava"/>
+   </properties>
+  </object>
+  <object id="8374" name="HeroiamSlava" type="CenterPrintTarget" x="4304" y="5824" width="16" height="16">
+   <properties>
+    <property name="_text_localization_note" value="This text is meant to be in Ukrainian. Do not translate unless necessary to work with your font."/>
+    <property name="importance" value="Important"/>
+    <property name="initial_position" value="Middle"/>
+    <property name="sound" value="got_ability.ogg"/>
+    <property name="text" value="Героям слава!"/>
+    <property name="text_bg_color" type="color" value="#ff0056b9"/>
+    <property name="text_fg_color" type="color" value="#ffffd800"/>
+    <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
  </objectgroup>
