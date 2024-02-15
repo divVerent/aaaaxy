@@ -159,32 +159,39 @@ func ActiveFont() string {
 		return "gofont"
 	}
 	switch setting {
-	case "_locale_info:font":
+	case "_locale_info:font", "default":
 		return "gofont"
 	case "bitmapfont", "gofont", "unifont":
 		return setting
 	default:
-		log.Fatalf("Invalid value of _locale_info:font: got %q, want bitmapfont, gofont or unifont", setting)
+		log.Fatalf("Invalid value of _locale_info:font: got %q, want default, bitmapfont, gofont or unifont", setting)
 		return "gofont"
 	}
 }
 
+type VerticalTextPreference int
+const(
+	NeverPreferVerticalText VerticalTextPreference = iota
+	DefaultPreferVerticalText
+	AlwaysPreferVerticalText
+)
+
 // ActivePrefersVerticalText returns whether this locale prefers vertical text.
 //
 // This is only accessible for the active locale so it can later be defined by the language file itself.
-func ActivePrefersVerticalText() bool {
+func ActivePrefersVerticalText() VerticalTextPreference {
 	po := G // Workaround for xgotext otherwise not finding the call.
 	setting := po.Get("_locale_info:prefers_vertical_text")
 	switch setting {
 	case "_locale_info:prefers_vertical_text":
-		return false
+		return DefaultPreferVerticalText
 	case "true":
-		return true
+		return AlwaysPreferVerticalText
 	case "false":
-		return false
+		return NeverPreferVerticalText
 	default:
-		log.Fatalf("Invalid value of _locale_info:prefers_vertical_text: got %q, want true or false", setting)
-		return false
+		log.Fatalf("Invalid value of _locale_info:prefers_vertical_text: got %q, want default, true or false", setting)
+		return DefaultPreferVerticalText
 	}
 }
 

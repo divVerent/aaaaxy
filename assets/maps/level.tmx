@@ -10334,6 +10334,7 @@
    <properties>
     <property name="no_flip" value="y"/>
     <property name="orientation" value="NE"/>
+    <property name="orientation_for_default_vertical_text" value="ES"/>
     <property name="orientation_for_vertical_text" value="ES"/>
     <property name="text" value="Trash Chute"/>
     <property name="text_bg" type="color" value="#ff000000"/>

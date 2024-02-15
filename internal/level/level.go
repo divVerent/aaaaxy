@@ -555,10 +555,12 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 			objType := propmap.ValueP(properties, "type", "", &parseErr)
 			propmap.Delete(properties, "type")
 			propmap.DebugSetType(properties, objType)
+			hasText := false
 			if text, err := propmap.Value(properties, "text", ""); err == nil {
 				translated := locale.L.Get(text) // "Unsupported call" warning expected here.
 				// log.Infof("translated %v -> %v", text, translated)
 				propmap.Set(properties, "text", translated)
+				hasText = true
 			}
 			spawnTilesGrowth := propmap.ValueOrP(properties, "spawn_tiles_growth", m.Delta{}, &parseErr)
 			startTile := entRect.Origin.Div(TileSize)
@@ -567,8 +569,16 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 			spawnStartTile := spawnRect.Origin.Div(TileSize)
 			spawnEndTile := spawnRect.OppositeCorner().Div(TileSize)
 			orientation := propmap.ValueOrP(properties, "orientation", m.Identity(), &parseErr)
-			if locale.ActivePrefersVerticalText() {
-				cjkOrientation := propmap.ValueOrP(properties, "orientation_for_vertical_text", m.Orientation{}, &parseErr)
+			if hasText {
+				var cjkOrientation m.Orientation
+				switch locale.ActivePrefersVerticalText() {
+					case locale.NeverPreferVerticalText:
+						cjkOrientation = m.Orientation{}
+					case locale.DefaultPreferVerticalText:
+						cjkOrientation = propmap.ValueOrP(properties, "orientation_for_default_vertical_text", m.Orientation{}, &parseErr)
+					case locale.AlwaysPreferVerticalText:
+						cjkOrientation = propmap.ValueOrP(properties, "orientation_for_vertical_text", m.Orientation{}, &parseErr)
+				}
 				if !cjkOrientation.IsZero() {
 					propmap.Set(properties, "text", "{{_VerticalText}}"+propmap.ValueP(properties, "text", "", &parseErr))
 					propmap.Set(properties, "no_flip", "x")
