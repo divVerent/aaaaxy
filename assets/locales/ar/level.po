@@ -1359,7 +1359,7 @@ msgstr "فزنا"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7253]
 msgid "This one is your end."
-msgstr "هذه هي نهايتك"
+msgstr "هذه هي نهايتك."
 
 #. https://thelettervsixtim.es/ - try keeping the three V alliteration when
 #. translating
