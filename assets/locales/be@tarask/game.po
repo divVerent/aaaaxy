@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Denis Kočkarov, 2023
+# Rudolf Polzer, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Denis Kočkarov, 2023\n"
+"Last-Translator: Rudolf Polzer, 2024\n"
 "Language-Team: Belarusian (Tarask) (https://app.transifex.com/aaaaxy/teams/158611/be@tarask/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -357,6 +358,8 @@ msgstr "Nuku'alofa"
 msgid "Pick-a-Path"
 msgstr "Abiary-šlach"
 
+#. Menu item to go back to the game after having pressed escape. Leads to the
+#. map screen, then back into the game.
 #: menu/main.go
 msgid "Play"
 msgstr "Hulać"
@@ -571,6 +574,37 @@ msgstr "Vaš čas"
 #: fun/string.go
 msgid "Z"
 msgstr "Z"
+
+#. Whether text is expected to fit text box height.
+#. Either translate to itself to keep default, or true, or false.
+#: locale/linguas.go
+msgid "_locale_info:fits_height"
+msgstr "_locale_info:fits_height"
+
+#. Which font to use.
+#. Either translate to itself to keep default, or one of bitmapfont, gofont,
+#. unifont.
+#: locale/linguas.go
+msgid "_locale_info:font"
+msgstr "_locale_info:font"
+
+#. Whether text should be rendered vertical instead of turned by 90 degrees.
+#. Either translate to itself to keep default, or true, or false.
+#: locale/linguas.go
+msgid "_locale_info:prefers_vertical_text"
+msgstr "_locale_info:prefers_vertical_text"
+
+#. Whether text should be shaped using Arabic rules.
+#. Either translate to itself to keep default, or true, or false.
+#: locale/linguas.go
+msgid "_locale_info:uses_arabic_shaping"
+msgstr "_locale_info:uses_arabic_shaping"
+
+#. Whether Ebitengine's glyph cache is safe to use with this language.
+#. Either translate to itself to keep default, or true, or false.
+#: locale/linguas.go
+msgid "_locale_info:uses_ebiten_text"
+msgstr "_locale_info:uses_ebiten_text"
 
 #: menu/credits.go
 msgid "and %s"
