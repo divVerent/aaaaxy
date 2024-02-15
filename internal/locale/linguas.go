@@ -177,14 +177,7 @@ func ActivePrefersVerticalText() bool {
 //
 // This is only accessible for the active locale so it can later be defined by the language file itself.
 func ActiveAuditHeight() bool {
-	switch Active {
-	// These languages use unifont which is a tad bit too high.
-	// Accept anyway, as some minor vertical overflow is not noticeable ingame.
-	case "he", "zh-Hans":
-		return false
-	default:
-		return true
-	}
+	return true
 }
 
 // ActiveWillShapeArabic returns whether Arabic shaping will be performed.
