@@ -7,6 +7,31 @@ msgstr ""
 "Language: \n"
 "X-Generator: xgotext\n"
 
+#. Whether text is expected to fit text box height.
+#. Either translate to itself to keep default, or true, or false.
+msgid "_locale_info:fits_height"
+msgstr ""
+
+#. Which font to use.
+#. Either translate to itself to keep default, or one of bitmapfont, gofont, unifont.
+msgid "_locale_info:font"
+msgstr ""
+
+#. Whether text should be rendered vertical instead of turned by 90 degrees.
+#. Either translate to itself to keep default, or true, or false.
+msgid "_locale_info:prefers_vertical_text"
+msgstr ""
+
+#. Whether text should be shaped using Arabic rules.
+#. Either translate to itself to keep default, or true, or false.
+msgid "_locale_info:uses_arabic_shaping"
+msgstr ""
+
+#. Whether Ebitengine's glyph cache is safe to use with this language.
+#. Either translate to itself to keep default, or true, or false.
+msgid "_locale_info:uses_ebiten_text"
+msgstr ""
+
 #. Last separator when building a list. Usually starts and ends with a space.
 msgid " and "
 msgstr ""

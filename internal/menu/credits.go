@@ -85,7 +85,7 @@ func localizeCredits(line string) string {
 		}
 		return line
 	case "Mo'taz Elhag (معتز الحاج)":
-		if locale.ActiveFont() != "bitmapfont" || !locale.ActiveWillShapeArabic() {
+		if locale.ActiveFont() != "bitmapfont" || !locale.ActiveUsesArabicShaping() {
 			return "Mo'taz Elhag"
 		}
 		return line

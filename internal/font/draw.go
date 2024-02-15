@@ -76,7 +76,7 @@ func (f Face) BoundString(str string) m.Rect {
 
 // drawLine draws one line of text.
 func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color) {
-	if locale.ActiveUseEbitenText() {
+	if locale.ActiveUsesEbitenText() {
 		dst, ok := dst.(*ebiten.Image)
 		if ok {
 			// Use Ebitengine's glyph cache.

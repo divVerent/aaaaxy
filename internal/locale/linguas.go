@@ -17,6 +17,8 @@ package locale
 import (
 	"sort"
 	"strings"
+
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // Lingua identifies a language.
@@ -151,43 +153,75 @@ func LinguasSorted() []Lingua {
 //
 // This is only accessible for the active locale so it can later be defined by the language file itself.
 func ActiveFont() string {
-	switch Active {
-	case "ar", "ar-EG", "ja":
-		return "bitmapfont"
-	case "he", "zh-Hans":
-		return "unifont"
+	po := G // Workaround for xgotext otherwise not finding the call.
+	setting := po.Get("_locale_info:font")
+	if setting == "_locale_info:font" {
+		return "gofont"
+	}
+	switch setting {
+	case "_locale_info:font":
+		return "gofont"
+	case "bitmapfont", "gofont", "unifont":
+		return setting
 	default:
+		log.Fatalf("Invalid value of _locale_info:font: got %q, want bitmapfont, gofont or unifont", setting)
 		return "gofont"
 	}
 }
 
-// ActivePrefersVerticalText returns the font this locale uses.
+// ActivePrefersVerticalText returns whether this locale prefers vertical text.
 //
 // This is only accessible for the active locale so it can later be defined by the language file itself.
 func ActivePrefersVerticalText() bool {
-	switch Active {
-	case "ja", "zh-Hans":
+	po := G // Workaround for xgotext otherwise not finding the call.
+	setting := po.Get("_locale_info:prefers_vertical_text")
+	switch setting {
+	case "_locale_info:prefers_vertical_text":
+		return false
+	case "true":
 		return true
+	case "false":
+		return false
 	default:
+		log.Fatalf("Invalid value of _locale_info:prefers_vertical_text: got %q, want true or false", setting)
 		return false
 	}
 }
 
-// ActiveAuditHeight returns whether height auditing will be performed.
+// ActiveFitsHeight returns whether height auditing will be performed.
 //
 // This is only accessible for the active locale so it can later be defined by the language file itself.
-func ActiveAuditHeight() bool {
-	return true
+func ActiveFitsHeight() bool {
+	po := G // Workaround for xgotext otherwise not finding the call.
+	setting := po.Get("_locale_info:fits_height")
+	switch setting {
+	case "_locale_info:fits_height":
+		return true
+	case "true":
+		return true
+	case "false":
+		return false
+	default:
+		log.Fatalf("Invalid value of _locale_info:fits_height: got %q, want true or false", setting)
+		return true
+	}
 }
 
-// ActiveWillShapeArabic returns whether Arabic shaping will be performed.
+// ActiveUsesArabicShaping returns whether Arabic shaping will be performed.
 //
 // This is only accessible for the active locale so it can later be defined by the language file itself.
-func ActiveWillShapeArabic() bool {
-	switch Active {
-	case "ar", "ar-EG", "he":
+func ActiveUsesArabicShaping() bool {
+	po := G // Workaround for xgotext otherwise not finding the call.
+	setting := po.Get("_locale_info:uses_arabic_shaping")
+	switch setting {
+	case "_locale_info:use_arabic_shaping":
+		return false
+	case "true":
 		return true
+	case "false":
+		return false
 	default:
+		log.Fatalf("Invalid value of _locale_info:use_arabic_shaping: got %q, want true or false", setting)
 		return false
 	}
 }
@@ -197,16 +231,28 @@ func ActiveWillShapeArabic() bool {
 // This is only accessible for the active locale so it can later be defined by the language file itself.
 func ActiveShape(s string) string {
 	switch {
-	case ActiveWillShapeArabic():
+	case ActiveUsesArabicShaping():
 		return Active.shapeArabic(s)
 	default:
 		return s
 	}
 }
 
-// ActiveUseEbitenText returns whether using ebiten/text for font drawing is safe.
+// ActiveUsesEbitenText returns whether using ebiten/text for font drawing is safe.
 //
 // This is only accessible for the active locale so it can later be defined by the language file itself.
-func ActiveUseEbitenText() bool {
-	return true
+func ActiveUsesEbitenText() bool {
+	po := G // Workaround for xgotext otherwise not finding the call.
+	setting := po.Get("_locale_info:uses_ebiten_text")
+	switch setting {
+	case "_locale_info:use_ebiten_text":
+		return true
+	case "true":
+		return true
+	case "false":
+		return false
+	default:
+		log.Fatalf("Invalid value of _locale_info:use_ebiten_text: got %q, want true or false", setting)
+		return true
+	}
 }
