@@ -604,7 +604,7 @@ msgstr "false"
 #. Either translate to itself to keep default, or true, or false.
 #: locale/linguas.go
 msgid "_locale_info:uses_ebiten_text"
-msgstr "_locale_info:uses_ebiten_text"
+msgstr "true"
 
 #: menu/credits.go
 msgid "and %s"
