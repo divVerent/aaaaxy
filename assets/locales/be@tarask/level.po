@@ -1505,4 +1505,4 @@ msgstr "5 ..."
 #. work with your font.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8374]
 msgid "Героям слава!"
-msgstr "Героям слава!"
+msgstr "Heroiam slava!"
