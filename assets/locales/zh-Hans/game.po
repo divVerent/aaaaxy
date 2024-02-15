@@ -576,10 +576,10 @@ msgid "Z"
 msgstr "Z"
 
 #. Whether text is expected to fit text box height.
-#. Either translate to itself to keep default, or true, or false.
+#. Either translate to itself to keep default (true), or false.
 #: locale/linguas.go
 msgid "_locale_info:fits_height"
-msgstr "_locale_info:fits_height"
+msgstr "true"
 
 #. Which font to use.
 #. Either translate to itself to keep default, or one of bitmapfont, gofont,
@@ -595,16 +595,16 @@ msgid "_locale_info:prefers_vertical_text"
 msgstr "true"
 
 #. Whether text should be shaped using Arabic rules.
-#. Either translate to itself to keep default, or true, or false.
+#. Either translate to itself to keep default (false), or true.
 #: locale/linguas.go
 msgid "_locale_info:uses_arabic_shaping"
-msgstr "_locale_info:uses_arabic_shaping"
+msgstr "false"
 
 #. Whether Ebitengine's glyph cache is safe to use with this language.
 #. Either translate to itself to keep default, or true, or false.
 #: locale/linguas.go
 msgid "_locale_info:uses_ebiten_text"
-msgstr "_locale_info:uses_ebiten_text"
+msgstr "true"
 
 #: menu/credits.go
 msgid "and %s"
