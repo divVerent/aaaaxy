@@ -598,13 +598,13 @@ msgstr "default"
 #. Either translate to itself to keep default (false), or true.
 #: locale/linguas.go
 msgid "_locale_info:uses_arabic_shaping"
-msgstr "_locale_info:uses_arabic_shaping"
+msgstr "false"
 
 #. Whether Ebitengine's glyph cache is safe to use with this language.
 #. Either translate to itself to keep default, or true, or false.
 #: locale/linguas.go
 msgid "_locale_info:uses_ebiten_text"
-msgstr "_locale_info:uses_ebiten_text"
+msgstr "true"
 
 #: menu/credits.go
 msgid "and %s"
