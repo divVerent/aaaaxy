@@ -58,6 +58,8 @@ func (l Lingua) name() string {
 		return "Українська"
 	case "zh-Hans":
 		return "简体中文"
+	case ".":
+		return "user provided"
 	default:
 		return string(l)
 	}
@@ -84,9 +86,12 @@ func (l Lingua) Name() string {
 
 func (l Lingua) SortKey() string {
 	switch l {
-	// Sort both Belarusian variants together.
 	case "be@tarask":
+		// Sort both Belarusian variants together.
 		return "Беларуская (Łacinka)"
+	case ".":
+		// User provided comes at the far left.
+		return ""
 	default:
 		return l.name()
 	}
