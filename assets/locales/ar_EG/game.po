@@ -1,0 +1,702 @@
+# 
+# Translators:
+# 4545duckling, 2023
+# Rudolf Polzer, 2024
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Rudolf Polzer, 2024\n"
+"Language-Team: Arabic (Egypt) (https://app.transifex.com/aaaaxy/teams/158611/ar_EG/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar_EG\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: xgotext\n"
+
+#. Last separator when building a list. Usually starts and ends with a space.
+#: fun/string.go playerstate/playerstate.go
+msgid " and "
+msgstr " و "
+
+#: aaaaxy/game.go
+msgid "%.1f fps, %.1f tps"
+msgstr "%.1fف/ث ، %.1fت/ث"
+
+#: fun/string.go
+msgid "%d:%02d:%02d.%03d"
+msgstr "%d:%02d:%02d.%03d"
+
+#: menu/map.go
+msgid "%s (%d/%d)"
+msgstr "%s (%d/%d)"
+
+#: aaaaxy/game.go
+msgid "(%.5f %.5f) (%.4f %.4f)"
+msgstr "(%.5f %.5f) (%.4f %.4f)"
+
+#. Other separator when building a list. Usually is a comma and a space.
+#: fun/string.go playerstate/playerstate.go
+msgid ", "
+msgstr " ، "
+
+#. A speedrun category (all checkpoints reached).
+#: playerstate/playerstate.go
+msgid "100%"
+msgstr "١٠٠٪"
+
+#: menu/savestate.go
+msgid "4: %s"
+msgstr "٤: %s"
+
+#: menu/quality.go playerstate/playerstate.go
+msgid "???"
+msgstr "؟؟؟"
+
+#: menu/savestate.go
+msgid "A: %s"
+msgstr "أ: %s"
+
+#: menu/credits.go
+msgid "Additional Programming Libraries & Tools"
+msgstr "مكتبات و أدوات البرمجة الإضافية"
+
+#. A speedrun category (all checkpoints reached, but game not won yet).
+#: playerstate/playerstate.go
+msgid "All Checkpoints"
+msgstr "كل نقاط الوصول"
+
+#. A speedrun category (all checkpoints reached in flipped state).
+#: playerstate/playerstate.go
+msgid "All Flipped"
+msgstr "كل مقلوب"
+
+#. A speedrun category (all notes seen).
+#: playerstate/playerstate.go
+msgid "All Notes"
+msgstr "كل الملاحظات"
+
+#. A speedrun category (all paths walked).
+#: playerstate/playerstate.go
+msgid "All Paths"
+msgstr "كل الطرق"
+
+#. A speedrun category (all secrets found).
+#: playerstate/playerstate.go
+msgid "All Secrets"
+msgstr "كل الأسرار"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Alofi"
+msgstr "ألوفي"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Anchorage"
+msgstr "أنكوريج"
+
+#. A speedrun category (any way to finish the game).
+#: playerstate/playerstate.go
+msgid "Any%"
+msgstr "أي %"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Auckland"
+msgstr "أوكلاند"
+
+#: menu/credits.go
+msgid "Audio"
+msgstr "صوت"
+
+#: menu/language.go menu/quality.go
+msgid "Auto (%s)"
+msgstr "ألي (%s)"
+
+#: fun/string.go
+msgid "B"
+msgstr "B"
+
+#: fun/string.go
+msgid "B/X"
+msgstr "B/X"
+
+#: fun/string.go
+msgid "Back"
+msgstr "إرجع"
+
+#: fun/string.go
+msgid "Backspace"
+msgstr "Backspace"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Baker Island"
+msgstr "جزيرة بيكر"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Beijing"
+msgstr "بكين"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Berlin"
+msgstr "برلين"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Bishkek"
+msgstr "بيشكك"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Boston"
+msgstr "بوسطن"
+
+#: menu/credits.go
+msgid "Build: %s"
+msgstr "النسخة: %s"
+
+#. A speedrun category (not a real one, but what we show if cheats are
+#. active).
+#: playerstate/playerstate.go
+msgid "Cheat%"
+msgstr "غش٪"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Chicago"
+msgstr "شيكاغو"
+
+#: menu/main.go
+msgid "Credits"
+msgstr "جدير الذكر"
+
+#: fun/string.go
+msgid "Ctrl/Shift"
+msgstr "Ctrl/Shift"
+
+#: menu/touchedit.go
+msgid "Done"
+msgstr "تمام"
+
+#: menu/settings.go menu/touchedit.go
+msgid "Edit Touch Controls"
+msgstr "عدّل تحكمات اللمس"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Edmonton"
+msgstr "إدمونتن"
+
+#: fun/string.go
+msgid "Enter/Shift"
+msgstr "Enter/Shift"
+
+#: game/checkpoint/checkpoint_target.go
+msgid ""
+"Error:\n"
+"could not save game:\n"
+"%s"
+msgstr ""
+"خطأ:\n"
+"لم نستطع حفظ اللعبة :\n"
+"%s"
+
+#: fun/string.go
+msgid "Escape"
+msgstr "Escape"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Fernando de Noronha"
+msgstr "فرناندو دي نورونا"
+
+#: game/player/player.go
+msgid ""
+"Fine, I give up, have it your way.\n"
+"All cheats are documented in --help."
+msgstr ""
+"خلاص أنا جضيت اعمل اللي انت عايزه.\n"
+"كل الشفرات متسجلة في --help"
+
+#: menu/credits.go
+msgid "For Software Licenses{{BR}}Press Right"
+msgstr "من أجل تراخيص البرمجيات{{BR}}إضغط يميناً"
+
+#: aaaaxy/game.go
+msgid "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
+msgstr "ت ن سماح%d: إيقاف%.1fم/ث ديلتا%.1fث (من%.1fث)"
+
+#: menu/credits.go
+msgid "Graphics"
+msgstr "الجرافيكس"
+
+#: menu/settings.go
+msgid "Graphics: %s"
+msgstr "الجرافيكس%s"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Halifax"
+msgstr "هاليفاكس"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Hanoi"
+msgstr "هانوي"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "High"
+msgstr "مرتفعة"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Honolulu"
+msgstr "هونولولو"
+
+#: playerstate/playerstate.go
+msgid "Impossible"
+msgstr "مستحيل"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Istanbul"
+msgstr "اسطنبول"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Kiritimati"
+msgstr "كيريتيماتي"
+
+#. Translate so it can be recognized by English speakers too (e.g.
+#. "Lingua (Language): %s").
+#: menu/settings.go
+msgid "Language: %s"
+msgstr "اللغة (Language): %s"
+
+#: menu/credits.go
+msgid "Level Version: %d"
+msgstr "نسخة المستوى: %d"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "London"
+msgstr "لندن"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Low"
+msgstr "منخفضة"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Lowest"
+msgstr "الصغرى"
+
+#: menu/reset.go menu/savestate.go menu/settings.go
+msgid "Main Menu"
+msgstr "القائمة الرئيسية"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Max"
+msgstr "القصوى"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Medium"
+msgstr "معتدلة"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "New York"
+msgstr "نيو يورك"
+
+#. A speedrun category (back button never pressed).
+#: playerstate/playerstate.go
+msgid "No Back"
+msgstr "بدون رجوع"
+
+#. A speedrun category (backspace key never pressed).
+#: playerstate/playerstate.go
+msgid "No Backspace"
+msgstr "بدون Backspace"
+
+#: playerstate/playerstate.go
+msgid "No Coil"
+msgstr "بدون زنبرك"
+
+#. A speedrun category (escape key never pressed).
+#: playerstate/playerstate.go
+msgid "No Escape"
+msgstr "بدون Escape"
+
+#. A speedrun category (start button never pressed).
+#: playerstate/playerstate.go
+msgid "No Start"
+msgstr "بدون Start"
+
+#. A speedrun category (never teleported).
+#: playerstate/playerstate.go
+msgid "No Teleports"
+msgstr "بدون تنقل سريع"
+
+#: playerstate/playerstate.go
+msgid "None"
+msgstr "لا شيء"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Nuku'alofa"
+msgstr "نوكو ألوفا"
+
+#: menu/map.go
+msgid "Pick-a-Path"
+msgstr "إختر طريقاً"
+
+#. Menu item to go back to the game after having pressed escape. Leads to the
+#. map screen, then back into the game.
+#: menu/main.go
+msgid "Play"
+msgstr "إلعب"
+
+#: menu/credits.go
+msgid "Player Sprite"
+msgstr "شكل اللاعب"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Ponta Delgada"
+msgstr "بونتا ديلجادا"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Port Moresby"
+msgstr "بورت مورسبي"
+
+#: menu/credits.go
+msgid "Programming"
+msgstr "برمجة"
+
+#: menu/settings.go
+msgid "Quality: %s"
+msgstr "الجودة: %s"
+
+#: menu/main.go
+msgid "Quit"
+msgstr "إخرج"
+
+#: menu/reset.go menu/settings.go
+msgid "Reset"
+msgstr "عيد"
+
+#: menu/reset.go
+msgid "Reset Nothing"
+msgstr "عيد ولا حاجة"
+
+#: menu/reset.go
+msgid "Reset and Lose SAVE STATE %s"
+msgstr "عيد و أخسر حالة الحفظ %s"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s"
+msgstr "عيد و أخسر حالة الحفظ %s"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s (just release buttons)"
+msgstr "عيد و أخسر حالة الحفظ %s (سيب الزراير بس)"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s (think about it for %d sec)"
+msgstr "عيد و أخسر حالة الحفظ %s (فكر بس في الموضوع بتاع%d ث)"
+
+#: menu/reset.go
+msgid "Reset and Lose Settings"
+msgstr "عيد و أخسر الإعدادات"
+
+#: menu/touchedit.go
+msgid "Reset to Defaults"
+msgstr "عيد للحالة الإفتراضية"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "San Francisco"
+msgstr "سان فرانسيسكو"
+
+#: menu/main.go menu/savestate.go
+msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
+msgstr "النقاط: {{Score}}{{SpeedrunCategoriesShort}} | الوقت: {{GameTime}}"
+
+#: menu/main.go menu/settings.go
+msgid "Settings"
+msgstr "الإعدادات"
+
+#: fun/string.go
+msgid "Shift/E/Tab"
+msgstr "Shift/E/Tab"
+
+#: menu/credits.go
+msgid "Sound Effects"
+msgstr "التأثيرات الصوتية"
+
+#: menu/credits.go
+msgid "Sprites"
+msgstr "النقوش المتحركة"
+
+#: fun/string.go
+msgid "Start"
+msgstr "إبدأ"
+
+#: menu/savestate.go menu/settings.go
+msgid "Switch Save State"
+msgstr "حوّل حالات الحفظ"
+
+#: menu/settings.go
+msgid "Switch to Fullscreen Mode"
+msgstr "حوّل إلى الشاشة الكاملة"
+
+#: menu/settings.go
+msgid "Switch to Letterboxed Screen"
+msgstr "حوّل إلى Letterboxed"
+
+#: menu/settings.go
+msgid "Switch to Stretched Screen"
+msgstr "حوّل إلى stretched"
+
+#: menu/settings.go
+msgid "Switch to Windowed Mode"
+msgstr "حوّل إلى windowed mode"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Sydney"
+msgstr "سيدني"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "São Paulo"
+msgstr "ساو باولو"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Tehran"
+msgstr "طهران"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Tel Aviv"
+msgstr "تل أبيب"
+
+#: menu/credits.go
+msgid "Testing"
+msgstr "التجربة"
+
+#: menu/credits.go
+msgid "Thank You!"
+msgstr "شكراً ليك !"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "The Cleats"
+msgstr "الوتد"
+
+#. Used in context "reached <location> with ... at <time>";
+#. "coil" here refers to an electromagnetic coil.
+#: fun/string.go
+msgid "The Coil"
+msgstr "الزنبرك"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "The Gloves"
+msgstr "القفاز"
+
+#. Used in context "reached <location> with ... at <time>";
+#. "remote" here refers to e.g. a TV's remote control.
+#: fun/string.go
+msgid "The Remote"
+msgstr "الريموت"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Tokyo"
+msgstr "طوكيو"
+
+#: menu/credits.go
+msgid "Translators"
+msgstr "المترجمون"
+
+#: menu/credits.go
+msgid "Try Next"
+msgstr "جرب تالياً"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Turkistan"
+msgstr "تركستان"
+
+#: menu/settings.go
+msgid "Volume: %s"
+msgstr "حجم الصوت: %s"
+
+#: playerstate/playerstate.go
+msgid "Without Cheating Of Course"
+msgstr "طبعاً بدون أي غش"
+
+#: menu/savestate.go
+msgid "X: %s"
+msgstr "س: %s"
+
+#: menu/savestate.go
+msgid "Y: %s"
+msgstr "ص: %s"
+
+#: game/player/player.go
+msgid "You now have 30 lives. Enjoy!"
+msgstr "عندك ٣٠ حياة دلوقتي. إستمتع !"
+
+#: game/player/player.go
+msgid "You really thought this would do something?"
+msgstr "كنت فاكر ان ده حيعمل حاجة ؟"
+
+#: menu/credits.go
+msgid "Your Speedrun Categories"
+msgstr "مصنفاتك للإنهاء السريع"
+
+#: menu/credits.go
+msgid "Your Time"
+msgstr "وقتك"
+
+#: fun/string.go
+msgid "Z"
+msgstr "Z"
+
+#. Whether text is expected to fit text box height.
+#. Either translate to itself to keep default, or true, or false.
+#: locale/linguas.go
+msgid "_locale_info:fits_height"
+msgstr "_locale_info:fits_height"
+
+#. Which font to use.
+#. Either translate to itself to keep default, or one of bitmapfont, gofont,
+#. unifont.
+#: locale/linguas.go
+msgid "_locale_info:font"
+msgstr "bitmapfont"
+
+#. Whether text should be rendered vertical instead of turned by 90 degrees.
+#. Either translate to itself to keep default, or true, or false.
+#: locale/linguas.go
+msgid "_locale_info:prefers_vertical_text"
+msgstr "_locale_info:prefers_vertical_text"
+
+#. Whether text should be shaped using Arabic rules.
+#. Either translate to itself to keep default, or true, or false.
+#: locale/linguas.go
+msgid "_locale_info:uses_arabic_shaping"
+msgstr "true"
+
+#. Whether Ebitengine's glyph cache is safe to use with this language.
+#. Either translate to itself to keep default, or true, or false.
+#: locale/linguas.go
+msgid "_locale_info:uses_ebiten_text"
+msgstr "_locale_info:uses_ebiten_text"
+
+#: menu/credits.go
+msgid "and %s"
+msgstr "و %s"
+
+#: menu/credits.go
+msgid "and other contributors"
+msgstr "و مساهمون أخرون"
+
+#: menu/credits.go
+msgid "by %s"
+msgstr "بواسطة %s"
+
+#. Used in context "Hold ...".
+#: fun/string.go
+msgid "elsewhere"
+msgstr "في أي حتة تانية"
+
+#: sound/sound.go
+msgid "enumerating sounds"
+msgstr "يتم عد الأصوات"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "everything"
+msgstr "كل حاجة"
+
+#: level/level.go
+msgid "hashing level"
+msgstr "تتم تجزئة المستوى"
+
+#: aaaaxy/init.go
+msgid "initializing audio"
+msgstr "تتم تهيئة الصوتيات"
+
+#: aaaaxy/init.go
+msgid "initializing dumping"
+msgstr "يتم بدء التخلص"
+
+#: aaaaxy/init.go
+msgid "initializing input"
+msgstr "يتم تهيئة الإدخالات"
+
+#: aaaaxy/init.go
+msgid "initializing noise"
+msgstr "تتم تهيئة الضوضاء"
+
+#: level/level.go
+msgid "loading checkpoints"
+msgstr "جارٍ تحميل نقاط الوصول"
+
+#: engine/world.go
+msgid "loading level"
+msgstr "جارٍ تحميل المستوى"
+
+#: level/level.go
+msgid "loading level file"
+msgstr "جارٍ تحميل ملف المستوى"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "nothing"
+msgstr "ولا حاجة"
+
+#: level/level.go
+msgid "parsing level data"
+msgstr "تحليل بيانات المستوى"
+
+#: sound/sound.go
+msgid "precaching %s"
+msgstr "التخزين المبدئي %s"
+
+#: aaaaxy/init.go
+msgid "precaching credits"
+msgstr "يتم التخزين المبدئي للجدير بالذكر"
+
+#: aaaaxy/init.go
+msgid "precaching engine"
+msgstr "يتم التخزين المبدئي للمحرك"
+
+#: engine/world.go
+msgid "precaching entities"
+msgstr "يتم التخزين المبدئي للجهات"
+
+#: aaaaxy/init.go
+msgid "precaching fonts"
+msgstr "يتم التخزين المبدئي للخط"
+
+#: aaaaxy/init.go
+msgid "precaching images"
+msgstr "يتم التخزين المبدئي للصور"
+
+#: aaaaxy/init.go
+msgid "precaching sounds"
+msgstr "يتم التخزين المبدئي للأصوات"
