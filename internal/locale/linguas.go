@@ -183,7 +183,7 @@ func ActivePrefersVerticalText() VerticalTextPreference {
 	po := G // Workaround for xgotext otherwise not finding the call.
 	setting := po.Get("_locale_info:prefers_vertical_text")
 	switch setting {
-	case "_locale_info:prefers_vertical_text":
+	case "_locale_info:prefers_vertical_text", "default":
 		return DefaultPreferVerticalText
 	case "true":
 		return AlwaysPreferVerticalText

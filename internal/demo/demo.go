@@ -66,7 +66,7 @@ var (
 func Init() error {
 	if *demoPlay != "" {
 		var err error
-		demoPlayerFile, err = os.Open(*demoPlay)
+		demoPlayerFile, err = vfs.OSOpen(*demoPlay)
 		if err != nil {
 			var verr error
 			demoPlayerFile, verr = vfs.LoadPath("demos", *demoPlay)
