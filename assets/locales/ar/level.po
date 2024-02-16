@@ -1028,7 +1028,7 @@ msgstr "إنتبه لرأسك؛ فما لك سواها."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4694]
 msgid "More is not always better."
-msgstr "ليس الجيد بكثرته."
+msgstr "لا يعظم الشيء بكثرته."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4716]
 msgid "Those who are not up to speed may get left behind."
