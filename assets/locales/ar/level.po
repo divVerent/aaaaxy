@@ -1032,7 +1032,7 @@ msgstr "لا يعظم الشيء بكثرته."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4716]
 msgid "Those who are not up to speed may get left behind."
-msgstr "من لا يسرع قد يتخلف."
+msgstr "من لا يواكب قد يتخلف."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4727]
 msgid "Time is of the essence."
