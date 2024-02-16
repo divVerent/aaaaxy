@@ -1170,7 +1170,7 @@ msgstr "ألم يكن من الأفضل أن تفعل ذلك مبكرًا."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5546]
 msgid "Greedy you are, greedy!"
-msgstr "يا لبخلك يا بخيل!"
+msgstr "الطمع يقل ما جمع."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5568]
 msgid "The Cube"
