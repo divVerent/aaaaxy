@@ -725,7 +725,7 @@ msgstr "أنفعل نفس ما فعلنا العام الماضي؟"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1819]
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
 msgstr ""
-"فلتضع الشيء على الشيء ها هما شيئان{{BR}}و ضع عليهما الأخر ولا يلهيك شنئان."
+"فلتضع الشيء على الشيء ها هما شيئان{{BR}}و ضع عليهما الأخر ولا يوقفك شنئان."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2220]
 msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
