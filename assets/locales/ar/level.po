@@ -729,7 +729,7 @@ msgstr ""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2220]
 msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
-msgstr "إن لم تنظر للأفق قد تنتهي حياتك{{BR}}(عمليًا)."
+msgstr "إن لم تنظر أمامك قد تنتهي حياتك{{BR}}(عمليًا)."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2301]
 msgid "Gotta Carry It Out"
