@@ -954,7 +954,7 @@ msgstr "سباق عربااات"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4097]
 msgid "Those who haven't learned the trick{{BR}}must take a little pit stop."
-msgstr "من لم يتعلم الطريقة{{BR}}وجب عليه التوقف قليلًا."
+msgstr "من لم يتعلم الطريقة{{BR}}وجب عليه اخذ منعطف ."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4107]
 msgid "Moved Enough?"
