@@ -1266,7 +1266,7 @@ msgstr "ما كان يعدّ جبنًا قد يكون هو الطريق الوح
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6537]
 msgid "Not triggering the switch of doom might take some effort."
-msgstr "ألّا تفتح أبواب الهلاك قد يحتاج شيئًا من الجِد."
+msgstr "ألّا تفتح أبواب الهلاك قد يحتاج شيئًا من الجهد."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6538]
 msgid "A window of opportunity can lead to greener pastures."
