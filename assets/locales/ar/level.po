@@ -358,7 +358,7 @@ msgstr "١١"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1101]
 msgid "The first track is never the one with your train."
-msgstr "ليس قطارك في أول خطٍّ أبدًا."
+msgstr "ما قطارك بأول خطٍّ أبدًا."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
