@@ -43,6 +43,7 @@ var (
 	debugNeighborLoadingOptimization = flag.Bool("debug_neighbor_loading_optimization", true, "load tiles faster from the same neighbor tile (maybe incorrect, but faster)")
 	debugCheckTileWindowSize         = flag.Bool("debug_check_tile_window_size", false, "if set, we verify that the tile window size is set high enough")
 	debugCheckEntityOverlaps         = flag.Bool("debug_check_entity_overlaps", false, "if set, we verify no two static entities overlap at same Z index")
+	debugCheckEntitySpawn            = flag.Bool("debug_check_entity_spawn", false, "if set, crash if an entity fails to spawn")
 )
 
 // World represents the current game state including its entities.
@@ -713,7 +714,11 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		for _, spawnable := range tile.Spawnables {
 			_, err := w.Spawn(spawnable, pos, tile)
 			if err != nil {
-				log.Errorf("could not spawn entity %v: %v", spawnable, err)
+				if *debugCheckEntitySpawn {
+					log.Fatalf("could not spawn entity %v: %v", spawnable, err)
+				} else {
+					log.Errorf("could not spawn entity %v: %v", spawnable, err)
+				}
 			}
 		}
 	})
