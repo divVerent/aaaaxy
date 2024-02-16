@@ -704,7 +704,7 @@ msgstr "عكس الدهرُ أحكامَهُ"
 #. dies'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1807]
 msgid "He who waits,{{BR}}retries ... #DGR"
-msgstr "من يتنظر{{BR}}يعيد...#DGR"
+msgstr "من ينتظر{{BR}}يعيد...#DGR"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1814]
 msgid "Avoid getting blocked in!"
