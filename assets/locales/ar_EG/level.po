@@ -34,7 +34,7 @@ msgstr "عمر ما الفشل كان خيار (ولا قتة)."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=50]
 msgid ""
 "Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
-msgstr "مش العيال بتحب تسأل : \"وصلنا ؟ \"{{BR}} اضغط{{ExitButton}}"
+msgstr "مش العيال بتحب تسأل : \"وصلنا ؟ \"{{BR}}اضغط{{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=51]
 msgid "Sometimes the angle of looking at things is all that matters."
@@ -80,11 +80,11 @@ msgstr "في بيفضل ٢ن على π٤"
 #. devotionals/2013/01/what-is-truth?lang=eng
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
-msgstr "\"على الرغم من الإجماع ذو السيط والندرة، فالأرضُ ليست مسطحةٌ\" "
+msgstr "\"على الرغم من الإجماع ذو السيط والندرة، فالأرضُ ليست مسطحةٌ.\""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=93]
 msgid "Some people prefer 4π over 2τ."
-msgstr "في بيفضلπ٤ على٢ن "
+msgstr "في بيفضلπ٤ على٢ن"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=94]
 msgid "Interesting things are hardly ever found in corners."
@@ -155,7 +155,7 @@ msgid ""
 "a waste of time.{{BR}}Press {{ExitButton}}."
 msgstr ""
 "أهلا بيك على قمة الجبل.{{BR}}لو انت هنا لوحدك، يبقى ضيعت وقتك.{{BR}}اضغط "
-"{{ExitButton}} "
+"{{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=245]
 msgid "The shortest path can be the one that takes longest."
@@ -171,7 +171,7 @@ msgstr "مش لازم الوقوع من مكان عالي يوجعك."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=255]
 msgid "Entering through the front door is boring."
-msgstr "وَلَيْسَ الْبِرُّ بِأَنْ تَأْتُوا الْبُيُوتَ مِنْ ظُهُورِهَا "
+msgstr "وَلَيْسَ الْبِرُّ بِأَنْ تَأْتُوا الْبُيُوتَ مِنْ ظُهُورِهَا"
 
 #. https://en.wikipedia.org/wiki/House_with_two_rooms
 #: assets/maps/level.tmx//map/objectgroup/object[@id=264]
@@ -375,8 +375,8 @@ msgid ""
 "Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your"
 " keys{{BR}}3) {{ExitButton}} for checkout"
 msgstr ""
-"هندق فيلبرت {{BR}}{{BR}} أهلًا و سهلًا!{{BR}}{{BR}}١) احجز مكان{{BR}}٢) خد "
-"مفاتيحك{{BR}}٣){{ExitButton}} للحساب و الخروج "
+"هندق فيلبرت{{BR}}{{BR}}أهلًا و سهلًا!{{BR}}{{BR}}١) احجز مكان{{BR}}٢) خد "
+"مفاتيحك{{BR}}٣){{ExitButton}} للحساب و الخروج"
 
 #. Translate 'Dilbert's Hotel', but swap the first consonant of the two main
 #. words. Prefer translating 'Hotel' to something that makes a H sound at the
@@ -392,7 +392,7 @@ msgstr "خلصت من عندي ...{{BR}}{{BR}}{{BR}}{{BR}}الأوض"
 #. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1199]
 msgid "He shall not return by the way of the gate whereby he came in."
-msgstr " لاَ يَرْجعُ مِنْ طَرِيقِ الْبَابِ الَّذِي دَخَلَ مِنْهُ"
+msgstr "لاَ يَرْجعُ مِنْ طَرِيقِ الْبَابِ الَّذِي دَخَلَ مِنْهُ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1228]
 msgid "Shepard Tone"
@@ -404,7 +404,7 @@ msgstr "نغمة شيبرد"
 #. song by Eduard Khil.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1243]
 msgid "Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"
-msgstr "كله{{BR}} يقدر يدخل الأبواب{{BR}} لا trololo!"
+msgstr "كله{{BR}}يقدر يدخل الأبواب{{BR}}لا trololo!"
 
 #. C as in the first music note of the C major scale. Also known as Do, Sa, 上,
 #. ル or 1.
@@ -494,7 +494,7 @@ msgstr "اسمع تعويذة السلحفاة السحرية و حتعدي."
 #. https://antichamber.fandom.com/wiki/Don%27t_Look_Down
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1364]
 msgid "Don't{{BR}}Look Up!"
-msgstr "إوعى{{BR}} تبص لفوق"
+msgstr "إوعى{{BR}}تبص لفوق"
 
 #. reference to 'curiosity killed the cat' saying; be creative here when
 #. translating; be consistent with the 'Curiosity killed the Carl - no the
@@ -512,7 +512,7 @@ msgstr "في حاجات مش بتبان من أولها."
 #. Rover and the Feline' text.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1407]
 msgid "Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."
-msgstr "جنت على نفسها مراكش- لا قصدي براقش{{BR}} اضغط{{ExitButton}}."
+msgstr "جنت على نفسها مراكش- لا قصدي براقش{{BR}}اضغط{{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1410]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1411]
@@ -686,7 +686,7 @@ msgstr "هز يا وز"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1765]
 msgid "Hello,{{BR}}World!"
-msgstr "أهلا{{BR}}بالعالم! "
+msgstr "أهلا{{BR}}بالعالم!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1771]
 msgid ""
@@ -696,7 +696,7 @@ msgstr "بالعقل و الترشيد،الخير يزيد .{{BR}}اضغط{{Exi
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1793]
 msgid "Switching It Up"
-msgstr " عكس الدهرُ أحكامَهُ"
+msgstr "عكس الدهرُ أحكامَهُ"
 
 #. https://youtube.fandom.com/wiki/DGR - he frequently says 'He who waits,
 #. dies'
@@ -739,7 +739,7 @@ msgstr "تحمل العناء"
 msgid ""
 "You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
 msgstr ""
-"أنت في{{BR}}متاهة من الممرات{{BR}}الملتوية الصغيرة،{{BR}} كلها متشابهة."
+"أنت في{{BR}}متاهة من الممرات{{BR}}الملتوية الصغيرة،{{BR}}كلها متشابهة."
 
 #. https://en.wikipedia.org/wiki/Xyzzy_(computing)
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2329]
@@ -784,7 +784,7 @@ msgstr "في أفكار بتبان ذكية في الأول بس."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2842]
 msgid "If there seems to be no way, you just haven't found it yet."
-msgstr "لو شايف إن مفيش سكة،متخافش إنت بس لسة ملقيتهاش. "
+msgstr "لو شايف إن مفيش سكة،متخافش إنت بس لسة ملقيتهاش."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2886]
 msgid "Before The Anti-Hub"
@@ -854,7 +854,7 @@ msgstr "جهاز التحكم{{BR}}(إفضل دايس{{ActionButton}})"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3840]
 msgid "Do you have{{BR}}what it takes?"
-msgstr "انت{{BR}} قدها؟"
+msgstr "انت{{BR}}قدها؟"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3842]
 msgid "You think{{BR}}you can do it?"
@@ -913,7 +913,7 @@ msgstr "البند٦٥"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3863]
 msgid "And now you've learned{{BR}}not to touch the hot stove."
-msgstr "أديك إتعلمت {{BR}}متلمسش عين البوتاجاز."
+msgstr "أديك إتعلمت{{BR}}متلمسش عين البوتاجاز."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3866]
 msgid "The Butterfly Effect"
@@ -922,7 +922,7 @@ msgstr "تأثير الفراشة"
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3912]
 msgid "What we've done before{{BR}}may impact what we can do next."
-msgstr "إللي عملناه قبل كده{{BR}} هيؤثر على بعد كده."
+msgstr "إللي عملناه قبل كده{{BR}}هيؤثر على بعد كده."
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3926]
@@ -936,7 +936,7 @@ msgstr ""
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3927]
 msgid "Moving forward may require{{BR}}making the most of what you've got."
-msgstr "إنك تكمل مشي لقدام ممكن يحتاج منك{{BR}} تبذل كل إللي عندك."
+msgstr "إنك تكمل مشي لقدام ممكن يحتاج منك{{BR}}تبذل كل إللي عندك."
 
 #. https://en.wikipedia.org/wiki/Kaizo - transcribe phonetically
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3977]
@@ -989,7 +989,7 @@ msgstr "لا"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4520]
 msgid "Why did you even lie?{{BR}}Press {{ExitButton}}."
-msgstr "ياعم! إنت كدبت ليه؟{{BR}} اضغط{{ExitButton}} "
+msgstr "ياعم! إنت كدبت ليه؟{{BR}}اضغط{{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4551]
 msgid ""
@@ -1072,7 +1072,7 @@ msgstr "الجريمة لا تفيد.{{BR}}اضغط {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4997]
 msgid "Dude!{{BR}}That's{{BR}}MY car!"
-msgstr "ياعم!{{BR}} دي{{BR}}عربيتي!"
+msgstr "ياعم!{{BR}}دي{{BR}}عربيتي!"
 
 #. Part of 'What are you after?'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5004]
@@ -1112,11 +1112,11 @@ msgstr "حتى المشي في دواير ممكن يوديك حتة."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5167]
 msgid "Get It Back!"
-msgstr " رجعّها !"
+msgstr "رجعّها !"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5187]
 msgid "y tho?{{BR}}Press {{ExitButton}}."
-msgstr " ليههه ؟{{BR}} اضغط{{ExitButton}}"
+msgstr "ليههه ؟{{BR}}اضغط{{ExitButton}}"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5207]
 msgid "Stairs to Nowhere"
@@ -1128,7 +1128,7 @@ msgstr "مش أي سلم يوصلك حتة حلوة."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5256]
 msgid "Don't let appearances fool you."
-msgstr "متنخدعش بالمظاهر. "
+msgstr "متنخدعش بالمظاهر."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5475]
 msgid "You just need to push away what you don't need."
@@ -1205,7 +1205,7 @@ msgstr "إصحى ليغفلوك."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
-msgstr "لو مش عارف إنت مين{{BR}}مش هتعرف تروح فين. "
+msgstr "لو مش عارف إنت مين{{BR}}مش هتعرف تروح فين."
 
 #. Reference to Dr. Wily from the Mega Man / Rockman series.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6103]
@@ -1323,7 +1323,7 @@ msgid ""
 "The Enrichment Center regrets to inform you that{{BR}}the Super Gravitron is"
 " currently out of order.{{BR}}Press {{ExitButton}}."
 msgstr ""
-"يأسف مركز التنمية لإعلامك بأن{{BR}} المتجاذب الخارق حاليًا خارج "
+"يأسف مركز التنمية لإعلامك بأن{{BR}}المتجاذب الخارق حاليًا خارج "
 "الخدمة.{{BR}}اضغط {{ExitButton}}."
 
 #. https://thelettervsixtim.es/ - try keeping the two V alliteration when
@@ -1376,7 +1376,7 @@ msgstr "ها! محدش هيوصل لدي أبدًا."
 #. https://thelettervsixtim.es/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7490]
 msgid "You have found a shiny trinket!{{BR}}One out of One."
-msgstr "لاقيت حلية لامعة!{{BR}}واحد من واحد. "
+msgstr "لاقيت حلية لامعة!{{BR}}واحد من واحد."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7769]
 msgid "W{{BR}}A{{BR}}T"
@@ -1384,7 +1384,7 @@ msgstr "و{{BR}}ه{{BR}}!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7770]
 msgid "Just{{BR}}kiddin'"
-msgstr "ياه عليك{{BR}} ده أنا بهزر"
+msgstr "ياه عليك{{BR}}ده أنا بهزر"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7837]
 msgid "I hope you took{{BR}}the small one ..."
@@ -1412,7 +1412,7 @@ msgstr "إذا علقت{{BR}}اضغط{{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7877]
 msgid "Phew?"
-msgstr "الحمدلله؟ "
+msgstr "الحمدلله؟"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7980]
 msgid "reached A New Beginning with {{Abilities}} at {{GameTime}}."
@@ -1420,7 +1420,7 @@ msgstr "وصل لبدايةٍ جديدة ومعاه{{Abilities}} عند{{GameTim
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7986]
 msgid "Higher, Higher, Higher!"
-msgstr "لفوق، لفوق، لفوق! "
+msgstr "لفوق، لفوق، لفوق!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7987]
 msgid "It can be helpful to do two things at the same time."
