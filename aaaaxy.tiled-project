@@ -454,6 +454,123 @@
             ]
         },
         {
+            "color": "#ffffffff",
+            "id": 38,
+            "members": [
+                {
+                    "name": "alpha",
+                    "type": "string",
+                    "value": "1"
+                },
+                {
+                    "name": "map_black_to",
+                    "type": "color",
+                    "value": "#00000000"
+                },
+                {
+                    "name": "map_white_to",
+                    "type": "color",
+                    "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "no_transform",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "object_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "opaque",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "orientation_for_default_vertical_text",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "orientation_for_vertical_text",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "player_solid",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "required_orientation",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "required_x_divisible_by",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_bg",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_fg",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "text_font",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "unless_abilities",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "z_index",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "CoverText",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
             "color": "#ffff00ff",
             "id": 5,
             "members": [

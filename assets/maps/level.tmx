@@ -7022,13 +7022,12 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1819" type="Text" x="7264" y="7232" width="240" height="64">
+  <object id="1819" type="CoverText" x="7264" y="7232" width="240" height="64">
    <properties>
     <property name="text" value="Just put the thing on the thing{{BR}}and the other one too, already!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
-    <property name="z_index" type="int" value="1"/>
    </properties>
   </object>
   <object id="1822" gid="309" x="7200" y="7360" width="16" height="16"/>
