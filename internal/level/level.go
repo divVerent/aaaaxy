@@ -572,12 +572,12 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 			if hasText {
 				var cjkOrientation m.Orientation
 				switch locale.ActivePrefersVerticalText() {
-					case locale.NeverPreferVerticalText:
-						cjkOrientation = m.Orientation{}
-					case locale.DefaultPreferVerticalText:
-						cjkOrientation = propmap.ValueOrP(properties, "orientation_for_default_vertical_text", m.Orientation{}, &parseErr)
-					case locale.AlwaysPreferVerticalText:
-						cjkOrientation = propmap.ValueOrP(properties, "orientation_for_vertical_text", m.Orientation{}, &parseErr)
+				case locale.NeverPreferVerticalText:
+					cjkOrientation = m.Orientation{}
+				case locale.DefaultPreferVerticalText:
+					cjkOrientation = propmap.ValueOrP(properties, "orientation_for_default_vertical_text", m.Orientation{}, &parseErr)
+				case locale.AlwaysPreferVerticalText:
+					cjkOrientation = propmap.ValueOrP(properties, "orientation_for_vertical_text", m.Orientation{}, &parseErr)
 				}
 				if !cjkOrientation.IsZero() {
 					propmap.Set(properties, "text", "{{_VerticalText}}"+propmap.ValueP(properties, "text", "", &parseErr))

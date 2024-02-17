@@ -24,6 +24,7 @@ const (
 	SwitchZ         = 4
 	SwitchBlockZ    = 5
 	CoverSpriteZ    = 5
+	TextZ           = 5
 	RiserMovingZ    = 6
 	PlayerZ         = 7
 	RiserCarriedZ   = 8

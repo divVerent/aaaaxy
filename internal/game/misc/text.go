@@ -25,6 +25,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
+	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -153,6 +154,8 @@ func (t *Text) Precache(sp *level.Spawnable) error {
 }
 
 func (t *Text) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
+	t.SpriteBase.ZDefault = constants.TextZ
+
 	propmap.SetDefault(sp.Properties, "no_flip", "x")
 
 	t.World = w

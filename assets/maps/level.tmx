@@ -5704,6 +5704,7 @@
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Small"/>
+    <property name="z_index" value="0"/>
    </properties>
   </object>
   <object id="1245" type="Text" x="4272" y="5856" width="16" height="32">
@@ -5716,6 +5717,7 @@
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Small"/>
+    <property name="z_index" value="0"/>
    </properties>
   </object>
   <object id="1246" type="Text" x="4288" y="5856" width="16" height="32">
@@ -5728,6 +5730,7 @@
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Small"/>
+    <property name="z_index" value="0"/>
    </properties>
   </object>
   <object id="1247" type="Text" x="4304" y="5856" width="16" height="32">
@@ -5740,6 +5743,7 @@
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Small"/>
+    <property name="z_index" value="0"/>
    </properties>
   </object>
   <object id="1248" type="Text" x="4320" y="5856" width="16" height="32">
@@ -5752,6 +5756,7 @@
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Small"/>
+    <property name="z_index" value="0"/>
    </properties>
   </object>
   <object id="1249" type="Text" x="4336" y="5856" width="16" height="32">
@@ -5764,6 +5769,7 @@
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Small"/>
+    <property name="z_index" value="0"/>
    </properties>
   </object>
   <object id="1250" type="Text" x="4352" y="5856" width="16" height="32">
@@ -5776,6 +5782,7 @@
     <property name="text_bg" type="color" value="#00000000"/>
     <property name="text_fg" type="color" value="#ff555555"/>
     <property name="text_font" value="Small"/>
+    <property name="z_index" value="0"/>
    </properties>
   </object>
   <object id="1251" name="ShepardOpen" type="SoundTarget" x="4288" y="5840" width="16" height="16">
@@ -6840,6 +6847,7 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
+    <property name="z_index" type="int" value="0"/>
    </properties>
   </object>
   <object id="1766" name="hello_world" type="Checkpoint" x="8000" y="6896" width="16" height="112">
@@ -7022,7 +7030,7 @@
     <property name="text_font" value="Regular"/>
    </properties>
   </object>
-  <object id="1819" type="CoverText" x="7264" y="7232" width="240" height="64">
+  <object id="1819" type="Text" x="7264" y="7232" width="240" height="64">
    <properties>
     <property name="text" value="Just put the thing on the thing{{BR}}and the other one too, already!"/>
     <property name="text_bg" type="color" value="#ff000000"/>
