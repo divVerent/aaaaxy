@@ -51,7 +51,7 @@ require (
 )
 
 require (
-	github.com/otiai10/copy v1.10.0
+	github.com/otiai10/copy v1.14.0
 	github.com/spf13/cobra v1.7.0
 )
 
