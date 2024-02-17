@@ -41,7 +41,7 @@ jobs:
 
     - name: Archive Results
       if: ${{ always() }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: regression-test-results-100percent-linux-amd64
         path: |

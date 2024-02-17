@@ -28,7 +28,7 @@ jobs:
       run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
 
     - name: Archive Binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: aaaaxy-debug-linux-amd64
         path: |
@@ -59,7 +59,7 @@ jobs:
 
     - name: Archive Results
       if: ${{ always() }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: regression-test-results-anypercent-linux-amd64
         path: |
@@ -85,7 +85,7 @@ jobs:
       run: 'GOOS=windows GOARCH=amd64 AAAAXY_BUILD_USE_VERSION_FILE=true make'
 
     - name: Archive Binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: aaaaxy-debug-windows-amd64
         path: |
@@ -113,7 +113,7 @@ jobs:
 
     - name: Archive Results
       if: ${{ always() }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: regression-test-results-anypercent-windows-amd64
         path: |
@@ -141,7 +141,7 @@ jobs:
 
     - name: Archive Results
       if: ${{ always() }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: regression-test-results-anypercent-wine-amd64
         path: |
@@ -167,7 +167,7 @@ jobs:
       run: 'GOOS=windows GOARCH=386 AAAAXY_BUILD_USE_VERSION_FILE=true make'
 
     - name: Archive Binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: aaaaxy-debug-windows-386
         path: |
@@ -203,7 +203,7 @@ jobs:
 
 #   - name: Archive Results
 #     if: ${{ always() }}
-#     uses: actions/upload-artifact@v3
+#     uses: actions/upload-artifact@v4
 #     with:
 #       name: regression-test-results-anypercent-windows-386
 #       path: |
@@ -226,7 +226,7 @@ jobs:
       run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
 
     - name: Archive Binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: aaaaxy-debug-darwin-amd64
         path: |
@@ -259,7 +259,7 @@ jobs:
 #
 #   - name: Archive Results
 #     if: ${{ always() }}
-#     uses: actions/upload-artifact@v3
+#     uses: actions/upload-artifact@v4
 #     with:
 #       name: regression-test-results-anypercent-darwin-amd64
 #       path: |
