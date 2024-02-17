@@ -18,7 +18,7 @@ android {
         versionCode "${prefix}scripts/version.sh android".execute(null, rootDir).text.trim().toInteger()
         versionName "${prefix}scripts/version.sh semver".execute(null, rootDir).text.trim()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        resConfigs 'en', 'de', 'de-rCH', 'la', 'pt', 'pt-rBR', 'be', 'b+be+Latn', 'uk', 'ar', 'b+zh+Hans'
+        resConfigs 'en', 'de', 'de-rCH', 'la', 'pt', 'pt-rBR', 'be', 'b+be+Latn', 'uk', 'ar', 'ar-rEG', 'b+zh+Hans'
     }
     signingConfigs {
         release {
