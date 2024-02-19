@@ -23,7 +23,6 @@ import (
 	"time"
 
 	"github.com/jeandeaual/go-locale"
-	"golang.org/x/mobile/app"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/mobile"
