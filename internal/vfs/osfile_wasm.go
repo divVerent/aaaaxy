@@ -20,11 +20,18 @@ package vfs
 import (
 	"bytes"
 	"encoding/base64"
-	"io"
 	"strings"
 	"sync"
 	"syscall/js"
 )
+
+type osReader struct {
+	*bytes.Reader
+}
+
+func (o osReader) Close() error {
+	return nil
+}
 
 func osOpen(name string) (readFile, error) {
 	var data string
@@ -38,7 +45,7 @@ func osOpen(name string) (readFile, error) {
 	if err != nil {
 		return nil, err
 	}
-	return io.NopCloser(bytes.NewReader(decoded)), nil
+	return osReader{Reader: bytes.NewReader(decoded)}, nil
 }
 
 type osWriter struct {
