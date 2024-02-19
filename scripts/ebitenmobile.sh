@@ -21,7 +21,8 @@
 
 set -ex
 
-root=$(realpath "$(realpath "$0")/..")
+self=$(realpath "$0")
+root=${self%/*}
 
 git diff --exit-code "$root"/internal/builddeps/builddeps.go "$root"/go.mod "$root"/go.sum
 
