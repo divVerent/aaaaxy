@@ -21,6 +21,10 @@ package vfs
 // golang.org/x/mobile/asset/asset_android.go
 // but changed to work with ebitenmobile.
 
+// Copyright 2015 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 /*
 #cgo LDFLAGS: -landroid
 #include <android/asset_manager.h>
