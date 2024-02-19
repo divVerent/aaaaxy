@@ -31,9 +31,13 @@ rm -rf licenses/*.txt
 $GO run ${GO_FLAGS} github.com/google/go-licenses save github.com/divVerent/aaaaxy --force --save_path=licenses/software-licenses || true
 
 # This will fail if go-licenses wrote no output.
-for d in licenses/software-licenses/*/; do
-	[ -d "$d" ]
-done
+# That is OK though for vendored builds, as these can easily have their own
+# license management.
+if ! [ -d vendor ]; then
+	for d in licenses/software-licenses/*/; do
+		[ -d "$d" ]
+	done
+fi
 
 # Translate to a single directory.
 find licenses/software-licenses -type f | while read -r path; do
