@@ -18,6 +18,7 @@
 package vfs
 
 import (
+	"bytes"
 	"encoding/base64"
 	"io"
 	"strings"
