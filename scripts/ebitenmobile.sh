@@ -22,7 +22,7 @@
 set -ex
 
 self=$(realpath "$0")
-root=${self%/*}
+root=${self%/*/*}  # remove script name and directory containing it
 cwd=$PWD
 
 cd "$root"
