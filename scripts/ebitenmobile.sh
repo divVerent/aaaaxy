@@ -23,15 +23,20 @@ set -ex
 
 self=$(realpath "$0")
 root=${self%/*}
+cwd=$PWD
 
-git diff --exit-code "$root"/internal/builddeps/builddeps.go "$root"/go.mod "$root"/go.sum
+cd "$root"
+
+git diff --exit-code internal/builddeps/builddeps.go go.mod go.sum
 
 atexit() {
-	git checkout "$root"/internal/builddeps/builddeps.go "$root"/go.mod "$root"/go.sum
+	cd "$root"
+	git checkout internal/builddeps/builddeps.go go.mod go.sum
 }
 trap atexit EXIT
 
-rm -f "$root"/internal/builddeps/builddeps.go
+rm -f internal/builddeps/builddeps.go
 go mod tidy
 
+cd "$cwd"
 go run github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile "$@"
