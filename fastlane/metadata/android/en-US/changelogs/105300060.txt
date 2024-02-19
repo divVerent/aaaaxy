@@ -1,0 +1,9 @@
+  - Engine: add support for "language packs" - .po files placed right next to
+    the game executable.
+  - Engine: update dependencies.
+  - Level: add a very obscure easter egg (not required for any run).
+  - Level: minor change to the "Dopefish Lives" section (improves flow, but may
+    break existing TAS runs for 100%, but same times definitely are achievable).
+  - Menu: show something about the number of question blocks hit.
+  - Translations: add Arabic and Arabic (Egypt). Thank you,
+    Mo'taz Elhag (معتز الحاج)!
