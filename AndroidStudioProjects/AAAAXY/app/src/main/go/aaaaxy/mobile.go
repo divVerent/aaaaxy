@@ -74,7 +74,7 @@ func (g *game) Update() (err error) {
 	}
 	if !g.inited {
 		g.inited = true
-		locale.SetRunOnJVM(app.RunOnJVM)
+		locale.SetRunOnJVM(mobile.RunOnJVM)
 		err = g.game.InitEarly()
 	}
 	if err == nil {

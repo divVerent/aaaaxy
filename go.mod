@@ -10,7 +10,7 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
 	github.com/hajimehoshi/bitmapfont/v3 v3.0.0
-	github.com/hajimehoshi/ebiten/v2 v2.6.6
+	github.com/hajimehoshi/ebiten/v2 v2.7.0-alpha.7.0.20240218172058-1a5832428306
 	github.com/jeandeaual/go-locale v0.0.0-20240204043739-672d8d016d9a
 	github.com/leonelquinteros/gotext v1.5.2
 	github.com/lestrrat-go/strftime v1.0.6
@@ -27,8 +27,10 @@ require (
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
-	github.com/ebitengine/oto/v3 v3.1.0 // indirect
-	github.com/ebitengine/purego v0.6.0 // indirect
+	github.com/ebitengine/gomobile v0.0.0-20240218171544-120934310db5 // indirect
+	github.com/ebitengine/hideconsole v1.0.0 // indirect
+	github.com/ebitengine/oto/v3 v3.2.0-alpha.4 // indirect
+	github.com/ebitengine/purego v0.7.0-alpha // indirect
 	github.com/go-logr/logr v1.2.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/licenseclassifier/v2 v2.0.0 // indirect
