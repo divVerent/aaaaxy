@@ -17,12 +17,6 @@
 
 package log
 
-import (
-	// Some package that includes mobileinit.
-	// This ensures that init() from here runs later.
-	_ "golang.org/x/mobile/app"
-)
-
 // Override logging to be public.
 // That way, Console shows log messages from this game.
 // Logs in AAAAXY simply never contain private info anyway.
@@ -67,6 +61,6 @@ func (o osWriter) Write(p []byte) (n int, err error) {
 	return len(p), nil
 }
 
-func init() {
+func platformInit() {
 	log.SetOutput(io.MultiWriter(os.Stderr, osWriter{C.aaaaxy_create_os_log()}))
 }

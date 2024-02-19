@@ -140,6 +140,7 @@ func CloseLogFile() {
 	logFiles = nil
 }
 
-func init() {
+func Init() {
 	log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds)
+	platformInit()
 }

@@ -111,6 +111,7 @@ func (g *Game) InitEbitengine() error {
 // and may take place in the first frame
 // if there is no way to run this before the main loop (e.g. on mobile).
 func (g *Game) InitEarly() error {
+	log.Init()
 	log.Infof("starting early initialization")
 
 	if *debugGoGCPercent != 0 {
