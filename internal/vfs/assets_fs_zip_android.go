@@ -100,7 +100,7 @@ func (r *reader) readAt(p []byte, off int64) (int, error) {
 	if pos < 0 {
 		return 0, errors.New("could not seek in aaaaxy.dat")
 	}
-	n := int(C.AAsset_read(a.ptr, unsafe.Pointer(&p[0]), C.size_t(len(p))))
+	n := int(C.AAsset_read(r.ptr, unsafe.Pointer(&p[0]), C.size_t(len(p))))
 	if n == 0 && len(p) > 0 {
 		return 0, io.EOF
 	}
@@ -142,7 +142,7 @@ func openAssetsZip() (*reader, error) {
 	assetOnce.Do(assetInit)
 	cname := C.CString("aaaaxy.dat")
 	defer C.free(unsafe.Pointer(cname))
-	mode := C.AASSET_MODE_RANDOM
+	mode := C.int(C.AASSET_MODE_RANDOM)
 	if *pinAssetsToRAM {
 		mode = C.AASSET_MODE_STREAMING
 	}

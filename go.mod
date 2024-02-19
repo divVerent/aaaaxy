@@ -5,10 +5,9 @@ go 1.19
 require (
 	github.com/Microsoft/go-winio v0.6.1
 	github.com/adrg/xdg v0.4.0
-	github.com/akavel/rsrc v0.10.2
+	github.com/akavel/rsrc v0.10.2 // indirect
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/google/go-cmp v0.6.0
-	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
 	github.com/hajimehoshi/bitmapfont/v3 v3.0.0
 	github.com/hajimehoshi/ebiten/v2 v2.7.0-alpha.7.0.20240218172058-1a5832428306
 	github.com/jeandeaual/go-locale v0.0.0-20240204043739-672d8d016d9a
@@ -24,35 +23,20 @@ require (
 )
 
 require (
-	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
 	github.com/ebitengine/gomobile v0.0.0-20240218171544-120934310db5 // indirect
 	github.com/ebitengine/hideconsole v1.0.0 // indirect
 	github.com/ebitengine/oto/v3 v3.2.0-alpha.4 // indirect
 	github.com/ebitengine/purego v0.7.0-alpha // indirect
-	github.com/go-logr/logr v1.2.0 // indirect
-	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/google/licenseclassifier/v2 v2.0.0 // indirect
-	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jezek/xgb v1.1.1 // indirect
 	github.com/jfreymuth/oggvorbis v1.0.5 // indirect
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
 	github.com/josephspurrier/goversioninfo v1.4.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
-	github.com/sergi/go-diff v1.2.0 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
-	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/mod v0.15.0 // indirect
-	golang.org/x/net v0.21.0 // indirect
 	golang.org/x/sync v0.6.0 // indirect
 	golang.org/x/tools v0.18.0 // indirect
-	k8s.io/klog/v2 v2.90.1 // indirect
-)
-
-require (
-	github.com/otiai10/copy v1.14.0
-	github.com/spf13/cobra v1.8.0
 )
 
 // Use when playing around with extended/fixed tmx versions.
