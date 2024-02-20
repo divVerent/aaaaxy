@@ -49,6 +49,7 @@ jobs:
       env:
         AAAAXY_BUILD_USE_VERSION_FILE: true
         AAAAXY_ZIPFILE: aaaaxy.zip
+        ADVZIP: ':'
         CGO_ENV_amd64: 'CGO_ENABLED=1 CC="clang -arch x86_64" CXX="clang++ -arch x86_64"'
         CGO_ENV_arm64: 'CGO_ENABLED=1 CC="clang -arch arm64" CXX="clang++ -arch arm64"'
 
