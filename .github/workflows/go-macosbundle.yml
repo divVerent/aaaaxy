@@ -17,7 +17,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'brew install advancecomp imagemagick'
+      run: 'brew install imagemagick'
 
     - name: Set up Go
       uses: actions/setup-go@v5
@@ -25,7 +25,11 @@ jobs:
         go-version: 1.19
 
     - name: Build Specific
-      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true AAAAXY_ZIPFILE=aaaaxy.zip sh scripts/binary-release-compile.sh'
+      run: 'sh scripts/binary-release-compile.sh'
+      env:
+        AAAAXY_BUILD_USE_VERSION_FILE: true
+        AAAAXY_ZIPFILE: aaaaxy.zip
+        ADVZIP: :
 
     - name: Enable Software Rendering
       run: 'sh scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'
@@ -41,7 +45,12 @@ jobs:
 #     run: 'sh scripts/regression-test-demo.sh darwin-specific "on track for Any%, All Paths, No Teleports and No Coil" "open -n -W packaging/AAAAXY.app --args" assets/demos/benchmark.dem'
 
     - name: Build Universal
-      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true AAAAXY_ZIPFILE=aaaaxy.zip CGO_ENV_amd64="CGO_ENABLED=1 CC=\"clang -arch x86_64\" CXX=\"clang++ -arch x86_64\"" CGO_ENV_arm64="CGO_ENABLED=1 CC=\"clang -arch arm64\" CXX=\"clang++ -arch arm64\"" sh scripts/binary-release-compile.sh amd64 arm64'
+      run: 'sh scripts/binary-release-compile.sh amd64 arm64'
+      env:
+        AAAAXY_BUILD_USE_VERSION_FILE: true
+        AAAAXY_ZIPFILE: aaaaxy.zip
+        CGO_ENV_amd64: 'CGO_ENABLED=1 CC="clang -arch x86_64" CXX="clang++ -arch x86_64"'
+        CGO_ENV_arm64: 'CGO_ENABLED=1 CC="clang -arch arm64" CXX="clang++ -arch arm64"'
 
     - name: Enable Software Rendering
       run: 'sh scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'

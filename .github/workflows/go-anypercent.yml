@@ -25,7 +25,9 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
+      run: 'make'
+      env:
+        AAAAXY_BUILD_USE_VERSION_FILE: true
 
     - name: Archive Binary
       uses: actions/upload-artifact@v4
@@ -82,7 +84,11 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: 'GOOS=windows GOARCH=amd64 AAAAXY_BUILD_USE_VERSION_FILE=true make'
+      run: 'make'
+      env:
+        AAAAXY_BUILD_USE_VERSION_FILE: true
+        GOARCH: amd64
+        GOOS: windows
 
     - name: Archive Binary
       uses: actions/upload-artifact@v4
@@ -165,7 +171,11 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: 'GOOS=windows GOARCH=386 AAAAXY_BUILD_USE_VERSION_FILE=true make'
+      run: 'make'
+      env:
+        AAAAXY_BUILD_USE_VERSION_FILE: true
+        GOARCH: 386
+        GOOS: windows
 
     - name: Archive Binary
       uses: actions/upload-artifact@v4

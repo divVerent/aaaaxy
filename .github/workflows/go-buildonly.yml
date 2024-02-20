@@ -17,7 +17,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install advancecomp zip'
+      run: 'sudo apt-get update && sudo apt-get -y install zip'
 
     - name: Set up Go
       uses: actions/setup-go@v5
@@ -25,7 +25,12 @@ jobs:
         go-version: 1.20
 
     - name: Build
-      run: 'GOOS=js GOARCH=wasm AAAAXY_BUILD_USE_VERSION_FILE=true make'
+      run: 'make'
+      env:
+        AAAAXY_BUILD_USE_VERSION_FILE: true
+        ADVZIP: :
+        GOARCH: wasm
+        GOOS: js
 
     - name: Archive Binary
       uses: actions/upload-artifact@v4
@@ -70,6 +75,7 @@ jobs:
       run: 'cd AndroidStudioProjects/AAAAXY/ && ./gradlew assembleDebug -Paaaaxy_build_use_version_file=true'
       env:
         ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        ADVZIP=:
 
     - name: Archive Binary
       uses: actions/upload-artifact@v4
@@ -91,7 +97,9 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
+      run: 'make'
+      env:
+        AAAAXY_BUILD_USE_VERSION_FILE: true
 
     - name: Archive Binary
       uses: actions/upload-artifact@v4

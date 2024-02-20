@@ -25,7 +25,9 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: 'AAAAXY_BUILD_USE_VERSION_FILE=true make'
+      run: 'make'
+      env:
+        AAAAXY_BUILD_USE_VERSION_FILE: true
 
     - name: Vet
       run: 'make vet'
