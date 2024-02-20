@@ -29,7 +29,7 @@ jobs:
       env:
         AAAAXY_BUILD_USE_VERSION_FILE: true
         AAAAXY_ZIPFILE: aaaaxy.zip
-        ADVZIP: :
+        ADVZIP: ':'
 
     - name: Enable Software Rendering
       run: 'sh scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'

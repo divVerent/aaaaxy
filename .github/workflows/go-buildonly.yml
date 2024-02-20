@@ -28,7 +28,7 @@ jobs:
       run: 'make'
       env:
         AAAAXY_BUILD_USE_VERSION_FILE: true
-        ADVZIP: :
+        ADVZIP: ':'
         GOARCH: wasm
         GOOS: js
 
@@ -48,7 +48,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install advancecomp zip'
+      run: 'sudo apt-get update && sudo apt-get -y install zip'
 
     - name: Set up JDK
       uses: actions/setup-java@v3
@@ -75,7 +75,7 @@ jobs:
       run: 'cd AndroidStudioProjects/AAAAXY/ && ./gradlew assembleDebug -Paaaaxy_build_use_version_file=true'
       env:
         ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
-        ADVZIP=:
+        ADVZIP: ':'
 
     - name: Archive Binary
       uses: actions/upload-artifact@v4
