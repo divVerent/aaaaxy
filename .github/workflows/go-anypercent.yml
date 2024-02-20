@@ -218,7 +218,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install wine xvfb'
+      run: 'sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get -y install wine wine32 xvfb'
 
     - name: Download Binary
       uses: actions/download-artifact@v4

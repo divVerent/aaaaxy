@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-android-arm64:
+  build-android-all:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: 'cd AndroidStudioProjects/AAAAXY/ && ./gradlew assembleDebug'
+      run: 'cd AndroidStudioProjects/AAAAXY/ && ./gradlew assembleDebug -Paaaaxy_build_use_version_file=true'
       env:
         ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
