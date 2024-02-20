@@ -14,9 +14,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Attach head.
-      run: 'git checkout -B main'
-
     - name: matrix-commit
       uses: imbev/matrix-commit@v1
 
