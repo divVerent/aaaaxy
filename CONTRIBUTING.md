@@ -50,19 +50,15 @@ If you compiled the game from source code, you can quickly try out your
 downloaded translations from Transifex using
 `scripts/try-from-transifex.sh`. When using the game from a binary
 download from GitHub's "Releases" section, you can try it out as follows
-instead (here, `xx` stands for the short name of the language you are
-translating to):
+instead:
 
 1.  Unpack the release zip file, as usual.
-2.  Open a command prompt in the directory containing the game.
-3.  Run `./aaaaxy -dump_embedded_assets=data`
-4.  If the language isn't in the game yet:
-    1.  Edit `data/locales/LINGUAS` to include the `xx`.
-    2.  Create a subdirectory in `data/locales` named `xx`.
-5.  Put your translated `game.po` and `level.po` files in the
-    subdirectory within `data/locales/xx`.
-6.  Run `./aaaaxy -cheat_replace_embedded_assets=data -language=xx` to
-    run the game with the modified data.
+2.  Put your translated `game.po` and `level.po` files - renamed to those
+    exact file names - in the same directory as the game executable.
+3.  Run `./aaaaxy -language=.` to run the game with the modified data
+    (or simply run the game normally and select "user provided" in the
+    language selector, which will be second open from the beginning of
+    the list).
 
 ## Community Guidelines
 
