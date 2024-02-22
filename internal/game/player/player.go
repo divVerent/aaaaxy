@@ -412,6 +412,7 @@ func (p *Player) Update() {
 	if input.KonamiCodeJustHit() {
 		centerprint.New(locale.G.Get("You now have 30 lives. Enjoy!"), centerprint.Important, centerprint.Top, centerprint.BigFont(), palette.EGA(palette.LightMagenta, 255), 5*time.Second).SetFadeOut(true)
 		p.GotAbilitySound.Play()
+		p.World.PlayerState.SetLives(30)
 	}
 }
 

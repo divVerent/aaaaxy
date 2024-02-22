@@ -198,6 +198,10 @@ func (s *PlayerState) AddTeleport() {
 	propmap.Set(s.Level.Player.PersistentState, "teleports", s.Teleports()+1)
 }
 
+func (s *PlayerState) SetLives(n int) {
+	propmap.Set(s.Level.Player.PersistentState, "lives", n)
+}
+
 func (s *PlayerState) Won() bool {
 	return propmap.ValueOrP(s.Level.Player.PersistentState, "won", false, nil)
 }
