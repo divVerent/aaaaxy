@@ -380,16 +380,17 @@ func fakeScore(n, k int) string {
 	if k == 0 {
 		return ""
 	}
-	// Integer math computation of 1 - 10^((n-k)/6 - ceil(n/6))
+	m := n + 1 // Anti all nines at the end.
+	// Integer math computation of 1 - 10^((m-k)/6 - ceil(m/6))
 	// Rounded down (otherwise last digit trick doesn't work)
 	// If max digits reached, use 1 significant digit, else 2.
 	const s = "987653"
 	const t = "058831"
 	const l = len(s)
-	maxDigits := (n + l - 1) / l
-	skipDigits := (n - k) / l
+	maxDigits := (m + l - 1) / l
+	skipDigits := (m - k) / l
 	digits := maxDigits - skipDigits
-	lastDigit := (n - k) % l
+	lastDigit := (m - k) % l
 	fullDigits := digits
 	if skipDigits > 0 && lastDigit > 0 {
 		fullDigits++
