@@ -59,9 +59,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.5.6" date="2024-02-19">
-      <description><ul><li>Engine: add support for "language packs" - .po files placed right next to the game executable.</li><li>Engine: update dependencies.</li><li>Level: add a very obscure easter egg (not required for any run).</li><li>Level: minor change to the "Dopefish Lives" section (improves flow, but may break existing TAS runs for 100%, but same times definitely are achievable).</li><li>Menu: show something about the number of question blocks hit.</li><li>Translations: add Arabic and Arabic (Egypt). Thank you, Mo'taz Elhag (معتز الحاج)!</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.6</url>
+    <release version="v1.5.23" date="2024-02-26">
+      <description><ul><li>Engine: update modules.</li><li>Game: slightly improve one easter egg.</li><li>Menu: better score for qblocks.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.23</url>
     </release>
   </releases>
 </component>

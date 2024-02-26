@@ -1,0 +1,3 @@
+  - Engine: update modules.
+  - Game: slightly improve one easter egg.
+  - Menu: better score for qblocks.
