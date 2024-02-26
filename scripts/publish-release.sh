@@ -39,6 +39,16 @@ if ! [ -f .commitmsg ]; then
 	exit 1
 fi
 
+open_url() {
+	if [ -n "$DISPLAY" ]; then
+		xdg-open "$@"
+	else
+		echo "Open URL: $*"
+		echo "Press ENTER when done..."
+		read -r ok
+	fi
+}
+
 # First send the new tag to GitHub.
 git push origin tag "$new"
 
@@ -80,7 +90,7 @@ hub release create \
 	git commit -a -m "community/aaaaxy: upgrade to ${new#v}"
 	git push -f divVerent HEAD:aaaaxy
 	# TODO is there a more direct URL to create a MR right away?
-	xdg-open 'https://gitlab.alpinelinux.org/divVerent/aports/-/merge_requests/new?merge_request%5Bsource_branch%5D=aaaaxy'
+	open_url 'https://gitlab.alpinelinux.org/divVerent/aports/-/merge_requests/new?merge_request%5Bsource_branch%5D=aaaaxy'
 )
 
 # Mark the release done.
@@ -107,7 +117,7 @@ git worktree add /tmp/gh-pages gh-pages
 git worktree remove /tmp/gh-pages
 
 # Snap. Got kicked off by this git push.
-xdg-open https://snapcraft.io/aaaaxy/builds
+open_url https://snapcraft.io/aaaaxy/builds
 
 # Flatpak - first push a new build.
 (
@@ -124,10 +134,10 @@ sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 	sed -i -e "/--- REV GOES HERE ---/,+1 s/: .*/: $newrev/" io.github.divverent.aaaaxy.yml
 	git commit -a -m "Release $new."
 	git push -f origin HEAD:aaaaxy
-	xdg-open 'https://github.com/flathub/io.github.divverent.aaaaxy/compare/master...aaaaxy'
-	xdg-open 'https://github.com/flathub/io.github.divverent.aaaaxy/compare/beta...aaaaxy'
-	xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy~2Fbeta'
-	xdg-open 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
+	open_url 'https://github.com/flathub/io.github.divverent.aaaaxy/compare/master...aaaaxy'
+	open_url 'https://github.com/flathub/io.github.divverent.aaaaxy/compare/beta...aaaaxy'
+	open_url 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy~2Fbeta'
+	open_url 'https://flathub.org/builds/#/apps/io.github.divverent.aaaaxy'
 )
 
 # Arch Linux.
@@ -159,10 +169,10 @@ sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 
 # Itch.
 sh scripts/itch-upload.sh "$new"
-xdg-open https://itch.io/dashboard/game/1199736/devlog
+open_url https://itch.io/dashboard/game/1199736/devlog
 
 # Pling.
-xdg-open https://www.pling.com/p/1758731/edit
+open_url https://www.pling.com/p/1758731/edit
 
 # Google Play.
-xdg-open https://play.google.com/console/u/0/developers/7023357085064533456/app/4972666448425908274/tracks/production
+open_url https://play.google.com/console/u/0/developers/7023357085064533456/app/4972666448425908274/tracks/production
