@@ -53,8 +53,9 @@ download from GitHub's "Releases" section, you can try it out as follows
 instead:
 
 1.  Unpack the release zip file, as usual.
-2.  Put your translated `game.po` and `level.po` files - renamed to those
-    exact file names - in the same directory as the game executable.
+2.  Put your translated `game.po` and `level.po` files - renamed to
+    those exact file names - in the same directory as the game
+    executable.
 3.  Run `./aaaaxy -language=.` to run the game with the modified data
     (or simply run the game normally and select "user provided" in the
     language selector, which will be second open from the beginning of
