@@ -14234,13 +14234,15 @@
   <object id="6582" type="Sprite" x="1424" y="8064" width="64" height="64">
    <properties>
     <property name="image" value="dopefish.png"/>
-    <property name="orientation" value="ES"/>
+    <property name="no_flip" value="x"/>
+    <property name="orientation" value="WS"/>
    </properties>
   </object>
   <object id="6583" type="Sprite" x="1232" y="8064" width="64" height="64">
    <properties>
     <property name="image" value="dopefish.png"/>
-    <property name="orientation" value="WS"/>
+    <property name="no_flip" value="x"/>
+    <property name="orientation" value="ES"/>
    </properties>
   </object>
   <object id="6584" gid="307" x="1216" y="7104" width="32" height="32"/>
