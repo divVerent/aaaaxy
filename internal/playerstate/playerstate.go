@@ -380,31 +380,21 @@ func fakeScore(n, k int) string {
 	if k == 0 {
 		return ""
 	}
-	m := n + 1 // Anti all nines at the end.
-	// Integer math computation of 1 - 10^((m-k)/6 - ceil(m/6))
-	// Rounded down (otherwise last digit trick doesn't work)
-	// If max digits reached, use 1 significant digit, else 2.
-	const s = "987653"
-	const t = "058831"
-	const l = len(s)
-	maxDigits := (m + l - 1) / l
-	skipDigits := (m - k) / l
-	digits := maxDigits - skipDigits
-	lastDigit := (m - k) % l
-	fullDigits := digits
-	if skipDigits > 0 && lastDigit > 0 {
-		fullDigits++
-	}
-	b := make([]byte, fullDigits+1)
-	b[0] = '.'
-	for i := 1; i < digits; i++ {
-		b[i] = s[0]
-	}
-	b[digits] = s[lastDigit]
-	if skipDigits > 0 && lastDigit > 0 {
-		b[digits+1] = t[lastDigit]
-	}
-	return string(b)
+
+	// fakeScore(k) = a k^2 + b k + c
+	// Constraints:
+	// fakeScore(0) = 0
+	// fakeScore(n-1) = 0.997
+	// fakeScore(n) = 0.998
+	// Formulas below from solving using maxima.
+	n64, k64 := int64(n), int64(k)
+	denom := 1000 * n64 * (n64 - 1)
+	anum := (n64 - 998)
+	bnum := -(n64*n64 - 1996*n64 + 998)
+	cnum := int64(0)
+	num := anum*k64*k64 + bnum*k64 + cnum
+	dig3 := (num*1000 + denom/2) / denom
+	return fmt.Sprintf(".%03d", dig3)
 }
 
 func (s *PlayerState) Score() string {
