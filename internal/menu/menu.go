@@ -283,7 +283,8 @@ func (c *Controller) SwitchSaveState(state int) error {
 	// Save the game first.
 	err := c.World.Save()
 	if err != nil {
-		return fmt.Errorf("could not save game: %w", err)
+		log.Errorf("could not save game: %w", err)
+		// Proceed anyway, as the current save state will be lost if we crash too.
 	}
 
 	// Now select the new state.
