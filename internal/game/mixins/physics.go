@@ -223,6 +223,10 @@ func (p *Physics) ReadSubPixel() m.Delta {
 	return p.SubPixel
 }
 
+func (p *Physics) ReadOnGround() bool {
+	return p.OnGround
+}
+
 func (p *Physics) ReadOnGroundVec() m.Delta {
 	return p.OnGroundVec
 }

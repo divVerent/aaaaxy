@@ -27,6 +27,7 @@ type Velocityer interface {
 	SetVelocityForJump(velocity m.Delta)
 	ReadVelocity() m.Delta
 	ReadSubPixel() m.Delta
+	ReadOnGround() bool
 	ReadOnGroundVec() m.Delta
 }
 

@@ -88,12 +88,14 @@ func (q *QuestionBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 
 func (q *QuestionBlock) Despawn() {}
 
-func (q *QuestionBlock) isAbove(other *engine.Entity) bool {
+func (q *QuestionBlock) isAboveFlying(other *engine.Entity) bool {
 	onGroundVec := m.Delta{DX: 0, DY: 1}
+	onGround := false
 	if phys, ok := other.Impl.(interfaces.Physics); ok {
+		onGround = phys.ReadOnGround()
 		onGroundVec = phys.ReadOnGroundVec()
 	}
-	return q.Entity.Rect.Delta(other.Rect).Dot(onGroundVec) < 0
+	return !onGround && q.Entity.Rect.Delta(other.Rect).Dot(onGroundVec) < 0
 }
 
 func (q *QuestionBlock) Update() {
@@ -114,14 +116,14 @@ func (q *QuestionBlock) Update() {
 	if !q.Kaizo {
 		return
 	}
-	q.World.SetSolid(q.Entity, q.isAbove(q.World.Player))
+	q.World.SetSolid(q.Entity, q.isAboveFlying(q.World.Player))
 }
 
 func (q *QuestionBlock) Touch(other *engine.Entity) {
 	if other != q.World.Player {
 		return
 	}
-	if !q.isAbove(other) {
+	if !q.isAboveFlying(other) {
 		return
 	}
 
