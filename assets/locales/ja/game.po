@@ -366,7 +366,7 @@ msgstr "ゲームに戻る"
 
 #: menu/credits.go
 msgid "Player Sprite"
-msgstr "Player Sprite"
+msgstr "プレイヤー・スプライト"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
