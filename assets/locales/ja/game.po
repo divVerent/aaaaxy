@@ -532,7 +532,7 @@ msgstr "翻訳"
 
 #: menu/credits.go
 msgid "Try Next"
-msgstr "次回プレイでのオススメ目標"
+msgstr "次回プレイのオススメ目標"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
