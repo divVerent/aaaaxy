@@ -401,7 +401,7 @@ msgstr "シェパード・トーン"
 #. song by Eduard Khil.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1243]
 msgid "Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"
-msgstr "みんな　ドアを{{BR}}みつけら　れるよ。{{BR}}Trololoは{{BR}}いらない！"
+msgstr "みんな　ドアを{{BR}}みつけら　れるよ。{{BR}}Trololoはいらない！"
 
 #. C as in the first music note of the C major scale. Also known as Do, Sa, 上,
 #. ル or 1.
