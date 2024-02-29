@@ -224,7 +224,7 @@ msgstr ""
 
 #: menu/credits.go
 msgid "For Software Licenses{{BR}}Press Right"
-msgstr "ソフトウェアライセンスの表示は{{BR}}右を押してください"
+msgstr "ソフトウェアライセンス{{BR}}右を押すと表示されます。"
 
 #: aaaaxy/game.go
 msgid "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
