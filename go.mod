@@ -16,7 +16,7 @@ require (
 	github.com/lestrrat-go/strftime v1.0.6
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/ncruces/zenity v0.10.11
+	github.com/ncruces/zenity v0.10.12
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.15.0
 	golang.org/x/mobile v0.0.0-20240213143359-d1f7d3436075
