@@ -1,0 +1,7 @@
+  - Engine: do not activate questionblocks when hitting them just by rising up
+    on a platform. Matches Mario rules.
+  - Engine: minor module update.
+  - Level: minor visual improvement to Little & Big Platforms.
+  - Menu: fix crash in savestates menu when cheats are enabled.
+  - Menu: show the score for questionblocks a bit simpler. Now always 3 digits.
+  - Translations: add Japanese; thank you, Konishi Hiroto!

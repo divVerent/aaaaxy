@@ -328,7 +328,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.23;
+				MARKETING_VERSION = 1.5.42;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.divverent.aaaaxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -366,7 +366,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.23;
+				MARKETING_VERSION = 1.5.42;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.divverent.aaaaxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
