@@ -60,7 +60,7 @@
   </content_rating>
   <releases>
     <release version="v1.5.42" date="2024-03-04">
-      <description><ul><li>Engine: do not activate questionblocks when hitting them just by rising up on a platform. Matches Mario rules.</li><li>Engine: minor module update.</li><li>Level: minor visual improvement to Little & Big Platforms.</li><li>Menu: fix crash in savestates menu when cheats are enabled.</li><li>Menu: show the score for questionblocks a bit simpler. Now always 3 digits.</li><li>Translations: add Japanese; thank you, Konishi Hiroto!</li></ul></description>
+      <description><ul><li>Engine: do not activate questionblocks when hitting them just by rising up on a platform. Matches Mario rules.</li><li>Engine: minor module update.</li><li>Level: minor visual improvement to Little &amp; Big Platforms.</li><li>Menu: fix crash in savestates menu when cheats are enabled.</li><li>Menu: show the score for questionblocks a bit simpler. Now always 3 digits.</li><li>Translations: add Japanese; thank you, Konishi Hiroto!</li></ul></description>
       <url>https://github.com/divVerent/aaaaxy/releases/v1.5.42</url>
     </release>
   </releases>
