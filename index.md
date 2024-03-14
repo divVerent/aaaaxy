@@ -29,8 +29,8 @@ The game is available for the following platforms:
 | macOS        | [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy)                                                                                                                    |
 | Windows      | [GitHub](https://github.com/divVerent/aaaaxy/releases), [Itch](https://divverent.itch.io/aaaaxy)                                                                                                                    |
 
-Available languages: Chinese (Simplified), English, German, Latin,
-Portuguese and Ukrainian.
+Available languages: Arabic, Belarusian, Chinese (Simplified), English, German,
+Japanese, Latin, Portuguese and Ukrainian.
 
 ### Direct Downloads
 
