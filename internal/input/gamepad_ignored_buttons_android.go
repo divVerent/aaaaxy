@@ -25,12 +25,10 @@ var (
 	// For some Android gamepads, AXIS_RX/AXIS_RY and AXIS_Z/AXIS_RZ are confused.
 	// RX means "rotate X", not "right X"; a right stick should according to docs be mapped to Z/RZ.
 	// Linux OTOH defines ABS_RX/ABS_RY as right X and Y axis...
-	ignoredGamepadButtons = map[ebiten.StandardGamepadButton]bool{
-		ebiten.StandardGamepadButtonFrontBottomLeft:  true,
-		ebiten.StandardGamepadButtonFrontBottomRight: true,
-	}
-	ignoredGamepadAxes = map[ebiten.StandardGamepadAxis]bool{
-		ebiten.StandardGamepadAxisRightStickHorizontal: true,
-		ebiten.StandardGamepadAxisRightStickVertical:   true,
-	}
+	//
+	// HOWEVER, due to the SDL-inherited way of how Ebitengine maps axes,
+	// this should not matter anymore. So for now keeping a separate file
+	// just in case I need to add ignores back, and enabling all axes.
+	ignoredGamepadButtons = map[ebiten.StandardGamepadButton]bool(nil)
+	ignoredGamepadAxes = map[ebiten.StandardGamepadAxis]bool(nil)
 )
