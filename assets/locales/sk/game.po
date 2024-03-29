@@ -518,7 +518,7 @@ msgstr "Rukavice"
 #. "remote" here refers to e.g. a TV's remote control.
 #: fun/string.go
 msgid "The Remote"
-msgstr "Ovladač"
+msgstr "Ovládač"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
