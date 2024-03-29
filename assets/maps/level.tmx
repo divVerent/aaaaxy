@@ -6446,6 +6446,7 @@
   </object>
   <object id="1570" gid="312" x="1152" y="7440" width="32" height="32">
    <properties>
+    <property name="_text_localization_note" value="this is clearly a pun in English - if you can, make up a similar pun, if not, possibly any pun involving platforms will do"/>
     <property name="reached_from" type="object" value="1545"/>
     <property name="text" value="If platforms require platforming, what do trains require?"/>
    </properties>

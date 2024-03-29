@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 07:30-0500\n"
+"POT-Creation-Date: 2024-03-29 18:04-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -590,6 +590,7 @@ msgid "Reset"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1570]
+#. this is clearly a pun in English - if you can, make up a similar pun, if not, possibly any pun involving platforms will do
 msgid "If platforms require platforming, what do trains require?"
 msgstr ""
 
