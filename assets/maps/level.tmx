@@ -6702,12 +6702,14 @@
    <properties>
     <property name="reached_from" type="object" value="1545"/>
     <property name="text" value="The note on the right is much more interesting than this one."/>
+    <property name="text_if_flipped" value="The note on the left is much more interesting than this one."/>
    </properties>
   </object>
   <object id="1702" gid="312" x="1104" y="7824" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="1545"/>
     <property name="text" value="The note on the left is much more interesting than this one."/>
+    <property name="text_if_flipped" value="The note on the right is much more interesting than this one."/>
    </properties>
   </object>
   <object id="1703" type="SetState" x="976" y="7984" width="48" height="16">

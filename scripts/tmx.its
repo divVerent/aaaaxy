@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <its:rules xmlns:its="http://www.w3.org/2005/11/its" version="1.0">
 	<its:translateRule selector="//map/layer/data" translate="no" />
+
 	<its:translateRule selector="//map/objectgroup/object/properties/property[@name='text']/@value" translate="yes" />
 	<!--
 	Actually I wanted this:
@@ -9,4 +10,13 @@
 	-->
 	<its:locNoteRule selector="//map/objectgroup/object/properties/property[@name='text']/@value" locNoteType="description" locNotePointer="concat('#: assets/maps/level.tmx://map/objectgroup/object[@id=', ../../../@id, ']&#10;', ../../property[@name='_text_localization_note' or @name='text']/@value[. != ../../property[@name='text']/@value])" />
 	<its:escapeRule selector="//map/objectgroup/object/properties/property[@name='text']/@value" escape="no" />
+
+	<its:translateRule selector="//map/objectgroup/object/properties/property[@name='text_if_flipped']/@value" translate="yes" />
+	<!--
+	Actually I wanted this:
+	<its:locNoteRule selector="//map/objectgroup/object/properties/property[@name='text_if_flipped']/@value" locNoteType="description" locNotePointer="../../property[@name='_text_if_flipped_localization_note']/@value" />
+	but this crashes gettext_if_flipped.
+	-->
+	<its:locNoteRule selector="//map/objectgroup/object/properties/property[@name='text_if_flipped']/@value" locNoteType="description" locNotePointer="concat('#: assets/maps/level.tmx://map/objectgroup/object[@id=', ../../../@id, ']&#10;', ../../property[@name='_text_if_flipped_localization_note' or @name='text_if_flipped']/@value[. != ../../property[@name='text_if_flipped']/@value])" />
+	<its:escapeRule selector="//map/objectgroup/object/properties/property[@name='text_if_flipped']/@value" escape="no" />
 </its:rules>

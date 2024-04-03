@@ -100,6 +100,9 @@ func (t *TnihSign) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.En
 	t.Entity.Orientation = m.Identity()
 	w.SetZIndex(t.Entity, constants.TnihSignZ)
 	t.Text = propmap.ValueP(sp.Properties, "text", "", &parseErr)
+	if e.Transform.Determinant() < 0 {
+		t.Text = propmap.ValueOrP(sp.Properties, "text_if_flipped", t.Text, &parseErr)
+	}
 	t.Sound, err = sound.Load("tnihsign.ogg")
 	if err != nil {
 		return fmt.Errorf("could not load tnihsign sound: %w", err)

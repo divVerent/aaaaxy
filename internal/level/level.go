@@ -556,11 +556,13 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 			propmap.Delete(properties, "type")
 			propmap.DebugSetType(properties, objType)
 			hasText := false
-			if text, err := propmap.Value(properties, "text", ""); err == nil {
-				translated := locale.L.Get(text) // "Unsupported call" warning expected here.
-				// log.Infof("translated %v -> %v", text, translated)
-				propmap.Set(properties, "text", translated)
-				hasText = true
+			for _, prop := range []string{"text", "text_if_flipped"} {
+				if text, err := propmap.Value(properties, prop, ""); err == nil {
+					translated := locale.L.Get(text) // "Unsupported call" warning expected here.
+					// log.Infof("translated %v -> %v", text, translated)
+					propmap.Set(properties, prop, translated)
+					hasText = true
+				}
 			}
 			spawnTilesGrowth := propmap.ValueOrP(properties, "spawn_tiles_growth", m.Delta{}, &parseErr)
 			startTile := entRect.Origin.Div(TileSize)
