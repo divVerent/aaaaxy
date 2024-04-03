@@ -590,6 +590,7 @@ msgid "Reset"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=1570]
+#. this is clearly a pun in English - if you can, make up a similar pun, if not, possibly any pun involving platforms will do
 msgid "If platforms require platforming, what do trains require?"
 msgstr ""
 
