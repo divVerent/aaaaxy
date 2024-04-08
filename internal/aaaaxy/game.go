@@ -319,7 +319,7 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 	// Bayer pattern changed?
 	if ditherSize != g.paletteDitherSize || g.paletteDitherMode != ditherMode {
 		if g.paletteShader != nil {
-			g.paletteShader.Dispose()
+			g.paletteShader.Deallocate()
 		}
 		g.paletteShader = nil
 	}

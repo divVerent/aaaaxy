@@ -174,7 +174,7 @@ func (t *Text) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity
 
 func (t *Text) updateText() error {
 	if t.MyImage {
-		t.Entity.Image.Dispose()
+		t.Entity.Image.Deallocate()
 	}
 	t.Entity.Image = nil
 	if *precacheText {
@@ -204,7 +204,7 @@ func (t *Text) updateText() error {
 
 func (t *Text) Despawn() {
 	if t.MyImage {
-		t.Entity.Image.Dispose()
+		t.Entity.Image.Deallocate()
 	}
 	t.Entity.Image = nil
 }
