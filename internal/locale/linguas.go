@@ -181,7 +181,8 @@ func ActiveFont() string {
 }
 
 type VerticalTextPreference int
-const(
+
+const (
 	NeverPreferVerticalText VerticalTextPreference = iota
 	DefaultPreferVerticalText
 	AlwaysPreferVerticalText

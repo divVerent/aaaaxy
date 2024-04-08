@@ -30,5 +30,5 @@ var (
 	// this should not matter anymore. So for now keeping a separate file
 	// just in case I need to add ignores back, and enabling all axes.
 	ignoredGamepadButtons = map[ebiten.StandardGamepadButton]bool(nil)
-	ignoredGamepadAxes = map[ebiten.StandardGamepadAxis]bool(nil)
+	ignoredGamepadAxes    = map[ebiten.StandardGamepadAxis]bool(nil)
 )
