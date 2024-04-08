@@ -20,6 +20,7 @@ import (
 	"sort"
 	"time"
 
+	"github.com/hajimehoshi/ebiten/v2/text/v2"
 	"golang.org/x/image/font"
 	"golang.org/x/image/math/fixed"
 
@@ -41,10 +42,15 @@ var (
 	debugFontProfiling        = flag.Bool("debug_font_profiling", false, "measure how long font caching took")
 )
 
+type faceWrapper struct {
+	GoX font.Face
+	Ebi text.Face
+}
+
 // Face is an alias to font.Face so users do not need to import the font package.
 type Face struct {
-	Face    font.Face
-	Outline font.Face
+	Face    *faceWrapper
+	Outline *faceWrapper
 }
 
 func makeFace(f font.Face, size int) *Face {
@@ -53,9 +59,11 @@ func makeFace(f font.Face, size int) *Face {
 		LineHeight: size,
 	}
 	outline := &fontOutline{effect}
+	ebiEffect := text.NewGoXFace(effect)
+	ebiOutline := text.NewGoXFace(outline)
 	face := &Face{
-		Face:    effect,
-		Outline: outline,
+		Face:    &faceWrapper{GoX: effect, Ebi: ebiEffect},
+		Outline: &faceWrapper{GoX: outline, Ebi: ebiOutline},
 	}
 	return face
 }

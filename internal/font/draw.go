@@ -21,7 +21,7 @@ import (
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/text"
+	"github.com/hajimehoshi/ebiten/v2/text/v2"
 	"golang.org/x/image/font"
 	"golang.org/x/image/math/fixed"
 
@@ -32,7 +32,7 @@ import (
 // boundString returns the bounding rectangle of the given text.
 func (f Face) boundString(str string) m.Rect {
 	var r m.Rect
-	bounds, _ := font.BoundString(f.Outline, str)
+	bounds, _ := font.BoundString(f.Outline.GoX, str)
 	x0 := bounds.Min.X.Floor()
 	y0 := bounds.Min.Y.Floor()
 	x1 := bounds.Max.X.Ceil()
@@ -60,7 +60,7 @@ func (f Face) boundString(str string) m.Rect {
 func (f Face) BoundString(str string) m.Rect {
 	lines := strings.Split(str, "\n")
 	var totalBounds m.Rect
-	lineHeight := f.Outline.Metrics().Height.Ceil()
+	lineHeight := f.Outline.GoX.Metrics().Height.Ceil()
 	y := 0
 	for i, line := range lines {
 		lines[i] = locale.ActiveShape(line)
@@ -75,12 +75,21 @@ func (f Face) BoundString(str string) m.Rect {
 }
 
 // drawLine draws one line of text.
-func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color) {
+func drawLine(f *faceWrapper, dst draw.Image, line string, x, y int, fg color.Color) {
 	if locale.ActiveUsesEbitenText() {
 		dst, ok := dst.(*ebiten.Image)
 		if ok {
 			// Use Ebitengine's glyph cache.
-			text.Draw(dst, line, f, x, y, fg)
+			options := &text.DrawOptions{
+				LayoutOptions: text.LayoutOptions{
+					LineSpacing:    0,
+					PrimaryAlign:   text.AlignStart,
+					SecondaryAlign: text.AlignStart,
+				},
+			}
+			options.GeoM.Translate(float64(x), float64(y)-float64(f.GoX.Metrics().Ascent)/float64(1<<6))
+			options.ColorScale.ScaleWithColor(fg)
+			text.Draw(dst, line, f.Ebi, options)
 			return
 		}
 	}
@@ -88,7 +97,7 @@ func drawLine(f font.Face, dst draw.Image, line string, x, y int, fg color.Color
 	d := font.Drawer{
 		Dst:  dst,
 		Src:  image.NewUniform(fg),
-		Face: f,
+		Face: f.GoX,
 		Dot:  fixed.P(x, y),
 	}
 	d.DrawString(line)
@@ -140,7 +149,7 @@ func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg
 		offset -= (totalMax - totalMin + 1) / 2
 	}
 	y := pos.Y
-	lineHeight := f.Outline.Metrics().Height.Ceil()
+	lineHeight := f.Outline.GoX.Metrics().Height.Ceil()
 	for i, line := range lines {
 		lineBounds := bounds[i]
 		// totalBounds: tX size tDX
@@ -159,6 +168,6 @@ func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg
 }
 
 func (f Face) precache(chars string) {
-	text.CacheGlyphs(f.Face, chars)
-	text.CacheGlyphs(f.Outline, chars)
+	text.CacheGlyphs(chars, f.Face.Ebi)
+	text.CacheGlyphs(chars, f.Outline.Ebi)
 }
