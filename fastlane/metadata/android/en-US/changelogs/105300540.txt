@@ -1,0 +1,3 @@
+  - Android: re-enable the gamepad trigger buttons thanks to a fix in Ebitengine 2.6.7.
+  - Engine: upgrade Ebitengine to 2.6.7. Next version of AAAAXY will move to Ebitengine 2.7.0.
+  - Level: fix a broken left/right reference.

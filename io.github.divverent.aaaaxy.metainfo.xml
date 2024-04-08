@@ -59,9 +59,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.5.42" date="2024-03-04">
-      <description><ul><li>Engine: do not activate questionblocks when hitting them just by rising up on a platform. Matches Mario rules.</li><li>Engine: minor module update.</li><li>Level: minor visual improvement to Little &amp; Big Platforms.</li><li>Menu: fix crash in savestates menu when cheats are enabled.</li><li>Menu: show the score for questionblocks a bit simpler. Now always 3 digits.</li><li>Translations: add Japanese; thank you, Konishi Hiroto!</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.42</url>
+    <release version="v1.5.54" date="2024-04-08">
+      <description><ul><li>Android: re-enable the gamepad trigger buttons thanks to a fix in Ebitengine 2.6.7.</li><li>Engine: upgrade Ebitengine to 2.6.7. Next version of AAAAXY will move to Ebitengine 2.7.0.</li><li>Level: fix a broken left/right reference.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.54</url>
     </release>
   </releases>
 </component>
