@@ -64,6 +64,8 @@ func (l Lingua) name() string {
 		return "Українська"
 	case "zh-Hans":
 		return "简体中文"
+	case "zh-Hant":
+		return "繁體中文"
 	case UserProvided:
 		return "user provided"
 	default:
@@ -85,6 +87,8 @@ func (l Lingua) Name() string {
 			return "Japanese"
 		case "zh-Hans":
 			return "Chinese (Simplified)"
+		case "zh-Hant":
+			return "Chinese (Traditional)"
 		}
 	}
 	return l.name()
@@ -114,6 +118,8 @@ func (l Lingua) Directory() string {
 	// This one doesn't get an underscore.
 	case "zh-Hans":
 		return "zh-Hans"
+	case "zh-Hant":
+		return "zh-Hant"
 	// Otherwise Transifex uses underscores, but x/text/language uses dashes.
 	default:
 		return strings.ReplaceAll(string(l), "-", "_")
@@ -143,6 +149,8 @@ func (l Lingua) Canonical() Lingua {
 		return "be@tarask"
 	case "zh-CHS", "zh-CN", "zh-SG": // Language specific Chinese aliases.
 		return "zh-Hans"
+	case "zh-CHT", "zh-HK", "zh-MO", "zh-TW": // Language specific Chinese aliases.
+		return "zh-Hant"
 	default:
 		return l
 	}
@@ -181,7 +189,8 @@ func ActiveFont() string {
 }
 
 type VerticalTextPreference int
-const(
+
+const (
 	NeverPreferVerticalText VerticalTextPreference = iota
 	DefaultPreferVerticalText
 	AlwaysPreferVerticalText
