@@ -1,0 +1,703 @@
+# 
+# Translators:
+# Anthony Wang, 2024
+# Rudolf Polzer, 2024
+# Ran Dint, 2024
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Ran Dint, 2024\n"
+"Language-Team: Chinese Traditional (https://app.transifex.com/aaaaxy/teams/158611/zh-Hant/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh-Hant\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: xgotext\n"
+
+#. Last separator when building a list. Usually starts and ends with a space.
+#: fun/string.go playerstate/playerstate.go
+msgid " and "
+msgstr "和"
+
+#: aaaaxy/game.go
+msgid "%.1f fps, %.1f tps"
+msgstr "%.1f fps，%.1f tps"
+
+#: fun/string.go
+msgid "%d:%02d:%02d.%03d"
+msgstr "%d:%02d:%02d.%03d"
+
+#: menu/map.go
+msgid "%s (%d/%d)"
+msgstr "%s（%d/%d）"
+
+#: aaaaxy/game.go
+msgid "(%.5f %.5f) (%.4f %.4f)"
+msgstr "(%.5f %.5f) (%.4f %.4f)"
+
+#. Other separator when building a list. Usually is a comma and a space.
+#: fun/string.go playerstate/playerstate.go
+msgid ", "
+msgstr "、"
+
+#. A speedrun category (all checkpoints reached).
+#: playerstate/playerstate.go
+msgid "100%"
+msgstr "100%"
+
+#: menu/savestate.go
+msgid "4: %s"
+msgstr "4：%s"
+
+#: menu/quality.go playerstate/playerstate.go
+msgid "???"
+msgstr "？？？"
+
+#: menu/savestate.go
+msgid "A: %s"
+msgstr "A：%s"
+
+#: menu/credits.go
+msgid "Additional Programming Libraries & Tools"
+msgstr "額外的程式庫和工具"
+
+#. A speedrun category (all checkpoints reached, but game not won yet).
+#: playerstate/playerstate.go
+msgid "All Checkpoints"
+msgstr "所有檢查站"
+
+#. A speedrun category (all checkpoints reached in flipped state).
+#: playerstate/playerstate.go
+msgid "All Flipped"
+msgstr "所有翻轉"
+
+#. A speedrun category (all notes seen).
+#: playerstate/playerstate.go
+msgid "All Notes"
+msgstr "所有便條貼"
+
+#. A speedrun category (all paths walked).
+#: playerstate/playerstate.go
+msgid "All Paths"
+msgstr "所有路徑"
+
+#. A speedrun category (all secrets found).
+#: playerstate/playerstate.go
+msgid "All Secrets"
+msgstr "所有秘密"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Alofi"
+msgstr "阿洛菲"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Anchorage"
+msgstr "安克拉治"
+
+#. A speedrun category (any way to finish the game).
+#: playerstate/playerstate.go
+msgid "Any%"
+msgstr "Any%"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Auckland"
+msgstr "奧克蘭"
+
+#: menu/credits.go
+msgid "Audio"
+msgstr "音訊"
+
+#: menu/language.go menu/quality.go
+msgid "Auto (%s)"
+msgstr "自動（%s）"
+
+#: fun/string.go
+msgid "B"
+msgstr "B"
+
+#: fun/string.go
+msgid "B/X"
+msgstr "B/X"
+
+#: fun/string.go
+msgid "Back"
+msgstr "返回"
+
+#: fun/string.go
+msgid "Backspace"
+msgstr "Backspace"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Baker Island"
+msgstr "貝克島"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Beijing"
+msgstr "北京"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Berlin"
+msgstr "柏林"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Bishkek"
+msgstr "比什凱克"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Boston"
+msgstr "波士頓"
+
+#: menu/credits.go
+msgid "Build: %s"
+msgstr "編譯：%s"
+
+#. A speedrun category (not a real one, but what we show if cheats are
+#. active).
+#: playerstate/playerstate.go
+msgid "Cheat%"
+msgstr "作弊%"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Chicago"
+msgstr "芝加哥"
+
+#: menu/main.go
+msgid "Credits"
+msgstr "製作人員名單"
+
+#: fun/string.go
+msgid "Ctrl/Shift"
+msgstr "Ctrl/Shift"
+
+#: menu/touchedit.go
+msgid "Done"
+msgstr "完成"
+
+#: menu/settings.go menu/touchedit.go
+msgid "Edit Touch Controls"
+msgstr "編輯觸控"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Edmonton"
+msgstr "愛德蒙頓"
+
+#: fun/string.go
+msgid "Enter/Shift"
+msgstr "Enter/Shift"
+
+#: game/checkpoint/checkpoint_target.go
+msgid ""
+"Error:\n"
+"could not save game:\n"
+"%s"
+msgstr ""
+"錯誤：\n"
+"無法保存遊戲：\n"
+"%s"
+
+#: fun/string.go
+msgid "Escape"
+msgstr "Esc 鍵"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Fernando de Noronha"
+msgstr "費爾南多·迪諾羅尼亞群島"
+
+#: game/player/player.go
+msgid ""
+"Fine, I give up, have it your way.\n"
+"All cheats are documented in --help."
+msgstr ""
+"好吧，我放棄，你贏了。\n"
+"所有的作弊方法都記錄在--help。"
+
+#: menu/credits.go
+msgid "For Software Licenses{{BR}}Press Right"
+msgstr "軟體授權{{BR}}按右鍵"
+
+#: aaaaxy/game.go
+msgid "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
+msgstr "垃圾回收第%d次：暫停%.1f毫秒 delta %.1f秒（%.1f秒前）"
+
+#: menu/credits.go
+msgid "Graphics"
+msgstr "圖形"
+
+#: menu/settings.go
+msgid "Graphics: %s"
+msgstr "圖形：%s"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Halifax"
+msgstr "哈利法克斯"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Hanoi"
+msgstr "河內"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "High"
+msgstr "高"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Honolulu"
+msgstr "檀香山"
+
+#: playerstate/playerstate.go
+msgid "Impossible"
+msgstr "不可能"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Istanbul"
+msgstr "伊斯坦堡"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Kiritimati"
+msgstr "聖誕島"
+
+#. Translate so it can be recognized by English speakers too (e.g.
+#. "Lingua (Language): %s").
+#: menu/settings.go
+msgid "Language: %s"
+msgstr "語言 (Language)：%s"
+
+#: menu/credits.go
+msgid "Level Version: %d"
+msgstr "關卡版本：%d"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "London"
+msgstr "倫敦"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Low"
+msgstr "低"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Lowest"
+msgstr "最低"
+
+#: menu/reset.go menu/savestate.go menu/settings.go
+msgid "Main Menu"
+msgstr "主選單"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Max"
+msgstr "最高"
+
+#. Used in context "Quality: ...".
+#: menu/quality.go
+msgid "Medium"
+msgstr "中"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "New York"
+msgstr "紐約"
+
+#. A speedrun category (back button never pressed).
+#: playerstate/playerstate.go
+msgid "No Back"
+msgstr "無返回鍵"
+
+#. A speedrun category (backspace key never pressed).
+#: playerstate/playerstate.go
+msgid "No Backspace"
+msgstr "無Backspace鍵"
+
+#: playerstate/playerstate.go
+msgid "No Coil"
+msgstr "無電磁鐵"
+
+#. A speedrun category (escape key never pressed).
+#: playerstate/playerstate.go
+msgid "No Escape"
+msgstr "無Esc鍵"
+
+#. A speedrun category (start button never pressed).
+#: playerstate/playerstate.go
+msgid "No Start"
+msgstr "無開始鍵"
+
+#. A speedrun category (never teleported).
+#: playerstate/playerstate.go
+msgid "No Teleports"
+msgstr "無瞬間移動"
+
+#: playerstate/playerstate.go
+msgid "None"
+msgstr "無"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Nuku'alofa"
+msgstr "努瓜婁發"
+
+#: menu/map.go
+msgid "Pick-a-Path"
+msgstr "選路徑"
+
+#. Menu item to go back to the game after having pressed escape. Leads to the
+#. map screen, then back into the game.
+#: menu/main.go
+msgid "Play"
+msgstr "返回遊戲"
+
+#: menu/credits.go
+msgid "Player Sprite"
+msgstr "玩家精靈圖"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Ponta Delgada"
+msgstr "蓬塔德爾加達"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Port Moresby"
+msgstr "莫斯比港"
+
+#: menu/credits.go
+msgid "Programming"
+msgstr "編程"
+
+#: menu/settings.go
+msgid "Quality: %s"
+msgstr "品質：%s"
+
+#: menu/main.go
+msgid "Quit"
+msgstr "退出遊戲"
+
+#: menu/reset.go menu/settings.go
+msgid "Reset"
+msgstr "重設"
+
+#: menu/reset.go
+msgid "Reset Nothing"
+msgstr "不要重設"
+
+#: menu/reset.go
+msgid "Reset and Lose SAVE STATE %s"
+msgstr "重設並刪掉存檔%s"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s"
+msgstr "重設並刪掉存檔%s"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s (just release buttons)"
+msgstr "重設並刪掉存檔%s（放開按鈕）"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s (think about it for %d sec)"
+msgstr "重設並刪掉存檔%s（再想%d秒鐘）"
+
+#: menu/reset.go
+msgid "Reset and Lose Settings"
+msgstr "重設並刪掉設定"
+
+#: menu/touchedit.go
+msgid "Reset to Defaults"
+msgstr "重設為預設值"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "San Francisco"
+msgstr "舊金山"
+
+#: menu/main.go menu/savestate.go
+msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
+msgstr "分數：{{Score}}{{SpeedrunCategoriesShort}} | 時間：{{GameTime}}"
+
+#: menu/main.go menu/settings.go
+msgid "Settings"
+msgstr "設置"
+
+#: fun/string.go
+msgid "Shift/E/Tab"
+msgstr "Shift/E/Tab"
+
+#: menu/credits.go
+msgid "Sound Effects"
+msgstr "音效"
+
+#: menu/credits.go
+msgid "Sprites"
+msgstr "精靈圖"
+
+#: fun/string.go
+msgid "Start"
+msgstr "開始"
+
+#: menu/savestate.go menu/settings.go
+msgid "Switch Save State"
+msgstr "切換存檔"
+
+#: menu/settings.go
+msgid "Switch to Fullscreen Mode"
+msgstr "切換到全螢幕模式"
+
+#: menu/settings.go
+msgid "Switch to Letterboxed Screen"
+msgstr "切換到黑邊螢幕"
+
+#: menu/settings.go
+msgid "Switch to Stretched Screen"
+msgstr "切換到拉伸螢幕"
+
+#: menu/settings.go
+msgid "Switch to Windowed Mode"
+msgstr "切換到窗口模式"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Sydney"
+msgstr "雪梨"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "São Paulo"
+msgstr "聖保羅"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Tehran"
+msgstr "德黑蘭"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Tel Aviv"
+msgstr "臺拉維夫"
+
+#: menu/credits.go
+msgid "Testing"
+msgstr "測試"
+
+#: menu/credits.go
+msgid "Thank You!"
+msgstr "謝謝！"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "The Cleats"
+msgstr "釘鞋"
+
+#. Used in context "reached <location> with ... at <time>";
+#. "coil" here refers to an electromagnetic coil.
+#: fun/string.go
+msgid "The Coil"
+msgstr "電磁鐵"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "The Gloves"
+msgstr "手套"
+
+#. Used in context "reached <location> with ... at <time>";
+#. "remote" here refers to e.g. a TV's remote control.
+#: fun/string.go
+msgid "The Remote"
+msgstr "遙控器"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Tokyo"
+msgstr "東京"
+
+#: menu/credits.go
+msgid "Translators"
+msgstr "翻譯人員"
+
+#: menu/credits.go
+msgid "Try Next"
+msgstr "接下來試試看"
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Turkistan"
+msgstr "突厥斯坦"
+
+#: menu/settings.go
+msgid "Volume: %s"
+msgstr "音量：%s"
+
+#: playerstate/playerstate.go
+msgid "Without Cheating Of Course"
+msgstr "當然沒有作弊"
+
+#: menu/savestate.go
+msgid "X: %s"
+msgstr "X：%s"
+
+#: menu/savestate.go
+msgid "Y: %s"
+msgstr "Y：%s"
+
+#: game/player/player.go
+msgid "You now have 30 lives. Enjoy!"
+msgstr "你現在有30條命。好好享受吧！"
+
+#: game/player/player.go
+msgid "You really thought this would do something?"
+msgstr "你真的以為這會有效果嗎？"
+
+#: menu/credits.go
+msgid "Your Speedrun Categories"
+msgstr "你的速通類別"
+
+#: menu/credits.go
+msgid "Your Time"
+msgstr "你的時間"
+
+#: fun/string.go
+msgid "Z"
+msgstr "Z"
+
+#. Whether text is expected to fit text box height.
+#. Translate to either true (preferred) or false.
+#: locale/linguas.go
+msgid "_locale_info:fits_height"
+msgstr "true"
+
+#. Which font to use.
+#. Translate to either default (preferred), bitmapfont, gofont or unifont.
+#: locale/linguas.go
+msgid "_locale_info:font"
+msgstr "unifont"
+
+#. Whether text should be rendered vertically instead of turned by 90 degrees.
+#. Translate to either default (preferred, which is a per-object default),
+#. true or false.
+#: locale/linguas.go
+msgid "_locale_info:prefers_vertical_text"
+msgstr "true"
+
+#. Whether text should be shaped using Arabic rules, which implements RTL.
+#. Translate to either false (preferred) or true (e.g. if a RTL language).
+#: locale/linguas.go
+msgid "_locale_info:uses_arabic_shaping"
+msgstr "false"
+
+#. Whether Ebitengine's glyph cache is safe to use with this language.
+#. Translate to either true (preferred) or false (if it fixes bugs).
+#: locale/linguas.go
+msgid "_locale_info:uses_ebiten_text"
+msgstr "true"
+
+#: menu/credits.go
+msgid "and %s"
+msgstr "%s"
+
+#: menu/credits.go
+msgid "and other contributors"
+msgstr "及其他貢獻者"
+
+#: menu/credits.go
+msgid "by %s"
+msgstr "%s"
+
+#. Used in context "Hold ...".
+#: fun/string.go
+msgid "elsewhere"
+msgstr "螢幕任何一處"
+
+#: sound/sound.go
+msgid "enumerating sounds"
+msgstr "列舉音訊"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "everything"
+msgstr "所有東西"
+
+#: level/level.go
+msgid "hashing level"
+msgstr "計算關卡雜湊值"
+
+#: aaaaxy/init.go
+msgid "initializing audio"
+msgstr "初始化音訊"
+
+#: aaaaxy/init.go
+msgid "initializing dumping"
+msgstr "初始化轉儲"
+
+#: aaaaxy/init.go
+msgid "initializing input"
+msgstr "初始化輸入"
+
+#: aaaaxy/init.go
+msgid "initializing noise"
+msgstr "初始化噪音"
+
+#: level/level.go
+msgid "loading checkpoints"
+msgstr "載入檢查點"
+
+#: engine/world.go
+msgid "loading level"
+msgstr "載入關卡"
+
+#: level/level.go
+msgid "loading level file"
+msgstr "載入關卡文件"
+
+#. Used in context "reached <location> with ... at <time>".
+#: fun/string.go
+msgid "nothing"
+msgstr "沒有東西"
+
+#: level/level.go
+msgid "parsing level data"
+msgstr "解析關卡數據"
+
+#: sound/sound.go
+msgid "precaching %s"
+msgstr "預快取%s"
+
+#: aaaaxy/init.go
+msgid "precaching credits"
+msgstr "預快取製作人員名單"
+
+#: aaaaxy/init.go
+msgid "precaching engine"
+msgstr "預快取引擎"
+
+#: engine/world.go
+msgid "precaching entities"
+msgstr "預快取實體"
+
+#: aaaaxy/init.go
+msgid "precaching fonts"
+msgstr "預快取字體"
+
+#: aaaaxy/init.go
+msgid "precaching images"
+msgstr "預快取圖像"
+
+#: aaaaxy/init.go
+msgid "precaching sounds"
+msgstr "預快取音訊"
