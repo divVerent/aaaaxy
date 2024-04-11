@@ -363,7 +363,7 @@ msgstr "選路徑"
 #. map screen, then back into the game.
 #: menu/main.go
 msgid "Play"
-msgstr "玩"
+msgstr "返回遊戲"
 
 #: menu/credits.go
 msgid "Player Sprite"
