@@ -745,7 +745,7 @@ msgstr "一個空洞的聲音說「傻瓜」。{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2349]
 msgid "If walking alone won't do, try some exercise."
-msgstr "如果走路不行，試試運動。"
+msgstr "如果走路不夠，試試做些運動。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2368]
 msgid "Every great adventure started with the line{{BR}}\"I know a shortcut\"."
