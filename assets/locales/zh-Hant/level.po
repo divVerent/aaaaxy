@@ -1261,7 +1261,7 @@ msgstr "不觸發厄運開關可能需要一些努力。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6538]
 msgid "A window of opportunity can lead to greener pastures."
-msgstr "機會之窗可以帶來綠洲。"
+msgstr "機遇之窗可以通往更青翠的草地。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6539]
 msgid "The well prepared will earn their reward."
