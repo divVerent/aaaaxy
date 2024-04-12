@@ -722,7 +722,7 @@ msgstr "跟去年一樣的手術？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1819]
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
-msgstr "就把東西放在東西上{{BR}}這個也趕快放！"
+msgstr "就把這東西放在那東西上{{BR}}這個也趕快放！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2220]
 msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
