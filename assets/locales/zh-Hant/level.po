@@ -1372,7 +1372,7 @@ msgstr "W{{BR}}A{{BR}}T"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7770]
 msgid "Just{{BR}}kiddin'"
-msgstr "只是在{{BR}}開玩笑"
+msgstr "開玩笑而{{BR}}已啦哈哈"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7837]
 msgid "I hope you took{{BR}}the small one ..."
