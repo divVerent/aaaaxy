@@ -1452,7 +1452,7 @@ msgid ""
 "weirder!{{BR}}Weird, weird space{{BR}}is super-weird!{{BR}}{{BR}}Press "
 "{{ExitButton}}."
 msgstr ""
-"讓我們把奇怪加上奇怪，{{BR}}就變得更奇怪了！{{BR}}奇怪，奇怪的空間{{BR}}超級奇怪啊！{{BR}}{{BR}}按{{ExitButton}}。"
+"讓我們把奇怪加上奇怪，{{BR}}就變得更奇怪了！{{BR}}奇怪，奇怪的宇宙{{BR}}超級奇怪啊！{{BR}}{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8246]
 msgid "4 ..."
