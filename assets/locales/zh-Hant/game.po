@@ -421,7 +421,7 @@ msgstr "重設並刪去設定"
 
 #: menu/touchedit.go
 msgid "Reset to Defaults"
-msgstr "重設為預設值"
+msgstr "重設至預設值"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
