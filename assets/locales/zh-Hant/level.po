@@ -1269,7 +1269,7 @@ msgstr "準備充分的人會得到他們的獎勵。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6540]
 msgid "Platform{{BR}}is key."
-msgstr "平台{{BR}}很重要。"
+msgstr "平台{{BR}}是關鍵。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6575]
 msgid "Quo vadis?"
