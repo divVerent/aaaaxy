@@ -1312,7 +1312,7 @@ msgstr "Vertically challenged"
 msgid ""
 "The Enrichment Center regrets to inform you that{{BR}}the Super Gravitron is"
 " currently out of order.{{BR}}Press {{ExitButton}}."
-msgstr "濃縮中心遺憾地通知您{{BR}}超級引力儀目前故障了。{{BR}}按{{ExitButton}}。"
+msgstr "濃縮中心很遺憾地通知您{{BR}}超級重力器目前故障了。{{BR}}按{{ExitButton}}。"
 
 #. https://thelettervsixtim.es/ - try keeping the two V alliteration when
 #. translating
