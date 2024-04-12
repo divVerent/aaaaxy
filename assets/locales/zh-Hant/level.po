@@ -595,7 +595,7 @@ msgstr "你現在可以抓住並攜帶平台了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1494]
 msgid "The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"
-msgstr "手套{{BR}}（按住{{ActionButton}}可以使用）{{BR}}提示：不要超速！"
+msgstr "手套{{BR}}（按住{{ActionButton}}可以使用）{{BR}}提醒：不要超速！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1545]
 msgid "Little & Big Platforms"
