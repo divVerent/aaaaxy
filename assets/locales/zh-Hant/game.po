@@ -470,7 +470,7 @@ msgstr "切換到拉伸螢幕"
 
 #: menu/settings.go
 msgid "Switch to Windowed Mode"
-msgstr "切換到窗口模式"
+msgstr "切換到視窗模式"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
