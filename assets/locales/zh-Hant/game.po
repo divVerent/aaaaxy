@@ -498,7 +498,7 @@ msgstr "測試"
 
 #: menu/credits.go
 msgid "Thank You!"
-msgstr "謝謝！"
+msgstr "謝謝你！"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
