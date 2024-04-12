@@ -492,7 +492,7 @@ msgstr "聆聽神奇烏龜的咒語，就可以繼續前進。"
 #. https://antichamber.fandom.com/wiki/Don%27t_Look_Down
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1364]
 msgid "Don't{{BR}}Look Up!"
-msgstr "不要{{BR}}往上看！"
+msgstr "不要{{BR}}抬頭看！"
 
 #. reference to 'curiosity killed the cat' saying; be creative here when
 #. translating; be consistent with the 'Curiosity killed the Carl - no the
