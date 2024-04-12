@@ -542,7 +542,7 @@ msgstr "有時近在咫尺的事物需要下很多功夫才能勾到。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1443]
 msgid "Can't tell if this place is pointless or not."
-msgstr "無法判斷這地方有什麼意義。"
+msgstr "看不出來這地方在幹嘛。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1445]
 msgid "Peaceful games require peaceful solutions."
