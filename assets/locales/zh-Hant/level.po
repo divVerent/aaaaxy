@@ -5,8 +5,8 @@
 # 
 # Translators:
 # Anthony Wang, 2024
-# Ran Dint, 2024
 # Rudolf Polzer, 2024
+# Ran Dint, 2024
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-03 10:45-0700\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2024\n"
+"Last-Translator: Ran Dint, 2024\n"
 "Language-Team: Chinese Traditional (https://app.transifex.com/aaaaxy/teams/158611/zh-Hant/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=48]
 msgid "A short walk can go a long way."
-msgstr "走一小段路有時可以移動很長一段距離。"
+msgstr "走一小段路可以移動很長一段距離。"
 
 #. https://knowyourmeme.com/memes/peace-was-never-an-option
 #: assets/maps/level.tmx//map/objectgroup/object[@id=49]
