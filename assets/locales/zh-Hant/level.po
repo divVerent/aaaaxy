@@ -626,7 +626,7 @@ msgstr "重設"
 #. not, possibly any pun involving platforms will do
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1570]
 msgid "If platforms require platforming, what do trains require?"
-msgstr "你見到了平台。讓我給你滿滿的大平台！"
+msgstr "讓我給你滿滿的大！平！台！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1571]
 msgid "Do"
