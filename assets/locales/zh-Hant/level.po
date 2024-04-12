@@ -599,7 +599,7 @@ msgstr "手套{{BR}}（按住{{ActionButton}}可以使用）{{BR}}提醒：不�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1545]
 msgid "Little & Big Platforms"
-msgstr "大小平台"
+msgstr "大平台小平台"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1546]
 msgid "Unlike that Italian plumber, you can go left."
