@@ -222,7 +222,7 @@ msgstr "必須定期加水以補償蒸發掉的水。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=311]
 msgid "You broke out of the stream, yet you're back in the stream."
-msgstr "你沖出了溪，卻又回來了。"
+msgstr "你逃出了水流，卻又回來了。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=312]
 msgid "M. C. Waterfall"
