@@ -1292,7 +1292,7 @@ msgstr "拿著{{Abilities}}，到了中心，{{GameTime}} 。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6679]
 msgid "reached The Anti-Hub with {{Abilities}} at {{GameTime}}."
-msgstr "拿著{{Abilities}}，到了h水中心，{{GameTime}} 。"
+msgstr "拿著{{Abilities}}，到了反中心，{{GameTime}} 。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6680]
 msgid "reached It Only Takes One with {{Abilities}} at {{GameTime}}."
