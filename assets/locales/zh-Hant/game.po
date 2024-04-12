@@ -413,11 +413,11 @@ msgstr "重設並刪掉存檔%s（放開按鈕）"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s (think about it for %d sec)"
-msgstr "重設並刪掉存檔%s（再想%d秒鐘）"
+msgstr "重設並刪掉存檔%s（請再思考%d秒鐘）"
 
 #: menu/reset.go
 msgid "Reset and Lose Settings"
-msgstr "重設並刪掉設定"
+msgstr "重設並刪去設定"
 
 #: menu/touchedit.go
 msgid "Reset to Defaults"
