@@ -753,7 +753,7 @@ msgstr "每個偉大冒險都是從這句話開始的：{{BR}}「我知道怎麼
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2659]
 msgid "Sometimes you don't just lose sight of something."
-msgstr "有時候你不能不看見某些東西。"
+msgstr "有時候你必須不讓某些東西離開視線。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2665]
 msgid "Hey, I needed that!"
