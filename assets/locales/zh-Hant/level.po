@@ -832,7 +832,7 @@ msgstr "然後……地板變成了閃亮而致命的硬幣。{{BR}}但沒有硬
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3813]
 msgid ""
 "I pressed the impossible button and{{BR}}all I got was this lousy message."
-msgstr "我按了那個不可能按到的按鈕，{{BR}}但只出現了這段破文字。"
+msgstr "我按了那個不可能按到的按鈕，{{BR}}結果只出現了這段破文字。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3821]
 msgid "The grass is always greener on the other side."
