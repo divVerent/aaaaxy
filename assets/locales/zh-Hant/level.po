@@ -587,7 +587,7 @@ msgstr "你現在可以把平台推開了！"
 #. 'coil' here refers to an electromagnetic coil
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
-msgstr "電磁鐵{{BR}}（按住{{ActionButton}}可以使用）{{BR}}提示：不要亂扔！"
+msgstr "電磁鐵{{BR}}（按住{{ActionButton}}可以使用）{{BR}}提醒：不要亂扔！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1493]
 msgid "You can now grab and carry them!"
