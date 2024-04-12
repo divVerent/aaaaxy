@@ -1273,7 +1273,7 @@ msgstr "平台{{BR}}是關鍵。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6575]
 msgid "Quo vadis?"
-msgstr "何方之行？"
+msgstr "子欲何往？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6661]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6674]
