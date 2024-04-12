@@ -1108,7 +1108,7 @@ msgstr "把它搶回來！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5187]
 msgid "y tho?{{BR}}Press {{ExitButton}}."
-msgstr "但是為什麼要醬做？{{BR}}按{{ExitButton}}。"
+msgstr "但你為啥要醬做？{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5207]
 msgid "Stairs to Nowhere"
@@ -1124,7 +1124,7 @@ msgstr "勿以貌取人。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5475]
 msgid "You just need to push away what you don't need."
-msgstr "不需要的東西只需要推開就好。"
+msgstr "不需要的東西只要推開就好。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5476]
 msgid ""
