@@ -958,7 +958,7 @@ msgstr "帶夠了嗎？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
 msgid "Trash Chute"
-msgstr "垃圾場"
+msgstr "垃圾管"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4409]
 msgid "Taking Out the Trash"
