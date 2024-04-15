@@ -101,6 +101,9 @@ languages=$(
 			zh-Hans)
 				res=b+zh+Hans
 				;;
+			zh-Hant)
+				res=b+zh+Hant
+				;;
 			*)
 				res=$lang${variant:+-r$variant}
 				;;

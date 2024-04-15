@@ -20,7 +20,7 @@ require (
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.15.0
 	golang.org/x/mobile v0.0.0-20240213143359-d1f7d3436075
-	golang.org/x/sys v0.18.0
+	golang.org/x/sys v0.19.0
 	golang.org/x/text v0.14.0
 )
 
