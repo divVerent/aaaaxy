@@ -15,15 +15,12 @@
 package font
 
 import (
-	"image"
 	"image/color"
-	"image/draw"
 	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/text/v2"
 	"golang.org/x/image/font"
-	"golang.org/x/image/math/fixed"
 
 	"github.com/divVerent/aaaaxy/internal/locale"
 	m "github.com/divVerent/aaaaxy/internal/math"
@@ -75,94 +72,52 @@ func (f Face) BoundString(str string) m.Rect {
 }
 
 // drawLine draws one line of text.
-func drawLine(f *faceWrapper, dst draw.Image, line string, x, y int, fg color.Color) {
-	if locale.ActiveUsesEbitenText() {
-		dst, ok := dst.(*ebiten.Image)
-		if ok {
-			// Use Ebitengine's glyph cache.
-			options := &text.DrawOptions{
-				LayoutOptions: text.LayoutOptions{
-					LineSpacing:    0,
-					PrimaryAlign:   text.AlignStart,
-					SecondaryAlign: text.AlignStart,
-				},
-			}
-			options.GeoM.Translate(float64(x), float64(y)-float64(f.GoX.Metrics().Ascent)/float64(1<<6))
-			options.ColorScale.ScaleWithColor(fg)
-			text.Draw(dst, line, f.Ebi, options)
-			return
-		}
+func drawLine(f *faceWrapper, dst *ebiten.Image, line string, x, y int, align text.Align, fg color.Color) {
+	// Use Ebitengine's glyph cache.
+	options := &text.DrawOptions{
+		LayoutOptions: text.LayoutOptions{
+			LineSpacing:    0,
+			PrimaryAlign:   align,
+			SecondaryAlign: text.AlignStart,
+		},
 	}
-	// No glyph cache.
-	d := font.Drawer{
-		Dst:  dst,
-		Src:  image.NewUniform(fg),
-		Face: f.GoX,
-		Dot:  fixed.P(x, y),
-	}
-	d.DrawString(line)
+	options.GeoM.Translate(float64(x), float64(y)-float64(f.GoX.Metrics().Ascent)/float64(1<<6))
+	options.ColorScale.ScaleWithColor(fg)
+	text.Draw(dst, line, f.Ebi, options)
 }
 
 type Align int
 
 const (
-	AsBounds Align = iota
-	Left
+	Left Align = iota
 	Center
 	Right
 )
 
 // Draw draws the given text.
-func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg color.Color) {
+func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, boxAlign Align, fg, bg color.Color) {
 	// We need to do our own line splitting because
 	// we always want to center and Ebitengine would left adjust.
 	lines := strings.Split(str, "\n")
 	for i, line := range lines {
 		lines[i] = locale.ActiveShape(line)
 	}
-	bounds := make([]m.Rect, len(lines))
-	for i, line := range lines {
-		bounds[i] = f.boundString(line)
-	}
-	var totalMin, totalMax int
-	for _, lineBounds := range bounds {
-		xMin := lineBounds.Origin.X
-		xMax := xMin + lineBounds.Size.DX
-		if xMin < totalMin {
-			totalMin = xMin
-		}
-		if xMax > totalMax {
-			totalMax = xMax
-		}
-	}
-	// AsBounds: offset := pos.X + totalBounds.Size.DX/2 + totalBounds.Origin.X
-	// Center: offset := pos.X
-	// Left: offset := pos.X + totalBounds.Size.DX/2
-	// Right: offset := pos.X - (totalBounds.Size.DX+1)/2
-	offset := pos.X
-	switch boxAlign {
-	case AsBounds:
-		offset += (totalMin + totalMax) / 2
-	case Left:
-		offset += (totalMax - totalMin) / 2
-	case Right:
-		offset -= (totalMax - totalMin + 1) / 2
-	}
 	y := pos.Y
 	lineHeight := f.Outline.GoX.Metrics().Height.Ceil()
-	for i, line := range lines {
-		lineBounds := bounds[i]
-		// totalBounds: tX size tDX
-		// lineBouds: lX size lDX
-		// Want lX+d .. lX+lDX+d centered in tX .. tX+tDX
-		// Thus: lX+d - tX = tX+tDX - (lX+lDX+d)
-		// d = tX - lX + (tDX - lDX)/2.
-		x := offset - lineBounds.Origin.X - lineBounds.Size.DX/2
+	var align text.Align
+	switch boxAlign {
+		case Left:
+			align=text.AlignStart
+		case Center:
+			align=text.AlignCenter
+		case Right:
+			align=text.AlignEnd
+	}
+	for _, line := range lines {
 		if _, _, _, a := bg.RGBA(); a != 0 {
-			drawLine(f.Outline, dst, line, x, y, bg)
+			drawLine(f.Outline, dst, line, pos.X, y, align, bg)
 		}
-		// Draw the text itself.
-		drawLine(f.Face, dst, line, x, y, fg)
+		drawLine(f.Face, dst, line, pos.X, y, align, fg)
 		y += lineHeight
 	}
 }
