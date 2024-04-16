@@ -120,21 +120,15 @@ func KeepInCache() {
 	if !*pinFontsToCache {
 		return
 	}
-	charSubSet := charSet
-	if charSetCached {
-		f := *pinFontsToCacheFraction
-		l := len(charSet)
-		low := charSetPos * l / f
-		charSetPos++
-		high := charSetPos * l / f
-		if charSetPos == f {
-			charSetPos = 0
-		}
-		charSubSet = charSet[low:high]
-	} else {
-		charSetCached = true
+	f := *pinFontsToCacheFraction
+	l := len(charSet)
+	low := charSetPos * l / f
+	charSetPos++
+	high := charSetPos * l / f
+	if charSetPos == f {
 		charSetPos = 0
 	}
+	charSubSet := charSet[low:high]
 	charSubSetStr := string(charSubSet)
 	done := map[*Face]struct{}{}
 	for _, f := range ByName {
@@ -355,7 +349,7 @@ func fontOutlineMask(src image.Image) image.Image {
 func SetFont(font string) error {
 	charSet = locale.CharSet(charSetBase, *pinFontsToCacheBaseWeight, *pinFontsToCacheCount)
 	log.Infof("charset pinned: %v", string(charSet))
-	charSetCached = false
+	charSetPos = 0
 	if *debugFontOverride != "" {
 		font = *debugFontOverride
 	}
