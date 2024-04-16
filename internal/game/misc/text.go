@@ -34,7 +34,7 @@ import (
 )
 
 var (
-	precacheText            = flag.Bool("precache_text", true, "preload all text objects at startup (VERY recommended)")
+	precacheText = flag.Bool("precache_text", true, "preload all text objects at startup (VERY recommended)")
 )
 
 // Text is a simple entity type that renders text.
