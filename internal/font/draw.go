@@ -29,6 +29,10 @@ import (
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
+var (
+	precacheImg *ebiten.Image
+)
+
 // boundString returns the bounding rectangle of the given text.
 func (f Face) boundString(str string) m.Rect {
 	var r m.Rect
@@ -159,6 +163,15 @@ func (f Face) Draw(dst draw.Image, str string, pos m.Pos, boxAlign Align, fg, bg
 }
 
 func (f Face) precache(chars string) {
-	text.CacheGlyphs(f.Face, chars)
-	text.CacheGlyphs(f.Outline, chars)
+	if *fontFractionalSpacing {
+		text.CacheGlyphs(f.Face, chars)
+		text.CacheGlyphs(f.Outline, chars)
+	} else {
+		// Always cache at position 0 only.
+		if precacheImg == nil {
+			precacheImg = ebiten.NewImage(1, 1)
+		}
+		text.Draw(precacheImg, chars, f.Face, 0, 0, color.Gray{0})
+		text.Draw(precacheImg, chars, f.Outline, 0, 0, color.Gray{0})
+	}
 }
