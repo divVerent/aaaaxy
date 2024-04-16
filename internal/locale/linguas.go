@@ -264,22 +264,3 @@ func ActiveShape(s string) string {
 		return s
 	}
 }
-
-// ActiveUsesEbitenText returns whether using ebiten/text for font drawing is safe.
-//
-// This is only accessible for the active locale so it can later be defined by the language file itself.
-func ActiveUsesEbitenText() bool {
-	po := G // Workaround for xgotext otherwise not finding the call.
-	setting := po.Get("_locale_info:uses_ebiten_text")
-	switch setting {
-	case "_locale_info:uses_ebiten_text":
-		return true
-	case "true":
-		return true
-	case "false":
-		return false
-	default:
-		log.Fatalf("Invalid value of _locale_info:uses_ebiten_text: got %q, want true or false", setting)
-		return true
-	}
-}

@@ -176,7 +176,7 @@ func (m *unManager) New(name string, explicit bool) *ebiten.Image {
 
 func (m *unManager) Dispose(img *ebiten.Image) {
 	m.clearName(img)
-	img.Dispose()
+	img.Deallocate()
 }
 
 func (m *unManager) Collect() {}

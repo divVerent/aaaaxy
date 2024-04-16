@@ -100,7 +100,7 @@ func (s *SpriteBase) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 
 	requiredXDiv := propmap.ValueOrP(sp.Properties, "required_x_divisible_by", 0, &parseErr)
 	if requiredXDiv != 0 {
-		if e.Rect.Origin.X % requiredXDiv != 0 {
+		if e.Rect.Origin.X%requiredXDiv != 0 {
 			// Hide.
 			e.Alpha = 0.0
 			w.MutateContentsBool(e, level.AllContents, false)

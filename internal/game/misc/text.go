@@ -16,7 +16,6 @@ package misc
 
 import (
 	"fmt"
-	"image"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -36,8 +35,6 @@ import (
 
 var (
 	precacheText            = flag.Bool("precache_text", true, "preload all text objects at startup (VERY recommended)")
-	memImagesForStaticText  = flag.Bool("mem_images_for_static_text", true, "use in-memory images for static text objects (faster startup)")
-	memImagesForDynamicText = flag.Bool("mem_images_for_dynamic_text", false, "use in-memory images for dynamic text objects (seems to update slower in-game)")
 )
 
 // Text is a simple entity type that renders text.
@@ -85,30 +82,12 @@ func (key textCacheKey) load(ps *playerstate.PlayerState) (*ebiten.Image, error)
 		return nil, err
 	}
 	bounds := fnt.BoundString(txt)
-	useMemImages := *memImagesForStaticText
-	if ps != nil {
-		useMemImages = *memImagesForDynamicText
-	}
-	if useMemImages {
-		img := image.NewRGBA( // image.RGBA is Ebitengine's fast path.
-			image.Rectangle{
-				Min: image.Point{
-					X: 0,
-					Y: 0,
-				},
-				Max: image.Point{
-					X: bounds.Size.DX,
-					Y: bounds.Size.DY,
-				},
-			})
-		fnt.Draw(img, txt, bounds.Origin.Mul(-1), font.AsBounds, key.fg, key.bg)
-		img2 := ebiten.NewImageFromImage(img)
-		return img2, nil
-	} else {
-		img := ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
-		fnt.Draw(img, txt, bounds.Origin.Mul(-1), font.AsBounds, key.fg, key.bg)
-		return img, nil
-	}
+	// Fit it exactly into the box.
+	pos := bounds.Origin.Mul(-1)
+	pos.X += bounds.Size.DX / 2
+	img := ebiten.NewImage(bounds.Size.DX, bounds.Size.DY)
+	fnt.Draw(img, txt, pos, font.Center, key.fg, key.bg)
+	return img, nil
 }
 
 func ClearPrecache() {
@@ -174,7 +153,7 @@ func (t *Text) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity
 
 func (t *Text) updateText() error {
 	if t.MyImage {
-		t.Entity.Image.Dispose()
+		t.Entity.Image.Deallocate()
 	}
 	t.Entity.Image = nil
 	if *precacheText {
@@ -204,7 +183,7 @@ func (t *Text) updateText() error {
 
 func (t *Text) Despawn() {
 	if t.MyImage {
-		t.Entity.Image.Dispose()
+		t.Entity.Image.Deallocate()
 	}
 	t.Entity.Image = nil
 }

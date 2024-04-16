@@ -67,11 +67,11 @@ func LoadConfig() (*flag.Config, error) {
 func setWindowSize() {
 	logicalF := *windowScaleFactor
 	log.Infof("requested logical scale factor: %v", logicalF)
-	dscale := ebiten.DeviceScaleFactor()
+	dscale := ebiten.Monitor().DeviceScaleFactor()
 	log.Infof("device scale factor: %v", dscale)
 	var physicalF float64
 	if logicalF <= 0 {
-		screenw, screenh := ebiten.ScreenSizeInFullscreen()
+		screenw, screenh := ebiten.Monitor().Size()
 		log.Infof("screen size: %vx%v", screenw, screenh)
 		// Reserve 128 device independent pixels for system controls.
 		maxw, maxh := screenw-128, screenh-128
