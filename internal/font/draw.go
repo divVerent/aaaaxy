@@ -26,6 +26,10 @@ import (
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
+var (
+	precacheImg *ebiten.Image
+)
+
 // boundString returns the bounding rectangle of the given text.
 func (f Face) boundString(str string) m.Rect {
 	var r m.Rect
@@ -106,12 +110,12 @@ func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, boxAlign Align, fg,
 	lineHeight := f.Outline.GoX.Metrics().Height.Ceil()
 	var align text.Align
 	switch boxAlign {
-		case Left:
-			align=text.AlignStart
-		case Center:
-			align=text.AlignCenter
-		case Right:
-			align=text.AlignEnd
+	case Left:
+		align = text.AlignStart
+	case Center:
+		align = text.AlignCenter
+	case Right:
+		align = text.AlignEnd
 	}
 	for _, line := range lines {
 		if _, _, _, a := bg.RGBA(); a != 0 {
@@ -123,6 +127,16 @@ func (f Face) Draw(dst *ebiten.Image, str string, pos m.Pos, boxAlign Align, fg,
 }
 
 func (f Face) precache(chars string) {
-	text.CacheGlyphs(chars, f.Face.Ebi)
-	text.CacheGlyphs(chars, f.Outline.Ebi)
+	if *fontFractionalSpacing {
+		text.CacheGlyphs(chars, f.Face.Ebi)
+		text.CacheGlyphs(chars, f.Outline.Ebi)
+	} else {
+		// Always cache at position 0 only.
+		if precacheImg == nil {
+			precacheImg = ebiten.NewImage(1, 1)
+		}
+		options := &text.DrawOptions{}
+		text.Draw(precacheImg, chars, f.Face.Ebi, options)
+		text.Draw(precacheImg, chars, f.Outline.Ebi, options)
+	}
 }
