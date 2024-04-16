@@ -30,8 +30,8 @@ import (
 )
 
 var (
-	pinFontsToCache           = flag.Bool("pin_fonts_to_cache", false, "pin all fonts to glyph cache")
-	pinFontsToCacheAtStart    = flag.Bool("pin_fonts_to_cache_at_start", false, "pin all fonts to glyph cache right at startup (otherwise this work is spread across the first few frames)")
+	pinFontsToCache           = flag.Bool("pin_fonts_to_cache", true, "pin all fonts to glyph cache")
+	pinFontsToCacheAtStart    = flag.Bool("pin_fonts_to_cache_at_start", true, "pin all fonts to glyph cache right at startup (otherwise this work is spread across the first few frames)")
 	pinFontsToCacheBaseWeight = flag.Int("pin_fonts_to_cache_base_weight", 1, "base weight for English characters when font pinning")
 	pinFontsToCacheCount      = flag.Int("pin_fonts_to_cache_count", 512, "maximum number of characters to pin")
 	pinFontsToCacheFraction   = flag.Int("pin_fonts_to_cache_fraction", 30, "fraction of all characters to cache per frame")
