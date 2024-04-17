@@ -35,4 +35,4 @@ done
 cd "$d0"/assets
 zip -r "$out" [!_]*/[!_]*
 $ADVZIP -z "$out"
-ln "$out" "$out2" || cp "$out" "$out2"
+ln -f "$out" "$out2" || cp "$out" "$out2"
