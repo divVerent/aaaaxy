@@ -23,7 +23,6 @@ import (
 	"time"
 
 	"github.com/jeandeaual/go-locale"
-	"golang.org/x/mobile/app"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/mobile"
@@ -74,7 +73,7 @@ func (g *game) Update() (err error) {
 	}
 	if !g.inited {
 		g.inited = true
-		locale.SetRunOnJVM(app.RunOnJVM)
+		locale.SetRunOnJVM(mobile.RunOnJVM)
 		err = g.game.InitEarly()
 	}
 	if err == nil {
