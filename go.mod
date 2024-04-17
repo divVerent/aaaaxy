@@ -29,9 +29,9 @@ require (
 	github.com/ebitengine/gomobile v0.0.0-20240329170434-1771503ff0a8 // indirect
 	github.com/ebitengine/hideconsole v1.0.0 // indirect
 	github.com/ebitengine/oto/v3 v3.2.0 // indirect
-	github.com/ebitengine/purego v0.7.0 // indirect
+	github.com/ebitengine/purego v0.7.1 // indirect
 	github.com/go-logr/logr v1.2.0 // indirect
-	github.com/go-text/typesetting v0.1.1-0.20240325125605-c7936fe59984 // indirect
+	github.com/go-text/typesetting v0.1.1 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/licenseclassifier/v2 v2.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
@@ -44,10 +44,10 @@ require (
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	golang.org/x/mod v0.16.0 // indirect
-	golang.org/x/net v0.22.0 // indirect
-	golang.org/x/sync v0.6.0 // indirect
-	golang.org/x/tools v0.19.0 // indirect
+	golang.org/x/mod v0.17.0 // indirect
+	golang.org/x/net v0.24.0 // indirect
+	golang.org/x/sync v0.7.0 // indirect
+	golang.org/x/tools v0.20.0 // indirect
 	k8s.io/klog/v2 v2.90.1 // indirect
 )
 
