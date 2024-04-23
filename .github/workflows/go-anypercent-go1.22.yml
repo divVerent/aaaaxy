@@ -135,7 +135,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install wine xvfb'
+      run: 'sudo dpkg --add-architecture i386 && sudo mkdir -pm755 /etc/apt/keyrings && sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key && sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources && sudo apt-get update && sudo apt-get -y install winehq-stable xvfb'
 
     - name: Download Binary
       uses: actions/download-artifact@v4
@@ -228,7 +228,7 @@ jobs:
         submodules: true
 
     - name: Install Dependencies
-      run: 'sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get -y install wine wine32 xvfb'
+      run: 'sudo dpkg --add-architecture i386 && sudo mkdir -pm755 /etc/apt/keyrings && sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key && sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources && sudo apt-get update && sudo apt-get -y install winehq-stable xvfb'
 
     - name: Download Binary
       uses: actions/download-artifact@v4
