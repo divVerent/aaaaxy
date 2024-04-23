@@ -36,7 +36,11 @@ atexit() {
 trap atexit EXIT
 
 rm -f internal/builddeps/builddeps.go
+ebiver=$(go mod graph | grep ^github.com/hajimehoshi/ebiten/v2@ | cut -d @ -f 2 | cut -d ' ' -f 1 | uniq)
 go mod tidy
+
+# This has to run after the "tidy", as the "tidy" would remove it again.
+go get github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile@$ebiver
 
 cd "$cwd"
 go run github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile "$@"
