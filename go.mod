@@ -3,7 +3,7 @@ module github.com/divVerent/aaaaxy
 go 1.19
 
 require (
-	github.com/Microsoft/go-winio v0.6.1
+	github.com/Microsoft/go-winio v0.6.2
 	github.com/adrg/xdg v0.4.0
 	github.com/akavel/rsrc v0.10.2
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
