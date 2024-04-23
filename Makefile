@@ -116,7 +116,10 @@ assets-update-all:
 # These are not in assets-update as graphics are required for these.
 .PHONY: loading-fractions-update
 loading-fractions-update: $(BINARY)
-	./$(BINARY) -dump_loading_fractions=assets/splash/loading_fractions.json -debug_just_init -debug_enable_drawing=false -vsync=true
+	./$(BINARY) -load_config=false -dump_loading_fractions=assets/splash/loading_fractions.json -debug_just_init -debug_enable_drawing=false
+
+pprof-update: $(BINARY)
+	./$(BINARY) -load_config=false -debug_cpuprofile=default.pgo -palette=vga -draw_blurs=true -draw_outside=true -expand_using_vertices_accurately=true -screen_filter=linear2xcrt -vsync=false -demo_timedemo -demo_play=assets/demos/_anypercent.dem
 
 # The actual build process follows.
 
