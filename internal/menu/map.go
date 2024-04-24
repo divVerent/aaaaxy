@@ -165,7 +165,8 @@ func (s *MapScreen) moveBy(d m.Delta) {
 		return
 	}
 	edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(s.CurrentCP, edge.Other)
-	if !edgeSeen {
+	otherSeen := s.Controller.World.PlayerState.CheckpointSeen(edge.Other) != playerstate.NotSeen
+	if !edgeSeen && !otherSeen {
 		// Don't know this yet :)
 		return
 	}
