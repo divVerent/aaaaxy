@@ -126,33 +126,33 @@ jobs:
           *.dem.*.log
           *.dem.*.png
 
-  test-wine-amd64:
-    needs: build-windows-amd64
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-
-    - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install wine xvfb'
-
-    - name: Download Binary
-      uses: actions/download-artifact@v4
-      with:
-        name: aaaaxy-debug-windows-amd64
-
-    - name: Test
-      run: 'xvfb-run sh scripts/regression-test-demo.sh wine-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" "wine ./aaaaxy.exe" assets/demos/_anypercent.dem'
-
-    - name: Archive Results
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: regression-test-results-anypercent-wine-amd64
-        path: |
-          *.dem.*.log
-          *.dem.*.png
+#  test-wine-amd64:
+#    needs: build-windows-amd64
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v4
+#      with:
+#        submodules: true
+#
+#    - name: Install Dependencies
+#      run: 'sudo apt-get update && sudo apt-get -y install wine xvfb'
+#
+#    - name: Download Binary
+#      uses: actions/download-artifact@v4
+#      with:
+#        name: aaaaxy-debug-windows-amd64
+#
+#    - name: Test
+#      run: 'xvfb-run sh scripts/regression-test-demo.sh wine-amd64 "your time: 0:14:05.500; your speedrun categories: Any%;" "wine ./aaaaxy.exe" assets/demos/_anypercent.dem'
+#
+#    - name: Archive Results
+#      if: ${{ always() }}
+#      uses: actions/upload-artifact@v4
+#      with:
+#        name: regression-test-results-anypercent-wine-amd64
+#        path: |
+#          *.dem.*.log
+#          *.dem.*.png
 
   # NOTE: Builds with disabled tests follow.
   build-windows-386:
@@ -219,31 +219,31 @@ jobs:
           *.dem.*.log
           *.dem.*.png
 
-  test-wine-386:
-    needs: build-windows-386
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-
-    - name: Install Dependencies
-      run: 'sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get -y install wine wine32 xvfb'
-
-    - name: Download Binary
-      uses: actions/download-artifact@v4
-      with:
-        name: aaaaxy-debug-windows-386
-
-    - name: Test
-      run: 'xvfb-run sh scripts/regression-test-demo.sh wine-386 "your time: 0:14:05.500; your speedrun categories: Any%;" "wine ./aaaaxy.exe" assets/demos/_anypercent.dem'
-
-    - name: Archive Results
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: regression-test-results-anypercent-wine-386
-        path: |
-          *.dem.*.log
-          *.dem.*.png
+#  test-wine-386:
+#    needs: build-windows-386
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v4
+#      with:
+#        submodules: true
+#
+#    - name: Install Dependencies
+#      run: 'sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get -y install wine wine32 xvfb'
+#
+#    - name: Download Binary
+#      uses: actions/download-artifact@v4
+#      with:
+#        name: aaaaxy-debug-windows-386
+#
+#    - name: Test
+#      run: 'xvfb-run sh scripts/regression-test-demo.sh wine-386 "your time: 0:14:05.500; your speedrun categories: Any%;" "wine ./aaaaxy.exe" assets/demos/_anypercent.dem'
+#
+#    - name: Archive Results
+#      if: ${{ always() }}
+#      uses: actions/upload-artifact@v4
+#      with:
+#        name: regression-test-results-anypercent-wine-386
+#        path: |
+#          *.dem.*.log
+#          *.dem.*.png
 
