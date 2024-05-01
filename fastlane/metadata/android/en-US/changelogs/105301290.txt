@@ -1,0 +1,4 @@
+  - Engine: module updates.
+  - Engine: update to Ebitengine 2.7.2.
+  - Engine: update to Go 1.21. This drops support for Windows below 10 and macOS below Catalina.
+  - Languages: add Chinese (Traditional).
