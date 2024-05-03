@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-03 10:45-0700\n"
+"POT-Creation-Date: 2024-04-12 20:11-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Ran Dint, 2024\n"
 "Language-Team: Chinese Traditional (https://app.transifex.com/aaaaxy/teams/158611/zh-Hant/)\n"
@@ -43,7 +43,7 @@ msgstr "有時候看事物的角度很重要。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=52]
 msgid "There can be too much of a good thing."
-msgstr "過猶不及"
+msgstr "過猶不及。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=53]
 msgid "Leap of Faith"
