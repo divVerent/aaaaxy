@@ -2,6 +2,8 @@ module github.com/divVerent/aaaaxy
 
 go 1.21
 
+toolchain go1.22.2
+
 require (
 	github.com/Microsoft/go-winio v0.6.2
 	github.com/adrg/xdg v0.4.0
@@ -10,7 +12,7 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
 	github.com/hajimehoshi/bitmapfont/v3 v3.1.0
-	github.com/hajimehoshi/ebiten/v2 v2.7.2
+	github.com/hajimehoshi/ebiten/v2 v2.7.3
 	github.com/jeandeaual/go-locale v0.0.0-20240223122105-ce5225dcaa49
 	github.com/leonelquinteros/gotext v1.6.0
 	github.com/lestrrat-go/strftime v1.0.6
@@ -18,15 +20,15 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.10.12
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
-	golang.org/x/image v0.15.0
-	golang.org/x/sys v0.19.0
-	golang.org/x/text v0.14.0
+	golang.org/x/image v0.16.0
+	golang.org/x/sys v0.20.0
+	golang.org/x/text v0.15.0
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
-	github.com/ebitengine/gomobile v0.0.0-20240329170434-1771503ff0a8 // indirect
+	github.com/ebitengine/gomobile v0.0.0-20240429094902-cf88669c3591 // indirect
 	github.com/ebitengine/hideconsole v1.0.0 // indirect
 	github.com/ebitengine/oto/v3 v3.2.0 // indirect
 	github.com/ebitengine/purego v0.7.1 // indirect
