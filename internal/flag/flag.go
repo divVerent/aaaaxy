@@ -263,18 +263,18 @@ func NoConfig() (*Config, error) {
 	return nil, nil
 }
 
-// StringBoolMap is a custom flag type to contain maps from string to bool.
-func StringBoolMap(name string, value map[string]bool, usage string) *map[string]bool {
-	m := stringBoolMap{m: value}
+// StringMap is a custom flag type to contain maps from string to T.
+func StringMap[T any](name string, value map[string]T, usage string) *map[string]T {
+	m := stringMap[T]{m: value}
 	flagSet.Var(&m, name, usage)
 	return &m.m
 }
 
-type stringBoolMap struct {
-	m map[string]bool
+type stringMap[T any] struct {
+	m map[string]T
 }
 
-func (m *stringBoolMap) String() string {
+func (m *stringMap[T]) String() string {
 	a := make([]string, 0, len(m.m))
 	for k := range m.m {
 		a = append(a, k)
@@ -292,8 +292,8 @@ func (m *stringBoolMap) String() string {
 	return s
 }
 
-func (m *stringBoolMap) Set(s string) error {
-	m.m = map[string]bool{}
+func (m *stringMap[T]) Set(s string) error {
+	m.m = map[string]T{}
 	if s == "" {
 		return nil
 	}
@@ -304,26 +304,31 @@ func (m *stringBoolMap) Set(s string) error {
 			if kv[1] == "" {
 				delete(m.m, kv[0])
 			} else {
-				var v bool
+				var v T
 				_, err := fmt.Sscanf(kv[1], "%v", &v)
 				if err != nil {
-					return fmt.Errorf("invalid StringBoolMap flag value, got %q, want something of the form key1=true/false,key2=true/false", s)
+					return fmt.Errorf("invalid StringMap flag value, got %q, could no parse contained value %q", s, kv[1])
 				}
 				m.m[kv[0]] = v
 			}
 		case 1:
-			if strings.HasPrefix(kv[0], "no") {
-				m.m[kv[0][2:]] = false
-			} else {
-				m.m[kv[0]] = true
+			switch m_m := any(m.m).(type) {
+			case map[string]bool:
+				if strings.HasPrefix(kv[0], "no") {
+					m_m[kv[0][2:]] = false
+				} else {
+					m_m[kv[0]] = true
+				}
+			default:
+				return fmt.Errorf("missing StringMap flag value, got %q, want items of the form key=value, not %q", s, word)
 			}
 		default:
-			return fmt.Errorf("invalid StringMap flag value, got %q, want something of the form key1=value1,key2=value2", s)
+			return fmt.Errorf("invalid StringMap flag value, got %q, want items of the form key=value, not %q", s, word)
 		}
 	}
 	return nil
 }
 
-func (m *stringBoolMap) Get() interface{} {
+func (m *stringMap[T]) Get() interface{} {
 	return m.m
 }

@@ -30,12 +30,30 @@ import (
 )
 
 var (
-	debugCpuprofile        = flag.String("debug_cpuprofile", "", "write CPU profile to file")
-	debugLoadingCpuprofile = flag.String("debug_loading_cpuprofile", "", "write CPU profile of loading to file")
-	debugMemprofile        = flag.String("debug_memprofile", "", "write memory profile to file")
-	debugMemprofileRate    = flag.Int("debug_memprofile_rate", runtime.MemProfileRate, "fraction of bytes to be included in -debug_memprofile")
-	debugLogFile           = flag.String("debug_log_file", "", "log file to write all messages to (may be slow)")
+	debugCpuprofile           = flag.String("debug_cpuprofile", "", "write CPU profile to file")
+	debugLoadingCpuprofile    = flag.String("debug_loading_cpuprofile", "", "write CPU profile of loading to file")
+	debugProfile              = flag.StringMap[string]("debug_profile", map[string]string{}, "key=value map to write profile indicated by key to given file path; possible keys include heap, allocs, threadcreate, block and mutex.")
+	debugMemprofileRate       = flag.Int("debug_memprofile_rate", runtime.MemProfileRate, "fraction of bytes to be included in -debug_profile=heap=... and -debug_profile=allocs=...")
+	debugBlockprofileRate     = flag.Int("debug_blockprofile_rate", 1, "resolution in nanoseconds for recording the block profile")
+	debugMutexprofileFraction = flag.Int("debug_mutexprofile_fraction", max(runtime.SetMutexProfileFraction(-1), 1), "resolution in nanoseconds for recording the block profile")
+	debugLogFile              = flag.String("debug_log_file", "", "log file to write all messages to (may be slow)")
 )
+
+func setProfileRates() {
+	// Set the profile rates as soon as possible.
+	if _, found := (*debugProfile)["heap"]; found {
+		runtime.MemProfileRate = *debugMemprofileRate
+	}
+	if _, found := (*debugProfile)["allocs"]; found {
+		runtime.MemProfileRate = *debugMemprofileRate
+	}
+	if _, found := (*debugProfile)["block"]; found {
+		runtime.SetBlockProfileRate(*debugBlockprofileRate)
+	}
+	if _, found := (*debugProfile)["mutex"]; found {
+		runtime.SetMutexProfileFraction(*debugMutexprofileFraction)
+	}
+}
 
 func runGame(game *aaaaxy.Game) error {
 	if *debugLoadingCpuprofile != "" {
@@ -47,17 +65,17 @@ func runGame(game *aaaaxy.Game) error {
 		if err := pprof.StartCPUProfile(f); err != nil {
 			log.Fatalf("could not start CPU profile: %v", err)
 		}
-		err = game.InitFull()
-		if err != nil {
-			log.Fatalf("could not initialize game: %v", err)
-		}
+	}
+	err := game.InitFull()
+	if *debugLoadingCpuprofile != "" {
 		pprof.StopCPUProfile()
 	}
+
+	if err != nil {
+		log.Fatalf("could not initialize game: %v", err)
+	}
+
 	if *debugCpuprofile != "" {
-		err := game.InitFull()
-		if err != nil {
-			log.Fatalf("could not initialize game: %v", err)
-		}
 		f, err := vfs.OSCreate(vfs.WorkDir, *debugCpuprofile)
 		if err != nil {
 			log.Fatalf("could not create CPU profile: %v", err)
@@ -67,21 +85,26 @@ func runGame(game *aaaaxy.Game) error {
 			log.Fatalf("could not start CPU profile: %v", err)
 		}
 	}
-	err := ebiten.RunGame(game)
+	err = ebiten.RunGame(game)
 	if *debugCpuprofile != "" {
 		pprof.StopCPUProfile()
 	}
-	if *debugMemprofile != "" {
-		f, err := vfs.OSCreate(vfs.WorkDir, *debugMemprofile)
+
+	if len(*debugProfile) != 0 {
+		runtime.GC() // Ensure up to date memory profiles.
+	}
+
+	for profile, path := range *debugProfile {
+		f, err := vfs.OSCreate(vfs.WorkDir, path)
 		if err != nil {
-			log.Fatalf("could not create memory profile: %v", err)
+			log.Fatalf("could not create %s profile: %v", profile, err)
 		}
 		defer f.Close()
-		runtime.GC()
-		if err := pprof.WriteHeapProfile(f); err != nil {
-			log.Fatalf("could not write memory profile: %v", err)
+		if err := pprof.Lookup(profile).WriteTo(f, 0); err != nil {
+			log.Fatalf("could not write %s profile: %v", profile, err)
 		}
 	}
+
 	return err
 }
 
@@ -98,10 +121,7 @@ func main() {
 
 	flag.Parse(aaaaxy.LoadConfig)
 
-	if *debugMemprofile != "" {
-		// Set the memory profile rate as soon as possible.
-		runtime.MemProfileRate = *debugMemprofileRate
-	}
+	setProfileRates()
 
 	if *debugLogFile != "" {
 		log.AddLogFile(*debugLogFile)
