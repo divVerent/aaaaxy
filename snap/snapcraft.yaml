@@ -69,7 +69,8 @@ parts:
       - alsa-mixin
       - keep-xdg
     plugin: go
-    go-channel: 1.22/stable
+    build-snaps:
+      - go
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "$(sh scripts/version.sh semver)"
