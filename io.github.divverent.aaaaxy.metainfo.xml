@@ -44,19 +44,19 @@
       <caption>Game Start</caption>
       <caption xml:lang="de">Spielbeginn</caption>
       <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot1.jpg</image>
-      <image type="source" width="2880" height="1620">https://divVerent.github.io/aaaaxy/screenshots/shot1.med.png</image>
+      <image type="source" width="960" height="540">https://divVerent.github.io/aaaaxy/screenshots/shot1.med.png</image>
     </screenshot>
     <screenshot>
       <caption>Road Rage</caption>
       <caption xml:lang="de">Raserei</caption>
       <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot5.jpg</image>
-      <image type="source" width="2880" height="1620">https://divVerent.github.io/aaaaxy/screenshots/shot5.med.png</image>
+      <image type="source" width="960" height="540">https://divVerent.github.io/aaaaxy/screenshots/shot5.med.png</image>
     </screenshot>
     <screenshot>
       <caption>Crumbling Upwards</caption>
       <caption xml:lang="de">Hochbröckeln</caption>
-      <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot8.jpg</image>
-      <image type="source" width="2880" height="1620">https://divVerent.github.io/aaaaxy/screenshots/shot8.med.png</image>
+      image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot8.jpg</image>
+      <image type="source" width="960" height="540">https://divVerent.github.io/aaaaxy/screenshots/shot8.med.png</image>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1">
