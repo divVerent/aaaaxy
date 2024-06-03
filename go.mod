@@ -2,7 +2,7 @@ module github.com/divVerent/aaaaxy
 
 go 1.21
 
-toolchain go1.22.2
+toolchain go1.22.3
 
 require (
 	github.com/Microsoft/go-winio v0.6.2
