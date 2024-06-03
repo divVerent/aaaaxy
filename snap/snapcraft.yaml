@@ -1,6 +1,6 @@
 name: aaaaxy
 title: AAAAXY
-base: core20
+base: core22
 # contact: divVerent@gmail.com
 # issues: https://github.com/divVerent/aaaaxy/issues
 # source-code: https://github.com/divVerent/aaaaxy
@@ -69,7 +69,7 @@ parts:
       - alsa-mixin
       - keep-xdg
     plugin: go
-    go-channel: 1.19/stable
+    go-channel: 1.22/stable
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "$(sh scripts/version.sh semver)"
