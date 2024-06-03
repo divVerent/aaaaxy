@@ -111,7 +111,7 @@ case "$GOOS" in
 	js)
 		# Pack in a form itch.io can use.
 		cp aaaaxy.html index.html
-		cp "$(GOOS=js GOARCH=wasm go env GOROOT)"/misc/wasm/wasm_exec.js .
+		cp "$(cd / && GOOS=js GOARCH=wasm go env GOROOT)"/misc/wasm/wasm_exec.js .
 		;;
 esac
 
