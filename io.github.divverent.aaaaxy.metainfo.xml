@@ -27,8 +27,8 @@
     <control>gamepad</control>
   </supports>
   <branding>
-    <color type="primary" schema_preference="light">#5555ff</color>
-    <color type="primary" schema_preference="dark">#555555</color>
+    <color type="primary" scheme_preference="light">#5555ff</color>
+    <color type="primary" scheme_preference="dark">#555555</color>
   </branding>
   <description>
     <p>
