@@ -24,7 +24,7 @@ description: |
   sudo snap connect aaaaxy:joystick
 type: app
 confinement: strict
-icon: aaaaxy.png
+icon: aaaaxy.svg
 license: Apache-2.0
 grade: stable
 
