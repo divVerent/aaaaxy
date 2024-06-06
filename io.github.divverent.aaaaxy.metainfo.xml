@@ -11,10 +11,17 @@
   <project_license>Apache-2.0</project_license>
   <url type="homepage">https://divverent.github.io/aaaaxy</url>
   <url type="bugtracker">https://github.com/divVerent/aaaaxy/issues</url>
+  <url type="help">https://divverent.github.io/aaaaxy/userguide.html</url>
+  <url type="translate">https://app.transifex.com/aaaaxy/aaaaxy</url>
+  <url type="vcs-browser">https://github.com/divVerent/aaaaxy</url>
+  <url type="contribute">https://github.com/divVerent/aaaaxy/blob/main/CONTRIBUTING.md</url>
   <categories>
     <category>Game</category>
     <category>ActionGame</category>
   </categories>
+  <requires>
+    <internet>offline-only</internet>
+  </requires>
   <supports>
     <control>keyboard</control>
     <control>gamepad</control>
