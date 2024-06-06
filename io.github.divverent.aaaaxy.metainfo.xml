@@ -4,10 +4,9 @@
   <name>AAAAXY</name>
   <summary>Impossible spaces puzzle platformer</summary>
   <summary xml:lang="de">Puzzle-Platformer in unmöglichen Räumen</summary>
-  <developer id="divverent.github.io">
+  <developer id="io.github.divverent">
     <name>divVerent</name>
   </developer>
-  <developer_name>divVerent</developer_name>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>Apache-2.0</project_license>
   <url type="homepage">https://divverent.github.io/aaaaxy</url>
@@ -16,10 +15,10 @@
     <category>Game</category>
     <category>ActionGame</category>
   </categories>
-  <requires>
+  <supports>
     <control>keyboard</control>
     <control>gamepad</control>
-  </requires>
+  </supports>
   <branding>
     <color type="primary" schema_preference="light">#5555ff</color>
     <color type="primary" schema_preference="dark">#555555</color>
@@ -55,7 +54,7 @@
     <screenshot>
       <caption>Crumbling Upwards</caption>
       <caption xml:lang="de">Hochbröckeln</caption>
-      image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot8.jpg</image>
+      <image type="thumbnail" width="320" height="180">https://divVerent.github.io/aaaaxy/screenshots/shot8.jpg</image>
       <image type="source" width="960" height="540">https://divVerent.github.io/aaaaxy/screenshots/shot8.med.png</image>
     </screenshot>
   </screenshots>
