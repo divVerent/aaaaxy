@@ -21,7 +21,7 @@ require (
 	github.com/ncruces/zenity v0.10.12
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.16.0
-	golang.org/x/sys v0.20.0
+	golang.org/x/sys v0.21.0
 	golang.org/x/text v0.15.0
 )
 
