@@ -946,7 +946,7 @@ msgstr "賽車比賽！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4097]
 msgid "Those who haven't learned the trick{{BR}}must take a little pit stop."
-msgstr "那些還沒有學會那一招的人{{BR}}可能需要加加油。"
+msgstr "還沒有抓到訣竅的人{{BR}}可能需要加加油。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4107]
 msgid "Moved Enough?"
