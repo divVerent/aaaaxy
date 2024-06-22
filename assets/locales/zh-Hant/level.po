@@ -294,7 +294,7 @@ msgstr "BRLOGENSHFEGLE 不會哈哈笑死。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=865]
 msgid "Nine Boxes In Sight"
-msgstr "視野裡的九個盒子"
+msgstr "九個盒子"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1051]
 msgid "King's Cross"
