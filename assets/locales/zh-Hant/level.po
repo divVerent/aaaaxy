@@ -924,7 +924,7 @@ msgstr "之前所做的{{BR}}會影響到將來所能做的。"
 msgid ""
 "If you're only focusing on right now,{{BR}}you won't have enough for "
 "later.{{BR}}Press {{ExitButton}}."
-msgstr "如果只看著眼前，{{BR}}將來就會不夠了。{{BR}}按{{ExitButton}}。"
+msgstr "不把眼光放遠一些，{{BR}} 等等便會匱乏。{{BR}}按{{ExitButton}}。"
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3927]
