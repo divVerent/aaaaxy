@@ -682,7 +682,7 @@ msgstr "歡迎來到月面。"
 #. Song title by Reel 2 Real, was used in Madagascar movie
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1745]
 msgid "I Like To Move It Move It"
-msgstr "我可真喜歡搖動搖動。"
+msgstr "我可真喜歡搖動搖動"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1765]
 msgid "Hello,{{BR}}World!"
