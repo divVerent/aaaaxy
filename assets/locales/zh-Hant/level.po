@@ -358,7 +358,7 @@ msgstr "第一個月台的火車從來不是你要搭的。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
-msgstr "追逐星星真的可以讓你崩潰。"
+msgstr "追逐星星真的可能使人崩潰。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1103]
 msgid "9¾"
