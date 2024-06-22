@@ -1246,7 +1246,7 @@ msgstr "不論是哪個宇宙，……"
 #. Part of 'There is no universe where this is the right way.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6358]
 msgid "... this is the right way."
-msgstr "……的宇宙不可能存在。"
+msgstr "……這個方法都是錯的。"
 
 #. 'Cheese' here means 'unintended shortcut' -
 #. https://english.stackexchange.com/questions/21867/origins-of-the-gaming-
