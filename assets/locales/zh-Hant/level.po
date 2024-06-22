@@ -1253,7 +1253,7 @@ msgstr "……這個方法都是錯的。"
 #. term-cheese-strategy
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6536]
 msgid "What looked like cheese might be the only way."
-msgstr "有時候看似不須什麼技巧的方法可能是唯一的方法。"
+msgstr "有時候假方法可能是唯一的方法。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6537]
 msgid "Not triggering the switch of doom might take some effort."
