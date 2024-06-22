@@ -1241,7 +1241,7 @@ msgstr "你坐在謊言的寶座上。"
 #. Part of 'There is no universe where this is the right way.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6357]
 msgid "There is no universe where ..."
-msgstr "這個方法是對……"
+msgstr "不論是哪個宇宙，……"
 
 #. Part of 'There is no universe where this is the right way.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6358]
