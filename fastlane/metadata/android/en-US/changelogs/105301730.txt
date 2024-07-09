@@ -1,0 +1,4 @@
+  - Android: bump target SDK to 34 (required by Google Play).
+  - Libraries: update Ebitengine from 2.7.4 to 2.7.7.
+  - Snap: also use the SVG icon.
+  - Translations: updates to Chinese (Traditional)
