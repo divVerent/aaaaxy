@@ -874,7 +874,7 @@ msgstr "Думаєте,{{BR}}ви зможете?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3843]
 msgid "Show me{{BR}}what you've got"
-msgstr "Покажіть,{{BR}}що у вас"
+msgstr "Покажіть, на{{BR}}що ви здатні"
 
 #. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
