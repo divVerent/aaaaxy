@@ -1042,7 +1042,7 @@ msgstr "Бережіть голову, вона лише одна."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4694]
 msgid "More is not always better."
-msgstr "Більше не завжди краще."
+msgstr "Більше - не завжди краще."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4716]
 msgid "Those who are not up to speed may get left behind."
