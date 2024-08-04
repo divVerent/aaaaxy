@@ -879,7 +879,7 @@ msgstr "Покажіть, на{{BR}}що ви здатні"
 #. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
 msgid "And you didn't{{BR}}forget the remote?"
-msgstr "Ви ж не забули{{BR}}пульт?"
+msgstr "Ви ж не{{BR}}забули пульт?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3853]
 msgid "DANGER"
