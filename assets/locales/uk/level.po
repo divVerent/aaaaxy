@@ -295,7 +295,7 @@ msgstr "Nexuiz!"
 #. replacing the SH that does not exist in German by SCH).
 #: assets/maps/level.tmx//map/objectgroup/object[@id=422]
 msgid "BRLOGENSHFEGLE doesn't lol."
-msgstr "БРЛОГЕНШФЕГЛЕ - ні, хе."
+msgstr "БРЛОГЕНШФЕГЛЕ - ні)))"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=865]
 msgid "Nine Boxes In Sight"
