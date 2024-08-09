@@ -281,7 +281,7 @@ msgstr "Грати в хованки без суперників не цікав
 #. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=396]
 msgid "Welcome to ..."
-msgstr "Ласкаво просимо в ..."
+msgstr "Вітаємо в ..."
 
 #. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=421]
