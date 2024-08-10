@@ -59,7 +59,7 @@ msgstr "А: %s"
 
 #: menu/credits.go
 msgid "Additional Programming Libraries & Tools"
-msgstr "Додаткові Бібліотеки та Інструменти"
+msgstr "Додаткові бібліотеки та інструменти"
 
 #. A speedrun category (all checkpoints reached, but game not won yet).
 #: playerstate/playerstate.go
