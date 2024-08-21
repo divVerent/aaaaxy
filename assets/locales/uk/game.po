@@ -356,7 +356,7 @@ msgstr "Нукуалофа"
 
 #: menu/map.go
 msgid "Pick-a-Path"
-msgstr "Оберіть шлях"
+msgstr "Обери-шлях"
 
 #. Menu item to go back to the game after having pressed escape. Leads to the
 #. map screen, then back into the game.
