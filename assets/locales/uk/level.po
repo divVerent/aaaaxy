@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-15 10:50-0500\n"
+"POT-Creation-Date: 2024-04-12 20:11-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2024\n"
 "Language-Team: Ukrainian (https://app.transifex.com/aaaaxy/teams/158611/uk/)\n"
@@ -35,40 +35,40 @@ msgstr "Невдача в наші плани не входить."
 msgid ""
 "Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Хіба діти не полюбляють запитуввати \"чи ми вже приїхали?\"{{BR}}Натисніть "
+"Хіба діти не полюбляють запитувати \"Чи ми вже приїхали?\"{{BR}}Натисніть "
 "{{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=51]
 msgid "Sometimes the angle of looking at things is all that matters."
-msgstr "Іноді кут, під яким ми дивимось на речі, єдине що має значення."
+msgstr "Іноді кут, під яким ми дивимось на речі - єдине, що має значення."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=52]
 msgid "There can be too much of a good thing."
-msgstr "Там може бути багато чого гарного."
+msgstr "Доброго може бути забагато."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=53]
 msgid "Leap of Faith"
-msgstr "Стрибок Віри"
+msgstr "Стрибок віри"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=61]
 msgid "There are no wrong ways, just wrong goals."
-msgstr "Не існує хибних шляхів. Тільки невірні цілі."
+msgstr "Немає хибних шляхів, лише неправильні цілі."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=62]
 msgid "Where there's a down, there must also be an up."
-msgstr "Там де є падіння, там же має бути і підйом."
+msgstr "Там де є падіння, там же має бути й підйом."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=63]
 msgid "Persistence is the key to success."
-msgstr "Наполегливість це ключ до успіху."
+msgstr "Наполегливість - це ключ до успіху."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=66]
 msgid "Stop and Stair"
-msgstr "Зупинись, та дивись куди ступаєш"
+msgstr "Дивіться під ноги"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=89]
 msgid "Endless Eight"
-msgstr "Нескінченна Вісімка"
+msgstr "Нескінченна вісімка"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=90]
 msgid "Sometimes you just keep running in circles."
@@ -82,9 +82,7 @@ msgstr "Деякі віддають перевагу 2τ замість 4π."
 #. devotionals/2013/01/what-is-truth?lang=eng
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
-msgstr ""
-"\"Незважаючи на те, що колись було досягнуто остаточного консенсусу,{{BR}}що"
-" земля пласка, це не так.\""
+msgstr "\"Незважаючи на колись поширену думку, земля не є пласкою.\""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=93]
 msgid "Some people prefer 4π over 2τ."
@@ -118,11 +116,11 @@ msgstr "В деяких речей є тільки один бік."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=145]
 msgid "Thinking outside the box can remove the need of getting over it."
 msgstr ""
-"Якщо не обмежувати мислення рамками, то може гора й сама прийде до Магомеда."
+"Нестандартне мислення може позбавити вас від необхідності переживати це."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=147]
 msgid "The Möbius Strip"
-msgstr "Стрічка Мьобіуса"
+msgstr "Стрічка Мебіуса"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=148]
 msgid "The Torus"
@@ -130,7 +128,7 @@ msgstr "Тор"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=179]
 msgid "If it doesn't fit in three dimensions, try two."
-msgstr "Ящо це не вміщується в три виміри, спробуйте два."
+msgstr "Якщо щось не вміщується у три виміри, спробуйте два."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=180]
 msgid "The Klein Bottle"
@@ -139,8 +137,7 @@ msgstr "Пляшка Кляйна"
 #. https://www.brainyquote.com/quotes/friedrich_nietzsche_103584
 #: assets/maps/level.tmx//map/objectgroup/object[@id=188]
 msgid "Whenever I climb I am followed by a dog called Ego."
-msgstr ""
-"Кожного разу як я лізу вгору, до мене приєднується пес, якого звуть Его."
+msgstr "Кожного разу як я лізу вгору, до мене приєднується пес на ім'я Его."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=192]
 msgid "The Projective Plane"
@@ -152,7 +149,7 @@ msgstr "Сфера"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=238]
 msgid "Unparalleled execution is all you really need here."
-msgstr "Зробіть все бездоганно а не паралельно."
+msgstr "Зробіть бездоганно, а не паралельно."
 
 #. https://getting-over-it.fandom.com/wiki/Top_of_the_mountain
 #: assets/maps/level.tmx//map/objectgroup/object[@id=244]
@@ -160,8 +157,8 @@ msgid ""
 "Welcome to the top of the mountain.{{BR}}If you're alone, all this was just "
 "a waste of time.{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Вітаємо на верхівці гори{{BR}}Якщо Ви тут насамоті, все це було марною "
-"витратою часу{{BR}}Натисніть {{ExitButton}}."
+"Вітаємо на верхівці гори.{{BR}}Якщо ви тут на самоті, все це було марною "
+"тратою часу.{{BR}}Натисніть {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=245]
 msgid "The shortest path can be the one that takes longest."
@@ -169,7 +166,7 @@ msgstr "Найкоротший шлях іноді може забрати на�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=246]
 msgid "If you just press on forward, you will eventually reach your goal."
-msgstr "Можна досягти цілі якщо просто натиснути вперед."
+msgstr "Якщо просто йти вперед, рано чи пізно досягнеш своєї цілі."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=247]
 msgid "Falling a long distance does not always hurt."
@@ -182,15 +179,15 @@ msgstr "Нудно заходити через парадні двері."
 #. https://en.wikipedia.org/wiki/House_with_two_rooms
 #: assets/maps/level.tmx//map/objectgroup/object[@id=264]
 msgid "House With Two Rooms"
-msgstr "Дім З Двома Просторами"
+msgstr "Дім Бінга"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=277]
 msgid "Taking the right entrance makes all the difference."
-msgstr "Важливо обрати той самий вхід."
+msgstr "Важливо обрати правильний вхід."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=281]
 msgid "A New Beginning"
-msgstr "Новий Початок"
+msgstr "Новий початок"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=286]
 msgid "If this isn't your downfall, I don't know what is."
@@ -199,7 +196,7 @@ msgstr "Якщо навіть це не падіння, то я не знаю щ
 #. https://www.youtube.com/watch?v=zpRQtHjEniQ
 #: assets/maps/level.tmx//map/objectgroup/object[@id=287]
 msgid "Oh, gravity, thou art a heartless ... force?"
-msgstr "Ох гравітація, безсердечна ж ти сссс.... сила?"
+msgstr "Ох, гравітаціє, безсердечна ж ти .... сила?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=288]
 msgid "Short Circuited"
@@ -208,7 +205,7 @@ msgstr "Закорочено"
 #. https://deltarune.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=295]
 msgid "Your choices don't matter."
-msgstr "Не має значення що саме обираеєш."
+msgstr "Ваш вибір не має значення."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=296]
 msgid "Choose Wisely"
@@ -225,15 +222,15 @@ msgstr "Обрати{{BR}}той шлях?"
 #. https://en.wikipedia.org/wiki/Waterfall_(M._C._Escher)
 #: assets/maps/level.tmx//map/objectgroup/object[@id=309]
 msgid "Some water must be periodically added to compensate for evaporation."
-msgstr "Час від часу треба доливати води щоб компенсувати випаровування."
+msgstr "Час від часу треба доливати води, щоб компенсувати випаровування."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=311]
 msgid "You broke out of the stream, yet you're back in the stream."
-msgstr "Ви вирвались з течії, але все ще в потоці."
+msgstr "Ви вирвалися з течії, але все ще в потоці."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=312]
 msgid "M. C. Waterfall"
-msgstr "Грай Водограй... все як у Ешера"
+msgstr "Водоспад Ешера"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=315]
 msgid "A shortcut?"
@@ -252,38 +249,38 @@ msgstr "Перспектива додаткової сили наповнює в
 #. shooter) map silvercity.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=319]
 msgid "Behold the cage of health!"
-msgstr "Споглядай же клітку здоров'я"
+msgstr "Споглядайте клітку здоров'я!"
 
 #. Refers to a map of the first person shooter game Nexuiz:
 #. https://www.youtube.com/watch?v=8otWflEtlyg
 #: assets/maps/level.tmx//map/objectgroup/object[@id=330]
 msgid "Silver City"
-msgstr "Срібне Місто"
+msgstr "Срібне місто"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=353]
 msgid "A slight breeze is enough for water to escape the waterfall."
-msgstr "Найменшого вітерця достатньо щоб зрушити потік водоспаду."
+msgstr "Достатньо легкого вітерця, щоб вода втекла з водоспаду."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=354]
 msgid "If it ain't broke, don't fix it."
-msgstr "Не намагайтесь полагодити те що працює."
+msgstr "Не намагайтесь полагодити те, що працює."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=385]
 msgid "What's broken is in need of repair."
-msgstr "Потребує ремонту те що зламалось."
+msgstr "Потребує ремонту те, що зламалось."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=394]
 msgid "There is no need to hide if nobody is after you."
-msgstr "Немає потреби ховатись якщо ніхто й не шукає."
+msgstr "Немає потреби ховатись, якщо ніхто й не шукає."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=395]
 msgid "Hide and seek is never fun without opponents."
-msgstr "Грати в хованки не цікаво без суперників."
+msgstr "Грати в хованки без суперників не цікаво."
 
 #. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=396]
 msgid "Welcome to ..."
-msgstr "Ласкаво просимо в ..."
+msgstr "Вітаємо в ..."
 
 #. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=421]
@@ -297,19 +294,19 @@ msgstr "Nexuiz!"
 #. replacing the SH that does not exist in German by SCH).
 #: assets/maps/level.tmx//map/objectgroup/object[@id=422]
 msgid "BRLOGENSHFEGLE doesn't lol."
-msgstr "Ха-ха, ні, не БРЛОГЕНФЧНЯ."
+msgstr "БРЛОГЕНШФЕГЛЕ - ні)))"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=865]
 msgid "Nine Boxes In Sight"
-msgstr "Перед вами дев'ять коробок"
+msgstr "Дев'ять коробок у полі зору"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1051]
 msgid "King's Cross"
-msgstr "Перехід на станцію Центральний Вокзал"
+msgstr "Перехід на станцію «Вокзальна»"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1052]
 msgid "Looking behind the scenes can be important at times."
-msgstr "Зазирнути за куліси завжди буде важливим."
+msgstr "Іноді важливо зазирнути за куліси."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1088]
 msgid "00"
@@ -361,7 +358,7 @@ msgstr "11"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1101]
 msgid "The first track is never the one with your train."
-msgstr "Саме той потяг ніколи не стоїть на першій колії."
+msgstr "Ваш потяг ніколи не буде на першій колії."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
@@ -381,7 +378,7 @@ msgid ""
 " keys{{BR}}3) {{ExitButton}} for checkout"
 msgstr ""
 "Дотель Гілберта{{BR}}{{BR}}Ласкаво просимо!{{BR}}{{BR}}1) "
-"Зареєструйтесь{{BR}}2) Візьміть ключі{{BR}}3) {{ExitButton}} щоб виїхати"
+"Зареєструйтесь{{BR}}2) Візьміть ключі{{BR}}3) {{ExitButton}} для виїзду"
 
 #. Translate 'Dilbert's Hotel', but swap the first consonant of the two main
 #. words. Prefer translating 'Hotel' to something that makes a H sound at the
@@ -392,12 +389,12 @@ msgstr "Дотель Гілберта"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1189]
 msgid "I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"
-msgstr "Перед очима пролетіли всі{{BR}}...{{BR}}{{BR}}{{BR}}кімнати."
+msgstr "Перед очима пролетіли всі ...{{BR}}{{BR}}{{BR}}{{BR}}кімнати"
 
 #. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1199]
 msgid "He shall not return by the way of the gate whereby he came in."
-msgstr "І не вернеться ходом тієї брами, яким увійшов."
+msgstr "І не вернеться тією брамою, якою увійшов."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1228]
 msgid "Shepard Tone"
@@ -410,8 +407,8 @@ msgstr "Тон Шепарда"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1243]
 msgid "Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"
 msgstr ""
-"Зіграймо МІ, у цьому{{BR}}ДОМІ.{{BR}}ЕлементаРЕно!{{BR}}і все "
-"відкриється.{{BR}}Жодних Трололо!"
+"- Зіграймо «МІ»{{BR}}у цьому ДОМІ?{{BR}}- БеззапеРЕчно!{{BR}}Тільки жодних "
+"Трололо!"
 
 #. C as in the first music note of the C major scale. Also known as Do, Sa, 上,
 #. ル or 1.
@@ -461,21 +458,21 @@ msgstr "Іноді потрібен лише маленький вступ."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1281]
 msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
-msgstr "Я такий радий нарешті опинитись вдома.{{BR}}Натисніть {{ExitButton}}."
+msgstr "Я дуже радий нарешті опинитись вдома.{{BR}}Натисніть {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1285]
 msgid "Try the lower path."
-msgstr "Спробуй нижче."
+msgstr "Спробуйте нижче."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1286]
 msgid "Try the upper path."
-msgstr "Спробуй вище."
+msgstr "Спробуйте вище."
 
 #. Translate as 'The Axiom of Choice' in the mathematical sense, but find a
 #. funny way to mispronounce or misspell the word that means 'choice'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1300]
 msgid "The Axiom of Choiche"
-msgstr "Аксіома ель Вибору, мій аміго"
+msgstr "Аксіома вибогху"
 
 #. https://www.youtube.com/watch?v=2Z4m4lnjxkY
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1302]
@@ -484,11 +481,12 @@ msgstr "Трололололо, лололо,{{BR}}лололо, ахахаха�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1304]
 msgid "Turtles All the Way In"
-msgstr "Шлях усіяний черепахами"
+msgstr "Шлях, усіяний черепахами"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1306]
 msgid "Some things just aren't that simple. Press {{ExitButton}}."
-msgstr "Іноді речі не такі прості як це здається. Натисніть {{ExitButton}}."
+msgstr ""
+"Деякі речі не настільки прості, як це здається. Натисніть {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1321]
 msgid "It's turtles all the way in."
@@ -497,12 +495,12 @@ msgstr "Черепахи по всьому шляху."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1354]
 msgid "Listen to the spell of the magical turtle and you may proceed."
 msgstr ""
-"Прислухайся до чарівного черепахового закляття, та можешь рухатись далі."
+"Прислухайтеся до чарівного черепахового закляття, та зможете рухатись далі."
 
 #. https://antichamber.fandom.com/wiki/Don%27t_Look_Down
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1364]
 msgid "Don't{{BR}}Look Up!"
-msgstr "Не вздумай{{BR}}дивитись вгору!"
+msgstr "Не{{BR}}дивіться вгору!"
 
 #. reference to 'curiosity killed the cat' saying; be creative here when
 #. translating; be consistent with the 'Curiosity killed the Carl - no the
@@ -521,7 +519,7 @@ msgstr "Деякі речі бачиш не одразу."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1407]
 msgid "Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Щось там зверху впало а кіт Степан з'їв все сало.{{BR}}Натисніть "
+"Щось там зверху впало, а кіт Степан з'їв усе сало.{{BR}}Натисніть "
 "{{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1410]
@@ -537,24 +535,24 @@ msgstr "?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1423]
 msgid "You now can stand on platforms!"
-msgstr "Тепер Ви можете стояти на платформах!"
+msgstr "Тепер ви можете стояти на платформах!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1430]
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr "Шиповане взуття{{BR}}Підказка:{{BR}}не треба ламати голову!"
+msgstr "Шиповане взуття{{BR}}Підказка: не треба{{BR}}ламати голову!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1441]
 msgid "Steadfastly holding on to the iron rod prevents disasters."
-msgstr "Якщо стійко тримати залізний стрижень, можна запобігти катастрофі."
+msgstr "Якщо міцно тримати залізний стрижень, можна запобігти катастрофі."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1442]
 msgid ""
 "Sometimes the thing that is in plain sight can be a challenge to reach."
-msgstr "Не все що близько лежить легко дістати."
+msgstr "Не все, що близько лежить, легко дістати."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1443]
 msgid "Can't tell if this place is pointless or not."
-msgstr "Важко сказати чи можна тут розставити всі крапки над і."
+msgstr "Важко сказати, чи можна тут розставити всі крапки над і."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1445]
 msgid "Peaceful games require peaceful solutions."
@@ -582,7 +580,7 @@ msgstr "Резервні системи запуску це вам не раке
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1457]
 msgid "Fly High"
-msgstr "Високого польоту!"
+msgstr "Високого польоту"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1476]
 msgid "Before The Hub"
@@ -594,7 +592,7 @@ msgstr "Хаб зовсім близько"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1478]
 msgid "You can now push them away!"
-msgstr "Тепер можна їх відштовхувати!"
+msgstr "Тепер ви можете штовхати їх!"
 
 #. 'coil' here refers to an electromagnetic coil
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
@@ -603,7 +601,7 @@ msgstr "Котушка{{BR}}(затисніть {{ActionButton}}){{BR}}Підк�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1493]
 msgid "You can now grab and carry them!"
-msgstr "Тепер їх можна схопити та нести!"
+msgstr "Тепер ви можете схопити та нести їх!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1494]
 msgid "The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"
@@ -613,16 +611,17 @@ msgstr ""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1545]
 msgid "Little & Big Platforms"
-msgstr "Маленьки & Великі Платформи"
+msgstr "Маленькі й великі платформи"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1546]
 msgid "Unlike that Italian plumber, you can go left."
 msgstr ""
-"На відміну від одного італійського водопровідника, Ви можете рухатись вліво."
+"На відміну від одного італійського водопровідника,{{BR}}ви можете рухатися "
+"вліво."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1547]
 msgid "Some things just take a second attempt."
-msgstr "Деякі дії потребують другої спроби."
+msgstr "Деякі речі потребують другої спроби."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1569]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1583]
@@ -637,9 +636,11 @@ msgstr "Деякі дії потребують другої спроби."
 msgid "Reset"
 msgstr "Скинути"
 
+#. this is clearly a pun in English - if you can, make up a similar pun, if
+#. not, possibly any pun involving platforms will do
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1570]
 msgid "If platforms require platforming, what do trains require?"
-msgstr "Якщо платформи потребують бути в формі, що потрібно тягати потягам?"
+msgstr "Якщо платформи мають бути у формі, що потрібно тягати потягам?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1571]
 msgid "Do"
@@ -666,24 +667,26 @@ msgstr "В Тетрісі ми всі любимо рядки,{{BR}}любимо
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1666]
 msgid "Sweet is the reward of the swift."
-msgstr "Найшвидший отримує солодкий приз."
+msgstr "Найшвидший отримає солодкий приз."
 
 #. https://knowyourmeme.com/memes/dopefish
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1667]
 msgid "Swim swim hungry, swim swim hungry."
-msgstr "Грести грести жерти, грести грести жерти."
+msgstr "Плисти-плисти-жерти, плисти-плисти-жерти."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
 msgid "The note on the right is much more interesting than this one."
-msgstr "Нотатка справа значно цікавіша ніж ця."
+msgstr "Нотатка справа значно цікавіша, ніж ця."
 
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
 msgid "The note on the left is much more interesting than this one."
-msgstr "Нотатка зліва значно цікавіша ніж ця."
+msgstr "Нотатка зліва значно цікавіша, ніж ця."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1713]
 msgid "The Anti-Hub"
-msgstr "Хаб-Навпаки"
+msgstr "Анти-Хаб"
 
 #. https://earthbound.fandom.com/wiki/Moonside
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1718]
@@ -693,35 +696,33 @@ msgstr "Вітаємо в Мунсайді."
 #. Song title by Reel 2 Real, was used in Madagascar movie
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1745]
 msgid "I Like To Move It Move It"
-msgstr ""
-"I Like To Move It Move It...{{BR}}Ану ставайте всі рівненько, і тілом "
-"рухайте вправненько"
+msgstr "I Like To Move It Move It"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1765]
 msgid "Hello,{{BR}}World!"
-msgstr "Привіт.{{BR}}Світ!"
+msgstr "Привіт,{{BR}}світе!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1771]
 msgid ""
 "Be resourceful with what you have, and you will succeed.{{BR}}Press "
 "{{ExitButton}}."
 msgstr ""
-"Розумно розпоряджайтеся тим що є, і успіх не за горами.{{BR}}Натисніть "
+"Розумно розпоряджайтеся тим, що маєте, і успіх не за горами.{{BR}}Натисніть "
 "{{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1793]
 msgid "Switching It Up"
-msgstr "Вмикаємо та вимикаємо"
+msgstr "Перемикаємо"
 
 #. https://youtube.fandom.com/wiki/DGR - he frequently says 'He who waits,
 #. dies'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1807]
 msgid "He who waits,{{BR}}retries ... #DGR"
-msgstr "Хто довго чекає, той{{BR}}повторює спробу #DGR"
+msgstr "Хто не спішить,{{BR}}той себе розсмішить #DGR"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1814]
 msgid "Avoid getting blocked in!"
-msgstr "Дивиться щоб не{{BR}}замурували, демони!"
+msgstr "Дивіться, щоб не замурували!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1816]
 msgid "Treasure hunts can be time intensive."
@@ -733,27 +734,27 @@ msgstr "Поспішайте{{BR}}повільно."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1818]
 msgid "Same procedure as last year?"
-msgstr "Та сама процедура що й тогоріч?"
+msgstr "Та ж процедура,{{BR}}що й минулого року?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1819]
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
-msgstr "Просто покладіть вже одне на{{BR}}одне, і друге ще кудись!"
+msgstr "Просто покладіть вже одне{{BR}}на інше, і друге ще кудись!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2220]
 msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
-msgstr "Якщо не дивитись перед собою, потрапите в мертвий{{BR}}кут."
+msgstr "Якщо не дивитись куди йдеш, намертво{{BR}}застрягнеш."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2301]
 msgid "Gotta Carry It Out"
-msgstr "Треба віднести"
+msgstr "Піду віднесу"
 
 #. https://en.wikipedia.org/wiki/Colossal_Cave_Adventure
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2324]
 msgid ""
 "You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
 msgstr ""
-"Тепер Ви в лабіринті{{BR}}з хитросплетінням{{BR}}шляхів,{{BR}}схожих як "
-"один."
+"Тепер ви в лабіринті{{BR}}з хитросплетінням{{BR}}вузьких шляхів,{{BR}}схожих"
+" як один."
 
 #. https://en.wikipedia.org/wiki/Xyzzy_(computing)
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2329]
@@ -782,7 +783,7 @@ msgstr "Подобається червона кімната?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2748]
 msgid "Lack of apparent purpose does not mean you don't need it."
-msgstr "Відсустність видимого призначення не значить що зараз це не потрібно."
+msgstr "Відсутність видимого призначення не значить, що зараз це не потрібно."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2764]
 msgid "Funny and{{BR}}{{BR}}original."
@@ -790,27 +791,27 @@ msgstr "Потішно та{{BR}}{{BR}}незвично."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2840]
 msgid "Pushing Onwards"
-msgstr "Штовхаємо далі"
+msgstr "Просуваємося вперед"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2841]
 msgid "Some ideas only seem smart at first."
-msgstr "Деякі ідеї віглядають розумно лише на перший погляд."
+msgstr "Деякі ідеї виглядають розумно лише на перший погляд."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2842]
 msgid "If there seems to be no way, you just haven't found it yet."
-msgstr "Якщо здається що виходу немає. може Ви його просто не знайщли ще."
+msgstr "Якщо здається, що виходу немає. може ви просто ще не знайшли його."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2886]
 msgid "Before The Anti-Hub"
-msgstr "Скоро буде Хаб-Навпаки"
+msgstr "Скоро буде Анти-Хаб"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2978]
 msgid "Only you would fall for a trap as primitive as this one."
-msgstr "Боже, тільки Ви могли попастися в таку елементарну пастку."
+msgstr "Тільки ви могли потрапити в таку елементарну пастку."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2988]
 msgid "Lack of purpose never was a reason not to do it."
-msgstr "В справжнього самурая немає цілі. Тільки шлях."
+msgstr "У справжнього самурая немає цілі. Тільки шлях."
 
 #. May also be known as 'for eyes principle'; a concept from IT security. This
 #. part of the level focuses on the need for multiple switches being toggled
@@ -821,19 +822,19 @@ msgstr "Багатофакторна авторизація"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3087]
 msgid "Failure is a stepping stone to success."
-msgstr "Шлях до успіху усіяний невдачами."
+msgstr "Шлях до успіху всіяний невдачами."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3093]
 msgid "Those who walk, fall."
-msgstr "Хто йде той і падає."
+msgstr "Хто йде, той і падає."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3153]
 msgid "Well, it's actually{{BR}}surprisingly simple."
-msgstr "На привелике диво це{{BR}}дуже просто."
+msgstr "На превелике диво, це{{BR}}дуже просто."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3185]
 msgid "Simplex, duplex,{{BR}}oh so complex."
-msgstr "Сімплексний, дуплесний,{{BR}}як все складно."
+msgstr "Симплекс, дуплекс,{{BR}}як все складно."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3186]
 msgid "Tower of Impossible"
@@ -845,13 +846,15 @@ msgid ""
 "And ... the floor transforms into shiny yet deadly coins.{{BR}}Without the "
 "coins.{{BR}}That's unfortunate."
 msgstr ""
-"А тепер... підлога перетворюється на блискучі, але смертоносні "
-"монетки.{{BR}}Без монеток.{{BR}}Нажаль."
+"І... підлога перетворюється на блискучі, але смертоносні монетки.{{BR}}Без "
+"монеток.{{BR}}Шкода."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3813]
 msgid ""
 "I pressed the impossible button and{{BR}}all I got was this lousy message."
-msgstr "Я натиснув неможливу кнопку і{{BR}}отримав оце вшиве повідомлення."
+msgstr ""
+"Я натиснув неможливу кнопку,{{BR}}і все, що я отримав -{{BR}}оце паршиве "
+"повідомлення."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3821]
 msgid "The grass is always greener on the other side."
@@ -859,29 +862,29 @@ msgstr "За парканом трава завжди зеленіша."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3832]
 msgid "You can now disable the force fields!"
-msgstr "Тепер можна відключити силові поля!"
+msgstr "Тепер ви можете відключати силові поля!"
 
 #. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3834]
 msgid "The Remote{{BR}}(hold {{ActionButton}})"
-msgstr "Дистанційка{{BR}}(Затисніть {{ActionButton}})"
+msgstr "Пульт{{BR}}(Затисніть {{ActionButton}})"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3840]
 msgid "Do you have{{BR}}what it takes?"
-msgstr "А в тебе є все{{BR}}що потрібно?"
+msgstr "Маєте все,{{BR}}що потрібно?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3842]
 msgid "You think{{BR}}you can do it?"
-msgstr "Думаєш{{BR}}ти це зможеш?"
+msgstr "Думаєте,{{BR}}ви зможете?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3843]
 msgid "Show me{{BR}}what you've got"
-msgstr "Покажи мені{{BR}}що в тебе є"
+msgstr "Покажіть, на{{BR}}що ви здатні"
 
 #. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
 msgid "And you didn't{{BR}}forget the remote?"
-msgstr "Ви ж не забули{{BR}}дистанціку?"
+msgstr "Ви ж не{{BR}}забули пульт?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3853]
 msgid "DANGER"
@@ -893,19 +896,19 @@ msgstr "УВАГА"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3855]
 msgid "WARNING"
-msgstr "ТРИВОГА"
+msgstr "ПОПЕРЕДЖЕННЯ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3856]
 msgid "RISK OF{{BR}}ELECTRIC SHOCK"
-msgstr "ЗАГРОЗА{{BR}}УДАРУ ЕЛЕКТРОСТРУМОМ"
+msgstr "ЗАГРОЗА УДАРУ{{BR}}ЕЛЕКТРОСТРУМОМ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3857]
 msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
-msgstr "НЕ ДИВИТИСЬ НА ЛАЗЕРНИЙ ПРОМІНЬ{{BR}}ОСТАННІМ ОКОМ"
+msgstr "НЕ ДИВИТИСЬ НА ЛАЗЕРНИЙ{{BR}}ПРОМІНЬ ОСТАННІМ ОКОМ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3858]
 msgid "LEGAL{{BR}}WAIVER"
-msgstr "ВІДМОВА{{BR}}ВІД ВІДПОВІДАЛЬНОСТІ"
+msgstr "ВІДМОВА ВІД{{BR}}ВІДПОВІДАЛЬНОСТІ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3859]
 msgid "NO{{BR}}WARRANTY"
@@ -927,7 +930,7 @@ msgstr "ПРОПОЗИЦІЯ 65"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3863]
 msgid "And now you've learned{{BR}}not to touch the hot stove."
-msgstr "Тепер ви знаєте{{BR}}що гаряче руками не чіпають."
+msgstr "Тепер ви знаєте,{{BR}}що гаряче руками не чіпають."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3866]
 msgid "The Butterfly Effect"
@@ -936,7 +939,8 @@ msgstr "Ефект метелика"
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3912]
 msgid "What we've done before{{BR}}may impact what we can do next."
-msgstr "Наші попередні вчинки{{BR}}можуть вплинути на майбутні дії."
+msgstr ""
+"Наші попередні вчинки{{BR}}можуть вплинути на наші майбутні можливості."
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3926]
@@ -950,7 +954,7 @@ msgstr ""
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3927]
 msgid "Moving forward may require{{BR}}making the most of what you've got."
-msgstr "Щоб просунутись вперед{{BR}}треба бігти зі всіх ніг."
+msgstr "Щоб просунутись вперед,{{BR}}треба бігти зі всіх ніг."
 
 #. https://en.wikipedia.org/wiki/Kaizo - transcribe phonetically
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3977]
@@ -963,21 +967,21 @@ msgstr "Сумував за стрибками по панцирях у {{Year}}
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4025]
 msgid "Kaaaart Race"
-msgstr "Перегони на Каааартах"
+msgstr "Перегони на каааартах"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4097]
 msgid "Those who haven't learned the trick{{BR}}must take a little pit stop."
 msgstr ""
-"Хто так і не навчився потрібному трюку{{BR}}повинен зробити невеличкий піт-"
+"Хто так і не навчився потрібному трюку,{{BR}}повинен зробити невеличкий піт-"
 "стоп."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4107]
 msgid "Moved Enough?"
-msgstr "Достатньо просунулись?"
+msgstr "Розрухались?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4108]
 msgid "Carried Enough?"
-msgstr "Достатньо натягались?"
+msgstr "Натягались?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
 msgid "Trash Chute"
@@ -985,11 +989,11 @@ msgstr "Сміттєпровід"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4409]
 msgid "Taking Out the Trash"
-msgstr "Вивіз Сміття"
+msgstr "Вивіз сміття"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4495]
 msgid "Wait, did you take out all the trash?"
-msgstr "Чекай-чекай, а сміття забрали?"
+msgstr "Зачекайте, все сміття забрали?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4498]
 msgid "There is no such thing as a little white lie."
@@ -1005,21 +1009,21 @@ msgstr "Ні"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4520]
 msgid "Why did you even lie?{{BR}}Press {{ExitButton}}."
-msgstr "Ну і навіщо Ви збрехали?{{BR}}Натисніть {{ExitButton}}."
+msgstr "Ну й навіщо ви збрехали?{{BR}}Натисніть {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4551]
 msgid ""
 "The definition of insanity is doing the same thing over and over "
 "again,{{BR}}but expecting different results."
 msgstr ""
-"Безглуздя - це робити одне й теж знову і знову{{BR}}але очікувати різних "
+"Безглуздя - це робити одне й теж знову і знову,{{BR}}але очікувати різних "
 "результатів."
 
 #. https://thelettervsixtim.es/ - try keeping the six V alliteration when
 #. translating
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4597]
 msgid "Van Vlijmen's Vexing Vertical Vector Vertigo"
-msgstr "Вертикальний Вектор Воронки Ван Вліжмена"
+msgstr "Виснажуючий Вертикальний Вектор Воронки Ван Вліжмена"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4609]
 msgid "The One Way Round"
@@ -1032,11 +1036,11 @@ msgstr "déjà Vu"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4640]
 msgid "Try{{BR}}again"
-msgstr "Треба{{BR}}ще{{BR}}раз"
+msgstr "Ще{{BR}}раз"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4641]
 msgid "The Wide Gap"
-msgstr "Великий Розрив"
+msgstr "Широка прірва"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4661]
 msgid "Mind your head, you've only got one."
@@ -1044,36 +1048,36 @@ msgstr "Бережіть голову, вона лише одна."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4694]
 msgid "More is not always better."
-msgstr "Більше не завжди краще."
+msgstr "Більше - не завжди краще."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4716]
 msgid "Those who are not up to speed may get left behind."
-msgstr "Хто не може прискоритись може залишитись позаду."
+msgstr "Хто не може прискоритись, може залишитись позаду."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4727]
 msgid "Time is of the essence."
-msgstr "Час важливий."
+msgstr "Час вирішує."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4732]
 msgid "Driving You Mad"
-msgstr "З'їхати З Глузду"
+msgstr "З'їхати з глузду"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4755]
 msgid "It's Bring Your Own Platform, you know."
-msgstr "Кожен приходить зі своєю платформою, ну зрозуміло ж."
+msgstr "Тут, знаєте, кожен приходить зі своєю платформою."
 
 #. The 'it' here refers to the large platform.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4766]
 msgid "Still got it?"
-msgstr "Вона все{{BR}}ще в тебе?"
+msgstr "Вона ще{{BR}}у вас?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4934]
 msgid "Small cars{{BR}}only"
-msgstr "Маленькі{{BR}}машини"
+msgstr "Лише малі{{BR}}машини"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4935]
 msgid "{{BigCity}} Road Rage"
-msgstr "{{BigCity}} Дорожній Безлад"
+msgstr "Дорожній безлад: {{BigCity}}"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4941]
 msgid "Grand Theft Auto!"
@@ -1081,7 +1085,7 @@ msgstr "Зараз буде GTA!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4953]
 msgid "Welcome to {{BigCity}}."
-msgstr "Ласкаво просимо у {{BigCity}}."
+msgstr "{{BigCity}}. Ласкаво просимо."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4986]
 msgid "Crime doesn't pay.{{BR}}Press {{ExitButton}}."
@@ -1090,7 +1094,7 @@ msgstr ""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4997]
 msgid "Dude!{{BR}}That's{{BR}}MY car!"
-msgstr "Чуваче!{{BR}}Та це{{BR}}МОЯ{{BR}}тачка!"
+msgstr "Чуваче!{{BR}}Це МОЯ{{BR}}тачка!"
 
 #. Part of 'What are you after?'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5004]
@@ -1100,7 +1104,7 @@ msgstr "... шукаєте?"
 #. Part of 'What are you after?'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5005]
 msgid "... are ..."
-msgstr "... Ви ..."
+msgstr "... ви ..."
 
 #. Part of 'What are you after?'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5006]
@@ -1114,31 +1118,31 @@ msgstr "... тут ..."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5008]
 msgid "Those who cannot remember the past are condemned to repeat it."
-msgstr "Хто не пам'ятає минулого, приречений його повторювати."
+msgstr "Ті, хто не пам'ятають минулого, приречені його повторювати."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5057]
 msgid "Sometimes, the unprepared can't even follow instructions."
-msgstr "Іноді, непідготовлений не може навіть слідувати інструкціям."
+msgstr "Іноді непідготовлені не можуть навіть дотримуватися інструкцій."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5058]
 msgid "If everything is upside down, nothing is."
-msgstr "Якщо все догори дригом, то як ти це зрозумієш?"
+msgstr "Якщо все догори дригом, то ніщо не є догори дригом."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5163]
 msgid "Even going in circles you can get somewhere."
-msgstr "Навіть ходячи по колу можна кудись прийти."
+msgstr "Навіть ходячи колами можна кудись прийти."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5167]
 msgid "Get It Back!"
-msgstr "Покладіть На Місце!"
+msgstr "Поставте на місце!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5187]
 msgid "y tho?{{BR}}Press {{ExitButton}}."
-msgstr "і чого це?{{BR}}Натисніть {{ExitButton}}."
+msgstr "чого це?{{BR}}Натисніть {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5207]
 msgid "Stairs to Nowhere"
-msgstr "Сходи в Нікуди"
+msgstr "Сходи в нікуди"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5213]
 msgid "Not every staircase leads somewhere nice."
@@ -1146,18 +1150,18 @@ msgstr "Не кожна сходинка веде до чогось гарног
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5256]
 msgid "Don't let appearances fool you."
-msgstr "Не дозволяйте зовнішності обдурити себе."
+msgstr "Не дозволяйте зовнішності обдурити вас."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5475]
 msgid "You just need to push away what you don't need."
-msgstr "Просто відштовхніть те що не потрібно."
+msgstr "Просто відштовхніть те, що не потрібно."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5476]
 msgid ""
 "Looking in every nook and cranny{{BR}}sometimes yields unexpected gains."
 msgstr ""
-"Якщо не оминати жоден куточок або щілину{{BR}}можна натрапити на неочікувані"
-" знахідки."
+"Якщо не оминати жоден куточок або щілину,{{BR}}можна натрапити на "
+"неочікувані знахідки."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5478]
 msgid ""
@@ -1168,30 +1172,30 @@ msgstr ""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5482]
 msgid "Twice Twice"
-msgstr "Двічі Двічі"
+msgstr "Двічі двічі"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5518]
 msgid "Why didn't you like the one I gave you?"
-msgstr "Чим Вам не сподобалось те що дали одразу?"
+msgstr "Чим вам не сподобалось те, що я дав?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5528]
 msgid "You really don't get it, do you?"
-msgstr "Що, правда нічого не зрозуміло?"
+msgstr "Невже справді не розумієте?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5538]
 msgid ""
 "Looking at things and observing how they change{{BR}}is what brought us "
 "science."
 msgstr ""
-"Ми спостерігаємо за об'єктами та як вони змінюються{{BR}}Це і є наука."
+"Спостереження за об'єктами та їх змінами{{BR}}- те, що принесло нам науку."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5545]
 msgid "You should have done this a little bit earlier."
-msgstr "Треба було це зробити трохи раніше."
+msgstr "Треба було зробити це трохи раніше."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5546]
 msgid "Greedy you are, greedy!"
-msgstr "Жадіна говядіна!"
+msgstr "Жадіна-говядіна!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5568]
 msgid "The Cube"
@@ -1200,7 +1204,7 @@ msgstr "Куб"
 #. https://en.wikipedia.org/wiki/Portal_(series)
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5575]
 msgid "Good news.{{BR}}I figured out why she wanted you gone."
-msgstr "Добрі новини.{{BR}}Тепер зрозуміло чому вона хотіла щоб ви пішли."
+msgstr "Добрі новини.{{BR}}Тепер зрозуміло, чому вона хотіла, щоб ви пішли."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5627]
 msgid "Crumbling Upwards"
@@ -1212,7 +1216,7 @@ msgstr "Не кожен короткий шлях веде куди треба."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5689]
 msgid "The slow and slothful deserve ...{{BR}}nothing."
-msgstr "Повільні та ледащі заслуговують...{{BR}}нічого вони не заслуговують."
+msgstr "Повільні та ліниві заслуговують ...{{BR}}нічого вони не заслуговують."
 
 #. Mix of 'Sky Diver', an Atari 2600 game, and the sport 'Ski'.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5697]
@@ -1221,7 +1225,7 @@ msgstr "Небесний лижник"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
 msgid "Those who are not inattentive get trolled."
-msgstr "Тролять тих хто звертає увагу."
+msgstr "Неуважних тролять."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
@@ -1249,7 +1253,7 @@ msgstr "Доктор В!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6119]
 msgid "It Only Takes One"
-msgstr "Той Самий"
+msgstr "Достатньо лиш одного"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6128]
 msgid "Any regrets?"
@@ -1266,24 +1270,24 @@ msgstr "Обережно!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6239]
 msgid "You sit on a throne of lies."
-msgstr "Ви сидите на троні королівства брехні."
+msgstr "Ви сидите на троні брехні."
 
 #. Part of 'There is no universe where this is the right way.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6357]
 msgid "There is no universe where ..."
-msgstr "Не існує всесвіту де б ..."
+msgstr "Не існує всесвіту де ..."
 
 #. Part of 'There is no universe where this is the right way.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6358]
 msgid "... this is the right way."
-msgstr "... це був вірний шлях."
+msgstr "... це - правильний шлях."
 
 #. 'Cheese' here means 'unintended shortcut' -
 #. https://english.stackexchange.com/questions/21867/origins-of-the-gaming-
 #. term-cheese-strategy
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6536]
 msgid "What looked like cheese might be the only way."
-msgstr "Найпростіший шлях може бути єдиним. Як сир в маслі."
+msgstr "Найпростіший шлях може бути єдиним."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6537]
 msgid "Not triggering the switch of doom might take some effort."
@@ -1291,7 +1295,7 @@ msgstr "Не чіпати перемикач страшного суду мож�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6538]
 msgid "A window of opportunity can lead to greener pastures."
-msgstr "Через вікно можливостей можна вийти на луки де трава зеленіша."
+msgstr "Через вікно можливостей можна вийти на луки, де трава зеленіша."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6539]
 msgid "The well prepared will earn their reward."
@@ -1299,11 +1303,11 @@ msgstr "Добре підготовлений забере нагороду."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6540]
 msgid "Platform{{BR}}is key."
-msgstr "Платформа{{BR}}це ключ."
+msgstr "Платформа{{BR}}- це ключ."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6575]
 msgid "Quo vadis?"
-msgstr "Камо грядеші?"
+msgstr "Камо грядеши?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6661]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6674]
@@ -1318,15 +1322,16 @@ msgstr "Хто не спробує, той і не дізнається."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6678]
 msgid "reached The Hub with {{Abilities}} at {{GameTime}}."
-msgstr "Ви досягли Хабу за допомогою {{Abilities}} за {{GameTime}}."
+msgstr "досягнуто Хабу за допомогою {{Abilities}} за {{GameTime}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6679]
 msgid "reached The Anti-Hub with {{Abilities}} at {{GameTime}}."
-msgstr "Ви досягли Хабу-Навпаки за допомогою {{Abilities}} за {{GameTime}}."
+msgstr "досягнуто Анти-Хабу за допомогою {{Abilities}} за {{GameTime}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6680]
 msgid "reached It Only Takes One with {{Abilities}} at {{GameTime}}."
-msgstr "Ви досягли Того Самого за допомогою {{Abilities}} за {{GameTime}}."
+msgstr ""
+"досягнуто Достатньо лиш одного за допомогою {{Abilities}} за {{GameTime}}."
 
 #. https://thelettervsixtim.es/ - try keeping the V when translating
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6716]
@@ -1336,15 +1341,15 @@ msgstr "Виправдання"
 #. https://thelettervsixtim.es/ - try keeping the V when translating
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6734]
 msgid "Vertically challenged"
-msgstr "Вертикальне випробування"
+msgstr "Вертикально Випробувано"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6818]
 msgid ""
 "The Enrichment Center regrets to inform you that{{BR}}the Super Gravitron is"
 " currently out of order.{{BR}}Press {{ExitButton}}."
 msgstr ""
-"Центр Збагачення нажаль вимушений вам повідомити що{{BR}}Супер Гравітрон "
-"наразі вийшов з ладу.{{BR}}Натисніть {{ExitButton}}."
+"Центр Збагачення з жалем повідомляє, що{{BR}}Супер Гравітрон наразі вийшов з"
+" ладу.{{BR}}Натисніть {{ExitButton}}."
 
 #. https://thelettervsixtim.es/ - try keeping the two V alliteration when
 #. translating
@@ -1364,7 +1369,7 @@ msgstr "Віртуози Вувузел"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6990]
 msgid "It is hard to focus with all the noise."
-msgstr "Важко сфокусуватись з таким шумом."
+msgstr "Важко сфокусуватися з таким шумом."
 
 #. https://thelettervsixtim.es/ - try keeping the two V alliteration when
 #. translating
@@ -1376,31 +1381,31 @@ msgstr "Віртуальний Вандалізм"
 #. translating
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7151]
 msgid "Vae Victis"
-msgstr "Vae Victis \"горе переможеним\""
+msgstr "Vae Victis"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7253]
 msgid "This one is your end."
-msgstr "А ось і кінець."
+msgstr "Ось твій кінець."
 
 #. https://thelettervsixtim.es/ - try keeping the three V alliteration when
 #. translating
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7351]
 msgid "Veni, Vidi, Vici"
-msgstr "Veni, Vidi, Vici - Прийшов, Побачив, Переміг"
+msgstr "Veni, Vidi, Vici"
 
 #. https://thelettervsixtim.es/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7477]
 msgid "Hah! Nobody will ever get this one."
-msgstr "Ха! Ніхто не досягне цього."
+msgstr "Ха! Ніхто не вловить цього."
 
 #. https://thelettervsixtim.es/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7490]
 msgid "You have found a shiny trinket!{{BR}}One out of One."
-msgstr "Знайшлася блискуча дрібничка{{BR}}Най- Найблискучіша."
+msgstr "Знайдено блискучу дрібничку!{{BR}}Одну єдину."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7769]
 msgid "W{{BR}}A{{BR}}T"
-msgstr "Ш{{BR}}Т{{BR}}А"
+msgstr "Ш{{BR}}Ч{{BR}}О"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7770]
 msgid "Just{{BR}}kiddin'"
@@ -1408,23 +1413,23 @@ msgstr "Просто{{BR}}жарт"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7837]
 msgid "I hope you took{{BR}}the small one ..."
-msgstr "Сподіваюсь що Ви{{BR}}обрали маленьку ..."
+msgstr "Сподіваюсь, що ви{{BR}}обрали маленьку ..."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7846]
 msgid "Those who have, have."
-msgstr "В кого є, є."
+msgstr "Ті, хто мають, ті мають."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7847]
 msgid "Those who don't, don't."
-msgstr "В кого немає, немає."
+msgstr "Ті, хто не мають, не мають."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7848]
 msgid "The path to success is littered with ...{{BR}}litter."
-msgstr "Шлях до успіху всіяний ...{{BR}}сміттям."
+msgstr "Шлях до успіху засмічений ...{{BR}}сміттям."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7849]
 msgid "Getting up is half the fun."
-msgstr "Піднятись вже половина веселощів."
+msgstr "Піднятись - вже половина веселощів."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7872]
 msgid "If stuck,{{BR}}press {{ExitButton}}."
@@ -1436,11 +1441,11 @@ msgstr "Оце так?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7980]
 msgid "reached A New Beginning with {{Abilities}} at {{GameTime}}."
-msgstr "Досягли Нового Початку за допомогою {{Abilities}} за {{GameTime}}."
+msgstr "досягнуто Нового початку за допомогою {{Abilities}} за {{GameTime}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7986]
 msgid "Higher, Higher, Higher!"
-msgstr "Вище, Вище, Вище!"
+msgstr "Вище, вище, вище!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7987]
 msgid "It can be helpful to do two things at the same time."
@@ -1448,27 +1453,27 @@ msgstr "Іноді допомагає виконувати дві справи �
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8049]
 msgid "Oh, it shrunk?"
-msgstr "Зморщилось?"
+msgstr "О, воно звузилося?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8057]
 msgid "Stepping away from the problem can help resolve it."
-msgstr "Щоб вирішити проблему треба відійти від неї."
+msgstr "Щоб вирішити проблему, треба відійти від неї."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8080]
 msgid "Jumpers lose platforms.{{BR}}Don't be a jumper."
-msgstr "Стрибунці втрачають{{BR}}платформи.{{BR}}Не будь стрибунцем."
+msgstr "Стрибунці втрачають платформи.{{BR}}Не будьте стрибунцем."
 
 #. Part of 'Try going in circles, but five is right out!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8097]
 msgid "Try going in circles, but ..."
-msgstr "Спробуй ходити колами, але ..."
+msgstr "Спробуйте ходити колами, але ..."
 
 #. Part of 'Try going in circles, but five is right out!' (Monty Python
 #. reference, i.e. 'right out' in the sense of 'out of the question', 'not an
 #. option')
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8104]
 msgid "... five is right out!"
-msgstr "... п'ять не варіант!"
+msgstr "... п'ять - не варіант!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8114]
 msgid "Mwahaha!"
@@ -1484,8 +1489,8 @@ msgid ""
 "weirder!{{BR}}Weird, weird space{{BR}}is super-weird!{{BR}}{{BR}}Press "
 "{{ExitButton}}."
 msgstr ""
-"Візьмемо дивного і ще трохи дивного,{{BR}}зробимо ще дивнішим!{{BR}}Дивний, "
-"дивний всесвіт{{BR}}мега-дивний!{{BR}}{{BR}}Натисніть {{ExitButton}}."
+"Візьмімо дивного і ще дивного,{{BR}}зробімо ще дивнішим!{{BR}}Дивний, дивний"
+" простір{{BR}}мега-дивний!{{BR}}{{BR}}Натисніть {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8246]
 msgid "4 ..."
