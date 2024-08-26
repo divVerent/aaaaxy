@@ -407,8 +407,7 @@ msgstr "Тон Шепарда"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1243]
 msgid "Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"
 msgstr ""
-"- Зіграймо «МІ»{{BR}}у цьому ДОМІ?{{BR}}- БеззапеРЕчно!{{BR}}Тільки жодних "
-"Трололо!"
+"- Зіграймо «МІ»{{BR}}у цьому ДОМІ?{{BR}}- БеззапеРЕчно!{{BR}}Жодних Трололо!"
 
 #. C as in the first music note of the C major scale. Also known as Do, Sa, 上,
 #. ル or 1.
