@@ -519,7 +519,7 @@ msgstr "рукавичок"
 #. "remote" here refers to e.g. a TV's remote control.
 #: fun/string.go
 msgid "The Remote"
-msgstr "дистанційки"
+msgstr "пульт"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
