@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.5.173" date="2024-07-09">
-      <description><ul><li>Android: bump target SDK to 34 (required by Google Play).</li><li>Libraries: update Ebitengine from 2.7.4 to 2.7.7.</li><li>Snap: also use the SVG icon.</li><li>Translations: updates to Chinese (Traditional)</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.173</url>
+    <release version="v1.5.183" date="2024-08-26">
+      <description><ul><li>Engine: updated libraries.</li><li>Translations: updates to Ukrainian translation (thanks, EGYT!).</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.183</url>
     </release>
   </releases>
 </component>
