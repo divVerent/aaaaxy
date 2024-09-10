@@ -77,9 +77,9 @@ To record a video of the game, pass the flags
 may be slower). When you then exit the game, the console window will
 show you a FFmpeg command to turn these files into a finished video!
 
-Video recording can be sped up by using `make FASTER_VIDEO_DUMPING=true`
-when compiling to enable multithreading, and by passing
-`-dump_video_fps_divisor=2` to limit the video to SFR (30fps).
+Video recording can be sped up by passing `-single_thread=false` to use
+multithreaded video dumping, and by passing `-dump_video_fps_divisor=2`
+to limit the video to SFR (30fps).
 
 ### Demo Recording
 
