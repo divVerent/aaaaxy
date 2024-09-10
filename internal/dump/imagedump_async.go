@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build !ebitenginesinglethread
-// +build !ebitenginesinglethread
-
 package dump
 
 import (
@@ -24,17 +21,17 @@ import (
 )
 
 var (
-	debugThreadedImageDumping = flag.Bool("debug_threaded_image_dumping", true, "do image dumping in a background thread (should be faster, further boosted using -num_offscreen_images)")
+	SingleThread = flag.Bool("single_thread", true, "operate in a single thread (usually faster except when video recording)")
 )
 
 func dumpPixelsRGBA(img *ebiten.Image, cb func(pix []byte, err error)) {
-	if *debugThreadedImageDumping {
+	if *SingleThread {
+		pix, err := getPixelsRGBA(img)
+		cb(pix, err)
+	} else {
 		go func() {
 			pix, err := getPixelsRGBA(img)
 			cb(pix, err)
 		}()
-	} else {
-		pix, err := getPixelsRGBA(img)
-		cb(pix, err)
 	}
 }

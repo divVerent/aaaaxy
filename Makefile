@@ -1,6 +1,5 @@
 # Settings.
 BUILDTYPE = debug
-FASTER_VIDEO_DUMPING = false
 
 # System properties.
 GO ?= go
@@ -21,13 +20,6 @@ BUILDTAGS = embed
 else
 ISRELEASE = false
 BUILDTAGS =
-endif
-
-# Provide a way to build binaries that are faster at image/video dumping.
-# This however makes them slower for normal use, so we're not releasing those.
-FASTER_VIDEO_DUMPING = false
-ifeq ($(FASTER_VIDEO_DUMPING),false)
-BUILDTAGS += ebitenginesinglethread
 endif
 
 ifeq ($(BUILDTYPE),extradebug)

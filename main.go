@@ -23,6 +23,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/aaaaxy"
 	"github.com/divVerent/aaaaxy/internal/atexit"
+	"github.com/divVerent/aaaaxy/internal/dump"
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
@@ -85,7 +86,11 @@ func runGame(game *aaaaxy.Game) error {
 			log.Fatalf("could not start CPU profile: %v", err)
 		}
 	}
-	err = ebiten.RunGame(game)
+
+	err = ebiten.RunGameWithOptions(game, &ebiten.RunGameOptions{
+		SingleThread: *dump.SingleThread,
+		X11ClassName: "AAAAXY",
+	})
 	if *debugCpuprofile != "" {
 		pprof.StopCPUProfile()
 	}
