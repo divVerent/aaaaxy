@@ -39,11 +39,17 @@ var (
 // SystemDefault performs a GOOS/GOARCH dependent value lookup to be used in flag defaults.
 // Map keys shall be */*, GOOS/*, */GOARCH or GOOS/GOARCH.
 func SystemDefault[T any](m map[string]T) T {
-	k := fmt.Sprintf("%v/%v", runtime.GOOS, runtime.GOARCH)
+	goos := runtime.GOOS
+	if goos == "linux" {
+		if os.Getenv("SOMMELIER_VERSION") != "" {
+			goos = "chromeos"
+		}
+	}
+	k := fmt.Sprintf("%v/%v", goos, runtime.GOARCH)
 	if val, found := m[k]; found {
 		return val
 	}
-	k = fmt.Sprintf("%v/*", runtime.GOOS)
+	k = fmt.Sprintf("%v/*", goos)
 	if val, found := m[k]; found {
 		return val
 	}

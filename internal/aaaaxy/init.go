@@ -52,7 +52,10 @@ var (
 	runnableWhenUnfocused = flag.Bool("runnable_when_unfocused", flag.SystemDefault(map[string]bool{
 		// Focus didn't quite work well on JS. TODO: try testing again later.
 		"js/*": true,
-		"*/*":  false,
+		// Focus doesn't work well with ChromeOS's sommelier either.
+		"chromeos/*": true,
+		// Otherwise default to pausing when focus is gone.
+		"*/*": false,
 	}), "keep running the game even when not focused")
 	dumpLoadingFractions = flag.String("dump_loading_fractions", "", "file name to dump actual loading fractions to")
 	debugJustInit        = flag.Bool("debug_just_init", false, "just init everything, then quit right away")
