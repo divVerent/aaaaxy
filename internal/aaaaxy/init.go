@@ -52,8 +52,6 @@ var (
 	runnableWhenUnfocused = flag.Bool("runnable_when_unfocused", flag.SystemDefault(map[string]bool{
 		// Focus didn't quite work well on JS. TODO: try testing again later.
 		"js/*": true,
-		// Focus doesn't work well with ChromeOS's sommelier either.
-		"chromeos/*": true,
 		// Otherwise default to pausing when focus is gone.
 		"*/*": false,
 	}), "keep running the game even when not focused")
