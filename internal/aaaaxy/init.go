@@ -49,16 +49,11 @@ var (
 	vsync                 = flag.Bool("vsync", true, "enable waiting for vertical synchronization")
 	fullscreen            = flag.Bool("fullscreen", true, "enable fullscreen mode")
 	windowScaleFactor     = flag.Float64("window_scale_factor", 0, "window scale factor in device pixels per game pixel (0 means auto integer scaling)")
-	runnableWhenUnfocused = flag.Bool("runnable_when_unfocused", flag.SystemDefault(map[string]bool{
-		// Focus didn't quite work well on JS. TODO: try testing again later.
-		"js/*": true,
-		// Otherwise default to pausing when focus is gone.
-		"*/*": false,
-	}), "keep running the game even when not focused")
-	dumpLoadingFractions = flag.String("dump_loading_fractions", "", "file name to dump actual loading fractions to")
-	debugJustInit        = flag.Bool("debug_just_init", false, "just init everything, then quit right away")
-	fpsDivisor           = flag.Int("fps_divisor", 1, "framerate divisor (use on very low systems, but this may make the game unwinnable or harder as it restricts input; must be a divisor of "+fmt.Sprint(engine.GameTPS))
-	debugGoGCPercent     = flag.Int("debug_go_gc_percent", 0, "if set, replaces the GOGC environment variable; roughly defines the GC overhead, with higher numbers meaning longer but fewer GC pauses and more memory usage, but lower CPU load")
+	runnableWhenUnfocused = flag.Bool("runnable_when_unfocused", false, "keep running the game even when not focused")
+	dumpLoadingFractions  = flag.String("dump_loading_fractions", "", "file name to dump actual loading fractions to")
+	debugJustInit         = flag.Bool("debug_just_init", false, "just init everything, then quit right away")
+	fpsDivisor            = flag.Int("fps_divisor", 1, "framerate divisor (use on very low systems, but this may make the game unwinnable or harder as it restricts input; must be a divisor of "+fmt.Sprint(engine.GameTPS))
+	debugGoGCPercent      = flag.Int("debug_go_gc_percent", 0, "if set, replaces the GOGC environment variable; roughly defines the GC overhead, with higher numbers meaning longer but fewer GC pauses and more memory usage, but lower CPU load")
 )
 
 func LoadConfig() (*flag.Config, error) {
