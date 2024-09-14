@@ -4,9 +4,7 @@ set -ex
 
 version=$1
 cherrypicks='
-	574925cf7a72deaf73be4c481348a7a44f7b7e19
-	cc247962703eba99eae732876496375191f16cbe
-	58eb1af1eb88915a726f29ffe9279025f98c9be8
+	99ffe09b63e0d906cc1f502c24f4d2325e6cc09d
 '
 
 cd ../ebiten
