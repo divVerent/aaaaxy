@@ -1,0 +1,4 @@
+  - Engine: fix game hanging at start on ChromeOS.
+  - Engine: make singlethreaded-ness a runtime option.
+  - Engine: module updates, including Ebitengine 2.7.9.
+  - Engine: remove runnable_when_unfocused workaround.
