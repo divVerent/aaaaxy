@@ -14,7 +14,7 @@ require (
 	github.com/hajimehoshi/bitmapfont/v3 v3.2.0
 	github.com/hajimehoshi/ebiten/v2 v2.7.9
 	github.com/jeandeaual/go-locale v0.0.0-20240223122105-ce5225dcaa49
-	github.com/leonelquinteros/gotext v1.6.1
+	github.com/leonelquinteros/gotext v1.7.0
 	github.com/lestrrat-go/strftime v1.1.0
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
