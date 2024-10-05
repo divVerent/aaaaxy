@@ -1,6 +1,6 @@
 module github.com/divVerent/aaaaxy
 
-go 1.21
+go 1.22.0
 
 toolchain go1.22.3
 
@@ -12,7 +12,7 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
 	github.com/hajimehoshi/bitmapfont/v3 v3.2.0
-	github.com/hajimehoshi/ebiten/v2 v2.7.9
+	github.com/hajimehoshi/ebiten/v2 v2.8.0
 	github.com/jeandeaual/go-locale v0.0.0-20240223122105-ce5225dcaa49
 	github.com/leonelquinteros/gotext v1.7.0
 	github.com/lestrrat-go/strftime v1.1.0
@@ -20,20 +20,20 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.10.14
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
-	golang.org/x/image v0.20.0
-	golang.org/x/sys v0.25.0
-	golang.org/x/text v0.18.0
+	golang.org/x/image v0.21.0
+	golang.org/x/sys v0.26.0
+	golang.org/x/text v0.19.0
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dchest/jsmin v0.0.0-20220218165748-59f39799265f // indirect
-	github.com/ebitengine/gomobile v0.0.0-20240825043811-96c531f5bd83 // indirect
+	github.com/ebitengine/gomobile v0.0.0-20241001034212-22433622d8a5 // indirect
 	github.com/ebitengine/hideconsole v1.0.0 // indirect
-	github.com/ebitengine/oto/v3 v3.2.0 // indirect
-	github.com/ebitengine/purego v0.7.1 // indirect
+	github.com/ebitengine/oto/v3 v3.3.0 // indirect
+	github.com/ebitengine/purego v0.8.0 // indirect
 	github.com/go-logr/logr v1.2.0 // indirect
-	github.com/go-text/typesetting v0.1.1 // indirect
+	github.com/go-text/typesetting v0.2.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/licenseclassifier/v2 v2.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
@@ -46,10 +46,10 @@ require (
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	golang.org/x/mod v0.20.0 // indirect
-	golang.org/x/net v0.28.0 // indirect
+	golang.org/x/mod v0.21.0 // indirect
+	golang.org/x/net v0.29.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/tools v0.24.0 // indirect
+	golang.org/x/tools v0.25.0 // indirect
 	k8s.io/klog/v2 v2.90.1 // indirect
 )
 
@@ -70,4 +70,4 @@ require (
 // replace github.com/jeandeaual/go-locale => github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
 
 // update-ebitengine-fork.sh changes:
-replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.7.9-with-99ffe09b63e0d906cc1f502c24f4d2325e6cc09d
+// replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.7.9-with-99ffe09b63e0d906cc1f502c24f4d2325e6cc09d
