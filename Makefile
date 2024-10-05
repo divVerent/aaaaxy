@@ -35,14 +35,14 @@ GO_FLAGS += -tags=$(shell echo $(BUILDTAGS) | tr ' ' ,)
 
 # Configure the Go compiler.
 GO_GCFLAGS = -dwarf=false
-GO_FLAGS += $(patsubst %,-gcflags=all=%,$(GO_GCFLAGS))
+GO_FLAGS += "-gcflags=all=$(GO_GCFLAGS)"
 
 # Configure the Go linker.
 GO_LDFLAGS =
 ifeq ($(shell $(GO) env GOOS),windows)
 GO_LDFLAGS += -H=windowsgui
 endif
-GO_FLAGS += $(patsubst %,-ldflags=all=%,$(GO_LDFLAGS))
+GO_FLAGS += "-ldflags=all=$(GO_LDFLAGS)"
 
 ifeq ($(ISRELEASE),true)
 GO_LDFLAGS += -s -w
