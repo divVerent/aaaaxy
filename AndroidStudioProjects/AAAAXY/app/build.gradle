@@ -75,8 +75,7 @@ task ebitenMobile(type: Exec) {
         '-androidapi', '21',
         '-tags', aaaaxy_build_tags,
         '-gcflags=all=-dwarf=false',
-        '-ldflags=all=-s',
-        '-ldflags=all=-w',
+        '-ldflags=all=-s -w',
         '-a',
         '-trimpath',
         'github.com/divVerent/aaaaxy/AndroidStudioProjects/AAAAXY/app/src/main/go/aaaaxy'
