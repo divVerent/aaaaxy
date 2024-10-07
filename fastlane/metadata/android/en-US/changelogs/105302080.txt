@@ -1,0 +1,2 @@
+  - Engine: improve compile flags to make the binary smaller.
+  - Engine: modules update, including Ebitengine 2.8.0.

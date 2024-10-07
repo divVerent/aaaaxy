@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.5.202" date="2024-09-16">
-      <description><ul><li>Engine: fix game hanging at start on ChromeOS.</li><li>Engine: make singlethreaded-ness a runtime option.</li><li>Engine: module updates, including Ebitengine 2.7.9.</li><li>Engine: remove runnable_when_unfocused workaround.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.202</url>
+    <release version="v1.5.208" date="2024-10-07">
+      <description><ul><li>Engine: improve compile flags to make the binary smaller.</li><li>Engine: modules update, including Ebitengine 2.8.0.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.208</url>
     </release>
   </releases>
 </component>
