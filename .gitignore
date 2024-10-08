@@ -9,11 +9,13 @@
 /aaaaxy-linux-amd64
 /aaaaxy-windows-386.exe
 /aaaaxy-windows-amd64.exe
+/aaaaxy.apk
 /aaaaxy.dat
 /aaaaxy.exe
 /aaaaxy.syso
 /aaaaxy.tiled-session
 /assets/_saved/version.txt
+/assets/aaaaxy.dat
 /assets/generated
 /index.html
 /licenses/*.txt
