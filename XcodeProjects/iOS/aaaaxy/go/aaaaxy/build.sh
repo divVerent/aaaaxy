@@ -15,7 +15,7 @@ go generate -tags zip github.com/divVerent/aaaaxy
 ../../../../../scripts/ebitenmobile.sh bind \
 	-target ios \
 	-o aaaaxy.xcframework \
-	-iosversion 12.0 \
+	-iosversion 13.0 \
 	-tags zip \
 	-gcflags=all=-dwarf=false \
 	-ldflags=all='-s -w' \
