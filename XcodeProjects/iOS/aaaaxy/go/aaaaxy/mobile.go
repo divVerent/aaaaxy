@@ -53,6 +53,7 @@ func (g *game) Update() (err error) {
 		}
 	}()
 	if g.drawErr != nil {
+		ok = true
 		return g.drawErr
 	}
 	if !g.inited {
