@@ -6,7 +6,7 @@ toolchain go1.22.3
 
 require (
 	github.com/Microsoft/go-winio v0.6.2
-	github.com/adrg/xdg v0.5.0
+	github.com/adrg/xdg v0.5.1
 	github.com/akavel/rsrc v0.10.2
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/google/go-cmp v0.6.0
