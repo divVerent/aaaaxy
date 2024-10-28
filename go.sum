@@ -69,8 +69,8 @@ github.com/google/martian/v3 v3.3.2/go.mod h1:oBOf6HBosgwRXnUGWUB05QECsc6uvmMiJ3
 github.com/google/uuid v1.1.2/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/hajimehoshi/bitmapfont/v3 v3.2.0 h1:0DISQM/rseKIJhdF29AkhvdzIULqNIIlXAGWit4ez1Q=
 github.com/hajimehoshi/bitmapfont/v3 v3.2.0/go.mod h1:8gLqGatKVu0pwcNCJguW3Igg9WQqVXF0zg/RvrGQWyg=
-github.com/hajimehoshi/ebiten/v2 v2.8.1 h1:6n6ZXnbeSCZccdqrH7s9Ut+dll9TEostUqbc72Tis/g=
-github.com/hajimehoshi/ebiten/v2 v2.8.1/go.mod h1:SXx/whkvpfsavGo6lvZykprerakl+8Uo1X8d2U5aAnA=
+github.com/hajimehoshi/ebiten/v2 v2.8.2 h1:cvZ5d3LSVFzvcSZVGjTPyV43DzWzJWbwy1b+2V5zJPI=
+github.com/hajimehoshi/ebiten/v2 v2.8.2/go.mod h1:SXx/whkvpfsavGo6lvZykprerakl+8Uo1X8d2U5aAnA=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
 github.com/jeandeaual/go-locale v0.0.0-20240223122105-ce5225dcaa49 h1:Po+wkNdMmN+Zj1tDsJQy7mJlPlwGNQd9JZoPjObagf8=
