@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.5.208" date="2024-10-07">
-      <description><ul><li>Engine: improve compile flags to make the binary smaller.</li><li>Engine: modules update, including Ebitengine 2.8.0.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.208</url>
+    <release version="v1.5.220" date="2024-11-04">
+      <description><ul><li>Engine: fix error reporting.</li><li>Engine: move Ebitengine to v2.8.3</li><li>Mobile: declare min iOS requirement to be 13.0.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.220</url>
     </release>
   </releases>
 </component>

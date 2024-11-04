@@ -1,0 +1,3 @@
+  - Engine: fix error reporting.
+  - Engine: move Ebitengine to v2.8.3
+  - Mobile: declare min iOS requirement to be 13.0.
