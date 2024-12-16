@@ -435,6 +435,14 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 		if propmap.ValueOrP(cpSp.Properties, "secret", false, nil) {
 			// Secrets are not needed for 100%, all paths or all signs run.
 			// However they have their own run category here.
+
+			// As all secrets have a sign, this isn't _necessary_, but still,
+			// let's be robust.
+			if s.CheckpointSeen(cp) == NotSeen {
+				cat &^= AllSecretsSpeedrun
+			}
+
+			// All signs in secret rooms need to have been seen.
 			for _, sign := range s.Level.TnihSignsByCheckpoint[cp] {
 				if !propmap.ValueOrP(sign.PersistentState, "seen", false, nil) {
 					cat &^= AllSecretsSpeedrun
