@@ -19,14 +19,15 @@ package main
 
 func adjustForAspectOne(aspectFactor, x float) float {
 	// Map -1..1 to -1..1 but slope at middle be aspectFactor (which is > 1)
-	// Base function: f(t) = t / sqrt(t^2 + 1)
+	// Base function: f(t) = t / 2nrt(t^(2n) + 1)
 	// Assume t = r * x.
 	// Scaled function: g(x) = f(r * x) / f(r).
-	// Derivative at 0: sqrt(r^2 + 1).
-	r := sqrt(aspectFactor * aspectFactor - 1)
+	// Derivative at 0: 2nrt(r^(2n) + 1).
+	const n = 1.0
+	r := pow(pow(aspectFactor, 2 * n) - 1, 1 / (2 * n))
 	xr := x * r
-	f := xr / sqrt(xr * xr + 1)
-	d := r / aspectFactor  // Actually r / sqrt(r * r + 1).
+	f := xr / pow(pow(xr, 2 * n) + 1, 1 / (2 * n))
+	d := r / aspectFactor  // Actually r / pow(pow(r, 2 * n) + 1, 1 / (2 * n)).
 	return f / d
 
 	// Note: formula is suboptimal; need less stretch in the center and more at the sides.
