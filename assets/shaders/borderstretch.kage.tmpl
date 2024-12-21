@@ -1,0 +1,52 @@
+// Copyright 2021 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// A simple shader to upscale and linearly "interpolate".
+package main
+
+//kage:unit pixels
+
+func adjustForAspectOne(aspectFactor, x float) float {
+	// Map -1..1 to -1..1 but slope at middle be aspectFactor (which is > 1)
+	f := sqrt(aspectFactor * aspectFactor - 1)
+	xf := x * f
+	return xf / sqrt(xf * xf + 1)
+}
+
+func adjustForAspect(aspectFactor float, pos vec2) vec2 {
+	if aspectFactor > 1 {
+		pos.y = adjustForAspectOne(aspectFactor, pos.y)
+	} else if aspectFactor < 1 {
+		pos.x = adjustForAspectOne(1 / aspectFactor, pos.x)
+	}
+	return pos
+}
+
+func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
+	srcOrigin := imageSrc0Origin()
+	srcSize := imageSrc0Size()
+	srcHalfSize := srcSize * 0.5
+	srcMid := srcOrigin + srcHalfSize
+	dstOrigin := imageDstOrigin()
+	dstSize := imageDstSize()
+	dstHalfSize := dstSize * 0.5
+	dstMid := dstOrigin + dstHalfSize
+
+	dstPos := (position - dstMid) / dstHalfSize  // to -1..1
+	aspectFactor := (srcSize.y * dstSize.x) / (srcSize.x * dstSize.y)
+	srcPos := adjustForAspect(aspectFactor, dstPos)
+	texCoord := (srcPos * srcHalfSize) + srcMid  // from -1..1
+
+	return imageSrc0UnsafeAt(texCoord)
+}
