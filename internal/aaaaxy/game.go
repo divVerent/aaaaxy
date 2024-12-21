@@ -110,11 +110,12 @@ type Game struct {
 	screenWidth  int
 	screenHeight int
 
-	offscreenTokens   chan int
-	offscreenReturns  chan *ebiten.Image
-	offscreenIndexes  map[*ebiten.Image]int
-	linear2xShader    *ebiten.Shader
-	linear2xCRTShader *ebiten.Shader
+	offscreenTokens     chan int
+	offscreenReturns    chan *ebiten.Image
+	offscreenIndexes    map[*ebiten.Image]int
+	borderstretchShader *ebiten.Shader
+	linear2xShader      *ebiten.Shader
+	linear2xCRTShader   *ebiten.Shader
 
 	// Copies of parameters so we know when to update.
 	palette           *palette.Palette
@@ -674,6 +675,28 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 			GeoM:   geoM,
 		}
 		screen.DrawImage(offscreen, options)
+	case "borderstretch":
+		// TODO make this only allowed when *screenStretch is also enabled.
+		if g.borderstretchShader == nil {
+			var err error
+			g.borderstretchShader, err = shader.Load("borderstretch.kage.tmpl", nil)
+			if err != nil {
+				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load borderstretch shader: %v", err)
+				*screenFilter = "linear"
+				return
+			}
+		}
+		options := &ebiten.DrawRectShaderOptions{
+			Blend: ebiten.BlendCopy,
+			Images: [4]*ebiten.Image{
+				offscreen,
+				nil,
+				nil,
+				nil,
+			},
+			GeoM: geoM,
+		}
+		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.borderstretchShader, options)
 	case "linear2x":
 		if g.linear2xShader == nil {
 			var err error

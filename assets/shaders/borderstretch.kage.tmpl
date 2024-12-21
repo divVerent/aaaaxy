@@ -19,9 +19,17 @@ package main
 
 func adjustForAspectOne(aspectFactor, x float) float {
 	// Map -1..1 to -1..1 but slope at middle be aspectFactor (which is > 1)
-	f := sqrt(aspectFactor * aspectFactor - 1)
-	xf := x * f
-	return xf / sqrt(xf * xf + 1)
+	// Base function: f(t) = t / sqrt(t^2 + 1)
+	// Assume t = r * x.
+	// Scaled function: g(x) = f(r * x) / f(r).
+	// Derivative at 0: sqrt(r^2 + 1).
+	r := sqrt(aspectFactor * aspectFactor - 1)
+	xr := x * r
+	f := xr / sqrt(xr * xr + 1)
+	d := r / aspectFactor  // Actually r / sqrt(r * r + 1).
+	return f / d
+
+	// Note: formula is suboptimal; need less stretch in the center and more at the sides.
 }
 
 func adjustForAspect(aspectFactor float, pos vec2) vec2 {
@@ -38,13 +46,11 @@ func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
 	srcSize := imageSrc0Size()
 	srcHalfSize := srcSize * 0.5
 	srcMid := srcOrigin + srcHalfSize
-	dstOrigin := imageDstOrigin()
 	dstSize := imageDstSize()
-	dstHalfSize := dstSize * 0.5
-	dstMid := dstOrigin + dstHalfSize
 
-	dstPos := (position - dstMid) / dstHalfSize  // to -1..1
-	aspectFactor := (srcSize.y * dstSize.x) / (srcSize.x * dstSize.y)
+	dstPos := (texCoord_ - srcMid) / srcHalfSize  // to -1..1
+	// aspectFactor: how much extra _height_ to make
+	aspectFactor := (srcSize.x * dstSize.y) / (srcSize.y * dstSize.x)
 	srcPos := adjustForAspect(aspectFactor, dstPos)
 	texCoord := (srcPos * srcHalfSize) + srcMid  // from -1..1
 
