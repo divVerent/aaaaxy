@@ -40,7 +40,7 @@ var (
 	mouseWantClicks bool
 )
 
-func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 float64) {
+func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2, borderStretchPower float64) {
 	wantVisible := *mouse && mouseWantClicks && mouseHoverFrame > 0
 	if wantVisible != mouseVisible {
 		mouseVisible = wantVisible
@@ -56,7 +56,7 @@ func mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 	}
 
 	x, y := ebiten.CursorPosition()
-	mousePos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, x, y)
+	mousePos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, borderStretchPower, x, y)
 
 	if mousePos != mousePrevPos {
 		mouseHoverFrame = mouseHoverFrames

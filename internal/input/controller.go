@@ -151,7 +151,7 @@ func Init() error {
 	return touchInit()
 }
 
-func Update(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 float64) {
+func Update(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2, borderStretchPower float64) {
 	gamepadScan()
 	if firstUpdate {
 		// At first, assume gamepad whenever one is present.
@@ -170,8 +170,8 @@ func Update(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 f
 		firstUpdate = false
 	}
 	clickPos, hoverPos = nil, nil
-	mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2)
-	touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2)
+	mouseUpdate(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, borderStretchPower)
+	touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, borderStretchPower)
 	for _, i := range impulses {
 		i.update()
 	}

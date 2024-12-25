@@ -145,7 +145,7 @@ func NewGame() *Game {
 
 func (g *Game) updateFrame() error {
 	timing.Section("input")
-	input.Update(g.screenWidth, g.screenHeight, engine.GameWidth, engine.GameHeight, crtK1(), crtK2())
+	input.Update(g.screenWidth, g.screenHeight, engine.GameWidth, engine.GameHeight, crtK1(), crtK2(), borderStretchPower())
 
 	timing.Section("demo_pre")
 	if demo.Update() {

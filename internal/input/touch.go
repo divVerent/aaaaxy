@@ -82,8 +82,7 @@ func touchEmulateMouse() {
 	}
 }
 
-func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 float64) {
-	// TODO support borderstretch filter too
+func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2, borderStretchPower float64) {
 	if !*touch {
 		return
 	}
@@ -105,7 +104,7 @@ func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, cr
 		t.clickFrames++
 		t.prevPos = t.pos
 		x, y := ebiten.TouchPosition(id)
-		t.pos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, x, y)
+		t.pos = pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight, crtK1, crtK2, borderStretchPower, x, y)
 	}
 	if touchEditUpdate(gameWidth, gameHeight) {
 		// log.Infof("touchEditUpdate returned true - not emulating mouse")

@@ -20,7 +20,7 @@ import (
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
-func pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 float64, x, y int) m.Pos {
+func pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2, borderStretchPower float64, x, y int) m.Pos {
 	inX := float64(x)*float64(gameWidth)/float64(screenWidth) + 0.5
 	inY := float64(y)*float64(gameHeight)/float64(screenHeight) + 0.5
 
@@ -40,6 +40,10 @@ func pointerCoords(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, 
 	outRelY := inRelY * outFac
 	outX := srcMidX + outRelX/mapVecX
 	outY := srcMidY + outRelY/mapVecY
+
+	// Straight ported from borderstretch.kage.tmpl.
+	// TODO actually do it.
+
 	iX := int(math.Floor(outX))
 	iY := int(math.Floor(outY))
 	if iX < 0 {
