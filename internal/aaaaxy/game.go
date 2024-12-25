@@ -55,11 +55,12 @@ var (
 		"android/*": "linear2x",
 		"js/*":      "linear2x",
 		"*/*":       "linear2xcrt",
-	}), "filter to use for rendering the screen; current possible values are 'nearest', 'linear', 'linear2x' and 'linear2xcrt'")
-	screenFilterScanLines   = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
-	screenFilterCRTStrength = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
-	screenStretch           = flag.Bool("screen_stretch", false, "stretch screen content instead of letterboxing")
-	paletteFlag             = flag.String("palette", flag.SystemDefault(map[string]string{
+	}), "filter to use for rendering the screen; current possible values are 'nearest', 'linear', 'linear2x', 'linear2xcrt' and 'borderstretch'")
+	screenFilterScanLines          = flag.Float64("screen_filter_scan_lines", 0.1, "strength of the scan line effect in the linear2xcrt filters")
+	screenFilterCRTStrength        = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
+	screenFilterBorderstretchPower = flag.Float64("screen_filter_borderstretch_power", -8, "power of border stretching in the borderstretch filter")
+	screenStretch                  = flag.Bool("screen_stretch", false, "stretch screen content instead of letterboxing")
+	paletteFlag                    = flag.String("palette", flag.SystemDefault(map[string]string{
 		"android/*": "none",
 		"js/*":      "none",
 		"*/*":       "vga",
@@ -575,6 +576,13 @@ func crtK2() float64 {
 	return 3.0 / 40.0 * math.Pow(*screenFilterCRTStrength, 4)
 }
 
+func borderStretchPower() float64 {
+	if *screenFilter != "borderstretch" {
+		return 0
+	}
+	return *screenFilterBorderstretchPower
+}
+
 func assertOrigin(img ebiten.FinalScreen) {
 	if img.Bounds().Min != (go_image.Point{}) {
 		log.Fatalf("did not get zero origin: %v", img.Bounds())
@@ -684,7 +692,7 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 		if g.borderstretchShader == nil {
 			var err error
 			g.borderstretchShader, err = shader.Load("borderstretch.kage.tmpl", map[string]interface{}{
-				"power": -2.0,
+				"power": *screenFilterBorderstretchPower,
 			})
 			if err != nil {
 				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load borderstretch shader: %v", err)

@@ -55,6 +55,7 @@ type Params struct {
 	ScreenFilterScanLines float64
 	CRTK1                 float64
 	CRTK2                 float64
+	// TODO support borderstretch too
 }
 
 type WriteCloserAt interface {

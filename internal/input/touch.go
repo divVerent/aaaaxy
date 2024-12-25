@@ -83,6 +83,7 @@ func touchEmulateMouse() {
 }
 
 func touchUpdate(screenWidth, screenHeight, gameWidth, gameHeight int, crtK1, crtK2 float64) {
+	// TODO support borderstretch filter too
 	if !*touch {
 		return
 	}
