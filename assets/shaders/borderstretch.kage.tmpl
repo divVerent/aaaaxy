@@ -24,10 +24,10 @@ func stretchForAspectOne(aspectFactor, x float) float {
 	// Scaled function: g(x) = f(r * x) / f(r).
 	// Derivative at 0: nrt(1 + r^n).
 	const n float = T[".power"]
-	r := pow(pow(aspectFactor, n) - 1, 1 / n)
+	r := pow(pow(aspectFactor, n)-1, 1/n)
 	xr := x * r
-	f := xr / pow(1 + pow(abs(xr), n), 1 / n)
-	d := r / aspectFactor  // Actually r / pow(1 + pow(r, n), 1 / n).
+	f := xr / pow(1+pow(abs(xr), n), 1/n)
+	d := r / aspectFactor // Actually r / pow(1 + pow(r, n), 1 / n)
 	return f / d
 }
 
@@ -38,10 +38,10 @@ func compressForAspectOne(aspectFactor, x float) float {
 	// Scaled function: g(x) = f(r * x) / f(r).
 	// Derivative at 0: nrt(1 - r^n).
 	const n float = -1.0 * (T[".power"])
-	r := pow(pow(aspectFactor, n) - 1, 1 / n) / aspectFactor
+	r := pow(pow(aspectFactor, n)-1, 1/n) / aspectFactor
 	xr := x * r
-	f := xr / pow(1 - pow(abs(xr), n), 1 / n)
-	d := r * aspectFactor  // Actually r / pow(1 - pow(r, n), 1 / n).
+	f := xr / pow(1-pow(abs(xr), n), 1/n)
+	d := r * aspectFactor // Actually r / pow(1 - pow(r, n), 1 / n)
 	return f / d
 }
 
@@ -50,13 +50,13 @@ func adjustForAspect(aspectFactor float, pos vec2) vec2 {
 	if aspectFactor > 1 {
 		pos.y = stretchForAspectOne(aspectFactor, pos.y)
 	} else if aspectFactor < 1 {
-		pos.x = stretchForAspectOne(1 / aspectFactor, pos.x)
+		pos.x = stretchForAspectOne(1/aspectFactor, pos.x)
 	}
 	// T["else if lt .power 0.0"]
 	if aspectFactor > 1 {
 		pos.x = compressForAspectOne(aspectFactor, pos.x)
 	} else if aspectFactor < 1 {
-		pos.y = compressForAspectOne(1 / aspectFactor, pos.y)
+		pos.y = compressForAspectOne(1/aspectFactor, pos.y)
 	}
 	// T["end"]
 	return pos
@@ -69,11 +69,11 @@ func Fragment(position vec4, texCoord_ vec2, color vec4) vec4 {
 	srcMid := srcOrigin + srcHalfSize
 	dstSize := imageDstSize()
 
-	dstPos := (texCoord_ - srcMid) / srcHalfSize  // to -1..1
+	dstPos := (texCoord_ - srcMid) / srcHalfSize // to -1..1
 	// aspectFactor: how much extra _height_ to make
 	aspectFactor := (srcSize.x * dstSize.y) / (srcSize.y * dstSize.x)
 	srcPos := adjustForAspect(aspectFactor, dstPos)
-	texCoord := (srcPos * srcHalfSize) + srcMid  // from -1..1
+	texCoord := (srcPos * srcHalfSize) + srcMid // from -1..1
 
 	return imageSrc0UnsafeAt(texCoord)
 }
