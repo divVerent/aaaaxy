@@ -684,7 +684,7 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 		if g.borderstretchShader == nil {
 			var err error
 			g.borderstretchShader, err = shader.Load("borderstretch.kage.tmpl", map[string]interface{}{
-				"power": 4.0,
+				"power": -2.0,
 			})
 			if err != nil {
 				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load borderstretch shader: %v", err)

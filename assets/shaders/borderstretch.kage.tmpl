@@ -23,7 +23,7 @@ func stretchForAspectOne(aspectFactor, x float) float {
 	// Assume t = r * x.
 	// Scaled function: g(x) = f(r * x) / f(r).
 	// Derivative at 0: nrt(1 + r^n).
-	const n = T[".power"]
+	const n float = T[".power"]
 	r := pow(pow(aspectFactor, n) - 1, 1 / n)
 	xr := x * r
 	f := xr / pow(1 + pow(abs(xr), n), 1 / n)
@@ -32,27 +32,27 @@ func stretchForAspectOne(aspectFactor, x float) float {
 }
 
 func compressForAspectOne(aspectFactor, x float) float {
-	// Map -1..1 to -1..1 but slope at middle be 1/aspectFactor (which is > 1)
+	// Map -1..1 to -1..1 but slope at middle be 1/aspectFactor (which is < 1)
 	// Base function: f(t) = t / nrt(1 - t^n)
 	// Assume t = r * x.
 	// Scaled function: g(x) = f(r * x) / f(r).
 	// Derivative at 0: nrt(1 - r^n).
-	const n = T[".power"]
+	const n float = -1.0 * (T[".power"])
 	r := pow(pow(aspectFactor, n) - 1, 1 / n) / aspectFactor
 	xr := x * r
 	f := xr / pow(1 - pow(abs(xr), n), 1 / n)
-	d := r / aspectFactor  // Actually r / pow(1 - pow(r, n), 1 / n).
+	d := r * aspectFactor  // Actually r / pow(1 - pow(r, n), 1 / n).
 	return f / d
 }
 
 func adjustForAspect(aspectFactor float, pos vec2) vec2 {
-	// T["if gt .power 1.0"]
+	// T["if gt .power 0.0"]
 	if aspectFactor > 1 {
 		pos.y = stretchForAspectOne(aspectFactor, pos.y)
 	} else if aspectFactor < 1 {
 		pos.x = stretchForAspectOne(1 / aspectFactor, pos.x)
 	}
-	// T["else if lt .power 1.0"]
+	// T["else if lt .power 0.0"]
 	if aspectFactor > 1 {
 		pos.x = compressForAspectOne(aspectFactor, pos.x)
 	} else if aspectFactor < 1 {
