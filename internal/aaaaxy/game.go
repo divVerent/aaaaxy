@@ -676,10 +676,16 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 		}
 		screen.DrawImage(offscreen, options)
 	case "borderstretch":
-		// TODO make this only allowed when *screenStretch is also enabled.
+		if !*screenStretch {
+			log.Errorf("-screen_filter=borderstretch is only allowed with -screen_stretch")
+			*screenFilter = "linear"
+			return
+		}
 		if g.borderstretchShader == nil {
 			var err error
-			g.borderstretchShader, err = shader.Load("borderstretch.kage.tmpl", nil)
+			g.borderstretchShader, err = shader.Load("borderstretch.kage.tmpl", map[string]interface{}{
+				"power": 4.0,
+			})
 			if err != nil {
 				log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load borderstretch shader: %v", err)
 				*screenFilter = "linear"

@@ -17,28 +17,48 @@ package main
 
 //kage:unit pixels
 
-func adjustForAspectOne(aspectFactor, x float) float {
+func stretchForAspectOne(aspectFactor, x float) float {
 	// Map -1..1 to -1..1 but slope at middle be aspectFactor (which is > 1)
-	// Base function: f(t) = t / 2nrt(t^(2n) + 1)
+	// Base function: f(t) = t / nrt(1 + t^n)
 	// Assume t = r * x.
 	// Scaled function: g(x) = f(r * x) / f(r).
-	// Derivative at 0: 2nrt(r^(2n) + 1).
-	const n = 1.0
-	r := pow(pow(aspectFactor, 2 * n) - 1, 1 / (2 * n))
+	// Derivative at 0: nrt(1 + r^n).
+	const n = T[".power"]
+	r := pow(pow(aspectFactor, n) - 1, 1 / n)
 	xr := x * r
-	f := xr / pow(pow(xr, 2 * n) + 1, 1 / (2 * n))
-	d := r / aspectFactor  // Actually r / pow(pow(r, 2 * n) + 1, 1 / (2 * n)).
+	f := xr / pow(1 + pow(abs(xr), n), 1 / n)
+	d := r / aspectFactor  // Actually r / pow(1 + pow(r, n), 1 / n).
 	return f / d
+}
 
-	// Note: formula is suboptimal; need less stretch in the center and more at the sides.
+func compressForAspectOne(aspectFactor, x float) float {
+	// Map -1..1 to -1..1 but slope at middle be 1/aspectFactor (which is > 1)
+	// Base function: f(t) = t / nrt(1 - t^n)
+	// Assume t = r * x.
+	// Scaled function: g(x) = f(r * x) / f(r).
+	// Derivative at 0: nrt(1 - r^n).
+	const n = T[".power"]
+	r := pow(pow(aspectFactor, n) - 1, 1 / n) / aspectFactor
+	xr := x * r
+	f := xr / pow(1 - pow(abs(xr), n), 1 / n)
+	d := r / aspectFactor  // Actually r / pow(1 - pow(r, n), 1 / n).
+	return f / d
 }
 
 func adjustForAspect(aspectFactor float, pos vec2) vec2 {
+	// T["if gt .power 1.0"]
 	if aspectFactor > 1 {
-		pos.y = adjustForAspectOne(aspectFactor, pos.y)
+		pos.y = stretchForAspectOne(aspectFactor, pos.y)
 	} else if aspectFactor < 1 {
-		pos.x = adjustForAspectOne(1 / aspectFactor, pos.x)
+		pos.x = stretchForAspectOne(1 / aspectFactor, pos.x)
 	}
+	// T["else if lt .power 1.0"]
+	if aspectFactor > 1 {
+		pos.x = compressForAspectOne(aspectFactor, pos.x)
+	} else if aspectFactor < 1 {
+		pos.y = compressForAspectOne(1 / aspectFactor, pos.y)
+	}
+	// T["end"]
 	return pos
 }
 
