@@ -55,7 +55,7 @@ type Params struct {
 	ScreenFilterScanLines float64
 	CRTK1                 float64
 	CRTK2                 float64
-	// TODO support borderstretch too
+	BorderStretchPower    float64
 }
 
 type WriteCloserAt interface {
@@ -235,6 +235,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 		switch screenFilter {
 		case "linear":
 			filterComplex += "[lowres]scale=1920:1080"
+		// TODO support borderstretch too
 		case "linear2x":
 			// Note: the two step upscale simulates the effect of the linear2xcrt shader.
 			// "simple" does the same as "linear2x" if the screen res is exactly 1080p.

@@ -147,6 +147,7 @@ func (g *Game) InitEarly() error {
 		ScreenFilterScanLines: *screenFilterScanLines,
 		CRTK1:                 crtK1(),
 		CRTK2:                 crtK2(),
+		BorderStretchPower:    borderStretchPower(),
 	})
 	if err != nil {
 		return fmt.Errorf("could not preinitialize dumping: %w", err)
