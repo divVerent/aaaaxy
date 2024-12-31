@@ -235,7 +235,9 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 		switch screenFilter {
 		case "linear":
 			filterComplex += "[lowres]scale=1920:1080"
-		// TODO support borderstretch too
+		case "borderstretch":
+			log.Errorf("borderstretch filter is not yet supported for video recording - would first need a way to also set the output resolution")
+			filterComplex += "[lowres]copy"
 		case "linear2x":
 			// Note: the two step upscale simulates the effect of the linear2xcrt shader.
 			// "simple" does the same as "linear2x" if the screen res is exactly 1080p.
