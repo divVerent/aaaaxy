@@ -1,0 +1,5 @@
+  - Engine: minor module updates.
+  - Engine: new "borderstretch" shader for use with fixed screen devices where
+    letterboxing might look bad.
+  - Game: do not award "all secrets" run if any secret checkpoint is missing.
+  - Music: fix looping on "next to you" track.
