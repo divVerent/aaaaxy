@@ -63,6 +63,7 @@ sprites/magic_idle_7.png
 sprites/start.png
 sprites/weird_star_large.png
 sprites/bings_house.png
+sprites/grinch.png
 sprites/huh.png
 sprites/moving_furniture.png
 sprites/moving_nothing.png

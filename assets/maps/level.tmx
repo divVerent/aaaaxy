@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8379">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8381">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -18891,5 +18891,16 @@
   <object id="8376" name="EvenMoreDopeFishWarp2" gid="295" x="1408" y="8000" width="112" height="16"/>
   <object id="8377" name="EvenMoreDopeFishWarp1" gid="296" x="1200" y="8000" width="112" height="16"/>
   <object id="8378" name="EvenMoreDopeFishWarp2" gid="298" x="1408" y="7984" width="112" height="16"/>
+  <object id="8379" name="Grinch" type="SwitchableSprite" x="776" y="5824" width="112" height="112">
+   <properties>
+    <property name="image" value="grinch.png"/>
+   </properties>
+  </object>
+  <object id="8380" type="SetState" x="816" y="6032" width="32" height="16">
+   <properties>
+    <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="Grinch"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
