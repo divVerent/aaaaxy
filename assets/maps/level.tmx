@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8381">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8382">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -18899,6 +18899,12 @@
   <object id="8380" type="SetState" x="816" y="6032" width="32" height="16">
    <properties>
     <property name="player_only" type="bool" value="true"/>
+    <property name="target" value="GrinchDelay"/>
+   </properties>
+  </object>
+  <object id="8381" name="GrinchDelay" type="DelayTarget" x="816" y="6016" width="32" height="16">
+   <properties>
+    <property name="delay" value="2s"/>
     <property name="target" value="Grinch"/>
    </properties>
   </object>
