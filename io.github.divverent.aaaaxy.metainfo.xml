@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.5.250" date="2025-01-06">
-      <description><ul><li>Engine: minor module updates.</li><li>Engine: new "borderstretch" shader for use with fixed screen devices where letterboxing might look bad.</li><li>Game: do not award "all secrets" run if any secret checkpoint is missing.</li><li>Music: fix looping on "next to you" track.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.250</url>
+    <release version="v1.5.256" date="2025-01-13">
+      <description><ul><li>Level: add a wall picture in a hard to reach place.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.5.256</url>
     </release>
   </releases>
 </component>
