@@ -1,25 +1,20 @@
 name: Post release on Matrix
-
-on:
+'on':
   push:
     tags: [v*]
-  workflow_dispatch:
-
+  workflow_dispatch: null
 jobs:
   matrix_action_job:
     runs-on: ubuntu-latest
     name: Send Message to Matrix Room
     steps:
-
-    - name: Checkout
-      uses: actions/checkout@v4
-
-    - name: matrix-commit
-      uses: imbev/matrix-commit@v1
-
-      with:
-        homeserver: ${{ secrets.BOT_HOMESERVER }}
-        username: ${{ secrets.BOT_USERNAME }}
-        access_token: ${{ secrets.BOT_ACCESS_TOKEN }}
-        room_id: ${{ secrets.ROOM_ID }}
-        message: "#### New Release:"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: matrix-commit
+        uses: imbev/matrix-commit@v1
+        with:
+          homeserver: ${{ secrets.BOT_HOMESERVER }}
+          username: ${{ secrets.BOT_USERNAME }}
+          access_token: ${{ secrets.BOT_ACCESS_TOKEN }}
+          room_id: ${{ secrets.ROOM_ID }}
+          message: "#### New Release:"

@@ -1,33 +1,27 @@
 name: Go Vet
-
-on:
-  pull_request:
-  push:
+'on':
+  pull_request: null
+  push: null
   schedule:
     - cron: '58 12 * * *'
-  workflow_dispatch:
-
+  workflow_dispatch: null
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-
-    - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install libasound2-dev libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
-
-    - name: Set up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: '1.22'
-
-    - name: Build
-      run: 'make'
-      env:
-        AAAAXY_BUILD_USE_VERSION_FILE: true
-
-    - name: Vet
-      run: 'make vet'
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install Dependencies
+        run: 'sudo apt-get update && sudo apt-get -y install libasound2-dev libgl-dev
+          libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Build
+        run: 'make'
+        env:
+          AAAAXY_BUILD_USE_VERSION_FILE: true
+      - name: Vet
+        run: 'make vet'

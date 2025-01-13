@@ -1,78 +1,69 @@
 name: Go In All Languages
-
-on:
-  pull_request:
-  push:
+'on':
+  pull_request: null
+  push: null
   schedule:
     - cron: '38 10 * * *'
-  workflow_dispatch:
-
+  workflow_dispatch: null
 jobs:
   list-languages:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-
-    - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
-
-    - name: Set up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: '1.22'
-        check-latest: true
-
-    - name: Build
-      run: 'make'
-      env:
-        AAAAXY_BUILD_USE_VERSION_FILE: true
-
-    - name: Generate Language List
-      id: list-languages
-      run: 'rm -f l; xvfb-run sh -c "./aaaaxy -dump_languages > l"; for l in $(cat l); do all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install Dependencies
+        run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev
+          libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev
+          libxxf86vm-dev xvfb'
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          check-latest: true
+      - name: Build
+        run: 'make'
+        env:
+          AAAAXY_BUILD_USE_VERSION_FILE: true
+      - name: Generate Language List
+        id: list-languages
+        run: 'rm -f l; xvfb-run sh -c "./aaaaxy -dump_languages > l"; for l in $(cat
+          l); do all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
     outputs:
       languages: ${{ steps.list-languages.outputs.languages }}
-
   build:
     needs: list-languages
     runs-on: ubuntu-latest
     strategy:
       matrix:
         language: ${{ fromJson(needs.list-languages.outputs.languages) }}
-
     env:
       language: ${{ matrix.language }}
-
     steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-
-    - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
-
-    - name: Set up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: '1.22'
-        check-latest: true
-
-    - name: Build
-      run: 'make'
-      env:
-        AAAAXY_BUILD_USE_VERSION_FILE: true
-
-    - name: Test in language ${{ matrix.language }}
-      run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64-$language "translated to" "./aaaaxy -language=$language" assets/demos/benchmark.dem'
-
-    - name: Archive Results
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: regression-test-results-benchmark-${{ matrix.language }}-linux-amd64
-        path: |
-          *.dem.*.log
-          *.dem.*.png
-
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install Dependencies
+        run: 'sudo apt-get update && sudo apt-get -y install graphviz libasound2-dev
+          libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev
+          libxxf86vm-dev xvfb'
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          check-latest: true
+      - name: Build
+        run: 'make'
+        env:
+          AAAAXY_BUILD_USE_VERSION_FILE: true
+      - name: Test in language ${{ matrix.language }}
+        run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64-$language "translated
+          to" "./aaaaxy -language=$language" assets/demos/benchmark.dem'
+      - name: Archive Results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-test-results-benchmark-${{ matrix.language }}-linux-amd64
+          path: |
+            *.dem.*.log
+            *.dem.*.png

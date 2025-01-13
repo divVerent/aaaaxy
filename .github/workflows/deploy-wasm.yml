@@ -1,41 +1,34 @@
 name: Deploy WebAssembly Build
-
-on:
+'on':
   push:
     tags: [v*]
-  workflow_dispatch:
-
+  workflow_dispatch: null
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-
-    - name: Install Dependencies
-      run: 'sudo apt-get update && sudo apt-get -y install advancecomp zip'
-
-    - name: Set up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: '1.22'
-
-    - name: Build
-      run: 'make BUILDTYPE=release BINARY=aaaaxy-js-wasm.wasm'
-      env:
-        AAAAXY_BUILD_USE_VERSION_FILE: true
-        GOARCH: wasm
-        GOOS: js
-
-    - name: Steal/acquire wasm_exec.js
-      run: 'cp -v "$(go env GOROOT)/misc/wasm/wasm_exec.js" .'
-      env:
-        GOARCH: wasm
-        GOOS: js
-
-    - name: Deploy
-      env:
-        DEPLOY_URL: ${{ secrets.DEPLOY_URL }}
-      run: 'tar cvzf - aaaaxy-js-wasm.wasm aaaaxy.html wasm_exec.js | base64 | curl -X POST -d @- "$DEPLOY_URL"'
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install Dependencies
+        run: 'sudo apt-get update && sudo apt-get -y install advancecomp zip'
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Build
+        run: 'make BUILDTYPE=release BINARY=aaaaxy-js-wasm.wasm'
+        env:
+          AAAAXY_BUILD_USE_VERSION_FILE: true
+          GOARCH: wasm
+          GOOS: js
+      - name: Steal/acquire wasm_exec.js
+        run: 'cp -v "$(go env GOROOT)/misc/wasm/wasm_exec.js" .'
+        env:
+          GOARCH: wasm
+          GOOS: js
+      - name: Deploy
+        env:
+          DEPLOY_URL: ${{ secrets.DEPLOY_URL }}
+        run: 'tar cvzf - aaaaxy-js-wasm.wasm aaaaxy.html wasm_exec.js | base64 | curl
+          -X POST -d @- "$DEPLOY_URL"'
