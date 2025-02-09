@@ -26,18 +26,22 @@ cp assets/_saved/* assets/generated/
 
 if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 	if [ x"$AAAAXY_GENERATE_CHECKPOINT_LOCAITONS" = x'true' ]; then
-		if [ x"$AAAAXY_FORCE_GENERATE_ASSETS" = x'true' ] || ! [ "assets/generated/level.cp.json" -nt "assets/maps/level.tmx" ]; then
-			trap 'rm -f assets/generated/level.cp.json' EXIT
-			# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
-			${GO} run ${GO_FLAGS} github.com/divVerent/aaaaxy/cmd/dumpcps |cat> assets/generated/level.cp.dot
-			grep -c . assets/generated/level.cp.dot
-			neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
-			grep -c . assets/generated/level.cp.json
-			trap - EXIT
-		fi
-		if [ x"$AAAAXY_DIFF_ASSETS" != x'false' ]; then
-			diff -bu -I'.*"width".*' assets/_saved/level.cp.json assets/generated/level.cp.json
-		fi
+		for lfile in assets/maps/*.tmx; do
+			lname=${lfile%.tmx}
+			lname=${lname##*/}
+			if [ x"$AAAAXY_FORCE_GENERATE_ASSETS" = x'true' ] || ! [ "assets/generated/$lname.cp.json" -nt "assets/maps/$lname.tmx" ]; then
+				trap 'rm -f "assets/generated/$lname.cp.json"' EXIT
+				# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
+				${GO} run ${GO_FLAGS} github.com/divVerent/aaaaxy/cmd/dumpcps -level="$lname" |cat> "assets/generated/$lname.cp.dot"
+				grep -c . "assets/generated/$lname.cp.dot"
+				neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
+				grep -c . "assets/generated/$lname.cp.json"
+				trap - EXIT
+			fi
+			if [ x"$AAAAXY_DIFF_ASSETS" != x'false' ]; then
+				diff -bu -I'.*"width".*' assets/_saved/level.cp.json assets/generated/level.cp.json
+			fi
+		done
 	fi
 
 	if [ x"${AAAAXY_FORCE_GENERATE_ASSETS}" = x'true' ] || [ x"${AAAAXY_DIFF_ASSETS}" != x'false' ]; then

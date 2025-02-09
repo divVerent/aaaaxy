@@ -53,6 +53,7 @@ func (s *SaveStateScreen) saveStateInfo(initLvl *level.Level, idx int) string {
 	if idx == *saveState {
 		ps = &s.Controller.World.PlayerState
 	} else {
+		// TODO: #424 - handle multiple levels.
 		saveName := fmt.Sprintf("save-%d.json", idx)
 		state, err := vfs.ReadState(vfs.SavedGames, saveName)
 		if err != nil {

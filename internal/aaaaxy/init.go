@@ -129,7 +129,7 @@ func (g *Game) InitEarly() error {
 	if err != nil {
 		return fmt.Errorf("could not initialize VFS: %w", err)
 	}
-	err = initlocale.Init()
+	err = initlocale.Init(engine.LevelName())
 	if err != nil {
 		return fmt.Errorf("could not initialize locale: %w", err)
 	}

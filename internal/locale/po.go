@@ -36,6 +36,9 @@ var GI IType
 // L is the translation of the levels.
 var L Type
 
+// LName is the name of the level L is for.
+var LName string
+
 // Active is the name of the current language.
 var Active Lingua
 

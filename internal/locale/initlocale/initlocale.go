@@ -59,6 +59,7 @@ func initLinguas() error {
 		}
 	}
 	// Try detecting language packs.
+	// TODO: #424 - support alternate level packs.
 	for _, domain := range []string{"game", "level"} {
 		data, err = vfs.OSOpen(vfs.ExeDir, fmt.Sprintf("%s.po", domain))
 		if err != nil {
@@ -104,34 +105,35 @@ func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
 	log.Infof("%s translated to language %s", domain, lang.Name())
 }
 
-func Init() error {
+func Init(levelName string) error {
 	err := initLinguas()
 	if err != nil {
 		return err
 	}
 	locale.InitCurrent()
-	_, err = forceSetLanguage(locale.Lingua(*language))
+	_, err = forceSetLanguage(levelName, locale.Lingua(*language))
 	return err
 }
 
-func SetLanguage(lang locale.Lingua) (bool, error) {
+func SetLanguage(levelName string, lang locale.Lingua) (bool, error) {
 	if lang == "auto" {
 		lang = locale.Current
 	}
-	if locale.Active == lang {
+	if locale.Active == lang && levelName == locale.LName {
 		return false, nil
 	}
-	return forceSetLanguage(lang)
+	return forceSetLanguage(levelName, lang)
 }
 
-func forceSetLanguage(lang locale.Lingua) (bool, error) {
+func forceSetLanguage(levelName string, lang locale.Lingua) (bool, error) {
 	if lang == "auto" {
 		lang = locale.Current
 	}
 	locale.ResetLanguage()
 	initLocaleDomain(lang, locale.G, "game")
-	initLocaleDomain(lang, locale.L, "level")
+	initLocaleDomain(lang, locale.L, levelName)
 	locale.Active = lang
+	locale.LName = levelName
 
 	err := font.SetFont(locale.ActiveFont())
 	if err != nil {

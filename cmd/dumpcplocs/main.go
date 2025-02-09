@@ -24,6 +24,10 @@ import (
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
+var (
+	levelName = flag.String("level", "level", "name of the level file to load")
+)
+
 func main() {
 	log.Debugf("initializing VFS...")
 	err := vfs.Init()
@@ -33,7 +37,7 @@ func main() {
 	log.Debugf("parsing flags...")
 	flag.Parse(flag.NoConfig)
 	log.Debugf("loading level...")
-	lvl, err := level.NewLoader("level").SkipComparingCheckpointLocations(true).Load()
+	lvl, err := level.NewLoader(*levelName).SkipComparingCheckpointLocations(true).Load()
 	if err != nil {
 		log.Fatalf("could not load level: %v", err)
 	}
