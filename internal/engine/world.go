@@ -44,6 +44,7 @@ var (
 	debugCheckTileWindowSize         = flag.Bool("debug_check_tile_window_size", false, "if set, we verify that the tile window size is set high enough")
 	debugCheckEntityOverlaps         = flag.Bool("debug_check_entity_overlaps", false, "if set, we verify no two static entities overlap at same Z index")
 	debugCheckEntitySpawn            = flag.Bool("debug_check_entity_spawn", false, "if set, crash if an entity fails to spawn")
+	cheatLevel                       = flag.String("cheat_level", "level", "name of the level file to load")
 )
 
 // World represents the current game state including its entities.
@@ -212,9 +213,23 @@ func loadLevel() (*level.Level, error) {
 	return loadLevelCache.Clone(), nil
 }
 
-var levelLoader *level.Loader = level.NewLoader("level")
+// LevelName returns the name of the level used.
+// If this ever changes, ReloadLevel and locale.SetLanguage need to be called.
+func LevelName() string {
+	return *cheatLevel
+}
+
+var (
+	levelLoader        *level.Loader
+	levelLoaderCreated bool
+)
 
 func Precache(s *splash.State) (splash.Status, error) {
+	if levelLoader == nil && !levelLoaderCreated {
+		levelLoader = level.NewLoader(LevelName())
+		levelLoaderCreated = true
+	}
+
 	status, err := s.Enter("loading level", locale.G.Get("loading level"), "failed to load level", levelLoader.LoadStepwise)
 	if status != splash.Continue {
 		return status, err
@@ -234,7 +249,7 @@ func Precache(s *splash.State) (splash.Status, error) {
 
 func ReloadLevel() error {
 	// Must do this when the language changed.
-	lvl, err := level.NewLoader("level").Load()
+	lvl, err := level.NewLoader(LevelName()).Load()
 	if err != nil {
 		return err
 	}
@@ -247,7 +262,7 @@ func ReloadLevel() error {
 }
 
 func PaletteChanged() error {
-	loaded, err := level.NewLoader("level").Load()
+	loaded, err := level.NewLoader(LevelName()).Load()
 	if err != nil {
 		return err
 	}
@@ -304,6 +319,7 @@ func (w *World) Init(saveState int) error {
 // Load loads the current savegame.
 // If this fails, the world may be in an undefined state; call w.Init() or w.Load() to resume.
 func (w *World) Load() error {
+	// TODO: #424 - handle multiple levels.
 	saveName := fmt.Sprintf("save-%d.json", w.saveState)
 	err := w.loadUnchecked(saveName)
 	if errors.Is(err, os.ErrNotExist) {
@@ -374,6 +390,7 @@ func (w *World) Save() error {
 	if is, cheats := flag.Cheating(); is {
 		return fmt.Errorf("not saving, as cheats are enabled: %s", cheats)
 	}
+	// TODO: #424 - handle multiple levels.
 	return vfs.WriteState(vfs.SavedGames, fmt.Sprintf("save-%d.json", w.saveState), state)
 }
 

@@ -27,6 +27,10 @@ import (
 	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
+var (
+	levelName = flag.String("level", "level", "name of the level file to load")
+)
+
 type (
 	Edge struct {
 		WantDelta m.Delta
@@ -78,7 +82,7 @@ func main() {
 	log.Debugf("parsing flags...")
 	flag.Parse(flag.NoConfig)
 	log.Debugf("loading level...")
-	lvl, err := level.NewLoader("level").SkipCheckpointLocations(true).Load()
+	lvl, err := level.NewLoader(*levelName).SkipCheckpointLocations(true).Load()
 	if err != nil {
 		log.Fatalf("could not load level: %v", err)
 	}

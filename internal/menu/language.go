@@ -17,6 +17,7 @@ package menu
 import (
 	"fmt"
 
+	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/game/misc"
 	"github.com/divVerent/aaaaxy/internal/locale"
@@ -53,7 +54,7 @@ func (l *languageSetting) apply(m *Controller) error {
 	flag.Set("language", string(lingua))
 
 	return m.NextFrame(func() error {
-		changed, err := initlocale.SetLanguage(lingua)
+		changed, err := initlocale.SetLanguage(engine.LevelName(), lingua)
 		if err != nil {
 			return err
 		}

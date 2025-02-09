@@ -13,10 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-xgettext --its=scripts/tmx.its --from-code=utf-8 -F --no-location \
-	-o - assets/maps/level.tmx |\
-	sed -e 's/^#. #:/#:/g' \
-	> assets/locales/level.pot
+lnames=
+for lfile in assets/maps/*.tmx; do
+	lname=${lfile%.tmx}
+	lname=${lname##*/}
+	xgettext --its=scripts/tmx.its --from-code=utf-8 -F --no-location \
+		-o - "assets/maps/$lname.tmx" |\
+		sed -e 's/^#. #:/#:/g' \
+		> "assets/locales/$lname.pot"
+	lnames="$lnames $lfile"
+done
 go run github.com/leonelquinteros/gotext/cli/xgotext \
 	-default game_raw \
 	-in internal/ \
@@ -58,7 +64,7 @@ for d in assets/locales/*/; do
 	# Go's x/text/language always uses dashes as separator.
 	lingua=$(echo "$language" | tr _ -)
 	all_linguas="$all_linguas$lingua$LF"
-	for domain in level game; do
+	for domain in $lnames game; do
 		f=assets/locales/"$language"/"$domain".po
 		if ! [ -f "$f" ]; then
 			echo "$f: not found"
