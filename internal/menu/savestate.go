@@ -16,10 +16,10 @@ package menu
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/input"
@@ -53,8 +53,7 @@ func (s *SaveStateScreen) saveStateInfo(initLvl *level.Level, idx int) string {
 	if idx == *saveState {
 		ps = &s.Controller.World.PlayerState
 	} else {
-		// TODO: #424 - handle multiple levels.
-		saveName := fmt.Sprintf("save-%d.json", idx)
+		saveName := engine.SaveName(idx)
 		state, err := vfs.ReadState(vfs.SavedGames, saveName)
 		if err != nil {
 			return "(empty)"

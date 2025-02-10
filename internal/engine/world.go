@@ -219,6 +219,14 @@ func LevelName() string {
 	return *cheatLevel
 }
 
+func SaveName(idx int) string {
+	if *cheatLevel == "level" {
+		return fmt.Sprintf("save-%d.json", idx)
+	} else {
+		return fmt.Sprintf("%s.save-%d.json", *cheatLevel, idx)
+	}
+}
+
 var (
 	levelLoader        *level.Loader
 	levelLoaderCreated bool
@@ -319,8 +327,7 @@ func (w *World) Init(saveState int) error {
 // Load loads the current savegame.
 // If this fails, the world may be in an undefined state; call w.Init() or w.Load() to resume.
 func (w *World) Load() error {
-	// TODO: #424 - handle multiple levels.
-	saveName := fmt.Sprintf("save-%d.json", w.saveState)
+	saveName := SaveName(w.saveState)
 	err := w.loadUnchecked(saveName)
 	if errors.Is(err, os.ErrNotExist) {
 		// No save game? Just reinit the world.
@@ -390,8 +397,8 @@ func (w *World) Save() error {
 	if is, cheats := flag.Cheating(); is {
 		return fmt.Errorf("not saving, as cheats are enabled: %s", cheats)
 	}
-	// TODO: #424 - handle multiple levels.
-	return vfs.WriteState(vfs.SavedGames, fmt.Sprintf("save-%d.json", w.saveState), state)
+	saveName := SaveName(w.saveState)
+	return vfs.WriteState(vfs.SavedGames, saveName, state)
 }
 
 // SpawnPlayer spawns the player in a newly initialized world.
