@@ -18,6 +18,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"sort"
 	"strings"
 
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
@@ -59,8 +60,19 @@ func initLinguas() error {
 		}
 	}
 	// Try detecting language packs.
-	// TODO: #424 - support alternate level packs.
-	for _, domain := range []string{"game", "level"} {
+	domains := []string{"game"}
+	levels, err := vfs.ReadDir("maps")
+	if err != nil {
+		log.Errorf("could not list levels: %v", err)
+	}
+	for _, level := range levels {
+		if domain, isTMX := strings.CutSuffix(level, ".tmx"); isTMX {
+			domains = append(domains, domain)
+		}
+	}
+	sort.Strings(domains)
+	log.Infof("supported locale domains: %v", domains)
+	for _, domain := range domains {
 		data, err = vfs.OSOpen(vfs.ExeDir, fmt.Sprintf("%s.po", domain))
 		if err != nil {
 			// Missing language pack is OK.
