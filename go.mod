@@ -20,7 +20,7 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.10.14
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
-	golang.org/x/image v0.23.0
+	golang.org/x/image v0.24.0
 	golang.org/x/sys v0.29.0
 	golang.org/x/text v0.22.0
 )
