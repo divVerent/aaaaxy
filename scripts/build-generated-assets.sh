@@ -25,7 +25,7 @@ mkdir -p assets/generated
 cp assets/_saved/* assets/generated/
 
 if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
-	if [ x"$AAAAXY_GENERATE_CHECKPOINT_LOCAITONS" = x'true' ]; then
+	if [ x"$AAAAXY_GENERATE_CHECKPOINT_LOCATIONS" = x'true' ]; then
 		for lfile in assets/maps/*.tmx; do
 			lname=${lfile%.tmx}
 			lname=${lname##*/}
@@ -34,7 +34,7 @@ if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 				# Using |cat> instead of > because snapcraft for some reason doesn't allow using a regular > shell redirection with "go run".
 				${GO} run ${GO_FLAGS} github.com/divVerent/aaaaxy/cmd/dumpcps -level="$lname" |cat> "assets/generated/$lname.cp.dot"
 				grep -c . "assets/generated/$lname.cp.dot"
-				neato -Tjson assets/generated/level.cp.dot > assets/generated/level.cp.json
+				neato -Tjson "assets/generated/$lname.cp.dot" > "assets/generated/$lname.cp.json"
 				grep -c . "assets/generated/$lname.cp.json"
 				trap - EXIT
 			fi
