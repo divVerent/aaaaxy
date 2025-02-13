@@ -65,5 +65,5 @@ jobs:
         with:
           name: regression-test-results-benchmark-${{ matrix.language }}-linux-amd64
           path: |
-            *.dem.*.log
-            *.dem.*.png
+            assets/demos/*.dem.*.log
+            assets/demos/*.dem.*.png
