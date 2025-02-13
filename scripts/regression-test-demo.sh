@@ -68,6 +68,7 @@ for demo in "$@"; do
 		-show_fps \
 		-show_pos \
 		-show_time \
+		-v=1 \
 		-window_scale_factor=1
 	status=$?
 	set -e
