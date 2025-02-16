@@ -50,14 +50,14 @@ func debugLogDefault[V any](pm Map, key string, def V, useDefault bool) {
 	}
 	defStr, typeName := printValue(def)
 	if typeName != "string" || defStr != "" {
-		defStr = fmt.Sprintf(" default=\"%s\"", defStr)
+		defStr = fmt.Sprintf(" default %q", defStr)
 	}
 	if !useDefault {
 		defStr = ""
 	}
 
 	// To not make the log too large, print each such line only once.
-	line := fmt.Sprintf("entity %q property %q type %q default %q",
+	line := fmt.Sprintf("entity %q property %q type %q%s",
 		name, key, typeName, defStr)
 	_, printed := linesPrinted[line]
 	if printed {
