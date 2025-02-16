@@ -14,33 +14,28 @@
             "members": [
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "animation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "animation_frame_interval",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "animation_frames",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "animation_group",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "animation_repeat_interval",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "animation_symmetric",
@@ -69,8 +64,7 @@
                 },
                 {
                     "name": "no_flip",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -79,8 +73,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -94,8 +87,7 @@
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "render_offset",
@@ -104,13 +96,12 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "solid",
@@ -121,6 +112,18 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
+                    "name": "unless_abilities",
+                    "type": "string"
                 },
                 {
                     "name": "z_index",
@@ -148,6 +151,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "AppearBlock",
@@ -159,7 +170,7 @@
         },
         {
             "color": "#ff0000ff",
-            "id": 44,
+            "id": 3,
             "members": [
                 {
                     "name": "fade_time",
@@ -169,12 +180,12 @@
                 {
                     "name": "importance",
                     "type": "string",
-                    "value": "NotImportant"
+                    "value": "Important"
                 },
                 {
                     "name": "initial_position",
                     "type": "string",
-                    "value": "Middle"
+                    "value": "Top"
                 },
                 {
                     "name": "orientation",
@@ -182,9 +193,12 @@
                     "value": "ES"
                 },
                 {
+                    "name": "orientation_for_default_vertical_text",
+                    "type": "string"
+                },
+                {
                     "name": "sound",
-                    "type": "file",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "spawn_tiles_growth",
@@ -193,23 +207,26 @@
                 },
                 {
                     "name": "text",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "text_bg_color",
                     "type": "color",
-                    "value": ""
+                    "value": "#ff000000"
                 },
                 {
                     "name": "text_fg_color",
                     "type": "color",
-                    "value": ""
+                    "value": "#ffffffff"
                 },
                 {
                     "name": "text_font",
                     "type": "string",
                     "value": "Centerprint"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "CenterPrintTarget",
@@ -221,7 +238,7 @@
         },
         {
             "color": "#ff008000",
-            "id": 3,
+            "id": 4,
             "members": [
                 {
                     "name": "dead_end",
@@ -250,8 +267,27 @@
                 },
                 {
                     "name": "music",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "next_down",
+                    "type": "int",
+                    "value": -1
+                },
+                {
+                    "name": "next_left",
+                    "type": "int",
+                    "value": -1
+                },
+                {
+                    "name": "next_right",
+                    "type": "int",
+                    "value": -1
+                },
+                {
+                    "name": "next_up",
+                    "type": "int",
+                    "value": -1
                 },
                 {
                     "name": "orientation",
@@ -259,9 +295,12 @@
                     "value": "ES"
                 },
                 {
+                    "name": "orientation_for_default_vertical_text",
+                    "type": "string"
+                },
+                {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "secret",
@@ -275,8 +314,11 @@
                 },
                 {
                     "name": "text",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 },
                 {
                     "name": "tnih_sign_expected",
@@ -303,12 +345,12 @@
         },
         {
             "color": "#ffffffff",
-            "id": 4,
+            "id": 5,
             "members": [
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "border_pixels",
@@ -317,8 +359,7 @@
                 },
                 {
                     "name": "image",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "image_dir",
@@ -328,47 +369,7 @@
                 {
                     "name": "image_region",
                     "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.EN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.ES",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WS",
-                    "type": "string",
-                    "value": ""
+                    "value": "0 0 0 0"
                 },
                 {
                     "name": "map_black_to",
@@ -382,8 +383,7 @@
                 },
                 {
                     "name": "no_flip",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -392,8 +392,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -407,8 +406,7 @@
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "render_offset",
@@ -417,13 +415,12 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "solid",
@@ -436,9 +433,16 @@
                     "value": "0 0"
                 },
                 {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
                     "name": "unless_abilities",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "z_index",
@@ -455,7 +459,7 @@
         },
         {
             "color": "#ffff00ff",
-            "id": 5,
+            "id": 6,
             "members": [
                 {
                     "name": "orientation",
@@ -466,6 +470,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "CreditsTarget",
@@ -477,7 +489,7 @@
         },
         {
             "color": "#ff000000",
-            "id": 6,
+            "id": 7,
             "members": [
                 {
                     "name": "delay",
@@ -496,8 +508,15 @@
                 },
                 {
                     "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "DelayTarget",
@@ -509,7 +528,7 @@
         },
         {
             "color": "#ff00aa00",
-            "id": 7,
+            "id": 8,
             "members": [
                 {
                     "name": "orientation",
@@ -520,6 +539,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "DisappearBlock",
@@ -531,12 +558,12 @@
         },
         {
             "color": "#ffffffff",
-            "id": 8,
+            "id": 9,
             "members": [
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "border_pixels",
@@ -555,8 +582,7 @@
                 },
                 {
                     "name": "image",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "image_dir",
@@ -566,47 +592,7 @@
                 {
                     "name": "image_region",
                     "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.EN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.ES",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WS",
-                    "type": "string",
-                    "value": ""
+                    "value": "0 0 0 0"
                 },
                 {
                     "name": "invert",
@@ -625,8 +611,7 @@
                 },
                 {
                     "name": "no_flip",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -635,8 +620,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -650,8 +634,7 @@
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "render_offset",
@@ -660,13 +643,12 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "solid",
@@ -679,14 +661,21 @@
                     "value": "0 0"
                 },
                 {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
                     "name": "unless_abilities",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "z_index",
                     "type": "int",
-                    "value": 4
+                    "value": 5
                 }
             ],
             "name": "ExitButton",
@@ -698,7 +687,7 @@
         },
         {
             "color": "#ffff00ff",
-            "id": 9,
+            "id": 10,
             "members": [
                 {
                     "name": "duration",
@@ -707,92 +696,19 @@
                 },
                 {
                     "name": "from_color_a",
-                    "type": "string",
-                    "value": ""
+                    "type": "color"
                 },
                 {
                     "name": "from_color_b",
-                    "type": "string",
-                    "value": ""
+                    "type": "color"
                 },
                 {
                     "name": "from_color_c",
-                    "type": "string",
-                    "value": ""
+                    "type": "color"
                 },
                 {
                     "name": "from_color_d",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "orientation",
-                    "type": "string",
-                    "value": "ES"
-                },
-                {
-                    "name": "spawn_tiles_growth",
-                    "type": "string",
-                    "value": "0 0"
-                },
-                {
-                    "name": "to_color_a",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "to_color_b",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "to_color_c",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "to_color_d",
-                    "type": "string",
-                    "value": ""
-                }
-            ],
-            "name": "FadeTarget",
-            "type": "class",
-            "useAs": [
-                "object",
-                "tile"
-            ]
-        },
-        {
-            "color": "#ffff00ff",
-            "id": 10,
-            "members": [
-                {
-                    "name": "orientation",
-                    "type": "string",
-                    "value": "ES"
-                },
-                {
-                    "name": "spawn_tiles_growth",
-                    "type": "string",
-                    "value": "0 0"
-                }
-            ],
-            "name": "ForceField",
-            "type": "class",
-            "useAs": [
-                "object",
-                "tile"
-            ]
-        },
-        {
-            "color": "#ffffff00",
-            "id": 11,
-            "members": [
-                {
-                    "name": "ability",
-                    "type": "string",
-                    "value": ""
+                    "type": "color"
                 },
                 {
                     "name": "orientation",
@@ -806,11 +722,60 @@
                 },
                 {
                     "name": "text",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
+                    "name": "to_color_a",
+                    "type": "color"
+                },
+                {
+                    "name": "to_color_b",
+                    "type": "color"
+                },
+                {
+                    "name": "to_color_c",
+                    "type": "color"
+                },
+                {
+                    "name": "to_color_d",
+                    "type": "color"
                 }
             ],
-            "name": "Give",
+            "name": "FadeTarget",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffff00ff",
+            "id": 11,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                }
+            ],
+            "name": "ForceField",
             "type": "class",
             "useAs": [
                 "object",
@@ -822,6 +787,44 @@
             "id": 12,
             "members": [
                 {
+                    "name": "ability",
+                    "type": "string"
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "orientation_for_default_vertical_text",
+                    "type": "string"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                }
+            ],
+            "name": "Give",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ffffff00",
+            "id": 13,
+            "members": [
+                {
                     "name": "orientation",
                     "type": "string",
                     "value": "ES"
@@ -830,6 +833,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "Goal",
@@ -841,17 +852,15 @@
         },
         {
             "color": "#ffff00ff",
-            "id": 13,
+            "id": 14,
             "members": [
                 {
                     "name": "delta",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "height",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "orientation",
@@ -872,6 +881,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "JumpPad",
@@ -883,7 +900,7 @@
         },
         {
             "color": "#ff000000",
-            "id": 14,
+            "id": 15,
             "members": [
                 {
                     "name": "count_required",
@@ -912,8 +929,15 @@
                 },
                 {
                     "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "LogicalGate",
@@ -925,17 +949,17 @@
         },
         {
             "color": "#ffffffff",
-            "id": 15,
+            "id": 16,
             "members": [
                 {
                     "name": "acceleration",
-                    "type": "string",
-                    "value": "0"
+                    "type": "float",
+                    "value": 0
                 },
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "border_pixels",
@@ -944,8 +968,7 @@
                 },
                 {
                     "name": "delta",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "hit_opaque",
@@ -954,8 +977,7 @@
                 },
                 {
                     "name": "image",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "image_dir",
@@ -965,47 +987,7 @@
                 {
                     "name": "image_region",
                     "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.EN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.ES",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WS",
-                    "type": "string",
-                    "value": ""
+                    "value": "0 0 0 0"
                 },
                 {
                     "name": "invert",
@@ -1024,8 +1006,7 @@
                 },
                 {
                     "name": "no_flip",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -1034,8 +1015,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -1049,8 +1029,7 @@
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "render_offset",
@@ -1059,13 +1038,12 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "solid",
@@ -1078,9 +1056,16 @@
                     "value": "0 0"
                 },
                 {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
                     "name": "unless_abilities",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "z_index",
@@ -1097,37 +1082,32 @@
         },
         {
             "color": "#ffffffff",
-            "id": 16,
+            "id": 17,
             "members": [
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "animation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "animation_frame_interval",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "animation_frames",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "animation_group",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "animation_repeat_interval",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "animation_symmetric",
@@ -1186,8 +1166,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -1201,8 +1180,7 @@
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "render_offset",
@@ -1211,13 +1189,12 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "respawn_on_touch",
@@ -1240,6 +1217,14 @@
                     "value": false
                 },
                 {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
                     "name": "time_to_fade",
                     "type": "string",
                     "value": "0s"
@@ -1250,9 +1235,13 @@
                     "value": "0s"
                 },
                 {
+                    "name": "unless_abilities",
+                    "type": "string"
+                },
+                {
                     "name": "velocity",
                     "type": "string",
-                    "value": ""
+                    "value": "0 0"
                 },
                 {
                     "name": "z_index",
@@ -1269,7 +1258,7 @@
         },
         {
             "color": "#ff0000ff",
-            "id": 17,
+            "id": 18,
             "members": [
                 {
                     "name": "orientation",
@@ -1280,6 +1269,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "OneWay",
@@ -1291,7 +1288,7 @@
         },
         {
             "color": "#ff008000",
-            "id": 18,
+            "id": 19,
             "members": [
                 {
                     "name": "dead_end",
@@ -1310,13 +1307,20 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 },
                 {
                     "name": "vvvvvv_gravity_direction",
@@ -1333,12 +1337,16 @@
         },
         {
             "color": "#ff000000",
-            "id": 19,
+            "id": 20,
             "members": [
                 {
                     "name": "orientation",
                     "type": "string",
                     "value": "ES"
+                },
+                {
+                    "name": "orientation_for_default_vertical_text",
+                    "type": "string"
                 },
                 {
                     "name": "spawn_tiles_growth",
@@ -1347,8 +1355,11 @@
                 },
                 {
                     "name": "text",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "PrintToConsoleTarget",
@@ -1360,7 +1371,7 @@
         },
         {
             "color": "#ff000000",
-            "id": 20,
+            "id": 21,
             "members": [
                 {
                     "name": "kaizo",
@@ -1379,8 +1390,15 @@
                 },
                 {
                     "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "QuestionBlock",
@@ -1392,7 +1410,7 @@
         },
         {
             "color": "#ffff0000",
-            "id": 21,
+            "id": 22,
             "members": [
                 {
                     "name": "orientation",
@@ -1403,6 +1421,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "RespawnPlayer",
@@ -1414,7 +1440,7 @@
         },
         {
             "color": "#ff000080",
-            "id": 22,
+            "id": 23,
             "members": [
                 {
                     "name": "flipped",
@@ -1430,6 +1456,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "Riser",
@@ -1441,28 +1475,6 @@
         },
         {
             "color": "#ffffff80",
-            "id": 23,
-            "members": [
-                {
-                    "name": "orientation",
-                    "type": "string",
-                    "value": "ES"
-                },
-                {
-                    "name": "spawn_tiles_growth",
-                    "type": "string",
-                    "value": "0 0"
-                }
-            ],
-            "name": "RiserFsck",
-            "type": "class",
-            "useAs": [
-                "object",
-                "tile"
-            ]
-        },
-        {
-            "color": "#ff00ff00",
             "id": 24,
             "members": [
                 {
@@ -1471,27 +1483,20 @@
                     "value": "ES"
                 },
                 {
-                    "name": "sequence",
-                    "type": "string",
-                    "value": ""
-                },
-                {
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
                 },
                 {
-                    "name": "state",
-                    "type": "bool",
-                    "value": true
+                    "name": "text",
+                    "type": "string"
                 },
                 {
-                    "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
-            "name": "SequenceCollector",
+            "name": "RiserFsck",
             "type": "class",
             "useAs": [
                 "object",
@@ -1509,8 +1514,50 @@
                 },
                 {
                     "name": "sequence",
+                    "type": "string"
+                },
+                {
+                    "name": "spawn_tiles_growth",
                     "type": "string",
-                    "value": ""
+                    "value": "0 0"
+                },
+                {
+                    "name": "state",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "target",
+                    "type": "string"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                }
+            ],
+            "name": "SequenceCollector",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff00ff00",
+            "id": 26,
+            "members": [
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "sequence",
+                    "type": "string"
                 },
                 {
                     "name": "spawn_tiles_growth",
@@ -1519,8 +1566,15 @@
                 },
                 {
                     "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "SequenceTarget",
@@ -1532,7 +1586,7 @@
         },
         {
             "color": "#ffff0000",
-            "id": 26,
+            "id": 27,
             "members": [
                 {
                     "name": "orientation",
@@ -1546,8 +1600,7 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "send_once",
@@ -1571,8 +1624,15 @@
                 },
                 {
                     "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "SetState",
@@ -1584,7 +1644,7 @@
         },
         {
             "color": "#ff0000ff",
-            "id": 27,
+            "id": 28,
             "members": [
                 {
                     "name": "duration",
@@ -1598,8 +1658,7 @@
                 },
                 {
                     "name": "sound",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "spawn_tiles_growth",
@@ -1618,13 +1677,19 @@
                 },
                 {
                     "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 },
                 {
                     "name": "visual",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 }
             ],
             "name": "SoundTarget",
@@ -1636,7 +1701,7 @@
         },
         {
             "color": "#ffff0000",
-            "id": 28,
+            "id": 29,
             "members": [
                 {
                     "name": "divisor",
@@ -1660,18 +1725,15 @@
                 },
                 {
                     "name": "modulus",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "modulus2",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "modulus3",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "orientation",
@@ -1690,18 +1752,23 @@
                 },
                 {
                     "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "target2",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "target3",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "SpawnCounter",
@@ -1713,12 +1780,12 @@
         },
         {
             "color": "#ffffffff",
-            "id": 29,
+            "id": 30,
             "members": [
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "border_pixels",
@@ -1727,8 +1794,7 @@
                 },
                 {
                     "name": "image",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "image_dir",
@@ -1738,47 +1804,7 @@
                 {
                     "name": "image_region",
                     "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.EN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.ES",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WS",
-                    "type": "string",
-                    "value": ""
+                    "value": "0 0 0 0"
                 },
                 {
                     "name": "map_black_to",
@@ -1792,8 +1818,7 @@
                 },
                 {
                     "name": "no_flip",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -1802,8 +1827,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -1817,8 +1841,7 @@
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "render_offset",
@@ -1827,13 +1850,12 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "solid",
@@ -1846,9 +1868,16 @@
                     "value": "0 0"
                 },
                 {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
                     "name": "unless_abilities",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "z_index",
@@ -1865,7 +1894,7 @@
         },
         {
             "color": "#ffff00ff",
-            "id": 30,
+            "id": 31,
             "members": [
                 {
                     "name": "orientation",
@@ -1876,6 +1905,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "StopTimerTarget",
@@ -1887,7 +1924,7 @@
         },
         {
             "color": "#ffff0000",
-            "id": 31,
+            "id": 32,
             "members": [
                 {
                     "name": "orientation",
@@ -1901,8 +1938,7 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "send_once",
@@ -1926,38 +1962,18 @@
                 },
                 {
                     "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "Switch",
-            "type": "class",
-            "useAs": [
-                "object",
-                "tile"
-            ]
-        },
-        {
-            "color": "#ff00ff00",
-            "id": 32,
-            "members": [
-                {
-                    "name": "music",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "orientation",
-                    "type": "string",
-                    "value": "ES"
-                },
-                {
-                    "name": "spawn_tiles_growth",
-                    "type": "string",
-                    "value": "0 0"
-                }
-            ],
-            "name": "SwitchMusic",
             "type": "class",
             "useAs": [
                 "object",
@@ -1970,8 +1986,7 @@
             "members": [
                 {
                     "name": "music",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "orientation",
@@ -1982,6 +1997,48 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                }
+            ],
+            "name": "SwitchMusic",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
+            "color": "#ff00ff00",
+            "id": 34,
+            "members": [
+                {
+                    "name": "music",
+                    "type": "string"
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "SwitchMusicTarget",
@@ -1993,37 +2050,32 @@
         },
         {
             "color": "#ffffffff",
-            "id": 34,
+            "id": 35,
             "members": [
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "animation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "animation_frame_interval",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "animation_frames",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "animation_group",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "animation_repeat_interval",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "animation_symmetric",
@@ -2072,8 +2124,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -2087,8 +2138,7 @@
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "render_offset",
@@ -2097,13 +2147,12 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "solid",
@@ -2114,6 +2163,18 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
+                    "name": "unless_abilities",
+                    "type": "string"
                 },
                 {
                     "name": "z_index",
@@ -2130,17 +2191,15 @@
         },
         {
             "color": "#ffff00ff",
-            "id": 35,
+            "id": 36,
             "members": [
                 {
                     "name": "delta",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "height",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "invert",
@@ -2166,6 +2225,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "SwitchableJumpPad",
@@ -2177,12 +2244,12 @@
         },
         {
             "color": "#ffffffff",
-            "id": 36,
+            "id": 37,
             "members": [
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "border_pixels",
@@ -2206,8 +2273,7 @@
                 },
                 {
                     "name": "image",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "image_dir",
@@ -2217,47 +2283,7 @@
                 {
                     "name": "image_region",
                     "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.EN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.ES",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.NW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SE",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.SW",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WN",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "img.WS",
-                    "type": "string",
-                    "value": ""
+                    "value": "0 0 0 0"
                 },
                 {
                     "name": "invert",
@@ -2276,8 +2302,7 @@
                 },
                 {
                     "name": "no_flip",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -2286,8 +2311,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -2301,8 +2325,7 @@
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "render_offset",
@@ -2311,13 +2334,12 @@
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "solid",
@@ -2330,14 +2352,21 @@
                     "value": "0 0"
                 },
                 {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
                     "name": "unless_abilities",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "z_index",
                     "type": "int",
-                    "value": 4
+                    "value": 5
                 }
             ],
             "name": "SwitchableSprite",
@@ -2349,12 +2378,12 @@
         },
         {
             "color": "#ffffffff",
-            "id": 37,
+            "id": 38,
             "members": [
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "fade_despawn",
@@ -2383,8 +2412,7 @@
                 },
                 {
                     "name": "no_flip",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -2393,8 +2421,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -2408,28 +2435,20 @@
                 },
                 {
                     "name": "orientation_for_default_vertical_text",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "orientation_for_vertical_text",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "solid",
@@ -2443,33 +2462,32 @@
                 },
                 {
                     "name": "text",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "text_bg",
-                    "type": "string",
-                    "value": ""
+                    "type": "color"
                 },
                 {
                     "name": "text_fg",
-                    "type": "string",
-                    "value": ""
+                    "type": "color"
                 },
                 {
                     "name": "text_font",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 },
                 {
                     "name": "unless_abilities",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "z_index",
                     "type": "int",
-                    "value": 0
+                    "value": 5
                 }
             ],
             "name": "SwitchableText",
@@ -2481,12 +2499,12 @@
         },
         {
             "color": "#ffffffff",
-            "id": 38,
+            "id": 39,
             "members": [
                 {
                     "name": "alpha",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "map_black_to",
@@ -2500,8 +2518,7 @@
                 },
                 {
                     "name": "no_flip",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -2510,8 +2527,7 @@
                 },
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
@@ -2525,28 +2541,20 @@
                 },
                 {
                     "name": "orientation_for_default_vertical_text",
-                    "type": "string",
-                    "value": ""
-                },
-                {
-                    "name": "orientation_for_vertical_text",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "required_x_divisible_by",
-                    "type": "string",
-                    "value": ""
+                    "type": "int",
+                    "value": 0
                 },
                 {
                     "name": "solid",
@@ -2560,33 +2568,32 @@
                 },
                 {
                     "name": "text",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "text_bg",
-                    "type": "string",
-                    "value": ""
+                    "type": "color"
                 },
                 {
                     "name": "text_fg",
-                    "type": "string",
-                    "value": ""
+                    "type": "color"
                 },
                 {
                     "name": "text_font",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 },
                 {
                     "name": "unless_abilities",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "z_index",
                     "type": "int",
-                    "value": 0
+                    "value": 5
                 }
             ],
             "name": "Text",
@@ -2598,7 +2605,7 @@
         },
         {
             "color": "#ffffff00",
-            "id": 39,
+            "id": 40,
             "members": [
                 {
                     "name": "orientation",
@@ -2606,14 +2613,16 @@
                     "value": "ES"
                 },
                 {
+                    "name": "orientation_for_default_vertical_text",
+                    "type": "string"
+                },
+                {
                     "name": "reached_from",
-                    "type": "string",
-                    "value": ""
+                    "type": "int"
                 },
                 {
                     "name": "required_orientation",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "resize_image",
@@ -2627,13 +2636,15 @@
                 },
                 {
                     "name": "target",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "text",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "TnihSign",
@@ -2645,7 +2656,7 @@
         },
         {
             "color": "#ff00ff00",
-            "id": 40,
+            "id": 41,
             "members": [
                 {
                     "name": "gravity_flip",
@@ -2663,9 +2674,17 @@
                     "value": "0 0"
                 },
                 {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
+                },
+                {
                     "name": "velocity_factor",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 },
                 {
                     "name": "vvvvvv_gravity_flip",
@@ -2674,8 +2693,8 @@
                 },
                 {
                     "name": "vvvvvv_velocity_factor",
-                    "type": "string",
-                    "value": "1"
+                    "type": "float",
+                    "value": 1
                 }
             ],
             "name": "VVVVVV",
@@ -2687,7 +2706,7 @@
         },
         {
             "color": "#ffff0000",
-            "id": 41,
+            "id": 42,
             "members": [
                 {
                     "name": "invert",
@@ -2708,6 +2727,14 @@
                     "name": "switchable",
                     "type": "bool",
                     "value": false
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "WarpZone",
@@ -2719,7 +2746,7 @@
         },
         {
             "color": "#ffff00ff",
-            "id": 42,
+            "id": 43,
             "members": [
                 {
                     "name": "duration",
@@ -2735,6 +2762,14 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "ZoomTarget",
@@ -2746,17 +2781,15 @@
         },
         {
             "color": "#ff0000ff",
-            "id": 43,
+            "id": 44,
             "members": [
                 {
                     "name": "object_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "opaque",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "orientation",
@@ -2765,18 +2798,24 @@
                 },
                 {
                     "name": "player_solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "solid",
-                    "type": "string",
-                    "value": ""
+                    "type": "string"
                 },
                 {
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "text_if_flipped",
+                    "type": "string"
                 }
             ],
             "name": "_TileMod",
