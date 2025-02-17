@@ -62,7 +62,7 @@ func printValue[V any](v V) (ret, tmxType string) {
 	case int:
 		return strconv.Itoa(vT), "int"
 	case float64:
-		return strconv.FormatFloat(vT, 'g', -1, 64), "string"
+		return strconv.FormatFloat(vT, 'g', -1, 64), "float"
 	case encoding.TextMarshaler:
 		text, err := vT.MarshalText()
 		if err != nil {

@@ -54,8 +54,8 @@ jobs:
         with:
           name: regression-test-results-anypercent-linux-amd64
           path: |
-            *.dem.*.log
-            *.dem.*.png
+            assets/demos/*.dem.*.log
+            assets/demos/*.dem.*.png
   build-windows-amd64:
     runs-on: ubuntu-latest
     steps:
@@ -105,8 +105,8 @@ jobs:
         with:
           name: regression-test-results-anypercent-windows-amd64
           path: |
-            *.dem.*.log
-            *.dem.*.png
+            assets/demos/*.dem.*.log
+            assets/demos/*.dem.*.png
   build-windows-386:
     runs-on: ubuntu-latest
     steps:
@@ -160,5 +160,5 @@ jobs:
         with:
           name: regression-test-results-anypercent-windows-386
           path: |
-            *.dem.*.log
-            *.dem.*.png
+            assets/demos/*.dem.*.log
+            assets/demos/*.dem.*.png
