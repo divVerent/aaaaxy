@@ -1,8 +1,7 @@
 module github.com/divVerent/aaaaxy
 
 go 1.22.0
-
-toolchain go1.22.3
+toolchain go1.23.6
 
 require (
 	github.com/Microsoft/go-winio v0.6.2
@@ -14,7 +13,7 @@ require (
 	github.com/hajimehoshi/bitmapfont/v3 v3.2.0
 	github.com/hajimehoshi/ebiten/v2 v2.8.6
 	github.com/jeandeaual/go-locale v0.0.0-20240223122105-ce5225dcaa49
-	github.com/leonelquinteros/gotext v1.7.0
+	github.com/leonelquinteros/gotext v1.7.1
 	github.com/lestrrat-go/strftime v1.1.0
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
@@ -47,10 +46,10 @@ require (
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.6 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	golang.org/x/mod v0.21.0 // indirect
-	golang.org/x/net v0.33.0 // indirect
+	golang.org/x/mod v0.23.0 // indirect
+	golang.org/x/net v0.35.0 // indirect
 	golang.org/x/sync v0.11.0 // indirect
-	golang.org/x/tools v0.25.0 // indirect
+	golang.org/x/tools v0.30.0 // indirect
 	k8s.io/klog/v2 v2.90.1 // indirect
 )
 
