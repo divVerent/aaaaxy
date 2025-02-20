@@ -114,14 +114,6 @@
                     "value": "0 0"
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "unless_abilities",
                     "type": "string"
                 },
@@ -151,14 +143,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "AppearBlock",
@@ -223,10 +207,6 @@
                     "name": "text_font",
                     "type": "string",
                     "value": "Centerprint"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "CenterPrintTarget",
@@ -314,10 +294,6 @@
                 },
                 {
                     "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
                     "type": "string"
                 },
                 {
@@ -433,14 +409,6 @@
                     "value": "0 0"
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "unless_abilities",
                     "type": "string"
                 },
@@ -470,14 +438,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "CreditsTarget",
@@ -509,14 +469,6 @@
                 {
                     "name": "target",
                     "type": "string"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "DelayTarget",
@@ -539,14 +491,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "DisappearBlock",
@@ -661,14 +605,6 @@
                     "value": "0 0"
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "unless_abilities",
                     "type": "string"
                 },
@@ -721,14 +657,6 @@
                     "value": "0 0"
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "to_color_a",
                     "type": "color"
                 },
@@ -765,14 +693,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "ForceField",
@@ -807,10 +727,6 @@
                 {
                     "name": "text",
                     "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "Give",
@@ -833,14 +749,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "Goal",
@@ -881,14 +789,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "JumpPad",
@@ -929,14 +829,6 @@
                 },
                 {
                     "name": "target",
-                    "type": "string"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
                     "type": "string"
                 }
             ],
@@ -1054,14 +946,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 },
                 {
                     "name": "unless_abilities",
@@ -1217,14 +1101,6 @@
                     "value": false
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "time_to_fade",
                     "type": "string",
                     "value": "0s"
@@ -1269,14 +1145,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "OneWay",
@@ -1315,14 +1183,6 @@
                     "value": "0 0"
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "vvvvvv_gravity_direction",
                     "type": "string",
                     "value": "0 0"
@@ -1356,10 +1216,6 @@
                 {
                     "name": "text",
                     "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "PrintToConsoleTarget",
@@ -1391,14 +1247,6 @@
                 {
                     "name": "target",
                     "type": "string"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "QuestionBlock",
@@ -1421,14 +1269,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "RespawnPlayer",
@@ -1456,14 +1296,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "Riser",
@@ -1486,14 +1318,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "RiserFsck",
@@ -1529,14 +1353,6 @@
                 {
                     "name": "target",
                     "type": "string"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "SequenceCollector",
@@ -1566,14 +1382,6 @@
                 },
                 {
                     "name": "target",
-                    "type": "string"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
                     "type": "string"
                 }
             ],
@@ -1625,14 +1433,6 @@
                 {
                     "name": "target",
                     "type": "string"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "SetState",
@@ -1677,14 +1477,6 @@
                 },
                 {
                     "name": "target",
-                    "type": "string"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
                     "type": "string"
                 },
                 {
@@ -1760,14 +1552,6 @@
                 },
                 {
                     "name": "target3",
-                    "type": "string"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
                     "type": "string"
                 }
             ],
@@ -1868,14 +1652,6 @@
                     "value": "0 0"
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "unless_abilities",
                     "type": "string"
                 },
@@ -1905,14 +1681,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "StopTimerTarget",
@@ -1963,14 +1731,6 @@
                 {
                     "name": "target",
                     "type": "string"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "Switch",
@@ -1997,14 +1757,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "SwitchMusic",
@@ -2031,14 +1783,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "SwitchMusicTarget",
@@ -2165,14 +1909,6 @@
                     "value": "0 0"
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "unless_abilities",
                     "type": "string"
                 },
@@ -2225,14 +1961,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "SwitchableJumpPad",
@@ -2352,14 +2080,6 @@
                     "value": "0 0"
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "unless_abilities",
                     "type": "string"
                 },
@@ -2477,10 +2197,6 @@
                     "type": "string"
                 },
                 {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "unless_abilities",
                     "type": "string"
                 },
@@ -2583,10 +2299,6 @@
                     "type": "string"
                 },
                 {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "unless_abilities",
                     "type": "string"
                 },
@@ -2674,14 +2386,6 @@
                     "value": "0 0"
                 },
                 {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
-                },
-                {
                     "name": "velocity_factor",
                     "type": "float",
                     "value": 1
@@ -2727,14 +2431,6 @@
                     "name": "switchable",
                     "type": "bool",
                     "value": false
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "WarpZone",
@@ -2762,14 +2458,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "ZoomTarget",
@@ -2808,14 +2496,6 @@
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
-                },
-                {
-                    "name": "text",
-                    "type": "string"
-                },
-                {
-                    "name": "text_if_flipped",
-                    "type": "string"
                 }
             ],
             "name": "_TileMod",
