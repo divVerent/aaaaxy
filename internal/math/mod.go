@@ -51,6 +51,10 @@ func Rint(f float64) int {
 	return int(math.RoundToEven(f))
 }
 
+func MulFrac(a, b, d int) int {
+	return int(mulFracInt64(int64(a), int64(b), int64(d)))
+}
+
 // mulFracInt64 returns a*b/d rounded to even.
 func mulFracInt64(a, b, d int64) int64 {
 	sign := int64(1)

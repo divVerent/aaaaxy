@@ -46,25 +46,6 @@ func (r Rect) Normalized() Rect {
 	return r
 }
 
-func RectFromPoints(a, b Pos) Rect {
-	var r Rect
-	if a.X < b.X {
-		r.Origin.X = a.X
-		r.Size.DX = b.Y - a.X + 1
-	} else {
-		r.Origin.X = b.X
-		r.Size.DX = a.Y - b.X + 1
-	}
-	if a.Y < b.Y {
-		r.Origin.Y = a.Y
-		r.Size.DY = b.Y - a.Y + 1
-	} else {
-		r.Origin.Y = b.Y
-		r.Size.DY = a.Y - b.Y + 1
-	}
-	return r
-}
-
 // Add creates a new rectangle moved by the given delta.
 func (r Rect) Add(d Delta) Rect {
 	return Rect{
@@ -73,12 +54,50 @@ func (r Rect) Add(d Delta) Rect {
 	}
 }
 
-// Grow creates a new rectangle grown by the given delta.
+// Grow creates a new rectangle grown by the given delta in all directions.
 func (r Rect) Grow(d Delta) Rect {
 	return Rect{
 		Origin: r.Origin.Sub(d),
 		Size:   r.Size.Add(d.Mul(2)),
 	}
+}
+
+// GrowInDirection creates a new rectangle grown by the given delta in its direction.
+func (r Rect) GrowInDirection(d Delta) Rect {
+	if d.DX < 0 {
+		r.Origin.X += d.DX
+		r.Size.DX -= d.DX
+	}
+	if d.DX > 0 {
+		r.Size.DX += d.DX
+	}
+	if d.DY < 0 {
+		r.Origin.Y += d.DY
+		r.Size.DY -= d.DY
+	}
+	if d.DY > 0 {
+		r.Size.DY += d.DY
+	}
+	return r
+}
+
+// ShrinkInDirection creates a new rectangle shrunk by the given delta in its direction.
+func (r Rect) ShrinkInDirection(d Delta) Rect {
+	if d.DX > 0 {
+		r.Origin.X += d.DX
+		r.Size.DX -= d.DX
+	}
+	if d.DX < 0 {
+		r.Size.DX += d.DX
+	}
+	if d.DY > 0 {
+		r.Origin.Y += d.DY
+		r.Size.DY -= d.DY
+	}
+	if d.DY < 0 {
+		r.Size.DY += d.DY
+	}
+	return r
 }
 
 // OppositeCorner returns the coordinate of the opposite corner of the rectangle. Only correct on normalized rectangles.
