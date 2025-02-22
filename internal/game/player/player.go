@@ -311,7 +311,8 @@ func (p *Player) Update() {
 	}
 	if jump {
 		if !p.Jumping && (p.CoyoteFrames > 0 || *cheatInAirJump) {
-			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(-JumpVelocity))
+			cancelUp := p.Velocity.Dot(p.OnGroundVec) // Prevent Quake 2 doublejump bug.
+			p.Velocity = p.Velocity.Sub(p.OnGroundVec.Mul(JumpVelocity + cancelUp))
 			p.OnGround = false
 			p.CoyoteFrames = -1
 			p.Jumping = true
