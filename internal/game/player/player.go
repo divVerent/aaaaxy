@@ -137,10 +137,13 @@ const (
 	// 8 allows reliable walking over 2 tile gaps.
 	// 2 allows reliable walking over 1 tile gaps.
 	// 1 allows some walking over 1 tile gaps.
-	ExtraGroundFrames = 5
+	ExtraGroundFrames = 4
 
 	// Animation tuning.
 	AnimGroundSpeed = 20 * constants.SubPixelScale / engine.GameTPS
+
+	// Maximum step height.
+	StepHeight = 2
 )
 
 func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta, factor float64) {
@@ -193,6 +196,7 @@ func (p *Player) GiveAbility(name, text string) {
 }
 
 func (p *Player) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
+	p.Physics.StepHeight = StepHeight
 	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch)
 	p.World = w
 	p.Entity = e
