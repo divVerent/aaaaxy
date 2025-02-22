@@ -19,6 +19,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 )
 
@@ -161,13 +162,141 @@ func (p *Physics) slideMove(move m.Delta) bool {
 	return groundChecked
 }
 
+func (p *Physics) walkMove(move m.Delta) bool {
+	if p.StepHeight == 0 {
+		return p.slideMove(move)
+	}
+
+	prevOrigin := p.Entity.Rect.Origin
+
+	wasOnGround := p.OnGround
+
+	groundChecked := false
+	for !move.IsZero() {
+		var ground bool
+		var trace *engine.TraceResult
+		prevGoal := p.Entity.Rect.Origin.Add(move)
+		prevVel := p.Velocity
+		move, ground, trace = p.tryMove(move, false)
+		preTouchVel := p.Velocity
+		if trace != nil {
+			p.handleTouchFunc(*trace)
+		}
+		teleported := p.Velocity != preTouchVel
+		groundChecked = groundChecked || ground
+
+		if teleported {
+			// This happens only if handleTouchFunc changed velocity.
+			break
+		}
+
+		if trace != nil && trace.HitDelta.Dot(p.OnGroundVec) == 0 {
+			log.Debugf("walkMove: trying to upstep")
+			groundChecked = false
+
+			// Hit a vertical wall.
+			stepDown := p.OnGroundVec.Mul(p.StepHeight)
+			stepUp := stepDown.Mul(-1)
+			stepDownTrace := stepDown.Add(p.OnGroundVec) // Need one extra as we're not actually stepping this far.
+
+			// 1. Step up.
+			traceResult := p.traceMove(p.Contents & ^level.PlayerWalkableSolidContents, stepUp)
+			if !traceResult.HitDelta.IsZero() {
+				log.Debugf("walkMove: blocked upwards")
+				// Hit something.
+				// Don't stairstep.
+				continue
+			}
+			p.Entity.Rect.Origin = traceResult.EndPos
+			p.OnGround, p.GroundEntity, groundChecked = false, nil, true // Sure in air now.
+
+			// 2. Continue move with _previous_ velocity.
+			move = prevGoal.Add(stepUp).Delta(p.Entity.Rect.Origin)
+			p.Velocity = prevVel
+			moveClipped, _, trace := p.tryMove(move, false)
+			preTouchVel = p.Velocity
+			if trace != nil {
+				p.handleTouchFunc(*trace)
+			}
+			teleported := p.Velocity != preTouchVel
+			moveRemaining := prevGoal.Add(stepUp).Delta(p.Entity.Rect.Origin)
+			if moveRemaining == move {
+				// If no progress was made, actually do clip this move.
+				move = moveClipped
+			} else {
+				// If any progress was made, recompute the remaining move for next iteration.
+				move = moveRemaining
+				if !teleported {
+					// Only if handleTouchFunc left velocity alone.
+					p.Velocity = prevVel
+				}
+			}
+
+			// If we hit a stair again, we must NOT lose velocity!
+
+			// 3. Step down (always).
+			traceResult = p.traceMove(p.Contents & ^level.PlayerWalkableSolidContents, stepDownTrace)
+			if traceResult.HitDelta.IsZero() {
+				// Nothing found. Go back to original height, which is still in air.
+				log.Debugf("walkMove: didn't reach ground after upstepping, so stepped back to original height")
+				p.Entity.Rect.Origin = p.Entity.Rect.Origin.Add(stepDown)
+				p.OnGround, p.GroundEntity, groundChecked = false, nil, true
+			} else {
+				log.Debugf("walkMove: stepped up by %v, reached ground", traceResult.EndPos.Delta(p.Entity.Rect.Origin.Add(stepDown)))
+				p.Entity.Rect.Origin = traceResult.EndPos
+				var hitEntity *engine.Entity
+				if len(traceResult.HitEntities) != 0 {
+					hitEntity = traceResult.HitEntities[0]
+				}
+				log.Debugf("ground hit")
+				p.OnGround, p.GroundEntity, groundChecked = true, hitEntity, true
+			}
+
+			if teleported {
+				// This happens only if handleTouchFunc changed velocity.
+				break
+			}
+		}
+	}
+
+	// Step down for walking down stairs (only when started on ground, ground nearby and not moving upwards).
+	if wasOnGround && p.Velocity.Dot(p.OnGroundVec) >= 0 {
+		moved := p.Entity.Rect.Origin.Delta(prevOrigin)
+		side := moved.Sub(p.OnGroundVec.Mul(moved.Dot(p.OnGroundVec))).Norm1()
+		// NOTE: This must perform all downstepping in one move!
+		// So consider StepHeight an angle.
+		// Even if side == 0, this makes sense:
+		// it'll never actually move the player,
+		// but will update the onground flag and touch the entity the player is standing on.
+		stepDown := p.OnGroundVec.Mul(p.StepHeight*side + 1) // Need one extra as we're not actually stepping this far.
+		traceResult := p.traceMove(p.Contents & ^level.PlayerWalkableSolidContents, stepDown)
+		if traceResult.HitDelta.IsZero() {
+			// Nothing found. Stay in air.
+			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
+		} else {
+			if traceResult.EndPos != p.Entity.Rect.Origin {
+				log.Debugf("walkMove: stepped down by %v", traceResult.EndPos.Delta(p.Entity.Rect.Origin))
+				p.Entity.Rect.Origin = traceResult.EndPos
+			}
+			var hitEntity *engine.Entity
+			if len(traceResult.HitEntities) != 0 {
+				hitEntity = traceResult.HitEntities[0]
+			}
+			p.OnGround, p.GroundEntity, groundChecked = true, hitEntity, true
+			p.handleTouchFunc(traceResult)
+		}
+	}
+
+	return groundChecked
+}
+
 func (p *Physics) Update() {
 	oldOrigin := p.Entity.Rect.Origin
 
 	p.SubPixel = p.SubPixel.Add(p.Velocity)
 	move := p.SubPixel.Div(constants.SubPixelScale)
 
-	groundChecked := p.slideMove(move)
+	groundChecked := p.walkMove(move)
 
 	if p.OnGround && !groundChecked && !p.OnGroundVec.IsZero() {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(p.OnGroundVec), engine.TraceOptions{
@@ -330,5 +459,6 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 
 	// Adjust render offset.
 	p.Entity.RenderOffset = p.Entity.RenderOffset.Add(topLeftDelta)
+
 	return p.Entity.Rect.Size.Sub(prevSize)
 }
