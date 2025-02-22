@@ -750,10 +750,19 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	timing.Section("despawn_search")
 	w.entities.forEach(func(ent *Entity) error {
 		tp0, tp1 := tilesBox(ent.Rect.Grow(ent.SpawnTilesGrowth))
-		if !ent.RequireTiles {
+		topLeftTile := w.bottomRightTile.Sub(m.Delta{DX: tileWindowWidth - 1, DY: tileWindowHeight - 1})
+		mustDespawn := false
+		if ent.RequireTiles {
+			// RequireTiles entities despawn if they are out of range.
+			if tp0.X < topLeftTile.X ||
+				tp0.Y < topLeftTile.Y ||
+				tp1.X > w.bottomRightTile.X ||
+				tp1.Y > w.bottomRightTile.Y {
+				mustDespawn = true
+			}
+		} else {
 			// Non-RequireTiles entities are allowed to sit on tiles outside the tiles window.
 			// But here, we must skip them during checking if there is a loaded tile under the entity.
-			topLeftTile := w.bottomRightTile.Sub(m.Delta{DX: tileWindowWidth - 1, DY: tileWindowHeight - 1})
 			if tp0.X < topLeftTile.X {
 				tp0.X = topLeftTile.X
 			}
@@ -769,18 +778,20 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		}
 		var pos m.Pos
 		havePos := false
-	DESPAWN_SEARCH:
-		for y := tp0.Y; y <= tp1.Y; y++ {
-			for x := tp0.X; x <= tp1.X; x++ {
-				tp := m.Pos{X: x, Y: y}
-				tile := w.Tile(tp)
-				if tile == nil {
-					continue
-				}
-				if tile.VisibilityFlags&level.FrameVis == w.frameVis {
-					pos = tp
-					havePos = true
-					break DESPAWN_SEARCH
+		if !mustDespawn {
+		DESPAWN_SEARCH:
+			for y := tp0.Y; y <= tp1.Y; y++ {
+				for x := tp0.X; x <= tp1.X; x++ {
+					tp := m.Pos{X: x, Y: y}
+					tile := w.Tile(tp)
+					if tile == nil {
+						continue
+					}
+					if tile.VisibilityFlags&level.FrameVis == w.frameVis {
+						pos = tp
+						havePos = true
+						break DESPAWN_SEARCH
+					}
 				}
 			}
 		}
@@ -893,6 +904,7 @@ func (w *World) Update() error {
 	w.tilesSet, w.tilesCleared = 0, 0
 
 	w.AssumeChanged()
+
 	return nil
 }
 

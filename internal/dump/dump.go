@@ -95,7 +95,7 @@ func InitEarly(p Params) error {
 		}
 		var err error
 		if *dumpAudioCodecSettings != "" {
-			audioPipe, err = namedpipe.New("aaaaxy-audio", 120, 4*96000, *dumpMediaFrameTimeout)
+			audioPipe, err = namedpipe.New("aaaaxy-audio", 360, 4*96000, *dumpMediaFrameTimeout)
 			if err != nil {
 				return fmt.Errorf("could not create audio pipe: %w", err)
 			}
@@ -103,7 +103,7 @@ func InitEarly(p Params) error {
 			audiowrap.InitDumping()
 		}
 		if *dumpVideoCodecSettings != "" {
-			videoPipe, err = namedpipe.New("aaaaxy-video", 120, dumpVideoFrameSize, *dumpMediaFrameTimeout)
+			videoPipe, err = namedpipe.New("aaaaxy-video", 360, 4*dumpVideoFrameSize, *dumpMediaFrameTimeout)
 			if err != nil {
 				return fmt.Errorf("could not create video pipe: %w", err)
 			}
@@ -301,7 +301,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 		settings = append(settings, "-filter_complex", filterComplex)
 	}
 	if audio != "" {
-		inputs = append(inputs, "-f", "s16le", "-ac", "2", "-ar", fmt.Sprint(audiowrap.SampleRate()), "-i", audio)
+		inputs = append(inputs, "-f", "s16le", "-ac", "2", "-channel_layout", "stereo", "-ar", fmt.Sprint(audiowrap.SampleRate()), "-i", audio)
 		if *dumpAudioCodecSettings != "" {
 			settings = append(settings, strings.Split(*dumpAudioCodecSettings, " ")...)
 		}

@@ -71,6 +71,12 @@ func SetDefault[V any](pm Map, key string, value V) {
 	pm.m[key], _ = printValue(value)
 }
 
+// Has returns whether the given key exists.
+func Has(pm Map, key string) bool {
+	_, found := pm.m[key]
+	return found
+}
+
 // Value returns the requested value, or fails if not found.
 func Value[V any](pm Map, key string, def V) (V, error) {
 	debugLogDefault(pm, key, def, false)

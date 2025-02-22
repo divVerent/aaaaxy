@@ -90,8 +90,8 @@ func (p *Palette) ApplyToImage(img image.Image, name string) image.Image {
 
 // ApplyToRGBA applies this palette's associated col remapping to a single col.
 func (p *Palette) ApplyToRGBA(col color.RGBA, name string) color.RGBA {
+	rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
 	if *debugCheckImagePalette {
-		rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
 		if !egaColorsSet[rgb] {
 			log.Warningf("invalid color %v in %v: color is not in palette", col, name)
 		}
@@ -108,10 +108,6 @@ func (p *Palette) ApplyToRGBA(col color.RGBA, name string) color.RGBA {
 		return col
 	}
 	// Remap rgb.
-	rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
-	if *debugCheckImagePalette && !egaColorsSet[rgb] {
-		log.Warningf("invalid color in %v: color is not in palette", name)
-	}
 	if rgbM, found := p.remap[rgb]; found {
 		return toRGB(rgbM).toRGBA()
 	}
@@ -120,17 +116,16 @@ func (p *Palette) ApplyToRGBA(col color.RGBA, name string) color.RGBA {
 
 // ApplyToNRGBA applies this palette's associated col remapping to a single col.
 func (p *Palette) ApplyToNRGBA(col color.NRGBA, name string) color.NRGBA {
+	rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
 	if *debugCheckImagePalette {
-		rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
 		if !egaColorsSet[rgb] {
-			log.Warningf("invalid color in %v: color is not in palette", name)
+			log.Warningf("invalid color %v in %v: color is not in palette", col, name)
 		}
 	}
 	if p == nil || len(p.remap) == 0 || !remapping {
 		return col
 	}
 	// Remap rgb.
-	rgb := (uint32(col.R) << 16) | (uint32(col.G) << 8) | uint32(col.B)
 	if rgbM, found := p.remap[rgb]; found {
 		colM := toRGB(rgbM).toNRGBA()
 		// Preserve alpha.
