@@ -358,10 +358,6 @@
                     "value": "#ffffffff"
                 },
                 {
-                    "name": "no_flip",
-                    "type": "string"
-                },
-                {
                     "name": "no_transform",
                     "type": "bool",
                     "value": false
@@ -415,7 +411,7 @@
                 {
                     "name": "z_index",
                     "type": "int",
-                    "value": 5
+                    "value": 6
                 }
             ],
             "name": "CoverSprite",
@@ -611,7 +607,7 @@
                 {
                     "name": "z_index",
                     "type": "int",
-                    "value": 5
+                    "value": 6
                 }
             ],
             "name": "ExitButton",
@@ -1042,6 +1038,10 @@
                     "name": "map_white_to",
                     "type": "color",
                     "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -1642,6 +1642,21 @@
                     "value": 0
                 },
                 {
+                    "name": "slope_extra_pixels",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "slope_orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "slope_step_size",
+                    "type": "int",
+                    "value": 1
+                },
+                {
                     "name": "solid",
                     "type": "bool",
                     "value": false
@@ -1860,6 +1875,10 @@
                     "name": "map_white_to",
                     "type": "color",
                     "value": "#ffffffff"
+                },
+                {
+                    "name": "no_flip",
+                    "type": "string"
                 },
                 {
                     "name": "no_transform",
@@ -2086,7 +2105,7 @@
                 {
                     "name": "z_index",
                     "type": "int",
-                    "value": 5
+                    "value": 6
                 }
             ],
             "name": "SwitchableSprite",
@@ -2203,7 +2222,7 @@
                 {
                     "name": "z_index",
                     "type": "int",
-                    "value": 5
+                    "value": 6
                 }
             ],
             "name": "SwitchableText",
@@ -2305,7 +2324,7 @@
                 {
                     "name": "z_index",
                     "type": "int",
-                    "value": 5
+                    "value": 6
                 }
             ],
             "name": "Text",

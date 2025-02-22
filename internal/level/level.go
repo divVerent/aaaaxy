@@ -474,6 +474,17 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		Switchable         bool
 	}
 	warpZones := map[string][]*RawWarpZone{}
+	var slopeObjectID tmx.ObjectID
+	for i := range t.ObjectGroups {
+		og := &t.ObjectGroups[i]
+		for j := range og.Objects {
+			o := &og.Objects[j]
+			if o.ObjectID > slopeObjectID {
+				slopeObjectID = o.ObjectID
+			}
+		}
+	}
+	slopeObjectID++
 	for i := range t.ObjectGroups {
 		og := &t.ObjectGroups[i]
 		// og.Name, og.Color not used (editor only).
@@ -523,12 +534,6 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				}
 			}
 			// o.Visible not used (we allow it though as it may help in the editor).
-			if o.Polygons != nil {
-				return nil, fmt.Errorf("unsupported map: object %v has polygons", o.ObjectID)
-			}
-			if o.Polylines != nil {
-				return nil, fmt.Errorf("unsupported map: object %v has polylines", o.ObjectID)
-			}
 			if o.Image.Source != "" {
 				propmap.Set(properties, "type", "Sprite")
 				propmap.Set(properties, "image_dir", "sprites")
@@ -542,16 +547,6 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				propmap.Set(properties, prop.Name, prop.Value)
 			}
 			// o.RawExtra not used.
-			entRect := m.Rect{
-				Origin: m.Pos{
-					X: int(o.X),
-					Y: int(o.Y),
-				},
-				Size: m.Delta{
-					DX: int(o.Width),
-					DY: int(o.Height),
-				},
-			}
 			objType := propmap.ValueP(properties, "type", "", &parseErr)
 			propmap.Delete(properties, "type")
 			propmap.DebugSetType(properties, objType)
@@ -566,12 +561,6 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				propmap.Set(properties, prop, translated)
 				hasText = true
 			}
-			spawnTilesGrowth := propmap.ValueOrP(properties, "spawn_tiles_growth", m.Delta{}, &parseErr)
-			startTile := entRect.Origin.Div(TileSize)
-			endTile := entRect.OppositeCorner().Div(TileSize)
-			spawnRect := entRect.Grow(spawnTilesGrowth)
-			spawnStartTile := spawnRect.Origin.Div(TileSize)
-			spawnEndTile := spawnRect.OppositeCorner().Div(TileSize)
 			orientation := propmap.ValueOrP(properties, "orientation", m.Identity(), &parseErr)
 			if hasText {
 				var cjkOrientation m.Orientation
@@ -589,68 +578,96 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 					orientation = cjkOrientation
 				}
 			}
-			if objType == "WarpZone" {
-				// WarpZones must be paired by name.
-				name := propmap.ValueP(properties, "name", "", &parseErr)
-				invert := propmap.ValueOrP(properties, "invert", false, &parseErr)
-				switchable := propmap.ValueOrP(properties, "switchable", false, &parseErr)
-				warpZones[name] = append(warpZones[name], &RawWarpZone{
-					StartTile:   startTile,
-					EndTile:     endTile,
-					Orientation: orientation,
-					Switchable:  switchable,
-					Invert:      invert,
-				})
-				continue
+			spawnTilesGrowth := propmap.ValueOrP(properties, "spawn_tiles_growth", m.Delta{}, &parseErr)
+
+			expanded, err := expandSlopes(properties, o)
+			if err != nil {
+				return nil, fmt.Errorf("unsupported map: failed to expand slopes of object %v: %w", o.ObjectID, err)
 			}
-			ent := &Spawnable{
-				ID:       EntityID(o.ObjectID),
-				LevelPos: startTile,
-				RectInTile: m.Rect{
-					Origin: entRect.Origin.Sub(
-						startTile.Mul(TileSize).Delta(m.Pos{})),
-					Size: entRect.Size,
-				},
-				SpawnableProps: SpawnableProps{
-					EntityType:       objType,
-					Orientation:      orientation,
-					Properties:       properties,
-					PersistentState:  PersistentState{},
-					SpawnTilesGrowth: spawnTilesGrowth,
-				},
-			}
-			if objType == "_TileMod" {
-				level.applyTileMod(startTile, endTile, properties)
-				// Do not link to tiles.
-				continue
-			}
-			if objType == "Player" {
-				level.Player = ent
-				level.Checkpoints[""] = ent
-				// Do not link to tiles.
-				continue
-			}
-			if objType == "Checkpoint" || objType == "CheckpointTarget" {
-				level.Checkpoints[propmap.ValueP(properties, "name", "", &parseErr)] = ent
-				checkpoints[ent.ID] = ent
-				// These do get linked.
-			}
-			if objType == "TnihSign" {
-				tnihSigns = append(tnihSigns, ent)
-				// These do get linked.
-			}
-			if objType == "QuestionBlock" {
-				level.QuestionBlocks = append(level.QuestionBlocks, ent)
-				// These do get linked.
-			}
-			for y := spawnStartTile.Y; y <= spawnEndTile.Y; y++ {
-				for x := spawnStartTile.X; x <= spawnEndTile.X; x++ {
-					pos := m.Pos{X: x, Y: y}
-					levelTile := level.Tile(pos)
-					if levelTile == nil {
-						return nil, fmt.Errorf("invalid entity location: outside map bounds: %v in %v", pos, ent)
+			for i, box := range expanded {
+				properties := properties // Localize.
+				if !box.region.Size.IsZero() {
+					props := propmap.New()
+					propmap.ForEach(properties, func(k, v string) error {
+						propmap.Set(props, k, v)
+						return nil
+					})
+					propmap.Set(props, "image_region", box.region)
+					properties = props
+				}
+				startTile := box.rect.Origin.Div(TileSize)
+				endTile := box.rect.OppositeCorner().Div(TileSize)
+				spawnRect := box.rect.Grow(spawnTilesGrowth)
+				spawnStartTile := spawnRect.Origin.Div(TileSize)
+				spawnEndTile := spawnRect.OppositeCorner().Div(TileSize)
+				if objType == "WarpZone" {
+					// WarpZones must be paired by name.
+					name := propmap.ValueP(properties, "name", "", &parseErr)
+					invert := propmap.ValueOrP(properties, "invert", false, &parseErr)
+					switchable := propmap.ValueOrP(properties, "switchable", false, &parseErr)
+					warpZones[name] = append(warpZones[name], &RawWarpZone{
+						StartTile:   startTile,
+						EndTile:     endTile,
+						Orientation: orientation,
+						Switchable:  switchable,
+						Invert:      invert,
+					})
+					continue
+				}
+				id := o.ObjectID
+				if i > 0 {
+					id = slopeObjectID
+					slopeObjectID++
+				}
+				ent := &Spawnable{
+					ID:       EntityID(id),
+					LevelPos: startTile,
+					RectInTile: m.Rect{
+						Origin: box.rect.Origin.Sub(
+							startTile.Mul(TileSize).Delta(m.Pos{})),
+						Size: box.rect.Size,
+					},
+					SpawnableProps: SpawnableProps{
+						EntityType:       objType,
+						Orientation:      orientation,
+						Properties:       properties,
+						PersistentState:  PersistentState{},
+						SpawnTilesGrowth: spawnTilesGrowth,
+					},
+				}
+				if objType == "_TileMod" {
+					level.applyTileMod(startTile, endTile, properties)
+					// Do not link to tiles.
+					continue
+				}
+				if objType == "Player" {
+					level.Player = ent
+					level.Checkpoints[""] = ent
+					// Do not link to tiles.
+					continue
+				}
+				if objType == "Checkpoint" || objType == "CheckpointTarget" {
+					level.Checkpoints[propmap.ValueP(properties, "name", "", &parseErr)] = ent
+					checkpoints[ent.ID] = ent
+					// These do get linked.
+				}
+				if objType == "TnihSign" {
+					tnihSigns = append(tnihSigns, ent)
+					// These do get linked.
+				}
+				if objType == "QuestionBlock" {
+					level.QuestionBlocks = append(level.QuestionBlocks, ent)
+					// These do get linked.
+				}
+				for y := spawnStartTile.Y; y <= spawnEndTile.Y; y++ {
+					for x := spawnStartTile.X; x <= spawnEndTile.X; x++ {
+						pos := m.Pos{X: x, Y: y}
+						levelTile := level.Tile(pos)
+						if levelTile == nil {
+							return nil, fmt.Errorf("invalid entity location: outside map bounds: %v in %+v", pos, ent)
+						}
+						levelTile.Tile.Spawnables = append(levelTile.Tile.Spawnables, ent)
 					}
-					levelTile.Tile.Spawnables = append(levelTile.Tile.Spawnables, ent)
 				}
 			}
 		}
@@ -854,4 +871,314 @@ func ParseImageSrcByOrientation(defaultSrc string, properties propmap.Map) (map[
 		imgSrcByOrientation[o] = src
 	}
 	return imgSrcByOrientation, nil
+}
+
+type slopeBox struct {
+	rect   m.Rect
+	region m.Rect
+}
+
+func expandSlopes(props propmap.Map, o *tmx.Object) ([]slopeBox, error) {
+	baseRect := m.Rect{
+		Origin: m.Pos{
+			X: m.Rint(o.X),
+			Y: m.Rint(o.Y),
+		},
+		Size: m.Delta{
+			DX: m.Rint(o.Width),
+			DY: m.Rint(o.Height),
+		},
+	}
+	if o.Polygons == nil && o.Polylines == nil {
+		// Trivial case.
+		return []slopeBox{{rect: baseRect}}, nil
+	}
+	imageRegion, err := propmap.Value(props, "image_region", m.Rect{})
+	if err != nil {
+		return nil, err
+	}
+	entityOrientation, err := propmap.ValueOr(props, "orientation", m.Identity())
+	if err != nil {
+		return nil, err
+	}
+	orientation, err := propmap.ValueOr(props, "slope_orientation", m.Identity())
+	if err != nil {
+		return nil, err
+	}
+	extraPixels, err := propmap.ValueOr(props, "slope_extra_pixels", 0)
+	if err != nil {
+		return nil, err
+	}
+	stepSize, err := propmap.ValueOr(props, "slope_step_size", 1)
+	if err != nil {
+		return nil, err
+	}
+	var out []slopeBox
+	for _, polygon := range o.Polygons {
+		points, err := polygon.Points()
+		if err != nil {
+			return nil, err
+		}
+		pos := absolutizePolygon(o, points)
+		rects, err := renderPolygon(orientation, extraPixels, stepSize, pos)
+		if err != nil {
+			return nil, err
+		}
+		regions, err := computeRegions(imageRegion, entityOrientation, orientation, rects)
+		if err != nil {
+			return nil, err
+		}
+		out = append(out, regions...)
+	}
+	for _, polyline := range o.Polylines {
+		points, err := polyline.Points()
+		if err != nil {
+			return nil, err
+		}
+		pos := absolutizePolygon(o, points)
+		rects, err := renderPolyline(orientation, extraPixels, stepSize, pos)
+		if err != nil {
+			return nil, err
+		}
+		regions, err := computeRegions(imageRegion, entityOrientation, orientation, rects)
+		if err != nil {
+			return nil, err
+		}
+		out = append(out, regions...)
+	}
+	return out, nil
+}
+
+func absolutizePolygon(o *tmx.Object, points []tmx.Point) []m.Pos {
+	out := make([]m.Pos, 0, len(points))
+	for _, point := range points {
+		out = append(out, m.Pos{
+			X: m.Rint(o.X) + point.X,
+			Y: m.Rint(o.Y) + point.Y,
+		})
+	}
+	return out
+}
+
+// polyBBox is the bounding box of a polygon/polyline.
+func polyBBox(points []m.Pos) (m.Rect, error) {
+	// Poly points are on pixel _corners_, not _centers_.
+	if len(points) < 1 {
+		return m.Rect{}, errors.New("need at least one point")
+	}
+	minPos := points[0]
+	maxPos := points[0]
+	for _, p := range points {
+		if p.X < minPos.X {
+			minPos.X = p.X
+		}
+		if p.Y < minPos.Y {
+			minPos.Y = p.Y
+		}
+		if p.X > maxPos.X {
+			maxPos.X = p.X
+		}
+		if p.Y > maxPos.Y {
+			maxPos.Y = p.Y
+		}
+	}
+	return m.Rect{
+		Origin: minPos,
+		Size:   maxPos.Delta(minPos),
+	}, nil
+}
+
+func evaluatePolygon(points []m.Pos, inv m.Orientation, y0, x int) int {
+	ymin := y0
+	for i, pi := range points {
+		piR := inv.Apply2(m.Pos{}, pi)
+		pj := points[(i+1)%len(points)]
+		pjR := inv.Apply2(m.Pos{}, pj)
+		if piR.X == pjR.X {
+			y := piR.Y
+			if y > pjR.Y {
+				y = pjR.Y
+			}
+			if x == piR.X {
+				if y < ymin {
+					ymin = y
+				}
+			}
+		} else {
+			// Must be positive direction.
+			if x >= piR.X && x <= pjR.X {
+				// Round _down_ (err on making the polygon _larger_).
+				y := piR.Y + m.Div((x-piR.X)*(pjR.Y-piR.Y), pjR.X-piR.X)
+				if y < ymin {
+					ymin = y
+				}
+			}
+		}
+	}
+	return ymin
+}
+
+func renderPolygon(orientation m.Orientation, extraPixels, stepSize int, points []m.Pos) ([]m.Rect, error) {
+	bbox, err := polyBBox(points)
+	if err != nil {
+		return nil, err
+	}
+
+	inv := orientation.Inverse()
+	bboxR := inv.ApplyToRect2(m.Pos{}, bbox)
+
+	x0 := bboxR.Origin.X
+	w := bboxR.Size.DX
+	y0 := bboxR.Origin.Y
+	h := bboxR.Size.DY + extraPixels
+
+	var out []m.Rect
+
+	for xl := x0; xl < x0+w; xl += stepSize {
+		xr := xl + stepSize
+		if xr >= x0+w {
+			xr = x0 + w
+		}
+
+		// Evaluate polygon at xl and xr.
+		yl := evaluatePolygon(points, inv, y0+h, xl)
+		yr := evaluatePolygon(points, inv, y0+h, xr)
+		ymax := yl
+		if yr > ymax {
+			ymax = yr
+		}
+		if ymax >= y0+h {
+			continue
+		}
+
+		rect := m.Rect{
+			Origin: m.Pos{
+				X: xl,
+				Y: ymax,
+			},
+			Size: m.Delta{
+				DX: xr - xl,
+				DY: y0 + h - ymax,
+			},
+		}
+		rect = orientation.ApplyToRect2(m.Pos{}, rect)
+		out = append(out, rect)
+	}
+
+	if len(out) == 0 {
+		return nil, errors.New("polygon has no area")
+	}
+
+	return out, nil
+}
+
+func splitBSplineOnceAndMul4(d []m.Delta) []m.Delta {
+	// Chaikin's Algorithm, multiplying by 4 to even out roundoff errors.
+	out := make([]m.Delta, 0, len(d)*2-2)
+	for i := 0; i < len(d)-1; i++ {
+		j := i + 1
+		da := d[i].Mul(3).Add(d[j])
+		db := d[i].Add(d[j].Mul(3))
+		out = append(out, da, db)
+	}
+	return out
+}
+
+func maxDelta(d []m.Delta, horiz bool) int {
+	max := 0
+	for i := 0; i < len(d)-1; i++ {
+		j := i + 1
+		delta := 0
+		if horiz {
+			delta = d[j].DX - d[i].DX
+		} else {
+			delta = d[j].DY - d[i].DY
+		}
+		if delta < 0 {
+			delta = -delta
+		}
+		if delta > max {
+			max = delta
+		}
+	}
+	return max
+}
+
+func splitBSplines(p []m.Pos, horiz bool) ([]m.Pos, error) {
+	if len(p) < 3 {
+		return nil, fmt.Errorf("polylines need at least 3 points, got %d", len(p))
+	}
+	// Keep first and last point.
+	first := p[0]
+	last := p[len(p)-1]
+	// Preprocess to keep numbers low.
+	d := make([]m.Delta, 0, len(p))
+	for _, point := range p {
+		d = append(d, point.Delta(first))
+	}
+	// Then start B-splining!
+	// Invariant: first two points are always linear combination of p[0] and p[1]; similar at the end.
+	f := 1
+	for {
+		d = splitBSplineOnceAndMul4(d)
+		f *= 4
+		delta := maxDelta(d, horiz)
+		if delta <= f {
+			break
+		}
+	}
+	out := make([]m.Pos, 0, 2+len(p)-2)
+	out = append(out, first)
+	// Leave out the first and last point of d due to linear combination property.
+	for i := 1; i < len(d)-1; i++ {
+		out = append(out, first.Add(d[i].MulFrac(1, f)))
+	}
+	out = append(out, last)
+	return out, nil
+}
+
+func renderPolyline(orientation m.Orientation, extraPixels, stepSize int, points []m.Pos) ([]m.Rect, error) {
+	expandedPoints, err := splitBSplines(points, orientation.Right.DX != 0)
+	if err != nil {
+		return nil, err
+	}
+	return renderPolygon(orientation, extraPixels, stepSize, expandedPoints)
+}
+
+func computeRegions(imageRegion m.Rect, entityOrientation, orientation m.Orientation, rects []m.Rect) ([]slopeBox, error) {
+	out := make([]slopeBox, 0, len(rects))
+
+	imageOrientation := entityOrientation.Concat(orientation.Inverse())
+	imageRegionR := imageOrientation.ApplyToRect2(m.Pos{}, imageRegion)
+
+	for _, rect := range rects {
+		// 1. Compute matching "worldspace" coordinate region by aligning at -orientation.Down and keeping orientation.Right as is.
+		rectR := orientation.Inverse().ApplyToRect2(m.Pos{}, rect)
+		regionR := m.Rect{
+			Origin: m.Pos{
+				X: rectR.Origin.X,
+				Y: 0,
+			},
+			Size: rectR.Size,
+		}
+
+		// 2. Modulo that region to imageRegion.Size in Right direction, and max it in Down direction.
+		regionR.Origin.X = m.Mod(regionR.Origin.X, imageRegionR.Size.DX-regionR.Size.DX+1)
+		if regionR.Size.DY > imageRegionR.Size.DY {
+			regionR.Size.DY = imageRegionR.Size.DY
+		}
+
+		// 3. Fit that region into imageRegionR.
+		regionR.Origin.X += imageRegionR.Origin.X
+		regionR.Origin.Y += imageRegionR.Origin.Y
+
+		// 4. Rotate it back to the image.
+		region := imageOrientation.Inverse().ApplyToRect2(m.Pos{}, regionR)
+
+		out = append(out, slopeBox{
+			rect:   rect,
+			region: region,
+		})
+	}
+	return out, nil
 }
