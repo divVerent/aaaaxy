@@ -17029,7 +17029,7 @@
     <property name="text_font" value="Small"/>
    </properties>
   </object>
-  <object id="7878" name="KhilAnimation" type="SwitchableAnimation" x="4240" y="5856" width="144" height="48">
+  <object id="7878" name="KhilAnimation" type="SwitchableAnimation" x="4256" y="5856" width="112" height="48">
    <properties>
     <property name="animation" value="magic"/>
     <property name="animation_frame_interval" type="int" value="4"/>
