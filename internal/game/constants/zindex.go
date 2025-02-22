@@ -18,16 +18,16 @@ const (
 	MinSpriteZ      = -1
 	MaxSpriteZ      = 2
 	TnihSignZ       = 3
-	OneWayZ         = 4
-	AppearBlockZ    = 4
 	DisappearBlockZ = 4
-	SwitchZ         = 4
-	SwitchBlockZ    = 5
-	CoverSpriteZ    = 5
-	TextZ           = 5
-	RiserMovingZ    = 6
-	PlayerZ         = 7
-	RiserCarriedZ   = 8
-	ForceFieldZ     = 9
-	RespawnPlayerZ  = 9
+	AppearBlockZ    = 5
+	OneWayZ         = 5
+	SwitchZ         = 5
+	SwitchBlockZ    = 6
+	CoverSpriteZ    = 6
+	TextZ           = 6
+	RiserMovingZ    = 7
+	PlayerZ         = 8
+	RiserCarriedZ   = 9
+	ForceFieldZ     = 10
+	RespawnPlayerZ  = 10
 )
