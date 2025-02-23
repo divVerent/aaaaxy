@@ -170,6 +170,7 @@ sprites/car_idle_2.png
 sprites/car_idle_3.png
 sprites/movingdoor.png
 sprites/touch_exit.png
+sprites/sloping_over_it.png
 sprites/arrow32d.png
 sprites/arrow32s.png
 sprites/clock_bottom_0.png
@@ -563,6 +564,7 @@ sprites/switch_switchon_9.png
 sprites/switchblock_off.png
 sprites/switchblock_on.png
 sprites/v.png
+sprites/volcano.png
 sprites/warpzone_en.png
 sprites/warpzone_es.png
 sprites/warpzone_ne.png

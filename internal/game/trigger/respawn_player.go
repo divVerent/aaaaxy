@@ -31,7 +31,8 @@ type RespawnPlayer struct {
 
 // Let's do a somewhat forgiving hitbox.
 const (
-	RespawnHitboxBorder = 4 // Actually only the 8x8 center square of the 16x16 sprite.
+	RespawnHitboxRemoveAtSides = 4 // Leaves 8px between two spikes, player doesn't fit there.
+	RespawnHitboxRemoveAtTop   = 4 // Only keep the bottom 12px.
 )
 
 func (r *RespawnPlayer) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
@@ -41,10 +42,13 @@ func (r *RespawnPlayer) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 	if err != nil {
 		return fmt.Errorf("could not load spike image: %r", err)
 	}
-	e.RenderOffset = m.Delta{DX: -RespawnHitboxBorder, DY: -RespawnHitboxBorder}
-	e.Rect.Origin = e.Rect.Origin.Sub(e.RenderOffset)
-	e.Rect.Size = e.Rect.Size.Add(e.RenderOffset.Mul(2))
+	shrinkerTopLeft := e.Orientation.Apply(m.Delta{DX: -RespawnHitboxRemoveAtTop, DY: RespawnHitboxRemoveAtSides})
+	shrinkerBottomRight := e.Orientation.Apply(m.Delta{DX: 0, DY: -RespawnHitboxRemoveAtSides})
+	org := e.Rect.Origin
+	e.Rect = e.Rect.ShrinkInDirection(shrinkerTopLeft).ShrinkInDirection(shrinkerBottomRight)
+	e.RenderOffset = org.Delta(e.Rect.Origin)
 	w.SetSolid(e, true)
+	w.MutateContentsBool(e, level.PlayerSteppableSolidContents, false)
 	w.SetZIndex(e, constants.RespawnPlayerZ)
 	return nil
 }
