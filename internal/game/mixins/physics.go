@@ -298,23 +298,28 @@ func (p *Physics) Update() {
 
 	groundChecked := p.walkMove(move)
 
-	if p.OnGround && !groundChecked && !p.OnGroundVec.IsZero() {
-		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(p.OnGroundVec), engine.TraceOptions{
-			Contents:  p.Contents,
-			IgnoreEnt: p.IgnoreEnt,
-			ForEnt:    p.Entity,
-			LoadTiles: true,
-		})
-		if trace.EndPos != p.Entity.Rect.Origin {
+	if p.OnGround {
+		if p.Velocity.Dot(p.OnGroundVec) < 0 {
+			// Can't be on ground while moving up.
 			p.OnGround, p.GroundEntity = false, nil
-		} else {
-			// p.OnGround = true // Always has been.
-			var hitEntity *engine.Entity
-			if len(trace.HitEntities) != 0 {
-				hitEntity = trace.HitEntities[0]
+		} else if !groundChecked && !p.OnGroundVec.IsZero() {
+			trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(p.OnGroundVec), engine.TraceOptions{
+				Contents:  p.Contents,
+				IgnoreEnt: p.IgnoreEnt,
+				ForEnt:    p.Entity,
+				LoadTiles: true,
+			})
+			if trace.EndPos != p.Entity.Rect.Origin {
+				p.OnGround, p.GroundEntity = false, nil
+			} else {
+				// p.OnGround = true // Always has been.
+				var hitEntity *engine.Entity
+				if len(trace.HitEntities) != 0 {
+					hitEntity = trace.HitEntities[0]
+				}
+				p.GroundEntity = hitEntity
+				p.handleTouchFunc(trace)
 			}
-			p.GroundEntity = hitEntity
-			p.handleTouchFunc(trace)
 		}
 	}
 
