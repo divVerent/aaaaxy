@@ -123,8 +123,6 @@ func (p *Physics) tryMove(move m.Delta, stepping bool) (m.Delta, bool, *engine.T
 		} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
 			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 		}
-
-		p.handleTouchFunc(trace)
 	} else if trace.HitDelta.DY != 0 {
 		// A Y hit. Also update ground status.
 		if p.SubPixel.DY > constants.SubPixelScale-1 {
@@ -145,8 +143,6 @@ func (p *Physics) tryMove(move m.Delta, stepping bool) (m.Delta, bool, *engine.T
 		} else if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
 			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 		}
-
-		p.handleTouchFunc(trace)
 	}
 	return move, groundChecked, &trace
 }
@@ -155,7 +151,11 @@ func (p *Physics) slideMove(move m.Delta) bool {
 	groundChecked := false
 	for !move.IsZero() {
 		var ground bool
-		move, ground, _ = p.tryMove(move, false)
+		var trace *engine.TraceResult
+		move, ground, trace = p.tryMove(move, false)
+		if trace != nil {
+			p.handleTouchFunc(*trace)
+		}
 		groundChecked = groundChecked || ground
 	}
 	return groundChecked
@@ -264,13 +264,19 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	// First grow in minus directions.
 	topLeftDelta := bySize.Div(2)
 	if topLeftDelta.DX > 0 {
-		p.tryMove(m.Delta{DX: -topLeftDelta.DX, DY: 0}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: -topLeftDelta.DX, DY: 0}, false)
+		if trace != nil {
+			p.handleTouchFunc(*trace)
+		}
 	} else {
 		p.Entity.Rect.Origin.X -= topLeftDelta.DX
 	}
 	p.Entity.Rect.Size.DX += prevOrigin.X - p.Entity.Rect.Origin.X
 	if topLeftDelta.DY > 0 {
-		p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta.DY}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta.DY}, false)
+		if trace != nil {
+			p.handleTouchFunc(*trace)
+		}
 	} else {
 		p.Entity.Rect.Origin.Y -= topLeftDelta.DY
 	}
@@ -280,14 +286,20 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	prevOrigin2 := p.Entity.Rect.Origin
 	bottomRightDelta := targetSize.Sub(p.Entity.Rect.Size)
 	if bottomRightDelta.DX > 0 {
-		p.tryMove(m.Delta{DX: bottomRightDelta.DX, DY: 0}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: bottomRightDelta.DX, DY: 0}, false)
+		if trace != nil {
+			p.handleTouchFunc(*trace)
+		}
 		p.Entity.Rect.Size.DX += p.Entity.Rect.Origin.X - prevOrigin2.X
 		p.Entity.Rect.Origin.X = prevOrigin2.X
 	} else {
 		p.Entity.Rect.Size.DX += bottomRightDelta.DX
 	}
 	if bottomRightDelta.DY > 0 {
-		p.tryMove(m.Delta{DX: 0, DY: bottomRightDelta.DY}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: bottomRightDelta.DY}, false)
+		if trace != nil {
+			p.handleTouchFunc(*trace)
+		}
 		p.Entity.Rect.Size.DY += p.Entity.Rect.Origin.Y - prevOrigin2.Y
 		p.Entity.Rect.Origin.Y = prevOrigin2.Y
 	} else {
@@ -298,13 +310,19 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	prevOrigin3 := p.Entity.Rect.Origin
 	topLeftDelta3 := targetSize.Sub(p.Entity.Rect.Size)
 	if topLeftDelta3.DX > 0 {
-		p.tryMove(m.Delta{DX: -topLeftDelta3.DX, DY: 0}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: -topLeftDelta3.DX, DY: 0}, false)
+		if trace != nil {
+			p.handleTouchFunc(*trace)
+		}
 	} else {
 		p.Entity.Rect.Origin.X -= topLeftDelta3.DX
 	}
 	p.Entity.Rect.Size.DX += prevOrigin3.X - p.Entity.Rect.Origin.X
 	if topLeftDelta3.DY > 0 {
-		p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta3.DY}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta3.DY}, false)
+		if trace != nil {
+			p.handleTouchFunc(*trace)
+		}
 	} else {
 		p.Entity.Rect.Origin.Y -= topLeftDelta3.DY
 	}
