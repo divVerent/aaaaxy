@@ -154,10 +154,17 @@ func (p *Physics) slideMove(move m.Delta) bool {
 		var ground bool
 		var trace *engine.TraceResult
 		move, ground, trace = p.tryMove(move, false)
+		preTouchVel := p.Velocity
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
+		teleported := p.Velocity != preTouchVel
 		groundChecked = groundChecked || ground
+
+		if teleported {
+			// This happens only if handleTouchFunc changed velocity.
+			break
+		}
 	}
 	return groundChecked
 }
