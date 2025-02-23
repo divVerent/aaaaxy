@@ -161,10 +161,14 @@ func (p *Player) SetVVVVVV(vvvvvv bool, up m.Delta, factor float64) {
 		p.Velocity = p.Velocity.Add(velUpScaled.Sub(velUp))
 	}
 	p.LastGroundPos = p.Entity.Rect.Origin
-	// Note: NOT resetting JumpingUp here.
-	// This allows for an exploit where hitting a gravity flip retains
-	// the increased gravity amount if the jump key is released.
-	// A place in Vae Victis is much easier this way.
+	if vvvvvv {
+		// In VVVVVV mode, you're always falling down.
+		// Nevertheless, set the JumpingUp flag to true to accelerate going into falling down motion.
+		p.JumpingUp = true
+	} else {
+		// Permit the high gravity to apply.
+		p.JumpingUp = true
+	}
 }
 
 func (p *Player) HasAbility(name string) bool {
@@ -311,7 +315,8 @@ func (p *Player) Update() {
 	}
 	if jump {
 		if !p.Jumping && (p.CoyoteFrames > 0 || *cheatInAirJump) {
-			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(-JumpVelocity))
+			cancelUp := p.Velocity.Dot(p.OnGroundVec) // Prevent Quake 2 doublejump bug.
+			p.Velocity = p.Velocity.Sub(p.OnGroundVec.Mul(JumpVelocity + cancelUp))
 			p.OnGround = false
 			p.CoyoteFrames = -1
 			p.Jumping = true
@@ -340,8 +345,12 @@ func (p *Player) Update() {
 		if moveRight {
 			accelerate(&p.Velocity.DX, AirAccel, MaxAirSpeed, +1)
 		}
-		if p.Velocity.Dot(p.OnGroundVec) < 0 && p.JumpingUp && !p.Jumping {
-			p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(JumpExtraGravity))
+		if p.Velocity.Dot(p.OnGroundVec) < 0 {
+			if p.JumpingUp && !p.Jumping {
+				p.Velocity = p.Velocity.Add(p.OnGroundVec.Mul(JumpExtraGravity))
+			}
+		} else {
+			p.JumpingUp = false
 		}
 	}
 	if p.CoyoteFrames <= 0 {
@@ -417,9 +426,6 @@ func (p *Player) Update() {
 }
 
 func (p *Player) handleTouch(trace engine.TraceResult) {
-	if trace.HitDelta.Dot(p.OnGroundVec) > 0 {
-		p.JumpingUp = false
-	}
 	if p.OnGround && !p.WasOnGround && p.CoyoteFrames < 0 {
 		p.Anim.SetGroup("land")
 		p.LandSound.Play()

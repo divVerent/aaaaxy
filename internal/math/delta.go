@@ -90,6 +90,10 @@ func (d Delta) Div(m int) Delta {
 	return Delta{DX: Div(d.DX, m), DY: Div(d.DY, m)}
 }
 
+func (d Delta) MulFrac(num, denom int) Delta {
+	return Delta{DX: MulFrac(d.DX, num, denom), DY: MulFrac(d.DY, num, denom)}
+}
+
 func (d Delta) Mod(m int) Delta {
 	return Delta{DX: Mod(d.DX, m), DY: Mod(d.DY, m)}
 }

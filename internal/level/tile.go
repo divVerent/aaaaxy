@@ -22,12 +22,14 @@ import (
 type Contents int
 
 const (
-	NoContents          Contents = 0
-	OpaqueContents      Contents = 1
-	PlayerSolidContents Contents = 2
-	ObjectSolidContents Contents = 4
-	SolidContents       Contents = PlayerSolidContents | ObjectSolidContents
-	AllContents         Contents = OpaqueContents | SolidContents
+	NoContents                   Contents = 0
+	OpaqueContents               Contents = 1
+	PlayerWalkableSolidContents  Contents = 2
+	PlayerSteppableSolidContents Contents = 4
+	PlayerSolidContents          Contents = PlayerWalkableSolidContents | PlayerSteppableSolidContents
+	ObjectSolidContents          Contents = 8
+	SolidContents                Contents = PlayerSolidContents | ObjectSolidContents
+	AllContents                  Contents = OpaqueContents | SolidContents
 )
 
 func (c Contents) Empty() bool {

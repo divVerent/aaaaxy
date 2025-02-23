@@ -51,6 +51,10 @@ func Rint(f float64) int {
 	return int(math.RoundToEven(f))
 }
 
+func MulFrac(a, b, d int) int {
+	return int(mulFracInt64(int64(a), int64(b), int64(d)))
+}
+
 // mulFracInt64 returns a*b/d rounded to even.
 func mulFracInt64(a, b, d int64) int64 {
 	sign := int64(1)
@@ -76,8 +80,11 @@ func mulFracModUint64(a, b, d uint64) (uint64, uint64) {
 
 // roundToEvenUint64 rounds q with remainder r at divisor d towards nearest, and towards even on a tie.
 func roundToEvenUint64(d, q, r uint64) uint64 {
+	// Cutoff:
+	// d odd: always d/2+1.
+	// d even: d/2+1 if q even, d/2 if q odd.
 	rcut := d / 2
-	if q%2 == 0 && d%2 == 0 {
+	if d%2!=0 || q%2 == 0 {
 		rcut++
 	}
 	if r >= rcut {
