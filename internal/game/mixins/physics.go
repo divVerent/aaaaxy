@@ -26,6 +26,9 @@ type Physics struct {
 	World  *engine.World
 	Entity *engine.Entity
 
+	// StepHeight is the number of pixels to allow stepping up/down.
+	StepHeight int
+
 	Contents        level.Contents
 	OnGround        bool
 	OnGroundVec     m.Delta // Vector that points "down" in gravity direction.
@@ -68,25 +71,32 @@ func (p *Physics) Reset() {
 	p.SubPixel = m.Delta{DX: constants.SubPixelScale / 2, DY: constants.SubPixelScale / 2}
 }
 
-func (p *Physics) tryMove(move m.Delta) (m.Delta, bool) {
-	groundChecked := false
+func (p *Physics) traceMove(contents level.Contents, move m.Delta) engine.TraceResult {
 	dest := p.Entity.Rect.Origin.Add(move)
 	trace := p.World.TraceBox(p.Entity.Rect, dest, engine.TraceOptions{
-		Contents:  p.Contents,
+		Contents:  contents,
 		IgnoreEnt: p.IgnoreEnt,
 		ForEnt:    p.Entity,
 		LoadTiles: true,
 	})
+	return trace
+}
+
+func (p *Physics) tryMove(move m.Delta, stepping bool) (m.Delta, bool, *engine.TraceResult) {
+	groundChecked := false
+	trace := p.traceMove(p.Contents, move)
 	if trace.HitDelta.IsZero() {
 		// Nothing hit. We're done.
-		p.SubPixel.DX -= move.DX * constants.SubPixelScale
-		p.SubPixel.DY -= move.DY * constants.SubPixelScale
+		if !stepping {
+			p.SubPixel.DX -= move.DX * constants.SubPixelScale
+			p.SubPixel.DY -= move.DY * constants.SubPixelScale
+		}
 		p.Entity.Rect.Origin = trace.EndPos
 		if move.Dot(p.OnGroundVec) != 0 {
 			// If move had a Y component, we're flying.
 			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 		}
-		return m.Delta{DX: 0, DY: 0}, groundChecked
+		return m.Delta{DX: 0, DY: 0}, groundChecked, nil
 	}
 	var hitEntity *engine.Entity
 	if len(trace.HitEntities) != 0 {
@@ -99,8 +109,10 @@ func (p *Physics) tryMove(move m.Delta) (m.Delta, bool) {
 		} else if p.SubPixel.DX < 0 {
 			p.SubPixel.DX = 0
 		}
-		p.SubPixel.DY -= (trace.EndPos.Y - p.Entity.Rect.Origin.Y) * constants.SubPixelScale
-		p.Velocity.DX = 0
+		if !stepping {
+			p.SubPixel.DY -= (trace.EndPos.Y - p.Entity.Rect.Origin.Y) * constants.SubPixelScale
+			p.Velocity.DX = 0
+		}
 		move.DX = 0
 		move.DY -= trace.EndPos.Y - p.Entity.Rect.Origin.Y
 		p.Entity.Rect.Origin = trace.EndPos
@@ -120,8 +132,10 @@ func (p *Physics) tryMove(move m.Delta) (m.Delta, bool) {
 		} else if p.SubPixel.DY < 0 {
 			p.SubPixel.DY = 0
 		}
-		p.SubPixel.DX -= (trace.EndPos.X - p.Entity.Rect.Origin.X) * constants.SubPixelScale
-		p.Velocity.DY = 0
+		if !stepping {
+			p.SubPixel.DX -= (trace.EndPos.X - p.Entity.Rect.Origin.X) * constants.SubPixelScale
+			p.Velocity.DY = 0
+		}
 		move.DX -= trace.EndPos.X - p.Entity.Rect.Origin.X
 		move.DY = 0
 		p.Entity.Rect.Origin = trace.EndPos
@@ -134,7 +148,17 @@ func (p *Physics) tryMove(move m.Delta) (m.Delta, bool) {
 
 		p.handleTouchFunc(trace)
 	}
-	return move, groundChecked
+	return move, groundChecked, &trace
+}
+
+func (p *Physics) slideMove(move m.Delta) bool {
+	groundChecked := false
+	for !move.IsZero() {
+		var ground bool
+		move, ground, _ = p.tryMove(move, false)
+		groundChecked = groundChecked || ground
+	}
+	return groundChecked
 }
 
 func (p *Physics) Update() {
@@ -143,12 +167,7 @@ func (p *Physics) Update() {
 	p.SubPixel = p.SubPixel.Add(p.Velocity)
 	move := p.SubPixel.Div(constants.SubPixelScale)
 
-	groundChecked := false
-	for !move.IsZero() {
-		var ground bool
-		move, ground = p.tryMove(move)
-		groundChecked = groundChecked || ground
-	}
+	groundChecked := p.slideMove(move)
 
 	if p.OnGround && !groundChecked && !p.OnGroundVec.IsZero() {
 		trace := p.World.TraceBox(p.Entity.Rect, p.Entity.Rect.Origin.Add(p.OnGroundVec), engine.TraceOptions{
@@ -245,13 +264,13 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	// First grow in minus directions.
 	topLeftDelta := bySize.Div(2)
 	if topLeftDelta.DX > 0 {
-		p.tryMove(m.Delta{DX: -topLeftDelta.DX, DY: 0})
+		p.tryMove(m.Delta{DX: -topLeftDelta.DX, DY: 0}, false)
 	} else {
 		p.Entity.Rect.Origin.X -= topLeftDelta.DX
 	}
 	p.Entity.Rect.Size.DX += prevOrigin.X - p.Entity.Rect.Origin.X
 	if topLeftDelta.DY > 0 {
-		p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta.DY})
+		p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta.DY}, false)
 	} else {
 		p.Entity.Rect.Origin.Y -= topLeftDelta.DY
 	}
@@ -261,14 +280,14 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	prevOrigin2 := p.Entity.Rect.Origin
 	bottomRightDelta := targetSize.Sub(p.Entity.Rect.Size)
 	if bottomRightDelta.DX > 0 {
-		p.tryMove(m.Delta{DX: bottomRightDelta.DX, DY: 0})
+		p.tryMove(m.Delta{DX: bottomRightDelta.DX, DY: 0}, false)
 		p.Entity.Rect.Size.DX += p.Entity.Rect.Origin.X - prevOrigin2.X
 		p.Entity.Rect.Origin.X = prevOrigin2.X
 	} else {
 		p.Entity.Rect.Size.DX += bottomRightDelta.DX
 	}
 	if bottomRightDelta.DY > 0 {
-		p.tryMove(m.Delta{DX: 0, DY: bottomRightDelta.DY})
+		p.tryMove(m.Delta{DX: 0, DY: bottomRightDelta.DY}, false)
 		p.Entity.Rect.Size.DY += p.Entity.Rect.Origin.Y - prevOrigin2.Y
 		p.Entity.Rect.Origin.Y = prevOrigin2.Y
 	} else {
@@ -279,13 +298,13 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	prevOrigin3 := p.Entity.Rect.Origin
 	topLeftDelta3 := targetSize.Sub(p.Entity.Rect.Size)
 	if topLeftDelta3.DX > 0 {
-		p.tryMove(m.Delta{DX: -topLeftDelta3.DX, DY: 0})
+		p.tryMove(m.Delta{DX: -topLeftDelta3.DX, DY: 0}, false)
 	} else {
 		p.Entity.Rect.Origin.X -= topLeftDelta3.DX
 	}
 	p.Entity.Rect.Size.DX += prevOrigin3.X - p.Entity.Rect.Origin.X
 	if topLeftDelta3.DY > 0 {
-		p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta3.DY})
+		p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta3.DY}, false)
 	} else {
 		p.Entity.Rect.Origin.Y -= topLeftDelta3.DY
 	}
