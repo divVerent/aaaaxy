@@ -1,0 +1,6 @@
+  - Assets: map and demo updates to use the new slopes feature.
+  - Engine: early preparations for having multiple level files.
+  - Engine: support slopes.
+  - Engine: update Go modules.
+  - Engine: update to Go 1.23. This ends support for Big Sur.
+  - Physics: allow stepping up when barely clipping a corner.
