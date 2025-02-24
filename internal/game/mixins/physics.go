@@ -154,10 +154,17 @@ func (p *Physics) slideMove(move m.Delta) bool {
 		var ground bool
 		var trace *engine.TraceResult
 		move, ground, trace = p.tryMove(move, false)
+		preTouchVel := p.Velocity
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
+		teleported := p.Velocity != preTouchVel
 		groundChecked = groundChecked || ground
+
+		if teleported {
+			// This happens only if handleTouchFunc changed velocity.
+			break
+		}
 	}
 	return groundChecked
 }
@@ -398,7 +405,7 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	// First grow in minus directions.
 	topLeftDelta := bySize.Div(2)
 	if topLeftDelta.DX > 0 {
-		_, _, trace := p.tryMove(m.Delta{DX: -topLeftDelta.DX, DY: 0}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: -topLeftDelta.DX, DY: 0}, true)
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
@@ -407,7 +414,7 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	}
 	p.Entity.Rect.Size.DX += prevOrigin.X - p.Entity.Rect.Origin.X
 	if topLeftDelta.DY > 0 {
-		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta.DY}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta.DY}, true)
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
@@ -420,7 +427,7 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	prevOrigin2 := p.Entity.Rect.Origin
 	bottomRightDelta := targetSize.Sub(p.Entity.Rect.Size)
 	if bottomRightDelta.DX > 0 {
-		_, _, trace := p.tryMove(m.Delta{DX: bottomRightDelta.DX, DY: 0}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: bottomRightDelta.DX, DY: 0}, true)
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
@@ -430,7 +437,7 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 		p.Entity.Rect.Size.DX += bottomRightDelta.DX
 	}
 	if bottomRightDelta.DY > 0 {
-		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: bottomRightDelta.DY}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: bottomRightDelta.DY}, true)
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
@@ -444,7 +451,7 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	prevOrigin3 := p.Entity.Rect.Origin
 	topLeftDelta3 := targetSize.Sub(p.Entity.Rect.Size)
 	if topLeftDelta3.DX > 0 {
-		_, _, trace := p.tryMove(m.Delta{DX: -topLeftDelta3.DX, DY: 0}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: -topLeftDelta3.DX, DY: 0}, true)
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
@@ -453,7 +460,7 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	}
 	p.Entity.Rect.Size.DX += prevOrigin3.X - p.Entity.Rect.Origin.X
 	if topLeftDelta3.DY > 0 {
-		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta3.DY}, false)
+		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta3.DY}, true)
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
