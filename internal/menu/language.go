@@ -15,13 +15,8 @@
 package menu
 
 import (
-	"fmt"
-
-	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/game/misc"
 	"github.com/divVerent/aaaaxy/internal/locale"
-	"github.com/divVerent/aaaaxy/internal/locale/initlocale"
 )
 
 type languageSetting struct {
@@ -52,26 +47,7 @@ func (l *languageSetting) apply(m *Controller) error {
 		return nil
 	}
 	flag.Set("language", string(lingua))
-
-	return m.NextFrame(func() error {
-		changed, err := initlocale.SetLanguage(engine.LevelName(), lingua)
-		if err != nil {
-			return err
-		}
-		if !changed {
-			return nil
-		}
-		// KNOWN ISSUE: checkpoint names aren't reloaded right away,
-		// but only when actually entering the game. Decoupling reload
-		// of the level from the game state is more complicated and
-		// not in scope yet. Accepting this glitch for now.
-		misc.ClearPrecache()
-		err = m.LevelChanged()
-		if err != nil {
-			return fmt.Errorf("could not reapply language to menu: %v", err)
-		}
-		return nil
-	})
+	return m.ReinitLevelNextFrame()
 }
 
 func (l *languageSetting) toggle(m *Controller, delta int) error {
