@@ -189,6 +189,7 @@ sprites/touch_jump.png
 sprites/touch_left.png
 sprites/touch_right.png
 sprites/touch_up.png
+sprites/volcano.png
 sprites/weird_star_small.png
 sprites/noisemaker.png
 sprites/dopefish_lives.png
@@ -564,7 +565,6 @@ sprites/switch_switchon_9.png
 sprites/switchblock_off.png
 sprites/switchblock_on.png
 sprites/v.png
-sprites/volcano.png
 sprites/warpzone_en.png
 sprites/warpzone_es.png
 sprites/warpzone_ne.png
