@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 07:30-0500\n"
+"POT-Creation-Date: 2024-04-12 20:11-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Konishi, Hiroto, 2024\n"
 "Language-Team: Japanese (https://app.transifex.com/aaaaxy/teams/158611/ja/)\n"
@@ -62,7 +62,7 @@ msgstr "粘り強さが成功へのカギだ。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=66]
 msgid "Stop and Stair"
-msgstr "Stop and Stair"
+msgstr "止まってステア"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=89]
 msgid "Endless Eight"
@@ -80,7 +80,7 @@ msgstr "ある種の人々は4πよりも2τを好む。"
 #. devotionals/2013/01/what-is-truth?lang=eng
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
-msgstr "「ある時期には圧倒的な支持を受けていたが、地球は平面ではない」"
+msgstr "「かつての圧倒的なコンセンサスに反し、地球は平面ではない」"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=93]
 msgid "Some people prefer 4π over 2τ."
@@ -88,7 +88,7 @@ msgstr "ある種の人々は2τよりも4πを好む。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=94]
 msgid "Interesting things are hardly ever found in corners."
-msgstr "興味深いものは、隅っこにはめったにない。"
+msgstr "興味深いものは、めったに隅っこにない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=95]
 msgid "Interesting things are always found in corners."
@@ -146,7 +146,7 @@ msgstr "球体"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=238]
 msgid "Unparalleled execution is all you really need here."
-msgstr "ここで本当に必要とされているのは、類まれなる実行力である。"
+msgstr "並ぶものがない実行力こそが、ただ本当に必要なものなのだ。"
 
 #. https://getting-over-it.fandom.com/wiki/Top_of_the_mountain
 #: assets/maps/level.tmx//map/objectgroup/object[@id=244]
@@ -353,7 +353,7 @@ msgstr "11"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1101]
 msgid "The first track is never the one with your train."
-msgstr "乗る電車が一番手前のホームにいた試しがない。"
+msgstr "一番手前のホームに乗る電車が来ることは、決してない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
@@ -621,6 +621,8 @@ msgstr "ある種の試練はただ再挑戦を求める。"
 msgid "Reset"
 msgstr "リセット"
 
+#. this is clearly a pun in English - if you can, make up a similar pun, if
+#. not, possibly any pun involving platforms will do
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1570]
 msgid "If platforms require platforming, what do trains require?"
 msgstr "プラットフォーム＜足場＞ではプラットフォーミング＜飛び跳ねる＞。トレイン＜電車＞では？"
@@ -658,9 +660,11 @@ msgid "Swim swim hungry, swim swim hungry."
 msgstr "Swim swim hungry, swim swim hungry."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
 msgid "The note on the right is much more interesting than this one."
 msgstr "右側のメモにはもっと面白いことが書いてあるよ。"
 
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
 msgid "The note on the left is much more interesting than this one."
 msgstr "左側のメモにはもっと面白いことが書いてあるよ。"
@@ -772,7 +776,7 @@ msgstr "Pushing Onwards"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2841]
 msgid "Some ideas only seem smart at first."
-msgstr "初めのうちはいいアイデアに見えたりもする。"
+msgstr "パッと見の印象だけはいい――そんなアイデアもある。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2842]
 msgid "If there seems to be no way, you just haven't found it yet."
@@ -848,7 +852,7 @@ msgstr "必要なものは{{BR}}持っているか？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3842]
 msgid "You think{{BR}}you can do it?"
-msgstr "お前にできると{{BR}}思っているのか？"
+msgstr "お前はできると{{BR}}思っているのか？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3843]
 msgid "Show me{{BR}}what you've got"
@@ -857,7 +861,7 @@ msgstr "手にしたものを{{BR}}見せてもらおう。"
 #. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
 msgid "And you didn't{{BR}}forget the remote?"
-msgstr "リモコン{{BR}}忘れてないよね？"
+msgstr "リモコンを{{BR}}忘れてはいないだろうな？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3853]
 msgid "DANGER"
@@ -881,11 +885,11 @@ msgstr "まだ見える方の眼で{{BR}}レーザーを見るな"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3858]
 msgid "LEGAL{{BR}}WAIVER"
-msgstr "法的{{BR}}免責"
+msgstr "法的免責"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3859]
 msgid "NO{{BR}}WARRANTY"
-msgstr "保証{{BR}}なし"
+msgstr "無保証"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3860]
 msgid "HIGH{{BR}}VOLTAGE"
@@ -893,7 +897,7 @@ msgstr "高電圧"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3861]
 msgid "YOU HAVE{{BR}}BEEN WARNED"
-msgstr "警告は{{BR}}行った"
+msgstr "警告は行われた"
 
 #. name of a law about declaring lead content; often caused ridiculous
 #. warnings; pick your own ridiculous law when translating
@@ -924,7 +928,7 @@ msgstr "目先のことばかり考えていると、{{BR}}後になって足を
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3927]
 msgid "Moving forward may require{{BR}}making the most of what you've got."
-msgstr "前に進むには、{{BR}}持てるものすべてが要るのかもしれない。"
+msgstr "ときに、前に進むためには、{{BR}}持てるものすべてを活用せねばならない。"
 
 #. https://en.wikipedia.org/wiki/Kaizo - transcribe phonetically
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3977]
@@ -1107,7 +1111,7 @@ msgstr "どうしたんだい？{{BR}}{{ExitButton}}を押しな。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5207]
 msgid "Stairs to Nowhere"
-msgstr "どこにも行けない階段"
+msgstr "先のない階段"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5213]
 msgid "Not every staircase leads somewhere nice."
@@ -1148,7 +1152,7 @@ msgstr "分からん人だね、君は。"
 msgid ""
 "Looking at things and observing how they change{{BR}}is what brought us "
 "science."
-msgstr "物事を見て、それがどのように変化するかを観察することで、{{BR}}我々は科学を発展させてきたのだ。"
+msgstr "物事を見つめ、その変化を観察すること。{{BR}}それが、我々に科学をもたらしたのだ。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5545]
 msgid "You should have done this a little bit earlier."
@@ -1248,7 +1252,7 @@ msgstr "――このやり方は間違っている。"
 #. term-cheese-strategy
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6536]
 msgid "What looked like cheese might be the only way."
-msgstr "裏技だと思っていた方法が唯一の手段なのかもしれない。"
+msgstr "裏技だと思えた方法が、唯一の手段なのかもしれない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6537]
 msgid "Not triggering the switch of doom might take some effort."
@@ -1319,7 +1323,7 @@ msgstr "Viability Voodoo"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6960]
 msgid "UNDER{{BR}}CONSTRUCTION"
-msgstr "現在{{BR}}建設中"
+msgstr "建設中"
 
 #. https://thelettervsixtim.es/ - try keeping the two V alliteration when
 #. translating
