@@ -219,6 +219,15 @@ func LevelName() string {
 	return *cheatLevel
 }
 
+// SwitchLevel switches to the named level. Note that for it to take effect, ReloadLevel also needs to be called.
+func SwitchLevel(name string) error {
+	if name == LevelName() {
+		return nil
+	}
+	*cheatLevel = name // TODO: use an intermediate variable and not the flag.
+	return nil
+}
+
 func SaveName(idx int) string {
 	if *cheatLevel == "level" {
 		return fmt.Sprintf("save-%d.json", idx)

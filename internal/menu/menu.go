@@ -25,7 +25,10 @@ import (
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	_ "github.com/divVerent/aaaaxy/internal/game" // Load entities.
+	"github.com/divVerent/aaaaxy/internal/game/misc"
 	"github.com/divVerent/aaaaxy/internal/input"
+	"github.com/divVerent/aaaaxy/internal/locale"
+	"github.com/divVerent/aaaaxy/internal/locale/initlocale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/music"
 	"github.com/divVerent/aaaaxy/internal/offscreen"
@@ -296,6 +299,41 @@ func (c *Controller) SwitchSaveState(state int) error {
 
 	// And finally restart the game from there.
 	return c.InitGame(loadGame)
+}
+
+// SwitchLevel switches to a given level. Retains the save state index.
+func (c *Controller) SwitchLevel(level string) error {
+	// Save the game first.
+	err := c.World.Save()
+	if err != nil {
+		log.Errorf("could not save game: %w", err)
+		// Proceed anyway, as the current save state will be lost if we crash too.
+	}
+
+	// Select the new level.
+	err = engine.SwitchLevel(level)
+	if err != nil {
+		return err
+	}
+	return c.ReinitLevelNextFrame()
+}
+
+func (c *Controller) ReinitLevelNextFrame() error {
+	return c.NextFrame(func() error {
+		changed, err := initlocale.SetLanguage(engine.LevelName(), locale.Lingua(flag.Get[string]("language")))
+		if err != nil {
+			return err
+		}
+		if !changed {
+			return nil
+		}
+		// KNOWN ISSUE: checkpoint names aren't reloaded right away,
+		// but only when actually entering the game. Decoupling reload
+		// of the level from the game state is more complicated and
+		// not in scope yet. Accepting this glitch for now.
+		misc.ClearPrecache()
+		return c.LevelChanged()
+	})
 }
 
 // SwitchToGame switches to the game without teleporting.
