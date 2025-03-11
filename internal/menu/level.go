@@ -15,6 +15,10 @@
 package menu
 
 import (
+	"fmt"
+	"sort"
+	"strings"
+
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
@@ -23,6 +27,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/locale"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
+	"github.com/divVerent/aaaaxy/internal/vfs"
 )
 
 type LevelScreenItem int
@@ -35,17 +40,34 @@ type LevelScreen struct {
 }
 
 func (s *LevelScreen) levelInfo(idx int) string {
-	return "AAAAXY"
+	switch s.Level[idx] {
+	case "level":
+		return "AAAAXY"
+	default:
+		return s.Level[idx]
+	}
 }
 
 func (s *LevelScreen) Init(m *Controller) error {
 	s.Controller = m
 
-	n := 1 // TODO Actually scan for level files.
-	s.Text = make([]string, n)
-	s.Item = LevelScreenItem(n)
-	for i := range n {
-		s.Level[i] = "level"
+	s.Level = nil
+	levels, err := vfs.ReadDir("maps")
+	if err != nil {
+		return fmt.Errorf("could not enumerate levels: %w", err)
+	}
+	for _, level := range levels {
+		name, isTMX := strings.CutSuffix(level, ".tmx")
+		if !isTMX {
+			continue
+		}
+		s.Level = append(s.Level, name)
+	}
+	sort.Strings(s.Level)
+
+	s.Text = make([]string, len(s.Level))
+	s.Item = LevelScreenItem(len(s.Level))
+	for i := range s.Level {
 		s.Text[i] = s.levelInfo(i)
 		if s.Level[i] == engine.LevelName() {
 			s.Item = LevelScreenItem(i)
