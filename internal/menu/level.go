@@ -35,7 +35,6 @@ type LevelScreenItem int
 type LevelScreen struct {
 	Controller *Controller
 	Item       LevelScreenItem
-	Text       []string
 	Level      []string
 }
 
@@ -63,12 +62,12 @@ func (s *LevelScreen) Init(m *Controller) error {
 		}
 		s.Level = append(s.Level, name)
 	}
-	sort.Strings(s.Level)
+	sort.Slice(s.Level, func(i, j int) bool {
+		return s.levelInfo(i) < s.levelInfo(j)
+	})
 
-	s.Text = make([]string, len(s.Level))
 	s.Item = LevelScreenItem(len(s.Level))
 	for i := range s.Level {
-		s.Text[i] = s.levelInfo(i)
 		if s.Level[i] == engine.LevelName() {
 			s.Item = LevelScreenItem(i)
 		}
@@ -116,7 +115,7 @@ func (s *LevelScreen) Draw(screen *ebiten.Image) {
 		if s.Item == LevelScreenItem(i) {
 			fg, bg = fgs, bgs
 		}
-		font.ByName["Menu"].Draw(screen, locale.G.Get("%s: %s", level, s.Text[i]), m.Pos{X: CenterX, Y: ItemBaselineY(i, n+1)}, font.Center, fg, bg)
+		font.ByName["Menu"].Draw(screen, locale.G.Get("%s: %s", level, s.levelInfo(i)), m.Pos{X: CenterX, Y: ItemBaselineY(i, n+1)}, font.Center, fg, bg)
 	}
 
 	fg, bg := fgn, bgn
