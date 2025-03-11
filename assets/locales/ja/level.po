@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Rudolf Polzer, 2024
 # Konishi, Hiroto, 2024
+# Rudolf Polzer, 2025
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-12 20:11-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Konishi, Hiroto, 2024\n"
+"Last-Translator: Rudolf Polzer, 2025\n"
 "Language-Team: Japanese (https://app.transifex.com/aaaaxy/teams/158611/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -861,7 +861,7 @@ msgstr "手にしたものを{{BR}}見せてもらおう。"
 #. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
 msgid "And you didn't{{BR}}forget the remote?"
-msgstr "リモコンを{{BR}}忘れてはいないだろうな？"
+msgstr "リモコンを忘れては{{BR}}いないだろうな？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3853]
 msgid "DANGER"
