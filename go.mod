@@ -72,5 +72,3 @@ require (
 
 // update-ebitengine-fork.sh changes:
 // replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.7.9-with-99ffe09b63e0d906cc1f502c24f4d2325e6cc09d
-
-replace github.com/leonelquinteros/gotext => github.com/divVerent/gotext v0.0.0-20250313193741-2eadc7dcc906
