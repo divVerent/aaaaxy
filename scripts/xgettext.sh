@@ -21,7 +21,7 @@ for lfile in assets/maps/*.tmx; do
 		-o - "assets/maps/$lname.tmx" |\
 		sed -e 's/^#. #:/#:/g' \
 		> "assets/locales/$lname.pot"
-	lnames="$lnames $lfile"
+	lnames="$lnames $lname"
 done
 go run github.com/leonelquinteros/gotext/cli/xgotext \
 	-default game_raw \
