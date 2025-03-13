@@ -17,6 +17,8 @@ package locale
 import (
 	"sort"
 
+	"github.com/leonelquinteros/gotext"
+
 	"github.com/divVerent/aaaaxy/internal/log"
 )
 
@@ -25,7 +27,7 @@ func CharSet(base string, baseWeight, maxCount int) []rune {
 	for _, r := range base {
 		weights[r] = baseWeight
 	}
-	for _, po := range []Type{G, L} {
+	for _, po := range []*gotext.Po{G, L} {
 		for k, vs := range po.GetDomain().GetTranslations() {
 			if k == "" {
 				// Not a real string, just a header.

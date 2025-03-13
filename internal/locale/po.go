@@ -18,23 +18,17 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-// Type is the type of a locale translator.
-type Type = *gotext.Po
-
-// IType is the type of a locale translator interface.
-type IType = gotext.Translator
-
 // G is the translation of the game.
-var G Type
+var G *gotext.Po
 
 // GI is the translation of the game but as an interface.
 // Used to work around go vet as it can't figure out
 // that G.Get isn't a printf-like function if it gets only one arg.
 // See https://github.com/golang/go/issues/57288
-var GI IType
+var GI gotext.Translator
 
 // L is the translation of the levels.
-var L Type
+var L *gotext.Po
 
 // LName is the name of the level L is for.
 var LName string

@@ -21,6 +21,8 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/leonelquinteros/gotext"
+
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
@@ -94,7 +96,7 @@ func initLinguas() error {
 	return nil
 }
 
-func initLocaleDomain(lang locale.Lingua, l locale.Type, domain string) {
+func initLocaleDomain(lang locale.Lingua, l *gotext.Po, domain string) {
 	if lang == locale.Builtin {
 		return
 	}
