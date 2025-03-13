@@ -185,7 +185,13 @@ func (p *Player) GiveAbility(name, text string) {
 
 	p.setActionButtonAvailable()
 
-	err := p.World.Save()
+	var err error
+	if name == "switch_level" {
+		err = engine.SaveConfig()
+	} else {
+		err = p.World.Save()
+	}
+
 	if err != nil {
 		log.Errorf("could not save game: %v", err)
 		return
