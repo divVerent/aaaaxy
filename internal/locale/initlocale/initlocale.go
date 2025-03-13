@@ -66,9 +66,11 @@ func initLinguas() error {
 		log.Errorf("could not list levels: %v", err)
 	}
 	for _, level := range levels {
-		if domain, isTMX := strings.CutSuffix(level, ".tmx"); isTMX {
-			domains = append(domains, domain)
+		name, isTMX := strings.CutSuffix(level, ".tmx")
+		if !isTMX {
+			continue
 		}
+		domains = append(domains, name)
 	}
 	sort.Strings(domains)
 	log.Infof("supported locale domains: %v", domains)
