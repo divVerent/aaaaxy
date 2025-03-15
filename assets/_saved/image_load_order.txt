@@ -581,14 +581,6 @@ sprites/switch_switchon_9.png
 sprites/switchblock_off.png
 sprites/switchblock_on.png
 sprites/v.png
-sprites/warpzone_en.png
-sprites/warpzone_es.png
-sprites/warpzone_ne.png
-sprites/warpzone_nw.png
-sprites/warpzone_se.png
-sprites/warpzone_sw.png
-sprites/warpzone_wn.png
-sprites/warpzone_ws.png
 sprites/jumppad32_idle_0.png
 sprites/jumppad32_idle_1.png
 sprites/jumppad16_idle_0.png
