@@ -34,25 +34,36 @@ var offerQuit = flag.SystemDefault(map[string]bool{
 
 type MainScreenItem int
 
-const (
-	Play = iota
-	Settings
-	Credits
-	Quit
-	MainCount
-)
-
 type MainScreen struct {
-	Controller *Controller
-	Item       MainScreenItem
-	Count      int
+	Controller  *Controller
+	Item        MainScreenItem
+	Play        MainScreenItem
+	SwitchLevel MainScreenItem
+	Settings    MainScreenItem
+	Credits     MainScreenItem
+	Quit        MainScreenItem
+	Count       int
 }
 
 func (s *MainScreen) Init(m *Controller) error {
 	s.Controller = m
-	s.Count = MainCount
-	if !offerQuit {
-		s.Count--
+	s.Play = MainScreenItem(s.Count)
+	s.Count++
+	if s.Controller.World.PlayerState.HasAbility("switch_level") && len(levels) > 1 {
+		s.SwitchLevel = MainScreenItem(s.Count)
+		s.Count++
+	} else {
+		s.SwitchLevel = -1
+	}
+	s.Settings = MainScreenItem(s.Count)
+	s.Count++
+	s.Credits = MainScreenItem(s.Count)
+	s.Count++
+	if offerQuit {
+		s.Quit = MainScreenItem(s.Count)
+		s.Count++
+	} else {
+		s.Quit = -1
 	}
 	return nil
 }
@@ -77,13 +88,15 @@ func (s *MainScreen) Update() error {
 	*/
 	if input.Jump.JustHit || input.Action.JustHit || clicked != NotClicked {
 		switch s.Item {
-		case Play:
+		case s.Play:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MapScreen{}))
-		case Settings:
+		case s.SwitchLevel:
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&LevelScreen{}))
+		case s.Settings:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
-		case Credits:
+		case s.Credits:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&CreditsScreen{Fancy: false}))
-		case Quit:
+		case s.Quit:
 			return s.Controller.ActivateSound(s.Controller.QuitGame())
 		}
 	}
@@ -97,26 +110,33 @@ func (s *MainScreen) Draw(screen *ebiten.Image) {
 	bgn := palette.EGA(palette.DarkGrey, 255)
 	font.ByName["MenuBig"].Draw(screen, "AAAAXY", m.Pos{X: CenterX, Y: HeaderY}, font.Center, fgs, bgs)
 	fg, bg := fgn, bgn
-	if s.Item == Play {
+	if s.Item == s.Play {
 		fg, bg = fgs, bgs
 	}
-	font.ByName["Menu"].Draw(screen, locale.G.Get("Play"), m.Pos{X: CenterX, Y: ItemBaselineY(Play, s.Count)}, font.Center, fg, bg)
-	fg, bg = fgn, bgn
-	if s.Item == Settings {
-		fg, bg = fgs, bgs
-	}
-	font.ByName["Menu"].Draw(screen, locale.G.Get("Settings"), m.Pos{X: CenterX, Y: ItemBaselineY(Settings, s.Count)}, font.Center, fg, bg)
-	fg, bg = fgn, bgn
-	if s.Item == Credits {
-		fg, bg = fgs, bgs
-	}
-	font.ByName["Menu"].Draw(screen, locale.G.Get("Credits"), m.Pos{X: CenterX, Y: ItemBaselineY(Credits, s.Count)}, font.Center, fg, bg)
-	if offerQuit {
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Play"), m.Pos{X: CenterX, Y: ItemBaselineY(int(s.Play), s.Count)}, font.Center, fg, bg)
+	if s.SwitchLevel != -1 {
 		fg, bg = fgn, bgn
-		if s.Item == Quit {
+		if s.Item == s.SwitchLevel {
 			fg, bg = fgs, bgs
 		}
-		font.ByName["Menu"].Draw(screen, locale.G.Get("Quit"), m.Pos{X: CenterX, Y: ItemBaselineY(Quit, s.Count)}, font.Center, fg, bg)
+		font.ByName["Menu"].Draw(screen, locale.G.Get("Switch World"), m.Pos{X: CenterX, Y: ItemBaselineY(int(s.SwitchLevel), s.Count)}, font.Center, fg, bg)
+	}
+	fg, bg = fgn, bgn
+	if s.Item == s.Settings {
+		fg, bg = fgs, bgs
+	}
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Settings"), m.Pos{X: CenterX, Y: ItemBaselineY(int(s.Settings), s.Count)}, font.Center, fg, bg)
+	fg, bg = fgn, bgn
+	if s.Item == s.Credits {
+		fg, bg = fgs, bgs
+	}
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Credits"), m.Pos{X: CenterX, Y: ItemBaselineY(int(s.Credits), s.Count)}, font.Center, fg, bg)
+	if s.Quit != -1 {
+		fg, bg = fgn, bgn
+		if s.Item == s.Quit {
+			fg, bg = fgs, bgs
+		}
+		font.ByName["Menu"].Draw(screen, locale.G.Get("Quit"), m.Pos{X: CenterX, Y: ItemBaselineY(int(s.Quit), s.Count)}, font.Center, fg, bg)
 	}
 
 	// Display stats.

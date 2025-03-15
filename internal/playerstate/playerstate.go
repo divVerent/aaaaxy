@@ -30,6 +30,7 @@ var (
 	cheatFullMapNormal   = flag.Bool("cheat_full_map_normal", false, "show the full map")
 	cheatFullMapFlipped  = flag.Bool("cheat_full_map_flipped", false, "show the full map")
 	cheatPlayerAbilities = flag.StringMap[bool]("cheat_player_abilities", map[string]bool{}, "override player abilities")
+	showSwitchLevel      = flag.Bool("show_switch_level", false, "show the level selector menu")
 )
 
 type PlayerState struct {
@@ -50,6 +51,9 @@ func (s *PlayerState) Init() {
 }
 
 func (s *PlayerState) HasAbility(name string) bool {
+	if name == "switch_level" {
+		return *showSwitchLevel
+	}
 	have, found := (*cheatPlayerAbilities)[name]
 	if found {
 		return have
@@ -63,6 +67,13 @@ func (s *PlayerState) HasAbility(name string) bool {
 }
 
 func (s *PlayerState) GiveAbility(name string) bool {
+	if name == "switch_level" {
+		if *showSwitchLevel {
+			return false
+		}
+		*showSwitchLevel = true
+		return true
+	}
 	_, found := (*cheatPlayerAbilities)[name]
 	if found {
 		return false

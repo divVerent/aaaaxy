@@ -35,40 +35,44 @@ type LevelScreenItem int
 type LevelScreen struct {
 	Controller *Controller
 	Item       LevelScreenItem
-	Level      []string
 }
 
-func (s *LevelScreen) levelInfo(idx int) string {
-	switch s.Level[idx] {
+var levels []string
+
+func levelInfo(idx int) string {
+	s := levels[idx]
+	switch s {
 	case "level":
 		return "AAAAXY"
 	default:
-		return s.Level[idx]
+		return s
 	}
+}
+
+func initLevels() error {
+	l, err := vfs.ReadDir("maps")
+	if err != nil {
+		return fmt.Errorf("could not enumerate levels: %w", err)
+	}
+	for _, level := range l {
+		name, isTMX := strings.CutSuffix(level, ".tmx")
+		if !isTMX {
+			continue
+		}
+		levels = append(levels, name)
+	}
+	sort.Slice(levels, func(i, j int) bool {
+		return levelInfo(i) < levelInfo(j)
+	})
+	return nil
 }
 
 func (s *LevelScreen) Init(m *Controller) error {
 	s.Controller = m
 
-	s.Level = nil
-	levels, err := vfs.ReadDir("maps")
-	if err != nil {
-		return fmt.Errorf("could not enumerate levels: %w", err)
-	}
-	for _, level := range levels {
-		name, isTMX := strings.CutSuffix(level, ".tmx")
-		if !isTMX {
-			continue
-		}
-		s.Level = append(s.Level, name)
-	}
-	sort.Slice(s.Level, func(i, j int) bool {
-		return s.levelInfo(i) < s.levelInfo(j)
-	})
-
-	s.Item = LevelScreenItem(len(s.Level))
-	for i := range s.Level {
-		if s.Level[i] == engine.LevelName() {
+	s.Item = LevelScreenItem(len(levels))
+	for i := range levels {
+		if levels[i] == engine.LevelName() {
 			s.Item = LevelScreenItem(i)
 		}
 	}
@@ -77,7 +81,7 @@ func (s *LevelScreen) Init(m *Controller) error {
 }
 
 func (s *LevelScreen) Update() error {
-	clicked := s.Controller.QueryMouseItem(&s.Item, len(s.Level)+1)
+	clicked := s.Controller.QueryMouseItem(&s.Item, len(levels)+1)
 
 	if input.Down.JustHit {
 		s.Item++
@@ -87,15 +91,15 @@ func (s *LevelScreen) Update() error {
 		s.Item--
 		s.Controller.MoveSound(nil)
 	}
-	s.Item = LevelScreenItem(m.Mod(int(s.Item), len(s.Level)+1))
+	s.Item = LevelScreenItem(m.Mod(int(s.Item), len(levels)+1))
 	if input.Exit.JustHit {
-		return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
+		return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 	}
 	if input.Jump.JustHit || input.Action.JustHit || clicked != NotClicked {
-		if s.Item < LevelScreenItem(len(s.Level)) {
-			return s.Controller.ActivateSound(s.Controller.SwitchLevel(s.Level[s.Item]))
+		if s.Item < LevelScreenItem(len(levels)) {
+			return s.Controller.ActivateSound(s.Controller.SwitchLevel(levels[s.Item]))
 		} else {
-			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
+			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&MainScreen{}))
 		}
 	}
 	return nil
@@ -108,18 +112,18 @@ func (s *LevelScreen) Draw(screen *ebiten.Image) {
 	bgn := palette.EGA(palette.DarkGrey, 255)
 	font.ByName["MenuBig"].Draw(screen, locale.G.Get("Switch World"), m.Pos{X: CenterX, Y: HeaderY}, font.Center, fgs, bgs)
 
-	n := len(s.Level)
+	n := len(levels)
 
-	for i, level := range s.Level {
+	for i, level := range levels {
 		fg, bg := fgn, bgn
 		if s.Item == LevelScreenItem(i) {
 			fg, bg = fgs, bgs
 		}
-		font.ByName["Menu"].Draw(screen, locale.G.Get("%s: %s", level, s.levelInfo(i)), m.Pos{X: CenterX, Y: ItemBaselineY(i, n+1)}, font.Center, fg, bg)
+		font.ByName["Menu"].Draw(screen, locale.G.Get("%s: %s", level, levelInfo(i)), m.Pos{X: CenterX, Y: ItemBaselineY(i, n+1)}, font.Center, fg, bg)
 	}
 
 	fg, bg := fgn, bgn
-	if s.Item == LevelScreenItem(len(s.Level)) {
+	if s.Item == LevelScreenItem(len(levels)) {
 		fg, bg = fgs, bgs
 	}
 	font.ByName["Menu"].Draw(screen, locale.G.Get("Main Menu"), m.Pos{X: CenterX, Y: ItemBaselineY(n, n+1)}, font.Center, fg, bg)

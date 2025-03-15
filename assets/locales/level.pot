@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 20:11-0400\n"
+"POT-Creation-Date: 2025-03-13 15:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1411,4 +1411,20 @@ msgstr ""
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8374]
 #. This text is meant to be in Ukrainian. Do not translate unless necessary to work with your font.
 msgid "Героям слава!"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8419]
+msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8423]
+msgid "A path to another world has appeared nearby."
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8439]
+msgid "You can now enter another world!"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8441]
+msgid "The Teleporter{{BR}}(press {{ExitButton}})"
 msgstr ""

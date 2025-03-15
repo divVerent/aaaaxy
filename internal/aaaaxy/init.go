@@ -36,6 +36,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/locale/initlocale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/menu"
 	"github.com/divVerent/aaaaxy/internal/noise"
 	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/sound"
@@ -233,6 +234,10 @@ func (g *Game) InitStep() error {
 		return err
 	}
 	status, err = g.init.Enter("initializing dumping", locale.G.Get("initializing dumping"), "could not initialize dumping", splash.Single(dump.InitLate))
+	if status != splash.Continue {
+		return err
+	}
+	status, err = g.init.Enter("initializing menu", locale.G.Get("initializing menu"), "could not initialize menu", splash.Single(menu.Init))
 	if status != splash.Continue {
 		return err
 	}

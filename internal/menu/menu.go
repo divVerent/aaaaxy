@@ -325,7 +325,7 @@ func (c *Controller) ReinitLevelNextFrame() error {
 			return err
 		}
 		if !changed {
-			return nil
+			return c.SwitchToGame()
 		}
 		// KNOWN ISSUE: checkpoint names aren't reloaded right away,
 		// but only when actually entering the game. Decoupling reload
@@ -454,6 +454,9 @@ func (c *Controller) GameChanged() error {
 
 func (c *Controller) LevelChanged() error {
 	c.GameChanged()
-	c.needReloadLevel = true
-	return nil
+	return c.SwitchToGame()
+}
+
+func Init() error {
+	return initLevels()
 }

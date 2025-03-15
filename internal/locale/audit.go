@@ -21,6 +21,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/leonelquinteros/gotext"
+
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -64,7 +66,7 @@ func formats(s string) map[string]int {
 	return out
 }
 
-func auditPo(po Type) error {
+func auditPo(po *gotext.Po) error {
 	for k, vs := range po.GetDomain().GetTranslations() {
 		if k == "" {
 			// Not a real string, just a header.

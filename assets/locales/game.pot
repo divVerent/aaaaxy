@@ -24,6 +24,10 @@ msgstr ""
 msgid "%s (%d/%d)"
 msgstr ""
 
+#: menu/level.go
+msgid "%s: %s"
+msgstr ""
+
 #: aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
 msgstr ""
@@ -284,7 +288,8 @@ msgstr ""
 msgid "Lowest"
 msgstr ""
 
-#: menu/reset.go menu/savestate.go menu/settings.go
+#: menu/level.go menu/reset.go menu/savestate.go
+#: menu/settings.go
 msgid "Main Menu"
 msgstr ""
 
@@ -442,6 +447,10 @@ msgstr ""
 msgid "Switch Save State"
 msgstr ""
 
+#: menu/level.go menu/main.go
+msgid "Switch World"
+msgstr ""
+
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
 msgstr ""
@@ -586,12 +595,6 @@ msgstr ""
 msgid "_locale_info:uses_arabic_shaping"
 msgstr ""
 
-#. Whether Ebitengine's glyph cache is safe to use with this language.
-#. Translate to either true (preferred) or false (if it fixes bugs).
-#: locale/linguas.go
-msgid "_locale_info:uses_ebiten_text"
-msgstr ""
-
 #: menu/credits.go
 msgid "and %s"
 msgstr ""
@@ -632,6 +635,10 @@ msgstr ""
 
 #: aaaaxy/init.go
 msgid "initializing input"
+msgstr ""
+
+#: aaaaxy/init.go
+msgid "initializing menu"
 msgstr ""
 
 #: aaaaxy/init.go

@@ -8,49 +8,49 @@
   <properties>
    <property name="orientation" value="EN"/>
   </properties>
-  <image width="16" height="16" source="warpzone_en.png"/>
+  <image width="16" height="16" source="_editorimgs/warpzone_en.png"/>
  </tile>
  <tile id="2" type="WarpZone">
   <properties>
    <property name="orientation" value="ES"/>
   </properties>
-  <image width="16" height="16" source="warpzone_es.png"/>
+  <image width="16" height="16" source="_editorimgs/warpzone_es.png"/>
  </tile>
  <tile id="3" type="WarpZone">
   <properties>
    <property name="orientation" value="NE"/>
   </properties>
-  <image width="16" height="16" source="warpzone_ne.png"/>
+  <image width="16" height="16" source="_editorimgs/warpzone_ne.png"/>
  </tile>
  <tile id="4" type="WarpZone">
   <properties>
    <property name="orientation" value="NW"/>
   </properties>
-  <image width="16" height="16" source="warpzone_nw.png"/>
+  <image width="16" height="16" source="_editorimgs/warpzone_nw.png"/>
  </tile>
  <tile id="5" type="WarpZone">
   <properties>
    <property name="orientation" value="SE"/>
   </properties>
-  <image width="16" height="16" source="warpzone_se.png"/>
+  <image width="16" height="16" source="_editorimgs/warpzone_se.png"/>
  </tile>
  <tile id="6" type="WarpZone">
   <properties>
    <property name="orientation" value="SW"/>
   </properties>
-  <image width="16" height="16" source="warpzone_sw.png"/>
+  <image width="16" height="16" source="_editorimgs/warpzone_sw.png"/>
  </tile>
  <tile id="7" type="WarpZone">
   <properties>
    <property name="orientation" value="WN"/>
   </properties>
-  <image width="16" height="16" source="warpzone_wn.png"/>
+  <image width="16" height="16" source="_editorimgs/warpzone_wn.png"/>
  </tile>
  <tile id="8" type="WarpZone">
   <properties>
    <property name="orientation" value="WS"/>
   </properties>
-  <image width="16" height="16" source="warpzone_ws.png"/>
+  <image width="16" height="16" source="_editorimgs/warpzone_ws.png"/>
  </tile>
  <tile id="9" type="Sprite">
   <properties>
