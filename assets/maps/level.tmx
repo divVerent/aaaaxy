@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8452">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8454">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -19211,6 +19211,30 @@
    <polygon points="0,0 -16,16 -16,0"/>
   </object>
   <object id="8451" type="Sprite" x="6288" y="8016">
+   <properties>
+    <property name="image" value="volcano.png"/>
+    <property name="image_region" value="0 0 16 64"/>
+    <property name="map_black_to" type="color" value="#00aa5500"/>
+    <property name="map_white_to" type="color" value="#ff0000aa"/>
+    <property name="orientation" value="WN"/>
+    <property name="slope_orientation" value="WN"/>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 16,0 16,16"/>
+  </object>
+  <object id="8452" type="Sprite" x="6224" y="8000">
+   <properties>
+    <property name="image" value="volcano.png"/>
+    <property name="image_region" value="0 0 16 64"/>
+    <property name="map_black_to" type="color" value="#00aa5500"/>
+    <property name="map_white_to" type="color" value="#ff0000aa"/>
+    <property name="orientation" value="WN"/>
+    <property name="slope_orientation" value="WN"/>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 -16,16 -16,0"/>
+  </object>
+  <object id="8453" type="Sprite" x="6272" y="8000">
    <properties>
     <property name="image" value="volcano.png"/>
     <property name="image_region" value="0 0 16 64"/>
