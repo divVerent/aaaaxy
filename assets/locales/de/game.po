@@ -1,10 +1,10 @@
 # 
 # Translators:
-# Rudolf Polzer, 2024
+# Rudolf Polzer, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2024\n"
+"Last-Translator: Rudolf Polzer, 2025\n"
 "Language-Team: German (https://app.transifex.com/aaaaxy/teams/158611/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,6 +29,10 @@ msgstr "%d:%02d:%02d.%03d"
 #: menu/map.go
 msgid "%s (%d/%d)"
 msgstr "%s (%d/%d)"
+
+#: menu/level.go
+msgid "%s: %s"
+msgstr "%s: %s"
 
 #: aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
@@ -296,7 +300,7 @@ msgstr "Niedrig"
 msgid "Lowest"
 msgstr "Am niedrigsten"
 
-#: menu/reset.go menu/savestate.go menu/settings.go
+#: menu/level.go menu/reset.go menu/savestate.go menu/settings.go
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
@@ -454,6 +458,10 @@ msgstr "Start"
 msgid "Switch Save State"
 msgstr "Spielstand wechseln"
 
+#: menu/level.go menu/main.go
+msgid "Switch World"
+msgstr "Welt wechseln"
+
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
 msgstr "Auf Vollbildmodus wechseln"
@@ -577,34 +585,29 @@ msgid "Z"
 msgstr "Z"
 
 #. Whether text is expected to fit text box height.
-#. Translate to either true or false.
+#. Translate to either true (preferred) or false.
 #: locale/linguas.go
 msgid "_locale_info:fits_height"
 msgstr "true"
 
 #. Which font to use.
-#. Translate to either default, bitmapfont, gofont, unifont.
+#. Translate to either default (preferred), bitmapfont, gofont or unifont.
 #: locale/linguas.go
 msgid "_locale_info:font"
 msgstr "default"
 
 #. Whether text should be rendered vertically instead of turned by 90 degrees.
-#. Translate to either default (which is a per-object default), true or false.
+#. Translate to either default (preferred, which is a per-object default),
+#. true or false.
 #: locale/linguas.go
 msgid "_locale_info:prefers_vertical_text"
 msgstr "default"
 
 #. Whether text should be shaped using Arabic rules, which implements RTL.
-#. Translate to either true or false.
+#. Translate to either false (preferred) or true (e.g. if a RTL language).
 #: locale/linguas.go
 msgid "_locale_info:uses_arabic_shaping"
 msgstr "false"
-
-#. Whether Ebitengine's glyph cache is safe to use with this language.
-#. Translate to either true or false.
-#: locale/linguas.go
-msgid "_locale_info:uses_ebiten_text"
-msgstr "true"
 
 #: menu/credits.go
 msgid "and %s"
@@ -647,6 +650,10 @@ msgstr "Initialisiere Dumping"
 #: aaaaxy/init.go
 msgid "initializing input"
 msgstr "Initialisiere Eingabe"
+
+#: aaaaxy/init.go
+msgid "initializing menu"
+msgstr "Initialisiere Menü"
 
 #: aaaaxy/init.go
 msgid "initializing noise"
