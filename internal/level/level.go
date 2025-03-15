@@ -46,6 +46,7 @@ type Level struct {
 	CreditsMusic            string
 	Hash                    uint64 `hash:"-"`
 	QuestionBlocks          []*Spawnable
+	Abilities               map[string]bool
 
 	tiles []LevelTile
 	width int
@@ -405,6 +406,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 		CheckpointLocationsHash: checkpointLocationsHash,
 		SaveGameVersion:         int(saveGameVersion),
 		CreditsMusic:            creditsMusic,
+		Abilities:               map[string]bool{},
 		tiles:                   make([]LevelTile, layer.Width*layer.Height),
 		width:                   layer.Width,
 	}
@@ -658,6 +660,9 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 				if objType == "QuestionBlock" {
 					level.QuestionBlocks = append(level.QuestionBlocks, ent)
 					// These do get linked.
+				}
+				if objType == "Give" {
+					level.Abilities[propmap.ValueOrP(properties, "ability", "", &parseErr)] = true
 				}
 				for y := spawnStartTile.Y; y <= spawnEndTile.Y; y++ {
 					for x := spawnStartTile.X; x <= spawnEndTile.X; x++ {

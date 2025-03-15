@@ -59,7 +59,7 @@ func (s *PlayerState) HasAbility(name string) bool {
 		return have
 	}
 	have, found = (*cheatPlayerAbilities)["all"]
-	if found {
+	if found && s.Level.Abilities[name] {
 		return have
 	}
 	key := "can_" + name
