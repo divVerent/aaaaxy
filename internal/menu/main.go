@@ -17,6 +17,7 @@ package menu
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
@@ -49,7 +50,7 @@ func (s *MainScreen) Init(m *Controller) error {
 	s.Controller = m
 	s.Play = MainScreenItem(s.Count)
 	s.Count++
-	if s.Controller.World.PlayerState.HasAbility("switch_level") && len(levels) > 1 {
+	if s.Controller.World.PlayerState.HasAbility("switch_level") && engine.CanSwitchLevel() {
 		s.SwitchLevel = MainScreenItem(s.Count)
 		s.Count++
 	} else {
