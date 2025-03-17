@@ -645,6 +645,10 @@ msgstr ""
 msgid "initializing noise"
 msgstr ""
 
+#: engine/world.go
+msgid "listing levels"
+msgstr ""
+
 #: level/level.go
 msgid "loading checkpoints"
 msgstr ""
