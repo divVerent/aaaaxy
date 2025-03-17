@@ -289,7 +289,7 @@ func Precache(s *splash.State) (splash.Status, error) {
 		levelLoaderCreated = true
 	}
 
-	status, err := s.Enter("listing levels", locale.G.Get("listing levels"), "failed to list levels", splash.Single(func() error {
+	status, err := s.Enter("enumerating levels", locale.G.Get("enumerating levels"), "failed to enumerate levels", splash.Single(func() error {
 		return initLevels()
 	}))
 	if status != splash.Continue {
