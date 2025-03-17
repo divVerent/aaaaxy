@@ -183,6 +183,17 @@ func (w *World) Spawn(sp *level.Spawnable, tilePos m.Pos, t *level.Tile) (*Entit
 	if _, found := w.incarnations[incarnation]; found {
 		return nil, nil
 	}
+	if propmap.Has(sp.Properties, "only_if_can_switch_level") {
+		restrict, err := propmap.ValueOr(sp.Properties, "only_if_can_switch_level", false)
+		if err != nil {
+			return nil, err
+		}
+		if restrict {
+			if !CanSwitchLevel() {
+				return nil, nil
+			}
+		}
+	}
 	pivot2InTile := m.Pos{X: level.TileSize, Y: level.TileSize}
 	rect := tInv.ApplyToRect2(pivot2InTile, sp.RectInTile)
 	rect.Origin = originTilePos.Mul(level.TileSize).Add(rect.Origin.Delta(m.Pos{}))
