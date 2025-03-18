@@ -659,6 +659,10 @@ msgstr "Initialisiere Menü"
 msgid "initializing noise"
 msgstr "Initialisiere Rauschen"
 
+#: engine/world.go
+msgid "enumerating levels"
+msgstr "Finde Levels"
+
 #: level/level.go
 msgid "loading checkpoints"
 msgstr "Lade Checkpoints"

@@ -458,5 +458,6 @@ func (c *Controller) LevelChanged() error {
 }
 
 func Init() error {
-	return initLevels()
+	// Nothing right now.
+	return nil
 }

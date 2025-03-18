@@ -657,6 +657,10 @@ msgstr "Initio minutum"
 msgid "initializing noise"
 msgstr "initio strepitum"
 
+#: engine/world.go
+msgid "enumerating levels"
+msgstr "enumero libellas"
+
 #: level/level.go
 msgid "loading checkpoints"
 msgstr "accumulo locos"

@@ -20,6 +20,8 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"sort"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/colorm"
@@ -228,6 +230,46 @@ func SwitchLevel(name string) error {
 	return nil
 }
 
+// LevelDescription returns the user visible name of the given level.
+func LevelDescription(name string) string {
+	switch name {
+	case "level":
+		return "AAAAXY"
+	default:
+		return name
+	}
+}
+
+var levels []string
+
+func initLevels() error {
+	l, err := vfs.ReadDir("maps")
+	if err != nil {
+		return fmt.Errorf("could not enumerate levels: %w", err)
+	}
+	for _, level := range l {
+		name, isTMX := strings.CutSuffix(level, ".tmx")
+		if !isTMX {
+			continue
+		}
+		levels = append(levels, name)
+	}
+	sort.Slice(levels, func(i, j int) bool {
+		return LevelDescription(levels[i]) < LevelDescription(levels[j])
+	})
+	return nil
+}
+
+// CanSwitchLevel returns whether multiple levels are present.
+func CanSwitchLevel() bool {
+	return len(levels) > 1
+}
+
+// Levels returns the list of available levels.
+func Levels() []string {
+	return levels
+}
+
 func SaveName(idx int) string {
 	if *cheatLevel == "level" {
 		return fmt.Sprintf("save-%d.json", idx)
@@ -247,7 +289,14 @@ func Precache(s *splash.State) (splash.Status, error) {
 		levelLoaderCreated = true
 	}
 
-	status, err := s.Enter("loading level", locale.G.Get("loading level"), "failed to load level", levelLoader.LoadStepwise)
+	status, err := s.Enter("enumerating levels", locale.G.Get("enumerating levels"), "failed to enumerate levels", splash.Single(func() error {
+		return initLevels()
+	}))
+	if status != splash.Continue {
+		return status, err
+	}
+
+	status, err = s.Enter("loading level", locale.G.Get("loading level"), "failed to load level", levelLoader.LoadStepwise)
 	if status != splash.Continue {
 		return status, err
 	}
