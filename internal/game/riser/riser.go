@@ -304,6 +304,7 @@ func (r *Riser) Update() {
 	playerPhysics := r.World.Player.Impl.(interfaces.Physics)
 	canCarry := playerAbilities.HasAbility("carry")
 	canPush := playerAbilities.HasAbility("push")
+	canPull := playerAbilities.HasAbility("pull")
 	canStand := playerAbilities.HasAbility("stand")
 	actionPressed := playerButtons.ActionPressed()
 	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
@@ -317,6 +318,12 @@ func (r *Riser) Update() {
 			r.State = MovingRight
 		} else {
 			r.State = MovingLeft
+		}
+	} else if canPull && actionPressed {
+		if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X {
+			r.State = MovingLeft
+		} else {
+			r.State = MovingRight
 		}
 	} else if canStand && playerAboveMe {
 		r.State = MovingUp
