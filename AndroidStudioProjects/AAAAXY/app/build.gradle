@@ -78,7 +78,7 @@ task ebitenMobile(type: Exec) {
         '-ldflags=all=-s -w -buildid=',
         '-a',
         '-trimpath',
-        '-buildvcs=false',
+        // '-buildvcs=false',  # Not supported by ebitenmobile.
         'github.com/divVerent/aaaaxy/AndroidStudioProjects/AAAAXY/app/src/main/go/aaaaxy'
 }
 
