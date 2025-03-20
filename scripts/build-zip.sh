@@ -20,6 +20,7 @@ out=$PWD/aaaaxy.dat
 out2=$PWD/assets/aaaaxy.dat
 
 : ${ADVZIP:=advzip -4}
+: ${STRIP_NONDETERMINISM_ZIP:=strip-nondeterminism -t zip}
 
 rm -f "$out"
 
@@ -34,5 +35,6 @@ done
 
 cd "$d0"/assets
 zip -r "$out" [!_]*/[!_]*
+$STRIP_NONDETERMINISM_ZIP "$out"
 $ADVZIP -z "$out"
 ln -f "$out" "$out2" || cp "$out" "$out2"
