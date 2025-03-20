@@ -18,9 +18,10 @@ go generate -tags zip github.com/divVerent/aaaaxy
 	-iosversion 13.0 \
 	-tags zip \
 	-gcflags=all=-dwarf=false \
-	-ldflags=all='-s -w' \
+	-ldflags=all='-s -w -buildid=' \
 	-a \
 	-trimpath \
+	-buildvcs=false \
 	github.com/divVerent/aaaaxy/XcodeProjects/iOS/aaaaxy/go/aaaaxy
 
 cp ../../../../../aaaaxy.dat ../..

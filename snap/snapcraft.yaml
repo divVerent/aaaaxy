@@ -88,6 +88,7 @@ parts:
       - libxrandr-dev
       - libxxf86vm-dev
       - pkgconf
+      - strip-nondeterminism
       - zip
     stage-packages:
       - libasound2
