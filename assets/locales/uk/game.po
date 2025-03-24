@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Mark Seagull, 2023
-# Rudolf Polzer, 2024
+# Rudolf Polzer, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2024\n"
+"Last-Translator: Rudolf Polzer, 2025\n"
 "Language-Team: Ukrainian (https://app.transifex.com/aaaaxy/teams/158611/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,6 +30,10 @@ msgstr "%d:%02d:%02d.%03d"
 #: menu/map.go
 msgid "%s (%d/%d)"
 msgstr "%s (%d/%d)"
+
+#: menu/level.go
+msgid "%s: %s"
+msgstr "%s: %s"
 
 #: aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
@@ -297,7 +301,7 @@ msgstr "Низька"
 msgid "Lowest"
 msgstr "Найнижча"
 
-#: menu/reset.go menu/savestate.go menu/settings.go
+#: menu/level.go menu/reset.go menu/savestate.go menu/settings.go
 msgid "Main Menu"
 msgstr "Головне меню"
 
@@ -455,6 +459,10 @@ msgstr "Старт"
 msgid "Switch Save State"
 msgstr "Завантажити збереження"
 
+#: menu/level.go menu/main.go
+msgid "Switch World"
+msgstr ""
+
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
 msgstr "Перемкнутися до повноекранного режиму"
@@ -600,12 +608,6 @@ msgstr "default"
 msgid "_locale_info:uses_arabic_shaping"
 msgstr "false"
 
-#. Whether Ebitengine's glyph cache is safe to use with this language.
-#. Translate to either true (preferred) or false (if it fixes bugs).
-#: locale/linguas.go
-msgid "_locale_info:uses_ebiten_text"
-msgstr "true"
-
 #: menu/credits.go
 msgid "and %s"
 msgstr "і %s"
@@ -649,8 +651,16 @@ msgid "initializing input"
 msgstr "ініціюємо введення"
 
 #: aaaaxy/init.go
+msgid "initializing menu"
+msgstr "ініціюємо меню"
+
+#: aaaaxy/init.go
 msgid "initializing noise"
 msgstr "ініціюємо шум"
+
+#: engine/world.go
+msgid "enumerating levels"
+msgstr "перелічуємо рівні"
 
 #: level/level.go
 msgid "loading checkpoints"
