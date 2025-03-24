@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 20:11-0400\n"
+"POT-Creation-Date: 2025-03-17 13:03-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2025\n"
 "Language-Team: Japanese (https://app.transifex.com/aaaaxy/teams/158611/ja/)\n"
@@ -1467,3 +1467,19 @@ msgstr "5 ..."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8374]
 msgid "Героям слава!"
 msgstr "Героям слава!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
+msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
+msgid "A path to another world has appeared nearby."
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8439]
+msgid "You can now enter another world!"
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
+msgid "The Teleporter{{BR}}(press {{ExitButton}})"
+msgstr ""
