@@ -1,0 +1,4 @@
+  - Build: try to remove nondeterministic elements.
+  - Engine: new "pull" ability (to be used on future worlds).
+  - Engine: module updates.
+  - Map: add the direly missing sharp edges sign.
