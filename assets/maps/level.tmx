@@ -1362,6 +1362,7 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
+    <property name="text_if_flipped" value="Nexuiz!"/>
    </properties>
   </object>
   <object id="405" gid="322" x="4960" y="4512" width="32" height="32">
@@ -1435,6 +1436,7 @@
     <property name="text_bg" type="color" value="#ff000000"/>
     <property name="text_fg" type="color" value="#ffaaaaaa"/>
     <property name="text_font" value="Regular"/>
+    <property name="text_if_flipped" value="Welcome to ..."/>
    </properties>
   </object>
   <object id="422" type="Text" x="4304" y="7072" width="320" height="16">
@@ -11582,6 +11584,7 @@
     <property name="_text_localization_note" value="Part of 'What are you after?'"/>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="... after?"/>
+    <property name="text_if_flipped" value="... you ..."/>
    </properties>
   </object>
   <object id="5005" gid="312" x="5600" y="2616" width="32" height="32">
@@ -11589,6 +11592,7 @@
     <property name="_text_localization_note" value="Part of 'What are you after?'"/>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="... are ..."/>
+    <property name="text_if_flipped" value="What ..."/>
    </properties>
   </object>
   <object id="5006" gid="312" x="5024" y="2616" width="32" height="32">
@@ -11596,6 +11600,7 @@
     <property name="_text_localization_note" value="Part of 'What are you after?'"/>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="What ..."/>
+    <property name="text_if_flipped" value="... are ..."/>
    </properties>
   </object>
   <object id="5007" gid="312" x="5024" y="2808" width="32" height="32">
@@ -11603,6 +11608,7 @@
     <property name="_text_localization_note" value="Part of 'What are you after?'"/>
     <property name="reached_from" type="object" value="4935"/>
     <property name="text" value="... you ..."/>
+    <property name="text_if_flipped" value="... after?"/>
    </properties>
   </object>
   <object id="5008" gid="312" x="5312" y="2496" width="32" height="32">
