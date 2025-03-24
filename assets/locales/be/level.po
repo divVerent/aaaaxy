@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-15 10:50-0500\n"
+"POT-Creation-Date: 2025-03-17 13:03-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2024\n"
 "Language-Team: Belarusian (https://app.transifex.com/aaaaxy/teams/158611/be/)\n"
@@ -630,6 +630,8 @@ msgstr "Некаторыя рэчы патрабуюць другой спроб
 msgid "Reset"
 msgstr "Скінуць"
 
+#. this is clearly a pun in English - if you can, make up a similar pun, if
+#. not, possibly any pun involving platforms will do
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1570]
 msgid "If platforms require platforming, what do trains require?"
 msgstr ""
@@ -669,9 +671,11 @@ msgid "Swim swim hungry, swim swim hungry."
 msgstr "Плаваць, плаваць, галодны, плаваць, плаваць, галодны."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
 msgid "The note on the right is much more interesting than this one."
 msgstr "Нататка справа нашмат цікавейшая за гэтую."
 
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
 msgid "The note on the left is much more interesting than this one."
 msgstr "Нататка зьлева нашмат цікавейшая за гэтую."
@@ -1497,3 +1501,19 @@ msgstr "5 ..."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8374]
 msgid "Героям слава!"
 msgstr "Героям слава!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
+msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
+msgid "A path to another world has appeared nearby."
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8439]
+msgid "You can now enter another world!"
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
+msgid "The Teleporter{{BR}}(press {{ExitButton}})"
+msgstr ""
