@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-15 10:50-0500\n"
+"POT-Creation-Date: 2025-03-17 13:03-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2024\n"
 "Language-Team: Chinese Simplified (https://app.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
@@ -620,6 +620,8 @@ msgstr "有些事情就需要试两次。"
 msgid "Reset"
 msgstr "重置"
 
+#. this is clearly a pun in English - if you can, make up a similar pun, if
+#. not, possibly any pun involving platforms will do
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1570]
 msgid "If platforms require platforming, what do trains require?"
 msgstr "你已经见到了平台。现在来了火车！"
@@ -657,9 +659,11 @@ msgid "Swim swim hungry, swim swim hungry."
 msgstr "游游饿，游游饿。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
 msgid "The note on the right is much more interesting than this one."
 msgstr "右边的便签比这个有趣多了。"
 
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
 msgid "The note on the left is much more interesting than this one."
 msgstr "左边的便签比这个有趣多了。"
@@ -1461,3 +1465,19 @@ msgstr "5……"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8374]
 msgid "Героям слава!"
 msgstr "Героям слава!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
+msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
+msgid "A path to another world has appeared nearby."
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8439]
+msgid "You can now enter another world!"
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
+msgid "The Teleporter{{BR}}(press {{ExitButton}})"
+msgstr ""

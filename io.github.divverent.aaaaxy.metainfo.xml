@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.0" date="2025-02-24">
-      <description><ul><li>Assets: map and demo updates to use the new slopes feature.</li><li>Engine: early preparations for having multiple level files.</li><li>Engine: support slopes.</li><li>Engine: update Go modules.</li><li>Engine: update to Go 1.23. This ends support for Big Sur.</li><li>Physics: allow stepping up when barely clipping a corner.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.0</url>
+    <release version="v1.6.64" date="2025-03-24">
+      <description><ul><li>Build: try to remove nondeterministic elements.</li><li>Engine: new "pull" ability (to be used on future worlds).</li><li>Engine: module updates.</li><li>Map: add the direly missing sharp edges sign.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.64</url>
     </release>
   </releases>
 </component>

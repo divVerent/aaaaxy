@@ -12,8 +12,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-      - name: Install Dependencies
-        run: 'sudo apt-get update && sudo apt-get -y install zip'
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -22,7 +20,6 @@ jobs:
         run: 'make'
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
-          ADVZIP: ':'
           GOARCH: wasm
           GOOS: js
       - name: Archive Binary
@@ -62,6 +59,7 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
           ADVZIP: ':'
+          STRIP_NONDETERMINISM_ZIP: ':'
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:

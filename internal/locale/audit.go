@@ -78,6 +78,10 @@ func auditPo(po *gotext.Po) error {
 		}
 		kf := formats(k)
 		for _, v := range vs.Trs {
+			if v == "" {
+				// Empty string entries return the ID.
+				continue
+			}
 			vf := formats(v)
 			if !reflect.DeepEqual(kf, vf) {
 				err := fmt.Errorf("translation format string mismatch: %q (%v) -> %q (%v)", k, kf, v, vf)
