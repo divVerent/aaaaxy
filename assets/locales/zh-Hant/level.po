@@ -218,7 +218,7 @@ msgstr "選那{{BR}}條路？"
 #. https://en.wikipedia.org/wiki/Waterfall_(M._C._Escher)
 #: assets/maps/level.tmx//map/objectgroup/object[@id=309]
 msgid "Some water must be periodically added to compensate for evaporation."
-msgstr "必須定期加水以補償蒸發掉的水。"
+msgstr "必須定期加水以補償蒸發。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=311]
 msgid "You broke out of the stream, yet you're back in the stream."
