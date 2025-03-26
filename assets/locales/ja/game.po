@@ -660,7 +660,7 @@ msgstr "初期化中： noise"
 
 #: engine/world.go
 msgid "enumerating levels"
-msgstr "エニュメレーション中： ステージ"
+msgstr "ステージのエニュメレーション中"
 
 #: level/level.go
 msgid "loading checkpoints"
