@@ -12,6 +12,7 @@ export GOOS=ios
 
 go generate -tags zip github.com/divVerent/aaaaxy
 
+# -buildvcs=false  # Not supported by ebitenmobile.
 ../../../../../scripts/ebitenmobile.sh bind \
 	-target ios \
 	-o aaaaxy.xcframework \
@@ -21,7 +22,6 @@ go generate -tags zip github.com/divVerent/aaaaxy
 	-ldflags=all='-s -w -buildid=' \
 	-a \
 	-trimpath \
-	-buildvcs=false \
 	github.com/divVerent/aaaaxy/XcodeProjects/iOS/aaaaxy/go/aaaaxy
 
 cp ../../../../../aaaaxy.dat ../..
