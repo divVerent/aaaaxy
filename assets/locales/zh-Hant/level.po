@@ -529,7 +529,7 @@ msgstr "你現在可以站在平台上了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1430]
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr "釘鞋{{BR}}提醒：小心撞頭！"
+msgstr "釘鞋{{BR}}提醒：小心碰頭！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1441]
 msgid "Steadfastly holding on to the iron rod prevents disasters."
