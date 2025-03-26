@@ -449,7 +449,7 @@ msgstr "音效"
 
 #: menu/credits.go
 msgid "Sprites"
-msgstr "精灵"
+msgstr "精灵图"
 
 #: fun/string.go
 msgid "Start"
