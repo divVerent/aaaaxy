@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Anthony Wang, 2024
 # Rudolf Polzer, 2024
+# Anthony Wang, 2025
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 13:03-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2024\n"
+"Last-Translator: Anthony Wang, 2025\n"
 "Language-Team: Chinese Simplified (https://app.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1468,16 +1468,16 @@ msgstr "Героям слава!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
 msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
-msgstr ""
+msgstr "这个牌子{{BR}}很尖锐{{BR}}请勿触碰"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
 msgid "A path to another world has appeared nearby."
-msgstr ""
+msgstr "一條到另一个世界的道路出现了。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8439]
 msgid "You can now enter another world!"
-msgstr ""
+msgstr "你现在可以进入另一个世界了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
-msgstr ""
+msgstr "传送机{{BR}}（按{{ExitButton}}）"
