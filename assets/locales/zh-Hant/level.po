@@ -1332,7 +1332,7 @@ msgstr "Vuvuzela Virtuoso"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6990]
 msgid "It is hard to focus with all the noise."
-msgstr "在噪音中很難集中注意力。"
+msgstr "噪音下很難集中注意力。"
 
 #. https://thelettervsixtim.es/ - try keeping the two V alliteration when
 #. translating
