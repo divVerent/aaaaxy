@@ -188,7 +188,7 @@ msgstr "完成"
 
 #: menu/settings.go menu/touchedit.go
 msgid "Edit Touch Controls"
-msgstr "编辑触摸控制"
+msgstr "编辑触控"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
