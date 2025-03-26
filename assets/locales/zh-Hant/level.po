@@ -1210,7 +1210,7 @@ msgstr "所有的好事……"
 #. Part of 'All good things come to an end.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6117]
 msgid "... come to an end."
-msgstr "……都會結束。"
+msgstr "……終究會結束。"
 
 #. Reference to Dr. Wily from the Mega Man / Rockman series.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6118]
