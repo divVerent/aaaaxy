@@ -1257,7 +1257,7 @@ msgstr "有時候假方法可能是唯一的方法。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6537]
 msgid "Not triggering the switch of doom might take some effort."
-msgstr "不觸發厄運開關可能需要一些努力。"
+msgstr "不觸發厄運開關可能需要些努力。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6538]
 msgid "A window of opportunity can lead to greener pastures."
