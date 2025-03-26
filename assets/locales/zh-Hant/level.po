@@ -373,8 +373,8 @@ msgid ""
 "Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your"
 " keys{{BR}}3) {{ExitButton}} for checkout"
 msgstr ""
-"浠爾伯特的酉館{{BR}}~Hilbert's Dotel~{{BR}}歡迎你！{{BR}}{{BR}}1）入住{{BR}}2）拿鑰匙{{BR}}3）按"
-" {{ExitButton}} 退房。"
+"浠爾伯特的酉館{{BR}}~Hilbert's Dotel~{{BR}}歡迎！{{BR}}{{BR}}1）入住{{BR}}2）拿鑰匙{{BR}}3）按 "
+"{{ExitButton}} 退房。"
 
 #. Translate 'Dilbert's Hotel', but swap the first consonant of the two main
 #. words. Prefer translating 'Hotel' to something that makes a H sound at the
