@@ -1414,7 +1414,7 @@ msgstr "同时做两件事可能会有帮助。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8049]
 msgid "Oh, it shrunk?"
-msgstr "哦，变小了？"
+msgstr "哦，缩小了？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8057]
 msgid "Stepping away from the problem can help resolve it."
