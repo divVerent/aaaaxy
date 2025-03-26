@@ -224,7 +224,7 @@ msgid ""
 "All cheats are documented in --help."
 msgstr ""
 "オーケー、降参だ。好きにしな。\n"
-"チートは全部 --helpに記録されてる。"
+"チートは全部 --helpに記録してある。"
 
 #: menu/credits.go
 msgid "For Software Licenses{{BR}}Press Right"
