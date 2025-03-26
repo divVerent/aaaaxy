@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Konishi, Hiroto, 2024
 # Rudolf Polzer, 2025
+# Konishi, Hiroto, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Konishi, Hiroto, 2025\n"
 "Language-Team: Japanese (https://app.transifex.com/aaaaxy/teams/158611/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -461,7 +461,7 @@ msgstr "セーブデータ切り替え"
 
 #: menu/level.go menu/main.go
 msgid "Switch World"
-msgstr ""
+msgstr "ワールド切り替え"
 
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
@@ -627,7 +627,7 @@ msgstr "余白"
 
 #: sound/sound.go
 msgid "enumerating sounds"
-msgstr "音声のエニュミレート中"
+msgstr "音声のエニュメレーション中"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
@@ -660,7 +660,7 @@ msgstr "初期化中： noise"
 
 #: engine/world.go
 msgid "enumerating levels"
-msgstr "ステージのエニュミレート中"
+msgstr "ステージのエニュメレーション中"
 
 #: level/level.go
 msgid "loading checkpoints"
