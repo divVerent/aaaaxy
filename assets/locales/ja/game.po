@@ -627,7 +627,7 @@ msgstr "余白"
 
 #: sound/sound.go
 msgid "enumerating sounds"
-msgstr "エニュメレーション中：sound"
+msgstr "エニュメレーション中： sound"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
