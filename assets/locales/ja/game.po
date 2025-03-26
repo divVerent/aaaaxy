@@ -627,7 +627,7 @@ msgstr "余白"
 
 #: sound/sound.go
 msgid "enumerating sounds"
-msgstr "音声ファイルのエニュメレーション中"
+msgstr "音声ファイルをエニュメレーション中"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
@@ -660,7 +660,7 @@ msgstr "初期化中： noise"
 
 #: engine/world.go
 msgid "enumerating levels"
-msgstr "ステージのエニュメレーション中"
+msgstr "ステージをエニュメレーション中"
 
 #: level/level.go
 msgid "loading checkpoints"
