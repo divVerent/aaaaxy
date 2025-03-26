@@ -603,7 +603,7 @@ msgstr "大平台小平台"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1546]
 msgid "Unlike that Italian plumber, you can go left."
-msgstr "你可以向左走，不像那義大利的水管工。"
+msgstr "你可以向左走，不像那義大利水管工。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1547]
 msgid "Some things just take a second attempt."
