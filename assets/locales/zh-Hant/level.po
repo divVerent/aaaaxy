@@ -201,7 +201,7 @@ msgstr "短路了"
 #. https://deltarune.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=295]
 msgid "Your choices don't matter."
-msgstr "你的選擇沒差。"
+msgstr "你選什麼都一樣。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=296]
 msgid "Choose Wisely"
