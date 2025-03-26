@@ -566,7 +566,7 @@ msgstr "發射？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1456]
 msgid "Redundant launch systems aren't rocket science."
-msgstr "冗餘的發射系統不是火箭科學。"
+msgstr "冗餘發射系統不是火箭科學。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1457]
 msgid "Fly High"
