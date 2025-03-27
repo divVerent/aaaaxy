@@ -143,6 +143,9 @@ sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 # Arch Linux.
 (
 	cd ../aur-aaaaxy
+	git checkout master
+	git fetch origin
+	git reset --hard origin/master
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;" PKGBUILD
 	podman run --network=slirp4netns:enable_ipv6=false --pull=always --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/archlinux:latest /bin/sh -c '
 		set -e

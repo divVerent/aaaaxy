@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Anthony Wang, 2024
-# Ran Dint, 2024
 # Rudolf Polzer, 2025
+# Ran Dint, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Ran Dint, 2025\n"
 "Language-Team: Chinese Traditional (https://app.transifex.com/aaaaxy/teams/158611/zh-Hant/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -462,7 +462,7 @@ msgstr "切換存檔"
 
 #: menu/level.go menu/main.go
 msgid "Switch World"
-msgstr ""
+msgstr "切換世界"
 
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"

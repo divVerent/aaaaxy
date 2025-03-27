@@ -5,8 +5,8 @@
 # 
 # Translators:
 # Anthony Wang, 2024
-# Ran Dint, 2024
 # Rudolf Polzer, 2024
+# Ran Dint, 2025
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 13:03-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2024\n"
+"Last-Translator: Ran Dint, 2025\n"
 "Language-Team: Chinese Traditional (https://app.transifex.com/aaaaxy/teams/158611/zh-Hant/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,7 +114,7 @@ msgstr "有些東西就只有一邊。"
 #. https://gettingoverit.co/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=145]
 msgid "Thinking outside the box can remove the need of getting over it."
-msgstr "跳脫框架的思考可以幫你跳過問題。"
+msgstr "跳脫框架思考可以幫你跳過問題。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=147]
 msgid "The Möbius Strip"
@@ -201,7 +201,7 @@ msgstr "短路了"
 #. https://deltarune.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=295]
 msgid "Your choices don't matter."
-msgstr "你的選擇沒差。"
+msgstr "你選什麼都一樣。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=296]
 msgid "Choose Wisely"
@@ -218,7 +218,7 @@ msgstr "選那{{BR}}條路？"
 #. https://en.wikipedia.org/wiki/Waterfall_(M._C._Escher)
 #: assets/maps/level.tmx//map/objectgroup/object[@id=309]
 msgid "Some water must be periodically added to compensate for evaporation."
-msgstr "必須定期加水以補償蒸發掉的水。"
+msgstr "必須定期加水以補償蒸發。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=311]
 msgid "You broke out of the stream, yet you're back in the stream."
@@ -373,8 +373,8 @@ msgid ""
 "Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your"
 " keys{{BR}}3) {{ExitButton}} for checkout"
 msgstr ""
-"浠爾伯特的酉館{{BR}}~Hilbert's Dotel~{{BR}}歡迎你！{{BR}}{{BR}}1）入住{{BR}}2）拿鑰匙{{BR}}3）按"
-" {{ExitButton}} 退房。"
+"浠爾伯特的酉館{{BR}}~Hilbert's Dotel~{{BR}}歡迎！{{BR}}{{BR}}1）入住{{BR}}2）拿鑰匙{{BR}}3）按 "
+"{{ExitButton}} 退房。"
 
 #. Translate 'Dilbert's Hotel', but swap the first consonant of the two main
 #. words. Prefer translating 'Hotel' to something that makes a H sound at the
@@ -529,7 +529,7 @@ msgstr "你現在可以站在平台上了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1430]
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr "釘鞋{{BR}}提醒：小心撞頭！"
+msgstr "釘鞋{{BR}}提醒：小心碰頭！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1441]
 msgid "Steadfastly holding on to the iron rod prevents disasters."
@@ -538,7 +538,7 @@ msgstr "堅定不移地緊握鐵棒可以避免災難。"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1442]
 msgid ""
 "Sometimes the thing that is in plain sight can be a challenge to reach."
-msgstr "有時近在咫尺的事物需要下很多功夫才能勾到。"
+msgstr "有時近在咫尺的事物得下很多功夫才能勾到。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1443]
 msgid "Can't tell if this place is pointless or not."
@@ -566,7 +566,7 @@ msgstr "發射？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1456]
 msgid "Redundant launch systems aren't rocket science."
-msgstr "冗餘的發射系統不是火箭科學。"
+msgstr "冗餘發射系統不是火箭科學。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1457]
 msgid "Fly High"
@@ -587,7 +587,7 @@ msgstr "你現在可以把平台推開了！"
 #. 'coil' here refers to an electromagnetic coil
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
-msgstr "電磁鐵{{BR}}（按住{{ActionButton}}可以使用）{{BR}}提醒：不要亂扔！"
+msgstr "電磁鐵{{BR}}（按住{{ActionButton}}以使用）{{BR}}提醒：不要亂扔！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1493]
 msgid "You can now grab and carry them!"
@@ -595,7 +595,7 @@ msgstr "你現在可以抓住並攜帶平台了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1494]
 msgid "The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"
-msgstr "手套{{BR}}（按住{{ActionButton}}可以使用）{{BR}}提醒：不要超速！"
+msgstr "手套{{BR}}（按住{{ActionButton}}以使用）{{BR}}提醒：不要超速！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1545]
 msgid "Little & Big Platforms"
@@ -603,7 +603,7 @@ msgstr "大平台小平台"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1546]
 msgid "Unlike that Italian plumber, you can go left."
-msgstr "你可以向左走，不像那義大利的水管工。"
+msgstr "你可以向左走，不像那義大利水管工。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1547]
 msgid "Some things just take a second attempt."
@@ -845,7 +845,7 @@ msgstr "你現在可以關掉力場了！"
 #. 'remote' here refers to e.g. a TV's remote control
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3834]
 msgid "The Remote{{BR}}(hold {{ActionButton}})"
-msgstr "遙控器{{BR}}（按住{{ActionButton}}可以使用）"
+msgstr "遙控器{{BR}}（按住{{ActionButton}}以使用）"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3840]
 msgid "Do you have{{BR}}what it takes?"
@@ -1210,7 +1210,7 @@ msgstr "所有的好事……"
 #. Part of 'All good things come to an end.'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6117]
 msgid "... come to an end."
-msgstr "……都會結束。"
+msgstr "……終究會結束。"
 
 #. Reference to Dr. Wily from the Mega Man / Rockman series.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6118]
@@ -1257,7 +1257,7 @@ msgstr "有時候假方法可能是唯一的方法。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6537]
 msgid "Not triggering the switch of doom might take some effort."
-msgstr "不觸發厄運開關可能需要一些努力。"
+msgstr "不觸發厄運開關可能需要些努力。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6538]
 msgid "A window of opportunity can lead to greener pastures."
@@ -1332,7 +1332,7 @@ msgstr "Vuvuzela Virtuoso"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6990]
 msgid "It is hard to focus with all the noise."
-msgstr "在噪音中很難集中注意力。"
+msgstr "噪音下很難集中注意力。"
 
 #. https://thelettervsixtim.es/ - try keeping the two V alliteration when
 #. translating
@@ -1400,7 +1400,7 @@ msgstr "如果卡住了，{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7877]
 msgid "Phew?"
-msgstr "吁？"
+msgstr "鬆一口氣？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7980]
 msgid "reached A New Beginning with {{Abilities}} at {{GameTime}}."
@@ -1470,16 +1470,16 @@ msgstr "Героям слава!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
 msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
-msgstr ""
+msgstr "這個告示牌{{BR}}很尖銳{{BR}}請勿碰觸"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
 msgid "A path to another world has appeared nearby."
-msgstr ""
+msgstr "一條通往另個世界的道路出現了。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8439]
 msgid "You can now enter another world!"
-msgstr ""
+msgstr "你現在可以進入另一個世界了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
-msgstr ""
+msgstr "傳送器{{BR}}（按{{ExitButton}}以使用）"
