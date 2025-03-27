@@ -1401,8 +1401,8 @@ msgstr "如果卡住了，{{BR}}按{{ExitButton}}。"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7877]
 msgid "Phew?"
 msgstr ""
-"鬆一口\n"
-"氣？"
+"鬆一\n"
+"口氣？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7980]
 msgid "reached A New Beginning with {{Abilities}} at {{GameTime}}."
