@@ -28,6 +28,12 @@ if [ -z "$prev" ]; then
 	prev=${prev%-*-g*}
 fi
 
+installed_version=$(go version | perl -ne '/go(\d\S+)/ and print "$1\n"')
+declared_version=$(grep ^toolchain go.mod | perl -ne '/go(\d\S+)/ and print "$1\n"')
+if [ x"$installed_version" != x"$declared_version" ]; then
+	echo >&2 "Mismatching Go version: installed $installed_version, declared $declared_version. Please fix."
+fi
+
 new=$(sh scripts/version.sh gittag)
 
 cat <<EOF >.commitmsg

@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Konishi, Hiroto, 2024
 # Rudolf Polzer, 2025
+# Konishi, Hiroto, 2025
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 13:03-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Konishi, Hiroto, 2025\n"
 "Language-Team: Japanese (https://app.transifex.com/aaaaxy/teams/158611/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -353,7 +353,7 @@ msgstr "11"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1101]
 msgid "The first track is never the one with your train."
-msgstr "一番手前のホームに乗る電車が来ることは、決してない。"
+msgstr "一番手前のホームには、乗る電車は決して来ない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
@@ -528,7 +528,7 @@ msgstr "足場に立てるようになった！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1430]
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr "スパイクシューズ{{BR}}心得：頭上注意"
+msgstr "【スパイクシューズ】{{BR}}心得：頭上注意"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1441]
 msgid "Steadfastly holding on to the iron rod prevents disasters."
@@ -701,7 +701,7 @@ msgstr "切り替える"
 #. dies'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1807]
 msgid "He who waits,{{BR}}retries ... #DGR"
-msgstr "待つ者は{{BR}}リトライすることとなる... #DGR"
+msgstr "待つ者、{{BR}}みなリトライ ... #DGR"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1814]
 msgid "Avoid getting blocked in!"
@@ -756,7 +756,7 @@ msgstr "ときには、見失うだけで済まない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2665]
 msgid "Hey, I needed that!"
-msgstr "クソ、あれが要るのか！"
+msgstr "おい、あれ要るのかよ！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2675]
 msgid "Do you like the red room?"
@@ -877,7 +877,7 @@ msgstr "警告"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3856]
 msgid "RISK OF{{BR}}ELECTRIC SHOCK"
-msgstr "電気ショック注意"
+msgstr "感電注意"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3857]
 msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
@@ -945,7 +945,7 @@ msgstr "カーーーートレース！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4097]
 msgid "Those who haven't learned the trick{{BR}}must take a little pit stop."
-msgstr "学習しない人は、{{BR}}寄り道をする羽目になる。"
+msgstr "学習しなかった人は、{{BR}}休息を取らされる。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4107]
 msgid "Moved Enough?"
@@ -1059,7 +1059,7 @@ msgstr "{{BigCity}}へようこそ。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4986]
 msgid "Crime doesn't pay.{{BR}}Press {{ExitButton}}."
-msgstr "犯罪したっていいことない。{{BR}}{{ExitButton}}を押せ。"
+msgstr "犯罪は割に合わない。{{BR}}{{ExitButton}}を押せ。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4997]
 msgid "Dude!{{BR}}That's{{BR}}MY car!"
@@ -1470,16 +1470,16 @@ msgstr "Героям слава!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
 msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
-msgstr ""
+msgstr "看板{{BR}}＜角に注意＞{{BR}}触るな"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
 msgid "A path to another world has appeared nearby."
-msgstr ""
+msgstr "別のワールドへの道が近くに現れた。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8439]
 msgid "You can now enter another world!"
-msgstr ""
+msgstr "別のワールドに行けるようになった！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
-msgstr ""
+msgstr "テレポーター{{BR}}（{{ExitButton}}を押せ）"
