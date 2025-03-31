@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Denis Kočkarov, 2023
 # Rudolf Polzer, 2025
+# Denis Kočkarov, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Denis Kočkarov, 2025\n"
 "Language-Team: Belarusian (https://app.transifex.com/aaaaxy/teams/158611/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -461,7 +461,7 @@ msgstr "Захаваць у іншы слот"
 
 #: menu/level.go menu/main.go
 msgid "Switch World"
-msgstr ""
+msgstr "Перайсьці ў іншы сьвет"
 
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
@@ -565,7 +565,7 @@ msgstr "Y: %s"
 
 #: game/player/player.go
 msgid "You now have 30 lives. Enjoy!"
-msgstr "Цяпер вы маеце 30 жыцьцяў. Цесьцеся!"
+msgstr "Цяпер вы маеце 30 жыцьцяў. Цешцеся!"
 
 #: game/player/player.go
 msgid "You really thought this would do something?"
@@ -573,7 +573,7 @@ msgstr "Вы сапраўды думалі, што гэта б штосьці з
 
 #: menu/credits.go
 msgid "Your Speedrun Categories"
-msgstr "Вашы катэґорыі спідрану"
+msgstr "Вашы катэґорыі сьпідрану"
 
 #: menu/credits.go
 msgid "Your Time"
@@ -660,7 +660,7 @@ msgstr "ініцыялізуем шум"
 
 #: engine/world.go
 msgid "enumerating levels"
-msgstr "пералічваем роўням"
+msgstr "пералічваем роўні"
 
 #: level/level.go
 msgid "loading checkpoints"
