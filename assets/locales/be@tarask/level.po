@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Denis Kočkarov, 2023
-# Rudolf Polzer, 2024
+# Denis Kočkarov, 2025
+# Rudolf Polzer, 2025
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 13:03-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2024\n"
+"Last-Translator: Rudolf Polzer, 2025\n"
 "Language-Team: Belarusian (Tarask) (https://app.transifex.com/aaaaxy/teams/158611/be@tarask/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -249,7 +249,7 @@ msgstr "Perspektyva dadatkovaj mocy napaŭniaje vas rašučaściu."
 #. shooter) map silvercity.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=319]
 msgid "Behold the cage of health!"
-msgstr "Pahladzicie, kletka zdaroŭja!"
+msgstr "Pahladziecie, kletka zdaroŭja!"
 
 #. Refers to a map of the first person shooter game Nexuiz:
 #. https://www.youtube.com/watch?v=8otWflEtlyg
@@ -362,7 +362,7 @@ msgstr "Jakraz tvoj ciahnik nikoli nie stajić na pieršym šlachu."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
-msgstr "Kali imknieśsia da zorak, moža nadarvacca."
+msgstr "Kali imkniešsia da zorak, možna nadarvacca."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1103]
 msgid "9¾"
@@ -458,7 +458,7 @@ msgstr "Časam patrebna tolki nievialikaje ŭstupleńnie."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1281]
 msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
-msgstr "Ja tak rady nareście być udoma.{{BR}}Naciśnicie {{ExitButton}}."
+msgstr "Ja tak rady narešcie być udoma.{{BR}}Naciśnicie {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1285]
 msgid "Try the lower path."
@@ -596,7 +596,7 @@ msgstr "Zaraz vy možacie jich adpichvać!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
 msgstr ""
-"Katuška{{BR}}(utrymlivajcie {{ActionButton}}){{BR}}Padkazka: nie śmiacicie!"
+"Katuška{{BR}}(utrymlivajcie {{ActionButton}}){{BR}}Padkazka: nie śmiaciecie!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1493]
 msgid "You can now grab and carry them!"
@@ -909,7 +909,7 @@ msgstr "RYZYKA{{BR}}ELEKTRAŠOKU"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3857]
 msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
-msgstr "NIE HLADZICIE Ŭ LAZER{{BR}}VOKAM, ŠTO ZASTAŁOSIA"
+msgstr "NIE HLADZIECIE Ŭ LAZER{{BR}}VOKAM, ŠTO ZASTAŁOSIA"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3858]
 msgid "LEGAL{{BR}}WAIVER"
@@ -1509,20 +1509,20 @@ msgstr "5 ..."
 #. work with your font.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8374]
 msgid "Героям слава!"
-msgstr "Ğerojam slava!"
+msgstr "Herojam slava!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
 msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
-msgstr ""
+msgstr "hety znak maje{{BR}}VOSTRYJA KRAJI{{BR}}nie čapać"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
 msgid "A path to another world has appeared nearby."
-msgstr ""
+msgstr "Pablizu źjaviŭsia šlach da jinšaha śvietu."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8439]
 msgid "You can now enter another world!"
-msgstr ""
+msgstr "Ciapier možna ŭvajści ŭ jinšy śviet!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
-msgstr ""
+msgstr "Teleport{{BR}}(naciśnicie {{ExitButton}})"
