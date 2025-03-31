@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Denis Kočkarov, 2023
 # Rudolf Polzer, 2024
+# Denis Kočkarov, 2025
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-17 13:03-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2024\n"
+"Last-Translator: Denis Kočkarov, 2025\n"
 "Language-Team: Belarusian (https://app.transifex.com/aaaaxy/teams/158611/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -247,7 +247,7 @@ msgstr "Пэрспэктыва дадатковай моцы напаўняе в
 #. shooter) map silvercity.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=319]
 msgid "Behold the cage of health!"
-msgstr "Паглядзіце, клетка здароўя!"
+msgstr "Паглядзеце, клетка здароўя!"
 
 #. Refers to a map of the first person shooter game Nexuiz:
 #. https://www.youtube.com/watch?v=8otWflEtlyg
@@ -360,7 +360,7 @@ msgstr "Якраз твой цягнік ніколі не стаіць на п�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
-msgstr "Калі імкнесься да зорак, можа надарвацца."
+msgstr "Калі імкнешся да зорак, можна надарвацца."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1103]
 msgid "9¾"
@@ -454,7 +454,7 @@ msgstr "Часам патрэбна толькі невялікае ўступл
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1281]
 msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
-msgstr "Я так рады нарэсьце быць удома.{{BR}}Націсьніце {{ExitButton}}."
+msgstr "Я так рады нарэшце быць удома.{{BR}}Націсьніце {{ExitButton}}."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1285]
 msgid "Try the lower path."
@@ -592,7 +592,7 @@ msgstr "Зараз вы можаце іх адпіхваць!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
 msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
 msgstr ""
-"Катушка{{BR}}(утрымлівайце {{ActionButton}}){{BR}}Падказка: не сьмяціце!"
+"Катушка{{BR}}(утрымлівайце {{ActionButton}}){{BR}}Падказка: не сьмяцеце!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1493]
 msgid "You can now grab and carry them!"
@@ -903,7 +903,7 @@ msgstr "РЫЗЫКА{{BR}}ЭЛЕКТРАШОКУ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3857]
 msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
-msgstr "НЕ ГЛЯДЗІЦЕ Ў ЛЯЗЭР{{BR}}ВОКАМ, ШТО ЗАСТАЛОСЯ"
+msgstr "НЕ ГЛЯДЗЕЦЕ Ў ЛЯЗЭР{{BR}}ВОКАМ, ШТО ЗАСТАЛОСЯ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3858]
 msgid "LEGAL{{BR}}WAIVER"
@@ -1504,16 +1504,16 @@ msgstr "Героям слава!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
 msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
-msgstr ""
+msgstr "гэты знак мае{{BR}}ВОСТРЫЯ КРАІ{{BR}}не чапаць"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
 msgid "A path to another world has appeared nearby."
-msgstr ""
+msgstr "Паблізу зьявіўся шлях да іншага сьвету."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8439]
 msgid "You can now enter another world!"
-msgstr ""
+msgstr "Цяпер можна перайсьці ў іншы сьвет!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
-msgstr ""
+msgstr "Тэлепорт{{BR}}(націсьніце {{ExitButton}})"
