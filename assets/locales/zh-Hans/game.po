@@ -223,7 +223,7 @@ msgid ""
 "Fine, I give up, have it your way.\n"
 "All cheats are documented in --help."
 msgstr ""
-"好吧，我放弃了，你赢了。\n"
+"好吧，我放弃，你赢了。\n"
 "所有的作弊方法都记录在--help。"
 
 #: menu/credits.go
