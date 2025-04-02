@@ -21,4 +21,5 @@ import (
 type ActionPresseder interface {
 	engine.EntityImpl
 	ActionPressed() bool
+	GetUpDown() int
 }
