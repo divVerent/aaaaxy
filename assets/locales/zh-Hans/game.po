@@ -313,7 +313,7 @@ msgstr "最高"
 #. Used in context "Quality: ...".
 #: menu/quality.go
 msgid "Medium"
-msgstr "中等"
+msgstr "中"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
