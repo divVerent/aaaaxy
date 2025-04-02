@@ -573,7 +573,7 @@ msgstr "你真的以为这会有效果吗？"
 
 #: menu/credits.go
 msgid "Your Speedrun Categories"
-msgstr "你的快速通关类别"
+msgstr "你的速通类别"
 
 #: menu/credits.go
 msgid "Your Time"
