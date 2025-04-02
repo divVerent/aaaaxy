@@ -70,7 +70,7 @@ msgstr "无尽八"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=90]
 msgid "Sometimes you just keep running in circles."
-msgstr "有时候就需要转圈。"
+msgstr "有时候就是要绕圈圈。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=91]
 msgid "Some people prefer 2τ over 4π."
