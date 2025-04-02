@@ -614,7 +614,7 @@ msgstr "%s"
 
 #: menu/credits.go
 msgid "and other contributors"
-msgstr "和其他贡献者"
+msgstr "及其他贡献者"
 
 #: menu/credits.go
 msgid "by %s"
