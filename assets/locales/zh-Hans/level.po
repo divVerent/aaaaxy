@@ -134,7 +134,7 @@ msgstr "克莱因瓶"
 #. https://www.brainyquote.com/quotes/friedrich_nietzsche_103584
 #: assets/maps/level.tmx//map/objectgroup/object[@id=188]
 msgid "Whenever I climb I am followed by a dog called Ego."
-msgstr "我去那儿，一只叫自我的狗都会追我。"
+msgstr "不管我去哪儿，都有一只名为自我的狗追着我。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=192]
 msgid "The Projective Plane"
