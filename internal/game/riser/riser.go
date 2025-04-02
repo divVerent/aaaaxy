@@ -99,7 +99,7 @@ const (
 	// UpSpeed is the speed the riser moves upwards when the player is standing on it.
 	UpSpeed = 60 * constants.SubPixelScale / engine.GameTPS
 
-	// SideSpeed is the speed of the riser when pushed away.
+	// SideSpeed is the speed of the riser when pushed away/pulled closer.
 	SideSpeed = 60 * constants.SubPixelScale / engine.GameTPS
 
 	// FadeFrames is how many frames risers take to fade in or out.
@@ -311,16 +311,15 @@ func (r *Riser) Update() {
 	canStand := playerAbilities.HasAbility("stand")
 	canRiserDown := playerAbilities.HasAbility("riserdown")
 	actionPressed := playerButtons.ActionPressed()
-	upPressed := false
-	downPressed := false
+	UpDownInput := r.World.Player.Impl.(interfaces.ActionPresseder).GetUpDown();
 	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
 	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
 	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
 
 	if canRiserDown {
-		if upPressed {
+		if UpDownInput == 1 {
 			r.RiserDown = false
-		} else if downPressed {
+		} else if UpDownInput == -1 {
 			r.RiserDown = true
 		}
 	} else {
@@ -380,10 +379,18 @@ func (r *Riser) Update() {
 		r.Velocity = r.OnGroundVec.Mul(UpSpeed)
 	case MovingLeft:
 		r.Anim.SetGroup("left" + suffix)
-		r.Velocity = r.OnGroundVec.Mul(-IdleSpeed).Add(m.Delta{DX: -SideSpeed, DY: 0})
+		if r.RiserDown {
+			r.Velocity = r.OnGroundVec.Mul(IdleSpeed).Add(m.Delta{DX: -SideSpeed, DY: 0})
+		} else {
+			r.Velocity = r.OnGroundVec.Mul(-IdleSpeed).Add(m.Delta{DX: -SideSpeed, DY: 0})
+		}
 	case MovingRight:
 		r.Anim.SetGroup("right" + suffix)
-		r.Velocity = r.OnGroundVec.Mul(-IdleSpeed).Add(m.Delta{DX: SideSpeed, DY: 0})
+		if r.RiserDown {
+			r.Velocity = r.OnGroundVec.Mul(IdleSpeed).Add(m.Delta{DX: SideSpeed, DY: 0})
+		} else {
+			r.Velocity = r.OnGroundVec.Mul(-IdleSpeed).Add(m.Delta{DX: SideSpeed, DY: 0})
+		}
 	case GettingCarried:
 		r.Anim.SetGroup("idle" + suffix)
 		// r.Velocity = playerPhysics.ReadVelocity() // Hacky carry physics; good enough?
@@ -483,7 +490,7 @@ func (r *Riser) Update() {
 	r.carrySound.update(r.State == GettingCarried)
 	// For push and moving up, decide sound by whether we're actually moving.
 	r.pushSound.update((r.State == MovingLeft || r.State == MovingRight) && r.Velocity.DX != 0)
-	r.riseSound.update(r.State == MovingUp || r.State == MovingDown && (r.Velocity.DY == UpSpeed || r.Velocity.DY == -UpSpeed))
+	r.riseSound.update((r.State == MovingUp || r.State == MovingDown) && (r.Velocity.DY == UpSpeed || r.Velocity.DY == -UpSpeed))
 
 	r.Anim.Update(r.Entity)
 

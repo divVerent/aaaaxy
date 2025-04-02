@@ -523,6 +523,18 @@ func (p *Player) ActionPressed() bool {
 	return input.Action.Held
 }
 
+func (p *Player) GetUpDown() int {
+	if p.Goal != nil {
+		return 0
+	}
+	if input.Up.Held {
+		return 1
+	} else if input.Down.Held {
+		return -1
+	}
+	return 0
+}
+
 func (p *Player) SetVelocityForJump(velocity m.Delta) {
 	p.Physics.SetVelocityForJump(velocity)
 	p.JumpingUp = false

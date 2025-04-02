@@ -1324,7 +1324,7 @@
   <object id="591" name="ToReachingStar" gid="293" x="4048" y="3328" width="16" height="32"/>
   <object id="592" name="ToReachingStar" gid="299" x="4672" y="4320" width="16" height="32"/>
   <object id="593" gid="309" x="4896" y="4320" width="32" height="16"/>
-  <object id="594" gid="309" x="4768" y="4256" width="16" height="16"/>
+  <object id="594" gid="309" x="4768" y="4224" width="16" height="16"/>
   <object id="595" name="ReachingStar" type="Checkpoint" x="4896" y="4304" width="32" height="48">
    <properties>
     <property name="music" value="retro_chiptune_1.ogg"/>
