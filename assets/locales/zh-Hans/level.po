@@ -182,7 +182,7 @@ msgstr "选择正确的入口就会有很大的不同。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=281]
 msgid "A New Beginning"
-msgstr "新未来"
+msgstr "新的开始"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=286]
 msgid "If this isn't your downfall, I don't know what is."
