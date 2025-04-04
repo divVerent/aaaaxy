@@ -898,7 +898,7 @@ msgstr "NOLI SPECTARE IN L.A.S.E.R.{{BR}}OCULO RELIQUO"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3858]
 msgid "LEGAL{{BR}}WAIVER"
-msgstr "REMITTETIO{{BR}}IURIS"
+msgstr "CAVE CANEM{{BR}}CANIS MORDET"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3859]
 msgid "NO{{BR}}WARRANTY"
