@@ -22,6 +22,7 @@ jobs:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOARCH: wasm
           GOOS: js
+          GOTOOLCHAIN: local
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
@@ -59,6 +60,7 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
           ADVZIP: ':'
+          GOTOOLCHAIN: local
           STRIP_NONDETERMINISM_ZIP: ':'
       - name: Archive Binary
         uses: actions/upload-artifact@v4
@@ -80,6 +82,7 @@ jobs:
         run: 'make'
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
+          GOTOOLCHAIN: local
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:

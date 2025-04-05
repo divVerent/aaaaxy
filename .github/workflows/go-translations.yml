@@ -25,6 +25,7 @@ jobs:
         run: 'make'
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
+          GOTOOLCHAIN: local
       - name: Generate Language List
         id: list-languages
         run: 'rm -f l; xvfb-run sh -c "./aaaaxy -dump_languages > l"; for l in $(cat
@@ -56,6 +57,7 @@ jobs:
         run: 'make'
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
+          GOTOOLCHAIN: local
       - name: Test in language ${{ matrix.language }}
         run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64-$language "translated
           to" "./aaaaxy -language=$language" assets/demos/benchmark.dem'

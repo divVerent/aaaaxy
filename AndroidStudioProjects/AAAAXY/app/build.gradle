@@ -75,7 +75,7 @@ task ebitenMobile(type: Exec) {
         '-androidapi', '21',
         '-tags', aaaaxy_build_tags,
         '-gcflags=all=-dwarf=false',
-        '-ldflags=all=-s -w -buildid=',
+        '-ldflags=all=-s -w -buildid= -B none',
         '-a',
         '-trimpath',
         // '-buildvcs=false',  # Not supported by ebitenmobile.

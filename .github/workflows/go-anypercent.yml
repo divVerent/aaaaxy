@@ -23,6 +23,7 @@ jobs:
         run: 'make'
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
+          GOTOOLCHAIN: local
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
@@ -75,6 +76,7 @@ jobs:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOARCH: amd64
           GOOS: windows
+          GOTOOLCHAIN: local
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
@@ -126,6 +128,7 @@ jobs:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOARCH: 386
           GOOS: windows
+          GOTOOLCHAIN: local
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:

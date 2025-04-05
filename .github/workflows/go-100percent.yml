@@ -24,6 +24,7 @@ jobs:
         run: 'make'
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
+          GOTOOLCHAIN: local
       - name: Fetch Test Cases
         env:
           REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
