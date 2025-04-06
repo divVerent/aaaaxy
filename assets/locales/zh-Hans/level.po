@@ -1033,7 +1033,7 @@ msgstr "疯狂开车"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4755]
 msgid "It's Bring Your Own Platform, you know."
-msgstr "需要带你自己的平台，知道吗？"
+msgstr "需要带自己的平台，知道吗？"
 
 #. The 'it' here refers to the large platform.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4766]
