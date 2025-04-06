@@ -125,7 +125,7 @@ msgstr "环面"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=179]
 msgid "If it doesn't fit in three dimensions, try two."
-msgstr "如果三维不行，试试二。"
+msgstr "如果三维不行，试试二维。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=180]
 msgid "The Klein Bottle"
