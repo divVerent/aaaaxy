@@ -146,7 +146,7 @@ msgstr "球体"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=238]
 msgid "Unparalleled execution is all you really need here."
-msgstr "无平行的执行力是你在这里真正需要的。"
+msgstr "正确的路线不一定是平行线。"
 
 #. https://getting-over-it.fandom.com/wiki/Top_of_the_mountain
 #: assets/maps/level.tmx//map/objectgroup/object[@id=244]
