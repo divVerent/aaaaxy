@@ -783,7 +783,7 @@ msgstr "如果似乎没有办法，那你就是还没有找到。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2886]
 msgid "Before The Anti-Hub"
-msgstr "假中心前"
+msgstr "反中心前"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2978]
 msgid "Only you would fall for a trap as primitive as this one."
@@ -1290,7 +1290,7 @@ msgstr "拿着{{Abilities}}，到了中心，{{GameTime}} 。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6679]
 msgid "reached The Anti-Hub with {{Abilities}} at {{GameTime}}."
-msgstr "拿着{{Abilities}}，到了假中心，{{GameTime}} 。"
+msgstr "拿着{{Abilities}}，到了反中心，{{GameTime}} 。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6680]
 msgid "reached It Only Takes One with {{Abilities}} at {{GameTime}}."
