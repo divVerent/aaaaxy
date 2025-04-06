@@ -104,7 +104,7 @@ msgstr "带"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=143]
 msgid "The path of least resistance will not always lead to success."
-msgstr "阻力最小的路径并不总是能带来成功。"
+msgstr "阻力最小的路径并不能带来成功。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=144]
 msgid "Some things only have one side to them."
