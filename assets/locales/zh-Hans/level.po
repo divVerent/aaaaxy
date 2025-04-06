@@ -700,7 +700,7 @@ msgstr "改一下"
 #. dies'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1807]
 msgid "He who waits,{{BR}}retries ... #DGR"
-msgstr "等待的人，{{BR}}重试……#DGR"
+msgstr "等待的人，{{BR}}就必重试……#DGR"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1814]
 msgid "Avoid getting blocked in!"
