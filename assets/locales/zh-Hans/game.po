@@ -408,7 +408,7 @@ msgstr "重置并删掉存档%s"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s"
-msgstr "重置和删掉存档%s"
+msgstr "重置并删掉存档%s"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s (just release buttons)"
