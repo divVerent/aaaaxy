@@ -605,7 +605,7 @@ msgstr "不像马里奥，你可以往左走。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1547]
 msgid "Some things just take a second attempt."
-msgstr "有些事情就需要试两次。"
+msgstr "有些事情就需要在试一次。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1569]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1583]
