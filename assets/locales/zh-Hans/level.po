@@ -751,7 +751,7 @@ msgstr "每个伟大冒险都是从这句话开始的：{{BR}}\"我知道怎么�
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2659]
 msgid "Sometimes you don't just lose sight of something."
-msgstr "有时候你不能看不见某些东西。"
+msgstr "有时候你不能让某些东西离开视线。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2665]
 msgid "Hey, I needed that!"
