@@ -806,7 +806,7 @@ msgstr "失败是成功之母。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3093]
 msgid "Those who walk, fall."
-msgstr "走的人，跌的人。"
+msgstr "走者必跌。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3153]
 msgid "Well, it's actually{{BR}}surprisingly simple."
