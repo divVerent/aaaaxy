@@ -416,7 +416,7 @@ msgstr "重置并删掉存档%s（放开按钮）"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s (think about it for %d sec)"
-msgstr "重置和删掉存档%s（在想%d秒钟）"
+msgstr "重置并删掉存档%s（在想%d秒钟）"
 
 #: menu/reset.go
 msgid "Reset and Lose Settings"
