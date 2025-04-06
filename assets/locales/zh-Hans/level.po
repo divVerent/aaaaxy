@@ -1168,7 +1168,7 @@ msgstr "立方体"
 #. https://en.wikipedia.org/wiki/Portal_(series)
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5575]
 msgid "Good news.{{BR}}I figured out why she wanted you gone."
-msgstr "好消息。{{BR}}我明白了她为什么想要你离开。"
+msgstr "好消息。{{BR}}我明白了她为什么把你赶走。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5627]
 msgid "Crumbling Upwards"
