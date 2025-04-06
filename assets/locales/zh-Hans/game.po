@@ -404,7 +404,7 @@ msgstr "不要重置"
 
 #: menu/reset.go
 msgid "Reset and Lose SAVE STATE %s"
-msgstr "重置和删掉存档%s"
+msgstr "重置并删掉存档%s"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s"
