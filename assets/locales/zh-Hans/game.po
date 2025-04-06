@@ -342,7 +342,7 @@ msgstr "无退出键"
 #. A speedrun category (start button never pressed).
 #: playerstate/playerstate.go
 msgid "No Start"
-msgstr "无开始"
+msgstr "无开始键"
 
 #. A speedrun category (never teleported).
 #: playerstate/playerstate.go
