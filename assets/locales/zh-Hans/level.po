@@ -716,7 +716,7 @@ msgstr "慢慢来。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1818]
 msgid "Same procedure as last year?"
-msgstr "手术跟去年一样吗？"
+msgstr "跟去年一样的手术？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1819]
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
