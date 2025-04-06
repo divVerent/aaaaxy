@@ -365,7 +365,7 @@ msgstr "9¾"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1171]
 msgid "A watched train never departs."
-msgstr "一辆被监视的火车永远不会离开。"
+msgstr "被看着的火车不会出发。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1172]
 msgid ""
