@@ -80,7 +80,7 @@ msgstr "有些人更喜欢2τ而不是4π。"
 #. devotionals/2013/01/what-is-truth?lang=eng
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
-msgstr "“尽管以前的压倒性共识，地球不是平的。”"
+msgstr "“尽管以前的压倒性共识，地球并不是平的。”"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=93]
 msgid "Some people prefer 4π over 2τ."
