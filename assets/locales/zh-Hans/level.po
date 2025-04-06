@@ -34,7 +34,7 @@ msgstr "失败从来不是一个选项。"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=50]
 msgid ""
 "Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
-msgstr "孩子们不是喜欢说：“到了吗？”{{BR}}按{{ExitButton}}。"
+msgstr "孩子们总是喜欢说：“到了吗？”{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=51]
 msgid "Sometimes the angle of looking at things is all that matters."
