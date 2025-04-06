@@ -1021,7 +1021,7 @@ msgstr "多不一定好。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4716]
 msgid "Those who are not up to speed may get left behind."
-msgstr "那些没有跟上速度的人可能会被甩在后面。"
+msgstr "那些稍慢的人可能会被甩在后面。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4727]
 msgid "Time is of the essence."
