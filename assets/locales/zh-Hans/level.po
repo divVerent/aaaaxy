@@ -948,11 +948,11 @@ msgstr "那些还没有学会这一招的人{{BR}}可能需要加油。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4107]
 msgid "Moved Enough?"
-msgstr "移动了足够吗？"
+msgstr "动够了吗？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4108]
 msgid "Carried Enough?"
-msgstr "带足够了吗？"
+msgstr "带够了吗？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
 msgid "Trash Chute"
