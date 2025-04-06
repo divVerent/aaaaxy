@@ -113,7 +113,7 @@ msgstr "有些东西就只有一边。"
 #. https://gettingoverit.co/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=145]
 msgid "Thinking outside the box can remove the need of getting over it."
-msgstr "不落窠臼地思考可能可以帮你跳过问题。"
+msgstr "跳脫框架思考可以帮你跳过问题。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=147]
 msgid "The Möbius Strip"
