@@ -536,7 +536,7 @@ msgstr "坚定不移地握住铁棒可以防止灾难。"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1442]
 msgid ""
 "Sometimes the thing that is in plain sight can be a challenge to reach."
-msgstr "有时候显而易见的东西可能是一个难以到达的挑战。"
+msgstr "有时候显而易见的东西需要很多功夫才能勾到。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1443]
 msgid "Can't tell if this place is pointless or not."
