@@ -651,7 +651,7 @@ msgstr "我们都在等俄罗斯方块的特殊方块，{{BR}}特殊方块，{{B
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1666]
 msgid "Sweet is the reward of the swift."
-msgstr "迅速跑的回报是甜的。"
+msgstr "疾行者得甜果。"
 
 #. https://knowyourmeme.com/memes/dopefish
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1667]
