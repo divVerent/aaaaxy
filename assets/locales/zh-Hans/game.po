@@ -510,7 +510,7 @@ msgstr "谢谢！"
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "The Cleats"
-msgstr "防滑钉"
+msgstr "钉鞋"
 
 #. Used in context "reached <location> with ... at <time>";
 #. "coil" here refers to an electromagnetic coil.
