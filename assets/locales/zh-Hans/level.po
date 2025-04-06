@@ -270,7 +270,7 @@ msgstr "没人追，就不必藏。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=395]
 msgid "Hide and seek is never fun without opponents."
-msgstr "没有对手，捉迷藏就不好玩了。"
+msgstr "没有对手的捉迷藏就不好玩。"
 
 #. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=396]
