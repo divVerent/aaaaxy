@@ -266,7 +266,7 @@ msgstr "需要修，就修。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=394]
 msgid "There is no need to hide if nobody is after you."
-msgstr "如果没人追你，就不必要藏。"
+msgstr "没人追，就不必藏。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=395]
 msgid "Hide and seek is never fun without opponents."
