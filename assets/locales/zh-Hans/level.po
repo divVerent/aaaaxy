@@ -915,7 +915,7 @@ msgstr "蝴蝶效应"
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3912]
 msgid "What we've done before{{BR}}may impact what we can do next."
-msgstr "我们之前做的事情{{BR}}可能会影响将来可以做的。"
+msgstr "之前做的事情{{BR}}可能会影响将来可以做的。"
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3926]
