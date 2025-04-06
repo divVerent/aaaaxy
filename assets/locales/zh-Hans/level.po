@@ -508,7 +508,7 @@ msgstr "有些东西没法马上看见。"
 #. Rover and the Feline' text.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1407]
 msgid "Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."
-msgstr "好奇害死猫。{{BR}}按{{ExitButton}}。"
+msgstr "好奇害死喵{{BR}}——不——{{BR}}猫。{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1410]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1411]
