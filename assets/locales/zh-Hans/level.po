@@ -446,7 +446,7 @@ msgstr "7"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1273]
 msgid "Sometimes all you need is a little opening."
-msgstr "有时候就需一个小洞。"
+msgstr "有时候就需要一个小洞。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1281]
 msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
