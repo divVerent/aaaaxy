@@ -670,7 +670,7 @@ msgstr "左边的便签比这个有趣多了。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1713]
 msgid "The Anti-Hub"
-msgstr "假中心"
+msgstr "反中心"
 
 #. https://earthbound.fandom.com/wiki/Moonside
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1718]
