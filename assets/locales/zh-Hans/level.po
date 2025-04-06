@@ -747,7 +747,7 @@ msgstr "如果走路不行，试试运动。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2368]
 msgid "Every great adventure started with the line{{BR}}\"I know a shortcut\"."
-msgstr "每个伟大冒险都是从这句话开始的：{{BR}}\"我知道一条捷径\"。"
+msgstr "每个伟大冒险都是从这句话开始的：{{BR}}\"我知道怎么抄小路\"。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2659]
 msgid "Sometimes you don't just lose sight of something."
