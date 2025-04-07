@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.64" date="2025-03-24">
-      <description><ul><li>Build: try to remove nondeterministic elements.</li><li>Engine: new "pull" ability (to be used on future worlds).</li><li>Engine: module updates.</li><li>Map: add the direly missing sharp edges sign.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.64</url>
+    <release version="v1.6.176" date="2025-04-07">
+      <description><ul><li>Engine: improvements for deterministic builds.</li><li>Engine: compile using Go 1.24.4.</li><li>Map: unflip some text elements.</li><li>Translations: various updates.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.176</url>
     </release>
   </releases>
 </component>
