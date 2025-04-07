@@ -45,7 +45,7 @@ endif
 GO_FLAGS += "-ldflags=all=$(GO_LDFLAGS)"
 
 ifeq ($(ISRELEASE),true)
-GO_LDFLAGS += -s -w -buildid= -B none
+GO_LDFLAGS += -s -w -buildid=
 GO_FLAGS += -a -trimpath -buildvcs=false
 ifneq ($(shell $(GO) env GOARCH),wasm)
 GO_FLAGS += -buildmode=pie
