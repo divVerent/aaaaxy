@@ -70,7 +70,7 @@ msgstr "无尽八"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=90]
 msgid "Sometimes you just keep running in circles."
-msgstr "有时候就需要转圈。"
+msgstr "有时候就是要绕圈圈。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=91]
 msgid "Some people prefer 2τ over 4π."
@@ -134,7 +134,7 @@ msgstr "克莱因瓶"
 #. https://www.brainyquote.com/quotes/friedrich_nietzsche_103584
 #: assets/maps/level.tmx//map/objectgroup/object[@id=188]
 msgid "Whenever I climb I am followed by a dog called Ego."
-msgstr "我去那儿，一只叫自我的狗都会追我。"
+msgstr "不管我去哪儿，都有一只名为自我的狗追着我。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=192]
 msgid "The Projective Plane"
@@ -182,7 +182,7 @@ msgstr "选择正确的入口就会有很大的不同。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=281]
 msgid "A New Beginning"
-msgstr "新未来"
+msgstr "新的开始"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=286]
 msgid "If this isn't your downfall, I don't know what is."

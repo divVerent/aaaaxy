@@ -45,7 +45,7 @@ endif
 GO_FLAGS += "-ldflags=all=$(GO_LDFLAGS)"
 
 ifeq ($(ISRELEASE),true)
-GO_LDFLAGS += -s -w -buildid=
+GO_LDFLAGS += -s -w -buildid= -B none
 GO_FLAGS += -a -trimpath -buildvcs=false
 ifneq ($(shell $(GO) env GOARCH),wasm)
 GO_FLAGS += -buildmode=pie
@@ -80,11 +80,10 @@ clean:
 .PHONY: vet
 vet:
 	$(GO) vet ./...
-	$(GO) run honnef.co/go/tools/cmd/staticcheck@release.2024.1 ./...
-	# TODO make it bail out when something is found.
-	gofmt -d -s $(SOURCES)
-	gofmt -d -r 'fmt.Sprintf(s) -> s' $(SOURCES)
-	gofmt -d -r 'fmt.Errorf(s) -> errors.New(s)' $(SOURCES)
+	$(GO) run honnef.co/go/tools/cmd/staticcheck@release.2025.1 ./...
+	gofmt -d -s $(SOURCES) | { ! grep .; }
+	gofmt -d -r 'fmt.Sprintf(s) -> s' $(SOURCES) | { ! grep .; }
+	gofmt -d -r 'fmt.Errorf(s) -> errors.New(s)' $(SOURCES) | { ! grep .; }
 
 .PHONY: mod-tidy
 mod-tidy:

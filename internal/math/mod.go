@@ -84,7 +84,7 @@ func roundToEvenUint64(d, q, r uint64) uint64 {
 	// d odd: always d/2+1.
 	// d even: d/2+1 if q even, d/2 if q odd.
 	rcut := d / 2
-	if d%2!=0 || q%2 == 0 {
+	if d%2 != 0 || q%2 == 0 {
 		rcut++
 	}
 	if r >= rcut {

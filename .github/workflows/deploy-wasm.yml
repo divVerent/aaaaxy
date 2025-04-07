@@ -16,7 +16,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.23'
+          go-version: '1.24'
       - name: Build
         run: 'make BUILDTYPE=release BINARY=aaaaxy-js-wasm.wasm'
         env:
@@ -24,7 +24,7 @@ jobs:
           GOARCH: wasm
           GOOS: js
       - name: Steal/acquire wasm_exec.js
-        run: 'cp -v "$(go env GOROOT)/misc/wasm/wasm_exec.js" .'
+        run: 'cp -v "$(go env GOROOT)/lib/wasm/wasm_exec.js" .'
         env:
           GOARCH: wasm
           GOOS: js

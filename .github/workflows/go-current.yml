@@ -17,7 +17,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '>=1.23'
+          go-version: 'stable'
           check-latest: true
       - name: Remove Module Replacements
         run: 'sed -i -e "s,^replace ,//replace ," go.mod'
@@ -29,6 +29,7 @@ jobs:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           AAAAXY_DIFF_ASSETS: true
           AAAAXY_GENERATE_ASSETS: true
+          GOTOOLCHAIN: local
       - name: Vet
         run: 'make vet'
       - name: Test
