@@ -342,7 +342,7 @@ msgstr "无退出键"
 #. A speedrun category (start button never pressed).
 #: playerstate/playerstate.go
 msgid "No Start"
-msgstr "无开始"
+msgstr "无开始键"
 
 #. A speedrun category (never teleported).
 #: playerstate/playerstate.go
@@ -404,23 +404,23 @@ msgstr "不要重置"
 
 #: menu/reset.go
 msgid "Reset and Lose SAVE STATE %s"
-msgstr "重置和删掉存档%s"
+msgstr "重置并删掉存档%s"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s"
-msgstr "重置和删掉存档%s"
+msgstr "重置并删掉存档%s"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s (just release buttons)"
-msgstr "重置和删掉存档%s（就放开按钮）"
+msgstr "重置并删掉存档%s（放开按钮）"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s (think about it for %d sec)"
-msgstr "重置和删掉存档%s（在想%d秒钟）"
+msgstr "重置并删掉存档%s（请在考虑%d秒钟）"
 
 #: menu/reset.go
 msgid "Reset and Lose Settings"
-msgstr "重置和删掉设置"
+msgstr "重置并删掉设置"
 
 #: menu/touchedit.go
 msgid "Reset to Defaults"
@@ -510,7 +510,7 @@ msgstr "谢谢！"
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "The Cleats"
-msgstr "防滑钉"
+msgstr "钉鞋"
 
 #. Used in context "reached <location> with ... at <time>";
 #. "coil" here refers to an electromagnetic coil.

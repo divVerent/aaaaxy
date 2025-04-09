@@ -1,0 +1,4 @@
+  - Engine: improvements for deterministic builds.
+  - Engine: compile using Go 1.24.4.
+  - Map: unflip some text elements.
+  - Translations: various updates.

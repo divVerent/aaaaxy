@@ -34,7 +34,7 @@ msgstr "失败从来不是一个选项。"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=50]
 msgid ""
 "Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
-msgstr "孩子们不是喜欢说：“到了吗？”{{BR}}按{{ExitButton}}。"
+msgstr "孩子们总是喜欢说：“到了吗？”{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=51]
 msgid "Sometimes the angle of looking at things is all that matters."
@@ -80,7 +80,7 @@ msgstr "有些人更喜欢2τ而不是4π。"
 #. devotionals/2013/01/what-is-truth?lang=eng
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
-msgstr "“尽管以前的压倒性共识，地球不是平的。”"
+msgstr "“尽管以前的压倒性共识，地球并不是平的。”"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=93]
 msgid "Some people prefer 4π over 2τ."
@@ -104,7 +104,7 @@ msgstr "带"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=143]
 msgid "The path of least resistance will not always lead to success."
-msgstr "阻力最小的路径并不总是能带来成功。"
+msgstr "阻力最小的路径并不能带来成功。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=144]
 msgid "Some things only have one side to them."
@@ -113,7 +113,7 @@ msgstr "有些东西就只有一边。"
 #. https://gettingoverit.co/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=145]
 msgid "Thinking outside the box can remove the need of getting over it."
-msgstr "思考超越框架可能可以帮你跳过问题。"
+msgstr "跳脫框架思考可以帮你跳过问题。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=147]
 msgid "The Möbius Strip"
@@ -125,7 +125,7 @@ msgstr "环面"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=179]
 msgid "If it doesn't fit in three dimensions, try two."
-msgstr "如果三维不行，试试二。"
+msgstr "如果三维不行，试试二维。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=180]
 msgid "The Klein Bottle"
@@ -146,14 +146,14 @@ msgstr "球体"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=238]
 msgid "Unparalleled execution is all you really need here."
-msgstr "无平行的执行力是你在这里真正需要的。"
+msgstr "正确的路线不一定是平行线。"
 
 #. https://getting-over-it.fandom.com/wiki/Top_of_the_mountain
 #: assets/maps/level.tmx//map/objectgroup/object[@id=244]
 msgid ""
 "Welcome to the top of the mountain.{{BR}}If you're alone, all this was just "
 "a waste of time.{{BR}}Press {{ExitButton}}."
-msgstr "欢迎来到山顶。{{BR}}这就完全是浪费时间。{{BR}}按{{ExitButton}} 。"
+msgstr "欢迎来到山顶。{{BR}}你如果什么都没有带，那这就完全是浪费时间。{{BR}}按{{ExitButton}} 。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=245]
 msgid "The shortest path can be the one that takes longest."
@@ -221,7 +221,7 @@ msgstr "必须定期加水以补偿蒸发。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=311]
 msgid "You broke out of the stream, yet you're back in the stream."
-msgstr "你冲出了溪，然而又回来了。"
+msgstr "你冲出了水流，然而又回来了。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=312]
 msgid "M. C. Waterfall"
@@ -266,11 +266,11 @@ msgstr "需要修，就修。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=394]
 msgid "There is no need to hide if nobody is after you."
-msgstr "如果没人追你，就不必要藏。"
+msgstr "没人追，就不必藏。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=395]
 msgid "Hide and seek is never fun without opponents."
-msgstr "没有对手，捉迷藏就不好玩了。"
+msgstr "没有对手的捉迷藏就不好玩。"
 
 #. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=396]
@@ -365,7 +365,7 @@ msgstr "9¾"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1171]
 msgid "A watched train never departs."
-msgstr "一辆被监视的火车永远不会离开。"
+msgstr "被看着的火车不会出发。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1172]
 msgid ""
@@ -446,11 +446,11 @@ msgstr "7"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1273]
 msgid "Sometimes all you need is a little opening."
-msgstr "有时候就需一个小洞。"
+msgstr "有时候就需要一个小洞。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1281]
 msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
-msgstr "我可真高兴终于回家了。{{BR}}按{{ExitButton}}。"
+msgstr "真高兴，终于回家了。{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1285]
 msgid "Try the lower path."
@@ -508,7 +508,7 @@ msgstr "有些东西没法马上看见。"
 #. Rover and the Feline' text.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1407]
 msgid "Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."
-msgstr "好奇害死猫。{{BR}}按{{ExitButton}}。"
+msgstr "好奇害死喵{{BR}}——不——猫。{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1410]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1411]
@@ -527,7 +527,7 @@ msgstr "你现在可以站在平台上了！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1430]
 msgid "The Cleats{{BR}}Hint: no head bumping!"
-msgstr "防滑钉{{BR}}提示：不要撞头！"
+msgstr "钉鞋{{BR}}提示：不要撞头！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1441]
 msgid "Steadfastly holding on to the iron rod prevents disasters."
@@ -536,11 +536,11 @@ msgstr "坚定不移地握住铁棒可以防止灾难。"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1442]
 msgid ""
 "Sometimes the thing that is in plain sight can be a challenge to reach."
-msgstr "有时候显而易见的东西可能是一个难以到达的挑战。"
+msgstr "有时候显而易见的东西需要很多功夫才能勾到。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1443]
 msgid "Can't tell if this place is pointless or not."
-msgstr "无法判断这地方有什么意义。"
+msgstr "看不出来这地方在干嘛。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1445]
 msgid "Peaceful games require peaceful solutions."
@@ -597,7 +597,7 @@ msgstr "手套{{BR}}（按住{{ActionButton}}）{{BR}}提示：不能超速！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1545]
 msgid "Little & Big Platforms"
-msgstr "大小平台"
+msgstr "大平台小平台"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1546]
 msgid "Unlike that Italian plumber, you can go left."
@@ -605,7 +605,7 @@ msgstr "不像马里奥，你可以往左走。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1547]
 msgid "Some things just take a second attempt."
-msgstr "有些事情就需要试两次。"
+msgstr "有些事情就需要在试一次。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1569]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1583]
@@ -624,7 +624,7 @@ msgstr "重置"
 #. not, possibly any pun involving platforms will do
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1570]
 msgid "If platforms require platforming, what do trains require?"
-msgstr "你已经见到了平台。现在来了火车！"
+msgstr "让我给你满满的大！平！台！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1571]
 msgid "Do"
@@ -651,7 +651,7 @@ msgstr "我们都在等俄罗斯方块的特殊方块，{{BR}}特殊方块，{{B
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1666]
 msgid "Sweet is the reward of the swift."
-msgstr "迅速跑的回报是甜的。"
+msgstr "疾行者得甜果。"
 
 #. https://knowyourmeme.com/memes/dopefish
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1667]
@@ -670,7 +670,7 @@ msgstr "左边的便签比这个有趣多了。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1713]
 msgid "The Anti-Hub"
-msgstr "假中心"
+msgstr "反中心"
 
 #. https://earthbound.fandom.com/wiki/Moonside
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1718]
@@ -700,7 +700,7 @@ msgstr "改一下"
 #. dies'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1807]
 msgid "He who waits,{{BR}}retries ... #DGR"
-msgstr "等待的人，{{BR}}重试……#DGR"
+msgstr "等待的人，{{BR}}就必重试……#DGR"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1814]
 msgid "Avoid getting blocked in!"
@@ -716,7 +716,7 @@ msgstr "慢慢来。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1818]
 msgid "Same procedure as last year?"
-msgstr "手术跟去年一样吗？"
+msgstr "跟去年一样的手术？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1819]
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
@@ -743,15 +743,15 @@ msgstr "一个空洞的声音说‘傻瓜’。{{BR}}按{{ExitButton}}。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2349]
 msgid "If walking alone won't do, try some exercise."
-msgstr "如果走路不行，可以试运动。"
+msgstr "如果走路不行，试试运动。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2368]
 msgid "Every great adventure started with the line{{BR}}\"I know a shortcut\"."
-msgstr "每个伟大冒险都是从这句话开始的：{{BR}}\"我知道一条捷径\"。"
+msgstr "每个伟大冒险都是从这句话开始的：{{BR}}\"我知道怎么抄小路\"。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2659]
 msgid "Sometimes you don't just lose sight of something."
-msgstr "有时候你不能看不见某些东西。"
+msgstr "有时候你不能让某些东西离开视线。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2665]
 msgid "Hey, I needed that!"
@@ -783,7 +783,7 @@ msgstr "如果似乎没有办法，那你就是还没有找到。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2886]
 msgid "Before The Anti-Hub"
-msgstr "假中心前"
+msgstr "反中心前"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2978]
 msgid "Only you would fall for a trap as primitive as this one."
@@ -806,7 +806,7 @@ msgstr "失败是成功之母。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3093]
 msgid "Those who walk, fall."
-msgstr "走的人，跌的人。"
+msgstr "走者必跌。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3153]
 msgid "Well, it's actually{{BR}}surprisingly simple."
@@ -915,14 +915,14 @@ msgstr "蝴蝶效应"
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3912]
 msgid "What we've done before{{BR}}may impact what we can do next."
-msgstr "我们之前做的事情{{BR}}可能会影响将来可以做的。"
+msgstr "之前做的事情{{BR}}可能会影响将来可以做的。"
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3926]
 msgid ""
 "If you're only focusing on right now,{{BR}}you won't have enough for "
 "later.{{BR}}Press {{ExitButton}}."
-msgstr "如果你只关注现在，{{BR}}你以后就不够了。{{BR}}按{{ExitButton}}。"
+msgstr "如果你只关注现在，{{BR}}以后就会匮乏。{{BR}}按{{ExitButton}}。"
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3927]
@@ -948,11 +948,11 @@ msgstr "那些还没有学会这一招的人{{BR}}可能需要加油。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4107]
 msgid "Moved Enough?"
-msgstr "移动了足够吗？"
+msgstr "动够了吗？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4108]
 msgid "Carried Enough?"
-msgstr "带足够了吗？"
+msgstr "带够了吗？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
 msgid "Trash Chute"
@@ -1021,7 +1021,7 @@ msgstr "多不一定好。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4716]
 msgid "Those who are not up to speed may get left behind."
-msgstr "那些没有跟上速度的人可能会被甩在后面。"
+msgstr "那些稍慢的人可能会被甩在后面。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4727]
 msgid "Time is of the essence."
@@ -1033,7 +1033,7 @@ msgstr "疯狂开车"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4755]
 msgid "It's Bring Your Own Platform, you know."
-msgstr "需要带你自己的平台，知道吗？"
+msgstr "需要带自己的平台，知道吗？"
 
 #. The 'it' here refers to the large platform.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4766]
@@ -1168,7 +1168,7 @@ msgstr "立方体"
 #. https://en.wikipedia.org/wiki/Portal_(series)
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5575]
 msgid "Good news.{{BR}}I figured out why she wanted you gone."
-msgstr "好消息。{{BR}}我明白了她为什么想要你离开。"
+msgstr "好消息。{{BR}}我明白了她为什么把你赶走。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5627]
 msgid "Crumbling Upwards"
@@ -1290,7 +1290,7 @@ msgstr "拿着{{Abilities}}，到了中心，{{GameTime}} 。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6679]
 msgid "reached The Anti-Hub with {{Abilities}} at {{GameTime}}."
-msgstr "拿着{{Abilities}}，到了假中心，{{GameTime}} 。"
+msgstr "拿着{{Abilities}}，到了反中心，{{GameTime}} 。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6680]
 msgid "reached It Only Takes One with {{Abilities}} at {{GameTime}}."
@@ -1370,7 +1370,7 @@ msgstr "什{{BR}}么"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7770]
 msgid "Just{{BR}}kiddin'"
-msgstr "只在{{BR}}开玩笑"
+msgstr "看玩笑{{BR}}而已呀哈哈"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7837]
 msgid "I hope you took{{BR}}the small one ..."
