@@ -390,6 +390,8 @@ func (r *Riser) Update() {
 		r.Physics.IgnoreEnt = r.World.Player
 	} else {
 		// Move normally, and bump into the player if necessary.
+		// Note that when bumping into the player, the platform can lose a frame of movement.
+		// TODO: this is a minor slowdown/platform stall glitch - maybe I can find a way to fix it?
 		r.Physics.IgnoreEnt = nil
 	}
 	if r.State == GettingCarried {
