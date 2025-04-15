@@ -381,9 +381,15 @@ func (r *Riser) Update() {
 		// Otherwise, only solid to objects.
 		r.World.MutateContents(r.Entity, level.SolidContents, level.ObjectSolidContents)
 	}
-	if playerOnMe || !canStand || r.State == GettingCarried {
-		r.Physics.IgnoreEnt = r.World.Player // Move upwards despite player standing on it.
+	if playerOnMe || !playerAboveMe || !canStand || r.State == GettingCarried {
+		// Move upwards despite player standing on it.
+		// - playerOnMe: player is standing on the platform; this shouldn't stop the platform.
+		// - !playerAboveMe: if the player is below or already touching, the player can't collide with the platform anyway.
+		// - !canStand: if the player can't stand on the platform, then player and platform never interact.
+		// - GettingCarried: if the platform is being carried, it isn't really solid anyway.
+		r.Physics.IgnoreEnt = r.World.Player
 	} else {
+		// Move normally, and bump into the player if necessary.
 		r.Physics.IgnoreEnt = nil
 	}
 	if r.State == GettingCarried {
