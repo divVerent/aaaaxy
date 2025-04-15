@@ -371,33 +371,35 @@ func (r *Riser) Update() {
 		}
 		r.PlayerOnGroundVec = playerPhysics.ReadOnGroundVec()
 	}
-	if r.State == GettingCarried {
-		// Never solid during carrying.
-		r.World.MutateContents(r.Entity, level.SolidContents, 0)
-	} else if canStand && playerAboveMe {
-		// Solid to player when player is above.
-		r.World.MutateContents(r.Entity, level.SolidContents, level.SolidContents)
-	} else {
-		// Otherwise, only solid to objects.
-		r.World.MutateContents(r.Entity, level.SolidContents, level.ObjectSolidContents)
-	}
-	if playerOnMe || !playerAboveMe || !canStand || r.State == GettingCarried {
-		// Move upwards despite player standing on it.
-		// - playerOnMe: player is standing on the platform; this shouldn't stop the platform.
-		// - !playerAboveMe: if the player is below or already touching, the player can't collide with the platform anyway.
-		// - !canStand: if the player can't stand on the platform, then player and platform never interact.
-		// - GettingCarried: if the platform is being carried, it isn't really solid anyway.
-		r.Physics.IgnoreEnt = r.World.Player
-	} else {
-		// Move normally, and bump into the player if necessary.
-		// Note that when bumping into the player, the platform can lose a frame of movement.
-		// TODO: this is a minor slowdown/platform stall glitch - maybe I can find a way to fix it?
-		r.Physics.IgnoreEnt = nil
-	}
+
+	// Draw order.
 	if r.State == GettingCarried {
 		r.World.SetZIndex(r.Entity, constants.RiserCarriedZ)
 	} else {
 		r.World.SetZIndex(r.Entity, constants.RiserMovingZ)
+	}
+
+	// Solidity.
+	if r.State == GettingCarried {
+		// Never solid during carrying.
+		r.World.MutateContents(r.Entity, level.SolidContents, 0)
+		r.Physics.IgnoreEnt = r.World.Player
+	} else if canStand && playerAboveMe {
+		// Solid to player when player is above.
+		r.World.MutateContents(r.Entity, level.SolidContents, level.SolidContents)
+		if playerOnMe {
+			// Player will follow anyway.
+			r.Physics.IgnoreEnt = r.World.Player
+		} else {
+			// Move normally, and bump into the player if necessary.
+			// Note that when bumping into the player, the platform can lose a frame of movement.
+			// TODO: this is a minor slowdown/platform stall glitch - maybe I can find a way to fix it?
+			r.Physics.IgnoreEnt = nil
+		}
+	} else {
+		// Otherwise, only solid to objects.
+		r.World.MutateContents(r.Entity, level.SolidContents, level.ObjectSolidContents)
+		r.Physics.IgnoreEnt = r.World.Player
 	}
 
 	// Adjust hitbox size.
