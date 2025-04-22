@@ -94,7 +94,7 @@ func (s *MovingAnimation) Touch(other *engine.Entity) {
 	}
 	if other == s.World.Player {
 		if s.RespawnOnTouch {
-			s.World.RespawnPlayer(s.World.PlayerState.LastCheckpoint(), false)
+			s.World.ScheduleRespawnPlayer(s.World.PlayerState.LastCheckpoint(), false)
 		}
 	} else {
 		if s.FadeOnTouch {
