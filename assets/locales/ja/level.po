@@ -881,7 +881,7 @@ msgstr "感電注意"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3857]
 msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
-msgstr "まだ見える方の眼で{{BR}}レーザーを見るな"
+msgstr "残ってる眼で{{BR}}レーザーを見るな"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3858]
 msgid "LEGAL{{BR}}WAIVER"
