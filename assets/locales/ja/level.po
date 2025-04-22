@@ -1397,7 +1397,7 @@ msgstr "登るのは、お楽しみの半分に過ぎない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7872]
 msgid "If stuck,{{BR}}press {{ExitButton}}."
-msgstr "行き詰ったら、{{BR}}{{ExitButton}}を押しな。"
+msgstr "行き詰まったら、{{BR}}{{ExitButton}}を押しな。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7877]
 msgid "Phew?"
