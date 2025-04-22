@@ -42,7 +42,7 @@ msgstr "物事を見る角度ですべてが決まったりもする。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=52]
 msgid "There can be too much of a good thing."
-msgstr "過ぎたるはなお及ばざるが如し。"
+msgstr "過ぎたるは猶及ばざるが如し。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=53]
 msgid "Leap of Faith"
