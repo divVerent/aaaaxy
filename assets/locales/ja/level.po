@@ -113,7 +113,7 @@ msgstr "物事には一面しかないものもある。"
 #. https://gettingoverit.co/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=145]
 msgid "Thinking outside the box can remove the need of getting over it."
-msgstr "既成概念にとらわれなければ、山を登らなくてもすむかもしれない。"
+msgstr "既成概念にとらわれず考えれば、壺はいらなくなる。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=147]
 msgid "The Möbius Strip"
