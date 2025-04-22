@@ -108,7 +108,7 @@ msgstr "簡単な道は、必ずしも成功への道ではない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=144]
 msgid "Some things only have one side to them."
-msgstr "ある種の物事はただ一面のみを持つ。"
+msgstr "物事には一面しかないものもある。"
 
 #. https://gettingoverit.co/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=145]
