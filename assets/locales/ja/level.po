@@ -916,7 +916,7 @@ msgstr "バタフライ・エフェクト"
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3912]
 msgid "What we've done before{{BR}}may impact what we can do next."
-msgstr "これまで行ってきたことが{{BR}}いま取れる行動を決めるのだ。"
+msgstr "これまで行ってきたことが、{{BR}}次にとれる行動に影響を及ぼし得る。"
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3926]
