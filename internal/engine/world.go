@@ -104,8 +104,11 @@ type World struct {
 	// visTracing is set while tracing visibility and enables loading conflict detection
 	visTracing bool
 
-	// respawned is set if the player got respawned this frame.
-	respawned bool
+	// respawning is set if the player got respawned this frame.
+	respawning            bool
+	respawnCheckpointName string
+	respawnNewGameSection bool
+	blockRespawn          bool
 
 	// traceLineAndMarkPath receives the path from tracing visibility.
 	// Exists to reduce memory allocation.
@@ -379,7 +382,7 @@ func (w *World) Init(saveState int) error {
 	}
 
 	// Respawn the player at the desired start location (includes other startup).
-	return w.RespawnPlayer("", true)
+	return w.RespawnPlayerImmediately("", true)
 }
 
 // Load loads the current savegame.
@@ -436,7 +439,7 @@ func (w *World) loadUnchecked(saveName string) error {
 		return err
 	}
 	w.PlayerState.Init()
-	return w.RespawnPlayer(w.PlayerState.LastCheckpoint(), true)
+	return w.RespawnPlayerImmediately(w.PlayerState.LastCheckpoint(), true)
 }
 
 // Save saves the current savegame.
@@ -462,7 +465,12 @@ func (w *World) Save() error {
 // SpawnPlayer spawns the player in a newly initialized world.
 // As a side effect, it unloads all tiles.
 // Spawning at checkpoint "" means the initial player location.
-func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error {
+// Must not be run while updating entities.
+func (w *World) RespawnPlayerImmediately(checkpointName string, newGameSection bool) error {
+	if w.blockRespawn {
+		return errors.New("trying to respawn while updating entities")
+	}
+
 	// Load whether we've seen this checkpoint in flipped state.
 	flipped := w.PlayerState.CheckpointSeen(checkpointName) == playerstate.SeenFlipped
 
@@ -580,9 +588,16 @@ func (w *World) RespawnPlayer(checkpointName string, newGameSection bool) error 
 	// Initialize whatever the checkpoint wants to do.
 	w.TouchEvent(cp, []*Entity{w.Player})
 
-	// Skip updating.
-	w.respawned = true
 	return parseErr
+}
+
+func (w *World) ScheduleRespawnPlayer(checkpointName string, newGameSection bool) {
+	// Schedule respawn.
+	w.respawnCheckpointName = checkpointName
+	w.respawnNewGameSection = newGameSection
+
+	// Skip updating.
+	w.respawning = true
 }
 
 // TouchEvent notifies both entities that they touched the other.
@@ -622,22 +637,31 @@ func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult
 	return result
 }
 
-func (w *World) updateEntities() {
+func (w *World) updateEntities() error {
 	// Entities may update these.
 	w.warpzoneStatesChanged = false
-	w.respawned = false
+	w.respawning = false
 	w.GlobalColorM.Reset()
 	w.GlobalColorMSet = false
 
+	w.blockRespawn = true
 	w.entities.forEach(func(ent *Entity) error {
 		ent.Impl.Update()
-		if w.respawned {
-			// Once respawned, stop further processing to avoid
+		if w.respawning {
+			// Once respawning, stop further processing to avoid
 			// entities to interact with the respawned player.
 			return errBreak
 		}
 		return nil
 	})
+	w.blockRespawn = false
+
+	if w.respawning {
+		err := w.RespawnPlayerImmediately(w.respawnCheckpointName, w.respawnNewGameSection)
+		if err != nil {
+			return err
+		}
+	}
 
 	// Clean up newly spawned or despawned stuff.
 	w.entities.compact()
@@ -645,6 +669,8 @@ func (w *World) updateEntities() {
 		w.entitiesByZ[i].compact()
 	}
 	w.opaqueEntities.compact()
+
+	return nil
 }
 
 // updateScrollPos updates the current scroll position.
@@ -931,10 +957,13 @@ func (w *World) Update() error {
 
 	// Let everything move.
 	timing.Section("entities")
-	w.updateEntities()
+	err := w.updateEntities()
+	if err != nil {
+		return err
+	}
 
 	// Audit overlaps.
-	err := w.checkEntityOverlaps()
+	err = w.checkEntityOverlaps()
 	if err != nil {
 		return err
 	}
