@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.176" date="2025-04-07">
-      <description><ul><li>Engine: improvements for deterministic builds.</li><li>Engine: compile using Go 1.24.4.</li><li>Map: unflip some text elements.</li><li>Translations: various updates.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.176</url>
+    <release version="v1.6.194" date="2025-04-24">
+      <description><ul><li>Engine: fix a serious bug where hitting spikes near the end of the game makes you fall into the first room of the game.</li><li>Engine: minor module updates.</li><li>Engine: slightly revamp how platforms move faster when the player is above them. Reduces a "platform stalling" glitch.</li><li>Translations: minor updates.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.194</url>
     </release>
   </releases>
 </component>
