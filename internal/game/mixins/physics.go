@@ -40,6 +40,20 @@ type Physics struct {
 	handleTouchFunc func(trace engine.TraceResult)
 }
 
+type teleportState struct {
+	Origin   m.Pos
+	Velocity m.Delta
+	SubPixel m.Delta
+}
+
+func (p *Physics) teleportState() teleportState {
+	return teleportState{
+		Origin:   p.Entity.Rect.Origin,
+		Velocity: p.Velocity,
+		SubPixel: p.SubPixel,
+	}
+}
+
 type trivialPhysics struct {
 	engine.EntityImpl
 	Physics
@@ -154,11 +168,11 @@ func (p *Physics) slideMove(move m.Delta) bool {
 		var ground bool
 		var trace *engine.TraceResult
 		move, ground, trace = p.tryMove(move, false)
-		preTouchVel := p.Velocity
+		preTouch := p.teleportState()
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
-		teleported := p.Velocity != preTouchVel
+		teleported := p.teleportState() != preTouch
 		groundChecked = groundChecked || ground
 
 		if teleported {
@@ -185,11 +199,11 @@ func (p *Physics) walkMove(move m.Delta) bool {
 		prevGoal := p.Entity.Rect.Origin.Add(move)
 		prevVel := p.Velocity
 		move, ground, trace = p.tryMove(move, false)
-		preTouchVel := p.Velocity
+		preTouch := p.teleportState()
 		if trace != nil {
 			p.handleTouchFunc(*trace)
 		}
-		teleported := p.Velocity != preTouchVel
+		teleported := p.teleportState() != preTouch
 		groundChecked = groundChecked || ground
 
 		if teleported {
@@ -221,11 +235,11 @@ func (p *Physics) walkMove(move m.Delta) bool {
 			move = prevGoal.Add(stepUp).Delta(p.Entity.Rect.Origin)
 			p.Velocity = prevVel
 			moveClipped, _, trace := p.tryMove(move, false)
-			preTouchVel = p.Velocity
+			preTouch = p.teleportState()
 			if trace != nil {
 				p.handleTouchFunc(*trace)
 			}
-			teleported := p.Velocity != preTouchVel
+			teleported := p.teleportState() != preTouch
 			moveRemaining := prevGoal.Add(stepUp).Delta(p.Entity.Rect.Origin)
 			if moveRemaining == move {
 				// If no progress was made, actually do clip this move.
