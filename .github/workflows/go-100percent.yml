@@ -28,12 +28,12 @@ jobs:
       - name: Fetch Test Cases
         env:
           REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
-        run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/100percent-v16.zip'
+        run: 'curl -o testcases.zip "$REGRESSION_TEST_URL"/100percent-v17.zip'
       - name: Extract Test Cases
         run: 'unzip testcases.zip'
       - name: Test
         run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "your time:
-          1:19:26\\.566; your speedrun categories: 100%, All Notes and All Paths;
+          1:17:38\\.566; your speedrun categories: 100%, All Notes and All Paths;
           try next: All Secrets\\." "./aaaaxy -debug_log_entity_defaults" *.dem'
       - name: Archive Results
         if: ${{ always() }}

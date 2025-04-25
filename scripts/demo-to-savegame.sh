@@ -88,7 +88,7 @@ case "$mode" in
 		done < "$demo"
 		;;
 	*)
-		echo >&2 "Usage: $0 {start|end|diff} filename.dem"
+		echo >&2 "Usage: $0 {start|end|diff|diff_start|diff_end} filename.dem"
 		echo >&2 "       $0 {replace_start} filename.dem < savegame.sav > newfilename.dem"
 		echo >&2 "       $0 {diff_seq} filename.dem"
 		exit 1

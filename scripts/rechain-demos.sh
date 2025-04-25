@@ -42,7 +42,7 @@ for demo in "$@"; do
 		-fps_divisor=15 \
 		-fullscreen=false \
 		-runnable_when_unfocused \
-		--screen_filter=simple \
+		-screen_filter=linear2x \
 		-show_fps \
 		-show_time \
 		-vsync=false \

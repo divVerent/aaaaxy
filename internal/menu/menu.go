@@ -359,7 +359,7 @@ func (c *Controller) SwitchToCheckpoint(cp string) error {
 	if cp != c.World.PlayerState.LastCheckpoint() {
 		c.World.PlayerState.AddTeleport()
 	}
-	err := c.World.RespawnPlayer(cp, true)
+	err := c.World.RespawnPlayerImmediately(cp, true)
 	if err != nil {
 		return fmt.Errorf("could not respawn player: %w", err)
 	}

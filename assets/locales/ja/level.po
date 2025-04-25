@@ -42,7 +42,7 @@ msgstr "物事を見る角度ですべてが決まったりもする。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=52]
 msgid "There can be too much of a good thing."
-msgstr "過ぎたるはなお及ばざるが如し。"
+msgstr "過ぎたるは猶及ばざるが如し。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=53]
 msgid "Leap of Faith"
@@ -108,12 +108,12 @@ msgstr "簡単な道は、必ずしも成功への道ではない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=144]
 msgid "Some things only have one side to them."
-msgstr "ある種の物事はただ一面のみを持つ。"
+msgstr "物事には一面しかないものもある。"
 
 #. https://gettingoverit.co/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=145]
 msgid "Thinking outside the box can remove the need of getting over it."
-msgstr "既成概念にとらわれなければ、山を登らなくてもすむかもしれない。"
+msgstr "既成概念にとらわれず考えれば、壺はいらなくなる。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=147]
 msgid "The Möbius Strip"
@@ -881,7 +881,7 @@ msgstr "感電注意"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3857]
 msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
-msgstr "まだ見える方の眼で{{BR}}レーザーを見るな"
+msgstr "残ってる眼で{{BR}}レーザーを見るな"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3858]
 msgid "LEGAL{{BR}}WAIVER"
@@ -916,7 +916,7 @@ msgstr "バタフライ・エフェクト"
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3912]
 msgid "What we've done before{{BR}}may impact what we can do next."
-msgstr "これまで行ってきたことが{{BR}}いま取れる行動を決めるのだ。"
+msgstr "これまで行ってきたことが、{{BR}}次にとれる行動に影響を及ぼし得る。"
 
 #. http://www.antichamber-game.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3926]
@@ -1397,7 +1397,7 @@ msgstr "登るのは、お楽しみの半分に過ぎない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7872]
 msgid "If stuck,{{BR}}press {{ExitButton}}."
-msgstr "行き詰ったら、{{BR}}{{ExitButton}}を押しな。"
+msgstr "行き詰まったら、{{BR}}{{ExitButton}}を押しな。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7877]
 msgid "Phew?"

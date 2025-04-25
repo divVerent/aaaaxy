@@ -1,0 +1,6 @@
+  - Engine: fix a serious bug where hitting spikes near the end of the game
+    makes you fall into the first room of the game.
+  - Engine: minor module updates.
+  - Engine: slightly revamp how platforms move faster when the player is above
+    them. Reduces a "platform stalling" glitch.
+  - Translations: minor updates.

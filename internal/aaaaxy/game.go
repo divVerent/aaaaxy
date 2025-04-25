@@ -763,7 +763,7 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 		}
 		screen.DrawRectShader(engine.GameWidth, engine.GameHeight, g.linear2xCRTShader, options)
 	default:
-		log.Errorf("unknown screen filter type: %q; reverted to simple", *screenFilter)
+		log.Errorf("unknown screen filter type: %q; reverted to linear2x", *screenFilter)
 		*screenFilter = "linear2x"
 	}
 }
