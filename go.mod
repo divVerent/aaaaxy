@@ -12,7 +12,7 @@ require (
 	github.com/google/go-cmp v0.7.0
 	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
 	github.com/hajimehoshi/bitmapfont/v3 v3.2.1
-	github.com/hajimehoshi/ebiten/v2 v2.8.7
+	github.com/hajimehoshi/ebiten/v2 v2.8.8
 	github.com/jeandeaual/go-locale v0.0.0-20241217141322-fcc2cadd6f08
 	github.com/leonelquinteros/gotext v1.7.1
 	github.com/lestrrat-go/strftime v1.1.0
