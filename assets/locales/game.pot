@@ -612,6 +612,10 @@ msgstr ""
 msgid "elsewhere"
 msgstr ""
 
+#: engine/world.go
+msgid "enumerating levels"
+msgstr ""
+
 #: sound/sound.go
 msgid "enumerating sounds"
 msgstr ""
@@ -643,10 +647,6 @@ msgstr ""
 
 #: aaaaxy/init.go
 msgid "initializing noise"
-msgstr ""
-
-#: engine/world.go
-msgid "enumerating levels"
 msgstr ""
 
 #: level/level.go
@@ -691,7 +691,7 @@ msgid "precaching fonts"
 msgstr ""
 
 #: aaaaxy/init.go
-msgid "precaching images"
+msgid "precaching pictures"
 msgstr ""
 
 #: aaaaxy/init.go

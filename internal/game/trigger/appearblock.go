@@ -18,8 +18,8 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/picture"
 )
 
 // AppearBlock is a simple entity type that renders a static sprite. It can be optionally solid and/or opaque.
@@ -42,7 +42,7 @@ func (a *AppearBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine
 	a.Entity = e
 
 	var err error
-	e.Image, err = image.Load("sprites", "appearblock.png")
+	e.Image, err = picture.Load("sprites", "appearblock.png")
 	if err != nil {
 		return err
 	}

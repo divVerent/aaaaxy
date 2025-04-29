@@ -26,13 +26,13 @@ import (
 	"github.com/divVerent/aaaaxy/internal/centerprint"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/offscreen"
 	"github.com/divVerent/aaaaxy/internal/palette"
+	"github.com/divVerent/aaaaxy/internal/picture"
 	"github.com/divVerent/aaaaxy/internal/shader"
 	"github.com/divVerent/aaaaxy/internal/timing"
 )
@@ -152,7 +152,7 @@ func (r *renderer) drawTiles(screen *ebiten.Image, scrollDelta m.Delta) {
 		}
 		pos := r.world.tilePos(i)
 		screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
-		img, err := image.Load("tiles", tile.ImageSrc)
+		img, err := picture.Load("tiles", tile.ImageSrc)
 		if err != nil {
 			log.Errorf("could not load already cached image %q for tile: %v", tile.ImageSrc, err)
 			return

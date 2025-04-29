@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-17 13:03-0400\n"
+"POT-Creation-Date: 2025-04-29 08:16-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -266,9 +266,11 @@ msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=396]
 #. Part of 'Welcome to Nexuiz!'
+#: assets/maps/level.tmx://map/objectgroup/object[@id=421]
 msgid "Welcome to ..."
 msgstr ""
 
+#: assets/maps/level.tmx://map/objectgroup/object[@id=396]
 #: assets/maps/level.tmx://map/objectgroup/object[@id=421]
 #. Part of 'Welcome to Nexuiz!'
 msgid "Nexuiz!"
@@ -1028,22 +1030,26 @@ msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=5004]
 #. Part of 'What are you after?'
+#: assets/maps/level.tmx://map/objectgroup/object[@id=5007]
 msgid "... after?"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=5004]
+#: assets/maps/level.tmx://map/objectgroup/object[@id=5007]
+#. Part of 'What are you after?'
+msgid "... you ..."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=5005]
 #. Part of 'What are you after?'
+#: assets/maps/level.tmx://map/objectgroup/object[@id=5006]
 msgid "... are ..."
 msgstr ""
 
+#: assets/maps/level.tmx://map/objectgroup/object[@id=5005]
 #: assets/maps/level.tmx://map/objectgroup/object[@id=5006]
 #. Part of 'What are you after?'
 msgid "What ..."
-msgstr ""
-
-#: assets/maps/level.tmx://map/objectgroup/object[@id=5007]
-#. Part of 'What are you after?'
-msgid "... you ..."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=5008]

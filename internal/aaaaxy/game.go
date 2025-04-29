@@ -17,7 +17,7 @@ package aaaaxy
 import (
 	"errors"
 	"fmt"
-	go_image "image"
+	"image"
 	"io"
 	"math"
 	"runtime/debug"
@@ -361,14 +361,14 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 
 	// Need a LUT?
 	if g.palette != pal {
-		var lut go_image.Image
+		var lut image.Image
 		switch ditherMode {
 		case bayerDither, checkerDither, diamondDither, halftoneDither, hybridDither, randomDither, plasticDither, squareDither:
 			lut, g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(g.paletteLUT.Bounds(), 1)
 		case bayer2Dither, checker2Dither, diamond2Dither, halftone2Dither, hybrid2Dither, random2Dither, plastic2Dither, square2Dither:
 			lut, g.paletteLUTSize, g.paletteLUTPerRow, g.paletteLUTWidth = pal.ToLUT(g.paletteLUT.Bounds(), 2)
 		}
-		if nrgba, ok := lut.(*go_image.NRGBA); ok {
+		if nrgba, ok := lut.(*image.NRGBA); ok {
 			g.paletteLUT.SubImage(nrgba.Rect).(*ebiten.Image).WritePixels(nrgba.Pix)
 		} else {
 			log.Fatalf("palette LUT isn't NRGBA, got %T, please fix game data", lut)
@@ -438,7 +438,7 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *ebiten.Image, tmp *ebiten.Image) *ebiten.Image {
 	drawDest, finishDrawing := g.palettePrepare(maybeScreen, tmp)
 
-	if drawDest.Bounds() != go_image.Rect(0, 0, engine.GameWidth, engine.GameHeight) {
+	if drawDest.Bounds() != image.Rect(0, 0, engine.GameWidth, engine.GameHeight) {
 		log.Infof("skipping frame as sizes do not match up: got %vx%v, want %vx%v",
 			drawDest.Bounds(), engine.GameWidth, engine.GameHeight)
 		screen := finishDrawing()
@@ -584,12 +584,12 @@ func borderStretchPower() float64 {
 }
 
 func assertOrigin(img ebiten.FinalScreen) {
-	if img.Bounds().Min != (go_image.Point{}) {
+	if img.Bounds().Min != (image.Point{}) {
 		log.Fatalf("did not get zero origin: %v", img.Bounds())
 	}
 }
 
-func ensureRect(img *ebiten.Image, rect go_image.Rectangle) *ebiten.Image {
+func ensureRect(img *ebiten.Image, rect image.Rectangle) *ebiten.Image {
 	if img.Bounds() == rect {
 		return img
 	}
@@ -605,7 +605,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	timing.Section("draw")
 	defer timing.Group()()
 
-	screen = ensureRect(screen, go_image.Rect(0, 0, engine.GameWidth, engine.GameHeight))
+	screen = ensureRect(screen, image.Rect(0, 0, engine.GameWidth, engine.GameHeight))
 
 DoneDisposing:
 	for {
@@ -651,7 +651,7 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 	defer timing.Group()()
 
 	assertOrigin(screen)
-	offscreen = ensureRect(offscreen, go_image.Rect(0, 0, engine.GameWidth, engine.GameHeight))
+	offscreen = ensureRect(offscreen, image.Rect(0, 0, engine.GameWidth, engine.GameHeight))
 
 	if *screenStretch {
 		// Note that due to the code in Layout(), this changes almost nothing;

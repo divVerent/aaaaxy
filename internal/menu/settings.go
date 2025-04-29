@@ -23,12 +23,12 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/game/misc"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
 	"github.com/divVerent/aaaaxy/internal/palette"
+	"github.com/divVerent/aaaaxy/internal/picture"
 )
 
 var offerFullscreen = flag.SystemDefault(map[string]bool{
@@ -223,7 +223,7 @@ func (s graphicsSetting) apply(m *Controller) error {
 		if !palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
 			return nil
 		}
-		err := image.PaletteChanged()
+		err := picture.PaletteChanged()
 		if err != nil {
 			return fmt.Errorf("could not reapply palette to images: %v", err)
 		}

@@ -15,15 +15,15 @@
 package misc
 
 import (
-	go_image "image"
+	"image"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/picture"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
@@ -45,7 +45,7 @@ func (s *Sprite) Precache(sp *level.Spawnable) error {
 	var parseErr error
 	directory := propmap.StringOr(sp.Properties, "image_dir", "sprites")
 	imgSrc := propmap.ValueP(sp.Properties, "image", "", &parseErr)
-	_, err := image.Load(directory, imgSrc)
+	_, err := picture.Load(directory, imgSrc)
 	if err != nil {
 		return err
 	}
@@ -57,7 +57,7 @@ func (s *Sprite) Precache(sp *level.Spawnable) error {
 		if thisSrc == "" {
 			continue
 		}
-		_, err := image.Load(directory, thisSrc)
+		_, err := picture.Load(directory, thisSrc)
 		if err != nil {
 			return err
 		}
@@ -74,7 +74,7 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 		return err
 	}
 	imgSrc, e.Orientation = level.ResolveImage(e.Transform, e.Orientation, imgSrc, imgSrcByOrientation)
-	e.Image, err = image.Load(directory, imgSrc)
+	e.Image, err = picture.Load(directory, imgSrc)
 	if err != nil {
 		return err
 	}
@@ -84,12 +84,12 @@ func (s *Sprite) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 	}
 	region := propmap.ValueOrP(sp.Properties, "image_region", m.Rect{}, &parseErr)
 	if !region.Size.IsZero() {
-		e.Image = e.Image.SubImage(go_image.Rectangle{
-			Min: go_image.Point{
+		e.Image = e.Image.SubImage(image.Rectangle{
+			Min: image.Point{
 				X: region.Origin.X,
 				Y: region.Origin.Y,
 			},
-			Max: go_image.Point{
+			Max: image.Point{
 				X: region.Origin.X + region.Size.DX,
 				Y: region.Origin.Y + region.Size.DY,
 			},

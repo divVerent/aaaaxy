@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package image
+package picture
 
 import (
 	"bufio"
@@ -31,30 +31,30 @@ import (
 )
 
 var (
-	precacheImages = flag.Bool("precache_images", true, "preload all images at startup (VERY recommended)")
+	precachePictures = flag.Bool("precache_pictures", true, "preload all pictures at startup (VERY recommended)")
 )
 
-type imagePath = struct {
+type picturePath = struct {
 	Purpose string
 	Name    string
 }
 
 var (
-	cache       = map[imagePath]*ebiten.Image{}
+	cache       = map[picturePath]*ebiten.Image{}
 	cacheFrozen bool
 
-	// This should be in sync with exclusions in scripts/audit-images.sh.
+	// This should be in sync with exclusions in scripts/audit-pictures.sh.
 	noPaletteSprites = regexp.MustCompile(`^(?:warpzone|clock|gradient|magic)_.*`)
 )
 
 func load(purpose, name string, force bool) (*ebiten.Image, error) {
-	ip := imagePath{purpose, name}
+	ip := picturePath{purpose, name}
 	cachedImg, found := cache[ip]
 	if found && !force {
 		return cachedImg, nil
 	}
 	if cacheFrozen && !found {
-		return nil, fmt.Errorf("image %v was not precached", ip)
+		return nil, fmt.Errorf("picture %v was not precached", ip)
 	}
 	data, err := vfs.Load(purpose, name)
 	if err != nil {
@@ -87,10 +87,10 @@ func Load(purpose, name string) (*ebiten.Image, error) {
 }
 
 func Precache() error {
-	if !*precacheImages {
+	if !*precachePictures {
 		return nil
 	}
-	toLoad := map[imagePath]struct{}{}
+	toLoad := map[picturePath]struct{}{}
 	for _, purpose := range []string{"tiles", "sprites"} {
 		names, err := vfs.ReadDir(purpose)
 		if err != nil {
@@ -100,10 +100,10 @@ func Precache() error {
 			if !strings.HasSuffix(name, ".png") {
 				continue
 			}
-			toLoad[imagePath{Purpose: purpose, Name: name}] = struct{}{}
+			toLoad[picturePath{Purpose: purpose, Name: name}] = struct{}{}
 		}
 	}
-	listFile, err := vfs.Load("generated", "image_load_order.txt")
+	listFile, err := vfs.Load("generated", "picture_load_order.txt")
 	if err != nil {
 		return fmt.Errorf("could query load order: %w", err)
 	}
@@ -112,7 +112,7 @@ func Precache() error {
 		line := listScanner.Text()
 		purpose := path.Dir(line)
 		name := path.Base(line)
-		item := imagePath{Purpose: purpose, Name: name}
+		item := picturePath{Purpose: purpose, Name: name}
 		if _, found := toLoad[item]; found {
 			_, err := Load(item.Purpose, item.Name)
 			if err != nil {

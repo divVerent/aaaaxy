@@ -19,9 +19,9 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/constants"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/picture"
 )
 
 // RespawnPlayer respawns the player when touched.
@@ -38,7 +38,7 @@ const (
 func (r *RespawnPlayer) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	r.World = w
 	var err error
-	e.Image, err = image.Load("sprites", "spike.png")
+	e.Image, err = picture.Load("sprites", "spike.png")
 	if err != nil {
 		return fmt.Errorf("could not load spike image: %r", err)
 	}

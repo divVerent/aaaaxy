@@ -22,10 +22,10 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/picture"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
@@ -64,7 +64,7 @@ func (q *QuestionBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 	q.Kaizo = propmap.ValueOrP(sp.Properties, "kaizo", false, &parseErr)
 	q.Target = mixins.ParseTarget(propmap.StringOr(sp.Properties, "target", ""))
 	q.Used = propmap.ValueOrP(q.PersistentState, "used", false, &parseErr)
-	q.UsedImage, err = image.Load("sprites", "exclamationblock.png")
+	q.UsedImage, err = picture.Load("sprites", "exclamationblock.png")
 	if err != nil {
 		return err
 	}
@@ -73,7 +73,7 @@ func (q *QuestionBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *engi
 		q.UseAnimFrame = 2 * UseFramesPerPixel * UsePixels
 	} else {
 		if !q.Kaizo {
-			e.Image, err = image.Load("sprites", "questionblock.png")
+			e.Image, err = picture.Load("sprites", "questionblock.png")
 			if err != nil {
 				return err
 			}
