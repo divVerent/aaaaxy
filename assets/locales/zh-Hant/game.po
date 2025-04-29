@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Anthony Wang, 2024
-# Rudolf Polzer, 2025
 # Ran Dint, 2025
+# Rudolf Polzer, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ran Dint, 2025\n"
+"Last-Translator: Rudolf Polzer, 2025\n"
 "Language-Team: Chinese Traditional (https://app.transifex.com/aaaaxy/teams/158611/zh-Hant/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -626,6 +626,10 @@ msgstr "%s"
 msgid "elsewhere"
 msgstr "螢幕任何一處"
 
+#: engine/world.go
+msgid "enumerating levels"
+msgstr "列舉關卡"
+
 #: sound/sound.go
 msgid "enumerating sounds"
 msgstr "列舉音訊"
@@ -658,10 +662,6 @@ msgstr "初始化選單"
 #: aaaaxy/init.go
 msgid "initializing noise"
 msgstr "初始化噪音"
-
-#: engine/world.go
-msgid "enumerating levels"
-msgstr "列舉關卡"
 
 #: level/level.go
 msgid "loading checkpoints"
@@ -705,7 +705,7 @@ msgid "precaching fonts"
 msgstr "預快取字體"
 
 #: aaaaxy/init.go
-msgid "precaching images"
+msgid "precaching pictures"
 msgstr "預快取圖像"
 
 #: aaaaxy/init.go
