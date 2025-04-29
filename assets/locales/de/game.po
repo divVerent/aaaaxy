@@ -626,6 +626,10 @@ msgstr "von %s"
 msgid "elsewhere"
 msgstr "woanders"
 
+#: engine/world.go
+msgid "enumerating levels"
+msgstr "Finde Levels"
+
 #: sound/sound.go
 msgid "enumerating sounds"
 msgstr "Finde Sound-Effekte"
@@ -658,10 +662,6 @@ msgstr "Initialisiere Menü"
 #: aaaaxy/init.go
 msgid "initializing noise"
 msgstr "Initialisiere Rauschen"
-
-#: engine/world.go
-msgid "enumerating levels"
-msgstr "Finde Levels"
 
 #: level/level.go
 msgid "loading checkpoints"
@@ -705,7 +705,7 @@ msgid "precaching fonts"
 msgstr "Lade Schriftarten"
 
 #: aaaaxy/init.go
-msgid "precaching images"
+msgid "precaching pictures"
 msgstr "Lade Grafiken"
 
 #: aaaaxy/init.go
