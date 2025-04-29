@@ -30,15 +30,15 @@ import (
 	"github.com/divVerent/aaaaxy/internal/exitstatus"
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/locale/initlocale"
 	"github.com/divVerent/aaaaxy/internal/log"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 	"github.com/divVerent/aaaaxy/internal/menu"
 	"github.com/divVerent/aaaaxy/internal/noise"
 	"github.com/divVerent/aaaaxy/internal/palette"
+	"github.com/divVerent/aaaaxy/internal/picture"
 	"github.com/divVerent/aaaaxy/internal/sound"
 	"github.com/divVerent/aaaaxy/internal/splash"
 	"github.com/divVerent/aaaaxy/internal/timing"
@@ -221,7 +221,7 @@ func (g *Game) InitStep() error {
 	if status != splash.Continue {
 		return err
 	}
-	status, err = g.init.Enter("precaching images", locale.G.Get("precaching images"), "could not precache images", splash.Single(image.Precache))
+	status, err = g.init.Enter("precaching pictures", locale.G.Get("precaching pictures"), "could not precache pictures", splash.Single(picture.Precache))
 	if status != splash.Continue {
 		return err
 	}

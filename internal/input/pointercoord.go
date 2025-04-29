@@ -17,7 +17,7 @@ package input
 import (
 	"math"
 
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 )
 
 func stretchForAspectOne(n, aspectFactor, x float64) float64 {

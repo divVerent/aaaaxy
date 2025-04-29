@@ -25,12 +25,12 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/fun"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/locale"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 	"github.com/divVerent/aaaaxy/internal/palette"
+	"github.com/divVerent/aaaaxy/internal/picture"
 	"github.com/divVerent/aaaaxy/internal/playerstate"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 )
@@ -77,27 +77,27 @@ func (s *MapScreen) Init(c *Controller) error {
 		return s.Controller.SwitchToGame()
 	}
 	var err error
-	s.cpSprite, err = image.Load("sprites", "checkpoint.png")
+	s.cpSprite, err = picture.Load("sprites", "checkpoint.png")
 	if err != nil {
 		return err
 	}
-	s.cpSelectedSprite, err = image.Load("sprites", "checkpoint_selected.png")
+	s.cpSelectedSprite, err = picture.Load("sprites", "checkpoint_selected.png")
 	if err != nil {
 		return err
 	}
-	s.cpFlippedSprite, err = image.Load("sprites", "checkpoint_flipped.png")
+	s.cpFlippedSprite, err = picture.Load("sprites", "checkpoint_flipped.png")
 	if err != nil {
 		return err
 	}
-	s.cpFlippedSelectedSprite, err = image.Load("sprites", "checkpoint_flipped_selected.png")
+	s.cpFlippedSelectedSprite, err = picture.Load("sprites", "checkpoint_flipped_selected.png")
 	if err != nil {
 		return err
 	}
-	s.deadEndSprite, err = image.Load("sprites", "dead_end.png")
+	s.deadEndSprite, err = picture.Load("sprites", "dead_end.png")
 	if err != nil {
 		return err
 	}
-	s.cpCheckmarkSprite, err = image.Load("sprites", "checkpoint_checkmark.png")
+	s.cpCheckmarkSprite, err = picture.Load("sprites", "checkpoint_checkmark.png")
 	if err != nil {
 		return err
 	}

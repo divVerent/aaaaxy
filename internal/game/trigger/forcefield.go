@@ -16,7 +16,7 @@ package trigger
 
 import (
 	"fmt"
-	go_image "image"
+	"image"
 	"math/rand"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -25,10 +25,10 @@ import (
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
+	"github.com/divVerent/aaaaxy/internal/picture"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -70,7 +70,7 @@ func (f *ForceField) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.
 		return fmt.Errorf("could not load jump sound: %w", err)
 	}
 
-	f.SourceImg, err = image.Load("sprites", "forcefield.png")
+	f.SourceImg, err = picture.Load("sprites", "forcefield.png")
 	if err != nil {
 		return fmt.Errorf("failed to load forcefield sprite: %w", err)
 	}
@@ -131,12 +131,12 @@ func (f *ForceField) Update() {
 		wantW, wantH = wantH, wantW
 	}
 	xOffset, yOffset := rand.Intn(got.X-wantW+1), rand.Intn(got.Y-wantH+1)
-	f.Entity.Image = f.SourceImg.SubImage(go_image.Rectangle{
-		Min: go_image.Point{
+	f.Entity.Image = f.SourceImg.SubImage(image.Rectangle{
+		Min: image.Point{
 			X: xOffset,
 			Y: yOffset,
 		},
-		Max: go_image.Point{
+		Max: image.Point{
 			X: xOffset + wantW,
 			Y: yOffset + wantH,
 		},

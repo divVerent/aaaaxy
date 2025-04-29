@@ -20,7 +20,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/input"
 	"github.com/divVerent/aaaaxy/internal/locale"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 	"github.com/divVerent/aaaaxy/internal/palette"
 )
 

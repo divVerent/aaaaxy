@@ -19,7 +19,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 )
 
 func makeVertex(geoM, texM *ebiten.GeoM, p m.Pos, r, g, b, a float32) ebiten.Vertex {

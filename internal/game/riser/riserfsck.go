@@ -19,8 +19,8 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/picture"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
 
@@ -41,7 +41,7 @@ func (r *RiserFsck) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.E
 		return fmt.Errorf("could not initialize nonsolidtouchbale: %w", err)
 	}
 
-	e.Image, err = image.Load("sprites", "riserfsck.png")
+	e.Image, err = picture.Load("sprites", "riserfsck.png")
 	if err != nil {
 		return fmt.Errorf("could not load riserfsck sprite: %w", err)
 	}

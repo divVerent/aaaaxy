@@ -21,7 +21,7 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/font"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 )
 
 // textScreenScrollInPos is the position where sure nothing can be seen.

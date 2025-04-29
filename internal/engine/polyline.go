@@ -20,7 +20,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 )
 
 // DrawPolyLine draws a polygon line for the given points.

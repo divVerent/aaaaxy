@@ -18,8 +18,8 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/constants"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/picture"
 )
 
 // DisappearBlock is an entity that disappears when touched and never reappears.
@@ -42,7 +42,7 @@ func (a *DisappearBlock) Spawn(w *engine.World, sp *level.SpawnableProps, e *eng
 	a.Entity = e
 
 	var err error
-	e.Image, err = image.Load("sprites", "disappearblock.png")
+	e.Image, err = picture.Load("sprites", "disappearblock.png")
 	if err != nil {
 		return err
 	}

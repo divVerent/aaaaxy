@@ -24,7 +24,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/font"
 	"github.com/divVerent/aaaaxy/internal/log"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 	"github.com/divVerent/aaaaxy/internal/offscreen"
 	"github.com/divVerent/aaaaxy/internal/screenshot"
 )

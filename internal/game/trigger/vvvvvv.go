@@ -20,8 +20,8 @@ import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
-	"github.com/divVerent/aaaaxy/internal/image"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/picture"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 
@@ -39,7 +39,7 @@ type VVVVVV struct {
 func (v *VVVVVV) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	v.NonSolidTouchable.Init(w, e)
 	var err error
-	e.Image, err = image.Load("sprites", "v.png")
+	e.Image, err = picture.Load("sprites", "v.png")
 	if err != nil {
 		return fmt.Errorf("could not load vvvvvv image: %w", err)
 	}

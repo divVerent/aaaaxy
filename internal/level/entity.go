@@ -15,7 +15,7 @@
 package level
 
 import (
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 )
 

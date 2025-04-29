@@ -19,8 +19,8 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/colorm"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
-	"github.com/divVerent/aaaaxy/internal/image"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
+	"github.com/divVerent/aaaaxy/internal/picture"
 )
 
 var (
@@ -172,31 +172,31 @@ func (i *impulse) touchPressed() InputMap {
 
 func touchInit() error {
 	var err error
-	Left.touchImage, err = image.Load("sprites", "touch_left.png")
+	Left.touchImage, err = picture.Load("sprites", "touch_left.png")
 	if err != nil {
 		return err
 	}
-	Right.touchImage, err = image.Load("sprites", "touch_right.png")
+	Right.touchImage, err = picture.Load("sprites", "touch_right.png")
 	if err != nil {
 		return err
 	}
-	Up.touchImage, err = image.Load("sprites", "touch_up.png")
+	Up.touchImage, err = picture.Load("sprites", "touch_up.png")
 	if err != nil {
 		return err
 	}
-	Down.touchImage, err = image.Load("sprites", "touch_down.png")
+	Down.touchImage, err = picture.Load("sprites", "touch_down.png")
 	if err != nil {
 		return err
 	}
-	Jump.touchImage, err = image.Load("sprites", "touch_jump.png")
+	Jump.touchImage, err = picture.Load("sprites", "touch_jump.png")
 	if err != nil {
 		return err
 	}
-	Action.touchImage, err = image.Load("sprites", "touch_action.png")
+	Action.touchImage, err = picture.Load("sprites", "touch_action.png")
 	if err != nil {
 		return err
 	}
-	Exit.touchImage, err = image.Load("sprites", "touch_exit.png")
+	Exit.touchImage, err = picture.Load("sprites", "touch_exit.png")
 	if err != nil {
 		return err
 	}

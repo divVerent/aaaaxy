@@ -23,7 +23,7 @@ import (
 	"golang.org/x/image/font"
 
 	"github.com/divVerent/aaaaxy/internal/locale"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 )
 
 var (
