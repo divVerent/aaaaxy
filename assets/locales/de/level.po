@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-13 15:42-0400\n"
+"POT-Creation-Date: 2025-04-29 08:16-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2025\n"
 "Language-Team: German (https://app.transifex.com/aaaaxy/teams/158611/de/)\n"
@@ -285,10 +285,12 @@ msgstr ""
 
 #. Part of 'Welcome to Nexuiz!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=396]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=421]
 msgid "Welcome to ..."
 msgstr "Willkommen zu ..."
 
 #. Part of 'Welcome to Nexuiz!'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=396]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=421]
 msgid "Nexuiz!"
 msgstr "Nexuiz!"
@@ -1111,23 +1113,27 @@ msgstr "He!{{BR}}Das ist{{BR}}MEINS!"
 
 #. Part of 'What are you after?'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5004]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5007]
 msgid "... after?"
 msgstr "... hier?"
 
 #. Part of 'What are you after?'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5004]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5007]
+msgid "... you ..."
+msgstr "... du ..."
+
+#. Part of 'What are you after?'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5005]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5006]
 msgid "... are ..."
 msgstr "... suchst ..."
 
 #. Part of 'What are you after?'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5005]
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5006]
 msgid "What ..."
 msgstr "Was ..."
-
-#. Part of 'What are you after?'
-#: assets/maps/level.tmx//map/objectgroup/object[@id=5007]
-msgid "... you ..."
-msgstr "... du ..."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5008]
 msgid "Those who cannot remember the past are condemned to repeat it."
