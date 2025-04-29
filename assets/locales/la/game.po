@@ -624,6 +624,10 @@ msgstr "a %s"
 msgid "elsewhere"
 msgstr "alibi"
 
+#: engine/world.go
+msgid "enumerating levels"
+msgstr "enumero libellas"
+
 #: sound/sound.go
 msgid "enumerating sounds"
 msgstr "enumero audienda"
@@ -656,10 +660,6 @@ msgstr "Initio minutum"
 #: aaaaxy/init.go
 msgid "initializing noise"
 msgstr "initio strepitum"
-
-#: engine/world.go
-msgid "enumerating levels"
-msgstr "enumero libellas"
 
 #: level/level.go
 msgid "loading checkpoints"
@@ -703,7 +703,7 @@ msgid "precaching fonts"
 msgstr "accumulo litteras"
 
 #: aaaaxy/init.go
-msgid "precaching images"
+msgid "precaching pictures"
 msgstr "accumulo videnda"
 
 #: aaaaxy/init.go
