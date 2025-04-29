@@ -19,7 +19,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/colorm"
 
 	"github.com/divVerent/aaaaxy/internal/flag"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 	"github.com/divVerent/aaaaxy/internal/picture"
 )
 

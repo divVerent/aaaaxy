@@ -17,7 +17,7 @@ package engine
 import (
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 )
 
 // traceLineTiles cuts the given trace by hits against the tilemap.

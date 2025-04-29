@@ -16,7 +16,7 @@ package menu
 
 import (
 	"github.com/divVerent/aaaaxy/internal/engine"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 )
 
 const CenterX = engine.GameWidth / 2

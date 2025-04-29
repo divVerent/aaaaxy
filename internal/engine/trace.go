@@ -19,7 +19,7 @@ import (
 	"sort"
 
 	"github.com/divVerent/aaaaxy/internal/level"
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 )
 
 type TraceOptions struct {

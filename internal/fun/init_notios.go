@@ -20,7 +20,7 @@ package fun
 import (
 	"time"
 
-	m "github.com/divVerent/aaaaxy/internal/math"
+	"github.com/divVerent/aaaaxy/internal/m"
 )
 
 func init() {
