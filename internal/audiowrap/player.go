@@ -19,7 +19,7 @@ import (
 	"io"
 	"time"
 
-	ebiaudio "github.com/hajimehoshi/ebiten/v2/audio"
+	"github.com/hajimehoshi/ebiten/v2/audio"
 
 	"github.com/divVerent/aaaaxy/internal/dontgc"
 	"github.com/divVerent/aaaaxy/internal/engine"
@@ -28,14 +28,14 @@ import (
 )
 
 var (
-	audio         = flag.Bool("audio", true, "enable audio")
+	audioFlag     = flag.Bool("audio", true, "enable audio")
 	audioRate     = flag.Int("audio_rate", 44100, "preferred audio sample rate")
 	volume        = flag.Float64("volume", 0.5, "global volume (0..1)")
 	soundFadeTime = flag.Duration("sound_fade_time", time.Second, "default sound fade time")
 )
 
 type Player struct {
-	ebi       *ebiaudio.Player
+	ebi       *audio.Player
 	ebiCloser io.Closer
 	dmp       *dumper
 
@@ -72,19 +72,19 @@ func Rate() int {
 }
 
 func Init() error {
-	if *audio {
-		ebiaudio.NewContext(*audioRate)
+	if *audioFlag {
+		audio.NewContext(*audioRate)
 
 		// Workaround: for some reason playing the first sound can incur significant delay.
 		// So let's do this at the start.
-		ebiaudio.CurrentContext().NewPlayerFromBytes([]byte{}).Play()
+		audio.CurrentContext().NewPlayerFromBytes([]byte{}).Play()
 	}
 	return nil
 }
 
 func SampleRate() int {
-	if *audio {
-		return ebiaudio.CurrentContext().SampleRate()
+	if *audioFlag {
+		return audio.CurrentContext().SampleRate()
 	}
 	return *audioRate
 }
@@ -109,11 +109,11 @@ func Update() {
 	}
 }
 
-func ebiPlayer(src io.Reader) (*ebiaudio.Player, error) {
-	if !*audio {
+func ebiPlayer(src io.Reader) (*audio.Player, error) {
+	if !*audioFlag {
 		return nil, nil
 	}
-	return ebiaudio.CurrentContext().NewPlayer(src)
+	return audio.CurrentContext().NewPlayer(src)
 }
 
 func NewPlayer(src func() (io.ReadCloser, error)) (*Player, error) {
@@ -146,11 +146,11 @@ func (p *Player) CheckGC() dontgc.State {
 	return p.dontGCState
 }
 
-func ebiPlayerFromBytes(src []byte) *ebiaudio.Player {
-	if !*audio {
+func ebiPlayerFromBytes(src []byte) *audio.Player {
+	if !*audioFlag {
 		return nil
 	}
-	return ebiaudio.CurrentContext().NewPlayerFromBytes(src)
+	return audio.CurrentContext().NewPlayerFromBytes(src)
 }
 
 func NewPlayerFromBytes(src []byte) (*Player, error) {
