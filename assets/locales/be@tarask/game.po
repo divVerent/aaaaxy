@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Rudolf Polzer, 2025
 # Denis Kočkarov, 2025
+# Rudolf Polzer, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Denis Kočkarov, 2025\n"
+"Last-Translator: Rudolf Polzer, 2025\n"
 "Language-Team: Belarusian (Tarask) (https://app.transifex.com/aaaaxy/teams/158611/be@tarask/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -625,6 +625,10 @@ msgstr "ad %s"
 msgid "elsewhere"
 msgstr "niedzie jašče"
 
+#: engine/world.go
+msgid "enumerating levels"
+msgstr "pieraličvajem roŭni"
+
 #: sound/sound.go
 msgid "enumerating sounds"
 msgstr "pieraličvajem huki"
@@ -657,10 +661,6 @@ msgstr "inicyjalizujem meniu"
 #: aaaaxy/init.go
 msgid "initializing noise"
 msgstr "inicyjalizujem šum"
-
-#: engine/world.go
-msgid "enumerating levels"
-msgstr "pieraličvajem roŭni"
 
 #: level/level.go
 msgid "loading checkpoints"
@@ -704,7 +704,7 @@ msgid "precaching fonts"
 msgstr "kešujem šryfty"
 
 #: aaaaxy/init.go
-msgid "precaching images"
+msgid "precaching pictures"
 msgstr "kešujem vyjavy"
 
 #: aaaaxy/init.go
