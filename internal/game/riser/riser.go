@@ -364,9 +364,9 @@ func (r *Riser) Update() {
 				r.State = MovingLeft
 			} else if r.World.Player.Rect.Center().X >= r.Entity.Rect.Center().X + 1 {
 				r.State = MovingRight
-			} else { // Note: Creates a bug without this for some reason
-				if r.RiserDown {
-					r.State = IdlingDown
+			} else {
+				if r.RiserDown && !playerAboveMe {
+					r.State = MovingDown
 				} else {
 					r.State = IdlingUp
 				}
