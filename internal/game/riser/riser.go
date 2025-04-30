@@ -335,10 +335,16 @@ func (r *Riser) Update() {
 			r.State = MovingLeft
 		}
 	} else if canPull && actionPressed {
-		if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X {
+		if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X - 1 {
 			r.State = MovingLeft
-		} else {
+		} else if r.World.Player.Rect.Center().X > r.Entity.Rect.Center().X + 1{
 			r.State = MovingRight
+		} else {
+			if r.RiserDown {
+				r.State = IdlingDown
+			} else {
+				r.State = IdlingUp
+			}
 		}
 	} else if canStand && playerAboveMe {
 		if r.RiserDown {
