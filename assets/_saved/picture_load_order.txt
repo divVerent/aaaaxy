@@ -243,7 +243,13 @@ sprites/noisemaker.png
 sprites/dopefish_lives.png
 sprites/door.png
 sprites/police.png
+sprites/riser_large_down_0.png
+sprites/riser_large_down_1.png
+sprites/riser_large_downstand_0.png
+sprites/riser_large_downstand_1.png
 sprites/riser_large_idle.png
+sprites/riser_large_idledown.png
+sprites/riser_large_idledownstand.png
 sprites/riser_large_idlestand.png
 sprites/riser_large_inactive.png
 sprites/riser_large_left_0.png
@@ -571,7 +577,13 @@ sprites/questionblock_hit_4.png
 sprites/questionblock_hit_5.png
 sprites/questionblock_hit_6.png
 sprites/questionblock_hit_7.png
+sprites/riser_small_down_0.png
+sprites/riser_small_down_1.png
+sprites/riser_small_downstand_0.png
+sprites/riser_small_downstand_1.png
 sprites/riser_small_idle.png
+sprites/riser_small_idledown.png
+sprites/riser_small_idledownstand.png
 sprites/riser_small_idlestand.png
 sprites/riser_small_inactive.png
 sprites/riser_small_left_0.png

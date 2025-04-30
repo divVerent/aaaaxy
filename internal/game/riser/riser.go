@@ -174,6 +174,12 @@ func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 			NextInterval:  16,
 			NextAnim:      "idle",
 		},
+		"idledown": {
+			Frames:        1,
+			FrameInterval: 16,
+			NextInterval:  16,
+			NextAnim:      "idledown",
+		},
 		"left": {
 			Frames:        2,
 			FrameInterval: 16,
@@ -192,11 +198,23 @@ func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 			NextInterval:  32,
 			NextAnim:      "up",
 		},
+		"down": {
+			Frames:        2,
+			FrameInterval: 16,
+			NextInterval:  32,
+			NextAnim:      "down",
+		},
 		"idlestand": {
 			Frames:        1,
 			FrameInterval: 16,
 			NextInterval:  16,
 			NextAnim:      "idlestand",
+		},
+		"idledownstand": {
+			Frames:        1,
+			FrameInterval: 16,
+			NextInterval:  16,
+			NextAnim:      "idledownstand",
 		},
 		"leftstand": {
 			Frames:        2,
@@ -215,6 +233,12 @@ func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 			FrameInterval: 16,
 			NextInterval:  32,
 			NextAnim:      "upstand",
+		},
+		"downstand": {
+			Frames:        2,
+			FrameInterval: 16,
+			NextInterval:  32,
+			NextAnim:      "downstand",
 		},
 	}, "inactive")
 	if err != nil {
@@ -334,16 +358,24 @@ func (r *Riser) Update() {
 		} else {
 			r.State = MovingLeft
 		}
-	} else if canPull && actionPressed {
-		if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X - 1 {
-			r.State = MovingLeft
-		} else if r.World.Player.Rect.Center().X > r.Entity.Rect.Center().X + 1{
-			r.State = MovingRight
-		} else {
-			if r.RiserDown {
-				r.State = IdlingDown
+	} else if canPull && actionPressed { // Surely this code can be better improved
+		if !playerOnMe {
+			if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X - 1 { // Deadzone implementation
+				r.State = MovingLeft
+			} else if r.World.Player.Rect.Center().X >= r.Entity.Rect.Center().X + 1 {
+				r.State = MovingRight
+			} else { // Note: Creates a bug without this for some reason
+				if r.RiserDown {
+					r.State = IdlingDown
+				} else {
+					r.State = IdlingUp
+				}
+			}
+		} else { // Remove the deadzone if player stands on it
+			if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X {
+				r.State = MovingLeft
 			} else {
-				r.State = IdlingUp
+				r.State = MovingRight
 			}
 		}
 	} else if canStand && playerAboveMe {
@@ -375,13 +407,13 @@ func (r *Riser) Update() {
 		r.Anim.SetGroup("idle" + suffix)
 		r.Velocity = r.OnGroundVec.Mul(-IdleSpeed)
 	case IdlingDown:
-		r.Anim.SetGroup("idle" + suffix) // Need down animation
+		r.Anim.SetGroup("idledown" + suffix)
 		r.Velocity = r.OnGroundVec.Mul(IdleSpeed)
 	case MovingUp:
 		r.Anim.SetGroup("up" + suffix)
 		r.Velocity = r.OnGroundVec.Mul(-UpSpeed)
 	case MovingDown:
-		r.Anim.SetGroup("up" + suffix) // Need down animation
+		r.Anim.SetGroup("down" + suffix)
 		r.Velocity = r.OnGroundVec.Mul(UpSpeed)
 	case MovingLeft:
 		r.Anim.SetGroup("left" + suffix)
