@@ -360,9 +360,9 @@ func (r *Riser) Update() {
 		}
 	} else if canPull && actionPressed { // Surely this code can be better improved
 		if !playerOnMe {
-			if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X - 1 { // Deadzone implementation
+			if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X { // Deadzone implementation
 				r.State = MovingLeft
-			} else if r.World.Player.Rect.Center().X >= r.Entity.Rect.Center().X + 1 {
+			} else if r.World.Player.Rect.Center().X > r.Entity.Rect.Center().X {
 				r.State = MovingRight
 			} else {
 				if r.RiserDown && !playerAboveMe {
