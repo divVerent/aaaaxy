@@ -52,6 +52,7 @@ type Player struct {
 	JumpingUp      bool
 	LookUp         bool
 	LookDown       bool
+	LookPressTime  time.Time
 	Respawning     bool
 	WasOnGround    bool
 	PrevVelocity   m.Delta
@@ -488,12 +489,21 @@ func (p *Player) LookPos() m.Pos {
 		X: p.Entity.Rect.Origin.X + PlayerEyeDX,
 		Y: p.LastGroundPos.Y + p.eyeDY(),
 	}
+
 	if p.LookUp {
-		focus.Y -= LookDistance
+		if time.Since(p.LookPressTime) > 125*time.Millisecond { // Delay movement
+			focus.Y -= LookDistance
+		}
 	}
 	if p.LookDown {
-		focus.Y += LookDistance
+		if time.Since(p.LookPressTime) > 125*time.Millisecond { // Delay movement
+			focus.Y += LookDistance
+		}
 	}
+	if !p.LookUp && !p.LookDown {
+		p.LookPressTime = time.Now()
+	}
+
 	return focus
 }
 
