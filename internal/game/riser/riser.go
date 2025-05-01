@@ -367,7 +367,9 @@ func (r *Riser) Update() {
 			} else {
 				if r.RiserDown && !playerAboveMe {
 					r.State = MovingDown
-				} else {
+				} else if r.RiserDown {
+					r.State = IdlingDown
+				} else if !r.RiserDown {
 					r.State = IdlingUp
 				}
 			}
