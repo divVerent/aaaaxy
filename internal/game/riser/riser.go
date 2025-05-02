@@ -335,15 +335,15 @@ func (r *Riser) Update() {
 	canStand := playerAbilities.HasAbility("stand")
 	canRiserDown := playerAbilities.HasAbility("riserdown")
 	actionPressed := playerButtons.ActionPressed()
-	UpDownInput := r.World.Player.Impl.(interfaces.ActionPresseder).GetUpDown();
+	upDownInput := playerButtons.GetUpDown();
 	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
 	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
 	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
 
 	if canRiserDown {
-		if UpDownInput == 1 {
+		if upDownInput == 1 {
 			r.RiserDown = false
-		} else if UpDownInput == -1 {
+		} else if upDownInput == -1 {
 			r.RiserDown = true
 		}
 	} else {
@@ -367,7 +367,9 @@ func (r *Riser) Update() {
 			} else {
 				if r.RiserDown && !playerAboveMe {
 					r.State = MovingDown
-				} else {
+				} else if r.RiserDown {
+					r.State = IdlingDown
+				} else if !r.RiserDown {
 					r.State = IdlingUp
 				}
 			}

@@ -537,12 +537,14 @@ func (p *Player) GetUpDown() int {
 	if p.Goal != nil {
 		return 0
 	}
+
+	result := 0
 	if input.Up.Held {
-		return 1
+		result += 1
 	} else if input.Down.Held {
-		return -1
+		result -= 1
 	}
-	return 0
+	return result
 }
 
 func (p *Player) SetVelocityForJump(velocity m.Delta) {
