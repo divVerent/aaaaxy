@@ -46,21 +46,21 @@ type Player struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	CoyoteFrames         int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
-	LastGroundPos        m.Pos
-	Jumping              bool
-	JumpingUp            bool
-	LookUp               bool
-	LookUpPressFrame     int
-	LookDown             bool
-	LookDownPressFrame   int
-	Respawning           bool
-	WasOnGround          bool
-	PrevVelocity         m.Delta
-	VVVVVV               bool
-	JustSpawned          bool
-	Goal                 *engine.Entity
-	EasterEggCount       int
+	CoyoteFrames       int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
+	LastGroundPos      m.Pos
+	Jumping            bool
+	JumpingUp          bool
+	LookUp             bool
+	LookUpPressFrame   int
+	LookDown           bool
+	LookDownPressFrame int
+	Respawning         bool
+	WasOnGround        bool
+	PrevVelocity       m.Delta
+	VVVVVV             bool
+	JustSpawned        bool
+	Goal               *engine.Entity
+	EasterEggCount     int
 
 	Anim animation.State
 
@@ -501,14 +501,14 @@ func (p *Player) LookDirectionY() int {
 	frameCount := p.World.PlayerState.Frames()
 	result := 0
 	if p.LookUp {
-		if frameCount - p.LookUpPressFrame > PlayerDelayLookY { // Delay movement - 125ms
+		if frameCount-p.LookUpPressFrame > PlayerDelayLookY { // Delay movement - 125ms
 			result += 1
 		}
 	} else {
 		p.LookUpPressFrame = frameCount
 	}
 	if p.LookDown {
-		if frameCount - p.LookDownPressFrame > PlayerDelayLookY { // Delay movement - 125ms
+		if frameCount-p.LookDownPressFrame > PlayerDelayLookY { // Delay movement - 125ms
 			result += -1
 		}
 	} else {
