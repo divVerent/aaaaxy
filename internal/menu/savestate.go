@@ -48,7 +48,7 @@ type SaveStateScreen struct {
 	Text       [4]string
 }
 
-func (s *SaveStateScreen) saveStateInfo(initLvl *level.Level, idx int) string {
+func (s *SaveStateScreen) saveStateInfo(initLvl *level.Level, idx string) string {
 	var ps *playerstate.PlayerState
 	if idx == *saveState {
 		ps = &s.Controller.World.PlayerState
@@ -80,18 +80,18 @@ func (s *SaveStateScreen) Init(m *Controller) error {
 
 	initLvl := s.Controller.World.Level.Clone()
 
-	s.Text[0] = s.saveStateInfo(initLvl, 0)
-	s.Text[1] = s.saveStateInfo(initLvl, 1)
-	s.Text[2] = s.saveStateInfo(initLvl, 2)
-	s.Text[3] = s.saveStateInfo(initLvl, 3)
+	s.Text[0] = s.saveStateInfo(initLvl, "0")
+	s.Text[1] = s.saveStateInfo(initLvl, "1")
+	s.Text[2] = s.saveStateInfo(initLvl, "2")
+	s.Text[3] = s.saveStateInfo(initLvl, "3")
 	switch *saveState {
-	case 0:
+	case "0":
 		s.Item = SaveStateA
-	case 1:
+	case "1":
 		s.Item = SaveState4
-	case 2:
+	case "2":
 		s.Item = SaveStateX
-	case 3:
+	case "3":
 		s.Item = SaveStateY
 	default:
 		s.Item = SaveExit
@@ -104,8 +104,17 @@ func (s *SaveStateScreen) Update() error {
 	clicked := s.Controller.QueryMouseItem(&s.Item, SaveStateCount)
 
 	// Update so one can always see which save state is current.
-	if *saveState >= 0 && *saveState < 4 {
-		s.Text[*saveState] = s.saveStateInfo(nil, *saveState)
+	if *saveState == "0" {
+		s.Text[0] = s.saveStateInfo(nil, *saveState)
+	}
+	if *saveState == "1" {
+		s.Text[1] = s.saveStateInfo(nil, *saveState)
+	}
+	if *saveState == "2" {
+		s.Text[2] = s.saveStateInfo(nil, *saveState)
+	}
+	if *saveState == "3" {
+		s.Text[3] = s.saveStateInfo(nil, *saveState)
 	}
 
 	if input.Down.JustHit {
@@ -123,13 +132,13 @@ func (s *SaveStateScreen) Update() error {
 	if input.Jump.JustHit || input.Action.JustHit || clicked != NotClicked {
 		switch s.Item {
 		case SaveStateA:
-			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(0))
+			return s.Controller.ActivateSound(s.Controller.SwitchSaveState("0"))
 		case SaveState4:
-			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(1))
+			return s.Controller.ActivateSound(s.Controller.SwitchSaveState("1"))
 		case SaveStateX:
-			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(2))
+			return s.Controller.ActivateSound(s.Controller.SwitchSaveState("2"))
 		case SaveStateY:
-			return s.Controller.ActivateSound(s.Controller.SwitchSaveState(3))
+			return s.Controller.ActivateSound(s.Controller.SwitchSaveState("3"))
 		case SaveExit:
 			return s.Controller.ActivateSound(s.Controller.SwitchToScreen(&SettingsScreen{}))
 		}

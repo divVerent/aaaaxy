@@ -114,13 +114,13 @@ func (s *ResetScreen) Draw(screen *ebiten.Image) {
 	var dx, dy int
 	var save string
 	switch *saveState {
-	case 0:
+	case "0":
 		save = "A"
-	case 1:
+	case "1":
 		save = "4"
-	case 2:
+	case "2":
 		save = "X"
-	case 3:
+	case "3":
 		save = "Y"
 	default:
 		save = fmt.Sprint(*saveState)

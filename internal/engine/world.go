@@ -122,7 +122,7 @@ type World struct {
 	prevCpOrigin m.Pos
 
 	// Name of the save state.
-	saveState int
+	saveState string
 }
 
 // Initialized returns whether Init() has been called on this World before.
@@ -273,11 +273,11 @@ func Levels() []string {
 	return levels
 }
 
-func SaveName(idx int) string {
+func SaveName(idx string) string {
 	if *cheatLevel == "level" {
-		return fmt.Sprintf("save-%d.json", idx)
+		return fmt.Sprintf("save-%s.json", idx)
 	} else {
-		return fmt.Sprintf("%s.save-%d.json", *cheatLevel, idx)
+		return fmt.Sprintf("%s.save-%s.json", *cheatLevel, idx)
 	}
 }
 
@@ -346,7 +346,7 @@ func PaletteChanged() error {
 
 // Init brings a world into a working state.
 // Can be called more than once to reset _everything_.
-func (w *World) Init(saveState int) error {
+func (w *World) Init(saveState string) error {
 	lvl, err := loadLevel()
 	if err != nil {
 		return err
