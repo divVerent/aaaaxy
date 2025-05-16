@@ -46,21 +46,21 @@ type Player struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	CoyoteFrames         int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
-	LastGroundPos        m.Pos
-	Jumping              bool
-	JumpingUp            bool
-	ActionUp             bool
-	ActionUpPressFrame   int
-	ActionDown           bool
-	ActionDownPressFrame int
-	Respawning           bool
-	WasOnGround          bool
-	PrevVelocity         m.Delta
-	VVVVVV               bool
-	JustSpawned          bool
-	Goal                 *engine.Entity
-	EasterEggCount       int
+	CoyoteFrames     int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
+	LastGroundPos    m.Pos
+	Jumping          bool
+	JumpingUp        bool
+	ActionUp         bool
+	ActionUpFrames   int
+	ActionDown       bool
+	ActionDownFrames int
+	Respawning       bool
+	WasOnGround      bool
+	PrevVelocity     m.Delta
+	VVVVVV           bool
+	JustSpawned      bool
+	Goal             *engine.Entity
+	EasterEggCount   int
 
 	Anim animation.State
 
@@ -327,6 +327,16 @@ func (p *Player) Update() {
 		moveRight = delta.DX > 0
 		jump = false
 	}
+	if p.ActionUp {
+		p.ActionUpFrames++
+	} else {
+		p.ActionUpFrames = 0
+	}
+	if p.ActionDown {
+		p.ActionDownFrames++
+	} else {
+		p.ActionDownFrames = 0
+	}
 	if jump {
 		if !p.Jumping && (p.CoyoteFrames > 0 || *cheatInAirJump) {
 			cancelUp := p.Velocity.Dot(p.OnGroundVec) // Prevent Quake 2 doublejump bug.
@@ -498,21 +508,16 @@ func (p *Player) LookPos() m.Pos {
 }
 
 func (p *Player) LookDirectionY() int {
-	frameCount := p.World.PlayerState.Frames()
 	result := 0
 	if p.ActionUp {
-		if frameCount-p.ActionUpPressFrame > PlayerDelayLookY { // Delay movement - 125ms
+		if p.ActionUpFrames > PlayerDelayLookY { // Delay movement - 125ms
 			result += 1
 		}
-	} else {
-		p.ActionUpPressFrame = frameCount
 	}
 	if p.ActionDown {
-		if frameCount-p.ActionDownPressFrame > PlayerDelayLookY { // Delay movement - 125ms
+		if p.ActionDownFrames > PlayerDelayLookY { // Delay movement - 125ms
 			result += -1
 		}
-	} else {
-		p.ActionDownPressFrame = frameCount
 	}
 	return result
 }
@@ -534,6 +539,8 @@ func (p *Player) Respawned() {
 	p.Goal = nil                           // Normal input.
 	p.JustSpawned = true                   // Just respawned.
 	p.setActionButtonAvailable()           // Update abilities.
+	p.ActionUpFrames = 0                   // Reset looking.
+	p.ActionDownFrames = 0                 // Reset looking.
 }
 
 func (p *Player) ActionPressed() bool {
