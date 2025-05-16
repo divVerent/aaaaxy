@@ -46,19 +46,21 @@ type Player struct {
 	World  *engine.World
 	Entity *engine.Entity
 
-	CoyoteFrames   int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
-	LastGroundPos  m.Pos
-	Jumping        bool
-	JumpingUp      bool
-	LookUp         bool
-	LookDown       bool
-	Respawning     bool
-	WasOnGround    bool
-	PrevVelocity   m.Delta
-	VVVVVV         bool
-	JustSpawned    bool
-	Goal           *engine.Entity
-	EasterEggCount int
+	CoyoteFrames       int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
+	LastGroundPos      m.Pos
+	Jumping            bool
+	JumpingUp          bool
+	LookUp             bool
+	LookUpPressFrame   int
+	LookDown           bool
+	LookDownPressFrame int
+	Respawning         bool
+	WasOnGround        bool
+	PrevVelocity       m.Delta
+	VVVVVV             bool
+	JustSpawned        bool
+	Goal               *engine.Entity
+	EasterEggCount     int
 
 	Anim animation.State
 
@@ -88,6 +90,8 @@ const (
 	PlayerEyeDX = 5
 	// PlayerEyeDY is the Y coordinate of the player's eye.
 	PlayerEyeDY = 3
+	// PlayerDelayLookY is the delay in frames when looking up or down
+	PlayerDelayLookY = 7
 	// PlayerOffsetDX is the player's render offset.
 	PlayerOffsetDX = -2
 	// PlayerOffsetDY is the player's render offset.
@@ -488,13 +492,29 @@ func (p *Player) LookPos() m.Pos {
 		X: p.Entity.Rect.Origin.X + PlayerEyeDX,
 		Y: p.LastGroundPos.Y + p.eyeDY(),
 	}
+
+	focus.Y -= LookDistance * p.LookDirectionY()
+	return focus
+}
+
+func (p *Player) LookDirectionY() int {
+	frameCount := p.World.PlayerState.Frames()
+	result := 0
 	if p.LookUp {
-		focus.Y -= LookDistance
+		if frameCount-p.LookUpPressFrame > PlayerDelayLookY { // Delay movement - 125ms
+			result += 1
+		}
+	} else {
+		p.LookUpPressFrame = frameCount
 	}
 	if p.LookDown {
-		focus.Y += LookDistance
+		if frameCount-p.LookDownPressFrame > PlayerDelayLookY { // Delay movement - 125ms
+			result += -1
+		}
+	} else {
+		p.LookDownPressFrame = frameCount
 	}
-	return focus
+	return result
 }
 
 // Respawned informs the player that the world moved/respawned it.
@@ -521,6 +541,20 @@ func (p *Player) ActionPressed() bool {
 		return false
 	}
 	return input.Action.Held
+}
+
+func (p *Player) ActionDirectionY() int {
+	if p.Goal != nil {
+		return 0
+	}
+	result := 0
+	if input.Up.Held {
+		result += 1
+	}
+	if input.Down.Held {
+		result -= 1
+	}
+	return result
 }
 
 func (p *Player) SetVelocityForJump(velocity m.Delta) {
