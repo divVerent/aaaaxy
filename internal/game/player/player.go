@@ -45,6 +45,7 @@ type Player struct {
 	mixins.Physics
 	World  *engine.World
 	Entity *engine.Entity
+
 	CoyoteFrames     int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
 	LastGroundPos    m.Pos
 	Jumping          bool

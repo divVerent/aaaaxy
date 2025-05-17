@@ -51,7 +51,6 @@ type Riser struct {
 	CarriedSize m.Delta
 
 	State     riserState
-
 	RiserDown bool
 
 	Anim      animation.State
