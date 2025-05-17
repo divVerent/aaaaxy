@@ -45,22 +45,21 @@ type Player struct {
 	mixins.Physics
 	World  *engine.World
 	Entity *engine.Entity
-
-	CoyoteFrames       int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
-	LastGroundPos      m.Pos
-	Jumping            bool
-	JumpingUp          bool
-	LookUp             bool
-	LookUpPressFrame   int
-	LookDown           bool
-	LookDownPressFrame int
-	Respawning         bool
-	WasOnGround        bool
-	PrevVelocity       m.Delta
-	VVVVVV             bool
-	JustSpawned        bool
-	Goal               *engine.Entity
-	EasterEggCount     int
+	CoyoteFrames     int // Number of frames w/o gravity and w/ jumping. Goes down to -1 (0 is just timed out, -1 is normal)
+	LastGroundPos    m.Pos
+	Jumping          bool
+	JumpingUp        bool
+	ActionUp         bool
+	ActionUpFrames   int
+	ActionDown       bool
+	ActionDownFrames int
+	Respawning       bool
+	WasOnGround      bool
+	PrevVelocity     m.Delta
+	VVVVVV           bool
+	JustSpawned      bool
+	Goal             *engine.Entity
+	EasterEggCount   int
 
 	Anim animation.State
 
@@ -309,23 +308,33 @@ func (p *Player) Update() {
 	p.JustSpawned = false
 	var moveLeft, moveRight, jump bool
 	if p.Goal == nil {
-		p.LookUp = input.Up.Held
-		p.LookDown = input.Down.Held
+		p.ActionUp = input.Up.Held
+		p.ActionDown = input.Down.Held
 		moveLeft = input.Left.Held
 		moveRight = input.Right.Held
 		jump = input.Jump.Held
 		action := input.Action.Held
-		if p.LookUp || p.LookDown || moveLeft || moveRight || jump || action {
+		if p.ActionUp || p.ActionDown || moveLeft || moveRight || jump || action {
 			p.World.TimerStarted = true
 		}
 	} else {
 		// Walk towards goal!
-		p.LookUp = false
-		p.LookDown = false
+		p.ActionUp = false
+		p.ActionDown = false
 		delta := p.Goal.Rect.Center().Delta(p.Entity.Rect.Center())
 		moveLeft = delta.DX < 0
 		moveRight = delta.DX > 0
 		jump = false
+	}
+	if p.ActionUp {
+		p.ActionUpFrames++
+	} else {
+		p.ActionUpFrames = 0
+	}
+	if p.ActionDown {
+		p.ActionDownFrames++
+	} else {
+		p.ActionDownFrames = 0
 	}
 	if jump {
 		if !p.Jumping && (p.CoyoteFrames > 0 || *cheatInAirJump) {
@@ -498,21 +507,16 @@ func (p *Player) LookPos() m.Pos {
 }
 
 func (p *Player) LookDirectionY() int {
-	frameCount := p.World.PlayerState.Frames()
 	result := 0
-	if p.LookUp {
-		if frameCount-p.LookUpPressFrame > PlayerDelayLookY { // Delay movement - 125ms
+	if p.ActionUp {
+		if p.ActionUpFrames > PlayerDelayLookY { // Delay movement - 125ms
 			result += 1
 		}
-	} else {
-		p.LookUpPressFrame = frameCount
 	}
-	if p.LookDown {
-		if frameCount-p.LookDownPressFrame > PlayerDelayLookY { // Delay movement - 125ms
+	if p.ActionDown {
+		if p.ActionDownFrames > PlayerDelayLookY { // Delay movement - 125ms
 			result += -1
 		}
-	} else {
-		p.LookDownPressFrame = frameCount
 	}
 	return result
 }
@@ -534,6 +538,8 @@ func (p *Player) Respawned() {
 	p.Goal = nil                           // Normal input.
 	p.JustSpawned = true                   // Just respawned.
 	p.setActionButtonAvailable()           // Update abilities.
+	p.ActionUpFrames = 0                   // Reset looking.
+	p.ActionDownFrames = 0                 // Reset looking.
 }
 
 func (p *Player) ActionPressed() bool {
@@ -548,10 +554,10 @@ func (p *Player) ActionDirectionY() int {
 		return 0
 	}
 	result := 0
-	if input.Up.Held {
+	if p.ActionUp {
 		result += 1
 	}
-	if input.Down.Held {
+	if p.ActionDown {
 		result -= 1
 	}
 	return result

@@ -38,7 +38,7 @@ import (
 )
 
 var (
-	saveState = flag.Int("save_state", 0, "number of save state slot")
+	saveState = flag.String("save_state", "0", "number of save state slot")
 )
 
 const (
@@ -282,7 +282,7 @@ func (c *Controller) InitGame(f resetFlag) error {
 }
 
 // SwitchSaveState switches to a given save state.
-func (c *Controller) SwitchSaveState(state int) error {
+func (c *Controller) SwitchSaveState(state string) error {
 	// Save the game first.
 	err := c.World.Save()
 	if err != nil {

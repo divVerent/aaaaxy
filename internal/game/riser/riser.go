@@ -50,7 +50,8 @@ type Riser struct {
 	NormalSize  m.Delta
 	CarriedSize m.Delta
 
-	State riserState
+	State     riserState
+
 	RiserDown bool
 
 	Anim      animation.State
@@ -335,7 +336,7 @@ func (r *Riser) Update() {
 	canStand := playerAbilities.HasAbility("stand")
 	canRiserDown := playerAbilities.HasAbility("riserdown")
 	actionPressed := playerButtons.ActionPressed()
-	upDownInput := playerButtons.ActionDirectionY();
+	upDownInput := playerButtons.ActionDirectionY()
 	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
 	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
 	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
