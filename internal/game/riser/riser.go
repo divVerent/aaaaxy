@@ -335,7 +335,7 @@ func (r *Riser) Update() {
 	canStand := playerAbilities.HasAbility("stand")
 	canRiserDown := playerAbilities.HasAbility("riserdown")
 	actionPressed := playerButtons.ActionPressed()
-	upDownInput := playerButtons.GetUpDown();
+	upDownInput := playerButtons.ActionDirectionY();
 	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
 	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
 	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
@@ -350,34 +350,33 @@ func (r *Riser) Update() {
 		r.RiserDown = false
 	}
 
+	centerDelta := r.World.Player.Rect.Center().X - r.Entity.Rect.Center().X
 	if canCarry && !playerOnMe && actionPressed && (playerDelta.IsZero() || (r.State == GettingCarried && playerDelta.Norm1() <= FollowMaxDistance)) {
 		r.State = GettingCarried
 	} else if canPush && actionPressed {
-		if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X {
+		if centerDelta < 0 {
 			r.State = MovingRight
 		} else {
 			r.State = MovingLeft
 		}
-	} else if canPull && actionPressed { // Surely this code can be better improved
-		if !playerOnMe {
-			if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X { // Deadzone implementation
-				r.State = MovingLeft
-			} else if r.World.Player.Rect.Center().X > r.Entity.Rect.Center().X {
-				r.State = MovingRight
-			} else {
-				if r.RiserDown && !playerAboveMe {
-					r.State = MovingDown
-				} else if r.RiserDown {
+	} else if canPull && actionPressed {
+		if centerDelta < 0 {
+			r.State = MovingLeft
+		} else if centerDelta > 0 || playerOnMe { // Remove the deadzone if playerOnMe
+			r.State = MovingRight
+		} else { // Deadzone implementation
+			if r.RiserDown {
+				if playerAboveMe {
 					r.State = IdlingDown
-				} else if !r.RiserDown {
+				} else {
+					r.State = MovingDown
+				}
+			} else {
+				if playerAboveMe {
+					r.State = MovingUp
+				} else {
 					r.State = IdlingUp
 				}
-			}
-		} else { // Remove the deadzone if player stands on it
-			if r.World.Player.Rect.Center().X < r.Entity.Rect.Center().X {
-				r.State = MovingLeft
-			} else {
-				r.State = MovingRight
 			}
 		}
 	} else if canStand && playerAboveMe {
@@ -386,7 +385,7 @@ func (r *Riser) Update() {
 		} else {
 			r.State = MovingUp
 		}
-	} else if canCarry || canPush || canStand {
+	} else if canCarry || canPush || canPull || canStand || canRiserDown {
 		if r.RiserDown {
 			r.State = IdlingDown
 		} else {

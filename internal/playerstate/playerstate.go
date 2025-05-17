@@ -40,7 +40,7 @@ type PlayerState struct {
 // Init must be called when Level got externally changed, e.g. by loading world or a save state.
 func (s *PlayerState) Init() {
 	if s.Level.SaveGameVersion != 1 {
-		log.Fatalf("please FIXME! On the next SaveGameVersion, please remove the escapes to teleport translation, the JSON compat hack in internal/math/pos.go, and remove this check too")
+		log.Fatalf("please FIXME! On the next SaveGameVersion, please remove the escapes to teleport translation, the JSON compat hack in internal/m/pos.go, and remove this check too")
 	}
 	// If he savegame has no teleports info, use the escapes counter.
 	// Also ensure all new savegames have the teleports counter to not double apply this.
