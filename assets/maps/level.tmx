@@ -18888,8 +18888,8 @@
     <property name="initial_position" value="Middle"/>
     <property name="sound" value="got_ability.ogg"/>
     <property name="text" value="Героям слава!"/>
-    <property name="text_bg_color" type="color" value="#ff0056b9"/>
-    <property name="text_fg_color" type="color" value="#ffffd800"/>
+    <property name="text_bg" type="color" value="#ff0056b9!"/>
+    <property name="text_fg" type="color" value="#ffffd800!"/>
     <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
@@ -19098,8 +19098,8 @@
     <property name="only_if_can_switch_level" type="bool" value="true"/>
     <property name="sound" value="got_ability.ogg"/>
     <property name="text" value="A path to another world has appeared nearby."/>
-    <property name="text_bg_color" type="color" value="#ffffff55"/>
-    <property name="text_fg_color" type="color" value="#ff000000"/>
+    <property name="text_bg" type="color" value="#ffffff55"/>
+    <property name="text_fg" type="color" value="#ff000000"/>
     <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
