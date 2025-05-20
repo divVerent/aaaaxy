@@ -88,8 +88,8 @@ func (t *CenterPrintTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *
 	}
 	t.Imp = propmap.ValueOrP(sp.Properties, "importance", centerprint.Important, &parseErr)
 	t.Pos = propmap.ValueOrP(sp.Properties, "initial_position", centerprint.Top, &parseErr)
-	t.BGColor = propmap.ValueOrP(sp.Properties, "text_bg_color", palette.EGA(palette.Black, 255), &parseErr)
-	t.FGColor = propmap.ValueOrP(sp.Properties, "text_fg_color", palette.EGA(palette.White, 255), &parseErr)
+	t.BGColor = propmap.ValueOrP(sp.Properties, "text_bg", palette.EGA(palette.Black, 255), &parseErr)
+	t.FGColor = propmap.ValueOrP(sp.Properties, "text_fg", palette.EGA(palette.White, 255), &parseErr)
 	t.FadeTime = propmap.ValueOrP(sp.Properties, "fade_time", 2*time.Second, &parseErr)
 	soundName := propmap.ValueP(sp.Properties, "sound", "", &parseErr)
 	if soundName != "" {

@@ -194,12 +194,12 @@
                     "type": "string"
                 },
                 {
-                    "name": "text_bg_color",
+                    "name": "text_bg",
                     "type": "color",
                     "value": "#ff000000"
                 },
                 {
-                    "name": "text_fg_color",
+                    "name": "text_fg",
                     "type": "color",
                     "value": "#ffffffff"
                 },
