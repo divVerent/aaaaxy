@@ -97,7 +97,7 @@ task getAssets(type: Exec) {
 }
 
 tasks.whenTaskAdded { theTask ->
-    if (theTask.name.equals("compileReleaseJavaWithJavac") || theTask.name.equals("compileDebugJavaWithJavac") || theTask.name.equals("mergeReleaseResources") || theTask.name.equals("mergeDebugResources")) {
+    if (theTask.name.equals("compileReleaseJavaWithJavac") || theTask.name.equals("compileDebugJavaWithJavac") || theTask.name.equals("mergeReleaseResources") || theTask.name.equals("mergeDebugResources")) || theTask.name.equals("mergeReleaseNativeLibs") || theTask.name.equals("mergeDebugNativeLibs") {
         theTask.dependsOn ebitenMobile
         theTask.dependsOn getAssets
     }
