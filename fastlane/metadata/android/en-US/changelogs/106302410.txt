@@ -1,0 +1,4 @@
+  - Android: gradle build fixes.
+  - Engine: additional abilities, to be used in a further game map.
+  - Engine: make -save_state flag a string value.
+  - Engine: module updates.
