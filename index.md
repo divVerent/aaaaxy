@@ -36,8 +36,7 @@ German, Japanese, Latin, Portuguese and Ukrainian.
 
 <!-- BEGIN DOWNLOAD LINKS TEMPLATE
 The current version is VERSION. Download here:
-
-  - [Windows x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/VERSION/aaaaxy-windows-amd64-VERSION.zip)
+&#10;  - [Windows x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/VERSION/aaaaxy-windows-amd64-VERSION.zip)
   - [Windows x86 ZIP](https://github.com/divVerent/aaaaxy/releases/download/VERSION/aaaaxy-windows-386-VERSION.zip)
   - [Linux x86_64 AppImage](https://github.com/divVerent/aaaaxy/releases/download/VERSION/AAAAXY-x86_64.AppImage)
   - [Linux x86_64 ZIP](https://github.com/divVerent/aaaaxy/releases/download/VERSION/aaaaxy-linux-amd64-VERSION.zip)
@@ -47,20 +46,19 @@ END DOWNLOAD LINKS TEMPLATE -->
 
 <!-- BEGIN DOWNLOAD LINKS -->
 
-The current version is v1.6.194. Download here:
+The current version is v1.6.241. Download here:
 
--   [Windows x86_64
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.194/aaaaxy-windows-amd64-v1.6.194.zip)
--   [Windows x86
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.194/aaaaxy-windows-386-v1.6.194.zip)
--   [Linux x86_64
-    AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.6.194/AAAAXY-x86_64.AppImage)
--   [Linux x86_64
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.194/aaaaxy-linux-amd64-v1.6.194.zip)
--   [macOS x86_64+M1
-    ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.194/aaaaxy-darwin-v1.6.194.zip)
--   [All files and
-    releases](https://github.com/divVerent/aaaaxy/releases)
+- [Windows x86_64
+  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.241/aaaaxy-windows-amd64-v1.6.241.zip)
+- [Windows x86
+  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.241/aaaaxy-windows-386-v1.6.241.zip)
+- [Linux x86_64
+  AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.6.241/AAAAXY-x86_64.AppImage)
+- [Linux x86_64
+  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.241/aaaaxy-linux-amd64-v1.6.241.zip)
+- [macOS x86_64+M1
+  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.241/aaaaxy-darwin-v1.6.241.zip)
+- [All files and releases](https://github.com/divVerent/aaaaxy/releases)
 
 <!-- END DOWNLOAD LINKS -->
 
@@ -75,13 +73,13 @@ above.
 
 ### Further Resources
 
--   [User Guide](userguide.md)
--   [Technical Support](https://github.com/divVerent/aaaaxy/issues)
--   [Discussion Forum](https://github.com/divVerent/aaaaxy/discussions)
--   [Chat](https://matrix.to/#/#aaaaxy:matrix.org)
--   [Pull Requests](https://github.com/divVerent/aaaaxy/pulls)
--   [Speedrunning](speedrunning.md)
--   [Music](music.md)
+- [User Guide](userguide.md)
+- [Technical Support](https://github.com/divVerent/aaaaxy/issues)
+- [Discussion Forum](https://github.com/divVerent/aaaaxy/discussions)
+- [Chat](https://matrix.to/#/#aaaaxy:matrix.org)
+- [Pull Requests](https://github.com/divVerent/aaaaxy/pulls)
+- [Speedrunning](speedrunning.md)
+- [Music](music.md)
 
 ### Screenshots
 
