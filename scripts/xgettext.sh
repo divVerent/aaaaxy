@@ -117,5 +117,5 @@ languages=$(
 		printf ", '%s'" "$res"
 	done
 )
-sed -i -e "s/resConfigs .*/resConfigs $languages/" \
+sed -i -e "s/resourceConfigurations += \[.*\]/resourceConfigurations += [$languages]/" \
 	./AndroidStudioProjects/AAAAXY/app/build.gradle

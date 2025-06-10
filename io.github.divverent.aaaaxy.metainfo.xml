@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.194" date="2025-04-24">
-      <description><ul><li>Engine: fix a serious bug where hitting spikes near the end of the game makes you fall into the first room of the game.</li><li>Engine: minor module updates.</li><li>Engine: slightly revamp how platforms move faster when the player is above them. Reduces a "platform stalling" glitch.</li><li>Translations: minor updates.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.194</url>
+    <release version="v1.6.241" date="2025-06-02">
+      <description><ul><li>Android: gradle build fixes.</li><li>Engine: additional abilities, to be used in a further game map.</li><li>Engine: make -save_state flag a string value.</li><li>Engine: module updates.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.241</url>
     </release>
   </releases>
 </component>
