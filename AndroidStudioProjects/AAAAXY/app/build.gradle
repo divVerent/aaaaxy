@@ -10,7 +10,7 @@ android {
         applicationId 'io.github.divverent.aaaaxy'
         // minSdk 21  // What actually is required.
         minSdk 23  // For now, restrict to newer devices.
-        targetSdk 34
+        targetSdk 35  // Play Store requirement.
         def rootDir = new File("${project.rootDir}/../..")
         def prefix =
           (aaaaxy_build_use_version_file == 'true' ? 'env AAAAXY_BUILD_USE_VERSION_FILE=true ' : '') +
