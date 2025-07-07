@@ -60,6 +60,8 @@ func (l Lingua) name() string {
 		return "Português"
 	case "pt-BR":
 		return "Português (Brasil)"
+	case "sk":
+		return "Slovenčina"
 	case "uk":
 		return "Українська"
 	case "zh-Hans":
