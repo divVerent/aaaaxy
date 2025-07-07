@@ -47,7 +47,7 @@ func (l *languageSetting) apply(m *Controller) error {
 		return nil
 	}
 	flag.Set("language", string(lingua))
-	return m.ReinitLevelNextFrame()
+	return m.ReinitLevelNextFrame(nil)
 }
 
 func (l *languageSetting) toggle(m *Controller, delta int) error {

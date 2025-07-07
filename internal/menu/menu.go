@@ -315,24 +315,27 @@ func (c *Controller) SwitchLevel(level string) error {
 	if err != nil {
 		return err
 	}
-	return c.ReinitLevelNextFrame()
+	return c.ReinitLevelNextFrame(c.SwitchToGame)
 }
 
-func (c *Controller) ReinitLevelNextFrame() error {
+func (c *Controller) ReinitLevelNextFrame(next func() error) error {
 	return c.NextFrame(func() error {
 		changed, err := initlocale.SetLanguage(engine.LevelName(), locale.Lingua(flag.Get[string]("language")))
 		if err != nil {
 			return err
 		}
 		if !changed {
-			return c.SwitchToGame()
+			if next != nil {
+				return next()
+			}
+			return nil
 		}
 		// KNOWN ISSUE: checkpoint names aren't reloaded right away,
 		// but only when actually entering the game. Decoupling reload
 		// of the level from the game state is more complicated and
 		// not in scope yet. Accepting this glitch for now.
 		misc.ClearPrecache()
-		return c.LevelChanged()
+		return c.LevelChanged(next)
 	})
 }
 
@@ -452,9 +455,12 @@ func (c *Controller) GameChanged() error {
 	return nil
 }
 
-func (c *Controller) LevelChanged() error {
+func (c *Controller) LevelChanged(next func() error) error {
 	c.GameChanged()
-	return c.SwitchToGame()
+	if next != nil {
+		return next()
+	}
+	return nil
 }
 
 func Init() error {
