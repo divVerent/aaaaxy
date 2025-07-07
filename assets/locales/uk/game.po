@@ -461,7 +461,7 @@ msgstr "Завантажити збереження"
 
 #: menu/level.go menu/main.go
 msgid "Switch World"
-msgstr ""
+msgstr "Іди в інший світ"
 
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
