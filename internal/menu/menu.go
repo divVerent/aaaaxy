@@ -335,6 +335,7 @@ func (c *Controller) ReinitLevelNextFrame(next func() error) error {
 		// of the level from the game state is more complicated and
 		// not in scope yet. Accepting this glitch for now.
 		misc.ClearPrecache()
+		c.needReloadLevel = true
 		return c.LevelChanged(next)
 	})
 }
