@@ -106,7 +106,7 @@ func auditPo(po *gotext.Po) error {
 			if strings.Contains(v, "{{") {
 				// Mark this string as localized, so localized text can be inserted.
 				if len(vs.Trs) != 1 {
-					return fmt.Errorf("translation placeholders not supported in plural forms")
+					return fmt.Errorf("translation placeholders not supported in plural forms, here %q", k)
 				}
 				po.Set(k, "{{EnableLocale}}"+v)
 			}
