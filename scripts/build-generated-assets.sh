@@ -16,6 +16,7 @@
 set -ex
 
 : ${GO:=go}
+: ${STRIP_NONDETERMINISM_GZIP:=strip-nondeterminism -t gzip}
 
 # Run go natively.
 export GOOS=
@@ -73,3 +74,4 @@ sh scripts/version.sh semver > assets/generated/version.txt
 
 # Prepare compressed font.
 gzip -9 < ./third_party/gnu_unifont/assets/fonts/_unifont-15.1.04.bdf > assets/generated/unifont.bdf.gz
+${STRIP_NONDETERMINISM_GZIP} assets/generated/unifont.bdf.gz

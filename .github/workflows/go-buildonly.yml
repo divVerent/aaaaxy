@@ -61,6 +61,7 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
           ADVZIP: ':'
           GOTOOLCHAIN: local
+          STRIP_NONDETERMINISM_GZIP: ':'
           STRIP_NONDETERMINISM_ZIP: ':'
       - name: Archive Binary
         uses: actions/upload-artifact@v4

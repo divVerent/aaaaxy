@@ -25,6 +25,7 @@ jobs:
           AAAAXY_ZIPFILE: aaaaxy.zip
           ADVZIP: ':'
           GOTOOLCHAIN: local
+          STRIP_NONDETERMINISM_GZIP: ':'
           STRIP_NONDETERMINISM_ZIP: ':'
       - name: Enable Software Rendering
         run: 'sh scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'
@@ -40,6 +41,7 @@ jobs:
           AAAAXY_ZIPFILE: aaaaxy.zip
           ADVZIP: ':'
           GOTOOLCHAIN: local
+          STRIP_NONDETERMINISM_GZIP: ':'
           STRIP_NONDETERMINISM_ZIP: ':'
           CGO_ENV_amd64: 'CGO_ENABLED=1 CC="clang -arch x86_64" CXX="clang++ -arch
             x86_64"'
