@@ -49,7 +49,17 @@ func TryFormatText(ps *playerstate.PlayerState, s string) (string, error) {
 	}
 	tmpl := template.New("")
 	verticalText := false
+
+	// Unloess EnableLocale is hit, do not translate strings inserted here.
+	// This makes the game more consistent when the level isn't translated.
+	enableLocale := locale.DeactivateTemporarily()
+	defer enableLocale()
+
 	tmpl.Funcs(map[string]interface{}{
+		"EnableLocale": func() string {
+			enableLocale()
+			return ""
+		},
 		"Lang": func() string {
 			return string(locale.Active)
 		},

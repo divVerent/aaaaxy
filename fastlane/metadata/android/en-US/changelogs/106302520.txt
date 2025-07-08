@@ -1,0 +1,5 @@
+  - Engine: disable translations while evaluating placeholders in untranslated
+    strings.
+  - Engine: minor module updates.
+  - Translations: include menu in Slovak. Level not translated yet - volunteers
+    on Transifex welcome!

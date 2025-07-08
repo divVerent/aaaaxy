@@ -1,23 +1,23 @@
 # 
 # Translators:
-# Mark Seagull, 2023
+# Matúš Ollah, 2024
 # Rudolf Polzer, 2025
 # 
 msgid ""
 msgstr ""
 "Last-Translator: Rudolf Polzer, 2025\n"
-"Language-Team: Ukrainian (https://app.transifex.com/aaaaxy/teams/158611/uk/)\n"
+"Language-Team: Slovak (https://app.transifex.com/aaaaxy/teams/158611/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 "X-Generator: xgotext\n"
 
 #. Last separator when building a list. Usually starts and ends with a space.
 #: fun/string.go playerstate/playerstate.go
 msgid " and "
-msgstr " i "
+msgstr "a"
 
 #: aaaaxy/game.go
 msgid "%.1f fps, %.1f tps"
@@ -59,46 +59,46 @@ msgstr "???"
 
 #: menu/savestate.go
 msgid "A: %s"
-msgstr "А: %s"
+msgstr "A: %s"
 
 #: menu/credits.go
 msgid "Additional Programming Libraries & Tools"
-msgstr "Додаткові бібліотеки та інструменти"
+msgstr "Dodatočné programovacie knižnice a nástroje"
 
 #. A speedrun category (all checkpoints reached, but game not won yet).
 #: playerstate/playerstate.go
 msgid "All Checkpoints"
-msgstr "Усі контрольні точки"
+msgstr "Všetky kontrolné body"
 
 #. A speedrun category (all checkpoints reached in flipped state).
 #: playerstate/playerstate.go
 msgid "All Flipped"
-msgstr "Усе перевернуто"
+msgstr "Všetko prevrátené"
 
 #. A speedrun category (all notes seen).
 #: playerstate/playerstate.go
 msgid "All Notes"
-msgstr "Усі нотатки"
+msgstr "Všetky poznámky"
 
 #. A speedrun category (all paths walked).
 #: playerstate/playerstate.go
 msgid "All Paths"
-msgstr "Усі шляхи"
+msgstr "Všetky cesty"
 
 #. A speedrun category (all secrets found).
 #: playerstate/playerstate.go
 msgid "All Secrets"
-msgstr "Усі секрети"
+msgstr "Všetky tajomstvá"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Alofi"
-msgstr "Алофі"
+msgstr "Alofi"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Anchorage"
-msgstr "Анкоридж"
+msgstr "Anchorage"
 
 #. A speedrun category (any way to finish the game).
 #: playerstate/playerstate.go
@@ -108,15 +108,15 @@ msgstr "Any%"
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Auckland"
-msgstr "Окленд"
+msgstr "Auckland"
 
 #: menu/credits.go
 msgid "Audio"
-msgstr "Звук"
+msgstr "Zvuk"
 
 #: menu/language.go menu/quality.go
 msgid "Auto (%s)"
-msgstr "Авто (%s)"
+msgstr "Auto (%s)"
 
 #: fun/string.go
 msgid "B"
@@ -128,7 +128,7 @@ msgstr "B/X"
 
 #: fun/string.go
 msgid "Back"
-msgstr "Назад"
+msgstr "Späť"
 
 #: fun/string.go
 msgid "Backspace"
@@ -137,31 +137,31 @@ msgstr "Backspace"
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Baker Island"
-msgstr "Бейкер Айленд"
+msgstr "Baker Island"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Beijing"
-msgstr "Пекін"
+msgstr "Beijing"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Berlin"
-msgstr "Берлін"
+msgstr "Berlin"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Bishkek"
-msgstr "Бішкек"
+msgstr "Bishkek"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Boston"
-msgstr "Бостон"
+msgstr "Boston"
 
 #: menu/credits.go
 msgid "Build: %s"
-msgstr "Збірка: %s"
+msgstr "Stavba: %s"
 
 #. A speedrun category (not a real one, but what we show if cheats are
 #. active).
@@ -172,11 +172,11 @@ msgstr "Cheat%"
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Chicago"
-msgstr "Чикаго"
+msgstr "Chicago"
 
 #: menu/main.go
 msgid "Credits"
-msgstr "Титри"
+msgstr "Kredity"
 
 #: fun/string.go
 msgid "Ctrl/Shift"
@@ -184,16 +184,16 @@ msgstr "Ctrl/Shift"
 
 #: menu/touchedit.go
 msgid "Done"
-msgstr "Готово"
+msgstr "Hotovo"
 
 #: menu/settings.go menu/touchedit.go
 msgid "Edit Touch Controls"
-msgstr "Змінити налаштування керування"
+msgstr "Upraviť dotykové ovládacie prvky"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Edmonton"
-msgstr "Едмонтон"
+msgstr "Edmonton"
 
 #: fun/string.go
 msgid "Enter/Shift"
@@ -205,8 +205,8 @@ msgid ""
 "could not save game:\n"
 "%s"
 msgstr ""
-"Помилка:\n"
-"неможливо зберегти гру:\n"
+"Chyba:\n"
+"nemožno uložiť hru:\n"
 "%s"
 
 #: fun/string.go
@@ -216,228 +216,228 @@ msgstr "Escape"
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Fernando de Noronha"
-msgstr "Фернанду-ді-Норонья"
+msgstr "Fernando de Noronha"
 
 #: game/player/player.go
 msgid ""
 "Fine, I give up, have it your way.\n"
 "All cheats are documented in --help."
 msgstr ""
-"Добре, я здаюся, робіть що хочете.\n"
-"Всі чит-коди є в --help."
+"Dobre, vzdávam sa, urob to po svojom.\n"
+"Všetky cheaty sú zdokumentované v --help."
 
 #: menu/credits.go
 msgid "For Software Licenses{{BR}}Press Right"
-msgstr "З питань ліцензії{{BR}}Натисніть вправо"
+msgstr "Pre softvérové licencie{{BR}}Stlač Vpravo"
 
 #: aaaaxy/game.go
 msgid "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
-msgstr "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
+msgstr "GC pass %d: pauza %.1fms delta %.1fs (pred %.1fs)"
 
 #: menu/credits.go
 msgid "Graphics"
-msgstr "Графіка"
+msgstr "Grafika"
 
 #: menu/settings.go
 msgid "Graphics: %s"
-msgstr "Графіка: %s"
+msgstr "Grafika: %s"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Halifax"
-msgstr "Галіфакс"
+msgstr "Halifax"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Hanoi"
-msgstr "Ханой"
+msgstr "Hanoi"
 
 #. Used in context "Quality: ...".
 #: menu/quality.go
 msgid "High"
-msgstr "Висока"
+msgstr "Vysoká"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Honolulu"
-msgstr "Гонолулу"
+msgstr "Honolulu"
 
 #: playerstate/playerstate.go
 msgid "Impossible"
-msgstr "Неможливо"
+msgstr "Nemožné"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Istanbul"
-msgstr "Стамбул"
+msgstr "Istanbul"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Kiritimati"
-msgstr "Кіритіматі"
+msgstr "Kiritimati"
 
 #. Translate so it can be recognized by English speakers too (e.g.
 #. "Lingua (Language): %s").
 #: menu/settings.go
 msgid "Language: %s"
-msgstr "Мова (Language): %s"
+msgstr "Jazyk (Language): %s"
 
 #: menu/credits.go
 msgid "Level Version: %d"
-msgstr "Версія рівня: %d"
+msgstr "Verzia úrovne: %d"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "London"
-msgstr "Лондон"
+msgstr "London"
 
 #. Used in context "Quality: ...".
 #: menu/quality.go
 msgid "Low"
-msgstr "Низька"
+msgstr "Nízka"
 
 #. Used in context "Quality: ...".
 #: menu/quality.go
 msgid "Lowest"
-msgstr "Найнижча"
+msgstr "Najnižšia"
 
 #: menu/level.go menu/reset.go menu/savestate.go menu/settings.go
 msgid "Main Menu"
-msgstr "Головне меню"
+msgstr "Hlavné Menu"
 
 #. Used in context "Quality: ...".
 #: menu/quality.go
 msgid "Max"
-msgstr "Максимальна"
+msgstr "Maximálna"
 
 #. Used in context "Quality: ...".
 #: menu/quality.go
 msgid "Medium"
-msgstr "Середня"
+msgstr "Stredná"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "New York"
-msgstr "Нью-Йорк"
+msgstr "New York"
 
 #. A speedrun category (back button never pressed).
 #: playerstate/playerstate.go
 msgid "No Back"
-msgstr "Без \"Назад\""
+msgstr "Žiadny back"
 
 #. A speedrun category (backspace key never pressed).
 #: playerstate/playerstate.go
 msgid "No Backspace"
-msgstr "Без Backspace"
+msgstr "Žiadny backspace"
 
 #: playerstate/playerstate.go
 msgid "No Coil"
-msgstr "Без котушки"
+msgstr "Žiadny cievka"
 
 #. A speedrun category (escape key never pressed).
 #: playerstate/playerstate.go
 msgid "No Escape"
-msgstr "Без Escape"
+msgstr "Žiadny escape"
 
 #. A speedrun category (start button never pressed).
 #: playerstate/playerstate.go
 msgid "No Start"
-msgstr "Без \"Старту\""
+msgstr "Žiadny štart"
 
 #. A speedrun category (never teleported).
 #: playerstate/playerstate.go
 msgid "No Teleports"
-msgstr "Без телепортації"
+msgstr "Žiadne teleporty"
 
 #: playerstate/playerstate.go
 msgid "None"
-msgstr "Нічого"
+msgstr "Žiadne"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Nuku'alofa"
-msgstr "Нукуалофа"
+msgstr "Nuku'alofa"
 
 #: menu/map.go
 msgid "Pick-a-Path"
-msgstr "Обери-шлях"
+msgstr "Vyber-si-Cestu"
 
 #. Menu item to go back to the game after having pressed escape. Leads to the
 #. map screen, then back into the game.
 #: menu/main.go
 msgid "Play"
-msgstr "Грати"
+msgstr "Hrať"
 
 #: menu/credits.go
 msgid "Player Sprite"
-msgstr "Персонаж"
+msgstr "Sprite Hráča"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Ponta Delgada"
-msgstr "Понта-Делгада"
+msgstr "Ponta Delgada"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Port Moresby"
-msgstr "Порт-Морсбі"
+msgstr "Port Moresby"
 
 #: menu/credits.go
 msgid "Programming"
-msgstr "Програмування"
+msgstr "Programovanie"
 
 #: menu/settings.go
 msgid "Quality: %s"
-msgstr "Якість: %s"
+msgstr "Kvalita: %s"
 
 #: menu/main.go
 msgid "Quit"
-msgstr "Вийти"
+msgstr "Ukončiť"
 
 #: menu/reset.go menu/settings.go
 msgid "Reset"
-msgstr "Скинути"
+msgstr "Resetovať"
 
 #: menu/reset.go
 msgid "Reset Nothing"
-msgstr "Нічого не скидувати"
+msgstr "Nič neresetovať"
 
 #: menu/reset.go
 msgid "Reset and Lose SAVE STATE %s"
-msgstr "Скинути та втратити ЗБЕРЕЖЕННЯ %s"
+msgstr "Resetovať a stratiť STAV %s"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s"
-msgstr "Скинути та втратити збереження %s"
+msgstr "Resetovať a stratiť stav %s"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s (just release buttons)"
-msgstr "Скинути та втратити збереження %s (просто відпустіть кнопки)"
+msgstr "Resetovať a stratiť stav %s (stačí uvoľniť tlačidlá)"
 
 #: menu/reset.go
 msgid "Reset and Lose Save State %s (think about it for %d sec)"
-msgstr "Скинути та втратити збереження %s (подумайте про це %dс)"
+msgstr "Resetovať a stratiť stav %s (premýšľaj o tom %d s)"
 
 #: menu/reset.go
 msgid "Reset and Lose Settings"
-msgstr "Скинути та втратити налаштування"
+msgstr "Resetovať a stratiť nastavenia"
 
 #: menu/touchedit.go
 msgid "Reset to Defaults"
-msgstr "Скинути до налаштувань за замовчуванням"
+msgstr "Obnoviť predvolené nastavenia"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "San Francisco"
-msgstr "Сан-Франциско"
+msgstr "San Francisco"
 
 #: menu/main.go menu/savestate.go
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
-msgstr "Рахунок: {{Score}}{{SpeedrunCategoriesShort}} | Час: {{GameTime}}"
+msgstr "Skóre: {{Score}}{{SpeedrunCategoriesShort}} | Čas: {{GameTime}}"
 
 #: menu/main.go menu/settings.go
 msgid "Settings"
-msgstr "Налаштування"
+msgstr "Nastavenia"
 
 #: fun/string.go
 msgid "Shift/E/Tab"
@@ -445,115 +445,115 @@ msgstr "Shift/E/Tab"
 
 #: menu/credits.go
 msgid "Sound Effects"
-msgstr "Звукові ефекти"
+msgstr "Zvukové efekty"
 
 #: menu/credits.go
 msgid "Sprites"
-msgstr "Спрайти"
+msgstr "Sprity"
 
 #: fun/string.go
 msgid "Start"
-msgstr "Старт"
+msgstr "Štart"
 
 #: menu/savestate.go menu/settings.go
 msgid "Switch Save State"
-msgstr "Завантажити збереження"
+msgstr "Prepnúť stav"
 
 #: menu/level.go menu/main.go
 msgid "Switch World"
-msgstr "Іди в інший світ"
+msgstr "Prepnite Svet"
 
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
-msgstr "Перемкнутися до повноекранного режиму"
+msgstr "Prepnúť sa do režimu celej obrazovky"
 
 #: menu/settings.go
 msgid "Switch to Letterboxed Screen"
-msgstr "Перемкнутися до звичайного режиму"
+msgstr "Prepnúť sa na obrazovku s písmenami"
 
 #: menu/settings.go
 msgid "Switch to Stretched Screen"
-msgstr "Перемкнутися до розтягнутого режиму"
+msgstr "Prepnúť sa na roztiahnutú obrazovku"
 
 #: menu/settings.go
 msgid "Switch to Windowed Mode"
-msgstr "Перемкнутися до віконного режиму"
+msgstr "Prepnúť sa do režimu v okne"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Sydney"
-msgstr "Сідней"
+msgstr "Sydney"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "São Paulo"
-msgstr "Сан-Паулу"
+msgstr "São Paulo"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Tehran"
-msgstr "Тегеран"
+msgstr "Tehran"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Tel Aviv"
-msgstr "Тель-Авів"
+msgstr "Tel Aviv"
 
 #: menu/credits.go
 msgid "Testing"
-msgstr "Тестування"
+msgstr "Testovanie"
 
 #: menu/credits.go
 msgid "Thank You!"
-msgstr "Дякуємо!"
+msgstr "Ďakujem!"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "The Cleats"
-msgstr "шипованого взуття"
+msgstr "Kopačky"
 
 #. Used in context "reached <location> with ... at <time>";
 #. "coil" here refers to an electromagnetic coil.
 #: fun/string.go
 msgid "The Coil"
-msgstr "котушки"
+msgstr "Cievka"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "The Gloves"
-msgstr "рукавичок"
+msgstr "Rukavice"
 
 #. Used in context "reached <location> with ... at <time>";
 #. "remote" here refers to e.g. a TV's remote control.
 #: fun/string.go
 msgid "The Remote"
-msgstr "пульт"
+msgstr "Ovládač"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Tokyo"
-msgstr "Токіо"
+msgstr "Tokyo"
 
 #: menu/credits.go
 msgid "Translators"
-msgstr "Перекладачі"
+msgstr "Prekladači"
 
 #: menu/credits.go
 msgid "Try Next"
-msgstr "Спробуйте наступним"
+msgstr "Skúsiť ďalšie"
 
 #. Used in context "Welcome to ..." and "... Road Rage".
 #: fun/string.go
 msgid "Turkistan"
-msgstr "Туркестан"
+msgstr "Turkistan"
 
 #: menu/settings.go
 msgid "Volume: %s"
-msgstr "Гучність: %s"
+msgstr "Hlasitosť: %s"
 
 #: playerstate/playerstate.go
 msgid "Without Cheating Of Course"
-msgstr "Без використання чит-кодів, ясна річ"
+msgstr "Samozrejme bez podvádzania"
 
 #: menu/savestate.go
 msgid "X: %s"
@@ -565,19 +565,19 @@ msgstr "Y: %s"
 
 #: game/player/player.go
 msgid "You now have 30 lives. Enjoy!"
-msgstr "Тепер у вас 30 життів. Насолоджуйтесь!"
+msgstr "Teraz máš 30 životov. Uži si to!"
 
 #: game/player/player.go
 msgid "You really thought this would do something?"
-msgstr "Ви справді думали, що це щось дасть?"
+msgstr "Naozaj si si myslel, že to niečo spraví?"
 
 #: menu/credits.go
 msgid "Your Speedrun Categories"
-msgstr "Ваші категорії спідрану"
+msgstr "Tvoje speedrun kategórie"
 
 #: menu/credits.go
 msgid "Your Time"
-msgstr "Ваш час"
+msgstr "Tvoj čas"
 
 #: fun/string.go
 msgid "Z"
@@ -610,103 +610,103 @@ msgstr "false"
 
 #: menu/credits.go
 msgid "and %s"
-msgstr "і %s"
+msgstr "a %s"
 
 #: menu/credits.go
 msgid "and other contributors"
-msgstr "та інші"
+msgstr "a ďalší prispievatelia"
 
 #: menu/credits.go
 msgid "by %s"
-msgstr "%s"
+msgstr "od %s"
 
 #. Used in context "Hold ...".
 #: fun/string.go
 msgid "elsewhere"
-msgstr "деінде"
+msgstr "inde"
 
 #: engine/world.go
 msgid "enumerating levels"
-msgstr "перелічуємо рівні"
+msgstr "počítam úrovne"
 
 #: sound/sound.go
 msgid "enumerating sounds"
-msgstr "перелічуємо звуки"
+msgstr "počítam zvuky"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "everything"
-msgstr "усього"
+msgstr "všetko"
 
 #: level/level.go
 msgid "hashing level"
-msgstr "хешуємо рівень"
+msgstr "hashujem level"
 
 #: aaaaxy/init.go
 msgid "initializing audio"
-msgstr "ініціюємо звук"
+msgstr "inicializujem zvuk"
 
 #: aaaaxy/init.go
 msgid "initializing dumping"
-msgstr "ініціюємо дампування"
+msgstr "inicializujem dumping"
 
 #: aaaaxy/init.go
 msgid "initializing input"
-msgstr "ініціюємо введення"
+msgstr "inicializujem vstup"
 
 #: aaaaxy/init.go
 msgid "initializing menu"
-msgstr "ініціюємо меню"
+msgstr "inicializujem menu"
 
 #: aaaaxy/init.go
 msgid "initializing noise"
-msgstr "ініціюємо шум"
+msgstr "inicializujem šum"
 
 #: level/level.go
 msgid "loading checkpoints"
-msgstr "завантажуємо контрольні точки"
+msgstr "načítavam kontrolné body"
 
 #: engine/world.go
 msgid "loading level"
-msgstr "завантажуємо рівень"
+msgstr "načítavam úroveň"
 
 #: level/level.go
 msgid "loading level file"
-msgstr "завантажуємо файли рівня"
+msgstr "načítavam súbor úrovne"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "nothing"
-msgstr "нічого"
+msgstr "nič"
 
 #: level/level.go
 msgid "parsing level data"
-msgstr "парсинг даних рівня"
+msgstr "analyzujem údaje o úrovni"
 
 #: sound/sound.go
 msgid "precaching %s"
-msgstr "кешуємо %s"
+msgstr "ukladám %s do vyrovnávacej pamäte"
 
 #: aaaaxy/init.go
 msgid "precaching credits"
-msgstr "кешуємо титри"
+msgstr "ukladám kredity do vyrovnávacej pamäte"
 
 #: aaaaxy/init.go
 msgid "precaching engine"
-msgstr "кешуємо рушій"
+msgstr "ukladám engine do vyrovnávacej pamäte"
 
 #: engine/world.go
 msgid "precaching entities"
-msgstr "кешуємо компоненти"
+msgstr "ukladám entity do vyrovnávacej pamäte"
 
 #: aaaaxy/init.go
 msgid "precaching fonts"
-msgstr "кешуємо шрифти"
+msgstr "ukladám písma do vyrovnávacej pamäte"
 
 #: aaaaxy/init.go
 msgid "precaching pictures"
-msgstr "кешуємо зображення"
+msgstr "ukladám obrázky do vyrovnávacej pamäte"
 
 #: aaaaxy/init.go
 msgid "precaching sounds"
-msgstr "кешуємо звуки"
+msgstr "ukladám zvuky do vyrovnávacej pamäte"

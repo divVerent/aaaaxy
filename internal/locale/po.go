@@ -44,6 +44,25 @@ func ResetLanguage() {
 	Active = ""
 }
 
+// DeactivateTemporarily temporarily switches back to English.
+// Used to handle untranslated map strings better when inserting things.
+func DeactivateTemporarily() func() {
+	g, gi, l := G, GI, L
+
+	active := Active
+	ResetLanguage()
+	Active = active
+
+	done := false
+	return func() {
+		if done {
+			return
+		}
+		G, GI, L = g, gi, l
+		done = true
+	}
+}
+
 func init() {
 	// The translators must always be valid objects.
 	ResetLanguage()
