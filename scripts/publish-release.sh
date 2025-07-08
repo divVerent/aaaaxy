@@ -62,6 +62,10 @@ hub release create \
 	-a aaaaxy-darwin-"$new".zip \
 	-a sdl-gamecontrollerdb-for-aaaaxy-"$new".zip \
 	-a aaaaxy.apk \
+	-a aaaaxy-386.apk \
+	-a aaaaxy-amd64.apk \
+	-a aaaaxy-arm.apk \
+	-a aaaaxy-arm64.apk \
 	-m "$(cat .commitmsg)" \
 	"$new"
 

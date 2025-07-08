@@ -109,9 +109,18 @@ GOOS=js sh scripts/binary-release-compile.sh wasm
 (
 	cd AndroidStudioProjects/AAAAXY/
 	export ANDROID_HOME=$HOME/Android/Sdk
-	./gradlew assembleRelease bundleRelease
+	i=0
+	for arch in '' 386 amd64 arm arm64; do
+		if [ -z "$arch" ]; then
+			./gradlew assembleRelease bundleRelease
+		else
+			./gradlew assembleRelease bundleRelease -Paaaaxy_build_gomobile_targets="android/$arch" -Paaaaxy_build_versioncode_add=$i
+		fi
+		mv app/build/outputs/apk/release/app-release.apk "../../aaaaxy${arch:+-}$arch.apk"
+		mv app/build/outputs/bundle/release/app-release.aab "../../aaaaxy${arch:+-}$arch.aab"
+		i=$((i+1))
+	done
 )
-cp AndroidStudioProjects/AAAAXY/app/build/outputs/apk/release/app-release.apk aaaaxy.apk
 
 git commit -a -m "$(cat .commitmsg)"
 git tag -a "$new" -m "$(cat .commitmsg)"
