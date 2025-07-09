@@ -14,7 +14,8 @@ jobs:
           submodules: true
       - name: Install Dependencies
         run: 'sudo apt-get update && sudo apt-get -y install libasound2-dev libgl-dev
-          libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev xvfb'
+          libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev strip-nondeterminism
+          xvfb'
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -65,7 +66,8 @@ jobs:
           submodules: true
       - name: Install Dependencies
         run: 'sudo apt-get update && sudo apt-get -y install imagemagick libasound2-dev
-          libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
+          libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev
+          strip-nondeterminism'
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -117,7 +119,8 @@ jobs:
           submodules: true
       - name: Install Dependencies
         run: 'sudo apt-get update && sudo apt-get -y install imagemagick libasound2-dev
-          libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev'
+          libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev
+          strip-nondeterminism'
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
