@@ -107,6 +107,9 @@ GOOS=windows GO386=sse2 sh scripts/binary-release-compile.sh 386
 GOOS=darwin CGO_ENV_amd64="PATH=$HOME/src/osxcross/target/bin:$PATH CGO_ENABLED=1 CC=o64-clang CXX=o64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" CGO_ENV_arm64="PATH=$HOME/src/osxcross/target/bin:$PATH CGO_ENABLED=1 CC=oa64-clang CXX=oa64-clang++ MACOSX_DEPLOYMENT_TARGET=10.13" LIPO="$HOME/src/osxcross/target/bin/lipo" sh scripts/binary-release-compile.sh amd64 arm64
 GOOS=js sh scripts/binary-release-compile.sh wasm
 (
+	# Match F-Droid. This is actually a bind-mount to here.
+	cd /home/vagrant/build/io.github.divverent.aaaaxy
+
 	cd AndroidStudioProjects/AAAAXY/
 	export ANDROID_HOME=$HOME/Android/Sdk
 	i=0
