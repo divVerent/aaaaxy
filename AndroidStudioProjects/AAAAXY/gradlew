@@ -15,25 +15,35 @@
 
 set -e
 
-. ./gradle/wrapper/gradle-wrapper.properties
+case "$0" in
+	*/*)
+		me=${0%/*}
+		;;
+	*)
+		me=.
+		;;
+esac
 
-if ! [ -f gradle-bin.zip ]; then
-	curl -L -o gradle-bin.zip "$distributionUrl"
+. "$me"/gradle/wrapper/gradle-wrapper.properties
+
+if ! [ -f "$me"/gradle-bin.zip ]; then
+	curl -L -o "$me"/gradle-bin.zip "$distributionUrl"
 fi
 
-if [ x"$(sha256sum gradle-bin.zip)" != x"$distributionSha256Sum  gradle-bin.zip" ]; then
-	rm -f gradle-bin.zip
+if [ x"$(sha256sum < "$me"/gradle-bin.zip)" != x"$distributionSha256Sum  -" ]; then
+	rm -f "$me"/gradle-bin.zip
 	echo >&2 "Checksum mismatch of gradle.zip!"
 	exit 1
 fi
 
-mkdir -p gradle-bin
+mkdir -p "$me"/gradle-bin
 
-if ! [ -f gradle-bin/*/bin/gradle ]; then
-	rm -rf gradle-bin/*
-	cd gradle-bin
+if ! [ -f "$me"/gradle-bin/*/bin/gradle ]; then
+	pwd=$(pwd)
+	rm -rf "$me"/gradle-bin/*
+	cd "$me"/gradle-bin
 	unzip ../gradle-bin.zip
-	cd ..
+	cd "$pwd"
 fi
 
-exec gradle-bin/*/bin/gradle "$@"
+exec "$me"/gradle-bin/*/bin/gradle "$@"
