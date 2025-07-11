@@ -52,7 +52,7 @@ jobs:
         id: setup-ndk
         uses: nttld/setup-ndk@v1
         with:
-          ndk-version: '27.0.12077973'
+          ndk-version: r27
           add-to-path: false
       - name: Set up Go
         uses: actions/setup-go@v5
