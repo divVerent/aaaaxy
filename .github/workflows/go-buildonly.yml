@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
+      - name: Install Dependencies
+        run: 'sudo apt-get update && sudo apt-get -y install strip-nondeterminism'
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -50,7 +52,7 @@ jobs:
         id: setup-ndk
         uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r25c
+          ndk-version: '27.0.12077973'
           add-to-path: false
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -83,6 +85,7 @@ jobs:
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOTOOLCHAIN: local
+          STRIP_NONDETERMINISM_GZIP: :
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
