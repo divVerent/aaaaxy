@@ -54,6 +54,7 @@ jobs:
         with:
           ndk-version: r27
           add-to-path: false
+          link-to-sdk: true
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -61,7 +62,6 @@ jobs:
       - name: Build
         run: 'cd AndroidStudioProjects/AAAAXY/ && ./gradlew assembleDebug -Paaaaxy_build_use_version_file=true'
         env:
-          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
           ADVZIP: ':'
           GOTOOLCHAIN: local
       - name: Archive Binary
