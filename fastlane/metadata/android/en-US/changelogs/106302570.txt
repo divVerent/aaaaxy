@@ -1,0 +1,2 @@
+  - Menu: when language switching, do not switch to game.
+  - Mobile: also provide per-arch APKs.

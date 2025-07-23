@@ -4,7 +4,8 @@ plugins {
 
 android {
     namespace 'io.github.divverent.aaaaxy'
-    compileSdk 34
+    compileSdk 35
+    ndkVersion "27.0.12077973"
 
     defaultConfig {
         applicationId 'io.github.divverent.aaaaxy'
@@ -63,6 +64,7 @@ task prepareLibsDir(type: Exec) {
 task ebitenMobile(type: Exec) {
     dependsOn prepareLibsDir
     dependsOn goGenerate
+    environment 'ANDROID_NDK_HOME', android.ndkDirectory
     environment 'CGO_CPPFLAGS', '-DNDEBUG'
     environment 'CGO_CFLAGS', '-g0 -O3'
     environment 'CGO_CXXFLAGS', '-g0 -O3'

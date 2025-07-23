@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
+      - name: Install Dependencies
+        run: 'sudo apt-get update && sudo apt-get -y install strip-nondeterminism'
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -37,7 +39,8 @@ jobs:
         with:
           submodules: true
       - name: Install Dependencies
-        run: 'sudo apt-get update && sudo apt-get -y install zip'
+        run: 'sudo apt-get update && sudo apt-get -y install strip-nondeterminism
+          zip'
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
@@ -49,8 +52,9 @@ jobs:
         id: setup-ndk
         uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r25c
+          ndk-version: r27
           add-to-path: false
+          link-to-sdk: true
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -58,10 +62,8 @@ jobs:
       - name: Build
         run: 'cd AndroidStudioProjects/AAAAXY/ && ./gradlew assembleDebug -Paaaaxy_build_use_version_file=true'
         env:
-          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
           ADVZIP: ':'
           GOTOOLCHAIN: local
-          STRIP_NONDETERMINISM_ZIP: ':'
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
@@ -83,6 +85,7 @@ jobs:
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOTOOLCHAIN: local
+          STRIP_NONDETERMINISM_GZIP: ':'
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
