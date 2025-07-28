@@ -71,11 +71,13 @@ parts:
     plugin: go
     build-snaps:
       - go
+    build-environment:
+      GOTOOLCHAIN=local
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "$(sh scripts/version.sh semver)"
     override-build: |
-      GOTOOLCHAIN=local make BINARY="${SNAPCRAFT_PART_INSTALL}/bin/aaaaxy" BUILDTYPE=release
+      make BINARY="${SNAPCRAFT_PART_INSTALL}/bin/aaaaxy" BUILDTYPE=release
     source: https://github.com/divVerent/aaaaxy
     source-type: git
     build-packages:
