@@ -72,7 +72,7 @@ parts:
     build-snaps:
       - go
     build-environment:
-      GOTOOLCHAIN: local
+      - GOTOOLCHAIN: local
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "$(sh scripts/version.sh semver)"
