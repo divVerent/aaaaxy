@@ -101,7 +101,7 @@ hub release create \
 git push origin main
 
 # Publish it to gh-pages.
-git worktree add /tmp/gh-pages gh-pages
+git worktree add -f /tmp/gh-pages gh-pages
 (
 	cd /tmp/gh-pages
 	git reset --hard '@{u}'

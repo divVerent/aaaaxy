@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.257" date="2025-07-08">
-      <description><ul><li>Menu: when language switching, do not switch to game.</li><li>Mobile: also provide per-arch APKs.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.257</url>
+    <release version="v1.6.271" date="2025-07-28">
+      <description><ul><li>Android: work towards reproducible builds.</li><li>Engine: module updates.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.271</url>
     </release>
   </releases>
 </component>
