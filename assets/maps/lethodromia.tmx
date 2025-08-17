@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="1024" height="1024" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="2458">
  <properties>
-  <property name="checkpoint_locations_hash" value="8198114993851639453"/>
+  <property name="checkpoint_locations_hash" value="15653132671396683895"/>
   <property name="save_game_version" type="int" value="1"/>
  </properties>
  <tileset firstgid="1" source="../tiles/tiles.tsx"/>
