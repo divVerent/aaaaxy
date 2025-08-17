@@ -9,7 +9,7 @@ jobs:
   build-linux-amd64:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
       - name: Install Dependencies
@@ -36,13 +36,13 @@ jobs:
     needs: build-linux-amd64
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
       - name: Install Dependencies
         run: 'sudo apt-get update && sudo apt-get -y install libgl1 xvfb'
       - name: Download Binary
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: aaaaxy-debug-linux-amd64
       - name: Make Binary Executable
@@ -61,7 +61,7 @@ jobs:
   build-windows-amd64:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
       - name: Install Dependencies
@@ -93,11 +93,11 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
       - name: Download Binary
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: aaaaxy-debug-windows-amd64
       - name: Test
@@ -114,7 +114,7 @@ jobs:
   build-windows-386:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
       - name: Install Dependencies
@@ -146,7 +146,7 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
       - name: Download Mesa
@@ -154,7 +154,7 @@ jobs:
       - name: Extract Mesa
         run: '7z e mesa3d.7z x86/\*.dll'
       - name: Download Binary
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: aaaaxy-debug-windows-386
       - name: Test
