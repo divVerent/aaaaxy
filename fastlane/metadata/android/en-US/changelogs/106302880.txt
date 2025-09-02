@@ -1,0 +1,2 @@
+  - Android: set max page size to 16k.
+  - Engine: bump version of Go compiler and runtime.

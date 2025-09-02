@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.271" date="2025-07-28">
-      <description><ul><li>Android: work towards reproducible builds.</li><li>Engine: module updates.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.271</url>
+    <release version="v1.6.288" date="2025-09-01">
+      <description><ul><li>Android: set max page size to 16k.</li><li>Engine: bump version of Go compiler and runtime.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.288</url>
     </release>
   </releases>
 </component>
