@@ -17,7 +17,7 @@ jobs:
           libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev strip-nondeterminism
           xvfb'
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.23'
       - name: Build
@@ -69,7 +69,7 @@ jobs:
           libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev
           strip-nondeterminism'
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.23'
       - name: Build
@@ -122,7 +122,7 @@ jobs:
           libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev
           strip-nondeterminism'
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.23'
       - name: Build

@@ -15,7 +15,7 @@ jobs:
           libasound2-dev libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev
           libxrandr-dev libxxf86vm-dev strip-nondeterminism xvfb'
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: 'stable'
           check-latest: true

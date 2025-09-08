@@ -15,7 +15,7 @@ jobs:
       - name: Install Dependencies
         run: 'brew install imagemagick'
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.23'
       - name: Build Specific
