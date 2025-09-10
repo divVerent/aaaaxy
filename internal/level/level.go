@@ -558,7 +558,7 @@ func parseTmx(t *tmx.Map) (*Level, error) {
 					continue
 				}
 				text := propmap.StringOr(properties, prop, "")
-				translated := locale.L.Get(text) // "Unsupported call" warning expected here.
+				translated := locale.LI.Get(text)
 				// log.Infof("translated %v -> %v", text, translated)
 				propmap.Set(properties, prop, translated)
 				hasText = true

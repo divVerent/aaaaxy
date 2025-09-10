@@ -30,6 +30,12 @@ var GI gotext.Translator
 // L is the translation of the levels.
 var L *gotext.Po
 
+// GI is the translation of the level but as an interface.
+// Used to work around go vet as it can't figure out
+// that G.Get isn't a printf-like function if it gets only one arg.
+// See https://github.com/golang/go/issues/57288
+var LI gotext.Translator
+
 // LName is the name of the level L is for.
 var LName string
 
@@ -41,13 +47,14 @@ func ResetLanguage() {
 	G = gotext.NewPo()
 	GI = G
 	L = gotext.NewPo()
+	LI = L
 	Active = ""
 }
 
 // DeactivateTemporarily temporarily switches back to English.
 // Used to handle untranslated map strings better when inserting things.
 func DeactivateTemporarily() func() {
-	g, gi, l := G, GI, L
+	g, gi, l, li := G, GI, L, LI
 
 	active := Active
 	ResetLanguage()
@@ -58,7 +65,7 @@ func DeactivateTemporarily() func() {
 		if done {
 			return
 		}
-		G, GI, L = g, gi, l
+		G, GI, L, LI = g, gi, l, li
 		done = true
 	}
 }
