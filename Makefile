@@ -87,7 +87,7 @@ vet:
 
 .PHONY: mod-tidy
 mod-tidy:
-	$(GO) mod tidy -compat=1.21
+	$(GO) mod tidy -compat=1.23
 
 .PHONY: mod-update
 mod-update:
