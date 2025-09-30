@@ -1383,7 +1383,7 @@ msgstr "冗談さ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7837]
 msgid "I hope you took{{BR}}the small one ..."
-msgstr "小さい方を{{BR}}持ってきてくれたことを願う……"
+msgstr "小さい方を{{BR}}持ってきていることを願う……"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7846]
 msgid "Those who have, have."
