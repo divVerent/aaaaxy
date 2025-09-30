@@ -1148,7 +1148,7 @@ msgstr "Twice Twice"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5518]
 msgid "Why didn't you like the one I gave you?"
-msgstr "プレゼントはお気に召さなかったかな？"
+msgstr "どうしてプレゼントが気に入らなかったんだい？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5528]
 msgid "You really don't get it, do you?"
