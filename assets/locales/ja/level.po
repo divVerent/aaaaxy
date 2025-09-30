@@ -355,7 +355,7 @@ msgstr "11"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1101]
 msgid "The first track is never the one with your train."
-msgstr "一番手前のホームには、乗る電車は決して来ない。"
+msgstr "一番線には、あなたの列車は決して来ない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
