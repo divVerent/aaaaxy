@@ -195,7 +195,7 @@ msgstr "嗚呼、重力よ。汝は無情なる……力？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=288]
 msgid "Short Circuited"
-msgstr "短絡回路"
+msgstr "回路短絡"
 
 #. https://deltarune.com/
 #: assets/maps/level.tmx//map/objectgroup/object[@id=295]
