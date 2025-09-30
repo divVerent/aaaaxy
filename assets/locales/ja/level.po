@@ -359,7 +359,7 @@ msgstr "一番線には、あなたの列車は決して来ない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
 msgid "Reaching for the stars can really tear you down."
-msgstr "星々に手を伸ばす。心が折れそうになる。"
+msgstr "星々に手を伸ばすと、心が折れてしまうかもしれない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1103]
 msgid "9¾"
