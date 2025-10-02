@@ -1162,7 +1162,7 @@ msgstr "物事を見つめ、その変化を観察すること。{{BR}}それが
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5545]
 msgid "You should have done this a little bit earlier."
-msgstr "もうちょっと早くやっておくべきだったね。"
+msgstr "もうちょっと早くやればよかったのに。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=5546]
 msgid "Greedy you are, greedy!"
