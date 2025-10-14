@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8454">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8456">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -18888,8 +18888,8 @@
     <property name="initial_position" value="Middle"/>
     <property name="sound" value="got_ability.ogg"/>
     <property name="text" value="Героям слава!"/>
-    <property name="text_bg" type="color" value="#ff0056b9!"/>
-    <property name="text_fg" type="color" value="#ffffd800!"/>
+    <property name="text_bg" value="#ff0056b9!"/>
+    <property name="text_fg" value="#ffffd800!"/>
     <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
@@ -19260,5 +19260,7 @@
    </properties>
    <polygon points="0,0 16,0 16,16"/>
   </object>
+  <object id="8454" gid="305" x="2624" y="5056" width="32" height="32"/>
+  <object id="8455" gid="305" x="2656" y="5056" width="32" height="32"/>
  </objectgroup>
 </map>
