@@ -298,13 +298,13 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 			if ent.contents.Opaque() {
 				boxColor.B = 255
 			}
-			vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY), float32(ent.Rect.Size.DX), float32(ent.Rect.Size.DY), boxColor, false)
+			vector.FillRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY), float32(ent.Rect.Size.DX), float32(ent.Rect.Size.DY), boxColor, false)
 			if ent.BorderPixels > 0 {
 				boxColor.A = 255
-				vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float32(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float32(ent.Rect.Size.DX+ent.BorderPixels), float32(ent.BorderPixels), boxColor, false)
-				vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX+ent.Rect.Size.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float32(ent.BorderPixels), float32(ent.Rect.Size.DY+ent.BorderPixels), boxColor, false)
-				vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY+ent.Rect.Size.DY), float32(ent.Rect.Size.DX+ent.BorderPixels), float32(ent.BorderPixels), boxColor, false)
-				vector.DrawFilledRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float32(ent.Rect.Origin.Y+scrollDelta.DY), float32(ent.BorderPixels), float32(ent.Rect.Size.DY+ent.BorderPixels), boxColor, false)
+				vector.FillRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float32(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float32(ent.Rect.Size.DX+ent.BorderPixels), float32(ent.BorderPixels), boxColor, false)
+				vector.FillRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX+ent.Rect.Size.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY-ent.BorderPixels), float32(ent.BorderPixels), float32(ent.Rect.Size.DY+ent.BorderPixels), boxColor, false)
+				vector.FillRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY+ent.Rect.Size.DY), float32(ent.Rect.Size.DX+ent.BorderPixels), float32(ent.BorderPixels), boxColor, false)
+				vector.FillRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX-ent.BorderPixels), float32(ent.Rect.Origin.Y+scrollDelta.DY), float32(ent.BorderPixels), float32(ent.Rect.Size.DY+ent.BorderPixels), boxColor, false)
 			}
 			font.ByName["Small"].Draw(screen, fmt.Sprintf("%v", ent.Incarnation), ent.Rect.Origin.Add(scrollDelta), font.Left, boxColor, color.Transparent)
 			return nil

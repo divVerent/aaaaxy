@@ -291,9 +291,9 @@ func touchEditDraw(screen *ebiten.Image) {
 			continue
 		}
 		boxColor := palette.EGA(palette.White, 255)
-		vector.DrawFilledRect(screen, float32(i.touchRect.Origin.X), float32(i.touchRect.Origin.Y), float32(i.touchRect.Size.DX), float32(i.touchRect.Size.DY), boxColor, false)
+		vector.FillRect(screen, float32(i.touchRect.Origin.X), float32(i.touchRect.Origin.Y), float32(i.touchRect.Size.DX), float32(i.touchRect.Size.DY), boxColor, false)
 		innerColor := palette.EGA(palette.DarkGrey, 255)
-		vector.DrawFilledRect(screen, float32(i.touchRect.Origin.X+1), float32(i.touchRect.Origin.Y+1), float32(i.touchRect.Size.DX-2), float32(i.touchRect.Size.DY-2), innerColor, false)
+		vector.FillRect(screen, float32(i.touchRect.Origin.X+1), float32(i.touchRect.Origin.Y+1), float32(i.touchRect.Size.DX-2), float32(i.touchRect.Size.DY-2), innerColor, false)
 	}
 	gridColor := palette.EGA(palette.LightGrey, 32)
 	sz := screen.Bounds().Size()
@@ -306,7 +306,7 @@ func touchEditDraw(screen *ebiten.Image) {
 			if touchReservedArea.Delta(r).IsZero() {
 				continue
 			}
-			vector.DrawFilledRect(screen, float32(x*gridSize+1), float32(y*gridSize+1), 6, 6, gridColor, false)
+			vector.FillRect(screen, float32(x*gridSize+1), float32(y*gridSize+1), 6, 6, gridColor, false)
 		}
 	}
 	touchPadDraw(screen)
