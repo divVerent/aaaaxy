@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.288" date="2025-09-01">
-      <description><ul><li>Android: set max page size to 16k.</li><li>Engine: bump version of Go compiler and runtime.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.288</url>
+    <release version="v1.6.301" date="2025-10-17">
+      <description><ul><li>Level: fix softlock in Moebius Tape found by SamiSchach.</li><li>Engine: update modules.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.301</url>
     </release>
   </releases>
 </component>
