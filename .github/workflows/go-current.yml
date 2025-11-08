@@ -37,7 +37,7 @@ jobs:
           Any%, All Paths, All Flipped, No Teleports and No Coil" ./aaaaxy assets/demos/benchmark.dem'
       - name: Archive Results
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: regression-test-results-benchmark-linux-amd64
           path: |
