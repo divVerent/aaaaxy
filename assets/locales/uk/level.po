@@ -1414,7 +1414,7 @@ msgstr "Ш{{BR}}Ч{{BR}}О"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7770]
 msgid "Just{{BR}}kiddin'"
-msgstr "Просто{{BR}}жарт"
+msgstr "Жартую"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=7837]
 msgid "I hope you took{{BR}}the small one ..."
