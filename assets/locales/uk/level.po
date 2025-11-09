@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Mark Seagull, 2023
-# Rudolf Polzer, 2024
+# Rudolf Polzer, 2025
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-29 08:16-0400\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2024\n"
+"Last-Translator: Rudolf Polzer, 2025\n"
 "Language-Team: Ukrainian (https://app.transifex.com/aaaaxy/teams/158611/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -784,7 +784,8 @@ msgstr "Подобається червона кімната?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2748]
 msgid "Lack of apparent purpose does not mean you don't need it."
-msgstr "Відсутність очевидного призначення не значить, що зараз це не потрібно."
+msgstr ""
+"Відсутність очевидного призначення не значить, що зараз це не потрібно."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2764]
 msgid "Funny and{{BR}}{{BR}}original."
