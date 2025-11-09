@@ -1466,7 +1466,7 @@ msgstr "Щоб вирішити проблему, треба відійти ві
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8080]
 msgid "Jumpers lose platforms.{{BR}}Don't be a jumper."
-msgstr "Стрибунці втрачають платформи.{{BR}}Не будьте стрибунцем."
+msgstr "Стрибунці втрачають{{BR}}платформи.{{BR}}Не будьте стрибунцем."
 
 #. Part of 'Try going in circles, but five is right out!'
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8097]
