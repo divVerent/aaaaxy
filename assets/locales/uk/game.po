@@ -461,7 +461,7 @@ msgstr "Завантажити збереження"
 
 #: menu/level.go menu/main.go
 msgid "Switch World"
-msgstr "Іди в інший світ"
+msgstr "Змінити світ"
 
 #: menu/settings.go
 msgid "Switch to Fullscreen Mode"
@@ -627,11 +627,11 @@ msgstr "деінде"
 
 #: engine/world.go
 msgid "enumerating levels"
-msgstr "перелічуємо рівні"
+msgstr "перелічування рівнів"
 
 #: sound/sound.go
 msgid "enumerating sounds"
-msgstr "перелічуємо звуки"
+msgstr "перелічування звуків"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
@@ -640,39 +640,39 @@ msgstr "усього"
 
 #: level/level.go
 msgid "hashing level"
-msgstr "хешуємо рівень"
+msgstr "хешування рівня"
 
 #: aaaaxy/init.go
 msgid "initializing audio"
-msgstr "ініціюємо звук"
+msgstr "ініціація звуку"
 
 #: aaaaxy/init.go
 msgid "initializing dumping"
-msgstr "ініціюємо дампування"
+msgstr "ініціалізація дампування"
 
 #: aaaaxy/init.go
 msgid "initializing input"
-msgstr "ініціюємо введення"
+msgstr "ініціалізація введення"
 
 #: aaaaxy/init.go
 msgid "initializing menu"
-msgstr "ініціюємо меню"
+msgstr "ініціалізація меню"
 
 #: aaaaxy/init.go
 msgid "initializing noise"
-msgstr "ініціюємо шум"
+msgstr "ініціалізація шуму"
 
 #: level/level.go
 msgid "loading checkpoints"
-msgstr "завантажуємо контрольні точки"
+msgstr "завантаження контрольних точок"
 
 #: engine/world.go
 msgid "loading level"
-msgstr "завантажуємо рівень"
+msgstr "завантаження рівня"
 
 #: level/level.go
 msgid "loading level file"
-msgstr "завантажуємо файли рівня"
+msgstr "завантаження файлу рівня"
 
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
@@ -685,28 +685,28 @@ msgstr "парсинг даних рівня"
 
 #: sound/sound.go
 msgid "precaching %s"
-msgstr "кешуємо %s"
+msgstr "кешування %s"
 
 #: aaaaxy/init.go
 msgid "precaching credits"
-msgstr "кешуємо титри"
+msgstr "кешування титрів"
 
 #: aaaaxy/init.go
 msgid "precaching engine"
-msgstr "кешуємо рушій"
+msgstr "кешування рушія"
 
 #: engine/world.go
 msgid "precaching entities"
-msgstr "кешуємо компоненти"
+msgstr "кешування компонентів"
 
 #: aaaaxy/init.go
 msgid "precaching fonts"
-msgstr "кешуємо шрифти"
+msgstr "кешування шрифтів"
 
 #: aaaaxy/init.go
 msgid "precaching pictures"
-msgstr "кешуємо зображення"
+msgstr "кешування зображень"
 
 #: aaaaxy/init.go
 msgid "precaching sounds"
-msgstr "кешуємо звуки"
+msgstr "кешування звуків"
