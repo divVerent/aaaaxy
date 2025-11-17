@@ -38,7 +38,7 @@ jobs:
           try next: All Secrets\\." "./aaaaxy -debug_log_entity_defaults" *.dem'
       - name: Archive Results
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: regression-test-results-100percent-linux-amd64
           path: |

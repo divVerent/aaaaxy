@@ -26,7 +26,7 @@ jobs:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOTOOLCHAIN: local
       - name: Archive Binary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: aaaaxy-debug-linux-amd64
           path: |
@@ -42,7 +42,7 @@ jobs:
       - name: Install Dependencies
         run: 'sudo apt-get update && sudo apt-get -y install libgl1 xvfb'
       - name: Download Binary
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: aaaaxy-debug-linux-amd64
       - name: Make Binary Executable
@@ -52,7 +52,7 @@ jobs:
           0:21:47.250; your speedrun categories: Any%;" ./aaaaxy assets/demos/_anypercent.dem'
       - name: Archive Results
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: regression-test-results-anypercent-linux-amd64
           path: |
@@ -80,7 +80,7 @@ jobs:
           GOOS: windows
           GOTOOLCHAIN: local
       - name: Archive Binary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: aaaaxy-debug-windows-amd64
           path: |
@@ -97,7 +97,7 @@ jobs:
         with:
           submodules: true
       - name: Download Binary
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: aaaaxy-debug-windows-amd64
       - name: Test
@@ -105,7 +105,7 @@ jobs:
           your speedrun categories: Any%;" "./aaaaxy.exe" assets/demos/_anypercent.dem'
       - name: Archive Results
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: regression-test-results-anypercent-windows-amd64
           path: |
@@ -133,7 +133,7 @@ jobs:
           GOOS: windows
           GOTOOLCHAIN: local
       - name: Archive Binary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: aaaaxy-debug-windows-386
           path: |
@@ -154,7 +154,7 @@ jobs:
       - name: Extract Mesa
         run: '7z e mesa3d.7z x86/\*.dll'
       - name: Download Binary
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: aaaaxy-debug-windows-386
       - name: Test
@@ -162,7 +162,7 @@ jobs:
           your speedrun categories: Any%;" "./aaaaxy.exe" assets/demos/_anypercent.dem'
       - name: Archive Results
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: regression-test-results-anypercent-windows-386
           path: |

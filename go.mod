@@ -12,7 +12,7 @@ require (
 	github.com/google/go-cmp v0.7.0
 	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
 	github.com/hajimehoshi/bitmapfont/v3 v3.3.0
-	github.com/hajimehoshi/ebiten/v2 v2.9.1
+	github.com/hajimehoshi/ebiten/v2 v2.9.4
 	github.com/jeandeaual/go-locale v0.0.0-20250612000132-0ef82f21eade
 	github.com/leonelquinteros/gotext v1.7.2
 	github.com/lestrrat-go/strftime v1.1.1
@@ -21,7 +21,7 @@ require (
 	github.com/ncruces/zenity v0.10.14
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.32.0
-	golang.org/x/sys v0.37.0
+	golang.org/x/sys v0.38.0
 	golang.org/x/text v0.30.0
 )
 
