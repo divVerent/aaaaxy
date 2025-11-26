@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.314" date="2025-11-10">
-      <description><ul><li>Engine: module updates, including fixes for the Steam overlay.</li><li>Languages: updated texts for Ukrainian.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.314</url>
+    <release version="v1.6.321" date="2025-11-26">
+      <description><ul><li>Credits: fix translator name as requested.</li><li>Engine: update modules.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.321</url>
     </release>
   </releases>
 </component>
