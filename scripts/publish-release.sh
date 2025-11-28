@@ -76,7 +76,7 @@ hub release create \
 	git fetch origin
 	git reset --hard origin/master
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=0/;" APKBUILD
-	podman run --network=slirp4netns:enable_ipv6=false --pull=newer --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:edge /bin/sh -c '
+	podman run --network=pasta:--ipv4-only --pull=newer --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:edge /bin/sh -c '
 		set -e
 		apk add alpine-sdk sudo
 		abuild-keygen -i -a -n
@@ -84,7 +84,7 @@ hub release create \
 		abuild -F checksum
 		abuild -F -r
 	'
-	podman run --network=slirp4netns:enable_ipv6=false --pull=newer --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:3.22 /bin/sh -c '
+	podman run --network=pasta:--ipv4-only --pull=newer --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:3.22 /bin/sh -c '
 		set -e
 		apk add alpine-sdk sudo
 		abuild-keygen -i -a -n
@@ -151,7 +151,7 @@ sh scripts/go-vendor-to-flatpak-yml.sh ../io.github.divverent.aaaaxy
 	git fetch origin
 	git reset --hard origin/master
 	sed -i -e "s/^pkgver=.*/pkgver=${new#v}/; s/^pkgrel=.*/pkgrel=1/;" PKGBUILD
-	podman run --network=slirp4netns:enable_ipv6=false --pull=always --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/archlinux:latest /bin/sh -c '
+	podman run --network=pasta:--ipv4-only --pull=always --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/archlinux:latest /bin/sh -c '
 		set -e
 		pacman --noconfirm -Syu base-devel namcap pacman-contrib sudo
 		useradd -m builder
