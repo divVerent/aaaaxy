@@ -1,0 +1,44 @@
+
+		digraph G {
+			layout = "neato";
+			start = 4;  // Consistent random seed. Decided by fair dice roll.
+			overlap = false;
+			splines = false;
+			maxiter = 131072;
+			epsilon = 0.000001;
+			// mode = KK;
+			// model = circuit;
+			// model = subset;
+		
+				leap_of_twice [width=2.0, height=2.0, fixedsize=true, shape=box, label="leap_\nof_\ntwice", pos="7648,-7256"];
+			
+				corus [width=2.0, height=2.0, fixedsize=true, shape=box, label="corus", pos="8768,-6464"];
+			
+				chorus [width=2.0, height=2.0, fixedsize=true, shape=box, label="chorus", pos="8144,-6704"];
+			
+				X [width=2.0, height=2.0, fixedsize=true, shape=box, label="X", pos="7728,-7904"];
+			
+				Y [width=2.0, height=2.0, fixedsize=true, shape=box, label="Y", pos="7728,-8512"];
+			
+				ReachingStar [width=2.0, height=2.0, fixedsize=true, shape=box, label="ReachingStar", pos="8768,-8264"];
+			
+				TheStar [width=2.0, height=2.0, fixedsize=true, shape=box, label="TheStar", pos="9456,-9912"];
+			
+				finalepart [width=2.0, height=2.0, fixedsize=true, shape=box, label="finalepart", pos="10536,-4896"];
+			
+					leap_of_twice -> ReachingStar [len=10.000000];
+				
+					leap_of_twice -> chorus [len=10.000000];
+				
+					leap_of_twice -> finalepart [len=10.000000];
+				
+					leap_of_twice -> X [len=10.000000];
+				
+					chorus -> corus [len=10.000000];
+				
+					X -> Y [len=10.000000];
+				
+					ReachingStar -> TheStar [len=10.000000];
+				
+		}
+		
