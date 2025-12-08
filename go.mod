@@ -57,7 +57,7 @@ require (
 
 require (
 	github.com/otiai10/copy v1.14.1
-	github.com/spf13/cobra v1.10.1
+	github.com/spf13/cobra v1.10.2
 )
 
 // Use when playing around with extended/fixed tmx versions.
