@@ -26,7 +26,7 @@ jobs:
           GOOS: js
           GOTOOLCHAIN: local
       - name: Archive Binary
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: aaaaxy-debug-wasm
           path: |
@@ -65,7 +65,7 @@ jobs:
           ADVZIP: ':'
           GOTOOLCHAIN: local
       - name: Archive Binary
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: aaaaxy-debug-android-arm64
           path: |
@@ -87,7 +87,7 @@ jobs:
           GOTOOLCHAIN: local
           STRIP_NONDETERMINISM_GZIP: ':'
       - name: Archive Binary
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: aaaaxy-debug-darwin-amd64
           path: |

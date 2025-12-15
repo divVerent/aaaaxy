@@ -63,7 +63,7 @@ jobs:
           to" "./aaaaxy -language=$language" assets/demos/benchmark.dem'
       - name: Archive Results
         if: ${{ always() }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: regression-test-results-benchmark-${{ matrix.language }}-linux-amd64
           path: |
