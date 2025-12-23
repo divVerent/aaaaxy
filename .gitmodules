@@ -1,0 +1,4 @@
+[submodule "third_party/SDL_GameControllerDB/assets/input"]
+	path = third_party/SDL_GameControllerDB/assets/input
+	url = https://github.com/gabomdq/SDL_GameControllerDB
+	branch = master
