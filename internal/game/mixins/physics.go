@@ -259,6 +259,7 @@ func (p *Physics) walkMove(move m.Delta) bool {
 				}
 				log.Debugf("ground hit")
 				p.OnGround, p.GroundEntity, groundChecked = true, hitEntity, true
+				teleported = p.handleTouchCheckingTeleport(traceResult) || teleported
 			}
 
 			if teleported {
