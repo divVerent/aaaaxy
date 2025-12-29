@@ -213,6 +213,7 @@ func (p *Physics) walkMove(move m.Delta) bool {
 			stepDownTrace := stepDown.Add(p.OnGroundVec) // Need one extra as we're not actually stepping this far.
 
 			// 1. Step up.
+			// Ignoring PlayerWalkableSolidContents-only stuff so we don't step up spikes.
 			traceResult := p.traceMove(p.Contents & ^level.PlayerWalkableSolidContents, stepUp)
 			if traceResult.Hit() {
 				log.Debugf("walkMove: blocked upwards")
@@ -244,7 +245,9 @@ func (p *Physics) walkMove(move m.Delta) bool {
 			// If we hit a stair again, we must NOT lose velocity!
 
 			// 3. Step down (always).
-			traceResult = p.traceMove(p.Contents & ^level.PlayerWalkableSolidContents, stepDownTrace)
+			// NOT ignoring PlayerWalkableSolidContents-only stuff here so if we step down into a spike, we still get hurt.
+			// See https://github.com/divVerent/aaaaxy/issues/582.
+			traceResult = p.traceMove(p.Contents, stepDownTrace)
 			if !traceResult.Hit() {
 				// Nothing found. Go back to original height, which is still in air.
 				log.Debugf("walkMove: didn't reach ground after upstepping, so stepped back to original height")
@@ -279,7 +282,9 @@ func (p *Physics) walkMove(move m.Delta) bool {
 		// it'll never actually move the player,
 		// but will update the onground flag and touch the entity the player is standing on.
 		stepDown := p.OnGroundVec.Mul(p.StepHeight*side + 1) // Need one extra as we're not actually stepping this far.
-		traceResult := p.traceMove(p.Contents & ^level.PlayerWalkableSolidContents, stepDown)
+		// NOT ignoring PlayerWalkableSolidContents-only stuff here so if we step down into a spike, we still get hurt.
+		// See https://github.com/divVerent/aaaaxy/issues/582.
+		traceResult := p.traceMove(p.Contents, stepDown)
 		if !traceResult.Hit() {
 			// Nothing found. Stay in air.
 			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
