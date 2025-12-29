@@ -97,10 +97,10 @@ func (p *Physics) traceMove(contents level.Contents, move m.Delta) engine.TraceR
 	return trace
 }
 
-func (p *Physics) tryMove(move m.Delta, stepping bool) (m.Delta, bool, *engine.TraceResult) {
+func (p *Physics) tryMove(move m.Delta, stepping bool) (m.Delta, bool, engine.TraceResult) {
 	groundChecked := false
 	trace := p.traceMove(p.Contents, move)
-	if trace.HitDelta.IsZero() {
+	if !trace.Hit() {
 		// Nothing hit. We're done.
 		if !stepping {
 			p.SubPixel.DX -= move.DX * constants.SubPixelScale
@@ -111,7 +111,7 @@ func (p *Physics) tryMove(move m.Delta, stepping bool) (m.Delta, bool, *engine.T
 			// If move had a Y component, we're flying.
 			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 		}
-		return m.Delta{DX: 0, DY: 0}, groundChecked, nil
+		return m.Delta{DX: 0, DY: 0}, groundChecked, trace
 	}
 	var hitEntity *engine.Entity
 	if len(trace.HitEntities) != 0 {
@@ -159,20 +159,16 @@ func (p *Physics) tryMove(move m.Delta, stepping bool) (m.Delta, bool, *engine.T
 			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 		}
 	}
-	return move, groundChecked, &trace
+	return move, groundChecked, trace
 }
 
 func (p *Physics) slideMove(move m.Delta) bool {
 	groundChecked := false
 	for !move.IsZero() {
 		var ground bool
-		var trace *engine.TraceResult
+		var trace engine.TraceResult
 		move, ground, trace = p.tryMove(move, false)
-		preTouch := p.teleportState()
-		if trace != nil {
-			p.handleTouchFunc(*trace)
-		}
-		teleported := p.teleportState() != preTouch
+		teleported := p.handleTouchCheckingTeleport(trace)
 		groundChecked = groundChecked || ground
 
 		if teleported {
@@ -194,16 +190,12 @@ func (p *Physics) walkMove(move m.Delta) bool {
 
 	groundChecked := false
 	for !move.IsZero() {
-		var ground bool
-		var trace *engine.TraceResult
 		prevGoal := p.Entity.Rect.Origin.Add(move)
 		prevVel := p.Velocity
+		var ground bool
+		var trace engine.TraceResult
 		move, ground, trace = p.tryMove(move, false)
-		preTouch := p.teleportState()
-		if trace != nil {
-			p.handleTouchFunc(*trace)
-		}
-		teleported := p.teleportState() != preTouch
+		teleported := p.handleTouchCheckingTeleport(trace)
 		groundChecked = groundChecked || ground
 
 		if teleported {
@@ -211,7 +203,7 @@ func (p *Physics) walkMove(move m.Delta) bool {
 			break
 		}
 
-		if trace != nil && trace.HitDelta.Dot(p.OnGroundVec) == 0 {
+		if trace.Hit() && trace.HitDelta.Dot(p.OnGroundVec) == 0 {
 			log.Debugf("walkMove: trying to upstep")
 			groundChecked = false
 
@@ -222,7 +214,7 @@ func (p *Physics) walkMove(move m.Delta) bool {
 
 			// 1. Step up.
 			traceResult := p.traceMove(p.Contents & ^level.PlayerWalkableSolidContents, stepUp)
-			if !traceResult.HitDelta.IsZero() {
+			if traceResult.Hit() {
 				log.Debugf("walkMove: blocked upwards")
 				// Hit something.
 				// Don't stairstep.
@@ -235,11 +227,7 @@ func (p *Physics) walkMove(move m.Delta) bool {
 			move = prevGoal.Add(stepUp).Delta(p.Entity.Rect.Origin)
 			p.Velocity = prevVel
 			moveClipped, _, trace := p.tryMove(move, false)
-			preTouch = p.teleportState()
-			if trace != nil {
-				p.handleTouchFunc(*trace)
-			}
-			teleported := p.teleportState() != preTouch
+			teleported := p.handleTouchCheckingTeleport(trace)
 			moveRemaining := prevGoal.Add(stepUp).Delta(p.Entity.Rect.Origin)
 			if moveRemaining == move {
 				// If no progress was made, actually do clip this move.
@@ -257,7 +245,7 @@ func (p *Physics) walkMove(move m.Delta) bool {
 
 			// 3. Step down (always).
 			traceResult = p.traceMove(p.Contents & ^level.PlayerWalkableSolidContents, stepDownTrace)
-			if traceResult.HitDelta.IsZero() {
+			if !traceResult.Hit() {
 				// Nothing found. Go back to original height, which is still in air.
 				log.Debugf("walkMove: didn't reach ground after upstepping, so stepped back to original height")
 				p.Entity.Rect.Origin = p.Entity.Rect.Origin.Add(stepDown)
@@ -291,7 +279,7 @@ func (p *Physics) walkMove(move m.Delta) bool {
 		// but will update the onground flag and touch the entity the player is standing on.
 		stepDown := p.OnGroundVec.Mul(p.StepHeight*side + 1) // Need one extra as we're not actually stepping this far.
 		traceResult := p.traceMove(p.Contents & ^level.PlayerWalkableSolidContents, stepDown)
-		if traceResult.HitDelta.IsZero() {
+		if !traceResult.Hit() {
 			// Nothing found. Stay in air.
 			p.OnGround, p.GroundEntity, groundChecked = false, nil, true
 		} else {
@@ -304,7 +292,7 @@ func (p *Physics) walkMove(move m.Delta) bool {
 				hitEntity = traceResult.HitEntities[0]
 			}
 			p.OnGround, p.GroundEntity, groundChecked = true, hitEntity, true
-			p.handleTouchFunc(traceResult)
+			p.HandleTouch(traceResult)
 		}
 	}
 
@@ -339,7 +327,7 @@ func (p *Physics) Update() {
 					hitEntity = trace.HitEntities[0]
 				}
 				p.GroundEntity = hitEntity
-				p.handleTouchFunc(trace)
+				p.HandleTouch(trace)
 			}
 		}
 	}
@@ -360,9 +348,7 @@ func (p *Physics) Update() {
 					LoadTiles: true,
 				})
 				other.Rect.Origin = trace.EndPos
-				if !trace.HitDelta.IsZero() {
-					otherP.HandleTouch(trace)
-				}
+				otherP.HandleTouch(trace)
 			}
 		})
 	}
@@ -373,7 +359,19 @@ func (p *Physics) ReadGroundEntity() *engine.Entity {
 }
 
 func (p *Physics) HandleTouch(trace engine.TraceResult) {
+	if !trace.Hit() {
+		return
+	}
 	p.handleTouchFunc(trace)
+}
+
+func (p *Physics) handleTouchCheckingTeleport(trace engine.TraceResult) bool {
+	if !trace.Hit() {
+		return false
+	}
+	preTouch := p.teleportState()
+	p.HandleTouch(trace)
+	return p.teleportState() != preTouch
 }
 
 func (p *Physics) ReadVelocity() m.Delta {
@@ -420,18 +418,14 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	topLeftDelta := bySize.Div(2)
 	if topLeftDelta.DX > 0 {
 		_, _, trace := p.tryMove(m.Delta{DX: -topLeftDelta.DX, DY: 0}, true)
-		if trace != nil {
-			p.handleTouchFunc(*trace)
-		}
+		p.HandleTouch(trace)
 	} else {
 		p.Entity.Rect.Origin.X -= topLeftDelta.DX
 	}
 	p.Entity.Rect.Size.DX += prevOrigin.X - p.Entity.Rect.Origin.X
 	if topLeftDelta.DY > 0 {
 		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta.DY}, true)
-		if trace != nil {
-			p.handleTouchFunc(*trace)
-		}
+		p.HandleTouch(trace)
 	} else {
 		p.Entity.Rect.Origin.Y -= topLeftDelta.DY
 	}
@@ -442,9 +436,7 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	bottomRightDelta := targetSize.Sub(p.Entity.Rect.Size)
 	if bottomRightDelta.DX > 0 {
 		_, _, trace := p.tryMove(m.Delta{DX: bottomRightDelta.DX, DY: 0}, true)
-		if trace != nil {
-			p.handleTouchFunc(*trace)
-		}
+		p.HandleTouch(trace)
 		p.Entity.Rect.Size.DX += p.Entity.Rect.Origin.X - prevOrigin2.X
 		p.Entity.Rect.Origin.X = prevOrigin2.X
 	} else {
@@ -452,9 +444,7 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	}
 	if bottomRightDelta.DY > 0 {
 		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: bottomRightDelta.DY}, true)
-		if trace != nil {
-			p.handleTouchFunc(*trace)
-		}
+		p.HandleTouch(trace)
 		p.Entity.Rect.Size.DY += p.Entity.Rect.Origin.Y - prevOrigin2.Y
 		p.Entity.Rect.Origin.Y = prevOrigin2.Y
 	} else {
@@ -466,18 +456,14 @@ func (p *Physics) ModifyHitBoxCentered(bySize m.Delta) m.Delta {
 	topLeftDelta3 := targetSize.Sub(p.Entity.Rect.Size)
 	if topLeftDelta3.DX > 0 {
 		_, _, trace := p.tryMove(m.Delta{DX: -topLeftDelta3.DX, DY: 0}, true)
-		if trace != nil {
-			p.handleTouchFunc(*trace)
-		}
+		p.HandleTouch(trace)
 	} else {
 		p.Entity.Rect.Origin.X -= topLeftDelta3.DX
 	}
 	p.Entity.Rect.Size.DX += prevOrigin3.X - p.Entity.Rect.Origin.X
 	if topLeftDelta3.DY > 0 {
 		_, _, trace := p.tryMove(m.Delta{DX: 0, DY: -topLeftDelta3.DY}, true)
-		if trace != nil {
-			p.handleTouchFunc(*trace)
-		}
+		p.HandleTouch(trace)
 	} else {
 		p.Entity.Rect.Origin.Y -= topLeftDelta3.DY
 	}
