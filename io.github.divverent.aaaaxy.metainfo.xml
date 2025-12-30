@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.321" date="2025-11-26">
-      <description><ul><li>Credits: fix translator name as requested.</li><li>Engine: update modules.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.321</url>
+    <release version="v1.6.332" date="2025-12-30">
+      <description><ul><li>Engine: various module updates to Ebitengine and others.</li><li>Game: fix a bug where spikes sometimes weren't... spiky. (#583)</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.332</url>
     </release>
   </releases>
 </component>
