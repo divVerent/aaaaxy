@@ -42,7 +42,7 @@ jobs:
       - name: Install Dependencies
         run: 'sudo apt-get update && sudo apt-get -y install libgl1 xvfb'
       - name: Download Binary
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: aaaaxy-debug-linux-amd64
       - name: Make Binary Executable
@@ -97,7 +97,7 @@ jobs:
         with:
           submodules: true
       - name: Download Binary
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: aaaaxy-debug-windows-amd64
       - name: Test
@@ -154,7 +154,7 @@ jobs:
       - name: Extract Mesa
         run: '7z e mesa3d.7z x86/\*.dll'
       - name: Download Binary
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: aaaaxy-debug-windows-386
       - name: Test
