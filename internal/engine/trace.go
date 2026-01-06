@@ -58,6 +58,11 @@ type TraceResult struct {
 	// HitFogOfWar bool
 }
 
+// Hit returns whether the trace has hit anything.
+func (r TraceResult) Hit() bool {
+	return !r.HitDelta.IsZero()
+}
+
 // TraceScore is a scoring value of a trace.
 type traceScore struct {
 	// TraceDistance is the length of the trace.

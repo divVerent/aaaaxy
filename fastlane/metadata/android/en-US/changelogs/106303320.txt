@@ -1,0 +1,2 @@
+  - Engine: various module updates to Ebitengine and others.
+  - Game: fix a bug where spikes sometimes weren't... spiky. (#583)
