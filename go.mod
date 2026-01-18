@@ -20,7 +20,7 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.10.14
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
-	golang.org/x/image v0.34.0
+	golang.org/x/image v0.35.0
 	golang.org/x/sys v0.40.0
 	golang.org/x/text v0.33.0
 )
@@ -42,7 +42,7 @@ require (
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
 	github.com/josephspurrier/goversioninfo v1.5.0 // indirect
 	github.com/otiai10/mint v1.6.3 // indirect
-	github.com/pierrec/lz4/v4 v4.1.23 // indirect
+	github.com/pierrec/lz4/v4 v4.1.25 // indirect
 	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
