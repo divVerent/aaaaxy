@@ -55,8 +55,6 @@ type Player struct {
 	ActionDown       bool
 	ActionDownFrames int
 	Respawning       bool
-	WasOnGround      bool
-	PrevVelocity     m.Delta
 	VVVVVV           bool
 	JustSpawned      bool
 	Goal             *engine.Entity
@@ -384,9 +382,34 @@ func (p *Player) Update() {
 	p.Velocity = p.Velocity.WithMaxLengthFixed(m.NewFixed(MaxSpeed))
 
 	// Run physics.
-	p.WasOnGround = p.OnGround
-	p.PrevVelocity = p.Velocity
+	wasOnGround := p.OnGround
+	prevVelocity := p.Velocity
+
 	p.Physics.Update() // May call handleTouch.
+
+	// NOTE: Not doing these things in the Update event handler, as the event
+	// handler may be invoked during stair stepping even in steps that may be
+	// undone later.
+	if p.OnGround && !wasOnGround && p.CoyoteFrames < 0 {
+		p.Anim.SetGroup("land")
+		p.LandSound.Play()
+	} else if deltaV := p.Velocity.Sub(prevVelocity); !deltaV.IsZero() {
+		if deltaV.Dot(p.OnGroundVec) > 0 {
+			log.Infof("hithead")
+			p.Anim.SetGroup("hithead")
+			p.HitHeadSound.Play()
+		} else if deltaV.Dot(p.OnGroundVec) == 0 {
+			speed := deltaV.Norm1()
+			if speed > HitWallMinSpeed {
+				vol := float64(speed-HitWallMinSpeed) / float64(HitWallMaxSpeed-HitWallMinSpeed)
+				if vol > 1 {
+					vol = 1
+				}
+				log.Infof("hitwall: %v -> %v\n", speed, vol)
+				p.HitWallSound.PlayAtVolume(vol)
+			}
+		}
+	}
 
 	if moveLeft && !moveRight {
 		p.Entity.Orientation = m.Identity()
@@ -450,30 +473,7 @@ func (p *Player) Update() {
 }
 
 func (p *Player) handleTouch(trace engine.TraceResult) {
-	if p.OnGround && !p.WasOnGround && p.CoyoteFrames < 0 {
-		p.Anim.SetGroup("land")
-		p.LandSound.Play()
-	}
-	if trace.HitDelta.Dot(p.OnGroundVec) < 0 {
-		p.Anim.SetGroup("hithead")
-		p.HitHeadSound.Play()
-	}
-	if trace.HitDelta.Dot(p.OnGroundVec) == 0 {
-		dv := p.Velocity.Sub(p.PrevVelocity)
-		speed := dv.Norm1()
-		if speed > HitWallMinSpeed {
-			vol := float64(speed-HitWallMinSpeed) / float64(HitWallMaxSpeed-HitWallMinSpeed)
-			if vol > 1 {
-				vol = 1
-			}
-			p.HitWallSound.PlayAtVolume(vol)
-		}
-	}
 	p.World.TouchEvent(p.Entity, trace.HitEntities)
-
-	// Update so we can get more deltas.
-	p.WasOnGround = true
-	p.PrevVelocity = p.Velocity
 }
 
 func (p *Player) Touch(other *engine.Entity) {
@@ -527,7 +527,6 @@ func (p *Player) Respawned() {
 	p.Physics.Reset()                      // Stop moving.
 	p.LastGroundPos = p.Entity.Rect.Origin // Center the camera.
 	p.CoyoteFrames = ExtraGroundFrames     // Assume on ground.
-	p.WasOnGround = p.OnGround             // Back to ground.
 	p.Jumping = true                       // Jump key must be hit again.
 	p.VVVVVV = false                       // Normal physics.
 	p.OnGroundVec = m.Delta{DX: 0, DY: 1}  // Gravity points down.
