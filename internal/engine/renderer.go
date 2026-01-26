@@ -288,15 +288,15 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 	}
 	if *cheatShowBboxes {
 		r.world.entities.forEach(func(ent *Entity) error {
-			boxColor := palette.EGA(palette.DarkGrey, 128)
+			boxColor := color.NRGBA{R: 42, G: 42, B: 42, A: 128}
 			if ent.contents.PlayerSolid() {
-				boxColor.R = 255
+				boxColor.R = 213
 			}
 			if ent.contents.ObjectSolid() {
-				boxColor.G = 255
+				boxColor.G = 213
 			}
 			if ent.contents.Opaque() {
-				boxColor.B = 255
+				boxColor.B = 213
 			}
 			vector.FillRect(screen, float32(ent.Rect.Origin.X+scrollDelta.DX), float32(ent.Rect.Origin.Y+scrollDelta.DY), float32(ent.Rect.Size.DX), float32(ent.Rect.Size.DY), boxColor, false)
 			if ent.BorderPixels > 0 {
