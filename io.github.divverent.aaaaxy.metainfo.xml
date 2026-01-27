@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.6.332" date="2025-12-30">
-      <description><ul><li>Engine: various module updates to Ebitengine and others.</li><li>Game: fix a bug where spikes sometimes weren't... spiky. (#583)</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.332</url>
+    <release version="v1.6.338" date="2026-01-27">
+      <description><ul><li>Engine: cheat_show_bboxes: use colors different from the EGA colors.</li><li>Engine: fix "scratchy" sound when walking up slopes.</li><li>Engine: minor module updates.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.6.338</url>
     </release>
   </releases>
 </component>
