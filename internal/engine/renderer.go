@@ -42,6 +42,7 @@ var (
 	debugShowCoords               = flag.Bool("debug_show_coords", false, "show the level coordinates of each tile")
 	debugShowOrientations         = flag.Bool("debug_show_orientations", false, "show the orientation of each tile")
 	debugShowTransforms           = flag.Bool("debug_show_transforms", false, "show the transform of each tile")
+	debugShowVis                  = flag.Bool("debug_show_vis", false, "show vis update info to tiles")
 	cheatShowBboxes               = flag.Bool("cheat_show_bboxes", false, "show the bounding boxes of all entities")
 	debugShowVisiblePolygon       = flag.Bool("debug_show_visible_polygon", false, "show the visibility polygon")
 	drawOutside                   = flag.Bool("draw_outside", true, "draw outside of the visible area; requires draw_visibility_mask")
@@ -231,20 +232,20 @@ func (r *renderer) drawEntities(screen *ebiten.Image, scrollDelta m.Delta, blurF
 }
 
 func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
-	if *debugShowNeighbors || *debugShowCoords || *debugShowOrientations || *debugShowTransforms {
+	if *debugShowNeighbors || *debugShowCoords || *debugShowOrientations || *debugShowTransforms || *debugShowVis {
 		r.world.forEachTile(func(i int, tile *level.Tile) {
 			pos := r.world.tilePos(i)
 			screenPos := pos.Mul(level.TileSize).Add(scrollDelta)
+			midx := float32(screenPos.X) + level.TileSize/2
+			midy := float32(screenPos.Y) + level.TileSize/2
 			if *debugShowNeighbors {
 				neighborScreenPos := tile.LoadedFromNeighbor.Mul(level.TileSize).Add(scrollDelta)
 				startx := float32(neighborScreenPos.X) + level.TileSize/2
 				starty := float32(neighborScreenPos.Y) + level.TileSize/2
-				endx := float32(screenPos.X) + level.TileSize/2
-				endy := float32(screenPos.Y) + level.TileSize/2
-				arrowpx := (startx + endx*2) / 3
-				arrowpy := (starty + endy*2) / 3
-				arrowdx := (endx - startx) / 6
-				arrowdy := (endy - starty) / 6
+				arrowpx := (startx + midx*2) / 3
+				arrowpy := (starty + midy*2) / 3
+				arrowdx := (midx - startx) / 6
+				arrowdy := (midy - starty) / 6
 				// Right only (1 0): left side goes by (-1, -1), right side by (-1, 1)
 				// Down right (1 1): left side goes by (0, -2), right side by (-2, 0)
 				// Down only (0 1): left side goes by (1, -1), right side by (-1, -1)
@@ -257,7 +258,7 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 				if tile.VisibilityFlags&level.FrameVis == r.world.frameVis {
 					c = color.Gray{192}
 				}
-				vector.StrokeLine(screen, startx, starty, endx, endy, 1, c, false)
+				vector.StrokeLine(screen, startx, starty, midx, midy, 1, c, false)
 				vector.StrokeLine(screen, arrowlx, arrowly, arrowpx, arrowpy, 1, c, false)
 				vector.StrokeLine(screen, arrowrx, arrowry, arrowpx, arrowpy, 1, c, false)
 			}
@@ -269,20 +270,26 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 				}), font.Left, c, color.Transparent)
 			}
 			if *debugShowOrientations {
-				midx := float32(screenPos.X) + level.TileSize/2
-				midy := float32(screenPos.Y) + level.TileSize/2
 				dx := tile.Orientation.Apply(m.Delta{DX: 4, DY: 0})
 				vector.StrokeLine(screen, midx, midy, midx+float32(dx.DX), midy+float32(dx.DY), 1, palette.EGA(palette.Red, 255), false)
 				dy := tile.Orientation.Apply(m.Delta{DX: 0, DY: 4})
 				vector.StrokeLine(screen, midx, midy, midx+float32(dy.DX), midy+float32(dy.DY), 1, palette.EGA(palette.Green, 255), false)
 			}
 			if *debugShowTransforms {
-				midx := float32(screenPos.X) + level.TileSize/2
-				midy := float32(screenPos.Y) + level.TileSize/2
 				dx := tile.Transform.Apply(m.Delta{DX: 4, DY: 0})
 				vector.StrokeLine(screen, midx, midy, midx+float32(dx.DX), midy+float32(dx.DY), 1, palette.EGA(palette.Red, 255), false)
 				dy := tile.Transform.Apply(m.Delta{DX: 0, DY: 4})
 				vector.StrokeLine(screen, midx, midy, midx+float32(dy.DX), midy+float32(dy.DY), 1, palette.EGA(palette.Green, 255), false)
+			}
+			if *debugShowVis {
+				visColor := color.NRGBA{R: 42, G: 42, B: 42, A: 128}
+				if tile.VisibilityFlags&level.TracedVis != 0 {
+					visColor.G = 213
+				}
+				if tile.VisibilityFlags&level.NewVis != 0 {
+					visColor.B = 213
+				}
+				vector.FillRect(screen, midx-level.TileSize/4, midy-level.TileSize/4, level.TileSize/2, level.TileSize/2, visColor, false)
 			}
 		})
 	}
