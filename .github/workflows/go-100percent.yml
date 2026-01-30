@@ -4,7 +4,7 @@ name: 100% Single-Platform Test Run
     branches:
       - main
   schedule:
-    - cron: '29 12 * * *'
+    - cron: 29 12 * * *
   workflow_dispatch: null
 jobs:
   test:
@@ -14,15 +14,15 @@ jobs:
         with:
           submodules: true
       - name: Install Dependencies
-        run: 'sudo apt-get update && sudo apt-get -y install libasound2-dev libgl-dev
+        run: sudo apt-get update && sudo apt-get -y install libasound2-dev libgl-dev
           libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev strip-nondeterminism
-          xvfb'
+          xvfb
       - name: Set up Go
         uses: actions/setup-go@v6
         with:
           go-version: '1.24'
       - name: Build
-        run: 'make'
+        run: make BUILDTYPE=fsrelease
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOTOOLCHAIN: local
@@ -31,16 +31,36 @@ jobs:
           REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
         run: curl -o testcases.zip "$REGRESSION_TEST_URL"/100percent-v20.zip
       - name: Extract Test Cases
-        run: 'unzip testcases.zip'
+        run: unzip testcases.zip
       - name: Test
-        run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "your time:
-          1:19:13\\.866; your speedrun categories: 100%, All Notes and All Paths;
-          try next: All Secrets\\." "./aaaaxy -debug_log_entity_defaults" *.dem'
+        run: 'xvfb-run scripts/github-action-benchmark.sh "100% linux-amd64" benchmark.txt
+          scripts/regression-test-demo.sh linux-amd64 "your time: 1:19:13\\.866; your
+          speedrun categories: 100%, All Notes and All Paths; try next: All Secrets\\."
+          "./aaaaxy -debug_log_entity_defaults" *.dem'
+      - name: Store benchmark result
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'cron' }}
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: 100% linux-amd64
+          tool: customSmallerIsBetter
+          output-file-path: benchmark.txt
+          gh-pages-branch: gh-pages
+          benchmark-data-dir-path: dev/bench
+          auto-push: true
+          comment-always: true
+          alert-threshold: 110%
+          comment-on-alert: true
+          alert-comment-cc-users: '@divVerent'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Archive Results
         if: ${{ always() }}
         uses: actions/upload-artifact@v6
         with:
           name: regression-test-results-100percent-linux-amd64
-          path: |
-            *.dem.*.log
+          path: '*.dem.*.log
+
             *.dem.*.png
+
+            '

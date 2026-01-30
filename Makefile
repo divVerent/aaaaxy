@@ -17,6 +17,10 @@ else ifeq ($(BUILDTYPE),embedrelease)
 # Larger binary.
 ISRELEASE = true
 BUILDTAGS = embed
+else ifeq ($(BUILDTYPE),fsrelease)
+# Read from separate files - but optimize.
+ISRELEASE = true
+BUILDTAGS =
 else
 ISRELEASE = false
 BUILDTAGS =

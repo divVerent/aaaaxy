@@ -3,7 +3,7 @@ name: 0% macOS App Bundle Test Run
   pull_request: null
   push: null
   schedule:
-    - cron: '3 17 * * *'
+    - cron: 3 17 * * *
   workflow_dispatch: null
 jobs:
   test:
@@ -13,13 +13,13 @@ jobs:
         with:
           submodules: true
       - name: Install Dependencies
-        run: 'brew install imagemagick'
+        run: brew install imagemagick
       - name: Set up Go
         uses: actions/setup-go@v6
         with:
           go-version: '1.24'
       - name: Build Specific
-        run: 'sh scripts/binary-release-compile.sh'
+        run: sh scripts/binary-release-compile.sh
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           AAAAXY_ZIPFILE: aaaaxy.zip
@@ -27,15 +27,8 @@ jobs:
           GOTOOLCHAIN: local
           STRIP_NONDETERMINISM_GZIP: ':'
           STRIP_NONDETERMINISM_ZIP: ':'
-      - name: Enable Software Rendering
-        run: 'sh scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'
-      - name: Register with LaunchServices
-        run: '/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister
-          -R -f packaging/AAAAXY.app'
-      - name: Clean DAT file
-        run: 'rm aaaaxy.dat'
       - name: Build Universal
-        run: 'sh scripts/binary-release-compile.sh amd64 arm64'
+        run: sh scripts/binary-release-compile.sh amd64 arm64
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           AAAAXY_ZIPFILE: aaaaxy.zip
@@ -43,14 +36,6 @@ jobs:
           GOTOOLCHAIN: local
           STRIP_NONDETERMINISM_GZIP: ':'
           STRIP_NONDETERMINISM_ZIP: ':'
-          CGO_ENV_amd64: 'CGO_ENABLED=1 CC="clang -arch x86_64" CXX="clang++ -arch
-            x86_64"'
-          CGO_ENV_arm64: 'CGO_ENABLED=1 CC="clang -arch arm64" CXX="clang++ -arch
-            arm64"'
-      - name: Enable Software Rendering
-        run: 'sh scripts/macos_gl_allow_software.sh packaging/AAAAXY.app/Contents/MacOS/*'
-      - name: Register with LaunchServices
-        run: '/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister
-          -R -f packaging/AAAAXY.app'
-      - name: Clean DAT file
-        run: 'rm aaaaxy.dat'
+          CGO_ENV_amd64: CGO_ENABLED=1 CC="clang -arch x86_64" CXX="clang++ -arch
+            x86_64"
+          CGO_ENV_arm64: CGO_ENABLED=1 CC="clang -arch arm64" CXX="clang++ -arch arm64"

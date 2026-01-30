@@ -1,7 +1,7 @@
 name: Go But With Current Dependencies
 'on':
   schedule:
-    - cron: '51 11 * * *'
+    - cron: 51 11 * * *
   workflow_dispatch: null
 jobs:
   build:
@@ -11,35 +11,57 @@ jobs:
         with:
           submodules: true
       - name: Install Dependencies
-        run: 'sudo apt-get update && sudo apt-get -y install graphviz imagemagick
-          libasound2-dev libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev
-          libxrandr-dev libxxf86vm-dev strip-nondeterminism xvfb'
+        run: sudo apt-get update && sudo apt-get -y install graphviz imagemagick libasound2-dev
+          libgl-dev libgles-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev
+          libxxf86vm-dev strip-nondeterminism xvfb
       - name: Set up Go
         uses: actions/setup-go@v6
         with:
-          go-version: 'stable'
+          go-version: stable
           check-latest: true
       - name: Remove Module Replacements
-        run: 'sed -i -e "s,^replace ,//replace ," go.mod'
+        run: sed -i -e "s,^replace ,//replace ," go.mod
       - name: Update
-        run: 'make mod-update'
+        run: make mod-update
       - name: Build
-        run: 'make'
+        run: make BUILDTYPE=fsrelease
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           AAAAXY_DIFF_ASSETS: true
           AAAAXY_GENERATE_ASSETS: true
           GOTOOLCHAIN: local
       - name: Vet
-        run: 'make vet'
+        run: make vet
       - name: Test
-        run: 'xvfb-run sh scripts/regression-test-demo.sh linux-amd64 "on track for
-          Any%, All Paths, All Flipped, No Teleports and No Coil" ./aaaaxy assets/demos/benchmark.dem'
+        run: 'xvfb-run scripts/github-action-benchmark.sh "Any% linux-amd64-current"
+          benchmark.txt scripts/regression-test-demo.sh linux-amd64 "your time: 0:21:47.250;
+          your speedrun categories: Any%;" ./aaaaxy assets/demos/_anypercent.dem'
+      - name: Undo Update
+        run: git reset --hard
+      - name: Store benchmark result
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'cron' }}
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: Any% linux-amd64-current
+          tool: customSmallerIsBetter
+          output-file-path: benchmark.txt
+          gh-pages-branch: gh-pages
+          benchmark-data-dir-path: dev/bench
+          auto-push: true
+          comment-always: true
+          alert-threshold: 110%
+          comment-on-alert: true
+          alert-comment-cc-users: '@divVerent'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Archive Results
         if: ${{ always() }}
         uses: actions/upload-artifact@v6
         with:
           name: regression-test-results-benchmark-linux-amd64
-          path: |
-            assets/demos/*.dem.*.log
+          path: 'assets/demos/*.dem.*.log
+
             assets/demos/*.dem.*.png
+
+            '
