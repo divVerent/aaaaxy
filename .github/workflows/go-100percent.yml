@@ -53,6 +53,7 @@ jobs:
           alert-threshold: 110%
           comment-on-alert: true
           alert-comment-cc-users: '@divVerent'
+          max-items-in-chart: 90
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Archive Results
         if: ${{ always() }}
