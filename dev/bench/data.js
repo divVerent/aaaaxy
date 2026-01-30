@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1769770853121,
+  "lastUpdate": 1769770904528,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "Any% linux-amd64": [
@@ -90,6 +90,37 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 101.487191,
+            "unit": "Seconds"
+          }
+        ]
+      }
+    ],
+    "100% linux-amd64": [
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "b369e36d57fcbe255fc646f033cf94bec70c234a",
+          "message": "Integrate with github-action-benchmark.",
+          "timestamp": "2026-01-30T05:55:57-05:00",
+          "tree_id": "f6663aeb5500f3d1890e1054eff71c06a6408fb9",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b369e36d57fcbe255fc646f033cf94bec70c234a"
+        },
+        "date": 1769770899364,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 225.276002323,
             "unit": "Seconds"
           }
         ]
