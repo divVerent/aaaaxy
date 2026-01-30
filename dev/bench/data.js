@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1769777103284,
+  "lastUpdate": 1769777164758,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -55,6 +55,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 217.561161199,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "21923fde7c5550178a2a197d30ce33e1ad2cba01",
+          "message": "Limit chart items to 90.",
+          "timestamp": "2026-01-30T07:41:15-05:00",
+          "tree_id": "cdeac86da1794e96a65f9e9bf6f1488101981f16",
+          "url": "https://github.com/divVerent/aaaaxy/commit/21923fde7c5550178a2a197d30ce33e1ad2cba01"
+        },
+        "date": 1769777159932,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 219.047044763,
             "unit": "Seconds"
           }
         ]
