@@ -177,7 +177,7 @@
 
             const color = toolColors[dataset.length > 0 ? dataset[0].tool : '_'];
             const data = {
-              labels: dataset.map(d => new Date(d.date).toISOString()) + ' ' + d.commit.id.slice(0, 7),
+              labels: dataset.map(d => new Date(d.date).toISOString() + ' ' + d.commit.id.slice(0, 7)),
               datasets: [
                 {
                   label: name,
