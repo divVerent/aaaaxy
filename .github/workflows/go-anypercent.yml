@@ -56,7 +56,7 @@ jobs:
       - name: Store benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
-          || github.event_name == 'cron' }}
+          || github.event_name == 'schedule' }}
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Any% linux-amd64
@@ -132,7 +132,7 @@ jobs:
       - name: Store benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
-          || github.event_name == 'cron' }}
+          || github.event_name == 'schedule' }}
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Any% windows-amd64
@@ -212,7 +212,7 @@ jobs:
       - name: Store benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
-          || github.event_name == 'cron' }}
+          || github.event_name == 'schedule' }}
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Any% windows-386
