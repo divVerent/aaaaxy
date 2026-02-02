@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770043764734,
+  "lastUpdate": 1770043815746,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -948,6 +948,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 102.4331311,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "bf65c30461c4cdebc23cdd71d42f33050846100f",
+          "message": "Ebitengine update.",
+          "timestamp": "2026-02-02T15:46:27+01:00",
+          "tree_id": "48b5fc44f3d23db381f7a9c39c84335087542698",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bf65c30461c4cdebc23cdd71d42f33050846100f"
+        },
+        "date": 1770043806550,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 103.1412523,
             "unit": "Seconds"
           }
         ]
