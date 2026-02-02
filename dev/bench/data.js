@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770013335593,
+  "lastUpdate": 1770013338394,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -343,6 +343,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 97.6796983,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "8cf106b59ecf88720078476e6a4f3805272caa36",
+          "message": "Add a GitHub Action for iOS deployment.\n\nThat way I should be able to release without the now broken macOS\ninstall on my Macbook.",
+          "timestamp": "2026-02-02T07:16:59+01:00",
+          "tree_id": "f10234a8c09cb6f60e7c449906124a4f6f25a3ae",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8cf106b59ecf88720078476e6a4f3805272caa36"
+        },
+        "date": 1770013327463,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.6990019,
             "unit": "Seconds"
           }
         ]
