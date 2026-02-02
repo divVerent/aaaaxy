@@ -1,0 +1,50 @@
+name: iOS Deployment
+'on':
+  push:
+    tags:
+      - v*
+  workflow_dispatch: null
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+      - name: Install Code Signing Certificate
+        uses: apple-actions/import-codesign-certs@v3
+        with:
+          p12-file-base64: ${{ secrets.APPLE_CERT_P12_BASE64 }}
+          p12-password: ${{ secrets.APPLE_CERT_P12_PASSWORD }}
+      - name: Download Provisioning Profile
+        uses: apple-actions/download-provisioning-profiles@v4
+        with:
+          bundle-id: io.github.divverent.aaaaxy
+          profile-type: IOS_APP_STORE
+          issuer-id: ${{ vars.APPLE_API_ISSUER_ID }}
+          api-key-id: ${{ vars.APPLE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPLE_API_PRIVATE_KEY }}
+      - name: Install Dependencies
+        run: brew install advancecomp imagemagick strip-nondeterminism
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.24'
+      - name: Build Go Library
+        run: cd XcodeProjects/iOS/aaaaxy/go/aaaaxy && sh build.sh
+        env:
+          AAAAXY_BUILD_USE_VERSION_FILE: true
+          GOTOOLCHAIN: local
+      - name: Xcode Archive
+        run: xcodebuild -project XcodeProjects/iOS/aaaaxy.xcodeproj -scheme aaaaxy
+          -archivePath "$PWD"/AAAAXY.xcarchive archive -allowProvisioningUpdates
+      - name: Xcode Export
+        run: xcodebuild -exportArchive -archivePath "$PWD"/AAAAXY.xcarchive -exportOptionsPlist
+          XcodeProjects/iOS/aaaaxy/ExportOptions.plist -exportPath "$PWD" -allowProvisioningUpdates
+      - name: Upload to TestFlight
+        uses: apple-actions/upload-testflight-build@v3
+        with:
+          app-path: AAAAXY.ipa
+          issuer-id: ${{ vars.APPLE_API_ISSUER_ID }}
+          api-key-id: ${{ vars.APPLE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPLE_API_PRIVATE_KEY }}
