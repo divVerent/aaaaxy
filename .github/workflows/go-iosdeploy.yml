@@ -23,7 +23,7 @@ jobs:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOTOOLCHAIN: local
       - name: Install Distribution Certificate
-        uses: apple-actions/import-codesign-certs@v3
+        uses: apple-actions/import-codesign-certs@v6
         with:
           p12-file-base64: ${{ secrets.APPLE_CERT_P12_BASE64 }}
           p12-password: ${{ secrets.APPLE_CERT_P12_PASSWORD }}
