@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770035593482,
+  "lastUpdate": 1770039915784,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -142,6 +142,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 223.288152716,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "c7a088d4ae32837477646fee775781598d5a9429",
+          "message": "Make Go iOS deployment workflow actually work.",
+          "timestamp": "2026-02-02T07:43:43Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c7a088d4ae32837477646fee775781598d5a9429"
+        },
+        "date": 1770039910048,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 223.576033479,
             "unit": "Seconds"
           }
         ]
