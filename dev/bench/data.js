@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770043464274,
+  "lastUpdate": 1770043482250,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -600,6 +600,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 95.4257043,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "15668e2888a50ea87fe97046d76f4c42dc4f99ce",
+          "message": "Bump apple-actions/upload-testflight-build from 3 to 4 (#590)\n\nBumps [apple-actions/upload-testflight-build](https://github.com/apple-actions/upload-testflight-build) from 3 to 4.\n- [Release notes](https://github.com/apple-actions/upload-testflight-build/releases)\n- [Commits](https://github.com/apple-actions/upload-testflight-build/compare/v3...v4)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/upload-testflight-build\n  dependency-version: '4'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-02-02T15:41:14+01:00",
+          "tree_id": "ce3e804beade57d989cca35e32201fc2af06d362",
+          "url": "https://github.com/divVerent/aaaaxy/commit/15668e2888a50ea87fe97046d76f4c42dc4f99ce"
+        },
+        "date": 1770043474314,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.2178005,
             "unit": "Seconds"
           }
         ]
