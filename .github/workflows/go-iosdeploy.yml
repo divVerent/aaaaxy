@@ -44,7 +44,7 @@ jobs:
         run: xcodebuild -exportArchive -archivePath "$PWD"/AAAAXY.xcarchive -exportOptionsPlist
           XcodeProjects/iOS/aaaaxy/ExportOptions.plist -exportPath "$PWD" -allowProvisioningUpdates
       - name: Upload to TestFlight
-        uses: apple-actions/upload-testflight-build@v3
+        uses: apple-actions/upload-testflight-build@v4
         with:
           app-path: AAAAXY.ipa
           issuer-id: ${{ secrets.APPLE_API_ISSUER_ID }}
