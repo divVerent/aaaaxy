@@ -1,5 +1,6 @@
 name: Go But With Current Dependencies
 'on':
+  push: null
   schedule:
     - cron: 51 11 * * *
   workflow_dispatch: null
