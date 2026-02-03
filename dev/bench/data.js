@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770145077990,
+  "lastUpdate": 1770145150747,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -283,6 +283,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 223.29856851,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "746f6e344dec8c8d136adb6fc8bc43068996f326",
+          "message": "Retune alert thresholds.",
+          "timestamp": "2026-02-03T19:54:24+01:00",
+          "tree_id": "f0d15b52ac191bdbce92d35573d45aa669981a0e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/746f6e344dec8c8d136adb6fc8bc43068996f326"
+        },
+        "date": 1770145145416,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 218.134380088,
             "unit": "Seconds"
           }
         ]
