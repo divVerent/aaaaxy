@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770294913715,
+  "lastUpdate": 1770299324652,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -368,6 +368,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 223.288344887,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "33236efc3e86c2f68a1564943a276af97163f70c",
+          "message": "Also run go-current on every push.",
+          "timestamp": "2026-02-03T18:55:38Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/33236efc3e86c2f68a1564943a276af97163f70c"
+        },
+        "date": 1770299320919,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 229.359329494,
             "unit": "Seconds"
           }
         ]
