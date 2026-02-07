@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770506237735,
+  "lastUpdate": 1770506243729,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1689,6 +1689,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.5479586,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "258bbb71d9974bd3d3c7ab17ee016cffdf9f9903",
+          "message": "Increase alert threshold due to noise.",
+          "timestamp": "2026-02-06T19:10:57Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258bbb71d9974bd3d3c7ab17ee016cffdf9f9903"
+        },
+        "date": 1770506235386,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 95.7413786,
             "unit": "Seconds"
           }
         ]
