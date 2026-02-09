@@ -104,6 +104,7 @@ git push origin main
 git worktree add -f /tmp/gh-pages gh-pages
 (
 	cd /tmp/gh-pages
+	git fetch origin
 	git reset --hard '@{u}'
 	VERSION=$new perl -0777 -pi -e '
 		use strict;
@@ -182,4 +183,4 @@ open_url https://itch.io/dashboard/game/1199736/devlog
 open_url https://www.pling.com/p/1758731/edit
 
 # Google Play.
-open_url https://play.google.com/console/u/0/developers/7023357085064533456/app/4972666448425908274/tracks/production
+open_url https://play.google.com/console/u/2/developers/8764889564731418404/app/4972666448425908274/tracks/production
