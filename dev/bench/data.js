@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770624785989,
+  "lastUpdate": 1770624918647,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -953,6 +953,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 74.71562007,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "0ed0b152684ecdb7c2b41c57256091508c890030",
+          "message": "Fix release publish script.",
+          "timestamp": "2026-02-09T09:08:11+01:00",
+          "tree_id": "ff8e96a2a1726c2b6a2e1c62e0524f744039a3dc",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0ed0b152684ecdb7c2b41c57256091508c890030"
+        },
+        "date": 1770624913393,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 73.73693979,
             "unit": "Seconds"
           }
         ]
