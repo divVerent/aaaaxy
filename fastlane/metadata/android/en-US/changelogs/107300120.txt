@@ -1,0 +1,4 @@
+  - Engine: module updates.
+  - Engine: fix occasional spike appearing inside a solid wall; also speedup
+    despawning by one frame, yielding slightly faster possible speedruns.
+    (Fixes #587)
