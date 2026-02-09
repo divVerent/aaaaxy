@@ -31,8 +31,8 @@ github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672 h1:MUk7T1sPNKoyDjXubIrd
 github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672/go.mod h1:eHvWnLgOJkItT8s7GuPdDaGuZCH3yfGVE6o8dJ+S/AA=
 github.com/go-logr/logr v1.2.0 h1:QK40JKJyMdUDz+h+xvCsru/bJhvG0UxvePV0ufL/AcE=
 github.com/go-logr/logr v1.2.0/go.mod h1:jdQByPbusPIv2/zmleS9BjJVeZ6kBagPoEUsqbVz/1A=
-github.com/go-text/typesetting v0.3.2 h1:OUOFxp9Rx5PiO0/rh2IY+5gmyXjXsVG8+LfEyk9NMcE=
-github.com/go-text/typesetting v0.3.2/go.mod h1:vIRUT25mLQaSh4C8H/lIsKppQz/Gdb8Pu/tNwpi52ts=
+github.com/go-text/typesetting v0.3.3 h1:ihGNJU9KzdK2QRDy1Bm7FT5RFQoYb+3n3EIhI/4eaQc=
+github.com/go-text/typesetting v0.3.3/go.mod h1:vIRUT25mLQaSh4C8H/lIsKppQz/Gdb8Pu/tNwpi52ts=
 github.com/go-text/typesetting-utils v0.0.0-20250618110550-c820a94c77b8 h1:4KCscI9qYWMGTuz6BpJtbUSRzcBrUSSE0ENMJbNSrFs=
 github.com/go-text/typesetting-utils v0.0.0-20250618110550-c820a94c77b8/go.mod h1:3/62I4La/HBRX9TcTpBj4eipLiwzf+vhI+7whTc9V7o=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b/go.mod h1:SBH7ygxi8pfUlaOkMMuAQtPIUF8ecWP5IEl/CR7VP2Q=
@@ -166,8 +166,8 @@ golang.org/x/sys v0.0.0-20180830151530-49385e6e1522/go.mod h1:STP8DvDyc/dI5b8T5h
 golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20190412213103-97732733099d/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20200930185726-fdedc70b468f/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
-golang.org/x/sys v0.40.0 h1:DBZZqJ2Rkml6QMQsZywtnjnnGvHza6BTfYFWY9kjEWQ=
-golang.org/x/sys v0.40.0/go.mod h1:OgkHotnGiDImocRcuBABYBEXf8A9a87e/uXjp9XT3ks=
+golang.org/x/sys v0.41.0 h1:Ivj+2Cp/ylzLiEU89QhWblYnOE9zerudt9Ftecq2C6k=
+golang.org/x/sys v0.41.0/go.mod h1:OgkHotnGiDImocRcuBABYBEXf8A9a87e/uXjp9XT3ks=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.3/go.mod h1:5Zoc/QRtKVWzQhOtBMvqHzDpF6irO9z98xDceosuGiQ=
 golang.org/x/text v0.33.0 h1:B3njUFyqtHDUI5jMn1YIr5B0IE2U0qck04r6d4KPAxE=

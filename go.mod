@@ -21,7 +21,7 @@ require (
 	github.com/ncruces/zenity v0.10.14
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.35.0
-	golang.org/x/sys v0.40.0
+	golang.org/x/sys v0.41.0
 	golang.org/x/text v0.33.0
 )
 
@@ -33,7 +33,7 @@ require (
 	github.com/ebitengine/oto/v3 v3.4.0 // indirect
 	github.com/ebitengine/purego v0.9.1 // indirect
 	github.com/go-logr/logr v1.2.0 // indirect
-	github.com/go-text/typesetting v0.3.2 // indirect
+	github.com/go-text/typesetting v0.3.3 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/licenseclassifier/v2 v2.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
