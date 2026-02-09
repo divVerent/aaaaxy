@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770623038547,
+  "lastUpdate": 1770623050207,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1969,6 +1969,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 99.4128446,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "38abcf394cf7e2ffcce0e1f1dbd89259b5600268",
+          "message": "Release v1.7.12\n\nChanges since v1.6.338:\n  - Engine: module updates.\n  - Engine: fix occasional spike appearing inside a solid wall; also speedup\n    despawning by one frame, yielding slightly faster possible speedruns.\n    (Fixes #587)",
+          "timestamp": "2026-02-09T07:53:03+01:00",
+          "tree_id": "80afe1c079c011b988de24fa3d917a1bbcea1502",
+          "url": "https://github.com/divVerent/aaaaxy/commit/38abcf394cf7e2ffcce0e1f1dbd89259b5600268"
+        },
+        "date": 1770623042030,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.0042896,
             "unit": "Seconds"
           }
         ]
