@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770632572689,
+  "lastUpdate": 1770632592587,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2825,6 +2825,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.5241031,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "4234ed6e34b9a06e8f17597d56dad14f18da7dad",
+          "message": "Revert \"Bump apple-actions/upload-testflight-build from 3 to 4 (#590)\"\n\nMay unbreak iOS deployment?\n\nThis reverts commit 15668e2888a50ea87fe97046d76f4c42dc4f99ce.",
+          "timestamp": "2026-02-09T11:09:22+01:00",
+          "tree_id": "2a9030547680d9de2de55142da6d13a6e8808e6f",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4234ed6e34b9a06e8f17597d56dad14f18da7dad"
+        },
+        "date": 1770632584383,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.1077134,
             "unit": "Seconds"
           }
         ]
