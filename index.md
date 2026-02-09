@@ -46,18 +46,18 @@ END DOWNLOAD LINKS TEMPLATE -->
 
 <!-- BEGIN DOWNLOAD LINKS -->
 
-The current version is v1.6.338. Download here:
+The current version is v1.7.12. Download here:
  - [Windows x86_64
-ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.338/aaaaxy-windows-amd64-v1.6.338.zip)
+ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.7.12/aaaaxy-windows-amd64-v1.7.12.zip)
 
 - [Windows x86
-  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.338/aaaaxy-windows-386-v1.6.338.zip)
+  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.7.12/aaaaxy-windows-386-v1.7.12.zip)
 - [Linux x86_64
-  AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.6.338/AAAAXY-x86_64.AppImage)
+  AppImage](https://github.com/divVerent/aaaaxy/releases/download/v1.7.12/AAAAXY-x86_64.AppImage)
 - [Linux x86_64
-  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.338/aaaaxy-linux-amd64-v1.6.338.zip)
+  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.7.12/aaaaxy-linux-amd64-v1.7.12.zip)
 - [macOS x86_64+M1
-  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.6.338/aaaaxy-darwin-v1.6.338.zip)
+  ZIP](https://github.com/divVerent/aaaaxy/releases/download/v1.7.12/aaaaxy-darwin-v1.7.12.zip)
 - [All files and releases](https://github.com/divVerent/aaaaxy/releases)
 
 <!-- END DOWNLOAD LINKS -->
@@ -81,7 +81,8 @@ above.
 - [Speedrunning](speedrunning.md)
 - [Music](music.md)
 - [Continuous Integration](https://github.com/divVerent/aaaaxy/actions/)
-- [Continuous Benchmarking](https://divVerent.github.io/aaaaxy/dev/bench/)
+- [Continuous
+  Benchmarking](https://divVerent.github.io/aaaaxy/dev/bench/)
 
 ### Screenshots
 
