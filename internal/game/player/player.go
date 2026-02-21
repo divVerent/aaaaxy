@@ -395,7 +395,6 @@ func (p *Player) Update() {
 		p.LandSound.Play()
 	} else if deltaV := p.Velocity.Sub(prevVelocity); !deltaV.IsZero() {
 		if deltaV.Dot(p.OnGroundVec) > 0 {
-			log.Infof("hithead")
 			p.Anim.SetGroup("hithead")
 			p.HitHeadSound.Play()
 		} else if deltaV.Dot(p.OnGroundVec) == 0 {
@@ -405,7 +404,6 @@ func (p *Player) Update() {
 				if vol > 1 {
 					vol = 1
 				}
-				log.Infof("hitwall: %v -> %v\n", speed, vol)
 				p.HitWallSound.PlayAtVolume(vol)
 			}
 		}

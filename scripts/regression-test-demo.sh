@@ -62,7 +62,7 @@ for demo in "$@"; do
 		-draw_outside=false \
 		-draw_visibility_mask=false \
 		-expand_using_vertices_accurately=false \
-		-fps_divisor=4 \
+		-fps_divisor=15 \
 		-fullscreen=false \
 		-screen_filter=nearest \
 		-show_fps \

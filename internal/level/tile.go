@@ -51,9 +51,40 @@ func (c Contents) ObjectSolid() bool {
 type VisibilityFlags int
 
 const (
-	FrameVis  VisibilityFlags = 1
-	TracedVis VisibilityFlags = 2
+	FrameVis  VisibilityFlags = 1 // The frame the flags apply to.
+	TracedVis VisibilityFlags = 2 // Whether trace hit this frame.
+	NewVis    VisibilityFlags = 4 // Whether newly created this frame.
 )
+
+// Is returns whether it has the exact flags for this frame.
+func (f VisibilityFlags) Is(frame, flags VisibilityFlags) bool {
+	return f == (frame | flags)
+}
+
+// Has returns whether it has the given flags at the current frame.
+func (f VisibilityFlags) Has(frame, mask, flags VisibilityFlags) bool {
+	return (f & (FrameVis | mask)) == (frame | flags)
+}
+
+// rawBits returns the flags for the given frame possibly including the frame bit.
+func (f VisibilityFlags) rawBits(frame VisibilityFlags) VisibilityFlags {
+	return (((f & FrameVis) ^ frame) - 1) & f
+}
+
+// Flip flips the frame, clearing all other bits.
+func (f *VisibilityFlags) Flip() {
+	*f = (*f & FrameVis) ^ FrameVis
+}
+
+// Set sets flag bits for this frame.
+func (f *VisibilityFlags) Set(frame, flags VisibilityFlags) {
+	*f = f.rawBits(frame) | frame | flags
+}
+
+// Reset clears flag bits for this frame.
+func (f *VisibilityFlags) Reset(frame, flags VisibilityFlags) {
+	*f = frame | flags
+}
 
 // A Tile is a single game tile.
 type Tile struct {

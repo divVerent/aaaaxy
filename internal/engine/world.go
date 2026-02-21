@@ -500,7 +500,7 @@ func (w *World) RespawnPlayerImmediately(checkpointName string, newGameSection b
 
 	// Build a new world around the CP tile and the player.
 	w.frameVis = 0
-	tile.VisibilityFlags = w.frameVis
+	tile.VisibilityFlags.Reset(w.frameVis, 0)
 	w.clearEntities()
 	w.link(w.Player)
 	for i := range w.tiles[:] {
@@ -565,7 +565,9 @@ func (w *World) RespawnPlayerImmediately(checkpointName string, newGameSection b
 
 	// Note that TraceBox must have loaded all tiles the player needs.
 	// w.LoadTilesForRect(w.Player.Rect, cpSp.LevelPos)
-	w.frameVis ^= level.FrameVis
+
+	// Let's NOT flip frameVis here! This happens in updateVisibility.
+	// w.frameVis.Flip()
 
 	// Make sure respawning always gets back to this CP.
 	w.PlayerState.RecordCheckpoint(checkpointName, flipped)
@@ -632,7 +634,7 @@ func (w *World) traceLineAndMark(from, to m.Pos, pathStore *[]m.Pos) TraceResult
 		PathOut:   pathStore,
 	})
 	for _, tilePos := range *pathStore {
-		w.Tile(tilePos).VisibilityFlags = w.frameVis | level.TracedVis
+		w.Tile(tilePos).VisibilityFlags.Set(w.frameVis, level.TracedVis)
 	}
 	return result
 }
@@ -724,13 +726,13 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	}
 	defer timing.Group()()
 
-	// Reset visibility!
-	w.frameVis ^= level.FrameVis
+	// Reset visibility! This makes all existing flags invalid.
+	w.frameVis.Flip()
 
 	// Always mark the eye tile.
 	timing.Section("eye")
 	eyePos := eye.Div(level.TileSize)
-	w.Tile(eyePos).VisibilityFlags = w.frameVis | level.TracedVis
+	w.Tile(eyePos).VisibilityFlags.Set(w.frameVis, level.TracedVis)
 
 	// Trace from player location to all directions (sweepStep pixels at screen edge).
 	// Mark all tiles hit (excl. the tiles that stopped us).
@@ -777,8 +779,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	// Workaround: mark them as if they were previous frame's tiles, so they're not a basis for loading and get cleared at the end if needed.
 	timing.Section("untrace_workaround")
 	w.forEachTile(func(_ int, tile *level.Tile) {
-		if tile.VisibilityFlags == w.frameVis {
-			tile.VisibilityFlags ^= level.FrameVis
+		if tile.VisibilityFlags.Is(w.frameVis, 0) {
+			tile.VisibilityFlags.Flip()
 		}
 	})
 
@@ -786,9 +788,8 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	// For multiple expansion, need to do this in steps so initially we only base expansion on visible tiles.
 	timing.Section("expand")
 	markedTiles := w.markedTilesBuffer[:0]
-	justTraced := w.frameVis | level.TracedVis
 	w.forEachTile(func(i int, tile *level.Tile) {
-		if tile.VisibilityFlags == justTraced {
+		if tile.VisibilityFlags.Has(w.frameVis, level.TracedVis, level.TracedVis) {
 			markedTiles = append(markedTiles, w.tilePos(i))
 		}
 	})
@@ -813,26 +814,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 		}
 	}
 
-	timing.Section("spawn_search")
-	w.forEachTile(func(i int, tile *level.Tile) {
-		if tile.VisibilityFlags&level.FrameVis != w.frameVis {
-			return
-		}
-		pos := w.tilePos(i)
-		for _, spawnable := range tile.Spawnables {
-			_, err := w.Spawn(spawnable, pos, tile)
-			if err != nil {
-				if *debugCheckEntitySpawn {
-					log.Fatalf("could not spawn entity %v: %v", spawnable, err)
-				} else {
-					log.Errorf("could not spawn entity %v: %v", spawnable, err)
-				}
-			}
-		}
-	})
-
-	timing.Section("despawn_search")
-	w.entities.forEach(func(ent *Entity) error {
+	calcBox := func(ent *Entity) (m.Pos, m.Pos, bool) {
 		tp0, tp1 := tilesBox(ent.Rect.Grow(ent.SpawnTilesGrowth))
 		topLeftTile := w.bottomRightTile.Sub(m.Delta{DX: tileWindowWidth - 1, DY: tileWindowHeight - 1})
 		mustDespawn := false
@@ -860,10 +842,19 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 				tp1.Y = w.bottomRightTile.Y
 			}
 		}
-		var pos m.Pos
-		havePos := false
+		return tp0, tp1, mustDespawn
+	}
+
+	timing.Section("despawn_search")
+	w.entities.forEach(func(ent *Entity) error {
+		/*
+			if ent == w.Player {
+				// Player is marked despawnable right after initial start. Can't despawn the player.
+				return nil
+			}
+		*/
+		tp0, tp1, mustDespawn := calcBox(ent)
 		if !mustDespawn {
-		DESPAWN_SEARCH:
 			for y := tp0.Y; y <= tp1.Y; y++ {
 				for x := tp0.X; x <= tp1.X; x++ {
 					tp := m.Pos{X: x, Y: y}
@@ -871,33 +862,61 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 					if tile == nil {
 						continue
 					}
-					if tile.VisibilityFlags&level.FrameVis == w.frameVis {
-						pos = tp
-						havePos = true
-						break DESPAWN_SEARCH
+					// If any tile that wasn't created this frame s
+					// and was hit this frame touches the entity,
+					// it will not get despawned.
+					if tile.VisibilityFlags.Has(w.frameVis, level.NewVis, 0) {
+						ent.requireTilesOrigin = m.Pos{X: x, Y: y}
+						return nil
 					}
 				}
 			}
 		}
-		if havePos {
-			if ent.RequireTiles {
-				w.LoadTilesForTileBox(tp0, tp1, pos)
-				for y := tp0.Y; y <= tp1.Y; y++ {
-					for x := tp0.X; x <= tp1.X; x++ {
-						tp := m.Pos{X: x, Y: y}
-						tile := w.Tile(tp)
-						if tile == nil {
-							continue
-						}
-						if tile.VisibilityFlags&level.FrameVis != w.frameVis {
-							tile.VisibilityFlags = w.frameVis
-						}
-					}
+		ent.Impl.Despawn()
+		w.unlink(ent)
+		return nil
+	})
+
+	timing.Section("spawn_search")
+	w.forEachTile(func(i int, tile *level.Tile) {
+		if !tile.VisibilityFlags.Has(w.frameVis, 0, 0) {
+			return
+		}
+		pos := w.tilePos(i)
+		for _, spawnable := range tile.Spawnables {
+			ent, err := w.Spawn(spawnable, pos, tile)
+			if err != nil {
+				if *debugCheckEntitySpawn {
+					log.Fatalf("could not spawn entity %v: %v", spawnable, err)
+				} else {
+					log.Errorf("could not spawn entity %v: %v", spawnable, err)
 				}
 			}
-		} else {
-			ent.Impl.Despawn()
-			w.unlink(ent)
+			if ent != nil {
+				ent.requireTilesOrigin = pos
+			}
+		}
+	})
+
+	timing.Section("require_tiles")
+	w.entities.forEach(func(ent *Entity) error {
+		if !ent.RequireTiles {
+			return nil
+		}
+		tp0, tp1, mustDespawn := calcBox(ent)
+		if mustDespawn {
+			log.Fatalf("mustDespawn after spawn_search: %v", ent)
+		}
+		w.LoadTilesForTileBox(tp0, tp1, ent.requireTilesOrigin)
+		for y := tp0.Y; y <= tp1.Y; y++ {
+			for x := tp0.X; x <= tp1.X; x++ {
+				tp := m.Pos{X: x, Y: y}
+				tile := w.Tile(tp)
+				if tile == nil {
+					continue
+				}
+				tile.VisibilityFlags.Set(w.frameVis, 0)
+			}
 		}
 		return nil
 	})
@@ -905,7 +924,7 @@ func (w *World) updateVisibility(eye m.Pos, maxDist int) {
 	// Delete all unmarked tiles.
 	timing.Section("cleanup_unmarked")
 	w.forEachTile(func(i int, tile *level.Tile) {
-		if tile.VisibilityFlags&level.FrameVis != w.frameVis {
+		if !tile.VisibilityFlags.Has(w.frameVis, 0, 0) {
 			w.clearTile(w.tilePos(i))
 		}
 	})
@@ -1007,7 +1026,7 @@ func (w *World) SetWarpZoneState(name string, state bool) {
 func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	tile := w.Tile(newPos)
 	if tile != nil {
-		if tile.VisibilityFlags&level.FrameVis == w.frameVis {
+		if tile.VisibilityFlags.Has(w.frameVis, 0, 0) {
 			// Already loaded this frame.
 			return tile
 		}
@@ -1015,7 +1034,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 		if *debugNeighborLoadingOptimization && !w.warpzoneStatesChanged && tile.LoadedFromNeighbor == p {
 			// Loading from same neighbor as before is OK.
 			// Note: this is INCORRECT if during the last frame, a warpzone changed status.
-			tile.VisibilityFlags = w.frameVis
+			tile.VisibilityFlags.Reset(w.frameVis, 0)
 			return tile
 		}
 	}
@@ -1038,8 +1057,8 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 			LevelPos:           newLevelPos,
 			Transform:          t,
 			LoadedFromNeighbor: p,
-			VisibilityFlags:    w.frameVis,
 		}
+		newTile.VisibilityFlags.Reset(w.frameVis, level.NewVis)
 		w.setTile(newPos, newTile)
 		return newTile
 	}
@@ -1072,7 +1091,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 		if tile.LevelPos == newLevelTile.Tile.LevelPos && tile.Transform == t {
 			// Same tile as we had before. Can skip the copying.
 			tile.LoadedFromNeighbor = p
-			tile.VisibilityFlags = w.frameVis
+			tile.VisibilityFlags.Reset(w.frameVis, 0)
 			return tile
 		}
 	}
@@ -1084,7 +1103,7 @@ func (w *World) LoadTile(p, newPos m.Pos, d m.Delta) *level.Tile {
 	newTile.Orientation = t.Inverse().Concat(newTile.Orientation)
 	newTile.ResolveImage()
 	newTile.LoadedFromNeighbor = p
-	newTile.VisibilityFlags = w.frameVis
+	newTile.VisibilityFlags.Reset(w.frameVis, level.NewVis)
 	w.setTile(newPos, &newTile)
 	return &newTile
 }

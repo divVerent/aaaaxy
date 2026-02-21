@@ -1,0 +1,3 @@
+  - Engine: cheat_show_bboxes: use colors different from the EGA colors.
+  - Engine: fix "scratchy" sound when walking up slopes.
+  - Engine: minor module updates.
