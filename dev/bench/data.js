@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772891866725,
+  "lastUpdate": 1772891877932,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -6797,6 +6797,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.3997829,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "75cbfc267d1f169de817df83d3003d9ccb1c7eb6",
+          "message": "Module updates.",
+          "timestamp": "2026-03-07T14:54:44+01:00",
+          "tree_id": "3211ba7c81f954b987f023f3254e79272dd072cf",
+          "url": "https://github.com/divVerent/aaaaxy/commit/75cbfc267d1f169de817df83d3003d9ccb1c7eb6"
+        },
+        "date": 1772891870715,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.5933969,
             "unit": "Seconds"
           }
         ]
