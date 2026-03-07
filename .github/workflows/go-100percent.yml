@@ -49,8 +49,7 @@ jobs:
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           auto-push: true
-          comment-always: true
-          alert-threshold: 110%
+          alert-threshold: 115%
           comment-on-alert: true
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
