@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1773098200897,
+  "lastUpdate": 1773123267392,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4392,6 +4392,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 71.972107887,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "39ef13bc5b3a28a0e71b70f865e16f8cf31900f8",
+          "message": "Add an explicit policy about AI use.\n\nNothing in it except what follows directly from the project license.",
+          "timestamp": "2026-03-10T07:11:41+01:00",
+          "tree_id": "964a328c11a3b7e3c41b5a8900409fc941bd79da",
+          "url": "https://github.com/divVerent/aaaaxy/commit/39ef13bc5b3a28a0e71b70f865e16f8cf31900f8"
+        },
+        "date": 1773123262547,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 74.871171294,
             "unit": "Seconds"
           }
         ]
