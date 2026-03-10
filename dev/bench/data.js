@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1773123396393,
+  "lastUpdate": 1773123570501,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4450,6 +4450,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 74.871171294,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "ab889ed8221ee63d3b541207b4ec4d5ada8ed5c3",
+          "message": "Explain that I can't deal with lists of thousands of contributors.",
+          "timestamp": "2026-03-10T07:16:05+01:00",
+          "tree_id": "38633664e38e7a44e22cd6b72be8c5cbc2e60a0b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/ab889ed8221ee63d3b541207b4ec4d5ada8ed5c3"
+        },
+        "date": 1773123566262,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 71.733775002,
             "unit": "Seconds"
           }
         ]
