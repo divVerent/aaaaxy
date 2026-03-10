@@ -6,9 +6,49 @@ There are just a few small guidelines you need to follow.
 ## Code reviews
 
 All submissions, including submissions by project members, require
-review. We use GitHub pull requests for this purpose. Consult [GitHub
+review, and must be fully understood by the submitter before
+contributing. The submitter must be available for review comments. We
+use GitHub pull requests for this purpose. Consult [GitHub
 Help](https://help.github.com/articles/about-pull-requests/) for more
 information on using pull requests.
+
+## Licensing
+
+All contributions must be licensed under the [Apache 2.0
+License](LICENSE).
+
+To ensure proper licensing, as an author you agree to the following
+terms:
+
+- You are holding sufficient rights to the work to publish it under the
+  [Apache 2.0 License](LICENSE). This usually requires you to be the
+  sole copyright holder, or to obtain permission by all other
+  contributors to the change; in the latter case, you must mention all
+  other contributors and include evidence that these other contributors
+  have given said permission.
+
+- You are submitting your change according to the [Apache 2.0
+  License](LICENSE) with no additional terms attached.
+
+## AI Policy
+
+Contributions by a LLM or other AI entity still must follow the above
+requirements, just like human contributions.
+
+In particular this means:
+
+- The model or entity that has been used must be named.
+
+- It must not have been trained or prompted on code with incompatible
+  licenses. Neither must the output for any other reason be derivative
+  of code with incompatible licenses.
+
+- All authors of code that went into the training or prompting, or that
+  the submission is otherwise derivative of, must be named and the
+  respective licenses be stated.
+
+- The human submitter certifies they have fully understood the code they
+  are submitting and can respond to comments or questions about it.
 
 ## Translating
 
@@ -40,9 +80,9 @@ This can be achieved using [Go's reordering
 syntax](https://pkg.go.dev/fmt#hdr-Explicit_argument_indexes). In
 particular, the following things can be done:
 
--   `%s walks towards %s`
--   `%[1]s walks towards %[2]s` - same but with explicit indexes
--   `%[2]s is where %[1]s walks towards` - reordered
+- `%s walks towards %s`
+- `%[1]s walks towards %[2]s` - same but with explicit indexes
+- `%[2]s is where %[1]s walks towards` - reordered
 
 ### Trying It Out
 
