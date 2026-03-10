@@ -39,11 +39,11 @@ In particular this means:
 
 - The model or entity that has been used must be named.
 
-- It must not have been trained or prompted on code with incompatible
+- It must not have been trained or prompted on works with incompatible
   licenses. Neither must the output for any other reason be derivative
-  of code with incompatible licenses.
+  of works with incompatible licenses.
 
-- All authors of code that went into the training or prompting, or that
+- All authors of works that went into the training or prompting, or that
   the submission is otherwise derivative of, must be named and the
   respective licenses be stated.
 
@@ -51,8 +51,8 @@ In particular this means:
   accuracy of the licensing information infeasible and usually leads to
   rejection.
 
-- The human submitter certifies they have fully understood the code they
-  are submitting and can respond to comments or questions about it.
+- The human submitter certifies they have fully understood their
+  submission and can respond to comments or questions about it.
 
 ## Translating
 
