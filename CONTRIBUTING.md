@@ -47,6 +47,10 @@ In particular this means:
   the submission is otherwise derivative of, must be named and the
   respective licenses be stated.
 
+- Note that an excessive number of contributors likely makes reviewing
+  accuracy of the licensing information infeasible and usually leads to
+  rejection.
+
 - The human submitter certifies they have fully understood the code they
   are submitting and can respond to comments or questions about it.
 
