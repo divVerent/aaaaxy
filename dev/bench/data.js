@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1773323128646,
+  "lastUpdate": 1773357364321,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4869,6 +4869,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 74.648447664,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "b62e771d5753b7e5a783abefd0dc296a6d1749ea",
+          "message": "Rephrase to make clear copyright applies to all works, not just code.",
+          "timestamp": "2026-03-10T06:19:58Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b62e771d5753b7e5a783abefd0dc296a6d1749ea"
+        },
+        "date": 1773357360575,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 72.321759103,
             "unit": "Seconds"
           }
         ]
