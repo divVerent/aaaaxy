@@ -49,15 +49,14 @@ jobs:
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           auto-push: true
-          comment-always: true
-          alert-threshold: 110%
+          alert-threshold: 115%
           comment-on-alert: true
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Archive Results
         if: ${{ always() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: regression-test-results-100percent-linux-amd64
           path: '*.dem.*.log
