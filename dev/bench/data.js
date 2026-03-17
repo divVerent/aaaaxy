@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1773755993953,
+  "lastUpdate": 1773777012246,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -3446,6 +3446,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.233085198,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "eb45b485e4c3fedb36f07e8146d04299b8c4aab1",
+          "message": "Module updates.\n\nRequire Go 1.25 now. This means macOS Monterey is now the minimum\nversion.",
+          "timestamp": "2026-03-17T20:40:44+01:00",
+          "tree_id": "0a8f2f94eaf66d657e699e30836e32c17f61d490",
+          "url": "https://github.com/divVerent/aaaaxy/commit/eb45b485e4c3fedb36f07e8146d04299b8c4aab1"
+        },
+        "date": 1773777008693,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 79.283606868,
             "unit": "Seconds"
           }
         ]
