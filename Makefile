@@ -71,6 +71,9 @@ CGO_ENV ?= \
 	CGO_CXXFLAGS="$(CGO_CXXFLAGS)" \
 	CGO_LDFLAGS="$(CGO_LDFLAGS)"
 
+# Other binaries.
+SED ?= sed
+
 .PHONY: all
 all: bin
 
@@ -91,10 +94,11 @@ vet:
 
 .PHONY: mod-tidy
 mod-tidy:
-	$(GO) mod tidy -compat=1.23
+	$(GO) mod tidy
 
 .PHONY: mod-update
 mod-update:
+	$(GO) get toolchain@go$(shell $(GO) list -m -f '{{.GoVersion}}' | sed 's/\.0$$//')
 	$(GO) get -u
 	$(MAKE) mod-tidy
 
