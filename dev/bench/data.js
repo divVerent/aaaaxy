@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1773876004715,
+  "lastUpdate": 1773876006408,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9328,6 +9328,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.3957475,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "651dd43b7d33c1edc5c9ec7802305790c0f6487d",
+          "message": "Don't actually need sed for this.",
+          "timestamp": "2026-03-18T06:20:00Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/651dd43b7d33c1edc5c9ec7802305790c0f6487d"
+        },
+        "date": 1773875998979,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.0993618,
             "unit": "Seconds"
           }
         ]
