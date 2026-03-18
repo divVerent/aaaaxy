@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1773814915197,
+  "lastUpdate": 1773814946770,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1796,6 +1796,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 228.104275938,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "1f522128c6646475d892a439f7cc5c173daab452",
+          "message": "Update GitHub for Go 1.25 properly.\n\nAlso, auto-update toolchain version.",
+          "timestamp": "2026-03-18T07:17:17+01:00",
+          "tree_id": "8f9904656067a7806e8db27552df0207a4b5ae35",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1f522128c6646475d892a439f7cc5c173daab452"
+        },
+        "date": 1773814942274,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 220.334934063,
             "unit": "Seconds"
           }
         ]
