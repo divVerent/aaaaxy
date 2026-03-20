@@ -91,10 +91,11 @@ vet:
 
 .PHONY: mod-tidy
 mod-tidy:
-	$(GO) mod tidy -compat=1.23
+	$(GO) mod tidy
 
 .PHONY: mod-update
 mod-update:
+	$(GO) get toolchain@go$(patsubst %.0,%,$(shell $(GO) list -m -f '{{.GoVersion}}'))
 	$(GO) get -u
 	$(MAKE) mod-tidy
 
