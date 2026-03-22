@@ -20,10 +20,15 @@ import (
 
 	"github.com/divVerent/aaaaxy/internal/audiowrap"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
+)
+
+var (
+	screenFlashStrength = flag.Float64("screen_flash_strength", 0.5, "strength of visual effects connected to sound effects")
 )
 
 type visual int
@@ -34,7 +39,7 @@ const (
 )
 
 const (
-	fadeInStrength = 0.125
+	fadeInStrength = 0.25
 )
 
 // SoundTarget just changes the music track to the given one.
@@ -100,7 +105,9 @@ func (s *SoundTarget) Update() {
 	if s.Frame > 0 {
 		switch s.Visual {
 		case fadeInVisual:
-			f := 1.0 - fadeInStrength*float64(s.Frame)/float64(s.Frames)
+			strength := *screenFlashStrength * fadeInStrength
+			remaining := float64(s.Frame) / float64(s.Frames)
+			f := 1.0 - strength*remaining
 			s.World.GlobalColorM.Scale(f, f, f, 1.0)
 			s.World.GlobalColorMSet = true
 		}
