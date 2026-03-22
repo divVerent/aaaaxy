@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774176964323,
+  "lastUpdate": 1774177295257,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1991,6 +1991,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 220.335961953,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "589182b567b311e2daaca5ad0c343e2507c560ec",
+          "message": "Actually use title case for Off too.",
+          "timestamp": "2026-03-22T11:56:39+01:00",
+          "tree_id": "af47a98b5d6cb7a46164be7112418216214bc66c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/589182b567b311e2daaca5ad0c343e2507c560ec"
+        },
+        "date": 1774177291078,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 219.124329059,
             "unit": "Seconds"
           }
         ]
