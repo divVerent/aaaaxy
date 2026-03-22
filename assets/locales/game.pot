@@ -671,7 +671,7 @@ msgid "nothing"
 msgstr ""
 
 #: menu/settings.go menu/settings.go
-msgid "off"
+msgid "Off"
 msgstr ""
 
 #: level/level.go

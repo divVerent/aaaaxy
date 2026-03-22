@@ -291,7 +291,7 @@ func toggleQuality(delta int) error {
 func currentVolume() string {
 	v := flag.Get[float64]("volume")
 	if v == 0 {
-		return locale.G.Get("off")
+		return locale.G.Get("Off")
 	}
 	return fmt.Sprintf("%.0f%%", v*100)
 }
@@ -322,7 +322,7 @@ func toggleVolume(delta int) error {
 func currentScreenFlashes() string {
 	v := flag.Get[float64]("screen_flash_strength")
 	if v == 0 {
-		return locale.G.Get("off")
+		return locale.G.Get("Off")
 	}
 	return fmt.Sprintf("%.0f%%", v*100)
 }
