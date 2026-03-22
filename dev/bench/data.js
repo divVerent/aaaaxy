@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774176663306,
+  "lastUpdate": 1774176687794,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7824,6 +7824,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 95.9373725,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "divVerent",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "485aabcad0f89ddd4d6f16f5146d4861ba37a633",
+          "message": "Add a setting for the strength of screen flash effects. (#602)\n\nAlso, show \"off\" instead of \"0%\" for volume and screen flashes.\n\nFixes #601.",
+          "timestamp": "2026-03-22T11:48:33+01:00",
+          "tree_id": "df1cf96da45cde4eae0b7bef25b826aa9f022523",
+          "url": "https://github.com/divVerent/aaaaxy/commit/485aabcad0f89ddd4d6f16f5146d4861ba37a633"
+        },
+        "date": 1774176681711,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.6335925,
             "unit": "Seconds"
           }
         ]
