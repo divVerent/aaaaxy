@@ -755,6 +755,37 @@
             ]
         },
         {
+            "color": "#ffff22cc",
+            "id": 14,
+            "members": [
+                {
+                    "name": "height",
+                    "type": "int"
+                },
+                {
+                    "name": "orientation",
+                    "type": "string",
+                    "value": "ES"
+                },
+                {
+                    "name": "solid",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "spawn_tiles_growth",
+                    "type": "string",
+                    "value": "0 0"
+                }
+            ],
+            "name": "JumpPadVert",
+            "type": "class",
+            "useAs": [
+                "object",
+                "tile"
+            ]
+        },
+        {
             "color": "#ffff00ff",
             "id": 14,
             "members": [

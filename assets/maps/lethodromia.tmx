@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="1024" height="1024" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3631">
+<map version="1.8" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="1024" height="1024" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3667">
  <properties>
   <property name="checkpoint_locations_hash" value="9123489463210257357"/>
   <property name="save_game_version" type="int" value="1"/>
@@ -5432,11 +5432,19 @@
   <object id="3605" gid="339" x="6832" y="11744" width="16" height="16"/>
   <object id="3606" gid="337" x="6784" y="11840" width="16" height="16"/>
   <object id="3607" gid="337" x="6736" y="11840" width="16" height="16"/>
-  <object id="3609" type="JumpPad" x="6721" y="11679" width="352" height="1"/>
-  <object id="3610" type="JumpPad" x="6672" y="11568" width="368" height="1"/>
-  <object id="3611" type="JumpPad" x="6721" y="11855" width="286" height="1"/>
-  <object id="3613" type="JumpPad" x="6672" y="11744" width="96" height="1"/>
-  <object id="3614" type="JumpPad" x="6880" y="11744" width="128" height="1"/>
+  <object id="3609" type="JumpPadVert" x="6721" y="11679" width="351" height="1">
+   <properties>
+    <property name="height" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="3610" type="JumpPadVert" x="6672" y="11568" width="368" height="1">
+   <properties>
+    <property name="height" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="3611" type="JumpPadVert" x="6721" y="11855" width="286" height="1"/>
+  <object id="3613" type="JumpPadVert" x="6672" y="11744" width="96" height="1"/>
+  <object id="3614" type="JumpPadVert" x="6944" y="11744" width="128" height="1"/>
   <object id="3615" type="SetState" x="7624" y="11296" width="16" height="112">
    <properties>
     <property name="target" value="ContinueSB3 !ContinueSB2"/>
@@ -5487,5 +5495,329 @@
   </object>
   <object id="3628" gid="325" x="6679" y="11632" width="32" height="32"/>
   <object id="3630" gid="320" x="6992" y="11600" width="32" height="32"/>
+  <object id="3631" type="Animation" x="6976" y="11676" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3632" type="Animation" x="7024" y="11676" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3633" type="Animation" x="6944" y="11676" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3634" type="Animation" x="6880" y="11676" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3635" type="Animation" x="6864" y="11676" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3636" type="Animation" x="6816" y="11676" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3637" type="Animation" x="6800" y="11676" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3638" type="Animation" x="6736" y="11676" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3639" type="Animation" x="6720" y="11676" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3640" type="Animation" x="6960" y="11568" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3641" type="Animation" x="6928" y="11568" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3642" type="Animation" x="6752" y="11568" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3643" type="Animation" x="6784" y="11568" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3644" type="Animation" x="6672" y="11568" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3645" type="Animation" x="6704" y="11568" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3646" type="Animation" x="7008" y="11568" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3647" type="Animation" x="6848" y="11568" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3648" type="Animation" x="6880" y="11568" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3649" type="Animation" x="6816" y="11568" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3650" type="Animation" x="6976" y="11851" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3651" type="Animation" x="6848" y="11851" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3652" type="Animation" x="6816" y="11851" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3653" type="Animation" x="6752" y="11851" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3654" type="Animation" x="6672" y="11744" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3655" type="Animation" x="6704" y="11744" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3656" type="Animation" x="6736" y="11744" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3657" type="Animation" x="6944" y="11744" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3658" type="Animation" x="6976" y="11744" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3659" type="Animation" x="7024" y="11744" width="32" height="5">
+   <properties>
+    <property name="animation" value="jumppad32"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3660" type="Animation" x="7056" y="11744" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3661" type="Animation" x="6928" y="11851" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3662" type="Animation" x="6960" y="11851" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3663" type="Animation" x="6896" y="11851" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3664" type="Animation" x="6720" y="11851" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3665" type="Animation" x="6800" y="11851" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="3666" type="Animation" x="7056" y="11675" width="16" height="5">
+   <properties>
+    <property name="animation" value="jumppad16"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
