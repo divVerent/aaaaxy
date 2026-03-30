@@ -1,11 +1,10 @@
-# 
 # Translators:
 # Denis Kočkarov, 2025
-# Rudolf Polzer, 2025
+# Rudolf Polzer, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Belarusian (Tarask) (https://app.transifex.com/aaaaxy/teams/158611/be@tarask/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -435,6 +434,10 @@ msgstr "San Francisco"
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr "Ački: {{Score}}{{SpeedrunCategoriesShort}} | Čas: {{GameTime}}"
 
+#: menu/settings.go
+msgid "Screen Flashes: %s"
+msgstr "Mihacennie ekrana: %s"
+
 #: menu/main.go menu/settings.go
 msgid "Settings"
 msgstr "Nałady"
@@ -678,6 +681,10 @@ msgstr "zahružajem fajł roŭnia"
 #: fun/string.go
 msgid "nothing"
 msgstr "ničoha"
+
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "Vykl"
 
 #: level/level.go
 msgid "parsing level data"
