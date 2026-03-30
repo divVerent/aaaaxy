@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774884638451,
+  "lastUpdate": 1774884704705,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10038,35 +10038,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "746f6e344dec8c8d136adb6fc8bc43068996f326",
-          "message": "Retune alert thresholds.",
-          "timestamp": "2026-02-03T19:54:24+01:00",
-          "tree_id": "f0d15b52ac191bdbce92d35573d45aa669981a0e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/746f6e344dec8c8d136adb6fc8bc43068996f326"
-        },
-        "date": 1770145069444,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.3876793,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "33236efc3e86c2f68a1564943a276af97163f70c",
           "message": "Also run go-current on every push.",
           "timestamp": "2026-02-03T19:55:38+01:00",
@@ -12525,6 +12496,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.2593135,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "dbe6f6eebfe17e3b0465706839e9404ac11560e0",
+          "message": "Bump android-actions/setup-android from 3 to 4 (#626)\n\nBumps [android-actions/setup-android](https://github.com/android-actions/setup-android) from 3 to 4.\n- [Release notes](https://github.com/android-actions/setup-android/releases)\n- [Commits](https://github.com/android-actions/setup-android/compare/v3...v4)\n\n---\nupdated-dependencies:\n- dependency-name: android-actions/setup-android\n  dependency-version: '4'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T17:27:35+02:00",
+          "tree_id": "90a42695d609225d39c7193550be9277ea3ed954",
+          "url": "https://github.com/divVerent/aaaaxy/commit/dbe6f6eebfe17e3b0465706839e9404ac11560e0"
+        },
+        "date": 1774884697884,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.5980739,
             "unit": "Seconds"
           }
         ]
