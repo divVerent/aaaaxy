@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774880674445,
+  "lastUpdate": 1774880743743,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "bf65c30461c4cdebc23cdd71d42f33050846100f",
-          "message": "Ebitengine update.",
-          "timestamp": "2026-02-02T15:46:27+01:00",
-          "tree_id": "48b5fc44f3d23db381f7a9c39c84335087542698",
-          "url": "https://github.com/divVerent/aaaaxy/commit/bf65c30461c4cdebc23cdd71d42f33050846100f"
-        },
-        "date": 1770043867406,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 225.630157542,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2499,6 +2470,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 219.313247293,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6480505cf584d5d9fd3db2fa0cdf3a6f4b231ea5",
+          "message": "Translate level.pot in be@tarask [Manual Sync] (#619)\n\n100% reviewed source file: 'level.pot'\non 'be@tarask'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:11:21+02:00",
+          "tree_id": "22f198276ceee226f0563c55f6f03d0dd2b1234b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/6480505cf584d5d9fd3db2fa0cdf3a6f4b231ea5"
+        },
+        "date": 1774880739264,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 219.571626983,
             "unit": "Seconds"
           }
         ]
