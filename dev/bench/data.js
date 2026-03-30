@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774884897735,
+  "lastUpdate": 1774884952775,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "33236efc3e86c2f68a1564943a276af97163f70c",
-          "message": "Also run go-current on every push.",
-          "timestamp": "2026-02-03T18:55:38Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/33236efc3e86c2f68a1564943a276af97163f70c"
-        },
-        "date": 1770212735693,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 223.288344887,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2501,6 +2474,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 226.630212565,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "fd42fddab222a657d85c2105849660c90217ca49",
+          "message": "Module update.",
+          "timestamp": "2026-03-30T17:29:48+02:00",
+          "tree_id": "ee70d399ea0a3ba3eedf4491cb2a3658999211e7",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
+        },
+        "date": 1774884948325,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 221.07687547,
             "unit": "Seconds"
           }
         ]
