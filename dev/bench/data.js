@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774879572915,
+  "lastUpdate": 1774879607074,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2439,6 +2439,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 224.04293032,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "00639f4fe911eef4c101123376c7108b94ce552d",
+          "message": "Translate level.pot in ar [Manual Sync] (#610)\n\n98% of minimum 97% reviewed source file: 'level.pot'\non 'ar'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T15:51:10+02:00",
+          "tree_id": "42d1981f25b69c7bf34717f74eb9976e7ae37b53",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00639f4fe911eef4c101123376c7108b94ce552d"
+        },
+        "date": 1774879603129,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 226.001843812,
             "unit": "Seconds"
           }
         ]
