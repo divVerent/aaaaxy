@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774880816716,
+  "lastUpdate": 1774880846087,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9821,6 +9821,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.0386187,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6fedeabb8fad82110bf497c99cb2be4b89a99ee7",
+          "message": "Translate game.pot in ja [Manual Sync] (#608)\n\n98% of minimum 97% reviewed source file: 'game.pot'\non 'ja'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T15:50:57+02:00",
+          "tree_id": "e5faa2d4f92bd21e478a93301aa497133b30fe39",
+          "url": "https://github.com/divVerent/aaaaxy/commit/6fedeabb8fad82110bf497c99cb2be4b89a99ee7"
+        },
+        "date": 1774880839268,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.1402368,
             "unit": "Seconds"
           }
         ]
