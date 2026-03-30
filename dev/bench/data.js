@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774885103893,
+  "lastUpdate": 1774885124156,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2528,33 +2528,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-02-06T19:10:57Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/258bbb71d9974bd3d3c7ab17ee016cffdf9f9903"
         },
-        "date": 1770465963025,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 72.424823588,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "258bbb71d9974bd3d3c7ab17ee016cffdf9f9903",
-          "message": "Increase alert threshold due to noise.",
-          "timestamp": "2026-02-06T19:10:57Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/258bbb71d9974bd3d3c7ab17ee016cffdf9f9903"
-        },
         "date": 1770552368117,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5013,6 +4986,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 73.937585473,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "dbe6f6eebfe17e3b0465706839e9404ac11560e0",
+          "message": "Bump android-actions/setup-android from 3 to 4 (#626)\n\nBumps [android-actions/setup-android](https://github.com/android-actions/setup-android) from 3 to 4.\n- [Release notes](https://github.com/android-actions/setup-android/releases)\n- [Commits](https://github.com/android-actions/setup-android/compare/v3...v4)\n\n---\nupdated-dependencies:\n- dependency-name: android-actions/setup-android\n  dependency-version: '4'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T17:27:35+02:00",
+          "tree_id": "90a42695d609225d39c7193550be9277ea3ed954",
+          "url": "https://github.com/divVerent/aaaaxy/commit/dbe6f6eebfe17e3b0465706839e9404ac11560e0"
+        },
+        "date": 1774885120439,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 72.833775187,
             "unit": "Seconds"
           }
         ]
