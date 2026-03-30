@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774881772580,
+  "lastUpdate": 1774881779193,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7528,35 +7528,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "746f6e344dec8c8d136adb6fc8bc43068996f326",
-          "message": "Retune alert thresholds.",
-          "timestamp": "2026-02-03T19:54:24+01:00",
-          "tree_id": "f0d15b52ac191bdbce92d35573d45aa669981a0e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/746f6e344dec8c8d136adb6fc8bc43068996f326"
-        },
-        "date": 1770145058014,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.6777699,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "33236efc3e86c2f68a1564943a276af97163f70c",
           "message": "Also run go-current on every push.",
           "timestamp": "2026-02-03T19:55:38+01:00",
@@ -10013,6 +9984,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 98.913817,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4c322cbddda0adbb33dc4da1ac65929a589de64e",
+          "message": "Translate level.pot in ja [Manual Sync] (#621)\n\n100% reviewed source file: 'level.pot'\non 'ja'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:11:26+02:00",
+          "tree_id": "62fcedd6915c03abc7c3d182a9de6ef360d3b43d",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4c322cbddda0adbb33dc4da1ac65929a589de64e"
+        },
+        "date": 1774881771222,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.0393959,
             "unit": "Seconds"
           }
         ]
