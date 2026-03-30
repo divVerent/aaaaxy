@@ -1,12 +1,11 @@
-# 
 # Translators:
 # Anthony Wang, 2024
 # Ran Dint, 2025
-# Rudolf Polzer, 2025
+# Rudolf Polzer, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Chinese Traditional (https://app.transifex.com/aaaaxy/teams/158611/zh-Hant/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -436,6 +435,10 @@ msgstr "舊金山"
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr "分數：{{Score}}{{SpeedrunCategoriesShort}} | 時間：{{GameTime}}"
 
+#: menu/settings.go
+msgid "Screen Flashes: %s"
+msgstr "螢幕閃爍效果：%s"
+
 #: menu/main.go menu/settings.go
 msgid "Settings"
 msgstr "設置"
@@ -679,6 +682,10 @@ msgstr "載入關卡文件"
 #: fun/string.go
 msgid "nothing"
 msgstr "沒有東西"
+
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "關"
 
 #: level/level.go
 msgid "parsing level data"
