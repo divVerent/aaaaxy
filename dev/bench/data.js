@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774885005046,
+  "lastUpdate": 1774885065267,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2514,33 +2514,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "33236efc3e86c2f68a1564943a276af97163f70c",
-          "message": "Also run go-current on every push.",
-          "timestamp": "2026-02-03T18:55:38Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/33236efc3e86c2f68a1564943a276af97163f70c"
-        },
-        "date": 1770381199334,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 78.476344003,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -5011,6 +4984,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 74.63402465,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "42765fa0c391c77c3d53d0c7c0bca7d2342fb763",
+          "message": "Sync Belarusian as well.",
+          "timestamp": "2026-03-30T17:28:51+02:00",
+          "tree_id": "4ed8278952f070f262c7a8d5e3cd7c25ce06c68c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/42765fa0c391c77c3d53d0c7c0bca7d2342fb763"
+        },
+        "date": 1774885061599,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 72.029640788,
             "unit": "Seconds"
           }
         ]
