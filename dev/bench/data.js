@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774880898156,
+  "lastUpdate": 1774880908540,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "746f6e344dec8c8d136adb6fc8bc43068996f326",
-          "message": "Retune alert thresholds.",
-          "timestamp": "2026-02-03T19:54:24+01:00",
-          "tree_id": "f0d15b52ac191bdbce92d35573d45aa669981a0e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/746f6e344dec8c8d136adb6fc8bc43068996f326"
-        },
-        "date": 1770145145416,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 218.134380088,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2501,6 +2472,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 219.280502097,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9596888e7980fa0fd98f7d2cf0206d97a08e6e87",
+          "message": "Translate level.pot in ar_EG [Manual Sync] (#616)\n\n98% of minimum 97% reviewed source file: 'level.pot'\non 'ar_EG'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:11:38+02:00",
+          "tree_id": "689cec924c3440520fceafa01085238227fc6552",
+          "url": "https://github.com/divVerent/aaaaxy/commit/9596888e7980fa0fd98f7d2cf0206d97a08e6e87"
+        },
+        "date": 1774880896182,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 217.22290259,
             "unit": "Seconds"
           }
         ]
