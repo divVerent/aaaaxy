@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774881158264,
+  "lastUpdate": 1774881174658,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2510,33 +2510,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "bf65c30461c4cdebc23cdd71d42f33050846100f",
-          "message": "Ebitengine update.",
-          "timestamp": "2026-02-02T14:45:48Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/bf65c30461c4cdebc23cdd71d42f33050846100f"
-        },
-        "date": 1770121974545,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 71.89372844,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -5001,6 +4974,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 73.345822234,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ef589da51e9ebf814f3f93c27ad585daf70931a6",
+          "message": "Translate level.pot in zh-Hans [Manual Sync] (#618)\n\n100% reviewed source file: 'level.pot'\non 'zh-Hans'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:10:54+02:00",
+          "tree_id": "8b548cdc17adf1d4c69c6c4596b4ed9e09ddacb7",
+          "url": "https://github.com/divVerent/aaaaxy/commit/ef589da51e9ebf814f3f93c27ad585daf70931a6"
+        },
+        "date": 1774881171087,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 72.874227028,
             "unit": "Seconds"
           }
         ]
