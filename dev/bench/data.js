@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774881336635,
+  "lastUpdate": 1774881358046,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7454,35 +7454,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "b369e36d57fcbe255fc646f033cf94bec70c234a",
-          "message": "Integrate with github-action-benchmark.",
-          "timestamp": "2026-01-30T05:55:57-05:00",
-          "tree_id": "f6663aeb5500f3d1890e1054eff71c06a6408fb9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b369e36d57fcbe255fc646f033cf94bec70c234a"
-        },
-        "date": 1769770802444,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 97.5029618,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "divVerent@gmail.com"
@@ -9945,6 +9916,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.2545219,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f8c2ba4f2cba18bb0c76709716bffa5774018456",
+          "message": "Translate game.pot in zh-Hans [Manual Sync] (#614)\n\n98% of minimum 97% reviewed source file: 'game.pot'\non 'zh-Hans'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T15:51:22+02:00",
+          "tree_id": "aa2be4daa1707a0c12ebc7cf1505e094b4e85307",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f8c2ba4f2cba18bb0c76709716bffa5774018456"
+        },
+        "date": 1774881352189,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.0407111,
             "unit": "Seconds"
           }
         ]
