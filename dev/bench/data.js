@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774881588118,
+  "lastUpdate": 1774881592114,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7518,35 +7518,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "37f1350633222eaee9186bf9bb002a10ad37b91a",
-          "message": "Bump apple-actions/import-codesign-certs from 3 to 6 (#589)\n\nBumps [apple-actions/import-codesign-certs](https://github.com/apple-actions/import-codesign-certs) from 3 to 6.\n- [Release notes](https://github.com/apple-actions/import-codesign-certs/releases)\n- [Commits](https://github.com/apple-actions/import-codesign-certs/compare/v3...v6)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/import-codesign-certs\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-02-02T15:41:29+01:00",
-          "tree_id": "ae7619607aeb724512bae28a0c5f520d1e0b5ba0",
-          "url": "https://github.com/divVerent/aaaaxy/commit/37f1350633222eaee9186bf9bb002a10ad37b91a"
-        },
-        "date": 1770043517729,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.5209426,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -10011,6 +9982,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.8921332,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2d50cd11def11c34bd25686365784195aee82a02",
+          "message": "Translate level.pot in uk [Manual Sync] (#617)\n\n100% reviewed source file: 'level.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:10:46+02:00",
+          "tree_id": "1484596c52327bd696c8dee18865df4719f0db38",
+          "url": "https://github.com/divVerent/aaaaxy/commit/2d50cd11def11c34bd25686365784195aee82a02"
+        },
+        "date": 1774881579115,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 98.1005727,
             "unit": "Seconds"
           }
         ]
