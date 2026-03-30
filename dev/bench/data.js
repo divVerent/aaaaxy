@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774881843429,
+  "lastUpdate": 1774881852784,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5016,35 +5016,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "33236efc3e86c2f68a1564943a276af97163f70c",
-          "message": "Also run go-current on every push.",
-          "timestamp": "2026-02-03T19:55:38+01:00",
-          "tree_id": "2db3964f0312c250c0aa8adae38a514cb7cdbaec",
-          "url": "https://github.com/divVerent/aaaaxy/commit/33236efc3e86c2f68a1564943a276af97163f70c"
-        },
-        "date": 1770145197753,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 72.460897007,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7511,6 +7482,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 77.668863294,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6480505cf584d5d9fd3db2fa0cdf3a6f4b231ea5",
+          "message": "Translate level.pot in be@tarask [Manual Sync] (#619)\n\n100% reviewed source file: 'level.pot'\non 'be@tarask'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:11:21+02:00",
+          "tree_id": "22f198276ceee226f0563c55f6f03d0dd2b1234b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/6480505cf584d5d9fd3db2fa0cdf3a6f4b231ea5"
+        },
+        "date": 1774881848273,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 70.98108758,
             "unit": "Seconds"
           }
         ]
