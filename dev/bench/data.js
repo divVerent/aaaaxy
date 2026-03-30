@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774880846087,
+  "lastUpdate": 1774880898156,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "bf65c30461c4cdebc23cdd71d42f33050846100f",
-          "message": "Ebitengine update.",
-          "timestamp": "2026-02-02T14:45:48Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/bf65c30461c4cdebc23cdd71d42f33050846100f"
-        },
-        "date": 1770126330180,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 223.29856851,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2499,6 +2472,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 219.571626983,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4c322cbddda0adbb33dc4da1ac65929a589de64e",
+          "message": "Translate level.pot in ja [Manual Sync] (#621)\n\n100% reviewed source file: 'level.pot'\non 'ja'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:11:26+02:00",
+          "tree_id": "62fcedd6915c03abc7c3d182a9de6ef360d3b43d",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4c322cbddda0adbb33dc4da1ac65929a589de64e"
+        },
+        "date": 1774880880772,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 219.280502097,
             "unit": "Seconds"
           }
         ]
