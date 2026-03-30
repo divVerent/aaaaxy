@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774879199537,
+  "lastUpdate": 1774879219374,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4643,6 +4643,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 74.143562582,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6b6e215e9c388fa09498aca1a7d4839f8e57b043",
+          "message": "Translate game.pot in zh-Hant [Manual Sync] (#623)\n\n98% of minimum 97% reviewed source file: 'game.pot'\non 'zh-Hant'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T15:50:35+02:00",
+          "tree_id": "5154b3f53754b0b61e2ba94e02ddd7664a9f004d",
+          "url": "https://github.com/divVerent/aaaaxy/commit/6b6e215e9c388fa09498aca1a7d4839f8e57b043"
+        },
+        "date": 1774879214961,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 78.000823861,
             "unit": "Seconds"
           }
         ]
