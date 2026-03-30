@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774881556671,
+  "lastUpdate": 1774881560515,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10029,35 +10029,6 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": false,
-          "id": "8cf106b59ecf88720078476e6a4f3805272caa36",
-          "message": "Add a GitHub Action for iOS deployment.\n\nThat way I should be able to release without the now broken macOS\ninstall on my Macbook.",
-          "timestamp": "2026-02-02T07:16:59+01:00",
-          "tree_id": "f10234a8c09cb6f60e7c449906124a4f6f25a3ae",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8cf106b59ecf88720078476e6a4f3805272caa36"
-        },
-        "date": 1770013326738,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.3918517,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
           "distinct": true,
           "id": "c7a088d4ae32837477646fee775781598d5a9429",
           "message": "Make Go iOS deployment workflow actually work.",
@@ -12515,6 +12486,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.152947,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f000f26ebc8cb243a99c6a3cb5b21819528f4de4",
+          "message": "Translate level.pot in la [Manual Sync] (#613)\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:10:40+02:00",
+          "tree_id": "416e4d3713472f143c92df87fcd783a67a477369",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f000f26ebc8cb243a99c6a3cb5b21819528f4de4"
+        },
+        "date": 1774881554336,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.9520204,
             "unit": "Seconds"
           }
         ]
