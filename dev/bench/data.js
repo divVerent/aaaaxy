@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774880252617,
+  "lastUpdate": 1774880290667,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "8cf106b59ecf88720078476e6a4f3805272caa36",
-          "message": "Add a GitHub Action for iOS deployment.\n\nThat way I should be able to release without the now broken macOS\ninstall on my Macbook.",
-          "timestamp": "2026-02-02T07:16:59+01:00",
-          "tree_id": "f10234a8c09cb6f60e7c449906124a4f6f25a3ae",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8cf106b59ecf88720078476e6a4f3805272caa36"
-        },
-        "date": 1770013372597,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 223.377691654,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2499,6 +2470,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 215.835961733,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "9596888e7980fa0fd98f7d2cf0206d97a08e6e87",
+          "message": "Translate level.pot in ar_EG [Manual Sync] (#616)\n\n98% of minimum 97% reviewed source file: 'level.pot'\non 'ar_EG'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T14:11:38Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/9596888e7980fa0fd98f7d2cf0206d97a08e6e87"
+        },
+        "date": 1774880285215,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 217.425462588,
             "unit": "Seconds"
           }
         ]
