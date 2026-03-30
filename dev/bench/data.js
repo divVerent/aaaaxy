@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774880454518,
+  "lastUpdate": 1774880457737,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "c7a088d4ae32837477646fee775781598d5a9429",
-          "message": "Make Go iOS deployment workflow actually work.",
-          "timestamp": "2026-02-02T07:43:43Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/c7a088d4ae32837477646fee775781598d5a9429"
-        },
-        "date": 1770039910048,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 223.576033479,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2497,6 +2470,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 228.549892792,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f000f26ebc8cb243a99c6a3cb5b21819528f4de4",
+          "message": "Translate level.pot in la [Manual Sync] (#613)\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:10:40+02:00",
+          "tree_id": "416e4d3713472f143c92df87fcd783a67a477369",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f000f26ebc8cb243a99c6a3cb5b21819528f4de4"
+        },
+        "date": 1774880452272,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 220.068003754,
             "unit": "Seconds"
           }
         ]
