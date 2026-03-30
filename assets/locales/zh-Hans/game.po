@@ -1,11 +1,10 @@
-# 
 # Translators:
 # Anthony Wang, 2025
-# Rudolf Polzer, 2025
+# Rudolf Polzer, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Chinese Simplified (https://app.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -435,6 +434,10 @@ msgstr "旧金山"
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr "分数：{{Score}}{{SpeedrunCategoriesShort}} | 时间：{{GameTime}}"
 
+#: menu/settings.go
+msgid "Screen Flashes: %s"
+msgstr "屏幕闪烁效果：%s"
+
 #: menu/main.go menu/settings.go
 msgid "Settings"
 msgstr "设置"
@@ -678,6 +681,10 @@ msgstr "加载关卡文件"
 #: fun/string.go
 msgid "nothing"
 msgstr "零个东西"
+
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "关"
 
 #: level/level.go
 msgid "parsing level data"
