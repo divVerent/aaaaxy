@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774881526108,
+  "lastUpdate": 1774881551825,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7528,35 +7528,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "15668e2888a50ea87fe97046d76f4c42dc4f99ce",
-          "message": "Bump apple-actions/upload-testflight-build from 3 to 4 (#590)\n\nBumps [apple-actions/upload-testflight-build](https://github.com/apple-actions/upload-testflight-build) from 3 to 4.\n- [Release notes](https://github.com/apple-actions/upload-testflight-build/releases)\n- [Commits](https://github.com/apple-actions/upload-testflight-build/compare/v3...v4)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/upload-testflight-build\n  dependency-version: '4'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-02-02T15:41:14+01:00",
-          "tree_id": "ce3e804beade57d989cca35e32201fc2af06d362",
-          "url": "https://github.com/divVerent/aaaaxy/commit/15668e2888a50ea87fe97046d76f4c42dc4f99ce"
-        },
-        "date": 1770043474314,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.2178005,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "37f1350633222eaee9186bf9bb002a10ad37b91a",
           "message": "Bump apple-actions/import-codesign-certs from 3 to 6 (#589)\n\nBumps [apple-actions/import-codesign-certs](https://github.com/apple-actions/import-codesign-certs) from 3 to 6.\n- [Release notes](https://github.com/apple-actions/import-codesign-certs/releases)\n- [Commits](https://github.com/apple-actions/import-codesign-certs/compare/v3...v6)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/import-codesign-certs\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
           "timestamp": "2026-02-02T15:41:29+01:00",
@@ -10011,6 +9982,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 97.3392963,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f000f26ebc8cb243a99c6a3cb5b21819528f4de4",
+          "message": "Translate level.pot in la [Manual Sync] (#613)\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:10:40+02:00",
+          "tree_id": "416e4d3713472f143c92df87fcd783a67a477369",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f000f26ebc8cb243a99c6a3cb5b21819528f4de4"
+        },
+        "date": 1774881536085,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.8921332,
             "unit": "Seconds"
           }
         ]
