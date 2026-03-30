@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1774881564676,
+  "lastUpdate": 1774881588118,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10020,35 +10020,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "c7a088d4ae32837477646fee775781598d5a9429",
-          "message": "Make Go iOS deployment workflow actually work.",
-          "timestamp": "2026-02-02T08:43:43+01:00",
-          "tree_id": "efea717c7853c58c55ade4b6e5a12bd9c3becef5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/c7a088d4ae32837477646fee775781598d5a9429"
-        },
-        "date": 1770018451083,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.1619732,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "49699333+dependabot[bot]@users.noreply.github.com",
             "name": "dependabot[bot]",
             "username": "dependabot[bot]"
@@ -12515,6 +12486,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 102.9520204,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2d50cd11def11c34bd25686365784195aee82a02",
+          "message": "Translate level.pot in uk [Manual Sync] (#617)\n\n100% reviewed source file: 'level.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-30T16:10:46+02:00",
+          "tree_id": "1484596c52327bd696c8dee18865df4719f0db38",
+          "url": "https://github.com/divVerent/aaaaxy/commit/2d50cd11def11c34bd25686365784195aee82a02"
+        },
+        "date": 1774881580140,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.1085706,
             "unit": "Seconds"
           }
         ]
