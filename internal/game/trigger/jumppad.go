@@ -55,7 +55,7 @@ func (j *JumpPad) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Ent
 	var parseErr error
 	w.SetSolid(e, propmap.ValueOrP(sp.Properties, "solid", true, &parseErr)) // Default true.
 
-	j.JumpUpOnly = propmap.ValueOrP(sp.Properties, "jump_up_only", true, &parseErr)
+	j.JumpUpOnly = propmap.ValueOrP(sp.Properties, "jump_up_only", false, &parseErr)
 
 	delta := propmap.ValueP(sp.Properties, "delta", m.Delta{}, &parseErr)
 	relDelta := propmap.ValueOrP(sp.Properties, "rel_delta", m.Delta{}, &parseErr)
