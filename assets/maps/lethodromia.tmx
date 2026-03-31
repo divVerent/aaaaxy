@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="1024" height="1024" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3667">
  <properties>
-  <property name="checkpoint_locations_hash" value="9123489463210257357"/>
+  <property name="checkpoint_locations_hash" value="2851351445800736238"/>
   <property name="save_game_version" type="int" value="1"/>
  </properties>
  <tileset firstgid="1" source="../tiles/tiles.tsx"/>
@@ -5432,19 +5432,41 @@
   <object id="3605" gid="339" x="6832" y="11744" width="16" height="16"/>
   <object id="3606" gid="337" x="6784" y="11840" width="16" height="16"/>
   <object id="3607" gid="337" x="6736" y="11840" width="16" height="16"/>
-  <object id="3609" type="JumpPadVert" x="6721" y="11679" width="351" height="1">
+  <object id="3609" type="JumpPad" x="6721" y="11679" width="351" height="1">
    <properties>
+    <property name="delta" value="0 10"/>
     <property name="height" type="int" value="30"/>
+    <property name="jump_up_only" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3610" type="JumpPadVert" x="6672" y="11568" width="368" height="1">
+  <object id="3610" type="JumpPad" x="6672" y="11568" width="368" height="1">
    <properties>
+    <property name="delta" value="0 10"/>
     <property name="height" type="int" value="30"/>
+    <property name="jump_up_only" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3611" type="JumpPadVert" x="6721" y="11855" width="286" height="1"/>
-  <object id="3613" type="JumpPadVert" x="6672" y="11744" width="96" height="1"/>
-  <object id="3614" type="JumpPadVert" x="6944" y="11744" width="128" height="1"/>
+  <object id="3611" type="JumpPad" x="6721" y="11855" width="286" height="1">
+   <properties>
+    <property name="delta" value="0 10"/>
+    <property name="height" type="int" value="30"/>
+    <property name="jump_up_only" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="3613" type="JumpPad" x="6672" y="11744" width="96" height="1">
+   <properties>
+    <property name="delta" value="0 10"/>
+    <property name="height" type="int" value="30"/>
+    <property name="jump_up_only" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="3614" type="JumpPad" x="6944" y="11744" width="128" height="1">
+   <properties>
+    <property name="delta" value="0 10"/>
+    <property name="height" type="int" value="30"/>
+    <property name="jump_up_only" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="3615" type="SetState" x="7624" y="11296" width="16" height="112">
    <properties>
     <property name="target" value="ContinueSB3 !ContinueSB2"/>

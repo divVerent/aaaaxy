@@ -40,6 +40,8 @@ type JumpPad struct {
 	Destination m.Pos
 	Height      int
 
+	JumpUpOnly	bool
+
 	TouchedFrame int
 	JumpSound    *sound.Sound
 }
@@ -52,6 +54,8 @@ func (j *JumpPad) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Ent
 
 	var parseErr error
 	w.SetSolid(e, propmap.ValueOrP(sp.Properties, "solid", true, &parseErr)) // Default true.
+
+	j.JumpUpOnly = propmap.ValueOrP(sp.Properties, "jump_up_only", true, &parseErr)
 
 	delta := propmap.ValueP(sp.Properties, "delta", m.Delta{}, &parseErr)
 	relDelta := propmap.ValueOrP(sp.Properties, "rel_delta", m.Delta{}, &parseErr)
@@ -135,7 +139,12 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 		return
 	}
 	// Compute parameters for jump.
-	source := other.Rect.Foot()
+	source := m.Pos{}
+	if j.JumpUpOnly {
+		source = j.Entity.Rect.CenterTop()
+	} else {
+		source = other.Rect.Foot()
+	}
 	dest := j.Destination
 	delta := dest.Delta(source)
 	// Can't jump from the "opposite side" of the jumppad (not gonna work either).
@@ -156,12 +165,17 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 		return
 	}
 	// Perform the jump.
+	velToJump := m.Delta{}
 	if p.ReadOnGroundVec().DY < 0 {
 		// HACK: Can we rather support arbitrary OnGroundVec?
-		p.SetVelocityForJump(m.FlipY().Apply(calculateJump(m.FlipY().Apply(delta), j.Height)))
+		velToJump = m.FlipY().Apply(calculateJump(m.FlipY().Apply(delta), j.Height))
 	} else {
-		p.SetVelocityForJump(calculateJump(delta, j.Height))
+		velToJump = calculateJump(delta, j.Height)
 	}
+	if j.JumpUpOnly {
+		velToJump.DX = p.ReadVelocity().DX
+	}
+	p.SetVelocityForJump(velToJump)
 	j.JumpSound.Play()
 }
 
