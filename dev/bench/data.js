@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1775052871420,
+  "lastUpdate": 1775085943909,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5034,33 +5034,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-02-06T19:10:57Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/258bbb71d9974bd3d3c7ab17ee016cffdf9f9903"
         },
-        "date": 1770506232485,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.7448756,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "258bbb71d9974bd3d3c7ab17ee016cffdf9f9903",
-          "message": "Increase alert threshold due to noise.",
-          "timestamp": "2026-02-06T19:10:57Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/258bbb71d9974bd3d3c7ab17ee016cffdf9f9903"
-        },
         "date": 1770592674744,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7519,6 +7492,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 68.572737819,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fd42fddab222a657d85c2105849660c90217ca49",
+          "message": "Module update.",
+          "timestamp": "2026-03-30T15:29:48Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
+        },
+        "date": 1775085939475,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 72.574430999,
             "unit": "Seconds"
           }
         ]
