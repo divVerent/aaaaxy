@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1775219976501,
+  "lastUpdate": 1775223937857,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "258bbb71d9974bd3d3c7ab17ee016cffdf9f9903",
-          "message": "Increase alert threshold due to noise.",
-          "timestamp": "2026-02-06T19:10:57Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/258bbb71d9974bd3d3c7ab17ee016cffdf9f9903"
-        },
-        "date": 1770557407835,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 216.651427223,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2503,6 +2476,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 217.819875379,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fd42fddab222a657d85c2105849660c90217ca49",
+          "message": "Module update.",
+          "timestamp": "2026-03-30T15:29:48Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
+        },
+        "date": 1775223934156,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 217.399080095,
             "unit": "Seconds"
           }
         ]
