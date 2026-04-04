@@ -139,11 +139,9 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 		return
 	}
 	// Compute parameters for jump.
-	source := m.Pos{}
+	source := other.Rect.Foot()
 	if j.JumpUpOnly {
 		source = j.Entity.Rect.CenterTop()
-	} else {
-		source = other.Rect.Foot()
 	}
 	dest := j.Destination
 	delta := dest.Delta(source)
