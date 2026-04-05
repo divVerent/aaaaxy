@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1775392389533,
+  "lastUpdate": 1775396327691,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "38abcf394cf7e2ffcce0e1f1dbd89259b5600268",
-          "message": "Release v1.7.12\n\nChanges since v1.6.338:\n  - Engine: module updates.\n  - Engine: fix occasional spike appearing inside a solid wall; also speedup\n    despawning by one frame, yielding slightly faster possible speedruns.\n    (Fixes #587)",
-          "timestamp": "2026-02-09T07:53:03+01:00",
-          "tree_id": "80afe1c079c011b988de24fa3d917a1bbcea1502",
-          "url": "https://github.com/divVerent/aaaaxy/commit/38abcf394cf7e2ffcce0e1f1dbd89259b5600268"
-        },
-        "date": 1770623124087,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 223.288544983,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2501,6 +2472,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 217.620383704,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fd42fddab222a657d85c2105849660c90217ca49",
+          "message": "Module update.",
+          "timestamp": "2026-03-30T15:29:48Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
+        },
+        "date": 1775396323023,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 224.244620807,
             "unit": "Seconds"
           }
         ]
