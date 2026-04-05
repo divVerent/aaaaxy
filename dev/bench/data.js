@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1775396327691,
+  "lastUpdate": 1775431287798,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5020,35 +5020,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "0ed0b152684ecdb7c2b41c57256091508c890030",
-          "message": "Fix release publish script.",
-          "timestamp": "2026-02-09T09:08:11+01:00",
-          "tree_id": "ff8e96a2a1726c2b6a2e1c62e0524f744039a3dc",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0ed0b152684ecdb7c2b41c57256091508c890030"
-        },
-        "date": 1770624650246,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 68.32801562,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "4234ed6e34b9a06e8f17597d56dad14f18da7dad",
           "message": "Revert \"Bump apple-actions/upload-testflight-build from 3 to 4 (#590)\"\n\nMay unbreak iOS deployment?\n\nThis reverts commit 15668e2888a50ea87fe97046d76f4c42dc4f99ce.",
           "timestamp": "2026-02-09T11:09:22+01:00",
@@ -7505,6 +7476,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 70.608681428,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fd42fddab222a657d85c2105849660c90217ca49",
+          "message": "Module update.",
+          "timestamp": "2026-03-30T15:29:48Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
+        },
+        "date": 1775431282232,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 71.174132477,
             "unit": "Seconds"
           }
         ]
