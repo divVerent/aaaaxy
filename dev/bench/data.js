@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1775431323470,
+  "lastUpdate": 1775431335007,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10023,35 +10023,6 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": true,
-          "id": "fc2186afb19161e7a7e40fb45a20b170fafb6cd7",
-          "message": "Minor module updates.",
-          "timestamp": "2026-02-09T07:06:02+01:00",
-          "tree_id": "c9643819fe698975dc2e31c692081906c7736887",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fc2186afb19161e7a7e40fb45a20b170fafb6cd7"
-        },
-        "date": 1770617379265,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.6937186,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
           "distinct": false,
           "id": "38abcf394cf7e2ffcce0e1f1dbd89259b5600268",
           "message": "Release v1.7.12\n\nChanges since v1.6.338:\n  - Engine: module updates.\n  - Engine: fix occasional spike appearing inside a solid wall; also speedup\n    despawning by one frame, yielding slightly faster possible speedruns.\n    (Fixes #587)",
@@ -12511,6 +12482,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 102.8127391,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fd42fddab222a657d85c2105849660c90217ca49",
+          "message": "Module update.",
+          "timestamp": "2026-03-30T15:29:48Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
+        },
+        "date": 1775431328036,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.2807091,
             "unit": "Seconds"
           }
         ]
