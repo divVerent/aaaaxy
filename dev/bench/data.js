@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1775654696167,
+  "lastUpdate": 1775654706130,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10004,35 +10004,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "4234ed6e34b9a06e8f17597d56dad14f18da7dad",
-          "message": "Revert \"Bump apple-actions/upload-testflight-build from 3 to 4 (#590)\"\n\nMay unbreak iOS deployment?\n\nThis reverts commit 15668e2888a50ea87fe97046d76f4c42dc4f99ce.",
-          "timestamp": "2026-02-09T11:09:22+01:00",
-          "tree_id": "2a9030547680d9de2de55142da6d13a6e8808e6f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4234ed6e34b9a06e8f17597d56dad14f18da7dad"
-        },
-        "date": 1770632584383,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.1077134,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -12495,6 +12466,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.5100792,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "1fc2e8fa0828f24c7b162005713d8a98867d1559",
+          "message": "Release v1.7.50\n\nChanges since v1.7.12:\n  - Menu: add a setting for the strength of screen flash effects. (#602)",
+          "timestamp": "2026-04-08T14:05:58+02:00",
+          "tree_id": "67dde55758aa3c318576c49ad02f95a72c2a0fbc",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1fc2e8fa0828f24c7b162005713d8a98867d1559"
+        },
+        "date": 1775654693410,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 105.2866996,
             "unit": "Seconds"
           }
         ]
