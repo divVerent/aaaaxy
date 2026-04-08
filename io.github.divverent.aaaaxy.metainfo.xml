@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.7.12" date="2026-02-09">
-      <description><ul><li>Engine: module updates.</li><li>Engine: fix occasional spike appearing inside a solid wall; also speedup despawning by one frame, yielding slightly faster possible speedruns. (Fixes #587)</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.12</url>
+    <release version="v1.7.50" date="2026-04-08">
+      <description><ul><li>Menu: add a setting for the strength of screen flash effects. (#602)</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.50</url>
     </release>
   </releases>
 </component>

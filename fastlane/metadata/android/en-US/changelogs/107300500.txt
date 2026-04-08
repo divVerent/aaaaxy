@@ -1,0 +1,1 @@
+  - Menu: add a setting for the strength of screen flash effects. (#602)
