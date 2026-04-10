@@ -1,11 +1,10 @@
-# 
 # Translators:
 # Konishi, Hiroto, 2025
-# Rudolf Polzer, 2025
+# Rudolf Polzer, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Japanese (https://app.transifex.com/aaaaxy/teams/158611/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -435,6 +434,10 @@ msgstr "サンフランシスコ"
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr "スコア：{{Score}}{{SpeedrunCategoriesShort}} | プレイ時間：{{GameTime}}"
 
+#: menu/settings.go
+msgid "Screen Flashes: %s"
+msgstr "画面点滅：%s"
+
 #: menu/main.go menu/settings.go
 msgid "Settings"
 msgstr "設定"
@@ -678,6 +681,10 @@ msgstr "ステージファイルをロード中"
 #: fun/string.go
 msgid "nothing"
 msgstr "無し"
+
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "オフ"
 
 #: level/level.go
 msgid "parsing level data"

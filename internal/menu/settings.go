@@ -51,6 +51,7 @@ const (
 	Graphics
 	Quality
 	Volume
+	ScreenFlashes
 	Language
 	SaveState
 	Reset
@@ -289,6 +290,9 @@ func toggleQuality(delta int) error {
 
 func currentVolume() string {
 	v := flag.Get[float64]("volume")
+	if v == 0 {
+		return locale.G.Get("Off")
+	}
 	return fmt.Sprintf("%.0f%%", v*100)
 }
 
@@ -297,21 +301,52 @@ func toggleVolume(delta int) error {
 	switch delta {
 	case 0:
 		v += 0.1
-		if v > 1 {
+		if v > 1.01 {
 			v = 0
 		}
 	case -1:
 		v -= 0.1
-		if v < 0 {
+		if v < 0.01 {
 			v = 0
 		}
 	case +1:
 		v += 0.1
-		if v > 1 {
+		if v > 0.99 {
 			v = 1
 		}
 	}
 	flag.Set("volume", v)
+	return nil
+}
+
+func currentScreenFlashes() string {
+	v := flag.Get[float64]("screen_flash_strength")
+	if v == 0 {
+		return locale.G.Get("Off")
+	}
+	return fmt.Sprintf("%.0f%%", v*100)
+}
+
+func toggleScreenFlashes(delta int) error {
+	v := flag.Get[float64]("screen_flash_strength")
+	switch delta {
+	case 0:
+		v += 0.1
+		if v > 1.01 {
+			v = 0
+		}
+	case -1:
+		v -= 0.1
+		if v < 0.01 {
+			v = 0
+		}
+	case +1:
+		v += 0.1
+		if v > 0.99 {
+			v = 1
+		}
+	}
+	flag.Set("screen_flash_strength", v)
 	return nil
 }
 
@@ -348,6 +383,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(toggleQuality(0))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(0))
+		case ScreenFlashes:
+			return s.Controller.ActivateSound(toggleScreenFlashes(0))
 		case Language:
 			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(s.Controller, 0))
 		case SaveState:
@@ -372,6 +409,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(toggleQuality(-1))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(-1))
+		case ScreenFlashes:
+			return s.Controller.ActivateSound(toggleScreenFlashes(-1))
 		case Language:
 			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(s.Controller, -1))
 		}
@@ -390,6 +429,8 @@ func (s *SettingsScreen) Update() error {
 			return s.Controller.ActivateSound(toggleQuality(+1))
 		case Volume:
 			return s.Controller.ActivateSound(toggleVolume(+1))
+		case ScreenFlashes:
+			return s.Controller.ActivateSound(toggleScreenFlashes(+1))
 		case Language:
 			return s.Controller.ActivateSound(s.CurrentLanguage.toggle(s.Controller, +1))
 		}
@@ -447,6 +488,11 @@ func (s *SettingsScreen) Draw(screen *ebiten.Image) {
 		fg, bg = fgs, bgs
 	}
 	font.ByName["Menu"].Draw(screen, locale.G.Get("Volume: %s", currentVolume()), m.Pos{X: CenterX, Y: ItemBaselineY(Volume, SettingsCount)}, font.Center, fg, bg)
+	fg, bg = fgn, bgn
+	if s.Item == ScreenFlashes {
+		fg, bg = fgs, bgs
+	}
+	font.ByName["Menu"].Draw(screen, locale.G.Get("Screen Flashes: %s", currentScreenFlashes()), m.Pos{X: CenterX, Y: ItemBaselineY(ScreenFlashes, SettingsCount)}, font.Center, fg, bg)
 	fg, bg = fgn, bgn
 	if s.Item == Language {
 		fg, bg = fgs, bgs

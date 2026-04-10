@@ -423,6 +423,10 @@ msgstr ""
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr ""
 
+#: menu/settings.go
+msgid "Screen Flashes: %s"
+msgstr ""
+
 #: menu/main.go menu/settings.go
 msgid "Settings"
 msgstr ""
@@ -664,6 +668,10 @@ msgstr ""
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "nothing"
+msgstr ""
+
+#: menu/settings.go menu/settings.go
+msgid "Off"
 msgstr ""
 
 #: level/level.go
