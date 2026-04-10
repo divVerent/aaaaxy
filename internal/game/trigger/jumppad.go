@@ -106,7 +106,7 @@ func calculateJump(delta m.Delta, heightParam int, onlyJump bool) m.Delta {
 		vDY = -vDY
 	}
 	// Skip calculation to save computation if only jump up
-	if onlyJump {
+	if !onlyJump {
 		// Finally:
 		// - vDY * t + 1/2 * playerGravity * t^2 = deltaDY * SubpixelScale
 		// - vDX * t = deltaDX
