@@ -40,7 +40,7 @@ type JumpPad struct {
 	Destination m.Pos
 	Height      int
 
-	JumpUpOnly	bool
+	JumpUpOnly bool
 
 	TouchedFrame int
 	JumpSound    *sound.Sound
@@ -81,7 +81,7 @@ func (j *JumpPad) Update() {
 	}
 }
 
-func calculateJump(delta m.Delta, heightParam int) m.Delta {
+func calculateJump(delta m.Delta, heightParam int, onlyJump bool) m.Delta {
 	apexOutside := heightParam < 0
 	// Convert to relative height above jump: always negative (up).
 	var height int
@@ -105,27 +105,31 @@ func calculateJump(delta m.Delta, heightParam int) m.Delta {
 	if apexOutside && !targetHigher {
 		vDY = -vDY
 	}
-	// Finally:
-	// - vDY * t + 1/2 * playerGravity * t^2 = deltaDY * SubpixelScale
-	// - vDX * t = deltaDX
-	a := 0.5 * constants.Gravity
-	b := float64(vDY)
-	c := -float64(delta.DY) * constants.SubPixelScale
-	u := -b / (2 * a)
-	d := b*b - 4*a*c
-	v := 0.0
-	if d >= 0 {
-		// Mathematically, D < 0 means the jump is impossible.
-		// However usually it just implies a roundoff error,
-		// especially when height==0. So let's just allow it.
-		v = math.Sqrt(d) / (2 * a)
+	// Skip calculation to save computation if only jump up
+	if onlyJump {
+		// Finally:
+		// - vDY * t + 1/2 * playerGravity * t^2 = deltaDY * SubpixelScale
+		// - vDX * t = deltaDX
+		a := 0.5 * constants.Gravity
+		b := float64(vDY)
+		c := -float64(delta.DY) * constants.SubPixelScale
+		u := -b / (2 * a)
+		d := b*b - 4*a*c
+		v := 0.0
+		if d >= 0 {
+			// Mathematically, D < 0 means the jump is impossible.
+			// However usually it just implies a roundoff error,
+			// especially when height==0. So let's just allow it.
+			v = math.Sqrt(d) / (2 * a)
+		}
+		if apexOutside && !targetHigher {
+			v = -v
+		}
+		t := u + v
+		vDX := int(float64(delta.DX) * constants.SubPixelScale / t)
+		return m.Delta{DX: vDX, DY: vDY}
 	}
-	if apexOutside && !targetHigher {
-		v = -v
-	}
-	t := u + v
-	vDX := int(float64(delta.DX) * constants.SubPixelScale / t)
-	return m.Delta{DX: vDX, DY: vDY}
+	return m.Delta{DX: 0, DY: vDY}
 }
 
 func (j *JumpPad) Touch(other *engine.Entity) {
@@ -166,9 +170,9 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	velToJump := m.Delta{}
 	if p.ReadOnGroundVec().DY < 0 {
 		// HACK: Can we rather support arbitrary OnGroundVec?
-		velToJump = m.FlipY().Apply(calculateJump(m.FlipY().Apply(delta), j.Height))
+		velToJump = m.FlipY().Apply(calculateJump(m.FlipY().Apply(delta), j.Height, j.JumpUpOnly))
 	} else {
-		velToJump = calculateJump(delta, j.Height)
+		velToJump = calculateJump(delta, j.Height, j.JumpUpOnly)
 	}
 	if j.JumpUpOnly {
 		velToJump.DX = p.ReadVelocity().DX
