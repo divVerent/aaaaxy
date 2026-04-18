@@ -84,7 +84,7 @@ hub release create \
 		abuild -F checksum
 		abuild -F -r
 	'
-	podman run --network=pasta:--ipv4-only --pull=newer --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:3.22 /bin/sh -c '
+	podman run --network=pasta:--ipv4-only --pull=newer --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:3.23 /bin/sh -c '
 		set -e
 		apk add alpine-sdk sudo
 		abuild-keygen -i -a -n
