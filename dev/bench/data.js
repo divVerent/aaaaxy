@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776492966847,
+  "lastUpdate": 1776493066793,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10022,33 +10022,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-02-10T05:08:32Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/cf94635f1451aa94960481e3949499278a9ac91f"
         },
-        "date": 1771456681593,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.5729962,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]",
-            "email": "49699333+dependabot[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "cf94635f1451aa94960481e3949499278a9ac91f",
-          "message": "Bump apple-actions/download-provisioning-profiles from 4 to 5 (#591)\n\nBumps [apple-actions/download-provisioning-profiles](https://github.com/apple-actions/download-provisioning-profiles) from 4 to 5.\n- [Release notes](https://github.com/apple-actions/download-provisioning-profiles/releases)\n- [Commits](https://github.com/apple-actions/download-provisioning-profiles/compare/v4...v5)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/download-provisioning-profiles\n  dependency-version: '5'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-02-10T05:08:32Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/cf94635f1451aa94960481e3949499278a9ac91f"
-        },
         "date": 1771543145187,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -12497,6 +12470,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 98.4793192,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "04f5670b63bf0117c0444f5e2d87dd37cfc2c9da",
+          "message": "Modules update.",
+          "timestamp": "2026-04-18T08:13:57+02:00",
+          "tree_id": "3a57f444ee61f3ecd1e5a9dc0c6d070f9c22db84",
+          "url": "https://github.com/divVerent/aaaaxy/commit/04f5670b63bf0117c0444f5e2d87dd37cfc2c9da"
+        },
+        "date": 1776493060161,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.0889767,
             "unit": "Seconds"
           }
         ]
