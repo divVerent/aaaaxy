@@ -68,8 +68,8 @@ require (
 
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
 
-// Pin go-locale to work around https://github.com/hajimehoshi/ebiten/issues/2899.
-// replace github.com/jeandeaual/go-locale => github.com/jeandeaual/go-locale v0.0.0-20220711133428-7de61946b173
+// Pin bitmapfont to work around https://github.com/hajimehoshi/bitmapfont/issues/21.
+replace github.com/hajimehoshi/bitmapfont/v3 => github.com/hajimehoshi/bitmapfont/v3 v3.2.0
 
 // update-ebitengine-fork.sh changes:
 // replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.7.9-with-99ffe09b63e0d906cc1f502c24f4d2325e6cc09d
