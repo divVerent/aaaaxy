@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776748658549,
+  "lastUpdate": 1776749950111,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5028,33 +5028,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-02-10T05:08:32Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/cf94635f1451aa94960481e3949499278a9ac91f"
         },
-        "date": 1772061498336,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.530019569,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]",
-            "email": "49699333+dependabot[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "cf94635f1451aa94960481e3949499278a9ac91f",
-          "message": "Bump apple-actions/download-provisioning-profiles from 4 to 5 (#591)\n\nBumps [apple-actions/download-provisioning-profiles](https://github.com/apple-actions/download-provisioning-profiles) from 4 to 5.\n- [Release notes](https://github.com/apple-actions/download-provisioning-profiles/releases)\n- [Commits](https://github.com/apple-actions/download-provisioning-profiles/compare/v4...v5)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/download-provisioning-profiles\n  dependency-version: '5'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-02-10T05:08:32Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/cf94635f1451aa94960481e3949499278a9ac91f"
-        },
         "date": 1772147908723,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7509,6 +7482,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 70.690735808,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "319afea776d571978df6a936d17eb9f0ba8bb974",
+          "message": "Update bitmapfont to what likely will become v4.1.1.\n\nbitmapfont reference: https://github.com/hajimehoshi/bitmapfont/issues/21\n\nIssue #630 remains fixed.",
+          "timestamp": "2026-04-21T07:35:52+02:00",
+          "tree_id": "7ea31de95a14de0f099da2332e13f91366d9b2fa",
+          "url": "https://github.com/divVerent/aaaaxy/commit/319afea776d571978df6a936d17eb9f0ba8bb974"
+        },
+        "date": 1776749944302,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 71.885081217,
             "unit": "Seconds"
           }
         ]
