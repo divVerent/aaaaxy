@@ -11,7 +11,7 @@ require (
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/google/go-cmp v0.7.0
 	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
-	github.com/hajimehoshi/bitmapfont/v3 v3.3.0
+	github.com/hajimehoshi/bitmapfont/v4 v4.1.0
 	github.com/hajimehoshi/ebiten/v2 v2.9.9
 	github.com/jeandeaual/go-locale v0.0.0-20250612000132-0ef82f21eade
 	github.com/leonelquinteros/gotext v1.7.2
@@ -37,7 +37,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/licenseclassifier/v2 v2.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/jezek/xgb v1.3.0 // indirect
+	github.com/jezek/xgb v1.3.1 // indirect
 	github.com/jfreymuth/oggvorbis v1.0.5 // indirect
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
 	github.com/josephspurrier/goversioninfo v1.5.0 // indirect
@@ -69,7 +69,7 @@ require (
 // replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
 
 // Pin bitmapfont to work around https://github.com/hajimehoshi/bitmapfont/issues/21.
-replace github.com/hajimehoshi/bitmapfont/v3 => github.com/hajimehoshi/bitmapfont/v3 v3.2.0
+replace github.com/hajimehoshi/bitmapfont/v4 => github.com/hajimehoshi/bitmapfont/v4 v4.1.1-0.20260421051819-da1385d11524
 
 // update-ebitengine-fork.sh changes:
 // replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.7.9-with-99ffe09b63e0d906cc1f502c24f4d2325e6cc09d
