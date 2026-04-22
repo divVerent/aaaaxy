@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776834614162,
+  "lastUpdate": 1776840354394,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5036,33 +5036,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-02-10T05:08:32Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/cf94635f1451aa94960481e3949499278a9ac91f"
         },
-        "date": 1772319644655,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 70.081644897,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]",
-            "email": "49699333+dependabot[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "cf94635f1451aa94960481e3949499278a9ac91f",
-          "message": "Bump apple-actions/download-provisioning-profiles from 4 to 5 (#591)\n\nBumps [apple-actions/download-provisioning-profiles](https://github.com/apple-actions/download-provisioning-profiles) from 4 to 5.\n- [Release notes](https://github.com/apple-actions/download-provisioning-profiles/releases)\n- [Commits](https://github.com/apple-actions/download-provisioning-profiles/compare/v4...v5)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/download-provisioning-profiles\n  dependency-version: '5'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-02-10T05:08:32Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/cf94635f1451aa94960481e3949499278a9ac91f"
-        },
         "date": 1772406163689,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7521,6 +7494,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 70.581153625,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "7ff41ab32a655c568cdbde4b1e06c15735d11ff4",
+          "message": "Release v1.7.55\n\nChanges since v1.7.50:\n  - Engine: fix display of Arabic.\n  - Engine: modules update.",
+          "timestamp": "2026-04-22T07:59:57+02:00",
+          "tree_id": "430cef707e286a842f7f6d8fd177fdde7ffa9b0e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7ff41ab32a655c568cdbde4b1e06c15735d11ff4"
+        },
+        "date": 1776840350384,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 76.733534864,
             "unit": "Seconds"
           }
         ]
