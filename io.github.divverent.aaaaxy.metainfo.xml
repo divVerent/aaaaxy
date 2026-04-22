@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.7.50" date="2026-04-08">
-      <description><ul><li>Menu: add a setting for the strength of screen flash effects. (#602)</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.50</url>
+    <release version="v1.7.55" date="2026-04-22">
+      <description><ul><li>Engine: fix display of Arabic.</li><li>Engine: modules update.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.55</url>
     </release>
   </releases>
 </component>
