@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777246097288,
+  "lastUpdate": 1777295837966,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2524,35 +2524,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "a8be50099e81341133cadab9205a40ff1a4447a7",
-          "message": "Retune benchmark alerts.",
-          "timestamp": "2026-03-07T14:48:55+01:00",
-          "tree_id": "9f7f1ff326a0594220f7998316689166b8583fc9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a8be50099e81341133cadab9205a40ff1a4447a7"
-        },
-        "date": 1772891801686,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.724291865,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "75cbfc267d1f169de817df83d3003d9ccb1c7eb6",
           "message": "Module updates.",
           "timestamp": "2026-03-07T14:54:44+01:00",
@@ -5017,6 +4988,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 76.474299696,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "7ff41ab32a655c568cdbde4b1e06c15735d11ff4",
+          "message": "Release v1.7.55\n\nChanges since v1.7.50:\n  - Engine: fix display of Arabic.\n  - Engine: modules update.",
+          "timestamp": "2026-04-22T05:59:57Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7ff41ab32a655c568cdbde4b1e06c15735d11ff4"
+        },
+        "date": 1777295833453,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 73.347121967,
             "unit": "Seconds"
           }
         ]
