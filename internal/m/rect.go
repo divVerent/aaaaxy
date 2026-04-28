@@ -115,6 +115,11 @@ func (r Rect) Foot() Pos {
 	return r.Origin.Add(Delta{DX: r.Size.DX / 2, DY: r.Size.DY - 1})
 }
 
+// CenterTop returns the coordinate in the top middle of the rectangle.
+func (r Rect) CenterTop() Pos {
+	return r.Origin.Add(Delta{DX: r.Size.DX / 2, DY: 1})
+}
+
 func intervalDistance(a0, a1, b0, b1 int) int {
 	// If intervals are separated, compute separation amount.
 	if b0 > a1 {
