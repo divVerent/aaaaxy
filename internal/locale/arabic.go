@@ -19,7 +19,7 @@ import (
 
 	"golang.org/x/text/language"
 
-	"github.com/hajimehoshi/bitmapfont/v3"
+	"github.com/hajimehoshi/bitmapfont/v4"
 )
 
 func (l Lingua) shapeArabic(s string) string {

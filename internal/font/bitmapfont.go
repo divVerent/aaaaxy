@@ -15,7 +15,7 @@
 package font
 
 import (
-	"github.com/hajimehoshi/bitmapfont/v3"
+	"github.com/hajimehoshi/bitmapfont/v4"
 )
 
 func initBitmapfont() error {
