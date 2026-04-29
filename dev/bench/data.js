@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777468800967,
+  "lastUpdate": 1777473667392,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "a8be50099e81341133cadab9205a40ff1a4447a7",
-          "message": "Retune benchmark alerts.",
-          "timestamp": "2026-03-07T14:48:55+01:00",
-          "tree_id": "9f7f1ff326a0594220f7998316689166b8583fc9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a8be50099e81341133cadab9205a40ff1a4447a7"
-        },
-        "date": 1772891622438,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 225.791189929,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2505,6 +2476,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 233.58632353,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "7ff41ab32a655c568cdbde4b1e06c15735d11ff4",
+          "message": "Release v1.7.55\n\nChanges since v1.7.50:\n  - Engine: fix display of Arabic.\n  - Engine: modules update.",
+          "timestamp": "2026-04-22T05:59:57Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7ff41ab32a655c568cdbde4b1e06c15735d11ff4"
+        },
+        "date": 1777473662280,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 225.208421592,
             "unit": "Seconds"
           }
         ]
