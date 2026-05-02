@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777710875506,
+  "lastUpdate": 1777710886539,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7532,35 +7532,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "39ef13bc5b3a28a0e71b70f865e16f8cf31900f8",
-          "message": "Add an explicit policy about AI use.\n\nNothing in it except what follows directly from the project license.",
-          "timestamp": "2026-03-10T07:11:41+01:00",
-          "tree_id": "964a328c11a3b7e3c41b5a8900409fc941bd79da",
-          "url": "https://github.com/divVerent/aaaaxy/commit/39ef13bc5b3a28a0e71b70f865e16f8cf31900f8"
-        },
-        "date": 1773123305020,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 98.2464686,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "ab889ed8221ee63d3b541207b4ec4d5ada8ed5c3",
           "message": "Explain that I can't deal with lists of thousands of contributors.",
           "timestamp": "2026-03-10T07:16:05+01:00",
@@ -10021,6 +9992,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 97.0443998,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0fd7a39e43058f26ecda21682adb823a7cbdca77",
+          "message": "Bump apple-actions/import-codesign-certs from 6 to 7 (#635)\n\nBumps [apple-actions/import-codesign-certs](https://github.com/apple-actions/import-codesign-certs) from 6 to 7.\n- [Release notes](https://github.com/apple-actions/import-codesign-certs/releases)\n- [Commits](https://github.com/apple-actions/import-codesign-certs/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/import-codesign-certs\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-05-02T10:28:29+02:00",
+          "tree_id": "f109585ad6a68cdd77a0755fa6af362f2284daa2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0fd7a39e43058f26ecda21682adb823a7cbdca77"
+        },
+        "date": 1777710880929,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.4497072,
             "unit": "Seconds"
           }
         ]
