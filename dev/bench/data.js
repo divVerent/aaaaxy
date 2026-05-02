@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777711884350,
+  "lastUpdate": 1777712048518,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2526,33 +2526,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-03-10T06:19:58Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/b62e771d5753b7e5a783abefd0dc296a6d1749ea"
         },
-        "date": 1773146103455,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 77.588190709,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "b62e771d5753b7e5a783abefd0dc296a6d1749ea",
-          "message": "Rephrase to make clear copyright applies to all works, not just code.",
-          "timestamp": "2026-03-10T06:19:58Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b62e771d5753b7e5a783abefd0dc296a6d1749ea"
-        },
         "date": 1773232465082,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5009,6 +4982,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 77.908285993,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8276283b89facf067d222177f82c78249bd0f26f",
+          "message": "Bump the max size of RequireTiles objects.\n\nWeirdSpace has a 128x128 one. Oopsie!\n\nFixes #637.",
+          "timestamp": "2026-05-02T10:46:36+02:00",
+          "tree_id": "b8aaf814839bb62194e3a4642c3aeffa46c509e8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8276283b89facf067d222177f82c78249bd0f26f"
+        },
+        "date": 1777712043614,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 59.349971587,
             "unit": "Seconds"
           }
         ]
