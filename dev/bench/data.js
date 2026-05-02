@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777718647453,
+  "lastUpdate": 1777718706129,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10046,35 +10046,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "39ef13bc5b3a28a0e71b70f865e16f8cf31900f8",
-          "message": "Add an explicit policy about AI use.\n\nNothing in it except what follows directly from the project license.",
-          "timestamp": "2026-03-10T07:11:41+01:00",
-          "tree_id": "964a328c11a3b7e3c41b5a8900409fc941bd79da",
-          "url": "https://github.com/divVerent/aaaaxy/commit/39ef13bc5b3a28a0e71b70f865e16f8cf31900f8"
-        },
-        "date": 1773123329109,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.7359,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "ab889ed8221ee63d3b541207b4ec4d5ada8ed5c3",
           "message": "Explain that I can't deal with lists of thousands of contributors.",
           "timestamp": "2026-03-10T07:16:05+01:00",
@@ -12539,6 +12510,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 102.9885333,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "248fd82e6fa32f8467f7bc97d2ad36c6a80011a7",
+          "message": "Release v1.7.61\n\nChanges since v1.7.55:\n  - Android: add adi-registration.properties as required by Google Play.\n  - Engine: bump the max size of RequireTiles objects. Fixes \"Weird Space\" crash.",
+          "timestamp": "2026-05-02T11:48:10+02:00",
+          "tree_id": "3297ae6c9b57a196e270dfb4d6fc7a05b18391e8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/248fd82e6fa32f8467f7bc97d2ad36c6a80011a7"
+        },
+        "date": 1777718696137,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.9955383,
             "unit": "Seconds"
           }
         ]
