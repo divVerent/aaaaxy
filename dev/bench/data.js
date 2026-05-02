@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777723239321,
+  "lastUpdate": 1777723331976,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7548,33 +7548,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-03-10T06:19:58Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/b62e771d5753b7e5a783abefd0dc296a6d1749ea"
         },
-        "date": 1773184585421,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 97.8292089,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "b62e771d5753b7e5a783abefd0dc296a6d1749ea",
-          "message": "Rephrase to make clear copyright applies to all works, not just code.",
-          "timestamp": "2026-03-10T06:19:58Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b62e771d5753b7e5a783abefd0dc296a6d1749ea"
-        },
         "date": 1773270260118,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -10033,6 +10006,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.3719955,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "76226f5a8be2734a7a4fafbdc418368e979182ff",
+          "message": "iOS: force the iOS 26 SDK.\n\nThis is now required for the App Store.",
+          "timestamp": "2026-05-02T13:57:54+02:00",
+          "tree_id": "bb5c3efcec0e2edde73017d7dc64ebcd4430c969",
+          "url": "https://github.com/divVerent/aaaaxy/commit/76226f5a8be2734a7a4fafbdc418368e979182ff"
+        },
+        "date": 1777723324699,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 99.1965519,
             "unit": "Seconds"
           }
         ]
