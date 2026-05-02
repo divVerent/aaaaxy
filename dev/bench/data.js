@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777710997848,
+  "lastUpdate": 1777711042242,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2522,35 +2522,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "ab889ed8221ee63d3b541207b4ec4d5ada8ed5c3",
-          "message": "Explain that I can't deal with lists of thousands of contributors.",
-          "timestamp": "2026-03-10T07:16:05+01:00",
-          "tree_id": "38633664e38e7a44e22cd6b72be8c5cbc2e60a0b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ab889ed8221ee63d3b541207b4ec4d5ada8ed5c3"
-        },
-        "date": 1773123833600,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.751729884,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "b62e771d5753b7e5a783abefd0dc296a6d1749ea",
           "message": "Rephrase to make clear copyright applies to all works, not just code.",
           "timestamp": "2026-03-10T07:19:58+01:00",
@@ -5009,6 +4980,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 59.724452018,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "32f0f34c55a82c767af8fb0f3aaa925c136e0e1a",
+          "message": "Bump apple-actions/upload-testflight-build from 3 to 5 (#636)\n\nBumps [apple-actions/upload-testflight-build](https://github.com/apple-actions/upload-testflight-build) from 3 to 5.\n- [Release notes](https://github.com/apple-actions/upload-testflight-build/releases)\n- [Commits](https://github.com/apple-actions/upload-testflight-build/compare/v3...v5)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/upload-testflight-build\n  dependency-version: '5'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-05-02T10:28:21+02:00",
+          "tree_id": "e75cf2b104d5deb2d337890f918034fc7e9ad83c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/32f0f34c55a82c767af8fb0f3aaa925c136e0e1a"
+        },
+        "date": 1777711037273,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 78.306785871,
             "unit": "Seconds"
           }
         ]
