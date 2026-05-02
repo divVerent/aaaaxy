@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777710955437,
+  "lastUpdate": 1777710959476,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2512,33 +2512,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]",
-            "email": "49699333+dependabot[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "a24a3c55ffcbf53b5f66b1528d487ca85a8be009",
-          "message": "Bump actions/download-artifact from 7 to 8 (#596)\n\nBumps [actions/download-artifact](https://github.com/actions/download-artifact) from 7 to 8.\n- [Release notes](https://github.com/actions/download-artifact/releases)\n- [Commits](https://github.com/actions/download-artifact/compare/v7...v8)\n\n---\nupdated-dependencies:\n- dependency-name: actions/download-artifact\n  dependency-version: '8'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-07T13:59:44Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a24a3c55ffcbf53b5f66b1528d487ca85a8be009"
-        },
-        "date": 1773059736835,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 79.531226019,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -5007,6 +4980,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.699007229,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "39d280e6b0c01eafff2874736d21f4b097f1d4d5",
+          "message": "Add adi-registration.properties as required by Google Play.\n\nThis file enables use of the F-Droid key.",
+          "timestamp": "2026-05-02T10:26:31+02:00",
+          "tree_id": "83e308d091cfe053e1cc28a8acfcd1cf06703967",
+          "url": "https://github.com/divVerent/aaaaxy/commit/39d280e6b0c01eafff2874736d21f4b097f1d4d5"
+        },
+        "date": 1777710953975,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 78.325962038,
             "unit": "Seconds"
           }
         ]
