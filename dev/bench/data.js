@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777718597286,
+  "lastUpdate": 1777718647453,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7528,35 +7528,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "b62e771d5753b7e5a783abefd0dc296a6d1749ea",
-          "message": "Rephrase to make clear copyright applies to all works, not just code.",
-          "timestamp": "2026-03-10T07:19:58+01:00",
-          "tree_id": "de2992f25448bf3094eca3ac893dbd2e6c434206",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b62e771d5753b7e5a783abefd0dc296a6d1749ea"
-        },
-        "date": 1773123846453,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.3071126,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -10027,6 +9998,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.7531391,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "248fd82e6fa32f8467f7bc97d2ad36c6a80011a7",
+          "message": "Release v1.7.61\n\nChanges since v1.7.55:\n  - Android: add adi-registration.properties as required by Google Play.\n  - Engine: bump the max size of RequireTiles objects. Fixes \"Weird Space\" crash.",
+          "timestamp": "2026-05-02T11:48:10+02:00",
+          "tree_id": "3297ae6c9b57a196e270dfb4d6fc7a05b18391e8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/248fd82e6fa32f8467f7bc97d2ad36c6a80011a7"
+        },
+        "date": 1777718640567,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.3719955,
             "unit": "Seconds"
           }
         ]
