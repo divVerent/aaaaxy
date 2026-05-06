@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1778024331050,
+  "lastUpdate": 1778074120156,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2528,35 +2528,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "eb45b485e4c3fedb36f07e8146d04299b8c4aab1",
-          "message": "Module updates.\n\nRequire Go 1.25 now. This means macOS Monterey is now the minimum\nversion.",
-          "timestamp": "2026-03-17T20:40:44+01:00",
-          "tree_id": "0a8f2f94eaf66d657e699e30836e32c17f61d490",
-          "url": "https://github.com/divVerent/aaaaxy/commit/eb45b485e4c3fedb36f07e8146d04299b8c4aab1"
-        },
-        "date": 1773777008693,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 79.283606868,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "1f522128c6646475d892a439f7cc5c173daab452",
           "message": "Update GitHub for Go 1.25 properly.\n\nAlso, auto-update toolchain version.",
           "timestamp": "2026-03-18T07:17:17+01:00",
@@ -5023,6 +4994,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 78.516858803,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "62bdb35abaf8c7107ad9d484a19134aa389b64ea",
+          "message": "Run strip-nondeterminism after advzip.\n\nShould not actually fix or break anything but is cleaner.",
+          "timestamp": "2026-05-02T12:01:19Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
+        },
+        "date": 1778074115487,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 77.290795743,
             "unit": "Seconds"
           }
         ]
