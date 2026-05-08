@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1778245718779,
+  "lastUpdate": 1778250431421,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "1f522128c6646475d892a439f7cc5c173daab452",
-          "message": "Update GitHub for Go 1.25 properly.\n\nAlso, auto-update toolchain version.",
-          "timestamp": "2026-03-18T07:17:17+01:00",
-          "tree_id": "8f9904656067a7806e8db27552df0207a4b5ae35",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1f522128c6646475d892a439f7cc5c173daab452"
-        },
-        "date": 1773814942274,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 220.334934063,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2509,6 +2480,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 228.723399101,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "62bdb35abaf8c7107ad9d484a19134aa389b64ea",
+          "message": "Run strip-nondeterminism after advzip.\n\nShould not actually fix or break anything but is cleaner.",
+          "timestamp": "2026-05-02T12:01:19Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
+        },
+        "date": 1778250427089,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 238.200588336,
             "unit": "Seconds"
           }
         ]
