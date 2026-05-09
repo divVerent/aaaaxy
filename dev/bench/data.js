@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1778369705749,
+  "lastUpdate": 1778369733212,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7544,33 +7544,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-03-18T06:20:00Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/651dd43b7d33c1edc5c9ec7802305790c0f6487d"
         },
-        "date": 1773875998513,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.947524,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "651dd43b7d33c1edc5c9ec7802305790c0f6487d",
-          "message": "Don't actually need sed for this.",
-          "timestamp": "2026-03-18T06:20:00Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/651dd43b7d33c1edc5c9ec7802305790c0f6487d"
-        },
         "date": 1773962309447,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -10029,6 +10002,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.5785657,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "62bdb35abaf8c7107ad9d484a19134aa389b64ea",
+          "message": "Run strip-nondeterminism after advzip.\n\nShould not actually fix or break anything but is cleaner.",
+          "timestamp": "2026-05-02T12:01:19Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
+        },
+        "date": 1778369726871,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.5559836,
             "unit": "Seconds"
           }
         ]
