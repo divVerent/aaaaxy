@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1778543126629,
+  "lastUpdate": 1778543136819,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10060,33 +10060,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-03-18T06:20:00Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/651dd43b7d33c1edc5c9ec7802305790c0f6487d"
         },
-        "date": 1773962314326,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.8767192,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "651dd43b7d33c1edc5c9ec7802305790c0f6487d",
-          "message": "Don't actually need sed for this.",
-          "timestamp": "2026-03-18T06:20:00Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/651dd43b7d33c1edc5c9ec7802305790c0f6487d"
-        },
         "date": 1774048691942,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -12547,6 +12520,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 98.7575369,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "0afc43cdd5055f02e93149fd14d24df58a593645",
+          "message": "Allow the hidden Shepard sequences to be transposed freely.\n\nThe source material for both exists in multiple keys online, so let's\njust accept all twelve of them. It's not like anyone will hit any of\nthem by chance.",
+          "timestamp": "2026-05-11T06:15:23Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
+        },
+        "date": 1778543130240,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.0314435,
             "unit": "Seconds"
           }
         ]
