@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1778543136819,
+  "lastUpdate": 1778592872993,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2516,35 +2516,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
-            "name": "divVerent",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "485aabcad0f89ddd4d6f16f5146d4861ba37a633",
-          "message": "Add a setting for the strength of screen flash effects. (#602)\n\nAlso, show \"off\" instead of \"0%\" for volume and screen flashes.\n\nFixes #601.",
-          "timestamp": "2026-03-22T11:48:33+01:00",
-          "tree_id": "df1cf96da45cde4eae0b7bef25b826aa9f022523",
-          "url": "https://github.com/divVerent/aaaaxy/commit/485aabcad0f89ddd4d6f16f5146d4861ba37a633"
-        },
-        "date": 1774176960113,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.82723887,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -5017,6 +4988,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 58.701451773,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "0afc43cdd5055f02e93149fd14d24df58a593645",
+          "message": "Allow the hidden Shepard sequences to be transposed freely.\n\nThe source material for both exists in multiple keys online, so let's\njust accept all twelve of them. It's not like anyone will hit any of\nthem by chance.",
+          "timestamp": "2026-05-11T06:15:23Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
+        },
+        "date": 1778592867744,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.985193926,
             "unit": "Seconds"
           }
         ]
