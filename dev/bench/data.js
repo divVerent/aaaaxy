@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1778686172774,
+  "lastUpdate": 1778715960697,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5020,35 +5020,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "589182b567b311e2daaca5ad0c343e2507c560ec",
-          "message": "Actually use title case for Off too.",
-          "timestamp": "2026-03-22T11:56:39+01:00",
-          "tree_id": "af47a98b5d6cb7a46164be7112418216214bc66c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/589182b567b311e2daaca5ad0c343e2507c560ec"
-        },
-        "date": 1774178098283,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 70.706878583,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -7519,6 +7490,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 71.024764947,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "0afc43cdd5055f02e93149fd14d24df58a593645",
+          "message": "Allow the hidden Shepard sequences to be transposed freely.\n\nThe source material for both exists in multiple keys online, so let's\njust accept all twelve of them. It's not like anyone will hit any of\nthem by chance.",
+          "timestamp": "2026-05-11T06:15:23Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
+        },
+        "date": 1778715956516,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 72.826989645,
             "unit": "Seconds"
           }
         ]
