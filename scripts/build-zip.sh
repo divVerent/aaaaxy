@@ -35,6 +35,6 @@ done
 
 cd "$d0"/assets
 zip -r "$out" [!_]*/[!_]*
-$STRIP_NONDETERMINISM_ZIP "$out"
 $ADVZIP -z "$out"
+$STRIP_NONDETERMINISM_ZIP "$out"
 ln -f "$out" "$out2" || cp "$out" "$out2"

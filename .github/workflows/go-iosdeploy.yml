@@ -23,12 +23,12 @@ jobs:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOTOOLCHAIN: local
       - name: Install Distribution Certificate
-        uses: apple-actions/import-codesign-certs@v6
+        uses: apple-actions/import-codesign-certs@v7
         with:
           p12-file-base64: ${{ secrets.APPLE_CERT_P12_BASE64 }}
           p12-password: ${{ secrets.APPLE_CERT_P12_PASSWORD }}
       - name: Download Provisioning Profile
-        uses: apple-actions/download-provisioning-profiles@v5
+        uses: apple-actions/download-provisioning-profiles@v6
         with:
           bundle-id: io.github.divverent.aaaaxy
           profile-type: IOS_APP_STORE
@@ -36,15 +36,17 @@ jobs:
           api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPLE_API_PRIVATE_KEY }}
       - name: Xcode Archive
-        run: xcodebuild -project XcodeProjects/iOS/aaaaxy.xcodeproj -scheme aaaaxy
-          -archivePath "$PWD"/AAAAXY.xcarchive archive -allowProvisioningUpdates CURRENT_PROJECT_VERSION=${{
-          github.run_number }} CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="Apple Distribution"
-          PROVISIONING_PROFILE_SPECIFIER="AAAAXY" DEVELOPMENT_TEAM="T8J7H3X4G9"
+        run: xcodebuild -sdk iphoneos26.0 -project XcodeProjects/iOS/aaaaxy.xcodeproj
+          -scheme aaaaxy -archivePath "$PWD"/AAAAXY.xcarchive archive -allowProvisioningUpdates
+          CURRENT_PROJECT_VERSION=${{ github.run_number }} CODE_SIGN_STYLE=Manual
+          CODE_SIGN_IDENTITY="Apple Distribution" PROVISIONING_PROFILE_SPECIFIER="AAAAXY"
+          DEVELOPMENT_TEAM="T8J7H3X4G9"
       - name: Xcode Export
-        run: xcodebuild -exportArchive -archivePath "$PWD"/AAAAXY.xcarchive -exportOptionsPlist
-          XcodeProjects/iOS/aaaaxy/ExportOptions.plist -exportPath "$PWD" -allowProvisioningUpdates
+        run: xcodebuild -sdk iphoneos26.0 -exportArchive -archivePath "$PWD"/AAAAXY.xcarchive
+          -exportOptionsPlist XcodeProjects/iOS/aaaaxy/ExportOptions.plist -exportPath
+          "$PWD" -allowProvisioningUpdates
       - name: Upload to TestFlight
-        uses: apple-actions/upload-testflight-build@v3
+        uses: apple-actions/upload-testflight-build@v5
         with:
           app-path: AAAAXY.ipa
           issuer-id: ${{ secrets.APPLE_API_ISSUER_ID }}

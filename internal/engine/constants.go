@@ -64,13 +64,13 @@ const (
 	// Must be at least the largest RequireTiles entity width plus two tiles to cover for misalignment.
 	// (Misalignment: one tile for camera position vs screen center, one tile for entity position vs tile edge)
 	// _TileMod or non-physics entities can be ignored.
-	borderWindowWidth = 64 + 2*level.TileSize
+	borderWindowWidth = 128 + 2*level.TileSize
 	// borderWindowHeight is the maximum amount of pixels loaded outside the screen.
 	// Must be at least the largest RequireTiles entity height plus two tiles to cover for misalignment.
 	// (Misalignment: one tile for camera position vs screen center, one tile for entity position vs tile edge)
 	// Must also include spawnDownTracePixels to support player spawning.
 	// _TileMod or non-physics entities can be ignored.
-	borderWindowHeight = 64 + spawnDownTracePixels + 2*level.TileSize
+	borderWindowHeight = 128 + spawnDownTracePixels + 2*level.TileSize
 
 	// tileWindowWidth is the maximum known width in tiles.
 	tileWindowWidth = (GameWidth+2*borderWindowWidth+level.TileSize-2)/level.TileSize + 1

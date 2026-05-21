@@ -1,0 +1,2 @@
+  - Android: add adi-registration.properties as required by Google Play.
+  - Engine: bump the max size of RequireTiles objects. Fixes "Weird Space" crash.

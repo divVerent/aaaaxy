@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.7.55" date="2026-04-22">
-      <description><ul><li>Engine: fix display of Arabic.</li><li>Engine: modules update.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.55</url>
+    <release version="v1.7.61" date="2026-05-02">
+      <description><ul><li>Android: add adi-registration.properties as required by Google Play.</li><li>Engine: bump the max size of RequireTiles objects. Fixes "Weird Space" crash.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.61</url>
     </release>
   </releases>
 </component>
