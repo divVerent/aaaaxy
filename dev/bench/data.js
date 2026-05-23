@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779579940365,
+  "lastUpdate": 1779579964345,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7524,35 +7524,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "8b432340f82ca79325932e69e2409542ae1add18",
-          "message": "Translate assets/locales/game.pot in pt (#606)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T12:15:22+02:00",
-          "tree_id": "e9900d0d2191f4bfc81d3875dd0151c4438b1ffb",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8b432340f82ca79325932e69e2409542ae1add18"
-        },
-        "date": 1774865930706,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.434089,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "69483e611d95d8a778ecf619a9fdee7bd8724ff7",
           "message": "Translate assets/locales/game.pot in uk (#607)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-03-30T14:05:29+02:00",
@@ -10009,6 +9980,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.4647528,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "68b59a55d96cf38ac9e571addd6ffcf210594632",
+          "message": "Modules update.",
+          "timestamp": "2026-05-23T18:29:58Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/68b59a55d96cf38ac9e571addd6ffcf210594632"
+        },
+        "date": 1779579958030,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 92.0084809,
             "unit": "Seconds"
           }
         ]
