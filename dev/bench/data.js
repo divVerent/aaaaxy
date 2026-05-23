@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779579909887,
+  "lastUpdate": 1779579940365,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10032,33 +10032,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-03-22T10:58:24Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/4c9494d735b80df7668845c636b3e70eea9cc1ac"
         },
-        "date": 1774739961683,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.9911184,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]",
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "4c9494d735b80df7668845c636b3e70eea9cc1ac",
-          "message": "Translate assets/locales/game.pot in de (#605)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-22T10:58:24Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4c9494d735b80df7668845c636b3e70eea9cc1ac"
-        },
         "date": 1774826465424,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -12513,6 +12486,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.1524593,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "68b59a55d96cf38ac9e571addd6ffcf210594632",
+          "message": "Modules update.",
+          "timestamp": "2026-05-23T18:29:58Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/68b59a55d96cf38ac9e571addd6ffcf210594632"
+        },
+        "date": 1779579933987,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.0398432,
             "unit": "Seconds"
           }
         ]
