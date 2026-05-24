@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779579964345,
+  "lastUpdate": 1779627390040,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2510,35 +2510,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "69483e611d95d8a778ecf619a9fdee7bd8724ff7",
-          "message": "Translate assets/locales/game.pot in uk (#607)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T14:05:29+02:00",
-          "tree_id": "4276713e19f2b99d8c9433e71e95f6e1a74897ac",
-          "url": "https://github.com/divVerent/aaaaxy/commit/69483e611d95d8a778ecf619a9fdee7bd8724ff7"
-        },
-        "date": 1774875838061,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 73.971146885,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]",
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
@@ -5003,6 +4974,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 81.451037216,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "68b59a55d96cf38ac9e571addd6ffcf210594632",
+          "message": "Modules update.",
+          "timestamp": "2026-05-23T18:29:58Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/68b59a55d96cf38ac9e571addd6ffcf210594632"
+        },
+        "date": 1779627386053,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 58.842835737,
             "unit": "Seconds"
           }
         ]
