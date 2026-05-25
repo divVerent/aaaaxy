@@ -767,6 +767,11 @@
                     "type": "int"
                 },
                 {
+                    "name": "jump_up_only",
+                    "type": "bool",
+                    "value": false
+                },
+                {
                     "name": "orientation",
                     "type": "string",
                     "value": "ES"
