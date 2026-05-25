@@ -1,8 +1,7 @@
 name: 100% Single-Platform Test Run
 'on':
-  push:
-    branches:
-      - main
+  pull_request: null
+  push: null
   schedule:
     - cron: 29 12 * * *
   workflow_dispatch: null
