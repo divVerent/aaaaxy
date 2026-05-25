@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779721468241,
+  "lastUpdate": 1779721499483,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "8b432340f82ca79325932e69e2409542ae1add18",
-          "message": "Translate assets/locales/game.pot in pt (#606)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T12:15:22+02:00",
-          "tree_id": "e9900d0d2191f4bfc81d3875dd0151c4438b1ffb",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8b432340f82ca79325932e69e2409542ae1add18"
-        },
-        "date": 1774866068592,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 219.16473222,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2501,6 +2472,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 228.255290109,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "dc6a5f385955f6efa0cdf260d339bb38600adc4e",
+          "message": "Fix path.",
+          "timestamp": "2026-05-25T17:00:14+02:00",
+          "tree_id": "12604e7a20862dfb2960006c8cdf38248be35895",
+          "url": "https://github.com/divVerent/aaaaxy/commit/dc6a5f385955f6efa0cdf260d339bb38600adc4e"
+        },
+        "date": 1779721493131,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 227.076897842,
             "unit": "Seconds"
           }
         ]
