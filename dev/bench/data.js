@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779719483728,
+  "lastUpdate": 1779720976094,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10020,35 +10020,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "8b432340f82ca79325932e69e2409542ae1add18",
-          "message": "Translate assets/locales/game.pot in pt (#606)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T12:15:22+02:00",
-          "tree_id": "e9900d0d2191f4bfc81d3875dd0151c4438b1ffb",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8b432340f82ca79325932e69e2409542ae1add18"
-        },
-        "date": 1774865931625,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 108.3704161,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "69483e611d95d8a778ecf619a9fdee7bd8724ff7",
           "message": "Translate assets/locales/game.pot in uk (#607)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-03-30T14:05:29+02:00",
@@ -12505,6 +12476,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.9472949,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "fc5fb5df28fcfeada28ff65b2f069b64656f3def",
+          "message": "Enable the 100% github workflow on PRs.",
+          "timestamp": "2026-05-25T16:52:04+02:00",
+          "tree_id": "8e7f879af0d1f3b2b0b9396368217d14b7f23fb1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fc5fb5df28fcfeada28ff65b2f069b64656f3def"
+        },
+        "date": 1779720968102,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.0091015,
             "unit": "Seconds"
           }
         ]
