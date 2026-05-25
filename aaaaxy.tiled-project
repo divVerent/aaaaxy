@@ -787,13 +787,13 @@
                     "value": true
                 },
                 {
-                    "name": "static_velocity",
-                    "type": "string"
-                },
-                {
                     "name": "spawn_tiles_growth",
                     "type": "string",
                     "value": "0 0"
+                },
+                {
+                    "name": "static_velocity",
+                    "type": "string"
                 }
             ],
             "name": "JumpPad",
