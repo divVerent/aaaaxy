@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779724332965,
+  "lastUpdate": 1779724516109,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2518,35 +2518,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "6fedeabb8fad82110bf497c99cb2be4b89a99ee7",
-          "message": "Translate game.pot in ja [Manual Sync] (#608)\n\n98% of minimum 97% reviewed source file: 'game.pot'\non 'ja'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T15:50:57+02:00",
-          "tree_id": "e5faa2d4f92bd21e478a93301aa497133b30fe39",
-          "url": "https://github.com/divVerent/aaaaxy/commit/6fedeabb8fad82110bf497c99cb2be4b89a99ee7"
-        },
-        "date": 1774879287557,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.22898377,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "00639f4fe911eef4c101123376c7108b94ce552d",
           "message": "Translate level.pot in ar [Manual Sync] (#610)\n\n98% of minimum 97% reviewed source file: 'level.pot'\non 'ar'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-03-30T15:51:10+02:00",
@@ -4999,6 +4970,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.942153087,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "7f8da7a6a9a4a39f20ecd9d938da14d32ac63bfb",
+          "message": "Add static_velocity to the Tiled project.\n\nHad to make it a string, as it's a tristate (default is \"same as\njump_up_only\").",
+          "timestamp": "2026-05-25T17:46:50+02:00",
+          "tree_id": "1a3f6c137ab15d3bb3ed229beb85c95fe49eb2e2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7f8da7a6a9a4a39f20ecd9d938da14d32ac63bfb"
+        },
+        "date": 1779724510398,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 73.604044222,
             "unit": "Seconds"
           }
         ]
