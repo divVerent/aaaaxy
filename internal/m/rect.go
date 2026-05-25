@@ -115,8 +115,8 @@ func (r Rect) Foot() Pos {
 	return r.Origin.Add(Delta{DX: r.Size.DX / 2, DY: r.Size.DY - 1})
 }
 
-// CenterTop returns the coordinate in the top middle of the rectangle.
-func (r Rect) CenterTop() Pos {
+// Head returns the coordinate in the top middle of the rectangle.
+func (r Rect) Head() Pos {
 	return r.Origin.Add(Delta{DX: r.Size.DX / 2, DY: 1})
 }
 
