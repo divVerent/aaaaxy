@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779724286875,
+  "lastUpdate": 1779724305800,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "6b6e215e9c388fa09498aca1a7d4839f8e57b043",
-          "message": "Translate game.pot in zh-Hant [Manual Sync] (#623)\n\n98% of minimum 97% reviewed source file: 'game.pot'\non 'zh-Hant'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T15:50:35+02:00",
-          "tree_id": "5154b3f53754b0b61e2ba94e02ddd7664a9f004d",
-          "url": "https://github.com/divVerent/aaaaxy/commit/6b6e215e9c388fa09498aca1a7d4839f8e57b043"
-        },
-        "date": 1774879222222,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 216.782500861,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2499,6 +2470,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 221.198830494,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "7f8da7a6a9a4a39f20ecd9d938da14d32ac63bfb",
+          "message": "Add static_velocity to the Tiled project.\n\nHad to make it a string, as it's a tristate (default is \"same as\njump_up_only\").",
+          "timestamp": "2026-05-25T17:46:50+02:00",
+          "tree_id": "1a3f6c137ab15d3bb3ed229beb85c95fe49eb2e2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7f8da7a6a9a4a39f20ecd9d938da14d32ac63bfb"
+        },
+        "date": 1779724299554,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 219.028701227,
             "unit": "Seconds"
           }
         ]
