@@ -26,17 +26,11 @@ jobs:
         env:
           AAAAXY_BUILD_USE_VERSION_FILE: true
           GOTOOLCHAIN: local
-      - name: Fetch Test Cases
-        env:
-          REGRESSION_TEST_URL: ${{ secrets.REGRESSION_TEST_URL }}
-        run: curl -o testcases.zip "$REGRESSION_TEST_URL"/100percent-v20.zip
-      - name: Extract Test Cases
-        run: unzip testcases.zip
       - name: Test
         run: 'xvfb-run scripts/github-action-benchmark.sh "100% linux-amd64" benchmark.txt
           scripts/regression-test-demo.sh linux-amd64 "your time: 1:19:13\\.866; your
           speedrun categories: 100%, All Notes and All Paths; try next: All Secrets\\."
-          "./aaaaxy -debug_log_entity_defaults" *.dem'
+          "./aaaaxy -debug_log_entity_defaults" assets/demos/_100percent-*.dem'
       - name: Store benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
@@ -59,8 +53,8 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: regression-test-results-100percent-linux-amd64
-          path: '*.dem.*.log
+          path: 'assets/demos/*.dem.*.log
 
-            *.dem.*.png
+            assets/demos/*.dem.*.png
 
             '
