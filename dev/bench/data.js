@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779721374740,
+  "lastUpdate": 1779721407599,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7520,35 +7520,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "55555f0bd67c278a51e378c535d7f0c830df086c",
-          "message": "Translate level.pot in be [Manual Sync] (#622)\n\n100% reviewed source file: 'level.pot'\non 'be'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T15:50:45+02:00",
-          "tree_id": "adcb75e08b18d1b8a5b42a3ffe18bad96632c080",
-          "url": "https://github.com/divVerent/aaaaxy/commit/55555f0bd67c278a51e378c535d7f0c830df086c"
-        },
-        "date": 1774879753688,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.0386187,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "6fedeabb8fad82110bf497c99cb2be4b89a99ee7",
           "message": "Translate game.pot in ja [Manual Sync] (#608)\n\n98% of minimum 97% reviewed source file: 'game.pot'\non 'ja'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-03-30T15:50:57+02:00",
@@ -10001,6 +9972,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.4620902,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "dc6a5f385955f6efa0cdf260d339bb38600adc4e",
+          "message": "Fix path.",
+          "timestamp": "2026-05-25T17:00:14+02:00",
+          "tree_id": "12604e7a20862dfb2960006c8cdf38248be35895",
+          "url": "https://github.com/divVerent/aaaaxy/commit/dc6a5f385955f6efa0cdf260d339bb38600adc4e"
+        },
+        "date": 1779721399924,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.0570933,
             "unit": "Seconds"
           }
         ]
