@@ -83,7 +83,7 @@ func (j *JumpPad) Update() {
 	}
 }
 
-func calculateJump(delta m.Delta, heightParam int, onlyJump bool) m.Delta {
+func calculateJump(delta m.Delta, heightParam int) m.Delta {
 	apexOutside := heightParam < 0
 	// Convert to relative height above jump: always negative (up).
 	var height int
