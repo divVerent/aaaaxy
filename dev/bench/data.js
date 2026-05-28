@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779980591895,
+  "lastUpdate": 1779986487356,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "f8c2ba4f2cba18bb0c76709716bffa5774018456",
-          "message": "Translate game.pot in zh-Hans [Manual Sync] (#614)\n\n98% of minimum 97% reviewed source file: 'game.pot'\non 'zh-Hans'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T15:51:22+02:00",
-          "tree_id": "aa2be4daa1707a0c12ebc7cf1505e094b4e85307",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f8c2ba4f2cba18bb0c76709716bffa5774018456"
-        },
-        "date": 1774879962469,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 229.031877986,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2495,6 +2466,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 223.735903178,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fdbe00cdb8c9bb43e20f0e179f28eda6989402ad",
+          "message": "Fix sorting.",
+          "timestamp": "2026-05-25T15:47:25Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
+        },
+        "date": 1779986480581,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 234.614467274,
             "unit": "Seconds"
           }
         ]
