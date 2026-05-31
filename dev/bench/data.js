@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1780233052436,
+  "lastUpdate": 1780237290892,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e60c8c3452cb80c50c1569a6c0bc417a838c0c49",
-          "message": "Translate level.pot in de [Manual Sync] (#615)\n\n100% reviewed source file: 'level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T15:52:23+02:00",
-          "tree_id": "011b3ee2302f76ac76e38d03cb5d53d53cbbaa7c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e60c8c3452cb80c50c1569a6c0bc417a838c0c49"
-        },
-        "date": 1774880128966,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 215.835961733,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2489,6 +2460,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 232.871716357,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fdbe00cdb8c9bb43e20f0e179f28eda6989402ad",
+          "message": "Fix sorting.",
+          "timestamp": "2026-05-25T15:47:25Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
+        },
+        "date": 1780237286630,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 237.420093268,
             "unit": "Seconds"
           }
         ]
