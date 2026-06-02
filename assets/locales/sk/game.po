@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Matúš Ollah, 2024
 # Rudolf Polzer, 2025
@@ -435,6 +434,10 @@ msgstr "San Francisco"
 msgid "Score: {{Score}}{{SpeedrunCategoriesShort}} | Time: {{GameTime}}"
 msgstr "Skóre: {{Score}}{{SpeedrunCategoriesShort}} | Čas: {{GameTime}}"
 
+#: menu/settings.go
+msgid "Screen Flashes: %s"
+msgstr ""
+
 #: menu/main.go menu/settings.go
 msgid "Settings"
 msgstr "Nastavenia"
@@ -678,6 +681,10 @@ msgstr "načítavam súbor úrovne"
 #: fun/string.go
 msgid "nothing"
 msgstr "nič"
+
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr ""
 
 #: level/level.go
 msgid "parsing level data"
