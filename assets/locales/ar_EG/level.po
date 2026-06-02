@@ -1493,7 +1493,7 @@ msgstr "‭Героям слава!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
 msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
-msgstr "هذه اللوحة تحتوي على {{BR}} حواف حادة {{BR}} رجاءً لا تلمس"
+msgstr "هذه اللوحة تحتوي على{{BR}}حواف حادة{{BR}}رجاءً لا تلمس"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
 msgid "A path to another world has appeared nearby."
@@ -1505,4 +1505,4 @@ msgstr "يمكنك اﻵن دخول العالم اﻵخر!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
-msgstr "النقّالة {{BR}} (اضغط {{ExitButton}})"
+msgstr "النقّالة{{BR}}(اضغط {{ExitButton}})"
