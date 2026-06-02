@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1780381289995,
+  "lastUpdate": 1780381334206,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9950,35 +9950,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "9596888e7980fa0fd98f7d2cf0206d97a08e6e87",
-          "message": "Translate level.pot in ar_EG [Manual Sync] (#616)\n\n98% of minimum 97% reviewed source file: 'level.pot'\non 'ar_EG'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T16:11:38+02:00",
-          "tree_id": "689cec924c3440520fceafa01085238227fc6552",
-          "url": "https://github.com/divVerent/aaaaxy/commit/9596888e7980fa0fd98f7d2cf0206d97a08e6e87"
-        },
-        "date": 1774881858566,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.2593135,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "49699333+dependabot[bot]@users.noreply.github.com",
             "name": "dependabot[bot]",
             "username": "dependabot[bot]"
@@ -12429,6 +12400,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.1878958,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "eb3ae27e91d662f1d952201f7f9895bc2c348d54",
+          "message": "Release v1.7.77\n\nChanges since v1.7.61:\n  - Build: run strip-nondeterminism after advzip.\n  - Engine: modules update.\n  - iOS: force the iOS 26 SDK.\n  - Level: allow the hidden Shepard sequences to be transposed freely.\n  - Translations: some updates to Arabic.",
+          "timestamp": "2026-06-02T07:29:14+02:00",
+          "tree_id": "8cc325c9d5906d9172ebf47b11171b4e1b2e6a74",
+          "url": "https://github.com/divVerent/aaaaxy/commit/eb3ae27e91d662f1d952201f7f9895bc2c348d54"
+        },
+        "date": 1780381323473,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 104.0297131,
             "unit": "Seconds"
           }
         ]
