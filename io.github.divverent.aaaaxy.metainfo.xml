@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.7.61" date="2026-05-02">
-      <description><ul><li>Android: add adi-registration.properties as required by Google Play.</li><li>Engine: bump the max size of RequireTiles objects. Fixes "Weird Space" crash.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.61</url>
+    <release version="v1.7.77" date="2026-06-02">
+      <description><ul><li>Build: run strip-nondeterminism after advzip.</li><li>Engine: modules update.</li><li>iOS: force the iOS 26 SDK.</li><li>Level: allow the hidden Shepard sequences to be transposed freely.</li><li>Translations: some updates to Arabic.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.77</url>
     </release>
   </releases>
 </component>

@@ -1,0 +1,5 @@
+  - Build: run strip-nondeterminism after advzip.
+  - Engine: modules update.
+  - iOS: force the iOS 26 SDK.
+  - Level: allow the hidden Shepard sequences to be transposed freely.
+  - Translations: some updates to Arabic.
