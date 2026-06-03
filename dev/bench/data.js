@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1780503129184,
+  "lastUpdate": 1780503173287,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2508,33 +2508,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-03-30T15:29:48Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
         },
-        "date": 1774961343726,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 72.955327041,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "fd42fddab222a657d85c2105849660c90217ca49",
-          "message": "Module update.",
-          "timestamp": "2026-03-30T15:29:48Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
-        },
         "date": 1775047864939,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -4969,6 +4942,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 76.37291102,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
+          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
+          "timestamp": "2026-06-03T16:06:53Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+        },
+        "date": 1780503168969,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 74.429623121,
             "unit": "Seconds"
           }
         ]
