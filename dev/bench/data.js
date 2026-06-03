@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1780419931251,
+  "lastUpdate": 1780446104425,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4978,35 +4978,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "fd42fddab222a657d85c2105849660c90217ca49",
-          "message": "Module update.",
-          "timestamp": "2026-03-30T17:29:48+02:00",
-          "tree_id": "ee70d399ea0a3ba3eedf4491cb2a3658999211e7",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
-        },
-        "date": 1774884877303,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 69.11068404,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7453,6 +7424,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 84.465797037,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "eb3ae27e91d662f1d952201f7f9895bc2c348d54",
+          "message": "Release v1.7.77\n\nChanges since v1.7.61:\n  - Build: run strip-nondeterminism after advzip.\n  - Engine: modules update.\n  - iOS: force the iOS 26 SDK.\n  - Level: allow the hidden Shepard sequences to be transposed freely.\n  - Translations: some updates to Arabic.",
+          "timestamp": "2026-06-02T05:29:14Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/eb3ae27e91d662f1d952201f7f9895bc2c348d54"
+        },
+        "date": 1780446099495,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 69.305141761,
             "unit": "Seconds"
           }
         ]
