@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1780503053411,
+  "lastUpdate": 1780503129184,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "dbe6f6eebfe17e3b0465706839e9404ac11560e0",
-          "message": "Bump android-actions/setup-android from 3 to 4 (#626)\n\nBumps [android-actions/setup-android](https://github.com/android-actions/setup-android) from 3 to 4.\n- [Release notes](https://github.com/android-actions/setup-android/releases)\n- [Commits](https://github.com/android-actions/setup-android/compare/v3...v4)\n\n---\nupdated-dependencies:\n- dependency-name: android-actions/setup-android\n  dependency-version: '4'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-03-30T17:27:35+02:00",
-          "tree_id": "90a42695d609225d39c7193550be9277ea3ed954",
-          "url": "https://github.com/divVerent/aaaaxy/commit/dbe6f6eebfe17e3b0465706839e9404ac11560e0"
-        },
-        "date": 1774884750355,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 226.630212565,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2485,6 +2456,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 229.514327622,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
+          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
+          "timestamp": "2026-06-03T18:06:53+02:00",
+          "tree_id": "89903983f1541ffa78ad92fea89363b33ca197f3",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+        },
+        "date": 1780503123288,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 243.259945015,
             "unit": "Seconds"
           }
         ]
