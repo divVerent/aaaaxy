@@ -8,6 +8,8 @@ jobs:
   deploy:
     runs-on: macos-latest
     steps:
+      - name: List Available SDKs
+        run: xcodebuild -showsdks
       - uses: actions/checkout@v6
         with:
           submodules: true
