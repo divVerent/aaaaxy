@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1780502730494,
+  "lastUpdate": 1780502783106,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9954,35 +9954,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "42765fa0c391c77c3d53d0c7c0bca7d2342fb763",
-          "message": "Sync Belarusian as well.",
-          "timestamp": "2026-03-30T17:28:51+02:00",
-          "tree_id": "4ed8278952f070f262c7a8d5e3cd7c25ce06c68c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/42765fa0c391c77c3d53d0c7c0bca7d2342fb763"
-        },
-        "date": 1774884839894,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 103.1315784,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "fd42fddab222a657d85c2105849660c90217ca49",
           "message": "Module update.",
           "timestamp": "2026-03-30T17:29:48+02:00",
@@ -12421,6 +12392,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.5101684,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "73e91404f2a706a0d4291869f9f4c8e6de8b670a",
+          "message": "Revert \"iOS: force the iOS 26 SDK.\"\n\nIt does not exist on the worker.\n\nThis reverts commit 76226f5a8be2734a7a4fafbdc418368e979182ff.",
+          "timestamp": "2026-06-03T18:02:45+02:00",
+          "tree_id": "0915f61f33764365b6576bf296293bc9215c55d6",
+          "url": "https://github.com/divVerent/aaaaxy/commit/73e91404f2a706a0d4291869f9f4c8e6de8b670a"
+        },
+        "date": 1780502767408,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.565748,
             "unit": "Seconds"
           }
         ]
