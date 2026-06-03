@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1780502989537,
+  "lastUpdate": 1780503020063,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9948,35 +9948,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "fd42fddab222a657d85c2105849660c90217ca49",
-          "message": "Module update.",
-          "timestamp": "2026-03-30T17:29:48+02:00",
-          "tree_id": "ee70d399ea0a3ba3eedf4491cb2a3658999211e7",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fd42fddab222a657d85c2105849660c90217ca49"
-        },
-        "date": 1774884886033,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 102.744777,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -12425,6 +12396,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 102.565748,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
+          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
+          "timestamp": "2026-06-03T18:06:53+02:00",
+          "tree_id": "89903983f1541ffa78ad92fea89363b33ca197f3",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+        },
+        "date": 1780503012724,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.1369549,
             "unit": "Seconds"
           }
         ]
