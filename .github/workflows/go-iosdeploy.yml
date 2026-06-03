@@ -6,7 +6,7 @@ name: Go iOS Deployment
   workflow_dispatch: null
 jobs:
   deploy:
-    runs-on: macos-latest
+    runs-on: macos-26
     steps:
       - name: List Available SDKs
         run: xcodebuild -showsdks
