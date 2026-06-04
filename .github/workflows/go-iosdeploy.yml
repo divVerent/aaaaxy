@@ -6,8 +6,10 @@ name: Go iOS Deployment
   workflow_dispatch: null
 jobs:
   deploy:
-    runs-on: macos-latest
+    runs-on: macos-26
     steps:
+      - name: List Available SDKs
+        run: xcodebuild -showsdks
       - uses: actions/checkout@v6
         with:
           submodules: true
@@ -36,15 +38,13 @@ jobs:
           api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPLE_API_PRIVATE_KEY }}
       - name: Xcode Archive
-        run: xcodebuild -sdk iphoneos26.0 -project XcodeProjects/iOS/aaaaxy.xcodeproj
-          -scheme aaaaxy -archivePath "$PWD"/AAAAXY.xcarchive archive -allowProvisioningUpdates
-          CURRENT_PROJECT_VERSION=${{ github.run_number }} CODE_SIGN_STYLE=Manual
-          CODE_SIGN_IDENTITY="Apple Distribution" PROVISIONING_PROFILE_SPECIFIER="AAAAXY"
-          DEVELOPMENT_TEAM="T8J7H3X4G9"
+        run: xcodebuild -project XcodeProjects/iOS/aaaaxy.xcodeproj -scheme aaaaxy
+          -archivePath "$PWD"/AAAAXY.xcarchive archive -allowProvisioningUpdates CURRENT_PROJECT_VERSION=${{
+          github.run_number }} CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER="AAAAXY" DEVELOPMENT_TEAM="T8J7H3X4G9"
       - name: Xcode Export
-        run: xcodebuild -sdk iphoneos26.0 -exportArchive -archivePath "$PWD"/AAAAXY.xcarchive
-          -exportOptionsPlist XcodeProjects/iOS/aaaaxy/ExportOptions.plist -exportPath
-          "$PWD" -allowProvisioningUpdates
+        run: xcodebuild -exportArchive -archivePath "$PWD"/AAAAXY.xcarchive -exportOptionsPlist
+          XcodeProjects/iOS/aaaaxy/ExportOptions.plist -exportPath "$PWD" -allowProvisioningUpdates
       - name: Upload to TestFlight
         uses: apple-actions/upload-testflight-build@v5
         with:
