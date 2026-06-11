@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="false"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="7.9907505"
-     inkscape:cx="607.5149"
-     inkscape:cy="323.06102"
+     inkscape:zoom="1.4125785"
+     inkscape:cx="631.11538"
+     inkscape:cy="287.0637"
      inkscape:window-width="1920"
      inkscape:window-height="1112"
      inkscape:window-x="0"
@@ -172,15 +172,15 @@
        y="62.473198"
        id="text17-1-0"><tspan
          sodipodi:role="line"
-         id="tspan17-5-3"
          style="stroke-width:0.265"
          x="77.80024"
-         y="62.473198">Before Second</tspan><tspan
+         y="62.473198"
+         id="tspan18-9-0">The Split</tspan><tspan
          sodipodi:role="line"
          style="stroke-width:0.265"
          x="77.80024"
          y="67.764862"
-         id="tspan18-9-0">Hub</tspan></text>
+         id="tspan1">Road</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264999;stroke-opacity:1"
@@ -316,38 +316,6 @@
          x="151.59175"
          y="28.961863"
          id="tspan54-0-1">Riserdown</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.60905px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.201447;stroke-opacity:1"
-       x="109.36469"
-       y="69.779747"
-       id="text17-1-0-7-2-1-8-0-3-2"><tspan
-         sodipodi:role="line"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.60905px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.201448"
-         x="109.36469"
-         y="69.779747"
-         id="tspan54-0-1-4">Require</tspan><tspan
-         sodipodi:role="line"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.60905px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.201448"
-         x="109.36469"
-         y="71.791061"
-         id="tspan81">Pull</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.60905px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.201447;stroke-opacity:1"
-       x="168.48013"
-       y="82.779472"
-       id="text17-1-0-7-2-1-8-0-3-2-6"><tspan
-         sodipodi:role="line"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.60905px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.201448"
-         x="168.48013"
-         y="82.779472"
-         id="tspan54-0-1-4-0">Require</tspan><tspan
-         sodipodi:role="line"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.60905px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.201448"
-         x="168.48013"
-         y="84.790787"
-         id="tspan81-5">Carry</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.60905px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#00b1b1;fill-opacity:1;stroke:none;stroke-width:0.201447;stroke-opacity:1"
