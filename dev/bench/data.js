@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781381866304,
+  "lastUpdate": 1781382184209,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2504,33 +2504,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-04-08T12:05:58Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/1fc2e8fa0828f24c7b162005713d8a98867d1559"
         },
-        "date": 1775910793978,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.935975068,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1fc2e8fa0828f24c7b162005713d8a98867d1559",
-          "message": "Release v1.7.50\n\nChanges since v1.7.12:\n  - Menu: add a setting for the strength of screen flash effects. (#602)",
-          "timestamp": "2026-04-08T12:05:58Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1fc2e8fa0828f24c7b162005713d8a98867d1559"
-        },
         "date": 1775997416690,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -4965,6 +4938,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 78.918808152,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "aa8fc06ebb84c1df7e6e778c241697e77d8c44eb",
+          "message": "Add a mostly working spike meme.\n\nJust the spike is missing. Will be a sprite that doesn't get flipped.",
+          "timestamp": "2026-06-13T22:12:52+02:00",
+          "tree_id": "f79559ad0f1ec2387d778b3c6b4a36facff5536f",
+          "url": "https://github.com/divVerent/aaaaxy/commit/aa8fc06ebb84c1df7e6e778c241697e77d8c44eb"
+        },
+        "date": 1781382178151,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 81.046313756,
             "unit": "Seconds"
           }
         ]
