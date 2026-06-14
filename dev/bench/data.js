@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781394906354,
+  "lastUpdate": 1781410971935,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4990,33 +4990,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-04-08T12:05:58Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/1fc2e8fa0828f24c7b162005713d8a98867d1559"
         },
-        "date": 1776036162759,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 71.35157562,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1fc2e8fa0828f24c7b162005713d8a98867d1559",
-          "message": "Release v1.7.50\n\nChanges since v1.7.12:\n  - Menu: add a setting for the strength of screen flash effects. (#602)",
-          "timestamp": "2026-04-08T12:05:58Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1fc2e8fa0828f24c7b162005713d8a98867d1559"
-        },
         "date": 1776123170853,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7453,6 +7426,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 56.472649635,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "55bc53ed15a69cfb36bd6c2433015255e2cd4e24",
+          "message": "spike meme perfection",
+          "timestamp": "2026-06-14T06:20:09+02:00",
+          "tree_id": "1ab07d240468216a3dc88d1da4dc1e91e6762765",
+          "url": "https://github.com/divVerent/aaaaxy/commit/55bc53ed15a69cfb36bd6c2433015255e2cd4e24"
+        },
+        "date": 1781410967213,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 70.536475433,
             "unit": "Seconds"
           }
         ]
