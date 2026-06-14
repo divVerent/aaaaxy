@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="1024" height="1024" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3967">
+<map version="1.8" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="1024" height="1024" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="3970">
  <properties>
-  <property name="checkpoint_locations_hash" value="14729825698056300750"/>
+  <property name="checkpoint_locations_hash" value="1408190800368862636"/>
   <property name="save_game_version" type="int" value="1"/>
  </properties>
  <tileset firstgid="1" source="../tiles/tiles.tsx"/>
@@ -1070,6 +1070,9 @@
    <properties>
     <property name="first" type="bool" value="true"/>
     <property name="hub" type="bool" value="true"/>
+    <property name="next_down" type="object" value="3897"/>
+    <property name="next_right" type="object" value="302"/>
+    <property name="next_up" type="object" value="2457"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Leap of Twice"/>
    </properties>
@@ -1215,7 +1218,11 @@
   <object id="170" gid="309" x="8072" y="7632" width="16" height="16"/>
   <object id="183" gid="302" x="8287.33" y="7472.67" width="16" height="16"/>
   <object id="184" gid="302" x="8272" y="7488" width="16" height="16"/>
-  <object id="217" name="ToChorus" gid="297" x="8400" y="7184" width="32" height="16"/>
+  <object id="217" name="ToChorus" gid="297" x="8400" y="7136" width="32" height="16">
+   <properties>
+    <property name="switchable" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="230" name="ToCorus" gid="297" x="8256" y="7056" width="32" height="16"/>
   <object id="237" name="ToCorus" gid="295" x="8752" y="6384" width="32" height="16"/>
   <object id="242" type="Sprite" gid="15" x="8064" y="7648" width="16" height="16">
@@ -1262,7 +1269,7 @@
   <object id="283" name="corus1" gid="299" x="8832" y="6544" width="16" height="32"/>
   <object id="285" name="ToChorus" gid="295" x="8128" y="6656" width="32" height="16">
    <properties>
-    <property name="switchable" type="bool" value="false"/>
+    <property name="switchable" type="bool" value="true"/>
    </properties>
   </object>
   <object id="286" name="Chorus1" gid="299" x="8032" y="6688" width="16" height="96"/>
@@ -1283,6 +1290,7 @@
   <object id="301" name="Chorus8" gid="297" x="8384" y="7056" width="32" height="16"/>
   <object id="302" name="chorus" type="Checkpoint" x="8128" y="6688" width="32" height="32">
    <properties>
+    <property name="next_down" type="object" value="280"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Chorus"/>
    </properties>
@@ -1679,6 +1687,7 @@
   <object id="536" name="X2" gid="295" x="8032" y="8160" width="32" height="16"/>
   <object id="537" name="x" type="Checkpoint" x="7712" y="7840" width="32" height="128">
    <properties>
+    <property name="next_down" type="object" value="586"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="The X"/>
    </properties>
@@ -1791,6 +1800,7 @@
   </object>
   <object id="586" name="y" type="Checkpoint" x="7712" y="8496" width="32" height="32">
    <properties>
+    <property name="next_left" type="object" value="2960"/>
     <property name="required_orientation" value="ES WN"/>
     <property name="text" value="The Y"/>
    </properties>
@@ -1825,6 +1835,7 @@
   <object id="594" gid="309" x="8624" y="8160" width="16" height="16"/>
   <object id="595" name="reaching_star" type="Checkpoint" x="8752" y="8240" width="32" height="48">
    <properties>
+    <property name="next_up" type="object" value="1917"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Reaching The Star"/>
    </properties>
@@ -3259,6 +3270,7 @@
   <object id="1916" name="TheStarLoop1" gid="299" x="9008" y="7424" width="16" height="2528"/>
   <object id="1917" name="star" type="Checkpoint" x="9440" y="9872" width="32" height="80">
    <properties>
+    <property name="next_up" type="object" value="2960"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="The Star"/>
    </properties>
@@ -4272,6 +4284,9 @@
   <object id="2498" name="second_hub" type="Checkpoint" x="6032" y="8368" width="1440" height="48">
    <properties>
     <property name="hub" type="bool" value="true"/>
+    <property name="next_down" type="object" value="2961"/>
+    <property name="next_left" type="object" value="2833"/>
+    <property name="next_right" type="object" value="3574"/>
     <property name="required_orientation" value="ES WS"/>
     <property name="text" value="The Second Hub"/>
    </properties>
@@ -4675,6 +4690,7 @@
   <object id="2832" gid="306" x="7520" y="7664" width="32" height="32"/>
   <object id="2833" name="up_down_level" type="Checkpoint" x="7280" y="7664" width="64" height="32">
    <properties>
+    <property name="next_left" type="object" value="2927"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Up &amp; Down"/>
    </properties>
@@ -4888,12 +4904,14 @@
   <object id="2957" name="UpDownLevel3" gid="299" x="7024" y="8352" width="16" height="32"/>
   <object id="2960" name="split_roads" type="Checkpoint" x="7360" y="9408" width="160" height="160">
    <properties>
+    <property name="next_down" type="object" value="2498"/>
     <property name="required_orientation" value="ES WS"/>
     <property name="text" value="Split Roads"/>
    </properties>
   </object>
   <object id="2961" name="path_tracing" type="Checkpoint" x="8160" y="12000" width="32" height="32">
    <properties>
+    <property name="next_down" type="object" value="3239"/>
     <property name="required_orientation" value="ES WS"/>
     <property name="text" value="Path Tracing?"/>
    </properties>
@@ -5205,6 +5223,7 @@
   </object>
   <object id="3574" name="spike_traps" type="Checkpoint" x="6864" y="8928" width="64" height="48">
    <properties>
+    <property name="next_right" type="object" value="3829"/>
     <property name="required_orientation" value="ES WS"/>
     <property name="text" value="Spike Traps"/>
    </properties>
@@ -5928,12 +5947,15 @@
   <object id="3895" gid="330" x="10960" y="10960" width="16" height="16"/>
   <object id="3896" name="before_first_hub" type="Checkpoint" x="7504" y="7552" width="208" height="32">
    <properties>
+    <property name="next_left" type="object" value="38"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Before Hub"/>
    </properties>
   </object>
   <object id="3897" name="more_first_hub" type="Checkpoint" x="7952" y="7472" width="32" height="208">
    <properties>
+    <property name="next_down" type="object" value="537"/>
+    <property name="next_right" type="object" value="595"/>
     <property name="required_orientation" value="ES"/>
     <property name="text" value="Leap of More"/>
    </properties>
@@ -6024,5 +6046,21 @@
   <object id="3964" gid="308" x="10752" y="10720" width="16" height="16"/>
   <object id="3965" gid="308" x="10752" y="10768" width="16" height="16"/>
   <object id="3966" gid="301" x="10656" y="10832" width="16" height="16"/>
+  <object id="3967" type="SetState" x="8144" y="7088" width="32" height="48">
+   <properties>
+    <property name="required_orientation" value="ES WS"/>
+    <property name="target" value="ToChorus"/>
+   </properties>
+  </object>
+  <object id="3968" type="SetState" x="8128" y="7143" width="64" height="48">
+   <properties>
+    <property name="target" value="!ToChorus"/>
+   </properties>
+  </object>
+  <object id="3969" type="SetState" x="8256" y="7008" width="32" height="48">
+   <properties>
+    <property name="target" value="!ToChorus"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
