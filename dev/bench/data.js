@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781542655183,
+  "lastUpdate": 1781544852323,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1fc2e8fa0828f24c7b162005713d8a98867d1559",
-          "message": "Release v1.7.50\n\nChanges since v1.7.12:\n  - Menu: add a setting for the strength of screen flash effects. (#602)",
-          "timestamp": "2026-04-08T12:05:58Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1fc2e8fa0828f24c7b162005713d8a98867d1559"
-        },
-        "date": 1776089870703,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 218.250150206,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2487,6 +2460,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 234.528592393,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "8d49e884bc3a562bf0176ea88ed57a156abe2e94",
+          "message": "Modules update.",
+          "timestamp": "2026-06-15T16:49:04Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8d49e884bc3a562bf0176ea88ed57a156abe2e94"
+        },
+        "date": 1781544845832,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 231.439537744,
             "unit": "Seconds"
           }
         ]
