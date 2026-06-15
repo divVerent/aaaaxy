@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781542307156,
+  "lastUpdate": 1781542352021,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7490,33 +7490,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-04-08T12:05:58Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/1fc2e8fa0828f24c7b162005713d8a98867d1559"
         },
-        "date": 1776295973527,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 97.7717266,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1fc2e8fa0828f24c7b162005713d8a98867d1559",
-          "message": "Release v1.7.50\n\nChanges since v1.7.12:\n  - Menu: add a setting for the strength of screen flash effects. (#602)",
-          "timestamp": "2026-04-08T12:05:58Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1fc2e8fa0828f24c7b162005713d8a98867d1559"
-        },
         "date": 1776382242414,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -9957,6 +9930,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 97.2165769,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8d49e884bc3a562bf0176ea88ed57a156abe2e94",
+          "message": "Modules update.",
+          "timestamp": "2026-06-15T18:49:04+02:00",
+          "tree_id": "ef28c08e4d39f507212531ef0a7836fb10d6e3df",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8d49e884bc3a562bf0176ea88ed57a156abe2e94"
+        },
+        "date": 1781542344094,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.8940995,
             "unit": "Seconds"
           }
         ]
