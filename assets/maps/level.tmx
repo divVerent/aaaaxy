@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8535">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8537">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -19541,12 +19541,12 @@
   </object>
   <object id="8516" type="SetState" x="1584" y="7840" width="16" height="48">
    <properties>
-    <property name="target" value="EscapeButton"/>
+    <property name="target" value="EscapeButtonTimer"/>
    </properties>
   </object>
   <object id="8517" type="SetState" x="2016" y="8112" width="16" height="48">
    <properties>
-    <property name="target" value="EscapeButton"/>
+    <property name="target" value="EscapeButtonTimer"/>
    </properties>
   </object>
   <object id="8519" gid="324" x="1824" y="7856" width="32" height="32"/>
@@ -19589,9 +19589,21 @@
     <property name="opaque" value="false"/>
    </properties>
   </object>
-  <object id="8534" type="SwitchMusic" x="1792" y="7884" width="16" height="4">
+  <object id="8534" type="SwitchMusic" x="1808" y="8156" width="16" height="4">
    <properties>
     <property name="music" value="Theme Song 8-bit V1.ogg"/>
+   </properties>
+  </object>
+  <object id="8535" name="EscapeButtonTimer" type="DelayTarget" x="1888" y="7856" width="16" height="16">
+   <properties>
+    <property name="delay" value="10s"/>
+    <property name="target" value="EscapeButton"/>
+   </properties>
+  </object>
+  <object id="8536" name="EscapeButtonTimer" type="DelayTarget" x="1712" y="8128" width="16" height="16">
+   <properties>
+    <property name="delay" value="10s"/>
+    <property name="target" value="EscapeButton"/>
    </properties>
   </object>
  </objectgroup>
