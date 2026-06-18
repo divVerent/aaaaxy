@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781741193768,
+  "lastUpdate": 1781741196114,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9982,33 +9982,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1fc2e8fa0828f24c7b162005713d8a98867d1559",
-          "message": "Release v1.7.50\n\nChanges since v1.7.12:\n  - Menu: add a setting for the strength of screen flash effects. (#602)",
-          "timestamp": "2026-04-08T12:05:58Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1fc2e8fa0828f24c7b162005713d8a98867d1559"
-        },
-        "date": 1776468560526,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 98.4793192,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -12469,6 +12442,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 104.9114076,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
+          "message": "Add a delay.",
+          "timestamp": "2026-06-15T19:16:34Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+        },
+        "date": 1781741188166,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.0492591,
             "unit": "Seconds"
           }
         ]
