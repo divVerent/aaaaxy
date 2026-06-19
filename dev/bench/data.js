@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781828265687,
+  "lastUpdate": 1781828287641,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7486,33 +7486,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "04f5670b63bf0117c0444f5e2d87dd37cfc2c9da",
-          "message": "Modules update.",
-          "timestamp": "2026-04-18T06:13:39Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/04f5670b63bf0117c0444f5e2d87dd37cfc2c9da"
-        },
-        "date": 1776727945696,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 97.4805193,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -9971,6 +9944,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 97.5988781,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
+          "message": "Add a delay.",
+          "timestamp": "2026-06-15T19:16:34Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+        },
+        "date": 1781828281553,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 95.5478007,
             "unit": "Seconds"
           }
         ]
