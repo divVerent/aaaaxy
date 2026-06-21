@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781999799172,
+  "lastUpdate": 1782048942641,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2498,33 +2498,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "319afea776d571978df6a936d17eb9f0ba8bb974",
-          "message": "Update bitmapfont to what likely will become v4.1.1.\n\nbitmapfont reference: https://github.com/hajimehoshi/bitmapfont/issues/21\n\nIssue #630 remains fixed.",
-          "timestamp": "2026-04-21T05:35:52Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/319afea776d571978df6a936d17eb9f0ba8bb974"
-        },
-        "date": 1776776668227,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 78.061420677,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -4979,6 +4952,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.929451845,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
+          "message": "Add a delay.",
+          "timestamp": "2026-06-15T19:16:34Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+        },
+        "date": 1782048936870,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 77.176780963,
             "unit": "Seconds"
           }
         ]
