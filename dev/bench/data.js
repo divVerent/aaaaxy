@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782126429329,
+  "lastUpdate": 1782126486579,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "319afea776d571978df6a936d17eb9f0ba8bb974",
-          "message": "Update bitmapfont to what likely will become v4.1.1.\n\nbitmapfont reference: https://github.com/hajimehoshi/bitmapfont/issues/21\n\nIssue #630 remains fixed.",
-          "timestamp": "2026-04-21T07:35:52+02:00",
-          "tree_id": "7ea31de95a14de0f099da2332e13f91366d9b2fa",
-          "url": "https://github.com/divVerent/aaaaxy/commit/319afea776d571978df6a936d17eb9f0ba8bb974"
-        },
-        "date": 1776750060234,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 219.165565464,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2489,6 +2460,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 240.786123581,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
+          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
+          "timestamp": "2026-06-22T12:00:01+02:00",
+          "tree_id": "c4d0eab2c553cfc81b5084ecae983c8a5b12c41b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
+        },
+        "date": 1782126482100,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 224.876823932,
             "unit": "Seconds"
           }
         ]
