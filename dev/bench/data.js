@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782119907662,
+  "lastUpdate": 1782120131460,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2507,35 +2507,6 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": true,
-          "id": "b17dc4f1656eeb609f630796e00c5f326f1da171",
-          "message": "Add (unreviewed) missing strings for Arabic game menu.",
-          "timestamp": "2026-04-22T07:01:35+02:00",
-          "tree_id": "0e29030dce96d8f34b48caa85a2e50ca5f4efdd3",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b17dc4f1656eeb609f630796e00c5f326f1da171"
-        },
-        "date": 1776834609495,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.249713587,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
           "distinct": false,
           "id": "7ff41ab32a655c568cdbde4b1e06c15735d11ff4",
           "message": "Release v1.7.55\n\nChanges since v1.7.50:\n  - Engine: fix display of Arabic.\n  - Engine: modules update.",
@@ -4979,6 +4950,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 77.176780963,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "85269ef387d86cc725093da9d23ceee990631c3b",
+          "message": "Modules update.",
+          "timestamp": "2026-06-22T11:13:17+02:00",
+          "tree_id": "f64f389343fabf7a274d8e6c166cc2e228dea54f",
+          "url": "https://github.com/divVerent/aaaaxy/commit/85269ef387d86cc725093da9d23ceee990631c3b"
+        },
+        "date": 1782120127204,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 80.510782526,
             "unit": "Seconds"
           }
         ]
