@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782119833806,
+  "lastUpdate": 1782119907662,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "f5a29b86746e7a8a98cccfd5cb6efeac652fda20",
-          "message": "Pin bitmapfont back to v3.2.0.\n\nbitmapfont reference: https://github.com/hajimehoshi/bitmapfont/issues/21\n\nFixes issue #630.",
-          "timestamp": "2026-04-21T07:09:13+02:00",
-          "tree_id": "20f946d1f5ce4e8b6d7f2982a076f72d809b5936",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f5a29b86746e7a8a98cccfd5cb6efeac652fda20"
-        },
-        "date": 1776748405902,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 178.882968062,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2489,6 +2460,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 219.331498086,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "85269ef387d86cc725093da9d23ceee990631c3b",
+          "message": "Modules update.",
+          "timestamp": "2026-06-22T11:13:17+02:00",
+          "tree_id": "f64f389343fabf7a274d8e6c166cc2e228dea54f",
+          "url": "https://github.com/divVerent/aaaaxy/commit/85269ef387d86cc725093da9d23ceee990631c3b"
+        },
+        "date": 1782119903450,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 240.786123581,
             "unit": "Seconds"
           }
         ]
