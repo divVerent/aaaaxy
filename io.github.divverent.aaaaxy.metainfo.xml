@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.7.77" date="2026-06-02">
-      <description><ul><li>Build: run strip-nondeterminism after advzip.</li><li>Engine: modules update.</li><li>iOS: force the iOS 26 SDK.</li><li>Level: allow the hidden Shepard sequences to be transposed freely.</li><li>Translations: some updates to Arabic.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.77</url>
+    <release version="v1.7.89" date="2026-06-22">
+      <description><ul><li>Engine: modules update.</li><li>Level: SPIKE room.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.89</url>
     </release>
   </releases>
 </component>
