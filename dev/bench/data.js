@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782126386719,
+  "lastUpdate": 1782126398977,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9968,35 +9968,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "319afea776d571978df6a936d17eb9f0ba8bb974",
-          "message": "Update bitmapfont to what likely will become v4.1.1.\n\nbitmapfont reference: https://github.com/hajimehoshi/bitmapfont/issues/21\n\nIssue #630 remains fixed.",
-          "timestamp": "2026-04-21T07:35:52+02:00",
-          "tree_id": "7ea31de95a14de0f099da2332e13f91366d9b2fa",
-          "url": "https://github.com/divVerent/aaaaxy/commit/319afea776d571978df6a936d17eb9f0ba8bb974"
-        },
-        "date": 1776749977018,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.0469073,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -12453,6 +12424,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.8493786,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
+          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
+          "timestamp": "2026-06-22T12:00:01+02:00",
+          "tree_id": "c4d0eab2c553cfc81b5084ecae983c8a5b12c41b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
+        },
+        "date": 1782126391055,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 103.3866593,
             "unit": "Seconds"
           }
         ]
