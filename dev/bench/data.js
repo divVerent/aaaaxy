@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782119754631,
+  "lastUpdate": 1782119793572,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9978,35 +9978,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "f5a29b86746e7a8a98cccfd5cb6efeac652fda20",
-          "message": "Pin bitmapfont back to v3.2.0.\n\nbitmapfont reference: https://github.com/hajimehoshi/bitmapfont/issues/21\n\nFixes issue #630.",
-          "timestamp": "2026-04-21T07:09:13+02:00",
-          "tree_id": "20f946d1f5ce4e8b6d7f2982a076f72d809b5936",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f5a29b86746e7a8a98cccfd5cb6efeac652fda20"
-        },
-        "date": 1776748347863,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 103.7956892,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "319afea776d571978df6a936d17eb9f0ba8bb974",
           "message": "Update bitmapfont to what likely will become v4.1.1.\n\nbitmapfont reference: https://github.com/hajimehoshi/bitmapfont/issues/21\n\nIssue #630 remains fixed.",
           "timestamp": "2026-04-21T07:35:52+02:00",
@@ -12453,6 +12424,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.0325848,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "85269ef387d86cc725093da9d23ceee990631c3b",
+          "message": "Modules update.",
+          "timestamp": "2026-06-22T11:13:17+02:00",
+          "tree_id": "f64f389343fabf7a274d8e6c166cc2e228dea54f",
+          "url": "https://github.com/divVerent/aaaaxy/commit/85269ef387d86cc725093da9d23ceee990631c3b"
+        },
+        "date": 1782119787190,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.8493786,
             "unit": "Seconds"
           }
         ]
