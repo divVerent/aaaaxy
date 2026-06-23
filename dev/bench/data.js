@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782224247300,
+  "lastUpdate": 1782229073157,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "b17dc4f1656eeb609f630796e00c5f326f1da171",
-          "message": "Add (unreviewed) missing strings for Arabic game menu.",
-          "timestamp": "2026-04-22T07:01:35+02:00",
-          "tree_id": "0e29030dce96d8f34b48caa85a2e50ca5f4efdd3",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b17dc4f1656eeb609f630796e00c5f326f1da171"
-        },
-        "date": 1776834396612,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 226.172580329,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2489,6 +2460,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 239.342217231,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
+          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
+          "timestamp": "2026-06-22T10:00:01Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
+        },
+        "date": 1782229068634,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 230.711874333,
             "unit": "Seconds"
           }
         ]
