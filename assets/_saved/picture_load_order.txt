@@ -625,6 +625,7 @@ sprites/switch_switchon_9.png
 sprites/switchblock_off.png
 sprites/switchblock_on.png
 sprites/v.png
+sprites/lethodromia_start.png
 sprites/jumppad32_idle_0.png
 sprites/jumppad32_idle_1.png
 sprites/jumppad16_idle_0.png
