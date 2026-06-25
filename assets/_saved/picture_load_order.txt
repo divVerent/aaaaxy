@@ -83,6 +83,7 @@ sprites/forcefield.png
 sprites/finally.png
 sprites/right.png
 sprites/wrong.png
+sprites/spke.png
 sprites/antihub_infinity.png
 sprites/antihub_references.png
 sprites/antihub_topology.png
