@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782934194992,
+  "lastUpdate": 1782934226067,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7478,35 +7478,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "39d280e6b0c01eafff2874736d21f4b097f1d4d5",
-          "message": "Add adi-registration.properties as required by Google Play.\n\nThis file enables use of the F-Droid key.",
-          "timestamp": "2026-05-02T10:26:31+02:00",
-          "tree_id": "83e308d091cfe053e1cc28a8acfcd1cf06703967",
-          "url": "https://github.com/divVerent/aaaaxy/commit/39d280e6b0c01eafff2874736d21f4b097f1d4d5"
-        },
-        "date": 1777710582537,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 95.6999368,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "49699333+dependabot[bot]@users.noreply.github.com",
             "name": "dependabot[bot]",
             "username": "dependabot[bot]"
@@ -9961,6 +9932,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 97.2688913,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "733b4bffae6c4b95a023eafb41d88ea298c7c563",
+          "message": "_Technically_ I need BorderPixels here.\n\nNot that it matters here - vs objects with 1 BorderPixels, the collision\nis the same either way. But let's do it _right_.",
+          "timestamp": "2026-07-01T21:24:04+02:00",
+          "tree_id": "7eb9d4218898aa1adafa62638eb78ef6f1534437",
+          "url": "https://github.com/divVerent/aaaaxy/commit/733b4bffae6c4b95a023eafb41d88ea298c7c563"
+        },
+        "date": 1782934217432,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.6063999,
             "unit": "Seconds"
           }
         ]
