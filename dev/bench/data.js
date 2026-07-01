@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782934526902,
+  "lastUpdate": 1782934636353,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2510,35 +2510,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "32f0f34c55a82c767af8fb0f3aaa925c136e0e1a",
-          "message": "Bump apple-actions/upload-testflight-build from 3 to 5 (#636)\n\nBumps [apple-actions/upload-testflight-build](https://github.com/apple-actions/upload-testflight-build) from 3 to 5.\n- [Release notes](https://github.com/apple-actions/upload-testflight-build/releases)\n- [Commits](https://github.com/apple-actions/upload-testflight-build/compare/v3...v5)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/upload-testflight-build\n  dependency-version: '5'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-05-02T10:28:21+02:00",
-          "tree_id": "e75cf2b104d5deb2d337890f918034fc7e9ad83c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/32f0f34c55a82c767af8fb0f3aaa925c136e0e1a"
-        },
-        "date": 1777711037273,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 78.306785871,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "592b7143b942d66403b567628b2b84e1a9becc5f",
           "message": "Bump apple-actions/download-provisioning-profiles from 5 to 6 (#634)\n\nBumps [apple-actions/download-provisioning-profiles](https://github.com/apple-actions/download-provisioning-profiles) from 5 to 6.\n- [Release notes](https://github.com/apple-actions/download-provisioning-profiles/releases)\n- [Commits](https://github.com/apple-actions/download-provisioning-profiles/compare/v5...v6)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/download-provisioning-profiles\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
           "timestamp": "2026-05-02T10:28:38+02:00",
@@ -4981,6 +4952,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 77.828795085,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9976db91b6d1522db4a6a98d69cdcf33052d30c8",
+          "message": "Bump actions/checkout from 6 to 7 (#649)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-01T21:28:40+02:00",
+          "tree_id": "d631defb8a31344362c5d343723f1c1005d65976",
+          "url": "https://github.com/divVerent/aaaaxy/commit/9976db91b6d1522db4a6a98d69cdcf33052d30c8"
+        },
+        "date": 1782934630467,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.73804423,
             "unit": "Seconds"
           }
         ]
