@@ -19606,11 +19606,13 @@
     <property name="target" value="EscapeButton"/>
    </properties>
   </object>
-  <object id="8537" type="Sprite" x="7552" y="5948" width="4" height="4">
+  <object id="8537" type="Sprite" x="7553" y="5949" width="2" height="2">
    <properties>
+    <property name="border_pixels" type="int" value="1"/>
     <property name="image" value="wall_tiny.png"/>
     <property name="no_transform" type="bool" value="true"/>
     <property name="opaque" type="bool" value="false"/>
+    <property name="render_offset" value="-1 -1"/>
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
