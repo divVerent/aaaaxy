@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782934327286,
+  "lastUpdate": 1782934334213,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9972,33 +9972,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "7ff41ab32a655c568cdbde4b1e06c15735d11ff4",
-          "message": "Release v1.7.55\n\nChanges since v1.7.50:\n  - Engine: fix display of Arabic.\n  - Engine: modules update.",
-          "timestamp": "2026-04-22T05:59:57Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ff41ab32a655c568cdbde4b1e06c15735d11ff4"
-        },
-        "date": 1777678853052,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.2366636,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -12457,6 +12430,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.395791,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9976db91b6d1522db4a6a98d69cdcf33052d30c8",
+          "message": "Bump actions/checkout from 6 to 7 (#649)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-01T21:28:40+02:00",
+          "tree_id": "d631defb8a31344362c5d343723f1c1005d65976",
+          "url": "https://github.com/divVerent/aaaaxy/commit/9976db91b6d1522db4a6a98d69cdcf33052d30c8"
+        },
+        "date": 1782934324879,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 116.8552516,
             "unit": "Seconds"
           }
         ]
