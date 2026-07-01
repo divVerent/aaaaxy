@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782934404159,
+  "lastUpdate": 1782934526902,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2510,35 +2510,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "0fd7a39e43058f26ecda21682adb823a7cbdca77",
-          "message": "Bump apple-actions/import-codesign-certs from 6 to 7 (#635)\n\nBumps [apple-actions/import-codesign-certs](https://github.com/apple-actions/import-codesign-certs) from 6 to 7.\n- [Release notes](https://github.com/apple-actions/import-codesign-certs/releases)\n- [Commits](https://github.com/apple-actions/import-codesign-certs/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/import-codesign-certs\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-05-02T10:28:29+02:00",
-          "tree_id": "f109585ad6a68cdd77a0755fa6af362f2284daa2",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0fd7a39e43058f26ecda21682adb823a7cbdca77"
-        },
-        "date": 1777710993092,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 59.724452018,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "32f0f34c55a82c767af8fb0f3aaa925c136e0e1a",
           "message": "Bump apple-actions/upload-testflight-build from 3 to 5 (#636)\n\nBumps [apple-actions/upload-testflight-build](https://github.com/apple-actions/upload-testflight-build) from 3 to 5.\n- [Release notes](https://github.com/apple-actions/upload-testflight-build/releases)\n- [Commits](https://github.com/apple-actions/upload-testflight-build/compare/v3...v5)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/upload-testflight-build\n  dependency-version: '5'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
           "timestamp": "2026-05-02T10:28:21+02:00",
@@ -4981,6 +4952,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.177971876,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "733b4bffae6c4b95a023eafb41d88ea298c7c563",
+          "message": "_Technically_ I need BorderPixels here.\n\nNot that it matters here - vs objects with 1 BorderPixels, the collision\nis the same either way. But let's do it _right_.",
+          "timestamp": "2026-07-01T21:24:04+02:00",
+          "tree_id": "7eb9d4218898aa1adafa62638eb78ef6f1534437",
+          "url": "https://github.com/divVerent/aaaaxy/commit/733b4bffae6c4b95a023eafb41d88ea298c7c563"
+        },
+        "date": 1782934520608,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 77.828795085,
             "unit": "Seconds"
           }
         ]
