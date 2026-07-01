@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782934226067,
+  "lastUpdate": 1782934283378,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "7ff41ab32a655c568cdbde4b1e06c15735d11ff4",
-          "message": "Release v1.7.55\n\nChanges since v1.7.50:\n  - Engine: fix display of Arabic.\n  - Engine: modules update.",
-          "timestamp": "2026-04-22T05:59:57Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ff41ab32a655c568cdbde4b1e06c15735d11ff4"
-        },
-        "date": 1777559812599,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 216.694441316,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2487,6 +2460,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 229.165406791,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "733b4bffae6c4b95a023eafb41d88ea298c7c563",
+          "message": "_Technically_ I need BorderPixels here.\n\nNot that it matters here - vs objects with 1 BorderPixels, the collision\nis the same either way. But let's do it _right_.",
+          "timestamp": "2026-07-01T21:24:04+02:00",
+          "tree_id": "7eb9d4218898aa1adafa62638eb78ef6f1534437",
+          "url": "https://github.com/divVerent/aaaaxy/commit/733b4bffae6c4b95a023eafb41d88ea298c7c563"
+        },
+        "date": 1782934278325,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 231.112299706,
             "unit": "Seconds"
           }
         ]
