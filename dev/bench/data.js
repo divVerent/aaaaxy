@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782933635186,
+  "lastUpdate": 1782933686144,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "7ff41ab32a655c568cdbde4b1e06c15735d11ff4",
-          "message": "Release v1.7.55\n\nChanges since v1.7.50:\n  - Engine: fix display of Arabic.\n  - Engine: modules update.",
-          "timestamp": "2026-04-22T05:59:57Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ff41ab32a655c568cdbde4b1e06c15735d11ff4"
-        },
-        "date": 1777473662280,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 225.208421592,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2485,6 +2458,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 218.658611176,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "81a447bb4134ec1c39189d00e8e496f97c2d2369",
+          "message": "Veni Vidi Vici iMproved.",
+          "timestamp": "2026-07-01T21:16:26+02:00",
+          "tree_id": "3e7bea3e0878d18d9ce3a3194048fd0b99f0a4df",
+          "url": "https://github.com/divVerent/aaaaxy/commit/81a447bb4134ec1c39189d00e8e496f97c2d2369"
+        },
+        "date": 1782933679970,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 229.165406791,
             "unit": "Seconds"
           }
         ]
