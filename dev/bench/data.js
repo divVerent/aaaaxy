@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782988178512,
+  "lastUpdate": 1782988224597,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "39d280e6b0c01eafff2874736d21f4b097f1d4d5",
-          "message": "Add adi-registration.properties as required by Google Play.\n\nThis file enables use of the F-Droid key.",
-          "timestamp": "2026-05-02T10:26:31+02:00",
-          "tree_id": "83e308d091cfe053e1cc28a8acfcd1cf06703967",
-          "url": "https://github.com/divVerent/aaaaxy/commit/39d280e6b0c01eafff2874736d21f4b097f1d4d5"
-        },
-        "date": 1777710681635,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 220.184562857,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2491,6 +2462,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 224.57010749,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "bea90597db856878b6c5c7ed0661b7faab129d1c",
+          "message": "Rush E.",
+          "timestamp": "2026-07-02T12:25:32+02:00",
+          "tree_id": "85b69bb6dd2002b9cc388f3ea1de689744f3f23e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bea90597db856878b6c5c7ed0661b7faab129d1c"
+        },
+        "date": 1782988219151,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 227.77672085,
             "unit": "Seconds"
           }
         ]
