@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782988224597,
+  "lastUpdate": 1782988234046,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "32f0f34c55a82c767af8fb0f3aaa925c136e0e1a",
-          "message": "Bump apple-actions/upload-testflight-build from 3 to 5 (#636)\n\nBumps [apple-actions/upload-testflight-build](https://github.com/apple-actions/upload-testflight-build) from 3 to 5.\n- [Release notes](https://github.com/apple-actions/upload-testflight-build/releases)\n- [Commits](https://github.com/apple-actions/upload-testflight-build/compare/v3...v5)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/upload-testflight-build\n  dependency-version: '5'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-05-02T10:28:21+02:00",
-          "tree_id": "e75cf2b104d5deb2d337890f918034fc7e9ad83c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/32f0f34c55a82c767af8fb0f3aaa925c136e0e1a"
-        },
-        "date": 1777710801450,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 218.196154605,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2491,6 +2462,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 227.77672085,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662",
+          "message": "Forgot translator note.",
+          "timestamp": "2026-07-02T12:25:45+02:00",
+          "tree_id": "8c4403b8691faffd033e8ba0b7f08a37226929f8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662"
+        },
+        "date": 1782988228590,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 223.626438094,
             "unit": "Seconds"
           }
         ]
