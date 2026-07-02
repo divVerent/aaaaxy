@@ -19624,7 +19624,7 @@
   </object>
   <object id="8539" name="RushE" type="CenterPrintTarget" x="4256" y="5824" width="16" height="16">
    <properties>
-    <property name="_text_localization_note" value="This is a reference to SheetMusicBoss's song &quot;Rush E&quot;."/>
+    <property name="_text_localization_note" value="This is a reference to SheetMusicBoss's song &quot;Rush E&quot;. Try making a pun based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or one of the common YT comments on those videos of the sort &quot;I paid for the whole piano, I'm gonna use the whole piano&quot;."/>
     <property name="importance" value="Important"/>
     <property name="initial_position" value="Middle"/>
     <property name="sound" value="got_ability.ogg"/>
