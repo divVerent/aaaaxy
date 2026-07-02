@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782998987313,
+  "lastUpdate": 1782998990134,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9979,35 +9979,6 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": true,
-          "id": "8276283b89facf067d222177f82c78249bd0f26f",
-          "message": "Bump the max size of RequireTiles objects.\n\nWeirdSpace has a 128x128 one. Oopsie!\n\nFixes #637.",
-          "timestamp": "2026-05-02T10:46:36+02:00",
-          "tree_id": "b8aaf814839bb62194e3a4642c3aeffa46c509e8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8276283b89facf067d222177f82c78249bd0f26f"
-        },
-        "date": 1777711843758,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 102.9885333,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
           "distinct": false,
           "id": "248fd82e6fa32f8467f7bc97d2ad36c6a80011a7",
           "message": "Release v1.7.61\n\nChanges since v1.7.55:\n  - Android: add adi-registration.properties as required by Google Play.\n  - Engine: bump the max size of RequireTiles objects. Fixes \"Weird Space\" crash.",
@@ -12455,6 +12426,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 98.7274857,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e4fd1a61383a44d9645fd3845af4eb5335b5fb25",
+          "message": "Translate assets/locales/level.pot in de (#651)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-02T15:21:39+02:00",
+          "tree_id": "44cc05a46969d86c87358d3a74dd229a95742303",
+          "url": "https://github.com/divVerent/aaaaxy/commit/e4fd1a61383a44d9645fd3845af4eb5335b5fb25"
+        },
+        "date": 1782998979458,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 106.9020004,
             "unit": "Seconds"
           }
         ]
