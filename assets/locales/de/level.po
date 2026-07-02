@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Rudolf Polzer, 2025
+# Rudolf Polzer, 2026
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-22 11:35+0100\n"
+"POT-Creation-Date: 2026-07-02 14:57+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: German (https://app.transifex.com/aaaaxy/teams/158611/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1550,3 +1550,11 @@ msgstr "Du kannst jetzt eine andere Welt betreten!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
 msgstr "Der Teleporter{{BR}}(Drücke {{ExitButton}})"
+
+#. This is a reference to SheetMusicBoss's song "Rush E". Try making a pun
+#. based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or
+#. one of the common YT comments on those videos of the sort "I paid for the
+#. whole piano, I'm gonna use the whole piano".
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8539]
+msgid "Why the rush, eh?"
+msgstr "Nicht so rasch, iih!"
