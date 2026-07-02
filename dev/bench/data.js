@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782988157705,
+  "lastUpdate": 1782988178512,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9980,35 +9980,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "0fd7a39e43058f26ecda21682adb823a7cbdca77",
-          "message": "Bump apple-actions/import-codesign-certs from 6 to 7 (#635)\n\nBumps [apple-actions/import-codesign-certs](https://github.com/apple-actions/import-codesign-certs) from 6 to 7.\n- [Release notes](https://github.com/apple-actions/import-codesign-certs/releases)\n- [Commits](https://github.com/apple-actions/import-codesign-certs/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/import-codesign-certs\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-05-02T10:28:29+02:00",
-          "tree_id": "f109585ad6a68cdd77a0755fa6af362f2284daa2",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0fd7a39e43058f26ecda21682adb823a7cbdca77"
-        },
-        "date": 1777710885193,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 102.6151587,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "592b7143b942d66403b567628b2b84e1a9becc5f",
           "message": "Bump apple-actions/download-provisioning-profiles from 5 to 6 (#634)\n\nBumps [apple-actions/download-provisioning-profiles](https://github.com/apple-actions/download-provisioning-profiles) from 5 to 6.\n- [Release notes](https://github.com/apple-actions/download-provisioning-profiles/releases)\n- [Commits](https://github.com/apple-actions/download-provisioning-profiles/compare/v5...v6)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/download-provisioning-profiles\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
           "timestamp": "2026-05-02T10:28:38+02:00",
@@ -12455,6 +12426,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.8741491,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662",
+          "message": "Forgot translator note.",
+          "timestamp": "2026-07-02T12:25:45+02:00",
+          "tree_id": "8c4403b8691faffd033e8ba0b7f08a37226929f8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662"
+        },
+        "date": 1782988171070,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 103.2662362,
             "unit": "Seconds"
           }
         ]
