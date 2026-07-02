@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782988118959,
+  "lastUpdate": 1782988152768,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4999,35 +4999,6 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": true,
-          "id": "8276283b89facf067d222177f82c78249bd0f26f",
-          "message": "Bump the max size of RequireTiles objects.\n\nWeirdSpace has a 128x128 one. Oopsie!\n\nFixes #637.",
-          "timestamp": "2026-05-02T10:46:36+02:00",
-          "tree_id": "b8aaf814839bb62194e3a4642c3aeffa46c509e8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8276283b89facf067d222177f82c78249bd0f26f"
-        },
-        "date": 1777711744001,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.825981853,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
           "distinct": false,
           "id": "248fd82e6fa32f8467f7bc97d2ad36c6a80011a7",
           "message": "Release v1.7.61\n\nChanges since v1.7.55:\n  - Android: add adi-registration.properties as required by Google Play.\n  - Engine: bump the max size of RequireTiles objects. Fixes \"Weird Space\" crash.",
@@ -7471,6 +7442,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 77.210406107,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662",
+          "message": "Forgot translator note.",
+          "timestamp": "2026-07-02T12:25:45+02:00",
+          "tree_id": "8c4403b8691faffd033e8ba0b7f08a37226929f8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662"
+        },
+        "date": 1782988146693,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 72.861837417,
             "unit": "Seconds"
           }
         ]
