@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-22 11:35+0100\n"
+"POT-Creation-Date: 2026-07-02 14:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1433,4 +1433,9 @@ msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8539]
+#. This is a reference to SheetMusicBoss's song "Rush E". Try making a pun based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or one of the common YT comments on those videos of the sort "I paid for the whole piano, I'm gonna use the whole piano".
+msgid "Why the rush, eh?"
 msgstr ""

@@ -346,6 +346,10 @@ msgstr ""
 msgid "Nuku'alofa"
 msgstr ""
 
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr ""
+
 #: menu/map.go
 msgid "Pick-a-Path"
 msgstr ""
@@ -668,10 +672,6 @@ msgstr ""
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "nothing"
-msgstr ""
-
-#: menu/settings.go menu/settings.go
-msgid "Off"
 msgstr ""
 
 #: level/level.go
