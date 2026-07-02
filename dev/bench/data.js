@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782950441093,
+  "lastUpdate": 1782950456552,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9970,35 +9970,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "39d280e6b0c01eafff2874736d21f4b097f1d4d5",
-          "message": "Add adi-registration.properties as required by Google Play.\n\nThis file enables use of the F-Droid key.",
-          "timestamp": "2026-05-02T10:26:31+02:00",
-          "tree_id": "83e308d091cfe053e1cc28a8acfcd1cf06703967",
-          "url": "https://github.com/divVerent/aaaaxy/commit/39d280e6b0c01eafff2874736d21f4b097f1d4d5"
-        },
-        "date": 1777710589240,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 98.4438703,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "49699333+dependabot[bot]@users.noreply.github.com",
             "name": "dependabot[bot]",
             "username": "dependabot[bot]"
@@ -12457,6 +12428,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 116.8552516,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "9976db91b6d1522db4a6a98d69cdcf33052d30c8",
+          "message": "Bump actions/checkout from 6 to 7 (#649)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-01T19:28:40Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/9976db91b6d1522db4a6a98d69cdcf33052d30c8"
+        },
+        "date": 1782950448730,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 101.5088756,
             "unit": "Seconds"
           }
         ]
