@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782988482169,
+  "lastUpdate": 1782997788459,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4999,35 +4999,6 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": false,
-          "id": "248fd82e6fa32f8467f7bc97d2ad36c6a80011a7",
-          "message": "Release v1.7.61\n\nChanges since v1.7.55:\n  - Android: add adi-registration.properties as required by Google Play.\n  - Engine: bump the max size of RequireTiles objects. Fixes \"Weird Space\" crash.",
-          "timestamp": "2026-05-02T11:48:10+02:00",
-          "tree_id": "3297ae6c9b57a196e270dfb4d6fc7a05b18391e8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/248fd82e6fa32f8467f7bc97d2ad36c6a80011a7"
-        },
-        "date": 1777718592402,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 58.019437061,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
           "distinct": true,
           "id": "76226f5a8be2734a7a4fafbdc418368e979182ff",
           "message": "iOS: force the iOS 26 SDK.\n\nThis is now required for the App Store.",
@@ -7471,6 +7442,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 72.861837417,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "11163d3d2caf4f1e5cc3417e0635faed66db852e",
+          "message": "New text.",
+          "timestamp": "2026-07-02T15:07:30+02:00",
+          "tree_id": "7db80b3fae5a0601637ff0624628c4f2748525b9",
+          "url": "https://github.com/divVerent/aaaaxy/commit/11163d3d2caf4f1e5cc3417e0635faed66db852e"
+        },
+        "date": 1782997783015,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 57.304308101,
             "unit": "Seconds"
           }
         ]
