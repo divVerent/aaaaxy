@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782999222641,
+  "lastUpdate": 1783003370875,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "248fd82e6fa32f8467f7bc97d2ad36c6a80011a7",
-          "message": "Release v1.7.61\n\nChanges since v1.7.55:\n  - Android: add adi-registration.properties as required by Google Play.\n  - Engine: bump the max size of RequireTiles objects. Fixes \"Weird Space\" crash.",
-          "timestamp": "2026-05-02T11:48:10+02:00",
-          "tree_id": "3297ae6c9b57a196e270dfb4d6fc7a05b18391e8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/248fd82e6fa32f8467f7bc97d2ad36c6a80011a7"
-        },
-        "date": 1777718734227,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 217.490531654,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2491,6 +2462,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 221.051689801,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "e4fd1a61383a44d9645fd3845af4eb5335b5fb25",
+          "message": "Translate assets/locales/level.pot in de (#651)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-02T13:21:39Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/e4fd1a61383a44d9645fd3845af4eb5335b5fb25"
+        },
+        "date": 1783003366092,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 229.65614314,
             "unit": "Seconds"
           }
         ]
