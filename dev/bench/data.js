@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783022267044,
+  "lastUpdate": 1783022327742,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "76226f5a8be2734a7a4fafbdc418368e979182ff",
-          "message": "iOS: force the iOS 26 SDK.\n\nThis is now required for the App Store.",
-          "timestamp": "2026-05-02T13:57:54+02:00",
-          "tree_id": "bb5c3efcec0e2edde73017d7dc64ebcd4430c969",
-          "url": "https://github.com/divVerent/aaaaxy/commit/76226f5a8be2734a7a4fafbdc418368e979182ff"
-        },
-        "date": 1777723361285,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 217.475989584,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2489,6 +2460,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 229.65614314,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
+          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
+          "timestamp": "2026-07-02T21:54:12+02:00",
+          "tree_id": "2a1ef888d0bd3552949b36c6a1b2655fc6268ce6",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
+        },
+        "date": 1783022321371,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 212.131689138,
             "unit": "Seconds"
           }
         ]
