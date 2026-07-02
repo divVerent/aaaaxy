@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782998173133,
+  "lastUpdate": 1782998808075,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7490,35 +7490,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "76226f5a8be2734a7a4fafbdc418368e979182ff",
-          "message": "iOS: force the iOS 26 SDK.\n\nThis is now required for the App Store.",
-          "timestamp": "2026-05-02T13:57:54+02:00",
-          "tree_id": "bb5c3efcec0e2edde73017d7dc64ebcd4430c969",
-          "url": "https://github.com/divVerent/aaaaxy/commit/76226f5a8be2734a7a4fafbdc418368e979182ff"
-        },
-        "date": 1777723324699,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 99.1965519,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "62bdb35abaf8c7107ad9d484a19134aa389b64ea",
           "message": "Run strip-nondeterminism after advzip.\n\nShould not actually fix or break anything but is cleaner.",
           "timestamp": "2026-05-02T14:01:19+02:00",
@@ -9961,6 +9932,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 95.9711783,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e4fd1a61383a44d9645fd3845af4eb5335b5fb25",
+          "message": "Translate assets/locales/level.pot in de (#651)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-02T15:21:39+02:00",
+          "tree_id": "44cc05a46969d86c87358d3a74dd229a95742303",
+          "url": "https://github.com/divVerent/aaaaxy/commit/e4fd1a61383a44d9645fd3845af4eb5335b5fb25"
+        },
+        "date": 1782998800244,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.2907565,
             "unit": "Seconds"
           }
         ]
