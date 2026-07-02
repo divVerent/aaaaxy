@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782998838158,
+  "lastUpdate": 1782998859885,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "8276283b89facf067d222177f82c78249bd0f26f",
-          "message": "Bump the max size of RequireTiles objects.\n\nWeirdSpace has a 128x128 one. Oopsie!\n\nFixes #637.",
-          "timestamp": "2026-05-02T10:46:36+02:00",
-          "tree_id": "b8aaf814839bb62194e3a4642c3aeffa46c509e8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8276283b89facf067d222177f82c78249bd0f26f"
-        },
-        "date": 1777711878479,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 218.213893244,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2491,6 +2462,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 219.77786328,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "50f80375b9ecf14fe9ba6fdb79c814cad9f8a639",
+          "message": "Translate assets/locales/level.pot in la (#652)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-02T15:21:35+02:00",
+          "tree_id": "8138bed359f63bb1a614b456d2df6f69e45c6c44",
+          "url": "https://github.com/divVerent/aaaaxy/commit/50f80375b9ecf14fe9ba6fdb79c814cad9f8a639"
+        },
+        "date": 1782998853893,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 221.051689801,
             "unit": "Seconds"
           }
         ]
