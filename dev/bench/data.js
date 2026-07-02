@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782998808075,
+  "lastUpdate": 1782998838158,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0fd7a39e43058f26ecda21682adb823a7cbdca77",
-          "message": "Bump apple-actions/import-codesign-certs from 6 to 7 (#635)\n\nBumps [apple-actions/import-codesign-certs](https://github.com/apple-actions/import-codesign-certs) from 6 to 7.\n- [Release notes](https://github.com/apple-actions/import-codesign-certs/releases)\n- [Commits](https://github.com/apple-actions/import-codesign-certs/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/import-codesign-certs\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-05-02T10:28:29+02:00",
-          "tree_id": "f109585ad6a68cdd77a0755fa6af362f2284daa2",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0fd7a39e43058f26ecda21682adb823a7cbdca77"
-        },
-        "date": 1777710806804,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 219.932184364,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2491,6 +2462,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 230.392035454,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e4fd1a61383a44d9645fd3845af4eb5335b5fb25",
+          "message": "Translate assets/locales/level.pot in de (#651)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-02T15:21:39+02:00",
+          "tree_id": "44cc05a46969d86c87358d3a74dd229a95742303",
+          "url": "https://github.com/divVerent/aaaaxy/commit/e4fd1a61383a44d9645fd3845af4eb5335b5fb25"
+        },
+        "date": 1782998833582,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 219.77786328,
             "unit": "Seconds"
           }
         ]
