@@ -75,10 +75,12 @@ sprites/xfail3.png
 sprites/xfail4.png
 sprites/ending_logo.png
 sprites/can_push_intro.png
+sprites/lethodromia_start.png
 sprites/can_stand_intro.png
 sprites/enotion.png
 sprites/into_the_stars.png
 sprites/rocket_science.png
+sprites/more_first_hub.png
 sprites/forcefield.png
 sprites/finally.png
 sprites/right.png
@@ -626,7 +628,6 @@ sprites/switch_switchon_9.png
 sprites/switchblock_off.png
 sprites/switchblock_on.png
 sprites/v.png
-sprites/lethodromia_start.png
 sprites/jumppad32_idle_0.png
 sprites/jumppad32_idle_1.png
 sprites/jumppad16_idle_0.png
