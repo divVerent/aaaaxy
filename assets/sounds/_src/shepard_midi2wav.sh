@@ -26,7 +26,7 @@ trap 'rm -f "$converted"' EXIT
 config=$(mktemp --suffix=.sfz)
 trap 'rm -f "$converted" "$config"' EXIT
 
-midicopy -nodrums "$midi" "$converted"
+midicopy -nodrums "$@" "$midi" "$converted"
 sh shepard.sfz.sh > "$config"
 
 sfizz_render --sfz "$config" --polyphony 4096 --midi "$converted" --wav "$wav"
