@@ -183,6 +183,10 @@ func (s *PlayerState) AddFrame() {
 	propmap.Set(s.Level.Player.PersistentState, "frames", s.Frames()+1)
 }
 
+func (s *PlayerState) SubFrame() {
+	propmap.Set(s.Level.Player.PersistentState, "frames", s.Frames()-1)
+}
+
 func (s *PlayerState) Escapes() int {
 	escapes, err := propmap.ValueOr(s.Level.Player.PersistentState, "escapes", 0)
 	if err != nil {

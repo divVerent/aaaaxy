@@ -17,6 +17,7 @@ package ending
 import (
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // StopTimerTarget makes the player move towards it when activated.
@@ -34,7 +35,17 @@ func (s *StopTimerTarget) Despawn() {}
 func (s *StopTimerTarget) Update() {}
 
 func (s *StopTimerTarget) SetState(originator, predecessor *engine.Entity, state bool) {
-	s.World.TimerStopped = state
+	if !state {
+		if s.World.TimerStopped {
+			log.Fatalf("Sorry, can't restart the timer again.")
+		}
+		return
+	}
+	if s.World.TimerStopped {
+		return
+	}
+	s.World.TimerStopped = true
+	s.World.PlayerState.SubFrame() // The ending frame doesn't count.
 }
 
 func (s *StopTimerTarget) Touch(other *engine.Entity) {}

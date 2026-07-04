@@ -14468,6 +14468,7 @@
   <object id="6643" name="FinalGoal" type="Goal" x="2048" y="4704" width="32" height="31"/>
   <object id="6644" type="SetState" x="2048" y="4735" width="32" height="1">
    <properties>
+    <property name="player_only" type="bool" value="true"/>
     <property name="target" value="FinalGoal FinalStopTimer FinalPowerLED FinalLogoDelay FinalSoundDelay FinalFadeDelay FinalZoomDelay FinalCreditsDelay"/>
    </properties>
   </object>
