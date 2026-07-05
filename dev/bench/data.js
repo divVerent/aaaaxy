@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783277819037,
+  "lastUpdate": 1783277859062,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -9996,33 +9996,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-02T12:01:19Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
         },
-        "date": 1777938101800,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.2870724,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "62bdb35abaf8c7107ad9d484a19134aa389b64ea",
-          "message": "Run strip-nondeterminism after advzip.\n\nShould not actually fix or break anything but is cleaner.",
-          "timestamp": "2026-05-02T12:01:19Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
-        },
         "date": 1778024324936,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -12467,6 +12440,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 109.9051934,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "96990ceabe41a425f1dd0182d3b1434b1c6f69c2",
+          "message": "Add another note sequence to the piano.\n\nThe most overplayed one of all.",
+          "timestamp": "2026-07-05T20:53:45+02:00",
+          "tree_id": "d1ebc59897dddf80abe7010e8c4d60e6719a029c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/96990ceabe41a425f1dd0182d3b1434b1c6f69c2"
+        },
+        "date": 1783277852347,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 101.6787845,
             "unit": "Seconds"
           }
         ]
