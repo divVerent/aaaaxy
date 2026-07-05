@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783295554365,
+  "lastUpdate": 1783295557551,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10028,33 +10028,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-02T12:01:19Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
         },
-        "date": 1778369735253,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.5378778,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "62bdb35abaf8c7107ad9d484a19134aa389b64ea",
-          "message": "Run strip-nondeterminism after advzip.\n\nShould not actually fix or break anything but is cleaner.",
-          "timestamp": "2026-05-02T12:01:19Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
-        },
         "date": 1778456365276,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -12509,6 +12482,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 102.8620691,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "f471a5b71d2e4707d44ef45fc4c8e9def2441ab5",
+          "message": "Updates for file assets/locales/level.pot in de (#653)\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-05T19:20:06Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f471a5b71d2e4707d44ef45fc4c8e9def2441ab5"
+        },
+        "date": 1783295547456,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 101.1283111,
             "unit": "Seconds"
           }
         ]
