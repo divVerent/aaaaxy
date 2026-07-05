@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-02 14:57+0200\n"
+"POT-Creation-Date: 2026-07-05 20:54+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Latin (https://app.transifex.com/aaaaxy/teams/158611/la/)\n"
@@ -1515,3 +1515,10 @@ msgstr "Teleportator{{BR}}(preme {{ExitButton}})"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8539]
 msgid "Why the rush, eh?"
 msgstr "Clavile totum emi: toto utar!"
+
+#. This is a reference to Beethoven's Für Elise. If there's a common
+#. misspelling in your language, make a pun based on it; otherwise, maybe
+#. comment on how overplayed it is, or on Beethoven's hearing?
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
+msgid "She's no furry - that letter is an \"ü\"!"
+msgstr "Non furiosa, sed mea Elisa est!"
