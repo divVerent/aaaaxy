@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783226135192,
+  "lastUpdate": 1783226377020,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2512,33 +2512,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-02T12:01:19Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
         },
-        "date": 1778074115487,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 77.290795743,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "62bdb35abaf8c7107ad9d484a19134aa389b64ea",
-          "message": "Run strip-nondeterminism after advzip.\n\nShould not actually fix or break anything but is cleaner.",
-          "timestamp": "2026-05-02T12:01:19Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
-        },
         "date": 1778160506425,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -4981,6 +4954,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.412979132,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "5cc38b3d9ada0e2a2b71f42ab5a15839c909943a",
+          "message": "Update regression test demos.\n\nDemo timing didn't change, but player position in the final ending\nanimation _slightly_ differs due to the end timing change.",
+          "timestamp": "2026-07-05T06:30:25+02:00",
+          "tree_id": "ff80915c4281455215ce96214589ae5bcdb9cec6",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5cc38b3d9ada0e2a2b71f42ab5a15839c909943a"
+        },
+        "date": 1783226371324,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 74.849528436,
             "unit": "Seconds"
           }
         ]
