@@ -1564,4 +1564,4 @@ msgstr "Nicht so rasch, iih!"
 #. comment on how overplayed it is, or on Beethoven's hearing?
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
 msgid "She's no furry - that letter is an \"ü\"!"
-msgstr "Zumindest hast du es nicht auf einem Dudelsack gespielt."
+msgstr "Zumindest hast du's nicht auf dem Dudelsack gespielt."
