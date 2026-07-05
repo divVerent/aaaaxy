@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-02 14:57+0200\n"
+"POT-Creation-Date: 2026-07-05 20:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1438,4 +1438,9 @@ msgstr ""
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8539]
 #. This is a reference to SheetMusicBoss's song "Rush E". Try making a pun based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or one of the common YT comments on those videos of the sort "I paid for the whole piano, I'm gonna use the whole piano".
 msgid "Why the rush, eh?"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8541]
+#. This is a reference to Beethoven's Für Elise. If there's a common misspelling in your language, make a pun based on it; otherwise, maybe comment on how overplayed it is, or on Beethoven's hearing?
+msgid "She's no furry - that letter is an \"ü\"!"
 msgstr ""

@@ -19648,8 +19648,8 @@
     <property name="initial_position" value="Middle"/>
     <property name="sound" value="got_ability.ogg"/>
     <property name="text" value="She's no furry - that letter is an &quot;ü&quot;!"/>
-    <property name="text_bg" value="#ff000000"/>
-    <property name="text_fg" value="#ffffff55"/>
+    <property name="text_bg" value="#ffffff55"/>
+    <property name="text_fg" value="#ff000000"/>
     <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
