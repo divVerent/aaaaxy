@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8540">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8542">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -19632,6 +19632,24 @@
     <property name="text" value="Why the rush, eh?"/>
     <property name="text_bg" value="#ffff0000!"/>
     <property name="text_fg" value="#ffffff00!"/>
+    <property name="text_font" value="MenuBig"/>
+   </properties>
+  </object>
+  <object id="8540" name="ShepardSequence" type="SequenceCollector" x="4352" y="5840" width="16" height="16">
+   <properties>
+    <property name="sequence" value="ED#ED#EBDCA"/>
+    <property name="target" value="=ForElise"/>
+   </properties>
+  </object>
+  <object id="8541" name="ForElise" type="CenterPrintTarget" x="4352" y="5824" width="16" height="16">
+   <properties>
+    <property name="_text_localization_note" value="This is a reference to Beethoven's Für Elise. If there's a common misspelling in your language, make a pun based on it; otherwise, maybe comment on how overplayed it is, or on Beethoven's hearing?"/>
+    <property name="importance" value="Important"/>
+    <property name="initial_position" value="Middle"/>
+    <property name="sound" value="got_ability.ogg"/>
+    <property name="text" value="She's no furry - that letter is an &quot;ü&quot;!"/>
+    <property name="text_bg" value="#ff000000"/>
+    <property name="text_fg" value="#ffffff55"/>
     <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
