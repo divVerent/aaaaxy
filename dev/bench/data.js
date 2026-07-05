@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783277922578,
+  "lastUpdate": 1783278106661,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5008,33 +5008,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-02T12:01:19Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
         },
-        "date": 1778197269280,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 70.005777945,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "62bdb35abaf8c7107ad9d484a19134aa389b64ea",
-          "message": "Run strip-nondeterminism after advzip.\n\nShould not actually fix or break anything but is cleaner.",
-          "timestamp": "2026-05-02T12:01:19Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
-        },
         "date": 1778283816420,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7481,6 +7454,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 60.18837008,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "5bacfe61c752a500c4db2cd060ee05ea566ca284",
+          "message": "Reverse colors, and add translation string.",
+          "timestamp": "2026-07-05T20:59:09+02:00",
+          "tree_id": "a275cbd40f967dc63bb73260671f602d860f77dd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5bacfe61c752a500c4db2cd060ee05ea566ca284"
+        },
+        "date": 1783278101040,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 74.818635577,
             "unit": "Seconds"
           }
         ]
