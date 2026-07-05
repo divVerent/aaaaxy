@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783279772097,
+  "lastUpdate": 1783279843955,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2522,33 +2522,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-11T06:15:23Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
         },
-        "date": 1778509434022,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 58.701451773,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "0afc43cdd5055f02e93149fd14d24df58a593645",
-          "message": "Allow the hidden Shepard sequences to be transposed freely.\n\nThe source material for both exists in multiple keys online, so let's\njust accept all twelve of them. It's not like anyone will hit any of\nthem by chance.",
-          "timestamp": "2026-05-11T06:15:23Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
-        },
         "date": 1778592867744,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -4999,6 +4972,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 78.063248757,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f471a5b71d2e4707d44ef45fc4c8e9def2441ab5",
+          "message": "Updates for file assets/locales/level.pot in de (#653)\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-05T21:20:06+02:00",
+          "tree_id": "f1a3c5f6145a4900dd7a0afe5635fb7f7029ed39",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f471a5b71d2e4707d44ef45fc4c8e9def2441ab5"
+        },
+        "date": 1783279838078,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 77.539671658,
             "unit": "Seconds"
           }
         ]
