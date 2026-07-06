@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783319518684,
+  "lastUpdate": 1783319555156,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10018,33 +10018,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "62bdb35abaf8c7107ad9d484a19134aa389b64ea",
-          "message": "Run strip-nondeterminism after advzip.\n\nShould not actually fix or break anything but is cleaner.",
-          "timestamp": "2026-05-02T12:01:19Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/62bdb35abaf8c7107ad9d484a19134aa389b64ea"
-        },
-        "date": 1778456365276,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.054141,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -12513,6 +12486,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 101.1283111,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "0356f2c088ad2189933deb5168a5c8566186d7bf",
+          "message": "Improve the Latin of the last easter egg.",
+          "timestamp": "2026-07-06T08:28:36+02:00",
+          "tree_id": "863115f7cd61e61710c6b6ec2fcaeaf40bb6daf5",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0356f2c088ad2189933deb5168a5c8566186d7bf"
+        },
+        "date": 1783319547464,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.5943396,
             "unit": "Seconds"
           }
         ]
