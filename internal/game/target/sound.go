@@ -23,6 +23,7 @@ import (
 	"github.com/divVerent/aaaaxy/internal/flag"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
 )
@@ -36,6 +37,7 @@ type visual int
 const (
 	noVisual visual = iota
 	fadeInVisual
+	flashBangVisual
 )
 
 const (
@@ -80,6 +82,8 @@ func (s *SoundTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine
 		s.Visual = noVisual
 	case "fade_in":
 		s.Visual = fadeInVisual
+	case "flash_bang":
+		s.Visual = flashBangVisual
 	default:
 		return fmt.Errorf("could not parse sound visual: %v", visual)
 	}
@@ -103,12 +107,22 @@ func (s *SoundTarget) Despawn() {
 func (s *SoundTarget) Update() {
 	// Game logic.
 	if s.Frame > 0 {
+		remaining := float64(s.Frame) / float64(s.Frames)
 		switch s.Visual {
 		case fadeInVisual:
 			strength := *screenFlashStrength * fadeInStrength
-			remaining := float64(s.Frame) / float64(s.Frames)
 			f := 1.0 - strength*remaining
 			s.World.GlobalColorM.Scale(f, f, f, 1.0)
+			s.World.GlobalColorMSet = true
+		case flashBangVisual:
+			f := 1.0 - remaining
+			s.World.GlobalColorM.Scale(f, f, f, 1.0)
+			rgba := palette.EGA(palette.Yellow, 255)
+			s.World.GlobalColorM.Translate(
+				float64(rgba.R)/255.0*(1-f),
+				float64(rgba.G)/255.0*(1-f),
+				float64(rgba.B)/255.0*(1-f),
+				0)
 			s.World.GlobalColorMSet = true
 		}
 		s.Frame--

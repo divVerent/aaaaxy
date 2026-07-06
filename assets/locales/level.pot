@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-05 20:54+0200\n"
+"POT-Creation-Date: 2026-07-06 17:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1443,4 +1443,9 @@ msgstr ""
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8541]
 #. This is a reference to Beethoven's Für Elise. If there's a common misspelling in your language, make a pun based on it; otherwise, maybe comment on how overplayed it is, or on Beethoven's hearing?
 msgid "She's no furry - that letter is an \"ü\"!"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8543]
+#. Comic explosion sign.
+msgid "Bang!"
 msgstr ""
