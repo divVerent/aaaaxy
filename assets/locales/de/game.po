@@ -356,6 +356,10 @@ msgstr "keine"
 msgid "Nuku'alofa"
 msgstr "Nuku'alofa"
 
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "Aus"
+
 #: menu/map.go
 msgid "Pick-a-Path"
 msgstr "Wähl-dir-was"
@@ -682,10 +686,6 @@ msgstr "Lade Leveldatei"
 #: fun/string.go
 msgid "nothing"
 msgstr "nichts"
-
-#: menu/settings.go menu/settings.go
-msgid "Off"
-msgstr "Aus"
 
 #: level/level.go
 msgid "parsing level data"
