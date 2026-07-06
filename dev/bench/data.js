@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783355898663,
+  "lastUpdate": 1783355926289,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "0afc43cdd5055f02e93149fd14d24df58a593645",
-          "message": "Allow the hidden Shepard sequences to be transposed freely.\n\nThe source material for both exists in multiple keys online, so let's\njust accept all twelve of them. It's not like anyone will hit any of\nthem by chance.",
-          "timestamp": "2026-05-11T06:15:23Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
-        },
-        "date": 1779206446869,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 226.081397439,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2513,6 +2486,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 241.802131668,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "ed17eaa0709bd3044485f9cee4927d82f3b2bfad",
+          "message": "Bump Transifex.",
+          "timestamp": "2026-07-06T18:34:01+02:00",
+          "tree_id": "880c61458853565572772dd73f4eabc85a94bcea",
+          "url": "https://github.com/divVerent/aaaaxy/commit/ed17eaa0709bd3044485f9cee4927d82f3b2bfad"
+        },
+        "date": 1783355921833,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 218.800670406,
             "unit": "Seconds"
           }
         ]
