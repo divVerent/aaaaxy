@@ -115,7 +115,7 @@ func (t *CenterPrintTarget) Touch(other *engine.Entity) {}
 func (t *CenterPrintTarget) SetState(originator, predecessor *engine.Entity, state bool) {
 	if state {
 		if !t.Centerprint.Active() {
-			t.Centerprint = centerprint.NewWithBG(t.Text, t.Imp, t.Pos, t.Font, t.BGColor, t.FGColor, t.FadeTime)
+			t.Centerprint = centerprint.NewWithBG(fun.FormatText(&t.World.PlayerState, t.Text), t.Imp, t.Pos, t.Font, t.BGColor, t.FGColor, t.FadeTime)
 			if t.Sound != nil {
 				t.Sound.Play()
 			}
