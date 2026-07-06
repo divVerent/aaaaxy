@@ -20,13 +20,10 @@ set -ex
 midi=$1; shift
 wav=$1; shift
 
-converted=$(mktemp --suffix=.mid)
-trap 'rm -f "$converted"' EXIT
+dir=$(mktemp -d -t shepard_midi2wav)
+trap 'rm -rf "$dir"' EXIT
 
-config=$(mktemp --suffix=.sfz)
-trap 'rm -f "$converted" "$config"' EXIT
+midicopy -nodrums "$@" "$midi" "$dir/converted.mid"
+sh shepard.sfz.sh > "$dir/config.sfz"
 
-midicopy -nodrums "$@" "$midi" "$converted"
-sh shepard.sfz.sh > "$config"
-
-sfizz_render --sfz "$config" --polyphony 4096 --midi "$converted" --wav "$wav"
+sfizz_render --sfz "$dir/config.sfz" --polyphony 4096 --midi "$dir/converted.mid" --wav "$wav"
