@@ -358,6 +358,10 @@ msgstr "Нічого"
 msgid "Nuku'alofa"
 msgstr "Нукуалофа"
 
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "Вимк"
+
 #: menu/map.go
 msgid "Pick-a-Path"
 msgstr "Обери-шлях"
@@ -682,10 +686,6 @@ msgstr "завантаження файлу рівня"
 #: fun/string.go
 msgid "nothing"
 msgstr "нічого"
-
-#: menu/settings.go menu/settings.go
-msgid "Off"
-msgstr "Вимк"
 
 #: level/level.go
 msgid "parsing level data"
