@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783319555156,
+  "lastUpdate": 1783319619908,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "0afc43cdd5055f02e93149fd14d24df58a593645",
-          "message": "Allow the hidden Shepard sequences to be transposed freely.\n\nThe source material for both exists in multiple keys online, so let's\njust accept all twelve of them. It's not like anyone will hit any of\nthem by chance.",
-          "timestamp": "2026-05-10T23:25:12-07:00",
-          "tree_id": "b0e3e50c949547bd01a4e246f788e75dd5a3a0d9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
-        },
-        "date": 1778481034130,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 226.354870185,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2499,6 +2470,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 222.163921851,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "0356f2c088ad2189933deb5168a5c8566186d7bf",
+          "message": "Improve the Latin of the last easter egg.",
+          "timestamp": "2026-07-06T08:28:36+02:00",
+          "tree_id": "863115f7cd61e61710c6b6ec2fcaeaf40bb6daf5",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0356f2c088ad2189933deb5168a5c8566186d7bf"
+        },
+        "date": 1783319613824,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 229.263721524,
             "unit": "Seconds"
           }
         ]
