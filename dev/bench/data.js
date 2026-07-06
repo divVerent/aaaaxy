@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783352728569,
+  "lastUpdate": 1783353846411,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "0afc43cdd5055f02e93149fd14d24df58a593645",
-          "message": "Allow the hidden Shepard sequences to be transposed freely.\n\nThe source material for both exists in multiple keys online, so let's\njust accept all twelve of them. It's not like anyone will hit any of\nthem by chance.",
-          "timestamp": "2026-05-11T06:15:23Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
-        },
-        "date": 1779120336797,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 223.725413698,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2513,6 +2486,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 226.918169574,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "552b306b6775a13ce6d9b4d6793cda3afe3c6be3",
+          "message": "Improve sfizz-based script.",
+          "timestamp": "2026-07-06T15:36:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/552b306b6775a13ce6d9b4d6793cda3afe3c6be3"
+        },
+        "date": 1783353841639,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 241.802131668,
             "unit": "Seconds"
           }
         ]
