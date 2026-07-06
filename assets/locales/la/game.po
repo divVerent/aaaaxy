@@ -356,6 +356,10 @@ msgstr "Nihil"
 msgid "Nuku'alofa"
 msgstr "Nukualofa"
 
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "Nulla"
+
 #: menu/map.go
 msgid "Pick-a-Path"
 msgstr "Via-Ductus"
@@ -680,10 +684,6 @@ msgstr "accumulo data libellae"
 #: fun/string.go
 msgid "nothing"
 msgstr "nihil"
-
-#: menu/settings.go menu/settings.go
-msgid "Off"
-msgstr "Nulla"
 
 #: level/level.go
 msgid "parsing level data"
