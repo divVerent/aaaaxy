@@ -1521,4 +1521,4 @@ msgstr "Clavile totum emi: toto utar!"
 #. comment on how overplayed it is, or on Beethoven's hearing?
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
 msgid "She's no furry - that letter is an \"ü\"!"
-msgstr "Non furiosa, sed mea Elisa est!"
+msgstr "Proximo Natale animum meum cepit,{{BR}}sed fur non est Elisa!"
