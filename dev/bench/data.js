@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783331185565,
+  "lastUpdate": 1783331394602,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2524,33 +2524,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-11T06:15:23Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
         },
-        "date": 1778681141924,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.084925279,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "0afc43cdd5055f02e93149fd14d24df58a593645",
-          "message": "Allow the hidden Shepard sequences to be transposed freely.\n\nThe source material for both exists in multiple keys online, so let's\njust accept all twelve of them. It's not like anyone will hit any of\nthem by chance.",
-          "timestamp": "2026-05-11T06:15:23Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0afc43cdd5055f02e93149fd14d24df58a593645"
-        },
         "date": 1778765273205,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5005,6 +4978,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 79.204931845,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "dab11a505c3d2e302a56963650376e37b35889e7",
+          "message": "Centerprint: preprocess text here too.\n\nThis allows {{BR}} in CenterprintTarget like in other places.",
+          "timestamp": "2026-07-06T02:41:04-07:00",
+          "tree_id": "6922edb6ada70bd0425d6a8538842ee7132d05a5",
+          "url": "https://github.com/divVerent/aaaaxy/commit/dab11a505c3d2e302a56963650376e37b35889e7"
+        },
+        "date": 1783331390294,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 74.190035754,
             "unit": "Seconds"
           }
         ]
