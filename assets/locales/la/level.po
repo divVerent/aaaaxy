@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-05 20:54+0200\n"
+"POT-Creation-Date: 2026-07-06 18:30+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Latin (https://app.transifex.com/aaaaxy/teams/158611/la/)\n"
@@ -1522,3 +1522,8 @@ msgstr "Clavile totum emi: toto utar!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
 msgid "She's no furry - that letter is an \"ü\"!"
 msgstr "Proximo Natale animum meum cepit,{{BR}}sed fur non est Elisa!"
+
+#. Comic explosion sign.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
+msgid "Bang!"
+msgstr "Pamm!"
