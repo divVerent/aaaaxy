@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.7.89" date="2026-06-22">
-      <description><ul><li>Engine: modules update.</li><li>Level: SPIKE room.</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.89</url>
+    <release version="v1.7.119" date="2026-07-07">
+      <description><ul><li>Level: In "Shepard Tone", more melodies are recognized.</li><li>Level: Slightly adjust "Veni Vidi Vici".</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.119</url>
     </release>
   </releases>
 </component>
