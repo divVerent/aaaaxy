@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783426700266,
+  "lastUpdate": 1783426747761,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5068,33 +5068,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-23T18:29:58Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/68b59a55d96cf38ac9e571addd6ffcf210594632"
         },
-        "date": 1779579904177,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 70.646585569,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "68b59a55d96cf38ac9e571addd6ffcf210594632",
-          "message": "Modules update.",
-          "timestamp": "2026-05-23T18:29:58Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/68b59a55d96cf38ac9e571addd6ffcf210594632"
-        },
         "date": 1779666428462,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7569,6 +7542,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 77.601267838,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3356ac2f0e6913751c8fbad37964e6ac01edbf8a",
+          "message": "Translate level.pot in uk [Manual Sync] (#662)\n\n100% reviewed source file: 'level.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-07T14:12:20+02:00",
+          "tree_id": "58b1b3f815f3ecd4884f196e4f826c4530dc6c56",
+          "url": "https://github.com/divVerent/aaaaxy/commit/3356ac2f0e6913751c8fbad37964e6ac01edbf8a"
+        },
+        "date": 1783426743241,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 79.08682247,
             "unit": "Seconds"
           }
         ]
