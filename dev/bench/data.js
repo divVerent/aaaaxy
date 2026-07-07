@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783402897100,
+  "lastUpdate": 1783417906167,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5052,35 +5052,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "68b59a55d96cf38ac9e571addd6ffcf210594632",
-          "message": "Modules update.",
-          "timestamp": "2026-05-23T20:30:12+02:00",
-          "tree_id": "0b67082b0d000bda03efdb0c886ca9f780895b63",
-          "url": "https://github.com/divVerent/aaaaxy/commit/68b59a55d96cf38ac9e571addd6ffcf210594632"
-        },
-        "date": 1779561156227,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.087380563,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7567,6 +7538,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 78.67704001,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "afc76cf80ad0d98a5079ecd346d7476907defffb",
+          "message": "Release v1.7.119\n\nChanges since v1.7.89:\n  - Level: In \"Shepard Tone\", more melodies are recognized.\n  - Level: Slightly adjust \"Veni Vidi Vici\".",
+          "timestamp": "2026-07-07T08:20:54+02:00",
+          "tree_id": "1208cccfce50f45b781f9a5fdc74b7807aa58980",
+          "url": "https://github.com/divVerent/aaaaxy/commit/afc76cf80ad0d98a5079ecd346d7476907defffb"
+        },
+        "date": 1783417901524,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 77.601267838,
             "unit": "Seconds"
           }
         ]
