@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783418264830,
+  "lastUpdate": 1783426674140,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "68b59a55d96cf38ac9e571addd6ffcf210594632",
-          "message": "Modules update.",
-          "timestamp": "2026-05-23T20:30:12+02:00",
-          "tree_id": "0b67082b0d000bda03efdb0c886ca9f780895b63",
-          "url": "https://github.com/divVerent/aaaaxy/commit/68b59a55d96cf38ac9e571addd6ffcf210594632"
-        },
-        "date": 1779561309790,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 237.381805659,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2521,6 +2492,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 224.431781111,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3356ac2f0e6913751c8fbad37964e6ac01edbf8a",
+          "message": "Translate level.pot in uk [Manual Sync] (#662)\n\n100% reviewed source file: 'level.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-07T14:12:20+02:00",
+          "tree_id": "58b1b3f815f3ecd4884f196e4f826c4530dc6c56",
+          "url": "https://github.com/divVerent/aaaaxy/commit/3356ac2f0e6913751c8fbad37964e6ac01edbf8a"
+        },
+        "date": 1783426668179,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 224.668302942,
             "unit": "Seconds"
           }
         ]
