@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-08 07:25+0200\n"
+"POT-Creation-Date: 2026-07-06 18:30+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: German (https://app.transifex.com/aaaaxy/teams/158611/de/)\n"
@@ -1570,13 +1570,3 @@ msgstr "Zumindest hast du's nicht auf dem Dudelsack gespielt."
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
 msgid "Bang!"
 msgstr "Peng!"
-
-#. Reference to Super Mario 64's intro letter from Princess Peach, combined
-#. with the wellknown phrase misattributed to Marie Antoinette. Try finding
-#. both phrases as most commonly used in your language in the given contexts
-#. and use those.
-#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
-msgid "Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat cake."
-msgstr ""
-"Lieber Mario!{{BR}}Komm mich doch einmal im Schloss besuchen!{{BR}}Sollen "
-"sie doch Kuchen essen...{{BR}}Oder Pudding... mit etwas Arsen?"
