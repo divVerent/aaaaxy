@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783530528729,
+  "lastUpdate": 1783530938727,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5080,33 +5080,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-25T15:47:25Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
         },
-        "date": 1779925931574,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 71.924337837,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "fdbe00cdb8c9bb43e20f0e179f28eda6989402ad",
-          "message": "Fix sorting.",
-          "timestamp": "2026-05-25T15:47:25Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
-        },
         "date": 1780012775974,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7587,6 +7560,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 69.462994087,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "05646e6444394b7e06d4c3d78c516fc2e6a794d6",
+          "message": "Expire all centerprints when an important centerprint spawns.\n\nMakes the easter eggs a lot nicer and no longer with limited time to\nread.",
+          "timestamp": "2026-07-08T19:12:23+02:00",
+          "tree_id": "0ab886198b1d788c66e4049fce42499da6b60727",
+          "url": "https://github.com/divVerent/aaaaxy/commit/05646e6444394b7e06d4c3d78c516fc2e6a794d6"
+        },
+        "date": 1783530933290,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 73.796149988,
             "unit": "Seconds"
           }
         ]
