@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783530135509,
+  "lastUpdate": 1783530234079,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5074,33 +5074,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-25T15:47:25Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
         },
-        "date": 1779839664822,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 77.128989261,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "fdbe00cdb8c9bb43e20f0e179f28eda6989402ad",
-          "message": "Fix sorting.",
-          "timestamp": "2026-05-25T15:47:25Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
-        },
         "date": 1779925931574,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7579,6 +7552,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 81.379683302,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "99d85acf6d83de8d7f095c5b2dcd00018e68b4df",
+          "message": "If 9s barely works, let's do 10s.",
+          "timestamp": "2026-07-08T19:01:22+02:00",
+          "tree_id": "6737b6c5321b67967498377cb91603dc800d7c98",
+          "url": "https://github.com/divVerent/aaaaxy/commit/99d85acf6d83de8d7f095c5b2dcd00018e68b4df"
+        },
+        "date": 1783530227093,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 69.462994087,
             "unit": "Seconds"
           }
         ]
