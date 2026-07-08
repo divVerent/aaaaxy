@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783530046088,
+  "lastUpdate": 1783530068164,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10114,35 +10114,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "fdbe00cdb8c9bb43e20f0e179f28eda6989402ad",
-          "message": "Fix sorting.",
-          "timestamp": "2026-05-25T17:47:25+02:00",
-          "tree_id": "90d600667b52a6342be13417ab5593cd662428cd",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
-        },
-        "date": 1779724277718,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 102.158244,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -12633,6 +12604,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.2183639,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d2245a7b3b23e5f24815736c3d714b4d7e731394",
+          "message": "Try 9s.",
+          "timestamp": "2026-07-08T18:57:27+02:00",
+          "tree_id": "8e40b340305283c32f9f106daf83c9fca3429b76",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d2245a7b3b23e5f24815736c3d714b4d7e731394"
+        },
+        "date": 1783530059176,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 107.3487225,
             "unit": "Seconds"
           }
         ]
