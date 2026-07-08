@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783488723606,
+  "lastUpdate": 1783488961388,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2540,35 +2540,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "fc5fb5df28fcfeada28ff65b2f069b64656f3def",
-          "message": "Enable the 100% github workflow on PRs.",
-          "timestamp": "2026-05-25T16:52:04+02:00",
-          "tree_id": "8e7f879af0d1f3b2b0b9396368217d14b7f23fb1",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fc5fb5df28fcfeada28ff65b2f069b64656f3def"
-        },
-        "date": 1779721214802,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 72.97847675,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "dc6a5f385955f6efa0cdf260d339bb38600adc4e",
           "message": "Fix path.",
           "timestamp": "2026-05-25T17:00:14+02:00",
@@ -5047,6 +5018,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 74.738809855,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c6a53cebde50a7304fcdeaa28996561150e38542",
+          "message": "More cake.",
+          "timestamp": "2026-07-08T07:27:09+02:00",
+          "tree_id": "b7545e175b49a1551e124d6f53cecc8fd324ca9a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c6a53cebde50a7304fcdeaa28996561150e38542"
+        },
+        "date": 1783488955985,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 74.183836551,
             "unit": "Seconds"
           }
         ]
