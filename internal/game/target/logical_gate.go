@@ -28,6 +28,7 @@ type LogicalGate struct {
 
 	Target        mixins.TargetSelection
 	Invert        bool
+	SendOnce      bool
 	CountRequired int
 	IgnoreOff     bool
 
@@ -45,6 +46,7 @@ func (g *LogicalGate) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine
 	g.IgnoreOff = propmap.ValueOrP(sp.Properties, "ignore_off", false, &parseErr)
 	g.CountRequired = propmap.ValueOrP(sp.Properties, "count_required", 1, &parseErr)
 	g.IncomingState = map[engine.EntityIncarnation]struct{}{}
+	g.SendOnce = propmap.ValueOrP(sp.Properties, "send_once", false, &parseErr)
 	return parseErr
 }
 
@@ -56,7 +58,7 @@ func (g *LogicalGate) Update() {
 			delete(g.IncomingState, ent)
 		}
 	}
-	g.MaybeSendEvent(true)
+	g.MaybeSendEvent()
 }
 
 func (g *LogicalGate) Touch(other *engine.Entity) {}
@@ -70,13 +72,12 @@ func (g *LogicalGate) SetState(originator, predecessor *engine.Entity, state boo
 	g.Originator = originator
 }
 
-func (g *LogicalGate) MaybeSendEvent(sendEveryFrame bool) {
+func (g *LogicalGate) MaybeSendEvent() {
 	newState := len(g.IncomingState) >= g.CountRequired
-	if newState == g.State && !(sendEveryFrame && newState) {
-		return
+	if !g.SendOnce || newState != g.State {
+		mixins.SetStateOfTarget(g.World, g.Originator, g.Entity, g.Target, newState != g.Invert)
 	}
 	g.State = newState
-	mixins.SetStateOfTarget(g.World, g.Originator, g.Entity, g.Target, newState != g.Invert)
 }
 
 func init() {

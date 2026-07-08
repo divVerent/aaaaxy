@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8555">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8587">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -10633,8 +10633,8 @@
   <object id="4485" name="TrashWonCounter" type="LogicalGate" x="6016" y="4048" width="16" height="32">
    <properties>
     <property name="count_required" type="int" value="11"/>
-    <property name="send_untouch" type="bool" value="true"/>
     <property name="target" value="TrashWon"/>
+    <property name="send_once" type="bool" value="true"/>
    </properties>
   </object>
   <object id="4486" gid="317" x="6176" y="3968" width="32" height="48">
@@ -18873,7 +18873,7 @@
   <object id="8373" name="ShepardSequence" type="SequenceCollector" x="4288" y="5855" width="16" height="1">
    <properties>
     <property name="sequence" value="GBF#BE"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8374" name="HeroiamSlava" type="CenterPrintTarget" x="4288" y="5824" width="16" height="16">
@@ -19260,67 +19260,67 @@
   <object id="8456" name="ShepardSequence" type="SequenceCollector" x="4288" y="5854" width="16" height="1">
    <properties>
     <property name="sequence" value="G#CGCF"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8457" name="ShepardSequence" type="SequenceCollector" x="4288" y="5853" width="16" height="1">
    <properties>
     <property name="sequence" value="AC#G#C#F#"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8458" name="ShepardSequence" type="SequenceCollector" x="4288" y="5852" width="16" height="1">
    <properties>
     <property name="sequence" value="A#DADG"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8459" name="ShepardSequence" type="SequenceCollector" x="4288" y="5851" width="16" height="1">
    <properties>
     <property name="sequence" value="BD#A#D#G#"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8460" name="ShepardSequence" type="SequenceCollector" x="4288" y="5850" width="16" height="1">
    <properties>
     <property name="sequence" value="CEBEA"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8461" name="ShepardSequence" type="SequenceCollector" x="4288" y="5849" width="16" height="1">
    <properties>
     <property name="sequence" value="C#FCFA#"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8462" name="ShepardSequence" type="SequenceCollector" x="4288" y="5848" width="16" height="1">
    <properties>
     <property name="sequence" value="DF#C#F#B"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8463" name="ShepardSequence" type="SequenceCollector" x="4288" y="5847" width="16" height="1">
    <properties>
     <property name="sequence" value="D#GDGC"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8464" name="ShepardSequence" type="SequenceCollector" x="4288" y="5846" width="16" height="1">
    <properties>
     <property name="sequence" value="EG#D#G#C#"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8465" name="ShepardSequence" type="SequenceCollector" x="4288" y="5845" width="16" height="1">
    <properties>
     <property name="sequence" value="FAEAD"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8466" name="ShepardSequence" type="SequenceCollector" x="4288" y="5844" width="16" height="1">
    <properties>
     <property name="sequence" value="F#A#FA#D#"/>
-    <property name="target" value="=HeroiamSlava"/>
+    <property name="target" value="=HeroiamSlava =OffDelay"/>
    </properties>
   </object>
   <object id="8467" name="ShepardSequence" type="SequenceCollector" x="4272" y="5854" width="16" height="1">
@@ -19617,13 +19617,13 @@
     <property name="solid" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="8538" name="ShepardSequence" type="SequenceCollector" x="4304" y="5840" width="16" height="16">
+  <object id="8538" name="ShepardSequence" type="SequenceCollector" x="4304" y="5840" width="8" height="16">
    <properties>
     <property name="sequence" value="EEEEEEEEEEEEE"/>
-    <property name="target" value="=RushE"/>
+    <property name="target" value="=RushE =OffDelay"/>
    </properties>
   </object>
-  <object id="8539" name="RushE" type="CenterPrintTarget" x="4304" y="5824" width="16" height="16">
+  <object id="8539" name="RushE" type="CenterPrintTarget" x="4304" y="5824" width="8" height="16">
    <properties>
     <property name="_text_localization_note" value="This is a reference to SheetMusicBoss's song &quot;Rush E&quot;. Try making a pun based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or one of the common YT comments on those videos of the sort &quot;I paid for the whole piano, I'm gonna use the whole piano&quot;."/>
     <property name="importance" value="Important"/>
@@ -19635,13 +19635,13 @@
     <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
-  <object id="8540" name="ShepardSequence" type="SequenceCollector" x="4336" y="5840" width="16" height="16">
+  <object id="8540" name="ShepardSequence" type="SequenceCollector" x="4328" y="5840" width="8" height="16">
    <properties>
     <property name="sequence" value="ED#ED#EBDCA"/>
-    <property name="target" value="=ForElise"/>
+    <property name="target" value="=ForElise =OffDelay"/>
    </properties>
   </object>
-  <object id="8541" name="ForElise" type="CenterPrintTarget" x="4336" y="5824" width="16" height="16">
+  <object id="8541" name="ForElise" type="CenterPrintTarget" x="4328" y="5824" width="8" height="16">
    <properties>
     <property name="_text_localization_note" value="This is a reference to Beethoven's Für Elise. If there's a common misspelling in your language, make a pun based on it; otherwise, maybe comment on how overplayed it is, or on Beethoven's hearing?"/>
     <property name="importance" value="Important"/>
@@ -19653,13 +19653,13 @@
     <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
-  <object id="8542" name="ShepardSequence" type="SequenceCollector" x="4320" y="5840" width="16" height="16">
+  <object id="8542" name="ShepardSequence" type="SequenceCollector" x="4312" y="5840" width="16" height="16">
    <properties>
     <property name="sequence" value="EDCDCCEGFACC"/>
-    <property name="target" value="=AsplodeMessage =AsplodeSound"/>
+    <property name="target" value="=AsplodeMessage =AsplodeSound =OffDelay"/>
    </properties>
   </object>
-  <object id="8543" name="AsplodeMessage" type="CenterPrintTarget" x="4328" y="5824" width="8" height="16">
+  <object id="8543" name="AsplodeMessage" type="CenterPrintTarget" x="4320" y="5824" width="8" height="16">
    <properties>
     <property name="_text_localization_note" value="Comic explosion sign."/>
     <property name="importance" value="Important"/>
@@ -19670,95 +19670,267 @@
     <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
-  <object id="8544" name="AsplodeSound" type="SoundTarget" x="4320" y="5824" width="8" height="16">
+  <object id="8544" name="AsplodeSound" type="SoundTarget" x="4312" y="5824" width="8" height="16">
    <properties>
     <property name="duration" value="5s"/>
     <property name="sound" value="riserfsck.ogg"/>
     <property name="visual" value="flash_bang"/>
    </properties>
   </object>
-  <object id="8542" name="ShepardSequence" type="SequenceCollector" x="4352" y="5855" width="16" height="1">
+  <object id="8542" name="ShepardSequence" type="SequenceCollector" x="4336" y="5855" width="16" height="1">
    <properties>
     <property name="sequence" value="EEEC#BA#"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8543" name="Slider" type="CenterPrintTarget" x="4352" y="5824" width="16" height="16">
+  <object id="8543" name="Arsenic" type="CenterPrintTarget" x="4352" y="5824" width="8" height="16">
    <properties>
-    <property name="_text_localization_note" value="Reference to Super Mario 64's intro letter from Princess Peach, combined with the wellknown phrase misattributed to Marie Antoinette. Try finding both phrases as most commonly used in your language in the given contexts and use those."/>
     <property name="importance" value="Important"/>
     <property name="initial_position" value="Middle"/>
     <property name="sound" value="got_ability.ogg"/>
-    <property name="text" value="Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat cake."/>
+    <property name="text" value="I think you meant to play{{BR}}In the Hall of the Mountain King?"/>
     <property name="text_bg" value="#ffaaaaaa"/>
     <property name="text_fg" value="#ff000000"/>
     <property name="text_font" value="MenuBig"/>
    </properties>
   </object>
-  <object id="8544" name="ShepardSequence" type="SequenceCollector" x="4352" y="5854" width="16" height="1">
+  <object id="8544" name="ShepardSequence" type="SequenceCollector" x="4336" y="5854" width="16" height="1">
    <properties>
     <property name="sequence" value="FFFDCB"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8545" name="ShepardSequence" type="SequenceCollector" x="4352" y="5853" width="16" height="1">
+  <object id="8545" name="ShepardSequence" type="SequenceCollector" x="4336" y="5853" width="16" height="1">
    <properties>
     <property name="sequence" value="F#F#F#D#C#C"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8546" name="ShepardSequence" type="SequenceCollector" x="4352" y="5852" width="16" height="1">
+  <object id="8546" name="ShepardSequence" type="SequenceCollector" x="4336" y="5852" width="16" height="1">
    <properties>
     <property name="sequence" value="GGGEDC#"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8547" name="ShepardSequence" type="SequenceCollector" x="4352" y="5851" width="16" height="1">
+  <object id="8547" name="ShepardSequence" type="SequenceCollector" x="4336" y="5851" width="16" height="1">
    <properties>
     <property name="sequence" value="G#G#G#FD#D"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8548" name="ShepardSequence" type="SequenceCollector" x="4352" y="5850" width="16" height="1">
+  <object id="8548" name="ShepardSequence" type="SequenceCollector" x="4336" y="5850" width="16" height="1">
    <properties>
     <property name="sequence" value="AAAF#ED#"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8549" name="ShepardSequence" type="SequenceCollector" x="4352" y="5849" width="16" height="1">
+  <object id="8549" name="ShepardSequence" type="SequenceCollector" x="4336" y="5849" width="16" height="1">
    <properties>
     <property name="sequence" value="A#A#A#GFE"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8550" name="ShepardSequence" type="SequenceCollector" x="4352" y="5848" width="16" height="1">
+  <object id="8550" name="ShepardSequence" type="SequenceCollector" x="4336" y="5848" width="16" height="1">
    <properties>
     <property name="sequence" value="BBBG#F#F"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8551" name="ShepardSequence" type="SequenceCollector" x="4352" y="5847" width="16" height="1">
+  <object id="8551" name="ShepardSequence" type="SequenceCollector" x="4336" y="5847" width="16" height="1">
    <properties>
     <property name="sequence" value="CCCAGF#"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8552" name="ShepardSequence" type="SequenceCollector" x="4352" y="5846" width="16" height="1">
+  <object id="8552" name="ShepardSequence" type="SequenceCollector" x="4336" y="5846" width="16" height="1">
    <properties>
     <property name="sequence" value="C#C#C#A#G#G"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8553" name="ShepardSequence" type="SequenceCollector" x="4352" y="5845" width="16" height="1">
+  <object id="8553" name="ShepardSequence" type="SequenceCollector" x="4336" y="5845" width="16" height="1">
    <properties>
     <property name="sequence" value="DDDBAG#"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
    </properties>
   </object>
-  <object id="8554" name="ShepardSequence" type="SequenceCollector" x="4352" y="5844" width="16" height="1">
+  <object id="8554" name="ShepardSequence" type="SequenceCollector" x="4336" y="5844" width="16" height="1">
    <properties>
     <property name="sequence" value="D#D#D#CA#A"/>
-    <property name="target" value="=Slider"/>
+    <property name="target" value="=Slider =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8555" name="ShepardSequence" type="SequenceCollector" x="4352" y="5855" width="8" height="1">
+   <properties>
+    <property name="sequence" value="ABCDEBE"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8556" name="Slider" type="CenterPrintTarget" x="4336" y="5824" width="16" height="16">
+   <properties>
+    <property name="_text_localization_note" value="Reference to Super Mario 64's intro letter from Princess Peach, combined with the wellknown phrase misattributed to Marie Antoinette. Try finding both phrases as most commonly used in your language in the given contexts and use those. Definitely don't reference Portal here - let's not overdo those. If Asterix is well-known in your culture, you may consider making it an &quot;arsenic cake&quot;; if not, reference Grieg's In the Hall of the Mountain King."/>
+    <property name="importance" value="Important"/>
+    <property name="initial_position" value="Middle"/>
+    <property name="sound" value="got_ability.ogg"/>
+    <property name="text" value="Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat cake...{{BR}}Arsenic cake?"/>
+    <property name="text_bg" value="#ffaaaaaa"/>
+    <property name="text_fg" value="#ff000000"/>
+    <property name="text_font" value="MenuBig"/>
+   </properties>
+  </object>
+  <object id="8557" name="Hall" type="CenterPrintTarget" x="4360" y="5824" width="8" height="16">
+   <properties>
+    <property name="importance" value="Important"/>
+    <property name="initial_position" value="Middle"/>
+    <property name="sound" value="got_ability.ogg"/>
+    <property name="text" value="I think you meant to play{{BR}}Arsenic Cake?"/>
+    <property name="text_bg" value="#ffaaaaaa"/>
+    <property name="text_fg" value="#ff000000"/>
+    <property name="text_font" value="MenuBig"/>
+   </properties>
+  </object>
+  <object id="8558" name="ShepardSequence" type="SequenceCollector" x="4360" y="5853" width="8" height="1">
+   <properties>
+    <property name="sequence" value="BC#DEF#DF#"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8559" name="ShepardSequence" type="SequenceCollector" x="4352" y="5854" width="8" height="1">
+   <properties>
+    <property name="sequence" value="A#CC#D#FCF"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8561" name="ShepardSequence" type="SequenceCollector" x="4352" y="5853" width="8" height="1">
+   <properties>
+    <property name="sequence" value="BC#DEF#C#F#"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8562" name="ShepardSequence" type="SequenceCollector" x="4352" y="5852" width="8" height="1">
+   <properties>
+    <property name="sequence" value="CDD#FGDG"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8563" name="ShepardSequence" type="SequenceCollector" x="4352" y="5851" width="8" height="1">
+   <properties>
+    <property name="sequence" value="C#D#EF#G#D#G#"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8564" name="ShepardSequence" type="SequenceCollector" x="4352" y="5848" width="8" height="1">
+   <properties>
+    <property name="sequence" value="EF#GABF#B"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8565" name="ShepardSequence" type="SequenceCollector" x="4352" y="5847" width="8" height="1">
+   <properties>
+    <property name="sequence" value="FGAA#CGC"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8566" name="ShepardSequence" type="SequenceCollector" x="4352" y="5846" width="8" height="1">
+   <properties>
+    <property name="sequence" value="F#G#ABC#G#C#"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8567" name="ShepardSequence" type="SequenceCollector" x="4352" y="5845" width="8" height="1">
+   <properties>
+    <property name="sequence" value="GAA#CDAD"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8568" name="ShepardSequence" type="SequenceCollector" x="4352" y="5844" width="8" height="1">
+   <properties>
+    <property name="sequence" value="G#A#BC#D#A#D#"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8569" name="ShepardSequence" type="SequenceCollector" x="4352" y="5850" width="8" height="1">
+   <properties>
+    <property name="sequence" value="DEFGAEA"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8570" name="ShepardSequence" type="SequenceCollector" x="4352" y="5849" width="8" height="1">
+   <properties>
+    <property name="sequence" value="D#FF#G#A#FA#"/>
+    <property name="target" value="=Arsenic =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8572" name="ShepardSequence" type="SequenceCollector" x="4360" y="5855" width="8" height="1">
+   <properties>
+    <property name="sequence" value="ABCDECE"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8573" name="ShepardSequence" type="SequenceCollector" x="4360" y="5854" width="8" height="1">
+   <properties>
+    <property name="sequence" value="A#CC#D#FC#F"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8574" name="ShepardSequence" type="SequenceCollector" x="4360" y="5852" width="8" height="1">
+   <properties>
+    <property name="sequence" value="CDD#FGD#G"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8575" name="ShepardSequence" type="SequenceCollector" x="4360" y="5851" width="8" height="1">
+   <properties>
+    <property name="sequence" value="C#D#EF#G#EG#"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8576" name="ShepardSequence" type="SequenceCollector" x="4360" y="5848" width="8" height="1">
+   <properties>
+    <property name="sequence" value="EF#GABGB"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8577" name="ShepardSequence" type="SequenceCollector" x="4360" y="5847" width="8" height="1">
+   <properties>
+    <property name="sequence" value="FGG#A#CG#C"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8578" name="ShepardSequence" type="SequenceCollector" x="4360" y="5846" width="8" height="1">
+   <properties>
+    <property name="sequence" value="F#G#ABC#AC#"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8579" name="ShepardSequence" type="SequenceCollector" x="4360" y="5845" width="8" height="1">
+   <properties>
+    <property name="sequence" value="GAA#CDA#D"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8580" name="ShepardSequence" type="SequenceCollector" x="4360" y="5844" width="8" height="1">
+   <properties>
+    <property name="sequence" value="G#A#BC#D#BD#"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8581" name="ShepardSequence" type="SequenceCollector" x="4360" y="5850" width="8" height="1">
+   <properties>
+    <property name="sequence" value="DEFGAFA"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8582" name="ShepardSequence" type="SequenceCollector" x="4360" y="5849" width="8" height="1">
+   <properties>
+    <property name="sequence" value="D#FF#G#A#F#A#"/>
+    <property name="target" value="=Hall =OffDelay"/>
+   </properties>
+  </object>
+  <object id="8586" name="OffDelay" type="DelayTarget" x="4256" y="5816" width="111" height="8">
+   <properties>
+    <property name="delay" value="8s"/>
+    <property name="target" value="!HeroiamSlava !RushE !AsplodeMessage !ForElise !Slider !Arsenic !Hall"/>
    </properties>
   </object>
  </objectgroup>

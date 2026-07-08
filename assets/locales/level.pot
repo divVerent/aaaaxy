@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-08 07:25+0200\n"
+"POT-Creation-Date: 2026-07-08 10:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1451,6 +1451,16 @@ msgid "Bang!"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8543]
-#. Reference to Super Mario 64's intro letter from Princess Peach, combined with the wellknown phrase misattributed to Marie Antoinette. Try finding both phrases as most commonly used in your language in the given contexts and use those.
-msgid "Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat cake."
+msgid "I think you meant to play{{BR}}In the Hall of the Mountain King?"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8556]
+#. Reference to Super Mario 64's intro letter from Princess Peach, combined with the wellknown phrase misattributed to Marie Antoinette. Try finding both phrases as most commonly used in your language in the given contexts and use those. Definitely don't reference Portal here - let's not overdo those. If Asterix is well-known in your culture, you may consider making it an "arsenic cake"; if not, reference Grieg's In the Hall of the Mountain King.
+msgid ""
+"Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat cake...{{BR}}"
+"Arsenic cake?"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8557]
+msgid "I think you meant to play{{BR}}Arsenic Cake?"
 msgstr ""
