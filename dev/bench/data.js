@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783488631605,
+  "lastUpdate": 1783488723606,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "dc6a5f385955f6efa0cdf260d339bb38600adc4e",
-          "message": "Fix path.",
-          "timestamp": "2026-05-25T17:00:14+02:00",
-          "tree_id": "12604e7a20862dfb2960006c8cdf38248be35895",
-          "url": "https://github.com/divVerent/aaaaxy/commit/dc6a5f385955f6efa0cdf260d339bb38600adc4e"
-        },
-        "date": 1779721493131,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 227.076897842,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2521,6 +2492,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 222.493467306,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c6a53cebde50a7304fcdeaa28996561150e38542",
+          "message": "More cake.",
+          "timestamp": "2026-07-08T07:27:09+02:00",
+          "tree_id": "b7545e175b49a1551e124d6f53cecc8fd324ca9a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c6a53cebde50a7304fcdeaa28996561150e38542"
+        },
+        "date": 1783488718166,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 234.766618643,
             "unit": "Seconds"
           }
         ]
