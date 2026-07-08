@@ -1535,4 +1535,5 @@ msgstr "Pamm!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
 msgid "Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat cake."
 msgstr ""
-"Mario salutem dico.{{BR}}Quaeso, ad castellum venias.{{BR}}Libum edant isti."
+"Mario salutem dico.{{BR}}Quaeso, ad castellum venias.{{BR}}Libum edant "
+"isti.{{BR}}Aut... placentam venenatam?"
