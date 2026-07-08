@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783488961388,
+  "lastUpdate": 1783502034914,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7592,35 +7592,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "dc6a5f385955f6efa0cdf260d339bb38600adc4e",
-          "message": "Fix path.",
-          "timestamp": "2026-05-25T17:00:14+02:00",
-          "tree_id": "12604e7a20862dfb2960006c8cdf38248be35895",
-          "url": "https://github.com/divVerent/aaaaxy/commit/dc6a5f385955f6efa0cdf260d339bb38600adc4e"
-        },
-        "date": 1779721399924,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 97.0570933,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "7f8da7a6a9a4a39f20ecd9d938da14d32ac63bfb",
           "message": "Add static_velocity to the Tiled project.\n\nHad to make it a string, as it's a tristate (default is \"same as\njump_up_only\").",
           "timestamp": "2026-05-25T17:46:50+02:00",
@@ -10099,6 +10070,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 97.6756186,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "ed756b67ea6420c0a170798e1fe7fc4b4198c805",
+          "message": "More music jokes.",
+          "timestamp": "2026-07-08T11:10:16+02:00",
+          "tree_id": "f050caf51e3a481c609764f02cb291063918d28c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/ed756b67ea6420c0a170798e1fe7fc4b4198c805"
+        },
+        "date": 1783502026541,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 104.6213325,
             "unit": "Seconds"
           }
         ]
