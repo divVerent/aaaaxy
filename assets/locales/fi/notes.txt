@@ -1,0 +1,233 @@
+# TRANSLATOR'S NOTES
+# The language suomi is written with a lowercase letter.
+# Uppercase Suomi is the name of the country.
+# The decimal separator is a comma.
+# Decimals are not usually grouped but can be separated with a space for
+# clarifying purposes 10 000 000,000 000 01
+# (https://kielitoimistonohjepankki.fi/ohje/luvut-ja-numerot-desimaaliluvut/)
+# Clock format 1.23.45,678 (https://kielikello.fi/ajan-ilmaiseminen/)
+
+
+
+# Translations needing changes in the source code
+
+#. Last separator when building a list. Usually starts and ends with a space.
+#: fun/string.go playerstate/playerstate.go
+msgid " and "
+msgstr " ja "
+#. Other separator when building a list. Usually is a comma and a space.
+#: fun/string.go playerstate/playerstate.go
+msgid ", "
+msgstr ", "
+# Title case is not used in Finnish. Uppercase is used in the first word of a
+# title and in proper nouns, meaning concatenation doesn't really work.
+# May be better to have separate strings instead of building them from parts.
+# (Idk if these are used at the beginning or middle of a sentence)
+
+#. Used in context "Welcome to ..." and "... Road Rage".
+#: fun/string.go
+msgid "Alofi"
+msgstr ""
+# Cannot be used in both
+# (Tervetuloa Alofiin, Alofin rattiraivo/Rattiraivo Alofissa).
+# Would need separate strings. I never saw any other city besides Tel Aviv
+# in the game
+
+#. Used in context "Hold ...".
+#: fun/string.go
+msgid "elsewhere"
+msgstr "muualle"
+# Please have these as separate strings instead of string concatenation ;-;
+# https://i.imgflip.com/2b6cus.jpg
+
+
+
+# Strings that need changing in English just because
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s (think about it for %d sec)"
+msgstr "Nollaa ja menetä tallennuspaikka %s (mieti asiaa %d s)"
+# Need to know what msgids %s can be.
+
+# The English string should also be '%d s' instead of '%d sec'
+# as the SI symbol for seconds is s.
+
+#: menu/credits.go
+msgid "For Software Licenses{{BR}}Press Right"
+msgstr ""
+# On mobile it should perhaps say
+# 'For software licenses press the right side of the screen'.
+
+#: playerstate/playerstate.go
+msgid "Without Cheating Of Course"
+msgstr "Ilman huijauksia"
+# Idk about scolding players for enjoying the game in a way that they like.
+
+#. A speedrun category (all checkpoints reached in flipped state).
+#: playerstate/playerstate.go
+msgid "All Flipped"
+msgstr "Kaikki peilattu"
+# Maybe 'mirrored' would be more descriptive in the English version?
+# Peilata: to mirror. "Kaikki käännetty" works equally well.
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=6061]
+msgid "Those who are not inattentive get trolled."
+msgstr ""
+# Shouldn't this be "those who are inattentive get trolled"? Or is that the joke?
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=7837]
+msgid "I hope you took{{BR}}the small one ..."
+msgstr "Toivottavasti otit pienen ..."
+# 'The' small one? Aren't there two small platforms in that section?
+# So should it be 'I hope you took a small one'?
+
+
+
+# Strings needing more context
+
+#: aaaaxy/game.go
+msgid "%.1f fps, %.1f tps"
+msgstr "%.1f f/s, %.1f t/s"
+# Assuming this means frames per second and ticks per second.
+
+#: fun/string.go
+msgid "%d:%02d:%02d.%03d"
+msgstr "%d.%02d.%02d,%03d"
+# Looks like it's used in the menu but not as the splice timers
+
+# No idea what this is.
+#: menu/level.go
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: aaaaxy/game.go
+msgid "(%.5f %.5f) (%.4f %.4f)"
+msgstr "(%.5f %.5f) (%.4f %.4f)"
+# No idea what this is.
+
+#. Other separator when building a list. Usually is a comma and a space.
+#: fun/string.go playerstate/playerstate.go
+msgid ", "
+msgstr ", "
+# Where is this used?
+
+#: menu/quality.go playerstate/playerstate.go
+msgid "???"
+msgstr "???"
+# Question marks, that's also the feeling I have translating this :D
+
+#: playerstate/playerstate.go
+msgid "Impossible"
+msgstr ""
+# never seen this in game, I wonder if it's 'impossible' to see
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=92]
+#. https://www.churchofjesuschrist.org/broadcasts/article/ces-devotionals/2013/01/what-is-truth?lang=eng
+msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
+msgstr ""
+# The server at www.churchofjesuschrist.org sent back an error: 
+# 500 Internal Server Error
+# Too bad.
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=287]
+#. https://www.youtube.com/watch?v=zpRQtHjEniQ
+msgid "Oh, gravity, thou art a heartless ... force?"
+msgstr ""
+# Private video
+# Too bad.
+
+#: menu/reset.go
+msgid "Reset and Lose SAVE STATE %s"
+msgstr "Nollaa ja menetä TALLENNUSPAIKKA %s"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s"
+msgstr "Nollaa ja menetä tallennuspaikka %s"
+
+#: menu/reset.go
+msgid "Reset and Lose Save State %s (just release buttons)"
+msgstr "Nollaa ja menetä tallennuspaikka %s (päästä irti painikkeista)"
+
+#: game/player/player.go
+msgid "You now have 30 lives. Enjoy!"
+msgstr "Sinulla on nyt 30 elämää. Nauti!"
+
+#: game/player/player.go
+msgid "You really thought this would do something?"
+msgstr "Luulitko todella tämän tekevän jotain?"
+# Where are these used?
+
+#: menu/savestate.go
+msgid "X: %s"
+msgstr "X: %s"
+
+#: menu/savestate.go
+msgid "Y: %s"
+msgstr "Y: %s"
+
+#: fun/string.go
+msgid "Z"
+msgstr "Z"
+# it's just some letters, context would be useful
+
+#: aaaaxy/init.go
+msgid "initializing noise"
+msgstr "alustetaan kohina"
+# "alustetaan kohina"
+# "alustetaan meteli"
+# "alustetaan hälinä"
+# Depends on what noise refers to, assuming it's the sound made by risers or
+# the shaking effect?
+
+
+
+# Other notes
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=66]
+msgid "Stop and Stair"
+msgstr "Pysähdy ja porrasta"
+# porrastaa: stagger/grade
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=62]
+msgid "Where there's a down, there must also be an up."
+msgstr ""
+# What goes up, must come down?
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=145]
+#. https://gettingoverit.co/
+msgid "Thinking outside the box can remove the need of getting over it."
+msgstr "Luova ajattelu voi poistaa tarpeen luovimiselle."
+# luova: creative, luovia: to act in a way that avoids difficulties
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=238]
+msgid "Unparalleled execution is all you really need here."
+msgstr "Kaikki mitä tässä todella tarvitset on suoraviivainen toteutus."
+# suoraviivainen: rectilinear/straightforward
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=1199]
+#. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
+msgid "He shall not return by the way of the gate whereby he came in."
+msgstr "Kukaan ei saa poistua sen portin kautta, josta on tullut."
+# Hes 46:9
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=1445]
+msgid "Peaceful games require peaceful solutions."
+msgstr "Rauhalliset pelit vaativat rauhallisia ratkaisuja."
+# ah yes dead memes :)
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=6536]
+#. 'Cheese' here means 'unintended shortcut' - https://english.stackexchange.com/questions/21867/origins-of-the-gaming-term-cheese-strategy
+msgid "What looked like cheese might be the only way."
+msgstr ""
+# Asked 15 years ago, wow
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=7848]
+msgid "The path to success is littered with ...{{BR}}litter."
+msgstr "Tie menestykseen on täynnä ...{{BR}}täytettä."
+# täynnä: full of, täyte: filler
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8539]
+#. This is a reference to SheetMusicBoss's song "Rush E". Try making a pun based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or one of the common YT comments on those videos of the sort "I paid for the whole piano, I'm gonna use the whole piano".
+msgid "Why the rush, eh?"
+msgstr "En soita pianoa, piano soittaa minuE."
+# 'minua' is the correct spelling.
