@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 18:30+0200\n"
+"POT-Creation-Date: 2026-07-08 07:25+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Latin (https://app.transifex.com/aaaaxy/teams/158611/la/)\n"
@@ -1527,3 +1527,12 @@ msgstr "Proximo Natale animum meum cepit,{{BR}}sed fur non est Elisa!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
 msgid "Bang!"
 msgstr "Pamm!"
+
+#. Reference to Super Mario 64's intro letter from Princess Peach, combined
+#. with the wellknown phrase misattributed to Marie Antoinette. Try finding
+#. both phrases as most commonly used in your language in the given contexts
+#. and use those.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
+msgid "Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat cake."
+msgstr ""
+"Mario salutem dico.{{BR}}Quaeso, ad castellum venias.{{BR}}Libum edant isti."
