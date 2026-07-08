@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783502034914,
+  "lastUpdate": 1783502099833,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10118,35 +10118,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "fc5fb5df28fcfeada28ff65b2f069b64656f3def",
-          "message": "Enable the 100% github workflow on PRs.",
-          "timestamp": "2026-05-25T16:52:04+02:00",
-          "tree_id": "8e7f879af0d1f3b2b0b9396368217d14b7f23fb1",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fc5fb5df28fcfeada28ff65b2f069b64656f3def"
-        },
-        "date": 1779720968102,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 102.0091015,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "dc6a5f385955f6efa0cdf260d339bb38600adc4e",
           "message": "Fix path.",
           "timestamp": "2026-05-25T17:00:14+02:00",
@@ -12627,6 +12598,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.1979866,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "ed756b67ea6420c0a170798e1fe7fc4b4198c805",
+          "message": "More music jokes.",
+          "timestamp": "2026-07-08T11:10:16+02:00",
+          "tree_id": "f050caf51e3a481c609764f02cb291063918d28c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/ed756b67ea6420c0a170798e1fe7fc4b4198c805"
+        },
+        "date": 1783502091944,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.3828822,
             "unit": "Seconds"
           }
         ]
