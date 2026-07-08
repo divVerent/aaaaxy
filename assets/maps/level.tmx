@@ -19929,7 +19929,7 @@
   </object>
   <object id="8586" name="OffDelay" type="DelayTarget" x="4256" y="5816" width="111" height="8">
    <properties>
-    <property name="delay" value="8s"/>
+    <property name="delay" value="9s"/>
     <property name="target" value="!HeroiamSlava !RushE !AsplodeMessage !ForElise !Slider !Arsenic !Hall"/>
    </properties>
   </object>
