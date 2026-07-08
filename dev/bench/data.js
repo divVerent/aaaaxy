@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783507404216,
+  "lastUpdate": 1783517146056,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2546,33 +2546,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-25T15:47:25Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
         },
-        "date": 1779805998739,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.673537058,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "fdbe00cdb8c9bb43e20f0e179f28eda6989402ad",
-          "message": "Fix sorting.",
-          "timestamp": "2026-05-25T15:47:25Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
-        },
         "date": 1779893544462,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5049,6 +5022,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 74.505186611,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "b14be7a182a3de91af5ce2c5fe3fe15fb313ff8e",
+          "message": "Translate assets/locales/level.pot in la (#666)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-08T10:35:40Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b14be7a182a3de91af5ce2c5fe3fe15fb313ff8e"
+        },
+        "date": 1783517141024,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 77.06715667,
             "unit": "Seconds"
           }
         ]
