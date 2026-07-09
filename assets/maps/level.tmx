@@ -699,7 +699,7 @@
   </object>
   <object id="92" gid="312" x="4640" y="4544" width="32" height="32">
    <properties>
-    <property name="_text_localization_note" value="https://www.churchofjesuschrist.org/broadcasts/article/ces-devotionals/2013/01/what-is-truth?lang=eng"/>
+    <property name="_text_localization_note" value="https://www.churchofjesuschrist.org/study/ya-weekly/2021/09/5-truths-about-truth?lang=eng (switch to your language's version, the phrase is in section 1 paragraph 2 near the end)."/>
     <property name="greetings_to" value="Dieter F. Uchtdorf"/>
     <property name="reached_from" type="object" value="89"/>
     <property name="text" value="&quot;In spite of one-time overwhelming consensus, the earth isn't flat.&quot;"/>
@@ -1086,7 +1086,7 @@
   </object>
   <object id="287" gid="312" x="3920" y="5424" width="32" height="32">
    <properties>
-    <property name="_text_localization_note" value="https://www.youtube.com/watch?v=zpRQtHjEniQ"/>
+    <property name="_text_localization_note" value="https://www.youtube.com/watch?v=_-QENSv7gIs"/>
     <property name="reached_from" type="object" value="288"/>
     <property name="text" value="Oh, gravity, thou art a heartless ... force?"/>
    </properties>
@@ -10633,8 +10633,8 @@
   <object id="4485" name="TrashWonCounter" type="LogicalGate" x="6016" y="4048" width="16" height="32">
    <properties>
     <property name="count_required" type="int" value="11"/>
-    <property name="target" value="TrashWon"/>
     <property name="send_once" type="bool" value="true"/>
+    <property name="target" value="TrashWon"/>
    </properties>
   </object>
   <object id="4486" gid="317" x="6176" y="3968" width="32" height="48">
@@ -13222,7 +13222,7 @@
   <object id="6061" gid="312" x="8008" y="368" width="32" height="32">
    <properties>
     <property name="reached_from" type="object" value="5697"/>
-    <property name="text" value="Those who are not inattentive get trolled."/>
+    <property name="text" value="Those who are inattentive get trolled."/>
    </properties>
   </object>
   <object id="6062" gid="316" x="7776" y="368" width="32" height="64">

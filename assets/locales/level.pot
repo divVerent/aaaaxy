@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-08 10:59+0200\n"
+"POT-Creation-Date: 2026-07-09 19:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,7 +72,7 @@ msgid "Some people prefer 2τ over 4π."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=92]
-#. https://www.churchofjesuschrist.org/broadcasts/article/ces-devotionals/2013/01/what-is-truth?lang=eng
+#. https://www.churchofjesuschrist.org/study/ya-weekly/2021/09/5-truths-about-truth?lang=eng (switch to your language's version, the phrase is in section 1 paragraph 2 near the end).
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr ""
 
@@ -183,7 +183,7 @@ msgid "If this isn't your downfall, I don't know what is."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=287]
-#. https://www.youtube.com/watch?v=zpRQtHjEniQ
+#. https://www.youtube.com/watch?v=_-QENSv7gIs
 msgid "Oh, gravity, thou art a heartless ... force?"
 msgstr ""
 
@@ -1156,7 +1156,7 @@ msgid "Ski Dyver"
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6061]
-msgid "Those who are not inattentive get trolled."
+msgid "Those who are inattentive get trolled."
 msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=6074]
