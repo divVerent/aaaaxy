@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783621350136,
+  "lastUpdate": 1783621384333,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2540,35 +2540,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "31e9215a7abf86f9055162fe3de00c98bd0f691e",
-          "message": "Modules update.",
-          "timestamp": "2026-06-01T16:55:11+02:00",
-          "tree_id": "717f0bbecbfee2f22fb44fa4e0dfdf7178440b5f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/31e9215a7abf86f9055162fe3de00c98bd0f691e"
-        },
-        "date": 1780326241589,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 76.605802749,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -5065,6 +5036,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 77.915077356,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8e8c8c56c3e39788513ce9b1b612bb1c45218c6c",
+          "message": "More translator notes.",
+          "timestamp": "2026-07-09T20:08:41+02:00",
+          "tree_id": "aa7425ef3f70385c03b43671cab8c71d4a6ae82a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8e8c8c56c3e39788513ce9b1b612bb1c45218c6c"
+        },
+        "date": 1783621379847,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 80.129954531,
             "unit": "Seconds"
           }
         ]
