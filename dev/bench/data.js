@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783620958106,
+  "lastUpdate": 1783621138234,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10156,33 +10156,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-05-25T15:47:25Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
         },
-        "date": 1780099201425,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.0635651,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "fdbe00cdb8c9bb43e20f0e179f28eda6989402ad",
-          "message": "Fix sorting.",
-          "timestamp": "2026-05-25T15:47:25Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/fdbe00cdb8c9bb43e20f0e179f28eda6989402ad"
-        },
         "date": 1780184898020,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -12667,6 +12640,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.7274573,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8e8c8c56c3e39788513ce9b1b612bb1c45218c6c",
+          "message": "More translator notes.",
+          "timestamp": "2026-07-09T20:08:41+02:00",
+          "tree_id": "aa7425ef3f70385c03b43671cab8c71d4a6ae82a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8e8c8c56c3e39788513ce9b1b612bb1c45218c6c"
+        },
+        "date": 1783621130469,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.8469527,
             "unit": "Seconds"
           }
         ]
