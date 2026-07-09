@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-08 10:59+0200\n"
+"POT-Creation-Date: 2026-07-09 19:28+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: German (https://app.transifex.com/aaaaxy/teams/158611/de/)\n"
@@ -77,8 +77,9 @@ msgstr "Manchmal läuft man einfach im Kreis."
 msgid "Some people prefer 2τ over 4π."
 msgstr "Manche bevorzugen 2τ über 4π."
 
-#. https://www.churchofjesuschrist.org/broadcasts/article/ces-
-#. devotionals/2013/01/what-is-truth?lang=eng
+#. https://www.churchofjesuschrist.org/study/ya-weekly/2021/09/5-truths-about-
+#. truth?lang=eng (switch to your language's version, the phrase is in section
+#. 1 paragraph 2 near the end).
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr ""
@@ -194,7 +195,7 @@ msgstr "Ein neuer Anfang"
 msgid "If this isn't your downfall, I don't know what is."
 msgstr "Wenn dich das nicht stürzt, was dann?"
 
-#. https://www.youtube.com/watch?v=zpRQtHjEniQ
+#. https://www.youtube.com/watch?v=_-QENSv7gIs
 #: assets/maps/level.tmx//map/objectgroup/object[@id=287]
 msgid "Oh, gravity, thou art a heartless ... force?"
 msgstr "O, Schwerkraft, du herzlose ... Kraft?"
@@ -1249,7 +1250,7 @@ msgid "Ski Dyver"
 msgstr "Ski-Dyver"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
-msgid "Those who are not inattentive get trolled."
+msgid "Those who are inattentive get trolled."
 msgstr "Wer nicht aufpasst, wird getrollt."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
