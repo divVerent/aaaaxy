@@ -82,6 +82,7 @@ jobs:
           alert-threshold: 125%
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Diff Benchmark Commit
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
@@ -174,6 +175,7 @@ jobs:
           alert-threshold: 105%
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Diff Benchmark Commit
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
@@ -270,6 +272,7 @@ jobs:
           alert-threshold: 120%
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Diff Benchmark Commit
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
