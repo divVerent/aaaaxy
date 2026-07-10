@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783667807892,
+  "lastUpdate": 1783667939518,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "4a06181e5b3f816f0a18e3ad2ff16f9d8a200fc6",
-          "message": "Updates for file assets/locales/level.pot in ar_EG [Manual Sync] (#645)\n\n* Translate level.pot in ar_EG [Manual Sync]\n\n98% of minimum 95% reviewed source file: 'level.pot'\non 'ar_EG'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\n* Translate level.pot in ar_EG [Manual Sync]\n\n98% of minimum 95% reviewed source file: 'level.pot'\non 'ar_EG'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-06-02T06:28:56+02:00",
-          "tree_id": "86ace924aacb2b9ea85d4f642443437bae175f46",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4a06181e5b3f816f0a18e3ad2ff16f9d8a200fc6"
-        },
-        "date": 1780374958352,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 232.512387949,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2533,6 +2504,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 234.89604065,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "36b0cad3f1f259bf82be794af631ebca635e03d8",
+          "message": "Only apply the patches that work. Let's see how complete that is.",
+          "timestamp": "2026-07-10T09:13:59+02:00",
+          "tree_id": "0da3de565ed6ed4edea6a0410e967c5e32c0ccac",
+          "url": "https://github.com/divVerent/aaaaxy/commit/36b0cad3f1f259bf82be794af631ebca635e03d8"
+        },
+        "date": 1783667933272,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 224.307089392,
             "unit": "Seconds"
           }
         ]
