@@ -313,3 +313,9 @@ msgstr ""
 #: fun/string.go
 msgid "Z"
 msgstr ""
+
+#. -show_pos overlay (showing xy coordinates of player position and speed).
+#: aaaaxy/game.go
+msgid "(%.5f %.5f) (%.4f %.4f)"
+msgstr ""
+
