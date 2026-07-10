@@ -66,7 +66,6 @@ jobs:
           benchmark-data-dir-path: dev/bench
           auto-push: true
           alert-threshold: 125%
-          comment-on-alert: true
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
           github-token: ${{ secrets.GITHUB_TOKEN }}
