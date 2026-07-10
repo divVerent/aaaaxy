@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783666229012,
+  "lastUpdate": 1783666232440,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10150,33 +10150,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "31e9215a7abf86f9055162fe3de00c98bd0f691e",
-          "message": "Modules update.",
-          "timestamp": "2026-06-01T14:55:11Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/31e9215a7abf86f9055162fe3de00c98bd0f691e"
-        },
-        "date": 1780358594275,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 98.1610459,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -12679,6 +12652,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 101.6514845,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a0b31ed6c23f89824719443bfa7271548eff4fd7",
+          "message": "Translate assets/locales/level.pot in la (#670)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-10T08:46:19+02:00",
+          "tree_id": "311664bd7cc6daec270dcd9c006ec68c06743f08",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a0b31ed6c23f89824719443bfa7271548eff4fd7"
+        },
+        "date": 1783666218496,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.3803385,
             "unit": "Seconds"
           }
         ]
