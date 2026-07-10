@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783666164844,
+  "lastUpdate": 1783666170133,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -10148,35 +10148,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "31e9215a7abf86f9055162fe3de00c98bd0f691e",
-          "message": "Modules update.",
-          "timestamp": "2026-06-01T16:55:11+02:00",
-          "tree_id": "717f0bbecbfee2f22fb44fa4e0dfdf7178440b5f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/31e9215a7abf86f9055162fe3de00c98bd0f691e"
-        },
-        "date": 1780325906638,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 97.7862133,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -12677,6 +12648,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.0311866,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "979697c7b0a8e0fb6acac260b6cbd0dca1c28064",
+          "message": "Disable comment-on-alert as that needs the token.",
+          "timestamp": "2026-07-10T08:45:37+02:00",
+          "tree_id": "60e1fce827afa0567eda6148fe48544e3059b2c2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/979697c7b0a8e0fb6acac260b6cbd0dca1c28064"
+        },
+        "date": 1783666162814,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 101.6514845,
             "unit": "Seconds"
           }
         ]
