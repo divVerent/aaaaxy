@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783679875145,
+  "lastUpdate": 1783685493028,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5096,33 +5096,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-03T16:06:53Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
         },
-        "date": 1780617484342,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 56.19950473,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
-        },
         "date": 1780703759745,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7618,9 +7591,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7634,22 +7605,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T18:06:53+02:00",
-          "tree_id": "89903983f1541ffa78ad92fea89363b33ca197f3",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+          "id": "d4ba1f63eea0d9dbc66e321e01908cd02167009e",
+          "message": "Lower font threshold to 0x6900.\n\nWorks nicer with the SmallCaps font, as it no longer makes Ä umlaut dots\ndisappear. Hope it doesn't break anything else. Generally makes\neverything a little bit bolder.\n\nFixes https://github.com/divVerent/aaaaxy/issues/674.",
+          "timestamp": "2026-07-10T14:07:54+02:00",
+          "tree_id": "e96663a1a000a8e527d09e28992cc0dcb6996044",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d4ba1f63eea0d9dbc66e321e01908cd02167009e"
         },
-        "date": 1780503023087,
+        "date": 1783685486700,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.7516555,
+            "name": "Any% linux-amd64",
+            "value": 83.97354751,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10158,36 +10131,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+          "distinct": true,
+          "id": "d4ba1f63eea0d9dbc66e321e01908cd02167009e",
+          "message": "Lower font threshold to 0x6900.\n\nWorks nicer with the SmallCaps font, as it no longer makes Ä umlaut dots\ndisappear. Hope it doesn't break anything else. Generally makes\neverything a little bit bolder.\n\nFixes https://github.com/divVerent/aaaaxy/issues/674.",
+          "timestamp": "2026-07-10T14:07:54+02:00",
+          "tree_id": "e96663a1a000a8e527d09e28992cc0dcb6996044",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d4ba1f63eea0d9dbc66e321e01908cd02167009e"
         },
-        "date": 1780532661029,
+        "date": 1783685500154,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 102.2000566,
+            "name": "Any% windows-amd64",
+            "value": 96.8414,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12697,6 +12672,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 111.3095328,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d4ba1f63eea0d9dbc66e321e01908cd02167009e",
+          "message": "Lower font threshold to 0x6900.\n\nWorks nicer with the SmallCaps font, as it no longer makes Ä umlaut dots\ndisappear. Hope it doesn't break anything else. Generally makes\neverything a little bit bolder.\n\nFixes https://github.com/divVerent/aaaaxy/issues/674.",
+          "timestamp": "2026-07-10T14:07:54+02:00",
+          "tree_id": "e96663a1a000a8e527d09e28992cc0dcb6996044",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d4ba1f63eea0d9dbc66e321e01908cd02167009e"
+        },
+        "date": 1783685494863,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.0109785,
             "unit": "Seconds"
           }
         ]
