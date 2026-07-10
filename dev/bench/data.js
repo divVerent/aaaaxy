@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783685549219,
+  "lastUpdate": 1783685832069,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2544,35 +2544,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "73e91404f2a706a0d4291869f9f4c8e6de8b670a",
-          "message": "Revert \"iOS: force the iOS 26 SDK.\"\n\nIt does not exist on the worker.\n\nThis reverts commit 76226f5a8be2734a7a4fafbdc418368e979182ff.",
-          "timestamp": "2026-06-03T18:02:45+02:00",
-          "tree_id": "0915f61f33764365b6576bf296293bc9215c55d6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/73e91404f2a706a0d4291869f9f4c8e6de8b670a"
-        },
-        "date": 1780503048684,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 76.37291102,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -5073,6 +5044,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 59.020299988,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d4ba1f63eea0d9dbc66e321e01908cd02167009e",
+          "message": "Lower font threshold to 0x6900.\n\nWorks nicer with the SmallCaps font, as it no longer makes Ä umlaut dots\ndisappear. Hope it doesn't break anything else. Generally makes\neverything a little bit bolder.\n\nFixes https://github.com/divVerent/aaaaxy/issues/674.",
+          "timestamp": "2026-07-10T14:07:54+02:00",
+          "tree_id": "e96663a1a000a8e527d09e28992cc0dcb6996044",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d4ba1f63eea0d9dbc66e321e01908cd02167009e"
+        },
+        "date": 1783685826762,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 79.631469214,
             "unit": "Seconds"
           }
         ]
