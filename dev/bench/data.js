@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783668126276,
+  "lastUpdate": 1783668465202,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5078,35 +5078,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "eb3ae27e91d662f1d952201f7f9895bc2c348d54",
-          "message": "Release v1.7.77\n\nChanges since v1.7.61:\n  - Build: run strip-nondeterminism after advzip.\n  - Engine: modules update.\n  - iOS: force the iOS 26 SDK.\n  - Level: allow the hidden Shepard sequences to be transposed freely.\n  - Translations: some updates to Arabic.",
-          "timestamp": "2026-06-02T07:29:14+02:00",
-          "tree_id": "8cc325c9d5906d9172ebf47b11171b4e1b2e6a74",
-          "url": "https://github.com/divVerent/aaaaxy/commit/eb3ae27e91d662f1d952201f7f9895bc2c348d54"
-        },
-        "date": 1780381285819,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 84.465797037,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7607,6 +7578,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 80.363307379,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "2646af6f0cb12418b0fd1ad95f23bb172258f2e7",
+          "message": "Reorder operations to have higher chance of success.",
+          "timestamp": "2026-07-10T09:24:48+02:00",
+          "tree_id": "bb5edd0836b7748232085f73996a4d90fed8df04",
+          "url": "https://github.com/divVerent/aaaaxy/commit/2646af6f0cb12418b0fd1ad95f23bb172258f2e7"
+        },
+        "date": 1783668460499,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 75.995248166,
             "unit": "Seconds"
           }
         ]
@@ -10154,35 +10154,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "8ed3d15614118426b1fdba2f78ca2f1674b83d9c",
-          "message": "Updates for file assets/locales/level.pot in ar [Manual Sync] (#643)\n\n* Translate level.pot in ar [Manual Sync]\n\n98% of minimum 95% reviewed source file: 'level.pot'\non 'ar'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\n* Translate assets/locales/level.pot in ar\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'ar'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-06-02T06:39:45+02:00",
-          "tree_id": "441c84ff95237721b8610a948293135cc39a7e3e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8ed3d15614118426b1fdba2f78ca2f1674b83d9c"
-        },
-        "date": 1780375403342,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.1878958,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -12685,6 +12656,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.9727787,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "2646af6f0cb12418b0fd1ad95f23bb172258f2e7",
+          "message": "Reorder operations to have higher chance of success.",
+          "timestamp": "2026-07-10T09:24:48+02:00",
+          "tree_id": "bb5edd0836b7748232085f73996a4d90fed8df04",
+          "url": "https://github.com/divVerent/aaaaxy/commit/2646af6f0cb12418b0fd1ad95f23bb172258f2e7"
+        },
+        "date": 1783668519456,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.8905905,
             "unit": "Seconds"
           }
         ]
