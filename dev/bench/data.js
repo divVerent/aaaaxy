@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783685493028,
+  "lastUpdate": 1783685549219,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T18:06:53+02:00",
-          "tree_id": "89903983f1541ffa78ad92fea89363b33ca197f3",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
-        },
-        "date": 1780503123288,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 243.259945015,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2535,6 +2506,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 232.461918302,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d4ba1f63eea0d9dbc66e321e01908cd02167009e",
+          "message": "Lower font threshold to 0x6900.\n\nWorks nicer with the SmallCaps font, as it no longer makes Ä umlaut dots\ndisappear. Hope it doesn't break anything else. Generally makes\neverything a little bit bolder.\n\nFixes https://github.com/divVerent/aaaaxy/issues/674.",
+          "timestamp": "2026-07-10T14:07:54+02:00",
+          "tree_id": "e96663a1a000a8e527d09e28992cc0dcb6996044",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d4ba1f63eea0d9dbc66e321e01908cd02167009e"
+        },
+        "date": 1783685543837,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 176.883482867,
             "unit": "Seconds"
           }
         ]
