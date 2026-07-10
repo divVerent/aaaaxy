@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783669351153,
+  "lastUpdate": 1783669775312,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5088,35 +5088,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "73e91404f2a706a0d4291869f9f4c8e6de8b670a",
-          "message": "Revert \"iOS: force the iOS 26 SDK.\"\n\nIt does not exist on the worker.\n\nThis reverts commit 76226f5a8be2734a7a4fafbdc418368e979182ff.",
-          "timestamp": "2026-06-03T18:02:45+02:00",
-          "tree_id": "0915f61f33764365b6576bf296293bc9215c55d6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/73e91404f2a706a0d4291869f9f4c8e6de8b670a"
-        },
-        "date": 1780502724860,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 72.445982287,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
           "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
           "timestamp": "2026-06-03T18:06:53+02:00",
@@ -7612,9 +7583,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7627,23 +7596,25 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": false,
-          "id": "eb3ae27e91d662f1d952201f7f9895bc2c348d54",
-          "message": "Release v1.7.77\n\nChanges since v1.7.61:\n  - Build: run strip-nondeterminism after advzip.\n  - Engine: modules update.\n  - iOS: force the iOS 26 SDK.\n  - Level: allow the hidden Shepard sequences to be transposed freely.\n  - Translations: some updates to Arabic.",
-          "timestamp": "2026-06-02T07:29:14+02:00",
-          "tree_id": "8cc325c9d5906d9172ebf47b11171b4e1b2e6a74",
-          "url": "https://github.com/divVerent/aaaaxy/commit/eb3ae27e91d662f1d952201f7f9895bc2c348d54"
+          "distinct": true,
+          "id": "81e38640c88190df24216dfbc8b2260fdd9a908d",
+          "message": "Better commit msgs.",
+          "timestamp": "2026-07-10T09:46:36+02:00",
+          "tree_id": "4c75ff2c970fd9e67bbc0ae60e8a29bcf21b2c1f",
+          "url": "https://github.com/divVerent/aaaaxy/commit/81e38640c88190df24216dfbc8b2260fdd9a908d"
         },
-        "date": 1780381348834,
+        "date": 1783669770565,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.7610332,
+            "name": "Any% linux-amd64",
+            "value": 81.196455362,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10150,36 +10121,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "eb3ae27e91d662f1d952201f7f9895bc2c348d54",
-          "message": "Release v1.7.77\n\nChanges since v1.7.61:\n  - Build: run strip-nondeterminism after advzip.\n  - Engine: modules update.\n  - iOS: force the iOS 26 SDK.\n  - Level: allow the hidden Shepard sequences to be transposed freely.\n  - Translations: some updates to Arabic.",
-          "timestamp": "2026-06-02T05:29:14Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/eb3ae27e91d662f1d952201f7f9895bc2c348d54"
+          "distinct": true,
+          "id": "81e38640c88190df24216dfbc8b2260fdd9a908d",
+          "message": "Better commit msgs.",
+          "timestamp": "2026-07-10T09:46:36+02:00",
+          "tree_id": "4c75ff2c970fd9e67bbc0ae60e8a29bcf21b2c1f",
+          "url": "https://github.com/divVerent/aaaaxy/commit/81e38640c88190df24216dfbc8b2260fdd9a908d"
         },
-        "date": 1780446133074,
+        "date": 1783669788216,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 99.5101684,
+            "name": "Any% windows-amd64",
+            "value": 97.1082814,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12687,6 +12660,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.2019536,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "81e38640c88190df24216dfbc8b2260fdd9a908d",
+          "message": "Better commit msgs.",
+          "timestamp": "2026-07-10T09:46:36+02:00",
+          "tree_id": "4c75ff2c970fd9e67bbc0ae60e8a29bcf21b2c1f",
+          "url": "https://github.com/divVerent/aaaaxy/commit/81e38640c88190df24216dfbc8b2260fdd9a908d"
+        },
+        "date": 1783669825572,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.6634013,
             "unit": "Seconds"
           }
         ]
