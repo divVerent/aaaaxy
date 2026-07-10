@@ -100,5 +100,5 @@ jobs:
           git apply bench-*/*.patch
       - name: Commit and Push
         run: |
-          git commit -a -m"Update benchmark results for commit ${GITHUB_SHA}."
+          git commit -a -m"Update go-100percent benchmark results for commit ${GITHUB_SHA}."
           git push
