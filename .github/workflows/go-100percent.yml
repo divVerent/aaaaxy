@@ -98,7 +98,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
       - name: Add Results
         run: |
-          git apply bench-*/*.patch
+          git apply --reject bench-*/*.patch || true
       - name: Commit and Push
         run: |
           git commit -a -m"Update go-100percent benchmark results for commit ${GITHUB_SHA}."
