@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783669203551,
+  "lastUpdate": 1783669334075,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "eb3ae27e91d662f1d952201f7f9895bc2c348d54",
-          "message": "Release v1.7.77\n\nChanges since v1.7.61:\n  - Build: run strip-nondeterminism after advzip.\n  - Engine: modules update.\n  - iOS: force the iOS 26 SDK.\n  - Level: allow the hidden Shepard sequences to be transposed freely.\n  - Translations: some updates to Arabic.",
-          "timestamp": "2026-06-02T07:29:14+02:00",
-          "tree_id": "8cc325c9d5906d9172ebf47b11171b4e1b2e6a74",
-          "url": "https://github.com/divVerent/aaaaxy/commit/eb3ae27e91d662f1d952201f7f9895bc2c348d54"
-        },
-        "date": 1780381427897,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 228.046619313,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2533,6 +2504,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 227.846344889,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "85289fa3feae5516ef873f12b0ad9727594f0f37",
+          "message": "Clearly show what patch is doing what.",
+          "timestamp": "2026-07-10T09:37:09+02:00",
+          "tree_id": "8267f84dcd3b3b52670a0d3f3851fa463335f542",
+          "url": "https://github.com/divVerent/aaaaxy/commit/85289fa3feae5516ef873f12b0ad9727594f0f37"
+        },
+        "date": 1783669326280,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 226.324234254,
             "unit": "Seconds"
           }
         ]
