@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783678630620,
+  "lastUpdate": 1783679662497,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5094,33 +5094,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-03T16:06:53Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
         },
-        "date": 1780532624884,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 71.793906955,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
-        },
         "date": 1780617484342,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7614,9 +7587,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7630,22 +7601,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "73e91404f2a706a0d4291869f9f4c8e6de8b670a",
-          "message": "Revert \"iOS: force the iOS 26 SDK.\"\n\nIt does not exist on the worker.\n\nThis reverts commit 76226f5a8be2734a7a4fafbdc418368e979182ff.",
-          "timestamp": "2026-06-03T18:02:45+02:00",
-          "tree_id": "0915f61f33764365b6576bf296293bc9215c55d6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/73e91404f2a706a0d4291869f9f4c8e6de8b670a"
+          "id": "af4090d430c90b4b39dc033c608484e25be5f200",
+          "message": "Make the DANGER sign a bit bigger.",
+          "timestamp": "2026-07-10T12:31:26+02:00",
+          "tree_id": "ada35f989b1bb5ee687a2c98a099b1c723d06d79",
+          "url": "https://github.com/divVerent/aaaaxy/commit/af4090d430c90b4b39dc033c608484e25be5f200"
         },
-        "date": 1780502789960,
+        "date": 1783679655063,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.4391953,
+            "name": "Any% linux-amd64",
+            "value": 75.315772497,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10154,9 +10127,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10170,22 +10141,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T18:06:53+02:00",
-          "tree_id": "89903983f1541ffa78ad92fea89363b33ca197f3",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+          "id": "af4090d430c90b4b39dc033c608484e25be5f200",
+          "message": "Make the DANGER sign a bit bigger.",
+          "timestamp": "2026-07-10T12:31:26+02:00",
+          "tree_id": "ada35f989b1bb5ee687a2c98a099b1c723d06d79",
+          "url": "https://github.com/divVerent/aaaaxy/commit/af4090d430c90b4b39dc033c608484e25be5f200"
         },
-        "date": 1780503012724,
+        "date": 1783679671521,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.1369549,
+            "name": "Any% windows-amd64",
+            "value": 96.9228788,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12693,6 +12666,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.3171715,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "af4090d430c90b4b39dc033c608484e25be5f200",
+          "message": "Make the DANGER sign a bit bigger.",
+          "timestamp": "2026-07-10T12:31:26+02:00",
+          "tree_id": "ada35f989b1bb5ee687a2c98a099b1c723d06d79",
+          "url": "https://github.com/divVerent/aaaaxy/commit/af4090d430c90b4b39dc033c608484e25be5f200"
+        },
+        "date": 1783679718840,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 111.3095328,
             "unit": "Seconds"
           }
         ]
