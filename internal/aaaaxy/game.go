@@ -486,7 +486,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	if *showTime {
 		timing.Section("time")
 		font.ByName["Small"].Draw(drawDest,
-			fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}"),
+			fun.FormatText(&g.Menu.World.PlayerState, "{{EnableLocale}}{{GameTime}}"),
 			m.Pos{X: engine.GameWidth / 2, Y: engine.GameHeight - 4}, font.Center,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}
