@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783679662497,
+  "lastUpdate": 1783679781211,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "73e91404f2a706a0d4291869f9f4c8e6de8b670a",
-          "message": "Revert \"iOS: force the iOS 26 SDK.\"\n\nIt does not exist on the worker.\n\nThis reverts commit 76226f5a8be2734a7a4fafbdc418368e979182ff.",
-          "timestamp": "2026-06-03T18:02:45+02:00",
-          "tree_id": "0915f61f33764365b6576bf296293bc9215c55d6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/73e91404f2a706a0d4291869f9f4c8e6de8b670a"
-        },
-        "date": 1780502868851,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 229.514327622,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2535,6 +2506,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 224.400030886,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "af4090d430c90b4b39dc033c608484e25be5f200",
+          "message": "Make the DANGER sign a bit bigger.",
+          "timestamp": "2026-07-10T12:31:26+02:00",
+          "tree_id": "ada35f989b1bb5ee687a2c98a099b1c723d06d79",
+          "url": "https://github.com/divVerent/aaaaxy/commit/af4090d430c90b4b39dc033c608484e25be5f200"
+        },
+        "date": 1783679775524,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 232.461918302,
             "unit": "Seconds"
           }
         ]
