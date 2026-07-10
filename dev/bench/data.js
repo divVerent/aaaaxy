@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783670087772,
+  "lastUpdate": 1783678315550,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5080,35 +5080,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T18:06:53+02:00",
-          "tree_id": "89903983f1541ffa78ad92fea89363b33ca197f3",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
-        },
-        "date": 1780502984904,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.971826779,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7614,36 +7585,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "eb3ae27e91d662f1d952201f7f9895bc2c348d54",
-          "message": "Release v1.7.77\n\nChanges since v1.7.61:\n  - Build: run strip-nondeterminism after advzip.\n  - Engine: modules update.\n  - iOS: force the iOS 26 SDK.\n  - Level: allow the hidden Shepard sequences to be transposed freely.\n  - Translations: some updates to Arabic.",
-          "timestamp": "2026-06-02T05:29:14Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/eb3ae27e91d662f1d952201f7f9895bc2c348d54"
+          "distinct": true,
+          "id": "0c9491894cadaacb7c0f5d5bffe42797222b0024",
+          "message": "Show time displays (-show_time and credits) according to current locale.",
+          "timestamp": "2026-07-10T12:08:18+02:00",
+          "tree_id": "5916641ba366ed984f7278d8330295b49a7d5c6a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c9491894cadaacb7c0f5d5bffe42797222b0024"
         },
-        "date": 1780446133664,
+        "date": 1783678309845,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 100.2639887,
+            "name": "Any% linux-amd64",
+            "value": 73.304681532,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10152,9 +10125,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10168,22 +10139,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "73e91404f2a706a0d4291869f9f4c8e6de8b670a",
-          "message": "Revert \"iOS: force the iOS 26 SDK.\"\n\nIt does not exist on the worker.\n\nThis reverts commit 76226f5a8be2734a7a4fafbdc418368e979182ff.",
-          "timestamp": "2026-06-03T18:02:45+02:00",
-          "tree_id": "0915f61f33764365b6576bf296293bc9215c55d6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/73e91404f2a706a0d4291869f9f4c8e6de8b670a"
+          "id": "0c9491894cadaacb7c0f5d5bffe42797222b0024",
+          "message": "Show time displays (-show_time and credits) according to current locale.",
+          "timestamp": "2026-07-10T12:08:18+02:00",
+          "tree_id": "5916641ba366ed984f7278d8330295b49a7d5c6a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c9491894cadaacb7c0f5d5bffe42797222b0024"
         },
-        "date": 1780502767408,
+        "date": 1783678355315,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 102.565748,
+            "name": "Any% windows-amd64",
+            "value": 96.2270606,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12691,6 +12664,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.6634013,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "0c9491894cadaacb7c0f5d5bffe42797222b0024",
+          "message": "Show time displays (-show_time and credits) according to current locale.",
+          "timestamp": "2026-07-10T12:08:18+02:00",
+          "tree_id": "5916641ba366ed984f7278d8330295b49a7d5c6a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c9491894cadaacb7c0f5d5bffe42797222b0024"
+        },
+        "date": 1783678343071,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.3171715,
             "unit": "Seconds"
           }
         ]
