@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783666248101,
+  "lastUpdate": 1783666271302,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5086,35 +5086,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "4a06181e5b3f816f0a18e3ad2ff16f9d8a200fc6",
-          "message": "Updates for file assets/locales/level.pot in ar_EG [Manual Sync] (#645)\n\n* Translate level.pot in ar_EG [Manual Sync]\n\n98% of minimum 95% reviewed source file: 'level.pot'\non 'ar_EG'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\n* Translate level.pot in ar_EG [Manual Sync]\n\n98% of minimum 95% reviewed source file: 'level.pot'\non 'ar_EG'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-06-02T06:28:56+02:00",
-          "tree_id": "86ace924aacb2b9ea85d4f642443437bae175f46",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4a06181e5b3f816f0a18e3ad2ff16f9d8a200fc6"
-        },
-        "date": 1780374906682,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.128795288,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "8ed3d15614118426b1fdba2f78ca2f1674b83d9c",
           "message": "Updates for file assets/locales/level.pot in ar [Manual Sync] (#643)\n\n* Translate level.pot in ar [Manual Sync]\n\n98% of minimum 95% reviewed source file: 'level.pot'\non 'ar'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\n* Translate assets/locales/level.pot in ar\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'ar'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-06-02T06:39:45+02:00",
@@ -7605,6 +7576,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 76.886596579,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "53e4f474e0897381b243e85512919bde937e9098",
+          "message": "Translate assets/locales/level.pot in de (#669)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-10T08:46:28+02:00",
+          "tree_id": "07ec8fd6aa0f7f51f391e4291b99a02fadcf6e2e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/53e4f474e0897381b243e85512919bde937e9098"
+        },
+        "date": 1783666266628,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 85.799586767,
             "unit": "Seconds"
           }
         ]
