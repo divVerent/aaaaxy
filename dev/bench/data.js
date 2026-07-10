@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783666342062,
+  "lastUpdate": 1783666830336,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "1b9e18b2738c16c25115ed10c34493506e2b8e62",
-          "message": "Translate game.pot in sk [Manual Sync] (#644)\n\n95% of minimum 95% reviewed source file: 'game.pot'\non 'sk'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-06-02T06:12:35+02:00",
-          "tree_id": "33cf675d98c6a65ac90158331a59e3d5bca04e0b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1b9e18b2738c16c25115ed10c34493506e2b8e62"
-        },
-        "date": 1780374147529,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 232.68433007,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2533,6 +2504,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 227.933442685,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "4eb96f8111976c34e5fd4b395b87260f88eb214b",
+          "message": "Make any% workflow use separated privileges too.",
+          "timestamp": "2026-07-10T08:55:35+02:00",
+          "tree_id": "0b0904d2a7529c49b2f8322cec2959316f20e9f1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4eb96f8111976c34e5fd4b395b87260f88eb214b"
+        },
+        "date": 1783666825735,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 234.89604065,
             "unit": "Seconds"
           }
         ]
