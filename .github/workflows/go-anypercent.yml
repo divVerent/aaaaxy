@@ -7,6 +7,8 @@ name: Any% Multi-Platform Test Run
   workflow_dispatch: null
 jobs:
   build-linux-amd64:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -35,6 +37,8 @@ jobs:
 
             '
   test-linux-amd64:
+    permissions:
+      contents: read
     needs: build-linux-amd64
     runs-on: ubuntu-latest
     steps:
@@ -64,11 +68,25 @@ jobs:
           output-file-path: benchmark.txt
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
-          auto-push: true
+          auto-push: false
           alert-threshold: 125%
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Diff Benchmark Commit
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'schedule' }}
+        run: |
+          git show gh-pages > bench.patch
+      - name: Upload Benchmark Results
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'schedule' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: bench-linux-amd64
+          path: bench.patch
+          if-no-files-found: error
       - name: Archive Results
         if: ${{ always() }}
         uses: actions/upload-artifact@v7
@@ -80,6 +98,8 @@ jobs:
 
             '
   build-windows-amd64:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -110,6 +130,8 @@ jobs:
 
             '
   test-windows-amd64:
+    permissions:
+      contents: read
     needs: build-windows-amd64
     runs-on: windows-latest
     defaults:
@@ -138,12 +160,25 @@ jobs:
           output-file-path: benchmark.txt
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
-          auto-push: true
+          auto-push: false
           alert-threshold: 105%
-          comment-on-alert: true
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Diff Benchmark Commit
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'schedule' }}
+        run: |
+          git show gh-pages > bench.patch
+      - name: Upload Benchmark Results
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'schedule' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: bench-windows-amd64
+          path: bench.patch
+          if-no-files-found: error
       - name: Archive Results
         if: ${{ always() }}
         uses: actions/upload-artifact@v7
@@ -155,6 +190,8 @@ jobs:
 
             '
   build-windows-386:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -185,6 +222,8 @@ jobs:
 
             '
   test-windows-386:
+    permissions:
+      contents: read
     needs: build-windows-386
     runs-on: windows-latest
     defaults:
@@ -217,12 +256,25 @@ jobs:
           output-file-path: benchmark.txt
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
-          auto-push: true
+          auto-push: false
           alert-threshold: 120%
-          comment-on-alert: true
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Diff Benchmark Commit
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'schedule' }}
+        run: |
+          git show gh-pages > bench.patch
+      - name: Upload Benchmark Results
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'schedule' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: bench-windows-386
+          path: bench.patch
+          if-no-files-found: error
       - name: Archive Results
         if: ${{ always() }}
         uses: actions/upload-artifact@v7
@@ -233,3 +285,35 @@ jobs:
             assets/demos/*.dem.*.png
 
             '
+  upload-results:
+    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name
+      == 'workflow_dispatch' && github.ref == 'refs/heads/main') || github.event_name
+      == 'schedule' }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    needs:
+      - test-linux-amd64
+      - test-windows-amd64
+      - test-windows-386
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+      - name: Clean Up
+        run: |
+          rm -f bench-*
+      - name: Download Results
+        uses: actions/download-artifact@v8
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Add Results
+        run: |
+          git apply bench-*/*.patch
+      - name: Commit and Push
+        run: |
+          git commit -a -m"Update benchmark results for commit ${GITHUB_SHA}."
+          git push

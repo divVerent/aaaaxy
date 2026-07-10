@@ -41,7 +41,7 @@ jobs:
           your speedrun categories: Any%;" ./aaaaxy assets/demos/_anypercent.dem'
       - name: Undo Update
         run: git reset --hard
-      - name: Store benchmark result
+      - name: Store Benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
           || github.event_name == 'schedule' }}
@@ -57,7 +57,7 @@ jobs:
           comment-on-alert: true
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
-      - name: Store Benchmark Commit
+      - name: Diff Benchmark Commit
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
           || github.event_name == 'schedule' }}

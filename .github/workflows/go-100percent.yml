@@ -32,7 +32,7 @@ jobs:
           scripts/regression-test-demo.sh linux-amd64 "your time: 1:19:13\\.866; your
           speedrun categories: 100%, All Notes and All Paths; try next: All Secrets\\."
           "./aaaaxy -debug_log_entity_defaults" assets/demos/_100percent_*.dem'
-      - name: Store benchmark result
+      - name: Store Benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
           || github.event_name == 'schedule' }}
@@ -47,7 +47,7 @@ jobs:
           alert-threshold: 115%
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
-      - name: Store Benchmark Commit
+      - name: Diff Benchmark Commit
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
           || github.event_name == 'schedule' }}
