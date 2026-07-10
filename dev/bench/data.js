@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783665618400,
+  "lastUpdate": 1783665621369,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5074,35 +5074,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "31e9215a7abf86f9055162fe3de00c98bd0f691e",
-          "message": "Modules update.",
-          "timestamp": "2026-06-01T16:55:11+02:00",
-          "tree_id": "717f0bbecbfee2f22fb44fa4e0dfdf7178440b5f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/31e9215a7abf86f9055162fe3de00c98bd0f691e"
-        },
-        "date": 1780325881726,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 78.811583851,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7601,6 +7572,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 76.266838284,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "0e788daf21f75278fc7142cee7c1933f5ee17daa",
+          "message": "Run the 100% and current benchmarks with separated privileges.\n\nNot doing it for Any% yet as that one is multi platform and patches\nlikely won't apply - may instead have to merge the JSON.",
+          "timestamp": "2026-07-10T08:36:39+02:00",
+          "tree_id": "37065765f3866c01457e42ba725f608926c7e290",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0e788daf21f75278fc7142cee7c1933f5ee17daa"
+        },
+        "date": 1783665615039,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 78.153621644,
             "unit": "Seconds"
           }
         ]
