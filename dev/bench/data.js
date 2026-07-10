@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783667939518,
+  "lastUpdate": 1783668126276,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2542,33 +2542,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "31e9215a7abf86f9055162fe3de00c98bd0f691e",
-          "message": "Modules update.",
-          "timestamp": "2026-06-01T14:55:11Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/31e9215a7abf86f9055162fe3de00c98bd0f691e"
-        },
-        "date": 1780333982028,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 78.385464507,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -5067,6 +5040,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 80.129954531,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "36b0cad3f1f259bf82be794af631ebca635e03d8",
+          "message": "Only apply the patches that work. Let's see how complete that is.",
+          "timestamp": "2026-07-10T09:13:59+02:00",
+          "tree_id": "0da3de565ed6ed4edea6a0410e967c5e32c0ccac",
+          "url": "https://github.com/divVerent/aaaaxy/commit/36b0cad3f1f259bf82be794af631ebca635e03d8"
+        },
+        "date": 1783668119555,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 76.991175699,
             "unit": "Seconds"
           }
         ]
