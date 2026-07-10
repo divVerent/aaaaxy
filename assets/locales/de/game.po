@@ -21,9 +21,10 @@ msgstr " und "
 msgid "%.1f fps, %.1f tps"
 msgstr "%.1f f/s, %.1f t/s"
 
-#: fun/string.go
+#. Timer display.
+#: fun/string.go fun/string.go
 msgid "%d:%02d:%02d.%03d"
-msgstr "%d:%02d:%02d.%03d"
+msgstr "%d:%02d:%02d,%03d"
 
 #: menu/map.go
 msgid "%s (%d/%d)"
@@ -116,19 +117,23 @@ msgstr "Audio"
 msgid "Auto (%s)"
 msgstr "Automatisch (%s)"
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B"
 msgstr "B"
 
-#: fun/string.go
+#. Keys on the keyboard or buttons on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B/X"
 msgstr "B/X"
 
-#: fun/string.go
+#. A virtual button on Android. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Back"
 msgstr "Zurück"
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Backspace"
 msgstr "Rückschritt"
 
@@ -176,7 +181,8 @@ msgstr "Chicago"
 msgid "Credits"
 msgstr "Abspann"
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Ctrl/Shift"
 msgstr "Ctrl/Shift"
 
@@ -207,7 +213,8 @@ msgstr ""
 "konnte den Spielstand nicht speichern:\n"
 "%s"
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Escape"
 msgstr "Escape"
 
@@ -445,7 +452,8 @@ msgstr "Bildschirmeffekte: %s"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Shift/E/Tab"
 msgstr "Shift/E/Tab"
 
@@ -457,7 +465,8 @@ msgstr "Soundeffekte"
 msgid "Sprites"
 msgstr "Sprites"
 
-#: fun/string.go
+#. A button on the controller. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Start"
 msgstr "Start"
 
@@ -587,7 +596,8 @@ msgstr "Deine Speedrun-Kategorien"
 msgid "Your Time"
 msgstr "Deine Zeit"
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Z"
 msgstr "Z"
 
@@ -628,7 +638,7 @@ msgstr "und andere Mitwirkende"
 msgid "by %s"
 msgstr "von %s"
 
-#. Used in context "Hold ...".
+#. Touch surface on mobile. Used with "hold".
 #: fun/string.go
 msgid "elsewhere"
 msgstr "woanders"
