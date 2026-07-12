@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783813207491,
+  "lastUpdate": 1783860626406,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2560,33 +2560,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-03T16:06:53Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
         },
-        "date": 1780669169705,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 76.704040951,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
-        },
         "date": 1780751155909,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5077,6 +5050,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 81.474098163,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "bcbc9c3d5c62e658aa2ebec3f1f3286e898928a8",
+          "message": "Do not fail when applying benchmark results patch fails.\n\nInstead, apply it partially. Usually all that fails is the timestamp at\nthe top, which no one cares about.",
+          "timestamp": "2026-07-10T15:37:10Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bcbc9c3d5c62e658aa2ebec3f1f3286e898928a8"
+        },
+        "date": 1783860620398,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 73.85354239,
             "unit": "Seconds"
           }
         ]
