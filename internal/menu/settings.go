@@ -120,6 +120,7 @@ var graphicsSettings = []graphicsSettingData{
 	{"none", "SVGA"},
 	{"none", "SVGA"},
 	{"atarist", "Atari ST"},
+	{"bad_apple", "Bad Apple"},
 	{"c64", "C64"},
 	{"cga40n", "CGA (NTSC)"},
 	{"gb", "Gameboy"},

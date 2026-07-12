@@ -26,6 +26,26 @@ var data = map[string]*Palette{
 		0xFFFFFF,
 	}),
 
+	// Monochrome but all pure colors are flat. Still to be tuned.
+	"bad_apple": newPalette([]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, []uint32{
+		0x000000, // Menu selected BG.
+		0x000000,
+		0x000000,
+		0x000000,
+		0x000000,
+		0x000000,
+		0x000000,
+		0xAAAAAA, // Menu unselected FG.
+		0x555555, // Menu unselected BG.
+		0xFFFFFF,
+		0xFFFFFF,
+		0xFFFFFF,
+		0xFFFFFF,
+		0xFFFFFF,
+		0xFFFFFF, // Menu selected FG.
+		0xFFFFFF,
+	}),
+
 	// The original IBM CGA palette.
 	"cga40l": newPalette([]int{0, 2, 4, 6}, []uint32{
 		0x000000,
