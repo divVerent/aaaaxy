@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783865243035,
+  "lastUpdate": 1783883732186,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5100,33 +5100,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-03T16:06:53Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
         },
-        "date": 1781049792956,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 70.133656041,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
-        },
         "date": 1781136404296,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7628,36 +7601,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+          "distinct": true,
+          "id": "a049815f158d730a10bd9b5391684aed882c34d2",
+          "message": "oAdd another mostly-monochrome palette.\n\nNeed to playtest that one though. And maybe even do some kind of event\ntrigger, like invert entire screen on checkpoint or something.",
+          "timestamp": "2026-07-12T21:12:09+02:00",
+          "tree_id": "753a1e4bc17faf59fc8afc7a70903f7eac70d519",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a049815f158d730a10bd9b5391684aed882c34d2"
         },
-        "date": 1780876528844,
+        "date": 1783883725927,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.0123476,
+            "name": "Any% linux-amd64",
+            "value": 60.091677284,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10172,36 +10147,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+          "distinct": true,
+          "id": "a049815f158d730a10bd9b5391684aed882c34d2",
+          "message": "oAdd another mostly-monochrome palette.\n\nNeed to playtest that one though. And maybe even do some kind of event\ntrigger, like invert entire screen on checkpoint or something.",
+          "timestamp": "2026-07-12T21:12:09+02:00",
+          "tree_id": "753a1e4bc17faf59fc8afc7a70903f7eac70d519",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a049815f158d730a10bd9b5391684aed882c34d2"
         },
-        "date": 1781049839516,
+        "date": 1783883765658,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.0068126,
+            "name": "Any% windows-amd64",
+            "value": 97.0990492,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12717,6 +12694,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 102.316616,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "a049815f158d730a10bd9b5391684aed882c34d2",
+          "message": "oAdd another mostly-monochrome palette.\n\nNeed to playtest that one though. And maybe even do some kind of event\ntrigger, like invert entire screen on checkpoint or something.",
+          "timestamp": "2026-07-12T21:12:09+02:00",
+          "tree_id": "753a1e4bc17faf59fc8afc7a70903f7eac70d519",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a049815f158d730a10bd9b5391684aed882c34d2"
+        },
+        "date": 1783883808975,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.7195275,
             "unit": "Seconds"
           }
         ]
