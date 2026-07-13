@@ -406,12 +406,14 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 	}
 
 	timing.Section("apply_mask")
+	bgR, bgG, bgB, bgA := r.bgColor().RGBA()
 	if *drawOutside && r.prevImage != nil {
 		if r.visibilityBlendShader != nil {
 			delta := r.world.scrollPos.Delta(r.prevScrollPos)
 			screen.DrawRectShader(GameWidth, GameHeight, r.visibilityBlendShader, &ebiten.DrawRectShaderOptions{
 				Blend: ebiten.BlendCopy,
 				Uniforms: map[string]interface{}{
+					"Color":  []float32{float32(bgR) / 65535.0, float32(bgG) / 65535.0, float32(bgB) / 65535.0, float32(bgA) / 65535.0},
 					"Scroll": []float32{float32(delta.DX), float32(delta.DY)},
 				},
 				Images: [4]*ebiten.Image{
@@ -464,8 +466,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 			})
 		}
 	} else {
-		bgR, bgG, bgB, bgA := r.bgColor().RGBA()
-		if r.visibilityMaskShader != nil && false {
+		if r.visibilityMaskShader != nil {
 			screen.DrawRectShader(GameWidth, GameHeight, r.visibilityMaskShader, &ebiten.DrawRectShaderOptions{
 				Blend: ebiten.BlendCopy,
 				Uniforms: map[string]interface{}{
@@ -479,6 +480,8 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 				},
 			})
 		} else {
+			// NOTE: This likely can be optimized. Maybe needs one fewer pass?
+
 			// First set the alpha channel to the visibility mask.
 			drawDest.DrawImage(r.visibilityMaskImage, &ebiten.DrawImageOptions{
 				Blend:  ebiten.BlendDestinationIn,
