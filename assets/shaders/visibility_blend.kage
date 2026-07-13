@@ -17,10 +17,12 @@ package main
 
 //kage:unit pixels
 
-var Color vec4
+var Scroll vec2
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	mask := imageSrc0UnsafeAt(texCoord)
 	curr := imageSrc1UnsafeAt(texCoord)
-	return mix(Color, curr, mask)
+	scrolled := texCoord + Scroll
+	prev := imageSrc2At(scrolled)
+	return mix(prev, curr, mask)
 }
