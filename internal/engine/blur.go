@@ -31,6 +31,10 @@ var (
 	drawBlurs = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 )
 
+const (
+	roundColorToNearest = 1.0 / 510.0
+)
+
 func blurPassFixedFunction(img, out *ebiten.Image, mode ebiten.Blend, dx, dy int, scale, addR, addG, addB float64) {
 	opts := colorm.DrawImageOptions{
 		Blend:  mode,
@@ -38,7 +42,7 @@ func blurPassFixedFunction(img, out *ebiten.Image, mode ebiten.Blend, dx, dy int
 	}
 	var colorM colorm.ColorM
 	colorM.Scale(scale, scale, scale, 1)
-	colorM.Translate(addR, addG, addB, 0)
+	colorM.Translate(addR+roundColorToNearest, addG+roundColorToNearest, addB+roundColorToNearest, 0)
 	opts.GeoM.Translate(float64(dx), float64(dy))
 	colorm.DrawImage(out, img, colorM, &opts)
 }
@@ -155,7 +159,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken floa
 			}
 			var colorM colorm.ColorM
 			colorM.Scale(scale, scale, scale, 1.0)
-			colorM.Translate(-darkenR+darkenToR*(1-scale), -darkenG+darkenToG*(1-scale), -darkenB+darkenToB*(1-scale), 0.0)
+			colorM.Translate(-darkenR+darkenToR*(1-scale)+roundColorToNearest, -darkenG+darkenToG*(1-scale)+roundColorToNearest, -darkenB+darkenToB*(1-scale)+roundColorToNearest, 0.0)
 			colorm.DrawImage(out, tmp, colorM, options)
 		} else {
 			options := &colorm.DrawImageOptions{
@@ -164,7 +168,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken floa
 			}
 			var colorM colorm.ColorM
 			colorM.Scale(scale, scale, scale, 1.0)
-			colorM.Translate(-darkenR+darkenToR*(1-scale), -darkenG+darkenToG*(1-scale), -darkenB+darkenToB*(1-scale), 0.0)
+			colorM.Translate(-darkenR+darkenToR*(1-scale)+roundColorToNearest, -darkenG+darkenToG*(1-scale)+roundColorToNearest, -darkenB+darkenToB*(1-scale)+roundColorToNearest, 0.0)
 			colorm.DrawImage(out, img, colorM, options)
 		}
 		return
@@ -195,7 +199,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken floa
 			"Step":        []float32{1, 0},
 			"CenterScale": float32(centerScale),
 			"OtherScale":  float32(otherScale),
-			"Add":         []float32{float32(-darkenR), float32(-darkenG), float32(-darkenB), 0.0},
+			"Add":         []float32{roundColorToNearest, roundColorToNearest, roundColorToNearest, 0.0},
 		},
 		Images: [4]*ebiten.Image{
 			img,
@@ -210,7 +214,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken floa
 			"Step":        []float32{0, 1},
 			"CenterScale": float32(centerScale * scale),
 			"OtherScale":  float32(otherScale * scale),
-			"Add":         []float32{float32(-darkenR), float32(-darkenG), float32(-darkenB), 0.0},
+			"Add":         []float32{float32(-darkenR + darkenToR*(1-scale) + roundColorToNearest), float32(-darkenG + darkenToG*(1-scale) + roundColorToNearest), float32(-darkenB + darkenToB*(1-scale) + roundColorToNearest), 0.0},
 		},
 		Images: [4]*ebiten.Image{
 			tmp,
