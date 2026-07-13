@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783899566511,
+  "lastUpdate": 1783929901737,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5104,33 +5104,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-03T16:06:53Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
         },
-        "date": 1781223110909,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 73.205842227,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
-        },
         "date": 1781309425010,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7634,36 +7607,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+          "distinct": true,
+          "id": "1426020264a0d5de2006a8ce4e4557fa77c7aea6",
+          "message": "Re-tune alert thresholds.\n\nThis should achieve only one false positive per quarter.",
+          "timestamp": "2026-07-13T01:01:39-07:00",
+          "tree_id": "be60d8bf0b97e4f0a73b3b4621cd57fa1b1208b7",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1426020264a0d5de2006a8ce4e4557fa77c7aea6"
         },
-        "date": 1781049801508,
+        "date": 1783929895914,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.5962571,
+            "name": "Any% linux-amd64",
+            "value": 78.281817924,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10180,36 +10155,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+          "distinct": true,
+          "id": "1426020264a0d5de2006a8ce4e4557fa77c7aea6",
+          "message": "Re-tune alert thresholds.\n\nThis should achieve only one false positive per quarter.",
+          "timestamp": "2026-07-13T01:01:39-07:00",
+          "tree_id": "be60d8bf0b97e4f0a73b3b4621cd57fa1b1208b7",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1426020264a0d5de2006a8ce4e4557fa77c7aea6"
         },
-        "date": 1781223137181,
+        "date": 1783929933339,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 108.2581017,
+            "name": "Any% windows-amd64",
+            "value": 97.2841387,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12727,6 +12704,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.318557,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "1426020264a0d5de2006a8ce4e4557fa77c7aea6",
+          "message": "Re-tune alert thresholds.\n\nThis should achieve only one false positive per quarter.",
+          "timestamp": "2026-07-13T01:01:39-07:00",
+          "tree_id": "be60d8bf0b97e4f0a73b3b4621cd57fa1b1208b7",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1426020264a0d5de2006a8ce4e4557fa77c7aea6"
+        },
+        "date": 1783929934053,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.5314173,
             "unit": "Seconds"
           }
         ]
