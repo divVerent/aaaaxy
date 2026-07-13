@@ -73,7 +73,7 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 			} else {
 				// Last pass.
 				dstScale *= scale
-				dstAddR, dstAddG, dstAddB = -darkenR+darkenToR*(1-dstScale), -darkenG+darkenToG*(1-dstScale), -darkenB+darkenToB*(1-dstScale)
+				dstAddR, dstAddG, dstAddB = -darkenR+darkenToR*(1-scale), -darkenG+darkenToG*(1-scale), -darkenB+darkenToB*(1-scale)
 				dst = out
 			}
 			dst.Fill(color.Gray{0})
@@ -94,7 +94,7 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 			dstAddR, dstAddG, dstAddB := 0.0, 0.0, 0.0
 			if size <= 1 {
 				dstScale *= scale
-				dstAddR, dstAddG, dstAddB = -darkenR+darkenToR*(1-dstScale), -darkenG+darkenToG*(1-dstScale), -darkenB+darkenToB*(1-dstScale)
+				dstAddR, dstAddG, dstAddB = -darkenR+darkenToR*(1-scale), -darkenG+darkenToG*(1-scale), -darkenB+darkenToB*(1-scale)
 			}
 			out.Fill(color.Gray{0})
 			blurPassFixedFunction(tmp, out, ebiten.BlendCopy, 0, -size, dstScale, dstAddR, dstAddG, dstAddB)
