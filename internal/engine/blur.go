@@ -37,13 +37,13 @@ func blurPassFixedFunction(img, out *ebiten.Image, mode ebiten.Blend, dx, dy int
 		Filter: ebiten.FilterNearest,
 	}
 	var colorM colorm.ColorM
-	colorM.Scale(1, 1, 1, scale)
+	colorM.Scale(scale, scale, scale, 1)
 	colorM.Translate(addR, addG, addB, 0)
 	opts.GeoM.Translate(float64(dx), float64(dy))
 	colorm.DrawImage(out, img, colorM, &opts)
 }
 
-func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale, darkenR, darkenB, darkenG, darkenToR, darkenToG, darkenToB float64) {
+func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale, darkenR, darkenG, darkenB, darkenToR, darkenToG, darkenToB float64) {
 	// Only power-of-two blurs look good with this approach, so let's scale down the blur as much as needed.
 	size++
 	for size&(size-1) != 0 {
@@ -73,7 +73,7 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 			} else {
 				// Last pass.
 				dstScale *= scale
-				dstAddR, dstAddG, dstAddB = -darkenR+darkenToR*(1-scale), -darkenG+darkenToG*(1-scale), -darkenB+darkenToB*(1-scale)
+				dstAddR, dstAddG, dstAddB = (-darkenR+darkenToR*(1-scale))*0.5, (-darkenG+darkenToG*(1-scale))*0.5, (-darkenB+darkenToB*(1-scale))*0.5
 				dst = out
 			}
 			dst.Fill(color.Gray{0})
@@ -94,7 +94,7 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 			dstAddR, dstAddG, dstAddB := 0.0, 0.0, 0.0
 			if size <= 1 {
 				dstScale *= scale
-				dstAddR, dstAddG, dstAddB = -darkenR+darkenToR*(1-scale), -darkenG+darkenToG*(1-scale), -darkenB+darkenToB*(1-scale)
+				dstAddR, dstAddG, dstAddB = (-darkenR+darkenToR*(1-scale))*0.5, (-darkenG+darkenToG*(1-scale))*0.5, (-darkenB+darkenToB*(1-scale))*0.5
 			}
 			out.Fill(color.Gray{0})
 			blurPassFixedFunction(tmp, out, ebiten.BlendCopy, 0, -size, dstScale, dstAddR, dstAddG, dstAddB)
