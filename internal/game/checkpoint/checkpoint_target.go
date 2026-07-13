@@ -122,6 +122,7 @@ func (c *CheckpointTarget) SetState(originator, predecessor *engine.Entity, stat
 	if !c.World.PlayerState.RecordCheckpointEdge(c.Entity.Name(), c.Flipped) {
 		return
 	}
+	c.World.PlayerState.KickBadApple()
 	err := c.World.Save()
 	if err != nil {
 		log.Errorf("could not save game: %v", err)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-10 12:21+0200\n"
+"POT-Creation-Date: 2026-07-13 21:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1463,4 +1463,9 @@ msgstr ""
 
 #: assets/maps/level.tmx://map/objectgroup/object[@id=8557]
 msgid "I think you meant to play{{BR}}Arsenic Cake?"
+msgstr ""
+
+#: assets/maps/level.tmx://map/objectgroup/object[@id=8588]
+#. https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in _your_ favorite Bad Apple reference (parody or not).
+msgid "... and makes a swirly dot."
 msgstr ""

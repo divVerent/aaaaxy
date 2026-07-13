@@ -120,7 +120,6 @@ var graphicsSettings = []graphicsSettingData{
 	{"none", "SVGA"},
 	{"none", "SVGA"},
 	{"atarist", "Atari ST"},
-	{"bad_apple", "Bad Apple"},
 	{"c64", "C64"},
 	{"cga40n", "CGA (NTSC)"},
 	{"gb", "Gameboy"},
@@ -148,6 +147,7 @@ var graphicsSettings = []graphicsSettingData{
 func init() {
 	// Skip intentionally unused palettes.
 	intentionallyUnused := map[string]bool{
+		"bad_apple": true,
 		// Redundant, do not offer in menu.
 		"cga40h": true,
 		"cga40l": true,
@@ -199,8 +199,7 @@ func (s graphicsSetting) String() string {
 	return graphicsSettings[s].name
 }
 
-func currentGraphics() graphicsSetting {
-	pal := flag.Get[string]("palette")
+func graphicsByName(pal string) graphicsSetting {
 	for i, s := range graphicsSettings {
 		if s.palette == pal {
 			return graphicsSetting(i)
@@ -214,12 +213,12 @@ func currentGraphics() graphicsSetting {
 	return 0
 }
 
-func (s graphicsSetting) apply(m *Controller) error {
-	palName := graphicsSettings[s].palette
-	if palName == flag.Get[string]("palette") {
-		return nil
-	}
-	flag.Set("palette", palName)
+func currentGraphics() graphicsSetting {
+	pal := flag.Get[string]("palette")
+	return graphicsByName(pal)
+}
+
+func doApplyGraphicsSetting(m *Controller, palName string) error {
 	return m.NextFrame(func() error {
 		pal := palette.ByName(palName)
 		if !palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
@@ -238,8 +237,20 @@ func (s graphicsSetting) apply(m *Controller) error {
 		if err != nil {
 			return fmt.Errorf("could not reapply palette to menu: %v", err)
 		}
+		if palName != "bad_apple" {
+			m.World.PlayerState.StopBadApple()
+		}
 		return nil
 	})
+}
+
+func (s graphicsSetting) apply(m *Controller) error {
+	palName := graphicsSettings[s].palette
+	if palName == flag.Get[string]("palette") {
+		return nil
+	}
+	flag.Set("palette", palName)
+	return doApplyGraphicsSetting(m, palName)
 }
 
 func (s *SettingsScreen) toggleGraphics(delta int) error {
@@ -265,6 +276,22 @@ func (s *SettingsScreen) toggleGraphics(delta int) error {
 	}
 	s.CurrentGraphics.apply(s.Controller)
 	return nil
+}
+
+var badAppleActive bool
+
+func performGraphicsAdjustment(m *Controller) {
+	if m.World.PlayerState.BadApple() {
+		if !badAppleActive {
+			doApplyGraphicsSetting(m, "bad_apple")
+			badAppleActive = true
+		}
+	} else {
+		if badAppleActive {
+			doApplyGraphicsSetting(m, currentGraphics().String())
+			badAppleActive = false
+		}
+	}
 }
 
 func toggleQuality(delta int) error {
@@ -349,6 +376,11 @@ func toggleScreenFlashes(delta int) error {
 	}
 	flag.Set("screen_flash_strength", v)
 	return nil
+}
+
+func performSettingsAdjustment(m *Controller) {
+	performQualityAdjustment()
+	performGraphicsAdjustment(m)
 }
 
 func (s *SettingsScreen) Update() error {

@@ -155,7 +155,7 @@ func (c *Controller) Update() error {
 		}
 	}
 
-	performQualityAdjustment()
+	performSettingsAdjustment(c)
 
 	return nil
 }

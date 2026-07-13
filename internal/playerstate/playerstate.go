@@ -33,6 +33,8 @@ var (
 	showSwitchLevel      = flag.Bool("show_switch_level", false, "show the level selector menu")
 )
 
+var badApple *bool
+
 type PlayerState struct {
 	Level *level.Level
 }
@@ -515,4 +517,30 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 		cat &^= NoPushSpeedrun
 	}
 	return cat
+}
+
+func (s *PlayerState) StartBadApple() {
+	badApple = new(bool)
+}
+
+func (s *PlayerState) StopBadApple() {
+	badApple = nil
+}
+
+func (s *PlayerState) BadApple() bool {
+	return badApple != nil
+}
+
+func (s *PlayerState) KickBadApple() {
+	if badApple == nil {
+		return
+	}
+	*badApple = !*badApple
+}
+
+func (s *PlayerState) ScreenInverted() bool {
+	if badApple == nil {
+		return false
+	}
+	return *badApple
 }

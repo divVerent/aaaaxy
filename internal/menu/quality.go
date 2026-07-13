@@ -164,10 +164,13 @@ func performQualityAdjustment() {
 	} else {
 		log.Warningf("didn't get good framerate at quality %v - moving to %v", g, g-1)
 		g--
-		g.applyActual()
+		err := g.applyActual()
+		if err != nil {
+			log.Errorf("could not apply quality setting: %w", err)
+		}
 		// Instantly save config when quality was adjusted.
 		// That way this setting isn't lost if the app is restarted.
-		err := engine.SaveConfig()
+		err = engine.SaveConfig()
 		if err != nil {
 			log.Errorf("could not save config: %w", err)
 		}
