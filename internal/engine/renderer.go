@@ -343,6 +343,14 @@ func (r *renderer) offscreenDrawDest(screen *ebiten.Image) *ebiten.Image {
 	return nil
 }
 
+func (r *renderer) bgColor() color.Color {
+	var c color.Color = color.Gray{0}
+	if r.world.GlobalColorMSet {
+		c = r.world.GlobalColorM.Apply(c)
+	}
+	return c
+}
+
 func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m.Delta) {
 	defer timing.Group()()
 
@@ -354,7 +362,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 
 	if *expandUsingVertices && !*expandUsingVerticesAccurately && !*drawBlurs && !*drawOutside {
 		timing.Section("draw_mask")
-		drawAntiPolygonAround(screen, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, color.Gray{0}, geoM, texM, &ebiten.DrawTrianglesOptions{})
+		drawAntiPolygonAround(screen, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, r.bgColor(), geoM, texM, &ebiten.DrawTrianglesOptions{})
 		return
 	}
 
@@ -458,7 +466,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 			offscreen.Dispose(r.prevImage)
 		}
 		r.prevImage = offscreen.NewExplicit("PrevImage", GameWidth, GameHeight)
-		BlurImage("BlurPrevImage", screen, r.prevImage, frameBlurSize, frameDarkenAlpha, frameDarkenAmount, 1.0)
+		BlurImage("BlurPrevImage", screen, r.prevImage, frameBlurSize, frameDarkenAlpha, frameDarkenAmount, r.bgColor(), 1.0)
 		r.prevScrollPos = r.world.scrollPos
 	}
 
