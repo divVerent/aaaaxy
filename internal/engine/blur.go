@@ -74,8 +74,8 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 				dstDarken = darken
 				dst = out
 			}
-			blurPassFixedFunction(tmp, dst, ebiten.BlendCopy, -size, 0, dstScale, dstDarken)
-			blurPassFixedFunction(tmp, dst, ebiten.BlendLighter, size, 0, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, dst, ebiten.BlendCopy, 0, -size, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, dst, ebiten.BlendLighter, 0, size, dstScale, dstDarken)
 			offscreen.Dispose(tmp)
 			src = dst
 		}
@@ -92,8 +92,8 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 				dstScale *= scale
 				dstDarken = darken
 			}
-			blurPassFixedFunction(tmp, out, ebiten.BlendCopy, -size, 0, dstScale, dstDarken)
-			blurPassFixedFunction(tmp, out, ebiten.BlendLighter, size, 0, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, out, ebiten.BlendCopy, 0, -size, dstScale, dstDarken)
+			blurPassFixedFunction(tmp, out, ebiten.BlendLighter, 0, size, dstScale, dstDarken)
 			src = out
 		}
 		offscreen.Dispose(tmp)
