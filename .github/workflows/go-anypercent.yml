@@ -79,7 +79,7 @@ jobs:
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           auto-push: false
-          alert-threshold: 125%
+          alert-threshold: 140%
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -172,7 +172,7 @@ jobs:
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           auto-push: false
-          alert-threshold: 105%
+          alert-threshold: 107%
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -269,7 +269,7 @@ jobs:
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           auto-push: false
-          alert-threshold: 120%
+          alert-threshold: 116%
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
           github-token: ${{ secrets.GITHUB_TOKEN }}

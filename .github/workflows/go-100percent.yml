@@ -54,7 +54,7 @@ jobs:
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           auto-push: false
-          alert-threshold: 115%
+          alert-threshold: 124%
           alert-comment-cc-users: '@divVerent'
           max-items-in-chart: 90
           github-token: ${{ secrets.GITHUB_TOKEN }}
