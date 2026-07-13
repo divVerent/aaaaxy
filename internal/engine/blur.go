@@ -31,19 +31,19 @@ var (
 	drawBlurs = flag.Bool("draw_blurs", true, "perform blur effects; requires draw_visibility_mask")
 )
 
-func blurPassFixedFunction(img, out *ebiten.Image, mode ebiten.Blend, dx, dy int, scale, darkenR, darkenG, darkenB float64) {
+func blurPassFixedFunction(img, out *ebiten.Image, mode ebiten.Blend, dx, dy int, scale, addR, addG, addB float64) {
 	opts := colorm.DrawImageOptions{
 		Blend:  mode,
 		Filter: ebiten.FilterNearest,
 	}
 	var colorM colorm.ColorM
 	colorM.Scale(1, 1, 1, scale)
-	colorM.Translate(-darkenR, -darkenG, -darkenB, 0)
+	colorM.Translate(addR, addG, addB, 0)
 	opts.GeoM.Translate(float64(dx), float64(dy))
 	colorm.DrawImage(out, img, colorM, &opts)
 }
 
-func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale, darkenR, darkenB, darkenG float64) {
+func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale, darkenR, darkenB, darkenG, darkenToR, darkenToG, darkenToB float64) {
 	// Only power-of-two blurs look good with this approach, so let's scale down the blur as much as needed.
 	size++
 	for size&(size-1) != 0 {
@@ -65,18 +65,18 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 			}
 			dst := out
 			dstScale := 0.5
-			dstDarkenR, dstDarkenG, dstDarkenB := 0.0, 0.0, 0.0
+			dstAddR, dstAddG, dstAddB := 0.0, 0.0, 0.0
 			if size > 1 {
 				// Not last pass.
 				dst = offscreen.New(fmt.Sprintf("%s.Vert.%d", name, size), sz.X, sz.Y)
 			} else {
 				// Last pass.
 				dstScale *= scale
-				dstDarkenR, dstDarkenG, dstDarkenB = darkenR, darkenG, darkenB
+				dstAddR, dstAddG, dstAddB = -darkenR+darkenToR*(1-dstScale), -darkenG+darkenToG*(1-dstScale), -darkenB+darkenToB*(1-dstScale)
 				dst = out
 			}
-			blurPassFixedFunction(tmp, dst, ebiten.BlendCopy, 0, -size, dstScale, dstDarkenR, dstDarkenG, dstDarkenB)
-			blurPassFixedFunction(tmp, dst, ebiten.BlendLighter, 0, size, dstScale, dstDarkenR, dstDarkenG, dstDarkenB)
+			blurPassFixedFunction(tmp, dst, ebiten.BlendCopy, 0, -size, dstScale, dstAddR, dstAddG, dstAddB)
+			blurPassFixedFunction(tmp, dst, ebiten.BlendLighter, 0, size, dstScale, dstAddR, dstAddG, dstAddB)
 			offscreen.Dispose(tmp)
 			src = dst
 		}
@@ -88,13 +88,13 @@ func blurImageFixedFunction(name string, img, out *ebiten.Image, size int, scale
 			blurPassFixedFunction(src, tmp, ebiten.BlendCopy, -size, 0, 0.5, 0, 0, 0)
 			blurPassFixedFunction(src, tmp, ebiten.BlendLighter, size, 0, 0.5, 0, 0, 0)
 			dstScale := 0.5
-			dstDarkenR, dstDarkenG, dstDarkenB := 0.0, 0.0, 0.0
+			dstAddR, dstAddG, dstAddB := 0.0, 0.0, 0.0
 			if size <= 1 {
 				dstScale *= scale
-				dstDarkenR, dstDarkenG, dstDarkenB = darkenR, darkenG, darkenB
+				dstAddR, dstAddG, dstAddB = -darkenR+darkenToR*(1-dstScale), -darkenG+darkenToG*(1-dstScale), -darkenB+darkenToB*(1-dstScale)
 			}
-			blurPassFixedFunction(tmp, out, ebiten.BlendCopy, 0, -size, dstScale, dstDarkenR, dstDarkenG, dstDarkenB)
-			blurPassFixedFunction(tmp, out, ebiten.BlendLighter, 0, size, dstScale, dstDarkenR, dstDarkenG, dstDarkenB)
+			blurPassFixedFunction(tmp, out, ebiten.BlendCopy, 0, -size, dstScale, dstAddR, dstAddG, dstAddB)
+			blurPassFixedFunction(tmp, out, ebiten.BlendLighter, 0, size, dstScale, dstAddR, dstAddG, dstAddB)
 			src = out
 		}
 		offscreen.Dispose(tmp)
@@ -120,15 +120,16 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken floa
 	scale *= blurFade
 	scale += 1 - blurFade
 	darken *= blurFade
-	darkenToR, darkenToG, darkenToB, _ := darkenTo.RGBA()
+	darkenToRi, darkenToGi, darkenToBi, _ := darkenTo.RGBA()
+	darkenToR, darkenToG, darkenToB := float64(darkenToRi)/65535.0, float64(darkenToGi)/65535.0, float64(darkenToBi)/65535.0
 	darkenR, darkenG, darkenB := darken, darken, darken
-	if darkenToR >= 0x8000 {
+	if darkenToR >= 0.5 {
 		darkenR = -darkenR
 	}
-	if darkenToG >= 0x8000 {
+	if darkenToG >= 0.5 {
 		darkenG = -darkenG
 	}
-	if darkenToB >= 0x8000 {
+	if darkenToB >= 0.5 {
 		darkenB = -darkenB
 	}
 	if !*drawBlurs && scale <= 1 {
@@ -150,7 +151,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken floa
 			}
 			var colorM colorm.ColorM
 			colorM.Scale(scale, scale, scale, 1.0)
-			colorM.Translate(-darkenR, -darkenG, -darkenB, 0.0)
+			colorM.Translate(-darkenR+darkenToR*(1-scale), -darkenG+darkenToG*(1-scale), -darkenB+darkenToB*(1-scale), 0.0)
 			colorm.DrawImage(out, tmp, colorM, options)
 		} else {
 			options := &colorm.DrawImageOptions{
@@ -159,13 +160,13 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken floa
 			}
 			var colorM colorm.ColorM
 			colorM.Scale(scale, scale, scale, 1.0)
-			colorM.Translate(-darkenR, -darkenG, -darkenB, 0.0)
+			colorM.Translate(-darkenR+darkenToR*(1-scale), -darkenG+darkenToG*(1-scale), -darkenB+darkenToB*(1-scale), 0.0)
 			colorm.DrawImage(out, img, colorM, options)
 		}
 		return
 	}
 	if blurBroken {
-		blurImageFixedFunction(name, img, out, size, scale, darkenR, darkenG, darkenB)
+		blurImageFixedFunction(name, img, out, size, scale, darkenR, darkenG, darkenB, darkenToR, darkenToG, darkenToB)
 		return
 	}
 	// Too bad we can't have integer uniforms, so we need to templatize this
@@ -177,7 +178,7 @@ func BlurImage(name string, img, out *ebiten.Image, size int, scale, darken floa
 	if err != nil {
 		log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load blur shader: %v", err)
 		blurBroken = true
-		blurImageFixedFunction(name, img, out, size, scale, darkenR, darkenG, darkenB)
+		blurImageFixedFunction(name, img, out, size, scale, darkenR, darkenG, darkenB, darkenToR, darkenToG, darkenToB)
 		return
 	}
 	centerScale := 1.0 / (2*float64(size)*blurFade + 1)
