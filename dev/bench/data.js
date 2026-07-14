@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784012734757,
+  "lastUpdate": 1784013958233,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5137,89 +5137,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T21:16:34+02:00",
-          "tree_id": "1a2c3c1317fdd9db0d5db7f97eafab4a21446203",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
-        },
-        "date": 1781551184804,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 77.620365467,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
-        },
-        "date": 1781569238391,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 72.049769587,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
-        },
-        "date": 1781654857149,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 79.818967975,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7747,38 +7664,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "committer": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T21:16:34+02:00",
-          "tree_id": "1a2c3c1317fdd9db0d5db7f97eafab4a21446203",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+          "id": "bec3f7023400524d25c4a40228b99d686d0e6a1a",
+          "message": "Fix palette toggling.",
+          "timestamp": "2026-07-14T00:23:16-07:00",
+          "tree_id": "9cb9086e2b39eba58721f3589b6ac4b1d82adb06",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bec3f7023400524d25c4a40228b99d686d0e6a1a"
         },
-        "date": 1781551199547,
+        "date": 1784013952340,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.4260417,
+            "name": "Any% linux-amd64",
+            "value": 77.067256995,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10305,36 +10222,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+          "distinct": true,
+          "id": "bec3f7023400524d25c4a40228b99d686d0e6a1a",
+          "message": "Fix palette toggling.",
+          "timestamp": "2026-07-14T00:23:16-07:00",
+          "tree_id": "9cb9086e2b39eba58721f3589b6ac4b1d82adb06",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bec3f7023400524d25c4a40228b99d686d0e6a1a"
         },
-        "date": 1781654887478,
+        "date": 1784014004581,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 104.9114076,
+            "name": "Any% windows-amd64",
+            "value": 97.8167837,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12862,6 +12781,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.941549,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "bec3f7023400524d25c4a40228b99d686d0e6a1a",
+          "message": "Fix palette toggling.",
+          "timestamp": "2026-07-14T00:23:16-07:00",
+          "tree_id": "9cb9086e2b39eba58721f3589b6ac4b1d82adb06",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bec3f7023400524d25c4a40228b99d686d0e6a1a"
+        },
+        "date": 1784014014911,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.8600432,
             "unit": "Seconds"
           }
         ]
