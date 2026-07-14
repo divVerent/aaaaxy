@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784004471694,
+  "lastUpdate": 1784006991971,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5112,35 +5112,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "55bc53ed15a69cfb36bd6c2433015255e2cd4e24",
-          "message": "spike meme perfection",
-          "timestamp": "2026-06-14T06:20:09+02:00",
-          "tree_id": "1ab07d240468216a3dc88d1da4dc1e91e6762765",
-          "url": "https://github.com/divVerent/aaaaxy/commit/55bc53ed15a69cfb36bd6c2433015255e2cd4e24"
-        },
-        "date": 1781410967213,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 70.536475433,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "270f13e1bc306bad6883d762e5cc9831df3a124f",
           "message": "Remove some shadow.",
           "timestamp": "2026-06-14T06:26:39+02:00",
@@ -7652,38 +7623,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "committer": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "aa8fc06ebb84c1df7e6e778c241697e77d8c44eb",
-          "message": "Add a mostly working spike meme.\n\nJust the spike is missing. Will be a sprite that doesn't get flipped.",
-          "timestamp": "2026-06-13T22:12:52+02:00",
-          "tree_id": "f79559ad0f1ec2387d778b3c6b4a36facff5536f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/aa8fc06ebb84c1df7e6e778c241697e77d8c44eb"
+          "id": "b7167a188c2178789b3cf899b85d2ef716ee5a89",
+          "message": "Make the easter egg persist in the save file.",
+          "timestamp": "2026-07-14T07:26:40+02:00",
+          "tree_id": "6db2785faef6a07625cbad5b9a5747cd1a8665a7",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b7167a188c2178789b3cf899b85d2ef716ee5a89"
         },
-        "date": 1781381779848,
+        "date": 1784006986793,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 95.8453694,
+            "name": "Any% linux-amd64",
+            "value": 71.930560448,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10206,38 +10177,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "committer": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "55bc53ed15a69cfb36bd6c2433015255e2cd4e24",
-          "message": "spike meme perfection",
-          "timestamp": "2026-06-14T06:20:09+02:00",
-          "tree_id": "1ab07d240468216a3dc88d1da4dc1e91e6762765",
-          "url": "https://github.com/divVerent/aaaaxy/commit/55bc53ed15a69cfb36bd6c2433015255e2cd4e24"
+          "id": "b7167a188c2178789b3cf899b85d2ef716ee5a89",
+          "message": "Make the easter egg persist in the save file.",
+          "timestamp": "2026-07-14T07:26:40+02:00",
+          "tree_id": "6db2785faef6a07625cbad5b9a5747cd1a8665a7",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b7167a188c2178789b3cf899b85d2ef716ee5a89"
         },
-        "date": 1781411020076,
+        "date": 1784007020187,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 101.7379372,
+            "name": "Any% windows-amd64",
+            "value": 96.6729546,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12759,6 +12730,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 101.6553219,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "b7167a188c2178789b3cf899b85d2ef716ee5a89",
+          "message": "Make the easter egg persist in the save file.",
+          "timestamp": "2026-07-14T07:26:40+02:00",
+          "tree_id": "6db2785faef6a07625cbad5b9a5747cd1a8665a7",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b7167a188c2178789b3cf899b85d2ef716ee5a89"
+        },
+        "date": 1784007012010,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.1614484,
             "unit": "Seconds"
           }
         ]
