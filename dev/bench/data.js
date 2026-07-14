@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783956764566,
+  "lastUpdate": 1784004106196,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5098,35 +5098,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "aa8fc06ebb84c1df7e6e778c241697e77d8c44eb",
-          "message": "Add a mostly working spike meme.\n\nJust the spike is missing. Will be a sprite that doesn't get flipped.",
-          "timestamp": "2026-06-13T22:12:52+02:00",
-          "tree_id": "f79559ad0f1ec2387d778b3c6b4a36facff5536f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/aa8fc06ebb84c1df7e6e778c241697e77d8c44eb"
-        },
-        "date": 1781381742111,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 73.896249344,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7646,36 +7617,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+          "distinct": true,
+          "id": "8b11b70329ad2b3ceda19512850bedbfc8cfce19",
+          "message": "Update the Any% demo.\n\nAs questionblocks now save too, the demos changed a little.",
+          "timestamp": "2026-07-14T06:37:46+02:00",
+          "tree_id": "c5c7d0f14cc7228011e491c1b4a820dc9caf979e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8b11b70329ad2b3ceda19512850bedbfc8cfce19"
         },
-        "date": 1781223117750,
+        "date": 1784004101573,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.8740158,
+            "name": "Any% linux-amd64",
+            "value": 74.04464375,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10196,9 +10169,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10212,22 +10183,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "aa8fc06ebb84c1df7e6e778c241697e77d8c44eb",
-          "message": "Add a mostly working spike meme.\n\nJust the spike is missing. Will be a sprite that doesn't get flipped.",
-          "timestamp": "2026-06-13T22:12:52+02:00",
-          "tree_id": "f79559ad0f1ec2387d778b3c6b4a36facff5536f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/aa8fc06ebb84c1df7e6e778c241697e77d8c44eb"
+          "id": "8b11b70329ad2b3ceda19512850bedbfc8cfce19",
+          "message": "Update the Any% demo.\n\nAs questionblocks now save too, the demos changed a little.",
+          "timestamp": "2026-07-14T06:37:46+02:00",
+          "tree_id": "c5c7d0f14cc7228011e491c1b4a820dc9caf979e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8b11b70329ad2b3ceda19512850bedbfc8cfce19"
         },
-        "date": 1781381790132,
+        "date": 1784004111395,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 102.8533066,
+            "name": "Any% windows-amd64",
+            "value": 97.1571934,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12747,6 +12720,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.3251947,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8b11b70329ad2b3ceda19512850bedbfc8cfce19",
+          "message": "Update the Any% demo.\n\nAs questionblocks now save too, the demos changed a little.",
+          "timestamp": "2026-07-14T06:37:46+02:00",
+          "tree_id": "c5c7d0f14cc7228011e491c1b4a820dc9caf979e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8b11b70329ad2b3ceda19512850bedbfc8cfce19"
+        },
+        "date": 1784004089925,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 97.5126112,
             "unit": "Seconds"
           }
         ]
