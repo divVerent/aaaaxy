@@ -147,6 +147,11 @@ func NewWithBG(txt string, imp Importance, pos InitialPosition, face *font.Face,
 	if pos == Middle {
 		cp.scrollPos = cp.targetPos()
 	}
+	if imp == Important {
+		for _, cp2 := range centerprints {
+			cp2.SetFadeOut(true)
+		}
+	}
 	centerprints = append(centerprints, cp)
 	return cp
 }

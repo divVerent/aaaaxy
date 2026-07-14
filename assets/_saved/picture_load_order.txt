@@ -639,4 +639,5 @@ sprites/bullet8s_idle_0.png
 sprites/bullet8s_idle_1.png
 sprites/jumppad8_idle_0.png
 sprites/jumppad8_idle_1.png
+sprites/wall_tiny.png
 sprites/miniobjectclip.png

@@ -16,7 +16,8 @@ msgstr ""
 msgid "%.1f fps, %.1f tps"
 msgstr ""
 
-#: fun/string.go
+#. Timer display.
+#: fun/string.go fun/string.go
 msgid "%d:%02d:%02d.%03d"
 msgstr ""
 
@@ -28,7 +29,8 @@ msgstr ""
 msgid "%s: %s"
 msgstr ""
 
-#: aaaaxy/game.go
+#. -show_pos overlay (showing xy coordinates of player position and speed).
+#: aaaaxy/game.go aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
 msgstr ""
 
@@ -111,19 +113,23 @@ msgstr ""
 msgid "Auto (%s)"
 msgstr ""
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B"
 msgstr ""
 
-#: fun/string.go
+#. Keys on the keyboard or buttons on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B/X"
 msgstr ""
 
-#: fun/string.go
+#. A virtual button on Android. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Back"
 msgstr ""
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Backspace"
 msgstr ""
 
@@ -170,7 +176,8 @@ msgstr ""
 msgid "Credits"
 msgstr ""
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Ctrl/Shift"
 msgstr ""
 
@@ -198,7 +205,8 @@ msgid ""
 "%s"
 msgstr ""
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Escape"
 msgstr ""
 
@@ -346,6 +354,10 @@ msgstr ""
 msgid "Nuku'alofa"
 msgstr ""
 
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr ""
+
 #: menu/map.go
 msgid "Pick-a-Path"
 msgstr ""
@@ -431,7 +443,8 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Shift/E/Tab"
 msgstr ""
 
@@ -443,7 +456,8 @@ msgstr ""
 msgid "Sprites"
 msgstr ""
 
-#: fun/string.go
+#. A button on the controller. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Start"
 msgstr ""
 
@@ -571,7 +585,8 @@ msgstr ""
 msgid "Your Time"
 msgstr ""
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Z"
 msgstr ""
 
@@ -611,7 +626,7 @@ msgstr ""
 msgid "by %s"
 msgstr ""
 
-#. Used in context "Hold ...".
+#. Touch surface on mobile. Used with "hold".
 #: fun/string.go
 msgid "elsewhere"
 msgstr ""
@@ -668,10 +683,6 @@ msgstr ""
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "nothing"
-msgstr ""
-
-#: menu/settings.go menu/settings.go
-msgid "Off"
 msgstr ""
 
 #: level/level.go

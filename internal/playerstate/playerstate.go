@@ -183,6 +183,10 @@ func (s *PlayerState) AddFrame() {
 	propmap.Set(s.Level.Player.PersistentState, "frames", s.Frames()+1)
 }
 
+func (s *PlayerState) SubFrame() {
+	propmap.Set(s.Level.Player.PersistentState, "frames", s.Frames()-1)
+}
+
 func (s *PlayerState) Escapes() int {
 	escapes, err := propmap.ValueOr(s.Level.Player.PersistentState, "escapes", 0)
 	if err != nil {
@@ -511,4 +515,38 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 		cat &^= NoPushSpeedrun
 	}
 	return cat
+}
+
+func (s *PlayerState) ToggleBadApple() {
+	badApple := propmap.ValueOrP(s.Level.Player.PersistentState, "bad_apple", 0, nil)
+	if badApple == 0 {
+		badApple = 1
+	} else {
+		badApple = 0
+	}
+	propmap.Set(s.Level.Player.PersistentState, "bad_apple", badApple)
+}
+
+func (s *PlayerState) StopBadApple() {
+	badApple := 0
+	propmap.Set(s.Level.Player.PersistentState, "bad_apple", badApple)
+}
+
+func (s *PlayerState) BadApple() bool {
+	badApple := propmap.ValueOrP(s.Level.Player.PersistentState, "bad_apple", 0, nil)
+	return badApple != 0
+}
+
+func (s *PlayerState) KickBadApple() {
+	badApple := propmap.ValueOrP(s.Level.Player.PersistentState, "bad_apple", 0, nil)
+	if badApple == 0 {
+		return
+	}
+	badApple = 3 - badApple
+	propmap.Set(s.Level.Player.PersistentState, "bad_apple", badApple)
+}
+
+func (s *PlayerState) ScreenInverted() bool {
+	badApple := propmap.ValueOrP(s.Level.Player.PersistentState, "bad_apple", 0, nil)
+	return badApple == 2
 }

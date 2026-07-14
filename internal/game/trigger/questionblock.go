@@ -16,15 +16,20 @@ package trigger
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
+	"github.com/divVerent/aaaaxy/internal/centerprint"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/game/interfaces"
 	"github.com/divVerent/aaaaxy/internal/game/mixins"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
 	"github.com/divVerent/aaaaxy/internal/log"
 	"github.com/divVerent/aaaaxy/internal/m"
+	"github.com/divVerent/aaaaxy/internal/palette"
 	"github.com/divVerent/aaaaxy/internal/picture"
 	"github.com/divVerent/aaaaxy/internal/propmap"
 	"github.com/divVerent/aaaaxy/internal/sound"
@@ -134,7 +139,17 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 		return
 	}
 	q.Used = true
+
 	propmap.Set(q.PersistentState, "used", true)
+	q.World.PlayerState.KickBadApple()
+	err := q.World.Save()
+	if err != nil {
+		log.Errorf("could not save game: %v", err)
+		str := locale.G.Get("Error:\ncould not save game:\n%s", err)
+		centerprint.New(fun.FormatText(&q.World.PlayerState, str), centerprint.Important, centerprint.Top, centerprint.NormalFont(), palette.EGA(palette.LightRed, 255), 5*time.Second).SetFadeOut(true)
+		return
+	}
+
 	q.Entity.Image = q.UsedImage
 	q.UsedImage = nil
 	q.World.SetSolid(q.Entity, true)
@@ -159,7 +174,7 @@ func (q *QuestionBlock) Touch(other *engine.Entity) {
 	propmap.Set(properties, "no_transform", "true")
 	propmap.Set(properties, "time_to_fade", "0.25s")
 	propmap.Set(properties, "velocity", "0 -16") // 4px in 1/4 sec.
-	_, err := q.World.SpawnDetached(&level.SpawnableProps{
+	_, err = q.World.SpawnDetached(&level.SpawnableProps{
 		EntityType:      "MovingAnimation",
 		Orientation:     m.Identity(),
 		Properties:      properties,

@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Rudolf Polzer, 2025
+# Rudolf Polzer, 2026
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-22 11:35+0100\n"
+"POT-Creation-Date: 2026-07-13 21:31+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Rudolf Polzer, 2025\n"
+"Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Latin (https://app.transifex.com/aaaaxy/teams/158611/la/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,8 +75,9 @@ msgstr "Cum circulum maledicas, circulum maledicit te."
 msgid "Some people prefer 2τ over 4π."
 msgstr "Aliqui numerum 2τ numero 4π praeponunt."
 
-#. https://www.churchofjesuschrist.org/broadcasts/article/ces-
-#. devotionals/2013/01/what-is-truth?lang=eng
+#. https://www.churchofjesuschrist.org/study/ya-weekly/2021/09/5-truths-about-
+#. truth?lang=eng (switch to your language's version, the phrase is in section
+#. 1 paragraph 2 near the end).
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr ""
@@ -190,7 +191,7 @@ msgstr "Inceptio Nova"
 msgid "If this isn't your downfall, I don't know what is."
 msgstr "Nescio quod casus tuum esse nisi hoc."
 
-#. https://www.youtube.com/watch?v=zpRQtHjEniQ
+#. https://www.youtube.com/watch?v=_-QENSv7gIs
 #: assets/maps/level.tmx//map/objectgroup/object[@id=287]
 msgid "Oh, gravity, thou art a heartless ... force?"
 msgstr "O gravitas, qui es sine animo."
@@ -1211,7 +1212,7 @@ msgid "Ski Dyver"
 msgstr "Sublatus ad Caelum"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
-msgid "Those who are not inattentive get trolled."
+msgid "Those who are inattentive get trolled."
 msgstr "Non attenti trollentur."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
@@ -1507,3 +1508,52 @@ msgstr "Alterum mundum intrare posthac potes!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
 msgstr "Teleportator{{BR}}(preme {{ExitButton}})"
+
+#. This is a reference to SheetMusicBoss's song "Rush E". Try making a pun
+#. based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or
+#. one of the common YT comments on those videos of the sort "I paid for the
+#. whole piano, I'm gonna use the whole piano".
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8539]
+msgid "Why the rush, eh?"
+msgstr "Clavile totum emi: toto utar!"
+
+#. This is a reference to Beethoven's Für Elise. If there's a common
+#. misspelling in your language, make a pun based on it; otherwise, maybe
+#. comment on how overplayed it is, or on Beethoven's hearing?
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
+msgid "She's no furry - that letter is an \"ü\"!"
+msgstr "Proximo Natale animum meum cepit,{{BR}}sed fur non est Elisa!"
+
+#. Comic explosion sign.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
+msgid "Bang!"
+msgstr "Pamm!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
+msgid "I think you meant to play{{BR}}In the Hall of the Mountain King?"
+msgstr "Voluistine \"In aula regis montani\" canere?"
+
+#. Reference to Super Mario 64's intro letter from Princess Peach, combined
+#. with the wellknown phrase misattributed to Marie Antoinette. Try finding
+#. both phrases as most commonly used in your language in the given contexts
+#. and use those. Definitely don't reference Portal here - let's not overdo
+#. those. If Asterix is well-known in your culture, you may consider making it
+#. an "arsenic cake"; if not, reference Grieg's In the Hall of the Mountain
+#. King.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8556]
+msgid ""
+"Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat "
+"cake...{{BR}}Arsenic cake?"
+msgstr ""
+"Mario salutem dico.{{BR}}Quaeso, ad castellum venias.{{BR}}Libum edant "
+"isti.{{BR}}Aut... placentam venenatam cum arsenico?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8557]
+msgid "I think you meant to play{{BR}}Arsenic Cake?"
+msgstr "Voluistine \"Placentam cum Arsenico\" canere?"
+
+#. https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in
+#. _your_ favorite Bad Apple reference (parody or not).
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8588]
+msgid "... and makes a swirly dot."
+msgstr "Malum Malum!!"

@@ -184,6 +184,7 @@ func (p *Player) GiveAbility(name, text string) {
 	if !p.World.PlayerState.GiveAbility(name) {
 		return
 	}
+	p.World.PlayerState.KickBadApple()
 
 	p.setActionButtonAvailable()
 

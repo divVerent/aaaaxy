@@ -123,7 +123,7 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	)
 	if s.Fancy {
 		music.Switch(s.Controller.World.Level.CreditsMusic)
-		timeStr := fun.FormatText(&s.Controller.World.PlayerState, "{{GameTime}}")
+		timeStr := fun.FormatText(&s.Controller.World.PlayerState, "{{EnableLocale}}{{GameTime}}")
 		cats := s.Controller.World.PlayerState.SpeedrunCategories()
 		if *cheatFinalCreditsSpeedrunCategories >= 0 {
 			cats = playerstate.SpeedrunCategories(*cheatFinalCreditsSpeedrunCategories)

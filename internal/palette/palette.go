@@ -99,3 +99,11 @@ func Names() []string {
 func ByName(name string) *Palette {
 	return data[name]
 }
+
+// Name returns the name of a palette.
+func (p *Palette) Name() string {
+	if p == nil {
+		return "none"
+	}
+	return p.name
+}

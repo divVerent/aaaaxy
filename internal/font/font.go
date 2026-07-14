@@ -36,7 +36,7 @@ var (
 	pinFontsToCacheBaseWeight = flag.Int("pin_fonts_to_cache_base_weight", 1, "base weight for English characters when font pinning")
 	pinFontsToCacheCount      = flag.Int("pin_fonts_to_cache_count", 512, "maximum number of characters to pin")
 	pinFontsToCacheFraction   = flag.Int("pin_fonts_to_cache_fraction", 30, "fraction of all characters to cache per frame")
-	fontThreshold             = flag.Int("font_threshold", 0x7800, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive; set to 0 to use smooth font rendering instead")
+	fontThreshold             = flag.Int("font_threshold", 0x6900, "threshold for font rendering; lower values are bolder; 0 means antialias as usual; threshold range is 1 to 65535 inclusive; set to 0 to use smooth font rendering instead")
 	fontExtraSpacing          = flag.Int("font_extra_spacing", 31, "additional spacing for fonts in 64th pixels; should help with outline effect")
 	fontFractionalSpacing     = flag.Bool("font_fractional_spacing", false, "allow fractional font spacing; looks better but may be slower; makes --pin_fonts_to_cache less effective")
 	debugFontOverride         = flag.String("debug_font_override", "", "name of font to use instead of the intended font")

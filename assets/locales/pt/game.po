@@ -357,6 +357,10 @@ msgstr "Nenhuma"
 msgid "Nuku'alofa"
 msgstr "Nucualofa"
 
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "Desligados"
+
 #: menu/map.go
 msgid "Pick-a-Path"
 msgstr "Escolha um Caminho"
@@ -681,10 +685,6 @@ msgstr "carregar dados do nível"
 #: fun/string.go
 msgid "nothing"
 msgstr "nada"
-
-#: menu/settings.go menu/settings.go
-msgid "Off"
-msgstr "Desligados"
 
 #: level/level.go
 msgid "parsing level data"

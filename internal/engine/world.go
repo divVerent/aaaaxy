@@ -646,6 +646,12 @@ func (w *World) updateEntities() error {
 	w.GlobalColorM.Reset()
 	w.GlobalColorMSet = false
 
+	if w.PlayerState.ScreenInverted() {
+		w.GlobalColorM.Scale(-1, -1, -1, 1)
+		w.GlobalColorM.Translate(1, 1, 1, 0)
+		w.GlobalColorMSet = true
+	}
+
 	w.blockRespawn = true
 	w.entities.forEach(func(ent *Entity) error {
 		ent.Impl.Update()

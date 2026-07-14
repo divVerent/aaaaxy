@@ -22,7 +22,6 @@ import (
 	"math"
 	"runtime/debug"
 	"runtime/pprof"
-	"strings"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -60,22 +59,17 @@ var (
 	screenFilterCRTStrength        = flag.Float64("screen_filter_crt_strength", 0.5, "strength of CRT deformation in the linear2xcrt filters")
 	screenFilterBorderstretchPower = flag.Float64("screen_filter_borderstretch_power", -8, "power of border stretching in the borderstretch filter")
 	screenStretch                  = flag.Bool("screen_stretch", false, "stretch screen content instead of letterboxing")
-	paletteFlag                    = flag.String("palette", flag.SystemDefault(map[string]string{
-		"android/*": "none",
-		"js/*":      "none",
-		"*/*":       "vga",
-	}), "render with palette; can be set to '"+strings.Join(palette.Names(), "', '")+"' or 'none'")
-	paletteRemapOnly             = flag.Bool("palette_remap_only", false, "only apply the palette's color remapping, do not actually reduce color set")
-	paletteRemapColors           = flag.Bool("palette_remap_colors", true, "remap input colors to close palette colors on load (less dither but wrong colors)")
-	paletteDitherSize            = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
-	paletteDitherMode            = flag.String("palette_dither_mode", "plastic2", "dither type (none, bayer, bayer2, checker, checker2, diamond, diamond2, halftone, halftone2, hybrid, hybrid2, plastic, plastic2, random, random2, square or square2)")
-	paletteDitherWorldAligned    = flag.Bool("palette_dither_world_aligned", true, "align dither pattern to world as opposed to screen")
-	debugEnableDrawing           = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
-	showFPS                      = flag.Bool("show_fps", false, "show fps counter")
-	showTime                     = flag.Bool("show_time", false, "show game time")
-	showPos                      = flag.Bool("show_pos", false, "show player position")
-	debugLoadingScreenCpuprofile = flag.String("debug_loading_screen_cpuprofile", "", "write CPU profile of loading screen to file")
-	debugShowGC                  = flag.Bool("debug_show_gc", false, "show garbage collector pause info")
+	paletteRemapOnly               = flag.Bool("palette_remap_only", false, "only apply the palette's color remapping, do not actually reduce color set")
+	paletteRemapColors             = flag.Bool("palette_remap_colors", true, "remap input colors to close palette colors on load (less dither but wrong colors)")
+	paletteDitherSize              = flag.Int("palette_dither_size", 4, "dither pattern size (really should be a power of two when using the bayer dither mode)")
+	paletteDitherMode              = flag.String("palette_dither_mode", "plastic2", "dither type (none, bayer, bayer2, checker, checker2, diamond, diamond2, halftone, halftone2, hybrid, hybrid2, plastic, plastic2, random, random2, square or square2)")
+	paletteDitherWorldAligned      = flag.Bool("palette_dither_world_aligned", true, "align dither pattern to world as opposed to screen")
+	debugEnableDrawing             = flag.Bool("debug_enable_drawing", true, "enable drawing the display; set to false for faster demo processing or similar")
+	showFPS                        = flag.Bool("show_fps", false, "show fps counter")
+	showTime                       = flag.Bool("show_time", false, "show game time")
+	showPos                        = flag.Bool("show_pos", false, "show player position")
+	debugLoadingScreenCpuprofile   = flag.String("debug_loading_screen_cpuprofile", "", "write CPU profile of loading screen to file")
+	debugShowGC                    = flag.Bool("debug_show_gc", false, "show garbage collector pause info")
 )
 
 type ditherMode int
@@ -242,11 +236,11 @@ func (g *Game) Update() error {
 
 func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*ebiten.Image, func() *ebiten.Image) {
 	// This is an extra pass so it can still run at low-res.
-	pal := palette.ByName(*paletteFlag)
+	pal := palette.ByName(menu.Palette(&g.Menu))
 
 	if pal == nil {
 		// No palette.
-		*paletteFlag = "none"
+		menu.SetPalette("none")
 		screen := g.maybeAcquireOffscreen(maybeScreen)
 		return screen, func() *ebiten.Image { return screen }
 	}
@@ -350,7 +344,7 @@ func (g *Game) palettePrepare(maybeScreen *ebiten.Image, tmp *ebiten.Image) (*eb
 		g.paletteShader, err = shader.Load("dither.kage.tmpl", params)
 		if err != nil {
 			log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load palette shader for dither size %d: %v", *paletteDitherSize, err)
-			*paletteFlag = "none"
+			menu.SetPalette("none")
 			screen := g.maybeAcquireOffscreen(maybeScreen)
 			return screen, func() *ebiten.Image { return screen }
 		}
@@ -486,7 +480,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	if *showTime {
 		timing.Section("time")
 		font.ByName["Small"].Draw(drawDest,
-			fun.FormatText(&g.Menu.World.PlayerState, "{{GameTime}}"),
+			fun.FormatText(&g.Menu.World.PlayerState, "{{EnableLocale}}{{GameTime}}"),
 			m.Pos{X: engine.GameWidth / 2, Y: engine.GameHeight - 4}, font.Center,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}

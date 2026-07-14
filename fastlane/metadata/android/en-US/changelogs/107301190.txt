@@ -1,0 +1,2 @@
+  - Level: In "Shepard Tone", more melodies are recognized.
+  - Level: Slightly adjust "Veni Vidi Vici".

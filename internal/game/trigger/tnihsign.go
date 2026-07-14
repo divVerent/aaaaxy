@@ -158,6 +158,7 @@ func (t *TnihSign) Touch(other *engine.Entity) {
 			importance = centerprint.NotImportant
 		} else {
 			propmap.Set(t.PersistentState, "seen", true)
+			t.World.PlayerState.KickBadApple()
 			err := t.World.Save()
 			if err != nil {
 				log.Errorf("could not save game: %v", err)

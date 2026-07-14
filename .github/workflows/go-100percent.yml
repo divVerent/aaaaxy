@@ -7,9 +7,11 @@ name: 100% Single-Platform Test Run
   workflow_dispatch: null
 jobs:
   test:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: true
       - name: Install Dependencies
@@ -30,23 +32,6 @@ jobs:
           scripts/regression-test-demo.sh linux-amd64 "your time: 1:19:13\\.866; your
           speedrun categories: 100%, All Notes and All Paths; try next: All Secrets\\."
           "./aaaaxy -debug_log_entity_defaults" assets/demos/_100percent_*.dem'
-      - name: Store benchmark result
-        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
-          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
-          || github.event_name == 'schedule' }}
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          name: 100% linux-amd64
-          tool: customSmallerIsBetter
-          output-file-path: benchmark.txt
-          gh-pages-branch: gh-pages
-          benchmark-data-dir-path: dev/bench
-          auto-push: true
-          alert-threshold: 115%
-          comment-on-alert: true
-          alert-comment-cc-users: '@divVerent'
-          max-items-in-chart: 90
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Archive Results
         if: ${{ always() }}
         uses: actions/upload-artifact@v7
@@ -57,3 +42,64 @@ jobs:
             assets/demos/*.dem.*.png
 
             '
+      - name: Store Benchmark result
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'schedule' }}
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: 100% linux-amd64
+          tool: customSmallerIsBetter
+          output-file-path: benchmark.txt
+          gh-pages-branch: gh-pages
+          benchmark-data-dir-path: dev/bench
+          auto-push: false
+          alert-threshold: 124%
+          alert-comment-cc-users: '@divVerent'
+          max-items-in-chart: 90
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Diff Benchmark Commit
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'schedule' }}
+        run: |
+          git show gh-pages > bench.patch
+      - name: Upload Benchmark Results
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+          || github.event_name == 'schedule' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: bench-100percent
+          path: bench.patch
+          if-no-files-found: error
+  upload-results:
+    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name
+      == 'workflow_dispatch' && github.ref == 'refs/heads/main') || github.event_name
+      == 'schedule' }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+      - name: Clean Up
+        run: |
+          rm -f bench-*
+      - name: Download Results
+        uses: actions/download-artifact@v8
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Add Results
+        run: |
+          git apply --reject bench-*/*.patch || true
+      - name: Commit and Push
+        run: |
+          git commit -a -m"Update go-100percent benchmark results for commit ${GITHUB_SHA}."
+          git push

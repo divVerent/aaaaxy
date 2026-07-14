@@ -91,7 +91,7 @@ func (t *CenterPrintTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *
 	t.BGColor = propmap.ValueOrP(sp.Properties, "text_bg", palette.EGA(palette.Black, 255), &parseErr)
 	t.FGColor = propmap.ValueOrP(sp.Properties, "text_fg", palette.EGA(palette.White, 255), &parseErr)
 	t.FadeTime = propmap.ValueOrP(sp.Properties, "fade_time", 2*time.Second, &parseErr)
-	soundName := propmap.ValueP(sp.Properties, "sound", "", &parseErr)
+	soundName := propmap.ValueOrP(sp.Properties, "sound", "", &parseErr)
 	if soundName != "" {
 		var err error
 		t.Sound, err = sound.Load(soundName)
@@ -115,7 +115,7 @@ func (t *CenterPrintTarget) Touch(other *engine.Entity) {}
 func (t *CenterPrintTarget) SetState(originator, predecessor *engine.Entity, state bool) {
 	if state {
 		if !t.Centerprint.Active() {
-			t.Centerprint = centerprint.NewWithBG(t.Text, t.Imp, t.Pos, t.Font, t.BGColor, t.FGColor, t.FadeTime)
+			t.Centerprint = centerprint.NewWithBG(fun.FormatText(&t.World.PlayerState, t.Text), t.Imp, t.Pos, t.Font, t.BGColor, t.FGColor, t.FadeTime)
 			if t.Sound != nil {
 				t.Sound.Play()
 			}

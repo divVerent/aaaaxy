@@ -73,6 +73,8 @@ type renderer struct {
 	prevScrollPos m.Pos
 	// The shader for drawing visibility masks.
 	visibilityMaskShader *ebiten.Shader
+	// The shader for blending using visibility masks.
+	visibilityBlendShader *ebiten.Shader
 
 	// Temp storage within frames.
 
@@ -83,7 +85,6 @@ type renderer struct {
 func (r *renderer) Init(w *World) {
 	r.world = w
 	r.whiteImage = ebiten.NewImage(1, 1)
-	r.whiteImage = ebiten.NewImage(1, 1)
 	r.whiteImage.Fill(color.Gray{255})
 
 	var err error
@@ -91,6 +92,11 @@ func (r *renderer) Init(w *World) {
 	if err != nil {
 		log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load visibility mask shader: %v", err)
 		r.visibilityMaskShader = nil
+	}
+	r.visibilityBlendShader, err = shader.Load("visibility_blend.kage", nil)
+	if err != nil {
+		log.Errorf("BROKEN RENDERER, WILL FALLBACK: could not load visibility blend shader: %v", err)
+		r.visibilityBlendShader = nil
 	}
 }
 
@@ -337,10 +343,23 @@ func (r *renderer) drawDebug(screen *ebiten.Image, scrollDelta m.Delta) {
 }
 
 func (r *renderer) offscreenDrawDest(screen *ebiten.Image) *ebiten.Image {
-	if *drawVisibilityMask && *drawOutside && r.prevImage != nil {
-		return offscreen.New("OffscreenDrawDest", GameWidth, GameHeight)
+	if !*drawVisibilityMask {
+		return nil
 	}
-	return nil
+
+	if *expandUsingVertices && !*expandUsingVerticesAccurately && !*drawBlurs && !*drawOutside {
+		return nil
+	}
+
+	return offscreen.New("OffscreenDrawDest", GameWidth, GameHeight)
+}
+
+func (r *renderer) bgColor() color.Color {
+	var c color.Color = color.Gray{0}
+	if r.world.GlobalColorMSet {
+		c = r.world.GlobalColorM.Apply(c)
+	}
+	return c
 }
 
 func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelta m.Delta) {
@@ -354,7 +373,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 
 	if *expandUsingVertices && !*expandUsingVerticesAccurately && !*drawBlurs && !*drawOutside {
 		timing.Section("draw_mask")
-		drawAntiPolygonAround(screen, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, color.Gray{0}, geoM, texM, &ebiten.DrawTrianglesOptions{})
+		drawAntiPolygonAround(screen, r.visiblePolygonCenter, r.expandedVisiblePolygon, r.whiteImage, r.bgColor(), geoM, texM, &ebiten.DrawTrianglesOptions{})
 		return
 	}
 
@@ -387,12 +406,14 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 	}
 
 	timing.Section("apply_mask")
+	bgR, bgG, bgB, bgA := r.bgColor().RGBA()
 	if *drawOutside && r.prevImage != nil {
-		if r.visibilityMaskShader != nil {
+		if r.visibilityBlendShader != nil {
 			delta := r.world.scrollPos.Delta(r.prevScrollPos)
-			screen.DrawRectShader(GameWidth, GameHeight, r.visibilityMaskShader, &ebiten.DrawRectShaderOptions{
+			screen.DrawRectShader(GameWidth, GameHeight, r.visibilityBlendShader, &ebiten.DrawRectShaderOptions{
 				Blend: ebiten.BlendCopy,
 				Uniforms: map[string]interface{}{
+					"Color":  []float32{float32(bgR) / 65535.0, float32(bgG) / 65535.0, float32(bgB) / 65535.0, float32(bgA) / 65535.0},
 					"Scroll": []float32{float32(delta.DX), float32(delta.DY)},
 				},
 				Images: [4]*ebiten.Image{
@@ -445,10 +466,62 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 			})
 		}
 	} else {
-		screen.DrawImage(r.visibilityMaskImage, &ebiten.DrawImageOptions{
-			Blend:  ebiten.BlendDestinationIn,
-			Filter: ebiten.FilterNearest,
-		})
+		if r.visibilityMaskShader != nil {
+			screen.DrawRectShader(GameWidth, GameHeight, r.visibilityMaskShader, &ebiten.DrawRectShaderOptions{
+				Blend: ebiten.BlendCopy,
+				Uniforms: map[string]interface{}{
+					"Color": []float32{float32(bgR) / 65535.0, float32(bgG) / 65535.0, float32(bgB) / 65535.0, float32(bgA) / 65535.0},
+				},
+				Images: [4]*ebiten.Image{
+					r.visibilityMaskImage,
+					drawDest,
+					nil,
+					nil,
+				},
+			})
+		} else {
+			// NOTE: This likely can be optimized. Maybe needs one fewer pass?
+
+			// First set the alpha channel to the visibility mask.
+			drawDest.DrawImage(r.visibilityMaskImage, &ebiten.DrawImageOptions{
+				Blend:  ebiten.BlendDestinationIn,
+				Filter: ebiten.FilterNearest,
+			})
+
+			// Then draw the background.
+			screen.DrawTriangles([]ebiten.Vertex{
+				{
+					DstX: 0, DstY: 0,
+					SrcX: 0, SrcY: 0,
+					ColorR: float32(bgR) / 65535.0, ColorG: float32(bgG) / 65535.0, ColorB: float32(bgB) / 65535.0, ColorA: float32(bgA) / 65535.0,
+				},
+				{
+					DstX: GameWidth, DstY: 0,
+					SrcX: 0, SrcY: 0,
+					ColorR: float32(bgR) / 65535.0, ColorG: float32(bgG) / 65535.0, ColorB: float32(bgB) / 65535.0, ColorA: float32(bgA) / 65535.0,
+				},
+				{
+					DstX: 0, DstY: GameHeight,
+					SrcX: 0, SrcY: 0,
+					ColorR: float32(bgR) / 65535.0, ColorG: float32(bgG) / 65535.0, ColorB: float32(bgB) / 65535.0, ColorA: float32(bgA) / 65535.0,
+				},
+				{
+					DstX: GameWidth, DstY: GameHeight,
+					SrcX: 0, SrcY: 0,
+					ColorR: float32(bgR) / 65535.0, ColorG: float32(bgG) / 65535.0, ColorB: float32(bgB) / 65535.0, ColorA: float32(bgA) / 65535.0,
+				},
+			}, []uint16{0, 1, 2, 1, 2, 3}, r.whiteImage, &ebiten.DrawTrianglesOptions{
+				Blend:   ebiten.BlendCopy,
+				Filter:  ebiten.FilterNearest,
+				Address: ebiten.AddressClampToZero,
+			})
+
+			// Finally put the masked foreground on top.
+			screen.DrawImage(drawDest, &ebiten.DrawImageOptions{
+				Blend:  ebiten.BlendSourceOver,
+				Filter: ebiten.FilterNearest,
+			})
+		}
 	}
 
 	if *drawOutside && r.worldChanged {
@@ -458,7 +531,7 @@ func (r *renderer) drawVisibilityMask(screen, drawDest *ebiten.Image, scrollDelt
 			offscreen.Dispose(r.prevImage)
 		}
 		r.prevImage = offscreen.NewExplicit("PrevImage", GameWidth, GameHeight)
-		BlurImage("BlurPrevImage", screen, r.prevImage, frameBlurSize, frameDarkenAlpha, frameDarkenAmount, 1.0)
+		BlurImage("BlurPrevImage", screen, r.prevImage, frameBlurSize, frameDarkenAlpha, frameDarkenAmount, r.bgColor(), 1.0)
 		r.prevScrollPos = r.world.scrollPos
 	}
 

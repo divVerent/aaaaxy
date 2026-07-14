@@ -16,6 +16,7 @@ package menu
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -31,17 +32,23 @@ import (
 	"github.com/divVerent/aaaaxy/internal/picture"
 )
 
-var offerFullscreen = flag.SystemDefault(map[string]bool{
-	"android/*": false,
-	"ios/*":     false,
-	"*/*":       true,
-})
-
-var offerStretch = flag.SystemDefault(map[string]bool{
-	"android/*": true,
-	"ios/*":     true,
-	"*/*":       false,
-})
+var (
+	offerFullscreen = flag.SystemDefault(map[string]bool{
+		"android/*": false,
+		"ios/*":     false,
+		"*/*":       true,
+	})
+	offerStretch = flag.SystemDefault(map[string]bool{
+		"android/*": true,
+		"ios/*":     true,
+		"*/*":       false,
+	})
+	paletteFlag = flag.String("palette", flag.SystemDefault(map[string]string{
+		"android/*": "none",
+		"js/*":      "none",
+		"*/*":       "vga",
+	}), "render with palette; can be set to '"+strings.Join(palette.Names(), "', '")+"' or 'none'")
+)
 
 type SettingsScreenItem int
 
@@ -147,6 +154,7 @@ var graphicsSettings = []graphicsSettingData{
 func init() {
 	// Skip intentionally unused palettes.
 	intentionallyUnused := map[string]bool{
+		"bad_apple": true,
 		// Redundant, do not offer in menu.
 		"cga40h": true,
 		"cga40l": true,
@@ -198,8 +206,7 @@ func (s graphicsSetting) String() string {
 	return graphicsSettings[s].name
 }
 
-func currentGraphics() graphicsSetting {
-	pal := flag.Get[string]("palette")
+func graphicsByName(pal string) graphicsSetting {
 	for i, s := range graphicsSettings {
 		if s.palette == pal {
 			return graphicsSetting(i)
@@ -213,32 +220,55 @@ func currentGraphics() graphicsSetting {
 	return 0
 }
 
-func (s graphicsSetting) apply(m *Controller) error {
-	palName := graphicsSettings[s].palette
-	if palName == flag.Get[string]("palette") {
+func currentGraphics() graphicsSetting {
+	pal := *paletteFlag
+	return graphicsByName(pal)
+}
+
+func doApplyGraphicsSetting(m *Controller, palName string) error {
+	pal := palette.ByName(palName)
+	if !palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
 		return nil
 	}
-	flag.Set("palette", palName)
-	return m.NextFrame(func() error {
-		pal := palette.ByName(palName)
-		if !palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
-			return nil
-		}
-		err := picture.PaletteChanged()
+	err := picture.PaletteChanged()
+	if err != nil {
+		return fmt.Errorf("could not reapply palette to images: %v", err)
+	}
+	misc.ClearPrecache()
+	err = engine.PaletteChanged()
+	if err != nil {
+		return fmt.Errorf("could not reapply palette to engine: %v", err)
+	}
+	err = m.GameChanged()
+	if err != nil {
+		return fmt.Errorf("could not reapply palette to menu: %v", err)
+	}
+	return nil
+}
+
+func Palette(m *Controller) string {
+	if m.World.Level != nil && m.World.PlayerState.BadApple() {
+		return "bad_apple"
+	}
+	return *paletteFlag
+}
+
+func SetPalette(pal string) {
+	*paletteFlag = pal
+}
+
+func (s graphicsSetting) apply(m *Controller) error {
+	palName := graphicsSettings[s].palette
+	if m.World.PlayerState.BadApple() && palName != "bad_apple" {
+		m.World.PlayerState.StopBadApple()
+		err := m.World.Save()
 		if err != nil {
-			return fmt.Errorf("could not reapply palette to images: %v", err)
+			log.Errorf("could not save game: %w", err)
+			// Proceed anyway, as the current save state will be lost if we crash too.
 		}
-		misc.ClearPrecache()
-		err = engine.PaletteChanged()
-		if err != nil {
-			return fmt.Errorf("could not reapply palette to engine: %v", err)
-		}
-		err = m.GameChanged()
-		if err != nil {
-			return fmt.Errorf("could not reapply palette to menu: %v", err)
-		}
-		return nil
-	})
+	}
+	SetPalette(palName)
+	return nil
 }
 
 func (s *SettingsScreen) toggleGraphics(delta int) error {
@@ -264,6 +294,15 @@ func (s *SettingsScreen) toggleGraphics(delta int) error {
 	}
 	s.CurrentGraphics.apply(s.Controller)
 	return nil
+}
+
+func performGraphicsAdjustment(m *Controller) bool {
+	wantPalette := Palette(m)
+	if wantPalette != palette.Current().Name() {
+		doApplyGraphicsSetting(m, wantPalette)
+		return true
+	}
+	return false
 }
 
 func toggleQuality(delta int) error {
@@ -348,6 +387,11 @@ func toggleScreenFlashes(delta int) error {
 	}
 	flag.Set("screen_flash_strength", v)
 	return nil
+}
+
+func performSettingsAdjustment(m *Controller) bool {
+	performQualityAdjustment()
+	return performGraphicsAdjustment(m)
 }
 
 func (s *SettingsScreen) Update() error {

@@ -155,7 +155,8 @@ func (c *Controller) Update() error {
 		}
 	}
 
-	performQualityAdjustment()
+	timing.Section("adjust")
+	performSettingsAdjustment(c)
 
 	return nil
 }
@@ -222,7 +223,7 @@ func (c *Controller) DrawWorld(screen *ebiten.Image) {
 	if f != 0 {
 		// If a menu screen is active, just draw the previous saved bitmap, but blur it.
 		darken := darkenFactor*f + 1.0*(1-f)
-		engine.BlurImage("BlurGame", dest, screen, blurSize, darken, 0.0, f)
+		engine.BlurImage("BlurGame", dest, screen, blurSize, darken, 0.0, color.Gray{0}, f)
 		if offscreen.AvoidReuse() {
 			offscreen.Dispose(dest)
 		}
@@ -250,17 +251,23 @@ func (c *Controller) initGame(f resetFlag) error {
 		c.needReloadLevel = false
 	}
 
-	// Initialize the world.
-	err := c.World.Init(*saveState)
-	if err != nil {
-		return fmt.Errorf("could not initialize world: %w", err)
-	}
-
-	// Load the saved state.
-	if f == loadGame {
-		err := c.World.Load()
+	for {
+		// Initialize the world.
+		err := c.World.Init(*saveState)
 		if err != nil {
-			return err
+			return fmt.Errorf("could not initialize world: %w", err)
+		}
+
+		// Load the saved state.
+		if f == loadGame {
+			err := c.World.Load()
+			if err != nil {
+				return err
+			}
+		}
+
+		if !performSettingsAdjustment(c) {
+			break
 		}
 	}
 
