@@ -33,8 +33,6 @@ var (
 	showSwitchLevel      = flag.Bool("show_switch_level", false, "show the level selector menu")
 )
 
-var badApple *bool
-
 type PlayerState struct {
 	Level *level.Level
 }
