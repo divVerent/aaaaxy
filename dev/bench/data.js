@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784015750259,
+  "lastUpdate": 1784039281669,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "8d49e884bc3a562bf0176ea88ed57a156abe2e94",
-          "message": "Modules update.",
-          "timestamp": "2026-06-15T18:49:04+02:00",
-          "tree_id": "ef28c08e4d39f507212531ef0a7836fb10d6e3df",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8d49e884bc3a562bf0176ea88ed57a156abe2e94"
-        },
-        "date": 1781542444966,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 234.528592393,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2551,6 +2522,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 226.069003409,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "id": "483e11c830ba85fc0f2a5fe8b520ce33f722f705",
+          "message": "Fix crash in SVGA.",
+          "timestamp": "2026-07-14T07:51:05Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/483e11c830ba85fc0f2a5fe8b520ce33f722f705"
+        },
+        "date": 1784039276901,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 236.20219513,
             "unit": "Seconds"
           }
         ]
