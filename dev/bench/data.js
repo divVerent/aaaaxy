@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784044286710,
+  "lastUpdate": 1784055418990,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5126,33 +5126,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-15T19:16:34Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
         },
-        "date": 1781913338199,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 73.213306068,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
-        },
         "date": 1781999742937,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7672,36 +7645,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+          "distinct": true,
+          "id": "fac6f8c0dd076a13840bd5a327fe58ac8a02deab",
+          "message": "Expand translator note for the Bad Apple reference.",
+          "timestamp": "2026-07-14T20:53:54+02:00",
+          "tree_id": "cd5ac8db982de54b3608e03803d7d7ed84c4aa07",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fac6f8c0dd076a13840bd5a327fe58ac8a02deab"
         },
-        "date": 1781741201925,
+        "date": 1784055414419,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.5988781,
+            "name": "Any% linux-amd64",
+            "value": 79.721227548,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10234,36 +10209,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+          "distinct": true,
+          "id": "fac6f8c0dd076a13840bd5a327fe58ac8a02deab",
+          "message": "Expand translator note for the Bad Apple reference.",
+          "timestamp": "2026-07-14T20:53:54+02:00",
+          "tree_id": "cd5ac8db982de54b3608e03803d7d7ed84c4aa07",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fac6f8c0dd076a13840bd5a327fe58ac8a02deab"
         },
-        "date": 1781913392518,
+        "date": 1784055414104,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 106.3099322,
+            "name": "Any% windows-amd64",
+            "value": 96.3609914,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12797,6 +12774,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.6054881,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "fac6f8c0dd076a13840bd5a327fe58ac8a02deab",
+          "message": "Expand translator note for the Bad Apple reference.",
+          "timestamp": "2026-07-14T20:53:54+02:00",
+          "tree_id": "cd5ac8db982de54b3608e03803d7d7ed84c4aa07",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fac6f8c0dd076a13840bd5a327fe58ac8a02deab"
+        },
+        "date": 1784055459164,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.0676653,
             "unit": "Seconds"
           }
         ]
