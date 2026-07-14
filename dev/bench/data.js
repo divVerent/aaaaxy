@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784014069377,
+  "lastUpdate": 1784015637007,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5122,33 +5122,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-15T19:16:34Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
         },
-        "date": 1781741187262,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.461636419,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
-        },
         "date": 1781828259731,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7664,36 +7637,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+          "distinct": true,
+          "id": "483e11c830ba85fc0f2a5fe8b520ce33f722f705",
+          "message": "Fix crash in SVGA.",
+          "timestamp": "2026-07-14T09:51:05+02:00",
+          "tree_id": "b56e3519d01f972bc963fd2ff0d82d8a42583f24",
+          "url": "https://github.com/divVerent/aaaaxy/commit/483e11c830ba85fc0f2a5fe8b520ce33f722f705"
         },
-        "date": 1781569277895,
+        "date": 1784015632203,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.2541565,
+            "name": "Any% linux-amd64",
+            "value": 76.092640431,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10222,36 +10197,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+          "distinct": true,
+          "id": "483e11c830ba85fc0f2a5fe8b520ce33f722f705",
+          "message": "Fix crash in SVGA.",
+          "timestamp": "2026-07-14T09:51:05+02:00",
+          "tree_id": "b56e3519d01f972bc963fd2ff0d82d8a42583f24",
+          "url": "https://github.com/divVerent/aaaaxy/commit/483e11c830ba85fc0f2a5fe8b520ce33f722f705"
         },
-        "date": 1781741188166,
+        "date": 1784015675938,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.0492591,
+            "name": "Any% windows-amd64",
+            "value": 95.9398955,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12781,6 +12758,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.8600432,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "483e11c830ba85fc0f2a5fe8b520ce33f722f705",
+          "message": "Fix crash in SVGA.",
+          "timestamp": "2026-07-14T09:51:05+02:00",
+          "tree_id": "b56e3519d01f972bc963fd2ff0d82d8a42583f24",
+          "url": "https://github.com/divVerent/aaaaxy/commit/483e11c830ba85fc0f2a5fe8b520ce33f722f705"
+        },
+        "date": 1784015684789,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.3976958,
             "unit": "Seconds"
           }
         ]
