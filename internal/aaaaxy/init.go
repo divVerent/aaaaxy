@@ -155,7 +155,7 @@ func (g *Game) InitEarly() error {
 	}
 
 	// Load images with the right palette from the start.
-	palette.SetCurrent(palette.ByName(*paletteFlag), *paletteRemapColors)
+	palette.SetCurrent(palette.ByName(menu.Palette(&g.Menu)), *paletteRemapColors)
 
 	// When dumping video or benchmarking, do precisely one render frame per update.
 	if dump.Slow() || demo.Timedemo() {

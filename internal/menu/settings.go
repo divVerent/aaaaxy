@@ -16,6 +16,7 @@ package menu
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -31,17 +32,23 @@ import (
 	"github.com/divVerent/aaaaxy/internal/picture"
 )
 
-var offerFullscreen = flag.SystemDefault(map[string]bool{
-	"android/*": false,
-	"ios/*":     false,
-	"*/*":       true,
-})
-
-var offerStretch = flag.SystemDefault(map[string]bool{
-	"android/*": true,
-	"ios/*":     true,
-	"*/*":       false,
-})
+var (
+	offerFullscreen = flag.SystemDefault(map[string]bool{
+		"android/*": false,
+		"ios/*":     false,
+		"*/*":       true,
+	})
+	offerStretch = flag.SystemDefault(map[string]bool{
+		"android/*": true,
+		"ios/*":     true,
+		"*/*":       false,
+	})
+	paletteFlag = flag.String("palette", flag.SystemDefault(map[string]string{
+		"android/*": "none",
+		"js/*":      "none",
+		"*/*":       "vga",
+	}), "render with palette; can be set to '"+strings.Join(palette.Names(), "', '")+"' or 'none'")
+)
 
 type SettingsScreenItem int
 
@@ -214,7 +221,7 @@ func graphicsByName(pal string) graphicsSetting {
 }
 
 func currentGraphics() graphicsSetting {
-	pal := flag.Get[string]("palette")
+	pal := *paletteFlag
 	return graphicsByName(pal)
 }
 
@@ -236,7 +243,23 @@ func doApplyGraphicsSetting(m *Controller, palName string) error {
 	if err != nil {
 		return fmt.Errorf("could not reapply palette to menu: %v", err)
 	}
-	if palName != "bad_apple" {
+	return nil
+}
+
+func Palette(m *Controller) string {
+	if m.World.Level != nil && m.World.PlayerState.BadApple() {
+		return "bad_apple"
+	}
+	return *paletteFlag
+}
+
+func SetPalette(pal string) {
+	*paletteFlag = pal
+}
+
+func (s graphicsSetting) apply(m *Controller) error {
+	palName := graphicsSettings[s].palette
+	if m.World.PlayerState.BadApple() && palName != "bad_apple" {
 		m.World.PlayerState.StopBadApple()
 		err := m.World.Save()
 		if err != nil {
@@ -244,18 +267,8 @@ func doApplyGraphicsSetting(m *Controller, palName string) error {
 			// Proceed anyway, as the current save state will be lost if we crash too.
 		}
 	}
+	SetPalette(palName)
 	return nil
-}
-
-func (s graphicsSetting) apply(m *Controller) error {
-	palName := graphicsSettings[s].palette
-	if palName == flag.Get[string]("palette") {
-		return nil
-	}
-	flag.Set("palette", palName)
-	return m.NextFrame(func() error {
-		return doApplyGraphicsSetting(m, palName)
-	})
 }
 
 func (s *SettingsScreen) toggleGraphics(delta int) error {
@@ -283,21 +296,11 @@ func (s *SettingsScreen) toggleGraphics(delta int) error {
 	return nil
 }
 
-var badAppleActive bool
-
 func performGraphicsAdjustment(m *Controller) bool {
-	if m.World.PlayerState.BadApple() {
-		if !badAppleActive {
-			doApplyGraphicsSetting(m, "bad_apple")
-			badAppleActive = true
-			return true
-		}
-	} else {
-		if badAppleActive {
-			doApplyGraphicsSetting(m, currentGraphics().String())
-			badAppleActive = false
-			return true
-		}
+	wantPalette := Palette(m)
+	if wantPalette != palette.Current().Name() {
+		doApplyGraphicsSetting(m, wantPalette)
+		return true
 	}
 	return false
 }
