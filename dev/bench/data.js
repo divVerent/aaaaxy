@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784056042298,
+  "lastUpdate": 1784056223954,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2570,35 +2570,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "aa8fc06ebb84c1df7e6e778c241697e77d8c44eb",
-          "message": "Add a mostly working spike meme.\n\nJust the spike is missing. Will be a sprite that doesn't get flipped.",
-          "timestamp": "2026-06-13T22:12:52+02:00",
-          "tree_id": "f79559ad0f1ec2387d778b3c6b4a36facff5536f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/aa8fc06ebb84c1df7e6e778c241697e77d8c44eb"
-        },
-        "date": 1781382178151,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 81.046313756,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "55bc53ed15a69cfb36bd6c2433015255e2cd4e24",
           "message": "spike meme perfection",
           "timestamp": "2026-06-14T06:20:09+02:00",
@@ -5105,6 +5076,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.627137488,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "79460651a5f348742283ff17d2b86949c6a84292",
+          "message": "Even more note.",
+          "timestamp": "2026-07-14T21:02:36+02:00",
+          "tree_id": "7fa04fd513589aa17e76f4600e2d74117131eaac",
+          "url": "https://github.com/divVerent/aaaaxy/commit/79460651a5f348742283ff17d2b86949c6a84292"
+        },
+        "date": 1784056217306,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.544338029,
             "unit": "Seconds"
           }
         ]
