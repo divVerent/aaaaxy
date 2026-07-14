@@ -544,8 +544,8 @@ func (s *PlayerState) KickBadApple() {
 	if badApple == 0 {
 		return
 	}
-	propmap.Set(s.Level.Player.PersistentState, "bad_apple", badApple)
 	badApple = 3 - badApple
+	propmap.Set(s.Level.Player.PersistentState, "bad_apple", badApple)
 }
 
 func (s *PlayerState) ScreenInverted() bool {

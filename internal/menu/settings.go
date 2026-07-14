@@ -285,18 +285,21 @@ func (s *SettingsScreen) toggleGraphics(delta int) error {
 
 var badAppleActive bool
 
-func performGraphicsAdjustment(m *Controller) {
+func performGraphicsAdjustment(m *Controller) bool {
 	if m.World.PlayerState.BadApple() {
 		if !badAppleActive {
 			doApplyGraphicsSetting(m, "bad_apple")
 			badAppleActive = true
+			return true
 		}
 	} else {
 		if badAppleActive {
 			doApplyGraphicsSetting(m, currentGraphics().String())
 			badAppleActive = false
+			return true
 		}
 	}
+	return false
 }
 
 func toggleQuality(delta int) error {
@@ -383,9 +386,9 @@ func toggleScreenFlashes(delta int) error {
 	return nil
 }
 
-func performSettingsAdjustment(m *Controller) {
+func performSettingsAdjustment(m *Controller) bool {
 	performQualityAdjustment()
-	performGraphicsAdjustment(m)
+	return performGraphicsAdjustment(m)
 }
 
 func (s *SettingsScreen) Update() error {
