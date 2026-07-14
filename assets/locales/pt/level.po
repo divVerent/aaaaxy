@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Rudolf Polzer, 2024
-# yy0zz, 2026
+# yy0zz, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-10 12:21+0200\n"
+"POT-Creation-Date: 2026-03-22 11:35+0100\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: yy0zz, 2026\n"
+"Last-Translator: yy0zz, 2025\n"
 "Language-Team: Portuguese (https://app.transifex.com/aaaaxy/teams/158611/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,9 +78,8 @@ msgstr "Às vezes apenas se corre em círculos."
 msgid "Some people prefer 2τ over 4π."
 msgstr "Algumas pessoas preferem 2τ a 4π."
 
-#. https://www.churchofjesuschrist.org/study/ya-weekly/2021/09/5-truths-about-
-#. truth?lang=eng (switch to your language's version, the phrase is in section
-#. 1 paragraph 2 near the end).
+#. https://www.churchofjesuschrist.org/broadcasts/article/ces-
+#. devotionals/2013/01/what-is-truth?lang=eng
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr "\"Apesar de um amplo consenso no passado, a Terra não é plana.\""
@@ -193,7 +192,7 @@ msgstr "Um Novo Começo"
 msgid "If this isn't your downfall, I don't know what is."
 msgstr "Se isto não é sua queda, não sei o que é."
 
-#. https://www.youtube.com/watch?v=_-QENSv7gIs
+#. https://www.youtube.com/watch?v=zpRQtHjEniQ
 #: assets/maps/level.tmx//map/objectgroup/object[@id=287]
 msgid "Oh, gravity, thou art a heartless ... force?"
 msgstr "Ó gravidade, és uma ímpia ... força?"
@@ -1223,8 +1222,8 @@ msgid "Ski Dyver"
 msgstr "Esquia Quedas"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
-msgid "Those who are inattentive get trolled."
-msgstr "Os que são desatentos são trolados."
+msgid "Those who are not inattentive get trolled."
+msgstr "Os que não são desatentos são trolados."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
@@ -1520,49 +1519,3 @@ msgstr "Agora pode entrar em outro mundo!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
 msgstr "O Teletransportador{{BR}}(aperte {{ExitButton}})"
-
-#. This is a reference to SheetMusicBoss's song "Rush E". Try making a pun
-#. based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or
-#. one of the common YT comments on those videos of the sort "I paid for the
-#. whole piano, I'm gonna use the whole piano".
-#: assets/maps/level.tmx//map/objectgroup/object[@id=8539]
-msgid "Why the rush, eh?"
-msgstr "Paguei todo o piano, vou usar todo o piano."
-
-#. This is a reference to Beethoven's Für Elise. If there's a common
-#. misspelling in your language, make a pun based on it; otherwise, maybe
-#. comment on how overplayed it is, or on Beethoven's hearing?
-#: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
-msgid "She's no furry - that letter is an \"ü\"!"
-msgstr "Pelo menos não foi tocada com uma gaita de foles."
-
-#. Comic explosion sign.
-#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
-msgid "Bang!"
-msgstr "Bum!"
-
-#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
-msgid "I think you meant to play{{BR}}In the Hall of the Mountain King?"
-msgstr "Queria tocar Na Gruta do{{BR}}Rei da Montanha?"
-
-#. Reference to Super Mario 64's intro letter from Princess Peach, combined
-#. with the wellknown phrase misattributed to Marie Antoinette. Try finding
-#. both phrases as most commonly used in your language in the given contexts
-#. and use those. Definitely don't reference Portal here - let's not overdo
-#. those. If Asterix is well-known in your culture, you may consider making it
-#. an "arsenic cake"; if not, reference Grieg's In the Hall of the Mountain
-#. King.
-#: assets/maps/level.tmx//map/objectgroup/object[@id=8556]
-msgid ""
-"Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat "
-"cake...{{BR}}Arsenic cake?"
-msgstr ""
-"Caro Mário:{{BR}}Por favor venha ao castelo.{{BR}}Que comam "
-"bolo...{{BR}}Bolo com {{if eq Lang \"pt-"
-"BR\"}}arsênico{{else}}arsénico{{end}}?"
-
-#: assets/maps/level.tmx//map/objectgroup/object[@id=8557]
-msgid "I think you meant to play{{BR}}Arsenic Cake?"
-msgstr ""
-"Queria tocar Bolo com {{if eq Lang \"pt-"
-"BR\"}}Arsênico{{else}}Arsénico{{end}}?"
