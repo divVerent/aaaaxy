@@ -219,29 +219,32 @@ func currentGraphics() graphicsSetting {
 }
 
 func doApplyGraphicsSetting(m *Controller, palName string) error {
-	return m.NextFrame(func() error {
-		pal := palette.ByName(palName)
-		if !palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
-			return nil
-		}
-		err := picture.PaletteChanged()
-		if err != nil {
-			return fmt.Errorf("could not reapply palette to images: %v", err)
-		}
-		misc.ClearPrecache()
-		err = engine.PaletteChanged()
-		if err != nil {
-			return fmt.Errorf("could not reapply palette to engine: %v", err)
-		}
-		err = m.GameChanged()
-		if err != nil {
-			return fmt.Errorf("could not reapply palette to menu: %v", err)
-		}
-		if palName != "bad_apple" {
-			m.World.PlayerState.StopBadApple()
-		}
+	pal := palette.ByName(palName)
+	if !palette.SetCurrent(pal, flag.Get[bool]("palette_remap_colors")) {
 		return nil
-	})
+	}
+	err := picture.PaletteChanged()
+	if err != nil {
+		return fmt.Errorf("could not reapply palette to images: %v", err)
+	}
+	misc.ClearPrecache()
+	err = engine.PaletteChanged()
+	if err != nil {
+		return fmt.Errorf("could not reapply palette to engine: %v", err)
+	}
+	err = m.GameChanged()
+	if err != nil {
+		return fmt.Errorf("could not reapply palette to menu: %v", err)
+	}
+	if palName != "bad_apple" {
+		m.World.PlayerState.StopBadApple()
+		err := m.World.Save()
+		if err != nil {
+			log.Errorf("could not save game: %w", err)
+			// Proceed anyway, as the current save state will be lost if we crash too.
+		}
+	}
+	return nil
 }
 
 func (s graphicsSetting) apply(m *Controller) error {
@@ -250,7 +253,9 @@ func (s graphicsSetting) apply(m *Controller) error {
 		return nil
 	}
 	flag.Set("palette", palName)
-	return doApplyGraphicsSetting(m, palName)
+	return m.NextFrame(func() error {
+		return doApplyGraphicsSetting(m, palName)
+	})
 }
 
 func (s *SettingsScreen) toggleGraphics(delta int) error {

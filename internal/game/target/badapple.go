@@ -15,14 +15,23 @@
 package target
 
 import (
+	"time"
+
+	"github.com/divVerent/aaaaxy/internal/centerprint"
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
+	"github.com/divVerent/aaaaxy/internal/locale"
+	"github.com/divVerent/aaaaxy/internal/log"
+	"github.com/divVerent/aaaaxy/internal/palette"
 )
 
 // BadAppleTarget prints the given text to console when activated.
 // Setting state to ON saves the current text, setting state to OFF dumps it.
 type BadAppleTarget struct {
 	World *engine.World
+
+	State bool
 }
 
 func (b *BadAppleTarget) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
@@ -37,8 +46,19 @@ func (b *BadAppleTarget) Update() {}
 func (b *BadAppleTarget) Touch(other *engine.Entity) {}
 
 func (b *BadAppleTarget) SetState(originator, predecessor *engine.Entity, state bool) {
+	if state == b.State {
+		return
+	}
+	b.State = state
 	if state {
-		b.World.PlayerState.StartBadApple()
+		b.World.PlayerState.ToggleBadApple()
+		err := b.World.Save()
+		if err != nil {
+			log.Errorf("could not save game: %v", err)
+			str := locale.G.Get("Error:\ncould not save game:\n%s", err)
+			centerprint.New(fun.FormatText(&b.World.PlayerState, str), centerprint.Important, centerprint.Top, centerprint.NormalFont(), palette.EGA(palette.LightRed, 255), 5*time.Second).SetFadeOut(true)
+			return
+		}
 	}
 }
 

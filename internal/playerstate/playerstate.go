@@ -519,28 +519,36 @@ func (s *PlayerState) SpeedrunCategories() SpeedrunCategories {
 	return cat
 }
 
-func (s *PlayerState) StartBadApple() {
-	badApple = new(bool)
+func (s *PlayerState) ToggleBadApple() {
+	badApple := propmap.ValueOrP(s.Level.Player.PersistentState, "bad_apple", 0, nil)
+	if badApple == 0 {
+		badApple = 1
+	} else {
+		badApple = 0
+	}
+	propmap.Set(s.Level.Player.PersistentState, "bad_apple", badApple)
 }
 
 func (s *PlayerState) StopBadApple() {
-	badApple = nil
+	badApple := 0
+	propmap.Set(s.Level.Player.PersistentState, "bad_apple", badApple)
 }
 
 func (s *PlayerState) BadApple() bool {
-	return badApple != nil
+	badApple := propmap.ValueOrP(s.Level.Player.PersistentState, "bad_apple", 0, nil)
+	return badApple != 0
 }
 
 func (s *PlayerState) KickBadApple() {
-	if badApple == nil {
+	badApple := propmap.ValueOrP(s.Level.Player.PersistentState, "bad_apple", 0, nil)
+	if badApple == 0 {
 		return
 	}
-	*badApple = !*badApple
+	propmap.Set(s.Level.Player.PersistentState, "bad_apple", badApple)
+	badApple = 3 - badApple
 }
 
 func (s *PlayerState) ScreenInverted() bool {
-	if badApple == nil {
-		return false
-	}
-	return *badApple
+	badApple := propmap.ValueOrP(s.Level.Player.PersistentState, "bad_apple", 0, nil)
+	return badApple == 2
 }
