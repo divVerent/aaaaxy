@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 19:28+0200\n"
+"POT-Creation-Date: 2026-07-13 21:31+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: German (https://app.transifex.com/aaaaxy/teams/158611/de/)\n"
@@ -1594,3 +1594,9 @@ msgstr ""
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8557]
 msgid "I think you meant to play{{BR}}Arsenic Cake?"
 msgstr "Sollte das \"Pudding mit Arsen\" werden?"
+
+#. https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in
+#. _your_ favorite Bad Apple reference (parody or not).
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8588]
+msgid "... and makes a swirly dot."
+msgstr "... in die tiefe Dunkelheit."
