@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784055418990,
+  "lastUpdate": 1784055538376,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "df7e2a67974a05d343fb2a513672528b79d8b1a3",
-          "message": "Give the spike meme music.",
-          "timestamp": "2026-06-15T21:11:19+02:00",
-          "tree_id": "ede7eae978998b787759eb06f5fe7b7e8f5289ea",
-          "url": "https://github.com/divVerent/aaaaxy/commit/df7e2a67974a05d343fb2a513672528b79d8b1a3"
-        },
-        "date": 1781550988074,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 236.415761796,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2551,6 +2522,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 238.635893875,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "fac6f8c0dd076a13840bd5a327fe58ac8a02deab",
+          "message": "Expand translator note for the Bad Apple reference.",
+          "timestamp": "2026-07-14T20:53:54+02:00",
+          "tree_id": "cd5ac8db982de54b3608e03803d7d7ed84c4aa07",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fac6f8c0dd076a13840bd5a327fe58ac8a02deab"
+        },
+        "date": 1784055532352,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 227.461542036,
             "unit": "Seconds"
           }
         ]
