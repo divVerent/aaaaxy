@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784004106196,
+  "lastUpdate": 1784004153448,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5098,33 +5098,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "aa8fc06ebb84c1df7e6e778c241697e77d8c44eb",
-          "message": "Add a mostly working spike meme.\n\nJust the spike is missing. Will be a sprite that doesn't get flipped.",
-          "timestamp": "2026-06-13T20:12:36Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/aa8fc06ebb84c1df7e6e778c241697e77d8c44eb"
-        },
-        "date": 1781394842648,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 56.472649635,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -7646,36 +7619,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
+          "distinct": true,
+          "id": "d41784a2bf604d86dde63bb854c6ada2d1f66296",
+          "message": "Same change to benchmark.dem.",
+          "timestamp": "2026-07-14T06:38:50+02:00",
+          "tree_id": "893343a98245d86c93ba837a3d5da74aa24187ee",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d41784a2bf604d86dde63bb854c6ada2d1f66296"
         },
-        "date": 1781309434973,
+        "date": 1784004148772,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.1917669,
+            "name": "Any% linux-amd64",
+            "value": 72.644582493,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10198,36 +10173,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "aa8fc06ebb84c1df7e6e778c241697e77d8c44eb",
-          "message": "Add a mostly working spike meme.\n\nJust the spike is missing. Will be a sprite that doesn't get flipped.",
-          "timestamp": "2026-06-13T20:12:36Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/aa8fc06ebb84c1df7e6e778c241697e77d8c44eb"
+          "distinct": true,
+          "id": "d41784a2bf604d86dde63bb854c6ada2d1f66296",
+          "message": "Same change to benchmark.dem.",
+          "timestamp": "2026-07-14T06:38:50+02:00",
+          "tree_id": "893343a98245d86c93ba837a3d5da74aa24187ee",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d41784a2bf604d86dde63bb854c6ada2d1f66296"
         },
-        "date": 1781394898611,
+        "date": 1784004216110,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.0226042,
+            "name": "Any% windows-amd64",
+            "value": 96.1897646,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12749,6 +12726,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 97.5126112,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d41784a2bf604d86dde63bb854c6ada2d1f66296",
+          "message": "Same change to benchmark.dem.",
+          "timestamp": "2026-07-14T06:38:50+02:00",
+          "tree_id": "893343a98245d86c93ba837a3d5da74aa24187ee",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d41784a2bf604d86dde63bb854c6ada2d1f66296"
+        },
+        "date": 1784004235675,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 101.6553219,
             "unit": "Seconds"
           }
         ]
