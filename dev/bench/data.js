@@ -2550,6 +2550,35 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "63c6ee680d718b963b19124459422444f74237bd",
+          "message": "Translate assets/locales/level.pot in de (#680)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-14T08:49:26+02:00",
+          "tree_id": "ef933da0729d4919cba5003194f316c9e750f9fa",
+          "url": "https://github.com/divVerent/aaaaxy/commit/63c6ee680d718b963b19124459422444f74237bd"
+        },
+        "date": 1784012114184,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 230.964074828,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% linux-amd64-current": [
