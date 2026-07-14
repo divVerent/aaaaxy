@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784004153448,
+  "lastUpdate": 1784004395494,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2566,33 +2566,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-03T16:06:53Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
         },
-        "date": 1781102995396,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 76.708234274,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
-        },
         "date": 1781191899472,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5089,6 +5062,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 76.937214434,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8b11b70329ad2b3ceda19512850bedbfc8cfce19",
+          "message": "Update the Any% demo.\n\nAs questionblocks now save too, the demos changed a little.",
+          "timestamp": "2026-07-14T06:37:46+02:00",
+          "tree_id": "c5c7d0f14cc7228011e491c1b4a820dc9caf979e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8b11b70329ad2b3ceda19512850bedbfc8cfce19"
+        },
+        "date": 1784004391034,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 76.817936214,
             "unit": "Seconds"
           }
         ]
