@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784011613293,
+  "lastUpdate": 1784012102768,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "1a26a15065bd5e5a2705f468c592628ba2e2ac90",
-          "message": "Require macos-26, not \"latest\".\n\nAs \"latest\" is actually _older_!",
-          "timestamp": "2026-06-03T16:06:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/1a26a15065bd5e5a2705f468c592628ba2e2ac90"
-        },
-        "date": 1781279395524,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 228.814890149,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2545,6 +2518,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 227.204797197,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "432f2d27d9eac902d083d66547c3aaac217bc2cd",
+          "message": "Translate assets/locales/game.pot in de (#672)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-14T08:49:08+02:00",
+          "tree_id": "d1e1ee0407ad85c0a5c93a97767eb0821b6af686",
+          "url": "https://github.com/divVerent/aaaaxy/commit/432f2d27d9eac902d083d66547c3aaac217bc2cd"
+        },
+        "date": 1784012095545,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 234.910263355,
             "unit": "Seconds"
           }
         ]
