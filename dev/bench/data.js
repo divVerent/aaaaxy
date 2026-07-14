@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784006991971,
+  "lastUpdate": 1784011099822,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5102,35 +5102,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "270f13e1bc306bad6883d762e5cc9831df3a124f",
-          "message": "Remove some shadow.",
-          "timestamp": "2026-06-14T06:26:39+02:00",
-          "tree_id": "a266379fe1777a683ed396ee34615a1bdbaa9053",
-          "url": "https://github.com/divVerent/aaaaxy/commit/270f13e1bc306bad6883d762e5cc9831df3a124f"
-        },
-        "date": 1781411370923,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 71.674934807,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7652,36 +7623,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "aa8fc06ebb84c1df7e6e778c241697e77d8c44eb",
-          "message": "Add a mostly working spike meme.\n\nJust the spike is missing. Will be a sprite that doesn't get flipped.",
-          "timestamp": "2026-06-13T20:12:36Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/aa8fc06ebb84c1df7e6e778c241697e77d8c44eb"
+          "distinct": true,
+          "id": "9de97eafa4282534792d69ec022e8651c68dfe7b",
+          "message": "Fix easter egg on game start.",
+          "timestamp": "2026-07-13T23:35:30-07:00",
+          "tree_id": "d91238bdfda1a54e0607f03495ff2b77095c6f4e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/9de97eafa4282534792d69ec022e8651c68dfe7b"
         },
-        "date": 1781394878304,
+        "date": 1784011095230,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.3462127,
+            "name": "Any% linux-amd64",
+            "value": 81.901307837,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10206,38 +10179,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "committer": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "270f13e1bc306bad6883d762e5cc9831df3a124f",
-          "message": "Remove some shadow.",
-          "timestamp": "2026-06-14T06:26:39+02:00",
-          "tree_id": "a266379fe1777a683ed396ee34615a1bdbaa9053",
-          "url": "https://github.com/divVerent/aaaaxy/commit/270f13e1bc306bad6883d762e5cc9831df3a124f"
+          "id": "9de97eafa4282534792d69ec022e8651c68dfe7b",
+          "message": "Fix easter egg on game start.",
+          "timestamp": "2026-07-13T23:35:30-07:00",
+          "tree_id": "d91238bdfda1a54e0607f03495ff2b77095c6f4e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/9de97eafa4282534792d69ec022e8651c68dfe7b"
         },
-        "date": 1781411405238,
+        "date": 1784011131550,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 98.8856182,
+            "name": "Any% windows-amd64",
+            "value": 96.3347099,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12759,6 +12732,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.1614484,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "9de97eafa4282534792d69ec022e8651c68dfe7b",
+          "message": "Fix easter egg on game start.",
+          "timestamp": "2026-07-13T23:35:30-07:00",
+          "tree_id": "d91238bdfda1a54e0607f03495ff2b77095c6f4e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/9de97eafa4282534792d69ec022e8651c68dfe7b"
+        },
+        "date": 1784011146781,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.7758396,
             "unit": "Seconds"
           }
         ]
