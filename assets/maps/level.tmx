@@ -19930,7 +19930,7 @@
   <object id="8587" name="BadAppleEffect" type="BadAppleTarget" x="4360" y="5824" width="8" height="8"/>
   <object id="8588" name="BadAppleMessage" type="CenterPrintTarget" x="4360" y="5832" width="8" height="8">
    <properties>
-    <property name="_text_localization_note" value="https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in _your_ favorite Bad Apple reference (parody or not), even indirect stuff like referencing &quot;Rule 86&quot; is totally fine here."/>
+    <property name="_text_localization_note" value="https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in _your_ favorite Bad Apple reference (parody or not), even indirect stuff like referencing &quot;Rule 86&quot; is totally fine here. Can even go along the lines of &quot;Touhou was too hard, so you're playing this&quot; etc."/>
     <property name="importance" value="Important"/>
     <property name="initial_position" value="Middle"/>
     <property name="sound" value="got_ability.ogg"/>
