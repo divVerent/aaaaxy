@@ -130,7 +130,7 @@
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4346 4058"}
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4349 4053"}
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4352 4049"}
-{"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4354 4048"}
+{"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"SaveGames":[3063573318767753804],"PlayerPos":"4354 4048"}
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4357 4048"}
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4360 4048"}
 {"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4362 4048"}
@@ -1996,7 +1996,7 @@
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4550 6410"}
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4549 6406"}
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4548 6402"}
-{"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4548 6400"}
+{"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"SaveGames":[10285430511914990719],"PlayerPos":"4548 6400"}
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4547 6400"}
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4547 6400"}
 {"Input":{"InputMap":33,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4546 6400"}
@@ -4458,7 +4458,7 @@
 {"Input":{"InputMap":1,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4565 4026"}
 {"Input":{"InputMap":1,"Right":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4567 4021"}
 {"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4569 4018"}
-{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4571 4016"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"SaveGames":[240443636880555401],"PlayerPos":"4571 4016"}
 {"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4573 4016"}
 {"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4575 4016"}
 {"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4577 4016"}
@@ -5449,4 +5449,4 @@
 {"Input":{"InputMap":1},"PlayerPos":"4576 4503"}
 {"Input":{"InputMap":1},"PlayerPos":"4576 4503"}
 {"Input":{"InputMap":1,"Action":{"Held":true,"JustHit":true}},"SaveGames":[8783461686719678580],"PlayerPos":"4576 4503"}
-{"FinalSaveGame":{"State":{"24":{"used":"true"},"48":{"seen":"true"},"49":{"seen":"true"},"52":{"seen":"true"},"61":{"seen":"true"},"62":{"seen":"true"},"63":{"seen":"true"},"6665":{"seen":"true"},"7":{"checkpoint_seen.":"Identity","checkpoint_seen.endless_eight":"Identity","checkpoint_seen.leap_of_faith":"Identity","checkpoint_seen.pre_hub_1":"Identity","checkpoint_seen.pre_hub_2":"Identity","checkpoint_seen.stop_and_stair":"Identity","checkpoint_seen.the_hub":"Identity","checkpoints_walked..leap_of_faith":"true","checkpoints_walked.endless_eight.pre_hub_1":"true","checkpoints_walked.leap_of_faith.stop_and_stair":"true","checkpoints_walked.pre_hub_1.pre_hub_2":"true","checkpoints_walked.pre_hub_2.the_hub":"true","checkpoints_walked.stop_and_stair.endless_eight":"true","escapes":"2","frames":"5422","last_checkpoint":"leap_of_faith","teleports":"1"},"7822":{"used":"true"},"81":{"used":"true"},"90":{"seen":"true"},"91":{"seen":"true"},"92":{"seen":"true"},"93":{"seen":"true"},"94":{"seen":"true"},"95":{"seen":"true"}},"GameVersion":"1.6.341+20260127.3959.e99703ac","LevelVersion":1,"LevelHash":3388945836121391454,"InfoHash":11900198093697600065,"StateHash":8783461686719678580}}
+{"FinalSaveGame":{"State":{"24":{"used":"true"},"48":{"seen":"true"},"49":{"seen":"true"},"52":{"seen":"true"},"61":{"seen":"true"},"62":{"seen":"true"},"63":{"seen":"true"},"6665":{"seen":"true"},"7":{"checkpoint_seen.":"Identity","checkpoint_seen.endless_eight":"Identity","checkpoint_seen.leap_of_faith":"Identity","checkpoint_seen.pre_hub_1":"Identity","checkpoint_seen.pre_hub_2":"Identity","checkpoint_seen.stop_and_stair":"Identity","checkpoint_seen.the_hub":"Identity","checkpoints_walked..leap_of_faith":"true","checkpoints_walked.endless_eight.pre_hub_1":"true","checkpoints_walked.leap_of_faith.stop_and_stair":"true","checkpoints_walked.pre_hub_1.pre_hub_2":"true","checkpoints_walked.pre_hub_2.the_hub":"true","checkpoints_walked.stop_and_stair.endless_eight":"true","escapes":"2","frames":"5422","last_checkpoint":"leap_of_faith","teleports":"1"},"7822":{"used":"true"},"81":{"used":"true"},"90":{"seen":"true"},"91":{"seen":"true"},"92":{"seen":"true"},"93":{"seen":"true"},"94":{"seen":"true"},"95":{"seen":"true"}},"GameVersion":"1.7.157+20260713.4116.3bdd2e61","LevelVersion":1,"LevelHash":6842216255411465264,"InfoHash":13275039769783290828,"StateHash":8783461686719678580}}
