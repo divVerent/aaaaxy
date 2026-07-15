@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784109447934,
+  "lastUpdate": 1784120821451,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2593,35 +2593,6 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": true,
-          "id": "85269ef387d86cc725093da9d23ceee990631c3b",
-          "message": "Modules update.",
-          "timestamp": "2026-06-22T11:13:17+02:00",
-          "tree_id": "f64f389343fabf7a274d8e6c166cc2e228dea54f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/85269ef387d86cc725093da9d23ceee990631c3b"
-        },
-        "date": 1782120127204,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 80.510782526,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
           "distinct": false,
           "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
           "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
@@ -5145,6 +5116,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 74.232515437,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "divVerent",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "d580d7971b1415e25e2195779924594b17a7d575",
+          "message": "Add Finnish (translated by soopax) to the game. (#696)",
+          "timestamp": "2026-07-15T09:49:43Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d580d7971b1415e25e2195779924594b17a7d575"
+        },
+        "date": 1784120815350,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.769781362,
             "unit": "Seconds"
           }
         ]
