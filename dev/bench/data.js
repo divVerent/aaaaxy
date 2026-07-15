@@ -2578,6 +2578,35 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d259f2ab1935f3773e18dea033247854e4044c10",
+          "message": "Fix ending in Bad Apple mode.",
+          "timestamp": "2026-07-15T19:56:16+02:00",
+          "tree_id": "abd8e09f7a2ec30295098330d52151926c5d7087",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d259f2ab1935f3773e18dea033247854e4044c10"
+        },
+        "date": 1784138428012,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 158.823578377,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% linux-amd64-current": [
