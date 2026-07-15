@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-13 21:31+0200\n"
+"POT-Creation-Date: 2026-07-14 21:02+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Latin (https://app.transifex.com/aaaaxy/teams/158611/la/)\n"
@@ -1553,7 +1553,9 @@ msgid "I think you meant to play{{BR}}Arsenic Cake?"
 msgstr "Voluistine \"Placentam cum Arsenico\" canere?"
 
 #. https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in
-#. _your_ favorite Bad Apple reference (parody or not).
+#. _your_ favorite Bad Apple reference (parody or not), even indirect stuff
+#. like referencing "Rule 86" is totally fine here. Can even go along the
+#. lines of "Touhou was too hard, so you're playing this" etc.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8588]
 msgid "... and makes a swirly dot."
 msgstr "Malum Malum!!"
