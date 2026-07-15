@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784141679700,
+  "lastUpdate": 1784159179652,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5168,35 +5168,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662",
-          "message": "Forgot translator note.",
-          "timestamp": "2026-07-02T12:25:45+02:00",
-          "tree_id": "8c4403b8691faffd033e8ba0b7f08a37226929f8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662"
-        },
-        "date": 1782988146693,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 72.861837417,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "11163d3d2caf4f1e5cc3417e0635faed66db852e",
           "message": "New text.",
           "timestamp": "2026-07-02T15:07:30+02:00",
@@ -7742,36 +7713,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]",
-            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "id": "9976db91b6d1522db4a6a98d69cdcf33052d30c8",
-          "message": "Bump actions/checkout from 6 to 7 (#649)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-01T19:28:40Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/9976db91b6d1522db4a6a98d69cdcf33052d30c8"
+          "id": "392b13bf1e014de67ccf331c854d908839e71850",
+          "message": "Update demos.",
+          "timestamp": "2026-07-15T18:46:11Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/392b13bf1e014de67ccf331c854d908839e71850"
         },
-        "date": 1782950434656,
+        "date": 1784159173330,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.1693994,
+            "name": "Any% linux-amd64",
+            "value": 79.814499021,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10330,38 +10301,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662",
-          "message": "Forgot translator note.",
-          "timestamp": "2026-07-02T12:25:45+02:00",
-          "tree_id": "8c4403b8691faffd033e8ba0b7f08a37226929f8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662"
+          "id": "392b13bf1e014de67ccf331c854d908839e71850",
+          "message": "Update demos.",
+          "timestamp": "2026-07-15T18:46:11Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/392b13bf1e014de67ccf331c854d908839e71850"
         },
-        "date": 1782988171070,
+        "date": 1784159200391,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 103.2662362,
+            "name": "Any% windows-amd64",
+            "value": 96.2797899,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12917,6 +12886,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 106.0196851,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "392b13bf1e014de67ccf331c854d908839e71850",
+          "message": "Update demos.",
+          "timestamp": "2026-07-15T18:46:11Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/392b13bf1e014de67ccf331c854d908839e71850"
+        },
+        "date": 1784159187761,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.7744093,
             "unit": "Seconds"
           }
         ]
