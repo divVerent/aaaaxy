@@ -46,7 +46,17 @@ func (s *StopTimerTarget) SetState(originator, predecessor *engine.Entity, state
 	}
 	s.World.TimerStopped = true
 	s.World.PlayerState.SubFrame() // The ending frame doesn't count.
+
+	c.World.PlayerState.SetWon()
 	s.World.PlayerState.KickBadApple()
+
+	err := c.World.Save()
+	if err != nil {
+		log.Errorf("could not save game: %v", err)
+	}
+
+	log.Infof("%v", fun.FormatText(&c.World.PlayerState,
+		"your time: {{GameTime}}; your speedrun categories: {{SpeedrunCategories}}; try next: {{SpeedrunTryNext}}."))
 }
 
 func (s *StopTimerTarget) Touch(other *engine.Entity) {}
