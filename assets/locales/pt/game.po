@@ -22,8 +22,7 @@ msgstr " e "
 msgid "%.1f fps, %.1f tps"
 msgstr "%.1f fps, %.1f tps"
 
-#. Timer display.
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "%d:%02d:%02d.%03d"
 msgstr "%d:%02d:%02d.%03d"
 
@@ -35,8 +34,7 @@ msgstr "%s (%d/%d)"
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#. -show_pos overlay (showing xy coordinates of player position and speed).
-#: aaaaxy/game.go aaaaxy/game.go
+#: aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
 msgstr "(%.5f %.5f) (%.4f %.4f)"
 
@@ -119,23 +117,19 @@ msgstr "Áudio"
 msgid "Auto (%s)"
 msgstr "Auto (%s)"
 
-#. A key on the keyboard or a button on the controller. Used with "hold".
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "B"
 msgstr "B"
 
-#. Keys on the keyboard or buttons on the controller. Used with "hold".
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "B/X"
 msgstr "B/X"
 
-#. A virtual button on Android. Used with "press".
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "Back"
 msgstr "Voltar"
 
-#. A key on the keyboard. Used with "press".
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "Backspace"
 msgstr "Backspace"
 
@@ -183,8 +177,7 @@ msgstr "Chicago"
 msgid "Credits"
 msgstr "Créditos"
 
-#. Keys on the keyboard. Used with "hold".
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "Ctrl/Shift"
 msgstr "Ctrl/Shift"
 
@@ -215,8 +208,7 @@ msgstr ""
 "não se pôde salvar o jogo:\n"
 "%s"
 
-#. A key on the keyboard. Used with "press".
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "Escape"
 msgstr "Escape"
 
@@ -454,8 +446,7 @@ msgstr "Clarões {{if eq Lang \"pt-BR\"}}na Tela{{else}}no Ecrã{{end}}: %s"
 msgid "Settings"
 msgstr "Ajustes"
 
-#. Keys on the keyboard. Used with "hold".
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "Shift/E/Tab"
 msgstr "Shift/E/Tab"
 
@@ -467,8 +458,7 @@ msgstr "Efeitos Sonoros"
 msgid "Sprites"
 msgstr "Sprites"
 
-#. A button on the controller. Used with "press".
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "Start"
 msgstr "Start"
 
@@ -596,8 +586,7 @@ msgstr "Suas Categorias de Speedrun"
 msgid "Your Time"
 msgstr "Seu Tempo"
 
-#. A key on the keyboard or a button on the controller. Used with "hold".
-#: fun/string.go fun/string.go
+#: fun/string.go
 msgid "Z"
 msgstr "Z"
 
@@ -638,7 +627,7 @@ msgstr "e outros contribuidores"
 msgid "by %s"
 msgstr "por %s"
 
-#. Touch surface on mobile. Used with "hold".
+#. Used in context "Hold ...".
 #: fun/string.go
 msgid "elsewhere"
 msgstr "em outro ponto"
