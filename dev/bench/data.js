@@ -5154,35 +5154,6 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": true,
-          "id": "85269ef387d86cc725093da9d23ceee990631c3b",
-          "message": "Modules update.",
-          "timestamp": "2026-06-22T11:13:17+02:00",
-          "tree_id": "f64f389343fabf7a274d8e6c166cc2e228dea54f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/85269ef387d86cc725093da9d23ceee990631c3b"
-        },
-        "date": 1782119750085,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.785012169,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
           "distinct": false,
           "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
           "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
@@ -7709,36 +7680,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
+          "distinct": true,
+          "id": "08705f263a2f28a51bfab2806df361ae94bca01d",
+          "message": "Make more credits strings translatable.",
+          "timestamp": "2026-07-15T06:25:48+02:00",
+          "tree_id": "629bd98a63e9273217dc4961007c8f2a5b181017",
+          "url": "https://github.com/divVerent/aaaaxy/commit/08705f263a2f28a51bfab2806df361ae94bca01d"
         },
-        "date": 1781999785423,
+        "date": 1784094718407,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.5632416,
+            "name": "Any% linux-amd64",
+            "value": 57.701898598,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10275,9 +10248,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10291,22 +10262,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "85269ef387d86cc725093da9d23ceee990631c3b",
-          "message": "Modules update.",
-          "timestamp": "2026-06-22T11:13:17+02:00",
-          "tree_id": "f64f389343fabf7a274d8e6c166cc2e228dea54f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/85269ef387d86cc725093da9d23ceee990631c3b"
+          "id": "08705f263a2f28a51bfab2806df361ae94bca01d",
+          "message": "Make more credits strings translatable.",
+          "timestamp": "2026-07-15T06:25:48+02:00",
+          "tree_id": "629bd98a63e9273217dc4961007c8f2a5b181017",
+          "url": "https://github.com/divVerent/aaaaxy/commit/08705f263a2f28a51bfab2806df361ae94bca01d"
         },
-        "date": 1782119787190,
+        "date": 1784091095565,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.8493786,
+            "name": "Any% windows-amd64",
+            "value": 98.0369493,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12842,6 +12815,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.5363584,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "08705f263a2f28a51bfab2806df361ae94bca01d",
+          "message": "Make more credits strings translatable.",
+          "timestamp": "2026-07-15T06:25:48+02:00",
+          "tree_id": "629bd98a63e9273217dc4961007c8f2a5b181017",
+          "url": "https://github.com/divVerent/aaaaxy/commit/08705f263a2f28a51bfab2806df361ae94bca01d"
+        },
+        "date": 1784091005909,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 98.8608217,
             "unit": "Seconds"
           }
         ]
