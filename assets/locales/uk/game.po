@@ -23,7 +23,8 @@ msgstr " i "
 msgid "%.1f fps, %.1f tps"
 msgstr "%.1f fps, %.1f tps"
 
-#: fun/string.go
+#. Timer display.
+#: fun/string.go fun/string.go
 msgid "%d:%02d:%02d.%03d"
 msgstr "%d:%02d:%02d.%03d"
 
@@ -35,7 +36,8 @@ msgstr "%s (%d/%d)"
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: aaaaxy/game.go
+#. -show_pos overlay (showing xy coordinates of player position and speed).
+#: aaaaxy/game.go aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
 msgstr "(%.5f %.5f) (%.4f %.4f)"
 
@@ -118,19 +120,23 @@ msgstr "Звук"
 msgid "Auto (%s)"
 msgstr "Авто (%s)"
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B"
 msgstr "B"
 
-#: fun/string.go
+#. Keys on the keyboard or buttons on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B/X"
 msgstr "B/X"
 
-#: fun/string.go
+#. A virtual button on Android. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Back"
 msgstr "Назад"
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Backspace"
 msgstr "Backspace"
 
@@ -178,7 +184,8 @@ msgstr "Чикаго"
 msgid "Credits"
 msgstr "Титри"
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Ctrl/Shift"
 msgstr "Ctrl/Shift"
 
@@ -209,7 +216,8 @@ msgstr ""
 "неможливо зберегти гру:\n"
 "%s"
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Escape"
 msgstr "Escape"
 
@@ -447,7 +455,8 @@ msgstr "Миготіння екрану: %s"
 msgid "Settings"
 msgstr "Налаштування"
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Shift/E/Tab"
 msgstr "Shift/E/Tab"
 
@@ -459,7 +468,8 @@ msgstr "Звукові ефекти"
 msgid "Sprites"
 msgstr "Спрайти"
 
-#: fun/string.go
+#. A button on the controller. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Start"
 msgstr "Старт"
 
@@ -587,7 +597,8 @@ msgstr "Ваші категорії спідрану"
 msgid "Your Time"
 msgstr "Ваш час"
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Z"
 msgstr "Z"
 
@@ -628,7 +639,7 @@ msgstr "та інші"
 msgid "by %s"
 msgstr "%s"
 
-#. Used in context "Hold ...".
+#. Touch surface on mobile. Used with "hold".
 #: fun/string.go
 msgid "elsewhere"
 msgstr "деінде"
