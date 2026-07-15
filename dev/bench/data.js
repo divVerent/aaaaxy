@@ -5383,6 +5383,35 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4aec52b85df558195c5d60e16cf88a514eef3d70",
+          "message": "Translate game.pot in uk [Manual Sync] (#690)\n\n98% of minimum 98% reviewed source file: 'game.pot'\non 'uk'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-15T08:31:17+02:00",
+          "tree_id": "541c07b5ce22c1008256f1b5c905a53bdc646b4e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4aec52b85df558195c5d60e16cf88a514eef3d70"
+        },
+        "date": 1784098014619,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 86.712704716,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% linux-amd64": [
