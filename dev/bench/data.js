@@ -5461,33 +5461,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-22T10:00:01Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
         },
-        "date": 1782258310615,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.904443045,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
         "date": 1782345315333,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -8013,94 +7986,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b4a14889b061d18c8f19fcd8606ec69810637de6",
+          "message": "Updates for file assets/locales/game.pot in de [Manual Sync] (#695)\n\n* Translate game.pot in de [Manual Sync]\n\n98% of minimum 98% reviewed source file: 'game.pot'\non 'de'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\n* Translate assets/locales/game.pot in de\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-15T08:30:36+02:00",
+          "tree_id": "fcae8cb74c8de10116e904728d60d89b23758612",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b4a14889b061d18c8f19fcd8606ec69810637de6"
+        },
+        "date": 1784098295840,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 87.104568567,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
-        },
-        "date": 1782086547261,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.9363624,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "85269ef387d86cc725093da9d23ceee990631c3b",
-          "message": "Modules update.",
-          "timestamp": "2026-06-22T11:13:17+02:00",
-          "tree_id": "f64f389343fabf7a274d8e6c166cc2e228dea54f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/85269ef387d86cc725093da9d23ceee990631c3b"
-        },
-        "date": 1782119827864,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 97.1016561,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T12:00:01+02:00",
-          "tree_id": "c4d0eab2c553cfc81b5084ecae983c8a5b12c41b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782126420253,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.1043697,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -10639,92 +10556,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b4a14889b061d18c8f19fcd8606ec69810637de6",
+          "message": "Updates for file assets/locales/game.pot in de [Manual Sync] (#695)\n\n* Translate game.pot in de [Manual Sync]\n\n98% of minimum 98% reviewed source file: 'game.pot'\non 'de'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\n* Translate assets/locales/game.pot in de\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-15T08:30:36+02:00",
+          "tree_id": "fcae8cb74c8de10116e904728d60d89b23758612",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b4a14889b061d18c8f19fcd8606ec69810637de6"
+        },
+        "date": 1784097223990,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.8151149,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T12:00:01+02:00",
-          "tree_id": "c4d0eab2c553cfc81b5084ecae983c8a5b12c41b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782126391055,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 103.3866593,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782172745810,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 110.0393598,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782258366714,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.1006707,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -13264,6 +13127,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 119.8761359,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b4a14889b061d18c8f19fcd8606ec69810637de6",
+          "message": "Updates for file assets/locales/game.pot in de [Manual Sync] (#695)\n\n* Translate game.pot in de [Manual Sync]\n\n98% of minimum 98% reviewed source file: 'game.pot'\non 'de'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\n* Translate assets/locales/game.pot in de\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-15T08:30:36+02:00",
+          "tree_id": "fcae8cb74c8de10116e904728d60d89b23758612",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b4a14889b061d18c8f19fcd8606ec69810637de6"
+        },
+        "date": 1784097227237,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.5411289,
             "unit": "Seconds"
           }
         ]
