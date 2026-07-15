@@ -735,7 +735,7 @@ msgstr "Ota rauhallisesti."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1818]
 msgid "Same procedure as last year?"
-msgstr "Sama toimenpide kuin viime vuonna?"
+msgstr "Sama toimenpide{{BR}}kuin viime vuonna?"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=1819]
 msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
