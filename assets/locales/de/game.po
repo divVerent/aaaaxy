@@ -30,11 +30,16 @@ msgstr "%d:%02d:%02d,%03d"
 msgid "%s (%d/%d)"
 msgstr "%s (%d/%d)"
 
+#: menu/credits.go
+msgid "%s, et al."
+msgstr "%s, et al."
+
 #: menu/level.go
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: aaaaxy/game.go
+#. -show_pos overlay (showing xy coordinates of player position and speed).
+#: aaaaxy/game.go aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
 msgstr "(%.5f %.5f) (%.4f %.4f)"
 
@@ -203,7 +208,8 @@ msgstr "Edmonton"
 msgid "Enter/Shift"
 msgstr "Enter/Shift"
 
-#: game/checkpoint/checkpoint_target.go
+#: game/checkpoint/checkpoint_target.go game/target/badapple.go
+#: game/trigger/questionblock.go
 msgid ""
 "Error:\n"
 "could not save game:\n"
@@ -635,6 +641,10 @@ msgid "and other contributors"
 msgstr "und andere Mitwirkende"
 
 #: menu/credits.go
+msgid "based on Classic hero and baddies pack"
+msgstr "basierend auf Classic hero and baddies pack"
+
+#: menu/credits.go
 msgid "by %s"
 msgstr "von %s"
 
@@ -655,6 +665,10 @@ msgstr "Finde Sound-Effekte"
 #: fun/string.go
 msgid "everything"
 msgstr "allen"
+
+#: menu/credits.go
+msgid "gabomdq and the SDL community"
+msgstr "gabomdq und die SDL-Community"
 
 #: level/level.go
 msgid "hashing level"
