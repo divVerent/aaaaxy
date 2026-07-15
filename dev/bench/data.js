@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784104546660,
+  "lastUpdate": 1784104672186,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5166,6 +5166,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 81.001262036,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "754db5fb56204b54a19b8a51bcb0eeb89864b7e9",
+          "message": "Updates for file assets/locales/level.pot in fi (#698)\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-15T10:29:59+02:00",
+          "tree_id": "a2fba262d9869b868732ca7ddd2af1c4e5db03fd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/754db5fb56204b54a19b8a51bcb0eeb89864b7e9"
+        },
+        "date": 1784104667482,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 78.549395356,
             "unit": "Seconds"
           }
         ]
