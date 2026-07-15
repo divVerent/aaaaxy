@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784141468994,
+  "lastUpdate": 1784141679700,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2602,33 +2602,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-22T10:00:01Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
         },
-        "date": 1782145592293,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 78.433420566,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
         "date": 1782224241845,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5147,6 +5120,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 74.658358654,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "392b13bf1e014de67ccf331c854d908839e71850",
+          "message": "Update demos.",
+          "timestamp": "2026-07-15T20:46:11+02:00",
+          "tree_id": "2c2e8baa8f5593ba998bb8c794a188e5acb3eb67",
+          "url": "https://github.com/divVerent/aaaaxy/commit/392b13bf1e014de67ccf331c854d908839e71850"
+        },
+        "date": 1784141674327,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 77.528635559,
             "unit": "Seconds"
           }
         ]
