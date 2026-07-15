@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784104672186,
+  "lastUpdate": 1784109170800,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5204,64 +5204,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "733b4bffae6c4b95a023eafb41d88ea298c7c563",
-          "message": "_Technically_ I need BorderPixels here.\n\nNot that it matters here - vs objects with 1 BorderPixels, the collision\nis the same either way. But let's do it _right_.",
-          "timestamp": "2026-07-01T21:24:04+02:00",
-          "tree_id": "7eb9d4218898aa1adafa62638eb78ef6f1534437",
-          "url": "https://github.com/divVerent/aaaaxy/commit/733b4bffae6c4b95a023eafb41d88ea298c7c563"
-        },
-        "date": 1782934186520,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 78.777233545,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "9976db91b6d1522db4a6a98d69cdcf33052d30c8",
-          "message": "Bump actions/checkout from 6 to 7 (#649)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-01T21:28:40+02:00",
-          "tree_id": "d631defb8a31344362c5d343723f1c1005d65976",
-          "url": "https://github.com/divVerent/aaaaxy/commit/9976db91b6d1522db4a6a98d69cdcf33052d30c8"
-        },
-        "date": 1782934322763,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.096920967,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "dependabot[bot]",
             "username": "dependabot[bot]",
             "email": "49699333+dependabot[bot]@users.noreply.github.com"
@@ -7815,65 +7757,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782863794764,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 97.6464887,
-            "unit": "Seconds"
-          }
-        ]
       },
       {
         "commit": {
           "author": {
             "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
+            "name": "divVerent",
             "username": "divVerent"
           },
           "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
           },
           "distinct": true,
-          "id": "81a447bb4134ec1c39189d00e8e496f97c2d2369",
-          "message": "Veni Vidi Vici iMproved.",
-          "timestamp": "2026-07-01T21:16:26+02:00",
-          "tree_id": "3e7bea3e0878d18d9ce3a3194048fd0b99f0a4df",
-          "url": "https://github.com/divVerent/aaaaxy/commit/81a447bb4134ec1c39189d00e8e496f97c2d2369"
+          "id": "d580d7971b1415e25e2195779924594b17a7d575",
+          "message": "Add Finnish (translated by soopax) to the game. (#696)",
+          "timestamp": "2026-07-15T11:49:43+02:00",
+          "tree_id": "7c0798a222e1164c7b3be71238a78638a4c1e150",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d580d7971b1415e25e2195779924594b17a7d575"
         },
-        "date": 1782933626673,
+        "date": 1784109163808,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.2688913,
+            "name": "Any% linux-amd64",
+            "value": 72.448262862,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10430,15 +10345,13 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
+            "email": "divVerent@gmail.com",
+            "name": "divVerent",
+            "username": "divVerent"
           },
           "committer": {
             "email": "noreply@github.com",
@@ -10446,22 +10359,24 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "9976db91b6d1522db4a6a98d69cdcf33052d30c8",
-          "message": "Bump actions/checkout from 6 to 7 (#649)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-01T21:28:40+02:00",
-          "tree_id": "d631defb8a31344362c5d343723f1c1005d65976",
-          "url": "https://github.com/divVerent/aaaaxy/commit/9976db91b6d1522db4a6a98d69cdcf33052d30c8"
+          "id": "d580d7971b1415e25e2195779924594b17a7d575",
+          "message": "Add Finnish (translated by soopax) to the game. (#696)",
+          "timestamp": "2026-07-15T11:49:43+02:00",
+          "tree_id": "7c0798a222e1164c7b3be71238a78638a4c1e150",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d580d7971b1415e25e2195779924594b17a7d575"
         },
-        "date": 1782934324879,
+        "date": 1784109192638,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 116.8552516,
+            "name": "Any% windows-amd64",
+            "value": 96.8446544,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -13015,6 +12930,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.1531408,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "divVerent",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d580d7971b1415e25e2195779924594b17a7d575",
+          "message": "Add Finnish (translated by soopax) to the game. (#696)",
+          "timestamp": "2026-07-15T11:49:43+02:00",
+          "tree_id": "7c0798a222e1164c7b3be71238a78638a4c1e150",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d580d7971b1415e25e2195779924594b17a7d575"
+        },
+        "date": 1784109201520,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.421438,
             "unit": "Seconds"
           }
         ]
