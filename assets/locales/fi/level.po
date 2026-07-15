@@ -1,0 +1,1585 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Soo Pax <soopax.pine@gmail.com>, 2026
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-14 21:02+0200\n"
+"PO-Revision-Date: 2022-12-13 17:39+0000\n"
+"Last-Translator: Soo Pax <soopax.pine@gmail.com>, 2026\n"
+"Language-Team: Finnish (https://app.transifex.com/aaaaxy/teams/158611/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=48]
+msgid "A short walk can go a long way."
+msgstr "Lyhyt kävely voi viedä pitkälle."
+
+#. https://knowyourmeme.com/memes/peace-was-never-an-option
+#: assets/maps/level.tmx//map/objectgroup/object[@id=49]
+msgid "Failure was never an option."
+msgstr "Epäonnistuminen ei koskaan ollut vaihtoehto."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=50]
+msgid ""
+"Don't children like to say, \"Are we there yet?\"{{BR}}Press {{ExitButton}}."
+msgstr ""
+"Eikö lapsilla ole tapana sanoa \"Ollaanko jo perillä?\"{{BR}}Paina "
+"{{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=51]
+msgid "Sometimes the angle of looking at things is all that matters."
+msgstr "Joskus on ainoastaan väliä sillä, mistä kulmasta asioita katsotaan."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=52]
+msgid "There can be too much of a good thing."
+msgstr "Hyviä asioita voi olla liikaa."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=53]
+msgid "Leap of Faith"
+msgstr "Hyppy tuntemattomaan"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=61]
+msgid "There are no wrong ways, just wrong goals."
+msgstr "Vääriä suuntia ei ole, on vain vääriä tavoitteita."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=62]
+msgid "Where there's a down, there must also be an up."
+msgstr "Mikä menee ylös, tulee myös alas."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=63]
+msgid "Persistence is the key to success."
+msgstr "Peräänantamattomuus on avain onnistumiseen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=66]
+msgid "Stop and Stair"
+msgstr "Pysähdy ja porrasta"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=89]
+msgid "Endless Eight"
+msgstr "Ääretön kahdeksikko"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=90]
+msgid "Sometimes you just keep running in circles."
+msgstr "Joskus sitä vain juoksee ympyröitä jatkuvasti."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=91]
+msgid "Some people prefer 2τ over 4π."
+msgstr "Jotkin ihmiset suosivat 2τ:ta 4π:n sijaan."
+
+#. https://www.churchofjesuschrist.org/study/ya-weekly/2021/09/5-truths-about-
+#. truth?lang=eng (switch to your language's version, the phrase is in section
+#. 1 paragraph 2 near the end).
+#: assets/maps/level.tmx//map/objectgroup/object[@id=92]
+msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
+msgstr ""
+"\"Kertaluontoisesta ylivoimaisesta yksimielisyydestä huolimatta maailma ei "
+"ole litteä.\""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=93]
+msgid "Some people prefer 4π over 2τ."
+msgstr "Jotkin ihmiset suosivat 4π:tä 2τ:n sijaan."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=94]
+msgid "Interesting things are hardly ever found in corners."
+msgstr "Mielenkiintoisia asioita harvoin löytyy kulmista."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=95]
+msgid "Interesting things are always found in corners."
+msgstr "Mielenkiintoisia asioita löytyy aina kulmista."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=99]
+msgid "The Hub"
+msgstr "Keskus"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=105]
+msgid "The Strip"
+msgstr "Nauha"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=143]
+msgid "The path of least resistance will not always lead to success."
+msgstr "Vähimmän vastustuksen reitti ei aina johda menestykseen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=144]
+msgid "Some things only have one side to them."
+msgstr "Jotkin asiat ovat yksipuolisia."
+
+#. https://gettingoverit.co/
+#: assets/maps/level.tmx//map/objectgroup/object[@id=145]
+msgid "Thinking outside the box can remove the need of getting over it."
+msgstr "Luova ajattelu voi poistaa tarpeen luovimiselle."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=147]
+msgid "The Möbius Strip"
+msgstr "Möbiuksen nauha"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=148]
+msgid "The Torus"
+msgstr "Torus"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=179]
+msgid "If it doesn't fit in three dimensions, try two."
+msgstr "Jos se ei mahdu kolmeen ulottuvuuteen, kokeile kahta."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=180]
+msgid "The Klein Bottle"
+msgstr "Kleinin pullo"
+
+#. https://www.brainyquote.com/quotes/friedrich_nietzsche_103584
+#: assets/maps/level.tmx//map/objectgroup/object[@id=188]
+msgid "Whenever I climb I am followed by a dog called Ego."
+msgstr "Minne kiipeänkään, minua seuraa koira nimeltään Ego."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=192]
+msgid "The Projective Plane"
+msgstr "Projektiivinen taso"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=237]
+msgid "The Sphere"
+msgstr "Pallo"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=238]
+msgid "Unparalleled execution is all you really need here."
+msgstr "Kaikki mitä tässä todella tarvitaan on suoraviivainen toteutus."
+
+#. https://getting-over-it.fandom.com/wiki/Top_of_the_mountain
+#: assets/maps/level.tmx//map/objectgroup/object[@id=244]
+msgid ""
+"Welcome to the top of the mountain.{{BR}}If you're alone, all this was just "
+"a waste of time.{{BR}}Press {{ExitButton}}."
+msgstr ""
+"Tervetuloa vuorenhuipulle.{{BR}}Jos olet yksin, tämä kaikki oli vain "
+"ajanhukkaa.{{BR}} Paina {{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=245]
+msgid "The shortest path can be the one that takes longest."
+msgstr "Lyhyin reitti voi olla se, joka vie pisimpään."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=246]
+msgid "If you just press on forward, you will eventually reach your goal."
+msgstr "Jos vain painat eteenpäin, saavutat lopulta tavoitteesi."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=247]
+msgid "Falling a long distance does not always hurt."
+msgstr "Pitkän matkan pudotus ei aina käy kipeää."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=255]
+msgid "Entering through the front door is boring."
+msgstr "Etuovesta sisään astuminen on tylsää."
+
+#. https://en.wikipedia.org/wiki/House_with_two_rooms
+#: assets/maps/level.tmx//map/objectgroup/object[@id=264]
+msgid "House With Two Rooms"
+msgstr "Kaksihuoneinen talo"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=277]
+msgid "Taking the right entrance makes all the difference."
+msgstr "Oikean sisäänkäynnin valitseminen ratkaisee kaiken."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=281]
+msgid "A New Beginning"
+msgstr "Uusi alku"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=286]
+msgid "If this isn't your downfall, I don't know what is."
+msgstr "Jos tämä ei johda alastuloosi niin ei sitten mikään."
+
+#. https://www.youtube.com/watch?v=_-QENSv7gIs
+#: assets/maps/level.tmx//map/objectgroup/object[@id=287]
+msgid "Oh, gravity, thou art a heartless ... force?"
+msgstr "Oi painovoima, olet niin tunteeton... voima?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=288]
+msgid "Short Circuited"
+msgstr "Oikosuljettu"
+
+#. https://deltarune.com/
+#: assets/maps/level.tmx//map/objectgroup/object[@id=295]
+msgid "Your choices don't matter."
+msgstr "Valinnoillasi ei ole merkitystä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=296]
+msgid "Choose Wisely"
+msgstr "Valitse viisaasti"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=298]
+msgid "Pick{{BR}}this path?"
+msgstr "Valitse{{BR}}tämä reitti?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=299]
+msgid "Pick{{BR}}that path?"
+msgstr "Valitse{{BR}}tuo reitti?"
+
+#. https://en.wikipedia.org/wiki/Waterfall_(M._C._Escher)
+#: assets/maps/level.tmx//map/objectgroup/object[@id=309]
+msgid "Some water must be periodically added to compensate for evaporation."
+msgstr ""
+"Vettä on lisättävä säännöllisesti jonkin verran haihtumisen "
+"kompensoimiseksi."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=311]
+msgid "You broke out of the stream, yet you're back in the stream."
+msgstr "Pääsit irti virrasta, ja silti olet takaisin virrassa."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=312]
+msgid "M. C. Waterfall"
+msgstr "M. C. Vesiputous"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=315]
+msgid "A shortcut?"
+msgstr "Oikotie?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=316]
+msgid "Draaains"
+msgstr "Vieeemärit"
+
+#. https://undertale.com/
+#: assets/maps/level.tmx//map/objectgroup/object[@id=317]
+msgid "The prospect of additional strength fills you with determination."
+msgstr "Lisävoiman mahdollisuus täyttää sinut päättäväisyydellä."
+
+#. Refers to a cage with a 100 HP healthpack on the Nexuiz (first person
+#. shooter) map silvercity.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=319]
+msgid "Behold the cage of health!"
+msgstr "Katso terveyden häkkiä!"
+
+#. Refers to a map of the first person shooter game Nexuiz:
+#. https://www.youtube.com/watch?v=8otWflEtlyg
+#: assets/maps/level.tmx//map/objectgroup/object[@id=330]
+msgid "Silver City"
+msgstr "Hopeakaupunki"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=353]
+msgid "A slight breeze is enough for water to escape the waterfall."
+msgstr "Kevyt tuulenhenkäys riittää veden pakenemiseen vesiputouksesta."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=354]
+msgid "If it ain't broke, don't fix it."
+msgstr "Jos se ei ole rikki, älä korjaa sitä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=385]
+msgid "What's broken is in need of repair."
+msgstr "Se, mikä on rikki, tarvii korjausta."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=394]
+msgid "There is no need to hide if nobody is after you."
+msgstr "Ei tarvitse piiloutua, jos kukaan ei ole perässä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=395]
+msgid "Hide and seek is never fun without opponents."
+msgstr "Piiloleikki ei ole koskaan hauskaa ilman vastustajia."
+
+#. Part of 'Welcome to Nexuiz!'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=396]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=421]
+msgid "Welcome to ..."
+msgstr "Tervetuloa..."
+
+#. Part of 'Welcome to Nexuiz!'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=396]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=421]
+msgid "Nexuiz!"
+msgstr "Nexuiziin!"
+
+#. A made-up word from the PeaceBrothers Nexuiz clan that started a very long
+#. thread in its forum. Probably was just keyboard mashing. Recommend
+#. transliterating phonetically, possibly adjusting for spelling of the sounds
+#. in your language (e.g. in German I translated as BRLOGENSCHFEGLE, just
+#. replacing the SH that does not exist in German by SCH).
+#: assets/maps/level.tmx//map/objectgroup/object[@id=422]
+msgid "BRLOGENSHFEGLE doesn't lol."
+msgstr "BRLOOGENSHFEEGLE ei naura ääneen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=865]
+msgid "Nine Boxes In Sight"
+msgstr "Yhdeksän laatikkoa näkyvissä"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1051]
+msgid "King's Cross"
+msgstr "Päärautatieasema"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1052]
+msgid "Looking behind the scenes can be important at times."
+msgstr "Kulissien taakse katsominen voi olla ajoittain tärkeää."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1088]
+msgid "00"
+msgstr "00"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1090]
+msgid "01"
+msgstr "01"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1091]
+msgid "02"
+msgstr "02"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1092]
+msgid "03"
+msgstr "03"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1093]
+msgid "04"
+msgstr "04"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1094]
+msgid "05"
+msgstr "05"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1095]
+msgid "06"
+msgstr "06"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1096]
+msgid "07"
+msgstr "07"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1097]
+msgid "08"
+msgstr "08"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1098]
+msgid "09"
+msgstr "09"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1099]
+msgid "10"
+msgstr "10"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1100]
+msgid "11"
+msgstr "11"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1101]
+msgid "The first track is never the one with your train."
+msgstr "Oikea juna ei koskaan ole ensimmäisellä raiteella."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1102]
+msgid "Reaching for the stars can really tear you down."
+msgstr "Tähtien tavoittelu voi todella repiä itseluottamuksen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1103]
+msgid "9¾"
+msgstr "9¾"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1171]
+msgid "A watched train never departs."
+msgstr "Juna, jota katsotaan, ei koskaan lähde."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1172]
+msgid ""
+"Hilbert's Dotel{{BR}}{{BR}}Welcome!{{BR}}{{BR}}1) Check in{{BR}}2) Take your"
+" keys{{BR}}3) {{ExitButton}} for checkout"
+msgstr ""
+"Hilbertin šotelli{{BR}}{{BR}}Tervetuloa!{{BR}}{{BR}}1) Kirjaudu "
+"sisään{{BR}}2) Ota avaimesi{{BR}}3) Lähde painamalla {{ExitButton}}"
+
+#. Translate 'Dilbert's Hotel', but swap the first consonant of the two main
+#. words. Prefer translating 'Hotel' to something that makes a H sound at the
+#. first consonant, so that the name becomes Hilbert, the mathematician.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1173]
+msgid "Hilbert's Dotel"
+msgstr "Hilbertin šotelli"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1189]
+msgid "I ran out of ...{{BR}}{{BR}}{{BR}}{{BR}}rooms"
+msgstr "Minulta loppuivat...{{BR}}{{BR}}{{BR}}{{BR}}huoneet"
+
+#. https://www.biblegateway.com/passage/?search=Ezekiel%2046%3A9&version=KJV
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1199]
+msgid "He shall not return by the way of the gate whereby he came in."
+msgstr "Kukaan ei saa poistua sen portin kautta, josta on tullut."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1228]
+msgid "Shepard Tone"
+msgstr "Shepardin asteikko"
+
+#. ECED are music notes - so in some languages something like Mi Do Mi Re may
+#. be better. Ideally write something slighly related to opening where E C E D
+#. are upper case or otherwise highlighted. Trololo is the 'meme name' of a
+#. song by Eduard Khil.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1243]
+msgid "Everyone Can{{BR}}Enter Doors.{{BR}}No Trololos!"
+msgstr "Erittäin Coreat{{BR}}Eväät Däällä.{{BR}}Ei trololoa!"
+
+#. C as in the first music note of the C major scale. Also known as Do, Sa, 上,
+#. ル or 1.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1244]
+msgid "C"
+msgstr "C"
+
+#. D as in the second music note of the C major scale. Also known as Re, Ri,
+#. 尺, 人 or 2.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1245]
+msgid "D"
+msgstr "D"
+
+#. E as in the third music note of the C major scale. Also known as Mi, Ga, 工,
+#. フ or 3.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1246]
+msgid "E"
+msgstr "E"
+
+#. F as in the fourth music note of the C major scale. Also known as Fa, Ma,
+#. 凡, り or 4.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1247]
+msgid "F"
+msgstr "F"
+
+#. G as in the fifth music note of the C major scale. Also known as Sol, Pa,
+#. 六, 久 or 5.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1248]
+msgid "G"
+msgstr "G"
+
+#. A as in the sixth music note of the C major scale. Also known as La, Dha,
+#. 五, ゐ or 6.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1249]
+msgid "A"
+msgstr "A"
+
+#. B as in the seventh music note of the C major scale. Also known as H, Ti,
+#. Si, Ni, 乙, L or 7.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1250]
+msgid "B"
+msgstr "B"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1273]
+msgid "Sometimes all you need is a little opening."
+msgstr "Joskus pieni avaus on kaikki, mitä tarvitaan."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1281]
+msgid "I am so happy to finally be back home.{{BR}}Press {{ExitButton}}."
+msgstr ""
+"Olen niin onnellinen päästessäni viimeinkin kotiin.{{BR}}Paina "
+"{{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1285]
+msgid "Try the lower path."
+msgstr "Kokeile alareittiä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1286]
+msgid "Try the upper path."
+msgstr "Kokeile yläreittiä."
+
+#. Translate as 'The Axiom of Choice' in the mathematical sense, but find a
+#. funny way to mispronounce or misspell the word that means 'choice'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1300]
+msgid "The Axiom of Choiche"
+msgstr "Valinta-akshiooma"
+
+#. https://www.youtube.com/watch?v=2Z4m4lnjxkY
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1302]
+msgid "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
+msgstr "Trololololol, lololol, lololol{{BR}}Oh ha ha ha oh!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1304]
+msgid "Turtles All the Way In"
+msgstr "Kilpikonnia matkalla"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1306]
+msgid "Some things just aren't that simple. Press {{ExitButton}}."
+msgstr ""
+"Jotkin asiat eivät vain ole niin yksinkertaisia. Paina {{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1321]
+msgid "It's turtles all the way in."
+msgstr "Kilpikonnia koko matkalla."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1354]
+msgid "Listen to the spell of the magical turtle and you may proceed."
+msgstr "Kuuntele maagisen kilpikonnan loitsua ja voit jatkaa."
+
+#. https://antichamber.fandom.com/wiki/Don%27t_Look_Down
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1364]
+msgid "Don't{{BR}}Look Up!"
+msgstr "Älä{{BR}}Katso ylöspäin!"
+
+#. reference to 'curiosity killed the cat' saying; be creative here when
+#. translating; be consistent with the 'Curiosity killed the Carl - no the
+#. cat.' text.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1365]
+msgid "The Rover and the Feline"
+msgstr "Mönkijä ja kissaeläin"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1368]
+msgid "Some things you simply can't see right away."
+msgstr "Joitakin asioita ei yksinkertaisesti näe heti."
+
+#. reference to 'curiosity killed the cat' saying and Super Mario Maker
+#. trollery; be creative here when translating; be consistent with the 'The
+#. Rover and the Feline' text.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1407]
+msgid "Curiosity killed the Carl - no, the cat.{{BR}}Press {{ExitButton}}."
+msgstr "Curiosity tappoi Carlin – ei, siis kissan.{{BR}}Paina {{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1410]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1411]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1412]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1413]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1414]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1415]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1416]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1418]
+msgid "?"
+msgstr "?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1423]
+msgid "You now can stand on platforms!"
+msgstr "Voit nyt seisoa alustojen päällä!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1430]
+msgid "The Cleats{{BR}}Hint: no head bumping!"
+msgstr "Nappikset{{BR}}Vinkki: ei pään lyömistä!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1441]
+msgid "Steadfastly holding on to the iron rod prevents disasters."
+msgstr "Rautatangosta lujasti kiinni pitäminen estää katastrofeja."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1442]
+msgid ""
+"Sometimes the thing that is in plain sight can be a challenge to reach."
+msgstr "Joskus se, mikä on suoraan näkyvillä, voi olla vaikea tavoittaa."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1443]
+msgid "Can't tell if this place is pointless or not."
+msgstr "Vaikea sanoa onko tämä paikka turha vai eikö ole."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1445]
+msgid "Peaceful games require peaceful solutions."
+msgstr "Rauhalliset pelit vaativat rauhallisia ratkaisuja."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1452]
+msgid "3 ..."
+msgstr "3..."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1453]
+msgid "2 ..."
+msgstr "2..."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1454]
+msgid "1 ..."
+msgstr "1..."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1455]
+msgid "Blast off?"
+msgstr "Lähtö?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1456]
+msgid "Redundant launch systems aren't rocket science."
+msgstr "Varalaukaisujärjestelmät eivät ole rakettitiedettä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1457]
+msgid "Fly High"
+msgstr "Lennä korkealle"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1476]
+msgid "Before The Hub"
+msgstr "Ennen Keskusta"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1477]
+msgid "Close To The Hub"
+msgstr "Lähellä Keskusta"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1478]
+msgid "You can now push them away!"
+msgstr "Voit nyt työntää niitä poispäin!"
+
+#. 'coil' here refers to an electromagnetic coil
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1479]
+msgid "The Coil{{BR}}(hold {{ActionButton}}){{BR}}Hint: no littering!"
+msgstr "Käämi{{BR}}(pidä {{ActionButton}}){{BR}}Vinkki: ei roskaamista!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1493]
+msgid "You can now grab and carry them!"
+msgstr "Voit nyt ottaa niistä kiinni ja kuljettaa niitä!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1494]
+msgid "The Gloves{{BR}}(hold {{ActionButton}}){{BR}}Hint: no speeding!"
+msgstr "Hanskat{{BR}}(pidä {{ActionButton}}){{BR}}Vinkki: ei ylinopeutta!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1545]
+msgid "Little & Big Platforms"
+msgstr "Pienet & suuret alustat"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1546]
+msgid "Unlike that Italian plumber, you can go left."
+msgstr "Toisin kuin se italialainen putkimies, sinä voit mennä vasemmalle."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1547]
+msgid "Some things just take a second attempt."
+msgstr "Jotkin asiat vain vaativat toisen yrityksen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1569]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1583]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1660]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1665]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7789]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7790]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7791]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7792]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7793]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7795]
+msgid "Reset"
+msgstr "Nollaa"
+
+#. this is clearly a pun in English - if you can, make up a similar pun, if
+#. not, possibly any pun involving platforms will do
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1570]
+msgid "If platforms require platforming, what do trains require?"
+msgstr "Alustetaan alustat alusta."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1571]
+msgid "Do"
+msgstr "Älä"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1572]
+msgid "not"
+msgstr "vain"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1573]
+msgid "get"
+msgstr "tule"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1574]
+msgid "distracted"
+msgstr "häirityksi"
+
+#. when translating, make sure it fits the 'yellow submarine' song
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1582]
+msgid ""
+"We all wait for the special Tetris block,{{BR}}special Tetris "
+"block,{{BR}}special Tetris block."
+msgstr ""
+"Odotamme erityistä tetrispalikkaa,{{BR}}erityistä "
+"tetrispalikkaa,{{BR}}erityistä tetrispalikkaa."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1666]
+msgid "Sweet is the reward of the swift."
+msgstr "Makeus on pikaisten palkinto."
+
+#. https://knowyourmeme.com/memes/dopefish
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1667]
+msgid "Swim swim hungry, swim swim hungry."
+msgstr "Ui ui nälkäinen, ui ui nälkäinen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
+msgid "The note on the right is much more interesting than this one."
+msgstr "Oikealla oleva muistilappu on paljon mielenkiintoisempi kuin tämä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1700]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1702]
+msgid "The note on the left is much more interesting than this one."
+msgstr "Vasemmalla oleva muistilappu on paljon mielenkiintoisempi kuin tämä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1713]
+msgid "The Anti-Hub"
+msgstr "Antikeskus"
+
+#. https://earthbound.fandom.com/wiki/Moonside
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1718]
+msgid "Welcome to Moonside."
+msgstr "Tervetuloa Kuunpuolelle."
+
+#. Song title by Reel 2 Real, was used in Madagascar movie
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1745]
+msgid "I Like To Move It Move It"
+msgstr "Mä tahtoo veivaa veivaa"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1765]
+msgid "Hello,{{BR}}World!"
+msgstr "Hei,{{BR}}maailma!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1771]
+msgid ""
+"Be resourceful with what you have, and you will succeed.{{BR}}Press "
+"{{ExitButton}}."
+msgstr ""
+"Ole kekseliäs sillä, mitä sinulla on, niin menestyt.{{BR}}Paina "
+"{{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1793]
+msgid "Switching It Up"
+msgstr "Kytkien kytkimen"
+
+#. https://youtube.fandom.com/wiki/DGR - he frequently says 'He who waits,
+#. dies'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1807]
+msgid "He who waits,{{BR}}retries ... #DGR"
+msgstr "Hän joka odottaa,{{BR}}yrittää uudelleen... #DGR"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1814]
+msgid "Avoid getting blocked in!"
+msgstr "Vältä jäämästä jumiin!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1816]
+msgid "Treasure hunts can be time intensive."
+msgstr "Aarteenetsinnät voivat olla aikaa vieviä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1817]
+msgid "Easy does it."
+msgstr "Ota rauhallisesti."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1818]
+msgid "Same procedure as last year?"
+msgstr "Sama toimenpide kuin viime vuonna?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=1819]
+msgid "Just put the thing on the thing{{BR}}and the other one too, already!"
+msgstr "Laita se juttu jutun päälle{{BR}}ja toinenkin jo!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2220]
+msgid "If you don't look ahead, you'll end up dead-{{BR}}ended."
+msgstr "Jos et katso eteesi, päädyt umpikujaan."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2301]
+msgid "Gotta Carry It Out"
+msgstr "Kanna se ulos"
+
+#. https://en.wikipedia.org/wiki/Colossal_Cave_Adventure
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2324]
+msgid ""
+"You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
+msgstr ""
+"Olet sokkelossa{{BR}}mutkittelevissa pienissä{{BR}}käytävissä,{{BR}}jotka "
+"ovat{{BR}}kaikki samanlaisia."
+
+#. https://en.wikipedia.org/wiki/Xyzzy_(computing)
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2329]
+msgid "A hollow voice says 'fool'.{{BR}}Press {{ExitButton}}."
+msgstr "Ontto ääni sanoo 'hupsu'.{{BR}}Paina {{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2349]
+msgid "If walking alone won't do, try some exercise."
+msgstr "Jos pelkkä kävely ei auta, kokeile liikuntaa."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2368]
+msgid "Every great adventure started with the line{{BR}}\"I know a shortcut\"."
+msgstr "Jokainen suuri seikkailu alkoi lauseella{{BR}}\"Tiedän oikotien\"."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2659]
+msgid "Sometimes you don't just lose sight of something."
+msgstr "Joskus sitä ei vain menetä näköyhteyttään johonkin."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2665]
+msgid "Hey, I needed that!"
+msgstr "Hei, minä tarvitsin tuota!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2675]
+msgid "Do you like the red room?"
+msgstr "Pidätkö punaisesta huoneesta?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2748]
+msgid "Lack of apparent purpose does not mean you don't need it."
+msgstr "Näennäisen tarkoituksen puute ei tarkoita, ettet tarvisi sitä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2764]
+msgid "Funny and{{BR}}{{BR}}original."
+msgstr "Hauska ja{{BR}}{{BR}}alkuperäinen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2840]
+msgid "Pushing Onwards"
+msgstr "Painetaan eteenpäin"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2841]
+msgid "Some ideas only seem smart at first."
+msgstr "Jotkin ideat vaikuttavat viisailta vain aluksi."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2842]
+msgid "If there seems to be no way, you just haven't found it yet."
+msgstr "Jos ei näytä olevan mitään keinoa, se ei ole vain vielä löytynyt."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2886]
+msgid "Before The Anti-Hub"
+msgstr "Ennen Antikeskusta"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2978]
+msgid "Only you would fall for a trap as primitive as this one."
+msgstr "Vain sinä lankeaisit näin alkeelliseen ansaan."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2988]
+msgid "Lack of purpose never was a reason not to do it."
+msgstr "Tarkoituksen puute ei koskaan ollut syy olla tekemättä sitä."
+
+#. May also be known as 'for eyes principle'; a concept from IT security. This
+#. part of the level focuses on the need for multiple switches being toggled
+#. on by two platforms simultaneously to make progress.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=2992]
+msgid "Multi Party Authorization"
+msgstr "Vahva tunnistautuminen"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3087]
+msgid "Failure is a stepping stone to success."
+msgstr "Epäonnistuminen on askel kohti menestystä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3093]
+msgid "Those who walk, fall."
+msgstr "He jotka kävelevät, tippuvat."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3153]
+msgid "Well, it's actually{{BR}}surprisingly simple."
+msgstr "No, se on itse asiassa{{BR}}yllättävän yksinkertaista."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3185]
+msgid "Simplex, duplex,{{BR}}oh so complex."
+msgstr "Simpleksi, dupleksi, oi niin kompleksi."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3186]
+msgid "Tower of Impossible"
+msgstr "Mahdottoman torni"
+
+#. https://www.youtube.com/c/CeaveGaming
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3332]
+msgid ""
+"And ... the floor transforms into shiny yet deadly coins.{{BR}}Without the "
+"coins.{{BR}}That's unfortunate."
+msgstr ""
+"Ja... lattia muuttuu kiiltäviksi, mutta tappaviksi kolikoiksi.{{BR}}Ilman "
+"että ne ovat kolikkoja.{{BR}}Onpa harmillista."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3813]
+msgid ""
+"I pressed the impossible button and{{BR}}all I got was this lousy message."
+msgstr ""
+"Painoin mahdotonta painiketta ja{{BR}}tämä kurja viesti oli ainoa asia, mitä"
+" sain."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3821]
+msgid "The grass is always greener on the other side."
+msgstr "Ruoho on aina vihreämpää toisella puolella."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3832]
+msgid "You can now disable the force fields!"
+msgstr "Voit nyt kytkeä voimakentät pois päältä!"
+
+#. 'remote' here refers to e.g. a TV's remote control
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3834]
+msgid "The Remote{{BR}}(hold {{ActionButton}})"
+msgstr "Kaukosäädin{{BR}}(pidä {{ActionButton}})"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3840]
+msgid "Do you have{{BR}}what it takes?"
+msgstr "Onko sinulla{{BR}}rahkeet?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3842]
+msgid "You think{{BR}}you can do it?"
+msgstr "Luuletko{{BR}}pystyväsi siihen?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3843]
+msgid "Show me{{BR}}what you've got"
+msgstr "Näytä minulle{{BR}}mihin pystyt"
+
+#. 'remote' here refers to e.g. a TV's remote control
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3844]
+msgid "And you didn't{{BR}}forget the remote?"
+msgstr "Etkä unohtanut{{BR}}kaukosäädintä?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3853]
+msgid "DANGER"
+msgstr "VAARALLINEN"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3854]
+msgid "CAUTION"
+msgstr "VARO"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3855]
+msgid "WARNING"
+msgstr "VAROITUS"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3856]
+msgid "RISK OF{{BR}}ELECTRIC SHOCK"
+msgstr "SÄHKÖISKUN VAARA"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3857]
+msgid "DO NOT LOOK INTO LASER{{BR}}WITH REMAINING EYE"
+msgstr "ÄLÄ KATSO LASERIIN{{BR}}JÄLJELLÄ OLEVALLA SILMÄLLÄ"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3858]
+msgid "LEGAL{{BR}}WAIVER"
+msgstr "OIKEUDELLINEN{{BR}}VASTUUVAPAUTUS"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3859]
+msgid "NO{{BR}}WARRANTY"
+msgstr "EI{{BR}}TAKUUTA"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3860]
+msgid "HIGH{{BR}}VOLTAGE"
+msgstr "KORKEA{{BR}}JÄNNITE"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3861]
+msgid "YOU HAVE{{BR}}BEEN WARNED"
+msgstr "SINUA ON{{BR}}VAROITETTU"
+
+#. name of a law about declaring lead content; often caused ridiculous
+#. warnings; pick your own ridiculous law when translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3862]
+msgid "PROPOSITION 65"
+msgstr "ÄLÄ HUKU JOS{{BR}}HUONE TULVII"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3863]
+msgid "And now you've learned{{BR}}not to touch the hot stove."
+msgstr "Ja nyt olet oppinut{{BR}}olemaan koskematta kuumaan hellaan."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3866]
+msgid "The Butterfly Effect"
+msgstr "Perhosvaikutus"
+
+#. http://www.antichamber-game.com/
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3912]
+msgid "What we've done before{{BR}}may impact what we can do next."
+msgstr ""
+"Se, mitä on tehty aiemmin, voi vaikuttaa{{BR}}siihen, mitä voi tehdä "
+"seuraavaksi."
+
+#. http://www.antichamber-game.com/
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3926]
+msgid ""
+"If you're only focusing on right now,{{BR}}you won't have enough for "
+"later.{{BR}}Press {{ExitButton}}."
+msgstr ""
+"Jos keskityt vain nykyisyyteen,{{BR}}sinulla ei ole riittävästi myöhempää "
+"varten.{{BR}}Paina {{ExitButton}}."
+
+#. http://www.antichamber-game.com/
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3927]
+msgid "Moving forward may require{{BR}}making the most of what you've got."
+msgstr ""
+"Eteenpäin liikkuminen voi vaatia{{BR}}jonkin hyödyntämistä parhaalla "
+"mahdollisella tavalla."
+
+#. https://en.wikipedia.org/wiki/Kaizo - transcribe phonetically
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3977]
+msgid "Kaizo"
+msgstr "Kaizo"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=3992]
+msgid "Missing a shelljump in {{Year}}?"
+msgstr "Etkö saa tehtyä kilpihyppyä vuonna {{Year}}?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4025]
+msgid "Kaaaart Race"
+msgstr "Kaaaarting-kilpailu"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4097]
+msgid "Those who haven't learned the trick{{BR}}must take a little pit stop."
+msgstr ""
+"He, jotka eivät ole oppineet temppua,{{BR}}joutuvat käymään pienesti "
+"varikolla."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4107]
+msgid "Moved Enough?"
+msgstr "Veivasitko riittävästi?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4108]
+msgid "Carried Enough?"
+msgstr "Kannoitko riittävästi?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4278]
+msgid "Trash Chute"
+msgstr "Roskakuilu"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4409]
+msgid "Taking Out the Trash"
+msgstr "Roskien vieminen ulos"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4495]
+msgid "Wait, did you take out all the trash?"
+msgstr "Odota, veitkö kaikki roskat?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4498]
+msgid "There is no such thing as a little white lie."
+msgstr "Sellaista ei olekaan kuin pientä valkoista valhetta."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4510]
+msgid "Yes"
+msgstr "Kyllä"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4511]
+msgid "No"
+msgstr "En"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4520]
+msgid "Why did you even lie?{{BR}}Press {{ExitButton}}."
+msgstr "Miksi edes valehtelit?{{BR}}Paina {{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4551]
+msgid ""
+"The definition of insanity is doing the same thing over and over "
+"again,{{BR}}but expecting different results."
+msgstr ""
+"Hulluuden määritelmä on tehdä samaa asiaa uudelleen ja uudelleen,{{BR}}mutta"
+" odottaen erilaisia tuloksia."
+
+#. https://thelettervsixtim.es/ - try keeping the six V alliteration when
+#. translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4597]
+msgid "Van Vlijmen's Vexing Vertical Vector Vertigo"
+msgstr "Van Vlijmenin Vanha Vertikaalinen VektoriVertigo"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4609]
+msgid "The One Way Round"
+msgstr "Liikenneympyräinen"
+
+#. https://thelettervsixtim.es/ - try keeping the V when translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4610]
+msgid "déjà Vu"
+msgstr "déjà Vu"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4640]
+msgid "Try{{BR}}again"
+msgstr "Yritä{{BR}}uudelleen"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4641]
+msgid "The Wide Gap"
+msgstr "Leveä rako"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4661]
+msgid "Mind your head, you've only got one."
+msgstr "Varo päätäsi, sinulla on vain yksi."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4694]
+msgid "More is not always better."
+msgstr "Enemmän ei ole aina parempi."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4716]
+msgid "Those who are not up to speed may get left behind."
+msgstr "He, jotka eivät ole vauhdissa mukana, voivat jäädä jälkeen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4727]
+msgid "Time is of the essence."
+msgstr "Aika on olennaisinta."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4732]
+msgid "Driving You Mad"
+msgstr "Hulluksi ajautuminen"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4755]
+msgid "It's Bring Your Own Platform, you know."
+msgstr "Nyt on Tuo Oma Alustasi -päivä, tiesithän?"
+
+#. The 'it' here refers to the large platform.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4766]
+msgid "Still got it?"
+msgstr "Vieläkö sinulla{{BR}}on se?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4934]
+msgid "Small cars{{BR}}only"
+msgstr "Vain{{BR}}pienet autot"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4935]
+msgid "{{BigCity}} Road Rage"
+msgstr "{{BigCity}} rattiraivo"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4941]
+msgid "Grand Theft Auto!"
+msgstr "Grand Theft Auto!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4953]
+msgid "Welcome to {{BigCity}}."
+msgstr "Tervetuloa {{BigCity}} labyrinttiin."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4986]
+msgid "Crime doesn't pay.{{BR}}Press {{ExitButton}}."
+msgstr "Rikos ei kannata.{{BR}}Paina {{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=4997]
+msgid "Dude!{{BR}}That's{{BR}}MY car!"
+msgstr "Hei!{{BR}}Tuo on{{BR}}MINUN{{BR}}autoni!"
+
+#. Part of 'What are you after?'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5004]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5007]
+msgid "... after?"
+msgstr "...olet?"
+
+#. Part of 'What are you after?'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5004]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5007]
+msgid "... you ..."
+msgstr "...oikein..."
+
+#. Part of 'What are you after?'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5005]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5006]
+msgid "... are ..."
+msgstr "...perässä..."
+
+#. Part of 'What are you after?'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5005]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5006]
+msgid "What ..."
+msgstr "Minkä..."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5008]
+msgid "Those who cannot remember the past are condemned to repeat it."
+msgstr "He, jotka eivät muista menneisyyttä, ovat tuomittuja toistamaan sitä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5057]
+msgid "Sometimes, the unprepared can't even follow instructions."
+msgstr "Joskus valmistautumattomat eivät edes pysty noudattamaan ohjeita."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5058]
+msgid "If everything is upside down, nothing is."
+msgstr "Jos kaikki on ylösalaisin, mikään ei ole."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5163]
+msgid "Even going in circles you can get somewhere."
+msgstr "Jopa ympyröissä kulkeminen voi viedä johonkin."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5167]
+msgid "Get It Back!"
+msgstr "Hanki se takaisin!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5187]
+msgid "y tho?{{BR}}Press {{ExitButton}}."
+msgstr "mut miks?{{BR}}Paina {{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5207]
+msgid "Stairs to Nowhere"
+msgstr "Portaat ei-mihinkään"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5213]
+msgid "Not every staircase leads somewhere nice."
+msgstr "Jokaiset portaat eivät vie johonkin kivaan paikkaan."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5256]
+msgid "Don't let appearances fool you."
+msgstr "Älä anna ulkonäön huijata sinua."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5475]
+msgid "You just need to push away what you don't need."
+msgstr "Sinun täytyy vain työntää pois se, jota et tarvitse."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5476]
+msgid ""
+"Looking in every nook and cranny{{BR}}sometimes yields unexpected gains."
+msgstr ""
+"Joka nurkkaan ja sopukkaan tutustuminen{{BR}}tuo joskus odottamattomia "
+"voittoja."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5478]
+msgid ""
+"If you come back to a familiar place,{{BR}}it may no longer look the way you"
+" remember it."
+msgstr ""
+"Jos palaat tuttuun paikkaan,{{BR}}se ei ehkä enää näytä siltä millaisena "
+"muistit sen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5482]
+msgid "Twice Twice"
+msgstr "Kahdesti kahdesti"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5518]
+msgid "Why didn't you like the one I gave you?"
+msgstr "Miksi et pitänyt siitä alustasta jonka annoin sinulle?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5528]
+msgid "You really don't get it, do you?"
+msgstr "Et todella taida ymmärtää tätä, ethän?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5538]
+msgid ""
+"Looking at things and observing how they change{{BR}}is what brought us "
+"science."
+msgstr ""
+"Asioiden tarkastelu ja niiden muutosten havaitseminen{{BR}}toi meille "
+"tieteen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5545]
+msgid "You should have done this a little bit earlier."
+msgstr "Sinun olisi pitänyt tehdä tämä hieman aikaisemmin."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5546]
+msgid "Greedy you are, greedy!"
+msgstr "Ahne olet, ahne!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5568]
+msgid "The Cube"
+msgstr "Kuutio"
+
+#. https://en.wikipedia.org/wiki/Portal_(series)
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5575]
+msgid "Good news.{{BR}}I figured out why she wanted you gone."
+msgstr "Hyviä uutisia.{{BR}}Selvitin, miksi hän halusi sinut pois."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5627]
+msgid "Crumbling Upwards"
+msgstr "Mureneminen ylöspäin"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5688]
+msgid "Not every shortcut works."
+msgstr "Jokainen oikotie ei toimi."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5689]
+msgid "The slow and slothful deserve ...{{BR}}nothing."
+msgstr "Hitaat ja laiskiaismaiset ansaitsevat...{{BR}}eivät mitään."
+
+#. Mix of 'Sky Diver', an Atari 2600 game, and the sport 'Ski'.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=5697]
+msgid "Ski Dyver"
+msgstr "Lasketteliya"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
+msgid "Those who are inattentive get trolled."
+msgstr "He, jotka ovat tarkkaamattomia, joutuvat trollatuiksi."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
+msgid "If you don't know who you are,{{BR}}you don't know where to go."
+msgstr "Jos ei tiedä kuka on olevansa,{{BR}}ei tiedä minne mennä."
+
+#. Reference to Dr. Wily from the Mega Man / Rockman series.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6103]
+msgid "Dr. W?"
+msgstr "Tohtori W?"
+
+#. Part of 'All good things come to an end.'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6110]
+msgid "All good things ..."
+msgstr "Kaikki hyvät asiat..."
+
+#. Part of 'All good things come to an end.'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6117]
+msgid "... come to an end."
+msgstr "... päätyvät loppuun."
+
+#. Reference to Dr. Wily from the Mega Man / Rockman series.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6118]
+msgid "Dr. W!"
+msgstr "Tohtori W!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6119]
+msgid "It Only Takes One"
+msgstr "Vaatii vain yhden"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6128]
+msgid "Any regrets?"
+msgstr "Kaduttaako?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6140]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8167]
+msgid "EXIT"
+msgstr "ULOS"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6204]
+msgid "Careful!"
+msgstr "Ole varovainen!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6239]
+msgid "You sit on a throne of lies."
+msgstr "Istut valheiden valtaistuimella."
+
+#. Part of 'There is no universe where this is the right way.'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6357]
+msgid "There is no universe where ..."
+msgstr "Ei ole olemassa universumia, jossa..."
+
+#. Part of 'There is no universe where this is the right way.'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6358]
+msgid "... this is the right way."
+msgstr "...tämä on oikea reitti."
+
+#. 'Cheese' here means 'unintended shortcut' -
+#. https://english.stackexchange.com/questions/21867/origins-of-the-gaming-
+#. term-cheese-strategy
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6536]
+msgid "What looked like cheese might be the only way."
+msgstr "Se, mikä vaikutti huijaukselta, saattaa olla ainoa keino."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6537]
+msgid "Not triggering the switch of doom might take some effort."
+msgstr ""
+"Kohtalon kytkimen laukaisematta jättäminen voi vaatia jonkin verran vaivaa."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6538]
+msgid "A window of opportunity can lead to greener pastures."
+msgstr "Mahdollisuuksien ikkuna voi johtaa vihreämmille laitumille."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6539]
+msgid "The well prepared will earn their reward."
+msgstr "Hyvin valmistautuneet ansaitsevat palkintonsa."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6540]
+msgid "Platform{{BR}}is key."
+msgstr "Alusta{{BR}}on avain."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6575]
+msgid "Quo vadis?"
+msgstr "Quo vadis?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6661]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6674]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6676]
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7978]
+msgid "{{GameTime}}"
+msgstr "{{GameTime}}"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6665]
+msgid "Those who never try, never find out."
+msgstr "He, jotka eivät ikinä yritä, eivät koskaan saa selville."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6678]
+msgid "reached The Hub with {{Abilities}} at {{GameTime}}."
+msgstr "saavutettu Keskus {{Abilities}} ajassa {{GameTime}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6679]
+msgid "reached The Anti-Hub with {{Abilities}} at {{GameTime}}."
+msgstr "saavutettu Antikeskus {{Abilities}} ajassa {{GameTime}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6680]
+msgid "reached It Only Takes One with {{Abilities}} at {{GameTime}}."
+msgstr "saavutettu Vaatii vain yhden {{Abilities}} ajassa {{GameTime}}."
+
+#. https://thelettervsixtim.es/ - try keeping the V when translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6716]
+msgid "Vindication"
+msgstr "Vindikaatio"
+
+#. https://thelettervsixtim.es/ - try keeping the V when translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6734]
+msgid "Vertically challenged"
+msgstr "Vertikaalisesti tukea vaativa"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6818]
+msgid ""
+"The Enrichment Center regrets to inform you that{{BR}}the Super Gravitron is"
+" currently out of order.{{BR}}Press {{ExitButton}}."
+msgstr ""
+"Rikastuskeskus valitettavasti ilmoittaa, että{{BR}}Super-Painovoimuri on "
+"tällä hetkellä poissa käytöstä.{{BR}}Paina {{ExitButton}}."
+
+#. https://thelettervsixtim.es/ - try keeping the two V alliteration when
+#. translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6947]
+msgid "Viability Voodoo"
+msgstr "Voittokelpoisuusvoodoo"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6960]
+msgid "UNDER{{BR}}CONSTRUCTION"
+msgstr "RAKENTEILLA"
+
+#. https://thelettervsixtim.es/ - try keeping the two V alliteration when
+#. translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6963]
+msgid "Vuvuzela Virtuoso"
+msgstr "Vuvuzelavirtuoosi"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=6990]
+msgid "It is hard to focus with all the noise."
+msgstr "On vaikea keskittyä kun on niin paljon meteliä."
+
+#. https://thelettervsixtim.es/ - try keeping the two V alliteration when
+#. translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7031]
+msgid "Virtual Vandalism"
+msgstr "Virtuaalinen Vandalismi"
+
+#. https://thelettervsixtim.es/ - try keeping the two V alliteration when
+#. translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7151]
+msgid "Vae Victis"
+msgstr "Vae Victis"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7253]
+msgid "This one is your end."
+msgstr "Tämä on loppusi."
+
+#. https://thelettervsixtim.es/ - try keeping the three V alliteration when
+#. translating
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7351]
+msgid "Veni, Vidi, Vici"
+msgstr "Veni, Vidi, Vici"
+
+#. https://thelettervsixtim.es/
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7477]
+msgid "Hah! Nobody will ever get this one."
+msgstr "Hah! Kukaan ei ikinä saa tätä."
+
+#. https://thelettervsixtim.es/
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7490]
+msgid "You have found a shiny trinket!{{BR}}One out of One."
+msgstr "Olet löytänyt kiiltävän helyn!{{BR}}Yksi yhdestä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7769]
+msgid "W{{BR}}A{{BR}}T"
+msgstr "T{{BR}}Ä{{BR}}H"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7770]
+msgid "Just{{BR}}kiddin'"
+msgstr "Vitsi{{BR}}vitsi"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7837]
+msgid "I hope you took{{BR}}the small one ..."
+msgstr "Toivottavasti otit{{BR}}pienen alustan..."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7846]
+msgid "Those who have, have."
+msgstr "Heillä, joilla on, on."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7847]
+msgid "Those who don't, don't."
+msgstr "Heillä, joilla ei ole, ei ole."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7848]
+msgid "The path to success is littered with ...{{BR}}litter."
+msgstr "Tie menestykseen on täynnä...{{BR}}täytettä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7849]
+msgid "Getting up is half the fun."
+msgstr "Ylös nouseminen on puoli ruokaa."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7872]
+msgid "If stuck,{{BR}}press {{ExitButton}}."
+msgstr "Jos olet jumissa,{{BR}}paina {{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7877]
+msgid "Phew?"
+msgstr "Huh?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7980]
+msgid "reached A New Beginning with {{Abilities}} at {{GameTime}}."
+msgstr "saavutettu Uusi alku {{Abilities}} ajassa {{GameTime}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7986]
+msgid "Higher, Higher, Higher!"
+msgstr "Korkeammalle, korkeammalle, korkeammalle!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=7987]
+msgid "It can be helpful to do two things at the same time."
+msgstr "Voi olla hyödyllistä tehdä kaksi asiaa samaan aikaan."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8049]
+msgid "Oh, it shrunk?"
+msgstr "Ai, se kutistui?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8057]
+msgid "Stepping away from the problem can help resolve it."
+msgstr ""
+"Askeleen ottaminen taaksepäin ongelmatilanteessa voi auttaa ratkaisemaan "
+"sen."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8080]
+msgid "Jumpers lose platforms.{{BR}}Don't be a jumper."
+msgstr "Hyppelijät kadottavat{{BR}}alustoja.{{BR}}Älä ole hyppelijä."
+
+#. Part of 'Try going in circles, but five is right out!'
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8097]
+msgid "Try going in circles, but ..."
+msgstr "Yritä kulkea ympyröitä, mutta..."
+
+#. Part of 'Try going in circles, but five is right out!' (Monty Python
+#. reference, i.e. 'right out' in the sense of 'out of the question', 'not an
+#. option')
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8104]
+msgid "... five is right out!"
+msgstr "...viisi ei tule kysymykseen!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8114]
+msgid "Mwahaha!"
+msgstr "Muahaha!"
+
+#. https://www.youtube.com/watch?v=N78CavWrtjw - try to be somewhat consistent
+#. with some existing translation if you can find one, but also try making
+#. sure the word for 'space' can have both the geometrical and the
+#. astronomical meaning
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8235]
+msgid ""
+"Let's put weird and weird together,{{BR}}and make it even "
+"weirder!{{BR}}Weird, weird space{{BR}}is super-weird!{{BR}}{{BR}}Press "
+"{{ExitButton}}."
+msgstr ""
+"Laitetaan outo ja outo yhteen,{{BR}}ja tehdään siitä vielä "
+"oudompaa!{{BR}}Outo, outo avaruus{{BR}}on superoutoa!{{BR}}{{BR}}Paina "
+"{{ExitButton}}."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8246]
+msgid "4 ..."
+msgstr "4..."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8247]
+msgid "5 ..."
+msgstr "5..."
+
+#. This text is meant to be in Ukrainian. Do not translate unless necessary to
+#. work with your font.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8374]
+msgid "Героям слава!"
+msgstr "Героям слава!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8419]
+msgid "this sign has{{BR}}SHARP EDGES{{BR}}do not touch"
+msgstr "tällä kyltillä on{{BR}}TERÄVÄT REUNAT{{BR}}älä koske"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8423]
+msgid "A path to another world has appeared nearby."
+msgstr "Toiseen maailmaan on avautunut reitti lähellä."
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8439]
+msgid "You can now enter another world!"
+msgstr "Voit nyt astua toiseen maailmaan!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
+msgid "The Teleporter{{BR}}(press {{ExitButton}})"
+msgstr "Teleportteri{{BR}}(paina {{ExitButton}})"
+
+#. This is a reference to SheetMusicBoss's song "Rush E". Try making a pun
+#. based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or
+#. one of the common YT comments on those videos of the sort "I paid for the
+#. whole piano, I'm gonna use the whole piano".
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8539]
+msgid "Why the rush, eh?"
+msgstr "En soita pianoa, piano soittaa minuE."
+
+#. This is a reference to Beethoven's Für Elise. If there's a common
+#. misspelling in your language, make a pun based on it; otherwise, maybe
+#. comment on how overplayed it is, or on Beethoven's hearing?
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
+msgid "She's no furry - that letter is an \"ü\"!"
+msgstr "Beethoven: olen säveltäjä{{BR}}Kuurous: ei{{BR}}Beethoven: joo"
+
+#. Comic explosion sign.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
+msgid "Bang!"
+msgstr "Pam!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
+msgid "I think you meant to play{{BR}}In the Hall of the Mountain King?"
+msgstr "Sinun olisi kai pitänyt{{BR}}soittaa Vuorenkuninkaan luolaa?"
+
+#. Reference to Super Mario 64's intro letter from Princess Peach, combined
+#. with the wellknown phrase misattributed to Marie Antoinette. Try finding
+#. both phrases as most commonly used in your language in the given contexts
+#. and use those. Definitely don't reference Portal here - let's not overdo
+#. those. If Asterix is well-known in your culture, you may consider making it
+#. an "arsenic cake"; if not, reference Grieg's In the Hall of the Mountain
+#. King.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8556]
+msgid ""
+"Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat "
+"cake...{{BR}}Arsenic cake?"
+msgstr ""
+"Rakas Mario:{{BR}}Sinut on kutsuttu linnaan.{{BR}}Anna heidän syödä "
+"kakkua...{{BR}}Myrkkykakkua?"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8557]
+msgid "I think you meant to play{{BR}}Arsenic Cake?"
+msgstr "Sinun olisi kai pitänyt soittaa{{BR}}myrkkykakkua?"
+
+#. https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in
+#. _your_ favorite Bad Apple reference (parody or not), even indirect stuff
+#. like referencing "Rule 86" is totally fine here. Can even go along the
+#. lines of "Touhou was too hard, so you're playing this" etc.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8588]
+msgid "... and makes a swirly dot."
+msgstr "Pudota omenan kota ja se muuttuu naiseksi..."
