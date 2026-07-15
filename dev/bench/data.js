@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784109170800,
+  "lastUpdate": 1784109256307,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782486844898,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 224.809289642,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782569827880,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 222.452219186,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2600,6 +2546,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 227.73558542,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "divVerent",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d580d7971b1415e25e2195779924594b17a7d575",
+          "message": "Add Finnish (translated by soopax) to the game. (#696)",
+          "timestamp": "2026-07-15T11:49:43+02:00",
+          "tree_id": "7c0798a222e1164c7b3be71238a78638a4c1e150",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d580d7971b1415e25e2195779924594b17a7d575"
+        },
+        "date": 1784109251601,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 221.027364156,
             "unit": "Seconds"
           }
         ]
