@@ -16,9 +16,7 @@ package ending
 
 import (
 	"github.com/divVerent/aaaaxy/internal/engine"
-	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
-	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // CreditsTarget shows the credits.

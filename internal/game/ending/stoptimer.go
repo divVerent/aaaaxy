@@ -16,6 +16,7 @@ package ending
 
 import (
 	"github.com/divVerent/aaaaxy/internal/engine"
+	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
 	"github.com/divVerent/aaaaxy/internal/log"
 )
@@ -47,15 +48,15 @@ func (s *StopTimerTarget) SetState(originator, predecessor *engine.Entity, state
 	s.World.TimerStopped = true
 	s.World.PlayerState.SubFrame() // The ending frame doesn't count.
 
-	c.World.PlayerState.SetWon()
+	s.World.PlayerState.SetWon()
 	s.World.PlayerState.KickBadApple()
 
-	err := c.World.Save()
+	err := s.World.Save()
 	if err != nil {
 		log.Errorf("could not save game: %v", err)
 	}
 
-	log.Infof("%v", fun.FormatText(&c.World.PlayerState,
+	log.Infof("%v", fun.FormatText(&s.World.PlayerState,
 		"your time: {{GameTime}}; your speedrun categories: {{SpeedrunCategories}}; try next: {{SpeedrunTryNext}}."))
 }
 
