@@ -32,7 +32,7 @@ msgstr "%s (%d ex %d)"
 
 #: menu/credits.go
 msgid "%s, et al."
-msgstr ""
+msgstr "%s, et al."
 
 #: menu/level.go
 msgid "%s: %s"
@@ -640,7 +640,7 @@ msgstr "et al."
 
 #: menu/credits.go
 msgid "based on Classic hero and baddies pack"
-msgstr ""
+msgstr "fundatur in Classic hero and baddies pack"
 
 #: menu/credits.go
 msgid "by %s"
@@ -666,7 +666,7 @@ msgstr "omnibus"
 
 #: menu/credits.go
 msgid "gabomdq and the SDL community"
-msgstr ""
+msgstr "gabomdq et communitas SDL"
 
 #: level/level.go
 msgid "hashing level"
