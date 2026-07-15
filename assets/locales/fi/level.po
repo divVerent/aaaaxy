@@ -1275,7 +1275,7 @@ msgstr "ULOS"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6204]
 msgid "Careful!"
-msgstr "Ole varovainen!"
+msgstr "Ole{{BR}}varovainen!"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6239]
 msgid "You sit on a throne of lies."
