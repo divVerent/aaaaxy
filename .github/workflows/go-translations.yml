@@ -1,5 +1,5 @@
 name: Go In All Languages
-'on':
+on:
   pull_request: null
   push: null
   schedule:
@@ -28,8 +28,18 @@ jobs:
           GOTOOLCHAIN: local
       - name: Generate Language List
         id: list-languages
-        run: 'rm -f l; xvfb-run sh -c "./aaaaxy -dump_languages > l"; for l in $(cat
-          l); do all="$all,\"$l\""; done; echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT'
+        run: |
+          rm -f l
+          xvfb-run sh -c "./aaaaxy -dump_languages > l"
+          for l in assets/locales/*/; do
+            l=${l%/}
+            l=${l##*/}
+            echo "$l"
+          done >> l
+          for l in $(sort -u < l); do
+            all="$all,\"$l\""
+          done
+          echo "languages=[${all#,}]" | tee -a $GITHUB_OUTPUT
     outputs:
       languages: ${{ steps.list-languages.outputs.languages }}
   build:
