@@ -754,7 +754,7 @@ msgstr "Kanna se ulos"
 msgid ""
 "You are in a{{BR}}maze of twisted{{BR}}little passages,{{BR}}all alike."
 msgstr ""
-"Olet sokkelossa{{BR}}mutkittelevissa pienissä{{BR}}käytävissä,{{BR}}jotka "
+"Olet sokkelossa{{BR}}mutkittelevissa{{BR}}pienissä käytävissä,{{BR}}jotka "
 "ovat{{BR}}kaikki samanlaisia."
 
 #. https://en.wikipedia.org/wiki/Xyzzy_(computing)
