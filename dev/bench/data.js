@@ -7711,6 +7711,35 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "a3bb95c84380eb05e19e93c3b8238e8b6f1d8c1a",
+          "message": "Add a TL note.",
+          "timestamp": "2026-07-15T06:37:27+02:00",
+          "tree_id": "388b71169b702d48def99dcfcab98d7f38ecbd91",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a3bb95c84380eb05e19e93c3b8238e8b6f1d8c1a"
+        },
+        "date": 1784096115362,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 71.345982665,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -10276,6 +10305,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 98.0369493,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "a3bb95c84380eb05e19e93c3b8238e8b6f1d8c1a",
+          "message": "Add a TL note.",
+          "timestamp": "2026-07-15T06:37:27+02:00",
+          "tree_id": "388b71169b702d48def99dcfcab98d7f38ecbd91",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a3bb95c84380eb05e19e93c3b8238e8b6f1d8c1a"
+        },
+        "date": 1784094624011,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.2613635,
             "unit": "Seconds"
           }
         ]
@@ -12846,6 +12904,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 98.8608217,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "a3bb95c84380eb05e19e93c3b8238e8b6f1d8c1a",
+          "message": "Add a TL note.",
+          "timestamp": "2026-07-15T06:37:27+02:00",
+          "tree_id": "388b71169b702d48def99dcfcab98d7f38ecbd91",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a3bb95c84380eb05e19e93c3b8238e8b6f1d8c1a"
+        },
+        "date": 1784094492761,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.4579333,
             "unit": "Seconds"
           }
         ]
