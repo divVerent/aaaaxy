@@ -319,3 +319,8 @@ msgstr ""
 msgid "(%.5f %.5f) (%.4f %.4f)"
 msgstr ""
 
+#. "Classic hero and baddies pack" is the name on opengameart - do not change or translate that part. Feel free to put in quotes or similar if necessary.
+#: menu/credits.go
+msgid "based on Classic hero and baddies pack"
+msgstr ""
+
