@@ -34,7 +34,8 @@ msgstr "%s (%d/%d)"
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: aaaaxy/game.go
+#. -show_pos overlay (showing xy coordinates of player position and speed).
+#: aaaaxy/game.go aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
 msgstr "(%.5f %.5f) (%.4f %.4f)"
 
