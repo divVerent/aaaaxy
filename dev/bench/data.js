@@ -1,201 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784098733825,
+  "lastUpdate": 1784104497710,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "f1915ff40f7cc55ac23bcad1324fe2b3bb970223",
-          "message": "Add a delay.",
-          "timestamp": "2026-06-15T19:16:34Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f1915ff40f7cc55ac23bcad1324fe2b3bb970223"
-        },
-        "date": 1782053089408,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 219.331498086,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "85269ef387d86cc725093da9d23ceee990631c3b",
-          "message": "Modules update.",
-          "timestamp": "2026-06-22T11:13:17+02:00",
-          "tree_id": "f64f389343fabf7a274d8e6c166cc2e228dea54f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/85269ef387d86cc725093da9d23ceee990631c3b"
-        },
-        "date": 1782119903450,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 240.786123581,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T12:00:01+02:00",
-          "tree_id": "c4d0eab2c553cfc81b5084ecae983c8a5b12c41b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782126482100,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 224.876823932,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782148762930,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 239.342217231,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782229068634,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 230.711874333,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782314518291,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 228.192009378,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782401206576,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 230.154770165,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2735,6 +2542,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 240.42752914,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "754db5fb56204b54a19b8a51bcb0eeb89864b7e9",
+          "message": "Updates for file assets/locales/level.pot in fi (#698)\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n* Translate assets/locales/level.pot in fi\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'fi'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-15T10:29:59+02:00",
+          "tree_id": "a2fba262d9869b868732ca7ddd2af1c4e5db03fd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/754db5fb56204b54a19b8a51bcb0eeb89864b7e9"
+        },
+        "date": 1784104492393,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 237.911927619,
             "unit": "Seconds"
           }
         ]
