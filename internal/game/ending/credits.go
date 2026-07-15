@@ -45,6 +45,7 @@ func (c *CreditsTarget) SetState(originator, predecessor *engine.Entity, state b
 		return
 	}
 	c.World.ForceCredits = true
+
 	c.World.PlayerState.SetWon()
 	err := c.World.Save()
 	if err != nil {

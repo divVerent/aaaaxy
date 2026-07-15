@@ -46,6 +46,7 @@ func (s *StopTimerTarget) SetState(originator, predecessor *engine.Entity, state
 	}
 	s.World.TimerStopped = true
 	s.World.PlayerState.SubFrame() // The ending frame doesn't count.
+	s.World.PlayerState.KickBadApple()
 }
 
 func (s *StopTimerTarget) Touch(other *engine.Entity) {}
