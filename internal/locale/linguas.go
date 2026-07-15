@@ -52,6 +52,8 @@ func (l Lingua) name() string {
 		return "Deutsch (Schweiz)"
 	case "he":
 		return "עִבְרִית"
+	case "fi":
+		return "suomi"
 	case "ja":
 		return "日本語"
 	case "la":
@@ -101,6 +103,8 @@ func (l Lingua) SortKey() string {
 	case "be@tarask":
 		// Sort both Belarusian variants together.
 		return "Беларуская (Łacinka)"
+	case "fi":
+		return "Suomi" // Upper cased to sort with the others.
 	case UserProvided:
 		// User provided comes at the far left.
 		return ""
