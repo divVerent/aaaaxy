@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784125368991,
+  "lastUpdate": 1784138389720,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5152,33 +5152,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]",
-            "email": "49699333+dependabot[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "9976db91b6d1522db4a6a98d69cdcf33052d30c8",
-          "message": "Bump actions/checkout from 6 to 7 (#649)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-01T19:28:40Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/9976db91b6d1522db4a6a98d69cdcf33052d30c8"
-        },
-        "date": 1782950389168,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 76.251882464,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -7734,38 +7707,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "committer": {
-            "email": "rpolzer@google.com",
+            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "733b4bffae6c4b95a023eafb41d88ea298c7c563",
-          "message": "_Technically_ I need BorderPixels here.\n\nNot that it matters here - vs objects with 1 BorderPixels, the collision\nis the same either way. But let's do it _right_.",
-          "timestamp": "2026-07-01T21:24:04+02:00",
-          "tree_id": "7eb9d4218898aa1adafa62638eb78ef6f1534437",
-          "url": "https://github.com/divVerent/aaaaxy/commit/733b4bffae6c4b95a023eafb41d88ea298c7c563"
+          "id": "d259f2ab1935f3773e18dea033247854e4044c10",
+          "message": "Fix ending in Bad Apple mode.",
+          "timestamp": "2026-07-15T19:56:16+02:00",
+          "tree_id": "abd8e09f7a2ec30295098330d52151926c5d7087",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d259f2ab1935f3773e18dea033247854e4044c10"
         },
-        "date": 1782934217432,
+        "date": 1784138382449,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.6063999,
+            "name": "Any% linux-amd64",
+            "value": 78.54002854,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10322,36 +10295,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]",
-            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
-          "id": "9976db91b6d1522db4a6a98d69cdcf33052d30c8",
-          "message": "Bump actions/checkout from 6 to 7 (#649)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-01T19:28:40Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/9976db91b6d1522db4a6a98d69cdcf33052d30c8"
+          "distinct": true,
+          "id": "d259f2ab1935f3773e18dea033247854e4044c10",
+          "message": "Fix ending in Bad Apple mode.",
+          "timestamp": "2026-07-15T19:56:16+02:00",
+          "tree_id": "abd8e09f7a2ec30295098330d52151926c5d7087",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d259f2ab1935f3773e18dea033247854e4044c10"
         },
-        "date": 1782950448730,
+        "date": 1784138405298,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 101.5088756,
+            "name": "Any% windows-amd64",
+            "value": 98.5315404,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12907,6 +12882,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.421438,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d259f2ab1935f3773e18dea033247854e4044c10",
+          "message": "Fix ending in Bad Apple mode.",
+          "timestamp": "2026-07-15T19:56:16+02:00",
+          "tree_id": "abd8e09f7a2ec30295098330d52151926c5d7087",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d259f2ab1935f3773e18dea033247854e4044c10"
+        },
+        "date": 1784138383882,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 101.8422775,
             "unit": "Seconds"
           }
         ]
