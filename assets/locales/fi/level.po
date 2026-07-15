@@ -1040,7 +1040,7 @@ msgstr "déjà Vu"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4640]
 msgid "Try{{BR}}again"
-msgstr "Yritä{{BR}}uudelleen"
+msgstr "Yritä{{BR}}uudel-{{BR}}leen"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4641]
 msgid "The Wide Gap"
