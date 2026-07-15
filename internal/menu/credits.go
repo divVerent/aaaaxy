@@ -79,6 +79,10 @@ func localizeCredits(line string) string {
 		return locale.G.Get("Translators")
 	case "and other contributors":
 		return locale.G.Get("and other contributors")
+	case "gabomdq and the SDL community":
+		return locale.G.Get("gabomdq and the SDL community")
+	case "based on Classic hero and baddies pack":
+		return locale.G.Get("based on Classic hero and baddies pack")
 	case "Anthony Wang (王文韬)":
 		if locale.ActiveFont() != "unifont" {
 			return "Anthony Wang"
@@ -97,6 +101,9 @@ func localizeCredits(line string) string {
 	}
 	if trimmed := strings.TrimPrefix(line, "and "); trimmed != line {
 		return locale.G.Get("and %s", trimmed)
+	}
+	if trimmed := strings.TrimSuffix(line, ", et al."); trimmed != line {
+		return locale.G.Get("%s, et al.", trimmed)
 	}
 	return line
 }

@@ -25,6 +25,10 @@ msgstr ""
 msgid "%s (%d/%d)"
 msgstr ""
 
+#: menu/credits.go
+msgid "%s, et al."
+msgstr ""
+
 #: menu/level.go
 msgid "%s: %s"
 msgstr ""
@@ -198,7 +202,8 @@ msgstr ""
 msgid "Enter/Shift"
 msgstr ""
 
-#: game/checkpoint/checkpoint_target.go
+#: game/checkpoint/checkpoint_target.go game/target/badapple.go
+#: game/trigger/questionblock.go
 msgid ""
 "Error:\n"
 "could not save game:\n"
@@ -623,6 +628,10 @@ msgid "and other contributors"
 msgstr ""
 
 #: menu/credits.go
+msgid "based on Classic hero and baddies pack"
+msgstr ""
+
+#: menu/credits.go
 msgid "by %s"
 msgstr ""
 
@@ -642,6 +651,10 @@ msgstr ""
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "everything"
+msgstr ""
+
+#: menu/credits.go
+msgid "gabomdq and the SDL community"
 msgstr ""
 
 #: level/level.go
