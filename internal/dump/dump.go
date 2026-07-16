@@ -77,6 +77,8 @@ var (
 
 const (
 	dumpVideoFrameSize = engine.GameWidth * engine.GameHeight * 4
+	dumpBufferFrames   = 512 // Must make FFmpeg probing happy.
+	dumpBufferExtra    = 4
 )
 
 var (
@@ -95,7 +97,7 @@ func InitEarly(p Params) error {
 		}
 		var err error
 		if *dumpAudioCodecSettings != "" {
-			audioPipe, err = namedpipe.New("aaaaxy-audio", 360, 4*96000, *dumpMediaFrameTimeout)
+			audioPipe, err = namedpipe.New("aaaaxy-audio", dumpBufferFrames, dumpBufferExtra*4*6*(96000/engine.GameTPS+1), *dumpMediaFrameTimeout)
 			if err != nil {
 				return fmt.Errorf("could not create audio pipe: %w", err)
 			}
@@ -103,7 +105,7 @@ func InitEarly(p Params) error {
 			audiowrap.InitDumping()
 		}
 		if *dumpVideoCodecSettings != "" {
-			videoPipe, err = namedpipe.New("aaaaxy-video", 360, 4*dumpVideoFrameSize, *dumpMediaFrameTimeout)
+			videoPipe, err = namedpipe.New("aaaaxy-video", dumpBufferFrames, dumpBufferExtra*dumpVideoFrameSize, *dumpMediaFrameTimeout)
 			if err != nil {
 				return fmt.Errorf("could not create video pipe: %w", err)
 			}
