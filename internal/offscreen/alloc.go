@@ -104,6 +104,7 @@ type baseManager struct {
 	pastNames map[int64][]string
 	allocated int
 	freed     int
+	maxInUse  int
 }
 
 func newBaseManager(w, h int) baseManager {
@@ -127,6 +128,9 @@ func (m *baseManager) recordName(name string, img *ebiten.Image) *ebiten.Image {
 		m.pastNames[id(img)] = append(m.pastNames[id(img)], name)
 	}
 	m.allocated++
+	if len(m.names) > m.maxInUse {
+		m.maxInUse = len(m.names)
+	}
 	return img
 }
 
@@ -145,7 +149,7 @@ func (m *baseManager) clearName(img *ebiten.Image) string {
 
 func (m *baseManager) Report() {
 	if *debugOffscreen {
-		log.Infof("offscreen: %d textures allocated, %d textures freed, %d textures in use", m.allocated, m.freed, len(m.names))
+		log.Infof("offscreen: %d textures allocated, %d textures freed, %d textures in use, %d max ever", m.allocated, m.freed, len(m.names), m.maxInUse)
 		var ids []int64
 		for id := range m.pastNames {
 			ids = append(ids, id)
