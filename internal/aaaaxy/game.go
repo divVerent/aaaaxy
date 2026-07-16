@@ -179,6 +179,17 @@ func (g *Game) updateFrame() error {
 }
 
 func (g *Game) Update() error {
+	err := g.update()
+	if err != nil {
+		errbe := g.BeforeExit()
+		if errbe != nil {
+			log.Fatalf("BeforeExit exited abnormally: %v while exiting due to: %v", errbe, err)
+		}
+	}
+	return err
+}
+
+func (g *Game) update() error {
 	if !g.canUpdate {
 		return nil
 	}
