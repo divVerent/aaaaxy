@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784227400789,
+  "lastUpdate": 1784227504750,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "733b4bffae6c4b95a023eafb41d88ea298c7c563",
-          "message": "_Technically_ I need BorderPixels here.\n\nNot that it matters here - vs objects with 1 BorderPixels, the collision\nis the same either way. But let's do it _right_.",
-          "timestamp": "2026-07-01T21:24:04+02:00",
-          "tree_id": "7eb9d4218898aa1adafa62638eb78ef6f1534437",
-          "url": "https://github.com/divVerent/aaaaxy/commit/733b4bffae6c4b95a023eafb41d88ea298c7c563"
-        },
-        "date": 1782934278325,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 231.112299706,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2579,6 +2550,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 225.033161359,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c3977cfeaa6d6784e11551a59f0faa13eee89218",
+          "message": "One more fix regarding disposing previous offscreen frames.",
+          "timestamp": "2026-07-16T20:40:04+02:00",
+          "tree_id": "314109b1efb51f18da1081577fd9fad2f5bd41cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3977cfeaa6d6784e11551a59f0faa13eee89218"
+        },
+        "date": 1784227499845,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 225.1848994,
             "unit": "Seconds"
           }
         ]
