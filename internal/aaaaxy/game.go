@@ -618,17 +618,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 	screen = ensureRect(screen, image.Rect(0, 0, engine.GameWidth, engine.GameHeight))
 
-DoneDisposing:
-	for {
-		select {
-		case off := <-g.offscreenReturns:
-			offscreen.Dispose(off)
-			g.offscreenTokens <- g.offscreenIndexes[off]
-			delete(g.offscreenIndexes, off)
-		default:
-			break DoneDisposing
-		}
-	}
 	offscreen.Collect()
 
 	if !*debugEnableDrawing {
