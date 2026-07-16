@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784213142881,
+  "lastUpdate": 1784227400789,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5170,35 +5170,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "e4fd1a61383a44d9645fd3845af4eb5335b5fb25",
-          "message": "Translate assets/locales/level.pot in de (#651)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-02T15:21:39+02:00",
-          "tree_id": "44cc05a46969d86c87358d3a74dd229a95742303",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e4fd1a61383a44d9645fd3845af4eb5335b5fb25"
-        },
-        "date": 1782999012588,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 77.268486566,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "50f80375b9ecf14fe9ba6fdb79c814cad9f8a639",
           "message": "Translate assets/locales/level.pot in la (#652)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-07-02T15:21:35+02:00",
@@ -7742,9 +7713,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7758,22 +7727,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662",
-          "message": "Forgot translator note.",
-          "timestamp": "2026-07-02T12:25:45+02:00",
-          "tree_id": "8c4403b8691faffd033e8ba0b7f08a37226929f8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662"
+          "id": "c3977cfeaa6d6784e11551a59f0faa13eee89218",
+          "message": "One more fix regarding disposing previous offscreen frames.",
+          "timestamp": "2026-07-16T20:40:04+02:00",
+          "tree_id": "314109b1efb51f18da1081577fd9fad2f5bd41cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3977cfeaa6d6784e11551a59f0faa13eee89218"
         },
-        "date": 1782988150421,
+        "date": 1784227396091,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.5269846,
+            "name": "Any% linux-amd64",
+            "value": 78.505526244,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10330,38 +10301,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "distinct": true,
-          "id": "e4fd1a61383a44d9645fd3845af4eb5335b5fb25",
-          "message": "Translate assets/locales/level.pot in de (#651)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-02T15:21:39+02:00",
-          "tree_id": "44cc05a46969d86c87358d3a74dd229a95742303",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e4fd1a61383a44d9645fd3845af4eb5335b5fb25"
+          "id": "c3977cfeaa6d6784e11551a59f0faa13eee89218",
+          "message": "One more fix regarding disposing previous offscreen frames.",
+          "timestamp": "2026-07-16T20:40:04+02:00",
+          "tree_id": "314109b1efb51f18da1081577fd9fad2f5bd41cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3977cfeaa6d6784e11551a59f0faa13eee89218"
         },
-        "date": 1782998979458,
+        "date": 1784227464146,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 106.9020004,
+            "name": "Any% windows-amd64",
+            "value": 97.5152937,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12915,6 +12886,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.1641909,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c3977cfeaa6d6784e11551a59f0faa13eee89218",
+          "message": "One more fix regarding disposing previous offscreen frames.",
+          "timestamp": "2026-07-16T20:40:04+02:00",
+          "tree_id": "314109b1efb51f18da1081577fd9fad2f5bd41cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3977cfeaa6d6784e11551a59f0faa13eee89218"
+        },
+        "date": 1784227454575,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 105.9560582,
             "unit": "Seconds"
           }
         ]
