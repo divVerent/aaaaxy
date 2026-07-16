@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784212605105,
+  "lastUpdate": 1784212842541,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5158,35 +5158,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "11163d3d2caf4f1e5cc3417e0635faed66db852e",
-          "message": "New text.",
-          "timestamp": "2026-07-02T15:07:30+02:00",
-          "tree_id": "7db80b3fae5a0601637ff0624628c4f2748525b9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/11163d3d2caf4f1e5cc3417e0635faed66db852e"
-        },
-        "date": 1782997783015,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 57.304308101,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -7740,9 +7711,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7756,22 +7725,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "bea90597db856878b6c5c7ed0661b7faab129d1c",
-          "message": "Rush E.",
-          "timestamp": "2026-07-02T12:25:32+02:00",
-          "tree_id": "85b69bb6dd2002b9cc388f3ea1de689744f3f23e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/bea90597db856878b6c5c7ed0661b7faab129d1c"
+          "id": "5d78c2b223146799fcd19e80e78a323a19007422",
+          "message": "-debug_offscreen: report number of textures max needed",
+          "timestamp": "2026-07-16T16:37:23+02:00",
+          "tree_id": "d2d77041eb0a488426567b0f096eed7732d6997c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5d78c2b223146799fcd19e80e78a323a19007422"
         },
-        "date": 1782988107466,
+        "date": 1784212836383,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.7414781,
+            "name": "Any% linux-amd64",
+            "value": 58.649002442,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10328,9 +10299,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10344,22 +10313,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "11163d3d2caf4f1e5cc3417e0635faed66db852e",
-          "message": "New text.",
-          "timestamp": "2026-07-02T15:07:30+02:00",
-          "tree_id": "7db80b3fae5a0601637ff0624628c4f2748525b9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/11163d3d2caf4f1e5cc3417e0635faed66db852e"
+          "id": "5d78c2b223146799fcd19e80e78a323a19007422",
+          "message": "-debug_offscreen: report number of textures max needed",
+          "timestamp": "2026-07-16T16:37:23+02:00",
+          "tree_id": "d2d77041eb0a488426567b0f096eed7732d6997c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5d78c2b223146799fcd19e80e78a323a19007422"
         },
-        "date": 1782997889195,
+        "date": 1784212872255,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 98.7274857,
+            "name": "Any% windows-amd64",
+            "value": 96.4786891,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12913,6 +12884,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.7744093,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "5d78c2b223146799fcd19e80e78a323a19007422",
+          "message": "-debug_offscreen: report number of textures max needed",
+          "timestamp": "2026-07-16T16:37:23+02:00",
+          "tree_id": "d2d77041eb0a488426567b0f096eed7732d6997c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5d78c2b223146799fcd19e80e78a323a19007422"
+        },
+        "date": 1784212887866,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.1641909,
             "unit": "Seconds"
           }
         ]
