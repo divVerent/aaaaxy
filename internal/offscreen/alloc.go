@@ -17,6 +17,7 @@ package offscreen
 import (
 	"reflect"
 	"sort"
+	"sync"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -331,7 +332,8 @@ type size struct {
 }
 
 var (
-	managers = map[size]manager{}
+	managerMu sync.Mutex
+	managers  = map[size]manager{}
 )
 
 func managerForSize(w, h int) manager {
@@ -354,19 +356,27 @@ func managerForSize(w, h int) manager {
 }
 
 func New(name string, w, h int) *ebiten.Image {
+	managerMu.Lock()
+	defer managerMu.Unlock()
 	return managerForSize(w, h).New(name, false)
 }
 
 func NewExplicit(name string, w, h int) *ebiten.Image {
+	managerMu.Lock()
+	defer managerMu.Unlock()
 	return managerForSize(w, h).New(name, true)
 }
 
 func Dispose(img *ebiten.Image) {
+	managerMu.Lock()
+	defer managerMu.Unlock()
 	sz := img.Bounds().Size()
 	managerForSize(sz.X, sz.Y).Dispose(img)
 }
 
 func Collect() {
+	managerMu.Lock()
+	defer managerMu.Unlock()
 	for _, m := range managers {
 		m.Report()
 		m.Collect()

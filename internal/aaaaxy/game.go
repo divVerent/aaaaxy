@@ -22,6 +22,7 @@ import (
 	"math"
 	"runtime/debug"
 	"runtime/pprof"
+	"sync"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -107,7 +108,7 @@ type Game struct {
 
 	offscreenTokens     chan int
 	offscreenReturns    chan *ebiten.Image
-	offscreenIndexes    map[*ebiten.Image]int
+	offscreenIndexes    sync.Map // map[*ebiten.Image]int
 	borderstretchShader *ebiten.Shader
 	linear2xShader      *ebiten.Shader
 	linear2xCRTShader   *ebiten.Shader
@@ -132,9 +133,7 @@ type Game struct {
 var _ ebiten.Game = &Game{}
 
 func NewGame() *Game {
-	return &Game{
-		offscreenIndexes: map[*ebiten.Image]int{},
-	}
+	return &Game{}
 }
 
 func (g *Game) updateFrame() error {
@@ -544,7 +543,7 @@ func (g *Game) maybeAcquireOffscreen(screen *ebiten.Image) *ebiten.Image {
 	}
 	i := <-g.offscreenTokens
 	offscreen := offscreen.NewExplicit(fmt.Sprintf("Offscreen.%d", i), engine.GameWidth, engine.GameHeight)
-	g.offscreenIndexes[offscreen] = i
+	g.offscreenIndexes.Store(offscreen, i)
 	return offscreen
 }
 
@@ -560,6 +559,13 @@ func (g *Game) drawOffscreen(tmp *ebiten.Image) *ebiten.Image {
 			g.offscreenTokens <- i
 		}
 		g.offscreenReturns = make(chan *ebiten.Image, n)
+		go func() {
+			for off := range g.offscreenReturns {
+				offscreen.Dispose(off)
+				i, _ := g.offscreenIndexes.LoadAndDelete(off)
+				g.offscreenTokens <- i.(int)
+			}
+		}()
 	}
 	offscreen := g.drawAtGameSizeThenReturnTo(nil, g.offscreenReturns, tmp)
 	// Note: following code of the draw code may still use the image, but that's OK as long as drawOffscreen() isn't called again.
