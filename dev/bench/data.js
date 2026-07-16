@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784212842541,
+  "lastUpdate": 1784212954772,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "81a447bb4134ec1c39189d00e8e496f97c2d2369",
-          "message": "Veni Vidi Vici iMproved.",
-          "timestamp": "2026-07-01T21:16:26+02:00",
-          "tree_id": "3e7bea3e0878d18d9ce3a3194048fd0b99f0a4df",
-          "url": "https://github.com/divVerent/aaaaxy/commit/81a447bb4134ec1c39189d00e8e496f97c2d2369"
-        },
-        "date": 1782933679970,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 229.165406791,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2579,6 +2550,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 231.463141197,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "5d78c2b223146799fcd19e80e78a323a19007422",
+          "message": "-debug_offscreen: report number of textures max needed",
+          "timestamp": "2026-07-16T16:37:23+02:00",
+          "tree_id": "d2d77041eb0a488426567b0f096eed7732d6997c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5d78c2b223146799fcd19e80e78a323a19007422"
+        },
+        "date": 1784212949058,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 225.033161359,
             "unit": "Seconds"
           }
         ]
