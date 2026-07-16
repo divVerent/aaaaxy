@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784227504750,
+  "lastUpdate": 1784227687967,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2602,33 +2602,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-22T10:00:01Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
         },
-        "date": 1782395973435,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.418494607,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
         "date": 1782482336333,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5151,6 +5124,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.421546932,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c3977cfeaa6d6784e11551a59f0faa13eee89218",
+          "message": "One more fix regarding disposing previous offscreen frames.",
+          "timestamp": "2026-07-16T20:40:04+02:00",
+          "tree_id": "314109b1efb51f18da1081577fd9fad2f5bd41cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3977cfeaa6d6784e11551a59f0faa13eee89218"
+        },
+        "date": 1784227682498,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.454575935,
             "unit": "Seconds"
           }
         ]
