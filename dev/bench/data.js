@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784297762954,
+  "lastUpdate": 1784331567569,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5162,35 +5162,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T21:54:12+02:00",
-          "tree_id": "2a1ef888d0bd3552949b36c6a1b2655fc6268ce6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
-        },
-        "date": 1783022208365,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 80.992872949,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7744,38 +7715,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "e4fd1a61383a44d9645fd3845af4eb5335b5fb25",
-          "message": "Translate assets/locales/level.pot in de (#651)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-02T15:21:39+02:00",
-          "tree_id": "44cc05a46969d86c87358d3a74dd229a95742303",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e4fd1a61383a44d9645fd3845af4eb5335b5fb25"
+          "id": "d47637761c241cd6346b08e6d6fddfda14876337",
+          "message": "Fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.",
+          "timestamp": "2026-07-17T03:54:12Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d47637761c241cd6346b08e6d6fddfda14876337"
         },
-        "date": 1782998800244,
+        "date": 1784331562670,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.2907565,
+            "name": "Any% linux-amd64",
+            "value": 56.482299935,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10332,38 +10301,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T21:54:12+02:00",
-          "tree_id": "2a1ef888d0bd3552949b36c6a1b2655fc6268ce6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
+          "id": "d47637761c241cd6346b08e6d6fddfda14876337",
+          "message": "Fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.",
+          "timestamp": "2026-07-17T03:54:12Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d47637761c241cd6346b08e6d6fddfda14876337"
         },
-        "date": 1783022259796,
+        "date": 1784331604881,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 103.3600077,
+            "name": "Any% windows-amd64",
+            "value": 97.2865769,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12917,6 +12884,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.2830094,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "d47637761c241cd6346b08e6d6fddfda14876337",
+          "message": "Fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.",
+          "timestamp": "2026-07-17T03:54:12Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d47637761c241cd6346b08e6d6fddfda14876337"
+        },
+        "date": 1784331610694,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.6409921,
             "unit": "Seconds"
           }
         ]
