@@ -14481,14 +14481,14 @@
   <object id="6648" name="FinalFade" type="FadeTarget" x="2076" y="4712" width="4" height="4">
    <properties>
     <property name="duration" value="5s"/>
-    <property name="from_color_a" type="color" value="#ff5555ff!"/>
-    <property name="from_color_b" type="color" value="#ff00aa00!"/>
-    <property name="from_color_c" type="color" value="#ff555555!"/>
-    <property name="from_color_d" type="color" value="#ffaaaaaa!"/>
-    <property name="to_color_a" type="color" value="#ff5555ff!"/>
-    <property name="to_color_b" type="color" value="#ff55ff55!"/>
-    <property name="to_color_c" type="color" value="#ff000000!"/>
-    <property name="to_color_d" type="color" value="#ff555555!"/>
+    <property name="from_color_a" value="#ff5555ff!"/>
+    <property name="from_color_b" value="#ff00aa00!"/>
+    <property name="from_color_c" value="#ff555555!"/>
+    <property name="from_color_d" value="#ffaaaaaa!"/>
+    <property name="to_color_a" value="#ff5555ff!"/>
+    <property name="to_color_b" value="#ff55ff55!"/>
+    <property name="to_color_c" value="#ff000000!"/>
+    <property name="to_color_d" value="#ff555555!"/>
    </properties>
   </object>
   <object id="6649" gid="306" x="6128" y="3488" width="32" height="32"/>
@@ -16613,16 +16613,6 @@
   <object id="7763" gid="338" x="7344" y="5808" width="16" height="16"/>
   <object id="7764" gid="338" x="7344" y="5840" width="16" height="16"/>
   <object id="7765" gid="338" x="7344" y="5856" width="16" height="16"/>
-  <object id="7767" type="_TileMod" x="7840" y="6608" width="16" height="16">
-   <properties>
-    <property name="player_solid" type="bool" value="false"/>
-   </properties>
-  </object>
-  <object id="7768" type="_TileMod" x="8064" y="6336" width="16" height="16">
-   <properties>
-    <property name="player_solid" type="bool" value="false"/>
-   </properties>
-  </object>
   <object id="7769" type="Text" x="7408" y="5472" width="32" height="80">
    <properties>
     <property name="text" value="W{{BR}}A{{BR}}T"/>
