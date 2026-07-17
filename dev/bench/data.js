@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784227687967,
+  "lastUpdate": 1784260648293,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5162,35 +5162,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "50f80375b9ecf14fe9ba6fdb79c814cad9f8a639",
-          "message": "Translate assets/locales/level.pot in la (#652)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-02T15:21:35+02:00",
-          "tree_id": "8138bed359f63bb1a614b456d2df6f69e45c6c44",
-          "url": "https://github.com/divVerent/aaaaxy/commit/50f80375b9ecf14fe9ba6fdb79c814cad9f8a639"
-        },
-        "date": 1782999087786,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 73.202272386,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -7744,9 +7715,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7760,22 +7729,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "11163d3d2caf4f1e5cc3417e0635faed66db852e",
-          "message": "New text.",
-          "timestamp": "2026-07-02T15:07:30+02:00",
-          "tree_id": "7db80b3fae5a0601637ff0624628c4f2748525b9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/11163d3d2caf4f1e5cc3417e0635faed66db852e"
+          "id": "d47637761c241cd6346b08e6d6fddfda14876337",
+          "message": "Fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.",
+          "timestamp": "2026-07-17T05:54:12+02:00",
+          "tree_id": "c1d8540f0b92146f0e61d50bf829a031a2c2444d",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d47637761c241cd6346b08e6d6fddfda14876337"
         },
-        "date": 1782997841953,
+        "date": 1784260643527,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 95.9711783,
+            "name": "Any% linux-amd64",
+            "value": 72.343035377,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10332,38 +10303,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "distinct": true,
-          "id": "50f80375b9ecf14fe9ba6fdb79c814cad9f8a639",
-          "message": "Translate assets/locales/level.pot in la (#652)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-02T15:21:35+02:00",
-          "tree_id": "8138bed359f63bb1a614b456d2df6f69e45c6c44",
-          "url": "https://github.com/divVerent/aaaaxy/commit/50f80375b9ecf14fe9ba6fdb79c814cad9f8a639"
+          "id": "d47637761c241cd6346b08e6d6fddfda14876337",
+          "message": "Fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.",
+          "timestamp": "2026-07-17T05:54:12+02:00",
+          "tree_id": "c1d8540f0b92146f0e61d50bf829a031a2c2444d",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d47637761c241cd6346b08e6d6fddfda14876337"
         },
-        "date": 1782999009313,
+        "date": 1784260681372,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.0984076,
+            "name": "Any% windows-amd64",
+            "value": 96.0103314,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12917,6 +12888,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 105.9560582,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d47637761c241cd6346b08e6d6fddfda14876337",
+          "message": "Fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.",
+          "timestamp": "2026-07-17T05:54:12+02:00",
+          "tree_id": "c1d8540f0b92146f0e61d50bf829a031a2c2444d",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d47637761c241cd6346b08e6d6fddfda14876337"
+        },
+        "date": 1784260683771,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.2830094,
             "unit": "Seconds"
           }
         ]
