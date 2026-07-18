@@ -5156,6 +5156,35 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d3a2b2f9937d9244764f65293a48f79250e83d43",
+          "message": "Updates for file assets/locales/game.pot in de (#699)\n\n* Translate assets/locales/game.pot in de\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'de'.\n\n* Translate assets/locales/game.pot in de\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-18T21:04:16+02:00",
+          "tree_id": "d2c5362d7198677b288296bcbba3966bbfb0d2dc",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d3a2b2f9937d9244764f65293a48f79250e83d43"
+        },
+        "date": 1784402165280,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.362980098,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% linux-amd64": [
