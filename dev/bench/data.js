@@ -2598,33 +2598,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-06-22T10:00:01Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
         },
-        "date": 1782826708303,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 76.692236838,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
         "date": 1782914713543,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5182,6 +5155,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.362980098,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "eb067c25f15db0f8986fcfedb2c12d442ed443c3",
+          "message": "Translate assets/locales/game.pot in la (#700)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-18T21:04:26+02:00",
+          "tree_id": "d8570799bc921fe734c447512772c7b12cf4ef6c",
+          "url": "https://github.com/divVerent/aaaaxy/commit/eb067c25f15db0f8986fcfedb2c12d442ed443c3"
+        },
+        "date": 1784402221539,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 76.568090697,
             "unit": "Seconds"
           }
         ]
