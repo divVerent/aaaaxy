@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784378865094,
+  "lastUpdate": 1784383228183,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662",
-          "message": "Forgot translator note.",
-          "timestamp": "2026-07-02T12:25:45+02:00",
-          "tree_id": "8c4403b8691faffd033e8ba0b7f08a37226929f8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662"
-        },
-        "date": 1782988228590,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 223.626438094,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2577,6 +2548,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 238.243108751,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "d47637761c241cd6346b08e6d6fddfda14876337",
+          "message": "Fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.",
+          "timestamp": "2026-07-17T03:54:12Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d47637761c241cd6346b08e6d6fddfda14876337"
+        },
+        "date": 1784383222171,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 181.041990941,
             "unit": "Seconds"
           }
         ]
