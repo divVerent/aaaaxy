@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784402364764,
+  "lastUpdate": 1784417975243,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5232,64 +5232,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "5cc38b3d9ada0e2a2b71f42ab5a15839c909943a",
-          "message": "Update regression test demos.\n\nDemo timing didn't change, but player position in the final ending\nanimation _slightly_ differs due to the end timing change.",
-          "timestamp": "2026-07-05T06:30:25+02:00",
-          "tree_id": "ff80915c4281455215ce96214589ae5bcdb9cec6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5cc38b3d9ada0e2a2b71f42ab5a15839c909943a"
-        },
-        "date": 1783226002251,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.808058005,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "96990ceabe41a425f1dd0182d3b1434b1c6f69c2",
-          "message": "Add another note sequence to the piano.\n\nThe most overplayed one of all.",
-          "timestamp": "2026-07-05T20:53:45+02:00",
-          "tree_id": "d1ebc59897dddf80abe7010e8c4d60e6719a029c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/96990ceabe41a425f1dd0182d3b1434b1c6f69c2"
-        },
-        "date": 1783277814639,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 60.18837008,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "5bacfe61c752a500c4db2cd060ee05ea566ca284",
           "message": "Reverse colors, and add translation string.",
           "timestamp": "2026-07-05T20:59:09+02:00",
@@ -7835,63 +7777,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "eb067c25f15db0f8986fcfedb2c12d442ed443c3",
+          "message": "Translate assets/locales/game.pot in la (#700)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-18T19:04:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/eb067c25f15db0f8986fcfedb2c12d442ed443c3"
+        },
+        "date": 1784417969035,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 72.054182357,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T19:53:54Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
-        },
-        "date": 1783036333171,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 99.8628583,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T19:53:54Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
-        },
-        "date": 1783122739195,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 95.7491951,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -10450,67 +10365,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "eb067c25f15db0f8986fcfedb2c12d442ed443c3",
+          "message": "Translate assets/locales/game.pot in la (#700)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-18T19:04:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/eb067c25f15db0f8986fcfedb2c12d442ed443c3"
+        },
+        "date": 1784418010468,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.003329,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "5cc38b3d9ada0e2a2b71f42ab5a15839c909943a",
-          "message": "Update regression test demos.\n\nDemo timing didn't change, but player position in the final ending\nanimation _slightly_ differs due to the end timing change.",
-          "timestamp": "2026-07-05T06:30:25+02:00",
-          "tree_id": "ff80915c4281455215ce96214589ae5bcdb9cec6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5cc38b3d9ada0e2a2b71f42ab5a15839c909943a"
-        },
-        "date": 1783226049054,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 109.9051934,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "96990ceabe41a425f1dd0182d3b1434b1c6f69c2",
-          "message": "Add another note sequence to the piano.\n\nThe most overplayed one of all.",
-          "timestamp": "2026-07-05T20:53:45+02:00",
-          "tree_id": "d1ebc59897dddf80abe7010e8c4d60e6719a029c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/96990ceabe41a425f1dd0182d3b1434b1c6f69c2"
-        },
-        "date": 1783277852347,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 101.6787845,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -13066,6 +12950,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 97.7205138,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "eb067c25f15db0f8986fcfedb2c12d442ed443c3",
+          "message": "Translate assets/locales/game.pot in la (#700)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-18T19:04:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/eb067c25f15db0f8986fcfedb2c12d442ed443c3"
+        },
+        "date": 1784418014089,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.885999,
             "unit": "Seconds"
           }
         ]
