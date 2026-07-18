@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784383228183,
+  "lastUpdate": 1784401342689,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5174,33 +5174,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-07-02T19:53:54Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
         },
-        "date": 1783036299160,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 78.617290274,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T19:53:54Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
-        },
         "date": 1783122706648,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7740,38 +7713,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "distinct": true,
-          "id": "50f80375b9ecf14fe9ba6fdb79c814cad9f8a639",
-          "message": "Translate assets/locales/level.pot in la (#652)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-02T15:21:35+02:00",
-          "tree_id": "8138bed359f63bb1a614b456d2df6f69e45c6c44",
-          "url": "https://github.com/divVerent/aaaaxy/commit/50f80375b9ecf14fe9ba6fdb79c814cad9f8a639"
+          "id": "5f3a380e63867d7607582d28557029d85b111929",
+          "message": "Fix \"for software licenses\" text on touch hardware.",
+          "timestamp": "2026-07-18T20:58:57+02:00",
+          "tree_id": "b94874623290e92f71ba7fb9c24ca8d6c42334b0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5f3a380e63867d7607582d28557029d85b111929"
         },
-        "date": 1782998979790,
+        "date": 1784401337498,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.9807088,
+            "name": "Any% linux-amd64",
+            "value": 71.652264067,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10326,36 +10299,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T19:53:54Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
+          "distinct": true,
+          "id": "5f3a380e63867d7607582d28557029d85b111929",
+          "message": "Fix \"for software licenses\" text on touch hardware.",
+          "timestamp": "2026-07-18T20:58:57+02:00",
+          "tree_id": "b94874623290e92f71ba7fb9c24ca8d6c42334b0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5f3a380e63867d7607582d28557029d85b111929"
         },
-        "date": 1783036327338,
+        "date": 1784401324025,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 102.0490998,
+            "name": "Any% windows-amd64",
+            "value": 96.3069758,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12909,6 +12884,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.6409921,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "5f3a380e63867d7607582d28557029d85b111929",
+          "message": "Fix \"for software licenses\" text on touch hardware.",
+          "timestamp": "2026-07-18T20:58:57+02:00",
+          "tree_id": "b94874623290e92f71ba7fb9c24ca8d6c42334b0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5f3a380e63867d7607582d28557029d85b111929"
+        },
+        "date": 1784401355952,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.1898663,
             "unit": "Seconds"
           }
         ]
