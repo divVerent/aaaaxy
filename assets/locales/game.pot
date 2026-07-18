@@ -227,7 +227,11 @@ msgid ""
 msgstr ""
 
 #: menu/credits.go
-msgid "For Software Licenses{{BR}}Press Right"
+msgid "For Software Licenses{{BR}}press right"
+msgstr ""
+
+#: menu/credits.go
+msgid "For Software Licenses{{BR}}press the right side of the scereen"
 msgstr ""
 
 #: aaaaxy/game.go

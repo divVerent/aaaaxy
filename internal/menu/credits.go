@@ -115,9 +115,14 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	s.Controller = m
 	s.Lines = nil
 	if len(credits.Licenses) != 0 && !s.Fancy {
+		var licenseText string
+		if input.HaveTouch() {
+			licenseText = locale.G.Get("For Software Licenses{{BR}}press the right side of the scereen")
+		} else {
+			licenseText = locale.G.Get("For Software Licenses{{BR}}press right")
+		}
 		s.Lines = append(append(s.Lines,
-			strings.Split(fun.FormatText(&s.Controller.World.PlayerState,
-				locale.G.Get("For Software Licenses{{BR}}Press Right")), "\n")...),
+			strings.Split(fun.FormatText(&s.Controller.World.PlayerState, licenseText), "\n")...),
 			"")
 	}
 	for _, line := range credits.Lines {

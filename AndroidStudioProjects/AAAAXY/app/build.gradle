@@ -19,7 +19,7 @@ android {
         versionCode "${prefix}scripts/version.sh android".execute(null, rootDir).text.trim().toInteger()
         versionName "${prefix}scripts/version.sh semver".execute(null, rootDir).text.trim()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        resourceConfigurations += ['en', 'de', 'de-rCH', 'la', 'pt', 'pt-rBR', 'be', 'b+be+Latn', 'uk', 'ar', 'ar-rEG', 'ja', 'b+zh+Hans', 'b+zh+Hant']
+        resourceConfigurations += ['en', 'de', 'de-rCH', 'la', 'pt', 'pt-rBR', 'fi', 'be', 'b+be+Latn', 'uk', 'ar', 'ar-rEG', 'ja', 'b+zh+Hans', 'b+zh+Hant']
     }
     signingConfigs {
         release {
