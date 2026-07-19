@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784465304164,
+  "lastUpdate": 1784465322827,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5195,35 +5195,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "c3e5efdce9559b611cc7739dbf93cd246b0e5786",
-          "message": "Let's reference Beethoven's red scarf with the colors.",
-          "timestamp": "2026-07-05T21:03:43+02:00",
-          "tree_id": "d5b2ce78128d2132a9c59dba9e7c194ac193af1e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/c3e5efdce9559b611cc7739dbf93cd246b0e5786"
-        },
-        "date": 1783278422263,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 78.221332491,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -7777,9 +7748,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7793,22 +7762,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "96990ceabe41a425f1dd0182d3b1434b1c6f69c2",
-          "message": "Add another note sequence to the piano.\n\nThe most overplayed one of all.",
-          "timestamp": "2026-07-05T20:53:45+02:00",
-          "tree_id": "d1ebc59897dddf80abe7010e8c4d60e6719a029c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/96990ceabe41a425f1dd0182d3b1434b1c6f69c2"
+          "id": "bd3758b5b38fe4c3fe57f174c6e0755399e3b76c",
+          "message": "Can now also load licenses in a local checkout.",
+          "timestamp": "2026-07-19T14:44:43+02:00",
+          "tree_id": "308c3470fd2e7ff30d8ae57cec849bf6e2f4ae09",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bd3758b5b38fe4c3fe57f174c6e0755399e3b76c"
         },
-        "date": 1783277860140,
+        "date": 1784465279364,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.9827377,
+            "name": "Any% linux-amd64",
+            "value": 75.666777858,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10365,9 +10336,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10381,22 +10350,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "c3e5efdce9559b611cc7739dbf93cd246b0e5786",
-          "message": "Let's reference Beethoven's red scarf with the colors.",
-          "timestamp": "2026-07-05T21:03:43+02:00",
-          "tree_id": "d5b2ce78128d2132a9c59dba9e7c194ac193af1e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/c3e5efdce9559b611cc7739dbf93cd246b0e5786"
+          "id": "bd3758b5b38fe4c3fe57f174c6e0755399e3b76c",
+          "message": "Can now also load licenses in a local checkout.",
+          "timestamp": "2026-07-19T14:44:43+02:00",
+          "tree_id": "308c3470fd2e7ff30d8ae57cec849bf6e2f4ae09",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bd3758b5b38fe4c3fe57f174c6e0755399e3b76c"
         },
-        "date": 1783278475064,
+        "date": 1784465307693,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.9094098,
+            "name": "Any% windows-amd64",
+            "value": 96.0273111,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12950,6 +12921,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.4309125,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "bd3758b5b38fe4c3fe57f174c6e0755399e3b76c",
+          "message": "Can now also load licenses in a local checkout.",
+          "timestamp": "2026-07-19T14:44:43+02:00",
+          "tree_id": "308c3470fd2e7ff30d8ae57cec849bf6e2f4ae09",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bd3758b5b38fe4c3fe57f174c6e0755399e3b76c"
+        },
+        "date": 1784465316098,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.7215347,
             "unit": "Seconds"
           }
         ]
