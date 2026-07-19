@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784470007232,
+  "lastUpdate": 1784504626643,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5176,35 +5176,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "abd9b1f361c0d5e30f9994a864524b5ea9ab2989",
-          "message": "Translate assets/locales/level.pot in la (#654)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-05T21:18:30+02:00",
-          "tree_id": "e4e82e3f014e03e4debfb82417f18da467df7bb5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/abd9b1f361c0d5e30f9994a864524b5ea9ab2989"
-        },
-        "date": 1783279701488,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 76.239505902,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "f471a5b71d2e4707d44ef45fc4c8e9def2441ab5",
           "message": "Updates for file assets/locales/level.pot in de (#653)\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-07-05T21:20:06+02:00",
@@ -7748,38 +7719,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "5bacfe61c752a500c4db2cd060ee05ea566ca284",
-          "message": "Reverse colors, and add translation string.",
-          "timestamp": "2026-07-05T20:59:09+02:00",
-          "tree_id": "a275cbd40f967dc63bb73260671f602d860f77dd",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5bacfe61c752a500c4db2cd060ee05ea566ca284"
+          "id": "bd3758b5b38fe4c3fe57f174c6e0755399e3b76c",
+          "message": "Can now also load licenses in a local checkout.",
+          "timestamp": "2026-07-19T12:44:43Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bd3758b5b38fe4c3fe57f174c6e0755399e3b76c"
         },
-        "date": 1783278188218,
+        "date": 1784504620295,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.1768229,
+            "name": "Any% linux-amd64",
+            "value": 72.540464876,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10336,38 +10305,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "abd9b1f361c0d5e30f9994a864524b5ea9ab2989",
-          "message": "Translate assets/locales/level.pot in la (#654)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-05T21:18:30+02:00",
-          "tree_id": "e4e82e3f014e03e4debfb82417f18da467df7bb5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/abd9b1f361c0d5e30f9994a864524b5ea9ab2989"
+          "id": "bd3758b5b38fe4c3fe57f174c6e0755399e3b76c",
+          "message": "Can now also load licenses in a local checkout.",
+          "timestamp": "2026-07-19T12:44:43Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bd3758b5b38fe4c3fe57f174c6e0755399e3b76c"
         },
-        "date": 1783279580895,
+        "date": 1784504650000,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.740547,
+            "name": "Any% windows-amd64",
+            "value": 96.7219582,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12921,6 +12888,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.7215347,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "bd3758b5b38fe4c3fe57f174c6e0755399e3b76c",
+          "message": "Can now also load licenses in a local checkout.",
+          "timestamp": "2026-07-19T12:44:43Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bd3758b5b38fe4c3fe57f174c6e0755399e3b76c"
+        },
+        "date": 1784504664591,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.9370424,
             "unit": "Seconds"
           }
         ]
