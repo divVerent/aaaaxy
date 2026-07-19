@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784465322827,
+  "lastUpdate": 1784465387381,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T21:54:12+02:00",
-          "tree_id": "2a1ef888d0bd3552949b36c6a1b2655fc6268ce6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
-        },
-        "date": 1783022321371,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 212.131689138,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2577,6 +2548,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 226.938340336,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "bd3758b5b38fe4c3fe57f174c6e0755399e3b76c",
+          "message": "Can now also load licenses in a local checkout.",
+          "timestamp": "2026-07-19T14:44:43+02:00",
+          "tree_id": "308c3470fd2e7ff30d8ae57cec849bf6e2f4ae09",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bd3758b5b38fe4c3fe57f174c6e0755399e3b76c"
+        },
+        "date": 1784465380681,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 229.006788336,
             "unit": "Seconds"
           }
         ]
