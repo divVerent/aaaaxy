@@ -49,7 +49,11 @@ func initAssetsFS() ([]fsRoot, error) {
 			toPrefix: "/",
 		})
 	}
-	// This VFS does not support license info - which is fine as you have the
-	// source and all licenses on your drive already.
+	dirs = append(dirs, fsRoot{
+		name:     "embed:licenses",
+		filesys:  os.DirFS("licenses"),
+		root:     ".",
+		toPrefix: "/licenses/",
+	})
 	return dirs, nil
 }
