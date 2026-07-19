@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784465387381,
+  "lastUpdate": 1784465556818,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2596,64 +2596,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "733b4bffae6c4b95a023eafb41d88ea298c7c563",
-          "message": "_Technically_ I need BorderPixels here.\n\nNot that it matters here - vs objects with 1 BorderPixels, the collision\nis the same either way. But let's do it _right_.",
-          "timestamp": "2026-07-01T21:24:04+02:00",
-          "tree_id": "7eb9d4218898aa1adafa62638eb78ef6f1534437",
-          "url": "https://github.com/divVerent/aaaaxy/commit/733b4bffae6c4b95a023eafb41d88ea298c7c563"
-        },
-        "date": 1782934520608,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 77.828795085,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "9976db91b6d1522db4a6a98d69cdcf33052d30c8",
-          "message": "Bump actions/checkout from 6 to 7 (#649)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-01T21:28:40+02:00",
-          "tree_id": "d631defb8a31344362c5d343723f1c1005d65976",
-          "url": "https://github.com/divVerent/aaaaxy/commit/9976db91b6d1522db4a6a98d69cdcf33052d30c8"
-        },
-        "date": 1782934630467,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.73804423,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "bea90597db856878b6c5c7ed0661b7faab129d1c",
           "message": "Rush E.",
           "timestamp": "2026-07-02T12:25:32+02:00",
@@ -5186,6 +5128,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 75.985756989,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "bd3758b5b38fe4c3fe57f174c6e0755399e3b76c",
+          "message": "Can now also load licenses in a local checkout.",
+          "timestamp": "2026-07-19T14:44:43+02:00",
+          "tree_id": "308c3470fd2e7ff30d8ae57cec849bf6e2f4ae09",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bd3758b5b38fe4c3fe57f174c6e0755399e3b76c"
+        },
+        "date": 1784465550692,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 76.577898189,
             "unit": "Seconds"
           }
         ]
