@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784465072151,
+  "lastUpdate": 1784465304164,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2586,62 +2586,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "a9b809e5536167c45dd728e1a488c1b5c72348bf",
-          "message": "Release v1.7.89\n\nChanges since v1.7.77:\n  - Engine: modules update.\n  - Level: SPIKE room.",
-          "timestamp": "2026-06-22T10:00:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/a9b809e5536167c45dd728e1a488c1b5c72348bf"
-        },
-        "date": 1782914713543,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.000007932,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "81a447bb4134ec1c39189d00e8e496f97c2d2369",
-          "message": "Veni Vidi Vici iMproved.",
-          "timestamp": "2026-07-01T21:16:26+02:00",
-          "tree_id": "3e7bea3e0878d18d9ce3a3194048fd0b99f0a4df",
-          "url": "https://github.com/divVerent/aaaaxy/commit/81a447bb4134ec1c39189d00e8e496f97c2d2369"
-        },
-        "date": 1782933874715,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.177971876,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -5186,6 +5130,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 76.568090697,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "ff2267e413892a611ac25d7fd0c4aeda24be4b5e",
+          "message": "Build the licenses file tree on mod-update.\n\nThis removes go-licenses from the build process, which may make F-Droid\ndeterminism better.\n\nFor now this duplicates some license files - this is to be fixed later.",
+          "timestamp": "2026-07-19T14:39:48+02:00",
+          "tree_id": "d3e64901950ca912d5a8ea2e1757f1e9e07fb0cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/ff2267e413892a611ac25d7fd0c4aeda24be4b5e"
+        },
+        "date": 1784465299544,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 79.95385012,
             "unit": "Seconds"
           }
         ]
