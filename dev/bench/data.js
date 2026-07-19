@@ -5162,6 +5162,33 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "bd3758b5b38fe4c3fe57f174c6e0755399e3b76c",
+          "message": "Can now also load licenses in a local checkout.",
+          "timestamp": "2026-07-19T12:44:43Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/bd3758b5b38fe4c3fe57f174c6e0755399e3b76c"
+        },
+        "date": 1784465308632,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.985756989,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% linux-amd64": [
