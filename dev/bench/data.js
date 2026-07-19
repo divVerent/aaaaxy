@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784417975243,
+  "lastUpdate": 1784464969289,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5232,35 +5232,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "5bacfe61c752a500c4db2cd060ee05ea566ca284",
-          "message": "Reverse colors, and add translation string.",
-          "timestamp": "2026-07-05T20:59:09+02:00",
-          "tree_id": "a275cbd40f967dc63bb73260671f602d860f77dd",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5bacfe61c752a500c4db2cd060ee05ea566ca284"
-        },
-        "date": 1783278101040,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.818635577,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "c3e5efdce9559b611cc7739dbf93cd246b0e5786",
           "message": "Let's reference Beethoven's red scarf with the colors.",
           "timestamp": "2026-07-05T21:03:43+02:00",
@@ -7804,9 +7775,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7820,22 +7789,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "5cc38b3d9ada0e2a2b71f42ab5a15839c909943a",
-          "message": "Update regression test demos.\n\nDemo timing didn't change, but player position in the final ending\nanimation _slightly_ differs due to the end timing change.",
-          "timestamp": "2026-07-05T06:30:25+02:00",
-          "tree_id": "ff80915c4281455215ce96214589ae5bcdb9cec6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5cc38b3d9ada0e2a2b71f42ab5a15839c909943a"
+          "id": "ff2267e413892a611ac25d7fd0c4aeda24be4b5e",
+          "message": "Build the licenses file tree on mod-update.\n\nThis removes go-licenses from the build process, which may make F-Droid\ndeterminism better.\n\nFor now this duplicates some license files - this is to be fixed later.",
+          "timestamp": "2026-07-19T14:39:48+02:00",
+          "tree_id": "d3e64901950ca912d5a8ea2e1757f1e9e07fb0cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/ff2267e413892a611ac25d7fd0c4aeda24be4b5e"
         },
-        "date": 1783226019911,
+        "date": 1784464962998,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 94.3431242,
+            "name": "Any% linux-amd64",
+            "value": 75.137942078,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10392,9 +10363,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10408,22 +10377,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "5bacfe61c752a500c4db2cd060ee05ea566ca284",
-          "message": "Reverse colors, and add translation string.",
-          "timestamp": "2026-07-05T20:59:09+02:00",
-          "tree_id": "a275cbd40f967dc63bb73260671f602d860f77dd",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5bacfe61c752a500c4db2cd060ee05ea566ca284"
+          "id": "ff2267e413892a611ac25d7fd0c4aeda24be4b5e",
+          "message": "Build the licenses file tree on mod-update.\n\nThis removes go-licenses from the build process, which may make F-Droid\ndeterminism better.\n\nFor now this duplicates some license files - this is to be fixed later.",
+          "timestamp": "2026-07-19T14:39:48+02:00",
+          "tree_id": "d3e64901950ca912d5a8ea2e1757f1e9e07fb0cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/ff2267e413892a611ac25d7fd0c4aeda24be4b5e"
         },
-        "date": 1783278146845,
+        "date": 1784464988486,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.543054,
+            "name": "Any% windows-amd64",
+            "value": 96.7321816,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12977,6 +12948,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.885999,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "ff2267e413892a611ac25d7fd0c4aeda24be4b5e",
+          "message": "Build the licenses file tree on mod-update.\n\nThis removes go-licenses from the build process, which may make F-Droid\ndeterminism better.\n\nFor now this duplicates some license files - this is to be fixed later.",
+          "timestamp": "2026-07-19T14:39:48+02:00",
+          "tree_id": "d3e64901950ca912d5a8ea2e1757f1e9e07fb0cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/ff2267e413892a611ac25d7fd0c4aeda24be4b5e"
+        },
+        "date": 1784464995913,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.4309125,
             "unit": "Seconds"
           }
         ]
