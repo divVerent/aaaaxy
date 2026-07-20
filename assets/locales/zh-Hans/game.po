@@ -22,7 +22,8 @@ msgstr "和"
 msgid "%.1f fps, %.1f tps"
 msgstr "%.1f帧率，%.1f每秒刻数"
 
-#: fun/string.go
+#. Timer display.
+#: fun/string.go fun/string.go
 msgid "%d:%02d:%02d.%03d"
 msgstr "%d:%02d:%02d.%03d"
 
@@ -30,11 +31,16 @@ msgstr "%d:%02d:%02d.%03d"
 msgid "%s (%d/%d)"
 msgstr "%s（%d/%d）"
 
+#: menu/credits.go
+msgid "%s, et al."
+msgstr ""
+
 #: menu/level.go
 msgid "%s: %s"
 msgstr "%s：%s"
 
-#: aaaaxy/game.go
+#. -show_pos overlay (showing xy coordinates of player position and speed).
+#: aaaaxy/game.go aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
 msgstr "(%.5f %.5f) (%.4f %.4f)"
 
@@ -117,19 +123,23 @@ msgstr "音频"
 msgid "Auto (%s)"
 msgstr "自动（%s）"
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B"
 msgstr "B"
 
-#: fun/string.go
+#. Keys on the keyboard or buttons on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B/X"
 msgstr "B/X"
 
-#: fun/string.go
+#. A virtual button on Android. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Back"
 msgstr "返回"
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Backspace"
 msgstr "退格键"
 
@@ -177,7 +187,8 @@ msgstr "芝加哥"
 msgid "Credits"
 msgstr "制作人员名单"
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Ctrl/Shift"
 msgstr "Ctrl/Shift"
 
@@ -198,7 +209,8 @@ msgstr "埃德蒙顿"
 msgid "Enter/Shift"
 msgstr "Enter/Shift"
 
-#: game/checkpoint/checkpoint_target.go
+#: game/checkpoint/checkpoint_target.go game/target/badapple.go
+#: game/trigger/questionblock.go
 msgid ""
 "Error:\n"
 "could not save game:\n"
@@ -208,7 +220,8 @@ msgstr ""
 "无法保存游戏：\n"
 "%s"
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Escape"
 msgstr "退出键"
 
@@ -226,8 +239,12 @@ msgstr ""
 "所有的作弊方法都记录在--help。"
 
 #: menu/credits.go
-msgid "For Software Licenses{{BR}}Press Right"
+msgid "For Software Licenses{{BR}}press right"
 msgstr "软件许可证{{BR}}按右键"
+
+#: menu/credits.go
+msgid "For Software Licenses{{BR}}press the right side of the scereen"
+msgstr ""
 
 #: aaaaxy/game.go
 msgid "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
@@ -357,6 +374,10 @@ msgstr "没有"
 msgid "Nuku'alofa"
 msgstr "努库阿洛法"
 
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "关"
+
 #: menu/map.go
 msgid "Pick-a-Path"
 msgstr "选路径"
@@ -442,7 +463,8 @@ msgstr "屏幕闪烁效果：%s"
 msgid "Settings"
 msgstr "设置"
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Shift/E/Tab"
 msgstr "Shift/E/Tab"
 
@@ -454,7 +476,8 @@ msgstr "音效"
 msgid "Sprites"
 msgstr "精灵图"
 
-#: fun/string.go
+#. A button on the controller. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Start"
 msgstr "开始"
 
@@ -582,7 +605,8 @@ msgstr "你的速通类别"
 msgid "Your Time"
 msgstr "你的时间"
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Z"
 msgstr "Z"
 
@@ -619,11 +643,17 @@ msgstr "%s"
 msgid "and other contributors"
 msgstr "及其他贡献者"
 
+#. "Classic hero and baddies pack" is the name on opengameart - do not change
+#. or translate that part. Feel free to put in quotes or similar if necessary.
+#: menu/credits.go menu/credits.go
+msgid "based on Classic hero and baddies pack"
+msgstr ""
+
 #: menu/credits.go
 msgid "by %s"
 msgstr "%s"
 
-#. Used in context "Hold ...".
+#. Touch surface on mobile. Used with "hold".
 #: fun/string.go
 msgid "elsewhere"
 msgstr "显示器任何一处"
@@ -640,6 +670,10 @@ msgstr "列举音频"
 #: fun/string.go
 msgid "everything"
 msgstr "所有的东西"
+
+#: menu/credits.go
+msgid "gabomdq and the SDL community"
+msgstr ""
 
 #: level/level.go
 msgid "hashing level"
@@ -681,10 +715,6 @@ msgstr "加载关卡文件"
 #: fun/string.go
 msgid "nothing"
 msgstr "零个东西"
-
-#: menu/settings.go menu/settings.go
-msgid "Off"
-msgstr "关"
 
 #: level/level.go
 msgid "parsing level data"
