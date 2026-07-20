@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784565030826,
+  "lastUpdate": 1784591105625,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5174,33 +5174,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "ed17eaa0709bd3044485f9cee4927d82f3b2bfad",
-          "message": "Bump Transifex.",
-          "timestamp": "2026-07-06T16:34:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ed17eaa0709bd3044485f9cee4927d82f3b2bfad"
-        },
-        "date": 1783382023895,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 80.984688809,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -7756,38 +7729,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "552b306b6775a13ce6d9b4d6793cda3afe3c6be3",
-          "message": "Improve sfizz-based script.",
-          "timestamp": "2026-07-06T17:36:26+02:00",
-          "tree_id": "7b292fde66a98a26ab3c8d6f2093fc0b669d95af",
-          "url": "https://github.com/divVerent/aaaaxy/commit/552b306b6775a13ce6d9b4d6793cda3afe3c6be3"
+          "id": "fd681773e35b4151e0cbdccf7d88b881bf7dd775",
+          "message": "Release v1.7.218\n\nChanges since v1.7.119:\n  - Build: license files are now checked in. Should fix F-Droid.\n  - Engine: fix offscreen dumping when multithreaded.\n  - Engine: new palette: cga_mono.\n  - Engine: save the game a bit earlier when winning.\n  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.\n  - Level: more music jokes.\n  - Menu: allow scrolling credits up farther.\n  - Translations: now with Finnish!",
+          "timestamp": "2026-07-20T05:19:56Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd681773e35b4151e0cbdccf7d88b881bf7dd775"
         },
-        "date": 1783352432949,
+        "date": 1784591099279,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.4449443,
+            "name": "Any% linux-amd64",
+            "value": 71.607261569,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10344,9 +10315,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10359,21 +10328,23 @@ window.BENCHMARK_DATA = {
             "username": "divVerent",
             "email": "rpolzer@google.com"
           },
-          "id": "ed17eaa0709bd3044485f9cee4927d82f3b2bfad",
-          "message": "Bump Transifex.",
-          "timestamp": "2026-07-06T16:34:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ed17eaa0709bd3044485f9cee4927d82f3b2bfad"
+          "id": "fd681773e35b4151e0cbdccf7d88b881bf7dd775",
+          "message": "Release v1.7.218\n\nChanges since v1.7.119:\n  - Build: license files are now checked in. Should fix F-Droid.\n  - Engine: fix offscreen dumping when multithreaded.\n  - Engine: new palette: cga_mono.\n  - Engine: save the game a bit earlier when winning.\n  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.\n  - Level: more music jokes.\n  - Menu: allow scrolling credits up farther.\n  - Translations: now with Finnish!",
+          "timestamp": "2026-07-20T05:19:56Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd681773e35b4151e0cbdccf7d88b881bf7dd775"
         },
-        "date": 1783382063587,
+        "date": 1784591126183,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.382516,
+            "name": "Any% windows-amd64",
+            "value": 94.4937785,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12929,6 +12900,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.07286,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fd681773e35b4151e0cbdccf7d88b881bf7dd775",
+          "message": "Release v1.7.218\n\nChanges since v1.7.119:\n  - Build: license files are now checked in. Should fix F-Droid.\n  - Engine: fix offscreen dumping when multithreaded.\n  - Engine: new palette: cga_mono.\n  - Engine: save the game a bit earlier when winning.\n  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.\n  - Level: more music jokes.\n  - Menu: allow scrolling credits up farther.\n  - Translations: now with Finnish!",
+          "timestamp": "2026-07-20T05:19:56Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd681773e35b4151e0cbdccf7d88b881bf7dd775"
+        },
+        "date": 1784591143530,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.5759565,
             "unit": "Seconds"
           }
         ]
