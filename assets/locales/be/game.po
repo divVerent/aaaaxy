@@ -22,7 +22,8 @@ msgstr " і "
 msgid "%.1f fps, %.1f tps"
 msgstr "%.1f FPS, %.1f TPS"
 
-#: fun/string.go
+#. Timer display.
+#: fun/string.go fun/string.go
 msgid "%d:%02d:%02d.%03d"
 msgstr "%d:%02d:%02d.%03d"
 
@@ -30,11 +31,16 @@ msgstr "%d:%02d:%02d.%03d"
 msgid "%s (%d/%d)"
 msgstr "%s (%d/%d)"
 
+#: menu/credits.go
+msgid "%s, et al."
+msgstr ""
+
 #: menu/level.go
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: aaaaxy/game.go
+#. -show_pos overlay (showing xy coordinates of player position and speed).
+#: aaaaxy/game.go aaaaxy/game.go
 msgid "(%.5f %.5f) (%.4f %.4f)"
 msgstr "(%.5f %.5f) (%.4f %.4f)"
 
@@ -117,19 +123,23 @@ msgstr "Аўдыё"
 msgid "Auto (%s)"
 msgstr "Аўтаматычна (%s)"
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B"
 msgstr "B"
 
-#: fun/string.go
+#. Keys on the keyboard or buttons on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "B/X"
 msgstr "B/X"
 
-#: fun/string.go
+#. A virtual button on Android. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Back"
 msgstr "Назад"
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Backspace"
 msgstr "Backspace"
 
@@ -177,7 +187,8 @@ msgstr "Чыкаґа"
 msgid "Credits"
 msgstr "Аўтары і падзякі"
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Ctrl/Shift"
 msgstr "Ctrl/Shift"
 
@@ -198,7 +209,8 @@ msgstr "Эдмантан"
 msgid "Enter/Shift"
 msgstr "Enter/Shift"
 
-#: game/checkpoint/checkpoint_target.go
+#: game/checkpoint/checkpoint_target.go game/target/badapple.go
+#: game/trigger/questionblock.go
 msgid ""
 "Error:\n"
 "could not save game:\n"
@@ -208,7 +220,8 @@ msgstr ""
 "не ўдалося захаваць гульню:\n"
 "%s"
 
-#: fun/string.go
+#. A key on the keyboard. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Escape"
 msgstr "Escape"
 
@@ -226,8 +239,12 @@ msgstr ""
 "Усе чыты апісаныя ў --help."
 
 #: menu/credits.go
-msgid "For Software Licenses{{BR}}Press Right"
+msgid "For Software Licenses{{BR}}press right"
 msgstr "Для ліцэнзій ПЗ{{BR}}націсьніце ўправа"
+
+#: menu/credits.go
+msgid "For Software Licenses{{BR}}press the right side of the scereen"
+msgstr ""
 
 #: aaaaxy/game.go
 msgid "GC pass %d: pause %.1fms delta %.1fs (%.1fs ago)"
@@ -357,6 +374,10 @@ msgstr "Нічога"
 msgid "Nuku'alofa"
 msgstr "Нукуалофа"
 
+#: menu/settings.go menu/settings.go
+msgid "Off"
+msgstr "Выкл"
+
 #: menu/map.go
 msgid "Pick-a-Path"
 msgstr "Абяры-шлях"
@@ -442,7 +463,8 @@ msgstr "Мігаценне экрана: %s"
 msgid "Settings"
 msgstr "Налады"
 
-#: fun/string.go
+#. Keys on the keyboard. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Shift/E/Tab"
 msgstr "Shift/E/Tab"
 
@@ -454,7 +476,8 @@ msgstr "Гукавыя эфэкты"
 msgid "Sprites"
 msgstr "Спрайты"
 
-#: fun/string.go
+#. A button on the controller. Used with "press".
+#: fun/string.go fun/string.go
 msgid "Start"
 msgstr "Старт"
 
@@ -582,7 +605,8 @@ msgstr "Вашы катэґорыі сьпідрану"
 msgid "Your Time"
 msgstr "Ваш час"
 
-#: fun/string.go
+#. A key on the keyboard or a button on the controller. Used with "hold".
+#: fun/string.go fun/string.go
 msgid "Z"
 msgstr "Z"
 
@@ -619,11 +643,17 @@ msgstr "%s"
 msgid "and other contributors"
 msgstr "і іншых удзельнікаў"
 
+#. "Classic hero and baddies pack" is the name on opengameart - do not change
+#. or translate that part. Feel free to put in quotes or similar if necessary.
+#: menu/credits.go menu/credits.go
+msgid "based on Classic hero and baddies pack"
+msgstr ""
+
 #: menu/credits.go
 msgid "by %s"
 msgstr "ад %s"
 
-#. Used in context "Hold ...".
+#. Touch surface on mobile. Used with "hold".
 #: fun/string.go
 msgid "elsewhere"
 msgstr "недзе яшчэ"
@@ -640,6 +670,10 @@ msgstr "пералічваем гукі"
 #: fun/string.go
 msgid "everything"
 msgstr "ўсё"
+
+#: menu/credits.go
+msgid "gabomdq and the SDL community"
+msgstr ""
 
 #: level/level.go
 msgid "hashing level"
@@ -681,10 +715,6 @@ msgstr "загружаем файл роўня"
 #: fun/string.go
 msgid "nothing"
 msgstr "нічога"
-
-#: menu/settings.go menu/settings.go
-msgid "Off"
-msgstr "Выкл"
 
 #: level/level.go
 msgid "parsing level data"
