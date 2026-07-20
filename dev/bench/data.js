@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784527813220,
+  "lastUpdate": 1784528396264,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5777,91 +5777,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]",
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "f471a5b71d2e4707d44ef45fc4c8e9def2441ab5",
-          "message": "Updates for file assets/locales/level.pot in de (#653)\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-05T19:20:06Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f471a5b71d2e4707d44ef45fc4c8e9def2441ab5"
-        },
-        "date": 1783295508631,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.861296272,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "0356f2c088ad2189933deb5168a5c8566186d7bf",
-          "message": "Improve the Latin of the last easter egg.",
-          "timestamp": "2026-07-06T08:28:36+02:00",
-          "tree_id": "863115f7cd61e61710c6b6ec2fcaeaf40bb6daf5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0356f2c088ad2189933deb5168a5c8566186d7bf"
-        },
-        "date": 1783319513596,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 72.616818551,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "dab11a505c3d2e302a56963650376e37b35889e7",
-          "message": "Centerprint: preprocess text here too.\n\nThis allows {{BR}} in CenterprintTarget like in other places.",
-          "timestamp": "2026-07-06T02:41:04-07:00",
-          "tree_id": "6922edb6ada70bd0425d6a8538842ee7132d05a5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/dab11a505c3d2e302a56963650376e37b35889e7"
-        },
-        "date": 1783331027573,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 77.269565063,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -8557,6 +8472,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64",
             "value": 75.419392376,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5bb7d85de31a3843d8945a5831bb2c77b8a1bc4b",
+          "message": "Translate level.pot in zh-Hans [Manual Sync] (#701)\n\n97% of minimum 95% reviewed source file: 'level.pot'\non 'zh-Hans'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-20T06:20:37+02:00",
+          "tree_id": "cd99776213cf2a05aab4e62addaea140e42a2ba0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5bb7d85de31a3843d8945a5831bb2c77b8a1bc4b"
+        },
+        "date": 1784528392006,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 51.706852566,
             "unit": "Seconds"
           }
         ]
@@ -11349,6 +11293,35 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5bb7d85de31a3843d8945a5831bb2c77b8a1bc4b",
+          "message": "Translate level.pot in zh-Hans [Manual Sync] (#701)\n\n97% of minimum 95% reviewed source file: 'level.pot'\non 'zh-Hans'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-20T06:20:37+02:00",
+          "tree_id": "cd99776213cf2a05aab4e62addaea140e42a2ba0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5bb7d85de31a3843d8945a5831bb2c77b8a1bc4b"
+        },
+        "date": 1784526554333,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 95.8064147,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -14135,6 +14108,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.1395832,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5bb7d85de31a3843d8945a5831bb2c77b8a1bc4b",
+          "message": "Translate level.pot in zh-Hans [Manual Sync] (#701)\n\n97% of minimum 95% reviewed source file: 'level.pot'\non 'zh-Hans'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-20T06:20:37+02:00",
+          "tree_id": "cd99776213cf2a05aab4e62addaea140e42a2ba0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5bb7d85de31a3843d8945a5831bb2c77b8a1bc4b"
+        },
+        "date": 1784526583249,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.6903017,
             "unit": "Seconds"
           }
         ]
