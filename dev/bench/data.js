@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784564748354,
+  "lastUpdate": 1784565030826,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2598,35 +2598,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "5bacfe61c752a500c4db2cd060ee05ea566ca284",
-          "message": "Reverse colors, and add translation string.",
-          "timestamp": "2026-07-05T20:59:09+02:00",
-          "tree_id": "a275cbd40f967dc63bb73260671f602d860f77dd",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5bacfe61c752a500c4db2cd060ee05ea566ca284"
-        },
-        "date": 1783278434442,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 73.151988256,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "c3e5efdce9559b611cc7739dbf93cd246b0e5786",
           "message": "Let's reference Beethoven's red scarf with the colors.",
           "timestamp": "2026-07-05T21:03:43+02:00",
@@ -5165,6 +5136,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 78.91378041,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "fd681773e35b4151e0cbdccf7d88b881bf7dd775",
+          "message": "Release v1.7.218\n\nChanges since v1.7.119:\n  - Build: license files are now checked in. Should fix F-Droid.\n  - Engine: fix offscreen dumping when multithreaded.\n  - Engine: new palette: cga_mono.\n  - Engine: save the game a bit earlier when winning.\n  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.\n  - Level: more music jokes.\n  - Menu: allow scrolling credits up farther.\n  - Translations: now with Finnish!",
+          "timestamp": "2026-07-20T07:19:56+02:00",
+          "tree_id": "f129faa5d0bd316af50e7155afbe7ec90679edf8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd681773e35b4151e0cbdccf7d88b881bf7dd775"
+        },
+        "date": 1784565025240,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 74.001613771,
             "unit": "Seconds"
           }
         ]
