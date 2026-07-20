@@ -8386,6 +8386,35 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4c6427e05b8c0b6c0cc6bdfaee091d922d610a51",
+          "message": "Translate level.pot in be@tarask [Manual Sync] (#710)\n\n97% of minimum 95% reviewed source file: 'level.pot'\non 'be@tarask'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-20T06:15:31+02:00",
+          "tree_id": "efc4e6b3991baa6238613d8425058d72ab611eb0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4c6427e05b8c0b6c0cc6bdfaee091d922d610a51"
+        },
+        "date": 1784527935337,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 71.950878763,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -11001,6 +11030,35 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4c6427e05b8c0b6c0cc6bdfaee091d922d610a51",
+          "message": "Translate level.pot in be@tarask [Manual Sync] (#710)\n\n97% of minimum 95% reviewed source file: 'level.pot'\non 'be@tarask'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-20T06:15:31+02:00",
+          "tree_id": "efc4e6b3991baa6238613d8425058d72ab611eb0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4c6427e05b8c0b6c0cc6bdfaee091d922d610a51"
+        },
+        "date": 1784525072880,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.3613498,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -13613,6 +13671,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 98.2380613,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4c6427e05b8c0b6c0cc6bdfaee091d922d610a51",
+          "message": "Translate level.pot in be@tarask [Manual Sync] (#710)\n\n97% of minimum 95% reviewed source file: 'level.pot'\non 'be@tarask'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-20T06:15:31+02:00",
+          "tree_id": "efc4e6b3991baa6238613d8425058d72ab611eb0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4c6427e05b8c0b6c0cc6bdfaee091d922d610a51"
+        },
+        "date": 1784525206560,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.3382555,
             "unit": "Seconds"
           }
         ]
