@@ -1,0 +1,8 @@
+  - Build: license files are now checked in. Should fix F-Droid.
+  - Engine: fix offscreen dumping when multithreaded.
+  - Engine: new palette: cga_mono.
+  - Engine: save the game a bit earlier when winning.
+  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.
+  - Level: more music jokes.
+  - Menu: allow scrolling credits up farther.
+  - Translations: now with Finnish!
