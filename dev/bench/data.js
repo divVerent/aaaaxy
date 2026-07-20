@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784564729874,
+  "lastUpdate": 1784564748354,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5174,209 +5174,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "08372dc4363f0d60341011c8a5a97e520a384d7b",
-          "message": "Updates for file assets/locales/level.pot in la [Manual Sync] (#659)\n\n* Translate level.pot in la [Manual Sync]\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\n* Translate assets/locales/level.pot in la\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:44:47+02:00",
-          "tree_id": "cced037af671abd8987870fb8b8cdd4b5b361c3c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/08372dc4363f0d60341011c8a5a97e520a384d7b"
-        },
-        "date": 1783333185064,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 72.808063294,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0e39155b11907663be01232aff0134986d25c365",
-          "message": "Translate game.pot in la [Manual Sync] (#657)\n\n100% reviewed source file: 'game.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:44:57+02:00",
-          "tree_id": "ae55d5c3cc9c64e0445acd956a23ce29f24c9683",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0e39155b11907663be01232aff0134986d25c365"
-        },
-        "date": 1783333683012,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 78.268959227,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "4b10ab5829ed5616f284f3638b953def9ad9e088",
-          "message": "Translate game.pot in pt [Manual Sync] (#658)\n\n100% reviewed source file: 'game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:10+02:00",
-          "tree_id": "5959803b7c962ff906cec952f9866ba09d52b8a4",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4b10ab5829ed5616f284f3638b953def9ad9e088"
-        },
-        "date": 1783333692553,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 73.126840073,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0925394b040379f7be3a95a70f527cef3dd1701e",
-          "message": "Translate game.pot in de [Manual Sync] (#655)\n\n100% reviewed source file: 'game.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:21+02:00",
-          "tree_id": "26f52cf22fa626a211af0a896db4256569b7a3a9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0925394b040379f7be3a95a70f527cef3dd1701e"
-        },
-        "date": 1783333884688,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.279787829,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "b7b89996c2637b7e435d117c23eebf62398db414",
-          "message": "Translate game.pot in uk [Manual Sync] (#656)\n\n100% reviewed source file: 'game.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:28+02:00",
-          "tree_id": "3deff4c4b80dc9327fe9224551ecbd97673a810b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b7b89996c2637b7e435d117c23eebf62398db414"
-        },
-        "date": 1783333891208,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 71.803467245,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "552b306b6775a13ce6d9b4d6793cda3afe3c6be3",
-          "message": "Improve sfizz-based script.",
-          "timestamp": "2026-07-06T17:36:26+02:00",
-          "tree_id": "7b292fde66a98a26ab3c8d6f2093fc0b669d95af",
-          "url": "https://github.com/divVerent/aaaaxy/commit/552b306b6775a13ce6d9b4d6793cda3afe3c6be3"
-        },
-        "date": 1783352413149,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 79.551975612,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "ed17eaa0709bd3044485f9cee4927d82f3b2bfad",
-          "message": "Bump Transifex.",
-          "timestamp": "2026-07-06T18:34:01+02:00",
-          "tree_id": "880c61458853565572772dd73f4eabc85a94bcea",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ed17eaa0709bd3044485f9cee4927d82f3b2bfad"
-        },
-        "date": 1783355806991,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.583324604,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7930,297 +7727,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "fd681773e35b4151e0cbdccf7d88b881bf7dd775",
+          "message": "Release v1.7.218\n\nChanges since v1.7.119:\n  - Build: license files are now checked in. Should fix F-Droid.\n  - Engine: fix offscreen dumping when multithreaded.\n  - Engine: new palette: cga_mono.\n  - Engine: save the game a bit earlier when winning.\n  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.\n  - Level: more music jokes.\n  - Menu: allow scrolling credits up farther.\n  - Translations: now with Finnish!",
+          "timestamp": "2026-07-20T07:19:56+02:00",
+          "tree_id": "f129faa5d0bd316af50e7155afbe7ec90679edf8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd681773e35b4151e0cbdccf7d88b881bf7dd775"
+        },
+        "date": 1784564655134,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 72.425103937,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "abd9b1f361c0d5e30f9994a864524b5ea9ab2989",
-          "message": "Translate assets/locales/level.pot in la (#654)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-05T21:18:30+02:00",
-          "tree_id": "e4e82e3f014e03e4debfb82417f18da467df7bb5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/abd9b1f361c0d5e30f9994a864524b5ea9ab2989"
-        },
-        "date": 1783279446251,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 104.4887171,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "f471a5b71d2e4707d44ef45fc4c8e9def2441ab5",
-          "message": "Updates for file assets/locales/level.pot in de (#653)\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-05T21:20:06+02:00",
-          "tree_id": "f1a3c5f6145a4900dd7a0afe5635fb7f7029ed39",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f471a5b71d2e4707d44ef45fc4c8e9def2441ab5"
-        },
-        "date": 1783279698703,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 97.2117444,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]",
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "f471a5b71d2e4707d44ef45fc4c8e9def2441ab5",
-          "message": "Updates for file assets/locales/level.pot in de (#653)\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-05T19:20:06Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f471a5b71d2e4707d44ef45fc4c8e9def2441ab5"
-        },
-        "date": 1783295547424,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.0271167,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "0356f2c088ad2189933deb5168a5c8566186d7bf",
-          "message": "Improve the Latin of the last easter egg.",
-          "timestamp": "2026-07-06T08:28:36+02:00",
-          "tree_id": "863115f7cd61e61710c6b6ec2fcaeaf40bb6daf5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0356f2c088ad2189933deb5168a5c8566186d7bf"
-        },
-        "date": 1783319498265,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 97.7960308,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "dab11a505c3d2e302a56963650376e37b35889e7",
-          "message": "Centerprint: preprocess text here too.\n\nThis allows {{BR}} in CenterprintTarget like in other places.",
-          "timestamp": "2026-07-06T02:41:04-07:00",
-          "tree_id": "6922edb6ada70bd0425d6a8538842ee7132d05a5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/dab11a505c3d2e302a56963650376e37b35889e7"
-        },
-        "date": 1783331109249,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.8613906,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "08372dc4363f0d60341011c8a5a97e520a384d7b",
-          "message": "Updates for file assets/locales/level.pot in la [Manual Sync] (#659)\n\n* Translate level.pot in la [Manual Sync]\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\n* Translate assets/locales/level.pot in la\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:44:47+02:00",
-          "tree_id": "cced037af671abd8987870fb8b8cdd4b5b361c3c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/08372dc4363f0d60341011c8a5a97e520a384d7b"
-        },
-        "date": 1783333307438,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.8942598,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0e39155b11907663be01232aff0134986d25c365",
-          "message": "Translate game.pot in la [Manual Sync] (#657)\n\n100% reviewed source file: 'game.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:44:57+02:00",
-          "tree_id": "ae55d5c3cc9c64e0445acd956a23ce29f24c9683",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0e39155b11907663be01232aff0134986d25c365"
-        },
-        "date": 1783333729618,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.5921507,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "4b10ab5829ed5616f284f3638b953def9ad9e088",
-          "message": "Translate game.pot in pt [Manual Sync] (#658)\n\n100% reviewed source file: 'game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:10+02:00",
-          "tree_id": "5959803b7c962ff906cec952f9866ba09d52b8a4",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4b10ab5829ed5616f284f3638b953def9ad9e088"
-        },
-        "date": 1783333770799,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.028589,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0925394b040379f7be3a95a70f527cef3dd1701e",
-          "message": "Translate game.pot in de [Manual Sync] (#655)\n\n100% reviewed source file: 'game.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:21+02:00",
-          "tree_id": "26f52cf22fa626a211af0a896db4256569b7a3a9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0925394b040379f7be3a95a70f527cef3dd1701e"
-        },
-        "date": 1783333808005,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.2288456,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "b7b89996c2637b7e435d117c23eebf62398db414",
-          "message": "Translate game.pot in uk [Manual Sync] (#656)\n\n100% reviewed source file: 'game.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:28+02:00",
-          "tree_id": "3deff4c4b80dc9327fe9224551ecbd97673a810b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b7b89996c2637b7e435d117c23eebf62398db414"
-        },
-        "date": 1783333812617,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.6620331,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -10777,297 +10315,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "fd681773e35b4151e0cbdccf7d88b881bf7dd775",
+          "message": "Release v1.7.218\n\nChanges since v1.7.119:\n  - Build: license files are now checked in. Should fix F-Droid.\n  - Engine: fix offscreen dumping when multithreaded.\n  - Engine: new palette: cga_mono.\n  - Engine: save the game a bit earlier when winning.\n  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.\n  - Level: more music jokes.\n  - Menu: allow scrolling credits up farther.\n  - Translations: now with Finnish!",
+          "timestamp": "2026-07-20T07:19:56+02:00",
+          "tree_id": "f129faa5d0bd316af50e7155afbe7ec90679edf8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd681773e35b4151e0cbdccf7d88b881bf7dd775"
+        },
+        "date": 1784564733035,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.0151588,
+            "unit": "Seconds"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
-      {
-        "commit": {
-          "author": {
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]",
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "f471a5b71d2e4707d44ef45fc4c8e9def2441ab5",
-          "message": "Updates for file assets/locales/level.pot in de (#653)\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-05T19:20:06Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/f471a5b71d2e4707d44ef45fc4c8e9def2441ab5"
-        },
-        "date": 1783295547456,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 101.1283111,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "0356f2c088ad2189933deb5168a5c8566186d7bf",
-          "message": "Improve the Latin of the last easter egg.",
-          "timestamp": "2026-07-06T08:28:36+02:00",
-          "tree_id": "863115f7cd61e61710c6b6ec2fcaeaf40bb6daf5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0356f2c088ad2189933deb5168a5c8566186d7bf"
-        },
-        "date": 1783319547464,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.5943396,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "dab11a505c3d2e302a56963650376e37b35889e7",
-          "message": "Centerprint: preprocess text here too.\n\nThis allows {{BR}} in CenterprintTarget like in other places.",
-          "timestamp": "2026-07-06T02:41:04-07:00",
-          "tree_id": "6922edb6ada70bd0425d6a8538842ee7132d05a5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/dab11a505c3d2e302a56963650376e37b35889e7"
-        },
-        "date": 1783331112405,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.737298,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "08372dc4363f0d60341011c8a5a97e520a384d7b",
-          "message": "Updates for file assets/locales/level.pot in la [Manual Sync] (#659)\n\n* Translate level.pot in la [Manual Sync]\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\n* Translate assets/locales/level.pot in la\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:44:47+02:00",
-          "tree_id": "cced037af671abd8987870fb8b8cdd4b5b361c3c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/08372dc4363f0d60341011c8a5a97e520a384d7b"
-        },
-        "date": 1783333507215,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.2949801,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0e39155b11907663be01232aff0134986d25c365",
-          "message": "Translate game.pot in la [Manual Sync] (#657)\n\n100% reviewed source file: 'game.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:44:57+02:00",
-          "tree_id": "ae55d5c3cc9c64e0445acd956a23ce29f24c9683",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0e39155b11907663be01232aff0134986d25c365"
-        },
-        "date": 1783333699946,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 105.5436924,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "4b10ab5829ed5616f284f3638b953def9ad9e088",
-          "message": "Translate game.pot in pt [Manual Sync] (#658)\n\n100% reviewed source file: 'game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:10+02:00",
-          "tree_id": "5959803b7c962ff906cec952f9866ba09d52b8a4",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4b10ab5829ed5616f284f3638b953def9ad9e088"
-        },
-        "date": 1783333764494,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.030855,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0925394b040379f7be3a95a70f527cef3dd1701e",
-          "message": "Translate game.pot in de [Manual Sync] (#655)\n\n100% reviewed source file: 'game.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:21+02:00",
-          "tree_id": "26f52cf22fa626a211af0a896db4256569b7a3a9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0925394b040379f7be3a95a70f527cef3dd1701e"
-        },
-        "date": 1783333769422,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.1743211,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "b7b89996c2637b7e435d117c23eebf62398db414",
-          "message": "Translate game.pot in uk [Manual Sync] (#656)\n\n100% reviewed source file: 'game.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:28+02:00",
-          "tree_id": "3deff4c4b80dc9327fe9224551ecbd97673a810b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b7b89996c2637b7e435d117c23eebf62398db414"
-        },
-        "date": 1783333863456,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 100.2319745,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "552b306b6775a13ce6d9b4d6793cda3afe3c6be3",
-          "message": "Improve sfizz-based script.",
-          "timestamp": "2026-07-06T17:36:26+02:00",
-          "tree_id": "7b292fde66a98a26ab3c8d6f2093fc0b669d95af",
-          "url": "https://github.com/divVerent/aaaaxy/commit/552b306b6775a13ce6d9b4d6793cda3afe3c6be3"
-        },
-        "date": 1783352387916,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.9301647,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "ed17eaa0709bd3044485f9cee4927d82f3b2bfad",
-          "message": "Bump Transifex.",
-          "timestamp": "2026-07-06T18:34:01+02:00",
-          "tree_id": "880c61458853565572772dd73f4eabc85a94bcea",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ed17eaa0709bd3044485f9cee4927d82f3b2bfad"
-        },
-        "date": 1783355890236,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 105.0973563,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -13621,6 +12900,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 97.2302358,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "fd681773e35b4151e0cbdccf7d88b881bf7dd775",
+          "message": "Release v1.7.218\n\nChanges since v1.7.119:\n  - Build: license files are now checked in. Should fix F-Droid.\n  - Engine: fix offscreen dumping when multithreaded.\n  - Engine: new palette: cga_mono.\n  - Engine: save the game a bit earlier when winning.\n  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.\n  - Level: more music jokes.\n  - Menu: allow scrolling credits up farther.\n  - Translations: now with Finnish!",
+          "timestamp": "2026-07-20T07:19:56+02:00",
+          "tree_id": "f129faa5d0bd316af50e7155afbe7ec90679edf8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd681773e35b4151e0cbdccf7d88b881bf7dd775"
+        },
+        "date": 1784564740660,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.07286,
             "unit": "Seconds"
           }
         ]
