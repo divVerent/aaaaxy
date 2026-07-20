@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784528396264,
+  "lastUpdate": 1784554708133,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2917,317 +2917,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662",
-          "message": "Forgot translator note.",
-          "timestamp": "2026-07-02T12:25:45+02:00",
-          "tree_id": "8c4403b8691faffd033e8ba0b7f08a37226929f8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662"
-        },
-        "date": 1782988476185,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.902230073,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "11163d3d2caf4f1e5cc3417e0635faed66db852e",
-          "message": "New text.",
-          "timestamp": "2026-07-02T15:07:30+02:00",
-          "tree_id": "7db80b3fae5a0601637ff0624628c4f2748525b9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/11163d3d2caf4f1e5cc3417e0635faed66db852e"
-        },
-        "date": 1782998168830,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.306449722,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]",
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "e4fd1a61383a44d9645fd3845af4eb5335b5fb25",
-          "message": "Translate assets/locales/level.pot in de (#651)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-02T13:21:39Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e4fd1a61383a44d9645fd3845af4eb5335b5fb25"
-        },
-        "date": 1782998993261,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 76.878468793,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e4fd1a61383a44d9645fd3845af4eb5335b5fb25",
-          "message": "Translate assets/locales/level.pot in de (#651)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-02T15:21:39+02:00",
-          "tree_id": "44cc05a46969d86c87358d3a74dd229a95742303",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e4fd1a61383a44d9645fd3845af4eb5335b5fb25"
-        },
-        "date": 1782999082408,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.956396958,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "50f80375b9ecf14fe9ba6fdb79c814cad9f8a639",
-          "message": "Translate assets/locales/level.pot in la (#652)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-02T15:21:35+02:00",
-          "tree_id": "8138bed359f63bb1a614b456d2df6f69e45c6c44",
-          "url": "https://github.com/divVerent/aaaaxy/commit/50f80375b9ecf14fe9ba6fdb79c814cad9f8a639"
-        },
-        "date": 1782999218210,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 58.608468733,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T21:54:12+02:00",
-          "tree_id": "2a1ef888d0bd3552949b36c6a1b2655fc6268ce6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
-        },
-        "date": 1783022589304,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 78.43928933,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T19:53:54Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
-        },
-        "date": 1783085548691,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 73.54268003,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "7ca01a3446399950900d9af35026f5f3626ef704",
-          "message": "Add a tool to render MIDIs using the Shepard Tone notes here.",
-          "timestamp": "2026-07-02T19:53:54Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/7ca01a3446399950900d9af35026f5f3626ef704"
-        },
-        "date": 1783169891677,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.412979132,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "5cc38b3d9ada0e2a2b71f42ab5a15839c909943a",
-          "message": "Update regression test demos.\n\nDemo timing didn't change, but player position in the final ending\nanimation _slightly_ differs due to the end timing change.",
-          "timestamp": "2026-07-05T06:30:25+02:00",
-          "tree_id": "ff80915c4281455215ce96214589ae5bcdb9cec6",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5cc38b3d9ada0e2a2b71f42ab5a15839c909943a"
-        },
-        "date": 1783226371324,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.849528436,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "5cc38b3d9ada0e2a2b71f42ab5a15839c909943a",
-          "message": "Update regression test demos.\n\nDemo timing didn't change, but player position in the final ending\nanimation _slightly_ differs due to the end timing change.",
-          "timestamp": "2026-07-05T04:30:25Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5cc38b3d9ada0e2a2b71f42ab5a15839c909943a"
-        },
-        "date": 1783256725575,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.752624014,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "96990ceabe41a425f1dd0182d3b1434b1c6f69c2",
-          "message": "Add another note sequence to the piano.\n\nThe most overplayed one of all.",
-          "timestamp": "2026-07-05T20:53:45+02:00",
-          "tree_id": "d1ebc59897dddf80abe7010e8c4d60e6719a029c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/96990ceabe41a425f1dd0182d3b1434b1c6f69c2"
-        },
-        "date": 1783278189566,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 76.502978398,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "5bacfe61c752a500c4db2cd060ee05ea566ca284",
           "message": "Reverse colors, and add translation string.",
           "timestamp": "2026-07-05T20:59:09+02:00",
@@ -5768,6 +5457,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 77.40275533,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "5ac35ddec1b20a3a17b2b5fac76f5941c51e9e23",
+          "message": "Translate game.pot in fi [Manual Sync] (#702)\n\n99% of minimum 95% reviewed source file: 'game.pot'\non 'fi'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-20T04:20:47Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5ac35ddec1b20a3a17b2b5fac76f5941c51e9e23"
+        },
+        "date": 1784554703510,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 78.91378041,
             "unit": "Seconds"
           }
         ]
