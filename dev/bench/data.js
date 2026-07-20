@@ -2627,35 +2627,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "bea90597db856878b6c5c7ed0661b7faab129d1c",
-          "message": "Rush E.",
-          "timestamp": "2026-07-02T12:25:32+02:00",
-          "tree_id": "85b69bb6dd2002b9cc388f3ea1de689744f3f23e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/bea90597db856878b6c5c7ed0661b7faab129d1c"
-        },
-        "date": 1782988469774,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.772569895,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "b0a0967a93a0a55d9ef7be14f3d32bf1ab3d1662",
           "message": "Forgot translator note.",
           "timestamp": "2026-07-02T12:25:45+02:00",
@@ -5188,6 +5159,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 76.577898189,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4c6427e05b8c0b6c0cc6bdfaee091d922d610a51",
+          "message": "Translate level.pot in be@tarask [Manual Sync] (#710)\n\n97% of minimum 95% reviewed source file: 'level.pot'\non 'be@tarask'.\n\nSync of partially translated files: \nuntranslated content is included with an empty translation \nor source language content depending on file format\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-20T06:15:31+02:00",
+          "tree_id": "efc4e6b3991baa6238613d8425058d72ab611eb0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4c6427e05b8c0b6c0cc6bdfaee091d922d610a51"
+        },
+        "date": 1784525020705,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 74.482764512,
             "unit": "Seconds"
           }
         ]
