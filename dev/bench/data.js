@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784644669761,
+  "lastUpdate": 1784649202033,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5180,35 +5180,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "86e811cc37fbc29776b906c30b93de4b8fc7c2aa",
-          "message": "Translate level.pot in la [Manual Sync] (#660)\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T07:32:18+02:00",
-          "tree_id": "b522db088a8337b84e66b58817e16ddbc6aacce0",
-          "url": "https://github.com/divVerent/aaaaxy/commit/86e811cc37fbc29776b906c30b93de4b8fc7c2aa"
-        },
-        "date": 1783402483686,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 72.669956523,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "2e818dc3218321a94d9deb805833e2d893678ad2",
           "message": "Translate level.pot in de [Manual Sync] (#661)\n\n100% reviewed source file: 'level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-07-07T07:32:24+02:00",
@@ -7752,9 +7723,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7768,22 +7737,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "ed17eaa0709bd3044485f9cee4927d82f3b2bfad",
-          "message": "Bump Transifex.",
-          "timestamp": "2026-07-06T18:34:01+02:00",
-          "tree_id": "880c61458853565572772dd73f4eabc85a94bcea",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ed17eaa0709bd3044485f9cee4927d82f3b2bfad"
+          "id": "efe970b05a968eeaf3faf9196543fc4c7f51c8bc",
+          "message": "Snap: update to core26.",
+          "timestamp": "2026-07-21T17:50:01+02:00",
+          "tree_id": "1259ec94207a190ae1b84fdfd7032e2c4e93b6f1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/efe970b05a968eeaf3faf9196543fc4c7f51c8bc"
         },
-        "date": 1783355833588,
+        "date": 1784649195150,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.5635276,
+            "name": "Any% linux-amd64",
+            "value": 74.054545028,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10338,38 +10309,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "distinct": true,
-          "id": "86e811cc37fbc29776b906c30b93de4b8fc7c2aa",
-          "message": "Translate level.pot in la [Manual Sync] (#660)\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T07:32:18+02:00",
-          "tree_id": "b522db088a8337b84e66b58817e16ddbc6aacce0",
-          "url": "https://github.com/divVerent/aaaaxy/commit/86e811cc37fbc29776b906c30b93de4b8fc7c2aa"
+          "id": "efe970b05a968eeaf3faf9196543fc4c7f51c8bc",
+          "message": "Snap: update to core26.",
+          "timestamp": "2026-07-21T17:50:01+02:00",
+          "tree_id": "1259ec94207a190ae1b84fdfd7032e2c4e93b6f1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/efe970b05a968eeaf3faf9196543fc4c7f51c8bc"
         },
-        "date": 1783402529498,
+        "date": 1784649216079,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.2797218,
+            "name": "Any% windows-amd64",
+            "value": 96.6432928,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12923,6 +12894,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.5759565,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "efe970b05a968eeaf3faf9196543fc4c7f51c8bc",
+          "message": "Snap: update to core26.",
+          "timestamp": "2026-07-21T17:50:01+02:00",
+          "tree_id": "1259ec94207a190ae1b84fdfd7032e2c4e93b6f1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/efe970b05a968eeaf3faf9196543fc4c7f51c8bc"
+        },
+        "date": 1784649235348,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.8216956,
             "unit": "Seconds"
           }
         ]
