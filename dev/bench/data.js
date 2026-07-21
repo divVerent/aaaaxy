@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784591105625,
+  "lastUpdate": 1784639694046,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2588,35 +2588,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "c3e5efdce9559b611cc7739dbf93cd246b0e5786",
-          "message": "Let's reference Beethoven's red scarf with the colors.",
-          "timestamp": "2026-07-05T21:03:43+02:00",
-          "tree_id": "d5b2ce78128d2132a9c59dba9e7c194ac193af1e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/c3e5efdce9559b611cc7739dbf93cd246b0e5786"
-        },
-        "date": 1783278714366,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 72.724940947,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -5165,6 +5136,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 74.001613771,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fd681773e35b4151e0cbdccf7d88b881bf7dd775",
+          "message": "Release v1.7.218\n\nChanges since v1.7.119:\n  - Build: license files are now checked in. Should fix F-Droid.\n  - Engine: fix offscreen dumping when multithreaded.\n  - Engine: new palette: cga_mono.\n  - Engine: save the game a bit earlier when winning.\n  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.\n  - Level: more music jokes.\n  - Menu: allow scrolling credits up farther.\n  - Translations: now with Finnish!",
+          "timestamp": "2026-07-20T05:19:56Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd681773e35b4151e0cbdccf7d88b881bf7dd775"
+        },
+        "date": 1784639687873,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 77.09858998,
             "unit": "Seconds"
           }
         ]
