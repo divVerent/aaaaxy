@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784649317477,
+  "lastUpdate": 1784649451202,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2596,35 +2596,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "abd9b1f361c0d5e30f9994a864524b5ea9ab2989",
-          "message": "Translate assets/locales/level.pot in la (#654)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-05T21:18:30+02:00",
-          "tree_id": "e4e82e3f014e03e4debfb82417f18da467df7bb5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/abd9b1f361c0d5e30f9994a864524b5ea9ab2989"
-        },
-        "date": 1783279636876,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 78.063248757,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "f471a5b71d2e4707d44ef45fc4c8e9def2441ab5",
           "message": "Updates for file assets/locales/level.pot in de (#653)\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n* Translate assets/locales/level.pot in de\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-07-05T21:20:06+02:00",
@@ -5161,6 +5132,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 77.09858998,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "efe970b05a968eeaf3faf9196543fc4c7f51c8bc",
+          "message": "Snap: update to core26.",
+          "timestamp": "2026-07-21T17:50:01+02:00",
+          "tree_id": "1259ec94207a190ae1b84fdfd7032e2c4e93b6f1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/efe970b05a968eeaf3faf9196543fc4c7f51c8bc"
+        },
+        "date": 1784649445222,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 61.507116872,
             "unit": "Seconds"
           }
         ]
