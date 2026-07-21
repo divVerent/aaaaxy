@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784639694046,
+  "lastUpdate": 1784644669761,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "b7b89996c2637b7e435d117c23eebf62398db414",
-          "message": "Translate game.pot in uk [Manual Sync] (#656)\n\n100% reviewed source file: 'game.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:28+02:00",
-          "tree_id": "3deff4c4b80dc9327fe9224551ecbd97673a810b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b7b89996c2637b7e435d117c23eebf62398db414"
-        },
-        "date": 1783332668209,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 234.490497626,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2579,6 +2550,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 161.541204192,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "fd681773e35b4151e0cbdccf7d88b881bf7dd775",
+          "message": "Release v1.7.218\n\nChanges since v1.7.119:\n  - Build: license files are now checked in. Should fix F-Droid.\n  - Engine: fix offscreen dumping when multithreaded.\n  - Engine: new palette: cga_mono.\n  - Engine: save the game a bit earlier when winning.\n  - Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.\n  - Level: more music jokes.\n  - Menu: allow scrolling credits up farther.\n  - Translations: now with Finnish!",
+          "timestamp": "2026-07-20T05:19:56Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/fd681773e35b4151e0cbdccf7d88b881bf7dd775"
+        },
+        "date": 1784644664936,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 221.893124277,
             "unit": "Seconds"
           }
         ]
