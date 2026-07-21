@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784649202033,
+  "lastUpdate": 1784649317477,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "552b306b6775a13ce6d9b4d6793cda3afe3c6be3",
-          "message": "Improve sfizz-based script.",
-          "timestamp": "2026-07-06T17:36:26+02:00",
-          "tree_id": "7b292fde66a98a26ab3c8d6f2093fc0b669d95af",
-          "url": "https://github.com/divVerent/aaaaxy/commit/552b306b6775a13ce6d9b4d6793cda3afe3c6be3"
-        },
-        "date": 1783352487801,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 226.918169574,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2577,6 +2548,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 221.893124277,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "efe970b05a968eeaf3faf9196543fc4c7f51c8bc",
+          "message": "Snap: update to core26.",
+          "timestamp": "2026-07-21T17:50:01+02:00",
+          "tree_id": "1259ec94207a190ae1b84fdfd7032e2c4e93b6f1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/efe970b05a968eeaf3faf9196543fc4c7f51c8bc"
+        },
+        "date": 1784649310811,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 224.076637551,
             "unit": "Seconds"
           }
         ]
