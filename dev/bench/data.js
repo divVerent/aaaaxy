@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784649451202,
+  "lastUpdate": 1784677524493,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5170,35 +5170,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "2e818dc3218321a94d9deb805833e2d893678ad2",
-          "message": "Translate level.pot in de [Manual Sync] (#661)\n\n100% reviewed source file: 'level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T07:32:24+02:00",
-          "tree_id": "6b8b325029997f2ad4c2bd95867b25e345f4cceb",
-          "url": "https://github.com/divVerent/aaaaxy/commit/2e818dc3218321a94d9deb805833e2d893678ad2"
-        },
-        "date": 1783402541231,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 78.67704001,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -7752,9 +7723,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7767,21 +7736,23 @@ window.BENCHMARK_DATA = {
             "username": "divVerent",
             "email": "rpolzer@google.com"
           },
-          "id": "ed17eaa0709bd3044485f9cee4927d82f3b2bfad",
-          "message": "Bump Transifex.",
-          "timestamp": "2026-07-06T16:34:01Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ed17eaa0709bd3044485f9cee4927d82f3b2bfad"
+          "id": "efe970b05a968eeaf3faf9196543fc4c7f51c8bc",
+          "message": "Snap: update to core26.",
+          "timestamp": "2026-07-21T15:50:01Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/efe970b05a968eeaf3faf9196543fc4c7f51c8bc"
         },
-        "date": 1783382061710,
+        "date": 1784677518743,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 95.7612022,
+            "name": "Any% linux-amd64",
+            "value": 74.162157048,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10338,38 +10309,36 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "2e818dc3218321a94d9deb805833e2d893678ad2",
-          "message": "Translate level.pot in de [Manual Sync] (#661)\n\n100% reviewed source file: 'level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T07:32:24+02:00",
-          "tree_id": "6b8b325029997f2ad4c2bd95867b25e345f4cceb",
-          "url": "https://github.com/divVerent/aaaaxy/commit/2e818dc3218321a94d9deb805833e2d893678ad2"
+          "id": "efe970b05a968eeaf3faf9196543fc4c7f51c8bc",
+          "message": "Snap: update to core26.",
+          "timestamp": "2026-07-21T15:50:01Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/efe970b05a968eeaf3faf9196543fc4c7f51c8bc"
         },
-        "date": 1783402549150,
+        "date": 1784677541196,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 96.6210325,
+            "name": "Any% windows-amd64",
+            "value": 95.7319607,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12923,6 +12892,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.8216956,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "efe970b05a968eeaf3faf9196543fc4c7f51c8bc",
+          "message": "Snap: update to core26.",
+          "timestamp": "2026-07-21T15:50:01Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/efe970b05a968eeaf3faf9196543fc4c7f51c8bc"
+        },
+        "date": 1784677545196,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.4802649,
             "unit": "Seconds"
           }
         ]
