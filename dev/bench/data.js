@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784701600162,
+  "lastUpdate": 1784701637496,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2617,64 +2617,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "0356f2c088ad2189933deb5168a5c8566186d7bf",
-          "message": "Improve the Latin of the last easter egg.",
-          "timestamp": "2026-07-06T08:28:36+02:00",
-          "tree_id": "863115f7cd61e61710c6b6ec2fcaeaf40bb6daf5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0356f2c088ad2189933deb5168a5c8566186d7bf"
-        },
-        "date": 1783319864399,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 79.204931845,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "dab11a505c3d2e302a56963650376e37b35889e7",
-          "message": "Centerprint: preprocess text here too.\n\nThis allows {{BR}} in CenterprintTarget like in other places.",
-          "timestamp": "2026-07-06T02:41:04-07:00",
-          "tree_id": "6922edb6ada70bd0425d6a8538842ee7132d05a5",
-          "url": "https://github.com/divVerent/aaaaxy/commit/dab11a505c3d2e302a56963650376e37b35889e7"
-        },
-        "date": 1783331390294,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.190035754,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -5221,6 +5163,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 76.466056385,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b0f43e9f8dee96a604c62e3e1f9c5c50fca30b55",
+          "message": "Bump actions/setup-go from 6 to 7 (#716)\n\nBumps [actions/setup-go](https://github.com/actions/setup-go) from 6 to 7.\n- [Release notes](https://github.com/actions/setup-go/releases)\n- [Commits](https://github.com/actions/setup-go/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-go\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-22T08:18:25+02:00",
+          "tree_id": "58e52830119041a642ed648c5b85a77e1ba3c2f6",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b0f43e9f8dee96a604c62e3e1f9c5c50fca30b55"
+        },
+        "date": 1784701631928,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 73.511870944,
             "unit": "Seconds"
           }
         ]
