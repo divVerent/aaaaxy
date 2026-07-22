@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784701324325,
+  "lastUpdate": 1784701384307,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "ed17eaa0709bd3044485f9cee4927d82f3b2bfad",
-          "message": "Bump Transifex.",
-          "timestamp": "2026-07-06T18:34:01+02:00",
-          "tree_id": "880c61458853565572772dd73f4eabc85a94bcea",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ed17eaa0709bd3044485f9cee4927d82f3b2bfad"
-        },
-        "date": 1783355921833,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 218.800670406,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2579,6 +2550,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 179.653112506,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4eb9cccf87e7cdd0f6e79806591fa489968d42c3",
+          "message": "Translate assets/locales/game.pot in pt (#718)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-22T08:18:12+02:00",
+          "tree_id": "022a4d5eeb17a91114c61eccfd14c037ba20636e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4eb9cccf87e7cdd0f6e79806591fa489968d42c3"
+        },
+        "date": 1784701379297,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 236.831451378,
             "unit": "Seconds"
           }
         ]
