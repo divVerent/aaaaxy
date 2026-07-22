@@ -1,35 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784677524493,
+  "lastUpdate": 1784701324325,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "552b306b6775a13ce6d9b4d6793cda3afe3c6be3",
-          "message": "Improve sfizz-based script.",
-          "timestamp": "2026-07-06T15:36:26Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/552b306b6775a13ce6d9b4d6793cda3afe3c6be3"
-        },
-        "date": 1783353841639,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 241.802131668,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2577,6 +2550,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 224.076637551,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a7050750f24005edd9ca085c11b3d68f81049cfd",
+          "message": "Translate assets/locales/level.pot in pt (#717)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-22T08:17:57+02:00",
+          "tree_id": "31faba57eb472552a0282d450dd43c316b1117cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a7050750f24005edd9ca085c11b3d68f81049cfd"
+        },
+        "date": 1784701318090,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 179.653112506,
             "unit": "Seconds"
           }
         ]
