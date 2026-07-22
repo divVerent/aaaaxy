@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784701409702,
+  "lastUpdate": 1784701443401,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7781,15 +7781,13 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
           },
           "committer": {
             "email": "noreply@github.com",
@@ -7797,51 +7795,24 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "2e818dc3218321a94d9deb805833e2d893678ad2",
-          "message": "Translate level.pot in de [Manual Sync] (#661)\n\n100% reviewed source file: 'level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T07:32:24+02:00",
-          "tree_id": "6b8b325029997f2ad4c2bd95867b25e345f4cceb",
-          "url": "https://github.com/divVerent/aaaaxy/commit/2e818dc3218321a94d9deb805833e2d893678ad2"
+          "id": "b0f43e9f8dee96a604c62e3e1f9c5c50fca30b55",
+          "message": "Bump actions/setup-go from 6 to 7 (#716)\n\nBumps [actions/setup-go](https://github.com/actions/setup-go) from 6 to 7.\n- [Release notes](https://github.com/actions/setup-go/releases)\n- [Commits](https://github.com/actions/setup-go/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-go\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-22T08:18:25+02:00",
+          "tree_id": "58e52830119041a642ed648c5b85a77e1ba3c2f6",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b0f43e9f8dee96a604c62e3e1f9c5c50fca30b55"
         },
-        "date": 1783402573909,
+        "date": 1784701383823,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.6846776,
+            "name": "Any% linux-amd64",
+            "value": 74.733371004,
             "unit": "Seconds"
           }
         ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "afc76cf80ad0d98a5079ecd346d7476907defffb",
-          "message": "Release v1.7.119\n\nChanges since v1.7.89:\n  - Level: In \"Shepard Tone\", more melodies are recognized.\n  - Level: Slightly adjust \"Veni Vidi Vici\".",
-          "timestamp": "2026-07-07T08:20:54+02:00",
-          "tree_id": "1208cccfce50f45b781f9a5fdc74b7807aa58980",
-          "url": "https://github.com/divVerent/aaaaxy/commit/afc76cf80ad0d98a5079ecd346d7476907defffb"
-        },
-        "date": 1783417971447,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 96.4023736,
-            "unit": "Seconds"
-          }
-        ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10396,36 +10367,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]",
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
           },
           "committer": {
+            "email": "noreply@github.com",
             "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
+            "username": "web-flow"
           },
-          "id": "3356ac2f0e6913751c8fbad37964e6ac01edbf8a",
-          "message": "Translate level.pot in uk [Manual Sync] (#662)\n\n100% reviewed source file: 'level.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T12:12:20Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/3356ac2f0e6913751c8fbad37964e6ac01edbf8a"
+          "distinct": true,
+          "id": "b0f43e9f8dee96a604c62e3e1f9c5c50fca30b55",
+          "message": "Bump actions/setup-go from 6 to 7 (#716)\n\nBumps [actions/setup-go](https://github.com/actions/setup-go) from 6 to 7.\n- [Release notes](https://github.com/actions/setup-go/releases)\n- [Commits](https://github.com/actions/setup-go/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-go\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-22T08:18:25+02:00",
+          "tree_id": "58e52830119041a642ed648c5b85a77e1ba3c2f6",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b0f43e9f8dee96a604c62e3e1f9c5c50fca30b55"
         },
-        "date": 1783467815511,
+        "date": 1784701444659,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 99.3593234,
+            "name": "Any% windows-amd64",
+            "value": 97.0332269,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12979,6 +12952,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.995222,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b0f43e9f8dee96a604c62e3e1f9c5c50fca30b55",
+          "message": "Bump actions/setup-go from 6 to 7 (#716)\n\nBumps [actions/setup-go](https://github.com/actions/setup-go) from 6 to 7.\n- [Release notes](https://github.com/actions/setup-go/releases)\n- [Commits](https://github.com/actions/setup-go/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-go\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-22T08:18:25+02:00",
+          "tree_id": "58e52830119041a642ed648c5b85a77e1ba3c2f6",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b0f43e9f8dee96a604c62e3e1f9c5c50fca30b55"
+        },
+        "date": 1784701435719,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.1389664,
             "unit": "Seconds"
           }
         ]
