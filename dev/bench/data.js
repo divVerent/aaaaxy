@@ -1,66 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784703134178,
+  "lastUpdate": 1784703232846,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "86e811cc37fbc29776b906c30b93de4b8fc7c2aa",
-          "message": "Translate level.pot in la [Manual Sync] (#660)\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T07:32:18+02:00",
-          "tree_id": "b522db088a8337b84e66b58817e16ddbc6aacce0",
-          "url": "https://github.com/divVerent/aaaaxy/commit/86e811cc37fbc29776b906c30b93de4b8fc7c2aa"
-        },
-        "date": 1783402613189,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 222.488120348,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "2e818dc3218321a94d9deb805833e2d893678ad2",
-          "message": "Translate level.pot in de [Manual Sync] (#661)\n\n100% reviewed source file: 'level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T07:32:24+02:00",
-          "tree_id": "6b8b325029997f2ad4c2bd95867b25e345f4cceb",
-          "url": "https://github.com/divVerent/aaaaxy/commit/2e818dc3218321a94d9deb805833e2d893678ad2"
-        },
-        "date": 1783402668822,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 232.065153749,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2608,6 +2550,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 226.975977237,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "cea4858bc503e97db5ac1181c34c50acee9e123e",
+          "message": "Bump Android SDK to 36.",
+          "timestamp": "2026-07-22T08:48:57+02:00",
+          "tree_id": "f1dca68d47ab92aa39b22bfd6bb00e97ed394eff",
+          "url": "https://github.com/divVerent/aaaaxy/commit/cea4858bc503e97db5ac1181c34c50acee9e123e"
+        },
+        "date": 1784703227867,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 226.743754292,
             "unit": "Seconds"
           }
         ]
