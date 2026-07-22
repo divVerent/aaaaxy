@@ -5172,35 +5172,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "afc76cf80ad0d98a5079ecd346d7476907defffb",
-          "message": "Release v1.7.119\n\nChanges since v1.7.89:\n  - Level: In \"Shepard Tone\", more melodies are recognized.\n  - Level: Slightly adjust \"Veni Vidi Vici\".",
-          "timestamp": "2026-07-07T08:20:54+02:00",
-          "tree_id": "1208cccfce50f45b781f9a5fdc74b7807aa58980",
-          "url": "https://github.com/divVerent/aaaaxy/commit/afc76cf80ad0d98a5079ecd346d7476907defffb"
-        },
-        "date": 1783417901524,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 77.601267838,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -7752,9 +7723,7 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7768,22 +7737,24 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "86e811cc37fbc29776b906c30b93de4b8fc7c2aa",
-          "message": "Translate level.pot in la [Manual Sync] (#660)\n\n100% reviewed source file: 'level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T07:32:18+02:00",
-          "tree_id": "b522db088a8337b84e66b58817e16ddbc6aacce0",
-          "url": "https://github.com/divVerent/aaaaxy/commit/86e811cc37fbc29776b906c30b93de4b8fc7c2aa"
+          "id": "a7050750f24005edd9ca085c11b3d68f81049cfd",
+          "message": "Translate assets/locales/level.pot in pt (#717)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-22T08:17:57+02:00",
+          "tree_id": "31faba57eb472552a0282d450dd43c316b1117cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a7050750f24005edd9ca085c11b3d68f81049cfd"
         },
-        "date": 1783402521321,
+        "date": 1784701319260,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.4730163,
+            "name": "Any% linux-amd64",
+            "value": 76.229946085,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10338,38 +10309,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
           },
           "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
           },
-          "distinct": false,
-          "id": "afc76cf80ad0d98a5079ecd346d7476907defffb",
-          "message": "Release v1.7.119\n\nChanges since v1.7.89:\n  - Level: In \"Shepard Tone\", more melodies are recognized.\n  - Level: Slightly adjust \"Veni Vidi Vici\".",
-          "timestamp": "2026-07-07T08:20:54+02:00",
-          "tree_id": "1208cccfce50f45b781f9a5fdc74b7807aa58980",
-          "url": "https://github.com/divVerent/aaaaxy/commit/afc76cf80ad0d98a5079ecd346d7476907defffb"
+          "distinct": true,
+          "id": "a7050750f24005edd9ca085c11b3d68f81049cfd",
+          "message": "Translate assets/locales/level.pot in pt (#717)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-22T08:17:57+02:00",
+          "tree_id": "31faba57eb472552a0282d450dd43c316b1117cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a7050750f24005edd9ca085c11b3d68f81049cfd"
         },
-        "date": 1783417931778,
+        "date": 1784701299242,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.4689302,
+            "name": "Any% windows-amd64",
+            "value": 95.8977401,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12921,6 +12892,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.4802649,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a7050750f24005edd9ca085c11b3d68f81049cfd",
+          "message": "Translate assets/locales/level.pot in pt (#717)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-22T08:17:57+02:00",
+          "tree_id": "31faba57eb472552a0282d450dd43c316b1117cd",
+          "url": "https://github.com/divVerent/aaaaxy/commit/a7050750f24005edd9ca085c11b3d68f81049cfd"
+        },
+        "date": 1784701330948,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 106.1901594,
             "unit": "Seconds"
           }
         ]
