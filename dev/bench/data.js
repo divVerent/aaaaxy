@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784812984565,
+  "lastUpdate": 1784817866432,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "3356ac2f0e6913751c8fbad37964e6ac01edbf8a",
-          "message": "Translate level.pot in uk [Manual Sync] (#662)\n\n100% reviewed source file: 'level.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-07T14:12:20+02:00",
-          "tree_id": "58b1b3f815f3ecd4884f196e4f826c4530dc6c56",
-          "url": "https://github.com/divVerent/aaaaxy/commit/3356ac2f0e6913751c8fbad37964e6ac01edbf8a"
-        },
-        "date": 1783426668179,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 224.668302942,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2577,6 +2548,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 236.23691169,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "cea4858bc503e97db5ac1181c34c50acee9e123e",
+          "message": "Bump Android SDK to 36.",
+          "timestamp": "2026-07-22T06:48:57Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/cea4858bc503e97db5ac1181c34c50acee9e123e"
+        },
+        "date": 1784817859594,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 196.817068757,
             "unit": "Seconds"
           }
         ]
