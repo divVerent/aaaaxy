@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784922940739,
+  "lastUpdate": 1784923254533,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "ed756b67ea6420c0a170798e1fe7fc4b4198c805",
-          "message": "More music jokes.",
-          "timestamp": "2026-07-08T11:10:16+02:00",
-          "tree_id": "f050caf51e3a481c609764f02cb291063918d28c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ed756b67ea6420c0a170798e1fe7fc4b4198c805"
-        },
-        "date": 1783502098365,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 222.817848497,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2576,6 +2547,36 @@ window.BENCHMARK_DATA = {
             "name": "100% linux-amd64",
             "value": 235.432004928,
             "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8e05764b7bffe9e971ecf02ac070b3ffdd016325",
+          "message": "Export github machine data to benchmark results.",
+          "timestamp": "2026-07-24T21:55:57+02:00",
+          "tree_id": "e51216f5f6a013783d768dd1c1a0119bbd6518aa",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8e05764b7bffe9e971ecf02ac070b3ffdd016325"
+        },
+        "date": 1784923248234,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 225.521541639,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
           }
         ]
       }
