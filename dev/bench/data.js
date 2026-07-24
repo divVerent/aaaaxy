@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784922605005,
+  "lastUpdate": 1784922723640,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "c6a53cebde50a7304fcdeaa28996561150e38542",
-          "message": "More cake.",
-          "timestamp": "2026-07-08T07:27:09+02:00",
-          "tree_id": "b7545e175b49a1551e124d6f53cecc8fd324ca9a",
-          "url": "https://github.com/divVerent/aaaaxy/commit/c6a53cebde50a7304fcdeaa28996561150e38542"
-        },
-        "date": 1783488718166,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 234.766618643,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2575,6 +2546,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 244.414473228,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "31731671+amir-rezaei@users.noreply.github.com",
+            "name": "amir-rezaei",
+            "username": "amir-rezaei"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4beecbb4879d6c4271143d60ffdf8d1724fc6580",
+          "message": "docs: fix indefinite article (a LLM -> an LLM) and heading Title Case in CONTRIBUTING.md (#719)\n\nCo-authored-by: ferkans-amir <amir.rezaei@tu-berlin.de>",
+          "timestamp": "2026-07-24T19:46:54Z",
+          "tree_id": "7cf55cc2deb72cb5dbb2e79969797697597f6ca2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4beecbb4879d6c4271143d60ffdf8d1724fc6580"
+        },
+        "date": 1784922718033,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 235.432004928,
             "unit": "Seconds"
           }
         ]
