@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784922723640,
+  "lastUpdate": 1784922940739,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2584,35 +2584,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "0925394b040379f7be3a95a70f527cef3dd1701e",
-          "message": "Translate game.pot in de [Manual Sync] (#655)\n\n100% reviewed source file: 'game.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:21+02:00",
-          "tree_id": "26f52cf22fa626a211af0a896db4256569b7a3a9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/0925394b040379f7be3a95a70f527cef3dd1701e"
-        },
-        "date": 1783333082813,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 77.829726014,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]",
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
@@ -5153,6 +5124,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 76.892203594,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "31731671+amir-rezaei@users.noreply.github.com",
+            "name": "amir-rezaei",
+            "username": "amir-rezaei"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4beecbb4879d6c4271143d60ffdf8d1724fc6580",
+          "message": "docs: fix indefinite article (a LLM -> an LLM) and heading Title Case in CONTRIBUTING.md (#719)\n\nCo-authored-by: ferkans-amir <amir.rezaei@tu-berlin.de>",
+          "timestamp": "2026-07-24T19:46:54Z",
+          "tree_id": "7cf55cc2deb72cb5dbb2e79969797697597f6ca2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4beecbb4879d6c4271143d60ffdf8d1724fc6580"
+        },
+        "date": 1784922934646,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.658194981,
             "unit": "Seconds"
           }
         ]
