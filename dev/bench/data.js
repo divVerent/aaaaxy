@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784903095040,
+  "lastUpdate": 1784922605005,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5162,35 +5162,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "b14be7a182a3de91af5ce2c5fe3fe15fb313ff8e",
-          "message": "Translate assets/locales/level.pot in la (#666)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-08T12:35:40+02:00",
-          "tree_id": "c49a093ac750ddfeeadc3a990e94db055b2d03e9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b14be7a182a3de91af5ce2c5fe3fe15fb313ff8e"
-        },
-        "date": 1783507089573,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 72.136565315,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -7740,38 +7711,38 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "31731671+amir-rezaei@users.noreply.github.com",
+            "name": "amir-rezaei",
+            "username": "amir-rezaei"
           },
           "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
           },
           "distinct": true,
-          "id": "ed756b67ea6420c0a170798e1fe7fc4b4198c805",
-          "message": "More music jokes.",
-          "timestamp": "2026-07-08T11:10:16+02:00",
-          "tree_id": "f050caf51e3a481c609764f02cb291063918d28c",
-          "url": "https://github.com/divVerent/aaaaxy/commit/ed756b67ea6420c0a170798e1fe7fc4b4198c805"
+          "id": "4beecbb4879d6c4271143d60ffdf8d1724fc6580",
+          "message": "docs: fix indefinite article (a LLM -> an LLM) and heading Title Case in CONTRIBUTING.md (#719)\n\nCo-authored-by: ferkans-amir <amir.rezaei@tu-berlin.de>",
+          "timestamp": "2026-07-24T19:46:54Z",
+          "tree_id": "7cf55cc2deb72cb5dbb2e79969797697597f6ca2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4beecbb4879d6c4271143d60ffdf8d1724fc6580"
         },
-        "date": 1783502026541,
+        "date": 1784922598032,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 104.6213325,
+            "name": "Any% linux-amd64",
+            "value": 60.243855561,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10324,15 +10295,13 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "31731671+amir-rezaei@users.noreply.github.com",
+            "name": "amir-rezaei",
+            "username": "amir-rezaei"
           },
           "committer": {
             "email": "noreply@github.com",
@@ -10340,22 +10309,24 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "b14be7a182a3de91af5ce2c5fe3fe15fb313ff8e",
-          "message": "Translate assets/locales/level.pot in la (#666)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-08T12:35:40+02:00",
-          "tree_id": "c49a093ac750ddfeeadc3a990e94db055b2d03e9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b14be7a182a3de91af5ce2c5fe3fe15fb313ff8e"
+          "id": "4beecbb4879d6c4271143d60ffdf8d1724fc6580",
+          "message": "docs: fix indefinite article (a LLM -> an LLM) and heading Title Case in CONTRIBUTING.md (#719)\n\nCo-authored-by: ferkans-amir <amir.rezaei@tu-berlin.de>",
+          "timestamp": "2026-07-24T19:46:54Z",
+          "tree_id": "7cf55cc2deb72cb5dbb2e79969797697597f6ca2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4beecbb4879d6c4271143d60ffdf8d1724fc6580"
         },
-        "date": 1783507142395,
+        "date": 1784922603026,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.2183639,
+            "name": "Any% windows-amd64",
+            "value": 96.6541725,
             "unit": "Seconds"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12905,6 +12876,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 98.9203298,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "31731671+amir-rezaei@users.noreply.github.com",
+            "name": "amir-rezaei",
+            "username": "amir-rezaei"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4beecbb4879d6c4271143d60ffdf8d1724fc6580",
+          "message": "docs: fix indefinite article (a LLM -> an LLM) and heading Title Case in CONTRIBUTING.md (#719)\n\nCo-authored-by: ferkans-amir <amir.rezaei@tu-berlin.de>",
+          "timestamp": "2026-07-24T19:46:54Z",
+          "tree_id": "7cf55cc2deb72cb5dbb2e79969797697597f6ca2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/4beecbb4879d6c4271143d60ffdf8d1724fc6580"
+        },
+        "date": 1784922621803,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.8318214,
             "unit": "Seconds"
           }
         ]
