@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784850328773,
+  "lastUpdate": 1784898987791,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2594,35 +2594,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "b7b89996c2637b7e435d117c23eebf62398db414",
-          "message": "Translate game.pot in uk [Manual Sync] (#656)\n\n100% reviewed source file: 'game.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T11:45:28+02:00",
-          "tree_id": "3deff4c4b80dc9327fe9224551ecbd97673a810b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b7b89996c2637b7e435d117c23eebf62398db414"
-        },
-        "date": 1783333067309,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 76.347963026,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "0925394b040379f7be3a95a70f527cef3dd1701e",
           "message": "Translate game.pot in de [Manual Sync] (#655)\n\n100% reviewed source file: 'game.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-07-06T11:45:21+02:00",
@@ -5155,6 +5126,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 73.929049706,
+            "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "cea4858bc503e97db5ac1181c34c50acee9e123e",
+          "message": "Bump Android SDK to 36.",
+          "timestamp": "2026-07-22T06:48:57Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/cea4858bc503e97db5ac1181c34c50acee9e123e"
+        },
+        "date": 1784898981526,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 76.892203594,
             "unit": "Seconds"
           }
         ]
