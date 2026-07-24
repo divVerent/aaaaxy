@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784923254533,
+  "lastUpdate": 1784923424951,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2585,33 +2585,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]",
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "b7b89996c2637b7e435d117c23eebf62398db414",
-          "message": "Translate game.pot in uk [Manual Sync] (#656)\n\n100% reviewed source file: 'game.pot'\non 'uk'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-06T09:45:28Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b7b89996c2637b7e435d117c23eebf62398db414"
-        },
-        "date": 1783349677358,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.710589447,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -5155,6 +5128,36 @@ window.BENCHMARK_DATA = {
             "name": "Any% linux-amd64-current",
             "value": 75.658194981,
             "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8e05764b7bffe9e971ecf02ac070b3ffdd016325",
+          "message": "Export github machine data to benchmark results.",
+          "timestamp": "2026-07-24T21:55:57+02:00",
+          "tree_id": "e51216f5f6a013783d768dd1c1a0119bbd6518aa",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8e05764b7bffe9e971ecf02ac070b3ffdd016325"
+        },
+        "date": 1784923417784,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 65.64010548,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
           }
         ]
       }
