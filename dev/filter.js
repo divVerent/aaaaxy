@@ -1,13 +1,18 @@
 ((data, filter) => {
-  allFilters = {};
+  allFilters = {
+    '': new Set()
+  };
+
   function keepBench(subentry, bench) {
     cpuType = cpuTypeOf(bench);
     if (!(cpuType in allFilters)) {
       allFilters[cpuType] = new Set();
     }
     allFilters[cpuType].add(subentry.date);
+    allFilters[''].add(subentry.date);
     return filter == '' || cpuType == filter;
   }
+
   function filterEntries(entries) {
     for (const subentries of Object.values(entries)) {
       for (const subentry of subentries) {
@@ -27,15 +32,15 @@
         </tr>
   `;
   for (const [filter, set] of Object.entries(allFilters).toSorted(([aName, aSet], [bName, bSet]) => {
-    if (aSet != bSet) {
-      return bSet.size - aSet.size;
-    }
-    return aName.localeCompare(bName);
-  })) {
+      if (aSet != bSet) {
+        return bSet.size - aSet.size;
+      }
+      return aName.localeCompare(bName);
+    })) {
     const url = `JavaScript:location.hash = '#${escape(filter)}'; location.reload(); false;`;
     html += `
         <tr>
-          <td><a href="${url}">${filter}</a></td>
+          <td><a href="${url}">${filter.length ? filter : '(all)'}</a></td>
           <td>${set.size}</td>
         </tr>
     `;
