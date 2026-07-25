@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784923424951,
+  "lastUpdate": 1784961361336,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5176,35 +5176,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "d2245a7b3b23e5f24815736c3d714b4d7e731394",
-          "message": "Try 9s.",
-          "timestamp": "2026-07-08T18:57:27+02:00",
-          "tree_id": "8e40b340305283c32f9f106daf83c9fca3429b76",
-          "url": "https://github.com/divVerent/aaaaxy/commit/d2245a7b3b23e5f24815736c3d714b4d7e731394"
-        },
-        "date": 1783530024962,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 81.379683302,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "99d85acf6d83de8d7f095c5b2dcd00018e68b4df",
           "message": "If 9s barely works, let's do 10s.",
           "timestamp": "2026-07-08T19:01:22+02:00",
@@ -7744,38 +7715,39 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "distinct": true,
-          "id": "5e0e24a9a284fec44f6119b34980d7b767850f60",
-          "message": "Translate assets/locales/level.pot in de (#665)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-08T12:22:38+02:00",
-          "tree_id": "fe7e48882c59ff65761e643ab86e7048a11b5d12",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5e0e24a9a284fec44f6119b34980d7b767850f60"
+          "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
+          "message": "Fix benchmark info on Windows.",
+          "timestamp": "2026-07-25T08:32:42+02:00",
+          "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
+          "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
         },
-        "date": 1783506472224,
+        "date": 1784961353607,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.6565179,
-            "unit": "Seconds"
+            "name": "Any% linux-amd64",
+            "value": 74.898945493,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10328,38 +10300,39 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "committer": {
-            "email": "divVerent@gmail.com",
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "d2245a7b3b23e5f24815736c3d714b4d7e731394",
-          "message": "Try 9s.",
-          "timestamp": "2026-07-08T18:57:27+02:00",
-          "tree_id": "8e40b340305283c32f9f106daf83c9fca3429b76",
-          "url": "https://github.com/divVerent/aaaaxy/commit/d2245a7b3b23e5f24815736c3d714b4d7e731394"
+          "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
+          "message": "Fix benchmark info on Windows.",
+          "timestamp": "2026-07-25T08:32:42+02:00",
+          "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
+          "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
         },
-        "date": 1783530059176,
+        "date": 1784961357424,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 107.3487225,
-            "unit": "Seconds"
+            "name": "Any% windows-amd64",
+            "value": 96.5442198,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: null\ncpu_cores: null\ncpu_bogomips: null"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12910,6 +12883,36 @@ window.BENCHMARK_DATA = {
             "name": "Any% windows-386",
             "value": 99.8318214,
             "unit": "Seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
+          "message": "Fix benchmark info on Windows.",
+          "timestamp": "2026-07-25T08:32:42+02:00",
+          "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
+          "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
+        },
+        "date": 1784961407909,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.5285939,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: null\ncpu_cores: null\ncpu_bogomips: null"
           }
         ]
       }
