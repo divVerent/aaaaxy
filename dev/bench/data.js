@@ -1,37 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784961361336,
+  "lastUpdate": 1784961473589,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "5e0e24a9a284fec44f6119b34980d7b767850f60",
-          "message": "Translate assets/locales/level.pot in de (#665)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-08T12:22:38+02:00",
-          "tree_id": "fe7e48882c59ff65761e643ab86e7048a11b5d12",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5e0e24a9a284fec44f6119b34980d7b767850f60"
-        },
-        "date": 1783506451364,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 222.528890223,
-            "unit": "Seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2577,6 +2548,36 @@ window.BENCHMARK_DATA = {
             "value": 225.521541639,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
+          "message": "Fix benchmark info on Windows.",
+          "timestamp": "2026-07-25T08:32:42+02:00",
+          "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
+          "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
+        },
+        "date": 1784961467254,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 228.02155509,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
       }
