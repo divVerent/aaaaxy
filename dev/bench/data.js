@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784961614680,
+  "lastUpdate": 1784961730447,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2596,35 +2596,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "552b306b6775a13ce6d9b4d6793cda3afe3c6be3",
-          "message": "Improve sfizz-based script.",
-          "timestamp": "2026-07-06T17:36:26+02:00",
-          "tree_id": "7b292fde66a98a26ab3c8d6f2093fc0b669d95af",
-          "url": "https://github.com/divVerent/aaaaxy/commit/552b306b6775a13ce6d9b4d6793cda3afe3c6be3"
-        },
-        "date": 1783352722265,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.352223521,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "ed17eaa0709bd3044485f9cee4927d82f3b2bfad",
           "message": "Bump Transifex.",
           "timestamp": "2026-07-06T18:34:01+02:00",
@@ -5159,6 +5130,36 @@ window.BENCHMARK_DATA = {
             "value": 65.64010548,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
+          "message": "Fix benchmark info on Windows.",
+          "timestamp": "2026-07-25T08:32:42+02:00",
+          "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
+          "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
+        },
+        "date": 1784961724353,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 76.788003644,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
       }
