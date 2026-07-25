@@ -188,9 +188,9 @@ jobs:
               cpu_bogomips = $($c.MaxClockSpeed)
             } | ConvertTo-Json -Compress
           ')
-          CPU_MODEL=$(echo "$CPU_DATA" | jq -r '.cpu_model')
-          CPU_CORES=$(echo "$CPU_DATA" | jq -r '.cpu_cores')
-          CPU_BOGOMIPS=$(echo "$CPU_DATA" | jq -r '.cpu_bogomips')
+          export CPU_MODEL=$(echo "$CPU_DATA" | jq -r '.cpu_model')
+          export CPU_CORES=$(echo "$CPU_DATA" | jq -r '.cpu_cores')
+          export CPU_BOGOMIPS=$(echo "$CPU_DATA" | jq -r '.cpu_bogomips')
           jq '.[].extra = "azure_vmsize: \(env.AZURE_VMSIZE)\ncpu_model: \(env.CPU_MODEL)\ncpu_cores: \(env.CPU_CORES)\ncpu_bogomips: \(env.CPU_BOGOMIPS)"' benchmark.txt > benchmark.json
       - name: Store benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
@@ -301,9 +301,9 @@ jobs:
               cpu_bogomips = $($c.MaxClockSpeed)
             } | ConvertTo-Json -Compress
           ')
-          CPU_MODEL=$(echo "$CPU_DATA" | jq -r '.cpu_model')
-          CPU_CORES=$(echo "$CPU_DATA" | jq -r '.cpu_cores')
-          CPU_BOGOMIPS=$(echo "$CPU_DATA" | jq -r '.cpu_bogomips')
+          export CPU_MODEL=$(echo "$CPU_DATA" | jq -r '.cpu_model')
+          export CPU_CORES=$(echo "$CPU_DATA" | jq -r '.cpu_cores')
+          export CPU_BOGOMIPS=$(echo "$CPU_DATA" | jq -r '.cpu_bogomips')
           jq '.[].extra = "azure_vmsize: \(env.AZURE_VMSIZE)\ncpu_model: \(env.CPU_MODEL)\ncpu_cores: \(env.CPU_CORES)\ncpu_bogomips: \(env.CPU_BOGOMIPS)"' benchmark.txt > benchmark.json
       - name: Store benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
