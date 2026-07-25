@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784961473589,
+  "lastUpdate": 1784961614680,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5177,35 +5177,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "99d85acf6d83de8d7f095c5b2dcd00018e68b4df",
-          "message": "If 9s barely works, let's do 10s.",
-          "timestamp": "2026-07-08T19:01:22+02:00",
-          "tree_id": "6737b6c5321b67967498377cb91603dc800d7c98",
-          "url": "https://github.com/divVerent/aaaaxy/commit/99d85acf6d83de8d7f095c5b2dcd00018e68b4df"
-        },
-        "date": 1783530227093,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 69.462994087,
-            "unit": "Seconds"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "05646e6444394b7e06d4c3d78c516fc2e6a794d6",
           "message": "Expire all centerprints when an important centerprint spawns.\n\nMakes the easter eggs a lot nicer and no longer with limited time to\nread.",
           "timestamp": "2026-07-08T19:12:23+02:00",
@@ -7746,38 +7717,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "distinct": true,
-          "id": "b14be7a182a3de91af5ce2c5fe3fe15fb313ff8e",
-          "message": "Translate assets/locales/level.pot in la (#666)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'la'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-07-08T12:35:40+02:00",
-          "tree_id": "c49a093ac750ddfeeadc3a990e94db055b2d03e9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b14be7a182a3de91af5ce2c5fe3fe15fb313ff8e"
+          "id": "00a744754f8625107724eef258bcd369bcc4f011",
+          "message": "Forgot to export them.",
+          "timestamp": "2026-07-25T08:37:19+02:00",
+          "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
         },
-        "date": 1783507120131,
+        "date": 1784961609847,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.2411261,
-            "unit": "Seconds"
+            "name": "Any% linux-amd64",
+            "value": 76.189765917,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10331,38 +10303,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: null\ncpu_cores: null\ncpu_bogomips: null"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "committer": {
-            "email": "divVerent@gmail.com",
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "99d85acf6d83de8d7f095c5b2dcd00018e68b4df",
-          "message": "If 9s barely works, let's do 10s.",
-          "timestamp": "2026-07-08T19:01:22+02:00",
-          "tree_id": "6737b6c5321b67967498377cb91603dc800d7c98",
-          "url": "https://github.com/divVerent/aaaaxy/commit/99d85acf6d83de8d7f095c5b2dcd00018e68b4df"
+          "id": "00a744754f8625107724eef258bcd369bcc4f011",
+          "message": "Forgot to export them.",
+          "timestamp": "2026-07-25T08:37:19+02:00",
+          "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
         },
-        "date": 1783530280385,
+        "date": 1784961663645,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 99.7894793,
-            "unit": "Seconds"
+            "name": "Any% windows-amd64",
+            "value": 95.9795467,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12914,6 +12887,36 @@ window.BENCHMARK_DATA = {
             "value": 100.5285939,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: null\ncpu_cores: null\ncpu_bogomips: null"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "00a744754f8625107724eef258bcd369bcc4f011",
+          "message": "Forgot to export them.",
+          "timestamp": "2026-07-25T08:37:19+02:00",
+          "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
+        },
+        "date": 1784961685753,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 108.3737,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
