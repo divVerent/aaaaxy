@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784961989578,
+  "lastUpdate": 1784984108735,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -182,6 +182,34 @@ window.BENCHMARK_DATA = {
             "value": 81.788584526,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "00a744754f8625107724eef258bcd369bcc4f011",
+          "message": "Forgot to export them.",
+          "timestamp": "2026-07-25T06:37:19Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
+        },
+        "date": 1784984104422,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 53.67982327,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 5200.00"
           }
         ]
       }
