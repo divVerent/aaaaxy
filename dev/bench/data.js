@@ -1,254 +1,316 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784961730447,
+  "lastUpdate": 1784961989578,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
-    "100% linux-amd64": [{
-      "commit": {
-        "author": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+    "100% linux-amd64": [
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8e05764b7bffe9e971ecf02ac070b3ffdd016325",
+          "message": "Export github machine data to benchmark results.",
+          "timestamp": "2026-07-24T21:55:57+02:00",
+          "tree_id": "e51216f5f6a013783d768dd1c1a0119bbd6518aa",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8e05764b7bffe9e971ecf02ac070b3ffdd016325"
         },
-        "committer": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
-        },
-        "distinct": true,
-        "id": "8e05764b7bffe9e971ecf02ac070b3ffdd016325",
-        "message": "Export github machine data to benchmark results.",
-        "timestamp": "2026-07-24T21:55:57+02:00",
-        "tree_id": "e51216f5f6a013783d768dd1c1a0119bbd6518aa",
-        "url": "https://github.com/divVerent/aaaaxy/commit/8e05764b7bffe9e971ecf02ac070b3ffdd016325"
+        "date": 1784923248234,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 225.521541639,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
+          }
+        ]
       },
-      "date": 1784923248234,
-      "tool": "customSmallerIsBetter",
-      "benches": [{
-        "name": "100% linux-amd64",
-        "value": 225.521541639,
-        "unit": "Seconds",
-        "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
-      }]
-    }, {
-      "commit": {
-        "author": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
+          "message": "Fix benchmark info on Windows.",
+          "timestamp": "2026-07-25T08:32:42+02:00",
+          "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
+          "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
         },
-        "committer": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
-        },
-        "distinct": true,
-        "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
-        "message": "Fix benchmark info on Windows.",
-        "timestamp": "2026-07-25T08:32:42+02:00",
-        "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
-        "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
+        "date": 1784961467254,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 228.02155509,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
       },
-      "date": 1784961467254,
-      "tool": "customSmallerIsBetter",
-      "benches": [{
-        "name": "100% linux-amd64",
-        "value": 228.02155509,
-        "unit": "Seconds",
-        "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
-      }]
-    }, {
-      "commit": {
-        "author": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "00a744754f8625107724eef258bcd369bcc4f011",
+          "message": "Forgot to export them.",
+          "timestamp": "2026-07-25T08:37:19+02:00",
+          "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
         },
-        "committer": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+        "date": 1784961733928,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 232.072531047,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
+      }
+    ],
+    "Any% linux-amd64-current": [
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8e05764b7bffe9e971ecf02ac070b3ffdd016325",
+          "message": "Export github machine data to benchmark results.",
+          "timestamp": "2026-07-24T21:55:57+02:00",
+          "tree_id": "e51216f5f6a013783d768dd1c1a0119bbd6518aa",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8e05764b7bffe9e971ecf02ac070b3ffdd016325"
         },
-        "distinct": true,
-        "id": "00a744754f8625107724eef258bcd369bcc4f011",
-        "message": "Forgot to export them.",
-        "timestamp": "2026-07-25T08:37:19+02:00",
-        "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
-        "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
+        "date": 1784923417784,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 65.64010548,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
+          }
+        ]
       },
-      "date": 1784961733928,
-      "tool": "customSmallerIsBetter",
-      "benches": [{
-        "name": "100% linux-amd64",
-        "value": 232.072531047,
-        "unit": "Seconds",
-        "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-      }]
-    }],
-    "Any% linux-amd64-current": [{
-      "commit": {
-        "author": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
+          "message": "Fix benchmark info on Windows.",
+          "timestamp": "2026-07-25T08:32:42+02:00",
+          "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
+          "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
         },
-        "committer": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
-        },
-        "distinct": true,
-        "id": "8e05764b7bffe9e971ecf02ac070b3ffdd016325",
-        "message": "Export github machine data to benchmark results.",
-        "timestamp": "2026-07-24T21:55:57+02:00",
-        "tree_id": "e51216f5f6a013783d768dd1c1a0119bbd6518aa",
-        "url": "https://github.com/divVerent/aaaaxy/commit/8e05764b7bffe9e971ecf02ac070b3ffdd016325"
+        "date": 1784961724353,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 76.788003644,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
       },
-      "date": 1784923417784,
-      "tool": "customSmallerIsBetter",
-      "benches": [{
-        "name": "Any% linux-amd64-current",
-        "value": 65.64010548,
-        "unit": "Seconds",
-        "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
-      }]
-    }, {
-      "commit": {
-        "author": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "00a744754f8625107724eef258bcd369bcc4f011",
+          "message": "Forgot to export them.",
+          "timestamp": "2026-07-25T08:37:19+02:00",
+          "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
         },
-        "committer": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+        "date": 1784961984090,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 81.788584526,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
+          }
+        ]
+      }
+    ],
+    "Any% linux-amd64": [
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
+          "message": "Fix benchmark info on Windows.",
+          "timestamp": "2026-07-25T08:32:42+02:00",
+          "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
+          "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
         },
-        "distinct": true,
-        "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
-        "message": "Fix benchmark info on Windows.",
-        "timestamp": "2026-07-25T08:32:42+02:00",
-        "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
-        "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
+        "date": 1784961353607,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 74.898945493,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
       },
-      "date": 1784961724353,
-      "tool": "customSmallerIsBetter",
-      "benches": [{
-        "name": "Any% linux-amd64-current",
-        "value": 76.788003644,
-        "unit": "Seconds",
-        "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-      }]
-    }],
-    "Any% linux-amd64": [{
-      "commit": {
-        "author": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "00a744754f8625107724eef258bcd369bcc4f011",
+          "message": "Forgot to export them.",
+          "timestamp": "2026-07-25T08:37:19+02:00",
+          "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
         },
-        "committer": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+        "date": 1784961609847,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 76.189765917,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
+      }
+    ],
+    "Any% windows-amd64": [
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "00a744754f8625107724eef258bcd369bcc4f011",
+          "message": "Forgot to export them.",
+          "timestamp": "2026-07-25T08:37:19+02:00",
+          "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
         },
-        "distinct": true,
-        "id": "53bfc569d16c6e00b4e593907d06b7748fbe7976",
-        "message": "Fix benchmark info on Windows.",
-        "timestamp": "2026-07-25T08:32:42+02:00",
-        "tree_id": "9796359e14b4603659dcc8c304ff53e625d05147",
-        "url": "https://github.com/divVerent/aaaaxy/commit/53bfc569d16c6e00b4e593907d06b7748fbe7976"
-      },
-      "date": 1784961353607,
-      "tool": "customSmallerIsBetter",
-      "benches": [{
-        "name": "Any% linux-amd64",
-        "value": 74.898945493,
-        "unit": "Seconds",
-        "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
-      }]
-    }, {
-      "commit": {
-        "author": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
+        "date": 1784961663645,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 95.9795467,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      }
+    ],
+    "Any% windows-386": [
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "00a744754f8625107724eef258bcd369bcc4f011",
+          "message": "Forgot to export them.",
+          "timestamp": "2026-07-25T08:37:19+02:00",
+          "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
+          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
         },
-        "committer": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
-        },
-        "distinct": true,
-        "id": "00a744754f8625107724eef258bcd369bcc4f011",
-        "message": "Forgot to export them.",
-        "timestamp": "2026-07-25T08:37:19+02:00",
-        "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
-        "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
-      },
-      "date": 1784961609847,
-      "tool": "customSmallerIsBetter",
-      "benches": [{
-        "name": "Any% linux-amd64",
-        "value": 76.189765917,
-        "unit": "Seconds",
-        "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-      }]
-    }],
-    "Any% windows-amd64": [{
-      "commit": {
-        "author": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
-        },
-        "committer": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
-        },
-        "distinct": true,
-        "id": "00a744754f8625107724eef258bcd369bcc4f011",
-        "message": "Forgot to export them.",
-        "timestamp": "2026-07-25T08:37:19+02:00",
-        "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
-        "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
-      },
-      "date": 1784961663645,
-      "tool": "customSmallerIsBetter",
-      "benches": [{
-        "name": "Any% windows-amd64",
-        "value": 95.9795467,
-        "unit": "Seconds",
-        "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
-      }]
-    }],
-    "Any% windows-386": [{
-      "commit": {
-        "author": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
-        },
-        "committer": {
-          "email": "rpolzer@google.com",
-          "name": "Rudolf Polzer",
-          "username": "divVerent"
-        },
-        "distinct": true,
-        "id": "00a744754f8625107724eef258bcd369bcc4f011",
-        "message": "Forgot to export them.",
-        "timestamp": "2026-07-25T08:37:19+02:00",
-        "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
-        "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
-      },
-      "date": 1784961685753,
-      "tool": "customSmallerIsBetter",
-      "benches": [{
-        "name": "Any% windows-386",
-        "value": 108.3737,
-        "unit": "Seconds",
-        "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
-      }]
-    }]
+        "date": 1784961685753,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 108.3737,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
+      }
+    ]
   }
 }
