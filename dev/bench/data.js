@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785089795636,
+  "lastUpdate": 1785109662015,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -476,6 +476,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
+          "message": "Add an OpenSCAD file, for fun and 3D printing.",
+          "timestamp": "2026-07-26T18:07:51Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+        },
+        "date": 1785109657195,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 74.085576933,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -566,6 +594,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
+          "message": "Add an OpenSCAD file, for fun and 3D printing.",
+          "timestamp": "2026-07-26T18:07:51Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+        },
+        "date": 1785109690103,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.3123646,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -652,6 +708,34 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 102.800738,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
+          "message": "Add an OpenSCAD file, for fun and 3D printing.",
+          "timestamp": "2026-07-26T18:07:51Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+        },
+        "date": 1785109712224,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.6658595,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
