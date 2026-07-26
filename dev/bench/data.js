@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785075151933,
+  "lastUpdate": 1785089457663,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -386,6 +386,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
+          "message": "Add an OpenSCAD file, for fun and 3D printing.",
+          "timestamp": "2026-07-26T20:07:51+02:00",
+          "tree_id": "4d9cccef647b8add084fdb4762f97820bc593dbf",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+        },
+        "date": 1785089452911,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 82.09937239,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -446,6 +476,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
+          "message": "Add an OpenSCAD file, for fun and 3D printing.",
+          "timestamp": "2026-07-26T20:07:51+02:00",
+          "tree_id": "4d9cccef647b8add084fdb4762f97820bc593dbf",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+        },
+        "date": 1785089479869,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 95.937084,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -504,6 +564,36 @@ window.BENCHMARK_DATA = {
             "value": 99.1031954,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 2600"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
+          "message": "Add an OpenSCAD file, for fun and 3D printing.",
+          "timestamp": "2026-07-26T20:07:51+02:00",
+          "tree_id": "4d9cccef647b8add084fdb4762f97820bc593dbf",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+        },
+        "date": 1785089485697,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.800738,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
       }
