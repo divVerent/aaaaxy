@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785166031731,
+  "lastUpdate": 1785196271259,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -560,6 +560,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
+          "message": "Add an OpenSCAD file, for fun and 3D printing.",
+          "timestamp": "2026-07-26T18:07:51Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+        },
+        "date": 1785196265845,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 75.703472948,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -678,6 +706,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
+          "message": "Add an OpenSCAD file, for fun and 3D printing.",
+          "timestamp": "2026-07-26T18:07:51Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+        },
+        "date": 1785196310150,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.8097161,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -794,6 +850,34 @@ window.BENCHMARK_DATA = {
             "value": 99.6658595,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
+          "message": "Add an OpenSCAD file, for fun and 3D printing.",
+          "timestamp": "2026-07-26T18:07:51Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+        },
+        "date": 1785196305519,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.8710657,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
