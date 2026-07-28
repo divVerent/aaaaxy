@@ -206,7 +206,7 @@ func (p *Player) GiveAbility(name, text string) {
 
 func (p *Player) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	p.Physics.StepHeight = StepHeight
-	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch)
+	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch, true)
 	p.World = w
 	p.Entity = e
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}

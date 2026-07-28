@@ -65,12 +65,14 @@ func (t *trivialPhysics) Update() {
 
 var _ interfaces.Physics = &trivialPhysics{}
 
-func (p *Physics) Init(w *engine.World, e *engine.Entity, contents level.Contents, handleTouch func(trace engine.TraceResult)) {
+func (p *Physics) Init(w *engine.World, e *engine.Entity, contents level.Contents, handleTouch func(trace engine.TraceResult), hasGravity bool) {
 	p.World = w
 	p.Entity = e
 	p.Contents = contents
 	p.handleTouchFunc = handleTouch
-	p.OnGroundVec = m.Delta{DX: 0, DY: 1}
+	if hasGravity {
+		p.OnGroundVec = m.Delta{DX: 0, DY: 1}
+	}
 
 	// We're tracing, so we need our tiles to be loaded.
 	p.Entity.RequireTiles = true

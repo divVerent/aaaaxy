@@ -29,7 +29,7 @@ type Moving struct {
 }
 
 func (v *Moving) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Entity, contents level.Contents, handleTouch func(engine.TraceResult)) error {
-	v.Physics.Init(w, e, contents, handleTouch)
+	v.Physics.Init(w, e, contents, handleTouch, false)
 	var parseErr error
 	vel := propmap.ValueOrP(sp.Properties, "velocity", m.Delta{}, &parseErr)
 	v.Physics.Velocity = e.Transform.Inverse().Apply(
