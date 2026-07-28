@@ -34,8 +34,9 @@ msgid "%s: %s"
 msgstr ""
 
 #. -show_pos overlay (showing xy coordinates of player position and speed).
-#: aaaaxy/game.go aaaaxy/game.go
-msgid "(%.5f %.5f) (%.4f %.4f)"
+#. Each number in the form sign, wholes, decimal dot, 5 decimals.
+#: aaaaxy/game.go
+msgid "(%s%d.%05d %s%d.%05d) (%s%d.%05d %s%d.%05d)"
 msgstr ""
 
 #. Other separator when building a list. Usually is a comma and a space.
