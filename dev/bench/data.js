@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785265294203,
+  "lastUpdate": 1785282439552,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -824,6 +824,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.27"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "f74f578486d9e91e42cb7b9a858d4fd0743f3925",
+          "message": "Only 4 decimals for velocity.",
+          "timestamp": "2026-07-28T18:56:06Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f74f578486d9e91e42cb7b9a858d4fd0743f3925"
+        },
+        "date": 1785282433209,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 75.164604813,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -1060,6 +1088,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2793"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "f74f578486d9e91e42cb7b9a858d4fd0743f3925",
+          "message": "Only 4 decimals for velocity.",
+          "timestamp": "2026-07-28T18:56:06Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f74f578486d9e91e42cb7b9a858d4fd0743f3925"
+        },
+        "date": 1785282459928,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.5949778,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -1292,6 +1348,34 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.8600007,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "f74f578486d9e91e42cb7b9a858d4fd0743f3925",
+          "message": "Only 4 decimals for velocity.",
+          "timestamp": "2026-07-28T18:56:06Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f74f578486d9e91e42cb7b9a858d4fd0743f3925"
+        },
+        "date": 1785282487374,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.656372,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
