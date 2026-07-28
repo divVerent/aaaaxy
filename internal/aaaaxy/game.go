@@ -496,13 +496,37 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	}
 	if *showPos {
 		timing.Section("pos")
-		xi, yi, vxi, vyi := g.Menu.World.Player.Impl.(engine.PlayerEntityImpl).DebugPos64()
-		x := float64(xi) / constants.SubPixelScale
-		y := float64(yi) / constants.SubPixelScale
-		vx := float64(vxi) / constants.SubPixelScale * engine.GameTPS
-		vy := float64(vyi) / constants.SubPixelScale * engine.GameTPS
+		x, sx, y, sy, vx, vy := g.Menu.World.Player.Impl.(engine.PlayerEntityImpl).DebugPos()
+		subPixelToDecimals := func(s int) int {
+			return (s*200000 + constants.SubPixelScale) / (2 * constants.SubPixelScale)
+		}
+		fixSubPixel := func(x, sx int) (string, int, int) {
+			sign := ""
+			if x < 0 {
+				sign = "-"
+				x = -x
+				if sx > 0 {
+					x--
+					sx = constants.SubPixelScale - sx
+				}
+			}
+			return sign, x, subPixelToDecimals(sx)
+		}
+		sgnx, x, sx := fixSubPixel(x, sx)
+		sgny, x, sy := fixSubPixel(y, sy)
+		fixVelocity := func(v int) (string, int, int) {
+			sign := ""
+			if v < 0 {
+				sign = "-"
+				v = -v
+			}
+			v *= engine.GameTPS // Now v is subpixels/sec.
+			return sign, v / constants.SubPixelScale, subPixelToDecimals(v % constants.SubPixelScale)
+		}
+		sgnvx, vx, svx := fixVelocity(vx)
+		sgnvy, vy, svy := fixVelocity(vy)
 		font.ByName["Small"].Draw(drawDest,
-			locale.G.Get("(%.5f %.5f) (%.4f %.4f)", x, y, vx, vy),
+			locale.G.Get("(%s%d.%05d %s%d.%05d) (%s%d.%05d %s%d.%05d)", sgnx, x, sx, sgny, y, sy, sgnvx, vx, svx, sgnvy, vy, svy),
 			m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}

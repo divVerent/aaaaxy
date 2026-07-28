@@ -572,11 +572,11 @@ func (p *Player) SetGoal(goal *engine.Entity) {
 	p.Goal = goal
 }
 
-func (p *Player) DebugPos64() (x int64, y int64, vx int64, vy int64) {
-	return int64(p.Entity.Rect.Origin.X)*constants.SubPixelScale + int64(p.Physics.SubPixel.DX),
-		int64(p.Entity.Rect.Origin.Y)*constants.SubPixelScale + int64(p.Physics.SubPixel.DY),
-		int64(p.Velocity.DX),
-		int64(p.Velocity.DY)
+func (p *Player) DebugPos() (x, sx, y, sy, vx, vy int) {
+	return p.Entity.Rect.Origin.X, p.Physics.SubPixel.DX,
+		p.Entity.Rect.Origin.Y, p.Physics.SubPixel.DY,
+		p.Velocity.DX,
+		p.Velocity.DY
 }
 
 func init() {
