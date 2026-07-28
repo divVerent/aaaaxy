@@ -75,15 +75,30 @@ func (p *Physics) Init(w *engine.World, e *engine.Entity, contents level.Content
 	// We're tracing, so we need our tiles to be loaded.
 	p.Entity.RequireTiles = true
 
-	// Set initial subpixel to be in the center of the start pixel.
-	p.SubPixel = m.Delta{DX: constants.SubPixelScale / 2, DY: constants.SubPixelScale / 2}
+	p.Reset()
 }
 
 func (p *Physics) Reset() {
-	p.OnGround = true
-	p.GroundEntity = nil
 	p.Velocity = m.Delta{}
-	p.SubPixel = m.Delta{DX: constants.SubPixelScale / 2, DY: constants.SubPixelScale / 2}
+	p.GroundEntity = nil
+
+	// Set initial subpixel to be in the center of the start pixel.
+	// This is actually the invariant for OnGround.
+	p.OnGround = true
+	if p.OnGroundVec.DX > 0 {
+		p.SubPixel.DX = constants.SubPixelScale - 1
+	} else if p.OnGroundVec.DX < 0 {
+		p.SubPixel.DX = 0
+	} else {
+		p.SubPixel.DX = constants.SubPixelScale / 2
+	}
+	if p.OnGroundVec.DY > 0 {
+		p.SubPixel.DY = constants.SubPixelScale - 1
+	} else if p.OnGroundVec.DY < 0 {
+		p.SubPixel.DY = 0
+	} else {
+		p.SubPixel.DY = constants.SubPixelScale / 2
+	}
 }
 
 func (p *Physics) traceMove(contents level.Contents, move m.Delta) engine.TraceResult {
