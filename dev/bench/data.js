@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785264950426,
+  "lastUpdate": 1785265052063,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -262,6 +262,36 @@ window.BENCHMARK_DATA = {
             "value": 235.393381301,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c8f6a2fa8299b180c9edec0ac745526a55f41028",
+          "message": "Update localization for `-show_pos`.\n\nFixes #673.",
+          "timestamp": "2026-07-28T20:52:20+02:00",
+          "tree_id": "33e111263de2d6fd4f517b269c2eda92a0316eba",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c8f6a2fa8299b180c9edec0ac745526a55f41028"
+        },
+        "date": 1785265045922,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 222.722574031,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
       }
