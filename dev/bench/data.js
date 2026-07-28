@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785250976325,
+  "lastUpdate": 1785264591835,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -644,6 +644,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "1f9ba1f0632af7bc2421636bf6aa3377a8dff1b6",
+          "message": "`-show_pos`: make decimal point localizable.\n\nAs a side effect, this also gets rid of the floating point math in\nthere.",
+          "timestamp": "2026-07-28T20:47:06+02:00",
+          "tree_id": "0b89d87c60c7859b079582eecd3bc0be161f87d1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1f9ba1f0632af7bc2421636bf6aa3377a8dff1b6"
+        },
+        "date": 1785264586042,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 56.534778419,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.27"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -790,6 +820,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "1f9ba1f0632af7bc2421636bf6aa3377a8dff1b6",
+          "message": "`-show_pos`: make decimal point localizable.\n\nAs a side effect, this also gets rid of the floating point math in\nthere.",
+          "timestamp": "2026-07-28T20:47:06+02:00",
+          "tree_id": "0b89d87c60c7859b079582eecd3bc0be161f87d1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1f9ba1f0632af7bc2421636bf6aa3377a8dff1b6"
+        },
+        "date": 1785264678745,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.6680547,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -934,6 +994,36 @@ window.BENCHMARK_DATA = {
             "value": 100.8710657,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "1f9ba1f0632af7bc2421636bf6aa3377a8dff1b6",
+          "message": "`-show_pos`: make decimal point localizable.\n\nAs a side effect, this also gets rid of the floating point math in\nthere.",
+          "timestamp": "2026-07-28T20:47:06+02:00",
+          "tree_id": "0b89d87c60c7859b079582eecd3bc0be161f87d1",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1f9ba1f0632af7bc2421636bf6aa3377a8dff1b6"
+        },
+        "date": 1785264681487,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.8227058,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
       }
