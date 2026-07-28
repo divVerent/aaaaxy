@@ -497,8 +497,8 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	if *showPos {
 		timing.Section("pos")
 		x, sx, y, sy, vx, vy := g.Menu.World.Player.Impl.(engine.PlayerEntityImpl).DebugPos()
-		subPixelToDecimals := func(s int) int {
-			return (s*200000 + constants.SubPixelScale) / (2 * constants.SubPixelScale)
+		subPixelToDecimals := func(s int, scale int) int {
+			return (s*2*scale + constants.SubPixelScale) / (2 * constants.SubPixelScale)
 		}
 		fixSubPixel := func(x, sx int) (string, int, int) {
 			sign := ""
@@ -510,7 +510,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 					sx = constants.SubPixelScale - sx
 				}
 			}
-			return sign, x, subPixelToDecimals(sx)
+			return sign, x, subPixelToDecimals(sx, 100000)
 		}
 		sgnx, x, sx := fixSubPixel(x, sx)
 		sgny, x, sy := fixSubPixel(y, sy)
@@ -521,12 +521,12 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 				v = -v
 			}
 			v *= engine.GameTPS // Now v is subpixels/sec.
-			return sign, v / constants.SubPixelScale, subPixelToDecimals(v % constants.SubPixelScale)
+			return sign, v / constants.SubPixelScale, subPixelToDecimals(v%constants.SubPixelScale, 10000)
 		}
 		sgnvx, vx, svx := fixVelocity(vx)
 		sgnvy, vy, svy := fixVelocity(vy)
 		font.ByName["Small"].Draw(drawDest,
-			locale.G.Get("(%s%d.%05d %s%d.%05d) (%s%d.%05d %s%d.%05d)", sgnx, x, sx, sgny, y, sy, sgnvx, vx, svx, sgnvy, vy, svy),
+			locale.G.Get("(%s%d.%05d %s%d.%05d) (%s%d.%04d %s%d.%04d)", sgnx, x, sx, sgny, y, sy, sgnvx, vx, svx, sgnvy, vy, svy),
 			m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}
