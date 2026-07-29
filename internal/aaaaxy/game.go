@@ -513,7 +513,7 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 			return sign, x, subPixelToDecimals(sx, 100000)
 		}
 		sgnx, x, sx := fixSubPixel(x, sx)
-		sgny, x, sy := fixSubPixel(y, sy)
+		sgny, y, sy := fixSubPixel(y, sy)
 		fixVelocity := func(v int) (string, int, int) {
 			sign := ""
 			if v < 0 {
