@@ -1,5 +1,7 @@
 $fn = 72;
 
+factor = 2;
+
 player_offset = 2;
 player_height = 22;
 player_width = 10;
@@ -126,4 +128,5 @@ module player() {
 }
 
 translate([0, 0, 0])
+scale(factor)
 player();
