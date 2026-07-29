@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785332129473,
+  "lastUpdate": 1785336312317,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -382,6 +382,34 @@ window.BENCHMARK_DATA = {
             "value": 223.599007811,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "divVerent",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "3161863cb097db41da9c1827e4c786e3db48d1cb",
+          "message": "Fix physics bug: initial Y coordinate of player is half a pixel too high. (#721)\n\n* Fix initial Y coordinate of objects.\n\nThey spawn with onground=true, which makes sense.\n\nHowever, onground=true usually implies that the object is at the very\nedge of pixel, not its center.\n\nThus, make it so.\n\nFixes #720.\n\n* Update the benchmark demo.\n\n* Only apply the subpixel spawning logic to objects that respond to gravity (only the player).\n\nReduces diffs.\n\n* Update 100% demos.",
+          "timestamp": "2026-07-29T05:35:04Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/3161863cb097db41da9c1827e4c786e3db48d1cb"
+        },
+        "date": 1785336307364,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 235.10483994,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
           }
         ]
       }
