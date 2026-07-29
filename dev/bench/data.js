@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785282439552,
+  "lastUpdate": 1785302597159,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -852,6 +852,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "652be56e4f59421a1a25a2db7a28b27e7f41f263",
+          "message": "Fix Y in subpixel display.",
+          "timestamp": "2026-07-29T07:19:59+02:00",
+          "tree_id": "e04a85dc992ffe0844130436448e05e474c1d12a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/652be56e4f59421a1a25a2db7a28b27e7f41f263"
+        },
+        "date": 1785302590612,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 75.029047662,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -1116,6 +1146,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "652be56e4f59421a1a25a2db7a28b27e7f41f263",
+          "message": "Fix Y in subpixel display.",
+          "timestamp": "2026-07-29T07:19:59+02:00",
+          "tree_id": "e04a85dc992ffe0844130436448e05e474c1d12a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/652be56e4f59421a1a25a2db7a28b27e7f41f263"
+        },
+        "date": 1785302640572,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 95.5490162,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -1376,6 +1436,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.656372,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "652be56e4f59421a1a25a2db7a28b27e7f41f263",
+          "message": "Fix Y in subpixel display.",
+          "timestamp": "2026-07-29T07:19:59+02:00",
+          "tree_id": "e04a85dc992ffe0844130436448e05e474c1d12a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/652be56e4f59421a1a25a2db7a28b27e7f41f263"
+        },
+        "date": 1785302662617,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 115.2775172,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
