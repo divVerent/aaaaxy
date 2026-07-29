@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785353742870,
+  "lastUpdate": 1785368921567,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1178,6 +1178,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "17f843e4e32a6b12c57c4b78d862df59d9138ab3",
+          "message": "Give the 3D model a scale factor.\n\nDefault is 1px = 2mm, so 6cm total height.",
+          "timestamp": "2026-07-29T19:04:04Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/17f843e4e32a6b12c57c4b78d862df59d9138ab3"
+        },
+        "date": 1785368916875,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 75.219843091,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.27"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -1532,6 +1560,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "17f843e4e32a6b12c57c4b78d862df59d9138ab3",
+          "message": "Give the 3D model a scale factor.\n\nDefault is 1px = 2mm, so 6cm total height.",
+          "timestamp": "2026-07-29T19:04:04Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/17f843e4e32a6b12c57c4b78d862df59d9138ab3"
+        },
+        "date": 1785368965833,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 98.5568012,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2794"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -1882,6 +1938,34 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.0165532,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "17f843e4e32a6b12c57c4b78d862df59d9138ab3",
+          "message": "Give the 3D model a scale factor.\n\nDefault is 1px = 2mm, so 6cm total height.",
+          "timestamp": "2026-07-29T19:04:04Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/17f843e4e32a6b12c57c4b78d862df59d9138ab3"
+        },
+        "date": 1785368961958,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.9341596,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
