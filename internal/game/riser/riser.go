@@ -117,7 +117,7 @@ const (
 )
 
 func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
-	r.Physics.Init(w, e, level.ObjectSolidContents, r.handleTouch)
+	r.Physics.Init(w, e, level.ObjectSolidContents, r.handleTouch, false)
 
 	r.World = w
 	r.Entity = e
@@ -158,7 +158,9 @@ func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 
 	var parseErr error
 	if propmap.ValueOrP(sp.Properties, "flipped", false, &parseErr) {
-		r.OnGroundVec = r.OnGroundVec.Mul(-1)
+		r.OnGroundVec = m.Delta{DX: 0, DY: -1}
+	} else {
+		r.OnGroundVec = m.Delta{DX: 0, DY: 1}
 	}
 
 	err := r.Anim.Init(sprite, map[string]*animation.Group{

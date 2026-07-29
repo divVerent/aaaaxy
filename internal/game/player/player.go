@@ -206,7 +206,7 @@ func (p *Player) GiveAbility(name, text string) {
 
 func (p *Player) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	p.Physics.StepHeight = StepHeight
-	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch)
+	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch, true)
 	p.World = w
 	p.Entity = e
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
@@ -523,12 +523,13 @@ func (p *Player) LookDirectionY() int {
 
 // Respawned informs the player that the world moved/respawned it.
 func (p *Player) Respawned() {
-	p.Physics.Reset()                      // Stop moving.
+	p.OnGroundVec = m.Delta{DX: 0, DY: 1} // Gravity points down.
+	p.Physics.Reset()                     // Stop moving.
+
 	p.LastGroundPos = p.Entity.Rect.Origin // Center the camera.
 	p.CoyoteFrames = ExtraGroundFrames     // Assume on ground.
 	p.Jumping = true                       // Jump key must be hit again.
 	p.VVVVVV = false                       // Normal physics.
-	p.OnGroundVec = m.Delta{DX: 0, DY: 1}  // Gravity points down.
 	p.JumpingUp = false                    // Do not assume we're in the first half of a jump (fastfall).
 	p.Respawning = true                    // Block the respawn key until released.
 	p.Anim.ForceGroup("idle")              // Reset animation.
