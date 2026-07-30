@@ -57,6 +57,9 @@ func (o *OneWay) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 		return fmt.Errorf("could not initialize oneway animation: %w", err)
 	}
 
+	// Set the solid state of one-ways right on spawn.
+	o.Update()
+
 	return nil
 }
 
