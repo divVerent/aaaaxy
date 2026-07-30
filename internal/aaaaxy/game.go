@@ -22,6 +22,7 @@ import (
 	"math"
 	"runtime/debug"
 	"runtime/pprof"
+	"sync"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -107,7 +108,7 @@ type Game struct {
 
 	offscreenTokens     chan int
 	offscreenReturns    chan *ebiten.Image
-	offscreenIndexes    map[*ebiten.Image]int
+	offscreenIndexes    sync.Map // map[*ebiten.Image]int
 	borderstretchShader *ebiten.Shader
 	linear2xShader      *ebiten.Shader
 	linear2xCRTShader   *ebiten.Shader
@@ -132,9 +133,7 @@ type Game struct {
 var _ ebiten.Game = &Game{}
 
 func NewGame() *Game {
-	return &Game{
-		offscreenIndexes: map[*ebiten.Image]int{},
-	}
+	return &Game{}
 }
 
 func (g *Game) updateFrame() error {
@@ -179,6 +178,17 @@ func (g *Game) updateFrame() error {
 }
 
 func (g *Game) Update() error {
+	err := g.update()
+	if err != nil {
+		errbe := g.BeforeExit()
+		if errbe != nil {
+			log.Fatalf("BeforeExit exited abnormally: %v while exiting due to: %v", errbe, err)
+		}
+	}
+	return err
+}
+
+func (g *Game) update() error {
 	if !g.canUpdate {
 		return nil
 	}
@@ -486,13 +496,37 @@ func (g *Game) drawAtGameSizeThenReturnTo(maybeScreen *ebiten.Image, to chan *eb
 	}
 	if *showPos {
 		timing.Section("pos")
-		xi, yi, vxi, vyi := g.Menu.World.Player.Impl.(engine.PlayerEntityImpl).DebugPos64()
-		x := float64(xi) / constants.SubPixelScale
-		y := float64(yi) / constants.SubPixelScale
-		vx := float64(vxi) / constants.SubPixelScale * engine.GameTPS
-		vy := float64(vyi) / constants.SubPixelScale * engine.GameTPS
+		x, sx, y, sy, vx, vy := g.Menu.World.Player.Impl.(engine.PlayerEntityImpl).DebugPos()
+		subPixelToDecimals := func(s int, scale int) int {
+			return (s*2*scale + constants.SubPixelScale) / (2 * constants.SubPixelScale)
+		}
+		fixSubPixel := func(x, sx int) (string, int, int) {
+			sign := ""
+			if x < 0 {
+				sign = "-"
+				x = -x
+				if sx > 0 {
+					x--
+					sx = constants.SubPixelScale - sx
+				}
+			}
+			return sign, x, subPixelToDecimals(sx, 100000)
+		}
+		sgnx, x, sx := fixSubPixel(x, sx)
+		sgny, y, sy := fixSubPixel(y, sy)
+		fixVelocity := func(v int) (string, int, int) {
+			sign := ""
+			if v < 0 {
+				sign = "-"
+				v = -v
+			}
+			v *= engine.GameTPS // Now v is subpixels/sec.
+			return sign, v / constants.SubPixelScale, subPixelToDecimals(v%constants.SubPixelScale, 10000)
+		}
+		sgnvx, vx, svx := fixVelocity(vx)
+		sgnvy, vy, svy := fixVelocity(vy)
 		font.ByName["Small"].Draw(drawDest,
-			locale.G.Get("(%.5f %.5f) (%.4f %.4f)", x, y, vx, vy),
+			locale.G.Get("(%s%d.%05d %s%d.%05d) (%s%d.%04d %s%d.%04d)", sgnx, x, sx, sgny, y, sy, sgnvx, vx, svx, sgnvy, vy, svy),
 			m.Pos{X: 0, Y: engine.GameHeight - 4}, font.Left,
 			palette.EGA(palette.White, 255), palette.EGA(palette.Black, 255))
 	}
@@ -533,7 +567,7 @@ func (g *Game) maybeAcquireOffscreen(screen *ebiten.Image) *ebiten.Image {
 	}
 	i := <-g.offscreenTokens
 	offscreen := offscreen.NewExplicit(fmt.Sprintf("Offscreen.%d", i), engine.GameWidth, engine.GameHeight)
-	g.offscreenIndexes[offscreen] = i
+	g.offscreenIndexes.Store(offscreen, i)
 	return offscreen
 }
 
@@ -549,6 +583,13 @@ func (g *Game) drawOffscreen(tmp *ebiten.Image) *ebiten.Image {
 			g.offscreenTokens <- i
 		}
 		g.offscreenReturns = make(chan *ebiten.Image, n)
+		go func() {
+			for off := range g.offscreenReturns {
+				offscreen.Dispose(off)
+				i, _ := g.offscreenIndexes.LoadAndDelete(off)
+				g.offscreenTokens <- i.(int)
+			}
+		}()
 	}
 	offscreen := g.drawAtGameSizeThenReturnTo(nil, g.offscreenReturns, tmp)
 	// Note: following code of the draw code may still use the image, but that's OK as long as drawOffscreen() isn't called again.
@@ -601,17 +642,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 	screen = ensureRect(screen, image.Rect(0, 0, engine.GameWidth, engine.GameHeight))
 
-DoneDisposing:
-	for {
-		select {
-		case off := <-g.offscreenReturns:
-			offscreen.Dispose(off)
-			g.offscreenTokens <- g.offscreenIndexes[off]
-			delete(g.offscreenIndexes, off)
-		default:
-			break DoneDisposing
-		}
-	}
 	offscreen.Collect()
 
 	if !*debugEnableDrawing {

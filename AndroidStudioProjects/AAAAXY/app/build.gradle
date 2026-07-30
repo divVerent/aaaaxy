@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace 'io.github.divverent.aaaaxy'
-    compileSdk 35
+    compileSdk 36
     ndkVersion "27.0.12077973"
 
     defaultConfig {
         applicationId 'io.github.divverent.aaaaxy'
         // minSdk 21  // What actually is required.
         minSdk 23  // For now, restrict to newer devices.
-        targetSdk 35  // Play Store requirement.
+        targetSdk 36  // Play Store requirement.
         def rootDir = new File("${project.rootDir}/../..")
         def prefix =
           (aaaaxy_build_use_version_file == 'true' ? 'env AAAAXY_BUILD_USE_VERSION_FILE=true ' : '') +
@@ -19,7 +19,7 @@ android {
         versionCode "${prefix}scripts/version.sh android".execute(null, rootDir).text.trim().toInteger()
         versionName "${prefix}scripts/version.sh semver".execute(null, rootDir).text.trim()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        resourceConfigurations += ['en', 'de', 'de-rCH', 'la', 'pt', 'pt-rBR', 'be', 'b+be+Latn', 'uk', 'ar', 'ar-rEG', 'ja', 'b+zh+Hans', 'b+zh+Hant']
+        resourceConfigurations += ['en', 'de', 'de-rCH', 'la', 'pt', 'pt-rBR', 'fi', 'be', 'b+be+Latn', 'uk', 'ar', 'ar-rEG', 'ja', 'b+zh+Hans', 'b+zh+Hant']
     }
     signingConfigs {
         release {

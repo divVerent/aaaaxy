@@ -16,9 +16,7 @@ package ending
 
 import (
 	"github.com/divVerent/aaaaxy/internal/engine"
-	"github.com/divVerent/aaaaxy/internal/fun"
 	"github.com/divVerent/aaaaxy/internal/level"
-	"github.com/divVerent/aaaaxy/internal/log"
 )
 
 // CreditsTarget shows the credits.
@@ -45,14 +43,6 @@ func (c *CreditsTarget) SetState(originator, predecessor *engine.Entity, state b
 		return
 	}
 	c.World.ForceCredits = true
-	c.World.PlayerState.SetWon()
-	err := c.World.Save()
-	if err != nil {
-		log.Errorf("could not save game: %v", err)
-	}
-
-	log.Infof("%v", fun.FormatText(&c.World.PlayerState,
-		"your time: {{GameTime}}; your speedrun categories: {{SpeedrunCategories}}; try next: {{SpeedrunTryNext}}."))
 }
 
 func (c *CreditsTarget) Touch(other *engine.Entity) {}

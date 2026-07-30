@@ -98,6 +98,11 @@ mod-update:
 	$(GO) get toolchain@go$(patsubst %.0,%,$(shell $(GO) list -m -f '{{.GoVersion}}'))
 	$(GO) get -u
 	$(MAKE) mod-tidy
+	$(MAKE) licenses-update
+
+.PHONY: licenses-update
+licenses-update:
+	sh scripts/build-licenses.sh
 
 .PHONY: assets-update
 assets-update:

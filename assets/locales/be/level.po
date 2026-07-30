@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-22 11:35+0100\n"
+"POT-Creation-Date: 2026-07-18 20:55+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Denis Kočkarov, 2025\n"
 "Language-Team: Belarusian (https://app.transifex.com/aaaaxy/teams/158611/be/)\n"
@@ -77,8 +77,9 @@ msgstr "Бывае, што ты проста ходзіш кругамі."
 msgid "Some people prefer 2τ over 4π."
 msgstr "Некаторыя аддаюць перавагу 2τ замест 4π."
 
-#. https://www.churchofjesuschrist.org/broadcasts/article/ces-
-#. devotionals/2013/01/what-is-truth?lang=eng
+#. https://www.churchofjesuschrist.org/study/ya-weekly/2021/09/5-truths-about-
+#. truth?lang=eng (switch to your language's version, the phrase is in section
+#. 1 paragraph 2 near the end).
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr "\"Нягледзячы на колішні кансэнсус, Зямля ня плоская.\""
@@ -191,7 +192,7 @@ msgstr "Новы пачатак"
 msgid "If this isn't your downfall, I don't know what is."
 msgstr "Калі гэта не падзеньне, то я й ня ведаю, што такое падзеньне."
 
-#. https://www.youtube.com/watch?v=zpRQtHjEniQ
+#. https://www.youtube.com/watch?v=_-QENSv7gIs
 #: assets/maps/level.tmx//map/objectgroup/object[@id=287]
 msgid "Oh, gravity, thou art a heartless ... force?"
 msgstr "О, ґравітацыя, бессардэчная ты ... сіла?"
@@ -1225,8 +1226,8 @@ msgid "Ski Dyver"
 msgstr "Нябесны лыжнік"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
-msgid "Those who are not inattentive get trolled."
-msgstr "Няўважлівых троляць."
+msgid "Those who are inattentive get trolled."
+msgstr ""
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
@@ -1523,3 +1524,52 @@ msgstr "Цяпер можна перайсьці ў іншы сьвет!"
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8441]
 msgid "The Teleporter{{BR}}(press {{ExitButton}})"
 msgstr "Тэлепорт{{BR}}(націсьніце {{ExitButton}})"
+
+#. This is a reference to SheetMusicBoss's song "Rush E". Try making a pun
+#. based on Rush E, or an arbitrary reference to SheetMusicBoss, I guess. Or
+#. one of the common YT comments on those videos of the sort "I paid for the
+#. whole piano, I'm gonna use the whole piano".
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8539]
+msgid "Why the rush, eh?"
+msgstr ""
+
+#. This is a reference to Beethoven's Für Elise. If there's a common
+#. misspelling in your language, make a pun based on it; otherwise, maybe
+#. comment on how overplayed it is, or on Beethoven's hearing?
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
+msgid "She's no furry - that letter is an \"ü\"!"
+msgstr ""
+
+#. Comic explosion sign.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
+msgid "Bang!"
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
+msgid "I think you meant to play{{BR}}In the Hall of the Mountain King?"
+msgstr ""
+
+#. Reference to Super Mario 64's intro letter from Princess Peach, combined
+#. with the wellknown phrase misattributed to Marie Antoinette. Try finding
+#. both phrases as most commonly used in your language in the given contexts
+#. and use those. Definitely don't reference Portal here - let's not overdo
+#. those. If Asterix is well-known in your culture, you may consider making it
+#. an "arsenic cake"; if not, reference Grieg's In the Hall of the Mountain
+#. King.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8556]
+msgid ""
+"Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat "
+"cake...{{BR}}Arsenic cake?"
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8557]
+msgid "I think you meant to play{{BR}}Arsenic Cake?"
+msgstr ""
+
+#. https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in
+#. _your_ favorite Bad Apple reference (parody or not), even indirect stuff
+#. like referencing "Rule 86" is totally fine here. Can even go along the
+#. lines of "Touhou was too hard, so you're playing this" etc.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8588]
+msgid "... and makes a swirly dot."
+msgstr ""

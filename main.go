@@ -143,13 +143,9 @@ func main() {
 		log.Fatalf("could not initialize game: %v", err)
 	}
 	err = runGame(game)
-	errbe := game.BeforeExit()
 	// From here on, nothing can panic.
 	ok = true
 	if err != nil && !errors.Is(err, exitstatus.ErrRegularTermination) {
 		log.Fatalf("RunGame exited abnormally: %v", err)
-	}
-	if errbe != nil {
-		log.Fatalf("BeforeExit exited abnormally: %v", errbe)
 	}
 }

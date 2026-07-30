@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.7.119" date="2026-07-07">
-      <description><ul><li>Level: In "Shepard Tone", more melodies are recognized.</li><li>Level: Slightly adjust "Veni Vidi Vici".</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.119</url>
+    <release version="v1.7.218" date="2026-07-20">
+      <description><ul><li>Build: license files are now checked in. Should fix F-Droid.</li><li>Engine: fix offscreen dumping when multithreaded.</li><li>Engine: new palette: cga_mono.</li><li>Engine: save the game a bit earlier when winning.</li><li>Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.</li><li>Level: more music jokes.</li><li>Menu: allow scrolling credits up farther.</li><li>Translations: now with Finnish!</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.218</url>
     </release>
   </releases>
 </component>

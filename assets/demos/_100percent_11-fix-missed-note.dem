@@ -1,0 +1,1564 @@
+{"SaveGame":{"State":{"1052":{"seen":"true"},"1101":{"seen":"true"},"1102":{"seen":"true"},"1171":{"seen":"true"},"1199":{"seen":"true"},"1273":{"seen":"true"},"1281":{"seen":"true"},"1285":{"seen":"true"},"1286":{"seen":"true"},"1306":{"seen":"true"},"1321":{"seen":"true"},"1354":{"seen":"true"},"1359":{"used":"true"},"1368":{"seen":"true"},"1373":{"count":"1"},"1407":{"seen":"true"},"143":{"seen":"true"},"1441":{"seen":"true"},"1443":{"seen":"true"},"1445":{"seen":"true"},"145":{"seen":"true"},"1456":{"seen":"true"},"1546":{"seen":"true"},"1547":{"seen":"true"},"1570":{"seen":"true"},"1582":{"seen":"true"},"1666":{"seen":"true"},"1667":{"seen":"true"},"1700":{"seen":"true"},"1702":{"seen":"true"},"179":{"seen":"true"},"1816":{"seen":"true"},"188":{"seen":"true"},"2220":{"seen":"true"},"2349":{"seen":"true"},"2368":{"seen":"true"},"238":{"seen":"true"},"24":{"used":"true"},"244":{"seen":"true"},"245":{"seen":"true"},"246":{"seen":"true"},"247":{"seen":"true"},"255":{"seen":"true"},"2659":{"seen":"true"},"2665":{"seen":"true"},"2675":{"seen":"true"},"2748":{"seen":"true"},"2763":{"used":"true"},"277":{"seen":"true"},"2841":{"seen":"true"},"2842":{"seen":"true"},"286":{"seen":"true"},"287":{"seen":"true"},"295":{"seen":"true"},"2978":{"seen":"true"},"2988":{"seen":"true"},"3087":{"seen":"true"},"309":{"seen":"true"},"3093":{"seen":"true"},"311":{"seen":"true"},"317":{"seen":"true"},"3185":{"seen":"true"},"319":{"seen":"true"},"333":{"used":"true"},"3332":{"seen":"true"},"335":{"used":"true"},"338":{"used":"true"},"340":{"used":"true"},"353":{"seen":"true"},"354":{"seen":"true"},"3821":{"seen":"true"},"385":{"seen":"true"},"386":{"used":"true"},"3912":{"seen":"true"},"3926":{"seen":"true"},"3927":{"seen":"true"},"394":{"seen":"true"},"395":{"seen":"true"},"3992":{"seen":"true"},"4097":{"seen":"true"},"4106":{"used":"true"},"4498":{"seen":"true"},"4520":{"seen":"true"},"4551":{"seen":"true"},"4661":{"seen":"true"},"4694":{"seen":"true"},"4727":{"seen":"true"},"4755":{"seen":"true"},"48":{"seen":"true"},"49":{"seen":"true"},"4941":{"seen":"true"},"4953":{"seen":"true"},"4986":{"seen":"true"},"5004":{"seen":"true"},"5005":{"seen":"true"},"5006":{"seen":"true"},"5007":{"seen":"true"},"5008":{"seen":"true"},"52":{"seen":"true"},"61":{"seen":"true"},"62":{"seen":"true"},"63":{"seen":"true"},"6665":{"seen":"true"},"7":{"can_carry":"true","can_control":"true","can_push":"true","can_stand":"true","checkpoint_seen.":"Identity","checkpoint_seen.axiom_of_choice":"FlipX","checkpoint_seen.bings_house":"FlipX","checkpoint_seen.brlogenshfegle":"FlipX","checkpoint_seen.butterfly_effect":"FlipX","checkpoint_seen.butterfly_fail":"FlipX","checkpoint_seen.carried_enough":"FlipX","checkpoint_seen.carry_it_out":"FlipX","checkpoint_seen.choose_wisely":"FlipX","checkpoint_seen.crime_doesnt_pay":"FlipX","checkpoint_seen.curiosity_killed_the_carl":"FlipX","checkpoint_seen.dont_look_up":"FlipX","checkpoint_seen.driving_you_mad":"FlipX","checkpoint_seen.eduard_anatolyevich_khil":"FlipX","checkpoint_seen.endless_eight":"Identity","checkpoint_seen.fly_high":"FlipX","checkpoint_seen.higher_higher_higher":"FlipX","checkpoint_seen.hilberts_dotel":"FlipX","checkpoint_seen.kaaaart_race":"FlipX","checkpoint_seen.kaizo":"FlipX","checkpoint_seen.kings_cross":"FlipX","checkpoint_seen.leap_of_faith":"Identity","checkpoint_seen.liar":"FlipX","checkpoint_seen.little_big_platforms":"FlipX","checkpoint_seen.m_c_waterfall":"FlipX","checkpoint_seen.move_it_move_it":"FlipX","checkpoint_seen.moved_enough":"FlipX","checkpoint_seen.nine_boxes_in_sight":"FlipX","checkpoint_seen.not_that_simple":"FlipX","checkpoint_seen.pre_antihub":"FlipX","checkpoint_seen.pre_hub_1":"FlipX","checkpoint_seen.pre_hub_2":"FlipX","checkpoint_seen.push_me_not":"FlipX","checkpoint_seen.pushing_onwards":"FlipX","checkpoint_seen.road_rage":"FlipX","checkpoint_seen.shepard_tone":"FlipX","checkpoint_seen.short_circuited":"FlipX","checkpoint_seen.silvercity":"FlipX","checkpoint_seen.stop_and_stair":"Identity","checkpoint_seen.switching_it_up":"FlipX","checkpoint_seen.the_antihub":"FlipX","checkpoint_seen.the_hub":"FlipX","checkpoint_seen.the_klein_bottle":"Identity","checkpoint_seen.the_projective_plane":"FlipX","checkpoint_seen.the_sphere":"FlipX","checkpoint_seen.the_strip":"Identity","checkpoint_seen.the_torus":"Identity","checkpoint_seen.the_wide_gap":"FlipX","checkpoint_seen.top_of_the_mountain":"FlipX","checkpoint_seen.traaaash":"FlipX","checkpoint_seen.turtles":"FlipX","checkpoints_walked..leap_of_faith":"true","checkpoints_walked.axiom_of_choice.turtles":"true","checkpoints_walked.bings_house.fly_high":"true","checkpoints_walked.brlogenshfegle.fly_high":"true","checkpoints_walked.butterfly_effect.butterfly_fail":"true","checkpoints_walked.butterfly_effect.kaizo":"true","checkpoints_walked.carried_enough.pre_antihub":"true","checkpoints_walked.carried_enough.pre_hub_2":"true","checkpoints_walked.carry_it_out.carried_enough":"true","checkpoints_walked.choose_wisely.m_c_waterfall":"true","checkpoints_walked.dont_look_up.carry_it_out":"true","checkpoints_walked.dont_look_up.curiosity_killed_the_carl":"true","checkpoints_walked.driving_you_mad.higher_higher_higher":"true","checkpoints_walked.endless_eight.pre_hub_1":"true","checkpoints_walked.fly_high.little_big_platforms":"true","checkpoints_walked.fly_high.pre_hub_1":"true","checkpoints_walked.higher_higher_higher.road_rage":"true","checkpoints_walked.hilberts_dotel.shepard_tone":"true","checkpoints_walked.kaaaart_race.traaaash":"true","checkpoints_walked.kaizo.kaaaart_race":"true","checkpoints_walked.kings_cross.move_it_move_it":"true","checkpoints_walked.kings_cross.not_that_simple":"true","checkpoints_walked.leap_of_faith.stop_and_stair":"true","checkpoints_walked.little_big_platforms.pre_antihub":"true","checkpoints_walked.m_c_waterfall.silvercity":"true","checkpoints_walked.move_it_move_it.moved_enough":"true","checkpoints_walked.moved_enough.pre_hub_2":"true","checkpoints_walked.moved_enough.switching_it_up":"true","checkpoints_walked.nine_boxes_in_sight.kings_cross":"true","checkpoints_walked.pre_antihub.the_antihub":"true","checkpoints_walked.pre_hub_1.pre_hub_2":"true","checkpoints_walked.pre_hub_2.the_hub":"true","checkpoints_walked.push_me_not.brlogenshfegle":"true","checkpoints_walked.pushing_onwards.push_me_not":"true","checkpoints_walked.road_rage.carry_it_out":"true","checkpoints_walked.road_rage.crime_doesnt_pay":"true","checkpoints_walked.shepard_tone.axiom_of_choice":"true","checkpoints_walked.shepard_tone.eduard_anatolyevich_khil":"true","checkpoints_walked.short_circuited.choose_wisely":"true","checkpoints_walked.silvercity.nine_boxes_in_sight":"true","checkpoints_walked.stop_and_stair.endless_eight":"true","checkpoints_walked.switching_it_up.pre_antihub":"true","checkpoints_walked.the_antihub.butterfly_effect":"true","checkpoints_walked.the_antihub.pushing_onwards":"true","checkpoints_walked.the_antihub.the_wide_gap":"true","checkpoints_walked.the_hub.hilberts_dotel":"true","checkpoints_walked.the_hub.short_circuited":"true","checkpoints_walked.the_hub.the_strip":"true","checkpoints_walked.the_klein_bottle.the_projective_plane":"true","checkpoints_walked.the_projective_plane.the_sphere":"true","checkpoints_walked.the_sphere.bings_house":"true","checkpoints_walked.the_sphere.top_of_the_mountain":"true","checkpoints_walked.the_strip.the_torus":"true","checkpoints_walked.the_torus.the_klein_bottle":"true","checkpoints_walked.the_wide_gap.driving_you_mad":"true","checkpoints_walked.traaaash.liar":"true","checkpoints_walked.traaaash.move_it_move_it":"true","checkpoints_walked.turtles.dont_look_up":"true","escapes":"58","frames":"186274","last_checkpoint":"carry_it_out","teleports":"28"},"7822":{"used":"true"},"7987":{"seen":"true"},"8057":{"seen":"true"},"81":{"used":"true"},"90":{"seen":"true"},"91":{"seen":"true"},"92":{"seen":"true"},"93":{"seen":"true"},"94":{"seen":"true"},"95":{"seen":"true"}},"GameVersion":"1.7.235+20260728.4194.01af4701","LevelVersion":1,"LevelHash":6842216255411465264,"InfoHash":1300820216658331382,"StateHash":14060833487806126836},"Input":{"InputMap":495,"HoverPos":"0 78"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true,"JustHit":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"514 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"514 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"513 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"512 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"511 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"510 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"509 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"508 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"506 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"505 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"503 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"501 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"499 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"497 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"495 247"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"493 248"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"491 248"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"489 248"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"487 249"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"485 250"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"483 251"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"481 252"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"479 253"}
+{"Input":{"InputMap":99,"Left":{"Held":true}},"PlayerPos":"477 255"}
+{"Input":{"InputMap":99,"Left":{"Held":true},"Right":{"Held":true,"JustHit":true}},"PlayerPos":"475 256"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"473 258"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"472 260"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"470 262"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"469 264"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"468 267"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"467 269"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"466 272"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"465 275"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"464 278"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"464 281"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"464 284"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"464 288"}
+{"Input":{"InputMap":99,"Right":{"Held":true}},"PlayerPos":"464 292"}
+{"Input":{"InputMap":99},"PlayerPos":"464 295"}
+{"Input":{"InputMap":99},"PlayerPos":"464 299"}
+{"Input":{"InputMap":99},"PlayerPos":"465 304"}
+{"Input":{"InputMap":99},"PlayerPos":"465 308"}
+{"Input":{"InputMap":99},"PlayerPos":"465 312"}
+{"Input":{"InputMap":99},"PlayerPos":"465 317"}
+{"Input":{"InputMap":99},"PlayerPos":"466 322"}
+{"Input":{"InputMap":99},"PlayerPos":"466 327"}
+{"Input":{"InputMap":99},"PlayerPos":"466 332"}
+{"Input":{"InputMap":99},"PlayerPos":"467 337"}
+{"Input":{"InputMap":99},"PlayerPos":"467 343"}
+{"Input":{"InputMap":99},"PlayerPos":"467 348"}
+{"Input":{"InputMap":99},"PlayerPos":"467 354"}
+{"Input":{"InputMap":99},"PlayerPos":"468 360"}
+{"Input":{"InputMap":99},"PlayerPos":"468 366"}
+{"Input":{"InputMap":3,"Exit":{"Held":true,"JustHit":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":3,"Exit":{"Held":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":3,"Exit":{"Held":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":3,"Exit":{"Held":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":3,"Exit":{"Held":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":3,"Exit":{"Held":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":3},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"Action":{"Held":true,"JustHit":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"Action":{"Held":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"Action":{"Held":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"Action":{"Held":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"Action":{"Held":true}},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"269 87"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"271 82"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"273 78"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"275 67"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"277 61"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"278 58"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"279 55"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"280 55"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"280 55"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"280 55"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"280 55"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"280 55"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"280 55"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"280 56"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"280 56"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"284 59"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"290 62"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"296 66"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"300 68"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"302 69"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"303 70"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"303 70"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"302 72"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"301 72"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"300 73"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"299 75"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"298 75"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"296 77"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"296 78"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"295 80"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"294 84"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"293 90"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"293 92"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"293 94"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 97"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 98"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"292 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"291 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"289 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"288 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"288 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"286 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"285 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"283 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"282 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 100"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 100"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 100"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 100"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 100"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"281 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"280 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"279 99"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"276 96"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"275 95"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"272 93"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"269 90"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"268 89"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"264 86"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"468 366"}
+{"Input":{"InputMap":1,"HoverPos":"262 85","ClickPos":"262 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"262 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"263 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"263 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"263 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"264 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 85"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true,"JustHit":true},"HoverPos":"265 84"},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4475 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4474 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4474 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4473 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4472 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4471 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4470 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4469 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4468 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4466 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4465 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4463 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4461 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4459 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4457 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4455 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4452 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4450 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4447 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4444 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4442 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4439 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4436 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4434 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4431 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4428 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4426 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4423 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4420 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4418 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4415 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4412 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4410 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4407 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4404 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4402 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true},"Right":{"Held":true,"JustHit":true}},"PlayerPos":"4399 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"4397 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"4395 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"4393 359"}
+{"Input":{"InputMap":1,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"4392 359"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4391 359"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4390 359"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4389 359"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4389 359"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4389 359"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4389 360"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4389 360"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4389 360"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4389 361"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4389 362"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4390 363"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4390 364"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4390 365"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4390 367"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4390 368"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4390 370"}
+{"Input":{"InputMap":1,"Right":{"Held":true}},"PlayerPos":"4390 372"}
+{"Input":{"InputMap":1,"Left":{"Held":true,"JustHit":true},"Right":{"Held":true}},"PlayerPos":"4390 374"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4390 376"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4390 379"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4390 381"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4389 384"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4389 387"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4388 390"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4387 393"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4386 396"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4385 400"}
+{"Input":{"InputMap":1,"Left":{"Held":true}},"PlayerPos":"4383 404"}
+{"Input":{"InputMap":1},"PlayerPos":"4382 407"}
+{"Input":{"InputMap":1},"PlayerPos":"4381 411"}
+{"Input":{"InputMap":1},"PlayerPos":"4379 416"}
+{"Input":{"InputMap":1},"PlayerPos":"4378 420"}
+{"Input":{"InputMap":1},"PlayerPos":"4377 424"}
+{"Input":{"InputMap":1},"PlayerPos":"4375 429"}
+{"Input":{"InputMap":1},"PlayerPos":"4374 434"}
+{"Input":{"InputMap":1},"PlayerPos":"4373 439"}
+{"Input":{"InputMap":1},"PlayerPos":"4371 444"}
+{"Input":{"InputMap":1},"PlayerPos":"4370 449"}
+{"Input":{"InputMap":1},"PlayerPos":"4369 451"}
+{"Input":{"InputMap":1},"PlayerPos":"4367 450"}
+{"Input":{"InputMap":66,"Action":{"Held":true,"JustHit":true}},"PlayerPos":"4365 450"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4364 450"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4362 450"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4361 449"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4359 449"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4358 449"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4357 449"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4356 448"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4355 448"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4354 448"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4353 448"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4352 447"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4351 447"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4350 447"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4349 447"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4348 446"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4347 446"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4346 446"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4345 446"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4344 445"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4343 445"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4342 445"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4341 445"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4340 444"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4339 444"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4338 444"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4337 444"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4336 443"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4335 443"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4334 443"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4333 443"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4332 442"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4331 442"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4330 442"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4329 442"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4328 441"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4327 441"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4326 441"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4325 441"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4324 440"}
+{"Input":{"InputMap":66,"Right":{"Held":true,"JustHit":true},"Action":{"Held":true}},"PlayerPos":"4323 440"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4323 440"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4322 440"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4321 439"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4321 439"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4320 439"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4319 439"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4318 438"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4317 438"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4316 438"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4315 438"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4314 437"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4313 437"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4312 437"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4311 437"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4310 436"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4309 436"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4308 436"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4307 436"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4306 435"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4305 435"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4304 435"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4303 435"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4302 434"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4301 434"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4300 434"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4299 434"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4298 433"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4297 433"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4296 433"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4295 433"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4294 432"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4293 432"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4292 432"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4291 432"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4290 431"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4289 431"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4288 431"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4287 431"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4286 430"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4285 430"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4284 430"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4283 430"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4282 429"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4281 429"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4280 429"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4279 429"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4278 428"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4277 428"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4276 428"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4275 428"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4274 427"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4273 427"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4272 427"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4271 427"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4270 426"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4269 426"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4268 426"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4267 426"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4266 425"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4265 425"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4264 425"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4263 425"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4262 424"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4261 424"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4260 424"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4259 424"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4258 423"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4257 423"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4256 423"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4255 423"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4254 422"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4253 422"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4252 422"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4251 422"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4250 421"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4249 421"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4248 421"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4247 421"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4246 420"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4245 420"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4244 420"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4243 420"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4242 419"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4241 419"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4240 419"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4239 419"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4238 418"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4237 418"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4236 418"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4235 418"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4234 417"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4233 417"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4232 417"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4231 417"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4230 416"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4229 416"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4228 416"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4227 416"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4226 415"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4225 415"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4224 415"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4223 415"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4222 414"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4221 414"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4220 414"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4219 414"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4218 413"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4217 413"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4216 413"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4215 413"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4214 412"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4213 412"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4212 412"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4211 412"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4210 411"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4209 411"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4208 411"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4207 411"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4206 410"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4205 410"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4204 410"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4203 410"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4202 409"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4201 409"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4200 409"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4199 409"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4198 408"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4197 408"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4196 408"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4195 408"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4194 407"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4193 407"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4192 407"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4191 407"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4190 406"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4189 406"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4188 406"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4187 406"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4186 405"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4185 405"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4184 405"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4183 405"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4182 404"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4181 404"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4180 404"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4179 404"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4178 403"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4177 403"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4176 403"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4175 403"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4174 402"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4173 402"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4172 402"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4171 402"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4170 401"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4169 401"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4168 401"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4167 401"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4166 400"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4165 400"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4164 400"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4163 400"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4162 399"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4161 399"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4160 399"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4159 399"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4158 398"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4157 398"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4156 398"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4155 398"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4154 397"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4153 397"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4152 397"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4151 397"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4150 396"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4149 396"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4148 396"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4147 396"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4146 395"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4145 395"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4144 395"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4143 395"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4142 394"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4141 394"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4140 394"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4139 394"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4138 393"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4137 393"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4136 393"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4135 393"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4134 392"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4133 392"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4132 392"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4131 392"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4130 391"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4129 391"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4128 391"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4127 391"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4126 390"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4125 390"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4124 390"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4123 390"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4122 389"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4121 389"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4120 389"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4119 389"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4118 388"}
+{"Input":{"InputMap":66,"Left":{"Held":true,"JustHit":true},"Action":{"Held":true}},"PlayerPos":"4117 388"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4116 388"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4114 388"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4113 387"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4111 387"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4109 387"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4109 387"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true,"JustHit":true},"Action":{"Held":true}},"PlayerPos":"4108 383"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4107 378"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4106 374"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4104 370"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4103 366"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4101 362"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4099 358"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4097 355"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4095 352"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4093 352"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"4091 352"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"4089 352"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"4087 353"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"4085 354"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"4083 355"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"4081 356"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"4079 357"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"4077 359"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"4075 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true},"Right":{"Held":true,"JustHit":true}},"PlayerPos":"4073 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4072 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4071 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4071 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4071 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4071 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4071 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4071 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4072 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4073 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4073 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4074 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4075 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4077 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4078 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true,"JustHit":true}},"PlayerPos":"4079 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4079 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4079 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4079 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4079 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4078 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4078 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4077 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4076 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4075 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4074 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4073 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4072 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4070 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4069 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4067 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4065 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4063 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4061 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4059 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"4056 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true},"Right":{"Held":true,"JustHit":true}},"PlayerPos":"4054 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4052 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4050 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4048 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4047 360"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4045 360"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4044 360"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4042 361"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4041 362"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4040 363"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4039 364"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4039 365"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4038 367"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4037 368"}
+{"Input":{"InputMap":33},"PlayerPos":"4037 370"}
+{"Input":{"InputMap":33},"PlayerPos":"4036 372"}
+{"Input":{"InputMap":33},"PlayerPos":"4036 374"}
+{"Input":{"InputMap":33},"PlayerPos":"4035 376"}
+{"Input":{"InputMap":33},"PlayerPos":"4035 379"}
+{"Input":{"InputMap":33},"PlayerPos":"4034 381"}
+{"Input":{"InputMap":33,"Right":{"Held":true,"JustHit":true}},"PlayerPos":"4034 384"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4034 387"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4034 390"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"4034 393"}
+{"Input":{"InputMap":33},"PlayerPos":"4034 396"}
+{"Input":{"InputMap":33},"PlayerPos":"4034 400"}
+{"Input":{"InputMap":66,"Action":{"Held":true,"JustHit":true}},"PlayerPos":"4034 404"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4034 407"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4035 407"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4036 407"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4037 407"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4038 407"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4039 406"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4040 406"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4041 406"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4042 406"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4043 405"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4044 405"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4045 405"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4046 405"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4047 404"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4048 404"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4049 404"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4049 404"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4049 403"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4049 403"}
+{"Input":{"InputMap":66,"Right":{"Held":true,"JustHit":true},"Action":{"Held":true}},"PlayerPos":"4049 403"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4049 403"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4050 402"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4050 402"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"4051 402"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4051 402"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4050 401"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4049 401"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4048 401"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4047 401"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4046 400"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4045 400"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4044 400"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4043 400"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4042 399"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4041 399"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4040 399"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4039 399"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4038 398"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4037 398"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4036 398"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4035 398"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4034 397"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4033 397"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4032 397"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4031 397"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4030 396"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4029 396"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4028 396"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4027 396"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4026 395"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4025 395"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4024 395"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4023 395"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4022 394"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4021 394"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4020 394"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4019 394"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4018 393"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4017 393"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4016 393"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4015 393"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4014 392"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4013 392"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4012 392"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4011 392"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4010 391"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4009 391"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4008 391"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4007 391"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4006 390"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4005 390"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4004 390"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4003 390"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4002 389"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4001 389"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"4000 389"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3999 389"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3998 388"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3997 388"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3996 388"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3995 388"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3994 387"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3993 387"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3992 387"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3991 387"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3990 386"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3989 386"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3988 386"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3987 386"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3986 385"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3985 385"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3984 385"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3983 385"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3982 384"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3981 384"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3980 384"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3979 384"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3978 383"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3977 383"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3976 383"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3975 383"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3974 382"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3973 382"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3972 382"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3971 382"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3970 381"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3969 381"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3968 381"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3967 381"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3966 380"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3965 380"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3964 380"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3963 380"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3962 379"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3961 379"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3960 379"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3959 379"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3958 378"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3957 378"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3956 378"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3955 378"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3954 377"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3953 377"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3952 377"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3951 377"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3950 376"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3949 376"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3948 376"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3947 376"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3946 375"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3945 375"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3944 375"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3943 375"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3942 374"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3941 374"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3940 374"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3939 374"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3938 373"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3937 373"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3936 373"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3935 373"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3934 372"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3933 372"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3932 372"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3931 372"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3930 371"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3929 371"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3928 371"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3927 371"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3926 370"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3925 370"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3924 370"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3923 370"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3922 369"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3921 369"}
+{"Input":{"InputMap":66,"Left":{"Held":true,"JustHit":true},"Action":{"Held":true}},"PlayerPos":"3920 369"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3920 368"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3919 367"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3919 366"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3918 365"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3917 364"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3916 363"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3915 362"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3914 361"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3913 360"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3911 359"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3910 358"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3908 358"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3906 358"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Right":{"Held":true,"JustHit":true}},"PlayerPos":"3904 358"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"3902 358"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"3900 358"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"3899 359"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"3897 359"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3895 359"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3893 360"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3892 361"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3891 362"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3889 363"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3888 364"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3887 366"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3887 367"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3886 369"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3885 371"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3885 373"}
+{"Input":{"InputMap":66,"Right":{"Held":true}},"PlayerPos":"3885 375"}
+{"Input":{"InputMap":66},"PlayerPos":"3884 378"}
+{"Input":{"InputMap":66},"PlayerPos":"3884 380"}
+{"Input":{"InputMap":66},"PlayerPos":"3884 383"}
+{"Input":{"InputMap":66},"PlayerPos":"3884 386"}
+{"Input":{"InputMap":66,"Right":{"Held":true,"JustHit":true}},"PlayerPos":"3883 389"}
+{"Input":{"InputMap":66},"PlayerPos":"3883 389"}
+{"Input":{"InputMap":66},"PlayerPos":"3883 388"}
+{"Input":{"InputMap":66},"PlayerPos":"3883 387"}
+{"Input":{"InputMap":66,"Action":{"Held":true,"JustHit":true}},"PlayerPos":"3884 386"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3885 386"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3886 386"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3887 386"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3888 385"}
+{"Input":{"InputMap":66,"Right":{"Held":true,"JustHit":true},"Action":{"Held":true}},"PlayerPos":"3889 385"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3891 385"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3892 385"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3894 384"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3895 384"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3897 384"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3899 384"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3901 383"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3903 383"}
+{"Input":{"InputMap":66,"Right":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3904 383"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3904 383"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3904 382"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3904 382"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3903 382"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3903 382"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3902 381"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3901 381"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3900 381"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3899 381"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3898 380"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3897 380"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3896 380"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3895 380"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3894 379"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3893 379"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3892 379"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3891 379"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3890 378"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3889 378"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3888 378"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3887 378"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3886 377"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3885 377"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3884 377"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3883 377"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3882 376"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3881 376"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3880 376"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3879 376"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3878 375"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3877 375"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3876 375"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3875 375"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3874 374"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3873 374"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3872 374"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3871 374"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3870 373"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3869 373"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3868 373"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3867 373"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3866 372"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3865 372"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3864 372"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3863 372"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3862 371"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3861 371"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3860 371"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3859 371"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3858 370"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3857 370"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3856 370"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3855 370"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3854 369"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3853 369"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3852 369"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3851 369"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3850 368"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3849 368"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3848 368"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3847 368"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3846 367"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3845 367"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3844 367"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3843 367"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3842 366"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3841 366"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3840 366"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3839 366"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3838 365"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3837 365"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3836 365"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3835 365"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3834 364"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3833 364"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3832 364"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3831 364"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3830 363"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3829 363"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3828 363"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3827 363"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3826 362"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3825 362"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3824 362"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3823 362"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3822 361"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3821 361"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3820 361"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3819 361"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3818 360"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3817 360"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3816 360"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3815 360"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3814 359"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3813 359"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3812 359"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3811 359"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3810 358"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3809 358"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3808 358"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3807 358"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3806 357"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3805 357"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3804 357"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3803 357"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3802 356"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3801 356"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3800 356"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3799 356"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3798 355"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3797 355"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3796 355"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3795 355"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3794 354"}
+{"Input":{"InputMap":66,"Action":{"Held":true}},"PlayerPos":"3793 354"}
+{"Input":{"InputMap":66,"Left":{"Held":true,"JustHit":true},"Action":{"Held":true}},"PlayerPos":"3792 354"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3791 354"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3789 353"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3788 353"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3786 353"}
+{"Input":{"InputMap":66,"Left":{"Held":true},"Action":{"Held":true}},"PlayerPos":"3784 353"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3783 352"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3782 352"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3781 352"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3780 352"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3778 352"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3777 352"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3775 353"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3773 353"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3771 353"}
+{"Input":{"InputMap":66,"Left":{"Held":true}},"PlayerPos":"3769 354"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true,"JustHit":true}},"PlayerPos":"3767 355"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3765 356"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3763 357"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3761 358"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3759 359"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3758 354"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3756 352"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3754 352"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3752 352"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3750 352"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3748 353"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3746 354"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3744 355"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3742 356"}
+{"Input":{"InputMap":429,"Left":{"Held":true},"Jump":{"Held":true}},"PlayerPos":"3740 357"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"3738 359"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"3736 359"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"3733 359"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"3731 359"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"3729 359"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"3726 359"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"3724 359"}
+{"Input":{"InputMap":429,"Left":{"Held":true}},"PlayerPos":"3721 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true,"JustHit":true}},"PlayerPos":"3719 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3717 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3715 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3714 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3713 359"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3712 360"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3711 360"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3710 360"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3709 361"}
+{"Input":{"InputMap":33},"PlayerPos":"3708 362"}
+{"Input":{"InputMap":33},"PlayerPos":"3707 363"}
+{"Input":{"InputMap":33},"PlayerPos":"3707 364"}
+{"Input":{"InputMap":33},"PlayerPos":"3706 365"}
+{"Input":{"InputMap":33},"PlayerPos":"3705 367"}
+{"Input":{"InputMap":33},"PlayerPos":"3704 368"}
+{"Input":{"InputMap":33},"PlayerPos":"3704 367"}
+{"Input":{"InputMap":33,"Left":{"Held":true,"JustHit":true}},"PlayerPos":"3703 366"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3702 365"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3701 364"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3699 363"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3698 362"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3696 361"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3695 360"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3693 359"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3691 358"}
+{"Input":{"InputMap":33},"PlayerPos":"3689 357"}
+{"Input":{"InputMap":33,"Right":{"Held":true,"JustHit":true}},"PlayerPos":"3688 356"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3687 355"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3687 354"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3687 353"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3687 352"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3687 352"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3687 352"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3688 352"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3689 352"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3689 352"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3690 353"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3691 353"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3693 353"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3694 354"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3695 355"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3697 356"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3699 357"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3701 358"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3703 360"}
+{"Input":{"InputMap":33,"Right":{"Held":true}},"PlayerPos":"3705 361"}
+{"Input":{"InputMap":33,"Left":{"Held":true,"JustHit":true},"Right":{"Held":true}},"PlayerPos":"3707 363"}
+{"Input":{"InputMap":33,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"3709 365"}
+{"Input":{"InputMap":33,"Left":{"Held":true},"Right":{"Held":true}},"PlayerPos":"3711 367"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3712 369"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3714 372"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3716 374"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3717 377"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3718 380"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3718 383"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3718 386"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3718 389"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3717 393"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3717 397"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3716 400"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3715 404"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3714 409"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3713 413"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3711 417"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3710 422"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3708 427"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3706 432"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3705 437"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3703 442"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3701 448"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3699 453"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3697 459"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3695 465"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3693 471"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3691 477"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3689 484"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3687 490"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3685 497"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3683 504"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3681 511"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3679 518"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3677 525"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3675 533"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3673 541"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3671 548"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3669 556"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3667 565"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3665 573"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3663 581"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3661 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3658 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3656 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3654 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3651 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3649 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3646 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3643 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3641 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3638 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3635 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3633 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3630 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3627 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3625 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3622 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3619 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3617 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3614 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3611 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3609 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3606 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3603 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3601 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3598 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3595 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3593 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3590 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3587 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3585 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3582 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3579 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3577 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3574 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3571 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3569 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3566 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3563 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3561 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3558 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3555 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3553 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3550 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3547 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3545 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3542 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3539 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3537 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3534 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3531 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3529 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3526 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3523 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3521 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3518 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3515 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3513 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3510 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3507 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3505 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3502 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3499 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3497 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3494 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3491 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3489 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3486 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3483 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3481 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3478 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3475 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3473 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3470 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3467 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3465 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3462 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3459 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3457 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"SaveGames":[2707515711721862081],"PlayerPos":"3454 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3451 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3449 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3446 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3443 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3441 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3438 583"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3435 584"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3433 584"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3430 584"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3427 585"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3425 586"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3424 587"}
+{"Input":{"InputMap":33,"Left":{"Held":true}},"PlayerPos":"3424 588"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 589"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 591"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 592"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 594"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 596"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 598"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 600"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 603"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 605"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 608"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 611"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 614"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 617"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 620"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 624"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 628"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 631"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 635"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 640"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 644"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 648"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 653"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 658"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 663"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 668"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 673"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":33},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"Exit":{"Held":true,"JustHit":true}},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"Exit":{"Held":true}},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"Exit":{"Held":true}},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"Exit":{"Held":true}},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"Exit":{"Held":true}},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"Action":{"Held":true,"JustHit":true}},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"Action":{"Held":true}},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"264 81"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"259 75"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"243 66"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"237 62"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"225 53"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"217 47"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"217 47"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"217 47"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"217 47"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"216 46"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"216 45"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"214 44"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"213 44"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"213 44"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"213 44"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"213 44"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"214 44"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"215 47"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"216 50"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"215 69"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"215 86"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"215 95"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"218 118"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"220 128"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"220 133"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"220 133"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"220 133"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"220 133"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"220 132"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"221 130"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"221 130"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"221 129"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"222 129"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"222 130"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"225 131"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"225 132"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"226 132"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"228 133"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"232 139"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"234 142"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"236 145"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"237 151"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"237 153"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"236 154"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"235 154"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"235 154"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"234 154"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"233 153"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"233 153"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"233 152"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"233 152"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"233 151"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"232 151"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 149"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 149"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 147"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 145"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 145"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 144"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 143"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 142"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 142"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 142"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 142"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 142"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 142"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"3424 679"}
+{"Input":{"InputMap":1,"HoverPos":"231 141","ClickPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 141"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"231 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Exit":{"Held":true,"JustHit":true},"HoverPos":"232 140"},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Exit":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Exit":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Exit":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Exit":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Exit":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Up":{"Held":true,"JustHit":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Up":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Up":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Up":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Up":{"Held":true}},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1},"PlayerPos":"515 247"}
+{"Input":{"InputMap":1,"Action":{"Held":true,"JustHit":true}},"SaveGames":[13837574087251844935],"PlayerPos":"515 247"}
+{"FinalSaveGame":{"State":{"1052":{"seen":"true"},"1101":{"seen":"true"},"1102":{"seen":"true"},"1171":{"seen":"true"},"1199":{"seen":"true"},"1273":{"seen":"true"},"1281":{"seen":"true"},"1285":{"seen":"true"},"1286":{"seen":"true"},"1306":{"seen":"true"},"1321":{"seen":"true"},"1354":{"seen":"true"},"1359":{"used":"true"},"1368":{"seen":"true"},"1373":{"count":"1"},"1407":{"seen":"true"},"143":{"seen":"true"},"1441":{"seen":"true"},"1443":{"seen":"true"},"1445":{"seen":"true"},"145":{"seen":"true"},"1456":{"seen":"true"},"1546":{"seen":"true"},"1547":{"seen":"true"},"1570":{"seen":"true"},"1582":{"seen":"true"},"1666":{"seen":"true"},"1667":{"seen":"true"},"1700":{"seen":"true"},"1702":{"seen":"true"},"179":{"seen":"true"},"1816":{"seen":"true"},"188":{"seen":"true"},"2220":{"seen":"true"},"2349":{"seen":"true"},"2368":{"seen":"true"},"238":{"seen":"true"},"24":{"used":"true"},"244":{"seen":"true"},"245":{"seen":"true"},"246":{"seen":"true"},"247":{"seen":"true"},"255":{"seen":"true"},"2659":{"seen":"true"},"2665":{"seen":"true"},"2675":{"seen":"true"},"2748":{"seen":"true"},"2763":{"used":"true"},"277":{"seen":"true"},"2841":{"seen":"true"},"2842":{"seen":"true"},"286":{"seen":"true"},"287":{"seen":"true"},"295":{"seen":"true"},"2978":{"seen":"true"},"2988":{"seen":"true"},"3087":{"seen":"true"},"309":{"seen":"true"},"3093":{"seen":"true"},"311":{"seen":"true"},"317":{"seen":"true"},"3185":{"seen":"true"},"319":{"seen":"true"},"333":{"used":"true"},"3332":{"seen":"true"},"335":{"used":"true"},"338":{"used":"true"},"340":{"used":"true"},"353":{"seen":"true"},"354":{"seen":"true"},"3821":{"seen":"true"},"385":{"seen":"true"},"386":{"used":"true"},"3912":{"seen":"true"},"3926":{"seen":"true"},"3927":{"seen":"true"},"394":{"seen":"true"},"395":{"seen":"true"},"3992":{"seen":"true"},"4097":{"seen":"true"},"4106":{"used":"true"},"4498":{"seen":"true"},"4520":{"seen":"true"},"4551":{"seen":"true"},"4661":{"seen":"true"},"4694":{"seen":"true"},"4716":{"seen":"true"},"4727":{"seen":"true"},"4755":{"seen":"true"},"48":{"seen":"true"},"49":{"seen":"true"},"4941":{"seen":"true"},"4953":{"seen":"true"},"4986":{"seen":"true"},"5004":{"seen":"true"},"5005":{"seen":"true"},"5006":{"seen":"true"},"5007":{"seen":"true"},"5008":{"seen":"true"},"52":{"seen":"true"},"61":{"seen":"true"},"62":{"seen":"true"},"63":{"seen":"true"},"6665":{"seen":"true"},"7":{"can_carry":"true","can_control":"true","can_push":"true","can_stand":"true","checkpoint_seen.":"Identity","checkpoint_seen.axiom_of_choice":"FlipX","checkpoint_seen.bings_house":"FlipX","checkpoint_seen.brlogenshfegle":"FlipX","checkpoint_seen.butterfly_effect":"FlipX","checkpoint_seen.butterfly_fail":"FlipX","checkpoint_seen.carried_enough":"FlipX","checkpoint_seen.carry_it_out":"FlipX","checkpoint_seen.choose_wisely":"FlipX","checkpoint_seen.crime_doesnt_pay":"FlipX","checkpoint_seen.curiosity_killed_the_carl":"FlipX","checkpoint_seen.dont_look_up":"FlipX","checkpoint_seen.driving_you_mad":"FlipX","checkpoint_seen.eduard_anatolyevich_khil":"FlipX","checkpoint_seen.endless_eight":"Identity","checkpoint_seen.fly_high":"FlipX","checkpoint_seen.higher_higher_higher":"FlipX","checkpoint_seen.hilberts_dotel":"FlipX","checkpoint_seen.kaaaart_race":"FlipX","checkpoint_seen.kaizo":"FlipX","checkpoint_seen.kings_cross":"FlipX","checkpoint_seen.leap_of_faith":"Identity","checkpoint_seen.liar":"FlipX","checkpoint_seen.little_big_platforms":"FlipX","checkpoint_seen.m_c_waterfall":"FlipX","checkpoint_seen.move_it_move_it":"FlipX","checkpoint_seen.moved_enough":"FlipX","checkpoint_seen.nine_boxes_in_sight":"FlipX","checkpoint_seen.not_that_simple":"FlipX","checkpoint_seen.pre_antihub":"FlipX","checkpoint_seen.pre_hub_1":"FlipX","checkpoint_seen.pre_hub_2":"FlipX","checkpoint_seen.push_me_not":"FlipX","checkpoint_seen.pushing_onwards":"FlipX","checkpoint_seen.road_rage":"FlipX","checkpoint_seen.shepard_tone":"FlipX","checkpoint_seen.short_circuited":"FlipX","checkpoint_seen.silvercity":"FlipX","checkpoint_seen.stop_and_stair":"Identity","checkpoint_seen.switching_it_up":"FlipX","checkpoint_seen.the_antihub":"FlipX","checkpoint_seen.the_hub":"FlipX","checkpoint_seen.the_klein_bottle":"Identity","checkpoint_seen.the_projective_plane":"FlipX","checkpoint_seen.the_sphere":"FlipX","checkpoint_seen.the_strip":"Identity","checkpoint_seen.the_torus":"Identity","checkpoint_seen.the_wide_gap":"FlipX","checkpoint_seen.top_of_the_mountain":"FlipX","checkpoint_seen.traaaash":"FlipX","checkpoint_seen.turtles":"FlipX","checkpoints_walked..leap_of_faith":"true","checkpoints_walked.axiom_of_choice.turtles":"true","checkpoints_walked.bings_house.fly_high":"true","checkpoints_walked.brlogenshfegle.fly_high":"true","checkpoints_walked.butterfly_effect.butterfly_fail":"true","checkpoints_walked.butterfly_effect.kaizo":"true","checkpoints_walked.carried_enough.pre_antihub":"true","checkpoints_walked.carried_enough.pre_hub_2":"true","checkpoints_walked.carry_it_out.carried_enough":"true","checkpoints_walked.choose_wisely.m_c_waterfall":"true","checkpoints_walked.dont_look_up.carry_it_out":"true","checkpoints_walked.dont_look_up.curiosity_killed_the_carl":"true","checkpoints_walked.driving_you_mad.higher_higher_higher":"true","checkpoints_walked.endless_eight.pre_hub_1":"true","checkpoints_walked.fly_high.little_big_platforms":"true","checkpoints_walked.fly_high.pre_hub_1":"true","checkpoints_walked.higher_higher_higher.road_rage":"true","checkpoints_walked.hilberts_dotel.shepard_tone":"true","checkpoints_walked.kaaaart_race.traaaash":"true","checkpoints_walked.kaizo.kaaaart_race":"true","checkpoints_walked.kings_cross.move_it_move_it":"true","checkpoints_walked.kings_cross.not_that_simple":"true","checkpoints_walked.leap_of_faith.stop_and_stair":"true","checkpoints_walked.little_big_platforms.pre_antihub":"true","checkpoints_walked.m_c_waterfall.silvercity":"true","checkpoints_walked.move_it_move_it.moved_enough":"true","checkpoints_walked.moved_enough.pre_hub_2":"true","checkpoints_walked.moved_enough.switching_it_up":"true","checkpoints_walked.nine_boxes_in_sight.kings_cross":"true","checkpoints_walked.pre_antihub.the_antihub":"true","checkpoints_walked.pre_hub_1.pre_hub_2":"true","checkpoints_walked.pre_hub_2.the_hub":"true","checkpoints_walked.push_me_not.brlogenshfegle":"true","checkpoints_walked.pushing_onwards.push_me_not":"true","checkpoints_walked.road_rage.carry_it_out":"true","checkpoints_walked.road_rage.crime_doesnt_pay":"true","checkpoints_walked.shepard_tone.axiom_of_choice":"true","checkpoints_walked.shepard_tone.eduard_anatolyevich_khil":"true","checkpoints_walked.short_circuited.choose_wisely":"true","checkpoints_walked.silvercity.nine_boxes_in_sight":"true","checkpoints_walked.stop_and_stair.endless_eight":"true","checkpoints_walked.switching_it_up.pre_antihub":"true","checkpoints_walked.the_antihub.butterfly_effect":"true","checkpoints_walked.the_antihub.pushing_onwards":"true","checkpoints_walked.the_antihub.the_wide_gap":"true","checkpoints_walked.the_hub.hilberts_dotel":"true","checkpoints_walked.the_hub.short_circuited":"true","checkpoints_walked.the_hub.the_strip":"true","checkpoints_walked.the_klein_bottle.the_projective_plane":"true","checkpoints_walked.the_projective_plane.the_sphere":"true","checkpoints_walked.the_sphere.bings_house":"true","checkpoints_walked.the_sphere.top_of_the_mountain":"true","checkpoints_walked.the_strip.the_torus":"true","checkpoints_walked.the_torus.the_klein_bottle":"true","checkpoints_walked.the_wide_gap.driving_you_mad":"true","checkpoints_walked.traaaash.liar":"true","checkpoints_walked.traaaash.move_it_move_it":"true","checkpoints_walked.turtles.dont_look_up":"true","escapes":"61","frames":"187834","last_checkpoint":"carry_it_out","teleports":"30"},"7822":{"used":"true"},"7987":{"seen":"true"},"8057":{"seen":"true"},"81":{"used":"true"},"90":{"seen":"true"},"91":{"seen":"true"},"92":{"seen":"true"},"93":{"seen":"true"},"94":{"seen":"true"},"95":{"seen":"true"}},"GameVersion":"1.7.235+20260728.4194.01af4701","LevelVersion":1,"LevelHash":6842216255411465264,"InfoHash":1300820216658331382,"StateHash":13837574087251844935}}

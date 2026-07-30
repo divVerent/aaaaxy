@@ -19,7 +19,7 @@ jobs:
           libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev strip-nondeterminism
           xvfb
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version: '1.25'
       - name: Build
@@ -67,6 +67,22 @@ jobs:
             assets/demos/*.dem.*.png
 
             '
+      - name: Gather System Info
+        run: |
+          set -x
+          export AZURE_VMSIZE=$(curl -s --connect-timeout 5 -H "Metadata:true" "http://169.254.169.254/metadata/instance/compute/vmSize?api-version=2021-02-01&format=text" || true)
+          CPU_DATA=$(lscpu -J | jq -r '
+            (.lscpu | map({(.field | rtrimstr(":")): .data}) | add) as $cpu
+            | {
+                cpu_model: $cpu["Model name"],
+                cpu_cores: $cpu["CPU(s)"],
+                cpu_bogomips: $cpu["BogoMIPS"]
+              } | @json
+          ')
+          export CPU_MODEL=$(echo "$CPU_DATA" | jq -r '.cpu_model')
+          export CPU_CORES=$(echo "$CPU_DATA" | jq -r '.cpu_cores')
+          export CPU_BOGOMIPS=$(echo "$CPU_DATA" | jq -r '.cpu_bogomips')
+          jq '.[].extra = "azure_vmsize: \(env.AZURE_VMSIZE)\ncpu_model: \(env.CPU_MODEL)\ncpu_cores: \(env.CPU_CORES)\ncpu_bogomips: \(env.CPU_BOGOMIPS)"' benchmark.txt > benchmark.json
       - name: Store benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
@@ -75,7 +91,7 @@ jobs:
         with:
           name: Any% linux-amd64
           tool: customSmallerIsBetter
-          output-file-path: benchmark.txt
+          output-file-path: benchmark.json
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           auto-push: false
@@ -111,7 +127,7 @@ jobs:
           libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev
           strip-nondeterminism
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version: '1.25'
       - name: Build
@@ -160,6 +176,22 @@ jobs:
             assets/demos/*.dem.*.png
 
             '
+      - name: Gather System Info
+        run: |
+          set -x
+          export AZURE_VMSIZE=$(curl -s --connect-timeout 5 -H "Metadata:true" "http://169.254.169.254/metadata/instance/compute/vmSize?api-version=2021-02-01&format=text" || true)
+          CPU_DATA=$(powershell -Command '
+            $c = Get-CimInstance Win32_Processor | Select-Object -First 1;
+            [PSCustomObject]@{
+              cpu_model = $c.Name.Trim();
+              cpu_cores = [int]$env:NUMBER_OF_PROCESSORS;
+              cpu_bogomips = $($c.MaxClockSpeed)
+            } | ConvertTo-Json -Compress
+          ')
+          export CPU_MODEL=$(echo "$CPU_DATA" | jq -r '.cpu_model')
+          export CPU_CORES=$(echo "$CPU_DATA" | jq -r '.cpu_cores')
+          export CPU_BOGOMIPS=$(echo "$CPU_DATA" | jq -r '.cpu_bogomips')
+          jq '.[].extra = "azure_vmsize: \(env.AZURE_VMSIZE)\ncpu_model: \(env.CPU_MODEL)\ncpu_cores: \(env.CPU_CORES)\ncpu_bogomips: \(env.CPU_BOGOMIPS)"' benchmark.txt > benchmark.json
       - name: Store benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
@@ -168,7 +200,7 @@ jobs:
         with:
           name: Any% windows-amd64
           tool: customSmallerIsBetter
-          output-file-path: benchmark.txt
+          output-file-path: benchmark.json
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           auto-push: false
@@ -204,7 +236,7 @@ jobs:
           libgl-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev libxxf86vm-dev
           strip-nondeterminism
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version: '1.25'
       - name: Build
@@ -257,6 +289,22 @@ jobs:
             assets/demos/*.dem.*.png
 
             '
+      - name: Gather System Info
+        run: |
+          set -x
+          export AZURE_VMSIZE=$(curl -s --connect-timeout 5 -H "Metadata:true" "http://169.254.169.254/metadata/instance/compute/vmSize?api-version=2021-02-01&format=text" || true)
+          CPU_DATA=$(powershell -Command '
+            $c = Get-CimInstance Win32_Processor | Select-Object -First 1;
+            [PSCustomObject]@{
+              cpu_model = $c.Name.Trim();
+              cpu_cores = [int]$env:NUMBER_OF_PROCESSORS;
+              cpu_bogomips = $($c.MaxClockSpeed)
+            } | ConvertTo-Json -Compress
+          ')
+          export CPU_MODEL=$(echo "$CPU_DATA" | jq -r '.cpu_model')
+          export CPU_CORES=$(echo "$CPU_DATA" | jq -r '.cpu_cores')
+          export CPU_BOGOMIPS=$(echo "$CPU_DATA" | jq -r '.cpu_bogomips')
+          jq '.[].extra = "azure_vmsize: \(env.AZURE_VMSIZE)\ncpu_model: \(env.CPU_MODEL)\ncpu_cores: \(env.CPU_CORES)\ncpu_bogomips: \(env.CPU_BOGOMIPS)"' benchmark.txt > benchmark.json
       - name: Store benchmark result
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
           (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
@@ -265,7 +313,7 @@ jobs:
         with:
           name: Any% windows-386
           tool: customSmallerIsBetter
-          output-file-path: benchmark.txt
+          output-file-path: benchmark.json
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: dev/bench
           auto-push: false

@@ -61,7 +61,7 @@ func (v *Movable) Init(w *engine.World, sp *level.SpawnableProps, e *engine.Enti
 		v.Entity.Rect.Origin = v.To
 	}
 
-	v.Physics.Init(w, e, contents, func(trace engine.TraceResult) {})
+	v.Physics.Init(w, e, contents, func(trace engine.TraceResult) {}, false)
 
 	return parseErr
 }

@@ -206,7 +206,7 @@ func (p *Player) GiveAbility(name, text string) {
 
 func (p *Player) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entity) error {
 	p.Physics.StepHeight = StepHeight
-	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch)
+	p.Physics.Init(w, e, level.PlayerSolidContents, p.handleTouch, true)
 	p.World = w
 	p.Entity = e
 	p.Entity.Rect.Size = m.Delta{DX: PlayerWidth, DY: PlayerHeight}
@@ -523,12 +523,13 @@ func (p *Player) LookDirectionY() int {
 
 // Respawned informs the player that the world moved/respawned it.
 func (p *Player) Respawned() {
-	p.Physics.Reset()                      // Stop moving.
+	p.OnGroundVec = m.Delta{DX: 0, DY: 1} // Gravity points down.
+	p.Physics.Reset()                     // Stop moving.
+
 	p.LastGroundPos = p.Entity.Rect.Origin // Center the camera.
 	p.CoyoteFrames = ExtraGroundFrames     // Assume on ground.
 	p.Jumping = true                       // Jump key must be hit again.
 	p.VVVVVV = false                       // Normal physics.
-	p.OnGroundVec = m.Delta{DX: 0, DY: 1}  // Gravity points down.
 	p.JumpingUp = false                    // Do not assume we're in the first half of a jump (fastfall).
 	p.Respawning = true                    // Block the respawn key until released.
 	p.Anim.ForceGroup("idle")              // Reset animation.
@@ -572,11 +573,11 @@ func (p *Player) SetGoal(goal *engine.Entity) {
 	p.Goal = goal
 }
 
-func (p *Player) DebugPos64() (x int64, y int64, vx int64, vy int64) {
-	return int64(p.Entity.Rect.Origin.X)*constants.SubPixelScale + int64(p.Physics.SubPixel.DX),
-		int64(p.Entity.Rect.Origin.Y)*constants.SubPixelScale + int64(p.Physics.SubPixel.DY),
-		int64(p.Velocity.DX),
-		int64(p.Velocity.DY)
+func (p *Player) DebugPos() (x, sx, y, sy, vx, vy int) {
+	return p.Entity.Rect.Origin.X, p.Physics.SubPixel.DX,
+		p.Entity.Rect.Origin.Y, p.Physics.SubPixel.DY,
+		p.Velocity.DX,
+		p.Velocity.DY
 }
 
 func init() {

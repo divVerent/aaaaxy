@@ -25,13 +25,18 @@ msgstr ""
 msgid "%s (%d/%d)"
 msgstr ""
 
+#: menu/credits.go
+msgid "%s, et al."
+msgstr ""
+
 #: menu/level.go
 msgid "%s: %s"
 msgstr ""
 
 #. -show_pos overlay (showing xy coordinates of player position and speed).
-#: aaaaxy/game.go aaaaxy/game.go
-msgid "(%.5f %.5f) (%.4f %.4f)"
+#. Each number in the form sign, wholes, decimal dot, decimals.
+#: aaaaxy/game.go
+msgid "(%s%d.%04d %s%d.%04d) (%s%d.%04d %s%d.%04d)"
 msgstr ""
 
 #. Other separator when building a list. Usually is a comma and a space.
@@ -198,7 +203,8 @@ msgstr ""
 msgid "Enter/Shift"
 msgstr ""
 
-#: game/checkpoint/checkpoint_target.go
+#: game/checkpoint/checkpoint_target.go game/target/badapple.go
+#: game/trigger/questionblock.go
 msgid ""
 "Error:\n"
 "could not save game:\n"
@@ -222,7 +228,11 @@ msgid ""
 msgstr ""
 
 #: menu/credits.go
-msgid "For Software Licenses{{BR}}Press Right"
+msgid "For Software Licenses{{BR}}press right"
+msgstr ""
+
+#: menu/credits.go
+msgid "For Software Licenses{{BR}}press the right side of the scereen"
 msgstr ""
 
 #: aaaaxy/game.go
@@ -622,6 +632,11 @@ msgstr ""
 msgid "and other contributors"
 msgstr ""
 
+#. "Classic hero and baddies pack" is the name on opengameart - do not change or translate that part. Feel free to put in quotes or similar if necessary.
+#: menu/credits.go menu/credits.go
+msgid "based on Classic hero and baddies pack"
+msgstr ""
+
 #: menu/credits.go
 msgid "by %s"
 msgstr ""
@@ -642,6 +657,10 @@ msgstr ""
 #. Used in context "reached <location> with ... at <time>".
 #: fun/string.go
 msgid "everything"
+msgstr ""
+
+#: menu/credits.go
+msgid "gabomdq and the SDL community"
 msgstr ""
 
 #: level/level.go

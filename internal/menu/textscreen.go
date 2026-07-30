@@ -29,6 +29,11 @@ func textScreenScrollInPos(text []string, lineHeight int) int {
 	return engine.GameHeight + lineHeight
 }
 
+// textScreenScrolledInPos is the position where only one line can be seen.
+func textScreenScrolledInPos(text []string, lineHeight int) int {
+	return engine.GameHeight
+}
+
 // textScreenStartPos is the position where the start of the text shows.
 func textScreenStartPos(text []string, lineHeight int) int {
 	return lineHeight
@@ -36,11 +41,12 @@ func textScreenStartPos(text []string, lineHeight int) int {
 
 // textScreenAdjustScrollUp performs scrolling up.
 func textScreenAdjustScrollUp(text []string, y, d int, lineHeight int) int {
-	if y > lineHeight {
+	t := textScreenScrolledInPos(text, lineHeight)
+	if y > t {
 		return y
 	}
-	if y+d > lineHeight {
-		return lineHeight
+	if y+d > t {
+		return t
 	}
 	return y + d
 }

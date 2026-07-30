@@ -17,6 +17,7 @@ package offscreen
 import (
 	"reflect"
 	"sort"
+	"sync"
 
 	"github.com/hajimehoshi/ebiten/v2"
 
@@ -104,6 +105,7 @@ type baseManager struct {
 	pastNames map[int64][]string
 	allocated int
 	freed     int
+	maxInUse  int
 }
 
 func newBaseManager(w, h int) baseManager {
@@ -127,6 +129,9 @@ func (m *baseManager) recordName(name string, img *ebiten.Image) *ebiten.Image {
 		m.pastNames[id(img)] = append(m.pastNames[id(img)], name)
 	}
 	m.allocated++
+	if len(m.names) > m.maxInUse {
+		m.maxInUse = len(m.names)
+	}
 	return img
 }
 
@@ -145,7 +150,7 @@ func (m *baseManager) clearName(img *ebiten.Image) string {
 
 func (m *baseManager) Report() {
 	if *debugOffscreen {
-		log.Infof("offscreen: %d textures allocated, %d textures freed, %d textures in use", m.allocated, m.freed, len(m.names))
+		log.Infof("offscreen: %d textures allocated, %d textures freed, %d textures in use, %d max ever", m.allocated, m.freed, len(m.names), m.maxInUse)
 		var ids []int64
 		for id := range m.pastNames {
 			ids = append(ids, id)
@@ -327,7 +332,8 @@ type size struct {
 }
 
 var (
-	managers = map[size]manager{}
+	managerMu sync.Mutex
+	managers  = map[size]manager{}
 )
 
 func managerForSize(w, h int) manager {
@@ -350,19 +356,27 @@ func managerForSize(w, h int) manager {
 }
 
 func New(name string, w, h int) *ebiten.Image {
+	managerMu.Lock()
+	defer managerMu.Unlock()
 	return managerForSize(w, h).New(name, false)
 }
 
 func NewExplicit(name string, w, h int) *ebiten.Image {
+	managerMu.Lock()
+	defer managerMu.Unlock()
 	return managerForSize(w, h).New(name, true)
 }
 
 func Dispose(img *ebiten.Image) {
+	managerMu.Lock()
+	defer managerMu.Unlock()
 	sz := img.Bounds().Size()
 	managerForSize(sz.X, sz.Y).Dispose(img)
 }
 
 func Collect() {
+	managerMu.Lock()
+	defer managerMu.Unlock()
 	for _, m := range managers {
 		m.Report()
 		m.Collect()

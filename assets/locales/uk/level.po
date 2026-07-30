@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 18:30+0200\n"
+"POT-Creation-Date: 2026-07-15 06:17+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Ukrainian (https://app.transifex.com/aaaaxy/teams/158611/uk/)\n"
@@ -78,8 +78,9 @@ msgstr "Іноді просто бігаєш колами."
 msgid "Some people prefer 2τ over 4π."
 msgstr "Деякі віддають перевагу 2τ замість 4π."
 
-#. https://www.churchofjesuschrist.org/broadcasts/article/ces-
-#. devotionals/2013/01/what-is-truth?lang=eng
+#. https://www.churchofjesuschrist.org/study/ya-weekly/2021/09/5-truths-about-
+#. truth?lang=eng (switch to your language's version, the phrase is in section
+#. 1 paragraph 2 near the end).
 #: assets/maps/level.tmx//map/objectgroup/object[@id=92]
 msgid "\"In spite of one-time overwhelming consensus, the earth isn't flat.\""
 msgstr "\"Незважаючи на колись поширену думку, Земля не є пласкою.\""
@@ -193,7 +194,7 @@ msgstr "Новий початок"
 msgid "If this isn't your downfall, I don't know what is."
 msgstr "Якщо навіть це не падіння, то я не знаю що можна вважати падінням."
 
-#. https://www.youtube.com/watch?v=zpRQtHjEniQ
+#. https://www.youtube.com/watch?v=_-QENSv7gIs
 #: assets/maps/level.tmx//map/objectgroup/object[@id=287]
 msgid "Oh, gravity, thou art a heartless ... force?"
 msgstr "Ох, гравітаціє, безсердечна ж ти .... сила?"
@@ -1230,7 +1231,7 @@ msgid "Ski Dyver"
 msgstr "Небесний лижник"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
-msgid "Those who are not inattentive get trolled."
+msgid "Those who are inattentive get trolled."
 msgstr "Тролять тих, хто звертає увагу."
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
@@ -1547,3 +1548,32 @@ msgstr "Чудове виконання!{{BR}}Може, час повчитис�
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
 msgid "Bang!"
 msgstr "Бум!"
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
+msgid "I think you meant to play{{BR}}In the Hall of the Mountain King?"
+msgstr ""
+
+#. Reference to Super Mario 64's intro letter from Princess Peach, combined
+#. with the wellknown phrase misattributed to Marie Antoinette. Try finding
+#. both phrases as most commonly used in your language in the given contexts
+#. and use those. Definitely don't reference Portal here - let's not overdo
+#. those. If Asterix is well-known in your culture, you may consider making it
+#. an "arsenic cake"; if not, reference Grieg's In the Hall of the Mountain
+#. King.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8556]
+msgid ""
+"Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat "
+"cake...{{BR}}Arsenic cake?"
+msgstr ""
+
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8557]
+msgid "I think you meant to play{{BR}}Arsenic Cake?"
+msgstr ""
+
+#. https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in
+#. _your_ favorite Bad Apple reference (parody or not), even indirect stuff
+#. like referencing "Rule 86" is totally fine here. Can even go along the
+#. lines of "Touhou was too hard, so you're playing this" etc.
+#: assets/maps/level.tmx//map/objectgroup/object[@id=8588]
+msgid "... and makes a swirly dot."
+msgstr ""

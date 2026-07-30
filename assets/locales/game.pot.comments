@@ -315,7 +315,13 @@ msgid "Z"
 msgstr ""
 
 #. -show_pos overlay (showing xy coordinates of player position and speed).
+#. Each number in the form sign, wholes, decimal dot, decimals.
 #: aaaaxy/game.go
-msgid "(%.5f %.5f) (%.4f %.4f)"
+msgid "(%s%d.%04d %s%d.%04d) (%s%d.%04d %s%d.%04d)"
+msgstr ""
+
+#. "Classic hero and baddies pack" is the name on opengameart - do not change or translate that part. Feel free to put in quotes or similar if necessary.
+#: menu/credits.go
+msgid "based on Classic hero and baddies pack"
 msgstr ""
 

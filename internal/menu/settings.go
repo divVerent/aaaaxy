@@ -113,8 +113,9 @@ type graphicsSettingData struct {
 
 var graphicsSettings = []graphicsSettingData{
 	{"mono", "Hercules"},
-	{"egamono", "EGA (monochrome)"},
+	{"cgamono", "CGA (monochrome)"},
 	{"cga41l", "CGA"},
+	{"egamono", "EGA (monochrome)"},
 	{"ega", "EGA"},
 	{"vgamono", "VGA (monochrome)"},
 	{"vga", "VGA"},
@@ -154,7 +155,6 @@ var graphicsSettings = []graphicsSettingData{
 func init() {
 	// Skip intentionally unused palettes.
 	intentionallyUnused := map[string]bool{
-		"bad_apple": true,
 		// Redundant, do not offer in menu.
 		"cga40h": true,
 		"cga40l": true,
@@ -248,7 +248,7 @@ func doApplyGraphicsSetting(m *Controller, palName string) error {
 
 func Palette(m *Controller) string {
 	if m.World.Level != nil && m.World.PlayerState.BadApple() {
-		return "bad_apple"
+		return "cgamono"
 	}
 	return *paletteFlag
 }
@@ -259,7 +259,7 @@ func SetPalette(pal string) {
 
 func (s graphicsSetting) apply(m *Controller) error {
 	palName := graphicsSettings[s].palette
-	if m.World.PlayerState.BadApple() && palName != "bad_apple" {
+	if m.World.PlayerState.BadApple() && palName != "cgamono" {
 		m.World.PlayerState.StopBadApple()
 		err := m.World.Save()
 		if err != nil {

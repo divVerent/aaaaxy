@@ -20,7 +20,7 @@ set -ex
 midi=$1; shift
 wav=$1; shift
 
-dir=$(mktemp -d -t shepard_midi2wav)
+dir=$(mktemp -d -t shepard_midi2wav.XXXXXX)
 trap 'rm -rf "$dir"' EXIT
 
 midicopy -nodrums "$@" "$midi" "$dir/converted.mid"

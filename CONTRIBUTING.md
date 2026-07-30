@@ -3,7 +3,7 @@
 We'd love to accept your patches and contributions to this project.
 There are just a few small guidelines you need to follow.
 
-## Code reviews
+## Code Reviews
 
 All submissions, including submissions by project members, require
 review, and must be fully understood by the submitter before
@@ -32,7 +32,7 @@ terms:
 
 ## AI Policy
 
-Contributions by a LLM or other AI entity still must follow the above
+Contributions by an LLM or other AI entity still must follow the above
 requirements, just like human contributions.
 
 In particular this means:
