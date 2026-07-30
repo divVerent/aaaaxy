@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785368921567,
+  "lastUpdate": 1785409824893,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1206,6 +1206,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.27"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "5dd6f1bc1e4be43fdbe67d4229a1602935d9207d",
+          "message": "Make one-ways solid from spawn already.\n\nSimple enough, and fixes sometimes falling through them on Ski Dyver.",
+          "timestamp": "2026-07-30T13:06:53+02:00",
+          "tree_id": "203b9be2d9efb3d8441ded7e943638e58e6b5fec",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5dd6f1bc1e4be43fdbe67d4229a1602935d9207d"
+        },
+        "date": 1785409818251,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 75.455312248,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -1588,6 +1618,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2794"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "5dd6f1bc1e4be43fdbe67d4229a1602935d9207d",
+          "message": "Make one-ways solid from spawn already.\n\nSimple enough, and fixes sometimes falling through them on Ski Dyver.",
+          "timestamp": "2026-07-30T13:06:53+02:00",
+          "tree_id": "203b9be2d9efb3d8441ded7e943638e58e6b5fec",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5dd6f1bc1e4be43fdbe67d4229a1602935d9207d"
+        },
+        "date": 1785409851245,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.1151813,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -1968,6 +2028,36 @@ window.BENCHMARK_DATA = {
             "value": 99.9341596,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "5dd6f1bc1e4be43fdbe67d4229a1602935d9207d",
+          "message": "Make one-ways solid from spawn already.\n\nSimple enough, and fixes sometimes falling through them on Ski Dyver.",
+          "timestamp": "2026-07-30T13:06:53+02:00",
+          "tree_id": "203b9be2d9efb3d8441ded7e943638e58e6b5fec",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5dd6f1bc1e4be43fdbe67d4229a1602935d9207d"
+        },
+        "date": 1785409862785,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.3024725,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2793"
           }
         ]
       }
