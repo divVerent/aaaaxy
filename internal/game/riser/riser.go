@@ -260,6 +260,8 @@ func (r *Riser) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Entit
 		return err
 	}
 
+	r.updateSolid()
+
 	return parseErr
 }
 
@@ -325,6 +327,37 @@ func (r *Riser) PreDespawn() {
 	r.pushSound.update(false)
 	r.carrySound.update(false)
 	r.riseSound.update(false)
+}
+
+func (r *Riser) updateSolid() {
+	playerAbilities := r.World.Player.Impl.(interfaces.Abilityer)
+	playerPhysics := r.World.Player.Impl.(interfaces.Physics)
+	canStand := playerAbilities.HasAbility("stand")
+	playerOnMe := playerPhysics.ReadGroundEntity() == r.Entity
+	playerDelta := r.World.Player.Rect.Delta(r.Entity.Rect)
+	playerAboveMe := playerDelta.DX == 0 && playerDelta.Dot(r.OnGroundVec) < 0
+
+	if r.State == GettingCarried {
+		// Never solid during carrying.
+		r.World.MutateContents(r.Entity, level.SolidContents, 0)
+		r.Physics.IgnoreEnt = r.World.Player
+	} else if canStand && playerAboveMe {
+		// Solid to player when player is above.
+		r.World.MutateContents(r.Entity, level.SolidContents, level.SolidContents)
+		if playerOnMe {
+			// Player will follow anyway.
+			r.Physics.IgnoreEnt = r.World.Player
+		} else {
+			// Move normally, and bump into the player if necessary.
+			// Note that when bumping into the player, the platform can lose a frame of movement.
+			// TODO: this is a minor slowdown/platform stall glitch - maybe I can find a way to fix it?
+			r.Physics.IgnoreEnt = nil
+		}
+	} else {
+		// Otherwise, only solid to objects.
+		r.World.MutateContents(r.Entity, level.SolidContents, level.ObjectSolidContents)
+		r.Physics.IgnoreEnt = r.World.Player
+	}
 }
 
 func (r *Riser) Update() {
@@ -458,27 +491,7 @@ func (r *Riser) Update() {
 	}
 
 	// Solidity.
-	if r.State == GettingCarried {
-		// Never solid during carrying.
-		r.World.MutateContents(r.Entity, level.SolidContents, 0)
-		r.Physics.IgnoreEnt = r.World.Player
-	} else if canStand && playerAboveMe {
-		// Solid to player when player is above.
-		r.World.MutateContents(r.Entity, level.SolidContents, level.SolidContents)
-		if playerOnMe {
-			// Player will follow anyway.
-			r.Physics.IgnoreEnt = r.World.Player
-		} else {
-			// Move normally, and bump into the player if necessary.
-			// Note that when bumping into the player, the platform can lose a frame of movement.
-			// TODO: this is a minor slowdown/platform stall glitch - maybe I can find a way to fix it?
-			r.Physics.IgnoreEnt = nil
-		}
-	} else {
-		// Otherwise, only solid to objects.
-		r.World.MutateContents(r.Entity, level.SolidContents, level.ObjectSolidContents)
-		r.Physics.IgnoreEnt = r.World.Player
-	}
+	r.updateSolid()
 
 	// Adjust hitbox size.
 	targetSize := r.NormalSize
