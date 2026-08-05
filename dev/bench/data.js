@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785956971123,
+  "lastUpdate": 1785957221348,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1574,6 +1574,36 @@ window.BENCHMARK_DATA = {
             "value": 74.452078723,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "23db42fbd6b708461b7e87556f74f62b8553a272",
+          "message": "Jumppads: correct gravityDown value and add comments.\n\nDoes not change behaviour in any way.",
+          "timestamp": "2026-08-05T21:03:51+02:00",
+          "tree_id": "4c25d7ee3c97a13737a7e7ec657f9ae3147d6ec0",
+          "url": "https://github.com/divVerent/aaaaxy/commit/23db42fbd6b708461b7e87556f74f62b8553a272"
+        },
+        "date": 1785957213894,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 74.974102696,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
       }
