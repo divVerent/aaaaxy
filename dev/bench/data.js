@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785946845445,
+  "lastUpdate": 1785947108745,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1514,6 +1514,36 @@ window.BENCHMARK_DATA = {
             "value": 76.102835526,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.87"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2",
+          "message": "If the game has already been won, skip It Only Takes One.\n\nOnly if it has been won in the current save state, of course.",
+          "timestamp": "2026-08-05T18:15:14+02:00",
+          "tree_id": "03cc6bbb5031986337f41685e1704c9d1aec754a",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2"
+        },
+        "date": 1785947104010,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 74.452078723,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
       }
