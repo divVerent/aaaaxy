@@ -79,6 +79,14 @@ func (j *JumpPad) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Ent
 		}
 	}
 
+	if ifWon := propmap.ValueOrP(sp.Properties, "unless_won", false, &parseErr); ifWon {
+		if w.PlayerState.Won() {
+			// Disable and hide.
+			e.Alpha = 0.0
+			w.MutateContentsBool(e, level.AllContents, false)
+		}
+	}
+
 	return parseErr
 }
 
