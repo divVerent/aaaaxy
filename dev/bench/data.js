@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785911642686,
+  "lastUpdate": 1785911771360,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -728,6 +728,36 @@ window.BENCHMARK_DATA = {
             "value": 241.782555675,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "d8fdc7ec3f3ed560616359f271269088cb0bfe55",
+          "message": "Release v1.7.239\n\nChanges since v1.7.218:\n  - Engine: phtsics fixes for initial player height.\n  - Engine: physics fixes for falling through freshly spawned objects.\n  - Mobile: bump Android SDK to 36.\n  - Snap: update to core26.\n  - Translations: include decimal point of `show_pos`.",
+          "timestamp": "2026-08-04T20:48:31+02:00",
+          "tree_id": "95b98fec59660926482d7d6934a89c478bfe52a8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d8fdc7ec3f3ed560616359f271269088cb0bfe55"
+        },
+        "date": 1785911765822,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 229.18910883,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
           }
         ]
       }
