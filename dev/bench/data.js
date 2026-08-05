@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785887350070,
+  "lastUpdate": 1785911642686,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2070,6 +2070,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "d8fdc7ec3f3ed560616359f271269088cb0bfe55",
+          "message": "Release v1.7.239\n\nChanges since v1.7.218:\n  - Engine: phtsics fixes for initial player height.\n  - Engine: physics fixes for falling through freshly spawned objects.\n  - Mobile: bump Android SDK to 36.\n  - Snap: update to core26.\n  - Translations: include decimal point of `show_pos`.",
+          "timestamp": "2026-08-04T20:48:31+02:00",
+          "tree_id": "95b98fec59660926482d7d6934a89c478bfe52a8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d8fdc7ec3f3ed560616359f271269088cb0bfe55"
+        },
+        "date": 1785911636329,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 73.799582536,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -2736,6 +2766,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.6423112,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "d8fdc7ec3f3ed560616359f271269088cb0bfe55",
+          "message": "Release v1.7.239\n\nChanges since v1.7.218:\n  - Engine: phtsics fixes for initial player height.\n  - Engine: physics fixes for falling through freshly spawned objects.\n  - Mobile: bump Android SDK to 36.\n  - Snap: update to core26.\n  - Translations: include decimal point of `show_pos`.",
+          "timestamp": "2026-08-04T20:48:31+02:00",
+          "tree_id": "95b98fec59660926482d7d6934a89c478bfe52a8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d8fdc7ec3f3ed560616359f271269088cb0bfe55"
+        },
+        "date": 1785911663044,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 95.9386293,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
@@ -3408,6 +3468,36 @@ window.BENCHMARK_DATA = {
             "value": 99.5431368,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "d8fdc7ec3f3ed560616359f271269088cb0bfe55",
+          "message": "Release v1.7.239\n\nChanges since v1.7.218:\n  - Engine: phtsics fixes for initial player height.\n  - Engine: physics fixes for falling through freshly spawned objects.\n  - Mobile: bump Android SDK to 36.\n  - Snap: update to core26.\n  - Translations: include decimal point of `show_pos`.",
+          "timestamp": "2026-08-04T20:48:31+02:00",
+          "tree_id": "95b98fec59660926482d7d6934a89c478bfe52a8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d8fdc7ec3f3ed560616359f271269088cb0bfe55"
+        },
+        "date": 1785911666960,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.8690977,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
