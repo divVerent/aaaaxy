@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8601">
+<map version="1.8" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="512" height="512" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="8605">
  <properties>
   <property name="checkpoint_locations_hash" value="15679952859001470231"/>
   <property name="credits_music" value="Juhani Junkala [Retro Game Music Pack] Ending.ogg"/>
@@ -20000,6 +20000,24 @@
    <properties>
     <property name="sequence" value="G#A#BC#D#G#F#D#G#"/>
     <property name="target" value="=BadAppleEffect =BadAppleMessage"/>
+   </properties>
+  </object>
+  <object id="8603" type="Animation" x="6948" y="780" width="8" height="5">
+   <properties>
+    <property name="animation" value="jumppad8"/>
+    <property name="animation_frame_interval" type="int" value="16"/>
+    <property name="animation_frames" type="int" value="2"/>
+    <property name="animation_group" value="idle"/>
+    <property name="animation_repeat_interval" type="int" value="32"/>
+    <property name="if_won" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="8604" type="JumpPad" x="6948" y="784" width="8" height="1">
+   <properties>
+    <property name="delta" value="0 -352"/>
+    <property name="height" value="0"/>
+    <property name="if_won" type="bool" value="true"/>
+    <property name="jump_up_only" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
