@@ -166,11 +166,9 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	// Compute parameters for jump.
 	var source m.Pos
 	if j.StaticVector {
-		if gravityDown {
-			source = j.Entity.Rect.Foot()
-		} else {
-			source = j.Entity.Rect.Head()
-		}
+		// The destination is the exact amount of pixels the jumppad will
+		// propel the player up by.
+		source = j.Entity.Rect.Center()
 	} else {
 		if gravityDown {
 			source = other.Rect.Head()
