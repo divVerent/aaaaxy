@@ -183,10 +183,8 @@
         function renderAllChars(dataSets) {
 
           function renderGraph(parent, name, dataset) {
-            const minScore = window.BENCHMARK_FILTER.minScore == undefined ? 1 : window.BENCHMARK_FILTER.minScore;
-            const badScore = dataset.filter(d => d.bench.anomaly > 0).length;
-            const goodScore = dataset.filter(d => d.bench.anomaly < 0).length;
-            const score = goodScore + badScore;
+            const minScore = window.BENCHMARK_FILTER.minScore == undefined ? GRAPH_MIN_SCORE : window.BENCHMARK_FILTER.minScore;
+            const [score, goodScore, badScore] = scoreForGraph(dataset);
             if (score < minScore) {
               return;
             }

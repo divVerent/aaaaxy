@@ -3,6 +3,8 @@ const PERCENTILE_THRESHOLD = 1.0 - TARGET_FALSE_ALERT_PROBABILITY;
 const GRAPH_COLOR_STEP = 0.25;
 const GRAPH_COLOR_MIN = 32;
 const GRAPH_COLOR_MAX = 223;
+const GRAPH_FALLOFF = 0.98;
+const GRAPH_MIN_SCORE = 1e-10;
 
 function parseExtra(extra) {
   out = {};
@@ -37,14 +39,16 @@ function tCDF(t, df) {
   const sin = Math.sin(theta);
 
   if (df % 2 === 0) {
-    let sum = 1.0, term = 1.0;
+    let sum = 1.0,
+      term = 1.0;
     for (let i = 2; i <= df - 2; i += 2) {
       term *= ((i - 1) / i) * (cos * cos);
       sum += term;
     }
     return 0.5 + 0.5 * sin * sum;
   } else {
-    let sum = cos, term = cos;
+    let sum = cos,
+      term = cos;
     for (let i = 3; i <= df - 2; i += 2) {
       term *= ((i - 1) / i) * (cos * cos);
       sum += term;
@@ -64,6 +68,30 @@ function colorForGraph(goodScore, badScore) {
   return color = '#' + colorR.toString(16).padStart(2, '0') + colorG.toString(16).padStart(2, '0') + colorB.toString(16).padStart(2, '0');
 }
 
+function scoreForGraph(dataset) {
+  let score = 0;
+  let goodScore = 0;
+  let badScore = 0;
+  for (const d of dataset) {
+    score *= GRAPH_FALLOFF;
+    goodScore *= GRAPH_FALLOFF;
+    badScore *= GRAPH_FALLOFF;
+    if (d.bench.anomaly > 0) {
+      score += 1.0;
+      badScore += 1.0;
+    } else if (d.bench.anomaly < 0) {
+      score += 1.0;
+      goodScore += 1.0;
+    }
+  }
+  return [score, goodScore, badScore];
+}
+
 if (typeof module != 'undefined') {
-  module.exports = {PERCENTILE_THRESHOLD, cpuTypeOf, normalCDF, tCDF};
+  module.exports = {
+    PERCENTILE_THRESHOLD,
+    cpuTypeOf,
+    normalCDF,
+    tCDF
+  };
 }
