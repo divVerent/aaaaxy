@@ -1,5 +1,8 @@
 const TARGET_FALSE_ALERT_PROBABILITY = 0.005;
 const PERCENTILE_THRESHOLD = 1.0 - TARGET_FALSE_ALERT_PROBABILITY;
+const GRAPH_COLOR_STEP = 0.25;
+const GRAPH_COLOR_MIN = 32;
+const GRAPH_COLOR_MAX = 223;
 
 function parseExtra(extra) {
   out = {};
@@ -26,13 +29,13 @@ function normalCDF(x) {
 // --- Analytical Student's t Cumulative Distribution Function (CDF) ---
 function tCDF(t, df) {
   if (df >= 100) return normalCDF(t); // Fall back to your shared normalCDF for large samples
-  
+
   const theta = Math.atan2(t, Math.sqrt(df));
   if (df === 1) return 0.5 + theta / Math.PI;
-  
+
   const cos = Math.cos(theta);
   const sin = Math.sin(theta);
-  
+
   if (df % 2 === 0) {
     let sum = 1.0, term = 1.0;
     for (let i = 2; i <= df - 2; i += 2) {
@@ -48,6 +51,17 @@ function tCDF(t, df) {
     }
     return 0.5 + (theta + sin * sum) / Math.PI;
   }
+}
+
+function colorForGraph(goodScore, badScore) {
+  const score = goodScore + badScore;
+  const goodColorVal = Math.round(GRAPH_COLOR_MIN + (GRAPH_COLOR_MAX - GRAPH_COLOR_MIN) / (1 + goodScore * GRAPH_COLOR_STEP));
+  const badColorVal = Math.round(GRAPH_COLOR_MIN + (GRAPH_COLOR_MAX - GRAPH_COLOR_MIN) / (1 + badScore * GRAPH_COLOR_STEP));
+  const colorVal = Math.round(GRAPH_COLOR_MIN + (GRAPH_COLOR_MAX - GRAPH_COLOR_MIN) / (1 + score * GRAPH_COLOR_STEP));
+  const colorR = goodColorVal;
+  const colorG = badColorVal;
+  const colorB = colorVal;
+  return color = '#' + colorR.toString(16).padStart(2, '0') + colorG.toString(16).padStart(2, '0') + colorB.toString(16).padStart(2, '0');
 }
 
 if (typeof module != 'undefined') {

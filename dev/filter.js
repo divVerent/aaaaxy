@@ -1,4 +1,7 @@
-((data, filter) => {
+((data, filterJSON) => {
+  window.BENCHMARK_FILTER = filterJSON == '' ? {} : JSON.parse(filterJSON);
+  const filter = window.BENCHMARK_FILTER.filter;
+
   allFilters = {
     '': new Set()
   };
@@ -10,7 +13,7 @@
     }
     allFilters[cpuType].add(subentry.date);
     allFilters[''].add(subentry.date);
-    return filter == '' || cpuType == filter;
+    return !filter || cpuType == filter;
   }
 
   function filterEntries(entries) {
@@ -31,16 +34,23 @@
           <th>Count</th>
         </tr>
   `;
-  for (const [filter, set] of Object.entries(allFilters).toSorted(([aName, aSet], [bName, bSet]) => {
+  for (const [filterStr, set] of Object.entries(allFilters).toSorted(([aName, aSet], [bName, bSet]) => {
       if (aSet != bSet) {
         return bSet.size - aSet.size;
       }
       return aName.localeCompare(bName);
     })) {
-    const url = `JavaScript:location.hash = '#${escape(filter)}'; location.reload(); false;`;
+    const filterObj = Object.assign({}, window.BENCHMARK_FILTER);
+    if (filterStr != '') {
+      filterObj.filter = filterStr;
+    } else {
+      delete filterObj.filter;
+    }
+    const filterJSON = JSON.stringify(filterObj);
+    const url = `JavaScript:location.hash = '#${escape(filterJSON)}'; location.reload(); false;`;
     html += `
         <tr>
-          <td><a href="${url}">${filter.length ? filter : '(all)'}</a></td>
+          <td><a href="${url}">${filterStr.length ? filterStr : '(all)'}</a></td>
           <td>${set.size}</td>
         </tr>
     `;

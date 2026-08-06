@@ -1,15 +1,15 @@
 ((data) => {
   const TARGET_FALSE_ALERT_PROBABILITY = 0.005;
   const PERCENTILE_THRESHOLD = 1.0 - TARGET_FALSE_ALERT_PROBABILITY;
-  
+
   if (!data || !data.entries) {
     alert('Benchmark data not found!');
     return;
   }
-  
+
   const stats = {};  // Benchmark -> raw values seen.
   const ratioStats = {};  // Benchmark -> ratios of curr/prev seen.
-  
+
   // Load benchmark results.
   for (const env in data.entries) {
     const runs = data.entries[env].sort((a, b) => a.date - b.date);
@@ -33,7 +33,7 @@
       previousRun = currentRun;
     });
   }
-  
+
   const benchmarkModels = [];
   for (const name in ratioStats) {
     const ratios = ratioStats[name];
@@ -47,13 +47,13 @@
       benchmarkModels.push({ name, mu: logMean, sigma: logStd });
     }
   }
-  
+
   function pNoAlertOf(model, f) {
     const lnF = Math.log(f);
     const z = (lnF - model.mu) / model.sigma;
     return normalCDF(z);
   }
-  
+
   function pNoAlert(models, f) {
     let p = 1.0;
     for (const model of models) {
@@ -61,7 +61,7 @@
     }
     return p;
   }
-  
+
   function searchFactor(models, threshold) {
     let low = 1.0001;
     let high = 2.0;
@@ -71,7 +71,7 @@
         return null;
       }
     }
-  
+
     for (let i = 0; i < 60; i++) {
       const mid = (low + high) / 2;
       if (pNoAlert(models, mid) > threshold) {
@@ -82,22 +82,25 @@
     }
     return high;
   }
-  
+
   // 3. Compute Global Factor 'f' accounting for INDIVIDUAL variances
   const globalF = searchFactor(benchmarkModels, PERCENTILE_THRESHOLD);
   if (globalF == null) {
     alert('Data is too noisy to find a bound.');
     return;
   }
-  
+
   const singleThreshold = Math.pow(PERCENTILE_THRESHOLD, 1.0/benchmarkModels.length);
-  
+
   // Prepare HTML Output
   let html = `
+      <div class="alert-factors">
         <h2>Global Alert Factor Analysis</h2>
         <p>Number of valid benchmarks modeled: ${benchmarkModels.length}</p>
         <p>Recommended global alert Threshold: ${globalF.toFixed(4)}</p>
-  
+      </div>
+
+      <div class="benchmark-stats">
         <h2>Benchmark Statistics</h2>
         <div>
           <table>
@@ -111,7 +114,7 @@
               <th>False Positive Risk at ${globalF.toFixed(4)}</th>
             </tr>
             `;
-  
+
   // 2. Compute Mean and StdDev per benchmark (Absolute Values)
   for (const model of benchmarkModels) {
     const name = model.name;
@@ -136,7 +139,7 @@
             `;
   }
   html += `</table>`;
-  
-  html += `</div>`; // end container
+  html += `</div>`;
+  html += `</div>`;
   document.write(html);
 })(window.BENCHMARK_DATA);
