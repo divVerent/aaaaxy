@@ -1,0 +1,5 @@
+  - Engine: phtsics fixes for initial player height.
+  - Engine: physics fixes for falling through freshly spawned objects.
+  - Mobile: bump Android SDK to 36.
+  - Snap: update to core26.
+  - Translations: include decimal point of `show_pos`.

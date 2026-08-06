@@ -71,6 +71,22 @@ func (j *JumpPad) Spawn(w *engine.World, sp *level.SpawnableProps, e *engine.Ent
 		return fmt.Errorf("could not load jump sound: %w", err)
 	}
 
+	if ifWon := propmap.ValueOrP(sp.Properties, "if_won", false, &parseErr); ifWon {
+		if !w.PlayerState.Won() {
+			// Disable and hide.
+			e.Alpha = 0.0
+			w.MutateContentsBool(e, level.AllContents, false)
+		}
+	}
+
+	if ifWon := propmap.ValueOrP(sp.Properties, "unless_won", false, &parseErr); ifWon {
+		if w.PlayerState.Won() {
+			// Disable and hide.
+			e.Alpha = 0.0
+			w.MutateContentsBool(e, level.AllContents, false)
+		}
+	}
+
 	return parseErr
 }
 
@@ -145,21 +161,21 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	}
 
 	// HACK: Can we rather support arbitrary OnGroundVec?
-	gravityDown := p.ReadOnGroundVec().DY < 0
+	gravityDown := p.ReadOnGroundVec().DY >= 0
 
 	// Compute parameters for jump.
 	var source m.Pos
 	if j.StaticVector {
-		if gravityDown {
-			source = j.Entity.Rect.Foot()
-		} else {
-			source = j.Entity.Rect.Head()
-		}
+		// The destination is the exact amount of pixels the jumppad will
+		// propel the player up by.
+		source = j.Entity.Rect.Center()
 	} else {
+		// By default, the destination is where the _foot_ will land, relative
+		// to the jumppad's center. Makes it easier to measure jumps.
 		if gravityDown {
-			source = other.Rect.Head()
-		} else {
 			source = other.Rect.Foot()
+		} else {
+			source = other.Rect.Head()
 		}
 	}
 	dest := j.Destination
@@ -184,9 +200,9 @@ func (j *JumpPad) Touch(other *engine.Entity) {
 	// Perform the jump.
 	velToJump := m.Delta{}
 	if gravityDown {
-		velToJump = m.FlipY().Apply(calculateJump(m.FlipY().Apply(delta), j.Height))
-	} else {
 		velToJump = calculateJump(delta, j.Height)
+	} else {
+		velToJump = m.FlipY().Apply(calculateJump(m.FlipY().Apply(delta), j.Height))
 	}
 	if j.JumpUpOnly {
 		velToJump.DX = p.ReadVelocity().DX

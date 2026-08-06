@@ -69,9 +69,9 @@
     <content_attribute id="language-humor">mild</content_attribute>
   </content_rating>
   <releases>
-    <release version="v1.7.218" date="2026-07-20">
-      <description><ul><li>Build: license files are now checked in. Should fix F-Droid.</li><li>Engine: fix offscreen dumping when multithreaded.</li><li>Engine: new palette: cga_mono.</li><li>Engine: save the game a bit earlier when winning.</li><li>Level: fix two places in Vuvuzela Virtuoso where one can stand but shouldn't.</li><li>Level: more music jokes.</li><li>Menu: allow scrolling credits up farther.</li><li>Translations: now with Finnish!</li></ul></description>
-      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.218</url>
+    <release version="v1.7.239" date="2026-08-04">
+      <description><ul><li>Engine: phtsics fixes for initial player height.</li><li>Engine: physics fixes for falling through freshly spawned objects.</li><li>Mobile: bump Android SDK to 36.</li><li>Snap: update to core26.</li><li>Translations: include decimal point of `show_pos`.</li></ul></description>
+      <url>https://github.com/divVerent/aaaaxy/releases/v1.7.239</url>
     </release>
   </releases>
 </component>

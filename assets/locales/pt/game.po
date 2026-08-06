@@ -1,10 +1,10 @@
 # Translators:
-# Rudolf Polzer, 2026
 # yy0zz, 2026
+# Rudolf Polzer, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: yy0zz, 2026\n"
+"Last-Translator: Rudolf Polzer, 2026\n"
 "Language-Team: Portuguese (https://app.transifex.com/aaaaxy/teams/158611/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,9 +40,10 @@ msgid "%s: %s"
 msgstr "%s: %s"
 
 #. -show_pos overlay (showing xy coordinates of player position and speed).
-#: aaaaxy/game.go aaaaxy/game.go
-msgid "(%.5f %.5f) (%.4f %.4f)"
-msgstr "(%.5f %.5f) (%.4f %.4f)"
+#. Each number in the form sign, wholes, decimal dot, decimals.
+#: aaaaxy/game.go
+msgid "(%s%d.%04d %s%d.%04d) (%s%d.%04d %s%d.%04d)"
+msgstr "(%s%d,%04d %s%d,%04d) (%s%d,%04d %s%d,%04d)"
 
 #. Other separator when building a list. Usually is a comma and a space.
 #: fun/string.go playerstate/playerstate.go

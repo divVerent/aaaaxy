@@ -135,7 +135,7 @@ const (
 	// We want at least 19px high jumps so we can be sure a jump moves at least 2 tiles up.
 	JumpExtraGravity = 72*constants.Gravity/19 - constants.Gravity
 
-	// Number of frames to allow jumping after leaving ground. This is an extra 1/30 sec.
+	// Number of frames to allow jumping after leaving ground. This is an extra 1/15 sec.
 	// 8 allows reliable walking over 2 tile gaps.
 	// 2 allows reliable walking over 1 tile gaps.
 	// 1 allows some walking over 1 tile gaps.
