@@ -124,7 +124,7 @@ if (typeof module != 'undefined') {
     cpuTypeOf,
     normalCDF,
     tCDF,
-    coloorForGraph,
+    colorForGraph,
     scoreForGraph,
   };
 }
