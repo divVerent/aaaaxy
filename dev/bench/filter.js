@@ -1,6 +1,6 @@
 ((data, filterJSON) => {
-  window.BENCHMARK_FILTER = filterJSON == '' ? {} : JSON.parse(filterJSON);
-  const filter = window.BENCHMARK_FILTER.filter;
+  loadConfigFromString(filterJSON);
+  const filter = CONFIG.filter;
 
   allFilters = {
     '': new Set()
@@ -40,13 +40,7 @@
       }
       return aName.localeCompare(bName);
     })) {
-    const filterObj = Object.assign({}, window.BENCHMARK_FILTER);
-    if (filterStr != '') {
-      filterObj.filter = filterStr;
-    } else {
-      delete filterObj.filter;
-    }
-    const filterJSON = JSON.stringify(filterObj);
+    const filterJSON = configToString({'filter': filterStr.length ? filterStr : null});
     const url = `JavaScript:location.hash = '#${escape(filterJSON)}'; location.reload(); false;`;
     html += `
         <tr>

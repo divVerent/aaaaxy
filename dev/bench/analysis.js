@@ -1,7 +1,4 @@
 ((data) => {
-  const TARGET_FALSE_ALERT_PROBABILITY = 0.005;
-  const PERCENTILE_THRESHOLD = 1.0 - TARGET_FALSE_ALERT_PROBABILITY;
-
   if (!data || !data.entries) {
     alert('Benchmark data not found!');
     return;
@@ -84,13 +81,13 @@
   }
 
   // 3. Compute Global Factor 'f' accounting for INDIVIDUAL variances
-  const globalF = searchFactor(benchmarkModels, PERCENTILE_THRESHOLD);
+  const globalF = searchFactor(benchmarkModels, 1.0 - CONFIG.targetFalseAlertProbability);
   if (globalF == null) {
     alert('Data is too noisy to find a bound.');
     return;
   }
 
-  const singleThreshold = Math.pow(PERCENTILE_THRESHOLD, 1.0/benchmarkModels.length);
+  const singleThreshold = Math.pow(1.0 - CONFIG.targetFalseAlertProbability, 1.0/benchmarkModels.length);
 
   // Prepare HTML Output
   let html = `

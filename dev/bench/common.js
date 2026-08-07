@@ -1,13 +1,41 @@
-const TARGET_FALSE_ALERT_PROBABILITY = 0.005;
-const PERCENTILE_THRESHOLD = 1.0 - TARGET_FALSE_ALERT_PROBABILITY;
-const GRAPH_COLOR_STEP = 0.25;
-const GRAPH_COLOR_MIN = 32;
-const GRAPH_COLOR_MAX = 223;
-const GRAPH_FALLOFF = 0.98;
-const GRAPH_MIN_SCORE = 1e-10;
+const DEFAULT_CONFIG = {
+  'targetFalseAlertProbability': 0.005,
+  'graphColorStep': 0.25,
+  'graphColorMin': 32,
+  'graphColorMax': 223,
+  'graphFalloff': 0.98,
+  'graphMinScore': 1e-10,
+  'minFraction': 0.75, // Time fraction in which to not show anomalies.
+  'noiseFloorRelative': 0.01, // Even if not seen, observe a min stddev of 1%.
+  'noiseFloorAbsolute': 0.01, // Even if not seen, observe a min stddev of 10ns.
+};
+
+let CONFIG = Object.assign({}, DEFAULT_CONFIG);
+
+function loadConfigFromString(str) {
+  if (str == '') {
+    return;
+  }
+  Object.assign(CONFIG, JSON.parse(str));
+}
+
+function configToString(extra) {
+  const obj = Object.assign(Object.assign({}, CONFIG), extra);
+  let diff = {};
+  for (const [key, val] of Object.entries(obj)) {
+    if (DEFAULT_CONFIG[key] === obj[key]) {
+      continue;
+    }
+    if (val == null) {
+      continue;
+    }
+    diff[key] = val;
+  }
+  return JSON.stringify(diff);
+}
 
 function parseExtra(extra) {
-  out = {};
+  let out = {};
   for (const line of extra.split(/\n/)) {
     const m = /^(?<key>\w+): (?<value>.*)$/.exec(line);
     out[m.groups.key] = m.groups.value;
@@ -59,9 +87,9 @@ function tCDF(t, df) {
 
 function colorForGraph(goodScore, badScore) {
   const score = goodScore + badScore;
-  const goodColorVal = Math.round(GRAPH_COLOR_MIN + (GRAPH_COLOR_MAX - GRAPH_COLOR_MIN) / (1 + goodScore * GRAPH_COLOR_STEP));
-  const badColorVal = Math.round(GRAPH_COLOR_MIN + (GRAPH_COLOR_MAX - GRAPH_COLOR_MIN) / (1 + badScore * GRAPH_COLOR_STEP));
-  const colorVal = Math.round(GRAPH_COLOR_MIN + (GRAPH_COLOR_MAX - GRAPH_COLOR_MIN) / (1 + score * GRAPH_COLOR_STEP));
+  const goodColorVal = Math.round(CONFIG.graphColorMin + (CONFIG.graphColorMax - CONFIG.graphColorMin) / (1 + goodScore * CONFIG.graphColorStep));
+  const badColorVal = Math.round(CONFIG.graphColorMin + (CONFIG.graphColorMax - CONFIG.graphColorMin) / (1 + badScore * CONFIG.graphColorStep));
+  const colorVal = Math.round(CONFIG.graphColorMin + (CONFIG.graphColorMax - CONFIG.graphColorMin) / (1 + score * CONFIG.graphColorStep));
   const colorR = goodColorVal;
   const colorG = badColorVal;
   const colorB = colorVal;
@@ -73,9 +101,9 @@ function scoreForGraph(dataset) {
   let goodScore = 0;
   let badScore = 0;
   for (const d of dataset) {
-    score *= GRAPH_FALLOFF;
-    goodScore *= GRAPH_FALLOFF;
-    badScore *= GRAPH_FALLOFF;
+    score *= CONFIG.graphFalloff;
+    goodScore *= CONFIG.graphFalloff;
+    badScore *= CONFIG.graphFalloff;
     if (d.bench.anomaly > 0) {
       score += 1.0;
       badScore += 1.0;
@@ -89,9 +117,14 @@ function scoreForGraph(dataset) {
 
 if (typeof module != 'undefined') {
   module.exports = {
-    PERCENTILE_THRESHOLD,
+    CONFIG,
+    loadConfigFromString,
+    configToString,
+    parseExtra,
     cpuTypeOf,
     normalCDF,
-    tCDF
+    tCDF,
+    coloorForGraph,
+    scoreForGraph,
   };
 }

@@ -5,9 +5,6 @@ if (typeof module != 'undefined') {
   }
 }
 
-const MIN_FRACTION = 0.5; // Time fraction in which to not show anomalies.
-const NOISE_FLOOR = 0.01; // Even if not seen, observe a min stddev of 1%.
-
 ((data, filter) => {
   for (const [platform, runs] of Object.entries(data.entries)) {
     if (!Array.isArray(runs)) continue;
@@ -45,7 +42,7 @@ const NOISE_FLOOR = 0.01; // Even if not seen, observe a min stddev of 1%.
           }
         }
 
-        if (baselineVals.length < 2 || baselineVals.length < otherVals * MIN_FRACTION) {
+        if (baselineVals.length < 2 || baselineVals.length < otherVals * CONFIG.minFraction) {
           bench.anomaly = null;
           continue;
         }
@@ -53,7 +50,7 @@ const NOISE_FLOOR = 0.01; // Even if not seen, observe a min stddev of 1%.
         const mean = baselineVals.reduce((a, b) => a + b, 0) / n;
         const sqSum = baselineVals.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0);
         let stdDev = Math.sqrt(sqSum / (n - 1));
-        const noiseFloor = mean * NOISE_FLOOR;
+        const noiseFloor = mean * CONFIG.noiseFloorRelative + CONFIG.noiseFloorAbsolute;
         if (stdDev < noiseFloor) {
           stdDev = noiseFloor;
         }
@@ -67,7 +64,7 @@ const NOISE_FLOOR = 0.01; // Even if not seen, observe a min stddev of 1%.
         const pVal = 2.0 * (1.0 - tCDF(Math.abs(tStat), df));
 
         // Evaluate anomaly threshold & set field in-place
-        const alpha = 1.0 - Math.pow(PERCENTILE_THRESHOLD, 1.0 / currentRun.benches.length);
+        const alpha = 1.0 - Math.pow(1.0 - CONFIG.targetFalseAlertProbability, 1.0 / currentRun.benches.length);
         if (pVal < alpha) {
           bench.anomaly = tStat;
           if (i == runs.length - 1) {
