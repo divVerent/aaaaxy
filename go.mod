@@ -2,7 +2,7 @@ module github.com/divVerent/aaaaxy
 
 go 1.25.0
 
-toolchain go1.25.12
+toolchain go1.25.13
 
 require (
 	github.com/Microsoft/go-winio v0.6.2
@@ -12,26 +12,26 @@ require (
 	github.com/google/go-cmp v0.7.0
 	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
 	github.com/hajimehoshi/bitmapfont/v4 v4.1.1
-	github.com/hajimehoshi/ebiten/v2 v2.9.9
+	github.com/hajimehoshi/ebiten/v2 v2.9.10
 	github.com/jeandeaual/go-locale v0.0.0-20250612000132-0ef82f21eade
 	github.com/leonelquinteros/gotext v1.7.2
 	github.com/lestrrat-go/strftime v1.2.0
-	github.com/lucasb-eyer/go-colorful v1.4.0
+	github.com/lucasb-eyer/go-colorful v1.4.1
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/ncruces/zenity v0.10.14
+	github.com/ncruces/zenity v0.10.15
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
-	golang.org/x/image v0.44.0
+	golang.org/x/image v0.45.0
 	golang.org/x/sys v0.47.0
-	golang.org/x/text v0.40.0
+	golang.org/x/text v0.41.0
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dchest/jsmin v1.0.0 // indirect
-	github.com/ebitengine/gomobile v0.0.0-20260211053922-3d992dae95d1 // indirect
+	github.com/ebitengine/gomobile v0.0.0-20260811165420-c5a1b14deab0 // indirect
 	github.com/ebitengine/hideconsole v1.0.0 // indirect
-	github.com/ebitengine/oto/v3 v3.4.0 // indirect
-	github.com/ebitengine/purego v0.10.1 // indirect
+	github.com/ebitengine/oto/v3 v3.4.1 // indirect
+	github.com/ebitengine/purego v0.10.2 // indirect
 	github.com/go-logr/logr v1.2.0 // indirect
 	github.com/go-text/typesetting v0.3.4 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
@@ -42,16 +42,16 @@ require (
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
 	github.com/josephspurrier/goversioninfo v1.7.0 // indirect
 	github.com/otiai10/mint v1.6.3 // indirect
-	github.com/pierrec/lz4/v4 v4.1.27 // indirect
+	github.com/pierrec/lz4/v4 v4.1.28 // indirect
 	github.com/randall77/makefat v0.0.0-20260406194835-1b91746796b7 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.9 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	golang.org/x/mod v0.37.0 // indirect
-	golang.org/x/net v0.56.0 // indirect
+	golang.org/x/mod v0.38.0 // indirect
+	golang.org/x/net v0.57.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
-	golang.org/x/tools v0.47.0 // indirect
+	golang.org/x/tools v0.48.0 // indirect
 	k8s.io/klog/v2 v2.90.1 // indirect
 )
 
