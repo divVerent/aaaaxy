@@ -39,9 +39,10 @@ msgid "%s: %s"
 msgstr "%s: %s"
 
 #. -show_pos overlay (showing xy coordinates of player position and speed).
+#. Each number in the form sign, wholes, decimal dot, decimals.
 #: aaaaxy/game.go aaaaxy/game.go
-msgid "(%.5f %.5f) (%.4f %.4f)"
-msgstr "(%.5f %.5f) (%.4f %.4f)"
+msgid "(%s%d.%05d %s%d.%05d) (%s%d.%04d %s%d.%04d)"
+msgstr "(%s%d.%05d %s%d.%05d) (%s%d.%04d %s%d.%04d)"
 
 #. Other separator when building a list. Usually is a comma and a space.
 #: fun/string.go playerstate/playerstate.go
@@ -242,7 +243,7 @@ msgid "For Software Licenses{{BR}}press right"
 msgstr "Ad Videndum Licentias Programmae{{BR}}preme dextrum"
 
 #: menu/credits.go
-msgid "For Software Licenses{{BR}}press the right side of the scereen"
+msgid "For Software Licenses{{BR}}press the right side of the screen"
 msgstr "Ad Videndum Licentias Programmae{{BR}}preme latum dextrum telae"
 
 #: aaaaxy/game.go
