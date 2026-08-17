@@ -3586,6 +3586,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "35f5605be5aad88cf6d9a3ed6ecd9e0375cede58",
+          "message": "Translate assets/locales/game.pot in pt (#732)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-08-17T18:22:47Z",
+          "tree_id": "7bec22ed3a94d99ecbaccd1fffc6585032cd9a27",
+          "url": "https://github.com/divVerent/aaaaxy/commit/35f5605be5aad88cf6d9a3ed6ecd9e0375cede58"
+        },
+        "date": 1786991407822,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 73.742833965,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -4684,6 +4714,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "35f5605be5aad88cf6d9a3ed6ecd9e0375cede58",
+          "message": "Translate assets/locales/game.pot in pt (#732)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-08-17T18:22:47Z",
+          "tree_id": "7bec22ed3a94d99ecbaccd1fffc6585032cd9a27",
+          "url": "https://github.com/divVerent/aaaaxy/commit/35f5605be5aad88cf6d9a3ed6ecd9e0375cede58"
+        },
+        "date": 1786991161621,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 99.1177415,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -5778,6 +5838,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.3291967,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "35f5605be5aad88cf6d9a3ed6ecd9e0375cede58",
+          "message": "Translate assets/locales/game.pot in pt (#732)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-08-17T18:22:47Z",
+          "tree_id": "7bec22ed3a94d99ecbaccd1fffc6585032cd9a27",
+          "url": "https://github.com/divVerent/aaaaxy/commit/35f5605be5aad88cf6d9a3ed6ecd9e0375cede58"
+        },
+        "date": 1786991412372,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 103.9299592,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
