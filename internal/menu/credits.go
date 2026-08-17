@@ -117,7 +117,7 @@ func (s *CreditsScreen) Init(m *Controller) error {
 	if len(credits.Licenses) != 0 && !s.Fancy {
 		var licenseText string
 		if input.HaveTouch() {
-			licenseText = locale.G.Get("For Software Licenses{{BR}}press the right side of the scereen")
+			licenseText = locale.G.Get("For Software Licenses{{BR}}press the right side of the screen")
 		} else {
 			licenseText = locale.G.Get("For Software Licenses{{BR}}press right")
 		}

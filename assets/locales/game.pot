@@ -35,8 +35,8 @@ msgstr ""
 
 #. -show_pos overlay (showing xy coordinates of player position and speed).
 #. Each number in the form sign, wholes, decimal dot, decimals.
-#: aaaaxy/game.go
-msgid "(%s%d.%04d %s%d.%04d) (%s%d.%04d %s%d.%04d)"
+#: aaaaxy/game.go aaaaxy/game.go
+msgid "(%s%d.%05d %s%d.%05d) (%s%d.%04d %s%d.%04d)"
 msgstr ""
 
 #. Other separator when building a list. Usually is a comma and a space.
@@ -232,7 +232,7 @@ msgid "For Software Licenses{{BR}}press right"
 msgstr ""
 
 #: menu/credits.go
-msgid "For Software Licenses{{BR}}press the right side of the scereen"
+msgid "For Software Licenses{{BR}}press the right side of the screen"
 msgstr ""
 
 #: aaaaxy/game.go
