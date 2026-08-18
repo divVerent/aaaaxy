@@ -25,23 +25,29 @@ import (
 
 // initAssets initializes the VFS.
 func initAssetsFS() ([]fsRoot, error) {
+	assetsPath := filepath.Join(exeDir, "assets")
+	thirdPartyPath := filepath.Join(exeDir, "third_party")
+	licensesPath := filepath.Join(exeDir, "licenses")
+
 	dirs := []fsRoot{
 		{
-			name:     "local:" + "assets",
-			filesys:  os.DirFS("assets"),
+			name:     "local:assets",
+			filesys:  os.DirFS(assetsPath),
 			root:     ".",
 			toPrefix: "/",
 		},
 	}
-	content, err := os.ReadDir("third_party")
+
+	content, err := os.ReadDir(thirdPartyPath)
 	if err != nil {
 		return nil, fmt.Errorf("could not find local third party directory: %v", err)
 	}
+
 	for _, info := range content {
 		if !info.IsDir() {
 			continue
 		}
-		path := filepath.Join("third_party", info.Name(), "assets")
+		path := filepath.Join(thirdPartyPath, info.Name(), "assets")
 		dirs = append(dirs, fsRoot{
 			name:     "local:" + path,
 			filesys:  os.DirFS(path),
@@ -49,11 +55,13 @@ func initAssetsFS() ([]fsRoot, error) {
 			toPrefix: "/",
 		})
 	}
+
 	dirs = append(dirs, fsRoot{
 		name:     "embed:licenses",
-		filesys:  os.DirFS("licenses"),
+		filesys:  os.DirFS(licensesPath),
 		root:     ".",
 		toPrefix: "/licenses/",
 	})
+
 	return dirs, nil
 }
