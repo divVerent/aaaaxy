@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787061425686,
+  "lastUpdate": 1787062629885,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2660,6 +2660,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% linux-amd64-current",
             "value": 74.989738565,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "soopax.pine@gmail.com",
+            "name": "soopax",
+            "username": "soopax"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c4ada3d0742b580c329250bff209d1e3c7ba422f",
+          "message": "Fix startup crash when current working directory doesn't match exeDir (#734)",
+          "timestamp": "2026-08-18T13:52:16Z",
+          "tree_id": "187442ce8207dc0986113b259ca2f8e99843f39e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c4ada3d0742b580c329250bff209d1e3c7ba422f"
+        },
+        "date": 1787062622316,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 78.078376214,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
