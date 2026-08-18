@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787059647629,
+  "lastUpdate": 1787061302450,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -3880,6 +3880,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "soopax.pine@gmail.com",
+            "name": "soopax",
+            "username": "soopax"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c4ada3d0742b580c329250bff209d1e3c7ba422f",
+          "message": "Fix startup crash when current working directory doesn't match exeDir (#734)",
+          "timestamp": "2026-08-18T13:52:16Z",
+          "tree_id": "187442ce8207dc0986113b259ca2f8e99843f39e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c4ada3d0742b580c329250bff209d1e3c7ba422f"
+        },
+        "date": 1787061296963,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 75.71148295,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.25"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -5092,6 +5122,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.9502252,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "soopax.pine@gmail.com",
+            "name": "soopax",
+            "username": "soopax"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c4ada3d0742b580c329250bff209d1e3c7ba422f",
+          "message": "Fix startup crash when current working directory doesn't match exeDir (#734)",
+          "timestamp": "2026-08-18T13:52:16Z",
+          "tree_id": "187442ce8207dc0986113b259ca2f8e99843f39e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c4ada3d0742b580c329250bff209d1e3c7ba422f"
+        },
+        "date": 1787061341163,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.0347004,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
@@ -6310,6 +6370,36 @@ window.BENCHMARK_DATA = {
             "value": 102.6297717,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "soopax.pine@gmail.com",
+            "name": "soopax",
+            "username": "soopax"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c4ada3d0742b580c329250bff209d1e3c7ba422f",
+          "message": "Fix startup crash when current working directory doesn't match exeDir (#734)",
+          "timestamp": "2026-08-18T13:52:16Z",
+          "tree_id": "187442ce8207dc0986113b259ca2f8e99843f39e",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c4ada3d0742b580c329250bff209d1e3c7ba422f"
+        },
+        "date": 1787061355649,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.6725581,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
       }
