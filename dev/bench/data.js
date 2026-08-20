@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787232664441,
+  "lastUpdate": 1787250057851,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4170,6 +4170,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c9cfa129eb8557ba9d37952611733e75713658c6",
+          "message": "Fix translation note typo in Multi Party Authorization.",
+          "timestamp": "2026-08-20T20:18:26+02:00",
+          "tree_id": "97768c00e0ad351d4351d2d1f93bbf0a45f98a16",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c9cfa129eb8557ba9d37952611733e75713658c6"
+        },
+        "date": 1787250051422,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 59.736824727,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -5502,6 +5532,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c9cfa129eb8557ba9d37952611733e75713658c6",
+          "message": "Fix translation note typo in Multi Party Authorization.",
+          "timestamp": "2026-08-20T20:18:26+02:00",
+          "tree_id": "97768c00e0ad351d4351d2d1f93bbf0a45f98a16",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c9cfa129eb8557ba9d37952611733e75713658c6"
+        },
+        "date": 1787250123960,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.1298765,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -6832,6 +6892,36 @@ window.BENCHMARK_DATA = {
             "value": 102.9541766,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c9cfa129eb8557ba9d37952611733e75713658c6",
+          "message": "Fix translation note typo in Multi Party Authorization.",
+          "timestamp": "2026-08-20T20:18:26+02:00",
+          "tree_id": "97768c00e0ad351d4351d2d1f93bbf0a45f98a16",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c9cfa129eb8557ba9d37952611733e75713658c6"
+        },
+        "date": 1787250164719,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 109.477845,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 2600"
           }
         ]
       }
