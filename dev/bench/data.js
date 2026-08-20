@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787226676089,
+  "lastUpdate": 1787232664441,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1418,6 +1418,34 @@ window.BENCHMARK_DATA = {
             "value": 227.207411902,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "soopax",
+            "username": "soopax",
+            "email": "soopax.pine@gmail.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "76ce9c183ddb0782dea3a8d9a00b8a77b287e688",
+          "message": "Replay ticking_clock.ogg when backtracking from King's Cross to Nine Boxes in Sight (#735)",
+          "timestamp": "2026-08-20T11:47:53Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/76ce9c183ddb0782dea3a8d9a00b8a77b287e688"
+        },
+        "date": 1787232658380,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 235.277162185,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
           }
         ]
       }
