@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787181094139,
+  "lastUpdate": 1787226676089,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4082,6 +4082,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.27"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "soopax.pine@gmail.com",
+            "name": "soopax",
+            "username": "soopax"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "76ce9c183ddb0782dea3a8d9a00b8a77b287e688",
+          "message": "Replay ticking_clock.ogg when backtracking from King's Cross to Nine Boxes in Sight (#735)",
+          "timestamp": "2026-08-20T13:47:53+02:00",
+          "tree_id": "53672c4f837a61899514c25129a21a166519b1c2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/76ce9c183ddb0782dea3a8d9a00b8a77b287e688"
+        },
+        "date": 1787226670916,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 84.078623296,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -5384,6 +5414,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "soopax.pine@gmail.com",
+            "name": "soopax",
+            "username": "soopax"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "76ce9c183ddb0782dea3a8d9a00b8a77b287e688",
+          "message": "Replay ticking_clock.ogg when backtracking from King's Cross to Nine Boxes in Sight (#735)",
+          "timestamp": "2026-08-20T13:47:53+02:00",
+          "tree_id": "53672c4f837a61899514c25129a21a166519b1c2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/76ce9c183ddb0782dea3a8d9a00b8a77b287e688"
+        },
+        "date": 1787226745469,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.1716602,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -6684,6 +6744,36 @@ window.BENCHMARK_DATA = {
             "value": 99.8474143,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2793"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "soopax.pine@gmail.com",
+            "name": "soopax",
+            "username": "soopax"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "76ce9c183ddb0782dea3a8d9a00b8a77b287e688",
+          "message": "Replay ticking_clock.ogg when backtracking from King's Cross to Nine Boxes in Sight (#735)",
+          "timestamp": "2026-08-20T13:47:53+02:00",
+          "tree_id": "53672c4f837a61899514c25129a21a166519b1c2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/76ce9c183ddb0782dea3a8d9a00b8a77b287e688"
+        },
+        "date": 1787226712951,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 102.9541766,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
       }
