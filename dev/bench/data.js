@@ -1390,6 +1390,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "soopax.pine@gmail.com",
+            "name": "soopax",
+            "username": "soopax"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "76ce9c183ddb0782dea3a8d9a00b8a77b287e688",
+          "message": "Replay ticking_clock.ogg when backtracking from King's Cross to Nine Boxes in Sight (#735)",
+          "timestamp": "2026-08-20T13:47:53+02:00",
+          "tree_id": "53672c4f837a61899514c25129a21a166519b1c2",
+          "url": "https://github.com/divVerent/aaaaxy/commit/76ce9c183ddb0782dea3a8d9a00b8a77b287e688"
+        },
+        "date": 1787226756502,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 227.207411902,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
       }
     ],
     "Any% linux-amd64-current": [
