@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787250201435,
+  "lastUpdate": 1787267604007,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4230,6 +4230,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "c9cfa129eb8557ba9d37952611733e75713658c6",
+          "message": "Fix translation note typo in Multi Party Authorization.",
+          "timestamp": "2026-08-20T18:18:06Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c9cfa129eb8557ba9d37952611733e75713658c6"
+        },
+        "date": 1787267598221,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 64.349938979,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.33"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -5588,6 +5616,34 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 97.1298765,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "c9cfa129eb8557ba9d37952611733e75713658c6",
+          "message": "Fix translation note typo in Multi Party Authorization.",
+          "timestamp": "2026-08-20T18:18:06Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c9cfa129eb8557ba9d37952611733e75713658c6"
+        },
+        "date": 1787267652639,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.7086454,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
@@ -6952,6 +7008,34 @@ window.BENCHMARK_DATA = {
             "value": 109.477845,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 2600"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "c9cfa129eb8557ba9d37952611733e75713658c6",
+          "message": "Fix translation note typo in Multi Party Authorization.",
+          "timestamp": "2026-08-20T18:18:06Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c9cfa129eb8557ba9d37952611733e75713658c6"
+        },
+        "date": 1787267658507,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.0927419,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
       }
