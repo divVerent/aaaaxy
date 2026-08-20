@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787250057851,
+  "lastUpdate": 1787250201435,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1446,6 +1446,36 @@ window.BENCHMARK_DATA = {
             "value": 235.277162185,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c9cfa129eb8557ba9d37952611733e75713658c6",
+          "message": "Fix translation note typo in Multi Party Authorization.",
+          "timestamp": "2026-08-20T20:18:26+02:00",
+          "tree_id": "97768c00e0ad351d4351d2d1f93bbf0a45f98a16",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c9cfa129eb8557ba9d37952611733e75713658c6"
+        },
+        "date": 1787250196310,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 228.066274176,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
           }
         ]
       }
