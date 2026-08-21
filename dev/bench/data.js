@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787267604007,
+  "lastUpdate": 1787304089113,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4258,6 +4258,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.33"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "de4d2501845908d68958af252472416518adf974",
+          "message": "Shrink checkpoint for Multi Party Authorization\n\nMain idea by @soopax, but made the checkpoint even smaller to make it\nmore consistent with other CPs near platform destroyers, and also added\na shortcut via warpzones to the end of this Anti-Hub section to\ncompensate for time loss caused by the checkpoint change.\n\nObsoletes PR https://github.com/divVerent/aaaaxy/pull/736",
+          "timestamp": "2026-08-21T11:17:43+02:00",
+          "tree_id": "2b9823aaeb5ff9e81a17a3f79e82fc34f5a0e441",
+          "url": "https://github.com/divVerent/aaaaxy/commit/de4d2501845908d68958af252472416518adf974"
+        },
+        "date": 1787304084197,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 73.295766367,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -5648,6 +5678,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "de4d2501845908d68958af252472416518adf974",
+          "message": "Shrink checkpoint for Multi Party Authorization\n\nMain idea by @soopax, but made the checkpoint even smaller to make it\nmore consistent with other CPs near platform destroyers, and also added\na shortcut via warpzones to the end of this Anti-Hub section to\ncompensate for time loss caused by the checkpoint change.\n\nObsoletes PR https://github.com/divVerent/aaaaxy/pull/736",
+          "timestamp": "2026-08-21T11:17:43+02:00",
+          "tree_id": "2b9823aaeb5ff9e81a17a3f79e82fc34f5a0e441",
+          "url": "https://github.com/divVerent/aaaaxy/commit/de4d2501845908d68958af252472416518adf974"
+        },
+        "date": 1787304177957,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.7673188,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -7034,6 +7094,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.0927419,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "de4d2501845908d68958af252472416518adf974",
+          "message": "Shrink checkpoint for Multi Party Authorization\n\nMain idea by @soopax, but made the checkpoint even smaller to make it\nmore consistent with other CPs near platform destroyers, and also added\na shortcut via warpzones to the end of this Anti-Hub section to\ncompensate for time loss caused by the checkpoint change.\n\nObsoletes PR https://github.com/divVerent/aaaaxy/pull/736",
+          "timestamp": "2026-08-21T11:17:43+02:00",
+          "tree_id": "2b9823aaeb5ff9e81a17a3f79e82fc34f5a0e441",
+          "url": "https://github.com/divVerent/aaaaxy/commit/de4d2501845908d68958af252472416518adf974"
+        },
+        "date": 1787304168365,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.4567162,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
