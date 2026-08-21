@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787319010225,
+  "lastUpdate": 1787353887366,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4464,6 +4464,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "34d907cc643de91c3195c45f2ea292104554f62b",
+          "message": "Fix staticcheck, and migrate to non-deprecated line drawing.",
+          "timestamp": "2026-08-21T10:04:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/34d907cc643de91c3195c45f2ea292104554f62b"
+        },
+        "date": 1787353882470,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 73.830243652,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.87"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -5914,6 +5942,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "34d907cc643de91c3195c45f2ea292104554f62b",
+          "message": "Fix staticcheck, and migrate to non-deprecated line drawing.",
+          "timestamp": "2026-08-21T10:04:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/34d907cc643de91c3195c45f2ea292104554f62b"
+        },
+        "date": 1787353954709,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.3883522,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -7360,6 +7416,34 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 105.6084368,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "34d907cc643de91c3195c45f2ea292104554f62b",
+          "message": "Fix staticcheck, and migrate to non-deprecated line drawing.",
+          "timestamp": "2026-08-21T10:04:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/34d907cc643de91c3195c45f2ea292104554f62b"
+        },
+        "date": 1787353957603,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 112.6991988,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
