@@ -29,7 +29,7 @@ jobs:
           GOTOOLCHAIN: local
       - name: Test
         run: 'xvfb-run scripts/github-action-benchmark.sh "100% linux-amd64" benchmark.txt
-          scripts/regression-test-demo.sh linux-amd64 "your time: 1:19:39\\.866; your
+          scripts/regression-test-demo.sh linux-amd64 "your time: 1:17:58\\.616; your
           speedrun categories: 100%, All Notes and All Paths; try next: All Secrets\\."
           "./aaaaxy -debug_log_entity_defaults" assets/demos/_100percent_*.dem'
       - name: Archive Results

@@ -15,11 +15,16 @@
 package menu
 
 import (
+	"cmp"
 	"fmt"
+	"image/color"
+	"maps"
 	"math/rand"
+	"slices"
 	"sort"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/vector"
 
 	"github.com/divVerent/aaaaxy/internal/engine"
 	"github.com/divVerent/aaaaxy/internal/flag"
@@ -301,108 +306,127 @@ func (s *MapScreen) Draw(screen *ebiten.Image) {
 	focusMissing := s.Controller.World.PlayerState.SpeedrunCategories().ContainAll(playerstate.AllCheckpointsSpeedrun)
 	revealSecrets := s.Controller.World.PlayerState.SpeedrunCategories().ContainAll(playerstate.AnyPercentSpeedrun | playerstate.AllCheckpointsSpeedrun)
 	focusSecrets := s.Controller.World.PlayerState.SpeedrunCategories().ContainAll(playerstate.AnyPercentSpeedrun | playerstate.AllCheckpointsSpeedrun | playerstate.AllPathsSpeedrun)
-	for z := 0; z < 3; z++ {
-		for _, cpName := range s.SortedLocs {
-			if s.Controller.World.PlayerState.CheckpointSeen(cpName) == playerstate.NotSeen {
+
+	paths := map[color.NRGBA]*vector.Path{}
+	pathFor := func(col color.NRGBA) *vector.Path {
+		path := paths[col]
+		if path == nil {
+			path = &vector.Path{}
+			paths[col] = path
+		}
+		return path
+	}
+
+	for _, cpName := range s.SortedLocs {
+		if s.Controller.World.PlayerState.CheckpointSeen(cpName) == playerstate.NotSeen {
+			continue
+		}
+		pos := cpPos[cpName]
+		for _, edge := range s.SortedEdges[cpName] {
+			// We only draw forward non-optional edges; all others are for keyboard navigation only.
+			if !edge.Forward || edge.Optional {
 				continue
 			}
-			pos := cpPos[cpName]
-			for _, edge := range s.SortedEdges[cpName] {
-				// We only draw forward non-optional edges; all others are for keyboard navigation only.
-				if !edge.Forward || edge.Optional {
-					continue
-				}
-				otherName := edge.Other
-				edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(cpName, otherName)
-				isSecret := propmap.ValueOrP(s.Controller.World.Level.Checkpoints[otherName].Properties, "secret", false, nil)
-				// Unseen edges leading to a secret are only drawn if the game has already been completed fully (Any% is not enough).
-				if !edgeSeen && isSecret && !revealSecrets {
-					continue
-				}
-				startPos := pos
-				endPos := cpPos[otherName]
-				var startPos2, endPos2 m.Pos
-				color := takenRouteColor
-				switch z {
-				case 0:
-					// Selected edge is drawn first so it is clear what overlaps it.
-					if !edgeSeen || !(cpName == s.CurrentCP || otherName == s.CurrentCP) {
-						continue
-					}
-					color = selectedRouteColor
-				case 1:
-					// Normal edges are drawn next.
-					if !edgeSeen || (cpName == s.CurrentCP || otherName == s.CurrentCP) {
-						continue
-					}
-				case 2:
-					// Missing edges are drawn last so one can always see them.
-					if edgeSeen {
-						continue
-					}
+			otherName := edge.Other
+			edgeSeen := s.Controller.World.PlayerState.CheckpointsWalked(cpName, otherName)
+			isSecret := propmap.ValueOrP(s.Controller.World.Level.Checkpoints[otherName].Properties, "secret", false, nil)
+			// Unseen edges leading to a secret are only drawn if the game has already been completed fully (Any% is not enough).
+			if !edgeSeen && isSecret && !revealSecrets {
+				continue
+			}
+			startPos := pos
+			endPos := cpPos[otherName]
+			var startPos2, endPos2 m.Pos
+			col := takenRouteColor
 
-					otherSeen := s.Controller.World.PlayerState.CheckpointSeen(otherName) != playerstate.NotSeen
-					if cpName == s.CurrentCP || otherName == s.CurrentCP {
-						color = selectedRouteColor
-					} else if otherSeen {
-						color = unseenPathToSeenCPColor
-					} else {
-						color = unseenPathToUnseenCPColor
-					}
+			if edgeSeen {
+				if cpName == s.CurrentCP || otherName == s.CurrentCP {
+					col = selectedRouteColor
+				} else {
+					col = takenRouteColor
+				}
+			} else {
+				otherSeen := s.Controller.World.PlayerState.CheckpointSeen(otherName) != playerstate.NotSeen
+				if cpName == s.CurrentCP || otherName == s.CurrentCP {
+					col = selectedRouteColor
+				} else if otherSeen {
+					col = unseenPathToSeenCPColor
+				} else {
+					col = unseenPathToUnseenCPColor
+				}
 
-					if focusMissing && rand.Intn(2) == 0 {
-						if focusSecrets {
-							// Once all CPs are hit and paths are set, blink secret paths.
-							if isSecret {
-								color = unseenPathBlinkColor
-							}
-						} else if revealSecrets {
-							// Once all CPs are hit, show secret paths and blink missing paths.
-							if !isSecret {
-								color = unseenPathBlinkColor
-							}
-						} else {
-							// By default, hide secret paths and blink missing paths.
-							color = unseenPathBlinkColor
+				if focusMissing && rand.Intn(2) == 0 {
+					if focusSecrets {
+						// Once all CPs are hit and paths are set, blink secret paths.
+						if isSecret {
+							col = unseenPathBlinkColor
 						}
-					}
-
-					dp := endPos.Delta(startPos)
-					section := m.NewFixed(edgeFarAttachDistance)
-					length := dp.LengthFixed()
-					if otherSeen {
-						if length < section {
-							// Leave endPos as is. We would make it longer.
-						} else {
-							// Animate missing paths when the other side is seen to indicate direction.
-							a := m.NewFixed(s.WalkFrame).Mul(m.NewFixedFloat64(walkSpeed)).Mod(length)
-							b := (a + section).Mod(length)
-							if a < b {
-								startPos, endPos = pos.Add(dp.WithLengthFixed(a)), pos.Add(dp.WithLengthFixed(b))
-							} else {
-								startPos2, endPos2 = pos.Add(dp.WithLengthFixed(a)), endPos
-								startPos, endPos = pos, pos.Add(dp.WithLengthFixed(b))
-							}
+					} else if revealSecrets {
+						// Once all CPs are hit, show secret paths and blink missing paths.
+						if !isSecret {
+							col = unseenPathBlinkColor
 						}
 					} else {
-						// Don't reveal actual CP location.
-						endPos = pos.Add(dp.WithLengthFixed(section))
+						// By default, hide secret paths and blink missing paths.
+						col = unseenPathBlinkColor
 					}
 				}
-				options := &ebiten.DrawTrianglesOptions{
-					Blend:     ebiten.BlendSourceOver,
-					Filter:    ebiten.FilterNearest,
-					AntiAlias: *debugAntiAlias,
+
+				dp := endPos.Delta(startPos)
+				section := m.NewFixed(edgeFarAttachDistance)
+				length := dp.LengthFixed()
+				if otherSeen {
+					if length < section {
+						// Leave endPos as is. We would make it longer.
+					} else {
+						// Animate missing paths when the other side is seen to indicate direction.
+						a := m.NewFixed(s.WalkFrame).Mul(m.NewFixedFloat64(walkSpeed)).Mod(length)
+						b := (a + section).Mod(length)
+						if a < b {
+							startPos, endPos = pos.Add(dp.WithLengthFixed(a)), pos.Add(dp.WithLengthFixed(b))
+						} else {
+							startPos2, endPos2 = pos.Add(dp.WithLengthFixed(a)), endPos
+							startPos, endPos = pos, pos.Add(dp.WithLengthFixed(b))
+						}
+					}
+				} else {
+					// Don't reveal actual CP location.
+					endPos = pos.Add(dp.WithLengthFixed(section))
 				}
-				geoM := &ebiten.GeoM{}
-				geoM.Scale(0, 0)
-				engine.DrawPolyLine(screen, edgeThickness, []m.Pos{startPos, endPos}, s.Controller.WhiteImage, color, geoM, options)
-				if startPos2 != endPos2 {
-					engine.DrawPolyLine(screen, edgeThickness, []m.Pos{startPos2, endPos2}, s.Controller.WhiteImage, color, geoM, options)
-				}
+			}
+
+			// Adding 0.5, as vector module thinks in pixel corners,
+			// and CP coordinates are pixel centers.
+			path := pathFor(col)
+			path.MoveTo(float32(startPos.X)+0.5, float32(startPos.Y)+0.5)
+			path.LineTo(float32(endPos.X)+0.5, float32(endPos.Y)+0.5)
+			if startPos2 != endPos2 {
+				path.MoveTo(float32(startPos2.X)+0.5, float32(startPos2.Y)+0.5)
+				path.LineTo(float32(endPos2.X)+0.5, float32(endPos2.Y)+0.5)
 			}
 		}
 	}
+
+	for _, col := range slices.SortedFunc(maps.Keys(paths), func(a, b color.NRGBA) int {
+		// Reverse brightness comparison.
+		return -cmp.Or(
+			cmp.Compare(a.A, b.A),
+			cmp.Compare(a.G, b.G),
+			cmp.Compare(a.R, b.R),
+			cmp.Compare(a.B, b.B),
+		)
+	}) {
+		path := paths[col]
+		strokeOptions := vector.StrokeOptions{
+			Width: edgeThickness,
+		}
+		drawPathOptions := vector.DrawPathOptions{
+			AntiAlias: *debugAntiAlias,
+		}
+		drawPathOptions.ColorScale.ScaleWithColor(col)
+		vector.StrokePath(screen, path, &strokeOptions, &drawPathOptions)
+	}
+
 	// Then draw the CPs.
 	for _, cpName := range s.SortedLocs {
 		var sprite *ebiten.Image
