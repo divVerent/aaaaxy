@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787664727863,
+  "lastUpdate": 1787699603135,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4744,6 +4744,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "34d907cc643de91c3195c45f2ea292104554f62b",
+          "message": "Fix staticcheck, and migrate to non-deprecated line drawing.",
+          "timestamp": "2026-08-21T10:04:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/34d907cc643de91c3195c45f2ea292104554f62b"
+        },
+        "date": 1787699598758,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 43.780732092,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.19"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -6306,6 +6334,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2793"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "34d907cc643de91c3195c45f2ea292104554f62b",
+          "message": "Fix staticcheck, and migrate to non-deprecated line drawing.",
+          "timestamp": "2026-08-21T10:04:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/34d907cc643de91c3195c45f2ea292104554f62b"
+        },
+        "date": 1787699659486,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 95.8142532,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -7866,6 +7922,34 @@ window.BENCHMARK_DATA = {
             "value": 103.4972869,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "34d907cc643de91c3195c45f2ea292104554f62b",
+          "message": "Fix staticcheck, and migrate to non-deprecated line drawing.",
+          "timestamp": "2026-08-21T10:04:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/34d907cc643de91c3195c45f2ea292104554f62b"
+        },
+        "date": 1787699663898,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.7508972,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
