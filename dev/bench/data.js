@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1787803679711,
+  "lastUpdate": 1787859765917,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1676,6 +1676,36 @@ window.BENCHMARK_DATA = {
             "value": 181.089650396,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4599.99"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8ba75c3e34b45bade1def54ac5dbf550ed3c796e",
+          "message": "Add an option for the PICO-8 palette.",
+          "timestamp": "2026-08-27T21:38:56+02:00",
+          "tree_id": "9edeef5c7e261e6689c6571f78c683009a9dbbb3",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8ba75c3e34b45bade1def54ac5dbf550ed3c796e"
+        },
+        "date": 1787859758470,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 159.237568022,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 5200.00"
           }
         ]
       }
