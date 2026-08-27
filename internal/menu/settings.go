@@ -135,6 +135,7 @@ var graphicsSettings = []graphicsSettingData{
 	{"macii", "Mac II"},
 	{"msx", "MSX"},
 	{"nes", "NES"},
+	{"pico8", "PICO-8"},
 	{"quake", "Quake"},
 	{"web", "Web"},
 	{"xterm", "XTerm"},

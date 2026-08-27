@@ -613,6 +613,27 @@ var data = map[string]*Palette{
 		nesColors[0x31], // Light cyan.
 	}, nesColors[:]...)),
 
+	// The default palette of the PICO-8. Quite pastel.
+	// It lacks cyan tones, though.
+	"pico8": newPalette([]int{0, 1, 4, 2, 6, 8, 7, 15, 12, 14, 10, 9, 5, 13}, []uint32{
+		0x000000, // Black.
+		0x1D2B53, // Dark blue.
+		0x7E2553, // Dark purple.
+		0x008751, // Dark green.
+		0xAB5236, // Brown.
+		0x5F574F, // Dark grey.
+		0xC2C3C7, // Light grey.
+		0xFFF1E8, // White.
+		0xFF004D, // Red.
+		0xFFEC27, // Yellow.
+		0x00E436, // Green.
+		0x29ADFF, // Blue.
+		0x83769C, // Lavender.
+		0xFF77A8, // Pink.
+		0xFFA300, // Orange. Unmapped.
+		0xFFCCAA, // Light peach. Unmapped.
+	}),
+
 	// Color cubes.
 
 	// 2x2x2 color cube. Just eight pure colors.
