@@ -634,7 +634,7 @@ var data = map[string]*Palette{
 		0xFFCCAA, // Light peach. Unmapped.
 	}),
 
-	"sweetie16": newPalette([]int{0, 1, 1, 2, 6, 8, 7, 15, 2, 14, 10, 9, 5, 13}, []uint32{
+	"sweetie16": newPalette([]int{0, 13, 4, 12, 14, 10, 2, 3, 1, 9, 11, 15, 7, 6, 8}, []uint32{
 		0x1A1C2C, // Black.
 		0x5D275D, // Dark purple.
 		0xB13E53, // Red.
@@ -646,11 +646,11 @@ var data = map[string]*Palette{
 		0x29366F, // Dark blue.
 		0x3B5DC9, // Blue.
 		0x41A6F6, // Light blue.
-		0x29ADFF, // Cyan.
 		0xF4F4F4, // White.
 		0x94B0C2, // Light grey.
 		0x566C86, // Grey.
 		0x333C57, // Dark grey.
+		0x29ADFF, // Cyan.
 	}),
 
 	// Color cubes.
