@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788259633020,
+  "lastUpdate": 1788259914275,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1906,6 +1906,36 @@ window.BENCHMARK_DATA = {
             "value": 129.074147554,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c35c62ab9e493e058bad68a8527256453f464a83",
+          "message": "Bump github/codeql-action from 4.37.7 to 4.37.9 (#740)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.37.7 to 4.37.9.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.37.7...v4.37.9)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.37.9\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-09-01T10:47:12Z",
+          "tree_id": "7532be09bfa5a23a9e989f830ab3b7c274aabeb8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c35c62ab9e493e058bad68a8527256453f464a83"
+        },
+        "date": 1788259908568,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 211.244796118,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4599.99"
           }
         ]
       }
