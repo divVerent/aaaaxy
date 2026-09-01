@@ -136,6 +136,7 @@ var graphicsSettings = []graphicsSettingData{
 	{"msx", "MSX"},
 	{"nes", "NES"},
 	{"pico8", "PICO-8"},
+	{"sweetie16", "SWEETIE-16"},
 	{"quake", "Quake"},
 	{"web", "Web"},
 	{"xterm", "XTerm"},
