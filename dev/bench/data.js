@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788259227160,
+  "lastUpdate": 1788259312914,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -1876,6 +1876,36 @@ window.BENCHMARK_DATA = {
             "value": 183.836754533,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d2343112693ed354ae0975cefb3e0e771f10141d",
+          "message": "More comments in palette settings.\n\nMakes adding more easier.",
+          "timestamp": "2026-09-01T12:38:34+02:00",
+          "tree_id": "97943d1e4c9a1bc87cdd4f94ec91b9e9b603770b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d2343112693ed354ae0975cefb3e0e771f10141d"
+        },
+        "date": 1788259307304,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 129.074147554,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
           }
         ]
       }
