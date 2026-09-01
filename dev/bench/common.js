@@ -1,13 +1,22 @@
 const DEFAULT_CONFIG = {
-  'targetFalseAlertProbability': 0.005,
-  'graphColorStep': 0.25,
-  'graphColorMin': 32,
-  'graphColorMax': 223,
-  'graphFalloff': 0.98,
-  'graphMinScore': 1e-10,
+  // Anomaly detection.
   'minFraction': 0.75, // Time fraction in which to not show anomalies.
-  'noiseFloorRelative': 0.01, // Even if not seen, observe a min stddev of 1%.
   'noiseFloorAbsolute': 0.01, // Even if not seen, observe a min stddev of 10ns.
+  'noiseFloorRelative': 0.01, // Even if not seen, observe a min stddev of 1%.
+  'targetFalseAlertProbability': 0.005,
+
+  // Graph filtering.
+  'graphFalloff': 0.98,
+  'graphMinScore': -1,
+
+  // Custom filtering.
+  'cpuFilter': '',
+  'nameFilter': '',
+
+  // Graph appearance.
+  'graphColorMax': 223,
+  'graphColorMin': 32,
+  'graphColorStep': 0.25,
 };
 
 let CONFIG = Object.assign({}, DEFAULT_CONFIG);
@@ -115,6 +124,14 @@ function scoreForGraph(dataset) {
   return [score, goodScore, badScore];
 }
 
+const DEFAULT_GRAPH_MIN_SCORE = 1e-10;
+
+function graphMinScore() {
+  return CONFIG.graphMinScore >= 0 ? CONFIG.graphMinScore :
+         CONFIG.nameFilter         ? 0                    :
+                                     DEFAULT_GRAPH_MIN_SCORE;
+}
+
 if (typeof module != 'undefined') {
   module.exports = {
     CONFIG,
@@ -126,5 +143,6 @@ if (typeof module != 'undefined') {
     tCDF,
     colorForGraph,
     scoreForGraph,
+    graphMinScore,
   };
 }

@@ -63,7 +63,7 @@
           };
 
           // Prepare data points for charts
-          return Object.keys(data.entries).map(name => ({
+          return Object.keys(data.entries).toSorted().map(name => ({
             name,
             dataSet: collectBenchesPerTestCase(data.entries[name]),
           }));
@@ -73,7 +73,7 @@
 
           function renderGraph(parent, name, dataset) {
             const [score, goodScore, badScore] = scoreForGraph(dataset);
-            if (score < CONFIG.graphMinScore) {
+            if (score < graphMinScore()) {
               return;
             }
 
