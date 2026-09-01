@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788259312914,
+  "lastUpdate": 1788259388314,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5486,6 +5486,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 5586.87"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d2343112693ed354ae0975cefb3e0e771f10141d",
+          "message": "More comments in palette settings.\n\nMakes adding more easier.",
+          "timestamp": "2026-09-01T12:38:34+02:00",
+          "tree_id": "97943d1e4c9a1bc87cdd4f94ec91b9e9b603770b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d2343112693ed354ae0975cefb3e0e771f10141d"
+        },
+        "date": 1788259271174,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 75.931705464,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.27"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -7304,6 +7334,36 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d2343112693ed354ae0975cefb3e0e771f10141d",
+          "message": "More comments in palette settings.\n\nMakes adding more easier.",
+          "timestamp": "2026-09-01T12:38:34+02:00",
+          "tree_id": "97943d1e4c9a1bc87cdd4f94ec91b9e9b603770b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d2343112693ed354ae0975cefb3e0e771f10141d"
+        },
+        "date": 1788259323483,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 100.0348348,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
@@ -9120,6 +9180,36 @@ window.BENCHMARK_DATA = {
             "value": 99.8909545,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "d2343112693ed354ae0975cefb3e0e771f10141d",
+          "message": "More comments in palette settings.\n\nMakes adding more easier.",
+          "timestamp": "2026-09-01T12:38:34+02:00",
+          "tree_id": "97943d1e4c9a1bc87cdd4f94ec91b9e9b603770b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d2343112693ed354ae0975cefb3e0e771f10141d"
+        },
+        "date": 1788259378694,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.9670734,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
           }
         ]
       }
