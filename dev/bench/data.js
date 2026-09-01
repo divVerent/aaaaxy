@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788259021598,
+  "lastUpdate": 1788259227160,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -3576,6 +3576,36 @@ window.BENCHMARK_DATA = {
             "value": 74.392467,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "soopax.pine@gmail.com",
+            "name": "soopax",
+            "username": "soopax"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "846842e822af60468abdf82854cdcbf6fbc1789e",
+          "message": "Add the SWEETIE-16 palette by GrafxKid, used in TIC-80 (#738)\n\n* Add the SWEETIE-16 palette by GrafxKid, used in TIC-80\n\n* Add EGA color mapping and move cyan to last\nCo-authored-by: Rudolf Polzer <rpolzer@google.com>\n\n* Run `git add assets/_saved/lut_sweetie16_*`\nCo-authored-by: Rudolf Polzer <rpolzer@google.com>",
+          "timestamp": "2026-09-01T10:32:50Z",
+          "tree_id": "7e4a5607e233223877a017887ae0d43098a5eb56",
+          "url": "https://github.com/divVerent/aaaaxy/commit/846842e822af60468abdf82854cdcbf6fbc1789e"
+        },
+        "date": 1788259222285,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 65.052087745,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
           }
         ]
       }
