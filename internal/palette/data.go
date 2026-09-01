@@ -463,7 +463,7 @@ var data = map[string]*Palette{
 	// A standard grayscale VGA palette. Based on egagray.
 	"vgamono": newPalette([]int{0, 1, 4, 5, 2, 8, 3, 6, 9, 12, 7, 13, 10, 11, 14, 15}, append(rounded(grays(16), 63), grays(63)...)),
 
-	// Other home computers.
+	// Other home computers (or weird PC setups).
 
 	// Atari ST default palette.
 	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.
@@ -612,6 +612,46 @@ var data = map[string]*Palette{
 		nesColors[0x00], // Dark grey.
 		nesColors[0x31], // Light cyan.
 	}, nesColors[:]...)),
+
+	// The default palette of the PICO-8. Quite pastel.
+	// It lacks cyan tones, though.
+	"pico8": newPalette([]int{0, 1, 4, 2, 6, 8, 7, 15, 12, 14, 10, 9, 5, 13}, []uint32{
+		0x000000, // Black.
+		0x1D2B53, // Dark blue.
+		0x7E2553, // Dark purple.
+		0x008751, // Dark green.
+		0xAB5236, // Brown.
+		0x5F574F, // Dark grey.
+		0xC2C3C7, // Light grey.
+		0xFFF1E8, // White.
+		0xFF004D, // Red.
+		0xFFEC27, // Yellow.
+		0x00E436, // Green.
+		0x29ADFF, // Blue.
+		0x83769C, // Lavender.
+		0xFF77A8, // Pink.
+		0xFFA300, // Orange. Unmapped.
+		0xFFCCAA, // Light peach. Unmapped.
+	}),
+
+	"sweetie16": newPalette([]int{0, 13, 4, 12, 14, 10, 2, 3, 1, 9, 11, 15, 7, 6, 8}, []uint32{
+		0x1A1C2C, // Black.
+		0x5D275D, // Dark purple.
+		0xB13E53, // Red.
+		0xEF7D57, // Orange.
+		0xFFCD75, // Yellow.
+		0xA7F070, // Light green.
+		0x38B764, // Green.
+		0x257179, // Dark green.
+		0x29366F, // Dark blue.
+		0x3B5DC9, // Blue.
+		0x41A6F6, // Light blue.
+		0xF4F4F4, // White.
+		0x94B0C2, // Light grey.
+		0x566C86, // Grey.
+		0x333C57, // Dark grey.
+		0x29ADFF, // Cyan.
+	}),
 
 	// Color cubes.
 
