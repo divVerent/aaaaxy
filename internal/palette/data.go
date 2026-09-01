@@ -463,7 +463,7 @@ var data = map[string]*Palette{
 	// A standard grayscale VGA palette. Based on egagray.
 	"vgamono": newPalette([]int{0, 1, 4, 5, 2, 8, 3, 6, 9, 12, 7, 13, 10, 11, 14, 15}, append(rounded(grays(16), 63), grays(63)...)),
 
-	// Other home computers.
+	// Other home computers (or weird PC setups).
 
 	// Atari ST default palette.
 	// Has 7 levels in each component, representing as 00 24 49 6D 92 B6 DB FF.

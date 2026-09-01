@@ -112,6 +112,7 @@ type graphicsSettingData struct {
 }
 
 var graphicsSettings = []graphicsSettingData{
+	// IBM PC graphics adaptors.
 	{"mono", "Hercules"},
 	{"cgamono", "CGA (monochrome)"},
 	{"cga41l", "CGA"},
@@ -127,9 +128,12 @@ var graphicsSettings = []graphicsSettingData{
 	{"none", "SVGA"},
 	{"none", "SVGA"},
 	{"none", "SVGA"},
+	// Other home computers (or weird PC setups).
 	{"atarist", "Atari ST"},
 	{"c64", "C64"},
 	{"cga40n", "CGA (NTSC)"},
+	{"egagray", "EGA (grayscale)"},
+	// Game consoles.
 	{"gb", "Gameboy"},
 	{"intellivision", "Intellivision"},
 	{"macii", "Mac II"},
@@ -137,10 +141,12 @@ var graphicsSettings = []graphicsSettingData{
 	{"nes", "NES"},
 	{"pico8", "PICO-8"},
 	{"sweetie16", "SWEETIE-16"},
+	// Other games.
 	{"quake", "Quake"},
-	{"web", "Web"},
+	// ANSI terminals.
 	{"xterm", "XTerm"},
-	{"egagray", "EGA (grayscale)"},
+	// Color cubes.
+	{"web", "Web"},
 	{"3x3x3", "3x3x3"},
 	{"4x4x4", "4x4x4"},
 	{"7x7x4", "7x7x4"},
@@ -151,6 +157,7 @@ var graphicsSettings = []graphicsSettingData{
 	{"8x8x4", "8x8x4"},
 	{"8x8x4", "8x8x4"},
 	{"8x8x4", "8x8x4"},
+	// Country flags.
 	{"ua3", "Ukrainian"},
 }
 
