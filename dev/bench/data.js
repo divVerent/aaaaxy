@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788622279350,
+  "lastUpdate": 1788653845269,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -6058,6 +6058,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "0963a3e03fc1d35f5ba1e55b566d8e1538261c86",
+          "message": "Bump actions/setup-java from 5 to 6 (#739)\n\nBumps [actions/setup-java](https://github.com/actions/setup-java) from 5 to 6.\n- [Release notes](https://github.com/actions/setup-java/releases)\n- [Commits](https://github.com/actions/setup-java/compare/v5...v6)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-java\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-09-01T10:47:14Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0963a3e03fc1d35f5ba1e55b566d8e1538261c86"
+        },
+        "date": 1788653840374,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 71.429009797,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -8044,6 +8072,34 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 95.667005,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "0963a3e03fc1d35f5ba1e55b566d8e1538261c86",
+          "message": "Bump actions/setup-java from 5 to 6 (#739)\n\nBumps [actions/setup-java](https://github.com/actions/setup-java) from 5 to 6.\n- [Release notes](https://github.com/actions/setup-java/releases)\n- [Commits](https://github.com/actions/setup-java/compare/v5...v6)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-java\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-09-01T10:47:14Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0963a3e03fc1d35f5ba1e55b566d8e1538261c86"
+        },
+        "date": 1788653892350,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 96.5736426,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
@@ -10036,6 +10092,34 @@ window.BENCHMARK_DATA = {
             "value": 99.4826223,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "0963a3e03fc1d35f5ba1e55b566d8e1538261c86",
+          "message": "Bump actions/setup-java from 5 to 6 (#739)\n\nBumps [actions/setup-java](https://github.com/actions/setup-java) from 5 to 6.\n- [Release notes](https://github.com/actions/setup-java/releases)\n- [Commits](https://github.com/actions/setup-java/compare/v5...v6)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-java\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-09-01T10:47:14Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0963a3e03fc1d35f5ba1e55b566d8e1538261c86"
+        },
+        "date": 1788653904747,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.5236748,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
