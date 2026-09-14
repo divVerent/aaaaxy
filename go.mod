@@ -1,8 +1,6 @@
 module github.com/divVerent/aaaaxy
 
-go 1.25.0
-
-toolchain go1.25.13
+go 1.26.0
 
 require (
 	github.com/Microsoft/go-winio v0.6.2
@@ -21,7 +19,7 @@ require (
 	github.com/ncruces/zenity v0.10.15
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.45.0
-	golang.org/x/sys v0.47.0
+	golang.org/x/sys v0.48.0
 	golang.org/x/text v0.41.0
 )
 
