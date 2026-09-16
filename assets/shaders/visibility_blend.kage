@@ -22,8 +22,8 @@ var Color vec4
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	mask := imageSrc0UnsafeAt(texCoord)
-	curr := imageSrc1UnsafeAt(texCoord)
+	curr := imageSrc1UnsafeAtFromSrc0Pos(texCoord)
 	scrolled := texCoord + Scroll
-	prev := imageSrc2At(scrolled)
+	prev := imageSrc2AtFromSrc0Pos(scrolled)
 	return mix(mix(Color, prev, prev.a), curr, mask)
 }

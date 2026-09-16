@@ -58,7 +58,7 @@ func dumpSamples(dumpFile io.Writer, samples int) error {
 		}
 	}
 	for _, dmp := range toClose {
-		dmp.Close()
+		dmp.PauseAndStopReading()
 	}
 	err := binary.Write(dumpFile, binary.LittleEndian, buf)
 	if err != nil {
@@ -85,7 +85,7 @@ func newDumper(src func() (io.ReadCloser, error)) (*dumper, error) {
 	return dmp, nil
 }
 
-func (d *dumper) Close() {
+func (d *dumper) PauseAndStopReading() {
 	d.playing = false
 	d.reader.Close()
 	for i, snd := range currentSounds {

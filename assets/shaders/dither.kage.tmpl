@@ -75,7 +75,7 @@ func nearestColor(srcOrigin vec2, c vec3, i int) vec4 {
 	pixy := cbrd*s + cg
 	pix := vec2(float(pixx), float(pixy))
 	coord := srcOrigin + pix
-	return imageSrc1UnsafeAt(coord)
+	return imageSrc1UnsafeAtFromSrc0Pos(coord)
 }
 
 // T["if .TwoColor"]

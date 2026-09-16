@@ -21,6 +21,6 @@ var Color vec4
 
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	mask := imageSrc0UnsafeAt(texCoord)
-	curr := imageSrc1UnsafeAt(texCoord)
+	curr := imageSrc1UnsafeAtFromSrc0Pos(texCoord)
 	return mix(Color, curr, mask)
 }
