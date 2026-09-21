@@ -93,7 +93,7 @@ func Update() {
 	for p := range fadingOutPlayers {
 		p.fadeFrame--
 		if p.fadeFrame == 0 {
-			p.CloseInstantly()
+			p.PauseAndStopReading()
 			delete(fadingOutPlayers, p)
 		}
 		v := p.volume * float64(p.fadeFrame) / float64(p.fadeFrames)
@@ -142,7 +142,7 @@ func (p *Player) CheckGC() dontgc.State {
 	if !p.IsPlaying() {
 		return nil
 	}
-	p.CloseInstantly()
+	p.PauseAndStopReading()
 	return p.dontGCState
 }
 
@@ -167,17 +167,14 @@ func NewPlayerFromBytes(src []byte) (*Player, error) {
 	}, nil
 }
 
-func (p *Player) CloseInstantly() error {
+func (p *Player) PauseAndStopReading() error {
 	p.playTime = time.Time{}
 	if p.dmp != nil {
-		p.dmp.Close()
+		p.dmp.PauseAndStopReading()
 	}
 	var err error = nil
 	if p.ebi != nil {
-		err2 := p.ebi.Close()
-		if err == nil {
-			err = err2
-		}
+		p.ebi.PauseAndStopReading()
 	}
 	if p.ebiCloser != nil {
 		err2 := p.ebiCloser.Close()
@@ -190,7 +187,7 @@ func (p *Player) CloseInstantly() error {
 
 func (p *Player) Close() error {
 	if p.volume == 0 || !p.IsPlaying() {
-		p.CloseInstantly()
+		p.PauseAndStopReading()
 	} else {
 		p.FadeOutIn(*soundFadeTime)
 	}

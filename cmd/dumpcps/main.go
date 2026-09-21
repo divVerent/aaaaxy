@@ -134,7 +134,7 @@ func main() {
 			nextSp := cpMap[nextID]
 			nextVert := vertices[nextID]
 			if nextVert == nil {
-				log.Fatalf("checkpoint %q doesn't point at a checkpoint but entity %d", next, nextID)
+				log.Fatalf("checkpoint %q doesn't point at a checkpoint but entity %d", conn.name, nextID)
 			}
 			distance := 10
 			if propmap.ValueOrP(nextSp.Properties, "dead_end", false, &parseErr) {
