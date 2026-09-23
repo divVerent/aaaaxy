@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1790092400407,
+  "lastUpdate": 1790178258591,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4628,6 +4628,34 @@ window.BENCHMARK_DATA = {
             "value": 75.44048875,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "0d8b10ecf2a32bd69e8d89d09b70338ed7d421d4",
+          "message": "Fix deprecations in Ebitengine 2.10.",
+          "timestamp": "2026-09-16T18:41:52Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0d8b10ecf2a32bd69e8d89d09b70338ed7d421d4"
+        },
+        "date": 1790178252628,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 79.835397948,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
           }
         ]
       }
