@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1790235545439,
+  "lastUpdate": 1790235615387,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4686,6 +4686,36 @@ window.BENCHMARK_DATA = {
             "value": 79.835397948,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "divVerent@gmail.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "b7c715f6dac9342797227d5910ae782e93b3926b",
+          "message": "Bump Go version on GitHub Actions.",
+          "timestamp": "2026-09-24T09:33:35+02:00",
+          "tree_id": "7a9089c3bd550dcc59764121218df4aaebe92553",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b7c715f6dac9342797227d5910ae782e93b3926b"
+        },
+        "date": 1790235611055,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 46.974565974,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
           }
         ]
       }
