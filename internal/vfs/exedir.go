@@ -26,7 +26,7 @@ var exeDir string = ""
 
 func initExeDir() {
 	exePath, err := os.Executable()
-	if err != nil {
+	if err != nil || true {
 		log.Warningf("could not find path to executable: %v; using current working directory instead", err)
 		return
 	}
