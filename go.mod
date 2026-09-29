@@ -12,7 +12,7 @@ require (
 	github.com/google/go-cmp v0.7.0
 	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
 	github.com/hajimehoshi/bitmapfont/v4 v4.2.0
-	github.com/hajimehoshi/ebiten/v2 v2.10.2
+	github.com/hajimehoshi/ebiten/v2 v2.10.4
 	github.com/jeandeaual/go-locale v0.0.0-20250612000132-0ef82f21eade
 	github.com/leonelquinteros/gotext v1.7.2
 	github.com/lestrrat-go/strftime v1.2.0
@@ -30,8 +30,8 @@ require (
 	github.com/dchest/jsmin v1.0.0 // indirect
 	github.com/ebitengine/gomobile v0.0.0-20260820040257-d11f821a26a6 // indirect
 	github.com/ebitengine/hideconsole v1.0.0 // indirect
-	github.com/ebitengine/oto/v3 v3.5.0 // indirect
-	github.com/ebitengine/purego v0.11.0 // indirect
+	github.com/ebitengine/oto/v3 v3.5.1 // indirect
+	github.com/ebitengine/purego v0.11.1 // indirect
 	github.com/go-logr/logr v1.2.0 // indirect
 	github.com/go-text/typesetting v0.3.5 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
@@ -42,7 +42,7 @@ require (
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
 	github.com/josephspurrier/goversioninfo v1.7.0 // indirect
 	github.com/otiai10/mint v1.6.3 // indirect
-	github.com/pierrec/lz4/v4 v4.1.30 // indirect
+	github.com/pierrec/lz4/v4 v4.1.31 // indirect
 	github.com/randall77/makefat v0.0.0-20260406194835-1b91746796b7 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.9 // indirect
