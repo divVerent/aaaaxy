@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1790673282742,
+  "lastUpdate": 1790673400639,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -4996,6 +4996,36 @@ window.BENCHMARK_DATA = {
             "value": 59.743890417,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 5200.00"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1d74f1c9d18afb69f878fe65c391b0fc37e76cce",
+          "message": "Bump github/codeql-action from 4.38.0 to 4.38.2 (#748)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.38.0 to 4.38.2.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.38.0...v4.38.2)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.38.2\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-09-29T09:09:28Z",
+          "tree_id": "f91151adb4066862c58afaacc3a313b64c5554b6",
+          "url": "https://github.com/divVerent/aaaaxy/commit/1d74f1c9d18afb69f878fe65c391b0fc37e76cce"
+        },
+        "date": 1790673394160,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 61.066056824,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
           }
         ]
       }
