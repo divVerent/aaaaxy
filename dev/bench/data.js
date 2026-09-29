@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1790625089059,
+  "lastUpdate": 1790648575493,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7498,6 +7498,34 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "id": "b7c715f6dac9342797227d5910ae782e93b3926b",
+          "message": "Bump Go version on GitHub Actions.",
+          "timestamp": "2026-09-24T07:33:35Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b7c715f6dac9342797227d5910ae782e93b3926b"
+        },
+        "date": 1790648570403,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64",
+            "value": 75.721879403,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
       }
     ],
     "Any% windows-amd64": [
@@ -9964,6 +9992,34 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-amd64",
             "value": 96.438864,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "id": "b7c715f6dac9342797227d5910ae782e93b3926b",
+          "message": "Bump Go version on GitHub Actions.",
+          "timestamp": "2026-09-24T07:33:35Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b7c715f6dac9342797227d5910ae782e93b3926b"
+        },
+        "date": 1790648660588,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 97.2059826,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
           }
@@ -12436,6 +12492,34 @@ window.BENCHMARK_DATA = {
             "value": 96.3965058,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "divVerent@gmail.com"
+          },
+          "id": "b7c715f6dac9342797227d5910ae782e93b3926b",
+          "message": "Bump Go version on GitHub Actions.",
+          "timestamp": "2026-09-24T07:33:35Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/b7c715f6dac9342797227d5910ae782e93b3926b"
+        },
+        "date": 1790648588168,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.8947807,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
       }
