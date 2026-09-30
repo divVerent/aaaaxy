@@ -1,38 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1790787957890,
+  "lastUpdate": 1790791596700,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "00a744754f8625107724eef258bcd369bcc4f011",
-          "message": "Forgot to export them.",
-          "timestamp": "2026-07-25T08:37:19+02:00",
-          "tree_id": "192586ad9e5bf1817d2a18b1dbed303dab376f77",
-          "url": "https://github.com/divVerent/aaaaxy/commit/00a744754f8625107724eef258bcd369bcc4f011"
-        },
-        "date": 1784961733928,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 232.072531047,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2582,6 +2552,34 @@ window.BENCHMARK_DATA = {
             "value": 251.565878256,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.27"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "3813a3c83f6bcd52fa67555c63310e42a99c335e",
+          "message": "Module updates.",
+          "timestamp": "2026-09-29T09:10:21Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/3813a3c83f6bcd52fa67555c63310e42a99c335e"
+        },
+        "date": 1790791591763,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 130.354030235,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.20"
           }
         ]
       }
