@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791163247552,
+  "lastUpdate": 1791254036377,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5166,34 +5166,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
-          "message": "Add an OpenSCAD file, for fun and 3D printing.",
-          "timestamp": "2026-07-26T18:07:51Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
-        },
-        "date": 1785196265845,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.703472948,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -7740,9 +7712,7 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7755,22 +7725,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent",
             "email": "rpolzer@google.com"
           },
-          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
-          "message": "Add an OpenSCAD file, for fun and 3D printing.",
-          "timestamp": "2026-07-26T18:07:51Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+          "id": "3813a3c83f6bcd52fa67555c63310e42a99c335e",
+          "message": "Module updates.",
+          "timestamp": "2026-09-29T09:10:21Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/3813a3c83f6bcd52fa67555c63310e42a99c335e"
         },
-        "date": 1785196310150,
+        "date": 1791254032189,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.8097161,
+            "name": "Any% linux-amd64",
+            "value": 39.734441548,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10320,9 +10292,7 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10335,22 +10305,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent",
             "email": "rpolzer@google.com"
           },
-          "id": "258736e6e8e51299e586a4be3879add9dc6597c4",
-          "message": "Add an OpenSCAD file, for fun and 3D printing.",
-          "timestamp": "2026-07-26T18:07:51Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/258736e6e8e51299e586a4be3879add9dc6597c4"
+          "id": "3813a3c83f6bcd52fa67555c63310e42a99c335e",
+          "message": "Module updates.",
+          "timestamp": "2026-09-29T09:10:21Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/3813a3c83f6bcd52fa67555c63310e42a99c335e"
         },
-        "date": 1785196305519,
+        "date": 1791254116337,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.8710657,
+            "name": "Any% windows-amd64",
+            "value": 97.9272204,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12898,6 +12870,34 @@ window.BENCHMARK_DATA = {
             "value": 101.3692522,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "3813a3c83f6bcd52fa67555c63310e42a99c335e",
+          "message": "Module updates.",
+          "timestamp": "2026-09-29T09:10:21Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/3813a3c83f6bcd52fa67555c63310e42a99c335e"
+        },
+        "date": 1791254126246,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 98.1335033,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
