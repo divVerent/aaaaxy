@@ -77,8 +77,8 @@ var (
 
 const (
 	dumpVideoFrameSize = engine.GameWidth * engine.GameHeight * 4
-	dumpBufferFrames   = 512 // Must make FFmpeg probing happy.
-	dumpBufferExtra    = 4
+	dumpBufferFrames   = 60 // Must cover encoding delay of codec. Let's go with 1 second max.
+	dumpBufferExtra    = 1  // Just one frame per buffer is enough.
 )
 
 var (
@@ -229,9 +229,11 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 	precmd := ""
 	inputs := []string{}
 	settings := []string{"-y"}
+	noProbe := []string{"-probesize", "32", "-analyzeduration", "0", "-fflags", "+nobuffer", "-avioflags", "+direct"}
 	// Video first, so we can refer to the video stream as [0:v] for sure.
 	if video != "" {
 		fps := float64(engine.GameTPS) / (float64(params.FPSDivisor) * float64(*dumpVideoFpsDivisor))
+		inputs = append(inputs, noProbe...)
 		inputs = append(inputs, "-f", "rawvideo", "-pixel_format", "rgba", "-video_size", fmt.Sprintf("%dx%d", engine.GameWidth, engine.GameHeight), "-r", fmt.Sprint(fps), "-i", video)
 		filterComplex := "[0:v]premultiply=inplace=1,format=gbrp[lowres]; "
 		switch screenFilter {
@@ -303,6 +305,7 @@ func ffmpegCommand(audio, video, output, screenFilter string) ([]string, string,
 		settings = append(settings, "-filter_complex", filterComplex)
 	}
 	if audio != "" {
+		inputs = append(inputs, noProbe...)
 		inputs = append(inputs, "-f", "s16le", "-ac", "2", "-channel_layout", "stereo", "-ar", fmt.Sprint(audiowrap.SampleRate()), "-i", audio)
 		if *dumpAudioCodecSettings != "" {
 			settings = append(settings, strings.Split(*dumpAudioCodecSettings, " ")...)
