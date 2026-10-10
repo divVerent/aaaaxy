@@ -69,7 +69,7 @@ msgstr "A: %s"
 
 #: menu/credits.go
 msgid "Additional Programming Libraries & Tools"
-msgstr "追加のプログラミングライブラリー・ツール"
+msgstr "その他のプログラミングライブラリー・ツール"
 
 #. A speedrun category (all checkpoints reached, but game not won yet).
 #: playerstate/playerstate.go
@@ -237,7 +237,7 @@ msgid ""
 "All cheats are documented in --help."
 msgstr ""
 "オーケー、降参だ。好きにしな。\n"
-"チートは全部 --helpに記録してある。"
+"チートは全部 --helpで説明してある。"
 
 #: menu/credits.go
 msgid "For Software Licenses{{BR}}press right"
