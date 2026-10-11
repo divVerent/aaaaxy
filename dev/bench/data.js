@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791710182865,
+  "lastUpdate": 1791710252285,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5158,36 +5158,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
-            "name": "divVerent",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "3161863cb097db41da9c1827e4c786e3db48d1cb",
-          "message": "Fix physics bug: initial Y coordinate of player is half a pixel too high. (#721)\n\n* Fix initial Y coordinate of objects.\n\nThey spawn with onground=true, which makes sense.\n\nHowever, onground=true usually implies that the object is at the very\nedge of pixel, not its center.\n\nThus, make it so.\n\nFixes #720.\n\n* Update the benchmark demo.\n\n* Only apply the subpixel spawning logic to objects that respond to gravity (only the player).\n\nReduces diffs.\n\n* Update 100% demos.",
-          "timestamp": "2026-07-29T05:35:04Z",
-          "tree_id": "02be91b99809c286cce7eda9d9a60aaa647b1b1f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/3161863cb097db41da9c1827e4c786e3db48d1cb"
-        },
-        "date": 1785303447544,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 52.071720086,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 5199.99"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -7724,15 +7694,13 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
-            "name": "divVerent",
-            "username": "divVerent"
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
           },
           "committer": {
             "email": "noreply@github.com",
@@ -7740,23 +7708,25 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "3161863cb097db41da9c1827e4c786e3db48d1cb",
-          "message": "Fix physics bug: initial Y coordinate of player is half a pixel too high. (#721)\n\n* Fix initial Y coordinate of objects.\n\nThey spawn with onground=true, which makes sense.\n\nHowever, onground=true usually implies that the object is at the very\nedge of pixel, not its center.\n\nThus, make it so.\n\nFixes #720.\n\n* Update the benchmark demo.\n\n* Only apply the subpixel spawning logic to objects that respond to gravity (only the player).\n\nReduces diffs.\n\n* Update 100% demos.",
-          "timestamp": "2026-07-29T05:35:04Z",
-          "tree_id": "02be91b99809c286cce7eda9d9a60aaa647b1b1f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/3161863cb097db41da9c1827e4c786e3db48d1cb"
+          "id": "8bf374b46cda1b712d0662f6b783ab1258b59ecb",
+          "message": "Translate assets/locales/level.pot in ja (#751)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'ja'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-11T09:13:28Z",
+          "tree_id": "8b5b9645fe60f445b6109aaadbb9e68e85aef828",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8bf374b46cda1b712d0662f6b783ab1258b59ecb"
         },
-        "date": 1785303529259,
+        "date": 1791710226559,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.5828832,
+            "name": "Any% linux-amd64",
+            "value": 72.874996321,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10296,15 +10266,13 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
-            "name": "divVerent",
-            "username": "divVerent"
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
           },
           "committer": {
             "email": "noreply@github.com",
@@ -10312,23 +10280,25 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "3161863cb097db41da9c1827e4c786e3db48d1cb",
-          "message": "Fix physics bug: initial Y coordinate of player is half a pixel too high. (#721)\n\n* Fix initial Y coordinate of objects.\n\nThey spawn with onground=true, which makes sense.\n\nHowever, onground=true usually implies that the object is at the very\nedge of pixel, not its center.\n\nThus, make it so.\n\nFixes #720.\n\n* Update the benchmark demo.\n\n* Only apply the subpixel spawning logic to objects that respond to gravity (only the player).\n\nReduces diffs.\n\n* Update 100% demos.",
-          "timestamp": "2026-07-29T05:35:04Z",
-          "tree_id": "02be91b99809c286cce7eda9d9a60aaa647b1b1f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/3161863cb097db41da9c1827e4c786e3db48d1cb"
+          "id": "8bf374b46cda1b712d0662f6b783ab1258b59ecb",
+          "message": "Translate assets/locales/level.pot in ja (#751)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'ja'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-11T09:13:28Z",
+          "tree_id": "8b5b9645fe60f445b6109aaadbb9e68e85aef828",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8bf374b46cda1b712d0662f6b783ab1258b59ecb"
         },
-        "date": 1785303544393,
+        "date": 1791710229560,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 102.7719993,
+            "name": "Any% windows-amd64",
+            "value": 97.1383644,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12866,6 +12836,36 @@ window.BENCHMARK_DATA = {
             "value": 104.0803996,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8bf374b46cda1b712d0662f6b783ab1258b59ecb",
+          "message": "Translate assets/locales/level.pot in ja (#751)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'ja'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-11T09:13:28Z",
+          "tree_id": "8b5b9645fe60f445b6109aaadbb9e68e85aef828",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8bf374b46cda1b712d0662f6b783ab1258b59ecb"
+        },
+        "date": 1791710243417,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 98.1760722,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
