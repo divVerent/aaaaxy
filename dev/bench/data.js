@@ -1,36 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791710330717,
+  "lastUpdate": 1791710917694,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "divVerent",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "3161863cb097db41da9c1827e4c786e3db48d1cb",
-          "message": "Fix physics bug: initial Y coordinate of player is half a pixel too high. (#721)\n\n* Fix initial Y coordinate of objects.\n\nThey spawn with onground=true, which makes sense.\n\nHowever, onground=true usually implies that the object is at the very\nedge of pixel, not its center.\n\nThus, make it so.\n\nFixes #720.\n\n* Update the benchmark demo.\n\n* Only apply the subpixel spawning logic to objects that respond to gravity (only the player).\n\nReduces diffs.\n\n* Update 100% demos.",
-          "timestamp": "2026-07-29T05:35:04Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/3161863cb097db41da9c1827e4c786e3db48d1cb"
-        },
-        "date": 1785336307364,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 235.10483994,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2572,6 +2544,36 @@ window.BENCHMARK_DATA = {
             "value": 176.168795969,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "0c3ef00c088545555691f8692083c54f41a19c6d",
+          "message": "Modules update.",
+          "timestamp": "2026-10-11T11:25:18+02:00",
+          "tree_id": "bc2c70d48ee059e7ea7f71a4ebb109c5a6cb8cbe",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c3ef00c088545555691f8692083c54f41a19c6d"
+        },
+        "date": 1791710913441,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 136.026021608,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.19"
           }
         ]
       }
