@@ -19751,7 +19751,7 @@
   </object>
   <object id="8556" name="Slider" type="CenterPrintTarget" x="4336" y="5824" width="8" height="16">
    <properties>
-    <property name="_text_localization_note" value="Reference to Super Mario 64's intro letter from Princess Peach, combined with the wellknown phrase misattributed to Marie Antoinette. Try finding both phrases as most commonly used in your language in the given contexts and use those. Definitely don't reference Portal here - let's not overdo those. If Asterix is well-known in your culture, you may consider making it an &quot;arsenic cake&quot;; if not, reference Grieg's In the Hall of the Mountain King."/>
+    <property name="_text_localization_note" value="Reference to Super Mario 64's intro letter from Princess Peach, combined with the wellknown phrase misattributed to Marie Antoinette. Try finding both phrases as most commonly used in your language in the given contexts and use those. Definitely don't reference Portal here - let's not overdo those. If Asterix is well-known in your culture, you may consider making it an &quot;arsenic cake&quot; (Le Pudding à l'Arsenic); if not, reference Grieg's In the Hall of the Mountain King."/>
     <property name="importance" value="Important"/>
     <property name="initial_position" value="Middle"/>
     <property name="sound" value="got_ability.ogg"/>
@@ -19763,6 +19763,7 @@
   </object>
   <object id="8557" name="Hall" type="CenterPrintTarget" x="4352" y="5824" width="8" height="16">
    <properties>
+    <property name="_text_localization_note" value="Reference to the Asterix and Cleopatra song &quot;Arsenic Cake&quot; (Le Pudding à l'Arsenic)."/>
     <property name="importance" value="Important"/>
     <property name="initial_position" value="Middle"/>
     <property name="sound" value="got_ability.ogg"/>
