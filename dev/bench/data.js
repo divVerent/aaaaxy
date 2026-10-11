@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791710252285,
+  "lastUpdate": 1791710284486,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -7730,36 +7730,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "17f843e4e32a6b12c57c4b78d862df59d9138ab3",
-          "message": "Give the 3D model a scale factor.\n\nDefault is 1px = 2mm, so 6cm total height.",
-          "timestamp": "2026-07-29T21:26:47+02:00",
-          "tree_id": "26e6fd16ad6c95c99681a29b7a2b7a6d91b2f4c9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/17f843e4e32a6b12c57c4b78d862df59d9138ab3"
-        },
-        "date": 1785353402659,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-amd64",
-            "value": 95.8847743,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -10296,39 +10266,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
           },
           "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
           },
           "distinct": true,
-          "id": "17f843e4e32a6b12c57c4b78d862df59d9138ab3",
-          "message": "Give the 3D model a scale factor.\n\nDefault is 1px = 2mm, so 6cm total height.",
-          "timestamp": "2026-07-29T21:26:47+02:00",
-          "tree_id": "26e6fd16ad6c95c99681a29b7a2b7a6d91b2f4c9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/17f843e4e32a6b12c57c4b78d862df59d9138ab3"
+          "id": "5df3521f04c0592b869a57117639d3a3bc85e4f8",
+          "message": "Updates for file assets/locales/game.pot in ja (#750)\n\n* Translate assets/locales/game.pot in ja\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'ja'.\n\n* Translate assets/locales/game.pot in ja\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'ja'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-11T09:14:17Z",
+          "tree_id": "4ff8704124eb9f3f73fcdfd64839667208492b03",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5df3521f04c0592b869a57117639d3a3bc85e4f8"
         },
-        "date": 1785353402141,
+        "date": 1791710282704,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.0165532,
+            "name": "Any% windows-amd64",
+            "value": 97.1783122,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12866,6 +12836,36 @@ window.BENCHMARK_DATA = {
             "value": 98.1760722,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5df3521f04c0592b869a57117639d3a3bc85e4f8",
+          "message": "Updates for file assets/locales/game.pot in ja (#750)\n\n* Translate assets/locales/game.pot in ja\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'ja'.\n\n* Translate assets/locales/game.pot in ja\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'ja'.\n\n---------\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-11T09:14:17Z",
+          "tree_id": "4ff8704124eb9f3f73fcdfd64839667208492b03",
+          "url": "https://github.com/divVerent/aaaaxy/commit/5df3521f04c0592b869a57117639d3a3bc85e4f8"
+        },
+        "date": 1791710276719,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.0809784,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
       }
