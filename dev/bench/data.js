@@ -1,38 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791681727386,
+  "lastUpdate": 1791710182865,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "652be56e4f59421a1a25a2db7a28b27e7f41f263",
-          "message": "Fix Y in subpixel display.",
-          "timestamp": "2026-07-29T07:19:59+02:00",
-          "tree_id": "e04a85dc992ffe0844130436448e05e474c1d12a",
-          "url": "https://github.com/divVerent/aaaaxy/commit/652be56e4f59421a1a25a2db7a28b27e7f41f263"
-        },
-        "date": 1785302682928,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 222.228342874,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2572,6 +2542,36 @@ window.BENCHMARK_DATA = {
             "value": 222.619824636,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8bf374b46cda1b712d0662f6b783ab1258b59ecb",
+          "message": "Translate assets/locales/level.pot in ja (#751)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'ja'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-11T09:13:28Z",
+          "tree_id": "8b5b9645fe60f445b6109aaadbb9e68e85aef828",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8bf374b46cda1b712d0662f6b783ab1258b59ecb"
+        },
+        "date": 1791710178623,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 131.421966536,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
           }
         ]
       }
