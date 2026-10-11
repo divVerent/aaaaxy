@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791710917694,
+  "lastUpdate": 1791710952869,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5160,36 +5160,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "17f843e4e32a6b12c57c4b78d862df59d9138ab3",
-          "message": "Give the 3D model a scale factor.\n\nDefault is 1px = 2mm, so 6cm total height.",
-          "timestamp": "2026-07-29T21:26:47+02:00",
-          "tree_id": "26e6fd16ad6c95c99681a29b7a2b7a6d91b2f4c9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/17f843e4e32a6b12c57c4b78d862df59d9138ab3"
-        },
-        "date": 1785353400979,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 74.3272833,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -7726,37 +7696,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "17f843e4e32a6b12c57c4b78d862df59d9138ab3",
-          "message": "Give the 3D model a scale factor.\n\nDefault is 1px = 2mm, so 6cm total height.",
-          "timestamp": "2026-07-29T19:04:04Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/17f843e4e32a6b12c57c4b78d862df59d9138ab3"
+          "distinct": true,
+          "id": "0c3ef00c088545555691f8692083c54f41a19c6d",
+          "message": "Modules update.",
+          "timestamp": "2026-10-11T11:25:18+02:00",
+          "tree_id": "bc2c70d48ee059e7ea7f71a4ebb109c5a6cb8cbe",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c3ef00c088545555691f8692083c54f41a19c6d"
         },
-        "date": 1785368965833,
+        "date": 1791710862282,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 98.5568012,
+            "name": "Any% linux-amd64",
+            "value": 61.277347347,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2794"
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10298,37 +10270,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "17f843e4e32a6b12c57c4b78d862df59d9138ab3",
-          "message": "Give the 3D model a scale factor.\n\nDefault is 1px = 2mm, so 6cm total height.",
-          "timestamp": "2026-07-29T19:04:04Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/17f843e4e32a6b12c57c4b78d862df59d9138ab3"
+          "distinct": true,
+          "id": "0c3ef00c088545555691f8692083c54f41a19c6d",
+          "message": "Modules update.",
+          "timestamp": "2026-10-11T11:25:18+02:00",
+          "tree_id": "bc2c70d48ee059e7ea7f71a4ebb109c5a6cb8cbe",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c3ef00c088545555691f8692083c54f41a19c6d"
         },
-        "date": 1785368961958,
+        "date": 1791710945273,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 99.9341596,
+            "name": "Any% windows-amd64",
+            "value": 97.6434925,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12866,6 +12840,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 100.0809784,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "0c3ef00c088545555691f8692083c54f41a19c6d",
+          "message": "Modules update.",
+          "timestamp": "2026-10-11T11:25:18+02:00",
+          "tree_id": "bc2c70d48ee059e7ea7f71a4ebb109c5a6cb8cbe",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c3ef00c088545555691f8692083c54f41a19c6d"
+        },
+        "date": 1791710915347,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.5153326,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
