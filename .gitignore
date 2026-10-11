@@ -17,6 +17,7 @@
 /assets/_saved/version.txt
 /assets/aaaaxy.dat
 /assets/generated
+/assets/locales/*/*.po.new
 /index.html
 /mappingsupport-for-aaaaxy-*.zip
 /packaging/

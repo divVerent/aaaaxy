@@ -2,17 +2,17 @@ module github.com/divVerent/aaaaxy
 
 go 1.26.0
 
-toolchain go1.26.8
+toolchain go1.26.9
 
 require (
-	github.com/Microsoft/go-winio v0.6.2
+	github.com/Microsoft/go-winio v0.6.3
 	github.com/adrg/xdg v0.5.3
 	github.com/akavel/rsrc v0.10.2
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
 	github.com/google/go-cmp v0.7.0
 	github.com/google/go-licenses v1.6.1-0.20230903011517-706b9c60edd4
 	github.com/hajimehoshi/bitmapfont/v4 v4.2.0
-	github.com/hajimehoshi/ebiten/v2 v2.10.4
+	github.com/hajimehoshi/ebiten/v2 v2.10.5
 	github.com/jeandeaual/go-locale v0.0.0-20250612000132-0ef82f21eade
 	github.com/leonelquinteros/gotext v1.7.2
 	github.com/lestrrat-go/strftime v1.2.0
@@ -20,9 +20,9 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.10.15
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
-	golang.org/x/image v0.46.0
-	golang.org/x/sys v0.48.0
-	golang.org/x/text v0.42.0
+	golang.org/x/image v0.47.0
+	golang.org/x/sys v0.49.0
+	golang.org/x/text v0.43.0
 )
 
 require (
@@ -42,16 +42,16 @@ require (
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
 	github.com/josephspurrier/goversioninfo v1.7.0 // indirect
 	github.com/otiai10/mint v1.6.3 // indirect
-	github.com/pierrec/lz4/v4 v4.1.31 // indirect
+	github.com/pierrec/lz4/v4 v4.1.33 // indirect
 	github.com/randall77/makefat v0.0.0-20260406194835-1b91746796b7 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.9 // indirect
 	github.com/srwiley/rasterx v0.0.0-20220730225603-2ab79fcdd4ef // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/mod v0.41.0 // indirect
-	golang.org/x/net v0.58.0 // indirect
-	golang.org/x/sync v0.23.0 // indirect
-	golang.org/x/tools v0.49.0 // indirect
+	golang.org/x/net v0.59.0 // indirect
+	golang.org/x/sync v0.24.0 // indirect
+	golang.org/x/tools v0.51.0 // indirect
 	k8s.io/klog/v2 v2.90.1 // indirect
 )
 
