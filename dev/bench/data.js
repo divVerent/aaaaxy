@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791840350298,
+  "lastUpdate": 1791861320336,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5164,36 +5164,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "5dd6f1bc1e4be43fdbe67d4229a1602935d9207d",
-          "message": "Make one-ways solid from spawn already.\n\nSimple enough, and fixes sometimes falling through them on Ski Dyver.",
-          "timestamp": "2026-07-30T13:06:53+02:00",
-          "tree_id": "203b9be2d9efb3d8441ded7e943638e58e6b5fec",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5dd6f1bc1e4be43fdbe67d4229a1602935d9207d"
-        },
-        "date": 1785409818251,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.455312248,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4",
           "message": "Make platforms solid if they spawn below the player.\n\nMight slightly change Butterfly Effect.",
           "timestamp": "2026-07-30T13:25:21+02:00",
@@ -7720,39 +7690,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.19"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4",
-          "message": "Make platforms solid if they spawn below the player.\n\nMight slightly change Butterfly Effect.",
-          "timestamp": "2026-07-30T13:25:21+02:00",
-          "tree_id": "d5065e034f12136626ec9e05b9f3afdf664d99e1",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4"
+          "id": "0c3ef00c088545555691f8692083c54f41a19c6d",
+          "message": "Modules update.",
+          "timestamp": "2026-10-11T09:19:02Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c3ef00c088545555691f8692083c54f41a19c6d"
         },
-        "date": 1785410974568,
+        "date": 1791861314651,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.8431673,
+            "name": "Any% linux-amd64",
+            "value": 74.76042962,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.27"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10292,39 +10260,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4",
-          "message": "Make platforms solid if they spawn below the player.\n\nMight slightly change Butterfly Effect.",
-          "timestamp": "2026-07-30T13:25:21+02:00",
-          "tree_id": "d5065e034f12136626ec9e05b9f3afdf664d99e1",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4"
+          "id": "0c3ef00c088545555691f8692083c54f41a19c6d",
+          "message": "Modules update.",
+          "timestamp": "2026-10-11T09:19:02Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c3ef00c088545555691f8692083c54f41a19c6d"
         },
-        "date": 1785410994736,
+        "date": 1791861373400,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.8259721,
+            "name": "Any% windows-amd64",
+            "value": 97.5088893,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12862,6 +12828,34 @@ window.BENCHMARK_DATA = {
             "value": 100.9942357,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "0c3ef00c088545555691f8692083c54f41a19c6d",
+          "message": "Modules update.",
+          "timestamp": "2026-10-11T09:19:02Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c3ef00c088545555691f8692083c54f41a19c6d"
+        },
+        "date": 1791861374603,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 97.9951605,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
