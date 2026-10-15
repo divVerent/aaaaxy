@@ -1,36 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792079630982,
+  "lastUpdate": 1792084801140,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "id": "4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4",
-          "message": "Make platforms solid if they spawn below the player.\n\nMight slightly change Butterfly Effect.",
-          "timestamp": "2026-07-30T11:25:21Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4"
-        },
-        "date": 1785510130800,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 219.634668216,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.87"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2568,6 +2540,34 @@ window.BENCHMARK_DATA = {
             "value": 222.094384449,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 5586.87"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "0c3ef00c088545555691f8692083c54f41a19c6d",
+          "message": "Modules update.",
+          "timestamp": "2026-10-11T09:19:02Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/0c3ef00c088545555691f8692083c54f41a19c6d"
+        },
+        "date": 1792084795025,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 249.17848104,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
       }
