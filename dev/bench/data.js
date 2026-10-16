@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792144464494,
+  "lastUpdate": 1792144494623,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5170,34 +5170,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-07-30T11:25:21Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4"
         },
-        "date": 1785714412296,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 69.468859392,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "id": "4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4",
-          "message": "Make platforms solid if they spawn below the player.\n\nMight slightly change Butterfly Effect.",
-          "timestamp": "2026-07-30T11:25:21Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4"
-        },
         "date": 1785801401082,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7720,37 +7692,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.25"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
+            "username": "divVerent"
           },
-          "id": "4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4",
-          "message": "Make platforms solid if they spawn below the player.\n\nMight slightly change Butterfly Effect.",
-          "timestamp": "2026-07-30T11:25:21Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4"
+          "distinct": false,
+          "id": "90cfc2287a764bd1abc12b90705f121f7fc37811",
+          "message": "Release v1.8.34\n\nChanges since v1.7.239:\n  - Engine: Add an option for the PICO-8 palette.\n  - Engine: Add the SWEETIE-16 palette by GrafxKid, used in TIC-80\n  - Engine: Update Go version and modules.\n  - Map: Ending is now slightly more trolly ;)\n  - Map: If the game has already been won, skip It Only Takes One.\n  - Map: Minor adjustments to Multi Party Authorization\n  - Map: Replay ticking_clock.ogg when backtracking (#735)",
+          "timestamp": "2026-10-16T10:07:44+02:00",
+          "tree_id": "207c6dc95ac8820386c2973244ee990b0a09a255",
+          "url": "https://github.com/divVerent/aaaaxy/commit/90cfc2287a764bd1abc12b90705f121f7fc37811"
         },
-        "date": 1785801420539,
+        "date": 1792144465157,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.744436,
+            "name": "Any% linux-amd64",
+            "value": 76.710320767,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10292,37 +10266,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
+            "username": "divVerent"
           },
-          "id": "4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4",
-          "message": "Make platforms solid if they spawn below the player.\n\nMight slightly change Butterfly Effect.",
-          "timestamp": "2026-07-30T11:25:21Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4"
+          "distinct": false,
+          "id": "90cfc2287a764bd1abc12b90705f121f7fc37811",
+          "message": "Release v1.8.34\n\nChanges since v1.7.239:\n  - Engine: Add an option for the PICO-8 palette.\n  - Engine: Add the SWEETIE-16 palette by GrafxKid, used in TIC-80\n  - Engine: Update Go version and modules.\n  - Map: Ending is now slightly more trolly ;)\n  - Map: If the game has already been won, skip It Only Takes One.\n  - Map: Minor adjustments to Multi Party Authorization\n  - Map: Replay ticking_clock.ogg when backtracking (#735)",
+          "timestamp": "2026-10-16T10:07:44+02:00",
+          "tree_id": "207c6dc95ac8820386c2973244ee990b0a09a255",
+          "url": "https://github.com/divVerent/aaaaxy/commit/90cfc2287a764bd1abc12b90705f121f7fc37811"
         },
-        "date": 1785801451284,
+        "date": 1792144492412,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 102.4019467,
+            "name": "Any% windows-amd64",
+            "value": 97.5339208,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2793"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12862,6 +12838,36 @@ window.BENCHMARK_DATA = {
             "value": 100.240704,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "90cfc2287a764bd1abc12b90705f121f7fc37811",
+          "message": "Release v1.8.34\n\nChanges since v1.7.239:\n  - Engine: Add an option for the PICO-8 palette.\n  - Engine: Add the SWEETIE-16 palette by GrafxKid, used in TIC-80\n  - Engine: Update Go version and modules.\n  - Map: Ending is now slightly more trolly ;)\n  - Map: If the game has already been won, skip It Only Takes One.\n  - Map: Minor adjustments to Multi Party Authorization\n  - Map: Replay ticking_clock.ogg when backtracking (#735)",
+          "timestamp": "2026-10-16T10:07:44+02:00",
+          "tree_id": "207c6dc95ac8820386c2973244ee990b0a09a255",
+          "url": "https://github.com/divVerent/aaaaxy/commit/90cfc2287a764bd1abc12b90705f121f7fc37811"
+        },
+        "date": 1792144488105,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 94.7896787,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
