@@ -1,11 +1,11 @@
 module github.com/divVerent/aaaaxy
 
-go 1.26.0
+go 1.27.0
 
-toolchain go1.26.9
+toolchain go1.27.2
 
 require (
-	github.com/Microsoft/go-winio v0.6.3
+	github.com/Microsoft/go-winio v0.6.4
 	github.com/adrg/xdg v0.5.3
 	github.com/akavel/rsrc v0.10.2
 	github.com/fardog/tmx v0.0.0-20210504210836-02c45f261672
@@ -14,11 +14,13 @@ require (
 	github.com/hajimehoshi/bitmapfont/v4 v4.2.0
 	github.com/hajimehoshi/ebiten/v2 v2.10.5
 	github.com/jeandeaual/go-locale v0.0.0-20250612000132-0ef82f21eade
-	github.com/leonelquinteros/gotext v1.7.2
+	github.com/leonelquinteros/gotext v1.8.0
 	github.com/lestrrat-go/strftime v1.2.0
 	github.com/lucasb-eyer/go-colorful v1.4.1
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.10.15
+	github.com/otiai10/copy v1.14.1
+	github.com/spf13/cobra v1.10.2
 	github.com/zachomedia/go-bdf v0.0.0-20220611021443-a3af701111be
 	golang.org/x/image v0.47.0
 	golang.org/x/sys v0.49.0
@@ -55,21 +57,11 @@ require (
 	k8s.io/klog/v2 v2.90.1 // indirect
 )
 
-require (
-	github.com/otiai10/copy v1.14.1
-	github.com/spf13/cobra v1.10.2
-)
-
 // Use when playing around with extended/fixed tmx versions.
 // replace github.com/fardog/tmx => github.com/divVerent/tmx v0.0.0-20210504110059-b8d75006ad02
 
 // For debugging:
 // replace github.com/hajimehoshi/ebiten/v2 => /Users/rpolzer/src/ebiten
-
-// replace github.com/go-gl/glfw/v3.3/glfw => /home/rpolzer/src/go-gl-glfw/v3.3/glfw
-
-// Pin bitmapfont to work around https://github.com/hajimehoshi/bitmapfont/issues/21.
-replace github.com/hajimehoshi/bitmapfont/v4 => github.com/hajimehoshi/bitmapfont/v4 v4.1.1-0.20260421051819-da1385d11524
 
 // update-ebitengine-fork.sh changes:
 // replace github.com/hajimehoshi/ebiten/v2 => github.com/divVerent/ebiten/v2 v2.7.9-with-99ffe09b63e0d906cc1f502c24f4d2325e6cc09d
