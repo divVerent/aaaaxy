@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792153050438,
+  "lastUpdate": 1792153128527,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5158,36 +5158,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "805e2a0b1ac1a843a66905615f158fd72f8962a7",
-          "message": "Translate assets/locales/game.pot in pt (#723)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-04T14:23:29Z",
-          "tree_id": "a0f49a87fc295e9a164060d4c727cfeeca42609f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/805e2a0b1ac1a843a66905615f158fd72f8962a7"
-        },
-        "date": 1785853824998,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 76.436903734,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]",
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
@@ -7726,37 +7696,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.19"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]",
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
           },
           "committer": {
+            "email": "noreply@github.com",
             "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
+            "username": "web-flow"
           },
-          "id": "805e2a0b1ac1a843a66905615f158fd72f8962a7",
-          "message": "Translate assets/locales/game.pot in pt (#723)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-04T14:23:29Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/805e2a0b1ac1a843a66905615f158fd72f8962a7"
+          "distinct": true,
+          "id": "78efdec2e9299b8b60813b02a72052595975929c",
+          "message": "Bump apple-actions/download-provisioning-profiles from 6 to 7 (#752)\n\nBumps [apple-actions/download-provisioning-profiles](https://github.com/apple-actions/download-provisioning-profiles) from 6 to 7.\n- [Release notes](https://github.com/apple-actions/download-provisioning-profiles/releases)\n- [Commits](https://github.com/apple-actions/download-provisioning-profiles/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/download-provisioning-profiles\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-16T12:16:03Z",
+          "tree_id": "eb5bf113a717b3e142858ce043add211f20021f9",
+          "url": "https://github.com/divVerent/aaaaxy/commit/78efdec2e9299b8b60813b02a72052595975929c"
         },
-        "date": 1785887363685,
+        "date": 1792153123756,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.6423112,
+            "name": "Any% linux-amd64",
+            "value": 51.657438876,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10300,37 +10272,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]",
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
           },
           "committer": {
+            "email": "noreply@github.com",
             "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
+            "username": "web-flow"
           },
-          "id": "805e2a0b1ac1a843a66905615f158fd72f8962a7",
-          "message": "Translate assets/locales/game.pot in pt (#723)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-04T14:23:29Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/805e2a0b1ac1a843a66905615f158fd72f8962a7"
+          "distinct": true,
+          "id": "78efdec2e9299b8b60813b02a72052595975929c",
+          "message": "Bump apple-actions/download-provisioning-profiles from 6 to 7 (#752)\n\nBumps [apple-actions/download-provisioning-profiles](https://github.com/apple-actions/download-provisioning-profiles) from 6 to 7.\n- [Release notes](https://github.com/apple-actions/download-provisioning-profiles/releases)\n- [Commits](https://github.com/apple-actions/download-provisioning-profiles/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/download-provisioning-profiles\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-16T12:16:03Z",
+          "tree_id": "eb5bf113a717b3e142858ce043add211f20021f9",
+          "url": "https://github.com/divVerent/aaaaxy/commit/78efdec2e9299b8b60813b02a72052595975929c"
         },
-        "date": 1785887392312,
+        "date": 1792153186982,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 99.5431368,
+            "name": "Any% windows-amd64",
+            "value": 97.4092976,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12870,6 +12844,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 99.4647837,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "78efdec2e9299b8b60813b02a72052595975929c",
+          "message": "Bump apple-actions/download-provisioning-profiles from 6 to 7 (#752)\n\nBumps [apple-actions/download-provisioning-profiles](https://github.com/apple-actions/download-provisioning-profiles) from 6 to 7.\n- [Release notes](https://github.com/apple-actions/download-provisioning-profiles/releases)\n- [Commits](https://github.com/apple-actions/download-provisioning-profiles/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: apple-actions/download-provisioning-profiles\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-16T12:16:03Z",
+          "tree_id": "eb5bf113a717b3e142858ce043add211f20021f9",
+          "url": "https://github.com/divVerent/aaaaxy/commit/78efdec2e9299b8b60813b02a72052595975929c"
+        },
+        "date": 1792153190136,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.3590211,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
