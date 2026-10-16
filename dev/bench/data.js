@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792132031632,
+  "lastUpdate": 1792132203100,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2578,34 +2578,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "divVerent",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "3161863cb097db41da9c1827e4c786e3db48d1cb",
-          "message": "Fix physics bug: initial Y coordinate of player is half a pixel too high. (#721)\n\n* Fix initial Y coordinate of objects.\n\nThey spawn with onground=true, which makes sense.\n\nHowever, onground=true usually implies that the object is at the very\nedge of pixel, not its center.\n\nThus, make it so.\n\nFixes #720.\n\n* Update the benchmark demo.\n\n* Only apply the subpixel spawning logic to objects that respond to gravity (only the player).\n\nReduces diffs.\n\n* Update 100% demos.",
-          "timestamp": "2026-07-29T05:35:04Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/3161863cb097db41da9c1827e4c786e3db48d1cb"
-        },
-        "date": 1785332124673,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 77.679195637,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -5144,6 +5116,36 @@ window.BENCHMARK_DATA = {
             "value": 64.846059053,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 5200.00"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "88c7a979b1bef28a4c2a47e28f3b357bbdb2275c",
+          "message": "Bump Go version on github workflows. Oops.",
+          "timestamp": "2026-10-16T08:22:14+02:00",
+          "tree_id": "23125446d8728881ce9ebb007872ef5c371f5db8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/88c7a979b1bef28a4c2a47e28f3b357bbdb2275c"
+        },
+        "date": 1792132198331,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.358986198,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
           }
         ]
       }
