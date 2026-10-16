@@ -1,38 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792152914562,
+  "lastUpdate": 1792153050438,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "8f7dafd619b263cb8ea1d47ce5a7190e1bbd20bf",
-          "message": "Bump github/codeql-action from 4 to 4.37.4 (#722)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4 to 4.37.4.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4...v4.37.4)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.37.4\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-04T14:19:55Z",
-          "tree_id": "191332334e31106a2234c2cd935d32e58d924e15",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8f7dafd619b263cb8ea1d47ce5a7190e1bbd20bf"
-        },
-        "date": 1785853462655,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 210.277656613,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2574,6 +2544,36 @@ window.BENCHMARK_DATA = {
             "value": 131.943165581,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "f328e7e350cea5fc00b59c12ab0487a30baf9105",
+          "message": "snap: build-on required",
+          "timestamp": "2026-10-16T14:12:34+02:00",
+          "tree_id": "64873e888e2eed0ebcfa028f7c65c6878f1c4e2b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f328e7e350cea5fc00b59c12ab0487a30baf9105"
+        },
+        "date": 1792153044344,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 224.94022307,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
       }
