@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792148101657,
+  "lastUpdate": 1792148308298,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2592,36 +2592,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "5dd6f1bc1e4be43fdbe67d4229a1602935d9207d",
-          "message": "Make one-ways solid from spawn already.\n\nSimple enough, and fixes sometimes falling through them on Ski Dyver.",
-          "timestamp": "2026-07-30T13:06:53+02:00",
-          "tree_id": "203b9be2d9efb3d8441ded7e943638e58e6b5fec",
-          "url": "https://github.com/divVerent/aaaaxy/commit/5dd6f1bc1e4be43fdbe67d4229a1602935d9207d"
-        },
-        "date": 1785410181676,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 77.700359577,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4",
           "message": "Make platforms solid if they spawn below the player.\n\nMight slightly change Butterfly Effect.",
           "timestamp": "2026-07-30T13:25:21+02:00",
@@ -5150,6 +5120,36 @@ window.BENCHMARK_DATA = {
             "value": 62.447926013,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c15f0dec24c780a968a5e961db8fa9e2a50b69e9",
+          "message": "Fix Snap building with core26.",
+          "timestamp": "2026-10-16T12:50:30+02:00",
+          "tree_id": "1c8811b94fe5df674eea45a8ff8b3a06b8297139",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c15f0dec24c780a968a5e961db8fa9e2a50b69e9"
+        },
+        "date": 1792148302863,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 78.797524843,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
       }
