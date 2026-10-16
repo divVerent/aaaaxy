@@ -1,36 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792144690943,
+  "lastUpdate": 1792148019796,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "id": "4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4",
-          "message": "Make platforms solid if they spawn below the player.\n\nMight slightly change Butterfly Effect.",
-          "timestamp": "2026-07-30T11:25:21Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/4c1302d26cc9f64eeaea9d3c0a1d2f20f8feeaf4"
-        },
-        "date": 1785770928678,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 230.576925103,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.27"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2570,6 +2542,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 128.688237831,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "c15f0dec24c780a968a5e961db8fa9e2a50b69e9",
+          "message": "Fix Snap building with core26.",
+          "timestamp": "2026-10-16T12:50:30+02:00",
+          "tree_id": "1c8811b94fe5df674eea45a8ff8b3a06b8297139",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c15f0dec24c780a968a5e961db8fa9e2a50b69e9"
+        },
+        "date": 1792148015269,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 131.943165581,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
           }
