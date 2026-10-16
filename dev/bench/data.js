@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792144494623,
+  "lastUpdate": 1792144690943,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2580,36 +2580,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "17f843e4e32a6b12c57c4b78d862df59d9138ab3",
-          "message": "Give the 3D model a scale factor.\n\nDefault is 1px = 2mm, so 6cm total height.",
-          "timestamp": "2026-07-29T21:26:47+02:00",
-          "tree_id": "26e6fd16ad6c95c99681a29b7a2b7a6d91b2f4c9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/17f843e4e32a6b12c57c4b78d862df59d9138ab3"
-        },
-        "date": 1785353736337,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 76.716957556,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "divVerent@gmail.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -5148,6 +5118,36 @@ window.BENCHMARK_DATA = {
             "value": 75.358986198,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": false,
+          "id": "90cfc2287a764bd1abc12b90705f121f7fc37811",
+          "message": "Release v1.8.34\n\nChanges since v1.7.239:\n  - Engine: Add an option for the PICO-8 palette.\n  - Engine: Add the SWEETIE-16 palette by GrafxKid, used in TIC-80\n  - Engine: Update Go version and modules.\n  - Map: Ending is now slightly more trolly ;)\n  - Map: If the game has already been won, skip It Only Takes One.\n  - Map: Minor adjustments to Multi Party Authorization\n  - Map: Replay ticking_clock.ogg when backtracking (#735)",
+          "timestamp": "2026-10-16T10:07:44+02:00",
+          "tree_id": "207c6dc95ac8820386c2973244ee990b0a09a255",
+          "url": "https://github.com/divVerent/aaaaxy/commit/90cfc2287a764bd1abc12b90705f121f7fc37811"
+        },
+        "date": 1792144684733,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 62.447926013,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
           }
         ]
       }
