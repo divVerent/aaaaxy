@@ -29,9 +29,12 @@ license: Apache-2.0
 grade: stable
 
 platforms:
-  amd64: {}
-  arm64: {}
-  armhf: {}
+  amd64:
+    build-on: amd64
+  arm64:
+    build-on: arm64
+  armhf:
+    build-on: armhf
 
 adopt-info: part-aaaaxy
 
