@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792148308298,
+  "lastUpdate": 1792152914562,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5158,36 +5158,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "8f7dafd619b263cb8ea1d47ce5a7190e1bbd20bf",
-          "message": "Bump github/codeql-action from 4 to 4.37.4 (#722)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4 to 4.37.4.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4...v4.37.4)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.37.4\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-04T14:19:55Z",
-          "tree_id": "191332334e31106a2234c2cd935d32e58d924e15",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8f7dafd619b263cb8ea1d47ce5a7190e1bbd20bf"
-        },
-        "date": 1785853374499,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.151879353,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
             "name": "transifex-integration[bot]",
             "username": "transifex-integration[bot]"
@@ -7726,39 +7696,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "distinct": true,
-          "id": "805e2a0b1ac1a843a66905615f158fd72f8962a7",
-          "message": "Translate assets/locales/game.pot in pt (#723)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-04T14:23:29Z",
-          "tree_id": "a0f49a87fc295e9a164060d4c727cfeeca42609f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/805e2a0b1ac1a843a66905615f158fd72f8962a7"
+          "id": "f328e7e350cea5fc00b59c12ab0487a30baf9105",
+          "message": "snap: build-on required",
+          "timestamp": "2026-10-16T14:12:34+02:00",
+          "tree_id": "64873e888e2eed0ebcfa028f7c65c6878f1c4e2b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f328e7e350cea5fc00b59c12ab0487a30baf9105"
         },
-        "date": 1785853836837,
+        "date": 1792152909994,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.1312518,
+            "name": "Any% linux-amd64",
+            "value": 46.189608443,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.19"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10300,39 +10270,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
           },
           "distinct": true,
-          "id": "805e2a0b1ac1a843a66905615f158fd72f8962a7",
-          "message": "Translate assets/locales/game.pot in pt (#723)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-04T14:23:29Z",
-          "tree_id": "a0f49a87fc295e9a164060d4c727cfeeca42609f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/805e2a0b1ac1a843a66905615f158fd72f8962a7"
+          "id": "f328e7e350cea5fc00b59c12ab0487a30baf9105",
+          "message": "snap: build-on required",
+          "timestamp": "2026-10-16T14:12:34+02:00",
+          "tree_id": "64873e888e2eed0ebcfa028f7c65c6878f1c4e2b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f328e7e350cea5fc00b59c12ab0487a30baf9105"
         },
-        "date": 1785853868556,
+        "date": 1792152975316,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.615868,
+            "name": "Any% windows-amd64",
+            "value": 96.7928301,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12870,6 +12840,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 109.9792114,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "f328e7e350cea5fc00b59c12ab0487a30baf9105",
+          "message": "snap: build-on required",
+          "timestamp": "2026-10-16T14:12:34+02:00",
+          "tree_id": "64873e888e2eed0ebcfa028f7c65c6878f1c4e2b",
+          "url": "https://github.com/divVerent/aaaaxy/commit/f328e7e350cea5fc00b59c12ab0487a30baf9105"
+        },
+        "date": 1792152984865,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.4647837,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
