@@ -1,38 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792165373932,
+  "lastUpdate": 1792169695538,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "d8fdc7ec3f3ed560616359f271269088cb0bfe55",
-          "message": "Release v1.7.239\n\nChanges since v1.7.218:\n  - Engine: phtsics fixes for initial player height.\n  - Engine: physics fixes for falling through freshly spawned objects.\n  - Mobile: bump Android SDK to 36.\n  - Snap: update to core26.\n  - Translations: include decimal point of `show_pos`.",
-          "timestamp": "2026-08-04T20:48:31+02:00",
-          "tree_id": "95b98fec59660926482d7d6934a89c478bfe52a8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/d8fdc7ec3f3ed560616359f271269088cb0bfe55"
-        },
-        "date": 1785911765822,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 229.18910883,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2576,6 +2546,34 @@ window.BENCHMARK_DATA = {
             "value": 231.499983637,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "c3093b1e0f125a31f760587beb71f730b8da51f8",
+          "message": "snap: fix snapcraftctl -> craftctl",
+          "timestamp": "2026-10-16T12:34:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3093b1e0f125a31f760587beb71f730b8da51f8"
+        },
+        "date": 1792169689068,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 175.383814867,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
           }
         ]
       }
