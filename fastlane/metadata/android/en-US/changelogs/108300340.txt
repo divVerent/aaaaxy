@@ -1,0 +1,7 @@
+  - Engine: Add an option for the PICO-8 palette.
+  - Engine: Add the SWEETIE-16 palette by GrafxKid, used in TIC-80
+  - Engine: Update Go version and modules.
+  - Map: Ending is now slightly more trolly ;)
+  - Map: If the game has already been won, skip It Only Takes One.
+  - Map: Minor adjustments to Multi Party Authorization
+  - Map: Replay ticking_clock.ogg when backtracking (#735)
