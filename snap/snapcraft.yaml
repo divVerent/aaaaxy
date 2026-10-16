@@ -28,10 +28,10 @@ icon: aaaaxy.svg
 license: Apache-2.0
 grade: stable
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
-  - build-on: armhf
+platforms:
+  amd64: {}
+  arm64: {}
+  armhf: {}
 
 adopt-info: part-aaaaxy
 
