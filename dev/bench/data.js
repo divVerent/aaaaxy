@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792169695538,
+  "lastUpdate": 1792198238391,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5171,36 +5171,6 @@ window.BENCHMARK_DATA = {
             "name": "Rudolf Polzer",
             "username": "divVerent"
           },
-          "distinct": false,
-          "id": "d8fdc7ec3f3ed560616359f271269088cb0bfe55",
-          "message": "Release v1.7.239\n\nChanges since v1.7.218:\n  - Engine: phtsics fixes for initial player height.\n  - Engine: physics fixes for falling through freshly spawned objects.\n  - Mobile: bump Android SDK to 36.\n  - Snap: update to core26.\n  - Translations: include decimal point of `show_pos`.",
-          "timestamp": "2026-08-04T20:48:31+02:00",
-          "tree_id": "95b98fec59660926482d7d6934a89c478bfe52a8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/d8fdc7ec3f3ed560616359f271269088cb0bfe55"
-        },
-        "date": 1785911636329,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 73.799582536,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
           "distinct": true,
           "id": "b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2",
           "message": "If the game has already been won, skip It Only Takes One.\n\nOnly if it has been won in the current save state, of course.",
@@ -7732,39 +7702,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2",
-          "message": "If the game has already been won, skip It Only Takes One.\n\nOnly if it has been won in the current save state, of course.",
-          "timestamp": "2026-08-05T18:15:14+02:00",
-          "tree_id": "03cc6bbb5031986337f41685e1704c9d1aec754a",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2"
+          "id": "c3093b1e0f125a31f760587beb71f730b8da51f8",
+          "message": "snap: fix snapcraftctl -> craftctl",
+          "timestamp": "2026-10-16T12:34:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3093b1e0f125a31f760587beb71f730b8da51f8"
         },
-        "date": 1785946850485,
+        "date": 1792198234196,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.9716126,
+            "name": "Any% linux-amd64",
+            "value": 62.439591791,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10308,39 +10276,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2",
-          "message": "If the game has already been won, skip It Only Takes One.\n\nOnly if it has been won in the current save state, of course.",
-          "timestamp": "2026-08-05T18:15:14+02:00",
-          "tree_id": "03cc6bbb5031986337f41685e1704c9d1aec754a",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2"
+          "id": "c3093b1e0f125a31f760587beb71f730b8da51f8",
+          "message": "snap: fix snapcraftctl -> craftctl",
+          "timestamp": "2026-10-16T12:34:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3093b1e0f125a31f760587beb71f730b8da51f8"
         },
-        "date": 1785946788047,
+        "date": 1792198296298,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.061558,
+            "name": "Any% windows-amd64",
+            "value": 99.4309757,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12882,6 +12848,34 @@ window.BENCHMARK_DATA = {
             "value": 99.3463818,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "c3093b1e0f125a31f760587beb71f730b8da51f8",
+          "message": "snap: fix snapcraftctl -> craftctl",
+          "timestamp": "2026-10-16T12:34:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3093b1e0f125a31f760587beb71f730b8da51f8"
+        },
+        "date": 1792198285203,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 95.8694326,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
