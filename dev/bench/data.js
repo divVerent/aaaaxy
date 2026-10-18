@@ -1,38 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792300249401,
+  "lastUpdate": 1792300378587,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2",
-          "message": "If the game has already been won, skip It Only Takes One.\n\nOnly if it has been won in the current save state, of course.",
-          "timestamp": "2026-08-05T18:15:14+02:00",
-          "tree_id": "03cc6bbb5031986337f41685e1704c9d1aec754a",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2"
-        },
-        "date": 1785946839805,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 222.238827811,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2572,6 +2542,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "100% linux-amd64",
             "value": 224.099618569,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2c2fdeceb6b4fc150ab468e1cd17c0de91e4a9ad",
+          "message": "Bump github/codeql-action from 4.38.2 to 4.38.3 (#753)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.38.2 to 4.38.3.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.38.2...v4.38.3)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.38.3\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-18T05:08:16Z",
+          "tree_id": "f495d1aed537280b29d2470c5bb85c63d6bfcddc",
+          "url": "https://github.com/divVerent/aaaaxy/commit/2c2fdeceb6b4fc150ab468e1cd17c0de91e4a9ad"
+        },
+        "date": 1792300373689,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 221.938866311,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
           }
