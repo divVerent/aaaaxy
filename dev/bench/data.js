@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792252378901,
+  "lastUpdate": 1792283353571,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5172,36 +5172,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2",
-          "message": "If the game has already been won, skip It Only Takes One.\n\nOnly if it has been won in the current save state, of course.",
-          "timestamp": "2026-08-05T18:15:14+02:00",
-          "tree_id": "03cc6bbb5031986337f41685e1704c9d1aec754a",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2"
-        },
-        "date": 1785946734555,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.677513444,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "23db42fbd6b708461b7e87556f74f62b8553a272",
           "message": "Jumppads: correct gravityDown value and add comments.\n\nDoes not change behaviour in any way.",
           "timestamp": "2026-08-05T21:03:51+02:00",
@@ -7730,39 +7700,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "23db42fbd6b708461b7e87556f74f62b8553a272",
-          "message": "Jumppads: correct gravityDown value and add comments.\n\nDoes not change behaviour in any way.",
-          "timestamp": "2026-08-05T21:03:51+02:00",
-          "tree_id": "4c25d7ee3c97a13737a7e7ec657f9ae3147d6ec0",
-          "url": "https://github.com/divVerent/aaaaxy/commit/23db42fbd6b708461b7e87556f74f62b8553a272"
+          "id": "c3093b1e0f125a31f760587beb71f730b8da51f8",
+          "message": "snap: fix snapcraftctl -> craftctl",
+          "timestamp": "2026-10-16T12:34:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3093b1e0f125a31f760587beb71f730b8da51f8"
         },
-        "date": 1785956890070,
+        "date": 1792283347997,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.6444073,
+            "name": "Any% linux-amd64",
+            "value": 65.384365775,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10304,39 +10272,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "23db42fbd6b708461b7e87556f74f62b8553a272",
-          "message": "Jumppads: correct gravityDown value and add comments.\n\nDoes not change behaviour in any way.",
-          "timestamp": "2026-08-05T21:03:51+02:00",
-          "tree_id": "4c25d7ee3c97a13737a7e7ec657f9ae3147d6ec0",
-          "url": "https://github.com/divVerent/aaaaxy/commit/23db42fbd6b708461b7e87556f74f62b8553a272"
+          "id": "c3093b1e0f125a31f760587beb71f730b8da51f8",
+          "message": "snap: fix snapcraftctl -> craftctl",
+          "timestamp": "2026-10-16T12:34:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3093b1e0f125a31f760587beb71f730b8da51f8"
         },
-        "date": 1785956885436,
+        "date": 1792283377693,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 99.5570531,
+            "name": "Any% windows-amd64",
+            "value": 94.3556794,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 2600"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12876,6 +12842,34 @@ window.BENCHMARK_DATA = {
             "value": 95.8694326,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "c3093b1e0f125a31f760587beb71f730b8da51f8",
+          "message": "snap: fix snapcraftctl -> craftctl",
+          "timestamp": "2026-10-16T12:34:26Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/c3093b1e0f125a31f760587beb71f730b8da51f8"
+        },
+        "date": 1792283391898,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.5396507,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
           }
         ]
       }
