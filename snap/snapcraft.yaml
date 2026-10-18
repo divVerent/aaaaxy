@@ -48,17 +48,6 @@ parts:
     stage-packages:
       - libglib2.0-bin
 
-  alsa-mixin:
-    plugin: dump
-    source: https://github.com/diddlesnaps/snapcraft-alsa.git
-    source-subdir: snapcraft-assets
-    build-packages:
-      - libasound2-dev
-    stage-packages:
-      - libasound2
-      - libasound2-plugins
-      - yad
-
   keep-xdg:
     after:
       - desktop-glib-only
@@ -69,7 +58,6 @@ parts:
   part-aaaaxy:
     after:
       - desktop-glib-only
-      - alsa-mixin
       - keep-xdg
     plugin: go
     build-snaps:
@@ -85,7 +73,6 @@ parts:
     source-type: git
     build-packages:
       - advancecomp
-      - libasound2-dev
       - libgl-dev
       - libxcursor-dev
       - libxi-dev
@@ -96,16 +83,11 @@ parts:
       - strip-nondeterminism
       - zip
     stage-packages:
-      - libasound2
       - libgl1
       - libx11-6
       - libxau6
 
 layout:
-  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
-    bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib
-  /usr/share/alsa:
-    bind: $SNAP/usr/share/alsa
   /usr/share/libdrm:
     bind: $SNAP/usr/share/libdrm
 
@@ -119,8 +101,6 @@ apps:
       - bin/desktop-launch
       # Keep config and savegames across updates.
       - bin/keep-xdg
-      # Support ALSA.
-      - snap/command-chain/alsa-launch
     command: bin/aaaaxy
     plugs:
       - audio-playback
