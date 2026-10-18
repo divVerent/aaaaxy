@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792283353571,
+  "lastUpdate": 1792300249401,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5172,36 +5172,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "23db42fbd6b708461b7e87556f74f62b8553a272",
-          "message": "Jumppads: correct gravityDown value and add comments.\n\nDoes not change behaviour in any way.",
-          "timestamp": "2026-08-05T21:03:51+02:00",
-          "tree_id": "4c25d7ee3c97a13737a7e7ec657f9ae3147d6ec0",
-          "url": "https://github.com/divVerent/aaaaxy/commit/23db42fbd6b708461b7e87556f74f62b8553a272"
-        },
-        "date": 1785956873390,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 72.65093756,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
           "message": "Fix comment.",
           "timestamp": "2026-08-05T21:10:53+02:00",
@@ -7728,39 +7698,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
           },
           "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
           },
           "distinct": true,
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T21:10:53+02:00",
-          "tree_id": "e60ad7cd51d644349381ea653496082b61b3deff",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
+          "id": "2c2fdeceb6b4fc150ab468e1cd17c0de91e4a9ad",
+          "message": "Bump github/codeql-action from 4.38.2 to 4.38.3 (#753)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.38.2 to 4.38.3.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.38.2...v4.38.3)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.38.3\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-18T05:08:16Z",
+          "tree_id": "f495d1aed537280b29d2470c5bb85c63d6bfcddc",
+          "url": "https://github.com/divVerent/aaaaxy/commit/2c2fdeceb6b4fc150ab468e1cd17c0de91e4a9ad"
         },
-        "date": 1785957265871,
+        "date": 1792300242974,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.4242747,
+            "name": "Any% linux-amd64",
+            "value": 59.407283768,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10300,39 +10270,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 2600"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
           },
           "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
           },
           "distinct": true,
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T21:10:53+02:00",
-          "tree_id": "e60ad7cd51d644349381ea653496082b61b3deff",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
+          "id": "2c2fdeceb6b4fc150ab468e1cd17c0de91e4a9ad",
+          "message": "Bump github/codeql-action from 4.38.2 to 4.38.3 (#753)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.38.2 to 4.38.3.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.38.2...v4.38.3)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.38.3\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-18T05:08:16Z",
+          "tree_id": "f495d1aed537280b29d2470c5bb85c63d6bfcddc",
+          "url": "https://github.com/divVerent/aaaaxy/commit/2c2fdeceb6b4fc150ab468e1cd17c0de91e4a9ad"
         },
-        "date": 1785957291019,
+        "date": 1792300309570,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 105.4385077,
+            "name": "Any% windows-amd64",
+            "value": 96.4874179,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12870,6 +12840,36 @@ window.BENCHMARK_DATA = {
             "value": 99.5396507,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2c2fdeceb6b4fc150ab468e1cd17c0de91e4a9ad",
+          "message": "Bump github/codeql-action from 4.38.2 to 4.38.3 (#753)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.38.2 to 4.38.3.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.38.2...v4.38.3)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.38.3\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-18T05:08:16Z",
+          "tree_id": "f495d1aed537280b29d2470c5bb85c63d6bfcddc",
+          "url": "https://github.com/divVerent/aaaaxy/commit/2c2fdeceb6b4fc150ab468e1cd17c0de91e4a9ad"
+        },
+        "date": 1792300335684,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.7180741,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
       }
