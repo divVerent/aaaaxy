@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792459218348,
+  "lastUpdate": 1792511976940,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2580,36 +2580,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": false,
-          "id": "d8fdc7ec3f3ed560616359f271269088cb0bfe55",
-          "message": "Release v1.7.239\n\nChanges since v1.7.218:\n  - Engine: phtsics fixes for initial player height.\n  - Engine: physics fixes for falling through freshly spawned objects.\n  - Mobile: bump Android SDK to 36.\n  - Snap: update to core26.\n  - Translations: include decimal point of `show_pos`.",
-          "timestamp": "2026-08-04T20:48:31+02:00",
-          "tree_id": "95b98fec59660926482d7d6934a89c478bfe52a8",
-          "url": "https://github.com/divVerent/aaaaxy/commit/d8fdc7ec3f3ed560616359f271269088cb0bfe55"
-        },
-        "date": 1785912019217,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.432224198,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "rpolzer@google.com"
@@ -5152,6 +5122,34 @@ window.BENCHMARK_DATA = {
             "value": 83.883568052,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.87"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "d139ccb0802765ead40e5ce2db37ae59578c6032",
+          "message": "snap: Remove ALSA support stuff.\n\noto has learned about pulseaudio some time ago.",
+          "timestamp": "2026-10-18T05:15:54Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d139ccb0802765ead40e5ce2db37ae59578c6032"
+        },
+        "date": 1792511970609,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 83.541568169,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
       }
