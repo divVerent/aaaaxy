@@ -1,36 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792685551413,
+  "lastUpdate": 1792690598143,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T19:10:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
-        },
-        "date": 1786282427963,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 178.559816442,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2572,6 +2544,34 @@ window.BENCHMARK_DATA = {
             "value": 220.214920527,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "d139ccb0802765ead40e5ce2db37ae59578c6032",
+          "message": "snap: Remove ALSA support stuff.\n\noto has learned about pulseaudio some time ago.",
+          "timestamp": "2026-10-18T05:15:54Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d139ccb0802765ead40e5ce2db37ae59578c6032"
+        },
+        "date": 1792690591242,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 227.099615959,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 5586.87"
           }
         ]
       }
