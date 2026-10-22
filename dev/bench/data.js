@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792630870862,
+  "lastUpdate": 1792685551413,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2590,36 +2590,6 @@ window.BENCHMARK_DATA = {
             "username": "divVerent"
           },
           "distinct": true,
-          "id": "b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2",
-          "message": "If the game has already been won, skip It Only Takes One.\n\nOnly if it has been won in the current save state, of course.",
-          "timestamp": "2026-08-05T18:15:14+02:00",
-          "tree_id": "03cc6bbb5031986337f41685e1704c9d1aec754a",
-          "url": "https://github.com/divVerent/aaaaxy/commit/b91cb2f7f24ca6b4bdaa953e56328e0c3a6efda2"
-        },
-        "date": 1785947104010,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 74.452078723,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
           "id": "23db42fbd6b708461b7e87556f74f62b8553a272",
           "message": "Jumppads: correct gravityDown value and add comments.\n\nDoes not change behaviour in any way.",
           "timestamp": "2026-08-05T21:03:51+02:00",
@@ -5150,6 +5120,34 @@ window.BENCHMARK_DATA = {
             "value": 60.740992262,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.30"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "d139ccb0802765ead40e5ce2db37ae59578c6032",
+          "message": "snap: Remove ALSA support stuff.\n\noto has learned about pulseaudio some time ago.",
+          "timestamp": "2026-10-18T05:15:54Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d139ccb0802765ead40e5ce2db37ae59578c6032"
+        },
+        "date": 1792685546377,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 46.909487976,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
           }
         ]
       }
