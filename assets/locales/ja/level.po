@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Rudolf Polzer, 2025
-# Konishi, Hiroto, 2025
+# Konishi, Hiroto, 2026
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 20:55+0200\n"
+"POT-Creation-Date: 2026-08-20 20:14+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Konishi, Hiroto, 2025\n"
+"Last-Translator: Konishi, Hiroto, 2026\n"
 "Language-Team: Japanese (https://app.transifex.com/aaaaxy/teams/158611/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +50,7 @@ msgstr "無条件の信頼"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=61]
 msgid "There are no wrong ways, just wrong goals."
-msgstr "ダメな道などない。ただ、ダメなゴールがあるだけだ。"
+msgstr "ダメな道などないが、ダメなゴールはある。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=62]
 msgid "Where there's a down, there must also be an up."
@@ -797,9 +797,9 @@ msgstr "こんな原始的な罠に引っかかるのは君くらいだ。"
 msgid "Lack of purpose never was a reason not to do it."
 msgstr "目的がないのは、やらない理由にはならない。"
 
-#. May also be known as 'for eyes principle'; a concept from IT security. This
-#. part of the level focuses on the need for multiple switches being toggled
-#. on by two platforms simultaneously to make progress.
+#. May also be known as 'four eyes principle'; a concept from IT security.
+#. This part of the level focuses on the need for multiple switches being
+#. toggled on by two platforms simultaneously to make progress.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2992]
 msgid "Multi Party Authorization"
 msgstr "マルチパーティ認証"
@@ -948,7 +948,7 @@ msgstr "カーーーートレース！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4097]
 msgid "Those who haven't learned the trick{{BR}}must take a little pit stop."
-msgstr "学習しなかった人は、{{BR}}休息を取らされる。"
+msgstr "コツをつかんでいない方、{{BR}}ピットストップへご案内。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4107]
 msgid "Moved Enough?"
@@ -1025,7 +1025,7 @@ msgstr "多ければ良いってものでもない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4716]
 msgid "Those who are not up to speed may get left behind."
-msgstr "スピードについていけない者は、置いてけぼりになるかもしれない。"
+msgstr "準備不足だと、取り残されるかもしれない。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4727]
 msgid "Time is of the essence."
@@ -1197,7 +1197,7 @@ msgstr "Ski Dyver"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
 msgid "Those who are inattentive get trolled."
-msgstr ""
+msgstr "集中しないと、引っかかる。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
@@ -1497,23 +1497,23 @@ msgstr "テレポーター{{BR}}（{{ExitButton}}を押せ）"
 #. whole piano, I'm gonna use the whole piano".
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8539]
 msgid "Why the rush, eh?"
-msgstr ""
+msgstr "ラッシュするのはなんdE？"
 
 #. This is a reference to Beethoven's Für Elise. If there's a common
 #. misspelling in your language, make a pun based on it; otherwise, maybe
 #. comment on how overplayed it is, or on Beethoven's hearing?
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
 msgid "She's no furry - that letter is an \"ü\"!"
-msgstr ""
+msgstr "エリーゼってだれーぜ？"
 
 #. Comic explosion sign.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
 msgid "Bang!"
-msgstr ""
+msgstr "\\\\バン!!//"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
 msgid "I think you meant to play{{BR}}In the Hall of the Mountain King?"
-msgstr ""
+msgstr "『山の魔王の宮殿にて』{{BR}}を演るはずじゃ？"
 
 #. Reference to Super Mario 64's intro letter from Princess Peach, combined
 #. with the wellknown phrase misattributed to Marie Antoinette. Try finding
@@ -1526,11 +1526,11 @@ msgstr ""
 msgid ""
 "Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat "
 "cake...{{BR}}Arsenic cake?"
-msgstr ""
+msgstr "おしろへ あそびに{{BR}}きてください。{{BR}}アーセナックの ケーキを{{BR}}つくって まってます。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8557]
 msgid "I think you meant to play{{BR}}Arsenic Cake?"
-msgstr ""
+msgstr "『アーセナックのケーキ』{{BR}}を演るはずじゃ？"
 
 #. https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in
 #. _your_ favorite Bad Apple reference (parody or not), even indirect stuff
@@ -1538,4 +1538,4 @@ msgstr ""
 #. lines of "Touhou was too hard, so you're playing this" etc.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8588]
 msgid "... and makes a swirly dot."
-msgstr ""
+msgstr "誰か描いてくれ"

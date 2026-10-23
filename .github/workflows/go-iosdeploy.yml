@@ -18,7 +18,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v7
         with:
-          go-version: '1.26'
+          go-version: '1.27'
       - name: Build Go Library
         run: cd XcodeProjects/iOS/aaaaxy/go/aaaaxy && sh build.sh
         env:
@@ -30,7 +30,7 @@ jobs:
           p12-file-base64: ${{ secrets.APPLE_CERT_P12_BASE64 }}
           p12-password: ${{ secrets.APPLE_CERT_P12_PASSWORD }}
       - name: Download Provisioning Profile
-        uses: apple-actions/download-provisioning-profiles@v6
+        uses: apple-actions/download-provisioning-profiles@v7
         with:
           bundle-id: io.github.divverent.aaaaxy
           profile-type: IOS_APP_STORE

@@ -28,10 +28,13 @@ icon: aaaaxy.svg
 license: Apache-2.0
 grade: stable
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
-  - build-on: armhf
+platforms:
+  amd64:
+    build-on: amd64
+  arm64:
+    build-on: arm64
+  armhf:
+    build-on: armhf
 
 adopt-info: part-aaaaxy
 
@@ -45,17 +48,6 @@ parts:
     stage-packages:
       - libglib2.0-bin
 
-  alsa-mixin:
-    plugin: dump
-    source: https://github.com/diddlesnaps/snapcraft-alsa.git
-    source-subdir: snapcraft-assets
-    build-packages:
-      - libasound2-dev
-    stage-packages:
-      - libasound2
-      - libasound2-plugins
-      - yad
-
   keep-xdg:
     after:
       - desktop-glib-only
@@ -66,7 +58,6 @@ parts:
   part-aaaaxy:
     after:
       - desktop-glib-only
-      - alsa-mixin
       - keep-xdg
     plugin: go
     build-snaps:
@@ -74,15 +65,14 @@ parts:
     build-environment:
       - GOTOOLCHAIN: local
     override-pull: |
-      snapcraftctl pull
-      snapcraftctl set-version "$(sh scripts/version.sh semver)"
+      craftctl default
+      craftctl set version="$(sh scripts/version.sh semver)"
     override-build: |
       make BINARY="${SNAPCRAFT_PART_INSTALL}/bin/aaaaxy" BUILDTYPE=release
     source: https://github.com/divVerent/aaaaxy
     source-type: git
     build-packages:
       - advancecomp
-      - libasound2-dev
       - libgl-dev
       - libxcursor-dev
       - libxi-dev
@@ -93,16 +83,11 @@ parts:
       - strip-nondeterminism
       - zip
     stage-packages:
-      - libasound2
       - libgl1
       - libx11-6
       - libxau6
 
 layout:
-  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
-    bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib
-  /usr/share/alsa:
-    bind: $SNAP/usr/share/alsa
   /usr/share/libdrm:
     bind: $SNAP/usr/share/libdrm
 
@@ -116,8 +101,6 @@ apps:
       - bin/desktop-launch
       # Keep config and savegames across updates.
       - bin/keep-xdg
-      # Support ALSA.
-      - snap/command-chain/alsa-launch
     command: bin/aaaaxy
     plugs:
       - audio-playback

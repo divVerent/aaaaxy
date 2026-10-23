@@ -84,13 +84,15 @@ hub release create \
 		abuild -F checksum
 		abuild -F -r
 	'
-	podman run --network=pasta:--ipv4-only --pull=newer --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:3.23 /bin/sh -c '
-		set -e
-		apk add alpine-sdk sudo
-		abuild-keygen -i -a -n
-		cd /aaaaxy
-		abuild -F -r
-	'
+	if false; then
+		podman run --network=pasta:--ipv4-only --pull=newer --rm --mount=type=bind,source=$PWD,target=/aaaaxy docker.io/library/alpine:3.25 /bin/sh -c '
+			set -e
+			apk add alpine-sdk sudo
+			abuild-keygen -i -a -n
+			cd /aaaaxy
+			abuild -F -r
+		'
+	fi
 	git commit -a -m "community/aaaaxy: upgrade to ${new#v}"
 	git push -f divVerent HEAD:aaaaxy
 	# TODO is there a more direct URL to create a MR right away?
