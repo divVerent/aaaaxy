@@ -31,5 +31,6 @@ func initExeDir() {
 		return
 	}
 	exeDir = filepath.Dir(exePath)
+
 	log.Infof("found executable directory: %v", exeDir)
 }
