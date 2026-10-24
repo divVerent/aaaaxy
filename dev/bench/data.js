@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792857232668,
+  "lastUpdate": 1792857485200,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2596,34 +2596,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-08-05T19:10:53Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
         },
-        "date": 1786106384431,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 75.596655745,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T19:10:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
-        },
         "date": 1786191902195,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5148,6 +5120,36 @@ window.BENCHMARK_DATA = {
             "value": 73.189080644,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4599.99"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "8147dbcb53a3078300d880957169e962b6e6a0be",
+          "message": "Unbreak dumpcps.\n\nHelps with pull #424.",
+          "timestamp": "2026-10-24T17:49:12+02:00",
+          "tree_id": "563dbbebf340121543f00cc87930b5fcbb302960",
+          "url": "https://github.com/divVerent/aaaaxy/commit/8147dbcb53a3078300d880957169e962b6e6a0be"
+        },
+        "date": 1792857480008,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 77.555088841,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
       }
