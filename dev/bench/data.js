@@ -5174,34 +5174,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-08-05T19:10:53Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
         },
-        "date": 1786748957238,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 57.237705536,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T19:10:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
-        },
         "date": 1786835014102,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7730,37 +7702,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T19:10:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
+          "distinct": true,
+          "id": "706f823c044dd4cc80b6a838691aa777ebdec2a2",
+          "message": "Fix a checkpoint loading hash bug if a CP has multiple dead ends.\n\nMay help with #424.",
+          "timestamp": "2026-10-24T17:58:15+02:00",
+          "tree_id": "ed00703861470c410d14c9578afe45be187479c8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/706f823c044dd4cc80b6a838691aa777ebdec2a2"
         },
-        "date": 1786835075842,
+        "date": 1792857676340,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 95.9359024,
+            "name": "Any% linux-amd64",
+            "value": 72.544772906,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10308,37 +10282,39 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2793"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
           "committer": {
+            "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
+            "username": "divVerent"
           },
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T19:10:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
+          "distinct": true,
+          "id": "706f823c044dd4cc80b6a838691aa777ebdec2a2",
+          "message": "Fix a checkpoint loading hash bug if a CP has multiple dead ends.\n\nMay help with #424.",
+          "timestamp": "2026-10-24T17:58:15+02:00",
+          "tree_id": "ed00703861470c410d14c9578afe45be187479c8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/706f823c044dd4cc80b6a838691aa777ebdec2a2"
         },
-        "date": 1786835078353,
+        "date": 1792857718636,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 99.6944947,
+            "name": "Any% windows-amd64",
+            "value": 97.078577,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12884,6 +12860,36 @@ window.BENCHMARK_DATA = {
             "value": 99.2020295,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "committer": {
+            "email": "rpolzer@google.com",
+            "name": "Rudolf Polzer",
+            "username": "divVerent"
+          },
+          "distinct": true,
+          "id": "706f823c044dd4cc80b6a838691aa777ebdec2a2",
+          "message": "Fix a checkpoint loading hash bug if a CP has multiple dead ends.\n\nMay help with #424.",
+          "timestamp": "2026-10-24T17:58:15+02:00",
+          "tree_id": "ed00703861470c410d14c9578afe45be187479c8",
+          "url": "https://github.com/divVerent/aaaaxy/commit/706f823c044dd4cc80b6a838691aa777ebdec2a2"
+        },
+        "date": 1792857726995,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 95.3412678,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
