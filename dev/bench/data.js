@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792776250648,
+  "lastUpdate": 1792804433834,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5168,34 +5168,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-08-05T19:10:53Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
         },
-        "date": 1786404172326,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 57.161155757,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.28"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T19:10:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
-        },
         "date": 1786577243965,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7720,9 +7692,7 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
@@ -7735,22 +7705,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent",
             "email": "rpolzer@google.com"
           },
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T19:10:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
+          "id": "d139ccb0802765ead40e5ce2db37ae59578c6032",
+          "message": "snap: Remove ALSA support stuff.\n\noto has learned about pulseaudio some time ago.",
+          "timestamp": "2026-10-18T05:15:54Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d139ccb0802765ead40e5ce2db37ae59578c6032"
         },
-        "date": 1786577269263,
+        "date": 1792804427910,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.9803175,
+            "name": "Any% linux-amd64",
+            "value": 76.983847478,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.87"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10294,9 +10266,7 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
@@ -10309,22 +10279,24 @@ window.BENCHMARK_DATA = {
             "username": "divVerent",
             "email": "rpolzer@google.com"
           },
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T19:10:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
+          "id": "d139ccb0802765ead40e5ce2db37ae59578c6032",
+          "message": "snap: Remove ALSA support stuff.\n\noto has learned about pulseaudio some time ago.",
+          "timestamp": "2026-10-18T05:15:54Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d139ccb0802765ead40e5ce2db37ae59578c6032"
         },
-        "date": 1786577277364,
+        "date": 1792804480325,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 102.7447868,
+            "name": "Any% windows-amd64",
+            "value": 95.677886,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12866,6 +12838,34 @@ window.BENCHMARK_DATA = {
             "value": 102.4574613,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "d139ccb0802765ead40e5ce2db37ae59578c6032",
+          "message": "snap: Remove ALSA support stuff.\n\noto has learned about pulseaudio some time ago.",
+          "timestamp": "2026-10-18T05:15:54Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/d139ccb0802765ead40e5ce2db37ae59578c6032"
+        },
+        "date": 1792804468616,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 96.3510678,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
