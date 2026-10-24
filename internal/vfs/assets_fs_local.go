@@ -25,9 +25,15 @@ import (
 
 // initAssets initializes the VFS.
 func initAssetsFS() ([]fsRoot, error) {
-	assetsPath := filepath.Join(exeDir, "assets")
-	thirdPartyPath := filepath.Join(exeDir, "third_party")
-	licensesPath := filepath.Join(exeDir, "licenses")
+	root := ""
+	_, err := os.Stat(filepath.Join(exeDir, "assets"))
+	if err == nil {
+		root = exeDir
+	}
+
+	assetsPath := filepath.Join(root, "assets")
+	thirdPartyPath := filepath.Join(root, "third_party")
+	licensesPath := filepath.Join(root, "licenses")
 
 	dirs := []fsRoot{
 		{
