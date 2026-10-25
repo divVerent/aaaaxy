@@ -4535,7 +4535,7 @@
   <object id="2665" name="UpDownStart1" gid="310" x="7232" y="7648" width="16" height="16"/>
   <object id="2666" name="UpDownStart1" gid="310" x="7216" y="7696" width="16" height="16"/>
   <object id="2667" name="UpDownStart1" gid="310" x="7232" y="7696" width="16" height="16"/>
-  <object id="2668" type="Player" x="10640" y="10800" width="14" height="30"/>
+  <object id="2668" type="Player" x="7584" y="6832" width="14" height="30"/>
   <object id="2669" name="UpDownLevel1" gid="299" x="5936" y="8352" width="16" height="32"/>
   <object id="2670" name="UpDownLevel1" gid="293" x="7616" y="7616" width="16" height="32"/>
   <object id="2671" name="UpDownStart2" gid="310" x="7216" y="7712" width="16" height="16"/>
