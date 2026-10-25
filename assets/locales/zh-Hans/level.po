@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Rudolf Polzer, 2024
-# Anthony Wang, 2025
+# Anthony Wang, 2026
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 20:55+0200\n"
+"POT-Creation-Date: 2026-10-11 11:11+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
-"Last-Translator: Anthony Wang, 2025\n"
+"Last-Translator: Anthony Wang, 2026\n"
 "Language-Team: Chinese Simplified (https://app.transifex.com/aaaaxy/teams/158611/zh-Hans/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -796,9 +796,9 @@ msgstr "只有你会落入这么原始的陷阱里。"
 msgid "Lack of purpose never was a reason not to do it."
 msgstr "缺乏目标从来不是不做的理由。"
 
-#. May also be known as 'for eyes principle'; a concept from IT security. This
-#. part of the level focuses on the need for multiple switches being toggled
-#. on by two platforms simultaneously to make progress.
+#. May also be known as 'four eyes principle'; a concept from IT security.
+#. This part of the level focuses on the need for multiple switches being
+#. toggled on by two platforms simultaneously to make progress.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=2992]
 msgid "Multi Party Authorization"
 msgstr "多方授权"
@@ -1196,7 +1196,7 @@ msgstr "滑跳伞"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6061]
 msgid "Those who are inattentive get trolled."
-msgstr ""
+msgstr "不专心就会被拖累。"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=6074]
 msgid "If you don't know who you are,{{BR}}you don't know where to go."
@@ -1495,40 +1495,42 @@ msgstr "传送机{{BR}}（按{{ExitButton}}）"
 #. whole piano, I'm gonna use the whole piano".
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8539]
 msgid "Why the rush, eh?"
-msgstr ""
+msgstr "买了一整台钢琴，就要整台都用好用满啊。"
 
 #. This is a reference to Beethoven's Für Elise. If there's a common
 #. misspelling in your language, make a pun based on it; otherwise, maybe
 #. comment on how overplayed it is, or on Beethoven's hearing?
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8541]
 msgid "She's no furry - that letter is an \"ü\"!"
-msgstr ""
+msgstr "倒垃圾时间！"
 
 #. Comic explosion sign.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
 msgid "Bang!"
-msgstr ""
+msgstr "轰！"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8543]
 msgid "I think you meant to play{{BR}}In the Hall of the Mountain King?"
-msgstr ""
+msgstr "我猜你想弹的是{{BR}}《在山魔王的宫殿里》？"
 
 #. Reference to Super Mario 64's intro letter from Princess Peach, combined
 #. with the wellknown phrase misattributed to Marie Antoinette. Try finding
 #. both phrases as most commonly used in your language in the given contexts
 #. and use those. Definitely don't reference Portal here - let's not overdo
 #. those. If Asterix is well-known in your culture, you may consider making it
-#. an "arsenic cake"; if not, reference Grieg's In the Hall of the Mountain
-#. King.
+#. an "arsenic cake" (Le Pudding à l'Arsenic); if not, reference Grieg's In
+#. the Hall of the Mountain King.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8556]
 msgid ""
 "Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat "
 "cake...{{BR}}Arsenic cake?"
-msgstr ""
+msgstr "亲爱的马力欧：{{BR}}请到城堡来。{{BR}}那就叫他们吃蛋糕吧......{{BR}}跟山魔王吃蛋糕？"
 
+#. Reference to the Asterix and Cleopatra song "Arsenic Cake" (Le Pudding à
+#. l'Arsenic).
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8557]
 msgid "I think you meant to play{{BR}}Arsenic Cake?"
-msgstr ""
+msgstr "我猜你想弹的是{{BR}}《Le Pudding à l'Arsenic》？"
 
 #. https://www.youtube.com/watch?v=ReblZ7o7lu4 - however, feel free to put in
 #. _your_ favorite Bad Apple reference (parody or not), even indirect stuff
@@ -1536,4 +1538,4 @@ msgstr ""
 #. lines of "Touhou was too hard, so you're playing this" etc.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8588]
 msgid "... and makes a swirly dot."
-msgstr ""
+msgstr "观今朝身如埃兮无所依……"

@@ -18,6 +18,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"maps"
+	"slices"
 	"sort"
 	"strings"
 
@@ -209,7 +211,9 @@ func (l *Level) loadCheckpointLocations(filename string, g JSONCheckpointGraph, 
 	edges := []edge{}
 	nodeDegrees := make(map[string]int, len(l.Checkpoints))
 	var parseErr error
-	for name, cp := range l.Checkpoints {
+
+	for _, name := range slices.Sorted(maps.Keys(l.Checkpoints)) {
+		cp := l.Checkpoints[name]
 		if name == "" {
 			// Not a real CP, but the player initial spawn.
 			continue
