@@ -1,36 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792941152138,
+  "lastUpdate": 1792946672043,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "e04d1c3d434a7217c821363373b51ad59b09aeec",
-          "message": "Fix comment.",
-          "timestamp": "2026-08-05T19:10:53Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e04d1c3d434a7217c821363373b51ad59b09aeec"
-        },
-        "date": 1786973117586,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 239.445744295,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2582,6 +2554,34 @@ window.BENCHMARK_DATA = {
             "value": 218.854576733,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "782ffb60504761e4185f6cb2f7c185e2d1dba2c2",
+          "message": "Translate assets/locales/level.pot in zh-Hant (#757)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'zh-Hant'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-25T10:58:11Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/782ffb60504761e4185f6cb2f7c185e2d1dba2c2"
+        },
+        "date": 1792946667782,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 176.209416636,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
           }
         ]
       }
