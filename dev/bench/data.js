@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792946672043,
+  "lastUpdate": 1792975670699,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5182,36 +5182,6 @@ window.BENCHMARK_DATA = {
             "username": "web-flow"
           },
           "distinct": true,
-          "id": "35f5605be5aad88cf6d9a3ed6ecd9e0375cede58",
-          "message": "Translate assets/locales/game.pot in pt (#732)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'pt'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-17T18:22:47Z",
-          "tree_id": "7bec22ed3a94d99ecbaccd1fffc6585032cd9a27",
-          "url": "https://github.com/divVerent/aaaaxy/commit/35f5605be5aad88cf6d9a3ed6ecd9e0375cede58"
-        },
-        "date": 1786991407822,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 73.742833965,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
           "id": "e36445a265b97a5e08bc75e463a531cbf47f7d4f",
           "message": "Translate assets/locales/game.pot in de (#730)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
           "timestamp": "2026-08-17T18:23:00Z",
@@ -7746,39 +7716,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
           },
           "committer": {
-            "email": "noreply@github.com",
             "name": "GitHub",
-            "username": "web-flow"
+            "username": "web-flow",
+            "email": "noreply@github.com"
           },
-          "distinct": true,
-          "id": "e79fb10fc777cdd270af4dd038342a783902a5e7",
-          "message": "Bump github/codeql-action from 4.37.4 to 4.37.7 (#729)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.37.4 to 4.37.7.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.37.4...v4.37.7)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.37.7\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-17T18:23:19Z",
-          "tree_id": "78402176b795bb122f500621294992ecfd99654b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e79fb10fc777cdd270af4dd038342a783902a5e7"
+          "id": "782ffb60504761e4185f6cb2f7c185e2d1dba2c2",
+          "message": "Translate assets/locales/level.pot in zh-Hant (#757)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'zh-Hant'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-25T10:58:11Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/782ffb60504761e4185f6cb2f7c185e2d1dba2c2"
         },
-        "date": 1786991563836,
+        "date": 1792975665729,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.3541012,
+            "name": "Any% linux-amd64",
+            "value": 44.676473817,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10326,69 +10294,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "782ffb60504761e4185f6cb2f7c185e2d1dba2c2",
+          "message": "Translate assets/locales/level.pot in zh-Hant (#757)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'zh-Hant'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-25T10:58:11Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/782ffb60504761e4185f6cb2f7c185e2d1dba2c2"
+        },
+        "date": 1792975700666,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-amd64",
+            "value": 95.9474288,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+          }
+        ]
       }
     ],
     "Any% windows-386": [
-      {
-        "commit": {
-          "author": {
-            "email": "43880903+transifex-integration[bot]@users.noreply.github.com",
-            "name": "transifex-integration[bot]",
-            "username": "transifex-integration[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e36445a265b97a5e08bc75e463a531cbf47f7d4f",
-          "message": "Translate assets/locales/game.pot in de (#730)\n\n100% reviewed source file: 'assets/locales/game.pot'\non 'de'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-17T18:23:00Z",
-          "tree_id": "99586fb4573b33145af339a5c68e067fb0aea40f",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e36445a265b97a5e08bc75e463a531cbf47f7d4f"
-        },
-        "date": 1786991552323,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 101.7183352,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e79fb10fc777cdd270af4dd038342a783902a5e7",
-          "message": "Bump github/codeql-action from 4.37.4 to 4.37.7 (#729)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.37.4 to 4.37.7.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.37.4...v4.37.7)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.37.7\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-          "timestamp": "2026-08-17T18:23:19Z",
-          "tree_id": "78402176b795bb122f500621294992ecfd99654b",
-          "url": "https://github.com/divVerent/aaaaxy/commit/e79fb10fc777cdd270af4dd038342a783902a5e7"
-        },
-        "date": 1786991560330,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% windows-386",
-            "value": 99.1852998,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -12932,6 +12868,34 @@ window.BENCHMARK_DATA = {
           {
             "name": "Any% windows-386",
             "value": 98.8826821,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "transifex-integration[bot]",
+            "username": "transifex-integration[bot]",
+            "email": "43880903+transifex-integration[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "782ffb60504761e4185f6cb2f7c185e2d1dba2c2",
+          "message": "Translate assets/locales/level.pot in zh-Hant (#757)\n\n100% reviewed source file: 'assets/locales/level.pot'\non 'zh-Hant'.\n\nCo-authored-by: transifex-integration[bot] <43880903+transifex-integration[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-25T10:58:11Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/782ffb60504761e4185f6cb2f7c185e2d1dba2c2"
+        },
+        "date": 1792975719126,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.3987243,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
