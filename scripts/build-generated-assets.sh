@@ -27,7 +27,7 @@ cp assets/_saved/* assets/generated/
 
 if [ x"$AAAAXY_GENERATE_ASSETS" = x'true' ]; then
 	if [ x"$AAAAXY_GENERATE_CHECKPOINT_LOCATIONS" = x'true' ]; then
-		scripts/generate-checkpoints-only.sh
+		sh scripts/generate-checkpoints-only.sh
 		for lfile in assets/maps/*.tmx; do
 			lname=${lfile%.tmx}
 			lname=${lname##*/}
