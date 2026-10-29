@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793212224506,
+  "lastUpdate": 1793239173654,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5186,34 +5186,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-08-18T13:52:16Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/c4ada3d0742b580c329250bff209d1e3c7ba422f"
         },
-        "date": 1787094635582,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 73.842655194,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "soopax",
-            "username": "soopax",
-            "email": "soopax.pine@gmail.com"
-          },
-          "committer": {
-            "name": "GitHub",
-            "username": "web-flow",
-            "email": "noreply@github.com"
-          },
-          "id": "c4ada3d0742b580c329250bff209d1e3c7ba422f",
-          "message": "Fix startup crash when current working directory doesn't match exeDir (#734)",
-          "timestamp": "2026-08-18T13:52:16Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/c4ada3d0742b580c329250bff209d1e3c7ba422f"
-        },
         "date": 1787181088871,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7742,39 +7714,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v7\ncpu_model: Intel(R) Xeon(R) 6973P-C\ncpu_cores: 4\ncpu_bogomips: 5200.00"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "soopax.pine@gmail.com",
-            "name": "soopax",
-            "username": "soopax"
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
           },
           "committer": {
-            "email": "noreply@github.com",
             "name": "GitHub",
-            "username": "web-flow"
+            "username": "web-flow",
+            "email": "noreply@github.com"
           },
-          "distinct": true,
-          "id": "76ce9c183ddb0782dea3a8d9a00b8a77b287e688",
-          "message": "Replay ticking_clock.ogg when backtracking from King's Cross to Nine Boxes in Sight (#735)",
-          "timestamp": "2026-08-20T13:47:53+02:00",
-          "tree_id": "53672c4f837a61899514c25129a21a166519b1c2",
-          "url": "https://github.com/divVerent/aaaaxy/commit/76ce9c183ddb0782dea3a8d9a00b8a77b287e688"
+          "id": "07d725269c93e290b28e245f88ee5927f75d96f1",
+          "message": "Bump github/codeql-action from 4.39.0 to 4.39.1 (#759)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.39.0 to 4.39.1.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.39.0...v4.39.1)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.39.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T14:28:47Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/07d725269c93e290b28e245f88ee5927f75d96f1"
         },
-        "date": 1787226745469,
+        "date": 1793239167563,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.1716602,
+            "name": "Any% linux-amd64",
+            "value": 74.527632567,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.84"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10322,39 +10292,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "soopax.pine@gmail.com",
-            "name": "soopax",
-            "username": "soopax"
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
           },
           "committer": {
-            "email": "noreply@github.com",
             "name": "GitHub",
-            "username": "web-flow"
+            "username": "web-flow",
+            "email": "noreply@github.com"
           },
-          "distinct": true,
-          "id": "76ce9c183ddb0782dea3a8d9a00b8a77b287e688",
-          "message": "Replay ticking_clock.ogg when backtracking from King's Cross to Nine Boxes in Sight (#735)",
-          "timestamp": "2026-08-20T13:47:53+02:00",
-          "tree_id": "53672c4f837a61899514c25129a21a166519b1c2",
-          "url": "https://github.com/divVerent/aaaaxy/commit/76ce9c183ddb0782dea3a8d9a00b8a77b287e688"
+          "id": "07d725269c93e290b28e245f88ee5927f75d96f1",
+          "message": "Bump github/codeql-action from 4.39.0 to 4.39.1 (#759)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.39.0 to 4.39.1.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.39.0...v4.39.1)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.39.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T14:28:47Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/07d725269c93e290b28e245f88ee5927f75d96f1"
         },
-        "date": 1787226712951,
+        "date": 1793239218502,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 102.9541766,
+            "name": "Any% windows-amd64",
+            "value": 97.258056,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12900,6 +12868,34 @@ window.BENCHMARK_DATA = {
             "value": 99.4235295,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2793"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "07d725269c93e290b28e245f88ee5927f75d96f1",
+          "message": "Bump github/codeql-action from 4.39.0 to 4.39.1 (#759)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.39.0 to 4.39.1.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.39.0...v4.39.1)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.39.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T14:28:47Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/07d725269c93e290b28e245f88ee5927f75d96f1"
+        },
+        "date": 1793239228306,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.019609,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
           }
         ]
       }
