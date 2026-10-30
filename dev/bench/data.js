@@ -1,38 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793380858955,
+  "lastUpdate": 1793383925087,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
-      {
-        "commit": {
-          "author": {
-            "email": "soopax.pine@gmail.com",
-            "name": "soopax",
-            "username": "soopax"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "76ce9c183ddb0782dea3a8d9a00b8a77b287e688",
-          "message": "Replay ticking_clock.ogg when backtracking from King's Cross to Nine Boxes in Sight (#735)",
-          "timestamp": "2026-08-20T13:47:53+02:00",
-          "tree_id": "53672c4f837a61899514c25129a21a166519b1c2",
-          "url": "https://github.com/divVerent/aaaaxy/commit/76ce9c183ddb0782dea3a8d9a00b8a77b287e688"
-        },
-        "date": 1787226756502,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "100% linux-amd64",
-            "value": 227.207411902,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -2578,6 +2548,34 @@ window.BENCHMARK_DATA = {
             "value": 226.477209435,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "07d725269c93e290b28e245f88ee5927f75d96f1",
+          "message": "Bump github/codeql-action from 4.39.0 to 4.39.1 (#759)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.39.0 to 4.39.1.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.39.0...v4.39.1)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.39.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T14:28:47Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/07d725269c93e290b28e245f88ee5927f75d96f1"
+        },
+        "date": 1793383918261,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "100% linux-amd64",
+            "value": 225.010963185,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
       }
