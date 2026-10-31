@@ -1050,7 +1050,7 @@ msgstr "小型車限定"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4935]
 msgid "{{BigCity}} Road Rage"
-msgstr "{{BigCity}}・煽り運転"
+msgstr "{{BigCity}}・ロード・レイジ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4941]
 msgid "Grand Theft Auto!"
