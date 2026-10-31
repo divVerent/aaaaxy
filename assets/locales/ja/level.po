@@ -1526,7 +1526,7 @@ msgstr "『山の魔王の宮殿にて』{{BR}}を演るはずじゃ？"
 msgid ""
 "Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat "
 "cake...{{BR}}Arsenic cake?"
-msgstr "おしろへ あそびに{{BR}}きてください。{{BR}}アーセナックの ケーキを{{BR}}つくって まってます。"
+msgstr "おしろへ あそびに{{BR}}きてください。{{BR}}アーセナックの ケーキを{{BR}}あのかたたちに さしあげましょう。"
 
 #. Reference to the Asterix and Cleopatra song "Arsenic Cake" (Le Pudding à
 #. l'Arsenic).
