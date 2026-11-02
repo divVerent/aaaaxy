@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793556316048,
+  "lastUpdate": 1793584594579,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5162,34 +5162,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "rpolzer@google.com"
-          },
-          "id": "c9cfa129eb8557ba9d37952611733e75713658c6",
-          "message": "Fix translation note typo in Multi Party Authorization.",
-          "timestamp": "2026-08-20T18:18:06Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/c9cfa129eb8557ba9d37952611733e75713658c6"
-        },
-        "date": 1787267598221,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 64.349938979,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ds_v6\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.33"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "email": "rpolzer@google.com",
             "name": "Rudolf Polzer",
             "username": "divVerent"
@@ -7728,39 +7700,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4600.00"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
           },
-          "distinct": true,
-          "id": "34d907cc643de91c3195c45f2ea292104554f62b",
-          "message": "Fix staticcheck, and migrate to non-deprecated line drawing.",
-          "timestamp": "2026-08-21T12:04:26+02:00",
-          "tree_id": "8e20e77b9f0fea7b6c9e432d32704e4f2c373ed9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/34d907cc643de91c3195c45f2ea292104554f62b"
+          "id": "07d725269c93e290b28e245f88ee5927f75d96f1",
+          "message": "Bump github/codeql-action from 4.39.0 to 4.39.1 (#759)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.39.0 to 4.39.1.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.39.0...v4.39.1)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.39.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T14:28:47Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/07d725269c93e290b28e245f88ee5927f75d96f1"
         },
-        "date": 1787306903102,
+        "date": 1793584589790,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 96.9432129,
+            "name": "Any% linux-amd64",
+            "value": 75.273262878,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10302,39 +10272,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
           },
           "committer": {
-            "email": "rpolzer@google.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
           },
-          "distinct": true,
-          "id": "34d907cc643de91c3195c45f2ea292104554f62b",
-          "message": "Fix staticcheck, and migrate to non-deprecated line drawing.",
-          "timestamp": "2026-08-21T12:04:26+02:00",
-          "tree_id": "8e20e77b9f0fea7b6c9e432d32704e4f2c373ed9",
-          "url": "https://github.com/divVerent/aaaaxy/commit/34d907cc643de91c3195c45f2ea292104554f62b"
+          "id": "07d725269c93e290b28e245f88ee5927f75d96f1",
+          "message": "Bump github/codeql-action from 4.39.0 to 4.39.1 (#759)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.39.0 to 4.39.1.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.39.0...v4.39.1)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.39.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T14:28:47Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/07d725269c93e290b28e245f88ee5927f75d96f1"
         },
-        "date": 1787306913075,
+        "date": 1793584633733,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 105.6084368,
+            "name": "Any% windows-amd64",
+            "value": 96.75594,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12874,6 +12842,34 @@ window.BENCHMARK_DATA = {
             "value": 100.5939898,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "07d725269c93e290b28e245f88ee5927f75d96f1",
+          "message": "Bump github/codeql-action from 4.39.0 to 4.39.1 (#759)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.39.0 to 4.39.1.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.39.0...v4.39.1)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.39.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T14:28:47Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/07d725269c93e290b28e245f88ee5927f75d96f1"
+        },
+        "date": 1793584675054,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.6514674,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
