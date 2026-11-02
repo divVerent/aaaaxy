@@ -15,7 +15,7 @@ require (
 	github.com/hajimehoshi/ebiten/v2 v2.10.5
 	github.com/jeandeaual/go-locale v0.0.0-20250612000132-0ef82f21eade
 	github.com/leonelquinteros/gotext v1.8.0
-	github.com/lestrrat-go/strftime v1.2.0
+	github.com/lestrrat-go/strftime v1.2.1
 	github.com/lucasb-eyer/go-colorful v1.4.1
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/ncruces/zenity v0.10.15
