@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793847345078,
+  "lastUpdate": 1793905930764,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2578,36 +2578,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "soopax.pine@gmail.com",
-            "name": "soopax",
-            "username": "soopax"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "c4ada3d0742b580c329250bff209d1e3c7ba422f",
-          "message": "Fix startup crash when current working directory doesn't match exeDir (#734)",
-          "timestamp": "2026-08-18T13:52:16Z",
-          "tree_id": "187442ce8207dc0986113b259ca2f8e99843f39e",
-          "url": "https://github.com/divVerent/aaaaxy/commit/c4ada3d0742b580c329250bff209d1e3c7ba422f"
-        },
-        "date": 1787062622316,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 78.078376214,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.86"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "soopax",
             "username": "soopax",
             "email": "soopax.pine@gmail.com"
@@ -5146,6 +5116,34 @@ window.BENCHMARK_DATA = {
             "value": 46.188040546,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]",
+            "email": "49699333+dependabot[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "07d725269c93e290b28e245f88ee5927f75d96f1",
+          "message": "Bump github/codeql-action from 4.39.0 to 4.39.1 (#759)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.39.0 to 4.39.1.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/v4.39.0...v4.39.1)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.39.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-10-27T14:28:47Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/07d725269c93e290b28e245f88ee5927f75d96f1"
+        },
+        "date": 1793905925006,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 76.799747019,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 5586.87"
           }
         ]
       }
