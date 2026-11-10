@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794264115567,
+  "lastUpdate": 1794284726995,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5152,36 +5152,6 @@ window.BENCHMARK_DATA = {
       {
         "commit": {
           "author": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "committer": {
-            "email": "divVerent@gmail.com",
-            "name": "Rudolf Polzer",
-            "username": "divVerent"
-          },
-          "distinct": true,
-          "id": "8ba75c3e34b45bade1def54ac5dbf550ed3c796e",
-          "message": "Add an option for the PICO-8 palette.",
-          "timestamp": "2026-08-27T21:38:56+02:00",
-          "tree_id": "9edeef5c7e261e6689c6571f78c683009a9dbbb3",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8ba75c3e34b45bade1def54ac5dbf550ed3c796e"
-        },
-        "date": 1787859737571,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 75.745829958,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.26"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
             "email": "divVerent@gmail.com"
@@ -7716,37 +7686,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
-            "email": "divVerent@gmail.com"
+            "email": "rpolzer@google.com"
           },
           "committer": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
-            "email": "divVerent@gmail.com"
+            "email": "rpolzer@google.com"
           },
-          "id": "8ba75c3e34b45bade1def54ac5dbf550ed3c796e",
-          "message": "Add an option for the PICO-8 palette.",
-          "timestamp": "2026-08-27T19:38:56Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8ba75c3e34b45bade1def54ac5dbf550ed3c796e"
+          "id": "7925c91298b1b1e783c60b30efe3c3eefc6a4623",
+          "message": "Module updates.",
+          "timestamp": "2026-11-09T08:24:09Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7925c91298b1b1e783c60b30efe3c3eefc6a4623"
         },
-        "date": 1787975878089,
+        "date": 1794284721183,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 97.0165848,
+            "name": "Any% linux-amd64",
+            "value": 80.432729486,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10288,37 +10258,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
-            "email": "divVerent@gmail.com"
+            "email": "rpolzer@google.com"
           },
           "committer": {
             "name": "Rudolf Polzer",
             "username": "divVerent",
-            "email": "divVerent@gmail.com"
+            "email": "rpolzer@google.com"
           },
-          "id": "8ba75c3e34b45bade1def54ac5dbf550ed3c796e",
-          "message": "Add an option for the PICO-8 palette.",
-          "timestamp": "2026-08-27T19:38:56Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8ba75c3e34b45bade1def54ac5dbf550ed3c796e"
+          "id": "7925c91298b1b1e783c60b30efe3c3eefc6a4623",
+          "message": "Module updates.",
+          "timestamp": "2026-11-09T08:24:09Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7925c91298b1b1e783c60b30efe3c3eefc6a4623"
         },
-        "date": 1787975881093,
+        "date": 1794284702009,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 100.2826367,
+            "name": "Any% windows-amd64",
+            "value": 95.8803187,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12858,6 +12828,34 @@ window.BENCHMARK_DATA = {
             "value": 99.8279721,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "7925c91298b1b1e783c60b30efe3c3eefc6a4623",
+          "message": "Module updates.",
+          "timestamp": "2026-11-09T08:24:09Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7925c91298b1b1e783c60b30efe3c3eefc6a4623"
+        },
+        "date": 1794284704816,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 99.9505879,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
