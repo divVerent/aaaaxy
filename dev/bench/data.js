@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794600048491,
+  "lastUpdate": 1794624358112,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -5164,34 +5164,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-08-27T19:38:56Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/8ba75c3e34b45bade1def54ac5dbf550ed3c796e"
         },
-        "date": 1788137859616,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64",
-            "value": 71.84685341,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 4599.99"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "id": "8ba75c3e34b45bade1def54ac5dbf550ed3c796e",
-          "message": "Add an option for the PICO-8 palette.",
-          "timestamp": "2026-08-27T19:38:56Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8ba75c3e34b45bade1def54ac5dbf550ed3c796e"
-        },
         "date": 1788226118235,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -7712,39 +7684,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.24"
           }
         ]
-      }
-    ],
-    "Any% windows-amd64": [
+      },
       {
         "commit": {
           "author": {
-            "email": "soopax.pine@gmail.com",
-            "name": "soopax",
-            "username": "soopax"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "846842e822af60468abdf82854cdcbf6fbc1789e",
-          "message": "Add the SWEETIE-16 palette by GrafxKid, used in TIC-80 (#738)\n\n* Add the SWEETIE-16 palette by GrafxKid, used in TIC-80\n\n* Add EGA color mapping and move cyan to last\nCo-authored-by: Rudolf Polzer <rpolzer@google.com>\n\n* Run `git add assets/_saved/lut_sweetie16_*`\nCo-authored-by: Rudolf Polzer <rpolzer@google.com>",
-          "timestamp": "2026-09-01T10:32:50Z",
-          "tree_id": "7e4a5607e233223877a017887ae0d43098a5eb56",
-          "url": "https://github.com/divVerent/aaaaxy/commit/846842e822af60468abdf82854cdcbf6fbc1789e"
+          "id": "7925c91298b1b1e783c60b30efe3c3eefc6a4623",
+          "message": "Module updates.",
+          "timestamp": "2026-11-09T08:24:09Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7925c91298b1b1e783c60b30efe3c3eefc6a4623"
         },
-        "date": 1788258981497,
+        "date": 1794624353095,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-amd64",
-            "value": 95.516126,
+            "name": "Any% linux-amd64",
+            "value": 60.666991054,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: \ncpu_model: Intel(R) Xeon(R) 6975P-C\ncpu_cores: 4\ncpu_bogomips: 5400.00"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-amd64": [
       {
         "commit": {
           "author": {
@@ -10284,39 +10254,37 @@ window.BENCHMARK_DATA = {
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: INTEL(R) XEON(R) PLATINUM 8573C\ncpu_cores: 4\ncpu_bogomips: 2300"
           }
         ]
-      }
-    ],
-    "Any% windows-386": [
+      },
       {
         "commit": {
           "author": {
-            "email": "soopax.pine@gmail.com",
-            "name": "soopax",
-            "username": "soopax"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
           "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
           },
-          "distinct": true,
-          "id": "846842e822af60468abdf82854cdcbf6fbc1789e",
-          "message": "Add the SWEETIE-16 palette by GrafxKid, used in TIC-80 (#738)\n\n* Add the SWEETIE-16 palette by GrafxKid, used in TIC-80\n\n* Add EGA color mapping and move cyan to last\nCo-authored-by: Rudolf Polzer <rpolzer@google.com>\n\n* Run `git add assets/_saved/lut_sweetie16_*`\nCo-authored-by: Rudolf Polzer <rpolzer@google.com>",
-          "timestamp": "2026-09-01T10:32:50Z",
-          "tree_id": "7e4a5607e233223877a017887ae0d43098a5eb56",
-          "url": "https://github.com/divVerent/aaaaxy/commit/846842e822af60468abdf82854cdcbf6fbc1789e"
+          "id": "7925c91298b1b1e783c60b30efe3c3eefc6a4623",
+          "message": "Module updates.",
+          "timestamp": "2026-11-09T08:24:09Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7925c91298b1b1e783c60b30efe3c3eefc6a4623"
         },
-        "date": 1788258980558,
+        "date": 1794624372703,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
-            "name": "Any% windows-386",
-            "value": 99.8909545,
+            "name": "Any% windows-amd64",
+            "value": 93.9994768,
             "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2445"
+            "extra": "azure_vmsize: Standard_D4ads_v7\ncpu_model: AMD EPYC 9V45 96-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
-      },
+      }
+    ],
+    "Any% windows-386": [
       {
         "commit": {
           "author": {
@@ -12854,6 +12822,34 @@ window.BENCHMARK_DATA = {
             "value": 99.5294802,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ds_v5\ncpu_model: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz\ncpu_cores: 4\ncpu_bogomips: 2793"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "7925c91298b1b1e783c60b30efe3c3eefc6a4623",
+          "message": "Module updates.",
+          "timestamp": "2026-11-09T08:24:09Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7925c91298b1b1e783c60b30efe3c3eefc6a4623"
+        },
+        "date": 1794624409581,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% windows-386",
+            "value": 100.7705329,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 2596"
           }
         ]
       }
