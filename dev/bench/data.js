@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794795961160,
+  "lastUpdate": 1794864291977,
   "repoUrl": "https://github.com/divVerent/aaaaxy",
   "entries": {
     "100% linux-amd64": [
@@ -2588,34 +2588,6 @@ window.BENCHMARK_DATA = {
           "timestamp": "2026-08-27T19:38:56Z",
           "url": "https://github.com/divVerent/aaaaxy/commit/8ba75c3e34b45bade1def54ac5dbf550ed3c796e"
         },
-        "date": 1788104151822,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Any% linux-amd64-current",
-            "value": 60.451431094,
-            "unit": "Seconds",
-            "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.25"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "committer": {
-            "name": "Rudolf Polzer",
-            "username": "divVerent",
-            "email": "divVerent@gmail.com"
-          },
-          "id": "8ba75c3e34b45bade1def54ac5dbf550ed3c796e",
-          "message": "Add an option for the PICO-8 palette.",
-          "timestamp": "2026-08-27T19:38:56Z",
-          "url": "https://github.com/divVerent/aaaaxy/commit/8ba75c3e34b45bade1def54ac5dbf550ed3c796e"
-        },
         "date": 1788200397092,
         "tool": "customSmallerIsBetter",
         "benches": [
@@ -5138,6 +5110,34 @@ window.BENCHMARK_DATA = {
             "value": 59.284071076,
             "unit": "Seconds",
             "extra": "azure_vmsize: Standard_D4ads_v6\ncpu_model: AMD EPYC 9V74 80-Core Processor\ncpu_cores: 4\ncpu_bogomips: 5192.29"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "committer": {
+            "name": "Rudolf Polzer",
+            "username": "divVerent",
+            "email": "rpolzer@google.com"
+          },
+          "id": "7925c91298b1b1e783c60b30efe3c3eefc6a4623",
+          "message": "Module updates.",
+          "timestamp": "2026-11-09T08:24:09Z",
+          "url": "https://github.com/divVerent/aaaaxy/commit/7925c91298b1b1e783c60b30efe3c3eefc6a4623"
+        },
+        "date": 1794864286422,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Any% linux-amd64-current",
+            "value": 75.810208995,
+            "unit": "Seconds",
+            "extra": "azure_vmsize: Standard_D4ads_v5\ncpu_model: AMD EPYC 7763 64-Core Processor\ncpu_cores: 4\ncpu_bogomips: 4890.85"
           }
         ]
       }
