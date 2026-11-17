@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-20 20:14+0200\n"
+"POT-Creation-Date: 2026-10-11 11:11+0200\n"
 "PO-Revision-Date: 2022-12-13 17:39+0000\n"
 "Last-Translator: Konishi, Hiroto, 2026\n"
 "Language-Team: Japanese (https://app.transifex.com/aaaaxy/teams/158611/ja/)\n"
@@ -940,7 +940,7 @@ msgstr "改造"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=3992]
 msgid "Missing a shelljump in {{Year}}?"
-msgstr "{{Year}}年にもなったのに２段ジャンプも出来ないの？"
+msgstr "{{Year}}年にもなって、２段ジャンプも出来ないの？"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4025]
 msgid "Kaaaart Race"
@@ -1050,7 +1050,7 @@ msgstr "小型車限定"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4935]
 msgid "{{BigCity}} Road Rage"
-msgstr "{{BigCity}}・煽り運転"
+msgstr "{{BigCity}}・ロード・レイジ"
 
 #: assets/maps/level.tmx//map/objectgroup/object[@id=4941]
 msgid "Grand Theft Auto!"
@@ -1520,14 +1520,16 @@ msgstr "『山の魔王の宮殿にて』{{BR}}を演るはずじゃ？"
 #. both phrases as most commonly used in your language in the given contexts
 #. and use those. Definitely don't reference Portal here - let's not overdo
 #. those. If Asterix is well-known in your culture, you may consider making it
-#. an "arsenic cake"; if not, reference Grieg's In the Hall of the Mountain
-#. King.
+#. an "arsenic cake" (Le Pudding à l'Arsenic); if not, reference Grieg's In
+#. the Hall of the Mountain King.
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8556]
 msgid ""
 "Dear Mario:{{BR}}Please come to the castle.{{BR}}Let them eat "
 "cake...{{BR}}Arsenic cake?"
-msgstr "おしろへ あそびに{{BR}}きてください。{{BR}}アーセナックの ケーキを{{BR}}つくって まってます。"
+msgstr "おしろへ あそびに{{BR}}きてください。{{BR}}アーセナックの ケーキを{{BR}}あのかたたちに さしあげましょう。"
 
+#. Reference to the Asterix and Cleopatra song "Arsenic Cake" (Le Pudding à
+#. l'Arsenic).
 #: assets/maps/level.tmx//map/objectgroup/object[@id=8557]
 msgid "I think you meant to play{{BR}}Arsenic Cake?"
 msgstr "『アーセナックのケーキ』{{BR}}を演るはずじゃ？"
